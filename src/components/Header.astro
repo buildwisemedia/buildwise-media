@@ -1,0 +1,180 @@
+---
+const bookingUrl = 'https://book.buildwisemedia.com';
+---
+
+<header class="site-header" id="site-header">
+  <div class="container header-inner">
+    <a href="/" class="logo" aria-label="Buildwise Media home">
+      <span class="logo-mark">BW</span>
+      <span class="logo-text">Buildwise Media</span>
+    </a>
+    <nav class="nav" aria-label="Main navigation">
+      <a href="#how-it-works" class="nav-link">How It Works</a>
+      <a href="#results" class="nav-link">Results</a>
+      <a href={bookingUrl} class="cta-btn cta-btn--sm">See If You Qualify</a>
+    </nav>
+    <button class="mobile-toggle" aria-label="Open menu" aria-expanded="false" id="mobile-toggle">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+  <!-- Mobile nav overlay -->
+  <div class="mobile-nav" id="mobile-nav" aria-hidden="true">
+    <a href="#how-it-works" class="mobile-nav-link">How It Works</a>
+    <a href="#results" class="mobile-nav-link">Results</a>
+    <a href={bookingUrl} class="cta-btn" style="width:100%;text-align:center;margin-top:1rem;">See If You Qualify</a>
+  </div>
+</header>
+
+<style>
+  .site-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    background: var(--surface-glass);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border-subtle);
+    transition: background 0.3s;
+  }
+
+  .header-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 72px;
+  }
+
+  .logo {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    text-decoration: none;
+    color: inherit;
+  }
+
+  .logo:hover { color: inherit; }
+
+  .logo-mark {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 38px;
+    height: 38px;
+    background: var(--color-terracotta);
+    color: var(--color-white);
+    font-family: var(--font-heading);
+    font-weight: 800;
+    font-size: 0.875rem;
+    border-radius: var(--radius-sm);
+    letter-spacing: 0.02em;
+  }
+
+  .logo-text {
+    font-family: var(--font-heading);
+    font-weight: 700;
+    font-size: 1.125rem;
+  }
+
+  .nav {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+  }
+
+  .nav-link {
+    font-family: var(--font-body);
+    font-size: 0.9375rem;
+    font-weight: 500;
+    color: var(--color-text-secondary);
+    transition: color var(--transition-fast);
+    text-decoration: none;
+  }
+
+  .nav-link:hover {
+    color: var(--color-terracotta);
+  }
+
+  .cta-btn--sm {
+    padding: 0.625rem 1.25rem;
+    font-size: 0.9375rem;
+  }
+
+  .mobile-toggle {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    padding: 4px;
+    background: none;
+    border: none;
+    cursor: pointer;
+  }
+
+  .mobile-toggle span {
+    display: block;
+    width: 24px;
+    height: 2px;
+    background: var(--color-text-primary);
+    border-radius: 2px;
+    transition: transform 0.3s, opacity 0.3s;
+  }
+
+  .mobile-nav {
+    display: none;
+    flex-direction: column;
+    padding: 1rem 1.5rem 2rem;
+    background: var(--surface-glass);
+    border-top: 1px solid var(--border-subtle);
+  }
+
+  .mobile-nav[aria-hidden="false"] {
+    display: flex;
+  }
+
+  .mobile-nav-link {
+    padding: 0.875rem 0;
+    font-size: 1.125rem;
+    font-weight: 500;
+    color: var(--color-text-primary);
+    border-bottom: 1px solid var(--border-subtle);
+    text-decoration: none;
+  }
+
+  @media (max-width: 768px) {
+    .nav { display: none; }
+    .mobile-toggle { display: flex; }
+  }
+</style>
+
+<script is:inline>
+  (function() {
+    var toggle = document.getElementById('mobile-toggle');
+    var nav = document.getElementById('mobile-nav');
+    if (!toggle || !nav) return;
+    toggle.addEventListener('click', function() {
+      var open = nav.getAttribute('aria-hidden') === 'false';
+      nav.setAttribute('aria-hidden', open ? 'true' : 'false');
+      toggle.setAttribute('aria-expanded', open ? 'false' : 'true');
+    });
+    // Close on link click
+    nav.querySelectorAll('a').forEach(function(a) {
+      a.addEventListener('click', function() {
+        nav.setAttribute('aria-hidden', 'true');
+        toggle.setAttribute('aria-expanded', 'false');
+      });
+    });
+    // Header scroll effect
+    var header = document.getElementById('site-header');
+    var lastY = 0;
+    window.addEventListener('scroll', function() {
+      var y = window.scrollY;
+      if (y > 100) {
+        header.style.boxShadow = 'var(--shadow-header-scroll)';
+      } else {
+        header.style.boxShadow = 'none';
+      }
+      lastY = y;
+    }, { passive: true });
+  })();
+</script>

@@ -1,0 +1,104 @@
+---
+const constraints = [
+  {
+    icon: '🔻',
+    title: 'Lead Droughts',
+    desc: 'Feast-or-famine cycles that make it impossible to plan ahead or hire with confidence.',
+  },
+  {
+    icon: '⏳',
+    title: 'The Owner Trap',
+    desc: 'You ARE the sales team, the marketer, and the closer — leaving zero time to actually run the business.',
+  },
+  {
+    icon: '🔧',
+    title: 'Manual Mayhem',
+    desc: 'Sticky notes, spreadsheets, and missed follow-ups costing you deals every single week.',
+  },
+  {
+    icon: '🔥',
+    title: 'Reactive Mode',
+    desc: 'Always putting out fires instead of building systems that grow without you.',
+  },
+];
+---
+
+<section class="section section--medium" id="problems">
+  <div class="container">
+    <div class="poor-four-header reveal">
+      <span class="section-label">Sound Familiar?</span>
+      <h2 class="section-title">The Four Walls Holding<br />Your Business Back</h2>
+      <p class="section-subtitle">
+        These aren't just frustrations — they're profit leaks. And most service businesses deal with all four at once.
+      </p>
+    </div>
+    <div class="poor-four-grid">
+      {constraints.map((item, i) => (
+        <div class={`poor-four-card reveal reveal-delay-${i + 1}`}>
+          <span class="poor-four-icon">{item.icon}</span>
+          <h3 class="poor-four-title">{item.title}</h3>
+          <p class="poor-four-desc">{item.desc}</p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .poor-four-header {
+    text-align: center;
+    margin-bottom: var(--space-3xl);
+  }
+
+  .poor-four-header .section-subtitle {
+    margin: 0 auto;
+  }
+
+  .poor-four-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-xl);
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  .poor-four-card {
+    padding: var(--space-2xl);
+    background: var(--surface-card);
+    border: 1px solid var(--border-card);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-card);
+    transition: border-color var(--transition-base);
+  }
+
+  .poor-four-card:hover {
+    border-color: var(--border-accent-hover);
+  }
+
+  .poor-four-icon {
+    display: block;
+    font-size: 2rem;
+    margin-bottom: var(--space-lg);
+  }
+
+  .poor-four-title {
+    font-size: 1.25rem;
+    margin-bottom: var(--space-sm);
+  }
+
+  .poor-four-desc {
+    font-size: 0.9375rem;
+    color: var(--color-text-secondary);
+    line-height: 1.7;
+  }
+
+  @media (max-width: 768px) {
+    .poor-four-grid {
+      grid-template-columns: 1fr;
+      gap: var(--space-lg);
+    }
+    .poor-four-card {
+      padding: var(--space-xl);
+    }
+  }
+</style>

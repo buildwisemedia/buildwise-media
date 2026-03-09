@@ -1,0 +1,63 @@
+---
+const bookingUrl = 'https://book.buildwisemedia.com';
+---
+
+<section class="section section--dark">
+  <div class="container">
+    <div class="agitate-inner reveal">
+      <span class="section-label">The Real Cost</span>
+      <h2 class="agitate-headline">
+        Every month without a system,<br />
+        you're leaving <span class="agitate-amount">$15,000+</span> on the table.
+      </h2>
+      <p class="agitate-body">
+        Missed calls. Leads that ghost. Referrals you never followed up on.
+        It's not one big failure — it's a thousand small leaks that add up to
+        six figures a year in lost revenue.
+      </p>
+      <p class="agitate-body">
+        Your competitors aren't better at what you do.
+        They just have a system that captures demand while you're still on the job site.
+      </p>
+      <a href={bookingUrl} class="cta-btn cta-btn--outline agitate-cta">Stop the Leak →</a>
+    </div>
+  </div>
+</section>
+
+<style>
+  .agitate-inner {
+    text-align: center;
+    max-width: 720px;
+    margin: 0 auto;
+  }
+
+  .agitate-headline {
+    font-size: clamp(1.75rem, 4.5vw, 2.75rem);
+    line-height: 1.2;
+    margin-bottom: var(--space-xl);
+    letter-spacing: -0.02em;
+  }
+
+  .agitate-amount {
+    color: var(--color-terracotta);
+    white-space: nowrap;
+  }
+
+  .agitate-body {
+    font-size: clamp(1rem, 2vw, 1.125rem);
+    color: var(--color-text-secondary);
+    line-height: 1.8;
+    margin-bottom: var(--space-lg);
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .agitate-body:last-of-type {
+    margin-bottom: var(--space-2xl);
+  }
+
+  .agitate-cta {
+    display: inline-block;
+  }
+</style>

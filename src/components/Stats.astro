@@ -1,0 +1,144 @@
+---
+const stats = [
+  {
+    value: '312',
+    prefix: '$',
+    suffix: 'K+',
+    label: 'Revenue Generated for Clients',
+  },
+  {
+    value: '90',
+    prefix: '',
+    suffix: '-Day',
+    label: 'Average Time to Positive ROI',
+  },
+  {
+    value: '3',
+    prefix: '',
+    suffix: 'x',
+    label: 'Average Lead Volume Increase',
+  },
+];
+---
+
+<section class="section section--dark" id="results">
+  <div class="container">
+    <div class="stats-header reveal">
+      <span class="section-label">Real Results</span>
+      <h2 class="section-title">Numbers That Speak for Themselves</h2>
+    </div>
+    <div class="stats-grid">
+      {stats.map((stat, i) => (
+        <div class={`stats-card reveal reveal-delay-${i + 1}`}>
+          <span class="stats-value">
+            <span class="stats-prefix">{stat.prefix}</span>
+            <span class="stats-number" data-target={stat.value}>0</span>
+            <span class="stats-suffix">{stat.suffix}</span>
+          </span>
+          <p class="stats-label">{stat.label}</p>
+        </div>
+      ))}
+    </div>
+    <p class="stats-note reveal">
+      *Based on aggregate client performance data. Individual results vary.
+    </p>
+  </div>
+</section>
+
+<script is:inline>
+(function () {
+  function countUp(el, target, duration) {
+    let start = 0;
+    const startTime = performance.now();
+    function tick(now) {
+      const elapsed = now - startTime;
+      const progress = Math.min(elapsed / duration, 1);
+      const eased = 1 - Math.pow(1 - progress, 3);
+      el.textContent = Math.floor(eased * target);
+      if (progress < 1) requestAnimationFrame(tick);
+      else el.textContent = target;
+    }
+    requestAnimationFrame(tick);
+  }
+
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          const nums = entry.target.querySelectorAll('.stats-number');
+          nums.forEach((n) => {
+            const target = parseInt(n.dataset.target, 10);
+            countUp(n, target, 1800);
+          });
+          observer.unobserve(entry.target);
+        }
+      });
+    },
+    { threshold: 0.3 }
+  );
+
+  const grid = document.querySelector('.stats-grid');
+  if (grid) observer.observe(grid);
+})();
+</script>
+
+<style>
+  .stats-header {
+    text-align: center;
+    margin-bottom: var(--space-3xl);
+  }
+
+  .stats-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-xl);
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  .stats-card {
+    text-align: center;
+    padding: var(--space-2xl);
+  }
+
+  .stats-value {
+    display: block;
+    font-family: var(--font-heading);
+    font-size: clamp(2.5rem, 6vw, 3.5rem);
+    font-weight: 800;
+    color: var(--color-terracotta);
+    line-height: 1;
+    margin-bottom: var(--space-md);
+    letter-spacing: -0.03em;
+  }
+
+  .stats-prefix,
+  .stats-suffix {
+    font-size: 0.6em;
+    font-weight: 700;
+  }
+
+  .stats-label {
+    font-size: 0.9375rem;
+    color: var(--color-text-secondary);
+    line-height: 1.5;
+  }
+
+  .stats-note {
+    text-align: center;
+    margin-top: var(--space-2xl);
+    font-size: 0.8125rem;
+    color: var(--color-text-muted);
+    font-style: italic;
+  }
+
+  @media (max-width: 768px) {
+    .stats-grid {
+      grid-template-columns: 1fr;
+      gap: var(--space-xl);
+    }
+    .stats-card {
+      padding: var(--space-xl);
+    }
+  }
+</style>

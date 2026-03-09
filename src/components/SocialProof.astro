@@ -1,0 +1,65 @@
+---
+const brands = [
+  'Summit Builders',
+  'Ironclad Roofing',
+  'ClearPath Plumbing',
+  'Apex Home Services',
+  'Ridgeline Realty',
+];
+---
+
+<section class="social-proof">
+  <div class="container">
+    <p class="social-proof-label">Trusted by growing service businesses</p>
+    <div class="social-proof-row">
+      {brands.map((name) => (
+        <span class="social-proof-brand">{name}</span>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .social-proof {
+    padding: var(--space-xl) 0;
+    border-top: 1px solid var(--border-faint);
+    border-bottom: 1px solid var(--border-faint);
+  }
+
+  .social-proof-label {
+    text-align: center;
+    font-size: 0.8125rem;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--color-text-muted);
+    margin-bottom: var(--space-lg);
+  }
+
+  .social-proof-row {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: var(--space-xl) var(--space-2xl);
+  }
+
+  .social-proof-brand {
+    font-family: var(--font-heading);
+    font-size: 1.125rem;
+    font-weight: 700;
+    color: var(--color-text-muted);
+    opacity: 0.5;
+    letter-spacing: -0.01em;
+    white-space: nowrap;
+  }
+
+  @media (max-width: 768px) {
+    .social-proof-row {
+      gap: var(--space-lg) var(--space-xl);
+    }
+    .social-proof-brand {
+      font-size: 0.9375rem;
+    }
+  }
+</style>

@@ -1,0 +1,108 @@
+---
+const testimonials = [
+  {
+    quote: 'We went from hoping the phone would ring to turning down jobs we couldn\'t fit in. The system just works.',
+    role: 'Roofing Company Owner',
+    location: 'Atlanta, GA',
+  },
+  {
+    quote: 'I finally stopped being the marketing department. Now I focus on running my crew while leads come in automatically.',
+    role: 'General Contractor',
+    location: 'Dallas, TX',
+  },
+  {
+    quote: 'Within 60 days we had a full pipeline. Best investment I\'ve made in 12 years of business.',
+    role: 'HVAC Business Owner',
+    location: 'Nashville, TN',
+  },
+];
+---
+
+<section class="section" id="testimonials">
+  <div class="container">
+    <div class="testimonials-header reveal">
+      <span class="section-label">Client Wins</span>
+      <h2 class="section-title">What Owners Are Saying</h2>
+    </div>
+    <div class="testimonials-grid">
+      {testimonials.map((t, i) => (
+        <div class={`testimonial-card reveal reveal-delay-${i + 1}`}>
+          <blockquote class="testimonial-quote">"{t.quote}"</blockquote>
+          <div class="testimonial-author">
+            <span class="testimonial-role">{t.role}</span>
+            <span class="testimonial-location">{t.location}</span>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .testimonials-header {
+    text-align: center;
+    margin-bottom: var(--space-3xl);
+  }
+
+  .testimonials-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-xl);
+    max-width: 1000px;
+    margin: 0 auto;
+  }
+
+  .testimonial-card {
+    padding: var(--space-2xl);
+    background: var(--surface-card);
+    border: 1px solid var(--border-card);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-card);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  .testimonial-quote {
+    font-size: 1rem;
+    line-height: 1.8;
+    color: var(--color-text-secondary);
+    margin-bottom: var(--space-xl);
+    font-style: italic;
+  }
+
+  .testimonial-author {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-xs);
+  }
+
+  .testimonial-role {
+    font-family: var(--font-heading);
+    font-weight: 700;
+    font-size: 0.9375rem;
+    color: var(--color-text-primary);
+  }
+
+  .testimonial-location {
+    font-size: 0.8125rem;
+    color: var(--color-text-muted);
+  }
+
+  @media (max-width: 768px) {
+    .testimonials-grid {
+      grid-template-columns: 1fr;
+      gap: var(--space-lg);
+    }
+    .testimonial-card {
+      padding: var(--space-xl);
+    }
+  }
+
+  @media (min-width: 769px) and (max-width: 1024px) {
+    .testimonials-grid {
+      grid-template-columns: 1fr;
+      max-width: 600px;
+    }
+  }
+</style>
