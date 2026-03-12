@@ -1,231 +1,358 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="dark">
+<html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Why Buildwise | Buildwise Media</title>
-  <meta name="description" content="Buildwise Media is an AI-native marketing agency that builds automated marketing engines for service businesses. Learn why we do things differently.">
-  <link rel="canonical" href="https://buildwisemedia.com/why-buildwise.html">
-  <meta property="og:title" content="Why Buildwise | Buildwise Media">
-  <meta property="og:description" content="An AI-native agency that builds marketing engines, not campaigns. Learn what makes Buildwise different.">
-  <meta property="og:url" content="https://buildwisemedia.com/why-buildwise.html">
-  <meta property="og:type" content="website">
-  <meta property="og:image" content="https://assets.buildwisemedia.com/og/og-default.jpg">
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Why Buildwise | Buildwise Media">
-  <meta name="twitter:description" content="An AI-native agency that builds marketing engines, not campaigns.">
-  <link rel="icon" href="https://assets.buildwisemedia.com/favicons/favicon.ico">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;800&family=DM+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script>
-    tailwind.config={theme:{extend:{colors:{brand:{bg:'var(--bg)',elevated:'var(--bg-elevated)',card:'var(--bg-card)',primary:'var(--primary)',cta:'var(--cta)',text:'var(--text)',muted:'var(--muted)'}},fontFamily:{display:['"Playfair Display"','serif'],body:['"DM Sans"','sans-serif']},screens:{'nav':'960px'}}}}
-  </script>
-  <style>
-    :root{--bg:#0c0a08;--bg-elevated:#1C1714;--bg-card:#242019;--primary:#BF9469;--cta:#C75B2A;--text:#f5f0e8;--muted:#a89a8a;--header-height:80px}
-    [data-theme="light"]{--bg:#f5f0e8;--bg-elevated:#ede5d8;--bg-card:#e4ddd0;--primary:#8B6440;--cta:#C75B2A;--text:#1a1612;--muted:#6b5d4f}
-    html{scroll-padding-top:var(--header-height);scroll-behavior:smooth}
-    body{background:var(--bg);color:var(--text);font-family:'DM Sans',sans-serif;line-height:1.6}
-    .font-display{font-family:'Playfair Display',serif}
-    .site-header{position:fixed;top:0;left:0;right:0;z-index:50;transition:background .3s,backdrop-filter .3s,box-shadow .3s}
-    .site-header.scrolled{background:var(--bg-elevated);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);box-shadow:0 1px 0 rgba(191,148,105,0.1)}
-    .cta-btn{display:inline-flex;align-items:center;justify-content:center;background:var(--cta);color:#0c0a08;font-weight:600;font-size:1rem;padding:14px 32px;border-radius:8px;text-decoration:none;transition:transform .2s,box-shadow .2s;min-height:48px}
-    .cta-btn:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(199,91,42,0.3)}
-    .cta-btn-secondary{display:inline-flex;align-items:center;justify-content:center;border:1px solid var(--primary);color:var(--primary);font-weight:600;font-size:1rem;padding:14px 32px;border-radius:8px;text-decoration:none;transition:all .2s;min-height:48px}
-    .cta-btn-secondary:hover{background:var(--primary);color:var(--bg)}
-    .nav-link{color:var(--muted);text-decoration:none;font-size:.9375rem;font-weight:500;transition:color .2s}
-    .nav-link:hover{color:var(--primary)}
-    .mobile-menu{display:none;position:fixed;inset:0;top:var(--header-height);background:var(--bg-elevated);z-index:40;padding:2rem}
-    .mobile-menu.open{display:flex;flex-direction:column;gap:1.5rem}
-    .theme-toggle{background:none;border:1px solid rgba(191,148,105,0.2);border-radius:8px;padding:8px;cursor:pointer;color:var(--muted);transition:color .2s,border-color .2s;display:flex;align-items:center;justify-content:center;width:40px;height:40px}
-    .theme-toggle:hover{color:var(--primary);border-color:var(--primary)}
-    .card{background:var(--bg-card);border:1px solid rgba(191,148,105,0.08);border-radius:12px;transition:transform .2s,box-shadow .2s}
-    .card:hover{transform:translateY(-4px);box-shadow:0 12px 32px rgba(0,0,0,0.3)}
-    .section-pad{padding:80px 24px}
-    @media(min-width:768px){.section-pad{padding:128px 24px}}
-    .readable{max-width:65ch}
-    @keyframes fadeUp{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:translateY(0)}}
-    .fade-up{opacity:0;transform:translateY(30px)}.fade-up.visible{animation:fadeUp .7s ease-out forwards}
-    .fade-up-delay-1{animation-delay:.2s!important}.fade-up-delay-2{animation-delay:.4s!important}
-  </style>
-  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-P5JSD86L');</script>
-  <script>!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');fbq('init','2728397250833051');fbq('track','PageView');</script>
-  <noscript><img height="1" width="1" style="display:none" alt="" src="https://www.facebook.com/tr?id=2728397250833051&ev=PageView&noscript=1"/></noscript>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Why Buildwise Media — Built Different, On Purpose | Buildwise Media</title>
+<meta name="description" content="Enterprise-grade marketing built for service businesses. 71 processes, 90+ PageSpeed, month-to-month. See why we're different.">
+<link rel="canonical" href="https://buildwisemedia.com/why-buildwise">
+<link rel="icon" href="https://assets.buildwisemedia.com/favicons/favicon.ico" type="image/x-icon">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+tailwind.config={theme:{extend:{colors:{void:'#0c0a08',primary:'#BF9469',cta:'#C75B2A',cream:'#f5f0e8',card:'#242019',muted:'#a89a8a',nav:'#1C1714',warm:'#2A2320'},fontFamily:{display:['"Playfair Display"','serif'],body:['"DM Sans"','sans-serif']}}}}
+</script>
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-P5JSD86L');</script>
+<!-- End Google Tag Manager -->
+<style>
+html{scroll-behavior:smooth}
+body{font-family:'DM Sans',sans-serif;background:#0c0a08;color:#f5f0e8}
+.fade-up{opacity:0;transform:translateY(30px);transition:opacity .7s ease,transform .7s ease}
+.fade-up.visible{opacity:1;transform:translateY(0)}
+.accordion-content{max-height:0;overflow:hidden;transition:max-height .4s ease}
+.accordion-content.open{max-height:600px}
+.hero-gradient{background:radial-gradient(ellipse at 50% 0%,rgba(191,148,105,.12) 0%,transparent 70%)}
+</style>
 
-  <script type="application/ld+json">
-  [
-    {"@context":"https://schema.org","@type":"LocalBusiness","name":"Buildwise Media","@id":"https://buildwisemedia.com/#business","url":"https://buildwisemedia.com","telephone":"+17653377805","email":"hello@buildwisemedia.com","address":{"@type":"PostalAddress","streetAddress":"11720 Amber Park Dr Ste 160 PMB 1232","addressLocality":"Alpharetta","addressRegion":"GA","postalCode":"30009","addressCountry":"US"},"description":"AI-native marketing agency delivering automated marketing engines for service businesses."},
-    {"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://buildwisemedia.com/"},{"@type":"ListItem","position":2,"name":"Why Buildwise","item":"https://buildwisemedia.com/why-buildwise.html"}]}
+<!-- JSON-LD: LocalBusiness -->
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@type":"LocalBusiness",
+  "name":"Buildwise Media",
+  "url":"https://buildwisemedia.com",
+  "email":"hello@buildwisemedia.com",
+  "telephone":"(765) 337-7805",
+  "address":{"@type":"PostalAddress","addressLocality":"Alpharetta","addressRegion":"Georgia","addressCountry":"US"}
+}
+</script>
+<!-- JSON-LD: FAQPage -->
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@type":"FAQPage",
+  "mainEntity":[
+    {"@type":"Question","name":"Where is Buildwise Media located?","acceptedAnswer":{"@type":"Answer","text":"Alpharetta, Georgia. We serve clients nationwide."}},
+    {"@type":"Question","name":"How long has BWM been in business?","acceptedAnswer":{"@type":"Answer","text":"Founded in 2025, built on decades of combined business and marketing experience."}},
+    {"@type":"Question","name":"Who will I work with day-to-day?","acceptedAnswer":{"@type":"Answer","text":"Your AI-powered production team handles execution. Strategy reviews are with senior leadership. You're never handed off to a junior account manager."}},
+    {"@type":"Question","name":"Do you only work with service businesses?","acceptedAnswer":{"@type":"Answer","text":"Yes. Service businesses are our focus because the Revenue Engine model delivers the most impact in service industries."}},
+    {"@type":"Question","name":"What makes BWM different from a freelancer or in-house hire?","acceptedAnswer":{"@type":"Answer","text":"A freelancer gives you hands. An in-house hire gives you one person. We give you an entire AI-powered marketing department with 71 documented processes and quality gates at every step."}}
   ]
-  </script>
+}
+</script>
+<!-- JSON-LD: BreadcrumbList -->
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@type":"BreadcrumbList",
+  "itemListElement":[
+    {"@type":"ListItem","position":1,"name":"Home","item":"https://buildwisemedia.com/"},
+    {"@type":"ListItem","position":2,"name":"Why Buildwise","item":"https://buildwisemedia.com/why-buildwise"}
+  ]
+}
+</script>
 </head>
-<body>
-  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-P5JSD86L" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<body class="bg-void text-cream font-body antialiased">
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-P5JSD86L" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
 
-  <!-- HEADER -->
-  <header class="site-header" id="site-header">
-    <nav class="max-w-7xl mx-auto px-6 flex items-center justify-between" style="height:var(--header-height);">
-      <a href="/" class="flex-shrink-0"><img src="https://assets.buildwisemedia.com/logos/bwm-logo-primary-terracotta-on-transparent.svg" alt="Buildwise Media" class="h-9 w-auto"></a>
-      <div class="hidden nav:flex items-center gap-8">
-        <a href="/why-buildwise.html" class="nav-link" style="color:var(--primary);">Why Buildwise</a>
-        <a href="/services.html" class="nav-link">Services</a>
-        <a href="/how-it-works.html" class="nav-link">How It Works</a>
-        <a href="/results.html" class="nav-link">Results</a>
-        <button id="theme-toggle-desktop" class="theme-toggle" aria-label="Toggle light/dark mode">
-          <svg id="sun-icon" class="w-5 h-5 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/></svg>
-          <svg id="moon-icon" class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/></svg>
-        </button>
-        <a href="https://book.buildwisemedia.com/bwm/strategy-call" class="cta-btn">Book Your Strategy Call</a>
+<!-- ========== NAV ========== -->
+<nav id="main-nav" class="fixed top-0 left-0 w-full z-50 transition-all duration-300">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between h-20">
+    <a href="/" class="flex-shrink-0"><img src="https://assets.buildwisemedia.com/logos/bwm-logo-primary-terracotta-on-transparent.svg" alt="Buildwise Media" class="h-10"></a>
+    <!-- Desktop links -->
+    <div class="hidden lg:flex items-center gap-8 text-[15px] font-medium">
+      <a href="/" class="text-cream/80 hover:text-primary transition">Home</a>
+      <div class="relative group">
+        <button class="text-cream/80 hover:text-primary transition flex items-center gap-1">Services <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg></button>
+        <div class="absolute top-full left-0 mt-2 w-48 bg-nav rounded-lg shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 py-2">
+          <a href="/services/ascend" class="block px-4 py-2 text-cream/80 hover:text-primary hover:bg-warm/40 transition">Ascend</a>
+          <a href="/services/ascend-lite" class="block px-4 py-2 text-cream/80 hover:text-primary hover:bg-warm/40 transition">Ascend Lite</a>
+        </div>
       </div>
-      <div class="flex items-center gap-3 nav:hidden">
-        <button id="theme-toggle-mobile" class="theme-toggle" aria-label="Toggle light/dark mode">
-          <svg class="sun-icon w-5 h-5 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/></svg>
-          <svg class="moon-icon w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/></svg>
-        </button>
-        <button id="mobile-menu-btn" class="p-2" style="color:var(--text);" aria-label="Toggle menu" aria-expanded="false">
-          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path id="menu-open" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/><path id="menu-close" class="hidden" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
-        </button>
-      </div>
-    </nav>
-    <div id="mobile-menu" class="mobile-menu">
-      <a href="/why-buildwise.html" class="text-lg font-medium" style="color:var(--primary);">Why Buildwise</a>
-      <a href="/services.html" class="text-lg font-medium" style="color:var(--text);">Services</a>
-      <a href="/how-it-works.html" class="text-lg font-medium" style="color:var(--text);">How It Works</a>
-      <a href="/results.html" class="text-lg font-medium" style="color:var(--text);">Results</a>
-      <a href="https://book.buildwisemedia.com/bwm/strategy-call" class="cta-btn text-center mt-4">Book Your Strategy Call</a>
+      <a href="/how-it-works" class="text-cream/80 hover:text-primary transition">How It Works</a>
+      <a href="/results" class="text-cream/80 hover:text-primary transition">Results</a>
+      <a href="/why-buildwise" class="text-primary transition">Why Buildwise</a>
     </div>
-  </header>
+    <a href="/book" class="hidden lg:inline-flex items-center justify-center bg-cta text-cream rounded-lg text-[15px] h-12 px-8 font-semibold hover:brightness-110 transition shadow-lg">Book Your Strategy Call</a>
+    <!-- Mobile hamburger -->
+    <button id="mobile-toggle" class="lg:hidden text-cream focus:outline-none" aria-label="Menu">
+      <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path id="hamburger-icon" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+    </button>
+  </div>
+  <!-- Mobile menu -->
+  <div id="mobile-menu" class="hidden lg:hidden bg-nav border-t border-warm/20">
+    <div class="max-w-7xl mx-auto px-4 py-6 flex flex-col gap-4 text-[15px] font-medium">
+      <a href="/" class="text-cream/80 hover:text-primary transition">Home</a>
+      <a href="/services/ascend" class="text-cream/80 hover:text-primary transition pl-4">Ascend</a>
+      <a href="/services/ascend-lite" class="text-cream/80 hover:text-primary transition pl-4">Ascend Lite</a>
+      <a href="/how-it-works" class="text-cream/80 hover:text-primary transition">How It Works</a>
+      <a href="/results" class="text-cream/80 hover:text-primary transition">Results</a>
+      <a href="/why-buildwise" class="text-primary transition">Why Buildwise</a>
+      <a href="/book" class="inline-flex items-center justify-center bg-cta text-cream rounded-lg text-[15px] h-12 px-8 font-semibold hover:brightness-110 transition shadow-lg mt-2">Book Your Strategy Call</a>
+    </div>
+  </div>
+</nav>
 
-  <main>
-    <!-- Hero -->
-    <section class="section-pad" style="background:var(--bg);padding-top:calc(var(--header-height) + 80px);">
-      <div class="max-w-4xl mx-auto text-center">
-        <p class="text-sm font-semibold uppercase tracking-widest mb-4 fade-up" style="color:var(--primary);">Why Buildwise</p>
-        <h1 class="font-display font-bold leading-tight fade-up" style="font-size:clamp(2rem,5vw,3.5rem);color:var(--text);">Not the guru on a stage. Not the hype man in a reel.</h1>
-        <p class="mt-6 text-lg readable mx-auto fade-up fade-up-delay-1" style="color:var(--muted);">Buildwise Media is the person at the table who already built the thing everyone else is still talking about. We show our work. We speak in results.</p>
+<main>
+<!-- ========== HERO ========== -->
+<section class="relative hero-gradient pt-32 pb-20 md:pt-44 md:pb-32 overflow-hidden">
+  <div class="absolute inset-0 opacity-[.04]" style="background-image:url('data:image/svg+xml,<svg width=\"60\" height=\"60\" xmlns=\"http://www.w3.org/2000/svg\"><path d=\"M0 0h60v60H0z\" fill=\"none\"/><path d=\"M30 0v60M0 30h60\" stroke=\"%23BF9469\" stroke-width=\".5\"/></svg>');background-size:60px 60px"></div>
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
+    <h1 class="font-display text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight leading-[1.1] fade-up">Built Different.<br class="hidden sm:block"> <span class="text-primary">On Purpose.</span></h1>
+    <p class="mt-6 md:mt-8 max-w-3xl mx-auto text-lg md:text-xl text-cream/70 leading-relaxed fade-up">Most agencies sell deliverables. We build infrastructure — against documented engineering standards that are verifiable before you spend a dollar.</p>
+  </div>
+</section>
+
+<!-- ========== THE PROBLEM WE SOLVE ========== -->
+<section class="py-20 md:py-32 bg-warm/30">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="max-w-3xl mx-auto fade-up">
+      <h2 class="font-display text-3xl md:text-4xl font-bold mb-8">The Problem We Solve</h2>
+      <div class="space-y-6 text-cream/75 text-[17px] leading-relaxed">
+        <p>Every month, service business owners write five-figure checks to marketing agencies and get back PowerPoint decks and vanity metrics. Impressions. Reach. Engagement rate. Numbers that sound impressive in a quarterly review but never show up in the bank account.</p>
+        <p>The industry default is broken by design. Twelve-month contracts lock you in before results exist. The agency owns your website, your ad accounts, your content — so leaving feels like starting over. And the "strategy" you're paying for? It's often a junior account manager following a template they learned last quarter.</p>
+        <p>This was acceptable when there was no alternative. Enterprise-grade marketing — the kind with documented processes, quality gates, and engineering standards — used to cost enterprise budgets. A service business doing a few million a year couldn't access those systems.</p>
+        <p>That changed. AI didn't just make marketing cheaper. It made it possible to build genuine infrastructure at a price point that works for service businesses. Not watered-down enterprise leftovers. Not "small business" packages with clip-art logos. Real systems — 71 documented processes, every deliverable scored against a rubric, nothing shipped below an 8 out of 10.</p>
+        <p>That's why we operate on month-to-month agreements. If our work doesn't earn your business this month, you should leave. And you own everything — your website, your ad accounts, your content, your data. Because a marketing partner who holds your assets hostage isn't a partner. They're a landlord.</p>
+        <p>We built Buildwise Media for the service business owner who's tired of hoping their marketing works and ready for a system that proves it does.</p>
       </div>
-    </section>
+    </div>
+  </div>
+</section>
 
-    <!-- Mission -->
-    <section class="section-pad" style="background:var(--bg-elevated);">
-      <div class="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
-        <div class="fade-up">
-          <h2 class="font-display font-bold text-2xl md:text-3xl mb-6" style="color:var(--text);">The problem we solve</h2>
-          <p class="mb-4" style="color:var(--muted);">Service business owners are great at their craft. But marketing? It's a second job they never signed up for. DIY tools are overwhelming. Agencies overpromise and underdeliver. And the leads keep coming in waves — feast or famine.</p>
-          <p style="color:var(--muted);">We built Buildwise Media to fix that. One engine. One system. Runs without you.</p>
+<!-- ========== THE BWM FOUR ========== -->
+<section class="py-20 md:py-32">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-center mb-16 fade-up">
+      <h2 class="font-display text-3xl md:text-4xl font-bold">The BWM Four</h2>
+      <p class="mt-4 text-muted text-lg">The values behind every decision we make.</p>
+    </div>
+    <div class="grid md:grid-cols-2 gap-6 lg:gap-8">
+      <!-- GSD -->
+      <div class="bg-card rounded-2xl p-8 md:p-10 border border-warm/20 hover:border-primary/30 transition fade-up">
+        <div class="w-14 h-14 rounded-xl bg-cta/10 flex items-center justify-center mb-6">
+          <svg class="w-7 h-7 text-cta" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
         </div>
-        <div class="fade-up fade-up-delay-1">
-          <div class="card p-8">
-            <h3 class="font-display font-semibold text-xl mb-4" style="color:var(--text);">What we believe</h3>
-            <ul class="space-y-4">
-              <li class="flex gap-3 text-sm" style="color:var(--muted);">
-                <svg class="w-5 h-5 flex-shrink-0 mt-0.5" style="color:var(--primary);" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
-                <span><strong style="color:var(--text);">Clear over clever.</strong> No jargon. No buzzwords. We explain what we do in plain language.</span>
-              </li>
-              <li class="flex gap-3 text-sm" style="color:var(--muted);">
-                <svg class="w-5 h-5 flex-shrink-0 mt-0.5" style="color:var(--primary);" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
-                <span><strong style="color:var(--text);">Proof over promises.</strong> Every claim we make comes with evidence. No vanity metrics.</span>
-              </li>
-              <li class="flex gap-3 text-sm" style="color:var(--muted);">
-                <svg class="w-5 h-5 flex-shrink-0 mt-0.5" style="color:var(--primary);" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
-                <span><strong style="color:var(--text);">Warm, not soft.</strong> We care about your business. We're also direct about what works.</span>
-              </li>
-              <li class="flex gap-3 text-sm" style="color:var(--muted);">
-                <svg class="w-5 h-5 flex-shrink-0 mt-0.5" style="color:var(--primary);" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
-                <span><strong style="color:var(--text);">Owner-to-owner.</strong> We built a business too. We understand the pressure you're under.</span>
-              </li>
-            </ul>
-          </div>
-        </div>
+        <h3 class="font-display text-2xl font-bold mb-3">GSD <span class="text-muted font-body text-base font-normal">(Get Stuff Done)</span></h3>
+        <p class="text-cream/70 leading-relaxed">We ship. Every week. No "strategy phases" that last 6 months. No committees, no approval loops that kill momentum. We build, we test, we launch — and then we optimize. Speed with standards is our operating system.</p>
       </div>
-    </section>
-
-    <!-- AI-Native -->
-    <section class="section-pad" style="background:var(--bg);">
-      <div class="max-w-4xl mx-auto text-center">
-        <h2 class="font-display font-bold text-2xl md:text-3xl mb-6 fade-up" style="color:var(--text);">AI-native from day one</h2>
-        <p class="readable mx-auto mb-12 fade-up fade-up-delay-1" style="color:var(--muted);">We didn't bolt AI onto an existing agency model. We built Buildwise Media with AI at the foundation &mdash; in research, content creation, ad optimization, and reporting. That's how we deliver enterprise-grade marketing at a pace traditional agencies can't match.</p>
-
-        <div class="grid grid-cols-1 sm:grid-cols-3 gap-8">
-          <div class="card p-6 text-center fade-up">
-            <p class="font-display font-bold text-2xl mb-2" style="color:var(--primary);">85%</p>
-            <p class="text-sm" style="color:var(--muted);">of our marketing processes are automated</p>
-          </div>
-          <div class="card p-6 text-center fade-up fade-up-delay-1">
-            <p class="font-display font-bold text-2xl mb-2" style="color:var(--primary);">30 days</p>
-            <p class="text-sm" style="color:var(--muted);">from kickoff to live engine</p>
-          </div>
-          <div class="card p-6 text-center fade-up fade-up-delay-2">
-            <p class="font-display font-bold text-2xl mb-2" style="color:var(--primary);">24/7</p>
-            <p class="text-sm" style="color:var(--muted);">your engine works while you sleep</p>
-          </div>
+      <!-- Integrity -->
+      <div class="bg-card rounded-2xl p-8 md:p-10 border border-warm/20 hover:border-primary/30 transition fade-up">
+        <div class="w-14 h-14 rounded-xl bg-cta/10 flex items-center justify-center mb-6">
+          <svg class="w-7 h-7 text-cta" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
         </div>
+        <h3 class="font-display text-2xl font-bold mb-3">Integrity</h3>
+        <p class="text-cream/70 leading-relaxed">Month-to-month contracts. You own everything. We say what we'll do and do what we say. If something isn't working, we tell you — we don't bury it in a dashboard you'll never check. Trust is earned monthly, not locked in annually.</p>
       </div>
-    </section>
-
-    <!-- CTA -->
-    <section class="section-pad" style="background:var(--bg-elevated);">
-      <div class="max-w-3xl mx-auto text-center">
-        <h2 class="font-display font-bold text-2xl md:text-3xl mb-4 fade-up" style="color:var(--text);">Ready to build your engine?</h2>
-        <p class="mb-8 fade-up fade-up-delay-1" style="color:var(--muted);">Month-to-month. No contracts. You own everything we build.</p>
-        <div class="fade-up fade-up-delay-2">
-          <a href="https://book.buildwisemedia.com/bwm/strategy-call" class="cta-btn text-lg px-10 py-4">Book Your Strategy Call</a>
+      <!-- Excellence -->
+      <div class="bg-card rounded-2xl p-8 md:p-10 border border-warm/20 hover:border-primary/30 transition fade-up">
+        <div class="w-14 h-14 rounded-xl bg-cta/10 flex items-center justify-center mb-6">
+          <svg class="w-7 h-7 text-cta" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z"/></svg>
         </div>
+        <h3 class="font-display text-2xl font-bold mb-3">Excellence</h3>
+        <p class="text-cream/70 leading-relaxed">47-point QA checklist. PageSpeed 90+. Schema markup on every page. We build to engineering standards because "good enough" is a slow leak that sinks businesses. Every deliverable is measured, scored, and documented.</p>
       </div>
-    </section>
-  </main>
+      <!-- Add the Light -->
+      <div class="bg-card rounded-2xl p-8 md:p-10 border border-warm/20 hover:border-primary/30 transition fade-up">
+        <div class="w-14 h-14 rounded-xl bg-cta/10 flex items-center justify-center mb-6">
+          <svg class="w-7 h-7 text-cta" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/></svg>
+        </div>
+        <h3 class="font-display text-2xl font-bold mb-3">Add the Light</h3>
+        <p class="text-cream/70 leading-relaxed">Business should serve life, not consume it. We build systems that give you time back — so you can coach your kid's team, take the trip, be present at dinner. A marketing engine should run in the background, not become your second job.</p>
+      </div>
+    </div>
+  </div>
+</section>
 
-  <!-- FOOTER -->
-  <footer class="section-pad" style="background:var(--bg-elevated);border-top:1px solid rgba(191,148,105,0.08);">
-    <div class="max-w-6xl mx-auto">
-      <div class="grid grid-cols-1 md:grid-cols-4 gap-12">
-        <div class="md:col-span-2">
-          <img src="https://assets.buildwisemedia.com/logos/bwm-logo-primary-terracotta-on-transparent.svg" alt="Buildwise Media" class="h-8 w-auto mb-4">
-          <p class="font-display text-sm italic mb-4" style="color:var(--muted);">Build Today. Secure Tomorrow. Live Fully.</p>
-          <p class="text-sm" style="color:var(--muted);opacity:.7;">Built with AI. Guided by Humans.</p>
-        </div>
-        <div>
-          <h4 class="font-semibold text-sm uppercase tracking-wider mb-4" style="color:var(--primary);">Pages</h4>
-          <ul class="space-y-2">
-            <li><a href="/why-buildwise.html" class="text-sm hover:underline" style="color:var(--muted);">Why Buildwise</a></li>
-            <li><a href="/services.html" class="text-sm hover:underline" style="color:var(--muted);">Services</a></li>
-            <li><a href="/ascend.html" class="text-sm hover:underline" style="color:var(--muted);">Ascend</a></li>
-            <li><a href="/ascend-lite.html" class="text-sm hover:underline" style="color:var(--muted);">Ascend Lite</a></li>
-            <li><a href="/how-it-works.html" class="text-sm hover:underline" style="color:var(--muted);">How It Works</a></li>
-            <li><a href="/results.html" class="text-sm hover:underline" style="color:var(--muted);">Results</a></li>
-          </ul>
-        </div>
-        <div>
-          <h4 class="font-semibold text-sm uppercase tracking-wider mb-4" style="color:var(--primary);">Contact</h4>
-          <ul class="space-y-2">
-            <li><a href="mailto:hello@buildwisemedia.com" class="text-sm hover:underline" style="color:var(--muted);">hello@buildwisemedia.com</a></li>
-            <li><a href="tel:+17653377805" class="text-sm hover:underline" style="color:var(--muted);">(765) 337-7805</a></li>
-            <li class="text-sm" style="color:var(--muted);opacity:.7;">Alpharetta, Georgia</li>
-          </ul>
-          <div class="mt-6"><a href="https://book.buildwisemedia.com/bwm/strategy-call" class="cta-btn text-sm px-6 py-3">Book Your Strategy Call</a></div>
+<!-- ========== THE ENGINEERING DIFFERENCE ========== -->
+<section class="py-20 md:py-32 bg-warm/30">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+      <div class="fade-up">
+        <h2 class="font-display text-3xl md:text-4xl font-bold mb-6">The Engineering Difference</h2>
+        <div class="space-y-5 text-cream/75 text-[17px] leading-relaxed">
+          <p>Our AI systems handle 85% of production work — not as a shortcut, but as quality-gated infrastructure. Every piece of content, every ad variation, every website component passes through automated checks before a human ever reviews it.</p>
+          <p>There are no junior account managers learning on your dime. No offshore content farms producing generic blog posts. No interns managing your ad spend. Your marketing runs on documented processes with quality gates at every step.</p>
+          <p>Every deliverable is scored against a rubric. The publish threshold is 8 out of 10. Anything below gets reworked — automatically. This isn't aspirational. It's operational. And it's why our clients see results that agencies charging twice as much can't match.</p>
         </div>
       </div>
-      <div class="mt-16 pt-8 flex flex-col md:flex-row justify-between items-center gap-4" style="border-top:1px solid rgba(191,148,105,0.08);">
-        <p class="text-xs" style="color:var(--muted);opacity:.5;">&copy; 2026 Buildwise Media LLC. All rights reserved.</p>
-        <div class="flex gap-6">
-          <a href="/privacy.html" class="text-xs hover:underline" style="color:var(--muted);opacity:.5;">Privacy Policy</a>
-          <a href="/terms.html" class="text-xs hover:underline" style="color:var(--muted);opacity:.5;">Terms of Service</a>
+      <div class="grid grid-cols-2 gap-4 md:gap-6 fade-up">
+        <div class="bg-card rounded-2xl p-6 md:p-8 text-center border border-warm/20">
+          <div class="font-display text-4xl md:text-5xl font-bold text-primary">90+</div>
+          <div class="mt-2 text-muted text-sm md:text-base">PageSpeed Score</div>
+        </div>
+        <div class="bg-card rounded-2xl p-6 md:p-8 text-center border border-warm/20">
+          <div class="font-display text-4xl md:text-5xl font-bold text-primary">71</div>
+          <div class="mt-2 text-muted text-sm md:text-base">Documented Processes</div>
+        </div>
+        <div class="bg-card rounded-2xl p-6 md:p-8 text-center border border-warm/20">
+          <div class="font-display text-4xl md:text-5xl font-bold text-primary">8/10</div>
+          <div class="mt-2 text-muted text-sm md:text-base">Quality Threshold</div>
+        </div>
+        <div class="bg-card rounded-2xl p-6 md:p-8 text-center border border-warm/20">
+          <div class="font-display text-4xl md:text-5xl font-bold text-primary">6</div>
+          <div class="mt-2 text-muted text-sm md:text-base">Schema Types</div>
         </div>
       </div>
     </div>
-  </footer>
+  </div>
+</section>
 
-  <script>
-    const header=document.getElementById('site-header');window.addEventListener('scroll',()=>{header.classList.toggle('scrolled',window.scrollY>50)},{passive:true});
-    const menuBtn=document.getElementById('mobile-menu-btn'),mobileMenu=document.getElementById('mobile-menu'),menuOpen=document.getElementById('menu-open'),menuClose=document.getElementById('menu-close');
-    menuBtn.addEventListener('click',()=>{const o=mobileMenu.classList.toggle('open');menuOpen.classList.toggle('hidden',o);menuClose.classList.toggle('hidden',!o);menuBtn.setAttribute('aria-expanded',o);document.body.style.overflow=o?'hidden':'';});
-    function setTheme(t){document.documentElement.setAttribute('data-theme',t);localStorage.setItem('bwm-theme',t);const d=t==='dark';document.querySelectorAll('#sun-icon,.sun-icon').forEach(e=>e.classList.toggle('hidden',d));document.querySelectorAll('#moon-icon,.moon-icon').forEach(e=>e.classList.toggle('hidden',!d));}
-    setTheme(localStorage.getItem('bwm-theme')||'dark');
-    document.getElementById('theme-toggle-desktop')?.addEventListener('click',()=>setTheme(document.documentElement.getAttribute('data-theme')==='dark'?'light':'dark'));
-    document.getElementById('theme-toggle-mobile')?.addEventListener('click',()=>setTheme(document.documentElement.getAttribute('data-theme')==='dark'?'light':'dark'));
-    const fadeObserver=new IntersectionObserver(e=>e.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');fadeObserver.unobserve(e.target)}}),{threshold:.1,rootMargin:'0px 0px -50px 0px'});
-    document.querySelectorAll('.fade-up').forEach(el=>fadeObserver.observe(el));
-  </script>
+<!-- ========== FAQ ========== -->
+<section class="py-20 md:py-32">
+  <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+    <h2 class="font-display text-3xl md:text-4xl font-bold text-center mb-12 fade-up">Frequently Asked Questions</h2>
+    <div class="space-y-4 fade-up">
+      <!-- Q1 -->
+      <div class="border border-warm/20 rounded-xl overflow-hidden">
+        <button onclick="toggleAccordion(this)" class="w-full flex items-center justify-between p-6 text-left font-semibold text-[17px] hover:text-primary transition">
+          <span>Where is Buildwise Media located?</span>
+          <svg class="w-5 h-5 text-muted flex-shrink-0 ml-4 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+        </button>
+        <div class="accordion-content">
+          <p class="px-6 pb-6 text-cream/70 leading-relaxed">Alpharetta, Georgia. We serve clients nationwide.</p>
+        </div>
+      </div>
+      <!-- Q2 -->
+      <div class="border border-warm/20 rounded-xl overflow-hidden">
+        <button onclick="toggleAccordion(this)" class="w-full flex items-center justify-between p-6 text-left font-semibold text-[17px] hover:text-primary transition">
+          <span>How long has BWM been in business?</span>
+          <svg class="w-5 h-5 text-muted flex-shrink-0 ml-4 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+        </button>
+        <div class="accordion-content">
+          <p class="px-6 pb-6 text-cream/70 leading-relaxed">Founded in 2025, built on decades of combined business and marketing experience.</p>
+        </div>
+      </div>
+      <!-- Q3 -->
+      <div class="border border-warm/20 rounded-xl overflow-hidden">
+        <button onclick="toggleAccordion(this)" class="w-full flex items-center justify-between p-6 text-left font-semibold text-[17px] hover:text-primary transition">
+          <span>Who will I work with day-to-day?</span>
+          <svg class="w-5 h-5 text-muted flex-shrink-0 ml-4 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+        </button>
+        <div class="accordion-content">
+          <p class="px-6 pb-6 text-cream/70 leading-relaxed">Your AI-powered production team handles execution. Strategy reviews are with senior leadership. You're never handed off to a junior account manager.</p>
+        </div>
+      </div>
+      <!-- Q4 -->
+      <div class="border border-warm/20 rounded-xl overflow-hidden">
+        <button onclick="toggleAccordion(this)" class="w-full flex items-center justify-between p-6 text-left font-semibold text-[17px] hover:text-primary transition">
+          <span>Do you only work with service businesses?</span>
+          <svg class="w-5 h-5 text-muted flex-shrink-0 ml-4 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+        </button>
+        <div class="accordion-content">
+          <p class="px-6 pb-6 text-cream/70 leading-relaxed">Yes. Service businesses are our focus because the Revenue Engine model delivers the most impact in service industries.</p>
+        </div>
+      </div>
+      <!-- Q5 -->
+      <div class="border border-warm/20 rounded-xl overflow-hidden">
+        <button onclick="toggleAccordion(this)" class="w-full flex items-center justify-between p-6 text-left font-semibold text-[17px] hover:text-primary transition">
+          <span>What makes BWM different from a freelancer or in-house hire?</span>
+          <svg class="w-5 h-5 text-muted flex-shrink-0 ml-4 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+        </button>
+        <div class="accordion-content">
+          <p class="px-6 pb-6 text-cream/70 leading-relaxed">A freelancer gives you hands. An in-house hire gives you one person. We give you an entire AI-powered marketing department with 71 documented processes and quality gates at every step.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== CTA ========== -->
+<section class="py-20 md:py-32 bg-warm/30">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center fade-up">
+    <h2 class="font-display text-3xl md:text-4xl font-bold mb-6">Want to see if a Revenue Engine fits your business?</h2>
+    <a href="/book" class="inline-flex items-center justify-center bg-cta text-cream rounded-lg text-[15px] md:text-[17px] h-12 px-8 font-semibold hover:brightness-110 transition shadow-lg mt-4">Book Your Strategy Call</a>
+  </div>
+</section>
+</main>
+
+<!-- ========== FOOTER ========== -->
+<footer class="bg-nav border-t border-warm/10">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+    <div class="grid md:grid-cols-4 gap-10">
+      <div class="md:col-span-1">
+        <img src="https://assets.buildwisemedia.com/logos/bwm-logo-primary-terracotta-on-transparent.svg" alt="Buildwise Media" class="h-10 mb-4">
+        <p class="text-muted text-sm leading-relaxed">Build Today. Secure Tomorrow. Live Fully.</p>
+      </div>
+      <div>
+        <h4 class="font-semibold text-sm uppercase tracking-wider text-muted mb-4">Pages</h4>
+        <ul class="space-y-3 text-sm">
+          <li><a href="/" class="text-cream/70 hover:text-primary transition">Home</a></li>
+          <li><a href="/services/ascend" class="text-cream/70 hover:text-primary transition">Ascend</a></li>
+          <li><a href="/services/ascend-lite" class="text-cream/70 hover:text-primary transition">Ascend Lite</a></li>
+          <li><a href="/how-it-works" class="text-cream/70 hover:text-primary transition">How It Works</a></li>
+          <li><a href="/results" class="text-cream/70 hover:text-primary transition">Results</a></li>
+          <li><a href="/why-buildwise" class="text-cream/70 hover:text-primary transition">Why Buildwise</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 class="font-semibold text-sm uppercase tracking-wider text-muted mb-4">Legal</h4>
+        <ul class="space-y-3 text-sm">
+          <li><a href="/privacy" class="text-cream/70 hover:text-primary transition">Privacy Policy</a></li>
+          <li><a href="/terms" class="text-cream/70 hover:text-primary transition">Terms of Service</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 class="font-semibold text-sm uppercase tracking-wider text-muted mb-4">Contact</h4>
+        <ul class="space-y-3 text-sm text-cream/70">
+          <li><a href="mailto:hello@buildwisemedia.com" class="hover:text-primary transition">hello@buildwisemedia.com</a></li>
+          <li><a href="tel:+17653377805" class="hover:text-primary transition">(765) 337-7805</a></li>
+          <li>Alpharetta, Georgia</li>
+        </ul>
+      </div>
+    </div>
+    <div class="border-t border-warm/10 mt-12 pt-8 text-center text-sm text-muted">
+      &copy; 2026 Buildwise Media LLC. All rights reserved.
+    </div>
+  </div>
+</footer>
+
+<!-- ========== JS ========== -->
+<script>
+// Nav scroll
+const nav=document.getElementById('main-nav');
+window.addEventListener('scroll',()=>{
+  if(window.scrollY>50){nav.classList.add('bg-[#1C1714]','shadow-lg')}
+  else{nav.classList.remove('bg-[#1C1714]','shadow-lg')}
+});
+// Mobile menu
+document.getElementById('mobile-toggle').addEventListener('click',()=>{
+  document.getElementById('mobile-menu').classList.toggle('hidden');
+});
+// Accordion
+function toggleAccordion(btn){
+  const content=btn.nextElementSibling;
+  const icon=btn.querySelector('svg');
+  const isOpen=content.classList.contains('open');
+  document.querySelectorAll('.accordion-content.open').forEach(el=>{el.classList.remove('open');el.previousElementSibling.querySelector('svg').style.transform='rotate(0deg)'});
+  if(!isOpen){content.classList.add('open');icon.style.transform='rotate(180deg)'}
+}
+// Fade-up observer
+const observer=new IntersectionObserver((entries)=>{entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');observer.unobserve(e.target)}})},{threshold:0.1});
+document.querySelectorAll('.fade-up').forEach(el=>observer.observe(el));
+</script>
+
+<!-- Meta Pixel Code -->
+<script>
+!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
+fbq('init','2728397250833051');fbq('track','PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=2728397250833051&ev=PageView&noscript=1"/></noscript>
+<!-- End Meta Pixel Code -->
 </body>
 </html>

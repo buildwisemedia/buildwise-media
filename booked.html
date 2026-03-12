@@ -3,7 +3,9 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Page Not Found | Buildwise Media</title>
+<title>You're Booked | Buildwise Media</title>
+<meta name="robots" content="noindex,nofollow">
+<link rel="canonical" href="https://buildwisemedia.com/booked">
 <link rel="icon" href="https://assets.buildwisemedia.com/favicons/favicon.ico" type="image/x-icon">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -15,8 +17,13 @@ tailwind.config={theme:{extend:{colors:{void:'#0c0a08',primary:'#BF9469',cta:'#C
 <!-- Google Tag Manager -->
 <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-P5JSD86L');</script>
 <!-- Meta Pixel -->
-<script>!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');fbq('init','2728397250833051');fbq('track','PageView');</script>
+<script>!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');fbq('init','2728397250833051');fbq('track','PageView');fbq('track','Schedule');</script>
 <noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=2728397250833051&ev=PageView&noscript=1"/></noscript>
+<!-- Conversion tracking -->
+<script>
+window.dataLayer = window.dataLayer || [];
+dataLayer.push({'event': 'booking_confirmed'});
+</script>
 <style>
   .nav-scrolled { background-color: #1C1714 !important; }
 </style>
@@ -70,19 +77,57 @@ tailwind.config={theme:{extend:{colors:{void:'#0c0a08',primary:'#BF9469',cta:'#C
   </div>
 </nav>
 
-<!-- 404 Content -->
+<!-- Confirmation Content -->
 <section class="pt-32 pb-20 md:pb-32 min-h-screen flex items-center">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
-    <div class="max-w-xl mx-auto text-center">
-      <p class="text-8xl font-display font-bold text-primary/20 mb-4">404</p>
-      <h1 class="font-display text-4xl sm:text-5xl font-bold text-cream leading-tight mb-6">This Page Doesn't Exist</h1>
-      <p class="text-lg text-muted max-w-md mx-auto leading-relaxed mb-10">The page you're looking for has moved or doesn't exist. Let's get you back on track.</p>
-      <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
-        <a href="/book" class="inline-flex items-center px-8 py-4 bg-cta hover:bg-cta/90 text-cream font-semibold text-base rounded-lg transition-all duration-200 shadow-lg shadow-cta/20 hover:shadow-cta/30 hover:scale-105">Book Your Strategy Call</a>
-        <a href="/" class="inline-flex items-center text-muted hover:text-primary text-sm transition-colors gap-2">
-          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"/></svg>
-          Back to Homepage
-        </a>
+    <div class="max-w-2xl mx-auto text-center">
+      <!-- Success icon -->
+      <div class="w-20 h-20 rounded-full bg-primary/10 flex items-center justify-center mx-auto mb-8">
+        <svg class="w-10 h-10 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+      </div>
+
+      <h1 class="font-display text-4xl sm:text-5xl font-bold text-cream leading-tight mb-6">You're Booked — <span class="text-primary">Here's What Happens Next</span></h1>
+
+      <div class="space-y-6 mt-12 text-left">
+        <div class="bg-card rounded-xl p-6 border border-warm/30 flex items-start gap-5">
+          <div class="flex-shrink-0 w-10 h-10 rounded-full bg-cta/10 flex items-center justify-center">
+            <span class="text-cta font-bold text-sm">1</span>
+          </div>
+          <div>
+            <p class="text-cream font-medium">Calendar invite incoming</p>
+            <p class="text-muted text-sm mt-1">You'll receive a calendar invite with a video link within 5 minutes.</p>
+          </div>
+        </div>
+
+        <div class="bg-card rounded-xl p-6 border border-warm/30 flex items-start gap-5">
+          <div class="flex-shrink-0 w-10 h-10 rounded-full bg-cta/10 flex items-center justify-center">
+            <span class="text-cta font-bold text-sm">2</span>
+          </div>
+          <div>
+            <p class="text-cream font-medium">We do our homework</p>
+            <p class="text-muted text-sm mt-1">We'll review your business, your market, and your current marketing before the call.</p>
+          </div>
+        </div>
+
+        <div class="bg-card rounded-xl p-6 border border-warm/30 flex items-start gap-5">
+          <div class="flex-shrink-0 w-10 h-10 rounded-full bg-cta/10 flex items-center justify-center">
+            <span class="text-cta font-bold text-sm">3</span>
+          </div>
+          <div>
+            <p class="text-cream font-medium">Clarity, not a pitch</p>
+            <p class="text-muted text-sm mt-1">On the call, we'll walk through whether a Revenue Engine fits your business. No pitch. Just clarity.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="mt-12 bg-card rounded-xl p-6 border border-primary/20">
+        <p class="text-muted text-sm">Questions before your call? Email <a href="mailto:hello@buildwisemedia.com" class="text-primary hover:text-primary/80 underline underline-offset-2 transition-colors">hello@buildwisemedia.com</a></p>
+      </div>
+
+      <div class="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4">
+        <a href="/" class="text-muted hover:text-primary text-sm transition-colors underline underline-offset-4">Back to Homepage</a>
+        <span class="text-warm hidden sm:inline">|</span>
+        <a href="/services/ascend" class="text-muted hover:text-primary text-sm transition-colors underline underline-offset-4">Explore Our Services</a>
       </div>
     </div>
   </div>

@@ -1,138 +1,92 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="dark">
+<html lang="en" class="scroll-smooth">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Buildwise Media | AI-Powered Marketing Engines for Service Businesses</title>
-  <meta name="description" content="A marketing engine that fills your pipeline — without adding to your plate. Buildwise Media builds automated, AI-powered marketing systems for service businesses.">
+  <title>AI-Powered Marketing for Service Businesses | Buildwise Media</title>
+  <meta name="description" content="Your marketing should run without you. Buildwise Media builds AI-powered engines that fill your pipeline — so you can run your business, not your ads.">
   <link rel="canonical" href="https://buildwisemedia.com/">
-  <meta property="og:title" content="Buildwise Media | AI-Powered Marketing Engines for Service Businesses">
-  <meta property="og:description" content="A marketing engine that fills your pipeline — without adding to your plate.">
+  <link rel="icon" href="https://assets.buildwisemedia.com/favicons/favicon.ico" type="image/x-icon">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="AI-Powered Marketing for Service Businesses | Buildwise Media">
+  <meta property="og:description" content="Your marketing should run without you. Buildwise Media builds AI-powered engines that fill your pipeline — so you can run your business, not your ads.">
+  <meta property="og:image" content="https://assets.buildwisemedia.com/og/og-default.jpg">
   <meta property="og:url" content="https://buildwisemedia.com/">
   <meta property="og:type" content="website">
-  <meta property="og:image" content="https://assets.buildwisemedia.com/og/og-default.jpg">
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Buildwise Media | AI-Powered Marketing Engines">
-  <meta name="twitter:description" content="A marketing engine that fills your pipeline — without adding to your plate.">
-  <link rel="icon" href="https://assets.buildwisemedia.com/favicons/favicon.ico">
+
+  <!-- Google Tag Manager -->
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-P5JSD86L');</script>
+
+  <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;800&family=DM+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Tailwind -->
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
     tailwind.config = {
       theme: {
         extend: {
           colors: {
-            brand: {
-              bg: 'var(--bg)',
-              elevated: 'var(--bg-elevated)',
-              card: 'var(--bg-card)',
-              primary: 'var(--primary)',
-              cta: 'var(--cta)',
-              text: 'var(--text)',
-              muted: 'var(--muted)',
-            }
+            void: '#0c0a08',
+            primary: '#BF9469',
+            'cta-accent': '#C75B2A',
+            cream: '#f5f0e8',
+            'card-bg': '#242019',
+            muted: '#a89a8a',
+            'nav-solid': '#1C1714',
+            'warm-brown': '#2A2320',
           },
           fontFamily: {
             display: ['"Playfair Display"', 'serif'],
             body: ['"DM Sans"', 'sans-serif'],
           },
-          screens: {
-            'nav': '960px',
-          }
-        }
-      }
+        },
+      },
     }
   </script>
+
   <style>
-    :root {
-      --bg: #0c0a08;
-      --bg-elevated: #1C1714;
-      --bg-card: #242019;
-      --primary: #BF9469;
-      --cta: #C75B2A;
-      --text: #f5f0e8;
-      --muted: #a89a8a;
-      --header-height: 80px;
+    html { font-size: 18px; }
+    body { font-family: 'DM Sans', sans-serif; color: #f5f0e8; background: #0c0a08; }
+
+    /* Fade-up animation */
+    .fade-up {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity 0.7s cubic-bezier(.22,.61,.36,1), transform 0.7s cubic-bezier(.22,.61,.36,1);
     }
-    [data-theme="light"] {
-      --bg: #f5f0e8;
-      --bg-elevated: #ede5d8;
-      --bg-card: #e4ddd0;
-      --primary: #8B6440;
-      --cta: #C75B2A;
-      --text: #1a1612;
-      --muted: #6b5d4f;
+    .fade-up.visible {
+      opacity: 1;
+      transform: translateY(0);
     }
-    html { scroll-padding-top: var(--header-height); scroll-behavior: smooth; }
-    body { background: var(--bg); color: var(--text); font-family: 'DM Sans', sans-serif; line-height: 1.6; }
-    .font-display { font-family: 'Playfair Display', serif; }
 
-    /* Sticky nav */
-    .site-header { position: fixed; top: 0; left: 0; right: 0; z-index: 50; transition: background 0.3s, backdrop-filter 0.3s, box-shadow 0.3s; }
-    .site-header.scrolled { background: var(--bg-elevated); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); box-shadow: 0 1px 0 rgba(191,148,105,0.1); }
+    /* FAQ accordion */
+    details summary { cursor: pointer; list-style: none; }
+    details summary::-webkit-details-marker { display: none; }
+    details summary::marker { display: none; }
+    details[open] summary .faq-icon { transform: rotate(45deg); }
+    details .faq-answer { max-height: 0; overflow: hidden; transition: max-height 0.35s ease, padding 0.35s ease; padding-top: 0; }
+    details[open] .faq-answer { max-height: 400px; padding-top: 1rem; }
 
-    /* CTA button */
-    .cta-btn { display: inline-flex; align-items: center; justify-content: center; background: var(--cta); color: #0c0a08; font-weight: 600; font-size: 1rem; padding: 14px 32px; border-radius: 8px; text-decoration: none; transition: transform 0.2s, box-shadow 0.2s; min-height: 48px; }
-    .cta-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(199,91,42,0.3); }
-    .cta-btn-secondary { display: inline-flex; align-items: center; justify-content: center; border: 1px solid var(--primary); color: var(--primary); font-weight: 600; font-size: 1rem; padding: 14px 32px; border-radius: 8px; text-decoration: none; transition: all 0.2s; min-height: 48px; }
-    .cta-btn-secondary:hover { background: var(--primary); color: var(--bg); }
+    /* Counter glow */
+    .stat-number { text-shadow: 0 0 40px rgba(191,148,105,0.15); }
 
-    /* Film grain overlay */
-    .film-grain { position: relative; }
-    .film-grain::after { content: ''; position: absolute; inset: 0; opacity: 0.03; pointer-events: none; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E"); background-size: 256px 256px; }
+    /* Nav transition */
+    #main-nav { transition: background-color 0.3s ease, box-shadow 0.3s ease; }
 
-    /* Animations */
-    @keyframes fadeUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
-    @keyframes glow { 0%, 100% { opacity: 0.2; transform: scale(1); } 50% { opacity: 0.5; transform: scale(1.08); } }
-    .fade-up { opacity: 0; transform: translateY(30px); }
-    .fade-up.visible { animation: fadeUp 0.7s ease-out forwards; }
-    .fade-up-delay-1 { animation-delay: 0.2s !important; }
-    .fade-up-delay-2 { animation-delay: 0.4s !important; }
-    .fade-up-delay-3 { animation-delay: 0.6s !important; }
-
-    /* Cards */
-    .card { background: var(--bg-card); border: 1px solid rgba(191,148,105,0.08); border-radius: 12px; transition: transform 0.2s, box-shadow 0.2s; }
-    .card:hover { transform: translateY(-4px); box-shadow: 0 12px 32px rgba(0,0,0,0.3); }
-
-    /* Nav link style */
-    .nav-link { color: var(--muted); text-decoration: none; font-size: 0.9375rem; font-weight: 500; transition: color 0.2s; }
-    .nav-link:hover { color: var(--primary); }
-
-    /* Mobile menu */
-    .mobile-menu { display: none; position: fixed; inset: 0; top: var(--header-height); background: var(--bg-elevated); z-index: 40; padding: 2rem; }
-    .mobile-menu.open { display: flex; flex-direction: column; gap: 1.5rem; }
-
-    /* Theme toggle */
-    .theme-toggle { background: none; border: 1px solid rgba(191,148,105,0.2); border-radius: 8px; padding: 8px; cursor: pointer; color: var(--muted); transition: color 0.2s, border-color 0.2s; display: flex; align-items: center; justify-content: center; width: 40px; height: 40px; }
-    .theme-toggle:hover { color: var(--primary); border-color: var(--primary); }
-
-    /* Counter animation */
-    .counter { font-variant-numeric: tabular-nums; }
-
-    /* Max line length for readability */
-    .readable { max-width: 65ch; }
-
-    /* Section base */
-    .section-pad { padding: 80px 24px; }
-    @media (min-width: 768px) { .section-pad { padding: 128px 24px; } }
-
-    /* Comparison highlight */
-    .compare-highlight { border-left: 3px solid var(--primary); }
-
-    /* Custom scrollbar */
-    ::-webkit-scrollbar { width: 8px; }
-    ::-webkit-scrollbar-track { background: var(--bg); }
-    ::-webkit-scrollbar-thumb { background: var(--bg-card); border-radius: 4px; }
+    /* Radial hero glow */
+    .hero-glow {
+      background: radial-gradient(ellipse 60% 50% at 50% 70%, rgba(199,91,42,0.12) 0%, transparent 70%);
+    }
   </style>
-
-  <!-- GTM -->
-  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-P5JSD86L');</script>
-
-  <!-- Meta Pixel -->
-  <script>!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');fbq('init','2728397250833051');fbq('track','PageView');</script>
-  <noscript><img height="1" width="1" style="display:none" alt="" src="https://www.facebook.com/tr?id=2728397250833051&ev=PageView&noscript=1"/></noscript>
 
   <!-- JSON-LD: LocalBusiness -->
   <script type="application/ld+json">
@@ -140,481 +94,803 @@
     "@context": "https://schema.org",
     "@type": "LocalBusiness",
     "name": "Buildwise Media",
-    "@id": "https://buildwisemedia.com/#business",
     "url": "https://buildwisemedia.com",
     "telephone": "+17653377805",
     "email": "hello@buildwisemedia.com",
     "address": {
       "@type": "PostalAddress",
-      "streetAddress": "11720 Amber Park Dr Ste 160 PMB 1232",
       "addressLocality": "Alpharetta",
       "addressRegion": "GA",
-      "postalCode": "30009",
       "addressCountry": "US"
     },
-    "description": "AI-native marketing agency delivering automated marketing engines for service businesses.",
-    "priceRange": "$$",
-    "areaServed": "United States"
+    "priceRange": "$$$$",
+    "sameAs": []
+  }
+  </script>
+
+  <!-- JSON-LD: Organization -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "Buildwise Media",
+    "url": "https://buildwisemedia.com",
+    "logo": "https://assets.buildwisemedia.com/logos/bwm-logo-primary-terracotta-on-transparent.svg",
+    "contactPoint": {
+      "@type": "ContactPoint",
+      "telephone": "+17653377805",
+      "contactType": "sales",
+      "email": "hello@buildwisemedia.com"
+    }
+  }
+  </script>
+
+  <!-- JSON-LD: FAQPage -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "What types of businesses do you work with?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "We work with service businesses — contractors, agencies, consultants, and professional service providers who have a proven service and happy customers but need a system to consistently attract more of the right clients."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How is this different from other marketing agencies?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Most agencies sell deliverables and lock you into long contracts. We build infrastructure you own, run it with AI-powered automation, and work month-to-month because we're confident in the results."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What does 'you own everything' actually mean?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Your website is on your domain. Your ad accounts are in your name. Your content, your brand assets, your data — all yours. If you leave, you take everything with you. No hostage situations."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How long until I see results?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Most clients see their first qualified leads within 30 days of engine launch. Pipeline consistency typically establishes within 60-90 days as all channels reach optimization."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What if I want to cancel?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Cancel anytime. No penalties. No contracts. You keep everything we built. We believe if we're doing our job, you won't want to leave."
+        }
+      }
+    ]
   }
   </script>
 </head>
-<body>
-  <!-- GTM noscript -->
-  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-P5JSD86L" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<body class="bg-void text-cream antialiased overflow-x-hidden">
 
-  <!-- ==================== HEADER ==================== -->
-  <header class="site-header" id="site-header">
-    <nav class="max-w-7xl mx-auto px-6 flex items-center justify-between" style="height: var(--header-height);">
-      <a href="/" class="flex-shrink-0" aria-label="Buildwise Media home">
-        <img src="https://assets.buildwisemedia.com/logos/bwm-logo-primary-terracotta-on-transparent.svg" alt="Buildwise Media" class="h-9 w-auto">
-      </a>
+  <!-- Google Tag Manager (noscript) -->
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-P5JSD86L"
+  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
-      <!-- Desktop nav -->
-      <div class="hidden nav:flex items-center gap-8">
-        <a href="/why-buildwise.html" class="nav-link">Why Buildwise</a>
-        <a href="/services.html" class="nav-link">Services</a>
-        <a href="/how-it-works.html" class="nav-link">How It Works</a>
-        <a href="/results.html" class="nav-link">Results</a>
-        <button id="theme-toggle-desktop" class="theme-toggle" aria-label="Toggle light/dark mode">
-          <svg id="sun-icon" class="w-5 h-5 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/></svg>
-          <svg id="moon-icon" class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/></svg>
-        </button>
-        <a href="https://book.buildwisemedia.com/bwm/strategy-call" class="cta-btn">Book Your Strategy Call</a>
+  <!-- ============================================ -->
+  <!-- NAV -->
+  <!-- ============================================ -->
+  <header>
+    <nav id="main-nav" class="fixed top-0 left-0 right-0 z-50 bg-transparent">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex items-center justify-between h-20">
+          <!-- Logo -->
+          <a href="/" class="flex-shrink-0">
+            <img src="https://assets.buildwisemedia.com/logos/bwm-logo-primary-terracotta-on-transparent.svg" alt="Buildwise Media" class="h-10">
+          </a>
+
+          <!-- Desktop Nav -->
+          <div class="hidden lg:flex items-center gap-8">
+            <a href="/" class="text-cream/90 hover:text-primary transition text-[15px] font-medium">Home</a>
+
+            <!-- Services Dropdown -->
+            <div class="relative group">
+              <a href="/services" class="text-cream/90 hover:text-primary transition text-[15px] font-medium flex items-center gap-1">
+                Services
+                <svg class="w-3.5 h-3.5 mt-0.5 transition-transform group-hover:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+              </a>
+              <div class="absolute top-full left-1/2 -translate-x-1/2 pt-3 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200">
+                <div class="bg-nav-solid border border-warm-brown rounded-xl shadow-2xl py-2 min-w-[200px]">
+                  <a href="/services/ascend" class="block px-5 py-2.5 text-[14px] text-cream/80 hover:text-primary hover:bg-white/5 transition">Ascend</a>
+                  <a href="/services/ascend-lite" class="block px-5 py-2.5 text-[14px] text-cream/80 hover:text-primary hover:bg-white/5 transition">Ascend Lite</a>
+                </div>
+              </div>
+            </div>
+
+            <a href="/how-it-works" class="text-cream/90 hover:text-primary transition text-[15px] font-medium">How It Works</a>
+            <a href="/results" class="text-cream/90 hover:text-primary transition text-[15px] font-medium">Results</a>
+            <a href="/why-buildwise" class="text-cream/90 hover:text-primary transition text-[15px] font-medium">Why Buildwise</a>
+
+            <a href="/book" class="bg-cta-accent text-cream rounded-lg text-[15px] h-12 px-8 font-semibold hover:brightness-110 transition shadow-lg inline-flex items-center">
+              Book Your Strategy Call
+            </a>
+          </div>
+
+          <!-- Mobile Hamburger -->
+          <button id="mobile-toggle" class="lg:hidden flex flex-col justify-center items-center w-11 h-11 gap-1.5" aria-label="Toggle menu">
+            <span class="hamburger-line block w-6 h-0.5 bg-cream transition-all duration-300 origin-center"></span>
+            <span class="hamburger-line block w-6 h-0.5 bg-cream transition-all duration-300 origin-center"></span>
+            <span class="hamburger-line block w-6 h-0.5 bg-cream transition-all duration-300 origin-center"></span>
+          </button>
+        </div>
       </div>
 
-      <!-- Mobile menu button -->
-      <div class="flex items-center gap-3 nav:hidden">
-        <button id="theme-toggle-mobile" class="theme-toggle" aria-label="Toggle light/dark mode">
-          <svg class="sun-icon w-5 h-5 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/></svg>
-          <svg class="moon-icon w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/></svg>
-        </button>
-        <button id="mobile-menu-btn" class="text-[var(--text)] p-2" aria-label="Toggle menu" aria-expanded="false">
-          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path id="menu-open" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
-            <path id="menu-close" class="hidden" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
-          </svg>
-        </button>
+      <!-- Mobile Menu -->
+      <div id="mobile-menu" class="lg:hidden hidden bg-nav-solid border-t border-warm-brown">
+        <div class="px-6 py-6 space-y-1">
+          <a href="/" class="block py-3 text-cream/90 hover:text-primary transition font-medium">Home</a>
+          <a href="/services" class="block py-3 text-cream/90 hover:text-primary transition font-medium">Services</a>
+          <a href="/services/ascend" class="block py-3 pl-4 text-cream/60 hover:text-primary transition text-[15px]">Ascend</a>
+          <a href="/services/ascend-lite" class="block py-3 pl-4 text-cream/60 hover:text-primary transition text-[15px]">Ascend Lite</a>
+          <a href="/how-it-works" class="block py-3 text-cream/90 hover:text-primary transition font-medium">How It Works</a>
+          <a href="/results" class="block py-3 text-cream/90 hover:text-primary transition font-medium">Results</a>
+          <a href="/why-buildwise" class="block py-3 text-cream/90 hover:text-primary transition font-medium">Why Buildwise</a>
+          <div class="pt-4">
+            <a href="/book" class="bg-cta-accent text-cream rounded-lg text-[15px] h-12 px-8 font-semibold hover:brightness-110 transition shadow-lg inline-flex items-center w-full justify-center">
+              Book Your Strategy Call
+            </a>
+          </div>
+        </div>
       </div>
     </nav>
-
-    <!-- Mobile menu -->
-    <div id="mobile-menu" class="mobile-menu">
-      <a href="/why-buildwise.html" class="text-lg font-medium" style="color: var(--text);">Why Buildwise</a>
-      <a href="/services.html" class="text-lg font-medium" style="color: var(--text);">Services</a>
-      <a href="/how-it-works.html" class="text-lg font-medium" style="color: var(--text);">How It Works</a>
-      <a href="/results.html" class="text-lg font-medium" style="color: var(--text);">Results</a>
-      <a href="https://book.buildwisemedia.com/bwm/strategy-call" class="cta-btn text-center mt-4">Book Your Strategy Call</a>
-    </div>
   </header>
 
   <main>
-    <!-- ==================== HERO ==================== -->
-    <section class="film-grain relative overflow-hidden" style="background: var(--bg); min-height: 100vh; padding-top: calc(var(--header-height) + 2rem);">
-      <!-- Decorative glow orb -->
-      <div class="absolute top-1/3 right-1/4 w-96 h-96 rounded-full opacity-20" style="background: radial-gradient(circle, rgba(199,91,42,0.4) 0%, transparent 70%); animation: glow 6s ease-in-out infinite; filter: blur(60px);"></div>
-      <div class="absolute bottom-1/4 left-1/3 w-64 h-64 rounded-full opacity-10" style="background: radial-gradient(circle, rgba(191,148,105,0.3) 0%, transparent 70%); animation: glow 8s ease-in-out infinite 2s; filter: blur(40px);"></div>
 
-      <div class="max-w-7xl mx-auto px-6 flex flex-col nav:flex-row items-center gap-12 nav:gap-16 relative z-10" style="min-height: calc(100vh - var(--header-height) - 2rem);">
-        <!-- Left: Text -->
-        <div class="flex-1 flex flex-col justify-center py-16 nav:py-0">
-          <h1 class="font-display font-bold leading-[1.1] tracking-tight fade-up" style="font-size: clamp(2rem, 5vw, 3.5rem); color: var(--text);">
-            Your marketing should be an engine that runs without you&nbsp;&mdash; not another job on your plate.
-          </h1>
-          <p class="mt-6 text-lg readable fade-up fade-up-delay-1" style="color: var(--muted); font-size: 1.125rem; line-height: 1.7;">
-            A marketing engine that fills your pipeline &mdash; without adding to your plate.
-          </p>
-          <p class="mt-4 text-sm readable fade-up fade-up-delay-1" style="color: var(--muted); opacity: 0.7;">
-            For service business owners who are tired of inconsistent leads, DIY marketing, and agencies that overpromise.
-          </p>
-          <div class="mt-10 flex flex-col sm:flex-row gap-4 fade-up fade-up-delay-2">
-            <a href="https://book.buildwisemedia.com/bwm/strategy-call" class="cta-btn">Book Your Strategy Call</a>
-            <a href="/how-it-works.html" class="cta-btn-secondary">See How It Works</a>
-          </div>
-        </div>
+    <!-- ============================================ -->
+    <!-- SECTION 1: HERO -->
+    <!-- ============================================ -->
+    <section class="relative bg-nav-solid min-h-screen flex items-center pt-32 pb-20 md:pb-32 overflow-hidden">
+      <!-- Background glow -->
+      <div class="hero-glow absolute inset-0 pointer-events-none"></div>
+      <!-- Subtle texture overlay -->
+      <div class="absolute inset-0 opacity-[0.03] pointer-events-none" style="background-image: url('data:image/svg+xml,%3Csvg width=&quot;60&quot; height=&quot;60&quot; viewBox=&quot;0 0 60 60&quot; xmlns=&quot;http://www.w3.org/2000/svg&quot;%3E%3Cg fill=&quot;none&quot; fill-rule=&quot;evenodd&quot;%3E%3Cg fill=&quot;%23BF9469&quot; fill-opacity=&quot;0.4&quot;%3E%3Cpath d=&quot;M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z&quot;/%3E%3C/g%3E%3C/g%3E%3C/svg%3E');"></div>
 
-        <!-- Right: Abstract texture composition -->
-        <div class="flex-1 relative hidden nav:flex items-center justify-center" style="min-height: 480px;">
-          <!-- Geometric composition -->
-          <div class="absolute inset-0 flex items-center justify-center">
-            <!-- Large circle -->
-            <div class="absolute w-80 h-80 rounded-full" style="border: 1px solid rgba(191,148,105,0.15); top: 10%; right: 5%;"></div>
-            <!-- Medium circle -->
-            <div class="absolute w-56 h-56 rounded-full" style="border: 1px solid rgba(191,148,105,0.1); bottom: 15%; right: 20%;"></div>
-            <!-- Accent block -->
-            <div class="absolute w-48 h-48 rounded-2xl" style="background: linear-gradient(135deg, rgba(199,91,42,0.12) 0%, rgba(191,148,105,0.06) 100%); top: 20%; right: 15%; transform: rotate(12deg);"></div>
-            <!-- Smaller accent -->
-            <div class="absolute w-32 h-32 rounded-xl" style="background: linear-gradient(225deg, rgba(191,148,105,0.1) 0%, transparent 100%); bottom: 25%; right: 8%; transform: rotate(-8deg);"></div>
-            <!-- Dot grid -->
-            <div class="absolute" style="top: 30%; right: 35%; display: grid; grid-template-columns: repeat(5,1fr); gap: 12px;">
-              <div class="w-1.5 h-1.5 rounded-full" style="background: var(--primary); opacity: 0.2;"></div>
-              <div class="w-1.5 h-1.5 rounded-full" style="background: var(--primary); opacity: 0.15;"></div>
-              <div class="w-1.5 h-1.5 rounded-full" style="background: var(--primary); opacity: 0.1;"></div>
-              <div class="w-1.5 h-1.5 rounded-full" style="background: var(--primary); opacity: 0.2;"></div>
-              <div class="w-1.5 h-1.5 rounded-full" style="background: var(--primary); opacity: 0.12;"></div>
-              <div class="w-1.5 h-1.5 rounded-full" style="background: var(--primary); opacity: 0.1;"></div>
-              <div class="w-1.5 h-1.5 rounded-full" style="background: var(--primary); opacity: 0.2;"></div>
-              <div class="w-1.5 h-1.5 rounded-full" style="background: var(--primary); opacity: 0.15;"></div>
-              <div class="w-1.5 h-1.5 rounded-full" style="background: var(--primary); opacity: 0.1;"></div>
-              <div class="w-1.5 h-1.5 rounded-full" style="background: var(--primary); opacity: 0.18;"></div>
-              <div class="w-1.5 h-1.5 rounded-full" style="background: var(--primary); opacity: 0.15;"></div>
-              <div class="w-1.5 h-1.5 rounded-full" style="background: var(--primary); opacity: 0.2;"></div>
-              <div class="w-1.5 h-1.5 rounded-full" style="background: var(--primary); opacity: 0.08;"></div>
-              <div class="w-1.5 h-1.5 rounded-full" style="background: var(--primary); opacity: 0.15;"></div>
-              <div class="w-1.5 h-1.5 rounded-full" style="background: var(--primary); opacity: 0.12;"></div>
-              <div class="w-1.5 h-1.5 rounded-full" style="background: var(--primary); opacity: 0.2;"></div>
-              <div class="w-1.5 h-1.5 rounded-full" style="background: var(--primary); opacity: 0.1;"></div>
-              <div class="w-1.5 h-1.5 rounded-full" style="background: var(--primary); opacity: 0.18;"></div>
-              <div class="w-1.5 h-1.5 rounded-full" style="background: var(--primary); opacity: 0.12;"></div>
-              <div class="w-1.5 h-1.5 rounded-full" style="background: var(--primary); opacity: 0.15;"></div>
+      <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
+        <div class="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+          <!-- Left: Text -->
+          <div>
+            <h1 class="fade-up font-display text-4xl sm:text-5xl lg:text-6xl font-bold leading-[1.1] tracking-tight mb-6">
+              Your Marketing Should Run <span class="text-primary">Without You</span>
+            </h1>
+            <p class="fade-up font-body text-lg sm:text-xl text-cream/85 leading-relaxed mb-5 max-w-xl" style="transition-delay:200ms">
+              Most service business owners ARE the marketing department. We build an AI-powered engine that fills your pipeline — so you can run your business, not your ads.
+            </p>
+            <p class="fade-up text-muted text-[15px] leading-relaxed mb-10 max-w-lg" style="transition-delay:400ms">
+              For service businesses done with feast-or-famine revenue and agencies that overpromise.
+            </p>
+            <div class="fade-up flex flex-wrap gap-4" style="transition-delay:600ms">
+              <a href="/book" class="bg-cta-accent text-cream rounded-lg text-[15px] md:text-[17px] h-12 px-8 font-semibold hover:brightness-110 transition shadow-lg inline-flex items-center">
+                Book Your Strategy Call
+              </a>
+              <a href="#how-it-works" class="border border-primary text-primary rounded-lg text-[15px] md:text-[17px] h-12 px-8 font-semibold hover:bg-primary/10 transition inline-flex items-center">
+                See How It Works ↓
+              </a>
             </div>
-            <!-- Diagonal line -->
-            <div class="absolute" style="top: 15%; right: 40%; width: 200px; height: 1px; background: linear-gradient(90deg, transparent, rgba(191,148,105,0.15), transparent); transform: rotate(-30deg);"></div>
+          </div>
+
+          <!-- Right: Abstract warm visual -->
+          <div class="hidden lg:block relative">
+            <div class="relative w-full aspect-square max-w-lg ml-auto">
+              <!-- Layered abstract shapes -->
+              <div class="absolute inset-0 rounded-full bg-gradient-to-br from-cta-accent/20 to-primary/10 blur-3xl"></div>
+              <div class="absolute top-8 right-8 w-72 h-72 rounded-full border border-primary/20"></div>
+              <div class="absolute top-20 right-20 w-48 h-48 rounded-full border border-primary/10"></div>
+              <div class="absolute top-12 right-4 w-64 h-64 rounded-3xl bg-gradient-to-br from-cta-accent/8 to-transparent rotate-12"></div>
+              <!-- Central icon cluster -->
+              <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
+                <div class="w-32 h-32 rounded-2xl bg-card-bg border border-primary/20 shadow-2xl flex items-center justify-center rotate-6">
+                  <svg class="w-14 h-14 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 13.5l10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75z"/>
+                  </svg>
+                </div>
+              </div>
+              <div class="absolute bottom-24 left-12 w-20 h-20 rounded-xl bg-card-bg border border-primary/15 shadow-xl flex items-center justify-center -rotate-6">
+                <svg class="w-9 h-9 text-cta-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M3 13.125C3 12.504 3.504 12 4.125 12h2.25c.621 0 1.125.504 1.125 1.125v6.75C7.5 20.496 6.996 21 6.375 21h-2.25A1.125 1.125 0 013 19.875v-6.75zM9.75 8.625c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125v11.25c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 01-1.125-1.125V8.625zM16.5 4.125c0-.621.504-1.125 1.125-1.125h2.25C20.496 3 21 3.504 21 4.125v15.75c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 01-1.125-1.125V4.125z"/>
+                </svg>
+              </div>
+              <div class="absolute top-16 left-8 w-16 h-16 rounded-lg bg-card-bg border border-primary/15 shadow-xl flex items-center justify-center rotate-12">
+                <svg class="w-7 h-7 text-primary/80" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09z"/>
+                </svg>
+              </div>
+            </div>
           </div>
         </div>
       </div>
+    </section>
 
-      <!-- Scroll indicator -->
-      <div class="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 opacity-40">
-        <span class="text-xs tracking-widest uppercase" style="color: var(--muted);">Scroll</span>
-        <div class="w-5 h-8 rounded-full border border-current flex justify-center pt-1.5" style="color: var(--muted);">
-          <div class="w-1 h-2 rounded-full bg-current animate-bounce"></div>
+    <!-- ============================================ -->
+    <!-- SECTION 2: TRUST BAR -->
+    <!-- ============================================ -->
+    <section class="bg-warm-brown py-16 md:py-20 border-y border-primary/10">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-10 md:gap-8 text-center">
+          <div class="counter-group" data-target="10" data-prefix="$" data-suffix="M+">
+            <div class="stat-number font-display text-4xl md:text-5xl font-bold text-primary mb-2">
+              <span class="counter-value">$0</span><span class="counter-suffix">M+</span>
+            </div>
+            <p class="text-muted text-[15px] font-medium">Revenue Generated for Clients</p>
+          </div>
+          <div class="counter-group" data-target="85" data-suffix="%">
+            <div class="stat-number font-display text-4xl md:text-5xl font-bold text-primary mb-2">
+              <span class="counter-value">0</span><span class="counter-suffix">%</span>
+            </div>
+            <p class="text-muted text-[15px] font-medium">Of Marketing Automated by AI</p>
+          </div>
+          <div class="counter-group" data-target="30" data-suffix=" Min">
+            <div class="stat-number font-display text-4xl md:text-5xl font-bold text-primary mb-2">
+              <span class="counter-value">0</span><span class="counter-suffix"> Min</span>
+            </div>
+            <p class="text-muted text-[15px] font-medium">Per Month — That's All We Need From You</p>
+          </div>
         </div>
       </div>
     </section>
 
-    <!-- ==================== TRUST BAR ==================== -->
-    <section class="section-pad" style="background: var(--bg-elevated);">
-      <div class="max-w-5xl mx-auto grid grid-cols-1 sm:grid-cols-3 gap-8 text-center">
-        <div class="fade-up">
-          <p class="font-display font-bold text-3xl md:text-4xl counter" style="color: var(--primary);" data-target="10" data-prefix="$" data-suffix="M+">$0</p>
-          <p class="mt-2 text-sm" style="color: var(--muted);">Revenue Generated</p>
+    <!-- ============================================ -->
+    <!-- SECTION 3: PROBLEM PREVIEW (The Poor Four) -->
+    <!-- ============================================ -->
+    <section class="bg-void py-20 md:py-32">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-14 fade-up">
+          <p class="text-primary text-sm font-semibold tracking-[0.2em] uppercase mb-4">The Problem</p>
+          <h2 class="font-display text-3xl sm:text-4xl lg:text-[2.75rem] font-bold leading-tight">
+            Four Problems That Keep<br class="hidden sm:block"> Service Businesses Stuck
+          </h2>
         </div>
-        <div class="fade-up fade-up-delay-1">
-          <p class="font-display font-bold text-3xl md:text-4xl counter" style="color: var(--primary);" data-target="85" data-suffix="%">0</p>
-          <p class="mt-2 text-sm" style="color: var(--muted);">Marketing Automated</p>
+
+        <div class="grid md:grid-cols-2 gap-6 max-w-5xl mx-auto">
+          <!-- Card 1 -->
+          <div class="fade-up bg-card-bg rounded-xl p-8 border border-primary/8 hover:border-primary/20 transition-colors duration-300">
+            <div class="w-12 h-12 rounded-lg bg-cta-accent/10 flex items-center justify-center mb-5">
+              <svg class="w-6 h-6 text-cta-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 18L9 11.25l4.306 4.307a11.95 11.95 0 015.814-5.519l2.74-1.22m0 0l-5.94-2.28m5.94 2.28l-2.28 5.941"/>
+              </svg>
+            </div>
+            <h3 class="font-display text-xl font-semibold mb-3">Lead Droughts</h3>
+            <p class="text-muted text-[15px] leading-relaxed">Your pipeline is feast or famine. No system, just hope.</p>
+          </div>
+
+          <!-- Card 2 -->
+          <div class="fade-up bg-card-bg rounded-xl p-8 border border-primary/8 hover:border-primary/20 transition-colors duration-300" style="transition-delay:100ms">
+            <div class="w-12 h-12 rounded-lg bg-cta-accent/10 flex items-center justify-center mb-5">
+              <svg class="w-6 h-6 text-cta-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z"/>
+              </svg>
+            </div>
+            <h3 class="font-display text-xl font-semibold mb-3">Owner Trap</h3>
+            <p class="text-muted text-[15px] leading-relaxed">You ARE the marketing department. Every lead starts with you.</p>
+          </div>
+
+          <!-- Card 3 -->
+          <div class="fade-up bg-card-bg rounded-xl p-8 border border-primary/8 hover:border-primary/20 transition-colors duration-300" style="transition-delay:200ms">
+            <div class="w-12 h-12 rounded-lg bg-cta-accent/10 flex items-center justify-center mb-5">
+              <svg class="w-6 h-6 text-cta-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M11.42 15.17l-5.384 3.175 1.029-5.995L2.31 7.828l6.018-.875L11.42 1.5l2.69 5.453 6.018.875-4.755 4.522 1.029 5.995z"/>
+              </svg>
+            </div>
+            <h3 class="font-display text-xl font-semibold mb-3">Manual Mayhem</h3>
+            <p class="text-muted text-[15px] leading-relaxed">Every campaign, post, and follow-up is a manual task.</p>
+          </div>
+
+          <!-- Card 4 -->
+          <div class="fade-up bg-card-bg rounded-xl p-8 border border-primary/8 hover:border-primary/20 transition-colors duration-300" style="transition-delay:300ms">
+            <div class="w-12 h-12 rounded-lg bg-cta-accent/10 flex items-center justify-center mb-5">
+              <svg class="w-6 h-6 text-cta-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M15.362 5.214A8.252 8.252 0 0112 21 8.25 8.25 0 016.038 7.048 8.287 8.287 0 009 9.6a8.983 8.983 0 013.361-6.867 8.21 8.21 0 003 2.48z"/>
+              </svg>
+            </div>
+            <h3 class="font-display text-xl font-semibold mb-3">Reactive Mode</h3>
+            <p class="text-muted text-[15px] leading-relaxed">You're always firefighting instead of building.</p>
+          </div>
         </div>
-        <div class="fade-up fade-up-delay-2">
-          <p class="font-display font-bold text-3xl md:text-4xl counter" style="color: var(--primary);" data-target="9" data-suffix="">0</p>
-          <p class="mt-2 text-sm" style="color: var(--muted);">Active Partners</p>
+
+        <div class="text-center mt-10 fade-up">
+          <a href="/the-poor-four" class="text-primary hover:text-cream transition text-[15px] font-medium inline-flex items-center gap-2">
+            Recognize yourself? Read the full breakdown
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+          </a>
         </div>
       </div>
     </section>
 
-    <!-- ==================== HOW IT WORKS (Preview) ==================== -->
-    <section class="section-pad" style="background: var(--bg);">
-      <div class="max-w-6xl mx-auto">
-        <div class="text-center mb-16">
-          <p class="text-sm font-semibold uppercase tracking-widest mb-4" style="color: var(--primary);">How It Works</p>
-          <h2 class="font-display font-bold text-3xl md:text-4xl fade-up" style="color: var(--text);">Three phases. One engine.</h2>
-          <p class="mt-4 readable mx-auto fade-up fade-up-delay-1" style="color: var(--muted);">
-            We build a Revenue Engine in stages &mdash; research, offer, content, ads, follow-up, optimization &mdash; powered by AI and engineered against documented standards.
+    <!-- ============================================ -->
+    <!-- SECTION 4: SOLUTION BRIDGE -->
+    <!-- ============================================ -->
+    <section class="bg-warm-brown py-20 md:py-32">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="max-w-3xl mx-auto text-center fade-up">
+          <h2 class="font-display text-3xl sm:text-4xl lg:text-[2.75rem] font-bold leading-tight mb-8">
+            We Replace the Chaos<br class="hidden sm:block"> With a <span class="text-primary">System</span>
+          </h2>
+          <p class="text-cream/80 text-lg leading-relaxed mb-10 max-w-2xl mx-auto">
+            Buildwise Media builds an AI-powered marketing engine around your business. Content, ads, website, automation, AI tools — all running while you focus on what you do best. Month-to-month. No contracts. You own everything we build.
           </p>
+          <a href="/services/ascend" class="border border-primary text-primary rounded-lg text-[15px] md:text-[17px] h-12 px-8 font-semibold hover:bg-primary/10 transition inline-flex items-center">
+            See What's Inside →
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================ -->
+    <!-- SECTION 5: RESULTS PREVIEW -->
+    <!-- ============================================ -->
+    <section class="bg-void py-20 md:py-32">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-14 fade-up">
+          <h2 class="font-display text-3xl sm:text-4xl lg:text-[2.75rem] font-bold leading-tight">
+            What Happens When the Engine Runs
+          </h2>
         </div>
 
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div class="grid md:grid-cols-3 gap-6 max-w-5xl mx-auto">
+          <!-- Result Card 1 -->
+          <div class="fade-up bg-card-bg rounded-xl p-8 border border-primary/8 relative overflow-hidden group hover:border-primary/20 transition-colors duration-300">
+            <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-cta-accent to-primary"></div>
+            <div class="font-display text-3xl font-bold text-primary mb-2">300%</div>
+            <h3 class="font-display text-lg font-semibold mb-3">Revenue Growth</h3>
+            <p class="text-muted text-[15px] leading-relaxed">Increase in qualified leads within 90 days.</p>
+          </div>
+
+          <!-- Result Card 2 -->
+          <div class="fade-up bg-card-bg rounded-xl p-8 border border-primary/8 relative overflow-hidden group hover:border-primary/20 transition-colors duration-300" style="transition-delay:100ms">
+            <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-cta-accent to-primary"></div>
+            <div class="w-10 h-10 rounded-full border-2 border-primary flex items-center justify-center mb-3">
+              <svg class="w-5 h-5 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5"/></svg>
+            </div>
+            <h3 class="font-display text-lg font-semibold mb-3">Pipeline Consistency</h3>
+            <p class="text-muted text-[15px] leading-relaxed">From feast-or-famine to predictable monthly pipeline.</p>
+          </div>
+
+          <!-- Result Card 3 -->
+          <div class="fade-up bg-card-bg rounded-xl p-8 border border-primary/8 relative overflow-hidden group hover:border-primary/20 transition-colors duration-300" style="transition-delay:200ms">
+            <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-cta-accent to-primary"></div>
+            <div class="font-display text-3xl font-bold text-primary mb-2">30 min</div>
+            <h3 class="font-display text-lg font-semibold mb-3">Time Reclaimed</h3>
+            <p class="text-muted text-[15px] leading-relaxed">From 20hrs/week on marketing to 30 min/month.</p>
+          </div>
+        </div>
+
+        <div class="text-center mt-10 fade-up">
+          <a href="/results" class="text-primary hover:text-cream transition text-[15px] font-medium inline-flex items-center gap-2">
+            See all results
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================ -->
+    <!-- SECTION 6: HOW IT WORKS PREVIEW -->
+    <!-- ============================================ -->
+    <section id="how-it-works" class="bg-warm-brown py-20 md:py-32">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-14 fade-up">
+          <h2 class="font-display text-3xl sm:text-4xl lg:text-[2.75rem] font-bold leading-tight">
+            Three Phases. One Engine.
+          </h2>
+        </div>
+
+        <div class="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
           <!-- Phase 1 -->
-          <div class="card p-8 fade-up">
-            <div class="w-12 h-12 rounded-lg flex items-center justify-center text-lg font-bold mb-6" style="background: rgba(199,91,42,0.15); color: var(--cta);">1</div>
-            <h3 class="font-display font-semibold text-xl mb-3" style="color: var(--text);">Learn</h3>
-            <p style="color: var(--muted); font-size: 0.9375rem;">We learn your business, your market, and your customers. Research drives every decision &mdash; not guesswork.</p>
+          <div class="fade-up relative">
+            <div class="bg-card-bg rounded-xl p-8 border border-primary/8 h-full hover:border-primary/20 transition-colors duration-300">
+              <div class="w-10 h-10 rounded-full bg-cta-accent/15 text-cta-accent flex items-center justify-center font-display font-bold text-lg mb-5">1</div>
+              <h3 class="font-display text-xl font-semibold mb-3">Discovery</h3>
+              <p class="text-muted text-[15px] leading-relaxed">We learn your business in 48 hours. Not 48 meetings.</p>
+            </div>
+            <!-- Connector arrow (hidden on mobile) -->
+            <div class="hidden md:block absolute top-1/2 -right-4 translate-x-0 -translate-y-1/2 text-primary/30">
+              <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+            </div>
           </div>
+
           <!-- Phase 2 -->
-          <div class="card p-8 fade-up fade-up-delay-1">
-            <div class="w-12 h-12 rounded-lg flex items-center justify-center text-lg font-bold mb-6" style="background: rgba(191,148,105,0.15); color: var(--primary);">2</div>
-            <h3 class="font-display font-semibold text-xl mb-3" style="color: var(--text);">Build</h3>
-            <p style="color: var(--muted); font-size: 0.9375rem;">AI builds your engine &mdash; website, content, ads, follow-up sequences. Every component verified before it ships.</p>
+          <div class="fade-up relative" style="transition-delay:150ms">
+            <div class="bg-card-bg rounded-xl p-8 border border-primary/8 h-full hover:border-primary/20 transition-colors duration-300">
+              <div class="w-10 h-10 rounded-full bg-cta-accent/15 text-cta-accent flex items-center justify-center font-display font-bold text-lg mb-5">2</div>
+              <h3 class="font-display text-xl font-semibold mb-3">Build</h3>
+              <p class="text-muted text-[15px] leading-relaxed">Your complete marketing engine — website, content, ads, AI tools — built in weeks.</p>
+            </div>
+            <div class="hidden md:block absolute top-1/2 -right-4 translate-x-0 -translate-y-1/2 text-primary/30">
+              <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+            </div>
           </div>
+
           <!-- Phase 3 -->
-          <div class="card p-8 fade-up fade-up-delay-2">
-            <div class="w-12 h-12 rounded-lg flex items-center justify-center text-lg font-bold mb-6" style="background: rgba(199,91,42,0.15); color: var(--cta);">3</div>
-            <h3 class="font-display font-semibold text-xl mb-3" style="color: var(--text);">Automate</h3>
-            <p style="color: var(--muted); font-size: 0.9375rem;">You get leads on autopilot. The engine runs, optimizes, and reports &mdash; you focus on your craft.</p>
+          <div class="fade-up" style="transition-delay:300ms">
+            <div class="bg-card-bg rounded-xl p-8 border border-primary/8 h-full hover:border-primary/20 transition-colors duration-300">
+              <div class="w-10 h-10 rounded-full bg-cta-accent/15 text-cta-accent flex items-center justify-center font-display font-bold text-lg mb-5">3</div>
+              <h3 class="font-display text-xl font-semibold mb-3">Run</h3>
+              <p class="text-muted text-[15px] leading-relaxed">The engine fills your pipeline. You answer the phone.</p>
+            </div>
           </div>
         </div>
 
         <div class="text-center mt-12 fade-up">
-          <a href="/how-it-works.html" class="cta-btn-secondary">See the Full Process</a>
+          <a href="/how-it-works" class="border border-primary text-primary rounded-lg text-[15px] md:text-[17px] h-12 px-8 font-semibold hover:bg-primary/10 transition inline-flex items-center">
+            See the full process →
+          </a>
         </div>
       </div>
     </section>
 
-    <!-- ==================== RESULTS ==================== -->
-    <section class="section-pad" style="background: var(--bg-elevated);">
-      <div class="max-w-6xl mx-auto">
-        <div class="text-center mb-16">
-          <p class="text-sm font-semibold uppercase tracking-widest mb-4" style="color: var(--primary);">Results</p>
-          <h2 class="font-display font-bold text-3xl md:text-4xl fade-up" style="color: var(--text);">We show our work.</h2>
-          <p class="mt-4 readable mx-auto fade-up fade-up-delay-1" style="color: var(--muted);">While other agencies start with ads and hope, we build the conversion system first.</p>
-        </div>
-
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-          <!-- Featured case study -->
-          <div class="card p-8 md:col-span-2 fade-up" style="border-color: rgba(199,91,42,0.2);">
-            <p class="text-sm font-semibold uppercase tracking-widest mb-2" style="color: var(--cta);">Featured Case Study</p>
-            <h3 class="font-display font-bold text-2xl mb-4" style="color: var(--text);">The $10M Meta Funnel</h3>
-            <p class="readable" style="color: var(--muted);">A multi-channel Meta advertising campaign engineered for maximum conversion. Full case study details are being compiled from partner performance data.</p>
-          </div>
-
-          <!-- Additional result cards -->
-          <div class="card p-8 fade-up">
-            <p class="font-display font-bold text-3xl mb-2" style="color: var(--primary);">85%</p>
-            <h3 class="font-semibold text-lg mb-2" style="color: var(--text);">Marketing Automated</h3>
-            <p class="text-sm" style="color: var(--muted);">Our partners spend less time on marketing busywork and more time on the work that matters.</p>
-          </div>
-          <div class="card p-8 fade-up fade-up-delay-1">
-            <p class="font-display font-bold text-3xl mb-2" style="color: var(--primary);">30 Days</p>
-            <h3 class="font-semibold text-lg mb-2" style="color: var(--text);">From Kickoff to Live</h3>
-            <p class="text-sm" style="color: var(--muted);">Your marketing engine goes from concept to generating leads within 30 days. Not 90. Not "eventually."</p>
-          </div>
-        </div>
-
-        <div class="text-center mt-12 fade-up">
-          <a href="/results.html" class="cta-btn-secondary">See All Results</a>
-        </div>
-      </div>
-    </section>
-
-    <!-- ==================== COMPARISON TABLE ==================== -->
-    <section class="section-pad" style="background: var(--bg);">
-      <div class="max-w-4xl mx-auto">
-        <div class="text-center mb-16">
-          <p class="text-sm font-semibold uppercase tracking-widest mb-4" style="color: var(--primary);">The Difference</p>
-          <h2 class="font-display font-bold text-3xl md:text-4xl fade-up" style="color: var(--text);">Buildwise Media vs. Traditional Agencies</h2>
-        </div>
-
-        <div class="card overflow-hidden fade-up">
-          <table class="w-full text-left">
-            <thead>
-              <tr style="background: var(--bg-elevated);">
-                <th class="p-5 text-sm font-semibold uppercase tracking-wider" style="color: var(--muted); width: 40%;">&nbsp;</th>
-                <th class="p-5 text-sm font-semibold uppercase tracking-wider compare-highlight" style="color: var(--primary); width: 30%;">Buildwise Media</th>
-                <th class="p-5 text-sm font-semibold uppercase tracking-wider" style="color: var(--muted); width: 30%;">Traditional Agency</th>
-              </tr>
-            </thead>
-            <tbody style="color: var(--text);">
-              <tr style="border-top: 1px solid rgba(191,148,105,0.08);">
-                <td class="p-5 font-medium text-sm">Timeline to Results</td>
-                <td class="p-5 text-sm compare-highlight" style="color: var(--primary);">30 days</td>
-                <td class="p-5 text-sm" style="color: var(--muted);">90+ days</td>
-              </tr>
-              <tr style="border-top: 1px solid rgba(191,148,105,0.08);">
-                <td class="p-5 font-medium text-sm">Automation Level</td>
-                <td class="p-5 text-sm compare-highlight" style="color: var(--primary);">85%+ automated</td>
-                <td class="p-5 text-sm" style="color: var(--muted);">Mostly manual</td>
-              </tr>
-              <tr style="border-top: 1px solid rgba(191,148,105,0.08);">
-                <td class="p-5 font-medium text-sm">Contracts</td>
-                <td class="p-5 text-sm compare-highlight" style="color: var(--primary);">Month-to-month</td>
-                <td class="p-5 text-sm" style="color: var(--muted);">6-12 month lock-in</td>
-              </tr>
-              <tr style="border-top: 1px solid rgba(191,148,105,0.08);">
-                <td class="p-5 font-medium text-sm">You Own Your Assets</td>
-                <td class="p-5 text-sm compare-highlight" style="color: var(--primary);">Yes &mdash; website, content, data</td>
-                <td class="p-5 text-sm" style="color: var(--muted);">Often locked behind vendor</td>
-              </tr>
-              <tr style="border-top: 1px solid rgba(191,148,105,0.08);">
-                <td class="p-5 font-medium text-sm">Approach</td>
-                <td class="p-5 text-sm compare-highlight" style="color: var(--primary);">System-first, then traffic</td>
-                <td class="p-5 text-sm" style="color: var(--muted);">Ads first, hope for the best</td>
-              </tr>
-              <tr style="border-top: 1px solid rgba(191,148,105,0.08);">
-                <td class="p-5 font-medium text-sm">AI Integration</td>
-                <td class="p-5 text-sm compare-highlight" style="color: var(--primary);">Native &mdash; built into every layer</td>
-                <td class="p-5 text-sm" style="color: var(--muted);">Bolted on, if at all</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-      </div>
-    </section>
-
-    <!-- ==================== TESTIMONIALS ==================== -->
-    <section class="section-pad" style="background: var(--bg-elevated);">
-      <div class="max-w-5xl mx-auto">
-        <div class="text-center mb-16">
-          <p class="text-sm font-semibold uppercase tracking-widest mb-4" style="color: var(--primary);">Testimonials</p>
-          <h2 class="font-display font-bold text-3xl md:text-4xl fade-up" style="color: var(--text);">What our partners say</h2>
-        </div>
-
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-          <!-- Partner testimonials being collected -->
-          <div class="card p-8 fade-up">
-            <svg class="w-8 h-8 mb-4" style="color: var(--primary); opacity: 0.3;" fill="currentColor" viewBox="0 0 24 24"><path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z"/></svg>
-            <p class="text-lg italic mb-6" style="color: var(--text); line-height: 1.7;">Testimonial coming soon &mdash; partner feedback currently being collected.</p>
-            <div>
-              <p class="font-semibold text-sm" style="color: var(--text);">Partner Name</p>
-              <p class="text-sm" style="color: var(--muted);">Industry &middot; Service Area</p>
+    <!-- ============================================ -->
+    <!-- SECTION 7: WHY BUILDWISE PREVIEW -->
+    <!-- ============================================ -->
+    <section class="bg-void py-20 md:py-32">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="max-w-4xl mx-auto">
+          <!-- Stats grid -->
+          <div class="grid grid-cols-2 md:grid-cols-4 gap-6 mb-12 fade-up">
+            <div class="text-center">
+              <div class="font-display text-3xl md:text-4xl font-bold text-primary mb-1">90+</div>
+              <p class="text-muted text-sm">PageSpeed</p>
+            </div>
+            <div class="text-center">
+              <div class="font-display text-3xl md:text-4xl font-bold text-primary mb-1">71</div>
+              <p class="text-muted text-sm">Processes</p>
+            </div>
+            <div class="text-center">
+              <div class="font-display text-3xl md:text-4xl font-bold text-primary mb-1">8/10</div>
+              <p class="text-muted text-sm">Quality Threshold</p>
+            </div>
+            <div class="text-center">
+              <div class="font-display text-3xl md:text-4xl font-bold text-primary mb-1">6</div>
+              <p class="text-muted text-sm">Schema Types</p>
             </div>
           </div>
-          <div class="card p-8 fade-up fade-up-delay-1">
-            <svg class="w-8 h-8 mb-4" style="color: var(--primary); opacity: 0.3;" fill="currentColor" viewBox="0 0 24 24"><path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z"/></svg>
-            <p class="text-lg italic mb-6" style="color: var(--text); line-height: 1.7;">Testimonial coming soon &mdash; partner feedback currently being collected.</p>
-            <div>
-              <p class="font-semibold text-sm" style="color: var(--text);">Partner Name</p>
-              <p class="text-sm" style="color: var(--muted);">Industry &middot; Service Area</p>
-            </div>
+
+          <div class="text-center fade-up">
+            <p class="text-cream/80 text-lg leading-relaxed mb-10 max-w-2xl mx-auto">
+              Most agencies sell deliverables. We build infrastructure. Every website scores 90+ on Google's PageSpeed test. Every page includes 6 types of schema markup. Every piece of content is scored against a quality rubric before it publishes. 71 documented processes. Enterprise-grade marketing, built for service businesses.
+            </p>
+            <a href="/why-buildwise" class="text-primary hover:text-cream transition text-[15px] font-medium inline-flex items-center gap-2">
+              See why we're different
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+            </a>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- ==================== PRE-FOOTER CTA ==================== -->
-    <section class="section-pad relative overflow-hidden" style="background: var(--bg);">
-      <!-- Subtle glow -->
-      <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[400px]" style="background: radial-gradient(ellipse, rgba(199,91,42,0.08) 0%, transparent 70%); filter: blur(40px);"></div>
+    <!-- ============================================ -->
+    <!-- SECTION 8: FAQ -->
+    <!-- ============================================ -->
+    <section class="bg-warm-brown py-20 md:py-32">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="max-w-3xl mx-auto">
+          <div class="text-center mb-14 fade-up">
+            <h2 class="font-display text-3xl sm:text-4xl font-bold leading-tight">
+              Questions? We've Got Answers.
+            </h2>
+          </div>
 
-      <div class="max-w-3xl mx-auto text-center relative z-10">
-        <h2 class="font-display font-bold text-3xl md:text-4xl mb-6 fade-up" style="color: var(--text);">Ready to stop guessing and start growing?</h2>
-        <p class="text-lg mb-4 readable mx-auto fade-up fade-up-delay-1" style="color: var(--muted);">
-          The Build-Right Guarantee: Month-to-month. No contracts. No lock-in. You own your website, your content, your data.
-        </p>
-        <div class="flex flex-col sm:flex-row gap-3 justify-center items-center mt-4 mb-8 fade-up fade-up-delay-1">
-          <span class="inline-flex items-center gap-2 text-sm" style="color: var(--muted);">
-            <svg class="w-4 h-4" style="color: var(--primary);" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
-            Month-to-month
-          </span>
-          <span class="inline-flex items-center gap-2 text-sm" style="color: var(--muted);">
-            <svg class="w-4 h-4" style="color: var(--primary);" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
-            You own everything
-          </span>
-          <span class="inline-flex items-center gap-2 text-sm" style="color: var(--muted);">
-            <svg class="w-4 h-4" style="color: var(--primary);" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
-            Results in 30 days
-          </span>
-        </div>
-        <div class="fade-up fade-up-delay-2">
-          <a href="https://book.buildwisemedia.com/bwm/strategy-call" class="cta-btn text-lg px-10 py-4">Book Your Strategy Call</a>
+          <div class="space-y-4 fade-up">
+            <!-- FAQ 1 -->
+            <details class="bg-card-bg rounded-xl border border-primary/8 group">
+              <summary class="flex items-center justify-between p-6 md:p-8">
+                <span class="font-display text-lg font-semibold pr-4">What types of businesses do you work with?</span>
+                <span class="faq-icon flex-shrink-0 w-8 h-8 rounded-full border border-primary/30 flex items-center justify-center text-primary transition-transform duration-300">
+                  <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4"/></svg>
+                </span>
+              </summary>
+              <div class="faq-answer px-6 md:px-8 pb-6 md:pb-8">
+                <p class="text-muted text-[15px] leading-relaxed">We work with service businesses — contractors, agencies, consultants, and professional service providers who have a proven service and happy customers but need a system to consistently attract more of the right clients.</p>
+              </div>
+            </details>
+
+            <!-- FAQ 2 -->
+            <details class="bg-card-bg rounded-xl border border-primary/8 group">
+              <summary class="flex items-center justify-between p-6 md:p-8">
+                <span class="font-display text-lg font-semibold pr-4">How is this different from other marketing agencies?</span>
+                <span class="faq-icon flex-shrink-0 w-8 h-8 rounded-full border border-primary/30 flex items-center justify-center text-primary transition-transform duration-300">
+                  <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4"/></svg>
+                </span>
+              </summary>
+              <div class="faq-answer px-6 md:px-8 pb-6 md:pb-8">
+                <p class="text-muted text-[15px] leading-relaxed">Most agencies sell deliverables and lock you into long contracts. We build infrastructure you own, run it with AI-powered automation, and work month-to-month because we're confident in the results.</p>
+              </div>
+            </details>
+
+            <!-- FAQ 3 -->
+            <details class="bg-card-bg rounded-xl border border-primary/8 group">
+              <summary class="flex items-center justify-between p-6 md:p-8">
+                <span class="font-display text-lg font-semibold pr-4">What does "you own everything" actually mean?</span>
+                <span class="faq-icon flex-shrink-0 w-8 h-8 rounded-full border border-primary/30 flex items-center justify-center text-primary transition-transform duration-300">
+                  <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4"/></svg>
+                </span>
+              </summary>
+              <div class="faq-answer px-6 md:px-8 pb-6 md:pb-8">
+                <p class="text-muted text-[15px] leading-relaxed">Your website is on your domain. Your ad accounts are in your name. Your content, your brand assets, your data — all yours. If you leave, you take everything with you. No hostage situations.</p>
+              </div>
+            </details>
+
+            <!-- FAQ 4 -->
+            <details class="bg-card-bg rounded-xl border border-primary/8 group">
+              <summary class="flex items-center justify-between p-6 md:p-8">
+                <span class="font-display text-lg font-semibold pr-4">How long until I see results?</span>
+                <span class="faq-icon flex-shrink-0 w-8 h-8 rounded-full border border-primary/30 flex items-center justify-center text-primary transition-transform duration-300">
+                  <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4"/></svg>
+                </span>
+              </summary>
+              <div class="faq-answer px-6 md:px-8 pb-6 md:pb-8">
+                <p class="text-muted text-[15px] leading-relaxed">Most clients see their first qualified leads within 30 days of engine launch. Pipeline consistency typically establishes within 60-90 days as all channels reach optimization.</p>
+              </div>
+            </details>
+
+            <!-- FAQ 5 -->
+            <details class="bg-card-bg rounded-xl border border-primary/8 group">
+              <summary class="flex items-center justify-between p-6 md:p-8">
+                <span class="font-display text-lg font-semibold pr-4">What if I want to cancel?</span>
+                <span class="faq-icon flex-shrink-0 w-8 h-8 rounded-full border border-primary/30 flex items-center justify-center text-primary transition-transform duration-300">
+                  <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4"/></svg>
+                </span>
+              </summary>
+              <div class="faq-answer px-6 md:px-8 pb-6 md:pb-8">
+                <p class="text-muted text-[15px] leading-relaxed">Cancel anytime. No penalties. No contracts. You keep everything we built. We believe if we're doing our job, you won't want to leave.</p>
+              </div>
+            </details>
+          </div>
         </div>
       </div>
     </section>
+
+    <!-- ============================================ -->
+    <!-- SECTION 9: FINAL CTA -->
+    <!-- ============================================ -->
+    <section class="bg-void py-20 md:py-32 relative overflow-hidden">
+      <!-- Background glow -->
+      <div class="absolute inset-0 pointer-events-none" style="background: radial-gradient(ellipse 50% 60% at 50% 50%, rgba(199,91,42,0.08) 0%, transparent 70%);"></div>
+
+      <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <div class="max-w-2xl mx-auto fade-up">
+          <h2 class="font-display text-3xl sm:text-4xl lg:text-[2.75rem] font-bold leading-tight mb-6">
+            Ready to Stop Being the<br class="hidden sm:block"> Marketing Department?
+          </h2>
+          <p class="text-cream/80 text-lg leading-relaxed mb-10">
+            15 minutes. No pitch. We look at your business, your market, and your numbers — and tell you if a Revenue Engine makes sense.
+          </p>
+          <a href="/book" class="bg-cta-accent text-cream rounded-lg text-[17px] md:text-lg h-14 px-10 font-semibold hover:brightness-110 transition shadow-lg shadow-cta-accent/20 inline-flex items-center">
+            Book Your Strategy Call
+          </a>
+        </div>
+      </div>
+    </section>
+
   </main>
 
-  <!-- ==================== FOOTER ==================== -->
-  <footer class="section-pad" style="background: var(--bg-elevated); border-top: 1px solid rgba(191,148,105,0.08);">
-    <div class="max-w-6xl mx-auto">
-      <div class="grid grid-cols-1 md:grid-cols-4 gap-12">
-        <!-- Brand -->
-        <div class="md:col-span-2">
-          <img src="https://assets.buildwisemedia.com/logos/bwm-logo-primary-terracotta-on-transparent.svg" alt="Buildwise Media" class="h-8 w-auto mb-4">
-          <p class="font-display text-sm italic mb-4" style="color: var(--muted);">Build Today. Secure Tomorrow. Live Fully.</p>
-          <p class="text-sm" style="color: var(--muted); opacity: 0.7;">Built with AI. Guided by Humans.</p>
+  <!-- ============================================ -->
+  <!-- FOOTER -->
+  <!-- ============================================ -->
+  <footer class="bg-nav-solid border-t border-primary/10 pt-16 pb-8">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid md:grid-cols-4 gap-10 mb-12">
+        <!-- Logo & Tagline -->
+        <div class="md:col-span-1">
+          <a href="/">
+            <img src="https://assets.buildwisemedia.com/logos/bwm-logo-primary-terracotta-on-transparent.svg" alt="Buildwise Media" class="h-8 mb-4">
+          </a>
+          <p class="text-muted text-sm leading-relaxed">Build Today. Secure Tomorrow. Live Fully.</p>
         </div>
 
-        <!-- Navigation -->
+        <!-- Nav Links -->
         <div>
-          <h4 class="font-semibold text-sm uppercase tracking-wider mb-4" style="color: var(--primary);">Pages</h4>
-          <ul class="space-y-2">
-            <li><a href="/why-buildwise.html" class="text-sm hover:underline" style="color: var(--muted);">Why Buildwise</a></li>
-            <li><a href="/services.html" class="text-sm hover:underline" style="color: var(--muted);">Services</a></li>
-            <li><a href="/ascend.html" class="text-sm hover:underline" style="color: var(--muted);">Ascend</a></li>
-            <li><a href="/ascend-lite.html" class="text-sm hover:underline" style="color: var(--muted);">Ascend Lite</a></li>
-            <li><a href="/how-it-works.html" class="text-sm hover:underline" style="color: var(--muted);">How It Works</a></li>
-            <li><a href="/results.html" class="text-sm hover:underline" style="color: var(--muted);">Results</a></li>
+          <h4 class="font-semibold text-sm text-cream mb-4">Pages</h4>
+          <ul class="space-y-3">
+            <li><a href="/services" class="text-muted text-sm hover:text-primary transition">Services</a></li>
+            <li><a href="/how-it-works" class="text-muted text-sm hover:text-primary transition">How It Works</a></li>
+            <li><a href="/results" class="text-muted text-sm hover:text-primary transition">Results</a></li>
+            <li><a href="/why-buildwise" class="text-muted text-sm hover:text-primary transition">Why Buildwise</a></li>
+            <li><a href="/the-poor-four" class="text-muted text-sm hover:text-primary transition">The Poor Four</a></li>
+          </ul>
+        </div>
+
+        <!-- Legal -->
+        <div>
+          <h4 class="font-semibold text-sm text-cream mb-4">Legal</h4>
+          <ul class="space-y-3">
+            <li><a href="/privacy" class="text-muted text-sm hover:text-primary transition">Privacy Policy</a></li>
+            <li><a href="/terms" class="text-muted text-sm hover:text-primary transition">Terms of Service</a></li>
           </ul>
         </div>
 
         <!-- Contact -->
         <div>
-          <h4 class="font-semibold text-sm uppercase tracking-wider mb-4" style="color: var(--primary);">Contact</h4>
-          <ul class="space-y-2">
-            <li><a href="mailto:hello@buildwisemedia.com" class="text-sm hover:underline" style="color: var(--muted);">hello@buildwisemedia.com</a></li>
-            <li><a href="tel:+17653377805" class="text-sm hover:underline" style="color: var(--muted);">(765) 337-7805</a></li>
-            <li class="text-sm" style="color: var(--muted); opacity: 0.7;">Alpharetta, Georgia</li>
+          <h4 class="font-semibold text-sm text-cream mb-4">Contact</h4>
+          <ul class="space-y-3">
+            <li><a href="mailto:hello@buildwisemedia.com" class="text-muted text-sm hover:text-primary transition">hello@buildwisemedia.com</a></li>
+            <li><a href="tel:+17653377805" class="text-muted text-sm hover:text-primary transition">(765) 337-7805</a></li>
+            <li><span class="text-muted text-sm">Alpharetta, Georgia</span></li>
           </ul>
-          <div class="mt-6">
-            <a href="https://book.buildwisemedia.com/bwm/strategy-call" class="cta-btn text-sm px-6 py-3">Book Your Strategy Call</a>
-          </div>
         </div>
       </div>
 
-      <div class="mt-16 pt-8 flex flex-col md:flex-row justify-between items-center gap-4" style="border-top: 1px solid rgba(191,148,105,0.08);">
-        <p class="text-xs" style="color: var(--muted); opacity: 0.5;">&copy; 2026 Buildwise Media LLC. All rights reserved.</p>
-        <div class="flex gap-6">
-          <a href="/privacy.html" class="text-xs hover:underline" style="color: var(--muted); opacity: 0.5;">Privacy Policy</a>
-          <a href="/terms.html" class="text-xs hover:underline" style="color: var(--muted); opacity: 0.5;">Terms of Service</a>
-        </div>
+      <div class="border-t border-primary/10 pt-8">
+        <p class="text-muted/60 text-xs text-center">&copy; 2026 Buildwise Media LLC. All rights reserved.</p>
       </div>
     </div>
   </footer>
 
-  <!-- ==================== SCRIPTS ==================== -->
+  <!-- ============================================ -->
+  <!-- META PIXEL -->
+  <!-- ============================================ -->
   <script>
-    // Sticky nav scroll behavior
-    const header = document.getElementById('site-header');
-    let lastScroll = 0;
-    window.addEventListener('scroll', () => {
-      if (window.scrollY > 50) {
-        header.classList.add('scrolled');
-      } else {
-        header.classList.remove('scrolled');
-      }
-      lastScroll = window.scrollY;
-    }, { passive: true });
-
-    // Mobile menu toggle
-    const menuBtn = document.getElementById('mobile-menu-btn');
-    const mobileMenu = document.getElementById('mobile-menu');
-    const menuOpen = document.getElementById('menu-open');
-    const menuClose = document.getElementById('menu-close');
-    menuBtn.addEventListener('click', () => {
-      const isOpen = mobileMenu.classList.toggle('open');
-      menuOpen.classList.toggle('hidden', isOpen);
-      menuClose.classList.toggle('hidden', !isOpen);
-      menuBtn.setAttribute('aria-expanded', isOpen);
-      document.body.style.overflow = isOpen ? 'hidden' : '';
-    });
-
-    // Theme toggle
-    function setTheme(theme) {
-      document.documentElement.setAttribute('data-theme', theme);
-      localStorage.setItem('bwm-theme', theme);
-      const isDark = theme === 'dark';
-      document.querySelectorAll('#sun-icon, .sun-icon').forEach(el => el.classList.toggle('hidden', isDark));
-      document.querySelectorAll('#moon-icon, .moon-icon').forEach(el => el.classList.toggle('hidden', !isDark));
-    }
-    const savedTheme = localStorage.getItem('bwm-theme') || 'dark';
-    setTheme(savedTheme);
-    document.getElementById('theme-toggle-desktop')?.addEventListener('click', () => {
-      setTheme(document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark');
-    });
-    document.getElementById('theme-toggle-mobile')?.addEventListener('click', () => {
-      setTheme(document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark');
-    });
-
-    // Intersection Observer for fade-up animations
-    const fadeObserver = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('visible');
-          fadeObserver.unobserve(entry.target);
-        }
-      });
-    }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
-    document.querySelectorAll('.fade-up').forEach(el => fadeObserver.observe(el));
-
-    // Animated counters
-    const counterObserver = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          const el = entry.target;
-          const target = parseInt(el.dataset.target);
-          const prefix = el.dataset.prefix || '';
-          const suffix = el.dataset.suffix || '';
-          let current = 0;
-          const step = Math.max(1, Math.floor(target / 40));
-          const timer = setInterval(() => {
-            current += step;
-            if (current >= target) {
-              current = target;
-              clearInterval(timer);
-            }
-            el.textContent = prefix + current + suffix;
-          }, 30);
-          counterObserver.unobserve(el);
-        }
-      });
-    }, { threshold: 0.5 });
-    document.querySelectorAll('.counter').forEach(el => counterObserver.observe(el));
+    !function(f,b,e,v,n,t,s)
+    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+    n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];
+    s.parentNode.insertBefore(t,s)}(window, document,'script',
+    'https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init', '2728397250833051');
+    fbq('track', 'PageView');
   </script>
+  <noscript><img height="1" width="1" style="display:none"
+    src="https://www.facebook.com/tr?id=2728397250833051&ev=PageView&noscript=1"/></noscript>
+
+  <!-- ============================================ -->
+  <!-- JAVASCRIPT -->
+  <!-- ============================================ -->
+  <script>
+    (function() {
+      'use strict';
+
+      // ---- Nav scroll behavior ----
+      const nav = document.getElementById('main-nav');
+      let lastScroll = 0;
+      function handleNavScroll() {
+        const scrollY = window.scrollY;
+        if (scrollY > 50) {
+          nav.classList.add('bg-nav-solid', 'shadow-lg');
+          nav.classList.remove('bg-transparent');
+        } else {
+          nav.classList.remove('bg-nav-solid', 'shadow-lg');
+          nav.classList.add('bg-transparent');
+        }
+        lastScroll = scrollY;
+      }
+      window.addEventListener('scroll', handleNavScroll, { passive: true });
+      handleNavScroll();
+
+      // ---- Mobile menu toggle ----
+      const mobileToggle = document.getElementById('mobile-toggle');
+      const mobileMenu = document.getElementById('mobile-menu');
+      const hamburgerLines = mobileToggle.querySelectorAll('.hamburger-line');
+
+      mobileToggle.addEventListener('click', function() {
+        const isOpen = !mobileMenu.classList.contains('hidden');
+        if (isOpen) {
+          mobileMenu.classList.add('hidden');
+          hamburgerLines[0].style.transform = '';
+          hamburgerLines[1].style.opacity = '';
+          hamburgerLines[2].style.transform = '';
+        } else {
+          mobileMenu.classList.remove('hidden');
+          hamburgerLines[0].style.transform = 'translateY(8px) rotate(45deg)';
+          hamburgerLines[1].style.opacity = '0';
+          hamburgerLines[2].style.transform = 'translateY(-8px) rotate(-45deg)';
+          // Ensure nav has solid bg when menu is open
+          nav.classList.add('bg-nav-solid', 'shadow-lg');
+          nav.classList.remove('bg-transparent');
+        }
+      });
+
+      // Close mobile menu on link click
+      mobileMenu.querySelectorAll('a').forEach(function(link) {
+        link.addEventListener('click', function() {
+          mobileMenu.classList.add('hidden');
+          hamburgerLines[0].style.transform = '';
+          hamburgerLines[1].style.opacity = '';
+          hamburgerLines[2].style.transform = '';
+        });
+      });
+
+      // ---- IntersectionObserver for fade-up animations ----
+      var fadeEls = document.querySelectorAll('.fade-up');
+      if ('IntersectionObserver' in window) {
+        var fadeObserver = new IntersectionObserver(function(entries) {
+          entries.forEach(function(entry) {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('visible');
+              fadeObserver.unobserve(entry.target);
+            }
+          });
+        }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+
+        fadeEls.forEach(function(el) { fadeObserver.observe(el); });
+      } else {
+        // Fallback: show all
+        fadeEls.forEach(function(el) { el.classList.add('visible'); });
+      }
+
+      // ---- Counter animation for trust bar ----
+      var counterGroups = document.querySelectorAll('.counter-group');
+      var countersAnimated = false;
+
+      function animateCounters() {
+        if (countersAnimated) return;
+        countersAnimated = true;
+
+        counterGroups.forEach(function(group) {
+          var target = parseInt(group.getAttribute('data-target'), 10);
+          var prefix = group.getAttribute('data-prefix') || '';
+          var suffix = group.getAttribute('data-suffix') || '';
+          var valueEl = group.querySelector('.counter-value');
+          var suffixEl = group.querySelector('.counter-suffix');
+          var duration = 1800;
+          var startTime = null;
+
+          function step(timestamp) {
+            if (!startTime) startTime = timestamp;
+            var progress = Math.min((timestamp - startTime) / duration, 1);
+            // Ease out cubic
+            var eased = 1 - Math.pow(1 - progress, 3);
+            var current = Math.round(eased * target);
+            valueEl.textContent = prefix + current;
+            if (progress < 1) {
+              requestAnimationFrame(step);
+            } else {
+              valueEl.textContent = prefix + target;
+            }
+          }
+
+          requestAnimationFrame(step);
+        });
+      }
+
+      if ('IntersectionObserver' in window) {
+        var counterSection = document.querySelector('.counter-group');
+        if (counterSection) {
+          var counterObserver = new IntersectionObserver(function(entries) {
+            entries.forEach(function(entry) {
+              if (entry.isIntersecting) {
+                animateCounters();
+                counterObserver.disconnect();
+              }
+            });
+          }, { threshold: 0.3 });
+          counterObserver.observe(counterSection);
+        }
+      } else {
+        animateCounters();
+      }
+
+      // ---- Smooth scroll for anchor links ----
+      document.querySelectorAll('a[href^="#"]').forEach(function(anchor) {
+        anchor.addEventListener('click', function(e) {
+          var targetId = this.getAttribute('href');
+          if (targetId === '#') return;
+          var targetEl = document.querySelector(targetId);
+          if (targetEl) {
+            e.preventDefault();
+            var navHeight = nav.offsetHeight;
+            var targetPosition = targetEl.getBoundingClientRect().top + window.scrollY - navHeight - 20;
+            window.scrollTo({ top: targetPosition, behavior: 'smooth' });
+          }
+        });
+      });
+
+    })();
+  </script>
+
 </body>
 </html>
