@@ -351,5 +351,55 @@ tailwind.config = {
   document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 })();
 </script>
+
+<!-- Universal Conversion Tracking -->
+<script src="tracking.js"></script>
+
+<!-- Book Page Conversion Events -->
+<script>
+// Event 2: Booking Page View (strong intent signal)
+if (typeof fbq === 'function') {
+  fbq('track', 'Lead');
+}
+if (typeof gtag === 'function') {
+  gtag('event', 'booking_initiated', {
+    client_id: 'buildwise-media',
+    page_path: '/book'
+  });
+}
+
+// Event 1: Booking Confirmed (highest value) — via Cal.com iframe postMessage
+window.addEventListener('message', function (e) {
+  if (e.origin !== 'https://book.buildwisemedia.com') return;
+  var data = e.data;
+  if (typeof data === 'string') {
+    try { data = JSON.parse(data); } catch (_) { return; }
+  }
+  if (!data || data.action !== 'bookingSuccessful') return;
+
+  // GA4 via dataLayer — matches existing GTM trigger name
+  window.dataLayer = window.dataLayer || [];
+  window.dataLayer.push({
+    event: 'appointment_booked',
+    client_id: 'buildwise-media',
+    booking_source: 'website',
+    page_path: window.location.pathname
+  });
+
+  // GA4 via gtag (belt and suspenders)
+  if (typeof gtag === 'function') {
+    gtag('event', 'appointment_booked', {
+      client_id: 'buildwise-media',
+      booking_source: 'website',
+      page_path: window.location.pathname
+    });
+  }
+
+  // Meta standard event
+  if (typeof fbq === 'function') {
+    fbq('track', 'Schedule');
+  }
+});
+</script>
 </body>
 </html>
