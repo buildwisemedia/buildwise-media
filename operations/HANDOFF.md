@@ -47,7 +47,7 @@ Full 12-page fresh build from Brief Compiler v2.0. Complete redesign with Forged
 
 ### LOCKED DECISIONS Enforced
 
-- CTA label: "Book Your Strategy Call" — verbatim, all pages
+- CTA label: "See If I Qualify" — verbatim, all pages
 - No founder/Robert — zero references
 - No revenue qualifiers — verified, QA fix applied to the-poor-four.html
 - No visible pricing — JSON-LD + llms.txt only
