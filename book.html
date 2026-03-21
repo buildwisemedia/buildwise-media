@@ -222,53 +222,56 @@ img { max-width: 100%; height: auto; }
     </div>
     <div class="book-embed">
       <div id="cal-embed" style="width:100%;min-height:600px;"></div>
-      <script type="text/javascript" src="https://book.buildwisemedia.com/embed/embed.js"></script>
+      <div id="cal-fallback" style="display:none;text-align:center;padding:48px 24px;">
+        <p style="font-family:var(--font-body);font-size:16px;color:var(--text-secondary);margin-bottom:24px;">The scheduling widget couldn't load. You can book directly instead:</p>
+        <a href="https://book.buildwisemedia.com/bwm/discovery-call" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:8px;background:var(--amber);color:var(--bg1);font-family:var(--font-heading);font-size:15px;font-weight:600;padding:14px 28px;border-radius:6px;text-decoration:none;">Book Your Discovery Call &rarr;</a>
+      </div>
       <script>
-        Cal("init", {origin:"https://book.buildwisemedia.com"});
-        Cal("inline", {
-          calLink:"bwm/discovery-call",
-          elementOrSelector:"#cal-embed",
-          config:{
-            theme:"dark",
-            cssVarsPerTheme:{
-              dark:{
-                "cal-brand":"#D4943A",
-                "cal-brand-emphasis":"#E8A94D",
-                "cal-text":"#F5F0EB",
-                "cal-text-emphasis":"#F5F0EB",
-                "cal-text-subtle":"#A89B8C",
-                "cal-text-muted":"#8B7F73",
-                "cal-bg":"#1C1714",
-                "cal-bg-emphasis":"#2A2320",
-                "cal-bg-subtle":"#332D27",
-                "cal-border":"#3D352E",
-                "cal-border-emphasis":"#3D352E",
-                "cal-border-default":"#3D352E",
-                "cal-border-subtle":"#2E2822"
+        (function() {
+          var script = document.createElement('script');
+          script.src = 'https://book.buildwisemedia.com/embed/embed.js';
+          script.onload = function() {
+            Cal("init", {origin:"https://book.buildwisemedia.com"});
+            Cal("inline", {
+              calLink:"bwm/discovery-call",
+              elementOrSelector:"#cal-embed",
+              config:{
+                theme:"dark",
+                cssVarsPerTheme:{
+                  dark:{
+                    "cal-brand":"#D4943A",
+                    "cal-brand-emphasis":"#E8A94D",
+                    "cal-text":"#F5F0EB",
+                    "cal-text-emphasis":"#F5F0EB",
+                    "cal-text-subtle":"#A89B8C",
+                    "cal-text-muted":"#8B7F73",
+                    "cal-bg":"#1C1714",
+                    "cal-bg-emphasis":"#2A2320",
+                    "cal-bg-subtle":"#332D27",
+                    "cal-border":"#3D352E",
+                    "cal-border-emphasis":"#3D352E",
+                    "cal-border-default":"#3D352E",
+                    "cal-border-subtle":"#2E2822"
+                  }
+                },
+                hideEventTypeDetails:false,
+                layout:"month_view"
               }
-            },
-            hideEventTypeDetails:"false",
-            layout:"month_view"
-          }
-        });
-        Cal("on", {
-          action: "bookingSuccessful",
-          callback: function(e) {
-            /* Meta Pixel: Schedule event */
-            if (typeof fbq !== 'undefined') {
-              fbq('track', 'Schedule');
-            }
-            /* GTM: booking_confirmed event */
-            window.dataLayer = window.dataLayer || [];
-            window.dataLayer.push({
-              event: 'booking_confirmed',
-              eventCategory: 'conversion',
-              eventAction: 'discovery_call_booked'
             });
-            /* Redirect to confirmation page */
-            setTimeout(function(){ window.location.href = '/booked'; }, 1500);
-          }
-        });
+            Cal("on", {
+              action: "bookingSuccessful",
+              callback: function(e) {
+                /* Redirect to confirmation page — conversions fire there */
+                setTimeout(function(){ window.location.href = '/booked?confirmed=1'; }, 1500);
+              }
+            });
+          };
+          script.onerror = function() {
+            document.getElementById('cal-embed').style.display = 'none';
+            document.getElementById('cal-fallback').style.display = 'block';
+          };
+          document.head.appendChild(script);
+        })();
       </script>
     </div>
   </section>

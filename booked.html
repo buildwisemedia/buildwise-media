@@ -285,21 +285,29 @@ document.getElementById('navHamburger').addEventListener('click',function(){docu
 
 /* ===========================================
    CONVERSION TRACKING — BOOKING CONFIRMED
+   Only fires when ?confirmed=1 is present
+   (set by the Cal.com redirect on book.html)
    =========================================== */
+if (new URLSearchParams(window.location.search).get('confirmed') === '1') {
+  /* Meta Pixel: Schedule event (primary conversion) */
+  if (typeof fbq !== 'undefined') {
+    fbq('track', 'Schedule');
+  }
 
-/* Meta Pixel: Schedule event (primary conversion) */
-if (typeof fbq !== 'undefined') {
-  fbq('track', 'Schedule');
+  /* GTM: booking_confirmed dataLayer event */
+  window.dataLayer = window.dataLayer || [];
+  window.dataLayer.push({
+    event: 'booking_confirmed',
+    eventCategory: 'conversion',
+    eventAction: 'discovery_call_booked',
+    eventLabel: 'booked_page_view'
+  });
+
+  /* Clean the URL so bookmarks/shares don't re-fire */
+  if (window.history && window.history.replaceState) {
+    window.history.replaceState({}, '', '/booked');
+  }
 }
-
-/* GTM: booking_confirmed dataLayer event */
-window.dataLayer = window.dataLayer || [];
-window.dataLayer.push({
-  event: 'booking_confirmed',
-  eventCategory: 'conversion',
-  eventAction: 'discovery_call_booked',
-  eventLabel: 'booked_page_view'
-});
 </script>
 
 </body>
