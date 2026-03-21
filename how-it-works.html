@@ -140,32 +140,59 @@ a{color:inherit}img{max-width:100%;height:auto}
 .phase-timeline{font-family:var(--font-heading);font-size:12px;font-weight:600;letter-spacing:1px;text-transform:uppercase;color:var(--amber);margin-bottom:12px}
 .phase-desc{font-family:var(--font-body);font-size:15px;color:var(--text-secondary);line-height:1.65}
 
-/* 12-STAGE TIMELINE */
-.hiw-stages{background:var(--bg1)}
-.stage-timeline{position:relative;padding-left:56px;margin-top:40px}
-.stage-timeline::before{content:'';position:absolute;left:18px;top:4px;bottom:4px;width:2px;background:var(--border)}
-.stage-item{position:relative;padding-bottom:32px}
-.stage-item:last-child{padding-bottom:0}
-.stage-dot{position:absolute;left:-56px;top:2px;width:36px;height:36px;background:var(--bg1);border:2px solid var(--border);border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:var(--font-heading);font-size:12px;font-weight:700;color:var(--text-muted);transition:border-color 0.4s ease,color 0.4s ease,background 0.4s ease}
-.stage-item.visible .stage-dot{border-color:var(--amber);color:var(--amber);background:rgba(212,148,58,0.06)}
-.stage-phase-label{font-family:var(--font-heading);font-size:10px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:var(--amber);margin-bottom:4px;display:block}
-.stage-name{font-family:var(--font-heading);font-size:18px;font-weight:700;color:var(--text-primary);margin-bottom:6px}
-.stage-desc{font-family:var(--font-body);font-size:15px;color:var(--text-secondary);line-height:1.65;max-width:600px}
+/* 12-STAGE TABBED */
+.stages-section { padding: 96px 48px; }
+.stages-inner { max-width: 820px; margin: 0 auto; }
+.stages-label { font-family: var(--font-heading); font-size: 11px; font-weight: 600; letter-spacing: 2.5px; text-transform: uppercase; color: var(--amber); margin-bottom: 12px; text-align: center; }
+.stages-headline { font-family: var(--font-heading); font-size: clamp(28px, 4vw, 36px); font-weight: 800; color: var(--text-primary); margin-bottom: 8px; text-align: center; letter-spacing: -0.02em; line-height: 1.15; }
+.stages-sub { font-family: var(--font-body); font-size: 16px; color: var(--text-secondary); margin-bottom: 32px; text-align: center; line-height: 1.6; }
+.stages-tabs { display: flex; justify-content: center; gap: 4px; margin-bottom: 32px; }
+.stages-tab { flex: 1; max-width: 200px; padding: 14px 20px; background: var(--bg2); color: var(--text-secondary); border: 0.5px solid var(--border); border-radius: 8px; font-family: var(--font-heading); font-size: 14px; font-weight: 700; cursor: pointer; transition: all 0.3s ease; letter-spacing: 0.02em; }
+.stages-tab.active { background: var(--amber); color: var(--bg1); border: none; }
+.stages-tab-sub { display: block; font-size: 11px; font-weight: 500; opacity: 0.7; margin-top: 2px; }
+.stages-panel { display: none; }
+.stages-panel.active { display: block; }
+.stages-phase-intro { display: flex; align-items: center; gap: 12px; margin-bottom: 24px; padding-bottom: 16px; border-bottom: 0.5px solid var(--border); }
+.stages-phase-intro p { font-family: var(--font-body); font-size: 13px; color: var(--text-secondary); margin: 0; }
+.stages-phase-intro strong { color: var(--text-primary); }
+.phase-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+.stages-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.stage-card { background: var(--bg2); border-radius: 12px; border: 0.5px solid var(--border); padding: 24px; transition: transform 0.3s var(--ease-smooth), border-color 0.3s var(--ease-smooth); }
+.stage-card:hover { transform: translateY(-2px); }
+.stage-card[data-phase="discovery"]:hover { border-color: var(--amber); }
+.stage-card[data-phase="build"]:hover { border-color: var(--copper); }
+.stage-card[data-phase="run"]:hover { border-color: var(--gold); }
+.stage-card--full { grid-column: 1 / -1; }
+.stage-header { display: flex; align-items: center; gap: 12px; margin-bottom: 12px; }
+.stage-num { display: flex; align-items: center; justify-content: center; width: 32px; height: 32px; border-radius: 50%; border: 1.5px solid; font-family: var(--font-heading); font-size: 13px; font-weight: 700; flex-shrink: 0; }
+.stage-name { font-family: var(--font-heading); font-size: 15px; font-weight: 700; color: var(--text-primary); }
+.stage-badge { background: rgba(212,148,58,0.15); color: var(--amber); font-family: var(--font-heading); font-size: 11px; font-weight: 600; padding: 3px 10px; border-radius: 100px; letter-spacing: 0.5px; }
+.stage-desc { font-family: var(--font-body); font-size: 14px; color: var(--text-secondary); line-height: 1.6; margin: 0; }
 
-/* YOU VS US */
-.hiw-youvus{background:var(--bg2)}
-.youvus-grid{display:grid;grid-template-columns:1fr 1fr;gap:0;margin-top:40px;border-radius:12px;overflow:hidden;border:0.5px solid var(--border)}
-.youvus-col{padding:40px 36px}
-.youvus-col--you{background:var(--bg3)}
-.youvus-col--us{background:var(--bg1);border-left:0.5px solid var(--border)}
-.youvus-title{font-family:var(--font-heading);font-size:14px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:24px}
-.youvus-col--you .youvus-title{color:var(--text-muted)}
-.youvus-col--us .youvus-title{color:var(--amber)}
-.youvus-item{display:flex;align-items:flex-start;gap:12px;margin-bottom:20px;font-family:var(--font-body);font-size:16px;color:var(--text-secondary);line-height:1.6}
-.youvus-item:last-child{margin-bottom:0}
-.youvus-icon{flex-shrink:0;margin-top:4px}
-.youvus-col--you .youvus-icon{color:var(--text-muted)}
-.youvus-col--us .youvus-icon{color:var(--amber)}
+/* YOU VS US — HONEST SPLIT */
+.split-section { padding: 96px 48px; }
+.split-inner { max-width: 820px; margin: 0 auto; }
+.split-label { font-family: var(--font-heading); font-size: 11px; font-weight: 600; letter-spacing: 2.5px; text-transform: uppercase; color: var(--copper); margin-bottom: 12px; text-align: center; }
+.split-headline { font-family: var(--font-heading); font-size: clamp(28px, 4vw, 36px); font-weight: 800; color: var(--text-primary); margin-bottom: 8px; text-align: center; letter-spacing: -0.02em; line-height: 1.15; }
+.split-sub { font-family: var(--font-body); font-size: 16px; color: var(--text-secondary); margin-bottom: 40px; text-align: center; line-height: 1.6; }
+.split-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.split-card { background: var(--bg2); border-radius: 12px; border: 0.5px solid var(--border); padding: 32px; }
+.split-card--us { border-color: var(--amber); }
+.split-col-label { font-family: var(--font-heading); font-size: 12px; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; color: var(--text-muted); margin: 0 0 24px; }
+.split-col-label--us { color: var(--amber); }
+.split-item--expanded { display: flex; align-items: flex-start; gap: 12px; margin-bottom: 20px; }
+.split-item--expanded:last-of-type { margin-bottom: 0; }
+.split-check-circle { flex-shrink: 0; margin-top: 2px; }
+.split-item-title { font-family: var(--font-heading); font-size: 15px; font-weight: 600; color: var(--text-primary); margin: 0 0 4px; }
+.split-item-desc { font-family: var(--font-body); font-size: 13px; color: var(--text-muted); margin: 0; }
+.split-checklist { display: flex; flex-direction: column; gap: 12px; }
+.split-item--compact { display: flex; align-items: center; gap: 10px; }
+.split-check { flex-shrink: 0; }
+.split-item--compact span { font-family: var(--font-body); font-size: 14px; color: var(--text-secondary); }
+.split-punchline { margin-top: 24px; padding-top: 20px; border-top: 0.5px solid var(--border); text-align: center; }
+.split-stat { font-family: var(--font-heading); font-size: 32px; font-weight: 800; color: var(--amber); margin: 0; letter-spacing: -0.02em; }
+.split-stat-label { font-family: var(--font-body); font-size: 12px; color: var(--text-muted); margin: 4px 0 0; text-transform: uppercase; letter-spacing: 1px; }
+.split-kicker { text-align: center; margin: 32px 0 0; font-family: var(--font-accent); font-style: italic; font-size: 17px; color: var(--copper); line-height: 1.5; }
 
 /* FAQ */
 .faq-section{padding:100px 48px;max-width:800px;margin:0 auto}
@@ -201,8 +228,8 @@ a{color:inherit}img{max-width:100%;height:auto}
 @media(max-width:768px){
   .hiw-hero{padding:100px 24px 60px;min-height:auto}.hero-h1{font-size:clamp(32px,7vw,44px)}
   .inner-section{padding:80px 24px}.phase-grid{grid-template-columns:1fr}.phase-card{padding:32px 24px}
-  .stage-timeline{padding-left:48px}.stage-dot{left:-48px;width:32px;height:32px;font-size:11px}
-  .youvus-grid{grid-template-columns:1fr}.youvus-col--us{border-left:none;border-top:0.5px solid var(--border)}
+  .stages-section{padding:72px 24px}.stages-grid{grid-template-columns:1fr}.stages-tab{padding:12px 16px;font-size:13px}
+  .split-section{padding:72px 24px}.split-grid{grid-template-columns:1fr}.split-stat{font-size:28px}
   .faq-section{padding:72px 24px}.faq-trigger{font-size:16px;padding:20px 0}
   .final-cta{padding:80px 24px}.cta-button{padding:18px 36px;font-size:16px}.cta-trust{flex-direction:column;align-items:center;gap:12px}
   .footer-grid{grid-template-columns:1fr 1fr;gap:32px}.site-footer{padding:48px 24px 24px}
@@ -279,68 +306,177 @@ a{color:inherit}img{max-width:100%;height:auto}
   </div>
 </section>
 
-<!-- 12-STAGE TIMELINE -->
-<section class="inner-section hiw-stages" id="stages">
-  <div class="inner-inner">
-    <span class="inner-label reveal">The 12 Stages</span>
-    <h2 class="inner-h2 reveal">Every Step, Documented</h2>
-    <p class="inner-body reveal" style="max-width:640px;margin-bottom:8px">Each stage has a clear deliverable. Nothing is vague. Nothing is skipped.</p>
+<!-- 12-STAGE TABBED -->
+<section class="stages-section" id="twelve-stages">
+<div class="stages-inner">
 
-    <div class="stage-timeline">
-      <div class="stage-item reveal"><div class="stage-dot">1</div><span class="stage-phase-label">Discovery</span><div class="stage-name">Brand Capture</div><p class="stage-desc">Quick AI-powered assessment of your current brand, market, and competition. Takes minutes, not weeks.</p></div>
-      <div class="stage-item reveal"><div class="stage-dot">2</div><div class="stage-name">Research &amp; Strategy</div><p class="stage-desc">We analyze your niche, competitors, and target market. You get a Marketing Strategy document you own.</p></div>
-      <div class="stage-item reveal"><div class="stage-dot">3</div><div class="stage-name">Brand Voice Card</div><p class="stage-desc">Your brand&rsquo;s tone, personality, and messaging rules &mdash; documented so every piece of content sounds like you.</p></div>
-      <div class="stage-item reveal"><div class="stage-dot">4</div><div class="stage-name">Content Brief</div><p class="stage-desc">The blueprint for all your marketing content. Topics, angles, keywords, channels &mdash; all mapped out.</p></div>
-      <div class="stage-item reveal"><div class="stage-dot">5</div><div class="stage-name">Brand Proof</div><p class="stage-desc">You review everything built so far. Two approval checkpoints. Nothing ships without your sign-off.</p></div>
-      <div class="stage-item reveal"><div class="stage-dot">6</div><span class="stage-phase-label">Build</span><div class="stage-name">Website Build</div><p class="stage-desc">Custom website built to engineering standards. 90+ PageSpeed. Schema markup. SEO-optimized. On YOUR domain.</p></div>
-      <div class="stage-item reveal"><div class="stage-dot">7</div><div class="stage-name">Content Production</div><p class="stage-desc">Social posts, graphics, video &mdash; produced and scheduled across all your channels.</p></div>
-      <div class="stage-item reveal"><div class="stage-dot">8</div><div class="stage-name">AI Tools Setup</div><p class="stage-desc">Chatbot, AI phone system, booking automation, review management &mdash; all configured for your business.</p></div>
-      <div class="stage-item reveal"><div class="stage-dot">9</div><div class="stage-name">Ad Campaign Launch</div><p class="stage-desc">Paid campaigns go live on Meta and/or Google. Targeted to your ICP. Tracked against revenue, not vanity.</p></div>
-      <div class="stage-item reveal"><div class="stage-dot">10</div><div class="stage-name">Analytics &amp; Tracking</div><p class="stage-desc">GA4 dashboard configured. Conversion tracking live. You see exactly what&rsquo;s working.</p></div>
-      <div class="stage-item reveal"><div class="stage-dot">11</div><span class="stage-phase-label">Run</span><div class="stage-name">Go-Live QA</div><p class="stage-desc">47-point quality checklist. Lighthouse audit. Schema validation. Nothing goes live until it passes.</p></div>
-      <div class="stage-item reveal"><div class="stage-dot">12</div><div class="stage-name">Ongoing Optimization</div><p class="stage-desc">Monthly performance reviews. Data-driven adjustments. The engine gets better every month.</p></div>
+<p class="stages-label">THE 12 STAGES</p>
+<h2 class="stages-headline">Every Step, Documented</h2>
+<p class="stages-sub">Each stage has a clear deliverable. Nothing is vague. Nothing is skipped.</p>
+
+<!-- Tabs -->
+<div class="stages-tabs">
+  <button class="stages-tab active" id="tab-discovery" onclick="switchPhaseTab('discovery')">Discovery<span class="stages-tab-sub">Stages 1–5</span></button>
+  <button class="stages-tab" id="tab-build" onclick="switchPhaseTab('build')">Build<span class="stages-tab-sub">Stages 6–10</span></button>
+  <button class="stages-tab" id="tab-run" onclick="switchPhaseTab('run')">Run<span class="stages-tab-sub">Stages 11–12</span></button>
+</div>
+
+<!-- DISCOVERY PANEL -->
+<div class="stages-panel active" id="panel-discovery">
+  <div class="stages-phase-intro">
+    <div class="phase-dot" style="background: var(--amber);"></div>
+    <p>We learn everything about your business in <strong>48 hours</strong>. Not 48 meetings.</p>
+  </div>
+  <div class="stages-grid">
+    <div class="stage-card" data-phase="discovery">
+      <div class="stage-header"><span class="stage-num" style="border-color: var(--amber); color: var(--amber);">1</span><span class="stage-name">Brand Capture</span></div>
+      <p class="stage-desc">AI-powered assessment of your brand, market, and competition. Takes minutes, not weeks.</p>
+    </div>
+    <div class="stage-card" data-phase="discovery">
+      <div class="stage-header"><span class="stage-num" style="border-color: var(--amber); color: var(--amber);">2</span><span class="stage-name">Research &amp; Strategy</span></div>
+      <p class="stage-desc">Niche analysis, competitor teardown, target market mapping. You get a Marketing Strategy you own.</p>
+    </div>
+    <div class="stage-card" data-phase="discovery">
+      <div class="stage-header"><span class="stage-num" style="border-color: var(--amber); color: var(--amber);">3</span><span class="stage-name">Brand Voice Card</span></div>
+      <p class="stage-desc">Your tone, personality, messaging rules — documented so every piece of content sounds like you.</p>
+    </div>
+    <div class="stage-card" data-phase="discovery">
+      <div class="stage-header"><span class="stage-num" style="border-color: var(--amber); color: var(--amber);">4</span><span class="stage-name">Content Brief</span></div>
+      <p class="stage-desc">The blueprint for all your marketing content. Topics, angles, keywords, channels — all mapped out.</p>
+    </div>
+    <div class="stage-card stage-card--full" data-phase="discovery">
+      <div class="stage-header"><span class="stage-num" style="border-color: var(--amber); color: var(--amber);">5</span><span class="stage-name">Brand Proof</span><span class="stage-badge">YOUR APPROVAL</span></div>
+      <p class="stage-desc">You review everything built so far. Two approval checkpoints. Nothing ships without your sign-off.</p>
     </div>
   </div>
+</div>
+
+<!-- BUILD PANEL -->
+<div class="stages-panel" id="panel-build">
+  <div class="stages-phase-intro">
+    <div class="phase-dot" style="background: var(--copper);"></div>
+    <p>Your complete marketing engine — built and tested in <strong>weeks, not months</strong>.</p>
+  </div>
+  <div class="stages-grid">
+    <div class="stage-card" data-phase="build">
+      <div class="stage-header"><span class="stage-num" style="border-color: var(--copper); color: var(--copper);">6</span><span class="stage-name">Website Build</span></div>
+      <p class="stage-desc">Custom-built to engineering standards. 90+ PageSpeed. Schema markup. SEO-optimized. On YOUR domain.</p>
+    </div>
+    <div class="stage-card" data-phase="build">
+      <div class="stage-header"><span class="stage-num" style="border-color: var(--copper); color: var(--copper);">7</span><span class="stage-name">Content Production</span></div>
+      <p class="stage-desc">Social posts, graphics, video — produced and scheduled across all your channels.</p>
+    </div>
+    <div class="stage-card" data-phase="build">
+      <div class="stage-header"><span class="stage-num" style="border-color: var(--copper); color: var(--copper);">8</span><span class="stage-name">AI Tools Setup</span></div>
+      <p class="stage-desc">Chatbot, AI phone system, booking automation, review management — all configured for your business.</p>
+    </div>
+    <div class="stage-card" data-phase="build">
+      <div class="stage-header"><span class="stage-num" style="border-color: var(--copper); color: var(--copper);">9</span><span class="stage-name">Ad Campaign Launch</span></div>
+      <p class="stage-desc">Paid campaigns go live on Meta and/or Google. Targeted to your ICP. Tracked against revenue, not vanity.</p>
+    </div>
+    <div class="stage-card stage-card--full" data-phase="build">
+      <div class="stage-header"><span class="stage-num" style="border-color: var(--copper); color: var(--copper);">10</span><span class="stage-name">Analytics &amp; Tracking</span></div>
+      <p class="stage-desc">GA4 dashboard configured. Conversion tracking live. You see exactly what's working — no black box.</p>
+    </div>
+  </div>
+</div>
+
+<!-- RUN PANEL -->
+<div class="stages-panel" id="panel-run">
+  <div class="stages-phase-intro">
+    <div class="phase-dot" style="background: var(--gold);"></div>
+    <p>The engine fills your pipeline. <strong>You answer the phone and close deals.</strong></p>
+  </div>
+  <div class="stages-grid">
+    <div class="stage-card" data-phase="run">
+      <div class="stage-header"><span class="stage-num" style="border-color: var(--gold); color: var(--gold);">11</span><span class="stage-name">Go-Live QA</span></div>
+      <p class="stage-desc">47-point quality checklist. Lighthouse audit. Schema validation. Nothing goes live until it passes.</p>
+    </div>
+    <div class="stage-card" data-phase="run">
+      <div class="stage-header"><span class="stage-num" style="border-color: var(--gold); color: var(--gold);">12</span><span class="stage-name">Ongoing Optimization</span></div>
+      <p class="stage-desc">Monthly performance reviews. Data-driven adjustments. The engine gets better every month.</p>
+    </div>
+  </div>
+</div>
+
+</div>
 </section>
 
-<!-- YOU VS US -->
-<section class="inner-section hiw-youvus" id="you-vs-us">
-  <div class="inner-inner">
-    <span class="inner-label reveal">Your Commitment</span>
-    <h2 class="inner-h2 reveal">What You Do vs. What We Do</h2>
-    <div class="youvus-grid reveal">
-      <div class="youvus-col youvus-col--you">
-        <div class="youvus-title">You</div>
-        <div class="youvus-item">
-          <span class="youvus-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg></span>
-          <span>30-minute onboarding call</span>
-        </div>
-        <div class="youvus-item">
-          <span class="youvus-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg></span>
-          <span>Brand Proof approval (2 checkpoints)</span>
-        </div>
-        <div class="youvus-item">
-          <span class="youvus-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg></span>
-          <span>Answer your phone when leads call</span>
-        </div>
-      </div>
-      <div class="youvus-col youvus-col--us">
-        <div class="youvus-title">Us</div>
-        <div class="youvus-item">
-          <span class="youvus-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg></span>
-          <span>Strategy, research, brand voice</span>
-        </div>
-        <div class="youvus-item">
-          <span class="youvus-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg></span>
-          <span>Website, content, ads, AI tools, analytics</span>
-        </div>
-        <div class="youvus-item">
-          <span class="youvus-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg></span>
-          <span>Optimize, report, adjust, produce &mdash; every month</span>
-        </div>
+<!-- YOU VS US — THE HONEST SPLIT -->
+<section class="split-section" id="you-vs-us">
+<div class="split-inner">
+
+<p class="split-label">THE HONEST SPLIT</p>
+<h2 class="split-headline">What You Do vs. What We Do</h2>
+<p class="split-sub">This is the entire list of things we need from you.</p>
+
+<div class="split-grid">
+
+  <!-- YOU column -->
+  <div class="split-card split-card--you">
+    <p class="split-col-label">You</p>
+
+    <div class="split-item split-item--expanded">
+      <svg class="split-check-circle" width="20" height="20" viewBox="0 0 20 20"><circle cx="10" cy="10" r="10" fill="rgba(212,148,58,0.1)"/><path d="M6 10l3 3 5-5" stroke="var(--amber)" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <div>
+        <p class="split-item-title">One 30-minute call</p>
+        <p class="split-item-desc">Tell us about your business. We handle the rest.</p>
       </div>
     </div>
+
+    <div class="split-item split-item--expanded">
+      <svg class="split-check-circle" width="20" height="20" viewBox="0 0 20 20"><circle cx="10" cy="10" r="10" fill="rgba(212,148,58,0.1)"/><path d="M6 10l3 3 5-5" stroke="var(--amber)" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <div>
+        <p class="split-item-title">Two approval checkpoints</p>
+        <p class="split-item-desc">Brand Proof review. Say yes or request changes.</p>
+      </div>
+    </div>
+
+    <div class="split-item split-item--expanded">
+      <svg class="split-check-circle" width="20" height="20" viewBox="0 0 20 20"><circle cx="10" cy="10" r="10" fill="rgba(212,148,58,0.1)"/><path d="M6 10l3 3 5-5" stroke="var(--amber)" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <div>
+        <p class="split-item-title">Answer your phone</p>
+        <p class="split-item-desc">When leads call, pick up. That's the job.</p>
+      </div>
+    </div>
+
+    <div class="split-punchline">
+      <p class="split-stat">~30 min/month</p>
+      <p class="split-stat-label">Your total time investment</p>
+    </div>
   </div>
+
+  <!-- US column -->
+  <div class="split-card split-card--us">
+    <p class="split-col-label split-col-label--us">Us</p>
+
+    <div class="split-checklist">
+      <div class="split-item split-item--compact"><svg class="split-check" width="16" height="16" viewBox="0 0 16 16"><path d="M4 8l3 3 5-5" stroke="var(--amber)" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Market research &amp; competitor analysis</span></div>
+      <div class="split-item split-item--compact"><svg class="split-check" width="16" height="16" viewBox="0 0 16 16"><path d="M4 8l3 3 5-5" stroke="var(--amber)" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Brand voice &amp; messaging strategy</span></div>
+      <div class="split-item split-item--compact"><svg class="split-check" width="16" height="16" viewBox="0 0 16 16"><path d="M4 8l3 3 5-5" stroke="var(--amber)" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Custom website (90+ PageSpeed, schema-marked)</span></div>
+      <div class="split-item split-item--compact"><svg class="split-check" width="16" height="16" viewBox="0 0 16 16"><path d="M4 8l3 3 5-5" stroke="var(--amber)" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Content production (social, video, graphics)</span></div>
+      <div class="split-item split-item--compact"><svg class="split-check" width="16" height="16" viewBox="0 0 16 16"><path d="M4 8l3 3 5-5" stroke="var(--amber)" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Meta &amp; Google ad campaigns</span></div>
+      <div class="split-item split-item--compact"><svg class="split-check" width="16" height="16" viewBox="0 0 16 16"><path d="M4 8l3 3 5-5" stroke="var(--amber)" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg><span>AI tools (chatbot, phone AI, booking, reviews)</span></div>
+      <div class="split-item split-item--compact"><svg class="split-check" width="16" height="16" viewBox="0 0 16 16"><path d="M4 8l3 3 5-5" stroke="var(--amber)" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg><span>GA4 dashboard &amp; conversion tracking</span></div>
+      <div class="split-item split-item--compact"><svg class="split-check" width="16" height="16" viewBox="0 0 16 16"><path d="M4 8l3 3 5-5" stroke="var(--amber)" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg><span>SEO &amp; local search optimization</span></div>
+      <div class="split-item split-item--compact"><svg class="split-check" width="16" height="16" viewBox="0 0 16 16"><path d="M4 8l3 3 5-5" stroke="var(--amber)" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg><span>47-point QA on every deliverable</span></div>
+      <div class="split-item split-item--compact"><svg class="split-check" width="16" height="16" viewBox="0 0 16 16"><path d="M4 8l3 3 5-5" stroke="var(--amber)" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Monthly strategy reviews &amp; optimization</span></div>
+      <div class="split-item split-item--compact"><svg class="split-check" width="16" height="16" viewBox="0 0 16 16"><path d="M4 8l3 3 5-5" stroke="var(--amber)" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Email nurture &amp; follow-up sequences</span></div>
+      <div class="split-item split-item--compact"><svg class="split-check" width="16" height="16" viewBox="0 0 16 16"><path d="M4 8l3 3 5-5" stroke="var(--amber)" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Reputation management &amp; review generation</span></div>
+    </div>
+
+    <div class="split-punchline">
+      <p class="split-stat">Everything else.</p>
+      <p class="split-stat-label">71 documented processes running your engine</p>
+    </div>
+  </div>
+
+</div>
+
+<!-- Kicker -->
+<p class="split-kicker">You run your business. We run your marketing. That's the deal.</p>
+
+</div>
 </section>
 
 <!-- FAQ -->
@@ -392,7 +528,8 @@ a{color:inherit}img{max-width:100%;height:auto}
 
 <script>document.getElementById('navHamburger').addEventListener('click',function(){document.getElementById('navMobileMenu').classList.toggle('active')});</script>
 <script>function toggleFaq(t){var i=t.closest('.faq-item'),w=i.classList.contains('open');document.querySelectorAll('.faq-item.open').forEach(function(e){e.classList.remove('open')});if(!w)i.classList.add('open')}</script>
-<script>(function(){var o=new IntersectionObserver(function(e){e.forEach(function(en){if(en.isIntersecting){en.target.classList.add('visible');o.unobserve(en.target)}})},{threshold:0.15});document.querySelectorAll('.reveal,.section-label,.section-headline,.stage-item').forEach(function(el){o.observe(el)})})()</script>
+<script>function switchPhaseTab(phase){var phases=['discovery','build','run'];var tabColors={discovery:'var(--amber)',build:'var(--copper)',run:'var(--gold)'};phases.forEach(function(p){var tab=document.getElementById('tab-'+p);var panel=document.getElementById('panel-'+p);if(p===phase){tab.classList.add('active');tab.style.background=tabColors[p];panel.classList.add('active')}else{tab.classList.remove('active');tab.style.background='';panel.classList.remove('active')}})}</script>
+<script>(function(){var o=new IntersectionObserver(function(e){e.forEach(function(en){if(en.isIntersecting){en.target.classList.add('visible');o.unobserve(en.target)}})},{threshold:0.15});document.querySelectorAll('.reveal,.section-label,.section-headline').forEach(function(el){o.observe(el)})})()</script>
 
 </body>
 </html>
