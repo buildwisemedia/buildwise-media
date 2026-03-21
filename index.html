@@ -34,7 +34,9 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
 <!-- Google Fonts -->
-<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Inter:wght@400;500;600&family=Playfair+Display:ital,wght@1,400;1,500&display=swap" rel="stylesheet">
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Inter:wght@400;500;600&family=Playfair+Display:ital,wght@1,400;1,500&display=swap">
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Inter:wght@400;500;600&family=Playfair+Display:ital,wght@1,400;1,500&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+<noscript><link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Inter:wght@400;500;600&family=Playfair+Display:ital,wght@1,400;1,500&display=swap" rel="stylesheet"></noscript>
 
 <!-- Theme color -->
 <meta name="theme-color" content="#1C1714">
@@ -77,6 +79,30 @@ body::before {
 a { color: inherit; }
 img { max-width: 100%; height: auto; }
 
+/* === MOBILE OVERFLOW + TEXT SIZE FIX === */
+html, body { overflow-x: hidden; }
+
+@media (max-width: 768px) {
+  section, [class*="-section"], [class*="-inner"] {
+    max-width: 100vw;
+    overflow-x: hidden;
+  }
+  .accel-section, .dotgrid-section, .three-phases, .compound-section,
+  .engine-section, .why-section, .industries-section, .objection-section,
+  .faq-section, .final-cta-section { padding-left: 20px; padding-right: 20px; }
+  .poor-four-link, .solution-cta, .results-link, .accel-header-right,
+  .accel-footer, .dotgrid-text p, .phase-desc, .compound-subtext,
+  .slider-narrative, .engine-cta, .why-cta, .ind-hook, .ind-fallback-text,
+  .ind-cta, .proof-answer, .faq-answer { font-size: 16px !important; }
+  .anchor-attr-name, .spotlight-context { font-size: 15px !important; }
+  .section-label, .accel-node-label, .phase-label,
+  .power-label, .dotgrid-dot-label { font-size: 14px !important; }
+}
+
+@media (max-width: 375px) {
+  .nav-inner { padding: 0 16px; }
+  .hero-inner { padding: 80px 16px 48px; }
+}
 
 /* === NAV CSS === */
 .site-nav { position:fixed; top:0; left:0; right:0; z-index:1000; background:rgba(28,23,20,0.92); backdrop-filter:blur(12px); -webkit-backdrop-filter:blur(12px); border-bottom:0.5px solid var(--border); transition: background 0.3s ease; }
@@ -5101,7 +5127,7 @@ img { max-width: 100%; height: auto; }
       <div class="footer-col">
         <h4 class="footer-col-title">More</h4>
         <a href="/the-poor-four" class="footer-link">The Poor Four</a>
-        <a href="/book" class="footer-link">Book a Call</a>
+        <a href="/book" class="footer-link">See If I Qualify</a>
         <a href="/industries/hvac-plumbing-electrical" class="footer-link">Industries</a>
       </div>
       <div class="footer-col">
