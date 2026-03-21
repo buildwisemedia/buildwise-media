@@ -267,8 +267,8 @@ body::before{content:'';position:fixed;inset:0;z-index:9999;pointer-events:none;
    Card grid: 2-col desktop, 1-col mobile
    ═══════════════════════════════════════ */
 .vert-pain{background:var(--niche-bg-tint)}
-.pain-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:24px;margin-top:32px;margin-bottom:32px}
-.pain-icon{width:44px;height:44px;display:flex;align-items:center;justify-content:center;background:var(--niche-accent-dim);border-radius:10px;margin-bottom:16px;color:var(--niche-accent)}
+.pain-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-top:32px;margin-bottom:32px}
+.pain-icon{width:56px;height:56px;display:flex;align-items:center;justify-content:center;background:var(--bg3);border:1px solid var(--niche-accent-dim);border-radius:14px;margin-bottom:16px;color:var(--niche-accent)}
 .pain-title{font-family:var(--font-heading);font-size:18px;font-weight:var(--niche-heading-weight);color:var(--text-primary);margin-bottom:8px}
 .pain-copy{font-family:var(--font-body);font-size:15px;color:var(--text-secondary);line-height:1.65}
 .context-link{display:inline-flex;align-items:center;gap:6px;font-family:var(--font-heading);font-size:14px;font-weight:600;color:var(--amber);text-decoration:none;transition:color 0.3s ease}
@@ -330,6 +330,7 @@ body::before{content:'';position:fixed;inset:0;z-index:9999;pointer-events:none;
   .dash-curve{height:56px}
   .dash-map{height:56px}
   .pain-grid{grid-template-columns:1fr}
+  .pain-icon{width:48px;height:48px}
   .engine-timeline{padding-left:44px}
   .engine-icon{left:-44px;width:28px;height:28px}
   .engine-icon svg{width:14px;height:14px}
@@ -491,28 +492,28 @@ body::before{content:'';position:fixed;inset:0;z-index:9999;pointer-events:none;
       <div class="pain-grid">
         <div class="vert-card vert-card--accent-top reveal stagger-1">
           <div class="pain-icon">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 17 13.5 8.5 8.5 13.5 2 7"/><polyline points="16 17 22 17 22 11"/></svg>
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 17 13.5 8.5 8.5 13.5 2 7"/><polyline points="16 17 22 17 22 11"/></svg>
           </div>
           <div class="pain-title">Lead Droughts</div>
-          <p class="pain-copy">Summer AC rush fills your schedule &mdash; then October hits and the phone goes silent. No pipeline between peak seasons. Just waiting for the next heat wave or cold snap to save your quarter.</p>
+          <p class="pain-copy">Summer AC rush fills your schedule &mdash; then October hits and the phone goes silent. No pipeline between peak seasons.</p>
         </div>
         <div class="vert-card vert-card--accent-top reveal stagger-2">
           <div class="pain-icon">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
           </div>
           <div class="pain-title">The Owner Trap</div>
           <p class="pain-copy">You&rsquo;re quoting jobs at 7 AM, running calls until 6, and updating your website at midnight. The business can&rsquo;t grow because you&rsquo;re the technician, the salesperson, and the marketing department.</p>
         </div>
         <div class="vert-card vert-card--accent-top reveal stagger-3">
           <div class="pain-icon">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/><rect x="8" y="2" width="8" height="4" rx="1" ry="1"/></svg>
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/><rect x="8" y="2" width="8" height="4" rx="1" ry="1"/></svg>
           </div>
           <div class="pain-title">Manual Mayhem</div>
-          <p class="pain-copy">Estimates scribbled on work orders. Follow-ups you meant to send last Tuesday. A lead called three days ago &mdash; did anyone call them back? There&rsquo;s no system to tell you.</p>
+          <p class="pain-copy">Estimates scribbled on work orders. Follow-ups you meant to send last Tuesday. A lead called three days ago &mdash; did anyone call them back?</p>
         </div>
         <div class="vert-card vert-card--accent-top reveal stagger-4">
           <div class="pain-icon">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
           </div>
           <div class="pain-title">Reactive Mode</div>
           <p class="pain-copy">Slow week? Boost a Facebook post. Still slow? Print some door hangers. Your marketing is a series of panic moves instead of a machine that prevents the panic.</p>
