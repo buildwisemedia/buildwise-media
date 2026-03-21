@@ -79,35 +79,6 @@ body::before {
 a { color: inherit; }
 img { max-width: 100%; height: auto; }
 
-/* === MOBILE OVERFLOW + TEXT SIZE FIX === */
-html, body { overflow-x: hidden; }
-
-@media (max-width: 768px) {
-  section, [class*="-section"], [class*="-inner"] {
-    max-width: 100vw;
-    overflow-x: hidden;
-  }
-  /* Fix 2: Root-cause overflow containment — hero flex-child sizing */
-  .hero-inner { min-width: 0; width: 100%; box-sizing: border-box; }
-  .dashboard-wrapper { overflow: hidden; }
-  .dash-notification { right: 0; }
-  .accel-section, .dotgrid-section, .three-phases, .compound-section,
-  .engine-section, .why-section, .industries-section, .objection-section,
-  .faq-section, .final-cta-section { padding-left: 20px; padding-right: 20px; }
-  .poor-four-link, .solution-cta, .results-link, .accel-header-right,
-  .accel-footer, .dotgrid-text p, .phase-desc, .compound-subtext,
-  .slider-narrative, .engine-cta, .why-cta, .ind-hook, .ind-fallback-text,
-  .ind-cta, .proof-answer, .faq-answer { font-size: 16px !important; }
-  .anchor-attr-name, .spotlight-context { font-size: 15px !important; }
-  .section-label, .accel-node-label, .phase-label,
-  .power-label, .dotgrid-dot-label { font-size: 14px !important; }
-}
-
-@media (max-width: 375px) {
-  .nav-inner { padding: 0 16px; }
-  .hero-inner { padding: 80px 16px 48px; }
-}
-
 /* === NAV CSS === */
 .site-nav { position:fixed; top:0; left:0; right:0; z-index:1000; background:rgba(28,23,20,0.92); backdrop-filter:blur(12px); -webkit-backdrop-filter:blur(12px); border-bottom:0.5px solid var(--border); transition: background 0.3s ease; }
 .nav-inner { max-width:1280px; margin:0 auto; padding:0 48px; height:64px; display:flex; align-items:center; justify-content:space-between; }
@@ -495,7 +466,7 @@ html, body { overflow-x: hidden; }
   }
 
   @media (max-width: 540px) {
-    .hero-inner { padding: 80px 20px 48px; }
+    .hero-inner { padding: 80px 20px 48px; width: 100%; min-width: 0; }
     .dashboard { padding: 16px; }
     .dash-metrics { grid-template-columns: 1fr 1fr; }
     .dash-metrics .metric-card:last-child { grid-column: span 2; }
@@ -2855,6 +2826,7 @@ html, body { overflow-x: hidden; }
     padding: 96px 48px;
     max-width: 1280px;
     margin: 0 auto;
+    overflow: hidden;
   }
 
   .section-label {
