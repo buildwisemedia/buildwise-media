@@ -1,690 +1,223 @@
 <!DOCTYPE html>
-<html lang="en" class="dark scroll-smooth">
+<html lang="en" class="dark">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>How It Works | Buildwise Media</title>
-<meta name="description" content="From first call to running engine — here's exactly how it works. No black boxes. 3 phases, 12 stages, 30 days. See If I Qualify.">
-<link rel="canonical" href="https://buildwisemedia.com/how-it-works">
-<link rel="icon" href="https://assets.buildwisemedia.com/favicons/favicon.ico" type="image/x-icon">
+<title>How It Works — Buildwise Media</title>
+<meta name="description" content="See how Buildwise Media builds AI-powered marketing engines for service businesses in 30 days. Month-to-month, no lock-in. Atlanta, GA.">
 
 <!-- OG Tags -->
-<meta property="og:title" content="How It Works | Buildwise Media">
-<meta property="og:description" content="From first call to running engine — here's exactly how it works. No black boxes. 3 phases, 12 stages, 30 days.">
-<meta property="og:url" content="https://buildwisemedia.com/how-it-works">
+<meta property="og:title" content="How It Works — Buildwise Media">
+<meta property="og:description" content="See how Buildwise Media builds AI-powered marketing engines for service businesses in 30 days. Month-to-month, no lock-in. Atlanta, GA.">
+<meta property="og:image" content="https://assets.buildwisemedia.com/og/og-default.png">
 <meta property="og:type" content="website">
-<meta property="og:image" content="https://assets.buildwisemedia.com/og/bwm-how-it-works.jpg">
+<meta property="og:url" content="https://buildwisemedia.com/how-it-works">
 <meta property="og:site_name" content="Buildwise Media">
 
 <!-- Twitter Card -->
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="How It Works | Buildwise Media">
-<meta name="twitter:description" content="From first call to running engine — here's exactly how it works. No black boxes. 3 phases, 12 stages, 30 days.">
-<meta name="twitter:image" content="https://assets.buildwisemedia.com/og/bwm-how-it-works.jpg">
+<meta name="twitter:title" content="How It Works — Buildwise Media">
+<meta name="twitter:description" content="See how Buildwise Media builds AI-powered marketing engines for service businesses in 30 days. Month-to-month, no lock-in. Atlanta, GA.">
+<meta name="twitter:image" content="https://assets.buildwisemedia.com/og/og-default.png">
 
-<!-- Meta Pixel -->
-<meta name="facebook-domain-verification" content="buildwisemedia">
-<script>!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');fbq('init','2728397250833051');fbq('track','PageView');</script>
-<noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=2728397250833051&ev=PageView&noscript=1" alt=""></noscript>
+<!-- Canonical -->
+<link rel="canonical" href="https://buildwisemedia.com/how-it-works">
 
-<!-- GA4 via GTM -->
-<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-P5JSD86L');</script>
+<!-- Favicons -->
+<link rel="icon" href="https://assets.buildwisemedia.com/favicons/favicon.ico" type="image/x-icon">
+<link rel="icon" href="https://assets.buildwisemedia.com/favicons/favicon-32x32.png" sizes="32x32" type="image/png">
+<link rel="icon" href="https://assets.buildwisemedia.com/favicons/favicon-16x16.png" sizes="16x16" type="image/png">
+<link rel="apple-touch-icon" href="https://assets.buildwisemedia.com/favicons/apple-touch-icon.png">
 
-<!-- Fonts -->
+<!-- Preconnect -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
 
-<!-- Tailwind CDN -->
-<script src="https://cdn.tailwindcss.com"></script>
-<script>
-tailwind.config = {
-  darkMode: 'class',
-  theme: {
-    extend: {
-      colors: {
-        void: '#0c0a08',
-        elevated: '#1C1714',
-        card: '#242019',
-        primary: '#BF9469',
-        cta: '#C75B2A',
-        cream: '#f5f0e8',
-        muted: '#a89a8a',
-        warmBrown: '#2A2320',
-      },
-      fontFamily: {
-        display: ['"Plus Jakarta Sans"', 'sans-serif'],
-        body: ['"DM Sans"', 'sans-serif'],
-      },
-    },
-  },
-}
-</script>
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Inter:wght@400;500;600&family=Playfair+Display:ital,wght@1,400;1,500&display=swap" rel="stylesheet">
+
+<!-- Theme color -->
+<meta name="theme-color" content="#1C1714">
+
+<!-- Dark/light mode (before CSS) -->
+<script>(function(){var c=document.cookie.match(/bwm-theme=(\w+)/);var t=c?c[1]:window.matchMedia('(prefers-color-scheme:light)').matches?'light':'dark';document.documentElement.className=t;})();</script>
+
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-P5JSD86L');</script>
+
+<!-- Meta Pixel -->
+<script>!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');fbq('init','2728397250833051');fbq('track','PageView');</script>
+<noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=2728397250833051&ev=PageView&noscript=1"/></noscript>
 
 <style>
-  :root {
-    --bg: #0c0a08;
-    --elevated: #1C1714;
-    --card: #242019;
-    --primary: #BF9469;
-    --cta: #C75B2A;
-    --text: #f5f0e8;
-    --muted: #a89a8a;
-    --warm-brown: #2A2320;
-    --header-height: 80px;
-  }
-  html.light {
-    --bg: #f5f0e8;
-    --elevated: #ebe5db;
-    --card: #ddd6cc;
-    --text: #1C1714;
-    --muted: #5a4f44;
-    --warm-brown: #e8e0d4;
-  }
-  html { scroll-padding-top: var(--header-height); }
-  body {
-    background: var(--bg);
-    color: var(--text);
-    font-family: 'DM Sans', sans-serif;
-    overflow-x: hidden;
-  }
-  .font-display { font-family: 'Plus Jakarta Sans', sans-serif; }
-  .film-grain {
-    position: absolute; inset: 0; pointer-events: none; z-index: 1;
-    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
-    background-repeat: repeat; background-size: 256px 256px;
-  }
-  .reveal { opacity: 0; transform: translateY(32px); transition: opacity 0.7s ease, transform 0.7s ease; }
-  .reveal.visible { opacity: 1; transform: translateY(0); }
-  .reveal-delay-1 { transition-delay: 0.2s; }
-  .reveal-delay-2 { transition-delay: 0.4s; }
-  .reveal-delay-3 { transition-delay: 0.6s; }
-  @keyframes fadeUp { from { opacity:0; transform:translateY(24px); } to { opacity:1; transform:translateY(0); } }
-  .hero-animate { animation: fadeUp 0.8s ease forwards; opacity: 0; }
-  .hero-delay-1 { animation-delay: 0.2s; }
-  .hero-delay-2 { animation-delay: 0.4s; }
-  .hero-delay-3 { animation-delay: 0.6s; }
-  .cta-btn {
-    display: inline-flex; align-items: center; justify-content: center;
-    background: var(--cta); color: #fff; border-radius: 8px;
-    padding: 16px 32px; font-weight: 600; font-size: 15px;
-    transition: all 0.3s ease; min-height: 48px; min-width: 44px;
-    text-decoration: none;
-  }
-  .cta-btn:hover { filter: brightness(1.1); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(199,91,42,0.3); }
-  .ghost-btn {
-    display: inline-flex; align-items: center; justify-content: center;
-    border: 1px solid var(--primary); color: var(--primary); border-radius: 8px;
-    padding: 14px 28px; font-weight: 600; font-size: 15px;
-    transition: all 0.3s ease; min-height: 48px; text-decoration: none;
-  }
-  .ghost-btn:hover { background: rgba(191,148,105,0.1); }
-  .section-pad { padding: 96px 24px; }
-  @media (max-width: 768px) { .section-pad { padding: 64px 16px; } }
-  .content-wrap { max-width: 1280px; margin: 0 auto; }
-  .cta-glow {
-    position: absolute; width: 400px; height: 400px; border-radius: 50%;
-    background: radial-gradient(circle, rgba(199,91,42,0.15) 0%, transparent 70%);
-    pointer-events: none; filter: blur(40px);
-  }
-  /* Accordion custom styles */
-  .accordion-item[open] .accordion-icon { transform: rotate(180deg); }
-  .accordion-item summary::-webkit-details-marker { display: none; }
-  .accordion-item summary { list-style: none; }
+:root {
+  --bg1: #1C1714; --bg2: #2A2320; --bg3: #332D27;
+  --text-primary: #F5F0EB; --text-secondary: #A89B8C; --text-muted: #7A6F63;
+  --amber: #D4943A; --amber-bright: #E8A94D; --copper: #B87333; --gold: #C9A84C;
+  --border: #3D352E; --border-subtle: #2E2822;
+  --font-heading: 'Manrope', sans-serif;
+  --font-body: 'Inter', sans-serif;
+  --font-accent: 'Playfair Display', serif;
+  --ease-smooth: cubic-bezier(0.22, 1, 0.36, 1);
+}
+html.light {
+  --bg1: #F5F0EB; --bg2: #EDE6DE; --bg3: #E5DCD3;
+  --text-primary: #1C1714; --text-secondary: #5C4F44; --text-muted: #8A7E73;
+  --border: #D4CBC1; --border-subtle: #E0D8CF;
+}
+
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{font-size:18px;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;scroll-behavior:smooth}
+body{background:var(--bg1);color:var(--text-primary);font-family:var(--font-body);line-height:1.7}
+
+/* Film grain overlay */
+body::before{content:'';position:fixed;inset:0;z-index:9999;pointer-events:none;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");opacity:0.035}
+
+a{color:inherit}
+img{max-width:100%;height:auto}
+
+/* Nav */
+.site-nav{position:fixed;top:0;left:0;right:0;z-index:1000;background:rgba(28,23,20,0.92);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:0.5px solid var(--border);transition:background 0.3s ease}
+html.light .site-nav{background:rgba(245,240,235,0.92)}
+.nav-inner{max-width:1280px;margin:0 auto;padding:0 48px;height:64px;display:flex;align-items:center;justify-content:space-between}
+.nav-logo{display:flex;align-items:center;text-decoration:none}
+.nav-logo img{height:32px;width:auto}
+.nav-links{display:flex;align-items:center;gap:32px;list-style:none}
+.nav-link{font-family:var(--font-heading);font-size:14px;font-weight:500;color:var(--text-secondary);text-decoration:none;transition:color 0.3s ease;position:relative}
+.nav-link:hover{color:var(--text-primary)}
+.nav-dropdown{position:relative}
+.nav-dropdown-trigger{cursor:pointer;display:flex;align-items:center;gap:4px}
+.nav-dropdown-trigger::after{content:'\25BE';font-size:10px;opacity:0.5}
+.nav-dropdown-menu{position:absolute;top:100%;left:-12px;min-width:220px;background:var(--bg2);border:0.5px solid var(--border);border-radius:8px;padding:8px 0;opacity:0;visibility:hidden;transform:translateY(8px);transition:all 0.3s var(--ease-smooth);z-index:100}
+html.light .nav-dropdown-menu{background:var(--bg2)}
+.nav-dropdown:hover .nav-dropdown-menu{opacity:1;visibility:visible;transform:translateY(0)}
+.nav-dropdown-item{display:block;padding:8px 16px;font-family:var(--font-heading);font-size:13px;font-weight:500;color:var(--text-secondary);text-decoration:none;transition:background 0.2s ease,color 0.2s ease}
+.nav-dropdown-item:hover{background:rgba(212,148,58,0.08);color:var(--text-primary)}
+.nav-cta{display:inline-flex;align-items:center;gap:8px;background:var(--amber);color:var(--bg1);font-family:var(--font-heading);font-size:14px;font-weight:600;padding:10px 20px;border-radius:6px;text-decoration:none;transition:background 0.3s ease,transform 0.3s var(--ease-smooth)}
+.nav-cta:hover{background:var(--amber-bright);transform:translateY(-1px)}
+.theme-toggle{background:none;border:0.5px solid var(--border);border-radius:50%;width:32px;height:32px;display:flex;align-items:center;justify-content:center;cursor:pointer;color:var(--text-secondary);transition:border-color 0.3s ease}
+.theme-toggle:hover{border-color:var(--amber)}
+.nav-hamburger{display:none;background:none;border:none;cursor:pointer;padding:4px}
+.nav-hamburger span{display:block;width:24px;height:2px;background:var(--text-primary);margin:5px 0;transition:all 0.3s ease}
+.nav-mobile-menu{display:none;position:fixed;top:64px;left:0;right:0;bottom:0;background:var(--bg1);z-index:999;padding:24px;overflow-y:auto}
+.nav-mobile-menu.active{display:block}
+.nav-mobile-menu .nav-link{display:block;padding:12px 0;font-size:16px;border-bottom:0.5px solid var(--border)}
+.nav-mobile-menu .nav-cta{display:block;text-align:center;margin-top:24px;padding:14px 24px}
+@media(max-width:960px){.nav-links{display:none}.nav-hamburger{display:block}.nav-inner{padding:0 24px}}
+
+/* Placeholder content */
+.placeholder-section{min-height:calc(100vh - 64px);display:flex;align-items:center;justify-content:center;padding:140px 48px 100px;text-align:center}
+.placeholder-inner{max-width:600px}
+.placeholder-inner h1{font-family:var(--font-heading);font-size:clamp(32px,5vw,48px);font-weight:800;color:var(--text-primary);margin-bottom:16px;letter-spacing:-0.02em}
+.placeholder-inner p{font-family:var(--font-body);font-size:17px;color:var(--text-secondary);margin-bottom:32px;line-height:1.7}
+.placeholder-inner a.back-link{display:inline-flex;align-items:center;gap:8px;font-family:var(--font-heading);font-size:14px;font-weight:600;color:var(--amber);text-decoration:none;transition:color 0.3s ease}
+.placeholder-inner a.back-link:hover{color:var(--amber-bright)}
+
+/* Footer */
+.site-footer{background:var(--bg2);border-top:0.5px solid var(--border);padding:64px 48px 32px}
+.footer-inner{max-width:1280px;margin:0 auto}
+.footer-grid{display:grid;grid-template-columns:1.5fr 1fr 1fr 1fr;gap:48px;margin-bottom:48px}
+.footer-logo{margin-bottom:16px}
+.footer-tagline{font-family:var(--font-body);font-size:14px;color:var(--text-secondary);line-height:1.6;margin-bottom:8px}
+.footer-location{font-family:var(--font-heading);font-size:12px;color:var(--text-muted);letter-spacing:1px}
+.footer-col{display:flex;flex-direction:column;gap:10px}
+.footer-col-title{font-family:var(--font-heading);font-size:11px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:var(--text-muted);margin-bottom:4px}
+.footer-link{font-family:var(--font-body);font-size:14px;color:var(--text-secondary);text-decoration:none;transition:color 0.3s ease}
+.footer-link:hover{color:var(--amber)}
+.footer-bottom{border-top:0.5px solid var(--border);padding-top:24px}
+.footer-copyright{font-family:var(--font-body);font-size:12px;color:var(--text-muted)}
+@media(max-width:768px){.footer-grid{grid-template-columns:1fr 1fr;gap:32px}.site-footer{padding:48px 24px 24px}.placeholder-section{padding:120px 24px 80px}}
+@media(max-width:480px){.footer-grid{grid-template-columns:1fr;gap:24px}}
 </style>
-
-<!-- JSON-LD: BreadcrumbList -->
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "BreadcrumbList",
-  "itemListElement": [
-    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://buildwisemedia.com/" },
-    { "@type": "ListItem", "position": 2, "name": "How It Works", "item": "https://buildwisemedia.com/how-it-works" }
-  ]
-}
-</script>
-
-<!-- JSON-LD: FAQPage -->
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  "mainEntity": [
-    {
-      "@type": "Question",
-      "name": "How long until my marketing engine is live?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Your full marketing engine — website, content, ads, AI tools — is built and live within 30 days. Discovery takes about a week. The build takes two to three weeks. Then we flip the switch."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "What do I need to provide?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "A 30-minute onboarding call, access to your existing accounts (domain, Google Business, ad accounts), and honest answers about your business. That's it. We handle the rest."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "What if I don't like the Brand Proof?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "The Brand Proof is your checkpoint. If something doesn't feel right, we revise it before a single page goes live. Nothing launches without your approval."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "How much of my time does this take on an ongoing basis?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "After launch, the engine runs itself. You answer the phone when leads call. That's your only job. We handle optimization, content, ads, and reporting."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Do you provide monthly reviews?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Yes. Every month you get a clear report — what's working, what we're adjusting, and where the numbers are heading. No jargon. No vanity metrics. Just the numbers that matter to your business."
-      }
-    }
-  ]
-}
-</script>
-
-<!-- JSON-LD: HowTo -->
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "HowTo",
-  "name": "How Buildwise Media Builds Your Marketing Engine",
-  "description": "From first call to running engine in 30 days. 3 phases, 12 stages.",
-  "totalTime": "P30D",
-  "step": [
-    {
-      "@type": "HowToStep",
-      "name": "Phase 1: Discovery",
-      "text": "We learn your business, your market, and your goals. Brand Capture, Research & Strategy, Brand Voice Card, Content Brief, and Brand Proof — all in Week 1.",
-      "position": 1
-    },
-    {
-      "@type": "HowToStep",
-      "name": "Phase 2: Build",
-      "text": "We build your marketing engine — website, content, AI tools, ad campaigns, analytics, and QA — during Weeks 2 through 4.",
-      "position": 2
-    },
-    {
-      "@type": "HowToStep",
-      "name": "Phase 3: Run",
-      "text": "Your engine goes live. We optimize, refine, and compound results on an ongoing basis. You answer the phone.",
-      "position": 3
-    }
-  ]
-}
-</script>
-
-<!-- Speakable -->
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "WebPage",
-  "speakable": {
-    "@type": "SpeakableSpecification",
-    "cssSelector": [".hero-headline", ".hero-sub"]
-  }
-}
-</script>
 </head>
+<body>
 
-<body class="antialiased">
-<!-- GTM noscript -->
-<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-P5JSD86L" height="0" width="0" style="display:none;visibility:hidden" title="GTM"></iframe></noscript>
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-P5JSD86L" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
-<!-- ==================== NAV ==================== -->
-<header id="site-header" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300" style="backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);">
-  <div class="content-wrap flex items-center justify-between px-6 py-4" style="height:var(--header-height);">
-    <a href="/" aria-label="Buildwise Media Home">
-      <img src="https://assets.buildwisemedia.com/logos/bwm-logo-primary-terracotta-on-transparent.svg" alt="Buildwise Media logo" class="h-10 w-auto">
-    </a>
-    <nav class="hidden lg:flex items-center gap-8 font-body text-sm font-medium" style="color:var(--text);">
-      <a href="/services" class="hover:text-primary transition-colors">Services</a>
-      <a href="/how-it-works" class="hover:text-primary transition-colors">How It Works</a>
-      <a href="/results" class="hover:text-primary transition-colors">Results</a>
-      <a href="/the-poor-four" class="hover:text-primary transition-colors">The Poor Four</a>
-      <a href="/why-buildwise" class="hover:text-primary transition-colors">Why Buildwise</a>
-      <a href="/book" class="cta-btn text-sm !py-3 !px-6">See If I Qualify</a>
-    </nav>
-    <!-- Dark/Light Toggle -->
-    <div class="hidden lg:flex items-center gap-4">
-      <button id="theme-toggle" aria-label="Toggle dark/light mode" class="w-10 h-10 flex items-center justify-center rounded-full transition-colors" style="color:var(--muted);">
-        <svg id="icon-sun" class="w-5 h-5 hidden" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>
-        <svg id="icon-moon" class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
-      </button>
-    </div>
-    <!-- Mobile menu button -->
-    <button id="mobile-menu-btn" class="lg:hidden w-10 h-10 flex items-center justify-center" aria-label="Open menu" style="color:var(--text);">
-      <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
-    </button>
+<nav class="site-nav">
+  <div class="nav-inner">
+    <a href="/" class="nav-logo"><img src="https://assets.buildwisemedia.com/logos/bwm-logo-terracotta-transparent.svg" alt="Buildwise Media" width="160" height="40"></a>
+    <ul class="nav-links">
+      <li><a href="/" class="nav-link">Home</a></li>
+      <li class="nav-dropdown"><span class="nav-link nav-dropdown-trigger">Services</span><div class="nav-dropdown-menu"><a href="/services/ascend" class="nav-dropdown-item">Ascend — Full-Service Marketing</a></div></li>
+      <li class="nav-dropdown"><span class="nav-link nav-dropdown-trigger">Industries</span><div class="nav-dropdown-menu"><a href="/industries/hvac-plumbing-electrical" class="nav-dropdown-item">HVAC / Plumbing / Electrical</a><a href="/industries/med-spas" class="nav-dropdown-item">Med Spas &amp; Aesthetic Clinics</a><a href="/industries/home-builders-remodelers" class="nav-dropdown-item">Custom Home Builders &amp; Remodelers</a><a href="/industries/roofing" class="nav-dropdown-item">Roofing</a><a href="/industries/pest-control" class="nav-dropdown-item">Pest Control &amp; Wildlife</a><a href="/industries/luxury-landscaping" class="nav-dropdown-item">Luxury Landscaping &amp; Hardscaping</a><a href="/industries/custom-pools" class="nav-dropdown-item">Custom Pools &amp; Outdoor Living</a><a href="/industries/dental" class="nav-dropdown-item">High-End Dental &amp; Orthodontics</a><a href="/industries/concrete" class="nav-dropdown-item">Concrete &amp; Flatwork</a></div></li>
+      <li><a href="/how-it-works" class="nav-link">How It Works</a></li>
+      <li><a href="/results" class="nav-link">Results</a></li>
+      <li><a href="/why-buildwise" class="nav-link">Why Buildwise</a></li>
+      <li><button class="theme-toggle" id="themeToggle" aria-label="Toggle theme"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg></button></li>
+      <li><a href="/book" class="nav-cta">See If I Qualify &rarr;</a></li>
+    </ul>
+    <button class="nav-hamburger" id="navHamburger" aria-label="Open menu"><span></span><span></span><span></span></button>
   </div>
-  <!-- Mobile menu -->
-  <div id="mobile-menu" class="lg:hidden hidden" style="background:var(--elevated);">
-    <nav class="flex flex-col gap-4 p-6 font-body text-base font-medium" style="color:var(--text);">
-      <a href="/services" class="py-2 hover:text-primary transition-colors">Services</a>
-      <a href="/how-it-works" class="py-2 hover:text-primary transition-colors">How It Works</a>
-      <a href="/results" class="py-2 hover:text-primary transition-colors">Results</a>
-      <a href="/the-poor-four" class="py-2 hover:text-primary transition-colors">The Poor Four</a>
-      <a href="/why-buildwise" class="py-2 hover:text-primary transition-colors">Why Buildwise</a>
-      <div class="flex items-center justify-between pt-2">
-        <a href="/book" class="cta-btn w-full text-center">See If I Qualify</a>
-      </div>
-      <button id="theme-toggle-mobile" aria-label="Toggle dark/light mode" class="flex items-center gap-2 py-2" style="color:var(--muted);">
-        <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
-        <span class="text-sm">Toggle theme</span>
-      </button>
-    </nav>
-  </div>
-</header>
+</nav>
+<div class="nav-mobile-menu" id="navMobileMenu">
+  <a href="/" class="nav-link">Home</a><a href="/services/ascend" class="nav-link">Services: Ascend</a><a href="/how-it-works" class="nav-link">How It Works</a><a href="/results" class="nav-link">Results</a><a href="/why-buildwise" class="nav-link">Why Buildwise</a><a href="/the-poor-four" class="nav-link">The Poor Four</a>
+  <button class="theme-toggle" id="themeToggleMobile" aria-label="Toggle theme" style="margin-top:16px;"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/></svg></button>
+  <a href="/book" class="nav-cta">See If I Qualify &rarr;</a>
+</div>
 
 <main>
-<!-- ==================== HERO ==================== -->
-<section class="relative min-h-[70vh] flex items-center overflow-hidden" style="background:var(--elevated);padding-top:calc(var(--header-height) + 2rem);">
-  <div class="film-grain"></div>
-  <div class="cta-glow" style="right:-100px;top:50%;transform:translateY(-50%);"></div>
-  <div class="content-wrap relative z-10 px-6 py-16 lg:py-24 max-w-3xl mx-auto text-center">
-    <p class="text-xs font-display font-semibold uppercase tracking-widest mb-6 hero-animate" style="color:var(--cta);">The Process</p>
-    <h1 class="hero-headline font-display text-4xl md:text-5xl lg:text-6xl font-extrabold leading-tight hero-animate hero-delay-1" style="color:var(--text);">
-      From First Call to Running Engine — Here's Exactly How It Works
-    </h1>
-    <p class="hero-sub mt-6 text-lg md:text-xl leading-relaxed hero-animate hero-delay-2" style="color:var(--muted);max-width:52ch;margin-left:auto;margin-right:auto;">
-      No black boxes. No "trust the process" without showing you the process. Here's every step, in order.
-    </p>
-    <div class="mt-8 hero-animate hero-delay-3">
-      <a href="/book" class="cta-btn text-base px-8 py-4">See If I Qualify</a>
+  <section class="placeholder-section">
+    <div class="placeholder-inner">
+      <h1>How It Works</h1>
+      <p>This page is coming soon.</p>
+      <a href="/" class="back-link">&larr; Back to Home</a>
     </div>
-  </div>
-</section>
-
-<!-- ==================== THREE PHASES OVERVIEW ==================== -->
-<section class="section-pad" style="background:var(--bg);">
-  <div class="content-wrap">
-    <p class="reveal text-xs font-display font-semibold uppercase tracking-widest mb-4" style="color:var(--cta);">Three Phases. 30 Days.</p>
-    <h2 class="reveal font-display text-3xl md:text-4xl font-bold mb-12" style="color:var(--text);">Your Engine Gets Built in Three Phases</h2>
-    <div class="grid md:grid-cols-3 gap-8">
-      <!-- Phase 1 -->
-      <div class="reveal p-8 rounded-xl border transition-all duration-300 hover:border-opacity-30 relative" style="background:var(--card);border-color:rgba(191,148,105,0.12);">
-        <div class="w-12 h-12 rounded-full flex items-center justify-center mb-6 font-display text-xl font-bold" style="background:rgba(199,91,42,0.15);color:var(--cta);">1</div>
-        <div class="flex items-center gap-3 mb-3">
-          <svg class="w-5 h-5" style="color:var(--primary);" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
-          <h3 class="font-display text-xl font-bold" style="color:var(--text);">Discovery</h3>
-        </div>
-        <p class="text-sm font-semibold mb-3" style="color:var(--cta);">Week 1</p>
-        <p class="text-base leading-relaxed" style="color:var(--muted);">We learn everything about your business, your market, and your customers. You talk. We listen. Then we build your strategy from real data — not guesswork.</p>
-      </div>
-      <!-- Phase 2 -->
-      <div class="reveal reveal-delay-1 p-8 rounded-xl border transition-all duration-300 hover:border-opacity-30 relative" style="background:var(--card);border-color:rgba(191,148,105,0.12);">
-        <div class="w-12 h-12 rounded-full flex items-center justify-center mb-6 font-display text-xl font-bold" style="background:rgba(199,91,42,0.15);color:var(--cta);">2</div>
-        <div class="flex items-center gap-3 mb-3">
-          <svg class="w-5 h-5" style="color:var(--primary);" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>
-          <h3 class="font-display text-xl font-bold" style="color:var(--text);">Build</h3>
-        </div>
-        <p class="text-sm font-semibold mb-3" style="color:var(--cta);">Weeks 2–4</p>
-        <p class="text-base leading-relaxed" style="color:var(--muted);">Website, content, ads, AI tools, analytics — we build the entire engine. 85% automated production with quality gates at every step. You approve the Brand Proof. We build everything else.</p>
-      </div>
-      <!-- Phase 3 -->
-      <div class="reveal reveal-delay-2 p-8 rounded-xl border transition-all duration-300 hover:border-opacity-30 relative" style="background:var(--card);border-color:rgba(191,148,105,0.12);">
-        <div class="w-12 h-12 rounded-full flex items-center justify-center mb-6 font-display text-xl font-bold" style="background:rgba(199,91,42,0.15);color:var(--cta);">3</div>
-        <div class="flex items-center gap-3 mb-3">
-          <svg class="w-5 h-5" style="color:var(--primary);" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
-          <h3 class="font-display text-xl font-bold" style="color:var(--text);">Run</h3>
-        </div>
-        <p class="text-sm font-semibold mb-3" style="color:var(--cta);">Ongoing</p>
-        <p class="text-base leading-relaxed" style="color:var(--muted);">Your engine goes live and starts generating leads. We optimize, refine, and compound results every month. You answer the phone. We handle everything else.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ==================== THE 12 STAGES ==================== -->
-<section class="section-pad" style="background:var(--elevated);">
-  <div class="content-wrap max-w-3xl mx-auto">
-    <p class="reveal text-xs font-display font-semibold uppercase tracking-widest mb-4" style="color:var(--cta);">Under the Hood</p>
-    <h2 class="reveal font-display text-3xl md:text-4xl font-bold mb-4" style="color:var(--text);">The 12 Stages</h2>
-    <p class="reveal text-base leading-relaxed mb-12" style="color:var(--muted);">Every stage has a clear deliverable. Nothing moves forward until the previous stage is done right.</p>
-
-    <!-- Phase 1 Stages -->
-    <p class="reveal text-xs font-display font-semibold uppercase tracking-widest mb-6" style="color:var(--primary);">Phase 1 — Discovery (Week 1)</p>
-    <div class="space-y-4 mb-12">
-      <details class="reveal accordion-item group rounded-xl border" style="background:var(--card);border-color:rgba(191,148,105,0.12);">
-        <summary class="flex items-center justify-between p-6 cursor-pointer font-display font-semibold text-base" style="color:var(--text);">
-          <span><span class="inline-block w-8 text-sm font-bold" style="color:var(--cta);">01</span> Brand Capture</span>
-          <svg class="accordion-icon w-5 h-5 transition-transform shrink-0 ml-4" style="color:var(--muted);" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M19 9l-7 7-7-7"/></svg>
-        </summary>
-        <div class="px-6 pb-6 text-base leading-relaxed" style="color:var(--muted);">A 30-minute onboarding call where we learn who you are, what you do, and what makes your business different. We capture your voice, your values, and your competitive edge — straight from you.</div>
-      </details>
-      <details class="reveal accordion-item group rounded-xl border" style="background:var(--card);border-color:rgba(191,148,105,0.12);">
-        <summary class="flex items-center justify-between p-6 cursor-pointer font-display font-semibold text-base" style="color:var(--text);">
-          <span><span class="inline-block w-8 text-sm font-bold" style="color:var(--cta);">02</span> Research &amp; Strategy</span>
-          <svg class="accordion-icon w-5 h-5 transition-transform shrink-0 ml-4" style="color:var(--muted);" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M19 9l-7 7-7-7"/></svg>
-        </summary>
-        <div class="px-6 pb-6 text-base leading-relaxed" style="color:var(--muted);">We dig into your market, your competitors, and your ideal customers. Keywords, search trends, ad landscape, local competition — we map it all so your engine targets the right people from day one.</div>
-      </details>
-      <details class="reveal accordion-item group rounded-xl border" style="background:var(--card);border-color:rgba(191,148,105,0.12);">
-        <summary class="flex items-center justify-between p-6 cursor-pointer font-display font-semibold text-base" style="color:var(--text);">
-          <span><span class="inline-block w-8 text-sm font-bold" style="color:var(--cta);">03</span> Brand Voice Card</span>
-          <svg class="accordion-icon w-5 h-5 transition-transform shrink-0 ml-4" style="color:var(--muted);" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M19 9l-7 7-7-7"/></svg>
-        </summary>
-        <div class="px-6 pb-6 text-base leading-relaxed" style="color:var(--muted);">Your brand's tone, language, and personality — locked into a single document. Every piece of content, every ad, every page sounds like your business. Not a template. Not generic. Yours.</div>
-      </details>
-      <details class="reveal accordion-item group rounded-xl border" style="background:var(--card);border-color:rgba(191,148,105,0.12);">
-        <summary class="flex items-center justify-between p-6 cursor-pointer font-display font-semibold text-base" style="color:var(--text);">
-          <span><span class="inline-block w-8 text-sm font-bold" style="color:var(--cta);">04</span> Content Brief</span>
-          <svg class="accordion-icon w-5 h-5 transition-transform shrink-0 ml-4" style="color:var(--muted);" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M19 9l-7 7-7-7"/></svg>
-        </summary>
-        <div class="px-6 pb-6 text-base leading-relaxed" style="color:var(--muted);">The blueprint for everything we're going to create. Website pages, ad copy, blog topics, social content — all mapped out before a single word is written. Strategy first, production second.</div>
-      </details>
-      <details class="reveal accordion-item group rounded-xl border" style="background:var(--card);border-color:rgba(191,148,105,0.12);">
-        <summary class="flex items-center justify-between p-6 cursor-pointer font-display font-semibold text-base" style="color:var(--text);">
-          <span><span class="inline-block w-8 text-sm font-bold" style="color:var(--cta);">05</span> Brand Proof</span>
-          <svg class="accordion-icon w-5 h-5 transition-transform shrink-0 ml-4" style="color:var(--muted);" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M19 9l-7 7-7-7"/></svg>
-        </summary>
-        <div class="px-6 pb-6 text-base leading-relaxed" style="color:var(--muted);">Your checkpoint. We show you the brand direction, sample content, and strategy before anything goes live. If it doesn't feel right, we fix it here. Nothing launches without your sign-off.</div>
-      </details>
-    </div>
-
-    <!-- Phase 2 Stages -->
-    <p class="reveal text-xs font-display font-semibold uppercase tracking-widest mb-6" style="color:var(--primary);">Phase 2 — Build (Weeks 2–4)</p>
-    <div class="space-y-4 mb-12">
-      <details class="reveal accordion-item group rounded-xl border" style="background:var(--card);border-color:rgba(191,148,105,0.12);">
-        <summary class="flex items-center justify-between p-6 cursor-pointer font-display font-semibold text-base" style="color:var(--text);">
-          <span><span class="inline-block w-8 text-sm font-bold" style="color:var(--cta);">06</span> Website Build</span>
-          <svg class="accordion-icon w-5 h-5 transition-transform shrink-0 ml-4" style="color:var(--muted);" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M19 9l-7 7-7-7"/></svg>
-        </summary>
-        <div class="px-6 pb-6 text-base leading-relaxed" style="color:var(--muted);">A fast, conversion-focused website built on your domain. SEO-ready from the start. Mobile-first. Designed to turn visitors into calls — not just look pretty.</div>
-      </details>
-      <details class="reveal accordion-item group rounded-xl border" style="background:var(--card);border-color:rgba(191,148,105,0.12);">
-        <summary class="flex items-center justify-between p-6 cursor-pointer font-display font-semibold text-base" style="color:var(--text);">
-          <span><span class="inline-block w-8 text-sm font-bold" style="color:var(--cta);">07</span> Content Production</span>
-          <svg class="accordion-icon w-5 h-5 transition-transform shrink-0 ml-4" style="color:var(--muted);" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M19 9l-7 7-7-7"/></svg>
-        </summary>
-        <div class="px-6 pb-6 text-base leading-relaxed" style="color:var(--muted);">Blog posts, service pages, location pages, social content — all written in your brand voice. AI-powered production with human quality gates. Volume without sacrificing quality.</div>
-      </details>
-      <details class="reveal accordion-item group rounded-xl border" style="background:var(--card);border-color:rgba(191,148,105,0.12);">
-        <summary class="flex items-center justify-between p-6 cursor-pointer font-display font-semibold text-base" style="color:var(--text);">
-          <span><span class="inline-block w-8 text-sm font-bold" style="color:var(--cta);">08</span> AI Tools Setup</span>
-          <svg class="accordion-icon w-5 h-5 transition-transform shrink-0 ml-4" style="color:var(--muted);" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M19 9l-7 7-7-7"/></svg>
-        </summary>
-        <div class="px-6 pb-6 text-base leading-relaxed" style="color:var(--muted);">Automated follow-ups, review requests, lead notifications, and workflow tools — set up on your accounts, in your name. The systems that keep the engine running while you're on a job site.</div>
-      </details>
-      <details class="reveal accordion-item group rounded-xl border" style="background:var(--card);border-color:rgba(191,148,105,0.12);">
-        <summary class="flex items-center justify-between p-6 cursor-pointer font-display font-semibold text-base" style="color:var(--text);">
-          <span><span class="inline-block w-8 text-sm font-bold" style="color:var(--cta);">09</span> Ad Campaign Launch</span>
-          <svg class="accordion-icon w-5 h-5 transition-transform shrink-0 ml-4" style="color:var(--muted);" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M19 9l-7 7-7-7"/></svg>
-        </summary>
-        <div class="px-6 pb-6 text-base leading-relaxed" style="color:var(--muted);">Google Ads, Meta Ads, or both — targeted to your service area and ideal customers. Built from real search data, not guesswork. Your ad accounts, your data, your leads.</div>
-      </details>
-      <details class="reveal accordion-item group rounded-xl border" style="background:var(--card);border-color:rgba(191,148,105,0.12);">
-        <summary class="flex items-center justify-between p-6 cursor-pointer font-display font-semibold text-base" style="color:var(--text);">
-          <span><span class="inline-block w-8 text-sm font-bold" style="color:var(--cta);">10</span> Analytics &amp; Tracking</span>
-          <svg class="accordion-icon w-5 h-5 transition-transform shrink-0 ml-4" style="color:var(--muted);" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M19 9l-7 7-7-7"/></svg>
-        </summary>
-        <div class="px-6 pb-6 text-base leading-relaxed" style="color:var(--muted);">Call tracking, form tracking, conversion pixels, dashboards — everything wired up so you know exactly where every lead came from. No guessing. No vanity metrics.</div>
-      </details>
-      <details class="reveal accordion-item group rounded-xl border" style="background:var(--card);border-color:rgba(191,148,105,0.12);">
-        <summary class="flex items-center justify-between p-6 cursor-pointer font-display font-semibold text-base" style="color:var(--text);">
-          <span><span class="inline-block w-8 text-sm font-bold" style="color:var(--cta);">11</span> Go-Live QA</span>
-          <svg class="accordion-icon w-5 h-5 transition-transform shrink-0 ml-4" style="color:var(--muted);" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M19 9l-7 7-7-7"/></svg>
-        </summary>
-        <div class="px-6 pb-6 text-base leading-relaxed" style="color:var(--muted);">Before anything goes live, we run a full quality check — speed, mobile, SEO, tracking, forms, links. Every detail gets tested. Your engine launches clean.</div>
-      </details>
-    </div>
-
-    <!-- Phase 3 Stages -->
-    <p class="reveal text-xs font-display font-semibold uppercase tracking-widest mb-6" style="color:var(--primary);">Phase 3 — Run (Ongoing)</p>
-    <div class="space-y-4">
-      <details class="reveal accordion-item group rounded-xl border" style="background:var(--card);border-color:rgba(191,148,105,0.12);">
-        <summary class="flex items-center justify-between p-6 cursor-pointer font-display font-semibold text-base" style="color:var(--text);">
-          <span><span class="inline-block w-8 text-sm font-bold" style="color:var(--cta);">12</span> Ongoing Optimization</span>
-          <svg class="accordion-icon w-5 h-5 transition-transform shrink-0 ml-4" style="color:var(--muted);" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M19 9l-7 7-7-7"/></svg>
-        </summary>
-        <div class="px-6 pb-6 text-base leading-relaxed" style="color:var(--muted);">Your engine doesn't just run — it gets better. We adjust ads, add content, improve conversions, and compound your results month over month. Monthly reports keep you in the loop without burying you in data.</div>
-      </details>
-    </div>
-  </div>
-</section>
-
-<!-- ==================== WHAT YOU DO vs WHAT WE DO ==================== -->
-<section class="section-pad" style="background:var(--bg);">
-  <div class="content-wrap">
-    <p class="reveal text-xs font-display font-semibold uppercase tracking-widest mb-4" style="color:var(--cta);">Division of Labor</p>
-    <h2 class="reveal font-display text-3xl md:text-4xl font-bold mb-12" style="color:var(--text);">What You Do vs. What We Do</h2>
-    <div class="grid md:grid-cols-2 gap-8">
-      <!-- What You Do -->
-      <div class="reveal p-8 rounded-xl border" style="background:var(--card);border-color:rgba(191,148,105,0.12);">
-        <div class="w-12 h-12 rounded-lg flex items-center justify-center mb-6" style="background:rgba(191,148,105,0.15);">
-          <svg class="w-6 h-6" style="color:var(--primary);" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2M12 3a4 4 0 1 0 0 8 4 4 0 0 0 0-8z"/></svg>
-        </div>
-        <h3 class="font-display text-2xl font-bold mb-6" style="color:var(--text);">You</h3>
-        <ul class="space-y-4">
-          <li class="flex items-start gap-3">
-            <svg class="w-5 h-5 mt-0.5 shrink-0" style="color:var(--primary);" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg>
-            <span class="text-base leading-relaxed" style="color:var(--muted);">Show up for a 30-minute onboarding call</span>
-          </li>
-          <li class="flex items-start gap-3">
-            <svg class="w-5 h-5 mt-0.5 shrink-0" style="color:var(--primary);" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg>
-            <span class="text-base leading-relaxed" style="color:var(--muted);">Review and approve the Brand Proof</span>
-          </li>
-          <li class="flex items-start gap-3">
-            <svg class="w-5 h-5 mt-0.5 shrink-0" style="color:var(--primary);" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg>
-            <span class="text-base leading-relaxed" style="color:var(--muted);">Answer the phone when leads call</span>
-          </li>
-        </ul>
-      </div>
-      <!-- What We Do -->
-      <div class="reveal reveal-delay-1 p-8 rounded-xl border" style="background:var(--card);border-color:rgba(199,91,42,0.3);">
-        <div class="w-12 h-12 rounded-lg flex items-center justify-center mb-6" style="background:rgba(199,91,42,0.15);">
-          <svg class="w-6 h-6" style="color:var(--cta);" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
-        </div>
-        <h3 class="font-display text-2xl font-bold mb-6" style="color:var(--text);">Us</h3>
-        <ul class="space-y-4">
-          <li class="flex items-start gap-3">
-            <svg class="w-5 h-5 mt-0.5 shrink-0" style="color:var(--cta);" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg>
-            <span class="text-base leading-relaxed" style="color:var(--muted);">Research, strategy, and brand positioning</span>
-          </li>
-          <li class="flex items-start gap-3">
-            <svg class="w-5 h-5 mt-0.5 shrink-0" style="color:var(--cta);" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg>
-            <span class="text-base leading-relaxed" style="color:var(--muted);">Website design, development, and hosting</span>
-          </li>
-          <li class="flex items-start gap-3">
-            <svg class="w-5 h-5 mt-0.5 shrink-0" style="color:var(--cta);" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg>
-            <span class="text-base leading-relaxed" style="color:var(--muted);">Content creation — blog, social, service pages</span>
-          </li>
-          <li class="flex items-start gap-3">
-            <svg class="w-5 h-5 mt-0.5 shrink-0" style="color:var(--cta);" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg>
-            <span class="text-base leading-relaxed" style="color:var(--muted);">Ad campaign setup, management, and optimization</span>
-          </li>
-          <li class="flex items-start gap-3">
-            <svg class="w-5 h-5 mt-0.5 shrink-0" style="color:var(--cta);" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg>
-            <span class="text-base leading-relaxed" style="color:var(--muted);">AI tools, automations, and workflow setup</span>
-          </li>
-          <li class="flex items-start gap-3">
-            <svg class="w-5 h-5 mt-0.5 shrink-0" style="color:var(--cta);" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg>
-            <span class="text-base leading-relaxed" style="color:var(--muted);">Analytics, tracking, and monthly reporting</span>
-          </li>
-          <li class="flex items-start gap-3">
-            <svg class="w-5 h-5 mt-0.5 shrink-0" style="color:var(--cta);" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg>
-            <span class="text-base leading-relaxed" style="color:var(--muted);">Ongoing optimization and compounding growth</span>
-          </li>
-        </ul>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ==================== FAQ ==================== -->
-<section class="section-pad" style="background:var(--elevated);">
-  <div class="content-wrap max-w-3xl mx-auto">
-    <p class="reveal text-xs font-display font-semibold uppercase tracking-widest mb-4" style="color:var(--cta);">FAQ</p>
-    <h2 class="reveal font-display text-3xl md:text-4xl font-bold mb-12" style="color:var(--text);">Common Questions About the Process</h2>
-    <div class="space-y-4">
-      <details class="reveal group rounded-xl border" style="background:var(--card);border-color:rgba(191,148,105,0.12);">
-        <summary class="flex items-center justify-between p-6 cursor-pointer font-display font-semibold text-base" style="color:var(--text);">
-          How long until my marketing engine is live?
-          <svg class="w-5 h-5 transition-transform group-open:rotate-180 shrink-0 ml-4" style="color:var(--muted);" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M19 9l-7 7-7-7"/></svg>
-        </summary>
-        <div class="px-6 pb-6 text-base leading-relaxed" style="color:var(--muted);">Your full marketing engine — website, content, ads, AI tools — is built and live within 30 days. Discovery takes about a week. The build takes two to three weeks. Then we flip the switch.</div>
-      </details>
-      <details class="reveal group rounded-xl border" style="background:var(--card);border-color:rgba(191,148,105,0.12);">
-        <summary class="flex items-center justify-between p-6 cursor-pointer font-display font-semibold text-base" style="color:var(--text);">
-          What do I need to provide?
-          <svg class="w-5 h-5 transition-transform group-open:rotate-180 shrink-0 ml-4" style="color:var(--muted);" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M19 9l-7 7-7-7"/></svg>
-        </summary>
-        <div class="px-6 pb-6 text-base leading-relaxed" style="color:var(--muted);">A 30-minute onboarding call, access to your existing accounts (domain, Google Business, ad accounts), and honest answers about your business. That's it. We handle the rest.</div>
-      </details>
-      <details class="reveal group rounded-xl border" style="background:var(--card);border-color:rgba(191,148,105,0.12);">
-        <summary class="flex items-center justify-between p-6 cursor-pointer font-display font-semibold text-base" style="color:var(--text);">
-          What if I don't like the Brand Proof?
-          <svg class="w-5 h-5 transition-transform group-open:rotate-180 shrink-0 ml-4" style="color:var(--muted);" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M19 9l-7 7-7-7"/></svg>
-        </summary>
-        <div class="px-6 pb-6 text-base leading-relaxed" style="color:var(--muted);">The Brand Proof is your checkpoint. If something doesn't feel right, we revise it before a single page goes live. Nothing launches without your approval.</div>
-      </details>
-      <details class="reveal group rounded-xl border" style="background:var(--card);border-color:rgba(191,148,105,0.12);">
-        <summary class="flex items-center justify-between p-6 cursor-pointer font-display font-semibold text-base" style="color:var(--text);">
-          How much of my time does this take on an ongoing basis?
-          <svg class="w-5 h-5 transition-transform group-open:rotate-180 shrink-0 ml-4" style="color:var(--muted);" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M19 9l-7 7-7-7"/></svg>
-        </summary>
-        <div class="px-6 pb-6 text-base leading-relaxed" style="color:var(--muted);">After launch, the engine runs itself. You answer the phone when leads call. That's your only job. We handle optimization, content, ads, and reporting.</div>
-      </details>
-      <details class="reveal group rounded-xl border" style="background:var(--card);border-color:rgba(191,148,105,0.12);">
-        <summary class="flex items-center justify-between p-6 cursor-pointer font-display font-semibold text-base" style="color:var(--text);">
-          Do you provide monthly reviews?
-          <svg class="w-5 h-5 transition-transform group-open:rotate-180 shrink-0 ml-4" style="color:var(--muted);" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M19 9l-7 7-7-7"/></svg>
-        </summary>
-        <div class="px-6 pb-6 text-base leading-relaxed" style="color:var(--muted);">Yes. Every month you get a clear report — what's working, what we're adjusting, and where the numbers are heading. No jargon. No vanity metrics. Just the numbers that matter to your business.</div>
-      </details>
-    </div>
-  </div>
-</section>
-
-<!-- ==================== FINAL CTA ==================== -->
-<section class="section-pad relative overflow-hidden" style="background:var(--bg);">
-  <div class="cta-glow" style="left:50%;top:50%;transform:translate(-50%,-50%);width:600px;height:600px;"></div>
-  <div class="content-wrap text-center relative z-10 max-w-2xl mx-auto">
-    <h2 class="reveal font-display text-3xl md:text-4xl font-bold mb-6" style="color:var(--text);">See If a Revenue Engine Fits Your Business</h2>
-    <p class="reveal text-lg leading-relaxed mb-8" style="color:var(--muted);">15 minutes. No pitch. We look at your business, your market, and your numbers — and tell you if it makes sense.</p>
-    <a href="/book" class="reveal cta-btn text-lg px-10 py-5">See If I Qualify</a>
-  </div>
-</section>
+  </section>
 </main>
 
-<!-- ==================== FOOTER ==================== -->
-<footer class="section-pad" style="background:var(--bg);border-top:1px solid rgba(191,148,105,0.1);">
-  <div class="content-wrap">
-    <div class="grid md:grid-cols-4 gap-10 mb-12">
-      <div>
-        <img src="https://assets.buildwisemedia.com/logos/bwm-logo-primary-terracotta-on-transparent.svg" alt="Buildwise Media logo" class="h-8 mb-4">
-        <p class="text-sm leading-relaxed" style="color:var(--muted);">Build Today. Secure Tomorrow. Live Fully.</p>
-      </div>
-      <div>
-        <h4 class="font-display font-semibold text-sm mb-4" style="color:var(--text);">Services</h4>
-        <nav class="flex flex-col gap-2 text-sm" style="color:var(--muted);">
-          <a href="/services" class="hover:text-primary transition-colors">All Services</a>
-          <a href="/services/ascend" class="hover:text-primary transition-colors">Ascend</a>
-          <a href="/services/ascend-lite" class="hover:text-primary transition-colors">Ascend Lite</a>
-        </nav>
-      </div>
-      <div>
-        <h4 class="font-display font-semibold text-sm mb-4" style="color:var(--text);">Company</h4>
-        <nav class="flex flex-col gap-2 text-sm" style="color:var(--muted);">
-          <a href="/why-buildwise" class="hover:text-primary transition-colors">Why Buildwise</a>
-          <a href="/how-it-works" class="hover:text-primary transition-colors">How It Works</a>
-          <a href="/results" class="hover:text-primary transition-colors">Results</a>
-          <a href="/the-poor-four" class="hover:text-primary transition-colors">The Poor Four</a>
-        </nav>
-      </div>
-      <div>
-        <h4 class="font-display font-semibold text-sm mb-4" style="color:var(--text);">Legal</h4>
-        <nav class="flex flex-col gap-2 text-sm" style="color:var(--muted);">
-          <a href="/privacy" class="hover:text-primary transition-colors">Privacy Policy</a>
-          <a href="/terms" class="hover:text-primary transition-colors">Terms of Service</a>
-        </nav>
-        <p class="mt-4 text-xs" style="color:var(--muted);">hello@buildwisemedia.com</p>
-        <p class="text-xs" style="color:var(--muted);">Alpharetta, Georgia</p>
-      </div>
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div class="footer-grid">
+      <div class="footer-brand"><img src="https://assets.buildwisemedia.com/logos/bwm-logo-terracotta-transparent.svg" alt="Buildwise Media" width="140" height="35" class="footer-logo"><p class="footer-tagline">AI-powered marketing engines for service businesses.</p><p class="footer-location">Atlanta, GA</p></div>
+      <div class="footer-col"><h4 class="footer-col-title">Pages</h4><a href="/" class="footer-link">Home</a><a href="/services/ascend" class="footer-link">Ascend</a><a href="/how-it-works" class="footer-link">How It Works</a><a href="/results" class="footer-link">Results</a><a href="/why-buildwise" class="footer-link">Why Buildwise</a></div>
+      <div class="footer-col"><h4 class="footer-col-title">More</h4><a href="/the-poor-four" class="footer-link">The Poor Four</a><a href="/book" class="footer-link">Book a Call</a><a href="/industries/hvac-plumbing-electrical" class="footer-link">Industries</a></div>
+      <div class="footer-col"><h4 class="footer-col-title">Connect</h4><a href="mailto:hello@buildwisemedia.com" class="footer-link">hello@buildwisemedia.com</a></div>
     </div>
-    <div class="pt-8 text-center text-xs" style="border-top:1px solid rgba(191,148,105,0.08);color:var(--muted);">
-      &copy; 2026 Buildwise Media LLC. All rights reserved.
-    </div>
+    <div class="footer-bottom"><p class="footer-copyright">&copy; 2024&ndash;2026 Buildwise Media LLC. All rights reserved.</p></div>
   </div>
 </footer>
 
-<!-- ==================== SCRIPTS ==================== -->
-<script>
-// ---- Theme Toggle ----
-(function() {
-  const html = document.documentElement;
-  const saved = document.cookie.match(/theme=(dark|light)/);
-  if (saved) {
-    html.classList.toggle('dark', saved[1] === 'dark');
-    html.classList.toggle('light', saved[1] === 'light');
-  } else if (window.matchMedia('(prefers-color-scheme: light)').matches) {
-    html.classList.remove('dark'); html.classList.add('light');
-  }
-  function toggle() {
-    const isDark = html.classList.contains('dark');
-    html.classList.toggle('dark', !isDark);
-    html.classList.toggle('light', isDark);
-    document.cookie = 'theme=' + (isDark ? 'light' : 'dark') + ';path=/;max-age=31536000;SameSite=Lax';
-    updateIcons();
-  }
-  function updateIcons() {
-    const isDark = html.classList.contains('dark');
-    document.querySelectorAll('#icon-sun').forEach(el => el.classList.toggle('hidden', isDark));
-    document.querySelectorAll('#icon-moon').forEach(el => el.classList.toggle('hidden', !isDark));
-  }
-  updateIcons();
-  document.getElementById('theme-toggle')?.addEventListener('click', toggle);
-  document.getElementById('theme-toggle-mobile')?.addEventListener('click', toggle);
-})();
-
-// ---- Mobile Menu ----
-(function() {
-  const btn = document.getElementById('mobile-menu-btn');
-  const menu = document.getElementById('mobile-menu');
-  btn?.addEventListener('click', () => {
-    const open = !menu.classList.contains('hidden');
-    menu.classList.toggle('hidden', open);
-    btn.setAttribute('aria-expanded', !open);
-  });
-})();
-
-// ---- Sticky Nav Background ----
-(function() {
-  const header = document.getElementById('site-header');
-  function onScroll() {
-    if (window.scrollY > 60) {
-      header.style.background = 'var(--elevated)';
-      header.style.boxShadow = '0 2px 16px rgba(0,0,0,0.2)';
-    } else {
-      header.style.background = 'transparent';
-      header.style.boxShadow = 'none';
-    }
-  }
-  window.addEventListener('scroll', onScroll, { passive: true });
-  onScroll();
-})();
-
-// ---- Scroll Reveal ----
-(function() {
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); } });
-  }, { threshold: 0.15 });
-  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
-})();
+<!-- JSON-LD -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "LocalBusiness",
+  "@id": "https://buildwisemedia.com/#business",
+  "name": "Buildwise Media",
+  "legalName": "Buildwise Media LLC",
+  "url": "https://buildwisemedia.com",
+  "logo": "https://assets.buildwisemedia.com/logos/bwm-logo-terracotta-transparent.svg",
+  "image": "https://assets.buildwisemedia.com/og/og-default.png",
+  "email": "hello@buildwisemedia.com",
+  "telephone": "+14049993258",
+  "address": {
+    "@type": "PostalAddress",
+    "addressLocality": "Atlanta",
+    "addressRegion": "GA",
+    "addressCountry": "US"
+  },
+  "areaServed": {
+    "@type": "Country",
+    "name": "United States"
+  },
+  "priceRange": "$$$$",
+  "openingHours": "Mo-Fr 09:00-17:00",
+  "sameAs": [
+    "https://www.linkedin.com/company/buildwisemedia",
+    "https://www.facebook.com/buildwisemedia"
+  ]
+}
 </script>
-<!-- Universal Conversion Tracking -->
-<script src="tracking.js"></script>
+
+<script>
+/* Nav hamburger toggle */
+document.getElementById('navHamburger').addEventListener('click',function(){document.getElementById('navMobileMenu').classList.toggle('active');});
+/* Theme toggle */
+function setTheme(t){document.documentElement.className=t;document.cookie='bwm-theme='+t+';path=/;max-age=31536000;SameSite=Lax';}
+document.getElementById('themeToggle').addEventListener('click',function(){setTheme(document.documentElement.className==='dark'?'light':'dark');});
+var tm=document.getElementById('themeToggleMobile');if(tm)tm.addEventListener('click',function(){setTheme(document.documentElement.className==='dark'?'light':'dark');});
+</script>
 </body>
 </html>
