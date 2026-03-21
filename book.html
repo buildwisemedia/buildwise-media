@@ -39,8 +39,7 @@
 <!-- Theme color -->
 <meta name="theme-color" content="#1C1714">
 
-<!-- Dark/light mode (before CSS) -->
-<script>(function(){var c=document.cookie.match(/bwm-theme=(\w+)/);var t=c?c[1]:window.matchMedia('(prefers-color-scheme:light)').matches?'light':'dark';document.documentElement.className=t;})();</script>
+<!-- Dark mode only -->
 
 <!-- Google Tag Manager -->
 <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-P5JSD86L');</script>
@@ -64,11 +63,6 @@
   --ease-smooth: cubic-bezier(0.22, 1, 0.36, 1);
 }
 
-html.light {
-  --bg1: #F5F0EB; --bg2: #EDE6DE; --bg3: #E5DCD3;
-  --text-primary: #1C1714; --text-secondary: #5C4F44; --text-muted: #8A7E73;
-  --border: #D4CBC1; --border-subtle: #E0D8CF;
-}
 
 /* =============================================
    GLOBAL RESET & BASE
@@ -91,7 +85,6 @@ img { max-width: 100%; height: auto; }
    STICKY NAV
    ============================================= */
 .site-nav { position:fixed; top:0; left:0; right:0; z-index:1000; background:rgba(28,23,20,0.92); backdrop-filter:blur(12px); -webkit-backdrop-filter:blur(12px); border-bottom:0.5px solid var(--border); transition: background 0.3s ease; }
-html.light .site-nav { background:rgba(245,240,235,0.92); }
 .nav-inner { max-width:1280px; margin:0 auto; padding:0 48px; height:64px; display:flex; align-items:center; justify-content:space-between; }
 .nav-logo { display:flex; align-items:center; text-decoration:none; }
 .nav-logo img { height:32px; width:auto; }
@@ -102,14 +95,11 @@ html.light .site-nav { background:rgba(245,240,235,0.92); }
 .nav-dropdown-trigger { cursor:pointer; display:flex; align-items:center; gap:4px; }
 .nav-dropdown-trigger::after { content:'\25BE'; font-size:10px; opacity:0.5; }
 .nav-dropdown-menu { position:absolute; top:100%; left:-12px; min-width:220px; background:var(--bg2); border:0.5px solid var(--border); border-radius:8px; padding:8px 0; opacity:0; visibility:hidden; transform:translateY(8px); transition:all 0.3s var(--ease-smooth); z-index:100; }
-html.light .nav-dropdown-menu { background:var(--bg2); }
 .nav-dropdown:hover .nav-dropdown-menu { opacity:1; visibility:visible; transform:translateY(0); }
 .nav-dropdown-item { display:block; padding:8px 16px; font-family:var(--font-heading); font-size:13px; font-weight:500; color:var(--text-secondary); text-decoration:none; transition:background 0.2s ease, color 0.2s ease; }
 .nav-dropdown-item:hover { background:rgba(212,148,58,0.08); color:var(--text-primary); }
 .nav-cta { display:inline-flex; align-items:center; gap:8px; background:var(--amber); color:var(--bg1); font-family:var(--font-heading); font-size:14px; font-weight:600; padding:10px 20px; border-radius:6px; text-decoration:none; transition:background 0.3s ease, transform 0.3s var(--ease-smooth); }
 .nav-cta:hover { background:var(--amber-bright); transform:translateY(-1px); }
-.theme-toggle { background:none; border:0.5px solid var(--border); border-radius:50%; width:32px; height:32px; display:flex; align-items:center; justify-content:center; cursor:pointer; color:var(--text-secondary); transition:border-color 0.3s ease; }
-.theme-toggle:hover { border-color:var(--amber); }
 .nav-hamburger { display:none; background:none; border:none; cursor:pointer; padding:4px; }
 .nav-hamburger span { display:block; width:24px; height:2px; background:var(--text-primary); margin:5px 0; transition:all 0.3s ease; }
 .nav-mobile-menu { display:none; position:fixed; top:64px; left:0; right:0; bottom:0; background:var(--bg1); z-index:999; padding:24px; overflow-y:auto; }
@@ -210,7 +200,6 @@ html.light .nav-dropdown-menu { background:var(--bg2); }
       <li><a href="/how-it-works" class="nav-link">How It Works</a></li>
       <li><a href="/results" class="nav-link">Results</a></li>
       <li><a href="/why-buildwise" class="nav-link">Why Buildwise</a></li>
-      <li><button class="theme-toggle" id="themeToggle" aria-label="Toggle theme"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg></button></li>
       <li><a href="/book" class="nav-cta">See If I Qualify &rarr;</a></li>
     </ul>
     <button class="nav-hamburger" id="navHamburger" aria-label="Open menu"><span></span><span></span><span></span></button>
@@ -218,7 +207,6 @@ html.light .nav-dropdown-menu { background:var(--bg2); }
 </nav>
 <div class="nav-mobile-menu" id="navMobileMenu">
   <a href="/" class="nav-link">Home</a><a href="/services/ascend" class="nav-link">Services: Ascend</a><a href="/how-it-works" class="nav-link">How It Works</a><a href="/results" class="nav-link">Results</a><a href="/why-buildwise" class="nav-link">Why Buildwise</a><a href="/the-poor-four" class="nav-link">The Poor Four</a>
-  <button class="theme-toggle" id="themeToggleMobile" aria-label="Toggle theme" style="margin-top:16px;"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/></svg></button>
   <a href="/book" class="nav-cta">See If I Qualify &rarr;</a>
 </div>
 
@@ -319,10 +307,6 @@ html.light .nav-dropdown-menu { background:var(--bg2); }
 /* Nav hamburger toggle */
 document.getElementById('navHamburger').addEventListener('click',function(){document.getElementById('navMobileMenu').classList.toggle('active');});
 
-/* Theme toggle (cookie-based) */
-function setTheme(t){document.documentElement.className=t;document.cookie='bwm-theme='+t+';path=/;max-age=31536000;SameSite=Lax';}
-document.getElementById('themeToggle').addEventListener('click',function(){setTheme(document.documentElement.className==='dark'?'light':'dark');});
-var tm=document.getElementById('themeToggleMobile');if(tm)tm.addEventListener('click',function(){setTheme(document.documentElement.className==='dark'?'light':'dark');});
 </script>
 
 </body>
