@@ -101,7 +101,7 @@ a{color:inherit}img{max-width:100%;height:auto}
 .nav-dropdown{position:relative}.nav-dropdown-trigger{cursor:pointer;display:flex;align-items:center;gap:4px}.nav-dropdown-trigger::after{content:'\25BE';font-size:10px;opacity:0.5}
 .nav-dropdown-menu{position:absolute;top:100%;left:-12px;min-width:220px;background:var(--bg2);border:0.5px solid var(--border);border-radius:8px;padding:8px 0;opacity:0;visibility:hidden;transform:translateY(8px);transition:all 0.3s var(--ease-smooth);z-index:100}
 .nav-dropdown:hover .nav-dropdown-menu{opacity:1;visibility:visible;transform:translateY(0)}
-.nav-dropdown-item{display:block;padding:8px 16px;font-family:var(--font-heading);font-size:13px;font-weight:500;color:var(--text-secondary);text-decoration:none;transition:background 0.2s ease,color 0.2s ease}.nav-dropdown-item:hover{background:rgba(212,148,58,0.08);color:var(--text-primary)}
+.nav-dropdown-item{display:block;padding:8px 16px;font-family:var(--font-heading);font-size:14px;font-weight:500;color:var(--text-secondary);text-decoration:none;transition:background 0.2s ease,color 0.2s ease}.nav-dropdown-item:hover{background:rgba(212,148,58,0.08);color:var(--text-primary)}
 .nav-cta{display:inline-flex;align-items:center;gap:8px;background:var(--amber);color:var(--bg1);font-family:var(--font-heading);font-size:14px;font-weight:600;padding:10px 20px;border-radius:6px;text-decoration:none;transition:background 0.3s ease,transform 0.3s var(--ease-smooth)}.nav-cta:hover{background:var(--amber-bright);transform:translateY(-1px)}
 .nav-hamburger{display:none;background:none;border:none;cursor:pointer;padding:4px}.nav-hamburger span{display:block;width:24px;height:2px;background:var(--text-primary);margin:5px 0;transition:all 0.3s ease}
 .nav-mobile-menu{display:none;position:fixed;top:64px;left:0;right:0;bottom:0;background:var(--bg1);z-index:999;padding:24px;overflow-y:auto}.nav-mobile-menu.active{display:block}.nav-mobile-menu .nav-link{display:block;padding:12px 0;font-size:16px;border-bottom:0.5px solid var(--border)}.nav-mobile-menu .nav-cta{display:block;text-align:center;margin-top:24px;padding:14px 24px}
@@ -109,7 +109,7 @@ a{color:inherit}img{max-width:100%;height:auto}
 /* SHARED */
 .inner-section{padding:100px 48px;position:relative}
 .inner-inner{max-width:1200px;margin:0 auto}
-.inner-label{font-family:var(--font-heading);font-size:11px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:var(--copper);margin-bottom:16px;display:block}
+.inner-label{font-family:var(--font-heading);font-size:14px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;color:var(--copper);margin-bottom:16px;display:block}
 .inner-h2{font-family:var(--font-heading);font-size:clamp(28px,4vw,44px);font-weight:800;letter-spacing:-0.02em;color:var(--text-primary);line-height:1.15;margin-bottom:20px;text-wrap:balance}
 .inner-h3{font-family:var(--font-heading);font-size:clamp(20px,2.5vw,28px);font-weight:600;color:var(--text-primary);line-height:1.25;margin-bottom:12px}
 .inner-body{font-family:var(--font-body);font-size:1.125rem;font-weight:400;color:var(--text-secondary);line-height:1.7}
@@ -120,15 +120,28 @@ a{color:inherit}img{max-width:100%;height:auto}
 .stagger-1{transition-delay:0.1s}.stagger-2{transition-delay:0.2s}.stagger-3{transition-delay:0.3s}.stagger-4{transition-delay:0.4s}
 
 /* HERO */
-.hiw-hero{background:var(--bg1);min-height:100vh;display:flex;flex-direction:column;justify-content:center;padding:120px 48px 80px;position:relative;overflow:hidden}
+.hiw-hero{background:var(--bg1);min-height:100vh;display:flex;flex-direction:row;align-items:center;justify-content:space-between;gap:48px;padding:120px 48px 80px;position:relative;overflow:hidden}
 .hiw-hero::after{content:'';position:absolute;inset:0;z-index:1;pointer-events:none;background:radial-gradient(ellipse at 50% 60%,rgba(212,148,58,0.04) 0%,transparent 50%)}
-.hero-content{max-width:800px;margin:0 auto;text-align:center;position:relative;z-index:2;animation:heroIn 0.8s var(--ease-smooth) both}
+.hero-content{flex:1;max-width:600px;text-align:left;position:relative;z-index:2;animation:heroIn 0.8s var(--ease-smooth) both}
 @keyframes heroIn{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
-.hero-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(212,148,58,0.1);color:var(--amber);border:0.5px solid rgba(212,148,58,0.25);border-radius:100px;padding:6px 16px;font-family:var(--font-heading);font-size:12px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:16px}
+.hero-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(212,148,58,0.1);color:var(--amber);border:0.5px solid rgba(212,148,58,0.25);border-radius:100px;padding:6px 16px;font-family:var(--font-heading);font-size:14px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:16px}
 .hero-h1{font-family:var(--font-heading);font-size:clamp(36px,5.5vw,60px);font-weight:800;letter-spacing:-0.02em;color:var(--text-primary);line-height:1.1;margin-bottom:24px}
-.hero-sub{font-family:var(--font-body);font-size:clamp(16px,1.8vw,20px);font-weight:400;color:var(--text-secondary);line-height:1.6;max-width:600px;margin:0 auto}
+.hero-sub{font-family:var(--font-body);font-size:clamp(16px,1.8vw,20px);font-weight:400;color:var(--text-secondary);line-height:1.6;max-width:600px;margin:0}
+.hero-cta{margin-top:32px}
 .hero-scroll{position:absolute;bottom:32px;left:50%;transform:translateX(-50%);color:var(--text-muted);animation:heroBounce 2s ease-in-out infinite;opacity:0.5;z-index:2}
 @keyframes heroBounce{0%,100%{transform:translateX(-50%) translateY(0)}50%{transform:translateX(-50%) translateY(8px)}}
+.hero-visual{flex:0 0 auto;width:400px;height:400px;position:relative;display:flex;align-items:center;justify-content:center;z-index:2}
+.gear{position:absolute;border-radius:50%;border-style:dashed}
+.gear--outer{width:200px;height:200px;border-width:1.5px;border-color:rgba(212,148,58,0.2);animation:gearSpin 30s linear infinite;filter:blur(0.5px)}
+.gear--mid{width:140px;height:140px;border-width:1.5px;border-color:rgba(184,115,51,0.25);animation:gearSpin 24s linear infinite reverse}
+.gear--inner{width:80px;height:80px;border-width:1.5px;border-color:rgba(212,148,58,0.3);animation:gearSpin 18s linear infinite}
+.gear-center{width:10px;height:10px;border-radius:50%;background:var(--amber);box-shadow:0 0 16px rgba(212,148,58,0.5),0 0 40px rgba(212,148,58,0.2);animation:gearPulse 3s ease-in-out infinite}
+.gear-line{position:absolute;width:1px;border-left:1px dashed rgba(212,148,58,0.15)}
+.gear-line--1{height:30px;top:50%;left:50%;transform:translate(-50%,-100%) rotate(0deg);transform-origin:bottom center}
+.gear-line--2{height:30px;top:50%;left:50%;transform:translate(-50%,-100%) rotate(120deg);transform-origin:bottom center}
+.gear-line--3{height:30px;top:50%;left:50%;transform:translate(-50%,-100%) rotate(240deg);transform-origin:bottom center}
+@keyframes gearSpin{from{transform:rotate(0deg)}to{transform:rotate(360deg)}}
+@keyframes gearPulse{0%,100%{box-shadow:0 0 16px rgba(212,148,58,0.5),0 0 40px rgba(212,148,58,0.2)}50%{box-shadow:0 0 24px rgba(212,148,58,0.7),0 0 56px rgba(212,148,58,0.3)}}
 
 /* 3-PHASE OVERVIEW CARDS */
 .hiw-phases{background:var(--bg2)}
@@ -137,23 +150,23 @@ a{color:inherit}img{max-width:100%;height:auto}
 .phase-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--amber),var(--copper))}
 .phase-number{font-family:var(--font-heading);font-size:48px;font-weight:800;color:var(--amber);opacity:0.15;line-height:1;margin-bottom:8px}
 .phase-name{font-family:var(--font-heading);font-size:20px;font-weight:700;color:var(--text-primary);margin-bottom:4px}
-.phase-timeline{font-family:var(--font-heading);font-size:12px;font-weight:600;letter-spacing:1px;text-transform:uppercase;color:var(--amber);margin-bottom:12px}
-.phase-desc{font-family:var(--font-body);font-size:15px;color:var(--text-secondary);line-height:1.65}
+.phase-timeline{font-family:var(--font-heading);font-size:14px;font-weight:600;letter-spacing:1px;text-transform:uppercase;color:var(--amber);margin-bottom:12px}
+.phase-desc{font-family:var(--font-body);font-size:16px;color:var(--text-secondary);line-height:1.65}
 
 /* 12-STAGE TABBED */
 .stages-section { padding: 96px 48px; }
 .stages-inner { max-width: 820px; margin: 0 auto; }
-.stages-label { font-family: var(--font-heading); font-size: 11px; font-weight: 600; letter-spacing: 2.5px; text-transform: uppercase; color: var(--amber); margin-bottom: 12px; text-align: center; }
-.stages-headline { font-family: var(--font-heading); font-size: clamp(28px, 4vw, 36px); font-weight: 800; color: var(--text-primary); margin-bottom: 8px; text-align: center; letter-spacing: -0.02em; line-height: 1.15; }
-.stages-sub { font-family: var(--font-body); font-size: 16px; color: var(--text-secondary); margin-bottom: 32px; text-align: center; line-height: 1.6; }
+.stages-label { font-family: var(--font-heading); font-size: 14px; font-weight: 600; letter-spacing: 1.5px; text-transform: uppercase; color: var(--amber); margin-bottom: 12px; text-align: left; }
+.stages-headline { font-family: var(--font-heading); font-size: clamp(28px, 4vw, 36px); font-weight: 800; color: var(--text-primary); margin-bottom: 8px; text-align: left; letter-spacing: -0.02em; line-height: 1.15; }
+.stages-sub { font-family: var(--font-body); font-size: 16px; color: var(--text-secondary); margin-bottom: 32px; text-align: left; line-height: 1.6; }
 .stages-tabs { display: flex; justify-content: center; gap: 4px; margin-bottom: 32px; }
 .stages-tab { flex: 1; max-width: 200px; padding: 14px 20px; background: var(--bg2); color: var(--text-secondary); border: 0.5px solid var(--border); border-radius: 8px; font-family: var(--font-heading); font-size: 14px; font-weight: 700; cursor: pointer; transition: all 0.3s ease; letter-spacing: 0.02em; }
 .stages-tab.active { background: var(--amber); color: var(--bg1); border: none; }
-.stages-tab-sub { display: block; font-size: 11px; font-weight: 500; opacity: 0.7; margin-top: 2px; }
+.stages-tab-sub { display: block; font-size: 14px; font-weight: 500; opacity: 0.7; margin-top: 2px; }
 .stages-panel { display: none; }
 .stages-panel.active { display: block; }
 .stages-phase-intro { display: flex; align-items: center; gap: 12px; margin-bottom: 24px; padding-bottom: 16px; border-bottom: 0.5px solid var(--border); }
-.stages-phase-intro p { font-family: var(--font-body); font-size: 13px; color: var(--text-secondary); margin: 0; }
+.stages-phase-intro p { font-family: var(--font-body); font-size: 14px; color: var(--text-secondary); margin: 0; }
 .stages-phase-intro strong { color: var(--text-primary); }
 .phase-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
 .stages-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
@@ -164,39 +177,46 @@ a{color:inherit}img{max-width:100%;height:auto}
 .stage-card[data-phase="run"]:hover { border-color: var(--gold); }
 .stage-card--full { grid-column: 1 / -1; }
 .stage-header { display: flex; align-items: center; gap: 12px; margin-bottom: 12px; }
-.stage-num { display: flex; align-items: center; justify-content: center; width: 32px; height: 32px; border-radius: 50%; border: 1.5px solid; font-family: var(--font-heading); font-size: 13px; font-weight: 700; flex-shrink: 0; }
+.stage-num { display: flex; align-items: center; justify-content: center; width: 32px; height: 32px; border-radius: 50%; border: 1.5px solid; font-family: var(--font-heading); font-size: 14px; font-weight: 700; flex-shrink: 0; }
 .stage-name { font-family: var(--font-heading); font-size: 15px; font-weight: 700; color: var(--text-primary); }
-.stage-badge { background: rgba(212,148,58,0.15); color: var(--amber); font-family: var(--font-heading); font-size: 11px; font-weight: 600; padding: 3px 10px; border-radius: 100px; letter-spacing: 0.5px; }
-.stage-desc { font-family: var(--font-body); font-size: 14px; color: var(--text-secondary); line-height: 1.6; margin: 0; }
+.stage-badge { background: rgba(212,148,58,0.15); color: var(--amber); font-family: var(--font-heading); font-size: 14px; font-weight: 600; padding: 3px 10px; border-radius: 100px; letter-spacing: 0.5px; }
+.stage-icon{flex-shrink:0;opacity:0.6}
+.stage-card[data-phase="discovery"] .stage-icon{color:var(--amber)}
+.stage-card[data-phase="build"] .stage-icon{color:var(--copper)}
+.stage-card[data-phase="run"] .stage-icon{color:var(--gold)}
+.stage-desc { font-family: var(--font-body); font-size: 15px; color: var(--text-secondary); line-height: 1.6; margin: 0; }
 
 /* YOU VS US — HONEST SPLIT */
-.split-section { padding: 96px 48px; }
+.split-section { padding: 96px 48px; background: var(--bg2); }
 .split-inner { max-width: 820px; margin: 0 auto; }
-.split-label { font-family: var(--font-heading); font-size: 11px; font-weight: 600; letter-spacing: 2.5px; text-transform: uppercase; color: var(--copper); margin-bottom: 12px; text-align: center; }
+.split-label { font-family: var(--font-heading); font-size: 14px; font-weight: 600; letter-spacing: 1.5px; text-transform: uppercase; color: var(--copper); margin-bottom: 12px; text-align: center; }
 .split-headline { font-family: var(--font-heading); font-size: clamp(28px, 4vw, 36px); font-weight: 800; color: var(--text-primary); margin-bottom: 8px; text-align: center; letter-spacing: -0.02em; line-height: 1.15; }
 .split-sub { font-family: var(--font-body); font-size: 16px; color: var(--text-secondary); margin-bottom: 40px; text-align: center; line-height: 1.6; }
-.split-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
-.split-card { background: var(--bg2); border-radius: 12px; border: 0.5px solid var(--border); padding: 32px; }
+.split-grid { display: grid; grid-template-columns: 1fr auto 1fr; gap: 16px; }
+.split-vs-divider{display:flex;flex-direction:column;align-items:center;gap:0;padding:32px 0}
+.split-vs-line{width:1px;flex:1;background:linear-gradient(to bottom,transparent,var(--border),transparent)}
+.split-vs-badge{font-family:var(--font-accent);font-style:italic;font-size:14px;color:var(--text-muted);padding:8px 0}
+.split-card { background: var(--bg3); border-radius: 12px; border: 0.5px solid var(--border); padding: 32px; }
 .split-card--us { border-color: var(--amber); }
-.split-col-label { font-family: var(--font-heading); font-size: 12px; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; color: var(--text-muted); margin: 0 0 24px; }
+.split-col-label { font-family: var(--font-heading); font-size: 14px; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; color: var(--text-muted); margin: 0 0 24px; }
 .split-col-label--us { color: var(--amber); }
 .split-item--expanded { display: flex; align-items: flex-start; gap: 12px; margin-bottom: 20px; }
 .split-item--expanded:last-of-type { margin-bottom: 0; }
 .split-check-circle { flex-shrink: 0; margin-top: 2px; }
 .split-item-title { font-family: var(--font-heading); font-size: 15px; font-weight: 600; color: var(--text-primary); margin: 0 0 4px; }
-.split-item-desc { font-family: var(--font-body); font-size: 13px; color: var(--text-muted); margin: 0; }
+.split-item-desc { font-family: var(--font-body); font-size: 14px; color: var(--text-muted); margin: 0; }
 .split-checklist { display: flex; flex-direction: column; gap: 12px; }
 .split-item--compact { display: flex; align-items: center; gap: 10px; }
 .split-check { flex-shrink: 0; }
 .split-item--compact span { font-family: var(--font-body); font-size: 14px; color: var(--text-secondary); }
 .split-punchline { margin-top: 24px; padding-top: 20px; border-top: 0.5px solid var(--border); text-align: center; }
 .split-stat { font-family: var(--font-heading); font-size: 32px; font-weight: 800; color: var(--amber); margin: 0; letter-spacing: -0.02em; }
-.split-stat-label { font-family: var(--font-body); font-size: 12px; color: var(--text-muted); margin: 4px 0 0; text-transform: uppercase; letter-spacing: 1px; }
+.split-stat-label { font-family: var(--font-body); font-size: 14px; color: var(--text-muted); margin: 4px 0 0; text-transform: uppercase; letter-spacing: 1px; }
 .split-kicker { text-align: center; margin: 32px 0 0; font-family: var(--font-accent); font-style: italic; font-size: 17px; color: var(--copper); line-height: 1.5; }
 
 /* FAQ */
 .faq-section{padding:100px 48px;max-width:800px;margin:0 auto}
-.section-label{font-family:var(--font-heading);font-size:12px;font-weight:600;letter-spacing:3px;text-transform:uppercase;color:var(--copper);margin-bottom:16px;text-align:center}
+.section-label{font-family:var(--font-heading);font-size:14px;font-weight:600;letter-spacing:3px;text-transform:uppercase;color:var(--copper);margin-bottom:16px;text-align:center}
 .section-headline{font-family:var(--font-heading);font-size:clamp(28px,4vw,42px);font-weight:700;line-height:1.15;color:var(--text-primary);margin-bottom:48px;text-align:center}
 .faq-list{display:flex;flex-direction:column}.faq-item{border-bottom:0.5px solid var(--border)}.faq-item:first-child{border-top:0.5px solid var(--border)}
 .faq-trigger{width:100%;display:flex;align-items:center;justify-content:space-between;gap:24px;padding:24px 0;background:none;border:none;cursor:pointer;text-align:left;font-family:var(--font-heading);font-size:17px;font-weight:600;color:var(--text-primary);line-height:1.4;transition:color 0.3s var(--ease-smooth)}.faq-trigger:hover{color:var(--amber)}
@@ -204,7 +224,7 @@ a{color:inherit}img{max-width:100%;height:auto}
 .faq-icon-line{transition:transform 0.4s var(--ease-smooth),opacity 0.3s}
 .faq-item.open .faq-trigger{color:var(--amber)}.faq-item.open .faq-icon{background:rgba(212,148,58,0.1);border-color:var(--amber)}.faq-item.open .faq-icon-h{opacity:0;transform:rotate(90deg)}
 .faq-answer{max-height:0;overflow:hidden;transition:max-height 0.5s var(--ease-smooth),padding 0.4s var(--ease-smooth)}.faq-item.open .faq-answer{max-height:300px;padding:0 0 24px 0}
-.faq-answer-text{font-family:var(--font-body);font-size:16px;color:var(--text-secondary);line-height:1.7;max-width:680px}
+.faq-answer-text{font-family:var(--font-body);font-size:18px;color:var(--text-secondary);line-height:1.7;max-width:680px}
 
 /* FINAL CTA */
 .final-cta{padding:120px 48px;position:relative;overflow:hidden;text-align:center}
@@ -217,19 +237,19 @@ a{color:inherit}img{max-width:100%;height:auto}
 .cta-body{font-family:var(--font-body);font-size:1.125rem;color:var(--text-secondary);line-height:1.7;margin-bottom:16px}
 .cta-qualifier{font-family:var(--font-accent);font-style:italic;font-size:16px;color:var(--copper);margin-bottom:44px}
 .cta-button{position:relative;display:inline-flex;align-items:center;gap:12px;background:var(--amber);color:var(--bg1);font-family:var(--font-heading);font-size:18px;font-weight:700;padding:20px 48px;border-radius:10px;text-decoration:none;transition:all 0.4s var(--ease-smooth)}.cta-button::before{content:'';position:absolute;inset:-6px;border-radius:14px;background:radial-gradient(ellipse at center,rgba(212,148,58,0.2) 0%,transparent 70%);filter:blur(20px);z-index:-1}.cta-button:hover{background:var(--amber-bright);transform:translateY(-3px)}.cta-button .arrow{transition:transform 0.4s var(--ease-smooth);display:inline-block;font-size:20px}.cta-button:hover .arrow{transform:translateX(5px)}
-.cta-trust{display:flex;justify-content:center;gap:24px;margin-top:28px}.cta-trust-item{display:flex;align-items:center;gap:6px;font-family:var(--font-heading);font-size:12px;font-weight:500;color:var(--text-secondary);opacity:0.7}.cta-trust-dot{width:5px;height:5px;border-radius:50%;background:var(--copper);opacity:0.6}
+.cta-trust{display:flex;justify-content:center;gap:24px;margin-top:28px}.cta-trust-item{display:flex;align-items:center;gap:6px;font-family:var(--font-heading);font-size:14px;font-weight:500;color:var(--text-secondary);opacity:0.7}.cta-trust-dot{width:5px;height:5px;border-radius:50%;background:var(--copper);opacity:0.6}
 
 /* FOOTER */
-.site-footer{background:var(--bg2);border-top:0.5px solid var(--border);padding:64px 48px 32px}.footer-inner{max-width:1280px;margin:0 auto}.footer-grid{display:grid;grid-template-columns:1.5fr 1fr 1fr 1fr;gap:48px;margin-bottom:48px}.footer-logo{margin-bottom:16px}.footer-tagline{font-family:var(--font-body);font-size:14px;color:var(--text-secondary);line-height:1.6;margin-bottom:8px}.footer-location{font-family:var(--font-heading);font-size:12px;color:var(--text-muted);letter-spacing:1px}.footer-col{display:flex;flex-direction:column;gap:10px}.footer-col-title{font-family:var(--font-heading);font-size:11px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:var(--text-muted);margin-bottom:4px}.footer-link{font-family:var(--font-body);font-size:14px;color:var(--text-secondary);text-decoration:none;transition:color 0.3s ease}.footer-link:hover{color:var(--amber)}.footer-social{display:flex;gap:12px;margin-top:4px}.footer-social-link{color:var(--text-muted);transition:color 0.3s ease}.footer-social-link:hover{color:var(--amber)}.footer-bottom{border-top:0.5px solid var(--border);padding-top:24px}.footer-copyright{font-family:var(--font-body);font-size:12px;color:var(--text-muted)}
+.site-footer{background:var(--bg2);border-top:0.5px solid var(--border);padding:64px 48px 32px}.footer-inner{max-width:1280px;margin:0 auto}.footer-grid{display:grid;grid-template-columns:1.5fr 1fr 1fr 1fr;gap:48px;margin-bottom:48px}.footer-logo{margin-bottom:16px}.footer-tagline{font-family:var(--font-body);font-size:14px;color:var(--text-secondary);line-height:1.6;margin-bottom:8px}.footer-location{font-family:var(--font-heading);font-size:14px;color:var(--text-muted);letter-spacing:1px}.footer-col{display:flex;flex-direction:column;gap:10px}.footer-col-title{font-family:var(--font-heading);font-size:14px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;color:var(--text-muted);margin-bottom:4px}.footer-link{font-family:var(--font-body);font-size:14px;color:var(--text-secondary);text-decoration:none;transition:color 0.3s ease}.footer-link:hover{color:var(--amber)}.footer-social{display:flex;gap:12px;margin-top:4px}.footer-social-link{color:var(--text-muted);transition:color 0.3s ease}.footer-social-link:hover{color:var(--amber)}.footer-bottom{border-top:0.5px solid var(--border);padding-top:24px}.footer-copyright{font-family:var(--font-body);font-size:14px;color:var(--text-muted)}
 
 /* RESPONSIVE */
 @keyframes fadeUp{to{opacity:1;transform:translateY(0)}}
 @media(max-width:960px){.nav-links{display:none}.nav-hamburger{display:block}.nav-inner{padding:0 24px}}
 @media(max-width:768px){
-  .hiw-hero{padding:100px 24px 60px;min-height:auto}.hero-h1{font-size:clamp(32px,7vw,44px)}
+  .hiw-hero{padding:100px 24px 60px;min-height:auto;flex-direction:column;text-align:center}.hero-content{text-align:center;max-width:100%}.hero-sub{margin:0 auto}.hero-h1{font-size:clamp(32px,7vw,44px)}.hero-visual{width:280px;height:280px;margin:0 auto}
   .inner-section{padding:80px 24px}.phase-grid{grid-template-columns:1fr}.phase-card{padding:32px 24px}
-  .stages-section{padding:72px 24px}.stages-grid{grid-template-columns:1fr}.stages-tab{padding:12px 16px;font-size:13px}
-  .split-section{padding:72px 24px}.split-grid{grid-template-columns:1fr}.split-stat{font-size:28px}
+  .stages-section{padding:72px 24px}.stages-grid{grid-template-columns:1fr}.stages-tab{padding:12px 16px;font-size:14px}
+  .split-section{padding:72px 24px}.split-grid{grid-template-columns:1fr}.split-vs-divider{display:none}.split-stat{font-size:28px}
   .faq-section{padding:72px 24px}.faq-trigger{font-size:16px;padding:20px 0}
   .final-cta{padding:80px 24px}.cta-button{padding:18px 36px;font-size:16px}.cta-trust{flex-direction:column;align-items:center;gap:12px}
   .footer-grid{grid-template-columns:1fr 1fr;gap:32px}.site-footer{padding:48px 24px 24px}
@@ -272,6 +292,16 @@ a{color:inherit}img{max-width:100%;height:auto}
     </span>
     <h1 class="hero-h1">From First Call to Running Engine &mdash; Here&rsquo;s Exactly How It Works</h1>
     <p class="hero-sub">No black boxes. No &ldquo;trust the process&rdquo; without showing you the process. Here&rsquo;s every step, in order.</p>
+    <div class="hero-cta"><a href="/book" class="inner-cta">See If I Qualify <span>&rarr;</span></a></div>
+  </div>
+  <div class="hero-visual" aria-hidden="true">
+    <div class="gear gear--outer"></div>
+    <div class="gear gear--mid"></div>
+    <div class="gear gear--inner"></div>
+    <div class="gear-center"></div>
+    <div class="gear-line gear-line--1"></div>
+    <div class="gear-line gear-line--2"></div>
+    <div class="gear-line gear-line--3"></div>
   </div>
   <div class="hero-scroll">
     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="6 9 12 15 18 9"/></svg>
@@ -329,23 +359,23 @@ a{color:inherit}img{max-width:100%;height:auto}
   </div>
   <div class="stages-grid">
     <div class="stage-card" data-phase="discovery">
-      <div class="stage-header"><span class="stage-num" style="border-color: var(--amber); color: var(--amber);">1</span><span class="stage-name">Brand Capture</span></div>
+      <div class="stage-header"><span class="stage-num" style="border-color: var(--amber); color: var(--amber);">1</span><svg class="stage-icon" width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="10" cy="10" r="7"/><circle cx="10" cy="10" r="3"/></svg><span class="stage-name">Brand Capture</span></div>
       <p class="stage-desc">AI-powered assessment of your brand, market, and competition. Takes minutes, not weeks.</p>
     </div>
     <div class="stage-card" data-phase="discovery">
-      <div class="stage-header"><span class="stage-num" style="border-color: var(--amber); color: var(--amber);">2</span><span class="stage-name">Research &amp; Strategy</span></div>
+      <div class="stage-header"><span class="stage-num" style="border-color: var(--amber); color: var(--amber);">2</span><svg class="stage-icon" width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="10" cy="10" r="7"/><line x1="10" y1="3" x2="10" y2="10"/><line x1="10" y1="10" x2="14" y2="14"/></svg><span class="stage-name">Research &amp; Strategy</span></div>
       <p class="stage-desc">Niche analysis, competitor teardown, target market mapping. You get a Marketing Strategy you own.</p>
     </div>
     <div class="stage-card" data-phase="discovery">
-      <div class="stage-header"><span class="stage-num" style="border-color: var(--amber); color: var(--amber);">3</span><span class="stage-name">Brand Voice Card</span></div>
+      <div class="stage-header"><span class="stage-num" style="border-color: var(--amber); color: var(--amber);">3</span><svg class="stage-icon" width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><line x1="6" y1="6" x2="6" y2="14"/><line x1="10" y1="3" x2="10" y2="17"/><line x1="14" y1="7" x2="14" y2="13"/></svg><span class="stage-name">Brand Voice Card</span></div>
       <p class="stage-desc">Your tone, personality, messaging rules — documented so every piece of content sounds like you.</p>
     </div>
     <div class="stage-card" data-phase="discovery">
-      <div class="stage-header"><span class="stage-num" style="border-color: var(--amber); color: var(--amber);">4</span><span class="stage-name">Content Brief</span></div>
+      <div class="stage-header"><span class="stage-num" style="border-color: var(--amber); color: var(--amber);">4</span><svg class="stage-icon" width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="2" width="12" height="16" rx="1"/><line x1="7" y1="6" x2="13" y2="6"/><line x1="7" y1="10" x2="13" y2="10"/><line x1="7" y1="14" x2="10" y2="14"/></svg><span class="stage-name">Content Brief</span></div>
       <p class="stage-desc">The blueprint for all your marketing content. Topics, angles, keywords, channels — all mapped out.</p>
     </div>
     <div class="stage-card stage-card--full" data-phase="discovery">
-      <div class="stage-header"><span class="stage-num" style="border-color: var(--amber); color: var(--amber);">5</span><span class="stage-name">Brand Proof</span><span class="stage-badge">YOUR APPROVAL</span></div>
+      <div class="stage-header"><span class="stage-num" style="border-color: var(--amber); color: var(--amber);">5</span><svg class="stage-icon" width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M10 2L3 7v6c0 4 7 5 7 5s7-1 7-5V7L10 2z"/><polyline points="7 10 9 12 13 8"/></svg><span class="stage-name">Brand Proof</span><span class="stage-badge">YOUR APPROVAL</span></div>
       <p class="stage-desc">You review everything built so far. Two approval checkpoints. Nothing ships without your sign-off.</p>
     </div>
   </div>
@@ -359,23 +389,23 @@ a{color:inherit}img{max-width:100%;height:auto}
   </div>
   <div class="stages-grid">
     <div class="stage-card" data-phase="build">
-      <div class="stage-header"><span class="stage-num" style="border-color: var(--copper); color: var(--copper);">6</span><span class="stage-name">Website Build</span></div>
+      <div class="stage-header"><span class="stage-num" style="border-color: var(--copper); color: var(--copper);">6</span><svg class="stage-icon" width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 7 2 10 6 13"/><polyline points="14 7 18 10 14 13"/><line x1="12" y1="4" x2="8" y2="16"/></svg><span class="stage-name">Website Build</span></div>
       <p class="stage-desc">Custom-built to engineering standards. 90+ PageSpeed. Schema markup. SEO-optimized. On YOUR domain.</p>
     </div>
     <div class="stage-card" data-phase="build">
-      <div class="stage-header"><span class="stage-num" style="border-color: var(--copper); color: var(--copper);">7</span><span class="stage-name">Content Production</span></div>
+      <div class="stage-header"><span class="stage-num" style="border-color: var(--copper); color: var(--copper);">7</span><svg class="stage-icon" width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="10" cy="10" r="7"/><polygon points="8,6 8,14 15,10"/></svg><span class="stage-name">Content Production</span></div>
       <p class="stage-desc">Social posts, graphics, video — produced and scheduled across all your channels.</p>
     </div>
     <div class="stage-card" data-phase="build">
-      <div class="stage-header"><span class="stage-num" style="border-color: var(--copper); color: var(--copper);">8</span><span class="stage-name">AI Tools Setup</span></div>
+      <div class="stage-header"><span class="stage-num" style="border-color: var(--copper); color: var(--copper);">8</span><svg class="stage-icon" width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="5" width="10" height="10" rx="1"/><line x1="3" y1="8" x2="5" y2="8"/><line x1="3" y1="12" x2="5" y2="12"/><line x1="15" y1="8" x2="17" y2="8"/><line x1="15" y1="12" x2="17" y2="12"/><line x1="8" y1="3" x2="8" y2="5"/><line x1="12" y1="3" x2="12" y2="5"/><line x1="8" y1="15" x2="8" y2="17"/><line x1="12" y1="15" x2="12" y2="17"/></svg><span class="stage-name">AI Tools Setup</span></div>
       <p class="stage-desc">Chatbot, AI phone system, booking automation, review management — all configured for your business.</p>
     </div>
     <div class="stage-card" data-phase="build">
-      <div class="stage-header"><span class="stage-num" style="border-color: var(--copper); color: var(--copper);">9</span><span class="stage-name">Ad Campaign Launch</span></div>
+      <div class="stage-header"><span class="stage-num" style="border-color: var(--copper); color: var(--copper);">9</span><svg class="stage-icon" width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="10" cy="10" r="7"/><circle cx="10" cy="10" r="4"/><circle cx="10" cy="10" r="1"/><line x1="14" y1="3" x2="10" y2="10"/></svg><span class="stage-name">Ad Campaign Launch</span></div>
       <p class="stage-desc">Paid campaigns go live on Meta and/or Google. Targeted to your ICP. Tracked against revenue, not vanity.</p>
     </div>
     <div class="stage-card stage-card--full" data-phase="build">
-      <div class="stage-header"><span class="stage-num" style="border-color: var(--copper); color: var(--copper);">10</span><span class="stage-name">Analytics &amp; Tracking</span></div>
+      <div class="stage-header"><span class="stage-num" style="border-color: var(--copper); color: var(--copper);">10</span><svg class="stage-icon" width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="16" x2="5" y2="10"/><line x1="10" y1="16" x2="10" y2="6"/><line x1="15" y1="16" x2="15" y2="3"/></svg><span class="stage-name">Analytics &amp; Tracking</span></div>
       <p class="stage-desc">GA4 dashboard configured. Conversion tracking live. You see exactly what's working — no black box.</p>
     </div>
   </div>
@@ -389,11 +419,11 @@ a{color:inherit}img{max-width:100%;height:auto}
   </div>
   <div class="stages-grid">
     <div class="stage-card" data-phase="run">
-      <div class="stage-header"><span class="stage-num" style="border-color: var(--gold); color: var(--gold);">11</span><span class="stage-name">Go-Live QA</span></div>
+      <div class="stage-header"><span class="stage-num" style="border-color: var(--gold); color: var(--gold);">11</span><svg class="stage-icon" width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="2" width="12" height="16" rx="1"/><polyline points="7 7 8.5 8.5 11 6"/><polyline points="7 11 8.5 12.5 11 10"/><line x1="7" y1="15" x2="11" y2="15"/></svg><span class="stage-name">Go-Live QA</span></div>
       <p class="stage-desc">47-point quality checklist. Lighthouse audit. Schema validation. Nothing goes live until it passes.</p>
     </div>
     <div class="stage-card" data-phase="run">
-      <div class="stage-header"><span class="stage-num" style="border-color: var(--gold); color: var(--gold);">12</span><span class="stage-name">Ongoing Optimization</span></div>
+      <div class="stage-header"><span class="stage-num" style="border-color: var(--gold); color: var(--gold);">12</span><svg class="stage-icon" width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M17 10A7 7 0 0 1 6 15.3"/><polyline points="6 18 6 15 9 15"/><path d="M3 10A7 7 0 0 1 14 4.7"/><polyline points="14 2 14 5 11 5"/></svg><span class="stage-name">Ongoing Optimization</span></div>
       <p class="stage-desc">Monthly performance reviews. Data-driven adjustments. The engine gets better every month.</p>
     </div>
   </div>
@@ -441,9 +471,15 @@ a{color:inherit}img{max-width:100%;height:auto}
     </div>
 
     <div class="split-punchline">
-      <p class="split-stat">~30 min/month</p>
+      <p class="split-stat" data-count="30" data-prefix="~" data-suffix=" min/month">~0 min/month</p>
       <p class="split-stat-label">Your total time investment</p>
     </div>
+  </div>
+
+  <div class="split-vs-divider" aria-hidden="true">
+    <div class="split-vs-line"></div>
+    <span class="split-vs-badge">vs</span>
+    <div class="split-vs-line"></div>
   </div>
 
   <!-- US column -->
@@ -467,7 +503,7 @@ a{color:inherit}img{max-width:100%;height:auto}
 
     <div class="split-punchline">
       <p class="split-stat">Everything else.</p>
-      <p class="split-stat-label">71 documented processes running your engine</p>
+      <p class="split-stat-label"><span data-count="71" data-suffix=" documented processes running your engine">0 documented processes running your engine</span></p>
     </div>
   </div>
 
@@ -503,7 +539,7 @@ a{color:inherit}img{max-width:100%;height:auto}
     <div class="cta-trust reveal">
       <span class="cta-trust-item"><span class="cta-trust-dot"></span> Month-to-month</span>
       <span class="cta-trust-item"><span class="cta-trust-dot"></span> You own everything</span>
-      <span class="cta-trust-item"><span class="cta-trust-dot"></span> Cancel anytime</span>
+      <span class="cta-trust-item"><span class="cta-trust-dot"></span> No long-term lock-in</span>
     </div>
   </div>
 </section>
@@ -530,6 +566,14 @@ a{color:inherit}img{max-width:100%;height:auto}
 <script>function toggleFaq(t){var i=t.closest('.faq-item'),w=i.classList.contains('open');document.querySelectorAll('.faq-item.open').forEach(function(e){e.classList.remove('open')});if(!w)i.classList.add('open')}</script>
 <script>function switchPhaseTab(phase){var phases=['discovery','build','run'];var tabColors={discovery:'var(--amber)',build:'var(--copper)',run:'var(--gold)'};phases.forEach(function(p){var tab=document.getElementById('tab-'+p);var panel=document.getElementById('panel-'+p);if(p===phase){tab.classList.add('active');tab.style.background=tabColors[p];panel.classList.add('active')}else{tab.classList.remove('active');tab.style.background='';panel.classList.remove('active')}})}</script>
 <script>(function(){var o=new IntersectionObserver(function(e){e.forEach(function(en){if(en.isIntersecting){en.target.classList.add('visible');o.unobserve(en.target)}})},{threshold:0.15});document.querySelectorAll('.reveal,.section-label,.section-headline').forEach(function(el){o.observe(el)})})()</script>
+<script>
+(function(){
+  function countUp(el,target,duration){var start=0;var startTime=null;function step(timestamp){if(!startTime)startTime=timestamp;var progress=Math.min((timestamp-startTime)/duration,1);var eased=1-Math.pow(1-progress,3);var current=Math.round(eased*target);el.textContent=(el.dataset.prefix||'')+current+(el.dataset.suffix||'');if(progress<1)requestAnimationFrame(step)}requestAnimationFrame(step)}
+  var counters=document.querySelectorAll('[data-count]');
+  var observer=new IntersectionObserver(function(entries){entries.forEach(function(entry){if(entry.isIntersecting){var el=entry.target;countUp(el,parseInt(el.dataset.count),1500);observer.unobserve(el)}})},{threshold:0.5});
+  counters.forEach(function(el){observer.observe(el)});
+})();
+</script>
 
 </body>
 </html>
