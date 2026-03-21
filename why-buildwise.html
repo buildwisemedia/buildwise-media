@@ -146,6 +146,40 @@ a{color:inherit}img{max-width:100%;height:auto}
   .footer-grid{grid-template-columns:1fr 1fr;gap:32px}.site-footer{padding:48px 24px 24px}
 }
 @media(max-width:480px){.footer-grid{grid-template-columns:1fr;gap:24px}.eng-stats{grid-template-columns:1fr}.final-cta{padding:64px 20px}.final-cta::before{width:100%}.cta-button{width:100%;justify-content:center}.faq-section{padding:56px 20px}}
+
+/* HERO CTA + BLUEPRINT */
+.hero-cta-wrap{margin-top:32px;text-align:center;animation:heroIn 0.8s var(--ease-smooth) 0.2s both}
+.hero-blueprint{margin-top:40px;display:flex;justify-content:center;animation:heroIn 0.8s var(--ease-smooth) 0.4s both}
+.blueprint-svg{width:100%;max-width:600px;height:auto}
+
+/* PROBLEM CALLOUT */
+.problem-callout{border-left:3px solid var(--copper);background:rgba(51,45,39,0.5);padding:20px;border-radius:0 8px 8px 0;margin-top:16px}
+.problem-callout .inner-body{font-style:italic;font-size:1.05rem;margin-bottom:0}
+
+/* VALUE ICONS */
+.value-icon{margin-bottom:16px;display:block}
+.value-icon svg{width:40px;height:40px}
+
+/* ENGINEERING STAT ROWS */
+.eng-stat-rows{display:flex;flex-direction:column;gap:0}
+.eng-stat-row{display:grid;grid-template-columns:100px 1fr 180px;align-items:center;gap:24px;padding:24px 0;border-bottom:0.5px solid var(--border-subtle)}
+.eng-stat-row:last-child{border-bottom:none}
+.eng-row-number{font-family:var(--font-heading);font-size:clamp(28px,4vw,40px);font-weight:800;color:var(--amber);line-height:1}
+.eng-row-label{font-family:var(--font-body);font-size:15px;color:var(--text-secondary);line-height:1.5}
+.eng-progress-track{width:100%;height:4px;background:var(--bg3);border-radius:2px;overflow:hidden}
+.eng-progress-fill{height:100%;background:linear-gradient(90deg,var(--amber),var(--copper));border-radius:2px;width:0;transition:width 1.5s var(--ease-smooth) 0.3s}
+.eng-stat-row.visible .eng-progress-fill{width:var(--progress)}
+
+@media(max-width:768px){
+  .hero-blueprint{margin-top:24px}
+  .eng-stat-row{grid-template-columns:80px 1fr;gap:16px}
+  .eng-progress-track{grid-column:1/-1}
+  .problem-callout{padding:16px}
+}
+@media(max-width:480px){
+  .eng-stat-row{grid-template-columns:1fr}
+  .eng-row-number{font-size:32px}
+}
 </style>
 </head>
 <body>
@@ -162,6 +196,54 @@ a{color:inherit}img{max-width:100%;height:auto}
     <span class="hero-badge"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg> Philosophy</span>
     <h1 class="hero-h1">Built Different. On Purpose.</h1>
     <p class="hero-sub">Most agencies sell deliverables. We build infrastructure &mdash; against documented engineering standards that are verifiable before you spend a dollar.</p>
+    <div class="hero-cta-wrap">
+      <a href="/book" class="inner-cta">See If I Qualify <span>&rarr;</span></a>
+    </div>
+    <div class="hero-blueprint">
+      <svg class="blueprint-svg" viewBox="0 0 600 130" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Buildwise engineering process: Strategy, Build, Launch, Optimize, Scale">
+        <defs>
+          <marker id="bp-arrow" viewBox="0 0 6 6" refX="6" refY="3" markerWidth="6" markerHeight="6" orient="auto"><path d="M0,0 L6,3 L0,6" fill="#3D352E"/></marker>
+          <pattern id="bp-grid" width="20" height="20" patternUnits="userSpaceOnUse"><path d="M20 0H0v20" fill="none" stroke="rgba(184,115,51,0.04)" stroke-width="0.5"/></pattern>
+        </defs>
+        <rect width="600" height="130" fill="url(#bp-grid)" rx="8"/>
+        <rect x="0.5" y="0.5" width="599" height="129" rx="8" fill="none" stroke="rgba(184,115,51,0.08)" stroke-width="1"/>
+        <!-- Connecting lines -->
+        <line x1="100" y1="50" x2="140" y2="50" stroke="#3D352E" stroke-width="1" stroke-dasharray="6 4" marker-end="url(#bp-arrow)"><animate attributeName="stroke-dashoffset" from="0" to="-20" dur="2s" repeatCount="indefinite"/></line>
+        <line x1="220" y1="50" x2="260" y2="50" stroke="#3D352E" stroke-width="1" stroke-dasharray="6 4" marker-end="url(#bp-arrow)"><animate attributeName="stroke-dashoffset" from="0" to="-20" dur="2s" repeatCount="indefinite"/></line>
+        <line x1="340" y1="50" x2="380" y2="50" stroke="#3D352E" stroke-width="1" stroke-dasharray="6 4" marker-end="url(#bp-arrow)"><animate attributeName="stroke-dashoffset" from="0" to="-20" dur="2s" repeatCount="indefinite"/></line>
+        <line x1="460" y1="50" x2="500" y2="50" stroke="#3D352E" stroke-width="1" stroke-dasharray="6 4" marker-end="url(#bp-arrow)"><animate attributeName="stroke-dashoffset" from="0" to="-20" dur="2s" repeatCount="indefinite"/></line>
+        <!-- Connection glow dots -->
+        <circle cx="120" cy="50" r="3" fill="#D4943A"><animate attributeName="opacity" values="0.2;0.9;0.2" dur="2.5s" repeatCount="indefinite"/></circle>
+        <circle cx="240" cy="50" r="3" fill="#D4943A"><animate attributeName="opacity" values="0.2;0.9;0.2" dur="2.5s" begin="0.5s" repeatCount="indefinite"/></circle>
+        <circle cx="360" cy="50" r="3" fill="#D4943A"><animate attributeName="opacity" values="0.2;0.9;0.2" dur="2.5s" begin="1s" repeatCount="indefinite"/></circle>
+        <circle cx="480" cy="50" r="3" fill="#D4943A"><animate attributeName="opacity" values="0.2;0.9;0.2" dur="2.5s" begin="1.5s" repeatCount="indefinite"/></circle>
+        <!-- Node: Strategy -->
+        <rect x="20" y="33" width="80" height="34" rx="6" fill="#332D27" stroke="#B87333" stroke-width="1"/>
+        <circle cx="60" cy="50" r="22" fill="none" stroke="#D4943A" stroke-width="0.5" opacity="0"><animate attributeName="r" values="22;30;22" dur="3s" repeatCount="indefinite"/><animate attributeName="opacity" values="0;0.3;0" dur="3s" repeatCount="indefinite"/></circle>
+        <text x="60" y="54" text-anchor="middle" fill="#A89B8C" font-family="Manrope,sans-serif" font-size="10" font-weight="600" letter-spacing="1">STRATEGY</text>
+        <text x="60" y="88" text-anchor="middle" fill="#7A6F63" font-family="Inter,sans-serif" font-size="9" letter-spacing="0.5">01</text>
+        <!-- Node: Build -->
+        <rect x="140" y="33" width="80" height="34" rx="6" fill="#332D27" stroke="#B87333" stroke-width="1"/>
+        <circle cx="180" cy="50" r="22" fill="none" stroke="#D4943A" stroke-width="0.5" opacity="0"><animate attributeName="r" values="22;30;22" dur="3s" begin="0.6s" repeatCount="indefinite"/><animate attributeName="opacity" values="0;0.3;0" dur="3s" begin="0.6s" repeatCount="indefinite"/></circle>
+        <text x="180" y="54" text-anchor="middle" fill="#A89B8C" font-family="Manrope,sans-serif" font-size="10" font-weight="600" letter-spacing="1">BUILD</text>
+        <text x="180" y="88" text-anchor="middle" fill="#7A6F63" font-family="Inter,sans-serif" font-size="9" letter-spacing="0.5">02</text>
+        <!-- Node: Launch -->
+        <rect x="260" y="33" width="80" height="34" rx="6" fill="#332D27" stroke="#B87333" stroke-width="1"/>
+        <circle cx="300" cy="50" r="22" fill="none" stroke="#D4943A" stroke-width="0.5" opacity="0"><animate attributeName="r" values="22;30;22" dur="3s" begin="1.2s" repeatCount="indefinite"/><animate attributeName="opacity" values="0;0.3;0" dur="3s" begin="1.2s" repeatCount="indefinite"/></circle>
+        <text x="300" y="54" text-anchor="middle" fill="#A89B8C" font-family="Manrope,sans-serif" font-size="10" font-weight="600" letter-spacing="1">LAUNCH</text>
+        <text x="300" y="88" text-anchor="middle" fill="#7A6F63" font-family="Inter,sans-serif" font-size="9" letter-spacing="0.5">03</text>
+        <!-- Node: Optimize -->
+        <rect x="380" y="33" width="80" height="34" rx="6" fill="#332D27" stroke="#B87333" stroke-width="1"/>
+        <circle cx="420" cy="50" r="22" fill="none" stroke="#D4943A" stroke-width="0.5" opacity="0"><animate attributeName="r" values="22;30;22" dur="3s" begin="1.8s" repeatCount="indefinite"/><animate attributeName="opacity" values="0;0.3;0" dur="3s" begin="1.8s" repeatCount="indefinite"/></circle>
+        <text x="420" y="54" text-anchor="middle" fill="#A89B8C" font-family="Manrope,sans-serif" font-size="10" font-weight="600" letter-spacing="1">OPTIMIZE</text>
+        <text x="420" y="88" text-anchor="middle" fill="#7A6F63" font-family="Inter,sans-serif" font-size="9" letter-spacing="0.5">04</text>
+        <!-- Node: Scale -->
+        <rect x="500" y="33" width="80" height="34" rx="6" fill="#332D27" stroke="#B87333" stroke-width="1"/>
+        <circle cx="540" cy="50" r="22" fill="none" stroke="#D4943A" stroke-width="0.5" opacity="0"><animate attributeName="r" values="22;30;22" dur="3s" begin="2.4s" repeatCount="indefinite"/><animate attributeName="opacity" values="0;0.3;0" dur="3s" begin="2.4s" repeatCount="indefinite"/></circle>
+        <text x="540" y="54" text-anchor="middle" fill="#A89B8C" font-family="Manrope,sans-serif" font-size="10" font-weight="600" letter-spacing="1">SCALE</text>
+        <text x="540" y="88" text-anchor="middle" fill="#7A6F63" font-family="Inter,sans-serif" font-size="9" letter-spacing="0.5">05</text>
+      </svg>
+    </div>
   </div>
   <div class="hero-scroll"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="6 9 12 15 18 9"/></svg></div>
 </section>
@@ -174,8 +256,10 @@ a{color:inherit}img{max-width:100%;height:auto}
         <span class="inner-label">Why We Exist</span>
         <h2 class="inner-h2">The Industry Default Is Broken</h2>
         <p class="inner-body">Service business owners spend thousands per month on agencies delivering PowerPoint reports and excuses. The industry default: 12-month contracts, agencies own your assets, no quality standards, no accountability.</p>
-        <p class="inner-body" style="margin-top:16px">Enterprise-grade marketing is now possible at a price point that makes sense for service businesses. That&rsquo;s the opportunity Buildwise was built to capture.</p>
-        <p class="inner-body" style="margin-top:16px">BWM uses a month-to-month Client Services Agreement &mdash; no long-term lock-in. We earn your business every month. Cancel with 30 days notice. You own everything because it&rsquo;s YOUR business.</p>
+        <div class="problem-callout">
+          <p class="inner-body">Enterprise-grade marketing is now possible at a price point that makes sense for service businesses. That&rsquo;s the opportunity Buildwise was built to capture.</p>
+        </div>
+        <p class="inner-body" style="margin-top:16px">BWM uses a month-to-month Client Services Agreement &mdash; no long-term lock-in. We earn your business every month. Cancel with 30 days notice. <strong style="color:var(--amber)">You own everything</strong> because it&rsquo;s YOUR business.</p>
       </div>
       <div class="problem-visual reveal stagger-2">
         <div class="problem-stat">
@@ -200,18 +284,22 @@ a{color:inherit}img{max-width:100%;height:auto}
     <h2 class="inner-h2 reveal">The BWM Four</h2>
     <div class="values-grid">
       <div class="inner-card value-card reveal stagger-1">
+        <span class="value-icon"><svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#B87333" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg></span>
         <div class="value-name">GSD (Get Stuff Done)</div>
         <p class="value-desc">We ship. Every week. No &ldquo;strategy phases&rdquo; that last 6 months. Your engine is live in 30 days, and improvements roll out continuously.</p>
       </div>
       <div class="inner-card value-card reveal stagger-2">
+        <span class="value-icon"><svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#B87333" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></span>
         <div class="value-name">Integrity</div>
         <p class="value-desc">Month-to-month Client Services Agreement &mdash; no long-term lock-in. You own everything. We say what we&rsquo;ll do and do what we say.</p>
       </div>
       <div class="inner-card value-card reveal stagger-3">
+        <span class="value-icon"><svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#B87333" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg></span>
         <div class="value-name">Excellence</div>
         <p class="value-desc">47-point QA checklist. PageSpeed 90+. Schema markup on every page. We build to engineering standards because your business deserves it.</p>
       </div>
       <div class="inner-card value-card reveal stagger-4">
+        <span class="value-icon"><svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#B87333" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg></span>
         <div class="value-name">Add the Light</div>
         <p class="value-desc">Business should serve life, not consume it. We build systems that give you time back &mdash; so you can spend it where it matters most.</p>
       </div>
@@ -227,22 +315,26 @@ a{color:inherit}img{max-width:100%;height:auto}
     <div class="eng-text reveal">
       <p class="inner-body">Buildwise Media runs on AI systems that handle 85% of production, quality-gated at every step. No junior account managers. No offshore content farms. Every deliverable is scored against a quality rubric before it reaches you.</p>
     </div>
-    <div class="eng-stats">
-      <div class="eng-stat reveal stagger-1">
-        <div class="eng-stat-number" data-target="90">90+</div>
-        <div class="eng-stat-label">PageSpeed score on every website we build</div>
+    <div class="eng-stat-rows">
+      <div class="eng-stat-row reveal stagger-1">
+        <div class="eng-row-number" data-target="90" data-suffix="+">90+</div>
+        <div class="eng-row-label">PageSpeed score on every website we build</div>
+        <div class="eng-progress-track"><div class="eng-progress-fill" style="--progress:90%"></div></div>
       </div>
-      <div class="eng-stat reveal stagger-2">
-        <div class="eng-stat-number" data-target="71">71</div>
-        <div class="eng-stat-label">Documented processes running your engine</div>
+      <div class="eng-stat-row reveal stagger-2">
+        <div class="eng-row-number" data-target="71">71</div>
+        <div class="eng-row-label">Documented processes running your engine</div>
+        <div class="eng-progress-track"><div class="eng-progress-fill" style="--progress:71%"></div></div>
       </div>
-      <div class="eng-stat reveal stagger-3">
-        <div class="eng-stat-number">8/10</div>
-        <div class="eng-stat-label">Quality threshold &mdash; anything below goes back for revision</div>
+      <div class="eng-stat-row reveal stagger-3">
+        <div class="eng-row-number" data-target="8" data-suffix="/10">8/10</div>
+        <div class="eng-row-label">Quality threshold &mdash; anything below goes back for revision</div>
+        <div class="eng-progress-track"><div class="eng-progress-fill" style="--progress:80%"></div></div>
       </div>
-      <div class="eng-stat reveal stagger-4">
-        <div class="eng-stat-number" data-target="6">6</div>
-        <div class="eng-stat-label">Schema types on every page for AI discoverability</div>
+      <div class="eng-stat-row reveal stagger-4">
+        <div class="eng-row-number" data-target="6">6</div>
+        <div class="eng-row-label">Schema types on every page for AI discoverability</div>
+        <div class="eng-progress-track"><div class="eng-progress-fill" style="--progress:50%"></div></div>
       </div>
     </div>
   </div>
@@ -280,5 +372,34 @@ a{color:inherit}img{max-width:100%;height:auto}
 <script>document.getElementById('navHamburger').addEventListener('click',function(){document.getElementById('navMobileMenu').classList.toggle('active')});</script>
 <script>function toggleFaq(t){var i=t.closest('.faq-item'),w=i.classList.contains('open');document.querySelectorAll('.faq-item.open').forEach(function(e){e.classList.remove('open')});if(!w)i.classList.add('open')}</script>
 <script>(function(){var o=new IntersectionObserver(function(e){e.forEach(function(en){if(en.isIntersecting){en.target.classList.add('visible');o.unobserve(en.target)}})},{threshold:0.15});document.querySelectorAll('.reveal,.section-label,.section-headline').forEach(function(el){o.observe(el)})})()</script>
+<script>
+(function(){
+  var animated=new Set();
+  function easeOut(t){return 1-Math.pow(1-t,3)}
+  function animateCounter(el){
+    var target=parseInt(el.getAttribute('data-target'));
+    if(!target||animated.has(el))return;
+    animated.add(el);
+    var suffix=el.getAttribute('data-suffix')||'';
+    var duration=2000;
+    var start=performance.now();
+    function step(now){
+      var elapsed=now-start;
+      var progress=Math.min(elapsed/duration,1);
+      var value=Math.round(easeOut(progress)*target);
+      el.textContent=value+suffix;
+      if(progress<1)requestAnimationFrame(step);
+    }
+    el.textContent='0'+suffix;
+    requestAnimationFrame(step);
+  }
+  var co=new IntersectionObserver(function(entries){
+    entries.forEach(function(entry){
+      if(entry.isIntersecting){animateCounter(entry.target);co.unobserve(entry.target)}
+    });
+  },{threshold:0.3});
+  document.querySelectorAll('[data-target]').forEach(function(el){co.observe(el)});
+})();
+</script>
 </body>
 </html>
