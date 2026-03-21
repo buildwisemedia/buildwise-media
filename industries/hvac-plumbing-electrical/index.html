@@ -347,17 +347,27 @@ body::before{content:'';position:fixed;inset:0;z-index:9999;pointer-events:none;
 
 /* ═══════════════════════════════════════
    11. SOCIAL PROOF SECTION
-   Centered testimonial card (bootstrap phase)
-   Trades framing: industrial card, sharp corners
+   Split card: number left, quote right (Brain component)
    ═══════════════════════════════════════ */
 .vert-proof{background:var(--bg1)}
 .proof-center{display:flex;flex-direction:column;align-items:center;text-align:center}
-.proof-card{position:relative;max-width:720px;width:100%;background:var(--bg3);border:0.5px solid var(--border);border-radius:4px;padding:48px 40px;margin-top:32px;margin-bottom:32px;text-align:left}
-.proof-quote-mark{position:absolute;top:-10px;left:24px;font-family:var(--font-accent);font-size:120px;line-height:1;color:var(--copper);opacity:0.15;pointer-events:none;user-select:none}
-.proof-badge{display:inline-block;background:var(--niche-accent-dim);color:var(--niche-accent);font-family:var(--font-heading);font-size:13px;font-weight:600;padding:6px 16px;border-radius:100px;letter-spacing:0.5px;margin-bottom:24px}
-.proof-text{font-family:var(--font-body);font-size:clamp(17px,2vw,20px);color:var(--text-primary);line-height:1.6;margin-bottom:20px}
-.proof-secondary{font-family:var(--font-accent);font-style:italic;font-size:18px;color:var(--text-secondary);margin-bottom:20px;line-height:1.5}
-.proof-attribution{display:block;font-family:var(--font-heading);font-size:13px;color:var(--text-muted);font-style:normal;letter-spacing:0.5px}
+.proof-card{width:100%;max-width:800px;background:var(--bg3);border:0.5px solid var(--border);border-radius:16px;overflow:hidden;display:grid;grid-template-columns:1fr 1fr;min-height:320px;margin-top:32px;margin-bottom:32px}
+.proof-number-side{padding:48px 40px;display:flex;flex-direction:column;justify-content:center;position:relative;border-right:0.5px solid var(--border)}
+.proof-number-side::before{content:'\201C';position:absolute;top:20px;left:24px;font-family:var(--font-accent);font-size:120px;color:var(--copper);opacity:0.12;line-height:1;pointer-events:none}
+.proof-from{font-family:var(--font-heading);font-size:14px;font-weight:600;color:var(--text-muted);margin-bottom:12px;letter-spacing:0.5px}
+.proof-from span{color:var(--text-secondary);text-decoration:line-through;text-decoration-color:var(--text-muted);text-decoration-thickness:1.5px}
+.proof-big-number{font-family:var(--font-heading);font-size:clamp(56px,8vw,80px);font-weight:800;color:var(--amber);line-height:1;letter-spacing:-0.03em;margin-bottom:8px}
+.proof-timeframe{font-family:var(--font-body);font-size:15px;color:var(--text-secondary);line-height:1.5}
+.proof-badge{display:inline-flex;align-items:center;gap:6px;margin-top:20px;padding:6px 14px;background:rgba(212,148,58,0.1);border:1px solid rgba(212,148,58,0.2);border-radius:100px;font-family:var(--font-heading);font-size:12px;font-weight:600;color:var(--amber);letter-spacing:0.5px}
+.proof-badge::before{content:'';width:6px;height:6px;background:var(--amber);border-radius:50%}
+.proof-quote-side{padding:48px 40px;display:flex;flex-direction:column;justify-content:center;text-align:left}
+.proof-quote{font-family:var(--font-accent);font-size:clamp(20px,2.5vw,26px);font-style:italic;color:var(--text-primary);line-height:1.5;margin-bottom:24px}
+.proof-context{font-family:var(--font-body);font-size:14px;color:var(--text-secondary);line-height:1.65;margin-bottom:24px}
+.proof-attribution{display:flex;align-items:center;gap:12px}
+.proof-avatar{width:40px;height:40px;border-radius:50%;background:var(--bg2);border:1.5px solid var(--border);display:flex;align-items:center;justify-content:center;font-family:var(--font-heading);font-size:14px;font-weight:700;color:var(--niche-accent)}
+.proof-attr-text{display:flex;flex-direction:column;gap:2px}
+.proof-attr-name{font-family:var(--font-heading);font-size:13px;font-weight:600;color:var(--text-primary)}
+.proof-attr-role{font-family:var(--font-body);font-size:12px;color:var(--text-muted)}
 
 /* ═══════════════════════════════════════
    12. FOOTER (identical to homepage)
@@ -407,8 +417,10 @@ body::before{content:'';position:fixed;inset:0;z-index:9999;pointer-events:none;
   .engine-icon{left:-44px;width:28px;height:28px}
   .engine-icon svg{width:14px;height:14px}
   .bench-grid{grid-template-columns:repeat(3,1fr)}
-  .proof-card{padding:36px 24px}
-  .proof-quote-mark{font-size:80px;top:-5px;left:16px}
+  .proof-card{grid-template-columns:1fr}
+  .proof-number-side{border-right:none;border-bottom:0.5px solid var(--border);padding:40px 28px 32px}
+  .proof-quote-side{padding:32px 28px 40px}
+  .proof-big-number{font-size:56px}
 }
 
 @media(max-width:480px){
@@ -749,11 +761,23 @@ body::before{content:'';position:fixed;inset:0;z-index:9999;pointer-events:none;
       <span class="vert-label reveal">Results</span>
       <h2 class="vert-h2 reveal">Revenue Engines in Action</h2>
       <div class="proof-card reveal">
-        <div class="proof-quote-mark" aria-hidden="true">&ldquo;</div>
-        <div class="proof-badge">33&times; Revenue Growth</div>
-        <p class="proof-text">We built a Revenue Engine for a service business doing $300K a year. Within twelve months, they crossed $10M. The system compounds &mdash; leads build reputation, reputation builds revenue, revenue funds more leads.</p>
-        <p class="proof-secondary">&ldquo;Best season we&rsquo;ve ever had &mdash; thirty years in business.&rdquo;</p>
-        <cite class="proof-attribution">&mdash; Revenue Engine clients</cite>
+        <div class="proof-number-side">
+          <div class="proof-from">From <span>$300K</span></div>
+          <div class="proof-big-number">$10M</div>
+          <div class="proof-timeframe">In twelve months</div>
+          <div class="proof-badge">33&times; Revenue Growth</div>
+        </div>
+        <div class="proof-quote-side">
+          <blockquote class="proof-quote">&ldquo;Best season we&rsquo;ve ever had &mdash; thirty years in business.&rdquo;</blockquote>
+          <p class="proof-context">The system compounds. Leads build reputation, reputation builds revenue, revenue funds more leads.</p>
+          <div class="proof-attribution">
+            <div class="proof-avatar">RE</div>
+            <div class="proof-attr-text">
+              <div class="proof-attr-name">Revenue Engine Client</div>
+              <div class="proof-attr-role">Service Business &middot; Southeast US</div>
+            </div>
+          </div>
+        </div>
       </div>
       <a href="/results" class="context-link reveal">See how Revenue Engines perform across industries &rarr;</a>
     </div>
