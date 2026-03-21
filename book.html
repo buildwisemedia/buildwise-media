@@ -56,7 +56,7 @@
    ============================================= */
 :root {
   --bg1: #1C1714; --bg2: #2A2320; --bg3: #332D27;
-  --text-primary: #F5F0EB; --text-secondary: #A89B8C; --text-muted: #7A6F63;
+  --text-primary: #F5F0EB; --text-secondary: #A89B8C; --text-muted: #8B7F73;
   --amber: #D4943A; --amber-bright: #E8A94D; --copper: #B87333; --gold: #C9A84C;
   --border: #3D352E; --border-subtle: #2E2822;
   --font-heading: 'Manrope', sans-serif;
@@ -75,7 +75,7 @@ body { background: var(--bg1); color: var(--text-primary); font-family: var(--fo
 
 /* Film grain overlay */
 body::before {
-  content:''; position:fixed; inset:0; z-index:9999; pointer-events:none;
+  content:''; position:fixed; inset:0; z-index:1; pointer-events:none;
   background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
   opacity: 0.035;
 }
@@ -223,7 +223,53 @@ img { max-width: 100%; height: auto; }
     <div class="book-embed">
       <div id="cal-embed" style="width:100%;min-height:600px;"></div>
       <script type="text/javascript" src="https://book.buildwisemedia.com/embed/embed.js"></script>
-      <script>Cal("init", {origin:"https://book.buildwisemedia.com"});Cal("inline", {calLink:"bwm/discovery-call", elementOrSelector:"#cal-embed", config:{theme:"dark"}});</script>
+      <script>
+        Cal("init", {origin:"https://book.buildwisemedia.com"});
+        Cal("inline", {
+          calLink:"bwm/discovery-call",
+          elementOrSelector:"#cal-embed",
+          config:{
+            theme:"dark",
+            cssVarsPerTheme:{
+              dark:{
+                "cal-brand":"#D4943A",
+                "cal-brand-emphasis":"#E8A94D",
+                "cal-text":"#F5F0EB",
+                "cal-text-emphasis":"#F5F0EB",
+                "cal-text-subtle":"#A89B8C",
+                "cal-text-muted":"#8B7F73",
+                "cal-bg":"#1C1714",
+                "cal-bg-emphasis":"#2A2320",
+                "cal-bg-subtle":"#332D27",
+                "cal-border":"#3D352E",
+                "cal-border-emphasis":"#3D352E",
+                "cal-border-default":"#3D352E",
+                "cal-border-subtle":"#2E2822"
+              }
+            },
+            hideEventTypeDetails:"false",
+            layout:"month_view"
+          }
+        });
+        Cal("on", {
+          action: "bookingSuccessful",
+          callback: function(e) {
+            /* Meta Pixel: Schedule event */
+            if (typeof fbq !== 'undefined') {
+              fbq('track', 'Schedule');
+            }
+            /* GTM: booking_confirmed event */
+            window.dataLayer = window.dataLayer || [];
+            window.dataLayer.push({
+              event: 'booking_confirmed',
+              eventCategory: 'conversion',
+              eventAction: 'discovery_call_booked'
+            });
+            /* Redirect to confirmation page */
+            setTimeout(function(){ window.location.href = '/booked'; }, 1500);
+          }
+        });
+      </script>
     </div>
   </section>
 </main>
@@ -240,7 +286,7 @@ img { max-width: 100%; height: auto; }
         <p class="footer-location">Atlanta, GA</p>
       </div>
       <div class="footer-col">
-        <h4 class="footer-col-title">Pages</h4>
+        <h3 class="footer-col-title">Pages</h3>
         <a href="/" class="footer-link">Home</a>
         <a href="/services/ascend" class="footer-link">Ascend</a>
         <a href="/how-it-works" class="footer-link">How It Works</a>
@@ -248,13 +294,13 @@ img { max-width: 100%; height: auto; }
         <a href="/why-buildwise" class="footer-link">Why Buildwise</a>
       </div>
       <div class="footer-col">
-        <h4 class="footer-col-title">More</h4>
+        <h3 class="footer-col-title">More</h3>
         <a href="/the-poor-four" class="footer-link">The Poor Four</a>
         <a href="/book" class="footer-link">See If I Qualify</a>
         <a href="/industries/hvac-plumbing-electrical" class="footer-link">Industries</a>
       </div>
       <div class="footer-col">
-        <h4 class="footer-col-title">Connect</h4>
+        <h3 class="footer-col-title">Connect</h3>
         <a href="mailto:hello@buildwisemedia.com" class="footer-link">hello@buildwisemedia.com</a>
         <div class="footer-social">
           <a href="https://www.linkedin.com/company/buildwisemedia" class="footer-social-link" aria-label="LinkedIn" target="_blank" rel="noopener">

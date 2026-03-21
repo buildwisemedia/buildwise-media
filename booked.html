@@ -57,7 +57,7 @@
    ============================================= */
 :root {
   --bg1: #1C1714; --bg2: #2A2320; --bg3: #332D27;
-  --text-primary: #F5F0EB; --text-secondary: #A89B8C; --text-muted: #7A6F63;
+  --text-primary: #F5F0EB; --text-secondary: #A89B8C; --text-muted: #8B7F73;
   --amber: #D4943A; --amber-bright: #E8A94D; --copper: #B87333; --gold: #C9A84C;
   --border: #3D352E; --border-subtle: #2E2822;
   --font-heading: 'Manrope', sans-serif;
@@ -76,7 +76,7 @@ body { background: var(--bg1); color: var(--text-primary); font-family: var(--fo
 
 /* Film grain overlay */
 body::before {
-  content:''; position:fixed; inset:0; z-index:9999; pointer-events:none;
+  content:''; position:fixed; inset:0; z-index:1; pointer-events:none;
   background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
   opacity: 0.035;
 }
@@ -246,7 +246,7 @@ img { max-width: 100%; height: auto; }
         <p class="footer-location">Atlanta, GA</p>
       </div>
       <div class="footer-col">
-        <h4 class="footer-col-title">Pages</h4>
+        <h3 class="footer-col-title">Pages</h3>
         <a href="/" class="footer-link">Home</a>
         <a href="/services/ascend" class="footer-link">Ascend</a>
         <a href="/how-it-works" class="footer-link">How It Works</a>
@@ -254,13 +254,13 @@ img { max-width: 100%; height: auto; }
         <a href="/why-buildwise" class="footer-link">Why Buildwise</a>
       </div>
       <div class="footer-col">
-        <h4 class="footer-col-title">More</h4>
+        <h3 class="footer-col-title">More</h3>
         <a href="/the-poor-four" class="footer-link">The Poor Four</a>
         <a href="/book" class="footer-link">See If I Qualify</a>
         <a href="/industries/hvac-plumbing-electrical" class="footer-link">Industries</a>
       </div>
       <div class="footer-col">
-        <h4 class="footer-col-title">Connect</h4>
+        <h3 class="footer-col-title">Connect</h3>
         <a href="mailto:hello@buildwisemedia.com" class="footer-link">hello@buildwisemedia.com</a>
         <div class="footer-social">
           <a href="https://www.linkedin.com/company/buildwisemedia" class="footer-social-link" aria-label="LinkedIn" target="_blank" rel="noopener">
@@ -283,6 +283,23 @@ img { max-width: 100%; height: auto; }
 /* Nav hamburger toggle */
 document.getElementById('navHamburger').addEventListener('click',function(){document.getElementById('navMobileMenu').classList.toggle('active');});
 
+/* ===========================================
+   CONVERSION TRACKING — BOOKING CONFIRMED
+   =========================================== */
+
+/* Meta Pixel: Schedule event (primary conversion) */
+if (typeof fbq !== 'undefined') {
+  fbq('track', 'Schedule');
+}
+
+/* GTM: booking_confirmed dataLayer event */
+window.dataLayer = window.dataLayer || [];
+window.dataLayer.push({
+  event: 'booking_confirmed',
+  eventCategory: 'conversion',
+  eventAction: 'discovery_call_booked',
+  eventLabel: 'booked_page_view'
+});
 </script>
 
 </body>
