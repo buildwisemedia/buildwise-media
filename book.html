@@ -227,51 +227,72 @@ img { max-width: 100%; height: auto; }
         <a href="https://book.buildwisemedia.com/bwm/discovery-call" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:8px;background:var(--amber);color:var(--bg1);font-family:var(--font-heading);font-size:15px;font-weight:600;padding:14px 28px;border-radius:6px;text-decoration:none;">Book Your Discovery Call &rarr;</a>
       </div>
       <script>
-        (function() {
-          var script = document.createElement('script');
-          script.src = 'https://book.buildwisemedia.com/embed/embed.js';
-          script.onload = function() {
-            Cal("init", {origin:"https://book.buildwisemedia.com"});
-            Cal("inline", {
-              calLink:"bwm/discovery-call",
-              elementOrSelector:"#cal-embed",
-              config:{
-                theme:"dark",
-                cssVarsPerTheme:{
-                  dark:{
-                    "cal-brand":"#D4943A",
-                    "cal-brand-emphasis":"#E8A94D",
-                    "cal-text":"#F5F0EB",
-                    "cal-text-emphasis":"#F5F0EB",
-                    "cal-text-subtle":"#A89B8C",
-                    "cal-text-muted":"#8B7F73",
-                    "cal-bg":"#1C1714",
-                    "cal-bg-emphasis":"#2A2320",
-                    "cal-bg-subtle":"#332D27",
-                    "cal-border":"#3D352E",
-                    "cal-border-emphasis":"#3D352E",
-                    "cal-border-default":"#3D352E",
-                    "cal-border-subtle":"#2E2822"
-                  }
-                },
-                hideEventTypeDetails:false,
-                layout:"month_view"
-              }
-            });
-            Cal("on", {
-              action: "bookingSuccessful",
-              callback: function(e) {
-                /* Redirect to confirmation page — conversions fire there */
-                setTimeout(function(){ window.location.href = '/booked?confirmed=1'; }, 1500);
-              }
-            });
+        /* Cal.com official loader — creates Cal() queue, auto-downloads embed.js */
+        (function (C, A, L) {
+          let p = function (a, ar) { a.q.push(ar); };
+          let d = C.document;
+          C.Cal = C.Cal || function () {
+            let cal = C.Cal;
+            let ar = arguments;
+            if (!cal.loaded) {
+              cal.ns = {};
+              cal.q = cal.q || [];
+              d.head.appendChild(d.createElement("script")).src = A;
+              cal.loaded = true;
+            }
+            if (ar[0] === L) {
+              const api = function () { p(api, arguments); };
+              const namespace = ar[1];
+              api.q = api.q || [];
+              typeof namespace === "string" ? (cal.ns[namespace] = api) && p(api, ar) : p(cal, ar);
+              return;
+            }
+            p(cal, ar);
           };
-          script.onerror = function() {
-            document.getElementById('cal-embed').style.display = 'none';
+        })(window, "https://book.buildwisemedia.com/embed/embed.js", "init");
+
+        Cal("init", {origin:"https://book.buildwisemedia.com"});
+        Cal("inline", {
+          calLink:"bwm/discovery-call",
+          elementOrSelector:"#cal-embed",
+          config:{
+            theme:"dark",
+            cssVarsPerTheme:{
+              dark:{
+                "cal-brand":"#D4943A",
+                "cal-brand-emphasis":"#E8A94D",
+                "cal-text":"#F5F0EB",
+                "cal-text-emphasis":"#F5F0EB",
+                "cal-text-subtle":"#A89B8C",
+                "cal-text-muted":"#8B7F73",
+                "cal-bg":"#1C1714",
+                "cal-bg-emphasis":"#2A2320",
+                "cal-bg-subtle":"#332D27",
+                "cal-border":"#3D352E",
+                "cal-border-emphasis":"#3D352E",
+                "cal-border-default":"#3D352E",
+                "cal-border-subtle":"#2E2822"
+              }
+            },
+            hideEventTypeDetails: false,
+            layout:"month_view"
+          }
+        });
+        Cal("on", {
+          action: "bookingSuccessful",
+          callback: function(e) {
+            setTimeout(function(){ window.location.href = '/booked?confirmed=1'; }, 1500);
+          }
+        });
+
+        /* Fallback: if embed.js fails to load after 10s, show direct link */
+        setTimeout(function() {
+          var embed = document.getElementById('cal-embed');
+          if (embed && embed.children.length === 0) {
+            embed.style.display = 'none';
             document.getElementById('cal-fallback').style.display = 'block';
-          };
-          document.head.appendChild(script);
-        })();
+          }
+        }, 10000);
       </script>
     </div>
   </section>
