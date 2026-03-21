@@ -263,7 +263,34 @@ body::before{content:'';position:fixed;inset:0;z-index:9999;pointer-events:none;
 @keyframes pin-pulse{0%,100%{transform:scale(1);opacity:0.3}50%{transform:scale(1.8);opacity:0}}
 
 /* ═══════════════════════════════════════
-   8. FOOTER (identical to homepage)
+   8. PAIN POINTS SECTION
+   Card grid: 2-col desktop, 1-col mobile
+   ═══════════════════════════════════════ */
+.vert-pain{background:var(--niche-bg-tint)}
+.pain-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:24px;margin-top:32px;margin-bottom:32px}
+.pain-icon{width:44px;height:44px;display:flex;align-items:center;justify-content:center;background:var(--niche-accent-dim);border-radius:10px;margin-bottom:16px;color:var(--niche-accent)}
+.pain-title{font-family:var(--font-heading);font-size:18px;font-weight:var(--niche-heading-weight);color:var(--text-primary);margin-bottom:8px}
+.pain-copy{font-family:var(--font-body);font-size:15px;color:var(--text-secondary);line-height:1.65}
+.context-link{display:inline-flex;align-items:center;gap:6px;font-family:var(--font-heading);font-size:14px;font-weight:600;color:var(--amber);text-decoration:none;transition:color 0.3s ease}
+.context-link:hover{color:var(--amber-bright)}
+
+/* ═══════════════════════════════════════
+   9. REVENUE ENGINE SECTION
+   Left-aligned timeline with connecting rail
+   ═══════════════════════════════════════ */
+.vert-engine{background:var(--bg1)}
+.engine-intro{font-family:var(--font-body);font-size:1.125rem;color:var(--text-secondary);line-height:1.7;max-width:640px;margin-bottom:40px}
+.engine-timeline{position:relative;padding-left:52px;margin-bottom:40px}
+.engine-timeline::before{content:'';position:absolute;left:15px;top:4px;bottom:4px;width:2px;background:var(--border)}
+.engine-item{position:relative;padding-bottom:36px}
+.engine-item:last-child{padding-bottom:0}
+.engine-icon{position:absolute;left:-52px;top:0;width:32px;height:32px;background:var(--bg1);border:2px solid var(--niche-accent);border-radius:50%;display:flex;align-items:center;justify-content:center;color:var(--niche-accent)}
+.engine-title{font-family:var(--font-heading);font-size:18px;font-weight:600;color:var(--text-primary);margin-bottom:6px}
+.engine-desc{font-family:var(--font-body);font-size:15px;color:var(--text-secondary);line-height:1.65;max-width:560px}
+.engine-actions{display:flex;flex-wrap:wrap;align-items:center;gap:20px;margin-top:24px}
+
+/* ═══════════════════════════════════════
+   10. FOOTER (identical to homepage)
    ═══════════════════════════════════════ */
 .site-footer{background:var(--bg2);border-top:0.5px solid var(--border);padding:64px 48px 32px}
 .footer-inner{max-width:1280px;margin:0 auto}
@@ -302,6 +329,10 @@ body::before{content:'';position:fixed;inset:0;z-index:9999;pointer-events:none;
   .dash-metric-num{font-size:17px}
   .dash-curve{height:56px}
   .dash-map{height:56px}
+  .pain-grid{grid-template-columns:1fr}
+  .engine-timeline{padding-left:44px}
+  .engine-icon{left:-44px;width:28px;height:28px}
+  .engine-icon svg{width:14px;height:14px}
 }
 
 @media(max-width:480px){
@@ -450,7 +481,93 @@ body::before{content:'';position:fixed;inset:0;z-index:9999;pointer-events:none;
     </div>
   </section>
 
-  <!-- Sections 2-7 added in Phases 1B-1D -->
+  <!-- ═══════════════════════════════════════
+       SECTION 2: PAIN POINTS (The Poor Four — HVAC)
+       ═══════════════════════════════════════ -->
+  <section class="vert-section vert-pain" id="pain-points">
+    <div class="vert-inner">
+      <span class="vert-label reveal">The HVAC Reality</span>
+      <h2 class="vert-h2 reveal">Sound Familiar?</h2>
+      <div class="pain-grid">
+        <div class="vert-card vert-card--accent-top reveal stagger-1">
+          <div class="pain-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 17 13.5 8.5 8.5 13.5 2 7"/><polyline points="16 17 22 17 22 11"/></svg>
+          </div>
+          <div class="pain-title">Lead Droughts</div>
+          <p class="pain-copy">Summer AC rush fills your schedule &mdash; then October hits and the phone goes silent. No pipeline between peak seasons. Just waiting for the next heat wave or cold snap to save your quarter.</p>
+        </div>
+        <div class="vert-card vert-card--accent-top reveal stagger-2">
+          <div class="pain-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          </div>
+          <div class="pain-title">The Owner Trap</div>
+          <p class="pain-copy">You&rsquo;re quoting jobs at 7 AM, running calls until 6, and updating your website at midnight. The business can&rsquo;t grow because you&rsquo;re the technician, the salesperson, and the marketing department.</p>
+        </div>
+        <div class="vert-card vert-card--accent-top reveal stagger-3">
+          <div class="pain-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/><rect x="8" y="2" width="8" height="4" rx="1" ry="1"/></svg>
+          </div>
+          <div class="pain-title">Manual Mayhem</div>
+          <p class="pain-copy">Estimates scribbled on work orders. Follow-ups you meant to send last Tuesday. A lead called three days ago &mdash; did anyone call them back? There&rsquo;s no system to tell you.</p>
+        </div>
+        <div class="vert-card vert-card--accent-top reveal stagger-4">
+          <div class="pain-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+          </div>
+          <div class="pain-title">Reactive Mode</div>
+          <p class="pain-copy">Slow week? Boost a Facebook post. Still slow? Print some door hangers. Your marketing is a series of panic moves instead of a machine that prevents the panic.</p>
+        </div>
+      </div>
+      <a href="/the-poor-four" class="context-link reveal">Read about the four problems holding service businesses back &rarr;</a>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════
+       SECTION 3: REVENUE ENGINE
+       ═══════════════════════════════════════ -->
+  <section class="vert-section vert-engine" id="revenue-engine">
+    <div class="vert-inner">
+      <span class="vert-label reveal">Your Revenue Engine</span>
+      <h2 class="vert-h2 reveal">Your HVAC Revenue Engine</h2>
+      <p class="engine-intro reveal">Every piece works together. Your website captures them. Your ads accelerate the volume. Your follow-up system closes the deal. And your Google profile keeps you visible where homeowners actually search.</p>
+      <div class="engine-timeline">
+        <div class="engine-item reveal stagger-1">
+          <div class="engine-icon">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+          </div>
+          <div class="engine-title">Website That Ranks</div>
+          <p class="engine-desc">A site built to rank for &ldquo;emergency AC repair Atlanta&rdquo; and &ldquo;plumber near me&rdquo; &mdash; not a digital brochure that sits there collecting dust.</p>
+        </div>
+        <div class="engine-item reveal stagger-2">
+          <div class="engine-icon">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg>
+          </div>
+          <div class="engine-title">Ads That Target</div>
+          <p class="engine-desc">Campaigns that reach homeowners the moment their AC dies or their pipe bursts. Targeted, tracked, and optimized weekly &mdash; not spray-and-pray.</p>
+        </div>
+        <div class="engine-item reveal stagger-3">
+          <div class="engine-icon">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          </div>
+          <div class="engine-title">Follow-Up That Closes</div>
+          <p class="engine-desc">Automated sequences that turn estimates into signed service agreements. No more leads going cold because nobody called back fast enough.</p>
+        </div>
+        <div class="engine-item reveal stagger-4">
+          <div class="engine-icon">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          </div>
+          <div class="engine-title">Google Profile That Dominates</div>
+          <p class="engine-desc">Your Google Business Profile managed like the revenue asset it is &mdash; reviews, posts, Q&amp;A, and photos that push you up the map pack.</p>
+        </div>
+      </div>
+      <div class="engine-actions">
+        <a href="/book" class="vert-cta">See If I Qualify &rarr;</a>
+        <a href="/services/ascend" class="context-link">See the full Ascend deliverable stack &rarr;</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Sections 4-7 added in Phases 1C-1D -->
 
 </main>
 
