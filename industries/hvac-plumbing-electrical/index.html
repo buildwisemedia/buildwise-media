@@ -292,26 +292,46 @@ body::before{content:'';position:fixed;inset:0;z-index:9999;pointer-events:none;
 /* Engine split layout */
 .engine-grid{display:grid;grid-template-columns:1fr 1.15fr;gap:48px;align-items:start}
 
-/* Engine visualization card */
-.engine-viz{background:var(--bg3);border:0.5px solid var(--border);border-radius:12px;padding:32px 28px}
-.viz-node{display:flex;align-items:center;gap:16px;padding:4px 0}
-.viz-node-circle{width:44px;height:44px;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;background:var(--bg2);border:2px solid var(--border);color:var(--text-muted);transition:all 0.3s var(--ease-smooth);will-change:transform}
-.viz-node-info{display:flex;flex-direction:column;gap:2px}
-.viz-node-label{font-family:var(--font-heading);font-size:14px;font-weight:600;color:var(--text-muted);transition:color 0.3s ease}
-.viz-metric{font-family:var(--font-heading);font-size:13px;color:var(--niche-accent);opacity:0;transition:opacity 0.3s ease 0.2s;will-change:opacity}
-.viz-node.active .viz-node-circle{background:var(--niche-accent-dim);border-color:var(--niche-accent);color:var(--text-primary);animation:viz-pulse 0.3s ease}
-.viz-node.active .viz-node-label{color:var(--text-primary)}
-.viz-node.active .viz-metric{opacity:1}
-@keyframes viz-pulse{0%{transform:scale(1)}50%{transform:scale(1.08)}100%{transform:scale(1)}}
-.viz-line{position:relative;height:28px}
-.viz-line::before{content:'';position:absolute;left:21px;top:0;height:100%;width:2px;background:var(--border);transition:background 0.4s ease}
-.viz-line-dot{width:6px;height:6px;border-radius:50%;background:var(--niche-accent);position:absolute;left:19px;top:-3px;opacity:0;will-change:transform,opacity}
-.viz-line.active::before{background:rgba(91,141,184,0.3)}
-.viz-line.active .viz-line-dot{animation:viz-dot-travel 0.4s var(--ease-smooth) forwards}
-@keyframes viz-dot-travel{0%{top:-3px;opacity:0}20%{opacity:1}80%{opacity:1}100%{top:calc(100% - 3px);opacity:0}}
-.viz-summary{margin-top:20px;padding-top:16px;border-top:0.5px solid var(--border);opacity:0;transition:opacity 0.4s ease;will-change:opacity}
-.viz-summary.active{opacity:1}
-.viz-summary-text{font-family:var(--font-heading);font-size:15px;font-weight:600;color:var(--text-primary)}
+/* Engine visualization card (Brain component) */
+.engine-viz{width:100%;background:var(--bg3);border:0.5px solid var(--border);border-radius:16px;padding:40px 32px;position:relative;overflow:hidden}
+.engine-viz::before{content:'';position:absolute;inset:0;background-image:linear-gradient(var(--niche-accent) 0.5px,transparent 0.5px),linear-gradient(90deg,var(--niche-accent) 0.5px,transparent 0.5px);background-size:40px 40px;opacity:0.03;pointer-events:none}
+.viz-header{text-align:center;margin-bottom:32px;position:relative;z-index:2}
+.viz-header-label{font-family:var(--font-heading);font-size:10px;font-weight:600;letter-spacing:2.5px;text-transform:uppercase;color:var(--text-muted);margin-bottom:4px}
+.viz-header-title{font-family:var(--font-heading);font-size:15px;font-weight:700;color:var(--text-secondary)}
+.input-row,.output-row{display:flex;justify-content:center;gap:80px;position:relative;z-index:2}
+.input-node,.output-node{display:flex;flex-direction:column;align-items:center;gap:10px;opacity:0;transition:opacity 0.5s ease,transform 0.5s ease}
+.input-node{transform:translateY(10px)}.output-node{transform:translateY(-10px)}
+.input-node.active,.output-node.active{opacity:1;transform:translateY(0)}
+.node-circle{width:56px;height:56px;border-radius:50%;background:var(--bg2);border:1.5px solid var(--border);display:flex;align-items:center;justify-content:center;transition:all 0.5s ease;position:relative}
+.node-circle svg{width:22px;height:22px;stroke:var(--text-muted);fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;transition:stroke 0.5s ease}
+.input-node.active .node-circle,.output-node.active .node-circle{background:var(--niche-accent-dim);border-color:var(--niche-accent);box-shadow:0 0 20px rgba(91,141,184,0.15)}
+.input-node.active .node-circle svg,.output-node.active .node-circle svg{stroke:var(--niche-accent)}
+.node-label{font-family:var(--font-heading);font-size:12px;font-weight:600;color:var(--text-muted);text-transform:uppercase;letter-spacing:1px;transition:color 0.5s ease}
+.input-node.active .node-label,.output-node.active .node-label{color:var(--text-secondary)}
+.node-metric{font-family:var(--font-body);font-size:11px;color:var(--niche-accent);opacity:0;transition:opacity 0.4s ease 0.2s;white-space:nowrap}
+.input-node.active .node-metric,.output-node.active .node-metric{opacity:1}
+.connection-layer{position:relative;z-index:1;height:200px;margin:0 auto;width:100%}
+.connection-svg{width:100%;height:100%;overflow:visible}
+.conn-line{stroke:var(--border);stroke-width:1.5;fill:none;transition:stroke 0.6s ease}
+.conn-line.active{stroke:var(--niche-accent);opacity:0.4}
+.data-dot{fill:var(--niche-accent);opacity:0}.data-dot.traveling{opacity:1}
+.engine-hub{width:100px;height:100px;border-radius:50%;background:var(--bg2);border:2px solid var(--border);position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);display:flex;flex-direction:column;align-items:center;justify-content:center;z-index:3;transition:all 0.6s ease}
+.engine-hub.active{border-color:var(--amber);background:rgba(212,148,58,0.08);box-shadow:0 0 30px rgba(212,148,58,0.12),0 0 60px rgba(212,148,58,0.05)}
+.hub-icon{width:28px;height:28px;margin-bottom:4px}
+.hub-icon svg{width:100%;height:100%;stroke:var(--text-muted);fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;transition:stroke 0.6s ease}
+.engine-hub.active .hub-icon svg{stroke:var(--amber)}
+.hub-label{font-family:var(--font-heading);font-size:9px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--text-muted);transition:color 0.6s ease}
+.engine-hub.active .hub-label{color:var(--amber)}
+@keyframes hubPulse{0%,100%{transform:translate(-50%,-50%) scale(1)}50%{transform:translate(-50%,-50%) scale(1.06)}}
+.engine-hub.pulse{animation:hubPulse 0.6s ease}
+.results-bar{margin-top:32px;padding-top:20px;border-top:0.5px solid var(--border);text-align:center;position:relative;z-index:2;opacity:0;transform:translateY(8px);transition:opacity 0.6s ease,transform 0.6s ease}
+.results-bar.active{opacity:1;transform:translateY(0)}
+.results-number{font-family:var(--font-heading);font-size:28px;font-weight:800;color:var(--text-primary);margin-bottom:4px}
+.results-number span{color:var(--amber)}
+.results-label{font-family:var(--font-body);font-size:12px;color:var(--text-muted);letter-spacing:0.5px}
+.replay-btn{display:block;margin:20px auto 0;background:none;border:1px solid var(--border);border-radius:100px;padding:6px 16px;font-family:var(--font-heading);font-size:11px;font-weight:600;color:var(--text-muted);cursor:pointer;letter-spacing:1px;text-transform:uppercase;position:relative;z-index:2;opacity:0;transition:opacity 0.4s ease,border-color 0.3s ease,color 0.3s ease}
+.replay-btn.visible{opacity:1}
+.replay-btn:hover{border-color:var(--niche-accent);color:var(--niche-accent)}
 
 /* ═══════════════════════════════════════
    10. BENCHMARK DATA SECTION
@@ -386,9 +406,6 @@ body::before{content:'';position:fixed;inset:0;z-index:9999;pointer-events:none;
   .engine-timeline{padding-left:44px}
   .engine-icon{left:-44px;width:28px;height:28px}
   .engine-icon svg{width:14px;height:14px}
-  .viz-node-circle{width:36px;height:36px}
-  .viz-line::before{left:17px}
-  .viz-line-dot{left:15px}
   .bench-grid{grid-template-columns:repeat(3,1fr)}
   .proof-card{padding:36px 24px}
   .proof-quote-mark{font-size:80px;top:-5px;left:16px}
@@ -405,6 +422,13 @@ body::before{content:'';position:fixed;inset:0;z-index:9999;pointer-events:none;
   .dash-body{padding:12px}
   .bench-grid{grid-template-columns:repeat(2,1fr)}
   .bench-stat{font-size:clamp(22px,6vw,32px)}
+  .engine-viz{padding:32px 20px}
+  .input-row,.output-row{gap:48px}
+  .node-circle{width:48px;height:48px}
+  .node-circle svg{width:18px;height:18px}
+  .engine-hub{width:80px;height:80px}
+  .results-number{font-size:24px}
+  .connection-layer{height:160px}
 }
 </style>
 </head>
@@ -629,48 +653,55 @@ body::before{content:'';position:fixed;inset:0;z-index:9999;pointer-events:none;
           </div>
         </div>
         <div class="engine-viz" id="engineViz">
-          <div class="viz-node" data-viz="1">
-            <div class="viz-node-circle">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+          <div class="viz-header">
+            <div class="viz-header-label">Revenue Engine</div>
+            <div class="viz-header-title">How the system works</div>
+          </div>
+          <div class="input-row">
+            <div class="input-node" id="nodeWebsite">
+              <div class="node-circle"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg></div>
+              <div class="node-label">Website</div>
+              <div class="node-metric">47 keywords ranked</div>
             </div>
-            <div class="viz-node-info">
-              <span class="viz-node-label">Website</span>
-              <span class="viz-metric">Ranking for 47 keywords</span>
+            <div class="input-node" id="nodeAds">
+              <div class="node-circle"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg></div>
+              <div class="node-label">Ads</div>
+              <div class="node-metric">12 leads this week</div>
             </div>
           </div>
-          <div class="viz-line" data-viz-line="1"><div class="viz-line-dot"></div></div>
-          <div class="viz-node" data-viz="2">
-            <div class="viz-node-circle">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg>
-            </div>
-            <div class="viz-node-info">
-              <span class="viz-node-label">Ads</span>
-              <span class="viz-metric">12 new leads this week</span>
-            </div>
-          </div>
-          <div class="viz-line" data-viz-line="2"><div class="viz-line-dot"></div></div>
-          <div class="viz-node" data-viz="3">
-            <div class="viz-node-circle">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
-            </div>
-            <div class="viz-node-info">
-              <span class="viz-node-label">Follow-Up</span>
-              <span class="viz-metric">8 estimates sent automatically</span>
+          <div class="connection-layer">
+            <svg class="connection-svg" viewBox="0 0 400 200" preserveAspectRatio="xMidYMid meet">
+              <path id="pathIn1" class="conn-line" d="M 120 0 C 120 50, 200 50, 200 90"/>
+              <path id="pathIn2" class="conn-line" d="M 280 0 C 280 50, 200 50, 200 90"/>
+              <path id="pathOut1" class="conn-line" d="M 200 110 C 200 150, 120 150, 120 200"/>
+              <path id="pathOut2" class="conn-line" d="M 200 110 C 200 150, 280 150, 280 200"/>
+              <circle class="data-dot" id="dot1" cx="0" cy="0" r="3.5"><animateMotion id="anim1" dur="0.6s" fill="freeze" begin="indefinite" calcMode="spline" keySplines="0.42 0 0.58 1"><mpath href="#pathIn1"/></animateMotion></circle>
+              <circle class="data-dot" id="dot2" cx="0" cy="0" r="3.5"><animateMotion id="anim2" dur="0.6s" fill="freeze" begin="indefinite" calcMode="spline" keySplines="0.42 0 0.58 1"><mpath href="#pathIn2"/></animateMotion></circle>
+              <circle class="data-dot" id="dot3" cx="0" cy="0" r="3.5"><animateMotion id="anim3" dur="0.6s" fill="freeze" begin="indefinite" calcMode="spline" keySplines="0.42 0 0.58 1"><mpath href="#pathOut1"/></animateMotion></circle>
+              <circle class="data-dot" id="dot4" cx="0" cy="0" r="3.5"><animateMotion id="anim4" dur="0.6s" fill="freeze" begin="indefinite" calcMode="spline" keySplines="0.42 0 0.58 1"><mpath href="#pathOut2"/></animateMotion></circle>
+            </svg>
+            <div class="engine-hub" id="engineHub">
+              <div class="hub-icon"><svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg></div>
+              <div class="hub-label">Engine</div>
             </div>
           </div>
-          <div class="viz-line" data-viz-line="3"><div class="viz-line-dot"></div></div>
-          <div class="viz-node" data-viz="4">
-            <div class="viz-node-circle">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          <div class="output-row">
+            <div class="output-node" id="nodeFollowup">
+              <div class="node-circle"><svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></div>
+              <div class="node-label">Follow-Up</div>
+              <div class="node-metric">8 estimates auto-sent</div>
             </div>
-            <div class="viz-node-info">
-              <span class="viz-node-label">GBP</span>
-              <span class="viz-metric">#3 in the local map pack</span>
+            <div class="output-node" id="nodeGbp">
+              <div class="node-circle"><svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
+              <div class="node-label">GBP</div>
+              <div class="node-metric">#3 in local map pack</div>
             </div>
           </div>
-          <div class="viz-summary">
-            <span class="viz-summary-text">This month: 47 leads &middot; 14 booked jobs</span>
+          <div class="results-bar" id="resultsBar">
+            <div class="results-number"><span>47</span> leads &middot; <span>14</span> booked jobs</div>
+            <div class="results-label">Typical month with a Revenue Engine running</div>
           </div>
+          <button class="replay-btn" id="replayBtn">&circlearrowright; Replay</button>
         </div>
       </div>
     </div>
@@ -798,31 +829,46 @@ document.getElementById('navHamburger').addEventListener('click', function() {
 })();
 </script>
 
-<!-- Engine visualization — "coming online" sequence -->
+<!-- Engine visualization — Brain component with IO trigger -->
 <script>
 (function() {
   var viz = document.getElementById('engineViz');
   if (!viz) return;
+  function runSequence() {
+    var nodes = viz.querySelectorAll('.input-node, .output-node');
+    var lines = viz.querySelectorAll('.conn-line');
+    var dots = viz.querySelectorAll('.data-dot');
+    var hub = document.getElementById('engineHub');
+    var results = document.getElementById('resultsBar');
+    var replay = document.getElementById('replayBtn');
+    nodes.forEach(function(n){n.classList.remove('active');});
+    lines.forEach(function(l){l.classList.remove('active');});
+    dots.forEach(function(d){d.classList.remove('traveling');});
+    hub.classList.remove('active','pulse');
+    results.classList.remove('active');
+    replay.classList.remove('visible');
+    var timeline = [
+      {t:400,fn:function(){document.getElementById('nodeWebsite').classList.add('active');}},
+      {t:600,fn:function(){document.getElementById('nodeAds').classList.add('active');}},
+      {t:1000,fn:function(){document.getElementById('dot1').classList.add('traveling');document.getElementById('anim1').beginElement();document.getElementById('pathIn1').classList.add('active');}},
+      {t:1200,fn:function(){document.getElementById('dot2').classList.add('traveling');document.getElementById('anim2').beginElement();document.getElementById('pathIn2').classList.add('active');}},
+      {t:1700,fn:function(){hub.classList.add('active','pulse');}},
+      {t:2200,fn:function(){document.getElementById('dot3').classList.add('traveling');document.getElementById('anim3').beginElement();document.getElementById('pathOut1').classList.add('active');}},
+      {t:2400,fn:function(){document.getElementById('dot4').classList.add('traveling');document.getElementById('anim4').beginElement();document.getElementById('pathOut2').classList.add('active');}},
+      {t:2800,fn:function(){document.getElementById('nodeFollowup').classList.add('active');}},
+      {t:3000,fn:function(){document.getElementById('nodeGbp').classList.add('active');}},
+      {t:3500,fn:function(){results.classList.add('active');}},
+      {t:4000,fn:function(){replay.classList.add('visible');}}
+    ];
+    timeline.forEach(function(s){setTimeout(s.fn,s.t);});
+  }
+  replay = document.getElementById('replayBtn');
+  if (replay) replay.addEventListener('click', runSequence);
   var vizObserver = new IntersectionObserver(function(entries) {
     entries.forEach(function(entry) {
       if (entry.isIntersecting) {
         vizObserver.unobserve(viz);
-        var steps = [
-          [300, '[data-viz="1"]'],
-          [700, '[data-viz-line="1"]'],
-          [1000, '[data-viz="2"]'],
-          [1400, '[data-viz-line="2"]'],
-          [1700, '[data-viz="3"]'],
-          [2100, '[data-viz-line="3"]'],
-          [2400, '[data-viz="4"]'],
-          [2800, '.viz-summary']
-        ];
-        steps.forEach(function(s) {
-          setTimeout(function() {
-            var el = viz.querySelector(s[1]);
-            if (el) el.classList.add('active');
-          }, s[0]);
-        });
+        runSequence();
       }
     });
   }, { threshold: 0.3 });
