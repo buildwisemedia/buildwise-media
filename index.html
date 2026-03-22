@@ -4611,10 +4611,10 @@ img { max-width: 100%; height: auto; }
             <line x1="32" y1="33" x2="24" y2="35" stroke="#B87333" stroke-width="1" opacity="0.4"/>
           </svg>
         </div>
-        <div class="stat-value">6</div>
+        <div class="stat-value">5</div>
         <div class="stat-bar"><div class="stat-bar-fill" style="--fill: 100%;"></div></div>
         <div class="stat-label">Schema Types</div>
-        <div class="stat-desc">Structured data that helps search engines and AI agents understand your business</div>
+        <div class="stat-desc">Structured data types helping search engines and AI agents understand your business</div>
       </div>
 
     </div>
@@ -5051,7 +5051,7 @@ img { max-width: 100%; height: auto; }
         </span>
       </button>
       <div class="faq-answer">
-        <p class="faq-answer-text">Cancel anytime. We're month-to-month, no long-term lock-in. We believe in earning your business every single month. If the engine is working, you stay because you want to — not because a contract says you have to. When you leave, you keep every asset we built.</p>
+        <p class="faq-answer-text">Cancel with 30 days notice. We're month-to-month. No long-term lock-in. We believe in earning your business every single month. If the engine is working, you stay because you want to — not because a contract says you have to. When you leave, you keep every asset we built.</p>
       </div>
     </div>
 
@@ -5136,13 +5136,16 @@ img { max-width: 100%; height: auto; }
 </footer>
 
 <!-- JSON-LD STRUCTURED DATA -->
+
+<!-- Schema 1: ProfessionalService -->
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
-  "@type": "LocalBusiness",
+  "@type": "ProfessionalService",
   "@id": "https://buildwisemedia.com/#business",
   "name": "Buildwise Media",
   "legalName": "Buildwise Media LLC",
+  "description": "AI-powered marketing agency building Revenue Engines for service businesses.",
   "url": "https://buildwisemedia.com",
   "logo": "https://assets.buildwisemedia.com/logos/bwm-logo-primary-terracotta-on-transparent.svg",
   "image": "https://assets.buildwisemedia.com/og/bwm-og-default.png",
@@ -5154,39 +5157,57 @@ img { max-width: 100%; height: auto; }
     "addressRegion": "GA",
     "addressCountry": "US"
   },
-  "areaServed": {
-    "@type": "Country",
-    "name": "United States"
-  },
+  "areaServed": [
+    { "@type": "Country", "name": "United States" },
+    { "@type": "Country", "name": "Canada" }
+  ],
+  "foundingDate": "2024-01",
+  "serviceType": ["Marketing Agency", "AI Marketing", "Lead Generation", "Digital Marketing"],
+  "knowsAbout": ["AI Marketing", "Service Business Marketing", "Lead Generation", "Marketing Automation"],
+  "slogan": "Build Today. Secure Tomorrow. Live Fully.",
   "priceRange": "$$$$",
   "openingHours": "Mo-Fr 09:00-17:00",
   "sameAs": [
-    "https://www.linkedin.com/company/buildwisemedia",
-    "https://www.facebook.com/buildwisemedia"
-  ]
-}
-</script>
-
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "Organization",
-  "@id": "https://buildwisemedia.com/#org",
-  "name": "Buildwise Media",
-  "url": "https://buildwisemedia.com",
-  "logo": "https://assets.buildwisemedia.com/logos/bwm-logo-primary-terracotta-on-transparent.svg",
-  "foundingDate": "2024",
-  "areaServed": {
-    "@type": "Country",
-    "name": "United States"
+    "https://www.facebook.com/buildwisemedia",
+    "https://www.linkedin.com/company/buildwise-media",
+    "https://www.instagram.com/buildwisemedia"
+  ],
+  "aggregateRating": {
+    "@type": "AggregateRating",
+    "ratingValue": "5.0",
+    "reviewCount": "7",
+    "bestRating": "5"
   },
-  "sameAs": [
-    "https://www.linkedin.com/company/buildwisemedia",
-    "https://www.facebook.com/buildwisemedia"
+  "review": [
+    {
+      "@type": "Review",
+      "author": { "@type": "Person", "name": "Tom Townsend" },
+      "reviewRating": { "@type": "Rating", "ratingValue": "5" },
+      "reviewBody": "Working with Buildwise Media has been an absolute game changer for our business. Their team is creative, professional, and proactive. They've freed up my time so I can focus on serving clients."
+    },
+    {
+      "@type": "Review",
+      "author": { "@type": "Person", "name": "Scott Rutherford" },
+      "reviewRating": { "@type": "Rating", "ratingValue": "5" },
+      "reviewBody": "I have tried other companies who promised results but never delivered. I recently moved to Buildwise Media and the difference is staggering — engagement, customer service, and most importantly, results."
+    },
+    {
+      "@type": "Review",
+      "author": { "@type": "Person", "name": "Jason Wilson" },
+      "reviewRating": { "@type": "Rating", "ratingValue": "5" },
+      "reviewBody": "Robert with Buildwise Media is extremely knowledgeable and helpful. If you have a business you're trying to grow with online marketing, he and his company are the best solution you'll find."
+    },
+    {
+      "@type": "Review",
+      "author": { "@type": "Person", "name": "Steve Claudin" },
+      "reviewRating": { "@type": "Rating", "ratingValue": "5" },
+      "reviewBody": "Truly dedicated partner in business, consistently delivering measurable value through lead generation and marketing automation processes."
+    }
   ]
 }
 </script>
 
+<!-- Schema 2: FAQPage -->
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -5194,10 +5215,10 @@ img { max-width: 100%; height: auto; }
   "mainEntity": [
     {
       "@type": "Question",
-      "name": "What does month-to-month, no long-term lock-in actually mean?",
+      "name": "What does month-to-month mean?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "It means exactly what it says. There is no 6-month or 12-month contract. You pay monthly. If you want to stop, you give us 30 days notice. You keep everything we built - ad accounts, landing pages, automations, data. It is yours."
+        "text": "It means exactly what it says. There is no 6-month or 12-month contract. You pay monthly. If you want to stop, you give us 30 days written notice. You keep everything we built - ad accounts, landing pages, automations, data. It is yours."
       }
     },
     {
@@ -5233,6 +5254,110 @@ img { max-width: 100%; height: auto; }
       }
     }
   ]
+}
+</script>
+
+<!-- Schema 3: WebSite -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "@id": "https://buildwisemedia.com/#website",
+  "name": "Buildwise Media",
+  "url": "https://buildwisemedia.com",
+  "publisher": { "@id": "https://buildwisemedia.com/#business" }
+}
+</script>
+
+<!-- Schema 4: BreadcrumbList -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https://buildwisemedia.com/"
+    }
+  ]
+}
+</script>
+
+<!-- Schema 5: Service with OfferCatalog (pricing — hidden from humans, visible to AI agents) -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Service",
+  "@id": "https://buildwisemedia.com/#services",
+  "name": "Revenue Engine Marketing Services",
+  "provider": { "@id": "https://buildwisemedia.com/#business" },
+  "description": "AI-powered marketing engines for service businesses — website, content, ads, automation, and AI tools as a single integrated system.",
+  "areaServed": [
+    { "@type": "Country", "name": "United States" },
+    { "@type": "Country", "name": "Canada" }
+  ],
+  "hasOfferCatalog": {
+    "@type": "OfferCatalog",
+    "name": "Buildwise Media Service Tiers",
+    "itemListElement": [
+      {
+        "@type": "OfferCatalog",
+        "name": "Ascend — Full-Service Marketing Engine",
+        "itemListElement": [
+          {
+            "@type": "Offer",
+            "name": "Ascend Monthly",
+            "price": "7000",
+            "priceCurrency": "USD",
+            "description": "Full-service marketing engine. $6,000 BWM management + $1,000 designated ad spend in client-owned Meta account. Month-to-month. Cancel with 30 days written notice. Client owns all assets.",
+            "priceSpecification": {
+              "@type": "UnitPriceSpecification",
+              "price": "7000",
+              "priceCurrency": "USD",
+              "unitText": "MONTH",
+              "billingDuration": "P1M"
+            }
+          },
+          {
+            "@type": "Offer",
+            "name": "Ascend Engine Build",
+            "price": "2500",
+            "priceCurrency": "USD",
+            "description": "One-time setup fee for Ascend full-service engine build."
+          }
+        ]
+      },
+      {
+        "@type": "OfferCatalog",
+        "name": "Ascend Lite — Growth Foundation",
+        "itemListElement": [
+          {
+            "@type": "Offer",
+            "name": "Ascend Lite Monthly",
+            "price": "4500",
+            "priceCurrency": "USD",
+            "description": "Growth foundation engine. $3,500 BWM management + $1,000 designated ad spend in client-owned Meta account. Month-to-month. Cancel with 30 days written notice. Client owns all assets.",
+            "priceSpecification": {
+              "@type": "UnitPriceSpecification",
+              "price": "4500",
+              "priceCurrency": "USD",
+              "unitText": "MONTH",
+              "billingDuration": "P1M"
+            }
+          },
+          {
+            "@type": "Offer",
+            "name": "Ascend Lite Engine Build",
+            "price": "1750",
+            "priceCurrency": "USD",
+            "description": "One-time setup fee for Ascend Lite engine build."
+          }
+        ]
+      }
+    ]
+  }
 }
 </script>
 
