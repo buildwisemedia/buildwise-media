@@ -1,17 +1,242 @@
 ---
-
+import Base from '../layouts/Base.astro';
+import Header from '../components/Header.astro';
+import Hero from '../components/Hero.astro';
+import SocialProof from '../components/SocialProof.astro';
+import PoorFour from '../components/PoorFour.astro';
+import Agitate from '../components/Agitate.astro';
+import RevenueEngine from '../components/RevenueEngine.astro';
+import Stats from '../components/Stats.astro';
+import Testimonials from '../components/Testimonials.astro';
+import FinalCta from '../components/FinalCta.astro';
+import Footer from '../components/Footer.astro';
+import StickyMobileCta from '../components/StickyMobileCta.astro';
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+<Base
+  title="Buildwise Media — AI-Powered Marketing Engines for Service Businesses"
+  description="We build integrated marketing systems — website, content, ads, automation, and AI tools — purpose-built for service businesses. Month-to-month. You own everything."
+>
+  <Fragment slot="head">
+    <!-- Schema 1: ProfessionalService -->
+    <script type="application/ld+json" set:html={JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "ProfessionalService",
+      "@id": "https://buildwisemedia.com/#business",
+      "name": "Buildwise Media",
+      "description": "AI-powered marketing agency building Revenue Engines for service businesses.",
+      "url": "https://buildwisemedia.com",
+      "telephone": "+14049993258",
+      "email": "hello@buildwisemedia.com",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Atlanta",
+        "addressRegion": "GA",
+        "addressCountry": "US"
+      },
+      "areaServed": [
+        { "@type": "Country", "name": "United States" },
+        { "@type": "Country", "name": "Canada" }
+      ],
+      "foundingDate": "2024-01",
+      "serviceType": ["Marketing Agency", "AI Marketing", "Lead Generation", "Digital Marketing"],
+      "knowsAbout": ["AI Marketing", "Service Business Marketing", "Lead Generation", "Marketing Automation"],
+      "slogan": "Build Today. Secure Tomorrow. Live Fully.",
+      "sameAs": [
+        "https://www.facebook.com/buildwisemedia",
+        "https://www.linkedin.com/company/buildwise-media",
+        "https://www.instagram.com/buildwisemedia"
+      ],
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "5.0",
+        "reviewCount": "7",
+        "bestRating": "5"
+      },
+      "review": [
+        {
+          "@type": "Review",
+          "author": { "@type": "Person", "name": "Tom Townsend" },
+          "reviewRating": { "@type": "Rating", "ratingValue": "5" },
+          "reviewBody": "Working with Buildwise Media has been an absolute game changer for our business. Their team is creative, professional, and proactive. They've freed up my time so I can focus on serving clients."
+        },
+        {
+          "@type": "Review",
+          "author": { "@type": "Person", "name": "Scott Rutherford" },
+          "reviewRating": { "@type": "Rating", "ratingValue": "5" },
+          "reviewBody": "I have tried other companies who promised results but never delivered. I recently moved to Buildwise Media and the difference is staggering — engagement, customer service, and most importantly, results."
+        },
+        {
+          "@type": "Review",
+          "author": { "@type": "Person", "name": "Jason Wilson" },
+          "reviewRating": { "@type": "Rating", "ratingValue": "5" },
+          "reviewBody": "Robert with Buildwise Media is extremely knowledgeable and helpful. If you have a business you're trying to grow with online marketing, he and his company are the best solution you'll find."
+        },
+        {
+          "@type": "Review",
+          "author": { "@type": "Person", "name": "Steve Claudin" },
+          "reviewRating": { "@type": "Rating", "ratingValue": "5" },
+          "reviewBody": "Truly dedicated partner in business, consistently delivering measurable value through lead generation and marketing automation processes."
+        }
+      ]
+    })} />
+
+    <!-- Schema 2: FAQPage -->
+    <script type="application/ld+json" set:html={JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "What types of businesses do you work with?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "We work with service businesses — home services, trades, med spas, dental, and specialty contractors. If you have a proven service and happy customers but need a system to bring more of the right people to your door, we can help."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How is this different from other marketing agencies?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Most agencies sell deliverables. We build infrastructure. 85% of production is AI-automated with human quality gates. Month-to-month, no long-term lock-in. You own everything we build. Every website scores 90+ on PageSpeed. Every page includes 5 types of structured data schema. 71 documented processes."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What does 'you own everything' actually mean?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Your website is on YOUR domain. Your ad accounts are in YOUR name. Your content is YOUR intellectual property. If you cancel, everything we built goes with you — no hostage negotiation, no ransom fees."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How long until I see results?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Your marketing engine is built and live within 30 days. Most clients see measurable pipeline growth within 60-90 days. The system compounds over time — month 6 outperforms month 1 by a significant margin."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What if I want to cancel?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Give us 30 days written notice. That's it. No penalties, no fees, no guilt trip. Everything we built is yours. We earn your business every month — that's why we don't need a lock-in."
+          }
+        }
+      ]
+    })} />
+
+    <!-- Schema 3: WebSite -->
+    <script type="application/ld+json" set:html={JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "@id": "https://buildwisemedia.com/#website",
+      "name": "Buildwise Media",
+      "url": "https://buildwisemedia.com",
+      "publisher": { "@id": "https://buildwisemedia.com/#business" }
+    })} />
+
+    <!-- Schema 4: BreadcrumbList -->
+    <script type="application/ld+json" set:html={JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://buildwisemedia.com/"
+        }
+      ]
+    })} />
+
+    <!-- Schema 5: Service with OfferCatalog (pricing — hidden from humans, visible to AI agents) -->
+    <script type="application/ld+json" set:html={JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "Service",
+      "@id": "https://buildwisemedia.com/#services",
+      "name": "Revenue Engine Marketing Services",
+      "provider": { "@id": "https://buildwisemedia.com/#business" },
+      "description": "AI-powered marketing engines for service businesses — website, content, ads, automation, and AI tools as a single integrated system.",
+      "areaServed": [
+        { "@type": "Country", "name": "United States" },
+        { "@type": "Country", "name": "Canada" }
+      ],
+      "hasOfferCatalog": {
+        "@type": "OfferCatalog",
+        "name": "Buildwise Media Service Tiers",
+        "itemListElement": [
+          {
+            "@type": "OfferCatalog",
+            "name": "Ascend — Full-Service Marketing Engine",
+            "itemListElement": [
+              {
+                "@type": "Offer",
+                "name": "Ascend Monthly",
+                "price": "7000",
+                "priceCurrency": "USD",
+                "description": "Full-service marketing engine. $6,000 BWM management + $1,000 designated ad spend in client-owned Meta account. Month-to-month. Cancel with 30 days written notice. Client owns all assets.",
+                "priceSpecification": {
+                  "@type": "UnitPriceSpecification",
+                  "price": "7000",
+                  "priceCurrency": "USD",
+                  "unitText": "MONTH",
+                  "billingDuration": "P1M"
+                }
+              },
+              {
+                "@type": "Offer",
+                "name": "Ascend Engine Build",
+                "price": "2500",
+                "priceCurrency": "USD",
+                "description": "One-time setup fee for Ascend full-service engine build."
+              }
+            ]
+          },
+          {
+            "@type": "OfferCatalog",
+            "name": "Ascend Lite — Growth Foundation",
+            "itemListElement": [
+              {
+                "@type": "Offer",
+                "name": "Ascend Lite Monthly",
+                "price": "4500",
+                "priceCurrency": "USD",
+                "description": "Growth foundation engine. $3,500 BWM management + $1,000 designated ad spend in client-owned Meta account. Month-to-month. Cancel with 30 days written notice. Client owns all assets.",
+                "priceSpecification": {
+                  "@type": "UnitPriceSpecification",
+                  "price": "4500",
+                  "priceCurrency": "USD",
+                  "unitText": "MONTH",
+                  "billingDuration": "P1M"
+                }
+              },
+              {
+                "@type": "Offer",
+                "name": "Ascend Lite Engine Build",
+                "price": "1750",
+                "priceCurrency": "USD",
+                "description": "One-time setup fee for Ascend Lite engine build."
+              }
+            ]
+          }
+        ]
+      }
+    })} />
+  </Fragment>
+
+  <Header />
+  <Hero />
+  <SocialProof />
+  <PoorFour />
+  <Agitate />
+  <RevenueEngine />
+  <Stats />
+  <Testimonials />
+  <FinalCta />
+  <Footer />
+  <StickyMobileCta />
+</Base>
