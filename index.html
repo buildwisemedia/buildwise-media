@@ -29,6 +29,9 @@
 <link rel="icon" href="https://assets.buildwisemedia.com/favicons/bwm-favicon-16.png" sizes="16x16" type="image/png">
 <link rel="apple-touch-icon" href="https://assets.buildwisemedia.com/favicons/bwm-apple-touch-icon.png">
 
+<!-- Preload hero assets -->
+<link rel="preload" as="image" href="https://assets.buildwisemedia.com/logos/bwm-logo-primary-terracotta-on-transparent.svg" type="image/svg+xml">
+
 <!-- Preconnect -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -48,7 +51,7 @@
 
 <!-- Meta Pixel -->
 <script>!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');fbq('init','2728397250833051');fbq('track','PageView');</script>
-<noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=2728397250833051&ev=PageView&noscript=1"/></noscript>
+<noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=2728397250833051&ev=PageView&noscript=1" alt=""/></noscript>
 
 <style>
 /* === GLOBAL === */
@@ -3427,6 +3430,18 @@ img { max-width: 100%; height: auto; }
 @media(max-width:768px) { .footer-grid { grid-template-columns:1fr 1fr; gap:32px; } .site-footer { padding:48px 24px 24px; } }
 @media(max-width:480px) { .footer-grid { grid-template-columns:1fr; gap:24px; } }
 
+/* === INLINE STYLE REPLACEMENTS === */
+.anim-draw-line { animation: drawLine 2s ease-out 1s forwards; }
+.anim-count-up { animation: countUp 0.3s ease 2.8s forwards; }
+.swatch-never { background:rgba(245,240,235,0.05); }
+.swatch-free { background:rgba(90,158,111,0.3); }
+.swatch-pays { background:#B87333; }
+.swatch-builds { background:#D4943A; }
+
+/* === SKIP-TO-CONTENT === */
+.skip-link { position:absolute; top:-100%; left:16px; z-index:10000; background:var(--amber); color:var(--bg1); font-family:var(--font-heading); font-weight:600; font-size:14px; padding:8px 16px; border-radius:0 0 6px 6px; text-decoration:none; transition:top 0.2s ease; }
+.skip-link:focus { top:0; }
+
 /* === STICKY MOBILE CTA CSS === */
 .sticky-mobile-cta { display:none; position:fixed; bottom:0; left:0; right:0; z-index:998; padding:12px 20px; background:rgba(28,23,20,0.95); backdrop-filter:blur(8px); border-top:0.5px solid var(--border); transform:translateY(100%); transition:transform 0.4s var(--ease-smooth); }
 .sticky-mobile-cta.visible { transform:translateY(0); }
@@ -3436,6 +3451,9 @@ img { max-width: 100%; height: auto; }
 </head>
 <body>
 
+<a href="#main-content" class="skip-link">Skip to content</a>
+
+<header>
 <nav class="site-nav">
   <div class="nav-inner">
     <a href="/" class="nav-logo"><img src="https://assets.buildwisemedia.com/logos/bwm-logo-primary-terracotta-on-transparent.svg" alt="Buildwise Media" width="160" height="40"></a>
@@ -3489,11 +3507,12 @@ img { max-width: 100%; height: auto; }
   <a href="/the-poor-four" class="nav-link">The Poor Four</a>
   <a href="/book" class="nav-cta">See If I Qualify →</a>
 </div>
+</header>
 
 <!-- GTM noscript -->
 <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-P5JSD86L" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
-<main>
+<main id="main-content">
 
 <!-- ACT 1: RECOGNITION -->
 <section class="hero">
@@ -3572,10 +3591,10 @@ img { max-width: 100%; height: auto; }
             <path d="M0,90 L30,82 L70,78 L110,70 L150,58 L190,52 L230,40 L270,35 L310,22 L350,18 L390,12 L430,8 L460,4"
                   fill="none" stroke="#D4943A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
                   stroke-dasharray="800" stroke-dashoffset="800"
-                  style="animation: drawLine 2s ease-out 1s forwards;"/>
+                  class="anim-draw-line"/>
             <!-- End dot -->
             <circle cx="460" cy="4" r="4" fill="#D4943A" opacity="0"
-                    style="animation: countUp 0.3s ease 2.8s forwards;"/>
+                    class="anim-count-up"/>
           </svg>
         </div>
 
@@ -4174,10 +4193,10 @@ img { max-width: 100%; height: auto; }
         <div class="dotgrid-meta">Each square ≈ 3.2 million people · 2,500 squares = 8.1 billion humans</div>
         <div class="dotgrid" id="dotGrid"></div>
         <div class="dotgrid-legend">
-          <div class="legend-item"><div class="legend-swatch" style="background:rgba(245,240,235,0.05)"></div>Never used AI · 82.7%</div>
-          <div class="legend-item"><div class="legend-swatch" style="background:rgba(90,158,111,0.3)"></div>Free chatbot user · 16.7%</div>
-          <div class="legend-item"><div class="legend-swatch" style="background:#B87333"></div>Pays for AI · ~0.5%</div>
-          <div class="legend-item"><div class="legend-swatch" style="background:#D4943A"></div>Builds with AI · ~0.1%</div>
+          <div class="legend-item"><div class="legend-swatch swatch-never"></div>Never used AI · 82.7%</div>
+          <div class="legend-item"><div class="legend-swatch swatch-free"></div>Free chatbot user · 16.7%</div>
+          <div class="legend-item"><div class="legend-swatch swatch-pays"></div>Pays for AI · ~0.5%</div>
+          <div class="legend-item"><div class="legend-swatch swatch-builds"></div>Builds with AI · ~0.1%</div>
         </div>
       </div>
 
@@ -4645,7 +4664,7 @@ img { max-width: 100%; height: auto; }
         </div>
         <div class="ind-name">HVAC / Plumbing / Electrical</div>
         <div class="ind-hook">Your phone goes silent in February. It doesn't have to.</div>
-        <div class="ind-link">Learn more <svg viewBox="0 0 14 14" fill="none"><path d="M3 7h8M8 4l3 3-3 3" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        <div class="ind-link">See how <svg viewBox="0 0 14 14" fill="none"><path d="M3 7h8M8 4l3 3-3 3" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
       </a>
 
       <a href="/industries/med-spas" class="hero-card">
@@ -4654,7 +4673,7 @@ img { max-width: 100%; height: auto; }
         </div>
         <div class="ind-name">Med Spas & Aesthetic Clinics</div>
         <div class="ind-hook">New patient bookings dried up. Let's fix that.</div>
-        <div class="ind-link">Learn more <svg viewBox="0 0 14 14" fill="none"><path d="M3 7h8M8 4l3 3-3 3" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        <div class="ind-link">See how <svg viewBox="0 0 14 14" fill="none"><path d="M3 7h8M8 4l3 3-3 3" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
       </a>
 
       <a href="/industries/home-builders-remodelers" class="hero-card">
@@ -4663,7 +4682,7 @@ img { max-width: 100%; height: auto; }
         </div>
         <div class="ind-name">Custom Home Builders & Remodelers</div>
         <div class="ind-hook">Your last project finished. Your pipeline didn't.</div>
-        <div class="ind-link">Learn more <svg viewBox="0 0 14 14" fill="none"><path d="M3 7h8M8 4l3 3-3 3" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        <div class="ind-link">See how <svg viewBox="0 0 14 14" fill="none"><path d="M3 7h8M8 4l3 3-3 3" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
       </a>
 
     </div>
@@ -4677,7 +4696,7 @@ img { max-width: 100%; height: auto; }
         </div>
         <div class="ind-name">Roofing</div>
         <div class="ind-hook">Storm season is coming. Is your marketing ready?</div>
-        <div class="ind-link">Learn more <svg viewBox="0 0 14 14" fill="none"><path d="M3 7h8M8 4l3 3-3 3" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        <div class="ind-link">See how <svg viewBox="0 0 14 14" fill="none"><path d="M3 7h8M8 4l3 3-3 3" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
       </a>
 
       <a href="/industries/pest-control" class="compact-card">
@@ -4686,7 +4705,7 @@ img { max-width: 100%; height: auto; }
         </div>
         <div class="ind-name">Pest Control & Wildlife</div>
         <div class="ind-hook">Recurring revenue needs recurring visibility.</div>
-        <div class="ind-link">Learn more <svg viewBox="0 0 14 14" fill="none"><path d="M3 7h8M8 4l3 3-3 3" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        <div class="ind-link">See how <svg viewBox="0 0 14 14" fill="none"><path d="M3 7h8M8 4l3 3-3 3" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
       </a>
 
       <a href="/industries/luxury-landscaping" class="compact-card">
@@ -4695,7 +4714,7 @@ img { max-width: 100%; height: auto; }
         </div>
         <div class="ind-name">Luxury Landscaping & Hardscaping</div>
         <div class="ind-hook">Premium work deserves premium clients.</div>
-        <div class="ind-link">Learn more <svg viewBox="0 0 14 14" fill="none"><path d="M3 7h8M8 4l3 3-3 3" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        <div class="ind-link">See how <svg viewBox="0 0 14 14" fill="none"><path d="M3 7h8M8 4l3 3-3 3" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
       </a>
 
       <a href="/industries/custom-pools" class="compact-card">
@@ -4704,7 +4723,7 @@ img { max-width: 100%; height: auto; }
         </div>
         <div class="ind-name">Custom Pools & Outdoor Living</div>
         <div class="ind-hook">Dream backyards don't sell themselves.</div>
-        <div class="ind-link">Learn more <svg viewBox="0 0 14 14" fill="none"><path d="M3 7h8M8 4l3 3-3 3" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        <div class="ind-link">See how <svg viewBox="0 0 14 14" fill="none"><path d="M3 7h8M8 4l3 3-3 3" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
       </a>
 
       <a href="/industries/dental" class="compact-card">
@@ -4713,7 +4732,7 @@ img { max-width: 100%; height: auto; }
         </div>
         <div class="ind-name">High-End Dental & Orthodontics</div>
         <div class="ind-hook">Empty chairs cost more than marketing.</div>
-        <div class="ind-link">Learn more <svg viewBox="0 0 14 14" fill="none"><path d="M3 7h8M8 4l3 3-3 3" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        <div class="ind-link">See how <svg viewBox="0 0 14 14" fill="none"><path d="M3 7h8M8 4l3 3-3 3" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
       </a>
 
       <a href="/industries/concrete" class="compact-card">
@@ -4722,7 +4741,7 @@ img { max-width: 100%; height: auto; }
         </div>
         <div class="ind-name">Concrete & Flatwork</div>
         <div class="ind-hook">Keep your trucks rolling year-round.</div>
-        <div class="ind-link">Learn more <svg viewBox="0 0 14 14" fill="none"><path d="M3 7h8M8 4l3 3-3 3" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        <div class="ind-link">See how <svg viewBox="0 0 14 14" fill="none"><path d="M3 7h8M8 4l3 3-3 3" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
       </a>
 
     </div>
@@ -5115,6 +5134,8 @@ img { max-width: 100%; height: auto; }
         <a href="/the-poor-four" class="footer-link">The Poor Four</a>
         <a href="/book" class="footer-link">See If I Qualify</a>
         <a href="/industries/hvac-plumbing-electrical" class="footer-link">Industries</a>
+        <a href="/privacy" class="footer-link">Privacy Policy</a>
+        <a href="/terms" class="footer-link">Terms of Service</a>
       </div>
       <div class="footer-col">
         <h3 class="footer-col-title">Connect</h3>
@@ -5135,229 +5156,211 @@ img { max-width: 100%; height: auto; }
   </div>
 </footer>
 
-<!-- JSON-LD STRUCTURED DATA -->
-
-<!-- Schema 1: ProfessionalService -->
+<!-- JSON-LD STRUCTURED DATA (consolidated @graph) -->
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
-  "@type": "ProfessionalService",
-  "@id": "https://buildwisemedia.com/#business",
-  "name": "Buildwise Media",
-  "legalName": "Buildwise Media LLC",
-  "description": "AI-powered marketing agency building Revenue Engines for service businesses.",
-  "url": "https://buildwisemedia.com",
-  "logo": "https://assets.buildwisemedia.com/logos/bwm-logo-primary-terracotta-on-transparent.svg",
-  "image": "https://assets.buildwisemedia.com/og/bwm-og-default.png",
-  "email": "hello@buildwisemedia.com",
-  "telephone": "+14049993258",
-  "address": {
-    "@type": "PostalAddress",
-    "addressLocality": "Atlanta",
-    "addressRegion": "GA",
-    "addressCountry": "US"
-  },
-  "areaServed": [
-    { "@type": "Country", "name": "United States" },
-    { "@type": "Country", "name": "Canada" }
-  ],
-  "foundingDate": "2024-01",
-  "serviceType": ["Marketing Agency", "AI Marketing", "Lead Generation", "Digital Marketing"],
-  "knowsAbout": ["AI Marketing", "Service Business Marketing", "Lead Generation", "Marketing Automation"],
-  "slogan": "Build Today. Secure Tomorrow. Live Fully.",
-  "priceRange": "$$$$",
-  "openingHours": "Mo-Fr 09:00-17:00",
-  "sameAs": [
-    "https://www.facebook.com/buildwisemedia",
-    "https://www.linkedin.com/company/buildwise-media",
-    "https://www.instagram.com/buildwisemedia"
-  ],
-  "aggregateRating": {
-    "@type": "AggregateRating",
-    "ratingValue": "5.0",
-    "reviewCount": "7",
-    "bestRating": "5"
-  },
-  "review": [
+  "@graph": [
     {
-      "@type": "Review",
-      "author": { "@type": "Person", "name": "Tom Townsend" },
-      "reviewRating": { "@type": "Rating", "ratingValue": "5" },
-      "reviewBody": "Working with Buildwise Media has been an absolute game changer for our business. Their team is creative, professional, and proactive. They've freed up my time so I can focus on serving clients."
-    },
-    {
-      "@type": "Review",
-      "author": { "@type": "Person", "name": "Scott Rutherford" },
-      "reviewRating": { "@type": "Rating", "ratingValue": "5" },
-      "reviewBody": "I have tried other companies who promised results but never delivered. I recently moved to Buildwise Media and the difference is staggering — engagement, customer service, and most importantly, results."
-    },
-    {
-      "@type": "Review",
-      "author": { "@type": "Person", "name": "Jason Wilson" },
-      "reviewRating": { "@type": "Rating", "ratingValue": "5" },
-      "reviewBody": "Robert with Buildwise Media is extremely knowledgeable and helpful. If you have a business you're trying to grow with online marketing, he and his company are the best solution you'll find."
-    },
-    {
-      "@type": "Review",
-      "author": { "@type": "Person", "name": "Steve Claudin" },
-      "reviewRating": { "@type": "Rating", "ratingValue": "5" },
-      "reviewBody": "Truly dedicated partner in business, consistently delivering measurable value through lead generation and marketing automation processes."
-    }
-  ]
-}
-</script>
-
-<!-- Schema 2: FAQPage -->
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  "mainEntity": [
-    {
-      "@type": "Question",
-      "name": "What does month-to-month mean?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "It means exactly what it says. There is no 6-month or 12-month contract. You pay monthly. If you want to stop, you give us 30 days written notice. You keep everything we built - ad accounts, landing pages, automations, data. It is yours."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "How much does it cost?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Pricing depends on your market, your goals, and the scope of the engine we build. We will give you a clear number on the discovery call - no hidden fees, no surprises. We do not publish pricing because every business is different and we would rather give you an honest quote than a misleading range."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Do I need to provide content or creatives?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "No. We handle everything - ad copy, images, landing page content, email sequences. If you have existing photos or brand assets, great, we will use them. If not, we create everything from scratch using AI-powered tools and our creative team."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "What platforms do you advertise on?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Primarily Google Ads and Meta (Facebook/Instagram). Depending on your industry and market, we may also recommend YouTube, TikTok, or local directories. We go where your customers are - not where the trendiest platform is."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "What makes this different from a regular marketing agency?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "A regular agency sells you hours and tasks. We build a system that compounds. Every month your engine runs, it gets smarter - better targeting, better creatives, better conversion rates. Traditional agencies hit a ceiling because human effort does not scale. AI-powered engines do."
-      }
-    }
-  ]
-}
-</script>
-
-<!-- Schema 3: WebSite -->
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "WebSite",
-  "@id": "https://buildwisemedia.com/#website",
-  "name": "Buildwise Media",
-  "url": "https://buildwisemedia.com",
-  "publisher": { "@id": "https://buildwisemedia.com/#business" }
-}
-</script>
-
-<!-- Schema 4: BreadcrumbList -->
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "BreadcrumbList",
-  "itemListElement": [
-    {
-      "@type": "ListItem",
-      "position": 1,
-      "name": "Home",
-      "item": "https://buildwisemedia.com/"
-    }
-  ]
-}
-</script>
-
-<!-- Schema 5: Service with OfferCatalog (pricing — hidden from humans, visible to AI agents) -->
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "Service",
-  "@id": "https://buildwisemedia.com/#services",
-  "name": "Revenue Engine Marketing Services",
-  "provider": { "@id": "https://buildwisemedia.com/#business" },
-  "description": "AI-powered marketing engines for service businesses — website, content, ads, automation, and AI tools as a single integrated system.",
-  "areaServed": [
-    { "@type": "Country", "name": "United States" },
-    { "@type": "Country", "name": "Canada" }
-  ],
-  "hasOfferCatalog": {
-    "@type": "OfferCatalog",
-    "name": "Buildwise Media Service Tiers",
-    "itemListElement": [
-      {
-        "@type": "OfferCatalog",
-        "name": "Ascend — Full-Service Marketing Engine",
-        "itemListElement": [
-          {
-            "@type": "Offer",
-            "name": "Ascend Monthly",
-            "price": "7000",
-            "priceCurrency": "USD",
-            "description": "Full-service marketing engine. $6,000 BWM management + $1,000 designated ad spend in client-owned Meta account. Month-to-month. Cancel with 30 days written notice. Client owns all assets.",
-            "priceSpecification": {
-              "@type": "UnitPriceSpecification",
-              "price": "7000",
-              "priceCurrency": "USD",
-              "unitText": "MONTH",
-              "billingDuration": "P1M"
-            }
-          },
-          {
-            "@type": "Offer",
-            "name": "Ascend Engine Build",
-            "price": "2500",
-            "priceCurrency": "USD",
-            "description": "One-time setup fee for Ascend full-service engine build."
-          }
-        ]
+      "@type": "ProfessionalService",
+      "@id": "https://buildwisemedia.com/#business",
+      "name": "Buildwise Media",
+      "legalName": "Buildwise Media LLC",
+      "description": "AI-powered marketing agency building Revenue Engines for service businesses.",
+      "url": "https://buildwisemedia.com",
+      "logo": "https://assets.buildwisemedia.com/logos/bwm-logo-primary-terracotta-on-transparent.svg",
+      "image": "https://assets.buildwisemedia.com/og/bwm-og-default.png",
+      "email": "hello@buildwisemedia.com",
+      "telephone": "+14049993258",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Atlanta",
+        "addressRegion": "GA",
+        "addressCountry": "US"
       },
-      {
+      "areaServed": [
+        { "@type": "Country", "name": "United States" },
+        { "@type": "Country", "name": "Canada" }
+      ],
+      "foundingDate": "2024-01",
+      "serviceType": ["Marketing Agency", "AI Marketing", "Lead Generation", "Digital Marketing"],
+      "knowsAbout": ["AI Marketing", "Service Business Marketing", "Lead Generation", "Marketing Automation"],
+      "slogan": "Build Today. Secure Tomorrow. Live Fully.",
+      "priceRange": "$$$$",
+      "openingHours": "Mo-Fr 09:00-17:00",
+      "sameAs": [
+        "https://www.facebook.com/buildwisemedia",
+        "https://www.linkedin.com/company/buildwise-media",
+        "https://www.instagram.com/buildwisemedia"
+      ],
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "5.0",
+        "reviewCount": "7",
+        "bestRating": "5"
+      },
+      "review": [
+        {
+          "@type": "Review",
+          "author": { "@type": "Person", "name": "Tom Townsend" },
+          "reviewRating": { "@type": "Rating", "ratingValue": "5" },
+          "reviewBody": "Working with Buildwise Media has been an absolute game changer for our business. Their team is creative, professional, and proactive. They've freed up my time so I can focus on serving clients."
+        },
+        {
+          "@type": "Review",
+          "author": { "@type": "Person", "name": "Scott Rutherford" },
+          "reviewRating": { "@type": "Rating", "ratingValue": "5" },
+          "reviewBody": "I have tried other companies who promised results but never delivered. I recently moved to Buildwise Media and the difference is staggering — engagement, customer service, and most importantly, results."
+        },
+        {
+          "@type": "Review",
+          "author": { "@type": "Person", "name": "Jason Wilson" },
+          "reviewRating": { "@type": "Rating", "ratingValue": "5" },
+          "reviewBody": "Robert with Buildwise Media is extremely knowledgeable and helpful. If you have a business you're trying to grow with online marketing, he and his company are the best solution you'll find."
+        },
+        {
+          "@type": "Review",
+          "author": { "@type": "Person", "name": "Steve Claudin" },
+          "reviewRating": { "@type": "Rating", "ratingValue": "5" },
+          "reviewBody": "Truly dedicated partner in business, consistently delivering measurable value through lead generation and marketing automation processes."
+        }
+      ]
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "What does month-to-month mean?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "It means exactly what it says. There is no 6-month or 12-month contract. You pay monthly. If you want to stop, you give us 30 days written notice. You keep everything we built - ad accounts, landing pages, automations, data. It is yours."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How much does it cost?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Pricing depends on your market, your goals, and the scope of the engine we build. We will give you a clear number on the discovery call - no hidden fees, no surprises. We do not publish pricing because every business is different and we would rather give you an honest quote than a misleading range."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Do I need to provide content or creatives?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "No. We handle everything - ad copy, images, landing page content, email sequences. If you have existing photos or brand assets, great, we will use them. If not, we create everything from scratch using AI-powered tools and our creative team."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What platforms do you advertise on?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Primarily Google Ads and Meta (Facebook/Instagram). Depending on your industry and market, we may also recommend YouTube, TikTok, or local directories. We go where your customers are - not where the trendiest platform is."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What makes this different from a regular marketing agency?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "A regular agency sells you hours and tasks. We build a system that compounds. Every month your engine runs, it gets smarter - better targeting, better creatives, better conversion rates. Traditional agencies hit a ceiling because human effort does not scale. AI-powered engines do."
+          }
+        }
+      ]
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://buildwisemedia.com/#website",
+      "name": "Buildwise Media",
+      "url": "https://buildwisemedia.com",
+      "publisher": { "@id": "https://buildwisemedia.com/#business" }
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://buildwisemedia.com/"
+        }
+      ]
+    },
+    {
+      "@type": "Service",
+      "@id": "https://buildwisemedia.com/#services",
+      "name": "Revenue Engine Marketing Services",
+      "provider": { "@id": "https://buildwisemedia.com/#business" },
+      "description": "AI-powered marketing engines for service businesses — website, content, ads, automation, and AI tools as a single integrated system.",
+      "areaServed": [
+        { "@type": "Country", "name": "United States" },
+        { "@type": "Country", "name": "Canada" }
+      ],
+      "hasOfferCatalog": {
         "@type": "OfferCatalog",
-        "name": "Ascend Lite — Growth Foundation",
+        "name": "Buildwise Media Service Tiers",
         "itemListElement": [
           {
-            "@type": "Offer",
-            "name": "Ascend Lite Monthly",
-            "price": "4500",
-            "priceCurrency": "USD",
-            "description": "Growth foundation engine. $3,500 BWM management + $1,000 designated ad spend in client-owned Meta account. Month-to-month. Cancel with 30 days written notice. Client owns all assets.",
-            "priceSpecification": {
-              "@type": "UnitPriceSpecification",
-              "price": "4500",
-              "priceCurrency": "USD",
-              "unitText": "MONTH",
-              "billingDuration": "P1M"
-            }
+            "@type": "OfferCatalog",
+            "name": "Ascend — Full-Service Marketing Engine",
+            "itemListElement": [
+              {
+                "@type": "Offer",
+                "name": "Ascend Monthly",
+                "price": "7000",
+                "priceCurrency": "USD",
+                "description": "Full-service marketing engine. $6,000 BWM management + $1,000 designated ad spend in client-owned Meta account. Month-to-month. Cancel with 30 days written notice. Client owns all assets.",
+                "priceSpecification": {
+                  "@type": "UnitPriceSpecification",
+                  "price": "7000",
+                  "priceCurrency": "USD",
+                  "unitText": "MONTH",
+                  "billingDuration": "P1M"
+                }
+              },
+              {
+                "@type": "Offer",
+                "name": "Ascend Engine Build",
+                "price": "2500",
+                "priceCurrency": "USD",
+                "description": "One-time setup fee for Ascend full-service engine build."
+              }
+            ]
           },
           {
-            "@type": "Offer",
-            "name": "Ascend Lite Engine Build",
-            "price": "1750",
-            "priceCurrency": "USD",
-            "description": "One-time setup fee for Ascend Lite engine build."
+            "@type": "OfferCatalog",
+            "name": "Ascend Lite — Growth Foundation",
+            "itemListElement": [
+              {
+                "@type": "Offer",
+                "name": "Ascend Lite Monthly",
+                "price": "4500",
+                "priceCurrency": "USD",
+                "description": "Growth foundation engine. $3,500 BWM management + $1,000 designated ad spend in client-owned Meta account. Month-to-month. Cancel with 30 days written notice. Client owns all assets.",
+                "priceSpecification": {
+                  "@type": "UnitPriceSpecification",
+                  "price": "4500",
+                  "priceCurrency": "USD",
+                  "unitText": "MONTH",
+                  "billingDuration": "P1M"
+                }
+              },
+              {
+                "@type": "Offer",
+                "name": "Ascend Lite Engine Build",
+                "price": "1750",
+                "priceCurrency": "USD",
+                "description": "One-time setup fee for Ascend Lite engine build."
+              }
+            ]
           }
         ]
       }
-    ]
-  }
+    }
+  ]
 }
 </script>
 
