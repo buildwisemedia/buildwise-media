@@ -30,11 +30,12 @@
 <link rel="apple-touch-icon" href="https://assets.buildwisemedia.com/favicons/bwm-apple-touch-icon.png">
 
 <!-- Preload hero assets -->
-<link rel="preload" as="image" href="https://assets.buildwisemedia.com/logos/bwm-logo-primary-terracotta-on-transparent.svg" type="image/svg+xml">
+<link rel="preload" as="image" href="https://assets.buildwisemedia.com/logos/bwm-logo-primary-terracotta-on-transparent.svg" type="image/svg+xml" fetchpriority="high">
 
 <!-- Preconnect -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://assets.buildwisemedia.com" crossorigin>
 
 <!-- Google Fonts -->
 <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Inter:wght@400;500;600&family=Playfair+Display:ital,wght@1,400;1,500&display=swap">
@@ -45,13 +46,6 @@
 <meta name="theme-color" content="#1C1714">
 
 <!-- Dark mode only -->
-
-<!-- Google Tag Manager -->
-<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-P5JSD86L');</script>
-
-<!-- Meta Pixel -->
-<script>!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');fbq('init','2728397250833051');fbq('track','PageView');</script>
-<noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=2728397250833051&ev=PageView&noscript=1" alt=""/></noscript>
 
 <style>
 /* === GLOBAL === */
@@ -902,6 +896,14 @@ img { max-width: 100%; height: auto; }
     opacity: 0; transform: translateY(12px);
   }
   .solution-cta.visible { animation: fadeUp 0.6s var(--ease-smooth) 0.4s forwards; }
+  .solution-cta--secondary {
+    border-color: var(--text-muted);
+    color: var(--text-secondary);
+    font-size: 14px;
+    padding: 10px 22px;
+    margin-left: 12px;
+  }
+  .solution-cta--secondary:hover { background: rgba(255,255,255,0.04); color: var(--amber); border-color: var(--amber); }
   .solution-cta:hover {
     background: rgba(212, 148, 58, 0.08);
     transform: translateY(-2px);
@@ -1452,15 +1454,17 @@ img { max-width: 100%; height: auto; }
   .curve-node .node-tooltip { opacity: 0; transition: opacity 0.3s ease; pointer-events: none; }
   .curve-node:hover .node-tooltip { opacity: 1; }
 
+  .node-pulse-ring { transform-box: fill-box; transform-origin: center; }
+
   /* Node pulse animation — triggered by energy passing through */
   @keyframes nodePulseGray {
-    0%, 85%, 100% { opacity: 0; r: 12; }
-    92% { opacity: 0.5; r: 18; }
+    0%, 85%, 100% { opacity: 0; transform: scale(1); }
+    92% { opacity: 0.5; transform: scale(1.5); }
   }
   @keyframes nodePulseColor {
-    0%, 85%, 100% { opacity: 0; r: 14; }
-    90% { opacity: 0.7; r: 24; }
-    95% { opacity: 0.3; r: 28; }
+    0%, 85%, 100% { opacity: 0; transform: scale(1); }
+    90% { opacity: 0.7; transform: scale(1.7); }
+    95% { opacity: 0.3; transform: scale(2); }
   }
   @keyframes nodeGlow {
     0%, 85%, 100% { opacity: 0; }
@@ -3450,6 +3454,7 @@ img { max-width: 100%; height: auto; }
 </style>
 </head>
 <body>
+<noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=2728397250833051&ev=PageView&noscript=1" alt=""></noscript>
 
 <a href="#main-content" class="skip-link">Skip to content</a>
 
@@ -3623,7 +3628,7 @@ img { max-width: 100%; height: auto; }
   </div>
 </section>
 
-<section class="trust-bar">
+<div class="trust-bar" role="region" aria-label="Key statistics">
   <div class="trust-inner">
 
     <div class="stat-block" data-target="10" data-prefix="$" data-suffix="M+">
@@ -3655,7 +3660,7 @@ img { max-width: 100%; height: auto; }
     </div>
 
   </div>
-</section>
+</div>
 
 <section class="poor-four-section">
 
@@ -3864,12 +3869,15 @@ img { max-width: 100%; height: auto; }
     <h2 class="solution-headline">We Replace the Chaos With a System</h2>
 
     <p class="solution-body">
-      Buildwise Media builds an AI-powered marketing engine around your business. Content, ads, website, automation, AI tools — all running while you focus on what you do best.
+      Buildwise Media builds an AI-powered marketing engine around your business. Content, ads, website, AI tools — all running while you focus on what you do best.
     </p>
 
     <p class="solution-guarantee">Month-to-month, no long-term lock-in. You own everything we build.</p>
 
-    <a href="/services/ascend" class="solution-cta">
+    <a href="/book" class="solution-cta">
+      See If I Qualify <span class="arrow">→</span>
+    </a>
+    <a href="/services/ascend" class="solution-cta solution-cta--secondary">
       See What's Inside <span class="arrow">→</span>
     </a>
 
@@ -4032,7 +4040,7 @@ img { max-width: 100%; height: auto; }
         <h2 class="accel-headline">The Gap Between Early<br>and Late Is About to Get<br><span class="stain-word" id="stainWord">Permanent.</span></h2>
       </div>
       <div class="accel-header-right">
-        The technology behind modern marketing doubled in capability this year. It will double again by summer. <strong>Businesses that build now ride every improvement automatically. The ones that wait? They don't fall behind by a quarter. They fall behind by a generation.</strong>
+        The tools behind modern marketing doubled in power this year. They'll double again by summer. <strong>Businesses that build now ride every upgrade on autopilot. The ones that wait? They don't fall behind by a quarter. They fall behind by a lifetime.</strong>
       </div>
     </div>
 
@@ -4177,7 +4185,7 @@ img { max-width: 100%; height: auto; }
     </div>
 
     <div class="accel-footer">
-      Each leap happens faster than the last. <span class="highlight-text">The curve is going vertical.</span> Service businesses with marketing infrastructure already in place ride every improvement automatically. The rest start from scratch in six months — <strong>12 to 18 months behind</strong>. That gap doesn't close. It compounds.
+      Each leap happens faster than the last. <span class="highlight-text">The curve is going vertical.</span> Service businesses with a marketing engine already in place ride every upgrade on autopilot. The rest start from scratch in six months — <strong>12 to 18 months behind</strong>. That gap doesn't close. It compounds.
     </div>
 
   </div>
@@ -4230,7 +4238,7 @@ img { max-width: 100%; height: auto; }
 
     <div class="phases-label">HOW IT WORKS</div>
     <h2 class="phases-headline">Three Phases. One Engine.</h2>
-    <p class="phases-subtext">Thirty days from discovery call to a running marketing system. Here's exactly how.</p>
+    <p class="phases-subtext">Thirty days from first call to a running marketing system. Here's how it works.</p>
 
     <div class="timeline" id="timeline">
       <div class="timeline-connector"><div class="timeline-connector-fill"></div></div>
@@ -4255,7 +4263,7 @@ img { max-width: 100%; height: auto; }
           </li>
           <li class="phase-check-item">
             <span class="check-icon"><svg viewBox="0 0 16 16" fill="none"><polyline points="3,8.5 6.5,12 13,4.5" stroke="#D4943A" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-            Marketing strategy with measurable outcomes
+            Marketing plan with clear, tracked goals
           </li>
         </ul>
       </div>
@@ -4268,7 +4276,7 @@ img { max-width: 100%; height: auto; }
         </div>
         <h3 class="phase-name">Build</h3>
         <div class="phase-duration">Weeks 4–8</div>
-        <p class="phase-desc">Your complete marketing engine — website, content, ads, AI tools — built and tested against documented quality standards.</p>
+        <p class="phase-desc">Your full marketing engine — website, content, ads, AI tools — built and tested against written quality checks.</p>
         <ul class="phase-checks">
           <li class="phase-check-item">
             <span class="check-icon"><svg viewBox="0 0 16 16" fill="none"><polyline points="3,8.5 6.5,12 13,4.5" stroke="#D4943A" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
@@ -4301,7 +4309,7 @@ img { max-width: 100%; height: auto; }
           </li>
           <li class="phase-check-item">
             <span class="check-icon"><svg viewBox="0 0 16 16" fill="none"><polyline points="3,8.5 6.5,12 13,4.5" stroke="#D4943A" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-            Weekly reporting and monthly performance reviews
+            Weekly reports and monthly reviews
           </li>
           <li class="phase-check-item">
             <span class="check-icon"><svg viewBox="0 0 16 16" fill="none"><polyline points="3,8.5 6.5,12 13,4.5" stroke="#D4943A" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
@@ -4553,9 +4561,9 @@ img { max-width: 100%; height: auto; }
 
     <div class="why-label">ENGINEERED, NOT ASSEMBLED</div>
 
-    <h2 class="why-headline">We Don't Sell Deliverables.<br>We Build Infrastructure.</h2>
+    <h2 class="why-headline">We Don't Sell One-Off Projects.<br>We Build Systems.</h2>
 
-    <p class="why-body">Every system we ship meets engineering standards most agencies don't know exist. Documented processes. Scored content. Machine-readable structure. Enterprise-grade marketing, purpose-built for service businesses.</p>
+    <p class="why-body">Every system we ship meets build standards most agencies don't know exist. Written processes. Scored content. AI-ready structure. Pro-grade marketing, built for service businesses.</p>
 
     <div class="stat-grid">
 
@@ -4571,7 +4579,7 @@ img { max-width: 100%; height: auto; }
             <circle cx="28" cy="38" r="3" fill="#D4943A"/>
             <defs>
               <linearGradient id="gaugeGrad1" x1="10" y1="38" x2="42" y2="27">
-                <stop stop-color="#B87333"/><stop offset="1" stop-color="#D4943A"/>
+                <stop offset="0" stop-color="#B87333"/><stop offset="1" stop-color="#D4943A"/>
               </linearGradient>
             </defs>
           </svg>
@@ -4596,8 +4604,8 @@ img { max-width: 100%; height: auto; }
         </div>
         <div class="stat-value">71</div>
         <div class="stat-bar"><div class="stat-bar-fill" style="--fill: 71%;"></div></div>
-        <div class="stat-label">Documented Processes</div>
-        <div class="stat-desc">Every workflow, checklist, and quality gate — written and repeatable</div>
+        <div class="stat-label">Written Processes</div>
+        <div class="stat-desc">Every workflow, checklist, and quality gate — written down and ready to reuse</div>
       </div>
 
       <!-- Stat 3: Quality Threshold -->
@@ -4905,7 +4913,7 @@ img { max-width: 100%; height: auto; }
         </div>
         <div class="proof-text">
           <div class="proof-stat">$10M+ Generated</div>
-          <p class="proof-answer"><strong>One client. One year.</strong> Every result is named, tracked, and verifiable.</p>
+          <p class="proof-answer"><strong>One client. One year.</strong> Every result is named, tracked, and real.</p>
           <div class="proof-bar"><div class="proof-bar-fill amber"></div></div>
         </div>
       </div>
@@ -4980,8 +4988,8 @@ img { max-width: 100%; height: auto; }
           </svg>
         </div>
         <div class="proof-text">
-          <div class="proof-stat">71 Documented Processes</div>
-          <p class="proof-answer"><strong>Engineered, not improvised.</strong> AI executes. Humans run quality gates. Nothing is a black box.</p>
+          <div class="proof-stat">71 Written Processes</div>
+          <p class="proof-answer"><strong>Built right, not guessed.</strong> AI runs the work. Humans check the quality. Nothing is a black box.</p>
           <div class="proof-bar"><div class="proof-bar-fill gold"></div></div>
         </div>
       </div>
@@ -5010,7 +5018,7 @@ img { max-width: 100%; height: auto; }
         </span>
       </button>
       <div class="faq-answer">
-        <p class="faq-answer-text">We work with service businesses across North America — HVAC, plumbing, roofing, remodeling, pest control, med spas, dental practices, landscaping, concrete, and more. If your business depends on booked appointments and a full pipeline, we can help. Our engine is built specifically for the way service businesses grow.</p>
+        <p class="faq-answer-text">We work with service businesses across North America — HVAC, plumbing, roofing, remodeling, pest control, med spas, dental, landscaping, concrete, and more. If your business depends on booked jobs and a full pipeline, we can help. Our engine is built for how service businesses grow.</p>
       </div>
     </div>
 
@@ -5025,7 +5033,7 @@ img { max-width: 100%; height: auto; }
         </span>
       </button>
       <div class="faq-answer">
-        <p class="faq-answer-text">Most agencies sell deliverables — a website here, some social posts there. We build an integrated marketing engine powered by AI that runs your content, ads, website, and automation as a single system. 71 documented processes, enterprise-grade execution, and every asset is yours to keep. Month-to-month, no lock-in.</p>
+        <p class="faq-answer-text">Most agencies sell one-off projects — a website here, some social posts there. We build a full marketing engine powered by AI that runs your content, ads, website, and systems as one unit. 71 written processes, pro-grade work, and every asset is yours to keep. Month-to-month, no lock-in.</p>
       </div>
     </div>
 
@@ -5040,7 +5048,7 @@ img { max-width: 100%; height: auto; }
         </span>
       </button>
       <div class="faq-answer">
-        <p class="faq-answer-text">Every website, every ad account, every piece of content, every automation we build lives in accounts you own. If you ever leave, nothing disappears. No hostage situations, no proprietary platforms you can't access. Your business assets stay your business assets.</p>
+        <p class="faq-answer-text">Every website, every ad account, every piece of content we build lives in accounts you own. If you ever leave, nothing goes away. No hostage games, no locked platforms you can't get into. Your business assets stay your business assets.</p>
       </div>
     </div>
 
@@ -5055,7 +5063,7 @@ img { max-width: 100%; height: auto; }
         </span>
       </button>
       <div class="faq-answer">
-        <p class="faq-answer-text">Most clients see pipeline activity within the first month of the engine build. The full Revenue Engine is live within 90 days — that includes your website, content system, ad campaigns, and automation stack. From there, results compound month over month as the engine learns and optimizes.</p>
+        <p class="faq-answer-text">Most clients see pipeline action within the first month. The full Revenue Engine is live within 30 days — that includes your website, content system, ad campaigns, and tools. From there, results grow month over month as the engine learns and gets sharper.</p>
       </div>
     </div>
 
@@ -6118,6 +6126,12 @@ document.getElementById('navHamburger').addEventListener('click',function(){docu
 /* Sticky mobile CTA */
 (function(){var hero=document.querySelector('.hero');var sticky=document.getElementById('stickyMobileCta');if(!hero||!sticky)return;var obs=new IntersectionObserver(function(e){sticky.classList.toggle('visible',!e[0].isIntersecting);},{threshold:0});obs.observe(hero);})();
 </script>
+
+<!-- Analytics — deferred to end of body for FCP optimization -->
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-P5JSD86L');</script>
+<!-- Meta Pixel -->
+<script>!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');fbq('init','2728397250833051');fbq('track','PageView');</script>
 
 </body>
 </html>
