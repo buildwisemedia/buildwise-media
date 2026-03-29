@@ -278,9 +278,33 @@ img { max-width: 100%; height: auto; }
             layout:"month_view"
           }
         });
+        /* --- Booking Initiated (Tier 2) ---
+           Fires on /book page load. GTM → GA4 booking_initiated + Meta Lead via CAPI */
+        window.dataLayer = window.dataLayer || [];
+        window.dataLayer.push({
+          event: 'booking_initiated',
+          client_id: 'buildwise-media',
+          journey_stage: 'contact_intent',
+          page_path: '/book'
+        });
+
+        /* --- Booking Confirmed (Tier 1) ---
+           Cal.com bookingSuccessful → dataLayer push → 1.5s delay → redirect.
+           GTM fires GA4 booking_confirmed + Meta Schedule via CAPI during the delay.
+           sessionStorage flag prevents double-fire on booked.html fallback. */
         Cal("on", {
           action: "bookingSuccessful",
           callback: function(e) {
+            window.dataLayer = window.dataLayer || [];
+            window.dataLayer.push({
+              event: 'booking_confirmed',
+              client_id: 'buildwise-media',
+              event_type: 'discovery-call',
+              booking_source: 'website',
+              journey_stage: 'converted',
+              page_path: window.location.pathname
+            });
+            sessionStorage.setItem('bwm_booking_tracked', '1');
             setTimeout(function(){ window.location.href = '/booked?confirmed=1'; }, 1500);
           }
         });
@@ -380,6 +404,9 @@ img { max-width: 100%; height: auto; }
 document.getElementById('navHamburger').addEventListener('click',function(){document.getElementById('navMobileMenu').classList.toggle('active');});
 
 </script>
+
+<!-- BWM Conversion Tracking -->
+<script src="/bwm-tracking.js"></script>
 
 </body>
 </html>

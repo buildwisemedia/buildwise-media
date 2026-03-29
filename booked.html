@@ -284,31 +284,37 @@ img { max-width: 100%; height: auto; }
 document.getElementById('navHamburger').addEventListener('click',function(){document.getElementById('navMobileMenu').classList.toggle('active');});
 
 /* ===========================================
-   CONVERSION TRACKING — BOOKING CONFIRMED
-   Only fires when ?confirmed=1 is present
-   (set by the Cal.com redirect on book.html)
+   CONVERSION TRACKING — BOOKING CONFIRMED (FALLBACK)
+   Primary tracking fires on book.html in the Cal.com
+   callback. This is a safety net for edge cases where
+   the book.html push didn't process before redirect.
+   Dedup: sessionStorage flag set by book.html prevents
+   double-fire. GTM CAPI tags handle Meta Schedule event.
    =========================================== */
 if (new URLSearchParams(window.location.search).get('confirmed') === '1') {
-  /* Meta Pixel: Schedule event (primary conversion) */
-  if (typeof fbq !== 'undefined') {
-    fbq('track', 'Schedule');
+  /* Only fire if book.html didn't already track this */
+  if (!sessionStorage.getItem('bwm_booking_tracked')) {
+    window.dataLayer = window.dataLayer || [];
+    window.dataLayer.push({
+      event: 'booking_confirmed',
+      client_id: 'buildwise-media',
+      event_type: 'discovery-call',
+      booking_source: 'website',
+      journey_stage: 'converted',
+      page_path: '/booked'
+    });
   }
 
-  /* GTM: booking_confirmed dataLayer event */
-  window.dataLayer = window.dataLayer || [];
-  window.dataLayer.push({
-    event: 'booking_confirmed',
-    eventCategory: 'conversion',
-    eventAction: 'discovery_call_booked',
-    eventLabel: 'booked_page_view'
-  });
-
-  /* Clean the URL so bookmarks/shares don't re-fire */
+  /* Clean up: remove flag + clean URL so refreshes don't re-fire */
+  sessionStorage.removeItem('bwm_booking_tracked');
   if (window.history && window.history.replaceState) {
     window.history.replaceState({}, '', '/booked');
   }
 }
 </script>
+
+<!-- BWM Conversion Tracking -->
+<script src="/bwm-tracking.js"></script>
 
 </body>
 </html>

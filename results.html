@@ -294,5 +294,8 @@ a{color:inherit}img{max-width:100%;height:auto}
 <script>document.getElementById('navHamburger').addEventListener('click',function(){document.getElementById('navMobileMenu').classList.toggle('active')});</script>
 <script>function toggleFaq(t){var i=t.closest('.faq-item'),w=i.classList.contains('open');document.querySelectorAll('.faq-item.open').forEach(function(e){e.classList.remove('open')});if(!w)i.classList.add('open')}</script>
 <script>(function(){var o=new IntersectionObserver(function(e){e.forEach(function(en){if(en.isIntersecting){en.target.classList.add('visible');o.unobserve(en.target)}})},{threshold:0.15});document.querySelectorAll('.reveal,.section-label,.section-headline').forEach(function(el){o.observe(el)})})()</script>
+<!-- BWM Conversion Tracking -->
+<script src="/bwm-tracking.js"></script>
+
 </body>
 </html>

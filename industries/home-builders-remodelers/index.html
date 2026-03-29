@@ -620,5 +620,8 @@ body::before{content:'';position:fixed;inset:0;z-index:9999;pointer-events:none;
 
 <script>(function(){document.querySelectorAll('.faq-question').forEach(function(btn){btn.addEventListener('click',function(){var item=btn.parentElement;var ans=item.querySelector('.faq-answer');var inner=ans.querySelector('.faq-answer-inner');var isOpen=item.classList.contains('open');document.querySelectorAll('.faq-item.open').forEach(function(oi){oi.classList.remove('open');oi.querySelector('.faq-question').setAttribute('aria-expanded','false');oi.querySelector('.faq-answer').style.maxHeight='0';});if(!isOpen){item.classList.add('open');btn.setAttribute('aria-expanded','true');ans.style.maxHeight=inner.scrollHeight+'px';}});});})();</script>
 
+<!-- BWM Conversion Tracking -->
+<script src="/bwm-tracking.js"></script>
+
 </body>
 </html>
