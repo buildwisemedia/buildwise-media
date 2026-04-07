@@ -63,16 +63,16 @@ const siteUrl = 'https://buildwisemedia.com';
     new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
     j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-    })(window,document,'script','dataLayer','GTM-XXXXXXX');
+    })(window,document,'script','dataLayer','GTM-P5JSD86L');
   </script>
 
   <!-- GA4 -->
-  <script is:inline async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+  <script is:inline async src="https://www.googletagmanager.com/gtag/js?id=G-V5LSP69E41"></script>
   <script is:inline>
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
-    gtag('config', 'G-XXXXXXXXXX');
+    gtag('config', 'G-V5LSP69E41');
   </script>
 
   <!-- Meta Pixel -->
@@ -85,18 +85,33 @@ const siteUrl = 'https://buildwisemedia.com';
     t.src=v;s=b.getElementsByTagName(e)[0];
     s.parentNode.insertBefore(t,s)}(window, document,'script',
     'https://connect.facebook.net/en_US/fbevents.js');
-    fbq('init', '000000000000000');
+    fbq('init', '2728397250833051');
     fbq('track', 'PageView');
   </script>
-  <noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=000000000000000&ev=PageView&noscript=1" /></noscript>
+  <noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=2728397250833051&ev=PageView&noscript=1" /></noscript>
 
   <slot name="head" />
 </head>
 <body>
   <!-- Google Tag Manager (noscript) -->
-  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-XXXXXXX" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-P5JSD86L" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
   <slot />
+
+  <!-- CTA click tracking → GTM cta_click event -->
+  <script is:inline>
+    document.addEventListener('click', function(e) {
+      var btn = e.target.closest('a.cta-btn, a.sticky-mobile-btn, a.hero-cta, a.final-cta-btn');
+      if (!btn) return;
+      window.dataLayer = window.dataLayer || [];
+      window.dataLayer.push({
+        event: 'cta_click',
+        cta_text: btn.textContent.trim(),
+        cta_url: btn.href,
+        page_path: window.location.pathname
+      });
+    });
+  </script>
 
   <!-- Scroll-triggered reveal animation -->
   <script is:inline>
