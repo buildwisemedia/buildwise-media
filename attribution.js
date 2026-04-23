@@ -66,6 +66,31 @@
   }
   document.querySelectorAll('form').forEach(stampFormTiming);
 
+  // --- Meta Pixel cookies (_fbc click ID, _fbp browser ID) ---
+  // Meta Pixel sets these first-party cookies; read raw and inject so the
+  // server-side CAPI emit can dedup against browser Pixel events with the
+  // highest-confidence match. No synthesis — Pixel owns the cookie lifecycle;
+  // missing cookies mean Pixel isn't active and match falls back to em/ph/ip/ua.
+  function getRawCookie(name) {
+    var m = document.cookie.match(new RegExp('(?:^|;\\s*)' + name + '=([^;]*)'));
+    return m ? m[1] : null;
+  }
+  var fbc = getRawCookie('_fbc');
+  var fbp = getRawCookie('_fbp');
+  function injectMetaCookies(form) {
+    if (fbc && !form.querySelector('input[name="fbc"]')) {
+      var i = document.createElement('input');
+      i.type = 'hidden'; i.name = 'fbc'; i.value = fbc;
+      form.appendChild(i);
+    }
+    if (fbp && !form.querySelector('input[name="fbp"]')) {
+      var j = document.createElement('input');
+      j.type = 'hidden'; j.name = 'fbp'; j.value = fbp;
+      form.appendChild(j);
+    }
+  }
+  document.querySelectorAll('form').forEach(injectMetaCookies);
+
   // --- Read cookie (just-set or pre-existing) ---
   var data = getCookie();
   if (!data) return;
