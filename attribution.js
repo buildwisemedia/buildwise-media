@@ -11,8 +11,10 @@
   var PARAMS = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content', 'utm_term', 'fbclid', 'gclid'];
 
   function setCookie(data) {
+    // Domain omitted — browser defaults to current host. Safe across all
+    // BWM-built client sites without cross-origin cookie leaks.
     document.cookie = COOKIE + '=' + encodeURIComponent(JSON.stringify(data)) +
-      '; path=/; domain=.buildwisemedia.com; max-age=2592000; SameSite=Lax; Secure';
+      '; path=/; max-age=2592000; SameSite=Lax; Secure';
   }
 
   function getCookie() {
@@ -41,6 +43,28 @@
     attr.landing_ts = new Date().toISOString();
     setCookie(attr);
   }
+
+  // --- Form-mount timestamp + host-page URL (QLS Spam-Filter §4.3 + §4.5) ---
+  // Stamped on every form regardless of attribution cookie presence. Enables
+  // the form-handler to check (now - mount_ts) ≥3s for fill-time plausibility
+  // and to match Referer header origin against the form's host page URL.
+  function stampFormTiming(form) {
+    if (!form.querySelector('input[name="_form_mount_at"]')) {
+      var tsInp = document.createElement('input');
+      tsInp.type = 'hidden';
+      tsInp.name = '_form_mount_at';
+      tsInp.value = String(Date.now());
+      form.appendChild(tsInp);
+    }
+    if (!form.querySelector('input[name="_form_host_page"]')) {
+      var urlInp = document.createElement('input');
+      urlInp.type = 'hidden';
+      urlInp.name = '_form_host_page';
+      urlInp.value = window.location.href;
+      form.appendChild(urlInp);
+    }
+  }
+  document.querySelectorAll('form').forEach(stampFormTiming);
 
   // --- Read cookie (just-set or pre-existing) ---
   var data = getCookie();
