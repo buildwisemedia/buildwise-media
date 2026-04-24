@@ -83,6 +83,56 @@
 }
 </script>
 
+<!-- JSON-LD: FAQPage (v22 — sections 6 + 7 landing) -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "How does marketing work differently for HVAC, plumbing, and electrical businesses?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "HVAC, plumbing, and electrical work splits between emergency calls (broken AC in a heat wave, burst pipe, electrical fault) and planned work (seasonal tune-ups, panel upgrades, system replacements). A Revenue Engine captures both — ranking you for emergency searches in your service area, running targeted ads to homeowners researching upgrades, and following up automatically so no after-hours call or quote request slips through."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How long until I see leads?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Paid ads typically generate calls within the first two weeks. SEO compounds over 60-90 days. Most HVAC/plumbing/electrical businesses see a noticeable increase in qualified calls within the first 30 days."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "I've been burned by a marketing agency before. How are you different?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "You own everything we build — your website, your content, your ad accounts, your data. Month-to-month, no long-term lock-in. If we don't earn your business every month, you leave with everything. Most agencies lock you into contracts and own your assets. We do the opposite."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What does an HVAC business need to spend on marketing?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Our Revenue Engine includes $1,000/month in managed ad spend. HVAC/plumbing/electrical businesses typically see 25-50 leads per month at $60-$120 per lead. With average customer LTV around $15,000 (maintenance contracts + installs + referrals), even a handful of new customers per month generates significant ROI."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Do I really own everything you build?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. Your website, ad accounts, content, analytics, and data are yours. If you ever leave, everything transfers to you. No hostage assets, no proprietary platforms you can't access. It's in the contract."
+      }
+    }
+  ]
+}
+</script>
+
 <style>
 /* ═══════════════════════════════════════
    1. BASE VARIABLES (Forged Earth — inherited from homepage)
@@ -450,6 +500,21 @@ body::before{content:'';position:fixed;inset:0;z-index:9999;pointer-events:none;
   .results-number{font-size:24px}
   .connection-layer{height:160px}
 }
+/* FAQ section — v22 (porting concrete.html pattern verbatim) */
+.faq-grid{max-width:800px;margin:32px auto 0;display:flex;flex-direction:column;gap:12px}
+.faq-item{background:var(--bg3);border:0.5px solid var(--border);border-radius:12px;overflow:hidden;transition:box-shadow 0.3s var(--ease-smooth)}
+.faq-item:hover{box-shadow:0 4px 20px rgba(0,0,0,0.2)}
+.faq-question{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:20px 24px;cursor:pointer;font-family:var(--font-heading);font-size:16px;font-weight:600;color:var(--text-primary);background:none;border:none;width:100%;text-align:left;transition:color 0.3s ease}
+.faq-question:hover{color:var(--niche-accent)}
+.faq-chevron{width:20px;height:20px;stroke:var(--text-muted);transition:transform 0.3s var(--ease-smooth),stroke 0.3s ease;flex-shrink:0}
+.faq-item.open .faq-chevron{transform:rotate(180deg);stroke:var(--niche-accent)}
+.faq-answer{max-height:0;overflow:hidden;transition:max-height 0.4s var(--ease-smooth)}
+.faq-answer-inner{padding:0 24px 20px;font-family:var(--font-body);font-size:15px;color:var(--text-secondary);line-height:1.7}
+/* Final CTA — v22 */
+.vert-final-cta{background:var(--bg1);text-align:center;padding:100px 48px}
+.final-cta-inner{max-width:640px;margin:0 auto}
+.final-cta-scarcity{font-family:var(--font-body);font-size:14px;color:var(--text-muted);margin-top:20px;letter-spacing:0.3px}
+@media(max-width:768px){.vert-final-cta{padding:80px 24px}.faq-question{font-size:15px;padding:16px 20px}.faq-answer-inner{padding:0 20px 16px;font-size:14px}}
 /* Operations-answer pivot under each pain description — v21 RESPINE */
 .pain-pivot{margin-top:14px;padding-top:14px;border-top:0.5px solid rgba(168,155,140,0.2);font-family:var(--font-body);font-size:14px;line-height:1.55;color:var(--text-muted)}
 .pain-pivot__label{display:block;font-family:var(--font-heading);font-size:11px;letter-spacing:0.08em;text-transform:uppercase;color:var(--copper);font-weight:600;margin-bottom:4px}
@@ -807,14 +872,35 @@ body::before{content:'';position:fixed;inset:0;z-index:9999;pointer-events:none;
     </div>
   </section>
 
-  <!-- v21 RESPINE: site-wide closer band above final action until sections 6-7 land -->
-  <section class="vert-section" style="padding-top:0;padding-bottom:40px">
+  <!-- ═══════════════════════════════════════
+       SECTION 6: FAQ (v22 — landed 2026-04-24)
+       ═══════════════════════════════════════ -->
+  <section class="vert-section vert-faq" id="faq">
     <div class="vert-inner">
-      <p class="bwm-closer reveal">Every claim on this page is verifiable. Ask your current agency to show you theirs.</p>
+      <span class="vert-label reveal">Common Questions</span>
+      <h2 class="vert-h2 reveal" style="text-align:center">HVAC, Plumbing &amp; Electrical Marketing FAQ</h2>
+      <div class="faq-grid">
+        <div class="faq-item reveal stagger-1"><button class="faq-question" aria-expanded="false">How does marketing work differently for HVAC, plumbing, and electrical businesses?<svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></button><div class="faq-answer"><div class="faq-answer-inner">HVAC, plumbing, and electrical work splits between emergency calls (broken AC in a heat wave, burst pipe, electrical fault) and planned work (seasonal tune-ups, panel upgrades, system replacements). A Revenue Engine captures both &mdash; ranking you for emergency searches in your service area, running targeted ads to homeowners researching upgrades, and following up automatically so no after-hours call or quote request slips through.</div></div></div>
+        <div class="faq-item reveal stagger-2"><button class="faq-question" aria-expanded="false">How long until I see leads?<svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></button><div class="faq-answer"><div class="faq-answer-inner">Paid ads typically generate calls within the first two weeks. SEO compounds over 60&ndash;90 days. Most HVAC/plumbing/electrical businesses see a noticeable increase in qualified calls within the first 30 days.</div></div></div>
+        <div class="faq-item reveal stagger-3"><button class="faq-question" aria-expanded="false">I&rsquo;ve been burned by a marketing agency before. How are you different?<svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></button><div class="faq-answer"><div class="faq-answer-inner">You own everything we build &mdash; your website, your content, your ad accounts, your data. Month-to-month, no long-term lock-in. If we don&rsquo;t earn your business every month, you leave with everything. Most agencies lock you into contracts and own your assets. We do the opposite.</div></div></div>
+        <div class="faq-item reveal stagger-4"><button class="faq-question" aria-expanded="false">What does an HVAC business need to spend on marketing?<svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></button><div class="faq-answer"><div class="faq-answer-inner">Our Revenue Engine includes $1,000/month in managed ad spend. HVAC/plumbing/electrical businesses typically see 25&ndash;50 leads per month at $60&ndash;$120 per lead. With average customer LTV around $15,000 (maintenance contracts + installs + referrals), even a handful of new customers per month generates significant ROI.</div></div></div>
+        <div class="faq-item reveal stagger-5"><button class="faq-question" aria-expanded="false">Do I really own everything you build?<svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></button><div class="faq-answer"><div class="faq-answer-inner">Yes. Your website, ad accounts, content, analytics, and data are yours. If you ever leave, everything transfers to you. No hostage assets, no proprietary platforms you can&rsquo;t access. It&rsquo;s in the contract.</div></div></div>
+      </div>
     </div>
   </section>
 
-  <!-- Sections 6-7 added in Phase 1D -->
+  <!-- ═══════════════════════════════════════
+       SECTION 7: FINAL CTA (v22 — landed 2026-04-24)
+       ═══════════════════════════════════════ -->
+  <section class="vert-section vert-final-cta" id="final-cta">
+    <div class="final-cta-inner">
+      <p class="bwm-closer reveal">Every claim on this page is verifiable. Ask your current agency to show you theirs.</p>
+      <span class="vert-label reveal">Ready?</span>
+      <h2 class="vert-h2 reveal">Ready to Build Your HVAC Revenue Engine?</h2>
+      <a href="/book" class="vert-cta vert-cta--large reveal">See If I Qualify &rarr;</a>
+      <p class="final-cta-scarcity reveal">We only take on clients we know we can help.</p>
+    </div>
+  </section>
 
 </main>
 
@@ -866,6 +952,9 @@ document.getElementById('navHamburger').addEventListener('click', function() {
   document.getElementById('navMobileMenu').classList.toggle('active');
 });
 </script>
+
+<!-- FAQ accordion toggle (v22 — sections 6-7 landing) -->
+<script>(function(){document.querySelectorAll('.faq-question').forEach(function(btn){btn.addEventListener('click',function(){var item=btn.parentElement;var ans=item.querySelector('.faq-answer');var inner=ans.querySelector('.faq-answer-inner');var isOpen=item.classList.contains('open');document.querySelectorAll('.faq-item.open').forEach(function(oi){oi.classList.remove('open');oi.querySelector('.faq-question').setAttribute('aria-expanded','false');oi.querySelector('.faq-answer').style.maxHeight='0';});if(!isOpen){item.classList.add('open');btn.setAttribute('aria-expanded','true');ans.style.maxHeight=inner.scrollHeight+'px';}});});})();</script>
 
 <!-- Scroll reveal (Intersection Observer) -->
 <script>
