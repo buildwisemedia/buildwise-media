@@ -1,0 +1,377 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex, nofollow">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>BWM Meta Ads — Command</title>
+<style>
+  :root {
+    --bg: #0f1216;
+    --panel: #171b21;
+    --panel-border: #222831;
+    --text: #e6e8eb;
+    --muted: #7d8692;
+    --accent: #e1a94c;
+    --good: #5ac88a;
+    --bad: #e06666;
+    --warn: #d8a43a;
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; background: var(--bg); color: var(--text); line-height: 1.4; }
+  header { padding: 16px 24px; border-bottom: 1px solid var(--panel-border); display: flex; align-items: center; gap: 16px; flex-wrap: wrap; }
+  header h1 { margin: 0; font-size: 16px; font-weight: 600; letter-spacing: 0.2px; }
+  header .meta { color: var(--muted); font-size: 12px; }
+  header select, header input { background: #0b0e12; color: var(--text); border: 1px solid var(--panel-border); padding: 6px 10px; border-radius: 4px; font: inherit; }
+  header button { background: var(--accent); color: #1a1308; border: 0; padding: 6px 14px; border-radius: 4px; font: inherit; font-weight: 600; cursor: pointer; }
+  header button:hover { opacity: 0.9; }
+
+  .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(360px, 1fr)); gap: 16px; padding: 24px; }
+  .panel { background: var(--panel); border: 1px solid var(--panel-border); border-radius: 6px; padding: 16px; }
+  .panel h2 { margin: 0 0 12px; font-size: 13px; color: var(--muted); font-weight: 600; text-transform: uppercase; letter-spacing: 1px; }
+  .panel .big { font-size: 28px; font-weight: 600; }
+  .panel .row { display: flex; justify-content: space-between; padding: 6px 0; border-bottom: 1px solid #1e242c; font-size: 13px; }
+  .panel .row:last-child { border-bottom: 0; }
+  .panel .row .k { color: var(--muted); }
+  .panel .row .v { font-variant-numeric: tabular-nums; }
+
+  table { width: 100%; border-collapse: collapse; font-size: 13px; }
+  th, td { text-align: left; padding: 6px 8px; border-bottom: 1px solid #1e242c; }
+  th { color: var(--muted); font-weight: 600; font-size: 11px; text-transform: uppercase; letter-spacing: 0.8px; }
+  td.num { text-align: right; font-variant-numeric: tabular-nums; }
+  .pill { display: inline-block; padding: 1px 6px; border-radius: 3px; font-size: 11px; }
+  .pill.good { background: rgba(90,200,138,0.15); color: var(--good); }
+  .pill.bad  { background: rgba(224,102,102,0.15); color: var(--bad);  }
+  .pill.warn { background: rgba(216,164,58,0.15);  color: var(--warn); }
+  .pill.muted { background: #1e242c; color: var(--muted); }
+
+  .bars { margin-top: 10px; display: flex; align-items: flex-end; gap: 2px; height: 60px; }
+  .bars .bar { flex: 1; background: var(--accent); opacity: 0.65; min-height: 1px; }
+  .bars-caption { color: var(--muted); font-size: 11px; margin-top: 4px; }
+
+  .loading { color: var(--muted); font-size: 12px; padding: 8px 0; }
+  .err { color: var(--bad); font-size: 12px; }
+  .deferred { padding: 24px 16px; text-align: center; color: var(--muted); font-size: 12px; border: 1px dashed #2a313a; border-radius: 4px; }
+  footer { color: var(--muted); font-size: 11px; padding: 16px 24px 32px; line-height: 1.6; }
+  code { background: #0b0e12; padding: 1px 4px; border-radius: 3px; font-size: 11px; }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>BWM Meta Ads — Command</h1>
+  <span class="meta" id="meta">Internal dashboard · PROJ-META-ADS-001 Phase 0</span>
+  <span style="flex:1"></span>
+  <label for="clientSel" class="meta">Client:</label>
+  <select id="clientSel">
+    <option value="">All clients</option>
+    <option value="buildwise-media">buildwise-media</option>
+    <option value="design2sell">design2sell</option>
+    <option value="townsend-realty-group">townsend-realty-group</option>
+    <option value="rutherfordmade">rutherfordmade</option>
+    <option value="008-concrete">008-concrete</option>
+    <option value="asap-pest-wildlife">asap-pest-wildlife</option>
+  </select>
+  <input id="days" type="number" min="1" max="90" value="30" title="Days window">
+  <button id="refreshBtn">Refresh</button>
+  <button id="authBtn" style="background:#333;color:#eee">Set key</button>
+</header>
+
+<div class="grid">
+
+  <section class="panel" id="panel-rollup">
+    <h2>Spend rollup · last 7 / 30 / MTD</h2>
+    <div class="loading">loading…</div>
+  </section>
+
+  <section class="panel" id="panel-spend">
+    <h2>Spend breakdown · per-day trend</h2>
+    <div class="loading">loading…</div>
+  </section>
+
+  <section class="panel" id="panel-campaigns">
+    <h2>Active campaigns · last N days</h2>
+    <div class="loading">loading…</div>
+  </section>
+
+  <section class="panel" id="panel-creative">
+    <h2>Creative winners · top ads by spend</h2>
+    <div class="loading">loading…</div>
+  </section>
+
+  <section class="panel" id="panel-leads">
+    <h2>Qualified / filtered leads · paid-social only</h2>
+    <div class="loading">loading…</div>
+  </section>
+
+  <section class="panel" id="panel-match">
+    <h2>CAPI match rate · Meta dedup quality</h2>
+    <div class="loading">loading…</div>
+  </section>
+
+  <section class="panel" id="panel-roas">
+    <h2>ROAS · revenue ÷ spend</h2>
+    <div class="deferred">
+      <strong>Deferred — Phase 0.</strong><br>
+      ROAS requires deal-value attribution from CRM.<br>
+      Wires in when deals join to capi_event_id.<br>
+      MVP criterion #1 target: ≥ 1.0 over 21 days on BWM.
+    </div>
+  </section>
+
+</div>
+
+<footer>
+  <div>Data source: <code>bwm-meta-ads</code> worker daily cron → <code>meta_ads_daily</code> Supabase table.</div>
+  <div>Manual re-pull: <code>POST bwm-meta-ads.robert-ba0.workers.dev/sync-all</code> (internal key required).</div>
+  <div>Auth: COMMAND_KEY in sessionStorage, cleared on browser close. "Set key" rotates.</div>
+  <div>Internal — not indexed, not for client viewing.</div>
+</footer>
+
+<script>
+(function () {
+  'use strict';
+
+  var API = 'https://bwm-command-api.robert-ba0.workers.dev';
+  var KEY = sessionStorage.getItem('bwm_command_key') || '';
+
+  function qs(id) { return document.getElementById(id); }
+  function fmtMoney(n) { return '$' + (Number(n || 0)).toFixed(2); }
+  function fmtInt(n) { return (Number(n || 0)).toLocaleString(); }
+  function fmtPct(n) { return (Number(n || 0) * 100).toFixed(2) + '%'; }
+
+  async function api(path) {
+    if (!KEY) throw new Error('No COMMAND_KEY set — click "Set key" to enter one.');
+    var res = await fetch(API + path, { headers: { 'x-command-key': KEY } });
+    if (!res.ok) throw new Error('HTTP ' + res.status + ' on ' + path);
+    return res.json();
+  }
+
+  // DOM helpers — avoids innerHTML entirely, so all values render via textContent.
+  function el(tag, props, children) {
+    var node = document.createElement(tag);
+    if (props) {
+      for (var k in props) {
+        if (k === 'text')        node.textContent = props[k];
+        else if (k === 'cls')    node.className   = props[k];
+        else if (k === 'title')  node.title       = props[k];
+        else if (k === 'style')  node.setAttribute('style', props[k]);
+        else                     node.setAttribute(k, props[k]);
+      }
+    }
+    if (children) {
+      for (var i = 0; i < children.length; i++) {
+        var c = children[i];
+        if (c == null) continue;
+        node.appendChild(typeof c === 'string' ? document.createTextNode(c) : c);
+      }
+    }
+    return node;
+  }
+  function clearPanel(panel) {
+    var kids = Array.prototype.slice.call(panel.children);
+    for (var i = 0; i < kids.length; i++) {
+      if (kids[i].tagName !== 'H2') panel.removeChild(kids[i]);
+    }
+  }
+  function row(k, v) {
+    return el('div', { cls: 'row' }, [
+      el('span', { cls: 'k', text: k }),
+      el('span', { cls: 'v', text: v }),
+    ]);
+  }
+  function th(text, numeric) { return el('th', { cls: numeric ? 'num' : '', text: text }); }
+  function td(text, numeric) { return el('td', { cls: numeric ? 'num' : '', text: text }); }
+
+  function renderRollup(panel, data) {
+    clearPanel(panel);
+    var rows = data.rows || [];
+    if (!rows.length) { panel.appendChild(el('div', { cls: 'loading', text: 'No data yet.' })); return; }
+
+    var headerRow = el('tr', {}, [
+      th('Client'), th('7d', true), th('30d', true), th('MTD', true),
+      th('Imp 30d', true), th('Clk 30d', true), th('Last data')
+    ]);
+    var body = rows.map(function (r) {
+      return el('tr', {}, [
+        td(r.client_slug),
+        td(fmtMoney(r.spend_7d), true),
+        td(fmtMoney(r.spend_30d), true),
+        td(fmtMoney(r.spend_mtd), true),
+        td(fmtInt(r.impressions_30d), true),
+        td(fmtInt(r.clicks_30d), true),
+        el('td', { style: 'color:var(--muted);font-size:11px', text: r.last_data_date || '' })
+      ]);
+    });
+    var t = data.totals || {};
+    var totalRow = el('tr', { style: 'border-top:2px solid #2a313a;font-weight:600' }, [
+      td('total'),
+      td(fmtMoney(t.spend_7d), true),
+      td(fmtMoney(t.spend_30d), true),
+      td(fmtMoney(t.spend_mtd), true),
+      td(fmtInt(t.impressions_30d), true),
+      td(fmtInt(t.clicks_30d), true),
+      td('')
+    ]);
+    panel.appendChild(el('table', {}, [
+      el('thead', {}, [headerRow]),
+      el('tbody', {}, body.concat([totalRow])),
+    ]));
+  }
+
+  function renderSpend(panel, data) {
+    clearPanel(panel);
+    var t = data.total || {};
+    panel.appendChild(row('spend', fmtMoney(t.spend)));
+    panel.appendChild(row('impressions', fmtInt(t.impressions)));
+    panel.appendChild(row('clicks', fmtInt(t.clicks)));
+    panel.appendChild(row('CTR', fmtPct(t.ctr)));
+    panel.appendChild(row('CPC', t.cpc ? fmtMoney(t.cpc) : '—'));
+
+    var series = data.series || [];
+    if (series.length) {
+      var max = series.reduce(function (m, r) { return Math.max(m, Number(r.spend || 0)); }, 0);
+      var bars = el('div', { cls: 'bars' });
+      series.forEach(function (r) {
+        var h = max > 0 ? Math.round((Number(r.spend || 0) / max) * 60) : 0;
+        bars.appendChild(el('div', {
+          cls: 'bar',
+          title: r.ad_date + ' · ' + fmtMoney(r.spend),
+          style: 'height:' + h + 'px',
+        }));
+      });
+      panel.appendChild(bars);
+      panel.appendChild(el('div', { cls: 'bars-caption', text: series.length + ' days · ' + data.since + ' → today' }));
+    }
+  }
+
+  function renderCampaigns(panel, data) {
+    clearPanel(panel);
+    var campaigns = data.campaigns || [];
+    if (!campaigns.length) { panel.appendChild(el('div', { cls: 'loading', text: 'No campaigns in window.' })); return; }
+    var hasClient = !!data.client;
+    var head = el('tr', {}, [th('Campaign'), th('Spend', true), th('Imp', true), th('Clk', true), th('CTR', true), th('CPC', true)]);
+    var body = campaigns.slice(0, 30).map(function (c) {
+      var name = (hasClient ? '' : c.client_slug + ' · ') + (c.campaign_name || c.campaign_id);
+      return el('tr', {}, [
+        td(name),
+        td(fmtMoney(c.spend), true),
+        td(fmtInt(c.impressions), true),
+        td(fmtInt(c.clicks), true),
+        td(fmtPct(c.ctr), true),
+        td(c.cpc != null ? fmtMoney(c.cpc) : '—', true),
+      ]);
+    });
+    panel.appendChild(el('table', {}, [el('thead', {}, [head]), el('tbody', {}, body)]));
+  }
+
+  function renderCreative(panel, data) {
+    clearPanel(panel);
+    var rows = data.rows || [];
+    if (!rows.length) { panel.appendChild(el('div', { cls: 'loading', text: 'No ads in window.' })); return; }
+    var hasClient = !!data.client;
+    var head = el('tr', {}, [th('Ad'), th('Spend 30d', true), th('CTR', true), th('CPC', true), th('Leads', true)]);
+    var body = rows.slice(0, 15).map(function (r) {
+      var name = (hasClient ? '' : r.client_slug + ' · ') + (r.ad_name || r.ad_id);
+      return el('tr', {}, [
+        td(name),
+        td(fmtMoney(r.spend_30d), true),
+        td(fmtPct(r.ctr_30d), true),
+        td(r.cpc_30d != null ? fmtMoney(r.cpc_30d) : '—', true),
+        td(fmtInt(r.leads_30d), true),
+      ]);
+    });
+    panel.appendChild(el('table', {}, [el('thead', {}, [head]), el('tbody', {}, body)]));
+  }
+
+  function renderLeads(panel, data) {
+    clearPanel(panel);
+    var passed = data.passed?.count || 0;
+    var filtered = data.filtered?.count || 0;
+    var total = passed + filtered;
+    panel.appendChild(row('Qualified (paid-social, passed QLS)', fmtInt(passed)));
+    panel.appendChild(row('Filtered (paid-social, QLS-rejected)', fmtInt(filtered)));
+    panel.appendChild(row('Pass rate', total > 0 ? ((passed / total) * 100).toFixed(1) + '%' : '—'));
+    var allSrc = data.all_sources || {};
+    var r1 = row('All-source passed total', fmtInt(allSrc.passed_total));
+    r1.style.color = 'var(--muted)';
+    panel.appendChild(r1);
+    var r2 = row('All-source filtered total', fmtInt(allSrc.filtered_total));
+    r2.style.color = 'var(--muted)';
+    panel.appendChild(r2);
+  }
+
+  function renderMatch(panel, data) {
+    clearPanel(panel);
+    var rows = data.rows || [];
+    if (!rows.length) {
+      panel.appendChild(el('div', { cls: 'loading', text: 'No match-rate data yet (CAPI events empty until first qualified submit).' }));
+      return;
+    }
+    var head = el('tr', {}, [th('Client'), th('Match rate 7d', true), th('Events', true)]);
+    var body = rows.map(function (r) {
+      var rate = Number(r.match_rate || 0);
+      var cls = rate >= 0.7 ? 'good' : (rate >= 0.5 ? 'warn' : 'bad');
+      var pill = el('span', { cls: 'pill ' + cls, text: fmtPct(rate) });
+      var rateCell = el('td', { cls: 'num' }, [pill]);
+      return el('tr', {}, [td(r.client_slug), rateCell, td(fmtInt(r.total_events), true)]);
+    });
+    panel.appendChild(el('table', {}, [el('thead', {}, [head]), el('tbody', {}, body)]));
+  }
+
+  async function loadPanel(panelId, path, renderer) {
+    var panel = qs(panelId);
+    try {
+      var data = await api(path);
+      renderer(panel, data);
+    } catch (e) {
+      clearPanel(panel);
+      panel.appendChild(el('div', { cls: 'err', text: e.message }));
+    }
+  }
+
+  async function refreshAll() {
+    var client = qs('clientSel').value;
+    var days = Number(qs('days').value || 30);
+    var clientSuffix = client ? '?client=' + encodeURIComponent(client) : '';
+    var daysSuffix = client ? '?client=' + encodeURIComponent(client) + '&days=' + days : '?days=' + days;
+
+    await Promise.all([
+      loadPanel('panel-rollup',    '/ads/rollup' + clientSuffix, renderRollup),
+      loadPanel('panel-spend',     '/ads/spend' + daysSuffix, renderSpend),
+      loadPanel('panel-campaigns', '/ads/campaigns' + daysSuffix, renderCampaigns),
+      loadPanel('panel-creative',  '/ads/creative-winners' + clientSuffix, renderCreative),
+      loadPanel('panel-leads',     '/ads/leads' + daysSuffix, renderLeads),
+      loadPanel('panel-match',     '/capi/match-rate' + clientSuffix, renderMatch),
+    ]);
+    qs('meta').textContent = 'Internal · PROJ-META-ADS-001 · last refresh ' + new Date().toLocaleTimeString();
+  }
+
+  function promptKey() {
+    var k = prompt('Enter COMMAND_KEY (stored in sessionStorage for this tab only):', KEY || '');
+    if (k) {
+      KEY = k.trim();
+      sessionStorage.setItem('bwm_command_key', KEY);
+      refreshAll();
+    }
+  }
+
+  qs('refreshBtn').addEventListener('click', refreshAll);
+  qs('authBtn').addEventListener('click', promptKey);
+  qs('clientSel').addEventListener('change', refreshAll);
+  qs('days').addEventListener('change', refreshAll);
+
+  // URL ?k= bootstrap (one-shot)
+  var urlKey = new URLSearchParams(location.search).get('k');
+  if (urlKey) { KEY = urlKey; sessionStorage.setItem('bwm_command_key', KEY); history.replaceState({}, '', location.pathname); }
+
+  if (!KEY) {
+    promptKey();
+  } else {
+    refreshAll();
+  }
+})();
+</script>
+
+</body>
+</html>
