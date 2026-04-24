@@ -1,0 +1,35 @@
+<!--
+  BWM Shared Component — FAQ Grid
+  Accordion list — click question to expand answer. Chevron rotates on open.
+  Currently used on industries/hvac-plumbing-electrical/index.html (v22) and
+  the canonical pattern was lifted from concrete.html. Reusable on any
+  industry or service page. Pair with a small click-handler that toggles
+  `.open` on the parent `.faq-item`.
+  Usage:
+    <div class="faq-grid">
+      <div class="faq-item">
+        <button class="faq-question" type="button">
+          What does Ascend cost?
+          <svg class="faq-chevron" viewBox="0 0 24 24" fill="none"><path d="M6 9l6 6 6-6" stroke-width="2"/></svg>
+        </button>
+        <div class="faq-answer"><div class="faq-answer-inner">
+          Pricing depends on niche complexity. Book a strategy call.
+        </div></div>
+      </div>
+    </div>
+  Variables --bg3, --border, --text-primary, --text-secondary, --text-muted,
+  --niche-accent, --font-heading, --font-body, --ease-smooth must be defined upstream.
+-->
+
+<style>
+.faq-grid{max-width:800px;margin:32px auto 0;display:flex;flex-direction:column;gap:12px}
+.faq-item{background:var(--bg3);border:0.5px solid var(--border);border-radius:12px;overflow:hidden;transition:box-shadow 0.3s var(--ease-smooth)}
+.faq-item:hover{box-shadow:0 4px 20px rgba(0,0,0,0.2)}
+.faq-question{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:20px 24px;cursor:pointer;font-family:var(--font-heading);font-size:16px;font-weight:600;color:var(--text-primary);background:none;border:none;width:100%;text-align:left;transition:color 0.3s ease}
+.faq-question:hover{color:var(--niche-accent)}
+.faq-chevron{width:20px;height:20px;stroke:var(--text-muted);transition:transform 0.3s var(--ease-smooth),stroke 0.3s ease;flex-shrink:0}
+.faq-item.open .faq-chevron{transform:rotate(180deg);stroke:var(--niche-accent)}
+.faq-answer{max-height:0;overflow:hidden;transition:max-height 0.4s var(--ease-smooth)}
+.faq-answer-inner{padding:0 24px 20px;font-family:var(--font-body);font-size:15px;color:var(--text-secondary);line-height:1.7}
+@media (max-width:768px){.faq-question{font-size:15px;padding:16px 20px}.faq-answer-inner{padding:0 20px 16px;font-size:14px}}
+</style>

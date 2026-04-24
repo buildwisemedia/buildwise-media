@@ -1,0 +1,18 @@
+<!--
+  BWM Shared Component — Site-Wide Closer Band
+  Centered uppercase tagline with copper hairline above and below. Sits at the
+  bottom of marketing sections to "seal" the page in the operations-spine voice.
+  LOCKED 2026-04-24 (P19 RESPINE).
+  Usage:
+    <p class="bwm-closer">Operations is the strategy. Visibility is the proof.</p>
+  Include the CSS block once per page (or globally). Variables --copper,
+  --text-secondary, --font-heading must be defined upstream.
+-->
+
+<style>
+.bwm-closer{position:relative;padding:28px 24px;margin:0 auto 28px;max-width:900px;text-align:center;font-family:var(--font-heading);font-size:clamp(13px,1.4vw,15px);letter-spacing:0.12em;text-transform:uppercase;color:var(--text-secondary);font-weight:500}
+.bwm-closer::before,.bwm-closer::after{content:'';position:absolute;left:50%;transform:translateX(-50%);width:min(60%,520px);height:1px;background:linear-gradient(90deg,transparent 0%,var(--copper) 50%,transparent 100%);opacity:0.6}
+.bwm-closer::before{top:0}
+.bwm-closer::after{bottom:0}
+@media (max-width:640px){.bwm-closer{font-size:12px;padding:22px 18px;letter-spacing:0.08em}}
+</style>

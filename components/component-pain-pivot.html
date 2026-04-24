@@ -1,0 +1,19 @@
+<!--
+  BWM Shared Component — Pain Pivot
+  Operations-answer pivot under each pain description on industry pages.
+  Top hairline rule, copper uppercase label, muted body text. Pivots the
+  reader from "you have this pain" to "we operate on it like this."
+  Used on every industries/* page (v21 RESPINE).
+  Usage:
+    <p class="pain-description">Leads vanish into the void after first contact.</p>
+    <div class="pain-pivot">
+      <span class="pain-pivot__label">How we operate on it</span>
+      Every inbound is timestamped, scored, and routed within 60 seconds — measured.
+    </div>
+  Variables --copper, --text-muted, --font-body, --font-heading must be defined upstream.
+-->
+
+<style>
+.pain-pivot{margin-top:14px;padding-top:14px;border-top:0.5px solid rgba(168,155,140,0.2);font-family:var(--font-body);font-size:14px;line-height:1.55;color:var(--text-muted)}
+.pain-pivot__label{display:block;font-family:var(--font-heading);font-size:11px;letter-spacing:0.08em;text-transform:uppercase;color:var(--copper);font-weight:600;margin-bottom:4px}
+</style>

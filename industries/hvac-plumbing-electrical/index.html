@@ -501,6 +501,7 @@ body::before{content:'';position:fixed;inset:0;z-index:9999;pointer-events:none;
   .connection-layer{height:160px}
 }
 /* FAQ section — v22 (porting concrete.html pattern verbatim) */
+/* Canonical: components/component-faq-grid.html */
 .faq-grid{max-width:800px;margin:32px auto 0;display:flex;flex-direction:column;gap:12px}
 .faq-item{background:var(--bg3);border:0.5px solid var(--border);border-radius:12px;overflow:hidden;transition:box-shadow 0.3s var(--ease-smooth)}
 .faq-item:hover{box-shadow:0 4px 20px rgba(0,0,0,0.2)}
@@ -511,16 +512,20 @@ body::before{content:'';position:fixed;inset:0;z-index:9999;pointer-events:none;
 .faq-answer{max-height:0;overflow:hidden;transition:max-height 0.4s var(--ease-smooth)}
 .faq-answer-inner{padding:0 24px 20px;font-family:var(--font-body);font-size:15px;color:var(--text-secondary);line-height:1.7}
 /* Final CTA — v22 */
+/* Canonical: components/component-vert-final-cta.html */
 .vert-final-cta{background:var(--bg1);text-align:center;padding:100px 48px}
 .final-cta-inner{max-width:640px;margin:0 auto}
 .final-cta-scarcity{font-family:var(--font-body);font-size:14px;color:var(--text-muted);margin-top:20px;letter-spacing:0.3px}
 @media(max-width:768px){.vert-final-cta{padding:80px 24px}.faq-question{font-size:15px;padding:16px 20px}.faq-answer-inner{padding:0 20px 16px;font-size:14px}}
 /* Operations-answer pivot under each pain description — v21 RESPINE */
+/* Canonical: components/component-pain-pivot.html */
 .pain-pivot{margin-top:14px;padding-top:14px;border-top:0.5px solid rgba(168,155,140,0.2);font-family:var(--font-body);font-size:14px;line-height:1.55;color:var(--text-muted)}
 .pain-pivot__label{display:block;font-family:var(--font-heading);font-size:11px;letter-spacing:0.08em;text-transform:uppercase;color:var(--copper);font-weight:600;margin-bottom:4px}
 /* Evidence-class tag for benchmark stats — v21 RESPINE */
+/* Canonical: components/component-evidence-tag.html */
 .evidence-tag{display:inline-block;margin-top:6px;margin-bottom:20px;padding:4px 10px;border:0.5px solid var(--copper);border-radius:3px;font-family:var(--font-heading);font-size:11px;letter-spacing:0.12em;color:var(--copper);text-transform:uppercase;font-weight:600}
 /* Site-wide closer band (P19 RESPINE — LOCKED 2026-04-24) */
+/* Canonical: components/component-closer-band.html */
 .bwm-closer{position:relative;padding:28px 24px;margin:0 auto 28px;max-width:900px;text-align:center;font-family:var(--font-heading);font-size:clamp(13px,1.4vw,15px);letter-spacing:0.12em;text-transform:uppercase;color:var(--text-secondary);font-weight:500}
 .bwm-closer::before,.bwm-closer::after{content:'';position:absolute;left:50%;transform:translateX(-50%);width:min(60%,520px);height:1px;background:linear-gradient(90deg,transparent 0%,var(--copper) 50%,transparent 100%);opacity:0.6}
 .bwm-closer::before{top:0}.bwm-closer::after{bottom:0}

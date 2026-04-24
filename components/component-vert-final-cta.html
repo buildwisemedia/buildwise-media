@@ -1,0 +1,24 @@
+<!--
+  BWM Shared Component — Vertical Final CTA
+  Centered closing CTA section for industry / vertical pages. Large padding,
+  bg1 background, optional scarcity line below the button. Currently used on
+  industries/hvac-plumbing-electrical/index.html (v22).
+  Usage:
+    <section class="vert-final-cta">
+      <div class="final-cta-inner">
+        <h2>Ready to operate on this?</h2>
+        <p>Book a 30-min strategy call.</p>
+        <a href="/book" class="cta-primary">See If I Qualify</a>
+        <p class="final-cta-scarcity">We onboard 4 new clients a quarter. 2 left this quarter.</p>
+      </div>
+    </section>
+  Variables --bg1, --text-muted, --font-body must be defined upstream.
+  Pair with `.faq-grid` mobile breakpoint when both render on the same page.
+-->
+
+<style>
+.vert-final-cta{background:var(--bg1);text-align:center;padding:100px 48px}
+.final-cta-inner{max-width:640px;margin:0 auto}
+.final-cta-scarcity{font-family:var(--font-body);font-size:14px;color:var(--text-muted);margin-top:20px;letter-spacing:0.3px}
+@media (max-width:768px){.vert-final-cta{padding:80px 24px}}
+</style>
