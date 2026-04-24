@@ -135,11 +135,12 @@ main{padding-top:64px;position:relative;z-index:2}
 .math-card__meta{font-family:var(--font-body);font-size:13px;line-height:1.5;color:var(--text-secondary)}
 
 /* Closer band */
-/* Variant of components/component-closer-band.html — margin:40px auto 0 (top-spacing variant) + @media query merged with other rules */
+/* Variant of components/component-closer-band.html — margin:40px auto 0 (intentional: closer sits orphan-positioned between sections, needs top-spacing from prior section instead of bottom-spacing into next section's own padding) */
 .bwm-closer{position:relative;padding:28px 24px;margin:40px auto 0;max-width:900px;text-align:center;font-family:var(--font-heading);font-size:clamp(13px,1.4vw,15px);letter-spacing:0.12em;text-transform:uppercase;color:var(--text-secondary);font-weight:500}
 .bwm-closer::before,.bwm-closer::after{content:'';position:absolute;left:50%;transform:translateX(-50%);width:min(60%,520px);height:1px;background:linear-gradient(90deg,transparent 0%,var(--copper) 50%,transparent 100%);opacity:0.6}
 .bwm-closer::before{top:0}
 .bwm-closer::after{bottom:0}
+@media (max-width:640px){.bwm-closer{font-size:12px;padding:22px 18px;letter-spacing:0.08em}}
 
 /* Final CTA */
 .math-cta{text-align:center;padding:48px 24px 88px;max-width:1100px;margin:0 auto}
@@ -175,7 +176,6 @@ main{padding-top:64px;position:relative;z-index:2}
   .site-footer{padding:48px 24px 24px}
 }
 @media(max-width:640px){
-  .bwm-closer{font-size:12px;padding:22px 18px;letter-spacing:0.08em}
   .math-table th,.math-table td{padding:10px 12px;font-size:13px}
   .math-table td.num{font-size:15px}
   .footer-grid{grid-template-columns:1fr;gap:24px}
