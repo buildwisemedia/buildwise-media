@@ -1,0 +1,59 @@
+<!--
+  BWM Shared Component — Transparent Code Block
+  Copper-bordered, charcoal fill, copy button. For mechanism explainer snippets
+  (connector audit, pre-ship checklist, event-log line). Keep content short and real.
+  Usage:
+    <pre class="bwm-code" data-label="pre-ship gate"><code>grep -rniE '(retired product phrase)' --include='*.html' . | head
+    # zero matches expected &rarr; ship</code><button class="bwm-code__copy" onclick="bwmCodeCopy(this)">copy</button></pre>
+-->
+
+<style>
+.bwm-code{
+  position:relative;
+  font-family:'JetBrains Mono','IBM Plex Mono',ui-monospace,SFMono-Regular,Menlo,monospace;
+  font-size:13px;line-height:1.6;
+  color:var(--text-primary,#F5F0EB);
+  background:rgba(28,23,20,0.6);
+  border:1px solid var(--copper,#B87333);
+  border-left-width:3px;
+  border-radius:4px;
+  padding:14px 16px 14px 18px;
+  margin:16px 0;
+  overflow-x:auto;
+  white-space:pre;
+}
+.bwm-code[data-label]::before{
+  content:attr(data-label);
+  position:absolute;top:-9px;left:14px;
+  font-family:'JetBrains Mono','IBM Plex Mono',monospace;
+  font-size:11px;letter-spacing:0.08em;text-transform:uppercase;
+  color:var(--copper,#B87333);
+  background:var(--bg1,#1C1714);padding:0 8px;
+}
+.bwm-code code{font:inherit;color:inherit;background:none;padding:0}
+.bwm-code__copy{
+  position:absolute;top:10px;right:10px;
+  font-family:'JetBrains Mono',monospace;font-size:11px;
+  color:var(--text-muted,#8B7F73);background:transparent;
+  border:1px solid var(--border,#3D352E);border-radius:3px;
+  padding:3px 8px;cursor:pointer;
+  transition:color 180ms ease, border-color 180ms ease;
+}
+.bwm-code__copy:hover{color:var(--amber,#D4943A);border-color:var(--amber,#D4943A)}
+.bwm-code__copy[data-copied]{color:var(--green,#5A9E6F);border-color:var(--green,#5A9E6F)}
+@media (max-width:640px){
+  .bwm-code{font-size:12px;padding:12px 14px}
+}
+</style>
+
+<script>
+window.bwmCodeCopy = function(btn){
+  var pre = btn.closest('.bwm-code');
+  var code = pre.querySelector('code')?.innerText || pre.innerText;
+  navigator.clipboard?.writeText(code.trim()).then(function(){
+    btn.setAttribute('data-copied','1');
+    btn.textContent = 'copied';
+    setTimeout(function(){btn.removeAttribute('data-copied');btn.textContent='copy'},1800);
+  });
+};
+</script>

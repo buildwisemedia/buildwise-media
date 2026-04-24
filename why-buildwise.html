@@ -185,6 +185,16 @@ a{color:inherit}img{max-width:100%;height:auto}
   .eng-stat-row{grid-template-columns:1fr}
   .eng-row-number{font-size:32px}
 }
+
+/* Site-wide closer band (P19 RESPINE — LOCKED 2026-04-24) */
+.bwm-closer{position:relative;padding:28px 24px;margin:0 auto 28px;max-width:900px;text-align:center;font-family:var(--font-heading);font-size:clamp(13px,1.4vw,15px);letter-spacing:0.12em;text-transform:uppercase;color:var(--text-secondary);font-weight:500}
+.bwm-closer::before,.bwm-closer::after{content:'';position:absolute;left:50%;transform:translateX(-50%);width:min(60%,520px);height:1px;background:linear-gradient(90deg,transparent 0%,var(--copper) 50%,transparent 100%);opacity:0.6}
+.bwm-closer::before{top:0}
+.bwm-closer::after{bottom:0}
+/* 12-word OBI echo post-CTA — LOCKED 2026-04-24 */
+.cta-obi{margin-top:28px;font-family:'JetBrains Mono','IBM Plex Mono',ui-monospace,monospace;font-size:14px;letter-spacing:0.04em;color:var(--amber);opacity:0.85}
+@media (max-width:640px){.bwm-closer{font-size:12px;padding:22px 18px;letter-spacing:0.08em}}
+
 </style>
 <script src="/attribution.js" defer></script>
 </head>
@@ -362,7 +372,10 @@ a{color:inherit}img{max-width:100%;height:auto}
 <!-- FINAL CTA -->
 <section class="final-cta" id="cta">
   <div class="cta-inner">
-    <div class="cta-divider reveal"></div>
+    
+    <!-- Site-wide closer band (LOCKED 2026-04-24, never paraphrased) -->
+    <p class="bwm-closer">Every claim on this page is verifiable. Ask your current agency to show you theirs.</p>
+<div class="cta-divider reveal"></div>
     <h2 class="cta-headline reveal">Want to See If a Revenue Engine <em>Fits Your Business</em>?</h2>
     <p class="cta-body reveal">15 minutes. No pitch. We look at your business, your market, and your numbers &mdash; and tell you if a Revenue Engine makes sense.</p>
     <p class="cta-qualifier reveal">We only take on clients we know we can help.</p>

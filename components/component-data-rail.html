@@ -1,0 +1,37 @@
+<!--
+  BWM Shared Component — Data Rail
+  Drop-in anywhere. Monospace label + value pair. Copy-on-hover reveals the raw value.
+  Usage:
+    <span class="bwm-rail">
+      <span class="bwm-rail__label">audit</span>
+      <span class="bwm-rail__sep">·</span>
+      <span class="bwm-rail__value">passing</span>
+      <span class="bwm-rail__meta">mon 04:00 ET</span>
+    </span>
+  Include the CSS block once per page (or globally). Font import assumes JetBrains Mono is loaded in <head>.
+-->
+
+<style>
+.bwm-rail{
+  display:inline-flex;align-items:baseline;gap:8px;
+  font-family:'JetBrains Mono','IBM Plex Mono',ui-monospace,SFMono-Regular,Menlo,monospace;
+  font-size:13px;line-height:1.4;letter-spacing:0.02em;
+  color:var(--text-primary,#F5F0EB);
+  padding:6px 10px;border:1px solid var(--border,#3D352E);border-radius:4px;
+  background:rgba(28,23,20,0.4);
+  transition:border-color 180ms ease, background 180ms ease;
+}
+.bwm-rail:hover{border-color:var(--copper,#B87333);background:rgba(28,23,20,0.6)}
+.bwm-rail__label{color:var(--text-secondary,#A89B8C);text-transform:lowercase;font-weight:500}
+.bwm-rail__sep{color:var(--border,#3D352E)}
+.bwm-rail__value{color:var(--amber,#D4943A);font-weight:500}
+.bwm-rail__meta{color:var(--text-muted,#8B7F73);font-size:12px;margin-left:2px}
+.bwm-rail__dot{display:inline-block;width:6px;height:6px;border-radius:50%;background:var(--green,#5A9E6F);margin-right:4px;vertical-align:middle}
+.bwm-rail__dot--amber{background:var(--amber,#D4943A)}
+.bwm-rail__dot--neutral{background:var(--text-muted,#8B7F73)}
+.bwm-rail--block{display:flex;justify-content:space-between;width:100%}
+@media (max-width:640px){
+  .bwm-rail{font-size:12px;padding:5px 8px}
+  .bwm-rail__meta{display:none}
+}
+</style>

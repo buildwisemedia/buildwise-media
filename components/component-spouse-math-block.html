@@ -1,0 +1,124 @@
+<!--
+  BWM Shared Component — Spouse-Math Block
+  Inline stat-first math block for homepage "Here's the math" section.
+  Pattern: cost in · output · break-even. Plain language, no jargon.
+  Parent page wires the numbers — they should reflect current Ascend pricing
+  (Flag A LOCKED: $7K/mo total + $2,500 Engine Build) and a realistic
+  first-6-month baseline.
+-->
+
+<style>
+.bwm-math{
+  background:var(--bg1,#1C1714);
+  border:1px solid var(--border-subtle,#2E2822);
+  border-radius:8px;
+  padding:40px 32px;
+  max-width:960px;margin:0 auto;
+  position:relative;overflow:hidden;
+}
+.bwm-math::before{
+  content:'';position:absolute;inset:0;pointer-events:none;
+  background:radial-gradient(ellipse 50% 80% at 100% 0%, rgba(212,148,58,0.06), transparent 60%);
+}
+.bwm-math__label{
+  font-family:'JetBrains Mono','IBM Plex Mono',monospace;
+  font-size:12px;letter-spacing:0.12em;text-transform:uppercase;
+  color:var(--copper,#B87333);margin-bottom:10px;position:relative;
+}
+.bwm-math__headline{
+  font-family:'Inter',sans-serif;font-weight:700;
+  font-size:clamp(28px,4vw,40px);line-height:1.2;
+  color:var(--text-primary,#F5F0EB);margin:0 0 8px;position:relative;
+}
+.bwm-math__sub{
+  font-family:'Manrope',sans-serif;font-size:17px;line-height:1.6;
+  color:var(--text-secondary,#A89B8C);margin:0 0 32px;max-width:720px;position:relative;
+}
+.bwm-math__grid{
+  display:grid;grid-template-columns:1fr auto 1fr auto 1fr;
+  gap:20px;align-items:center;position:relative;
+}
+.bwm-math__slot{
+  display:flex;flex-direction:column;gap:6px;
+  padding:20px;
+  background:rgba(42,35,32,0.5);
+  border:1px solid var(--border-subtle,#2E2822);
+  border-radius:6px;
+}
+.bwm-math__slot-label{
+  font-family:'JetBrains Mono','IBM Plex Mono',monospace;
+  font-size:12px;letter-spacing:0.06em;text-transform:lowercase;
+  color:var(--text-muted,#8B7F73);
+}
+.bwm-math__slot-value{
+  font-family:'Inter',sans-serif;font-weight:700;
+  font-size:clamp(28px,3.5vw,38px);line-height:1.1;
+  color:var(--amber,#D4943A);
+}
+.bwm-math__slot-value.muted{color:var(--text-primary,#F5F0EB)}
+.bwm-math__slot-meta{
+  font-family:'Manrope',sans-serif;font-size:13px;line-height:1.4;
+  color:var(--text-secondary,#A89B8C);
+}
+.bwm-math__op{
+  font-family:'JetBrains Mono','IBM Plex Mono',monospace;
+  font-size:clamp(20px,2.5vw,28px);font-weight:500;
+  color:var(--copper,#B87333);text-align:center;
+}
+.bwm-math__cta{
+  margin-top:32px;text-align:left;font-family:'Manrope',sans-serif;
+  font-size:15px;color:var(--text-muted,#8B7F73);position:relative;
+}
+.bwm-math__cta a{
+  color:var(--amber,#D4943A);text-decoration:none;
+  border-bottom:1px solid rgba(212,148,58,0.3);padding-bottom:1px;
+  transition:border-color 180ms ease, color 180ms ease;
+}
+.bwm-math__cta a:hover{color:var(--amber-bright,#E8A94D);border-bottom-color:currentColor}
+.bwm-math__disclaimer{
+  margin-top:16px;font-family:'Manrope',sans-serif;
+  font-size:13px;line-height:1.5;color:var(--text-muted,#8B7F73);
+  font-style:italic;position:relative;
+}
+@media (max-width:900px){
+  .bwm-math{padding:32px 24px}
+  .bwm-math__grid{grid-template-columns:1fr;gap:12px}
+  .bwm-math__op{transform:rotate(90deg);padding:4px 0}
+}
+</style>
+
+<!-- Markup pattern (reference):
+
+<section class="bwm-math-section" style="padding:80px 24px;background:var(--bg2,#2A2320)">
+  <div class="bwm-math">
+    <div class="bwm-math__label">Here's the math</div>
+    <h2 class="bwm-math__headline">Cost in. Revenue out. Break-even on the refrigerator.</h2>
+    <p class="bwm-math__sub">A spouse-readable view of the operation. Every number here is a captured-baseline assumption, not a hypothetical.</p>
+
+    <div class="bwm-math__grid">
+      <div class="bwm-math__slot">
+        <span class="bwm-math__slot-label">cost in</span>
+        <span class="bwm-math__slot-value muted">$9,500</span>
+        <span class="bwm-math__slot-meta">$2.5K Engine Build + 1st month $7K operations</span>
+      </div>
+      <div class="bwm-math__op">→</div>
+      <div class="bwm-math__slot">
+        <span class="bwm-math__slot-label">first 90 days</span>
+        <span class="bwm-math__slot-value">baseline</span>
+        <span class="bwm-math__slot-meta">Site live · attribution on day one · full engine running</span>
+      </div>
+      <div class="bwm-math__op">→</div>
+      <div class="bwm-math__slot">
+        <span class="bwm-math__slot-label">break-even</span>
+        <span class="bwm-math__slot-value">1 closed job</span>
+        <span class="bwm-math__slot-meta">Most service businesses pay back the install inside the first booked job of the quarter.</span>
+      </div>
+    </div>
+
+    <p class="bwm-math__cta">
+      Full spouse-math one-pager, with every assumption named: <a href="/math">/math →</a>
+    </p>
+    <p class="bwm-math__disclaimer">Not a guarantee. Evidence class on this page: Benchmark (sourced from first-cohort retention + close-rate averages). Captured-baseline required before any client-specific number is shipped in a claim.</p>
+  </div>
+</section>
+-->

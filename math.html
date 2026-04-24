@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Math — Buildwise Media</title>
+<meta name="description" content="The spouse-math one-pager. Every assumption behind the Buildwise Revenue Engine — cost in, revenue out, break-even, evidence class. No hypotheticals. Every number named and sourced.">
+
+<!-- OG Tags -->
+<meta property="og:title" content="The Math — Buildwise Media">
+<meta property="og:description" content="The spouse-math one-pager. Every assumption behind the Buildwise Revenue Engine — named and sourced.">
+<meta property="og:image" content="https://assets.buildwisemedia.com/og/bwm-og-default.png">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://buildwisemedia.com/math">
+<meta property="og:site_name" content="Buildwise Media">
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="The Math — Buildwise Media">
+<meta name="twitter:description" content="Every assumption behind the Buildwise Revenue Engine, named and sourced.">
+<meta name="twitter:image" content="https://assets.buildwisemedia.com/og/bwm-og-default.png">
+
+<!-- Canonical -->
+<link rel="canonical" href="https://buildwisemedia.com/math">
+
+<!-- Favicons -->
+<link rel="icon" href="https://assets.buildwisemedia.com/favicons/favicon.ico" type="image/x-icon">
+<link rel="icon" href="https://assets.buildwisemedia.com/favicons/bwm-favicon-32.png" sizes="32x32" type="image/png">
+<link rel="icon" href="https://assets.buildwisemedia.com/favicons/bwm-favicon-16.png" sizes="16x16" type="image/png">
+<link rel="apple-touch-icon" href="https://assets.buildwisemedia.com/favicons/bwm-apple-touch-icon.png">
+
+<!-- Preconnect -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<!-- Google Fonts (JetBrains Mono for operations rails per FECA + NDB v4.1) -->
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Inter:wght@400;500;600&family=Playfair+Display:ital,wght@1,400;1,500&family=JetBrains+Mono:wght@400;500&display=swap">
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Inter:wght@400;500;600&family=Playfair+Display:ital,wght@1,400;1,500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+<noscript><link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Inter:wght@400;500;600&family=Playfair+Display:ital,wght@1,400;1,500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"></noscript>
+
+<meta name="theme-color" content="#1C1714">
+
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-P5JSD86L');</script>
+<link rel="preload" as="script" href="https://www.googletagmanager.com/gtm.js?id=GTM-P5JSD86L">
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-V5LSP69E41"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-V5LSP69E41');</script>
+<!-- Microsoft Clarity -->
+<link rel="preload" as="script" href="https://www.clarity.ms/tag/lbpidnypac">
+<script>(function(c,l,a,r,i,t,y){c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);})(window,document,"clarity","script","lbpidnypac");</script>
+<!-- Meta Pixel -->
+<script>!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');fbq('init','2728397250833051');fbq('track','PageView');</script>
+<noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=2728397250833051&ev=PageView&noscript=1"/></noscript>
+
+<style>
+:root {
+  --bg1: #1C1714; --bg2: #2A2320; --bg3: #332D27;
+  --text-primary: #F5F0EB; --text-secondary: #A89B8C; --text-muted: #8B7F73;
+  --amber: #D4943A; --amber-bright: #E8A94D; --copper: #B87333; --gold: #C9A84C;
+  --green: #5A9E6F;
+  --border: #3D352E; --border-subtle: #2E2822;
+  --font-heading: 'Manrope', sans-serif;
+  --font-body: 'Inter', sans-serif;
+  --font-accent: 'Playfair Display', serif;
+  --font-mono: 'JetBrains Mono','IBM Plex Mono',ui-monospace,SFMono-Regular,Menlo,monospace;
+  --ease-smooth: cubic-bezier(0.22, 1, 0.36, 1);
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{font-size:18px;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;scroll-behavior:smooth}
+body{background:var(--bg1);color:var(--text-primary);font-family:var(--font-body);line-height:1.7}
+body::before{content:'';position:fixed;inset:0;z-index:1;pointer-events:none;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");opacity:0.035}
+a{color:inherit}
+img{max-width:100%;height:auto}
+
+.site-nav{position:fixed;top:0;left:0;right:0;z-index:1000;background:rgba(28,23,20,0.92);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:0.5px solid var(--border)}
+.nav-inner{max-width:1280px;margin:0 auto;padding:0 48px;height:64px;display:flex;align-items:center;justify-content:space-between}
+.nav-logo{display:flex;align-items:center;text-decoration:none}
+.nav-logo img{height:32px;width:auto}
+.nav-links{display:flex;align-items:center;gap:32px;list-style:none}
+.nav-link{font-family:var(--font-heading);font-size:14px;font-weight:500;color:var(--text-secondary);text-decoration:none;transition:color 0.3s ease;position:relative;cursor:pointer}
+.nav-link:hover{color:var(--text-primary)}
+.nav-dropdown{position:relative}
+.nav-dropdown-trigger::after{content:'\25BE';font-size:10px;opacity:0.5;margin-left:4px}
+.nav-dropdown-menu{position:absolute;top:100%;left:-12px;min-width:220px;background:var(--bg2);border:0.5px solid var(--border);border-radius:8px;padding:8px 0;opacity:0;visibility:hidden;transform:translateY(8px);transition:all 0.3s var(--ease-smooth);z-index:100}
+.nav-dropdown:hover .nav-dropdown-menu{opacity:1;visibility:visible;transform:translateY(0)}
+.nav-dropdown-item{display:block;padding:8px 16px;font-family:var(--font-heading);font-size:13px;font-weight:500;color:var(--text-secondary);text-decoration:none;transition:background 0.2s, color 0.2s}
+.nav-dropdown-item:hover{background:rgba(212,148,58,0.08);color:var(--text-primary)}
+.nav-cta{display:inline-flex;align-items:center;gap:8px;background:var(--amber);color:var(--bg1);font-family:var(--font-heading);font-size:14px;font-weight:600;padding:10px 20px;border-radius:6px;text-decoration:none;transition:background 0.3s ease, transform 0.3s var(--ease-smooth)}
+.nav-cta:hover{background:var(--amber-bright);transform:translateY(-1px)}
+.nav-hamburger{display:none;background:none;border:none;cursor:pointer;padding:4px}
+.nav-hamburger span{display:block;width:24px;height:2px;background:var(--text-primary);margin:5px 0;transition:all 0.3s ease}
+.nav-mobile-menu{display:none;position:fixed;top:64px;left:0;right:0;bottom:0;background:var(--bg1);z-index:999;padding:24px;overflow-y:auto}
+.nav-mobile-menu.active{display:block}
+.nav-mobile-menu .nav-link{display:block;padding:12px 0;font-size:16px;border-bottom:0.5px solid var(--border)}
+.nav-mobile-menu .nav-cta{display:block;text-align:center;margin-top:24px;padding:14px 24px}
+@media(max-width:960px){.nav-links{display:none}.nav-hamburger{display:block}.nav-inner{padding:0 24px}}
+
+main{padding-top:64px;position:relative;z-index:2}
+
+/* Hero */
+.math-hero{padding:80px 48px 48px;max-width:1100px;margin:0 auto;position:relative}
+.math-label{font-family:var(--font-mono);font-size:12px;letter-spacing:0.14em;text-transform:uppercase;color:var(--copper);margin-bottom:14px}
+.math-h1{font-family:var(--font-heading);font-size:clamp(36px,5vw,60px);font-weight:800;line-height:1.1;letter-spacing:-0.02em;color:var(--text-primary);margin-bottom:18px}
+.math-h1 em{font-style:italic;font-family:var(--font-accent);font-weight:400;color:var(--amber)}
+.math-sub{font-family:var(--font-body);font-size:19px;line-height:1.6;color:var(--text-secondary);max-width:760px}
+
+/* Section */
+.math-section{padding:56px 48px;max-width:1100px;margin:0 auto;position:relative}
+.math-section-label{font-family:var(--font-mono);font-size:12px;letter-spacing:0.14em;text-transform:uppercase;color:var(--copper);margin-bottom:10px}
+.math-h2{font-family:var(--font-heading);font-size:clamp(26px,3.2vw,34px);font-weight:700;line-height:1.25;color:var(--text-primary);margin-bottom:16px}
+.math-body{font-family:var(--font-body);font-size:17px;line-height:1.7;color:var(--text-secondary);max-width:760px;margin-bottom:24px}
+
+/* Table */
+.math-table{width:100%;border-collapse:collapse;font-family:var(--font-body);font-size:15px;line-height:1.5;margin:8px 0 12px}
+.math-table th,.math-table td{padding:14px 16px;text-align:left;border-bottom:1px solid var(--border-subtle);vertical-align:top}
+.math-table th{font-family:var(--font-mono);font-size:12px;letter-spacing:0.08em;text-transform:uppercase;color:var(--text-muted);background:rgba(42,35,32,0.5)}
+.math-table td.num{font-family:var(--font-heading);font-weight:700;color:var(--amber);white-space:nowrap;font-size:17px}
+.math-table td.meta{font-family:var(--font-mono);font-size:12px;color:var(--text-muted)}
+.math-table tr:last-child td{border-bottom:none}
+.math-table tr.total td{background:rgba(212,148,58,0.06);border-top:1px solid var(--copper)}
+.math-table tr.total td.num{color:var(--amber-bright);font-size:20px}
+
+/* Evidence class pill */
+.evidence{display:inline-block;font-family:var(--font-mono);font-size:11px;letter-spacing:0.06em;text-transform:lowercase;padding:2px 8px;border-radius:3px;border:1px solid var(--border)}
+.evidence.measured{color:var(--green);border-color:rgba(90,158,111,0.3)}
+.evidence.attributed{color:var(--amber);border-color:rgba(212,148,58,0.3)}
+.evidence.modeled{color:var(--copper);border-color:rgba(184,115,51,0.3)}
+.evidence.benchmark{color:var(--text-secondary);border-color:var(--border)}
+
+/* Three-tier grid */
+.math-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin:12px 0 24px}
+.math-card{background:rgba(42,35,32,0.5);border:1px solid var(--border-subtle);border-radius:6px;padding:22px}
+.math-card__label{font-family:var(--font-mono);font-size:12px;letter-spacing:0.08em;text-transform:lowercase;color:var(--text-muted);margin-bottom:8px}
+.math-card__value{font-family:var(--font-heading);font-weight:700;font-size:clamp(24px,3vw,32px);line-height:1.1;color:var(--amber);margin-bottom:10px}
+.math-card__meta{font-family:var(--font-body);font-size:13px;line-height:1.5;color:var(--text-secondary)}
+
+/* Closer band */
+.bwm-closer{position:relative;padding:28px 24px;margin:40px auto 0;max-width:900px;text-align:center;font-family:var(--font-heading);font-size:clamp(13px,1.4vw,15px);letter-spacing:0.12em;text-transform:uppercase;color:var(--text-secondary);font-weight:500}
+.bwm-closer::before,.bwm-closer::after{content:'';position:absolute;left:50%;transform:translateX(-50%);width:min(60%,520px);height:1px;background:linear-gradient(90deg,transparent 0%,var(--copper) 50%,transparent 100%);opacity:0.6}
+.bwm-closer::before{top:0}
+.bwm-closer::after{bottom:0}
+
+/* Final CTA */
+.math-cta{text-align:center;padding:48px 24px 88px;max-width:1100px;margin:0 auto}
+.math-cta__h2{font-family:var(--font-heading);font-size:clamp(26px,3vw,36px);font-weight:700;color:var(--text-primary);margin-bottom:12px}
+.math-cta__body{font-family:var(--font-body);font-size:17px;color:var(--text-secondary);margin-bottom:28px}
+.math-cta__btn{display:inline-flex;align-items:center;gap:10px;background:var(--amber);color:var(--bg1);font-family:var(--font-heading);font-size:16px;font-weight:600;padding:16px 32px;border-radius:6px;text-decoration:none;transition:background 0.3s ease, transform 0.3s var(--ease-smooth)}
+.math-cta__btn:hover{background:var(--amber-bright);transform:translateY(-1px)}
+.math-cta__obi{margin-top:28px;font-family:var(--font-mono);font-size:14px;letter-spacing:0.04em;color:var(--amber);opacity:0.85}
+
+/* Footer (copied from book.html template) */
+.site-footer{background:var(--bg2);border-top:0.5px solid var(--border);padding:64px 48px 32px;position:relative;z-index:2}
+.footer-inner{max-width:1280px;margin:0 auto}
+.footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:48px;margin-bottom:48px}
+.footer-logo{height:auto;width:140px;margin-bottom:16px}
+.footer-tagline{font-family:var(--font-body);font-size:14px;color:var(--text-secondary);line-height:1.5;margin-bottom:8px}
+.footer-location{font-family:var(--font-body);font-size:13px;color:var(--text-muted)}
+.footer-col-title{font-family:var(--font-heading);font-size:12px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:var(--text-primary);margin-bottom:16px}
+.footer-link{display:block;font-family:var(--font-body);font-size:14px;color:var(--text-secondary);text-decoration:none;margin-bottom:10px;transition:color 0.2s}
+.footer-link:hover{color:var(--amber)}
+.footer-social{display:flex;gap:14px;margin-top:16px}
+.footer-social-link{color:var(--text-muted);transition:color 0.2s}
+.footer-social-link:hover{color:var(--amber)}
+.footer-bottom{border-top:0.5px solid var(--border);padding-top:24px}
+.footer-copyright{font-family:var(--font-body);font-size:13px;color:var(--text-muted)}
+
+@media(max-width:900px){
+  .math-hero{padding:48px 24px 32px}
+  .math-section{padding:36px 24px}
+  .math-grid{grid-template-columns:1fr;gap:14px}
+  .math-table{font-size:14px}
+  .math-table th,.math-table td{padding:12px 14px}
+  .footer-grid{grid-template-columns:1fr 1fr;gap:32px}
+  .site-footer{padding:48px 24px 24px}
+}
+@media(max-width:640px){
+  .bwm-closer{font-size:12px;padding:22px 18px;letter-spacing:0.08em}
+  .math-table th,.math-table td{padding:10px 12px;font-size:13px}
+  .math-table td.num{font-size:15px}
+  .footer-grid{grid-template-columns:1fr;gap:24px}
+}
+</style>
+</head>
+<body>
+
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-P5JSD86L" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+<!-- NAV -->
+<nav class="site-nav">
+  <div class="nav-inner">
+    <a href="/" class="nav-logo"><img src="https://assets.buildwisemedia.com/logos/bwm-logo-primary-terracotta-on-transparent.svg" alt="Buildwise Media" width="160" height="40"></a>
+    <ul class="nav-links">
+      <li><a href="/" class="nav-link">Home</a></li>
+      <li class="nav-dropdown"><span class="nav-link nav-dropdown-trigger">Services</span><div class="nav-dropdown-menu"><a href="/services/ascend" class="nav-dropdown-item">Ascend &mdash; Full-Service Marketing</a></div></li>
+      <li class="nav-dropdown"><span class="nav-link nav-dropdown-trigger">Industries</span><div class="nav-dropdown-menu"><a href="/industries/hvac-plumbing-electrical" class="nav-dropdown-item">HVAC / Plumbing / Electrical</a><a href="/industries/med-spas" class="nav-dropdown-item">Med Spas &amp; Aesthetic Clinics</a><a href="/industries/home-builders-remodelers" class="nav-dropdown-item">Custom Home Builders &amp; Remodelers</a><a href="/industries/roofing" class="nav-dropdown-item">Roofing</a><a href="/industries/pest-control" class="nav-dropdown-item">Pest Control &amp; Wildlife</a><a href="/industries/luxury-landscaping" class="nav-dropdown-item">Luxury Landscaping &amp; Hardscaping</a><a href="/industries/custom-pools" class="nav-dropdown-item">Custom Pools &amp; Outdoor Living</a><a href="/industries/dental" class="nav-dropdown-item">High-End Dental &amp; Orthodontics</a><a href="/industries/concrete" class="nav-dropdown-item">Concrete &amp; Flatwork</a></div></li>
+      <li><a href="/how-it-works" class="nav-link">How It Works</a></li>
+      <li><a href="/results" class="nav-link">Results</a></li>
+      <li><a href="/why-buildwise" class="nav-link">Why Buildwise</a></li>
+      <li><a href="/book" class="nav-cta">See If I Qualify &rarr;</a></li>
+    </ul>
+    <button class="nav-hamburger" id="navHamburger" aria-label="Open menu"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+<div class="nav-mobile-menu" id="navMobileMenu">
+  <a href="/" class="nav-link">Home</a><a href="/services/ascend" class="nav-link">Services: Ascend</a><a href="/how-it-works" class="nav-link">How It Works</a><a href="/results" class="nav-link">Results</a><a href="/why-buildwise" class="nav-link">Why Buildwise</a><a href="/the-poor-four" class="nav-link">The Poor Four</a><a href="/math" class="nav-link">The Math</a>
+  <a href="/book" class="nav-cta">See If I Qualify &rarr;</a>
+</div>
+
+<!-- MAIN -->
+<main>
+
+  <section class="math-hero">
+    <div class="math-label">The Math &middot; LOCKED 2026-04-24</div>
+    <h1 class="math-h1">The math, with every <em>assumption</em> named.</h1>
+    <p class="math-sub">This is the spouse-math one-pager. If a number appears anywhere on this site, it either lives on this page with its source and evidence class &mdash; or it doesn&rsquo;t ship. Confidence Floor: 75%. Baselines captured before any claim is published.</p>
+  </section>
+
+  <!-- What you pay -->
+  <section class="math-section">
+    <div class="math-section-label">What you pay</div>
+    <h2 class="math-h2">Cost in, over the first quarter.</h2>
+    <p class="math-body">One-time Engine Build at signup. Then month-to-month operations. $1,000 of each month&rsquo;s total is included ad spend &mdash; you fund your own media account, we manage against it. No management fee is applied to ad spend.</p>
+
+    <table class="math-table">
+      <thead>
+        <tr><th>Line</th><th>Amount</th><th>When</th><th>Evidence</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Engine Build (one-time)</td>
+          <td class="num">$2,500</td>
+          <td class="meta">at signup</td>
+          <td><span class="evidence measured">measured &middot; contract</span></td>
+        </tr>
+        <tr>
+          <td>Operations &mdash; management fee</td>
+          <td class="num">$6,000 / mo</td>
+          <td class="meta">months 1&ndash;n</td>
+          <td><span class="evidence measured">measured &middot; contract</span></td>
+        </tr>
+        <tr>
+          <td>Operations &mdash; included ad spend</td>
+          <td class="num">$1,000 / mo</td>
+          <td class="meta">months 1&ndash;n</td>
+          <td><span class="evidence measured">measured &middot; contract</span></td>
+        </tr>
+        <tr class="total">
+          <td>First-month total (install + operations)</td>
+          <td class="num">$9,500</td>
+          <td class="meta">month 1</td>
+          <td><span class="evidence measured">measured</span></td>
+        </tr>
+        <tr class="total">
+          <td>First-quarter total (install + three months)</td>
+          <td class="num">$23,500</td>
+          <td class="meta">months 1&ndash;3</td>
+          <td><span class="evidence measured">measured</span></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <p class="math-body">Terms: month-to-month. Cancel with 30 days written notice. You own every asset we build &mdash; website, ad accounts, content, automations, attribution data. If you ever leave, you leave with everything.</p>
+  </section>
+
+  <!-- What runs -->
+  <section class="math-section">
+    <div class="math-section-label">What runs, in the first 90 days</div>
+    <h2 class="math-h2">Three phases. One operating layer.</h2>
+    <p class="math-body">This is not a &ldquo;launch and pray&rdquo; timeline. Every phase has a captured-baseline milestone before it clears. If a number drifts, the audit catches it on Monday morning &mdash; before the month does.</p>
+
+    <div class="math-grid">
+      <div class="math-card">
+        <div class="math-card__label">week 1 &middot; site live</div>
+        <div class="math-card__value">day 7</div>
+        <div class="math-card__meta">Production website deploys against the Canonical Site Files contract (47-point pre-ship checklist, 6 AI-bot allowlist, structured data, AEO copy). Attribution stream is recording from day one.</div>
+      </div>
+      <div class="math-card">
+        <div class="math-card__label">day 30 &middot; engine running</div>
+        <div class="math-card__value">month 1</div>
+        <div class="math-card__meta">Paid traffic + organic content + CRM + AI tooling all wired into the same attribution event stream. Weekly connector audit is reporting on itself.</div>
+      </div>
+      <div class="math-card">
+        <div class="math-card__label">day 90 &middot; baseline captured</div>
+        <div class="math-card__value">Q1</div>
+        <div class="math-card__meta">First quarter of operations closes with a captured baseline across every KPI &mdash; cost per lead, qualified-lead rate, close rate, revenue attribution, time-to-first-touch. Every future claim gets measured against this baseline.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Break-even math -->
+  <section class="math-section">
+    <div class="math-section-label">How the math works out</div>
+    <h2 class="math-h2">Break-even is one closed job, for most of the service businesses we install.</h2>
+    <p class="math-body">Back-of-envelope, spouse-readable. Take your average job value. Multiply by your current close rate. Divide the first quarter total by that. That&rsquo;s how many net new qualified leads the operations layer has to bring in for the install to pay for itself.</p>
+
+    <table class="math-table">
+      <thead>
+        <tr><th>Average job value</th><th>Close rate</th><th>Effective value per qualified lead</th><th>Break-even jobs (Q1)</th><th>Evidence</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="num">$5,000</td>
+          <td>25%</td>
+          <td class="meta">$1,250 / lead</td>
+          <td class="num">~5 jobs</td>
+          <td><span class="evidence benchmark">benchmark &middot; cohort</span></td>
+        </tr>
+        <tr>
+          <td class="num">$15,000</td>
+          <td>25%</td>
+          <td class="meta">$3,750 / lead</td>
+          <td class="num">~2 jobs</td>
+          <td><span class="evidence benchmark">benchmark &middot; cohort</span></td>
+        </tr>
+        <tr>
+          <td class="num">$35,000</td>
+          <td>25%</td>
+          <td class="meta">$8,750 / lead</td>
+          <td class="num">&lt;1 job</td>
+          <td><span class="evidence benchmark">benchmark &middot; cohort</span></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <p class="math-body">Numbers here are benchmark &mdash; sourced from first-cohort retention + close-rate averages. Your number is whatever your current operation actually does. We capture that as the baseline before any growth claim ships. This is the Confidence Floor in practice: we&rsquo;d rather show conservative math than aspirational math.</p>
+  </section>
+
+  <!-- Evidence class legend -->
+  <section class="math-section">
+    <div class="math-section-label">How to read the numbers</div>
+    <h2 class="math-h2">Four evidence classes. Every claim carries one.</h2>
+
+    <table class="math-table">
+      <thead><tr><th>Class</th><th>What it means</th><th>Example</th></tr></thead>
+      <tbody>
+        <tr>
+          <td><span class="evidence measured">measured</span></td>
+          <td>Live number pulled from our operations layer or a signed contract. Reproducible in minutes.</td>
+          <td class="meta">Pre-ship checklist score. Ascend price. Connector audit status.</td>
+        </tr>
+        <tr>
+          <td><span class="evidence attributed">attributed</span></td>
+          <td>Revenue or leads tied to a specific campaign via UTM + first-touch / last-touch attribution in our event stream.</td>
+          <td class="meta">&ldquo;Meta campaign X produced N qualified leads in week Y.&rdquo;</td>
+        </tr>
+        <tr>
+          <td><span class="evidence modeled">modeled</span></td>
+          <td>Projection based on captured baseline + known inputs. Always clearly labeled as a projection.</td>
+          <td class="meta">&ldquo;At current rate, quarterly pipeline would hit $X.&rdquo;</td>
+        </tr>
+        <tr>
+          <td><span class="evidence benchmark">benchmark</span></td>
+          <td>Industry-level or first-cohort average. Useful for &ldquo;break-even&rdquo; math before your baseline is captured.</td>
+          <td class="meta">Close-rate ranges. Cost-per-lead ranges by vertical.</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <p class="math-body">If a number on this site is not one of these four classes, it&rsquo;s a typo. The site-wide closer band at the bottom of every page is the policy: every claim is verifiable. Ask your current agency to show you theirs.</p>
+  </section>
+
+  <!-- Site-wide closer -->
+  <p class="bwm-closer">Every claim on this page is verifiable. Ask your current agency to show you theirs.</p>
+
+  <!-- Final CTA -->
+  <section class="math-cta">
+    <h2 class="math-cta__h2">Want to run your own numbers with us?</h2>
+    <p class="math-cta__body">15 minutes. No pitch. We look at your operation and tell you what the math would actually be for your business.</p>
+    <a href="/book" class="math-cta__btn">See If I Qualify &rarr;</a>
+    <p class="math-cta__obi">Ad spend in. Revenue out. Verified weekly.</p>
+  </section>
+
+</main>
+
+<!-- FOOTER -->
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <img src="https://assets.buildwisemedia.com/logos/bwm-logo-primary-terracotta-on-transparent.svg" alt="Buildwise Media" width="140" height="35" class="footer-logo">
+        <p class="footer-tagline">AI-powered marketing engines for service businesses.</p>
+        <p class="footer-location">Atlanta, GA</p>
+      </div>
+      <div class="footer-col">
+        <h3 class="footer-col-title">Pages</h3>
+        <a href="/" class="footer-link">Home</a>
+        <a href="/services/ascend" class="footer-link">Ascend</a>
+        <a href="/how-it-works" class="footer-link">How It Works</a>
+        <a href="/results" class="footer-link">Results</a>
+        <a href="/why-buildwise" class="footer-link">Why Buildwise</a>
+      </div>
+      <div class="footer-col">
+        <h3 class="footer-col-title">More</h3>
+        <a href="/the-poor-four" class="footer-link">The Poor Four</a>
+        <a href="/math" class="footer-link">The Math</a>
+        <a href="/book" class="footer-link">See If I Qualify</a>
+      </div>
+      <div class="footer-col">
+        <h3 class="footer-col-title">Connect</h3>
+        <a href="mailto:hello@buildwisemedia.com" class="footer-link">hello@buildwisemedia.com</a>
+        <div class="footer-social">
+          <a href="https://www.linkedin.com/company/buildwisemedia" class="footer-social-link" aria-label="LinkedIn" target="_blank" rel="noopener">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+          </a>
+          <a href="https://www.facebook.com/buildwisemedia" class="footer-social-link" aria-label="Facebook" target="_blank" rel="noopener">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p class="footer-copyright">&copy; 2024&ndash;2026 Buildwise Media LLC. All rights reserved.</p>
+    </div>
+  </div>
+</footer>
+
+<!-- JSON-LD -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "@id": "https://buildwisemedia.com/math",
+  "name": "The Math — Buildwise Media",
+  "description": "The spouse-math one-pager for the Buildwise Revenue Engine. Cost in, revenue out, break-even, and evidence class for every claim.",
+  "url": "https://buildwisemedia.com/math",
+  "isPartOf": { "@id": "https://buildwisemedia.com/#business" }
+}
+</script>
+
+<!-- SCRIPTS -->
+<script>
+document.getElementById('navHamburger').addEventListener('click',function(){document.getElementById('navMobileMenu').classList.toggle('active');});
+</script>
+<script src="/bwm-tracking.js"></script>
+</body>
+</html>

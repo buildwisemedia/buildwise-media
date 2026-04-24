@@ -236,7 +236,7 @@ img { max-width: 100%; height: auto; }
         <a href="https://book.buildwisemedia.com/bwm/discovery-call" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:8px;background:var(--amber);color:var(--bg1);font-family:var(--font-heading);font-size:15px;font-weight:600;padding:14px 28px;border-radius:6px;text-decoration:none;">Book Your Discovery Call &rarr;</a>
       </div>
       <script>
-        /* Cal.com official loader — creates Cal() queue, auto-downloads embed.js */
+        /* Booking-widget loader — creates embed queue, auto-downloads embed.js */
         (function (C, A, L) {
           let p = function (a, ar) { a.q.push(ar); };
           let d = C.document;
@@ -298,7 +298,7 @@ img { max-width: 100%; height: auto; }
         });
 
         /* --- Booking Confirmed (Tier 1) ---
-           Cal.com bookingSuccessful → dataLayer push → 1.5s delay → redirect.
+           Booking-widget bookingSuccessful → dataLayer push → 1.5s delay → redirect.
            GTM fires GA4 booking_confirmed + Meta Schedule via CAPI during the delay.
            sessionStorage flag prevents double-fire on booked.html fallback. */
         Cal("on", {

@@ -1,0 +1,33 @@
+<!--
+  BWM Shared Component — Status Dot
+  8px dot + label. Green = measured live, amber = drifting, neutral = unmeasured.
+  NEVER fake green on unmeasured claims (per Claims Policy — Brand Guidelines).
+  Usage:
+    <span class="bwm-dot bwm-dot--green"></span> measured
+    <span class="bwm-dot bwm-dot--amber" aria-label="drifting"></span> attention
+    <span class="bwm-dot bwm-dot--neutral"></span> [unmeasured]
+-->
+
+<style>
+.bwm-dot{
+  display:inline-block;width:8px;height:8px;border-radius:50%;
+  vertical-align:baseline;margin-right:6px;
+  position:relative;
+}
+.bwm-dot--green{background:var(--green,#5A9E6F);box-shadow:0 0 8px rgba(90,158,111,0.4)}
+.bwm-dot--amber{background:var(--amber,#D4943A);box-shadow:0 0 8px rgba(212,148,58,0.4)}
+.bwm-dot--neutral{background:var(--text-muted,#8B7F73)}
+.bwm-dot--green.bwm-dot--pulse::after,
+.bwm-dot--amber.bwm-dot--pulse::after{
+  content:'';position:absolute;inset:-2px;border-radius:50%;
+  border:1px solid currentColor;opacity:0.3;
+  animation:bwm-pulse 2.4s ease-out infinite;
+}
+@keyframes bwm-pulse{
+  0%{transform:scale(0.9);opacity:0.6}
+  100%{transform:scale(2);opacity:0}
+}
+@media (prefers-reduced-motion:reduce){
+  .bwm-dot--pulse::after{animation:none}
+}
+</style>

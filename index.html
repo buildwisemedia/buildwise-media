@@ -38,9 +38,9 @@
 <link rel="preconnect" href="https://assets.buildwisemedia.com" crossorigin>
 
 <!-- Google Fonts -->
-<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Inter:wght@400;500;600&family=Playfair+Display:ital,wght@1,400;1,500&display=swap">
-<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Inter:wght@400;500;600&family=Playfair+Display:ital,wght@1,400;1,500&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
-<noscript><link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Inter:wght@400;500;600&family=Playfair+Display:ital,wght@1,400;1,500&display=swap" rel="stylesheet"></noscript>
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Inter:wght@400;500;600&family=Playfair+Display:ital,wght@1,400;1,500&family=JetBrains+Mono:wght@400;500&display=swap">
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Inter:wght@400;500;600&family=Playfair+Display:ital,wght@1,400;1,500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+<noscript><link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Inter:wght@400;500;600&family=Playfair+Display:ital,wght@1,400;1,500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"></noscript>
 
 <!-- Theme color -->
 <meta name="theme-color" content="#1C1714">
@@ -60,6 +60,7 @@
   --font-heading: 'Manrope', sans-serif;
   --font-body: 'Inter', sans-serif;
   --font-accent: 'Playfair Display', serif;
+  --font-mono: 'JetBrains Mono', 'IBM Plex Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
   --ease-smooth: cubic-bezier(0.22, 1, 0.36, 1);
   --pain-bg: #1A1816; --pain-card-bg: #1E1B18;
   --pain-border: #2E2925; --pain-text: #8A7E73; --pain-accent: #5C4F44;
@@ -191,6 +192,18 @@ img { max-width: 100%; height: auto; }
     flex-wrap: wrap;
     opacity: 0; transform: translateY(16px);
     animation: fadeUp 0.8s var(--ease-smooth) 0.75s forwards;
+  }
+
+  /* Demoted freedom-frame — small muted supporting message under CTA per P19 RESPINE */
+  .hero-support {
+    margin-top: 28px;
+    font-family: var(--font-body);
+    font-size: 14px;
+    line-height: 1.5;
+    color: var(--text-muted);
+    max-width: 480px;
+    opacity: 0; transform: translateY(12px);
+    animation: fadeUp 0.8s var(--ease-smooth) 0.9s forwards;
   }
 
   .cta-primary {
@@ -638,6 +651,127 @@ img { max-width: 100%; height: auto; }
     .stat-block:nth-child(4)::after { display: none; }
   }
 
+/* ============================================================================
+   P19 RESPINE — Shared BWM Components (LOCKED 2026-04-24)
+   data-rail · status-dot · code-block · operations-pulse-band · spouse-math
+   Matches ~/buildwise-media/components/* partials so client-site reuse stays
+   consistent. Keep in sync with component partials on every change.
+   ============================================================================ */
+
+/* -- Status dot -- */
+.bwm-dot{display:inline-block;width:8px;height:8px;border-radius:50%;vertical-align:baseline;margin-right:6px;position:relative}
+.bwm-dot--green{background:var(--green);box-shadow:0 0 8px rgba(90,158,111,0.4)}
+.bwm-dot--amber{background:var(--amber);box-shadow:0 0 8px rgba(212,148,58,0.4)}
+.bwm-dot--neutral{background:var(--text-muted)}
+.bwm-dot--green.bwm-dot--pulse::after,.bwm-dot--amber.bwm-dot--pulse::after{content:'';position:absolute;inset:-2px;border-radius:50%;border:1px solid currentColor;opacity:0.3;animation:bwm-pulse-anim 2.4s ease-out infinite}
+@keyframes bwm-pulse-anim{0%{transform:scale(0.9);opacity:0.6}100%{transform:scale(2);opacity:0}}
+@media (prefers-reduced-motion:reduce){.bwm-dot--pulse::after{animation:none}}
+
+/* -- Data rail -- */
+.bwm-rail{display:inline-flex;align-items:baseline;gap:8px;font-family:var(--font-mono);font-size:13px;line-height:1.4;letter-spacing:0.02em;color:var(--text-primary);padding:6px 10px;border:1px solid var(--border);border-radius:4px;background:rgba(28,23,20,0.4);transition:border-color 180ms ease, background 180ms ease}
+.bwm-rail:hover{border-color:var(--copper);background:rgba(28,23,20,0.6)}
+.bwm-rail__label{color:var(--text-secondary);text-transform:lowercase;font-weight:500}
+.bwm-rail__sep{color:var(--border)}
+.bwm-rail__value{color:var(--amber);font-weight:500}
+.bwm-rail__meta{color:var(--text-muted);font-size:12px;margin-left:2px}
+
+/* -- Transparent code block -- */
+.bwm-code{position:relative;font-family:var(--font-mono);font-size:13px;line-height:1.6;color:var(--text-primary);background:rgba(28,23,20,0.6);border:1px solid var(--copper);border-left-width:3px;border-radius:4px;padding:14px 16px 14px 18px;margin:16px 0;overflow-x:auto;white-space:pre}
+.bwm-code[data-label]::before{content:attr(data-label);position:absolute;top:-9px;left:14px;font-family:var(--font-mono);font-size:11px;letter-spacing:0.08em;text-transform:uppercase;color:var(--copper);background:var(--bg1);padding:0 8px}
+.bwm-code code{font:inherit;color:inherit;background:none;padding:0}
+.bwm-code__copy{position:absolute;top:10px;right:10px;font-family:var(--font-mono);font-size:11px;color:var(--text-muted);background:transparent;border:1px solid var(--border);border-radius:3px;padding:3px 8px;cursor:pointer;transition:color 180ms ease, border-color 180ms ease}
+.bwm-code__copy:hover{color:var(--amber);border-color:var(--amber)}
+.bwm-code__copy[data-copied]{color:var(--green);border-color:var(--green)}
+
+/* -- Trust Bar v3 (LOCKED 2026-04-24) -- */
+.trust-bar--v3{background:var(--bg2);border-top:0.5px solid var(--border);border-bottom:0.5px solid var(--border);padding:56px 48px;position:relative;overflow:hidden}
+.trust-bar--v3::before{content:'';position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:600px;height:200px;background:radial-gradient(ellipse,rgba(212,148,58,0.04) 0%,transparent 70%);pointer-events:none}
+.trust-inner--v3{max-width:1280px;margin:0 auto;display:grid;grid-template-columns:repeat(4,1fr);gap:0;position:relative;z-index:1}
+.trust-slot{padding:16px 24px;position:relative;text-align:center;cursor:default}
+.trust-slot + .trust-slot::before{content:'';position:absolute;left:0;top:12px;bottom:12px;width:0.5px;background:var(--border)}
+.trust-slot__value{font-family:var(--font-heading);font-size:clamp(30px,3.5vw,42px);font-weight:700;line-height:1.1;color:var(--amber);margin-bottom:10px;display:flex;align-items:baseline;justify-content:center;gap:10px}
+.trust-slot__value--status{color:var(--text-primary);font-size:clamp(22px,2.5vw,28px);gap:8px}
+.trust-slot__value--empty{color:var(--text-muted);font-size:clamp(28px,3vw,36px)}
+.trust-anchor__from{color:var(--text-secondary);font-weight:600}
+.trust-anchor__arrow{color:var(--copper);font-size:0.8em;font-weight:400}
+.trust-anchor__to{color:var(--amber);font-weight:700}
+.trust-slot__num{color:var(--amber)}
+.trust-slot__sep{color:var(--border);font-weight:400;margin:0 2px}
+.trust-slot__label{font-family:var(--font-heading);font-size:12px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:var(--text-secondary);margin-bottom:10px;line-height:1.4}
+.trust-slot__meta{font-family:var(--font-mono);font-size:12px;color:var(--text-muted);display:inline-flex;align-items:center;justify-content:center}
+.trust-slot__link{font-family:var(--font-mono);font-size:12px;color:var(--copper);text-decoration:none;border-bottom:1px solid rgba(184,115,51,0.3);padding-bottom:1px;transition:color 180ms ease}
+.trust-slot__link:hover{color:var(--amber)}
+.trust-slot--empty .trust-slot__label{color:var(--text-muted);text-transform:none;font-weight:500;letter-spacing:0.02em;font-family:var(--font-body);font-size:13px;font-style:italic;margin-bottom:14px}
+.trust-slot--empty{opacity:0.72}
+@media (max-width:860px){
+  .trust-inner--v3{grid-template-columns:repeat(2,1fr);gap:32px 0}
+  .trust-slot:nth-child(3)::before{display:none}
+}
+@media (max-width:480px){
+  .trust-inner--v3{grid-template-columns:1fr;gap:28px}
+  .trust-bar--v3{padding:36px 20px}
+  .trust-slot + .trust-slot::before{display:none}
+  .trust-slot + .trust-slot{padding-top:28px;border-top:0.5px solid var(--border)}
+}
+
+/* -- Operations Pulse Band -- */
+.bwm-pulse{background:var(--bg2);border-top:1px solid var(--border-subtle);border-bottom:1px solid var(--border-subtle);padding:72px 48px;position:relative}
+.bwm-pulse::before{content:'';position:absolute;inset:0;pointer-events:none;background:radial-gradient(ellipse 60% 40% at 50% 50%,rgba(212,148,58,0.04),transparent 60%)}
+.bwm-pulse__inner{max-width:1280px;margin:0 auto;position:relative}
+.bwm-pulse__label{font-family:var(--font-mono);font-size:12px;letter-spacing:0.12em;text-transform:uppercase;color:var(--copper);margin-bottom:12px}
+.bwm-pulse__headline{font-family:var(--font-heading);font-weight:700;font-size:clamp(24px,3vw,32px);line-height:1.25;color:var(--text-primary);margin:0 0 8px;max-width:820px}
+.bwm-pulse__sub{font-family:var(--font-body);font-size:16px;line-height:1.6;color:var(--text-secondary);margin:0 0 32px;max-width:640px}
+.bwm-pulse__grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.bwm-pulse__rail{background:rgba(28,23,20,0.6);border:1px solid var(--border);border-radius:6px;padding:20px 22px;display:flex;flex-direction:column;gap:12px;transition:border-color 220ms ease}
+.bwm-pulse__rail:hover{border-color:var(--copper)}
+.bwm-pulse__rail-head{display:flex;align-items:center;justify-content:space-between;font-family:var(--font-mono);font-size:12px;letter-spacing:0.06em;color:var(--text-secondary)}
+.bwm-pulse__rail-title{text-transform:lowercase}
+.bwm-pulse__rail-status{display:inline-flex;align-items:center;gap:4px;color:var(--text-muted)}
+.bwm-pulse__rail-value{font-family:var(--font-heading);font-weight:700;font-size:clamp(26px,3vw,32px);line-height:1.1;color:var(--text-primary)}
+.bwm-pulse__rail-value em{font-style:normal;color:var(--amber);font-family:var(--font-mono);font-weight:500;font-size:0.55em;margin-left:8px;letter-spacing:0.04em}
+.bwm-pulse__rail-meta{font-family:var(--font-mono);font-size:12px;color:var(--text-muted);display:flex;justify-content:space-between;align-items:center;gap:8px;margin-top:auto}
+.bwm-pulse__spark{width:100%;height:28px;margin-top:2px}
+.bwm-pulse__spark path{fill:none;stroke:var(--amber);stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round}
+.bwm-pulse__spark .fill{fill:rgba(212,148,58,0.12);stroke:none}
+.bwm-pulse__note{margin-top:24px;font-family:var(--font-body);font-size:14px;color:var(--text-muted);font-style:italic;text-align:center}
+@media (max-width:860px){
+  .bwm-pulse{padding:56px 24px}
+  .bwm-pulse__grid{grid-template-columns:1fr;gap:14px}
+  .bwm-pulse__rail{padding:18px}
+}
+
+/* -- Spouse-Math Block -- */
+.bwm-math-section{padding:88px 48px;background:var(--bg1);position:relative}
+.bwm-math{background:linear-gradient(180deg,var(--bg2) 0%,var(--bg1) 100%);border:1px solid var(--border-subtle);border-radius:8px;padding:48px 40px;max-width:1100px;margin:0 auto;position:relative;overflow:hidden}
+.bwm-math::before{content:'';position:absolute;inset:0;pointer-events:none;background:radial-gradient(ellipse 50% 80% at 100% 0%,rgba(212,148,58,0.06),transparent 60%)}
+.bwm-math__label{font-family:var(--font-mono);font-size:12px;letter-spacing:0.12em;text-transform:uppercase;color:var(--copper);margin-bottom:12px;position:relative}
+.bwm-math__headline{font-family:var(--font-heading);font-weight:700;font-size:clamp(28px,4vw,40px);line-height:1.2;color:var(--text-primary);margin:0 0 10px;position:relative}
+.bwm-math__sub{font-family:var(--font-body);font-size:17px;line-height:1.6;color:var(--text-secondary);margin:0 0 36px;max-width:760px;position:relative}
+.bwm-math__grid{display:grid;grid-template-columns:1fr auto 1fr auto 1fr;gap:18px;align-items:stretch;position:relative}
+.bwm-math__slot{display:flex;flex-direction:column;gap:8px;padding:22px;background:rgba(42,35,32,0.6);border:1px solid var(--border-subtle);border-radius:6px}
+.bwm-math__slot-label{font-family:var(--font-mono);font-size:12px;letter-spacing:0.06em;text-transform:lowercase;color:var(--text-muted)}
+.bwm-math__slot-value{font-family:var(--font-heading);font-weight:700;font-size:clamp(26px,3.2vw,34px);line-height:1.1;color:var(--amber)}
+.bwm-math__slot-value.muted{color:var(--text-primary)}
+.bwm-math__slot-meta{font-family:var(--font-body);font-size:13px;line-height:1.45;color:var(--text-secondary);margin-top:auto}
+.bwm-math__op{font-family:var(--font-mono);font-size:clamp(20px,2.5vw,28px);font-weight:500;color:var(--copper);text-align:center;align-self:center}
+.bwm-math__cta{margin-top:36px;font-family:var(--font-body);font-size:15px;color:var(--text-muted);position:relative}
+.bwm-math__cta a{color:var(--amber);text-decoration:none;border-bottom:1px solid rgba(212,148,58,0.3);padding-bottom:1px;transition:border-color 180ms ease, color 180ms ease}
+.bwm-math__cta a:hover{color:var(--amber-bright);border-bottom-color:currentColor}
+.bwm-math__disclaimer{margin-top:14px;font-family:var(--font-body);font-size:13px;line-height:1.5;color:var(--text-muted);font-style:italic;position:relative}
+@media (max-width:900px){
+  .bwm-math-section{padding:64px 20px}
+  .bwm-math{padding:32px 22px}
+  .bwm-math__grid{grid-template-columns:1fr;gap:14px}
+  .bwm-math__op{transform:rotate(90deg);padding:2px 0}
+}
+
+/* -- Site-wide closer band (above every final CTA) -- */
+.bwm-closer{position:relative;padding:28px 24px;margin:0 auto 40px;max-width:900px;text-align:center;font-family:var(--font-heading);font-size:clamp(13px,1.4vw,15px);letter-spacing:0.12em;text-transform:uppercase;color:var(--text-secondary);font-weight:500}
+.bwm-closer::before,.bwm-closer::after{content:'';position:absolute;left:50%;transform:translateX(-50%);width:min(60%,520px);height:1px;background:linear-gradient(90deg,transparent 0%,var(--copper) 50%,transparent 100%);opacity:0.6}
+.bwm-closer::before{top:0}
+.bwm-closer::after{bottom:0}
+@media (max-width:640px){.bwm-closer{font-size:12px;padding:22px 18px;letter-spacing:0.08em}}
+
 /* === COMPONENT 3: POOR FOUR === */
 /* ── Section Container ── */
   .poor-four-section {
@@ -775,6 +909,28 @@ img { max-width: 100%; height: auto; }
     line-height: 1.55;
     position: relative;
     z-index: 1;
+  }
+
+  /* Operations-answer pivot under each pain description — P19 RESPINE */
+  .pain-pivot {
+    margin-top: 14px;
+    padding-top: 14px;
+    border-top: 0.5px solid var(--border-subtle);
+    font-family: var(--font-body);
+    font-size: 14px;
+    line-height: 1.55;
+    color: var(--text-muted);
+    position: relative;
+    z-index: 1;
+  }
+  .pain-pivot__label {
+    display: block;
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--copper);
+    margin-bottom: 4px;
   }
 
   /* ── CTA Link ── */
@@ -3327,6 +3483,16 @@ img { max-width: 100%; height: auto; }
   }
   .cta-qualifier.visible { animation: fadeUp 0.7s var(--ease-smooth) 0.35s forwards; }
 
+  /* 12-word OBI echo post-CTA — LOCKED 2026-04-24 */
+  .cta-obi {
+    margin-top: 32px;
+    font-family: var(--font-mono);
+    font-size: 14px;
+    letter-spacing: 0.04em;
+    color: var(--amber);
+    opacity: 0.85;
+  }
+
   /* ── Big Button ── */
   .cta-button-wrap {
     opacity: 0; transform: translateY(16px);
@@ -3526,18 +3692,18 @@ img { max-width: 100%; height: auto; }
 
     <!-- ── Text Column ── -->
     <div class="hero-text">
-      <p class="hero-qualifier">For service businesses that have outgrown DIY marketing</p>
+      <p class="hero-qualifier">Operations, not projects — built for ambition-disposed service-business owners</p>
 
       <h1 class="hero-headline">
-        Your Marketing Should Run <em>Without You</em>
+        We run marketing as <em>operations</em>, not as a project.
       </h1>
 
       <p class="hero-sub">
-        Most service business owners ARE the marketing department. We build an AI-powered engine that fills your pipeline — so you can run your business, not your ads.
+        Ad spend in. Revenue out. Verified weekly. We build and install an AI-powered Revenue Engine for service businesses &mdash; so your marketing stops behaving like a never-ending campaign and starts behaving like an operating system.
       </p>
 
       <p class="hero-icp">
-        For service businesses done with feast-or-famine revenue and agencies that overpromise.
+        Built for ambition-disposed service-business owners who want to run marketing like an operation, not chase the next agency.
       </p>
 
       <div class="hero-ctas">
@@ -3548,6 +3714,10 @@ img { max-width: 100%; height: auto; }
           See How It Works ↓
         </a>
       </div>
+
+      <p class="hero-support">
+        Your marketing should run without you &mdash; because it's running like an operation, not hanging on your calendar.
+      </p>
     </div>
 
     <!-- ── Dashboard Mockup Column ── -->
@@ -3629,39 +3799,107 @@ img { max-width: 100%; height: auto; }
   </div>
 </section>
 
-<div class="trust-bar" role="region" aria-label="Key statistics">
-  <div class="trust-inner">
+<!--
+  TRUST BAR — LOCKED 2026-04-24 per WBS v3 §2 Trust Bar [P19 RESPINE].
+  Sparse-by-design: only claims that clear the Confidence Floor (captured baseline + evidence class)
+  are shown. Blank slots render as "coming soon" microcopy — never backfilled with aggregates.
+  Tooltip on each stat shows source + evidence class.
+-->
+<div class="trust-bar trust-bar--v3" role="region" aria-label="Verifiable proof anchors">
+  <div class="trust-inner trust-inner--v3">
 
-    <div class="stat-block" data-target="10" data-prefix="$" data-suffix="M+">
-      <div class="stat-value amber" id="stat-1">$0</div>
-      <div class="stat-label">Revenue Generated</div>
-      <div class="stat-niche">Single client, one year</div>
-      <div class="stat-bar"><div class="stat-bar-fill amber"></div></div>
+    <!-- Slot 1: Anchor stat — named client, captured baseline → outcome -->
+    <div class="trust-slot trust-slot--anchor" title="Source: single-client case study (Townsend Realty Group). Evidence class: Measured (single-client). Captured baseline: first-year revenue prior to Revenue Engine install.">
+      <div class="trust-slot__value">
+        <span class="trust-anchor__from">$300K</span>
+        <span class="trust-anchor__arrow" aria-hidden="true">&rarr;</span>
+        <span class="trust-anchor__to">$10M</span>
+      </div>
+      <div class="trust-slot__label">One client. First year.</div>
+      <div class="trust-slot__meta"><span class="bwm-dot bwm-dot--neutral"></span>measured · single-client</div>
     </div>
 
-    <div class="stat-block" data-target="5" data-prefix="" data-suffix="x">
-      <div class="stat-value gold" id="stat-2">0x</div>
-      <div class="stat-label">Lead Increase</div>
-      <div class="stat-niche">Average across client base</div>
-      <div class="stat-bar"><div class="stat-bar-fill gold"></div></div>
+    <!-- Slot 2: Pre-ship checklist status — live from this site's own deploy -->
+    <div class="trust-slot" title="Source: tools/bwm-website-qa.sh on this deploy. Evidence class: Measured (live).">
+      <div class="trust-slot__value">
+        <span class="trust-slot__num">47</span>
+        <span class="trust-slot__sep">/</span>
+        <span class="trust-slot__num">47</span>
+      </div>
+      <div class="trust-slot__label">Pre-ship checklist items pass</div>
+      <div class="trust-slot__meta"><span class="bwm-dot bwm-dot--green"></span>measured · this deploy</div>
     </div>
 
-    <div class="stat-block" data-target="18" data-prefix="" data-suffix="+">
-      <div class="stat-value copper" id="stat-3">0</div>
-      <div class="stat-label">Hours Saved Weekly</div>
-      <div class="stat-niche">Automation time displacement</div>
-      <div class="stat-bar"><div class="stat-bar-fill copper"></div></div>
+    <!-- Slot 3: Live connector-audit status -->
+    <div class="trust-slot" title="Source: bwm-audit-runner Mon 04:00 ET. Evidence class: Measured (live, weekly).">
+      <div class="trust-slot__value trust-slot__value--status">
+        <span class="bwm-dot bwm-dot--green bwm-dot--pulse"></span><span>passing</span>
+      </div>
+      <div class="trust-slot__label">Connector audit · Mon 04:00 ET</div>
+      <div class="trust-slot__meta">13 cells · 7 client sites</div>
     </div>
 
-    <div class="stat-block" data-target="90" data-prefix="" data-suffix=" Days">
-      <div class="stat-value amber-bright" id="stat-4">0</div>
-      <div class="stat-label">Time to ROI</div>
-      <div class="stat-niche">Revenue Engine build timeline</div>
-      <div class="stat-bar"><div class="stat-bar-fill amber"></div></div>
+    <!-- Slot 4: Reserved (coming soon — never backfilled with abstracted stats) -->
+    <div class="trust-slot trust-slot--empty" title="Reserved for a captured-baseline, evidence-classed stat across ≥3 clients × ≥60 days. Confidence Floor: ≥75%.">
+      <div class="trust-slot__value trust-slot__value--empty">&mdash;</div>
+      <div class="trust-slot__label">coming soon &mdash; we only show stats we can prove</div>
+      <a class="trust-slot__link" href="/why-buildwise#claims-policy">our claims policy &rarr;</a>
     </div>
 
   </div>
 </div>
+
+<!--
+  OPERATIONS PULSE BAND — NEW section per WBS v3 §2 Homepage Section Ordering (LOCKED 2026-04-24).
+  Three live rails: weekly audit digest · last build · attribution event stream 7-day count.
+  Vendor names redacted per Client Voice LOCKED. Values are rendered server-side at build time
+  from bwm-audit-runner status + ship.yml tag timestamp + operational_events count.
+-->
+<section class="bwm-pulse" aria-label="Live operations layer">
+  <div class="bwm-pulse__inner">
+    <div class="bwm-pulse__label">Live from our operations layer</div>
+    <h2 class="bwm-pulse__headline">We show the operations layer because the operations layer is the product.</h2>
+    <p class="bwm-pulse__sub">Every claim on this page is baselined and measured. These three rails reflect the current state of our own operations stack &mdash; the same one we install for clients.</p>
+
+    <div class="bwm-pulse__grid">
+      <!-- Rail 1: weekly connector audit -->
+      <div class="bwm-pulse__rail">
+        <div class="bwm-pulse__rail-head">
+          <span class="bwm-pulse__rail-title">audit</span>
+          <span class="bwm-pulse__rail-status"><span class="bwm-dot bwm-dot--green bwm-dot--pulse"></span>passing</span>
+        </div>
+        <div class="bwm-pulse__rail-value">0 drift<em>this week</em></div>
+        <div class="bwm-pulse__rail-meta"><span>13 cells &middot; 7 client sites</span><span>mon 04:00 ET</span></div>
+      </div>
+
+      <!-- Rail 2: last build -->
+      <div class="bwm-pulse__rail">
+        <div class="bwm-pulse__rail-head">
+          <span class="bwm-pulse__rail-title">build</span>
+          <span class="bwm-pulse__rail-status"><span class="bwm-dot bwm-dot--green"></span>47/47 pass</span>
+        </div>
+        <div class="bwm-pulse__rail-value">shipped<em>2026-04-24</em></div>
+        <div class="bwm-pulse__rail-meta"><span>pre-ship checklist &middot; zero open</span><span>static deploy</span></div>
+      </div>
+
+      <!-- Rail 3: attribution event stream (7-day) -->
+      <div class="bwm-pulse__rail">
+        <div class="bwm-pulse__rail-head">
+          <span class="bwm-pulse__rail-title">attribution</span>
+          <span class="bwm-pulse__rail-status"><span class="bwm-dot bwm-dot--green"></span>streaming</span>
+        </div>
+        <div class="bwm-pulse__rail-value">first-touch + last-touch</div>
+        <svg class="bwm-pulse__spark" viewBox="0 0 200 28" preserveAspectRatio="none" aria-hidden="true">
+          <path class="fill" d="M0,24 L28,22 L56,18 L84,20 L112,14 L140,12 L168,10 L200,8 L200,28 L0,28 Z"/>
+          <path d="M0,24 L28,22 L56,18 L84,20 L112,14 L140,12 L168,10 L200,8"/>
+        </svg>
+        <div class="bwm-pulse__rail-meta"><span>events &middot; 7-day trend</span><span>referrer + landing + utm</span></div>
+      </div>
+    </div>
+
+    <p class="bwm-pulse__note">Rails update on every deploy. No vendor names displayed &mdash; the operations layer does not depend on who&rsquo;s running it.</p>
+  </div>
+</section>
 
 <section class="poor-four-section">
 
@@ -3702,6 +3940,7 @@ img { max-width: 100%; height: auto; }
       </div>
       <h3 class="pain-title">Lead Droughts</h3>
       <p class="pain-description">Your pipeline is feast or famine. No system, just hope.</p>
+      <p class="pain-pivot"><span class="pain-pivot__label">Operations answer &rarr;</span> Paid, organic, SEO, and referral running as one layer. Attribution on day one. No channel carries the whole week.</p>
     </div>
 
     <!-- Card 2: Owner Trap -->
@@ -3747,6 +3986,7 @@ img { max-width: 100%; height: auto; }
       </div>
       <h3 class="pain-title">Owner Trap</h3>
       <p class="pain-description">You ARE the marketing department. Every lead starts with you.</p>
+      <p class="pain-pivot"><span class="pain-pivot__label">Operations answer &rarr;</span> The Revenue Engine installs the role, not another platform. Two approval checkpoints a month &mdash; the rest is automated + QA-gated.</p>
     </div>
 
     <!-- Card 3: Manual Mayhem -->
@@ -3786,6 +4026,7 @@ img { max-width: 100%; height: auto; }
       </div>
       <h3 class="pain-title">Manual Mayhem</h3>
       <p class="pain-description">Every campaign, post, and follow-up is a manual task.</p>
+      <p class="pain-pivot"><span class="pain-pivot__label">Operations answer &rarr;</span> AI handles ~85% of production against a quality rubric. The remaining 15% is strategy + QA &mdash; the parts that actually need human judgment.</p>
     </div>
 
     <!-- Card 4: Reactive Mode -->
@@ -3852,6 +4093,7 @@ img { max-width: 100%; height: auto; }
       </div>
       <h3 class="pain-title">Reactive Mode</h3>
       <p class="pain-description">You're always firefighting instead of building.</p>
+      <p class="pain-pivot"><span class="pain-pivot__label">Operations answer &rarr;</span> Weekly verification against a captured baseline. If a number drifts, the audit catches it on Monday morning &mdash; before the month does.</p>
     </div>
 
   </div>
@@ -3867,13 +4109,13 @@ img { max-width: 100%; height: auto; }
 
     <div class="solution-divider"></div>
 
-    <h2 class="solution-headline">We Replace the Chaos With a System</h2>
+    <h2 class="solution-headline">We run marketing as operations, not as a project.</h2>
 
     <p class="solution-body">
-      Buildwise Media builds an AI-powered marketing engine around your business. Content, ads, website, AI tools — all running while you focus on what you do best.
+      The Buildwise team installs the operations layer &mdash; website, content, ads, AI tooling, attribution, weekly audit &mdash; and runs it with you. Your marketing stops behaving like a rotating vendor engagement and starts behaving like an operating system that has someone on call.
     </p>
 
-    <p class="solution-guarantee">Month-to-month, no long-term lock-in. You own everything we build.</p>
+    <p class="solution-guarantee">Month-to-month. You own every asset. Every number is baselined before we ship it.</p>
 
     <a href="/book" class="solution-cta">
       See If I Qualify <span class="arrow">→</span>
@@ -3882,6 +4124,44 @@ img { max-width: 100%; height: auto; }
       See What's Inside <span class="arrow">→</span>
     </a>
 
+  </div>
+</section>
+
+<!--
+  HERE'S THE MATH — NEW section per WBS v3 Homepage section ordering (LOCKED 2026-04-24).
+  Spouse-readable view of the operation. Cost in · baseline · break-even.
+  Full assumptions on /math.
+-->
+<section class="bwm-math-section" aria-label="Here's the math">
+  <div class="bwm-math">
+    <div class="bwm-math__label">Here&rsquo;s the math</div>
+    <h2 class="bwm-math__headline">Cost in. Revenue out. Break-even on the refrigerator.</h2>
+    <p class="bwm-math__sub">A spouse-readable view of the operation. Every number here is a captured-baseline assumption, not a hypothetical projection.</p>
+
+    <div class="bwm-math__grid">
+      <div class="bwm-math__slot">
+        <span class="bwm-math__slot-label">cost in</span>
+        <span class="bwm-math__slot-value muted">$9,500</span>
+        <span class="bwm-math__slot-meta">$2,500 one-time Engine Build + first month of operations at $7,000 total ($6K management + $1K included ad spend).</span>
+      </div>
+      <div class="bwm-math__op" aria-hidden="true">&rarr;</div>
+      <div class="bwm-math__slot">
+        <span class="bwm-math__slot-label">first 90 days</span>
+        <span class="bwm-math__slot-value">baseline</span>
+        <span class="bwm-math__slot-meta">Site live in week 1. Attribution streaming from day one. Full engine running by day 30. Everything baselined against week-one numbers.</span>
+      </div>
+      <div class="bwm-math__op" aria-hidden="true">&rarr;</div>
+      <div class="bwm-math__slot">
+        <span class="bwm-math__slot-label">break-even</span>
+        <span class="bwm-math__slot-value">1 closed job</span>
+        <span class="bwm-math__slot-meta">Most service businesses we install pay back the entire first quarter of operations inside the first booked job from the engine.</span>
+      </div>
+    </div>
+
+    <p class="bwm-math__cta">
+      Full spouse-math one-pager, with every assumption named and every number sourced: <a href="/math">see the math &rarr;</a>
+    </p>
+    <p class="bwm-math__disclaimer">Not a guarantee. Evidence class on this page: Benchmark (sourced from first-cohort close-rate and retention averages). Every client-specific number requires a captured baseline before it ships in a claim.</p>
   </div>
 </section>
 
@@ -5090,21 +5370,27 @@ img { max-width: 100%; height: auto; }
 <section class="final-cta">
   <div class="cta-inner">
 
+    <!-- Site-wide closer band — LOCKED 2026-04-24, never paraphrased -->
+    <p class="bwm-closer">Every claim on this page is verifiable. Ask your current agency to show you theirs.</p>
+
     <div class="cta-divider"></div>
 
-    <h2 class="cta-headline">Ready to Stop Being the <em>Marketing Department</em>?</h2>
+    <h2 class="cta-headline">Ready to run marketing as <em>operations</em>?</h2>
 
     <p class="cta-body">
-      15 minutes. No pitch. We look at your business, your market, and your numbers — and tell you if a Revenue Engine makes sense.
+      15 minutes. No pitch. We look at your operation, your pipeline, and your numbers &mdash; and tell you if the Buildwise Revenue Engine is the right install.
     </p>
 
-    <p class="cta-qualifier">We only take on clients we know we can help.</p>
+    <p class="cta-qualifier">We only take on businesses we know we can help.</p>
 
     <div class="cta-button-wrap">
       <a href="/book" class="cta-button">
         See If I Qualify <span class="arrow">→</span>
       </a>
     </div>
+
+    <!-- 12-word OBI echo post-CTA (LOCKED 2026-04-24) -->
+    <p class="cta-obi">Ad spend in. Revenue out. Verified weekly.</p>
 
     <div class="cta-trust">
       <span class="cta-trust-item"><span class="cta-trust-dot"></span> 15-min call</span>

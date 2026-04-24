@@ -1,0 +1,139 @@
+<!--
+  BWM Shared Component — Operations Pulse Band
+  Homepage band rendering 3 live data rails. Vendor names redacted per Client Voice LOCKED.
+  Rails: (1) weekly audit digest w/ drift count, (2) last-build timestamp + pass/fail,
+  (3) attribution event stream 7-day count + sparkline.
+  Parent page wires real values via inner text. For BWM homepage, static render is fine;
+  for future dashboards, wire data-src to a live endpoint.
+  Usage:
+    <section class="bwm-pulse"> … see markup pattern below … </section>
+-->
+
+<style>
+.bwm-pulse{
+  background:var(--bg2,#2A2320);
+  border-top:1px solid var(--border-subtle,#2E2822);
+  border-bottom:1px solid var(--border-subtle,#2E2822);
+  padding:48px 24px;
+  position:relative;
+}
+.bwm-pulse::before{
+  content:'';position:absolute;inset:0;pointer-events:none;
+  background:radial-gradient(ellipse 60% 40% at 50% 50%, rgba(212,148,58,0.04), transparent 60%);
+}
+.bwm-pulse__inner{max-width:1200px;margin:0 auto;position:relative}
+.bwm-pulse__label{
+  font-family:'JetBrains Mono','IBM Plex Mono',monospace;
+  font-size:12px;letter-spacing:0.12em;text-transform:uppercase;
+  color:var(--copper,#B87333);margin-bottom:8px;
+}
+.bwm-pulse__headline{
+  font-family:'Inter',sans-serif;font-weight:700;
+  font-size:clamp(22px,3vw,30px);line-height:1.3;
+  color:var(--text-primary,#F5F0EB);margin:0 0 4px;
+}
+.bwm-pulse__sub{
+  font-family:'Manrope',sans-serif;font-size:15px;line-height:1.5;
+  color:var(--text-secondary,#A89B8C);margin:0 0 28px;max-width:600px;
+}
+.bwm-pulse__grid{
+  display:grid;grid-template-columns:repeat(3,1fr);gap:16px;
+}
+.bwm-pulse__rail{
+  background:rgba(28,23,20,0.6);
+  border:1px solid var(--border,#3D352E);
+  border-radius:6px;
+  padding:18px 20px;
+  display:flex;flex-direction:column;gap:10px;
+  transition:border-color 220ms ease;
+}
+.bwm-pulse__rail:hover{border-color:var(--copper,#B87333)}
+.bwm-pulse__rail-head{
+  display:flex;align-items:center;justify-content:space-between;
+  font-family:'JetBrains Mono','IBM Plex Mono',monospace;
+  font-size:12px;letter-spacing:0.06em;
+  color:var(--text-secondary,#A89B8C);
+}
+.bwm-pulse__rail-title{text-transform:lowercase}
+.bwm-pulse__rail-status{display:inline-flex;align-items:center;gap:6px;color:var(--text-muted,#8B7F73)}
+.bwm-pulse__rail-value{
+  font-family:'Inter',sans-serif;font-weight:700;
+  font-size:clamp(26px,3vw,34px);line-height:1.1;
+  color:var(--text-primary,#F5F0EB);
+}
+.bwm-pulse__rail-value em{font-style:normal;color:var(--amber,#D4943A);font-family:'JetBrains Mono','IBM Plex Mono',monospace;font-weight:500;font-size:0.7em;margin-left:6px}
+.bwm-pulse__rail-meta{
+  font-family:'JetBrains Mono','IBM Plex Mono',monospace;
+  font-size:12px;color:var(--text-muted,#8B7F73);
+  display:flex;justify-content:space-between;align-items:center;gap:8px;
+}
+.bwm-pulse__spark{
+  width:100%;height:28px;margin-top:2px;
+}
+.bwm-pulse__spark path{
+  fill:none;stroke:var(--amber,#D4943A);stroke-width:1.5;
+  stroke-linecap:round;stroke-linejoin:round;
+}
+.bwm-pulse__spark .fill{fill:rgba(212,148,58,0.12);stroke:none}
+.bwm-pulse__note{
+  margin-top:20px;
+  font-family:'Manrope',sans-serif;font-size:14px;
+  color:var(--text-muted,#8B7F73);
+  font-style:italic;
+  text-align:center;
+}
+@media (max-width:768px){
+  .bwm-pulse{padding:36px 20px}
+  .bwm-pulse__grid{grid-template-columns:1fr;gap:12px}
+  .bwm-pulse__rail{padding:16px}
+}
+</style>
+
+<!-- Markup pattern (reference — copy into parent page, fill with real values):
+
+<section class="bwm-pulse" aria-label="Live operations">
+  <div class="bwm-pulse__inner">
+    <div class="bwm-pulse__label">Live from our operations layer</div>
+    <h2 class="bwm-pulse__headline">We show the operations layer because the operations layer is the product.</h2>
+    <p class="bwm-pulse__sub">Every claim on this page is baselined and measured. These three rails reflect the current state of our own operations stack — the same one we install for clients.</p>
+
+    <div class="bwm-pulse__grid">
+      <!-- Rail 1: weekly audit -->
+      <div class="bwm-pulse__rail">
+        <div class="bwm-pulse__rail-head">
+          <span class="bwm-pulse__rail-title">audit</span>
+          <span class="bwm-pulse__rail-status"><span class="bwm-dot bwm-dot--green bwm-dot--pulse"></span>passing</span>
+        </div>
+        <div class="bwm-pulse__rail-value">0 drift<em>this week</em></div>
+        <div class="bwm-pulse__rail-meta"><span>13 cells · 7 client sites</span><span>mon 04:00 ET</span></div>
+      </div>
+
+      <!-- Rail 2: last build -->
+      <div class="bwm-pulse__rail">
+        <div class="bwm-pulse__rail-head">
+          <span class="bwm-pulse__rail-title">build</span>
+          <span class="bwm-pulse__rail-status"><span class="bwm-dot bwm-dot--green"></span>47/47 pass</span>
+        </div>
+        <div class="bwm-pulse__rail-value">shipped<em>2026-04-24</em></div>
+        <div class="bwm-pulse__rail-meta"><span>pre-ship checklist · zero open</span><span>cf pages</span></div>
+      </div>
+
+      <!-- Rail 3: attribution events -->
+      <div class="bwm-pulse__rail">
+        <div class="bwm-pulse__rail-head">
+          <span class="bwm-pulse__rail-title">attribution</span>
+          <span class="bwm-pulse__rail-status"><span class="bwm-dot bwm-dot--green"></span>streaming</span>
+        </div>
+        <div class="bwm-pulse__rail-value"><!-- integer count --></div>
+        <svg class="bwm-pulse__spark" viewBox="0 0 200 28" preserveAspectRatio="none">
+          <path class="fill" d="M0,24 L28,22 L56,18 L84,20 L112,14 L140,12 L168,10 L200,8 L200,28 L0,28 Z"/>
+          <path d="M0,24 L28,22 L56,18 L84,20 L112,14 L140,12 L168,10 L200,8"/>
+        </svg>
+        <div class="bwm-pulse__rail-meta"><span>events · 7-day</span><span>first-touch + last-touch</span></div>
+      </div>
+    </div>
+
+    <p class="bwm-pulse__note">Rails update on every deploy. No vendor names displayed — the operations layer does not depend on who's running it.</p>
+  </div>
+</section>
+-->
