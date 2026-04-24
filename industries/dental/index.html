@@ -404,6 +404,16 @@ body::before{content:'';position:fixed;inset:0;z-index:9999;pointer-events:none;
 @media(max-width:480px){
   .footer-grid{grid-template-columns:1fr;gap:24px}.hero-h1{font-size:clamp(28px,8vw,36px)}.dash-metrics{grid-template-columns:repeat(3,1fr);gap:6px}.dash-metric{padding:10px 6px}.dash-metric-num{font-size:15px}.dash-metric-label{font-size:8px}.dash-metric-trend{font-size:8px}.dash-body{padding:12px}.bench-grid{grid-template-columns:repeat(2,1fr)}.bench-stat{font-size:clamp(22px,6vw,32px)}.engine-viz{padding:32px 20px}.input-row,.output-row{gap:48px}.node-circle{width:48px;height:48px}.node-circle svg{width:18px;height:18px}.engine-hub{width:80px;height:80px}.results-number{font-size:24px}.connection-layer{height:160px}
 }
+/* Operations-answer pivot under each pain description — v21 RESPINE */
+.pain-pivot{margin-top:14px;padding-top:14px;border-top:0.5px solid rgba(168,155,140,0.2);font-family:var(--font-body);font-size:14px;line-height:1.55;color:var(--text-muted)}
+.pain-pivot__label{display:block;font-family:var(--font-heading);font-size:11px;letter-spacing:0.08em;text-transform:uppercase;color:var(--copper);font-weight:600;margin-bottom:4px}
+/* Evidence-class tag for benchmark stats — v21 RESPINE */
+.evidence-tag{display:inline-block;margin-top:6px;margin-bottom:20px;padding:4px 10px;border:0.5px solid var(--copper);border-radius:3px;font-family:var(--font-heading);font-size:11px;letter-spacing:0.12em;color:var(--copper);text-transform:uppercase;font-weight:600}
+/* Site-wide closer band (P19 RESPINE — LOCKED 2026-04-24) */
+.bwm-closer{position:relative;padding:28px 24px;margin:0 auto 28px;max-width:900px;text-align:center;font-family:var(--font-heading);font-size:clamp(13px,1.4vw,15px);letter-spacing:0.12em;text-transform:uppercase;color:var(--text-secondary);font-weight:500}
+.bwm-closer::before,.bwm-closer::after{content:'';position:absolute;left:50%;transform:translateX(-50%);width:min(60%,520px);height:1px;background:linear-gradient(90deg,transparent 0%,var(--copper) 50%,transparent 100%);opacity:0.6}
+.bwm-closer::before{top:0}.bwm-closer::after{bottom:0}
+@media(max-width:640px){.bwm-closer{font-size:12px;padding:22px 18px;letter-spacing:0.08em}}
 </style>
 <script src="/attribution.js" defer></script>
 </head>
@@ -442,7 +452,7 @@ body::before{content:'';position:fixed;inset:0;z-index:9999;pointer-events:none;
         </div>
         <span class="vert-label">For dental practices ready to grow beyond referrals</span>
         <h1 class="hero-h1">Marketing That Fills Your Chairs</h1>
-        <p class="hero-sub">From new patient inquiries to treatment acceptance &mdash; a Revenue Engine that keeps your chairs full and your practice growing. AI-powered. Month-to-month. You own everything.</p>
+        <p class="hero-sub">From new patient inquiries to treatment acceptance &mdash; an operations layer that turns ad spend into booked chairs. Ads, follow-up, and Google profile wired as one system, verified weekly. Month-to-month. You own everything.</p>
         <a href="/book" class="vert-cta vert-cta--large">See If I Qualify &rarr;</a>
       </div>
       <div class="hero-visual">
@@ -481,27 +491,31 @@ body::before{content:'';position:fixed;inset:0;z-index:9999;pointer-events:none;
   <section class="vert-section vert-pain" id="pain-points">
     <div class="vert-inner">
       <span class="vert-label reveal">The Dental Reality</span>
-      <h2 class="vert-h2 reveal">Sound Familiar?</h2>
+      <h2 class="vert-h2 reveal">Four Pain Points. Four Operations Answers.</h2>
       <div class="pain-grid">
         <div class="vert-card vert-card--accent-top reveal stagger-1">
           <div class="pain-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 17 13.5 8.5 8.5 13.5 2 7"/><polyline points="16 17 22 17 22 11"/></svg></div>
           <div class="pain-title">New Patient Droughts</div>
-          <p class="pain-copy">Referrals used to fill your schedule. Now you have empty chairs on Tuesdays and a hygienist with nothing to do. No system to generate a steady flow of new patients.</p>
+          <p class="pain-copy">Referrals used to fill your schedule. Now you have empty chairs on Tuesdays and a hygienist with nothing to do.</p>
+          <p class="pain-pivot"><span class="pain-pivot__label">Operations answer &rarr;</span> Paid, organic, SEO, and GBP running as one layer targeted at high-value treatments. Attribution on day one. Referrals stop being the only pipeline.</p>
         </div>
         <div class="vert-card vert-card--accent-top reveal stagger-2">
           <div class="pain-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div>
           <div class="pain-title">The Owner Trap</div>
-          <p class="pain-copy">You&rsquo;re treating patients, managing staff, reviewing financials, and somehow supposed to be marketing the practice too. Growth stalls because every decision runs through the doctor.</p>
+          <p class="pain-copy">You&rsquo;re treating patients, managing staff, reviewing financials, and somehow supposed to be marketing the practice too.</p>
+          <p class="pain-pivot"><span class="pain-pivot__label">Operations answer &rarr;</span> The layer installs the marketing role, not another platform. Two approval checkpoints a month &mdash; campaigns, posts, and patient follow-ups keep running without the doctor in the loop.</p>
         </div>
         <div class="vert-card vert-card--accent-top reveal stagger-3">
           <div class="pain-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/><rect x="8" y="2" width="8" height="4" rx="1" ry="1"/></svg></div>
           <div class="pain-title">Manual Mayhem</div>
-          <p class="pain-copy">New patient follow-ups happen when the front desk remembers. Treatment plans sit in charts unsigned. A patient asked about Invisalign two weeks ago &mdash; no one followed up.</p>
+          <p class="pain-copy">New patient follow-ups happen when the front desk remembers. A patient asked about Invisalign two weeks ago &mdash; no one followed up.</p>
+          <p class="pain-pivot"><span class="pain-pivot__label">Operations answer &rarr;</span> AI drafts ~85% of the inquiry-to-appointment nurture flow against a written rubric. The 15% that needs clinical judgment &mdash; treatment plans, consults &mdash; stays with your team.</p>
         </div>
         <div class="vert-card vert-card--accent-top reveal stagger-4">
           <div class="pain-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg></div>
           <div class="pain-title">Reactive Mode</div>
-          <p class="pain-copy">You tried a direct mail campaign. Got a few coupon-clippers who never came back. Your marketing dollars go to one-off experiments instead of building a patient acquisition machine.</p>
+          <p class="pain-copy">You tried a direct mail campaign. Got a few coupon-clippers who never came back. Every month feels like starting over.</p>
+          <p class="pain-pivot"><span class="pain-pivot__label">Operations answer &rarr;</span> Weekly verification against a captured baseline. If CPL drifts or close-rate slips, the Monday audit catches it &mdash; before the month does.</p>
         </div>
       </div>
       <a href="/the-poor-four" class="context-link reveal">Read about the four problems holding service businesses back &rarr;</a>
@@ -556,6 +570,7 @@ body::before{content:'';position:fixed;inset:0;z-index:9999;pointer-events:none;
     <div class="vert-inner bench-center">
       <span class="vert-label reveal">The Numbers</span>
       <h2 class="vert-h2 reveal">What Dental Practices See With a Revenue Engine</h2>
+      <span class="evidence-tag reveal">Evidence: Benchmark &middot; Industry data with citation, not our claim</span>
       <div class="bench-grid">
         <div class="bench-item reveal stagger-1"><span class="bench-stat" data-count-target="60" data-prefix="" data-suffix="">60</span><span class="vert-stat-label">Leads / Month<span class="bench-range">40&ndash;80 range</span></span></div>
         <div class="bench-item reveal stagger-2"><span class="bench-stat" data-count-target="56" data-prefix="$" data-suffix="">$56</span><span class="vert-stat-label">Cost per Lead<span class="bench-range">$38&ndash;$75 range</span></span></div>
@@ -598,6 +613,7 @@ body::before{content:'';position:fixed;inset:0;z-index:9999;pointer-events:none;
   <!-- SECTION 7: FINAL CTA -->
   <section class="vert-section vert-final-cta" id="final-cta">
     <div class="final-cta-inner">
+      <p class="bwm-closer reveal">Every claim on this page is verifiable. Ask your current agency to show you theirs.</p>
       <span class="vert-label reveal">Ready?</span>
       <h2 class="vert-h2 reveal">Ready to Build Your Dental Practice Revenue Engine?</h2>
       <a href="/book" class="vert-cta vert-cta--large reveal">See If I Qualify &rarr;</a>

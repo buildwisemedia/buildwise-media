@@ -450,6 +450,16 @@ body::before{content:'';position:fixed;inset:0;z-index:9999;pointer-events:none;
   .results-number{font-size:24px}
   .connection-layer{height:160px}
 }
+/* Operations-answer pivot under each pain description — v21 RESPINE */
+.pain-pivot{margin-top:14px;padding-top:14px;border-top:0.5px solid rgba(168,155,140,0.2);font-family:var(--font-body);font-size:14px;line-height:1.55;color:var(--text-muted)}
+.pain-pivot__label{display:block;font-family:var(--font-heading);font-size:11px;letter-spacing:0.08em;text-transform:uppercase;color:var(--copper);font-weight:600;margin-bottom:4px}
+/* Evidence-class tag for benchmark stats — v21 RESPINE */
+.evidence-tag{display:inline-block;margin-top:6px;margin-bottom:20px;padding:4px 10px;border:0.5px solid var(--copper);border-radius:3px;font-family:var(--font-heading);font-size:11px;letter-spacing:0.12em;color:var(--copper);text-transform:uppercase;font-weight:600}
+/* Site-wide closer band (P19 RESPINE — LOCKED 2026-04-24) */
+.bwm-closer{position:relative;padding:28px 24px;margin:0 auto 28px;max-width:900px;text-align:center;font-family:var(--font-heading);font-size:clamp(13px,1.4vw,15px);letter-spacing:0.12em;text-transform:uppercase;color:var(--text-secondary);font-weight:500}
+.bwm-closer::before,.bwm-closer::after{content:'';position:absolute;left:50%;transform:translateX(-50%);width:min(60%,520px);height:1px;background:linear-gradient(90deg,transparent 0%,var(--copper) 50%,transparent 100%);opacity:0.6}
+.bwm-closer::before{top:0}.bwm-closer::after{bottom:0}
+@media(max-width:640px){.bwm-closer{font-size:12px;padding:22px 18px;letter-spacing:0.08em}}
 </style>
 <script src="/attribution.js" defer></script>
 </head>
@@ -526,7 +536,7 @@ body::before{content:'';position:fixed;inset:0;z-index:9999;pointer-events:none;
         </div>
         <span class="vert-label">For service businesses that have outgrown DIY marketing</span>
         <h1 class="hero-h1">Marketing That Fills Your Schedule Year-Round</h1>
-        <p class="hero-sub">From emergency calls to maintenance contracts &mdash; a Revenue Engine that keeps your techs in the field and your phone ringing. AI-powered. Month-to-month. You own everything.</p>
+        <p class="hero-sub">From emergency calls to maintenance contracts &mdash; an operations layer that turns ad spend into booked calls. Pipeline, dispatch follow-up, and GBP wired as one system, verified weekly. Month-to-month. You own everything.</p>
         <a href="/book" class="vert-cta vert-cta--large">See If I Qualify &rarr;</a>
       </div>
       <div class="hero-visual">
@@ -593,7 +603,7 @@ body::before{content:'';position:fixed;inset:0;z-index:9999;pointer-events:none;
   <section class="vert-section vert-pain" id="pain-points">
     <div class="vert-inner">
       <span class="vert-label reveal">The HVAC Reality</span>
-      <h2 class="vert-h2 reveal">Sound Familiar?</h2>
+      <h2 class="vert-h2 reveal">Four Pain Points. Four Operations Answers.</h2>
       <div class="pain-grid">
         <div class="vert-card vert-card--accent-top reveal stagger-1">
           <div class="pain-icon">
@@ -601,13 +611,15 @@ body::before{content:'';position:fixed;inset:0;z-index:9999;pointer-events:none;
           </div>
           <div class="pain-title">Lead Droughts</div>
           <p class="pain-copy">Summer AC rush fills your schedule &mdash; then October hits and the phone goes silent. No pipeline between peak seasons.</p>
+          <p class="pain-pivot"><span class="pain-pivot__label">Operations answer &rarr;</span> Paid, organic, SEO, and GBP running as one layer with seasonal demand signals (AC, heat, plumbing, electrical). Attribution on day one. Maintenance contracts smooth the shoulder months.</p>
         </div>
         <div class="vert-card vert-card--accent-top reveal stagger-2">
           <div class="pain-icon">
             <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
           </div>
           <div class="pain-title">The Owner Trap</div>
-          <p class="pain-copy">You&rsquo;re quoting jobs at 7 AM, running calls until 6, and updating your website at midnight. The business can&rsquo;t grow because you&rsquo;re the technician, the salesperson, and the marketing department.</p>
+          <p class="pain-copy">You&rsquo;re quoting jobs at 7 AM, running calls until 6, and updating your website at midnight. You&rsquo;re the technician, the salesperson, and the marketing department.</p>
+          <p class="pain-pivot"><span class="pain-pivot__label">Operations answer &rarr;</span> The layer installs the marketing role, not another tool. Two approval checkpoints a month &mdash; dispatch follow-ups, review requests, and maintenance reminders keep firing without you running them.</p>
         </div>
         <div class="vert-card vert-card--accent-top reveal stagger-3">
           <div class="pain-icon">
@@ -615,13 +627,15 @@ body::before{content:'';position:fixed;inset:0;z-index:9999;pointer-events:none;
           </div>
           <div class="pain-title">Manual Mayhem</div>
           <p class="pain-copy">Estimates scribbled on work orders. Follow-ups you meant to send last Tuesday. A lead called three days ago &mdash; did anyone call them back?</p>
+          <p class="pain-pivot"><span class="pain-pivot__label">Operations answer &rarr;</span> AI drafts ~85% of the call-to-estimate-to-install flow against a written rubric. Every inbound call is logged and nurtured; no lead slips because a tech was on a job.</p>
         </div>
         <div class="vert-card vert-card--accent-top reveal stagger-4">
           <div class="pain-icon">
             <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
           </div>
           <div class="pain-title">Reactive Mode</div>
-          <p class="pain-copy">Slow week? Boost a Facebook post. Still slow? Print some door hangers. Your marketing is a series of panic moves instead of a machine that prevents the panic.</p>
+          <p class="pain-copy">Slow week? Boost a Facebook post. Still slow? Print some door hangers. Marketing is a series of panic moves instead of a machine that prevents the panic.</p>
+          <p class="pain-pivot"><span class="pain-pivot__label">Operations answer &rarr;</span> Weekly verification against a captured baseline. If CPL drifts or close-rate slips, the Monday audit catches it &mdash; before the slow week becomes a slow month.</p>
         </div>
       </div>
       <a href="/the-poor-four" class="context-link reveal">Read about the four problems holding service businesses back &rarr;</a>
@@ -735,6 +749,7 @@ body::before{content:'';position:fixed;inset:0;z-index:9999;pointer-events:none;
     <div class="vert-inner bench-center">
       <span class="vert-label reveal">The Numbers</span>
       <h2 class="vert-h2 reveal">What HVAC Businesses See With a Revenue Engine</h2>
+      <span class="evidence-tag reveal">Evidence: Benchmark &middot; Industry data with citation, not our claim</span>
       <div class="bench-grid">
         <div class="bench-item reveal stagger-1">
           <span class="bench-stat" data-count-target="38" data-prefix="" data-suffix="">38</span>
@@ -789,6 +804,13 @@ body::before{content:'';position:fixed;inset:0;z-index:9999;pointer-events:none;
         </div>
       </div>
       <a href="/results" class="context-link reveal">See how Revenue Engines perform across industries &rarr;</a>
+    </div>
+  </section>
+
+  <!-- v21 RESPINE: site-wide closer band above final action until sections 6-7 land -->
+  <section class="vert-section" style="padding-top:0;padding-bottom:40px">
+    <div class="vert-inner">
+      <p class="bwm-closer reveal">Every claim on this page is verifiable. Ask your current agency to show you theirs.</p>
     </div>
   </section>
 
