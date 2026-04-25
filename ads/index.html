@@ -27,7 +27,24 @@
   header button:hover { opacity: 0.9; }
 
   .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(360px, 1fr)); gap: 16px; padding: 24px; }
+  .grid .panel.span-2 { grid-column: span 2; }
   .panel { background: var(--panel); border: 1px solid var(--panel-border); border-radius: 6px; padding: 16px; }
+  .panel.exp-active { border-color: var(--accent); }
+  .panel.exp-won    { border-color: var(--good); background: rgba(90,200,138,0.05); }
+  .panel.exp-killed { border-color: var(--bad);  background: rgba(224,102,102,0.05); }
+  .exp-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 14px; }
+  .exp-title { margin: 0; font-size: 14px; }
+  .exp-title small { color: var(--muted); font-weight: 400; }
+  .exp-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; }
+  .exp-tile { padding: 10px; border: 1px solid #1e242c; border-radius: 4px; background: #0b0e12; }
+  .exp-tile .lbl { font-size: 10px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.6px; }
+  .exp-tile .val { font-size: 22px; font-weight: 600; font-variant-numeric: tabular-nums; margin-top: 4px; }
+  .exp-tile .sub { font-size: 11px; color: var(--muted); margin-top: 2px; }
+  .exp-bar { height: 6px; background: #1e242c; border-radius: 3px; margin-top: 8px; overflow: hidden; }
+  .exp-bar > div { height: 100%; background: var(--accent); transition: width 200ms ease; }
+  .exp-bar.warn > div { background: var(--warn); }
+  .exp-bar.bad  > div { background: var(--bad); }
+  .exp-alarms { margin-top: 12px; display: flex; flex-wrap: wrap; gap: 6px; }
   .panel h2 { margin: 0 0 12px; font-size: 13px; color: var(--muted); font-weight: 600; text-transform: uppercase; letter-spacing: 1px; }
   .panel .big { font-size: 28px; font-weight: 600; }
   .panel .row { display: flex; justify-content: space-between; padding: 6px 0; border-bottom: 1px solid #1e242c; font-size: 13px; }
@@ -78,6 +95,11 @@
 </header>
 
 <div class="grid">
+
+  <section class="panel span-2 exp-active" id="panel-experiment">
+    <h2>Active experiment · live KPI tracking</h2>
+    <div class="loading">loading…</div>
+  </section>
 
   <section class="panel" id="panel-rollup">
     <h2>Spend rollup · last 7 / 30 / MTD</h2>
@@ -301,6 +323,89 @@
     panel.appendChild(r2);
   }
 
+  function renderExperiment(panel, data) {
+    clearPanel(panel);
+    var exp = data.experiment || null;
+    var k = data.kpis || {};
+    var s = data.state || {};
+
+    // Style the panel based on phase
+    panel.classList.remove('exp-active', 'exp-won', 'exp-killed');
+    if (s.exit_hit) panel.classList.add('exp-won');
+    else if (s.kill_hit) panel.classList.add('exp-killed');
+    else panel.classList.add('exp-active');
+
+    if (!exp) {
+      panel.appendChild(el('div', { cls: 'loading', text: 'No active experiment registered.' }));
+      return;
+    }
+
+    // Header: title + phase
+    var header = el('div', { cls: 'exp-header' });
+    var title = el('h2', { cls: 'exp-title' }, [
+      document.createTextNode(data.id + ' — ' + exp.title + ' '),
+      el('small', { text: '· ' + s.phase }),
+    ]);
+    header.appendChild(title);
+    var dates = el('div', { style: 'font-size:11px;color:var(--muted)' }, [
+      document.createTextNode('opened ' + exp.opened + ' · closes ' + exp.closes_by),
+    ]);
+    header.appendChild(dates);
+    panel.appendChild(header);
+
+    // 8 KPI tiles in a 4×2 grid
+    var grid = el('div', { cls: 'exp-grid' });
+
+    function tile(lbl, val, sub) {
+      var t = el('div', { cls: 'exp-tile' });
+      t.appendChild(el('div', { cls: 'lbl', text: lbl }));
+      t.appendChild(el('div', { cls: 'val', text: val }));
+      if (sub) t.appendChild(el('div', { cls: 'sub', text: sub }));
+      return t;
+    }
+
+    var spend = Number(k.spend_total || 0);
+    var cap = exp.budget_total_cap_usd;
+    var pct = cap > 0 ? Math.round((spend / cap) * 100) : 0;
+    var spendTile = tile('Spend', '$' + spend.toFixed(2), '$' + cap + ' cap · ' + pct + '%');
+    var spendBar = el('div', { cls: 'exp-bar' + (pct >= 80 ? ' warn' : '') });
+    spendBar.appendChild(el('div', { style: 'width:' + Math.min(pct, 100) + '%' }));
+    spendTile.appendChild(spendBar);
+    grid.appendChild(spendTile);
+
+    grid.appendChild(tile('Days', s.days_elapsed + ' / ' + (s.days_elapsed + s.days_remaining), s.days_remaining + ' remaining'));
+    grid.appendChild(tile('Qualified leads', String(k.qualified_leads_total || 0), 'target ≥ ' + (exp.success_criteria.qualified_leads_total || 1)));
+    grid.appendChild(tile('CPQL', k.cpql ? '$' + Number(k.cpql).toFixed(2) : '—', k.cpql ? 'cost per qualified lead' : 'no leads yet'));
+
+    grid.appendChild(tile('Clicks', fmtInt(k.clicks), fmtPct(k.ctr) + ' CTR'));
+    grid.appendChild(tile('CPC', k.cpc ? '$' + Number(k.cpc).toFixed(2) : '—', 'cost per click'));
+    grid.appendChild(tile('LPV rate', fmtPct(k.lpv_rate), 'min ' + fmtPct(exp.kill_criteria.lpv_rate_min)));
+    grid.appendChild(tile('Meta-side leads', fmtInt(k.meta_side_leads), 'pixel + capi'));
+
+    panel.appendChild(grid);
+
+    // Alarm pills
+    if (s.alarms && s.alarms.length) {
+      var alarmRow = el('div', { cls: 'exp-alarms' });
+      s.alarms.forEach(function (a) {
+        alarmRow.appendChild(el('span', { cls: 'pill warn', text: a }));
+      });
+      panel.appendChild(alarmRow);
+    }
+
+    // Phase callout
+    var calloutText = '';
+    var calloutCls = 'pill muted';
+    if (s.exit_hit)      { calloutText = '✓ EXIT criterion hit — promote to next experiment.'; calloutCls = 'pill good'; }
+    else if (s.kill_hit) { calloutText = '✗ KILL criterion hit — write retro, design next experiment.'; calloutCls = 'pill bad'; }
+    else if (spend === 0) calloutText = 'Armed — no spend yet. Push compiled creative pack to Meta Ads Manager.';
+    else                  calloutText = 'Running — Monday review cadence.';
+    var callout = el('div', { style: 'margin-top:10px;font-size:11px' }, [
+      el('span', { cls: calloutCls, text: calloutText }),
+    ]);
+    panel.appendChild(callout);
+  }
+
   function renderMatch(panel, data) {
     clearPanel(panel);
     var rows = data.rows || [];
@@ -337,6 +442,7 @@
     var daysSuffix = client ? '?client=' + encodeURIComponent(client) + '&days=' + days : '?days=' + days;
 
     await Promise.all([
+      loadPanel('panel-experiment','/ads/experiment?id=EXP-001', renderExperiment),
       loadPanel('panel-rollup',    '/ads/rollup' + clientSuffix, renderRollup),
       loadPanel('panel-spend',     '/ads/spend' + daysSuffix, renderSpend),
       loadPanel('panel-campaigns', '/ads/campaigns' + daysSuffix, renderCampaigns),
