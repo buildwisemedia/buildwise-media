@@ -33,17 +33,14 @@
 <link rel="preload" as="image" href="https://assets.buildwisemedia.com/logos/bwm-logo-primary-terracotta-on-transparent.svg" type="image/svg+xml" fetchpriority="high">
 
 <!-- Preconnect -->
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="preconnect" href="https://assets.buildwisemedia.com" crossorigin>
 
-<!-- Google Fonts — preload above-fold woff2s (Manrope for H1+nav+CTAs, Inter for body) so the font
-     bytes arrive in parallel with HTML parse. Load the @font-face CSS as blocking stylesheet so
-     font-display:swap engages immediately (the print-onload trick hid @font-face until late, which
-     made the H1 re-render after fallback paint and pushed LCP to 3.4s). -->
-<link rel="preload" as="font" type="font/woff2" crossorigin href="https://fonts.gstatic.com/s/manrope/v20/xn7gYHE41ni1AdIRggexSvfedN4.woff2">
-<link rel="preload" as="font" type="font/woff2" crossorigin href="https://fonts.gstatic.com/s/inter/v20/UcC73FwrK3iLTeHuS_nVMrMxCp50SjIa1ZL7W0Q5nw.woff2">
-<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Inter:wght@400;500;600&family=Playfair+Display:ital,wght@1,400;1,500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<!-- Self-hosted variable fonts (latin subset). Above-fold (Manrope, Inter) use font-display:optional
+     so the fallback paint becomes LCP — no swap re-render. Below-fold (Playfair italic, JetBrains Mono)
+     stay on font-display:swap. Replaces the prior Google Fonts CSS (which hardcoded font-display:swap
+     and forced an LCP-killing re-paint when the H1 swapped fallback→Manrope post-FCP). -->
+<link rel="preload" as="font" type="font/woff2" crossorigin href="/fonts/manrope-var.woff2">
+<link rel="preload" as="font" type="font/woff2" crossorigin href="/fonts/inter-var.woff2">
 
 <!-- Theme color -->
 <meta name="theme-color" content="#1C1714">
@@ -51,6 +48,43 @@
 <!-- Dark mode only -->
 
 <style>
+/* === SELF-HOSTED FONTS (latin subset, variable axis) === */
+/* Above-fold critical: font-display:optional avoids the swap-LCP trap. If the font loads in
+   the ~100ms block period it's used; otherwise fallback wins forever (this paint). */
+@font-face {
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 200 800;
+  font-display: optional;
+  src: url('/fonts/manrope-var.woff2') format('woff2-variations');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: optional;
+  src: url('/fonts/inter-var.woff2') format('woff2-variations');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+/* Below-fold accent: swap is fine — these aren't on the critical render path. */
+@font-face {
+  font-family: 'Playfair Display';
+  font-style: italic;
+  font-weight: 400 700;
+  font-display: swap;
+  src: url('/fonts/playfair-italic-var.woff2') format('woff2-variations');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: 'JetBrains Mono';
+  font-style: normal;
+  font-weight: 100 800;
+  font-display: swap;
+  src: url('/fonts/jetbrains-mono-var.woff2') format('woff2-variations');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
 /* === GLOBAL === */
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 :root {
