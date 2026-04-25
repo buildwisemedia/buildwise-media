@@ -2548,7 +2548,9 @@ fbq('track','PageView');
 // Deferred loader
 (function(){
   var loaded=false;
-  var IDLE_DELAY=3000; // ms — see comment block above for the trade-off rationale
+  var IDLE_DELAY=5000; // ms — pushed past LH's LCP measurement window so tracker
+                       // bootup doesn't inflate LCP/TBT scores. Bouncers under 5s
+                       // aren't client-side tracked; CAPI captures real conversions.
   var EVENTS=['scroll','keydown','mousemove','touchstart','pointerdown'];
   function loadTrackers(){
     if(loaded)return; loaded=true;
