@@ -584,39 +584,41 @@ img { max-width: 100%; height: auto; }
       </p>
     </div>
 
-    <!-- ── Dashboard Mockup Column ── -->
+    <!-- ── Live Operations Panel ── -->
+    <!-- Visualizes the operations layer itself — anonymized snapshot of what we ship, not what
+         clients see in their own results. Client outcomes belong in /results. -->
     <div class="dashboard-wrapper">
-      <div class="dash-notification">+3 New Leads</div>
+      <div class="dash-notification">Build shipped</div>
       <div class="dashboard">
 
         <!-- Header -->
         <div class="dash-header">
-          <span class="dash-title">Revenue Engine</span>
+          <span class="dash-title">Operations Layer</span>
           <span class="dash-live"><span class="dash-live-dot"></span> Live</span>
         </div>
 
-        <!-- Metrics Row -->
+        <!-- System Status Row -->
         <div class="dash-metrics">
           <div class="metric-card">
-            <div class="metric-label">Leads</div>
-            <div class="metric-value">47</div>
-            <div class="metric-delta">↑ 3.2x this month</div>
+            <div class="metric-label">Sites Managed</div>
+            <div class="metric-value">7</div>
+            <div class="metric-delta">↑ Weekly audits green</div>
           </div>
           <div class="metric-card">
-            <div class="metric-label">Booked</div>
-            <div class="metric-value gold">18</div>
-            <div class="metric-delta">↑ 38% vs last mo.</div>
+            <div class="metric-label">Connector Pass-Rate</div>
+            <div class="metric-value gold">96%</div>
+            <div class="metric-delta">↑ 13 cells, drift caught Mon</div>
           </div>
           <div class="metric-card">
-            <div class="metric-label">Revenue</div>
-            <div class="metric-value copper">$84K</div>
-            <div class="metric-delta">↑ On pace for $10M yr</div>
+            <div class="metric-label">Response Floor</div>
+            <div class="metric-value copper">&lt; 3min</div>
+            <div class="metric-delta">↑ AI follow-up SLA</div>
           </div>
         </div>
 
-        <!-- Chart -->
+        <!-- Velocity Chart -->
         <div class="dash-chart">
-          <div class="chart-label">Pipeline Growth — 90 Days</div>
+          <div class="chart-label">Optimizations Shipped — 90 Days</div>
           <svg class="chart-svg" viewBox="0 0 460 100" preserveAspectRatio="none">
             <!-- Area fill -->
             <defs>
@@ -638,22 +640,22 @@ img { max-width: 100%; height: auto; }
           </svg>
         </div>
 
-        <!-- Activity Feed -->
+        <!-- Recent Ship Feed -->
         <div class="dash-activity">
           <div class="activity-item">
             <span class="activity-dot amber"></span>
-            <span class="activity-text"><strong>New lead</strong> — Jake from Riverside Roofing submitted a form</span>
-            <span class="activity-time">2m ago</span>
+            <span class="activity-text"><strong>Shipped</strong> — Landing page v11 · +18% form completion</span>
+            <span class="activity-time">2h ago</span>
           </div>
           <div class="activity-item">
             <span class="activity-dot gold"></span>
-            <span class="activity-text"><strong>Call booked</strong> — Sarah at Premier Plumbing confirmed Thursday</span>
-            <span class="activity-time">18m ago</span>
+            <span class="activity-text"><strong>Shipped</strong> — Server-side conversion relay · 4 sites</span>
+            <span class="activity-time">Yesterday</span>
           </div>
           <div class="activity-item">
             <span class="activity-dot copper"></span>
-            <span class="activity-text"><strong>Ad live</strong> — Meta campaign "Spring HVAC Tune-Up" launched</span>
-            <span class="activity-time">1h ago</span>
+            <span class="activity-text"><strong>Testing</strong> — Qualification copy · A vs. B · 3-day window</span>
+            <span class="activity-time">Active</span>
           </div>
         </div>
 
@@ -769,6 +771,30 @@ img { max-width: 100%; height: auto; }
 
   <p class="section-label">The Problem</p>
   <h2 class="section-headline">Four Problems That Keep Service Businesses Stuck</h2>
+
+  <!-- Chronological lead-leak prelude — PROJ-BWM-SITE-LIVE-OPS-HERO-001 C2 -->
+  <div class="leak-timeline">
+    <p class="leak-timeline__intro">A typical service-business lead — on a typical Tuesday</p>
+    <ol class="leak-timeline__steps">
+      <li class="leak-step">
+        <div class="leak-step__time">8:42 AM</div>
+        <div class="leak-step__event">Lead submits a form on the website.</div>
+      </li>
+      <li class="leak-step">
+        <div class="leak-step__time">8:43 AM</div>
+        <div class="leak-step__event">Auto-reply sent. Nobody on the team has seen it yet.</div>
+      </li>
+      <li class="leak-step">
+        <div class="leak-step__time">11:15 AM</div>
+        <div class="leak-step__event">Lead gives up waiting. Calls the next contractor on Google.</div>
+      </li>
+      <li class="leak-step leak-step--lost">
+        <div class="leak-step__time">2:30 PM</div>
+        <div class="leak-step__event">Competitor wins the job. You never knew the lead existed.</div>
+      </li>
+    </ol>
+    <p class="leak-timeline__bridge">Most owners think they need <em>more leads</em>. They don't. They need a system that catches the ones they already have. That's where these four problems come from:</p>
+  </div>
 
   <div class="poor-four-grid">
 
@@ -1704,7 +1730,7 @@ img { max-width: 100%; height: auto; }
 <section class="why-buildwise-preview">
   <div class="why-inner">
 
-    <div class="why-label">ENGINEERED, NOT ASSEMBLED</div>
+    <div class="why-label">BUILT LIKE A SYSTEM. NOT RUN LIKE AN AGENCY.</div>
 
     <h2 class="why-headline">We Don't Sell One-Off Projects.<br>We Build Systems.</h2>
 

@@ -3129,3 +3129,21 @@
 .sticky-mobile-cta.visible { transform:translateY(0); }
 .sticky-cta-btn { display:block; text-align:center; background:var(--amber); color:var(--bg1); font-family:var(--font-heading); font-size:15px; font-weight:600; padding:14px 24px; border-radius:8px; text-decoration:none; }
 @media(max-width:960px) { .sticky-mobile-cta { display:block; } }
+
+/* === LEAK TIMELINE — chronological prelude in Problem section (PROJ-BWM-SITE-LIVE-OPS-HERO-001 C2) === */
+.leak-timeline { max-width:880px; margin:0 auto 56px; padding:32px 28px; border:1px solid rgba(212,148,58,0.16); border-radius:12px; background:linear-gradient(180deg, rgba(212,148,58,0.04), transparent); }
+.leak-timeline__intro { font-family:var(--font-heading); font-size:13px; letter-spacing:0.12em; text-transform:uppercase; color:var(--amber); margin:0 0 22px; font-weight:600; }
+.leak-timeline__steps { list-style:none; padding:0; margin:0 0 24px; display:grid; gap:14px; }
+.leak-step { display:grid; grid-template-columns:90px 1fr; gap:20px; align-items:baseline; padding-bottom:14px; border-bottom:1px solid rgba(212,148,58,0.09); }
+.leak-step:last-child { border-bottom:none; padding-bottom:0; }
+.leak-step__time { font-family:var(--font-heading); font-weight:600; font-size:14px; color:#A89B8C; letter-spacing:0.04em; }
+.leak-step__event { font-size:17px; line-height:1.5; color:#E6D9C4; }
+.leak-step--lost .leak-step__time { color:#B87333; }
+.leak-step--lost .leak-step__event { color:#B87333; font-weight:500; }
+.leak-timeline__bridge { font-size:16px; line-height:1.6; color:#C4B7A6; margin:0; }
+.leak-timeline__bridge em { font-style:italic; color:#F6F1DF; }
+@media(max-width:600px) {
+  .leak-timeline { padding:24px 20px; margin-bottom:40px; }
+  .leak-step { grid-template-columns:70px 1fr; gap:14px; }
+  .leak-step__event { font-size:15px; }
+}
