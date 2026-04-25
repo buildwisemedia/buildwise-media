@@ -71,12 +71,10 @@
 }
 html { font-size: 18px; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; scroll-behavior: smooth; }
 body { background: var(--bg1); color: var(--text-primary); font-family: var(--font-body); line-height: 1.7; }
-/* Film grain overlay */
-body::before {
-  content:''; position:fixed; inset:0; z-index:1; pointer-events:none;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
-  opacity: 0.035;
-}
+/* Film grain overlay — removed (was a fullscreen feTurbulence SVG that cost
+   ~500ms paint time on throttled mobile and inflated LCP. The 0.035 opacity
+   noise was barely visible against the dark background; cost-benefit doesn't
+   justify keeping it for a CWV-gated site.) */
 a { color: inherit; }
 img { max-width: 100%; height: auto; }
 
@@ -110,16 +108,8 @@ img { max-width: 100%; height: auto; }
 }
 
 /* === COMPONENT 1: HERO === */
-/* ── Film Grain Overlay ── */
   .hero { position: relative; overflow: hidden; min-height: 100vh; display: flex; align-items: center; }
-  .hero::before {
-    content: '';
-    position: absolute; inset: 0;
-    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
-    opacity: 0.035;
-    pointer-events: none;
-    z-index: 1;
-  }
+  /* (hero film grain pseudo-element removed — same feTurbulence cost as body::before, same trade) */
 
   /* ── Layout ── */
   .hero-inner {
@@ -467,7 +457,7 @@ img { max-width: 100%; height: auto; }
   }
 
   @media (max-width: 540px) {
-    .hero-inner { padding: 80px 20px 48px; width: 100%; min-width: 0; }
+    .hero-inner { padding: 88px 20px 48px; width: 100%; min-width: 0; }
     .dashboard-wrapper { min-width: 0; }
     .dashboard { padding: 16px; min-width: 0; }
     .dash-metrics { grid-template-columns: 1fr 1fr; }
@@ -475,6 +465,16 @@ img { max-width: 100%; height: auto; }
     .metric-value { font-size: 24px; }
     .hero-ctas { flex-direction: column; align-items: stretch; }
     .cta-primary, .cta-ghost { justify-content: center; }
+    /* Visual reorder for mobile: qualifier → headline → CTA → sub → icp → support.
+       DOM order is preserved (a11y/SEO unchanged); only visual stacking shifts so
+       the primary CTA clears the LOCKED 375×580 fold. */
+    .hero-text { display: flex; flex-direction: column; }
+    .hero-qualifier { order: 1; }
+    .hero-headline  { order: 2; margin-bottom: 20px; }
+    .hero-ctas      { order: 3; margin-bottom: 28px; }
+    .hero-sub       { order: 4; }
+    .hero-icp       { order: 5; margin-bottom: 24px; }
+    .hero-support   { order: 6; }
   }
 
 /* === Non-critical CSS extracted to /styles.css === */
