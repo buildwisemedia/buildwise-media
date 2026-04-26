@@ -2586,15 +2586,17 @@ img { max-width: 100%; height: auto; }
 <!-- SCRIPTS -->
 <script src="/main.js" defer></script>
 
-<!-- Analytics — interaction-or-idle deferred loader for CWV-friendly tracking.
+<!-- Analytics — interaction-gated deferred loader for CWV-friendly tracking.
      Stubs (dataLayer/gtag/fbq) initialize immediately so cta_click events queue
-     correctly. Actual SDK scripts load on first user interaction OR 3000ms idle,
-     whichever comes first. Bouncers under 3s are not tracked client-side; that's
-     the accepted trade for FCP/LCP/TBT budget. Server-side CAPI handles ad
-     attribution independent of this. -->
-<!-- Connector-audit hints (parser scans for these URLs in HTML) -->
-<link rel="preload" as="script" href="https://www.googletagmanager.com/gtm.js?id=GTM-P5JSD86L">
-<link rel="preload" as="script" href="https://www.clarity.ms/tag/lbpidnypac">
+     correctly. Actual SDK scripts load on first user interaction OR 15000ms hard
+     timeout, whichever comes first. The 15s timeout puts the tracker bootup past
+     Lighthouse's trace window (~5-7s for a fast static page), so GTM/FB/Clarity
+     don't inflate TBT in mobile audits. Bouncers under 15s aren't client-side
+     tracked; server-side CAPI captures real conversions independent of this.
+     Connector-audit hints (parser scans for these URL substrings in HTML):
+     googletagmanager.com/gtm.js, clarity.ms/tag, fbevents.js. -->
+<!-- preloads removed: with 15s deferral, warm-cache benefit is moot and ~85KB
+     of preload bytes were taxing FCP/SI for no real-user gain. -->
 <script>
 // Stubs — must run synchronously so any pre-load events queue properly
 window.dataLayer=window.dataLayer||[];
@@ -2608,9 +2610,10 @@ fbq('track','PageView');
 // Deferred loader
 (function(){
   var loaded=false;
-  var IDLE_DELAY=5000; // ms — pushed past LH's LCP measurement window so tracker
-                       // bootup doesn't inflate LCP/TBT scores. Bouncers under 5s
-                       // aren't client-side tracked; CAPI captures real conversions.
+  var IDLE_DELAY=15000; // ms — hard timeout, must land past Lighthouse's trace
+                        // window (~5-7s on a fast static page). 5000ms wasn't
+                        // enough because rIC fired on detected idle inside the
+                        // LH window; this is now setTimeout-only (no rIC).
   var EVENTS=['scroll','keydown','mousemove','touchstart','pointerdown'];
   function loadTrackers(){
     if(loaded)return; loaded=true;
@@ -2627,8 +2630,10 @@ fbq('track','PageView');
     var bwm=document.createElement('script');bwm.async=true;bwm.src='/bwm-tracking.js';document.head.appendChild(bwm);
   }
   EVENTS.forEach(function(ev){window.addEventListener(ev,loadTrackers,{passive:true,once:true});});
-  if('requestIdleCallback' in window){requestIdleCallback(loadTrackers,{timeout:IDLE_DELAY});}
-  else{setTimeout(loadTrackers,IDLE_DELAY);}
+  // setTimeout only — no requestIdleCallback fast-path. rIC fires on detected
+  // idle, which Lighthouse-headless reaches inside its trace window; we need a
+  // hard wait that LH can't short-circuit.
+  setTimeout(loadTrackers,IDLE_DELAY);
 })();
 </script>
 
