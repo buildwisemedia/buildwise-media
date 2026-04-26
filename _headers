@@ -1,0 +1,41 @@
+# BWM site security + AI-readiness headers (v35 — restored 2026-04-26)
+# Phase 2 (2026-03-13) created this file; it was lost during the v33/v34 perf chips.
+# Audit projects/Project-BWM-Site-SEO-AEO-Audit-2026-04-26.md surfaced the regression.
+
+/*
+  Strict-Transport-Security: max-age=31536000; includeSubDomains; preload
+  X-Frame-Options: DENY
+  X-Content-Type-Options: nosniff
+  Referrer-Policy: strict-origin-when-cross-origin
+  Permissions-Policy: camera=(), microphone=(), geolocation=(), interest-cohort=(), payment=()
+  Cross-Origin-Opener-Policy: same-origin
+  Content-Signal: ai-train=yes, search=yes, ai-input=yes
+  Content-Security-Policy: default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://www.googletagmanager.com https://www.google-analytics.com https://*.google-analytics.com https://*.analytics.google.com https://connect.facebook.net https://www.facebook.com https://*.clarity.ms https://app.cal.com https://cal.com; connect-src 'self' https://www.google-analytics.com https://*.analytics.google.com https://*.google-analytics.com https://stats.g.doubleclick.net https://connect.facebook.net https://www.facebook.com https://*.clarity.ms https://app.cal.com https://cal.com https://api.cal.com https://assets.buildwisemedia.com; img-src 'self' https: data:; style-src 'self' 'unsafe-inline'; font-src 'self' data:; frame-src https://app.cal.com https://cal.com https://www.googletagmanager.com; frame-ancestors 'none'; form-action 'self' https://app.cal.com https://cal.com; base-uri 'self'; upgrade-insecure-requests
+
+# Self-hosted fonts: aggressive cache (immutable, 1-year)
+/fonts/*
+  Cache-Control: public, max-age=31536000, immutable
+
+# JS + CSS: 1-day cache with revalidate (stable but allow patches)
+/*.js
+  Cache-Control: public, max-age=86400, must-revalidate
+
+/*.css
+  Cache-Control: public, max-age=86400, must-revalidate
+
+# Canonical text files: enforce text/plain content-type
+/llms.txt
+  Content-Type: text/plain; charset=utf-8
+  Cache-Control: public, max-age=14400, must-revalidate
+
+/llms-full.txt
+  Content-Type: text/plain; charset=utf-8
+  Cache-Control: public, max-age=14400, must-revalidate
+
+/robots.txt
+  Content-Type: text/plain; charset=utf-8
+  Cache-Control: public, max-age=14400, must-revalidate
+
+/sitemap.xml
+  Content-Type: application/xml; charset=utf-8
+  Cache-Control: public, max-age=14400, must-revalidate

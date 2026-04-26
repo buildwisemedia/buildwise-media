@@ -1,0 +1,31 @@
+# BWM site redirects (v35 — restored 2026-04-26)
+# Phase 2 (2026-03-13) created this file; it was lost during the v33/v34 perf chips.
+# Audit projects/Project-BWM-Site-SEO-AEO-Audit-2026-04-26.md surfaced the regression.
+
+# Legacy .html paths → clean URLs (preserves any in-circulation inbound links)
+/index.html              /                       301
+/how-it-works.html       /how-it-works           301
+/results.html            /results                301
+/services/ascend.html    /services/ascend        301
+/the-poor-four.html      /the-poor-four          301
+/why-buildwise.html      /why-buildwise          301
+/math.html               /math                   301
+/book.html               /book                   301
+/booked.html             /booked                 301
+/privacy.html            /privacy                301
+/terms.html              /terms                  301
+/sms-consent.html        /sms-consent            301
+
+# Legacy booking paths (Phase 2 origin, see Project-Phase-2-SEO-AEO-CRO-Completion-Report.md)
+/qualify                 /book                   301
+/qualify.html            /book                   301
+/calendar                /book                   301
+/calendar.html           /book                   301
+/strategy-call           /book                   301
+/book-strategy-call      /book                   301
+/book-a-call             /book                   301
+
+# Old positioning paths (LOCKED Decisions purge 2026-03-14)
+/about                   /why-buildwise          301
+/about-us                /why-buildwise          301
+/team                    /                       301
