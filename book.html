@@ -171,6 +171,12 @@ img { max-width: 100%; height: auto; }
   width: 100%;
   max-width: 720px;
 }
+/* Self-hosted Cal.com embed.js doesn't fire auto-resize postMessages reliably,
+   so the iframe stays at its 300px default. Force it to fill our fixed container. */
+#cal-embed { height: 760px; }
+#cal-embed cal-inline { height: 100% !important; min-height: 100% !important; }
+#cal-embed iframe { height: 100% !important; min-height: 100% !important; width: 100% !important; }
+@media(max-width:768px) { #cal-embed { height: 820px; } }
 @media(max-width:768px) {
   .book-section { padding: 120px 24px 60px; }
 }
@@ -233,7 +239,7 @@ img { max-width: 100%; height: auto; }
       <p class="book-sub">15 minutes. No pitch. We look at your business, your market, and your numbers &mdash; and tell you if a Revenue Engine makes sense.</p>
     </div>
     <div class="book-embed">
-      <div id="cal-embed" style="width:100%;min-height:600px;"></div>
+      <div id="cal-embed" style="width:100%;"></div>
       <div id="cal-fallback" style="display:none;text-align:center;padding:48px 24px;">
         <p style="font-family:var(--font-body);font-size:16px;color:var(--text-secondary);margin-bottom:24px;">The scheduling widget couldn't load. You can book directly instead:</p>
         <a href="https://book.buildwisemedia.com/bwm/discovery-call" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:8px;background:var(--amber);color:var(--bg1);font-family:var(--font-heading);font-size:15px;font-weight:600;padding:14px 28px;border-radius:6px;text-decoration:none;">Book Your Discovery Call &rarr;</a>
@@ -267,28 +273,30 @@ img { max-width: 100%; height: auto; }
         Cal("inline", {
           calLink:"bwm/discovery-call",
           elementOrSelector:"#cal-embed",
-          config:{
-            theme:"dark",
-            cssVarsPerTheme:{
-              dark:{
-                "cal-brand":"#D4943A",
-                "cal-brand-emphasis":"#E8A94D",
-                "cal-text":"#F5F0EB",
-                "cal-text-emphasis":"#F5F0EB",
-                "cal-text-subtle":"#A89B8C",
-                "cal-text-muted":"#8B7F73",
-                "cal-bg":"#1C1714",
-                "cal-bg-emphasis":"#2A2320",
-                "cal-bg-subtle":"#332D27",
-                "cal-border":"#3D352E",
-                "cal-border-emphasis":"#3D352E",
-                "cal-border-default":"#3D352E",
-                "cal-border-subtle":"#2E2822"
-              }
-            },
-            hideEventTypeDetails: false,
-            layout:"month_view"
-          }
+          layout:"month_view"
+        });
+        Cal("ui", {
+          theme:"dark",
+          cssVarsPerTheme:{
+            dark:{
+              "cal-brand":"#D4943A",
+              "cal-brand-emphasis":"#E8A94D",
+              "cal-text":"#F5F0EB",
+              "cal-text-emphasis":"#F5F0EB",
+              "cal-text-subtle":"#A89B8C",
+              "cal-text-muted":"#8B7F73",
+              "cal-bg":"#1C1714",
+              "cal-bg-emphasis":"#2A2320",
+              "cal-bg-subtle":"#332D27",
+              "cal-border":"#3D352E",
+              "cal-border-emphasis":"#3D352E",
+              "cal-border-default":"#3D352E",
+              "cal-border-subtle":"#2E2822"
+            }
+          },
+          styles:{branding:{brandColor:"#D4943A"}},
+          hideEventTypeDetails:false,
+          layout:"month_view"
         });
         /* --- Booking Initiated (Tier 2) ---
            Fires on /book page load. GTM → GA4 booking_initiated + Meta Lead via CAPI */
@@ -321,10 +329,13 @@ img { max-width: 100%; height: auto; }
           }
         });
 
-        /* Fallback: if embed.js fails to load after 10s, show direct link */
+        /* Fallback: if iframe is missing or collapsed (under 500px) after 10s, show direct link.
+           "Rendered but tiny" is the real failure mode — children.length alone misses it. */
         setTimeout(function() {
           var embed = document.getElementById('cal-embed');
-          if (embed && embed.children.length === 0) {
+          var iframe = embed && embed.querySelector('iframe');
+          var tooShort = iframe && iframe.getBoundingClientRect().height < 500;
+          if (embed && (!iframe || tooShort)) {
             embed.style.display = 'none';
             document.getElementById('cal-fallback').style.display = 'block';
           }
