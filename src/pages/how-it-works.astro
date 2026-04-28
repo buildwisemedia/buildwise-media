@@ -1,0 +1,158 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const title = "How It Works — Buildwise Media";
+const description = "The Buildwise Revenue Engine installs in 30 days. Audit, Build, Operate — three phases, one system.";
+
+const breadcrumb = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://buildwisemedia.com/' },
+    { '@type': 'ListItem', position: 2, name: 'How It Works', item: 'https://buildwisemedia.com/how-it-works' },
+  ],
+};
+
+const howTo = {
+  '@context': 'https://schema.org',
+  '@type': 'HowTo',
+  name: 'How the Buildwise Revenue Engine installs',
+  description: 'Three-phase install of the AI-native lead-generation system.',
+  totalTime: 'P30D',
+  step: [
+    { '@type': 'HowToStep', name: 'Audit', text: 'Map current pipeline, channels, integrations, and conversion path against a captured baseline.' },
+    { '@type': 'HowToStep', name: 'Build', text: 'Website, ad accounts, CRM, analytics, content engine installed in parallel. Day 1 system operational.' },
+    { '@type': 'HowToStep', name: 'Operate', text: 'Weekly connector audit, monthly creative refresh, quarterly system review. Receipts every Monday.' },
+  ],
+};
+
+const phases = [
+  {
+    n: '01', name: 'Audit', when: 'Day 0 → Day 5',
+    body: 'Before we build anything, we map what already exists. The current pipeline, every active channel, every integration, every conversion path. Each finding goes against a captured baseline — the starting-point number we\'ll compute the delta against. The audit ships as a written document. You keep it whether you engage or not.',
+    deliverables: ['Pipeline map (current state)', 'Channel + spend audit', 'Integration health report', 'Captured baseline document'],
+  },
+  {
+    n: '02', name: 'Build', when: 'Day 5 → Day 30',
+    body: 'Website, ad accounts, CRM, analytics, content engine — built in parallel, not in sequence. Three weeks in, the website is live. Four weeks in, ads are wired with server-side conversion tracking. The system is operational on Day 30 — not "ready to launch" on Day 90.',
+    deliverables: ['Multi-page website (Three-Layer optimized)', 'Ad accounts + tracking infrastructure', 'CRM + lead attribution pipeline', 'Content engine + editorial calendar'],
+  },
+  {
+    n: '03', name: 'Operate', when: 'Day 30 → ongoing',
+    body: 'Weekly connector audit, monthly creative refresh, quarterly system review. Every Monday morning a performance digest lands — what spent, what closed, what\'s next. The system runs whether you watch it or not. The relationship is month-to-month from the first day.',
+    deliverables: ['Weekly performance report', 'Connector audit (Mon 4am ET)', 'Monthly creative drop', 'Quarterly system review'],
+  },
+];
+---
+<BaseLayout title={title} description={description} jsonLd={[howTo, breadcrumb]}>
+
+  <section class="how-hero">
+    <div class="container">
+      <p class="eyebrow">How It Works</p>
+      <h1 class="h-hero">
+        Three moves.<br/>
+        <em>30</em> days.<br/>
+        One operating system.
+      </h1>
+      <p class="hero-sub" style="max-width: 720px;">
+        Most agencies take 90 days to begin. We take 30 to install. Below is exactly what happens, week by week.
+      </p>
+    </div>
+  </section>
+
+  <section class="phases-section elev">
+    <div class="container">
+      <ol class="phases-list" role="list">
+        {phases.map((p) => (
+          <li class="phase-row reveal">
+            <header class="phase-head">
+              <span class="phase-num mono">{p.n}</span>
+              <span class="phase-when mono">{p.when}</span>
+            </header>
+            <h2 class="phase-name">{p.name}</h2>
+            <p class="phase-body">{p.body}</p>
+            <p class="phase-deliv-label kpi-label mono">What ships</p>
+            <ul class="phase-deliv-list">
+              {p.deliverables.map((d) => (
+                <li><span class="dot live"></span><span>{d}</span></li>
+              ))}
+            </ul>
+          </li>
+        ))}
+      </ol>
+    </div>
+  </section>
+
+  <section class="diff-section">
+    <div class="container">
+      <p class="section-tag">What makes this different</p>
+      <h2 class="h-section">No <em>"strategy"</em> phase that produces a deck.</h2>
+      <div class="diff-cols">
+        <div class="diff-col">
+          <p class="diff-label mono">Most agencies</p>
+          <ul class="diff-list">
+            <li>30 days of "discovery" before anything is built</li>
+            <li>Strategy deck handed off; execution runs on hope</li>
+            <li>Vendors don't talk; the founder is the integration layer</li>
+            <li>Reports look plausible; nothing traces to a closed deal</li>
+          </ul>
+        </div>
+        <div class="diff-col">
+          <p class="diff-label mono diff-label--ours">Buildwise Media</p>
+          <ul class="diff-list">
+            <li>30 days from start to operational system</li>
+            <li>Strategy lives inside the system, not in a deck</li>
+            <li>One stack, one source of truth, one dashboard</li>
+            <li>Every claim audits against a captured baseline</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="how-cta elev">
+    <div class="container ascend-cta-row">
+      <div>
+        <h2 class="h-closer">Ready to <em>start?</em></h2>
+        <p class="lede" style="margin-top: 16px;">Day 0 starts with the audit. No commitment to keep going.</p>
+      </div>
+      <a href="/book" class="cta" data-cta-source="how-it-works-final">See If We're a Fit<span class="cta-arrow" aria-hidden="true">→</span></a>
+    </div>
+  </section>
+
+</BaseLayout>
+
+<style>
+.how-hero { padding-top: clamp(140px, 14vw, 180px); padding-bottom: clamp(60px, 8vw, 100px); }
+
+.phases-section { padding-block: var(--section-y); }
+.phases-list { list-style: none; display: flex; flex-direction: column; gap: 0; }
+.phase-row { padding: 56px 0; border-top: 1px solid var(--rule); display: grid; grid-template-columns: minmax(0, 1fr); gap: 16px; }
+.phase-row:last-child { border-bottom: 1px solid var(--rule); }
+.phase-head { display: flex; gap: 24px; align-items: center; margin-bottom: 8px; }
+.phase-num { font-size: 14px; letter-spacing: 0.25em; color: var(--gold); }
+.phase-when { font-size: 11px; letter-spacing: 0.18em; color: var(--ink-faint); }
+.phase-name { font-family: var(--serif); font-weight: 400; font-size: clamp(36px, 4vw, 56px); letter-spacing: -0.02em; line-height: 1; color: var(--ink); }
+.phase-body { font-family: var(--sans); font-weight: 300; font-size: 18px; line-height: 1.65; color: var(--ink-dim); max-width: 760px; margin-bottom: 16px; }
+.phase-deliv-label { color: var(--ink-faint); margin-top: 8px; }
+.phase-deliv-list { list-style: none; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; max-width: 760px; }
+.phase-deliv-list li { display: flex; align-items: flex-start; gap: 10px; font-size: 14px; line-height: 1.5; color: var(--ink-dim); }
+.phase-deliv-list .dot { margin-top: 8px; }
+
+.diff-section { padding-block: var(--section-y); }
+.diff-cols { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 32px; margin-top: 48px; }
+.diff-col { background: var(--bg-card); border: 1px solid var(--rule); padding: 32px; }
+.diff-label { color: var(--ink-faint); margin-bottom: 24px; }
+.diff-label--ours { color: var(--gold); }
+.diff-list { list-style: none; display: flex; flex-direction: column; gap: 14px; }
+.diff-list li { font-size: 15px; line-height: 1.55; color: var(--ink-dim); padding-left: 14px; border-left: 1px solid var(--rule); }
+.diff-col:last-child .diff-list li { border-left-color: var(--gold); }
+
+.how-cta { padding-block: 80px; }
+.ascend-cta-row { display: flex; align-items: center; justify-content: space-between; gap: 32px; flex-wrap: wrap; }
+
+@media (max-width: 720px) {
+  .phase-deliv-list { grid-template-columns: 1fr; }
+  .diff-cols { grid-template-columns: 1fr; }
+}
+</style>

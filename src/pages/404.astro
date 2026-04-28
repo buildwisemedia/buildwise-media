@@ -1,0 +1,40 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const title = "404 — Buildwise Media";
+const description = "That URL doesn't exist on this site.";
+---
+<BaseLayout title={title} description={description} noindex={true}>
+
+  <section class="four-oh-four">
+    <div class="container">
+      <p class="eyebrow">404</p>
+      <h1 class="h-hero">
+        That URL<br/>
+        <em>doesn't</em> exist.
+      </h1>
+      <p class="hero-sub">
+        Could be a typo, could be an old link. Easiest path back is the home page.
+      </p>
+      <div class="four-ctas">
+        <a href="/" class="cta" data-cta-source="404">Back to home<span class="cta-arrow" aria-hidden="true">→</span></a>
+        <a href="/book" class="cta-ghost" data-cta-source="404-secondary">See If We're a Fit</a>
+      </div>
+    </div>
+  </section>
+
+</BaseLayout>
+
+<style>
+.four-oh-four { padding-top: clamp(140px, 14vw, 180px); padding-bottom: var(--section-y); display: flex; flex-direction: column; gap: 24px; }
+.four-ctas { display: flex; gap: 16px; flex-wrap: wrap; margin-top: 24px; }
+</style>
+
+<script is:inline>
+  // Fire 404 events into GA4 + Pixel for tracking broken inbound links
+  try {
+    window.dataLayer = window.dataLayer || [];
+    window.dataLayer.push({ event: 'page_404', path: location.pathname });
+    if (window.fbq) window.fbq('trackCustom', 'Page404', { path: location.pathname });
+  } catch (e) {}
+</script>

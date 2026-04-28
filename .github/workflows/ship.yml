@@ -1,0 +1,102 @@
+# BWM ship workflow — emits build.shipped event on every v* tag push
+# Inlined per CLAUDE.md "Operational event writeback" — buildwise-media is in the retrofit fleet.
+# Drift detector: ~/bwm-ops-events/scripts/check-inlined-ship-yml.sh
+name: ship
+
+on:
+  push:
+    tags:
+      - 'v*'
+
+permissions:
+  contents: read
+
+jobs:
+  emit-shipped-event:
+    runs-on: ubuntu-latest
+    env:
+      TAG: ${{ github.ref_name }}
+      COMMIT: ${{ github.sha }}
+      REPO: ${{ github.repository }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Resolve tag description
+        id: meta
+        env:
+          GIT_TAG: ${{ github.ref_name }}
+        run: |
+          # Extract description from tag annotation if present, else first line of last commit.
+          # Output is captured as a JSON-escaped string for safe embedding in payload.
+          desc=$(git tag -l --format='%(contents:subject)' "$GIT_TAG")
+          if [ -z "$desc" ]; then
+            desc=$(git log -1 --pretty=%s)
+          fi
+          # Strip control characters and emit JSON-escaped value via jq -Rs
+          desc_json=$(printf '%s' "$desc" | tr -d '\000-\037' | jq -Rs .)
+          {
+            echo "description<<DESC_EOF"
+            echo "$desc_json"
+            echo "DESC_EOF"
+          } >> "$GITHUB_OUTPUT"
+
+      - name: Emit build.shipped via log-event
+        env:
+          BWM_OPS_EVENTS_TOKEN: ${{ secrets.BWM_OPS_EVENTS_TOKEN }}
+          BWM_OPS_EVENTS_URL: ${{ secrets.BWM_OPS_EVENTS_URL }}
+          DESCRIPTION_JSON: ${{ steps.meta.outputs.description }}
+          SLUG: buildwise-media
+        run: |
+          if [ -z "$BWM_OPS_EVENTS_TOKEN" ] || [ -z "$BWM_OPS_EVENTS_URL" ]; then
+            echo "::warning::BWM_OPS_EVENTS_TOKEN or BWM_OPS_EVENTS_URL secret not set; skipping event emit. Repo settings → Secrets and variables → Actions."
+            exit 0
+          fi
+
+          NODE_ID="ship-${TAG}"
+
+          # Construct payload — matches log-event schema for build.shipped.
+          # All values are passed via env, never interpolated directly into the script.
+          payload=$(jq -n \
+            --arg client "$SLUG" \
+            --arg node_id "$NODE_ID" \
+            --arg tag "$TAG" \
+            --arg commit "$COMMIT" \
+            --arg repo "$REPO" \
+            --argjson description "$DESCRIPTION_JSON" \
+            '{
+              event_type: "build.shipped",
+              client_slug: $client,
+              session_id: "github-actions-ship",
+              payload: {
+                client: $client,
+                node_id: $node_id,
+                tag: $tag,
+                commit: $commit,
+                repo: $repo,
+                description: $description,
+                production_url: "https://buildwisemedia.com",
+                staging_url: "https://buildwise-media.pages.dev"
+              }
+            }')
+
+          echo "Emitting build.shipped event for tag $TAG…"
+          response=$(curl -sS -X POST "$BWM_OPS_EVENTS_URL/log-event" \
+            -H "Authorization: Bearer $BWM_OPS_EVENTS_TOKEN" \
+            -H "Content-Type: application/json" \
+            -d "$payload" \
+            -w "\nHTTP_STATUS:%{http_code}")
+
+          status=$(printf '%s' "$response" | grep '^HTTP_STATUS:' | cut -d: -f2)
+          body=$(printf '%s' "$response" | sed '/^HTTP_STATUS:/d')
+
+          echo "Response status: $status"
+          echo "Response body: $body"
+
+          if [ "$status" -ge 400 ]; then
+            echo "::error::Event emit failed with status $status"
+            exit 1
+          fi
+
+          echo "✓ build.shipped event emitted for $TAG"

@@ -1,301 +1,378 @@
-/* ═══════════════════════════════════════════════
-   Buildwise Media — Forged Earth Design System
-   ═══════════════════════════════════════════════ */
+/* ============================================================================
+   BWM — Black Gold Brand Identity
+   Source of truth: brand/BWM-Brand-Identity.md (LOCKED 2026-04-27)
+   PROJ-BRAND-001 Phase 2 Sprint 1
+   ============================================================================ */
 
-/* --- CSS Custom Properties --- */
+/* ---------- 1. Color & Type Tokens (LOCKED) ---------- */
 :root {
-  /* Palette — Forged Earth */
-  --color-terracotta: #C4704B;
-  --color-terracotta-light: #D4895F;
-  --color-terracotta-dark: #A85D3B;
-  --color-charcoal: #1C1714;
-  --color-charcoal-light: #2A231E;
-  --color-warm-gray: #3D342D;
-  --color-sand: #E8DDD3;
-  --color-cream: #F5F0EB;
-  --color-bone: #FAF7F4;
-  --color-white: #FFFFFF;
-  --color-text-primary: #F5F0EB;
-  --color-text-secondary: #B8ADA3;
-  --color-text-muted: #8A7E74;
+  /* Surfaces */
+  --bg: #07070c;
+  --bg-elev: #0d0d14;
+  --bg-card: #11111a;
 
-  /* Theme-aware surfaces & borders */
-  --surface-card: rgba(255, 255, 255, 0.03);
-  --surface-glass: rgba(28, 23, 20, 0.9);
-  --surface-glass-dense: rgba(28, 23, 20, 0.95);
-  --border-subtle: rgba(255, 255, 255, 0.06);
-  --border-faint: rgba(255, 255, 255, 0.04);
-  --border-card: rgba(255, 255, 255, 0.06);
-  --border-accent-hover: rgba(196, 112, 75, 0.3);
-  --shadow-card: none;
-  --shadow-card-hover: none;
-  --shadow-cta: 0 8px 24px rgba(196, 112, 75, 0.3);
-  --shadow-header-scroll: 0 2px 20px rgba(0, 0, 0, 0.15);
+  /* Text */
+  --ink: #f4f1ea;
+  --ink-dim: #a8a298;
+  --ink-faint: #5a5650;
 
-  /* Typography */
-  --font-heading: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
-  --font-body: 'DM Sans', system-ui, -apple-system, sans-serif;
+  /* Rules / borders */
+  --rule: #1f1d27;
+  --rule-bright: #2d2a36;
 
-  /* Spacing scale */
-  --space-xs: 0.25rem;
-  --space-sm: 0.5rem;
-  --space-md: 1rem;
-  --space-lg: 1.5rem;
-  --space-xl: 2rem;
-  --space-2xl: 3rem;
-  --space-3xl: 4rem;
-  --space-4xl: 6rem;
-  --space-5xl: 8rem;
+  /* Identity accent — single accent per Black Gold lock */
+  --gold: #d4a955;
+  --gold-bright: #e8be64;
+  --gold-deep: #8a6a2b;
 
-  /* Layout */
-  --max-width: 1200px;
-  --max-width-narrow: 800px;
+  /* Semantic — only for state, never decorative */
+  --green: #6ee7a3;
+  --red: #ff6b6b;
 
-  /* Transitions */
-  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
-  --transition-fast: 150ms var(--ease-out);
-  --transition-base: 300ms var(--ease-out);
-  --transition-slow: 500ms var(--ease-out);
+  /* Type stacks */
+  --serif: 'Instrument Serif', Georgia, 'Times New Roman', serif;
+  --sans: 'Inter Tight', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --mono: 'JetBrains Mono', 'SF Mono', Menlo, Consolas, monospace;
 
-  /* Radius */
-  --radius-sm: 4px;
-  --radius-md: 8px;
-  --radius-lg: 12px;
-  --radius-xl: 16px;
+  /* Spacing rhythm */
+  --section-y: clamp(80px, 10vw, 144px);
+  --container-x: clamp(20px, 5vw, 64px);
+  --max-w: 1200px;
 }
 
-/* --- Light mode override --- */
-@media (prefers-color-scheme: light) {
-  :root {
-    --color-text-primary: #1C1714;
-    --color-text-secondary: #4A3F36;
-    --color-text-muted: #7A6E64;
-    --surface-card: var(--color-white);
-    --surface-glass: rgba(250, 247, 244, 0.92);
-    --surface-glass-dense: rgba(250, 247, 244, 0.95);
-    --border-subtle: rgba(0, 0, 0, 0.06);
-    --border-faint: rgba(0, 0, 0, 0.04);
-    --border-card: rgba(0, 0, 0, 0.08);
-    --border-accent-hover: rgba(196, 112, 75, 0.4);
-    --shadow-card: 0 1px 3px rgba(0, 0, 0, 0.04);
-    --shadow-card-hover: 0 4px 12px rgba(0, 0, 0, 0.08);
-  }
-}
-
-/* --- Reset --- */
-*, *::before, *::after {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
+/* ---------- 2. Reset & Base ---------- */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
 html {
-  font-size: 16px;
   scroll-behavior: smooth;
-  -webkit-text-size-adjust: 100%;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  background: var(--bg);
 }
 
 body {
-  font-family: var(--font-body);
-  font-size: 1rem;
-  line-height: 1.6;
-  color: var(--color-text-primary);
-  background-color: var(--color-charcoal);
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  font-family: var(--sans);
+  font-weight: 300;
+  font-size: 18px;
+  line-height: 1.65;
+  letter-spacing: -0.005em;
+  color: var(--ink);
+  background: var(--bg);
+  min-height: 100vh;
   overflow-x: hidden;
 }
 
-@media (prefers-color-scheme: light) {
-  body {
-    background-color: var(--color-bone);
-  }
-}
+img, svg, video { max-width: 100%; height: auto; display: block; }
 
-img, picture, video, canvas, svg {
-  display: block;
-  max-width: 100%;
-}
+a { color: inherit; text-decoration: none; transition: color 180ms ease; }
+a:hover { color: var(--gold); }
+a:focus-visible { outline: 2px solid var(--gold); outline-offset: 3px; border-radius: 2px; }
 
-a {
-  color: var(--color-terracotta);
-  text-decoration: none;
-  transition: color var(--transition-fast);
-}
+button { font: inherit; color: inherit; background: none; border: none; cursor: pointer; }
 
-a:hover {
-  color: var(--color-terracotta-light);
-}
+::selection { background: var(--gold); color: var(--bg); }
 
-h1, h2, h3, h4, h5, h6 {
-  font-family: var(--font-heading);
-  font-weight: 700;
-  line-height: 1.15;
+/* ---------- 3. Italic-Gold Em (THE Signature Move) ---------- */
+/* Universal: em becomes italic gold across every serif context.
+   Black Gold lock #2 — "the move that makes any BWM surface recognizable in 200ms." */
+em { font-style: italic; color: var(--gold); }
+
+/* ---------- 4. Display Type (Instrument Serif) ---------- */
+h1, h2, h3, h4 {
+  font-family: var(--serif);
+  font-weight: 400;
+  color: var(--ink);
   letter-spacing: -0.02em;
 }
 
-ul, ol {
-  list-style: none;
+.h-hero {
+  font-size: clamp(56px, 9.5vw, 144px);
+  line-height: 0.92;
+  letter-spacing: -0.025em;
 }
 
-button {
-  font-family: inherit;
-  cursor: pointer;
-  border: none;
-  background: none;
+.h-closer {
+  font-size: clamp(48px, 7vw, 96px);
+  line-height: 0.95;
+  letter-spacing: -0.025em;
 }
 
-/* --- Utility --- */
-.container {
-  width: 100%;
-  max-width: var(--max-width);
-  margin: 0 auto;
-  padding: 0 var(--space-lg);
+.h-section {
+  font-size: clamp(40px, 5.5vw, 72px);
+  line-height: 1.0;
+  letter-spacing: -0.02em;
 }
 
-.container--narrow {
-  max-width: var(--max-width-narrow);
+.h-sub {
+  font-size: clamp(28px, 3.5vw, 42px);
+  line-height: 1.15;
+  letter-spacing: -0.015em;
 }
 
-.sr-only {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  padding: 0;
-  margin: -1px;
-  overflow: hidden;
-  clip: rect(0, 0, 0, 0);
-  white-space: nowrap;
-  border-width: 0;
+/* ---------- 5. Body Type (Inter Tight) ---------- */
+.lede {
+  font-size: 22px;
+  font-weight: 300;
+  line-height: 1.5;
+  color: var(--ink-dim);
+  max-width: 680px;
 }
 
-/* --- CTA Button --- */
-.cta-btn {
+.hero-sub {
+  font-size: 21px;
+  font-weight: 300;
+  line-height: 1.55;
+  color: var(--ink-dim);
+  max-width: 620px;
+}
+
+.prose p {
+  font-size: 19px;
+  font-weight: 300;
+  line-height: 1.7;
+  color: var(--ink);
+  max-width: 680px;
+}
+.prose p + p { margin-top: 1.25em; }
+
+.prose .lead {
+  font-size: 28px;
+  font-weight: 400;
+  line-height: 1.4;
+  color: var(--ink);
+  font-family: var(--serif);
+}
+
+/* ---------- 6. Micro Type (JetBrains Mono) — always uppercase + tracked ---------- */
+.eyebrow,
+.section-tag,
+.kpi-label,
+.stat-label,
+.metric-label,
+.reveal-caption,
+.mono {
+  font-family: var(--mono);
+  font-weight: 400;
+  text-transform: uppercase;
+}
+
+.eyebrow {
+  font-size: 11px;
+  letter-spacing: 0.30em;
+  color: var(--gold);
   display: inline-flex;
   align-items: center;
-  justify-content: center;
-  gap: var(--space-sm);
-  padding: 1rem 2rem;
-  font-family: var(--font-heading);
-  font-size: 1.125rem;
-  font-weight: 700;
-  color: var(--color-white);
-  background: var(--color-terracotta);
-  border-radius: var(--radius-md);
-  transition: background var(--transition-fast), transform var(--transition-fast), box-shadow var(--transition-fast);
-  text-decoration: none;
+  gap: 14px;
+}
+.eyebrow::before {
+  content: '';
+  display: inline-block;
+  width: 24px;
+  height: 1px;
+  background: var(--gold);
+}
+
+.section-tag {
+  font-size: 11px;
+  letter-spacing: 0.25em;
+  color: var(--gold);
+  display: inline-flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 24px;
+}
+.section-tag::before {
+  content: '';
+  display: inline-block;
+  width: 24px;
+  height: 1px;
+  background: var(--gold);
+}
+
+.kpi-label, .stat-label, .metric-label {
+  font-size: 10px;
+  letter-spacing: 0.20em;
+  color: var(--ink-faint);
+}
+
+.reveal-caption { font-size: 11px; letter-spacing: 0.25em; color: var(--ink-faint); }
+
+/* ---------- 7. Numerals — Serif, never mono ---------- */
+.num, .stat-num, .metric-val {
+  font-family: var(--serif);
+  font-weight: 400;
+  letter-spacing: -0.02em;
+  line-height: 1;
+}
+.stat-num { font-size: clamp(42px, 6vw, 56px); color: var(--ink); }
+.metric-val { font-size: clamp(40px, 5vw, 52px); color: var(--ink); }
+.reveal-num {
+  font-size: clamp(120px, 22vw, 320px);
+  font-style: italic;
+  line-height: 0.9;
+  letter-spacing: -0.04em;
+  color: var(--gold);
+}
+
+/* ---------- 8. Layout primitives ---------- */
+.container {
+  max-width: var(--max-w);
+  margin: 0 auto;
+  padding-left: var(--container-x);
+  padding-right: var(--container-x);
+}
+
+section { padding-block: var(--section-y); position: relative; }
+section.elev { background: var(--bg-elev); }
+
+.divider { height: 1px; background: var(--rule); border: 0; margin: 0; }
+.gold-rule { height: 1px; background: var(--gold); border: 0; }
+
+/* ---------- 9. CTAs ---------- */
+.cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  padding: 18px 32px;
+  font-family: var(--sans);
+  font-weight: 500;
+  font-size: 16px;
+  letter-spacing: 0.01em;
+  color: var(--bg);
+  background: var(--gold);
+  border: 1px solid var(--gold);
+  border-radius: 2px;
+  transition: all 180ms ease;
   white-space: nowrap;
 }
-
-.cta-btn:hover {
-  background: var(--color-terracotta-dark);
-  color: var(--color-white);
-  transform: translateY(-2px);
-  box-shadow: var(--shadow-cta);
+.cta:hover {
+  background: var(--gold-bright);
+  border-color: var(--gold-bright);
+  color: var(--bg);
+  transform: translateY(-1px);
 }
+.cta:focus-visible { outline: 2px solid var(--gold-bright); outline-offset: 3px; }
 
-.cta-btn:active {
-  transform: translateY(0);
-}
-
-.cta-btn--outline {
+.cta-ghost {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  padding: 18px 28px;
+  font-family: var(--sans);
+  font-weight: 400;
+  font-size: 16px;
+  letter-spacing: 0.01em;
+  color: var(--ink);
   background: transparent;
-  border: 2px solid var(--color-terracotta);
-  color: var(--color-terracotta);
+  border: 1px solid var(--rule-bright);
+  border-radius: 2px;
+  transition: all 180ms ease;
+  white-space: nowrap;
+}
+.cta-ghost:hover {
+  border-color: var(--gold);
+  color: var(--gold);
+  background: rgba(212, 169, 85, 0.04);
 }
 
-.cta-btn--outline:hover {
-  background: var(--color-terracotta);
-  color: var(--color-white);
-}
-
-/* --- Section spacing --- */
-.section {
-  padding: var(--space-4xl) 0;
-}
-
-.section--dark {
-  background: var(--color-charcoal);
-  color: var(--color-text-primary);
-}
-
-.section--medium {
-  background: var(--color-charcoal-light);
-  color: var(--color-text-primary);
-}
-
-@media (prefers-color-scheme: light) {
-  .section--dark {
-    background: var(--color-white);
-    color: var(--color-charcoal);
-  }
-  .section--medium {
-    background: var(--color-cream);
-    color: var(--color-charcoal);
-  }
-}
-
-.section-label {
+.cta-arrow {
+  font-family: var(--mono);
+  font-weight: 400;
+  font-size: 14px;
   display: inline-block;
-  font-family: var(--font-heading);
-  font-size: 0.75rem;
-  font-weight: 700;
-  letter-spacing: 0.15em;
-  text-transform: uppercase;
-  color: var(--color-terracotta);
-  margin-bottom: var(--space-md);
+  transform: translateY(-1px);
 }
 
-.section-title {
-  font-size: clamp(1.75rem, 5vw, 2.75rem);
-  margin-bottom: var(--space-lg);
+/* ---------- 10. Cards ---------- */
+.card {
+  background: var(--bg-card);
+  border: 1px solid var(--rule);
+  border-radius: 2px;
+  padding: 32px;
+  transition: border-color 180ms ease;
+}
+.card:hover { border-color: var(--rule-bright); }
+
+.card-title {
+  font-family: var(--sans);
+  font-size: 17px;
+  font-weight: 500;
+  letter-spacing: -0.005em;
+  color: var(--ink);
 }
 
-.section-subtitle {
-  font-size: 1.125rem;
-  color: var(--color-text-secondary);
-  max-width: 640px;
-  line-height: 1.7;
+.card-body {
+  font-size: 14px;
+  font-weight: 300;
+  line-height: 1.5;
+  color: var(--ink-dim);
 }
 
-/* --- Film grain overlay --- */
-body::after {
-  content: '';
-  position: fixed;
-  inset: 0;
-  pointer-events: none;
-  z-index: 9999;
-  opacity: 0.03;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-  background-size: 256px 256px;
+/* ---------- 11. Pull quote / testimonial ---------- */
+.pull {
+  font-family: var(--serif);
+  font-size: clamp(28px, 3.5vw, 42px);
+  font-weight: 400;
+  font-style: italic;
+  line-height: 1.25;
+  color: var(--ink);
+  border-left: 1px solid var(--gold);
+  padding-left: 32px;
 }
 
-@media (prefers-color-scheme: light) {
-  body::after {
-    opacity: 0.02;
-  }
+/* ---------- 12. Status dot ---------- */
+.dot {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  vertical-align: middle;
+  margin-right: 8px;
+}
+.dot.live {
+  background: var(--green);
+  box-shadow: 0 0 12px rgba(110, 231, 163, 0.5);
+}
+.dot.idle { background: var(--ink-faint); }
+
+/* ---------- 13. Mobile lift (≤520px) ---------- */
+@media (max-width: 520px) {
+  body { font-size: 20px; }
+  .prose p { font-size: 24px; line-height: 1.6; }
+  .prose .lead { font-size: 32px; line-height: 1.35; }
+  .lede { font-size: 26px; line-height: 1.45; }
+  .hero-sub { font-size: 24px; line-height: 1.55; }
+  .pull { font-size: 28px; line-height: 1.4; }
+  .section-tag, .eyebrow { font-size: 16px; letter-spacing: 0.18em; }
 }
 
-/* --- Scroll-triggered animations --- */
-.reveal {
-  opacity: 0;
-  transform: translateY(30px);
-  transition: opacity 0.7s var(--ease-out), transform 0.7s var(--ease-out);
+/* ---------- 14. Reveal-on-scroll utility ---------- */
+.reveal { opacity: 0; transform: translateY(16px); transition: opacity 700ms ease, transform 700ms ease; }
+.reveal.in { opacity: 1; transform: none; }
+@media (prefers-reduced-motion: reduce) {
+  .reveal { opacity: 1; transform: none; transition: none; }
 }
 
-.reveal.visible {
-  opacity: 1;
-  transform: translateY(0);
+/* ---------- 15. Accessibility ---------- */
+.sr-only {
+  position: absolute; width: 1px; height: 1px; padding: 0;
+  margin: -1px; overflow: hidden; clip: rect(0,0,0,0);
+  white-space: nowrap; border: 0;
 }
 
-.reveal-delay-1 { transition-delay: 0.1s; }
-.reveal-delay-2 { transition-delay: 0.2s; }
-.reveal-delay-3 { transition-delay: 0.3s; }
-.reveal-delay-4 { transition-delay: 0.4s; }
-
-/* --- Responsive type scale --- */
-@media (max-width: 768px) {
-  .section {
-    padding: var(--space-3xl) 0;
-  }
+/* ---------- 16. Dot grid (atmospheric AI section) ---------- */
+.dot-grid {
+  background-image: radial-gradient(circle at center, var(--rule) 1px, transparent 1px);
+  background-size: 32px 32px;
 }
+
+/* ---------- 17. Skip link ---------- */
+.skip-link {
+  position: absolute; top: -100px; left: 16px;
+  padding: 12px 18px; background: var(--bg); color: var(--gold);
+  font-family: var(--mono); font-size: 12px; letter-spacing: 0.15em;
+  text-transform: uppercase; border: 1px solid var(--gold);
+  z-index: 9999; transition: top 200ms ease;
+}
+.skip-link:focus { top: 16px; }

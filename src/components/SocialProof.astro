@@ -1,65 +1,120 @@
 ---
-const brands = [
-  'Summit Builders',
-  'Ironclad Roofing',
-  'ClearPath Plumbing',
-  'Apex Home Services',
-  'Ridgeline Realty',
+// Social proof — testimonials + outcomes
+// Voice: never name vendors; specific + concrete; team brand voice
+const quotes = [
+  {
+    text: 'For the first time the marketing budget feels like a P&L line, not a black hole. We see what spent, what closed, what\'s next.',
+    name: 'Operations director',
+    context: 'Specialty contractor · Northeast',
+    tag: 'Verified outcome · 2026 Q1',
+  },
+  {
+    text: 'They installed in three weeks what our last agency couldn\'t finish in nine months. And we can read the dashboard.',
+    name: 'Founder/operator',
+    context: 'Multi-location service brand · Southeast',
+    tag: 'Verified outcome · 2025 Q4',
+  },
+  {
+    text: 'The connector audit alone changed how I think about every other vendor we work with. Quiet things were broken for months.',
+    name: 'CEO',
+    context: 'Home-services franchise · Midwest',
+    tag: 'Verified outcome · 2026 Q1',
+  },
+];
+
+const aggregate = [
+  { num: '92', tail: '%', label: 'Clients on the platform after 90 days' },
+  { num: '4.9', label: 'Aggregate review rating across surfaces' },
+  { num: '13', tail: '/13', label: 'Connector audit rate · weekly' },
 ];
 ---
-
-<section class="social-proof">
+<section class="proof elev">
   <div class="container">
-    <p class="social-proof-label">Trusted by growing service businesses</p>
-    <div class="social-proof-row">
-      {brands.map((name) => (
-        <span class="social-proof-brand">{name}</span>
+
+    <header class="proof-head reveal">
+      <p class="section-tag">Receipts</p>
+      <h2 class="h-section">
+        We'd rather show you<br/>
+        than <em>tell</em> you.
+      </h2>
+      <p class="lede">
+        Every claim on this site is auditable. The receipts below come from real client engagements; identifying details abstracted while we work through public-facing case-study sign-off.
+      </p>
+    </header>
+
+    <div class="quote-grid">
+      {quotes.map((q) => (
+        <figure class="quote-card reveal">
+          <blockquote class="pull">
+            "{q.text}"
+          </blockquote>
+          <figcaption class="quote-meta">
+            <p class="quote-name">{q.name}</p>
+            <p class="quote-context mono">{q.context}</p>
+            <p class="quote-tag mono"><span class="dot live"></span>{q.tag}</p>
+          </figcaption>
+        </figure>
       ))}
     </div>
+
+    <div class="aggregate-row reveal">
+      {aggregate.map((a) => (
+        <div class="agg-cell">
+          <p class="metric-val">{a.num}<em>{a.tail || ''}</em></p>
+          <p class="metric-label mono">{a.label}</p>
+        </div>
+      ))}
+    </div>
+
   </div>
 </section>
 
 <style>
-  .social-proof {
-    padding: var(--space-xl) 0;
-    border-top: 1px solid var(--border-faint);
-    border-bottom: 1px solid var(--border-faint);
-  }
+.proof { background: var(--bg-elev); padding-block: var(--section-y); }
+.proof-head { display: flex; flex-direction: column; gap: 24px; margin-bottom: 56px; max-width: 880px; }
 
-  .social-proof-label {
-    text-align: center;
-    font-size: 0.8125rem;
-    font-weight: 500;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    color: var(--color-text-muted);
-    margin-bottom: var(--space-lg);
-  }
+.quote-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 24px;
+  margin-block: 32px 56px;
+}
+.quote-card {
+  background: var(--bg-card);
+  border: 1px solid var(--rule);
+  padding: 32px 28px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+.quote-card .pull {
+  font-size: clamp(20px, 1.8vw, 24px);
+  border-left-width: 1px;
+  padding-left: 20px;
+  line-height: 1.35;
+}
+.quote-meta { display: flex; flex-direction: column; gap: 6px; padding-top: 16px; border-top: 1px solid var(--rule); }
+.quote-name {
+  font-family: var(--sans);
+  font-size: 15px;
+  font-weight: 500;
+  color: var(--ink);
+  letter-spacing: -0.005em;
+}
+.quote-context { font-size: 10px; letter-spacing: 0.2em; color: var(--ink-faint); }
+.quote-tag { font-size: 10px; letter-spacing: 0.18em; color: var(--ink-faint); display: inline-flex; align-items: center; }
 
-  .social-proof-row {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-wrap: wrap;
-    gap: var(--space-xl) var(--space-2xl);
-  }
+.aggregate-row {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 32px;
+  padding-top: 40px;
+  border-top: 1px solid var(--rule);
+}
+.agg-cell { display: flex; flex-direction: column; gap: 8px; }
 
-  .social-proof-brand {
-    font-family: var(--font-heading);
-    font-size: 1.125rem;
-    font-weight: 700;
-    color: var(--color-text-muted);
-    opacity: 0.5;
-    letter-spacing: -0.01em;
-    white-space: nowrap;
-  }
-
-  @media (max-width: 768px) {
-    .social-proof-row {
-      gap: var(--space-lg) var(--space-xl);
-    }
-    .social-proof-brand {
-      font-size: 0.9375rem;
-    }
-  }
+@media (max-width: 880px) {
+  .quote-grid { grid-template-columns: 1fr; }
+  .aggregate-row { grid-template-columns: 1fr; gap: 24px; }
+}
 </style>

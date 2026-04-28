@@ -1,0 +1,94 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const title = "Privacy Policy — Buildwise Media";
+const description = "How Buildwise Media collects, uses, and protects information about visitors and clients.";
+const lastUpdated = "April 2026";
+---
+<BaseLayout title={title} description={description} noindex={false}>
+
+  <article class="legal-page">
+    <div class="container legal-container">
+
+      <header class="legal-head">
+        <p class="eyebrow">Legal</p>
+        <h1 class="h-hero">Privacy <em>Policy</em></h1>
+        <p class="legal-meta mono">Last updated: {lastUpdated} · Effective for visits to buildwisemedia.com</p>
+      </header>
+
+      <section class="prose">
+        <h2 class="h-sub">1. Who we are</h2>
+        <p>Buildwise Media LLC ("Buildwise Media," "we," "us") operates buildwisemedia.com and provides marketing operations services to client businesses. We're based in Atlanta, Georgia. Our company contact email is hello@buildwisemedia.com.</p>
+
+        <h2 class="h-sub">2. What we collect</h2>
+        <p>When you visit buildwisemedia.com we collect:</p>
+        <ul class="legal-list">
+          <li><strong>Usage data</strong> — pages visited, referrer, device type, approximate location (city/region from IP), interaction events. Collected via Google Analytics 4, Google Tag Manager, and Microsoft Clarity.</li>
+          <li><strong>Advertising data</strong> — when you click an ad, basic conversion signals are collected via Meta Pixel and Meta Conversions API to measure campaign effectiveness.</li>
+          <li><strong>Form data</strong> — when you book a discovery call, we collect the information you provide (name, email, business details). Booking is processed by Cal.com, our scheduling sub-processor.</li>
+          <li><strong>Cookies</strong> — first-party cookies for attribution (`_bwm_attribution`) and third-party cookies set by the analytics tools above.</li>
+        </ul>
+
+        <h2 class="h-sub">3. Sub-processors</h2>
+        <p>We share limited data with the following sub-processors strictly to operate the website and conduct outreach:</p>
+        <ul class="legal-list">
+          <li>Google LLC (Google Analytics 4, Google Tag Manager) — analytics infrastructure</li>
+          <li>Microsoft Corporation (Microsoft Clarity) — session replay and heatmap analytics</li>
+          <li>Meta Platforms, Inc. (Meta Pixel, Meta Conversions API) — advertising attribution</li>
+          <li>Cloudflare, Inc. — content delivery, hosting, DDoS protection</li>
+          <li>Cal.com, Inc. — appointment scheduling on book.buildwisemedia.com</li>
+          <li>Resend, Inc. — transactional email delivery for booking confirmations</li>
+          <li>Supabase, Inc. — backend data storage for CRM and operational logs</li>
+          <li>Anthropic, PBC (Claude API) — AI-assisted content production internal to BWM operations</li>
+        </ul>
+        <p>Each sub-processor is contractually obligated to protect data per its own privacy policy and applicable data protection law.</p>
+
+        <h2 class="h-sub">4. How we use it</h2>
+        <p>We use the data above to: operate and improve the website; measure campaign performance; respond to discovery-call requests; comply with legal obligations. We do not sell personal data, ever.</p>
+
+        <h2 class="h-sub">5. Your rights (GDPR, CCPA)</h2>
+        <p>If you're in the EU/UK or California, you have the right to access, correct, delete, port, or object to the processing of your personal data. To exercise any of these rights, email <a href="mailto:hello@buildwisemedia.com">hello@buildwisemedia.com</a> with the subject line "Data Request." We respond within 30 days.</p>
+        <p>You can opt out of analytics tracking at any time using a browser-level Do Not Track setting or by clearing cookies for this site.</p>
+
+        <h2 class="h-sub">6. Retention</h2>
+        <p>Analytics data is retained for 14 months (Google Analytics default). Form submissions and discovery-call records are retained for 7 years to satisfy financial-record-keeping obligations. You can request earlier deletion via the contact above.</p>
+
+        <h2 class="h-sub">7. Changes to this policy</h2>
+        <p>We update this policy when our data practices change. The "Last updated" date at the top reflects the most recent revision.</p>
+
+        <h2 class="h-sub">8. Contact</h2>
+        <p>Privacy questions: <a href="mailto:hello@buildwisemedia.com">hello@buildwisemedia.com</a></p>
+      </section>
+
+    </div>
+  </article>
+
+</BaseLayout>
+
+<style>
+.legal-page { padding-top: clamp(140px, 14vw, 180px); padding-bottom: var(--section-y); }
+.legal-container { max-width: 760px; }
+.legal-head { display: flex; flex-direction: column; gap: 16px; margin-bottom: 56px; padding-bottom: 32px; border-bottom: 1px solid var(--rule); }
+.legal-meta { font-size: 11px; letter-spacing: 0.18em; color: var(--ink-faint); }
+
+.prose h2 { margin-top: 48px; margin-bottom: 16px; }
+.prose p { margin-bottom: 18px; }
+.prose strong { color: var(--ink); font-weight: 500; }
+
+.legal-list { list-style: none; display: flex; flex-direction: column; gap: 12px; margin-block: 16px 24px; padding-left: 0; }
+.legal-list li {
+  font-family: var(--sans);
+  font-weight: 300;
+  font-size: 17px;
+  line-height: 1.6;
+  color: var(--ink-dim);
+  padding-left: 24px;
+  position: relative;
+}
+.legal-list li::before {
+  content: '—';
+  position: absolute;
+  left: 0;
+  color: var(--gold);
+}
+</style>

@@ -1,0 +1,57 @@
+---
+// BWM canonical lockup — B-mark + BUILDWISE/MEDIA stacked sans
+// Source: brand/BWM-Brand-Identity.md §5 (LOCKED 2026-04-27)
+import BMark from './BMark.astro';
+interface Props {
+  size?: 'nav' | 'footer' | 'large';
+  href?: string;
+}
+const { size = 'nav', href = '/' } = Astro.props;
+const heights = { nav: 32, footer: 28, large: 56 };
+const h = heights[size];
+---
+<a href={href} class={`wordmark wordmark--${size}`} aria-label="Buildwise Media — home">
+  <BMark size={h} ariaLabel="" />
+  <span class="lockup-divider" aria-hidden="true"></span>
+  <span class="lockup-text">
+    <span class="lockup-line">BUILDWISE</span>
+    <span class="lockup-line">MEDIA</span>
+  </span>
+</a>
+
+<style>
+.wordmark {
+  display: inline-flex;
+  align-items: center;
+  gap: 14px;
+  text-decoration: none;
+  color: var(--ink);
+  transition: opacity 180ms ease;
+}
+.wordmark:hover { color: var(--ink); opacity: 0.85; }
+
+.lockup-divider {
+  width: 1px;
+  height: 1.5em;
+  background: currentColor;
+  opacity: 0.35;
+}
+
+.lockup-text {
+  font-family: var(--sans);
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 1.05;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  display: flex;
+  flex-direction: column;
+}
+
+.wordmark--footer .lockup-text { font-size: 13px; }
+.wordmark--large .lockup-text { font-size: 22px; }
+
+@media (max-width: 520px) {
+  .lockup-text { font-size: 12px; }
+}
+</style>

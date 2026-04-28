@@ -1,0 +1,114 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+const title = "Services — Buildwise Media";
+const description = "Buildwise Media installs one integrated AI-native lead-generation system: Ascend — The Buildwise Revenue Engine.";
+
+const breadcrumb = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://buildwisemedia.com/' },
+    { '@type': 'ListItem', position: 2, name: 'Services', item: 'https://buildwisemedia.com/services' },
+  ],
+};
+---
+<BaseLayout title={title} description={description} jsonLd={[breadcrumb]}>
+
+  <section class="services-hero">
+    <div class="container">
+      <p class="eyebrow">Services · Single product, deeply integrated</p>
+      <h1 class="h-hero">
+        We don't sell six<br/>
+        services. We install<br/>
+        <em>one</em> operating system.
+      </h1>
+      <p class="hero-sub" style="max-width: 720px;">
+        Most agencies pad the menu. We pulled ours down to one offering — Ascend — because that's what the work actually is. Below is what's inside it.
+      </p>
+    </div>
+  </section>
+
+  <section class="single-card-section elev">
+    <div class="container">
+
+      <a href="/services/ascend" class="ascend-card">
+        <div class="card-head">
+          <p class="kpi-label mono">Single product</p>
+          <p class="card-chip mono">Month-to-month</p>
+        </div>
+
+        <h2 class="card-h">Ascend — The <em>Buildwise</em> Revenue Engine</h2>
+
+        <p class="card-lede">
+          Complete AI-native lead-generation system, installed and operated. The website, the ads, the content production, the CRM, the analytics, the weekly connector audit — all wired together on day one, all measured against a captured baseline, all observable in one dashboard.
+        </p>
+
+        <ul class="inside-list" role="list">
+          <li><span class="dot live"></span><span>Full multi-page website built to AI-search-era standards (Three-Layer optimization)</span></li>
+          <li><span class="dot live"></span><span>Paid acquisition (Meta-primary, expanding) wired to baseline-first attribution</span></li>
+          <li><span class="dot live"></span><span>AI-assisted content production with human QA at the 8/10 quality rubric</span></li>
+          <li><span class="dot live"></span><span>Integrated operations layer — CRM, analytics, drift detection, lead attribution, email/SMS lifecycle</span></li>
+          <li><span class="dot live"></span><span>AI business tools configured to your actual operations</span></li>
+          <li><span class="dot live"></span><span>Weekly connector audit · 13/13 healthy or it's a task in the queue</span></li>
+        </ul>
+
+        <p class="card-cta-row">
+          <span class="card-cta-label mono">See the deep dive</span>
+          <span class="card-cta-arrow" aria-hidden="true">→</span>
+        </p>
+      </a>
+
+    </div>
+  </section>
+
+  <section class="services-cta">
+    <div class="container about-cta-row">
+      <div>
+        <h2 class="h-closer">Not sure if Ascend is the right <em>fit?</em></h2>
+        <p class="lede" style="margin-top: 16px;">Fifteen minutes tells us — and you — whether the system matches your shop.</p>
+      </div>
+      <a href="/book" class="cta" data-cta-source="services-hub">See If We're a Fit<span class="cta-arrow" aria-hidden="true">→</span></a>
+    </div>
+  </section>
+
+</BaseLayout>
+
+<style>
+.services-hero { padding-top: clamp(140px, 14vw, 180px); padding-bottom: clamp(60px, 8vw, 100px); }
+
+.single-card-section { padding-block: var(--section-y); }
+
+.ascend-card {
+  display: block;
+  background: var(--bg-card);
+  border: 1px solid var(--rule);
+  padding: clamp(32px, 5vw, 64px);
+  text-decoration: none;
+  color: var(--ink);
+  transition: border-color 220ms ease, transform 220ms ease;
+}
+.ascend-card:hover {
+  border-color: var(--gold);
+  transform: translateY(-2px);
+}
+.ascend-card:hover .card-cta-arrow { transform: translateX(8px); color: var(--gold); }
+
+.card-head { display: flex; justify-content: space-between; align-items: center; gap: 16px; padding-bottom: 24px; border-bottom: 1px solid var(--rule); margin-bottom: 32px; flex-wrap: wrap; }
+.card-chip { border: 1px solid var(--rule-bright); padding: 6px 12px; font-size: 10px; letter-spacing: 0.2em; color: var(--ink-dim); }
+
+.card-h { font-family: var(--serif); font-weight: 400; font-size: clamp(40px, 5vw, 64px); letter-spacing: -0.02em; line-height: 1.05; }
+
+.card-lede { font-family: var(--sans); font-weight: 300; font-size: clamp(18px, 1.6vw, 22px); line-height: 1.55; color: var(--ink-dim); margin-block: 28px 32px; max-width: 880px; }
+
+.inside-list { list-style: none; display: flex; flex-direction: column; gap: 14px; padding-top: 24px; border-top: 1px solid var(--rule); }
+.inside-list li { display: flex; align-items: flex-start; gap: 12px; font-size: 16px; font-weight: 300; line-height: 1.5; color: var(--ink-dim); }
+.inside-list .dot { margin-top: 8px; }
+
+.card-cta-row { display: flex; align-items: center; gap: 12px; padding-top: 32px; margin-top: 24px; border-top: 1px solid var(--rule); }
+.card-cta-label { font-size: 11px; letter-spacing: 0.25em; color: var(--gold); }
+.card-cta-arrow { color: var(--ink-dim); font-family: var(--mono); font-size: 18px; transition: transform 220ms ease, color 220ms ease; }
+
+.services-cta { padding-block: 80px; }
+.about-cta-row { display: flex; align-items: center; justify-content: space-between; gap: 32px; flex-wrap: wrap; }
+</style>

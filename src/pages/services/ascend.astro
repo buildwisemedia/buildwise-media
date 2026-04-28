@@ -1,0 +1,200 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+const title = "Ascend — The Buildwise Revenue Engine";
+const description = "AI-native lead-generation system installed and operated. Website, paid acquisition, content, CRM, analytics, and weekly connector audit — all wired on day one, measured against captured baseline, month-to-month.";
+
+const breadcrumb = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://buildwisemedia.com/' },
+    { '@type': 'ListItem', position: 2, name: 'Services', item: 'https://buildwisemedia.com/services' },
+    { '@type': 'ListItem', position: 3, name: 'Ascend', item: 'https://buildwisemedia.com/services/ascend' },
+  ],
+};
+
+const service = {
+  '@context': 'https://schema.org',
+  '@type': 'Service',
+  name: 'Ascend — The Buildwise Revenue Engine',
+  serviceType: 'AI-native lead-generation system',
+  provider: { '@id': 'https://buildwisemedia.com/#org' },
+  areaServed: { '@type': 'Country', name: 'United States' },
+  description: 'Complete AI-native lead-generation system installed and operated. Includes website, paid acquisition, content production, CRM, analytics, weekly connector audit, AI business tools.',
+  url: 'https://buildwisemedia.com/services/ascend',
+  offers: {
+    '@type': 'Offer',
+    priceSpecification: {
+      '@type': 'PriceSpecification',
+      priceCurrency: 'USD',
+      price: '7000',
+      unitText: 'MONTH',
+      description: '$7,000/mo total ($6,000/mo management + $1,000/mo included ad spend) + $2,500 one-time Engine Build at signup. Layer 3 — machine readable. Month-to-month, no long-term lock-in.',
+    },
+  },
+};
+
+const faqs = [
+  { q: 'What does Ascend include exactly?', a: 'A full multi-page website built to AI-search-era standards, paid acquisition wired to baseline-first attribution, AI-assisted content production with a human quality gate at the 8/10 rubric, integrated operations layer (CRM, analytics, drift detection, lead attribution, email/SMS lifecycle), AI business tools configured to your operations, and a weekly connector audit. One operating system, not six services.' },
+  { q: 'How long does the install take?', a: 'Inside 30 days the system is operational — website live, ad accounts wired, CRM instrumented, first leads flowing. Full instrumentation completes in the same window. We don\'t run a 90-day waiting period.' },
+  { q: 'Do I own everything when the engagement ends?', a: 'Yes. The website, the content, the analytics setup, the CRM data — all yours. We don\'t use proprietary CMS lock-in. Month-to-month means month-to-month.' },
+  { q: 'How is this different from hiring a fractional CMO?', a: 'A CMO writes strategy. Ascend writes strategy and runs the system. The same person who decides where the dollars go is the one watching the numbers come back. No handoff layer between thinking and doing.' },
+  { q: 'What if Meta is the wrong channel for my business?', a: 'Meta is the primary, not the only. The system is channel-agnostic on the operations layer — Google, LinkedIn, paid search, even direct mail integrate without rebuilding the foundation. We start where the audience is.' },
+  { q: 'Is there a guarantee?', a: 'The Build-Right Guarantee covers install milestones — if we miss them, we keep working until we hit them, on us. The engagement runs month-to-month, so the renewal decision is in your hands every cycle.' },
+];
+
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faqs.map((f) => ({ '@type': 'Question', name: f.q, acceptedAnswer: { '@type': 'Answer', text: f.a } })),
+};
+
+const stack = [
+  { name: 'Website', body: 'Multi-page, statically generated, mobile-first, Three-Layer optimized (human + schema + agent), Lighthouse ≥ 90, AI-permissive robots.' },
+  { name: 'Acquisition', body: 'Meta-primary paid acquisition wired to baseline-first attribution. Server-side conversion tracking. Creative pipeline with quality QA. Phase 1 expansion to Google + LinkedIn.' },
+  { name: 'Content', body: 'AI-assisted content production at scale. Human QA at 8/10 rubric. Per-niche editorial calendar. Content compounds, not consumed.' },
+  { name: 'Operations', body: 'CRM, analytics, drift detection, lead attribution pipeline, email/SMS lifecycle. One stack, one source of truth. Connector audit every Monday.' },
+  { name: 'AI tools', body: 'AI business tools configured to your operations — not generic chatbots. Quoting, scheduling, intake, post-call summaries — automated where it makes sense, never where it shouldn\'t.' },
+  { name: 'Receipts', body: 'Weekly performance reporting. Captured baseline on every metric. Confidence floor 75%. The numbers go on the page or they don\'t go anywhere.' },
+];
+
+const process = [
+  { n: '01', name: 'Audit', body: 'We map your current pipeline, channels, conversion path, and integrations. Every claim about the current state goes against a baseline.' },
+  { n: '02', name: 'Build', body: 'Website, ad accounts, CRM, analytics, content engine — installed in parallel. Day 1 system is operational, not theoretical.' },
+  { n: '03', name: 'Operate', body: 'Weekly connector audit. Monthly creative refresh. Quarterly system review. Receipts every Monday morning.' },
+];
+---
+<BaseLayout title={title} description={description} jsonLd={[service, breadcrumb, faqSchema]}>
+
+  <section class="ascend-hero">
+    <div class="container">
+      <p class="eyebrow">Service · Single product</p>
+      <h1 class="h-hero">
+        Ad spend in. <em>Revenue</em><br/>
+        out. Verified weekly.
+      </h1>
+      <p class="hero-sub" style="max-width: 720px;">
+        Ascend is the operating system most service businesses already wish they had — installed in 30 days, audited every week, month-to-month from the first day.
+      </p>
+      <div class="hero-ctas">
+        <a href="/book" class="cta" data-cta-source="ascend-hero">See If We're a Fit<span class="cta-arrow" aria-hidden="true">→</span></a>
+        <a href="#stack" class="cta-ghost" data-cta-source="ascend-hero-secondary">See What's Inside</a>
+      </div>
+    </div>
+  </section>
+
+  <section id="stack" class="stack-section elev">
+    <div class="container">
+      <p class="section-tag">What's inside the engine</p>
+      <h2 class="h-section">Six layers. <em>One</em> system.</h2>
+      <div class="stack-grid">
+        {stack.map((s) => (
+          <article class="stack-card reveal">
+            <h3 class="stack-name">{s.name}</h3>
+            <p class="stack-body">{s.body}</p>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="process-section">
+    <div class="container">
+      <p class="section-tag">How it installs</p>
+      <h2 class="h-section">Three moves. <em>30</em> days.</h2>
+      <ol class="process-list" role="list">
+        {process.map((p) => (
+          <li class="process-row reveal">
+            <span class="process-num mono">{p.n}</span>
+            <div>
+              <h3 class="process-name">{p.name}</h3>
+              <p class="process-body">{p.body}</p>
+            </div>
+          </li>
+        ))}
+      </ol>
+      <p class="process-foot">
+        <a href="/how-it-works" class="cta-ghost" data-cta-source="ascend-process">See the full process<span class="cta-arrow" aria-hidden="true">→</span></a>
+      </p>
+    </div>
+  </section>
+
+  <section class="ascend-faq elev">
+    <div class="container faq-grid">
+      <header class="faq-head">
+        <p class="section-tag">Questions about Ascend</p>
+        <h2 class="h-section">Real systems. <em>Real</em> answers.</h2>
+      </header>
+      <ul class="faq-list" role="list">
+        {faqs.map((f) => (
+          <li class="faq-item">
+            <details>
+              <summary>
+                <span class="faq-q">{f.q}</span>
+                <span class="faq-toggle" aria-hidden="true">+</span>
+              </summary>
+              <div class="faq-a"><p>{f.a}</p></div>
+            </details>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <section class="ascend-cta">
+    <div class="container ascend-cta-row">
+      <div>
+        <h2 class="h-closer">Run marketing like the <em>rest</em> of your business.</h2>
+        <p class="lede" style="margin-top: 16px;">Fifteen minutes on the calendar tells us — and you — whether Ascend fits your shop.</p>
+      </div>
+      <a href="/book" class="cta" data-cta-source="ascend-final">See If We're a Fit<span class="cta-arrow" aria-hidden="true">→</span></a>
+    </div>
+  </section>
+
+</BaseLayout>
+
+<style>
+.ascend-hero { padding-top: clamp(140px, 14vw, 180px); padding-bottom: clamp(60px, 8vw, 100px); }
+.hero-ctas { display: flex; gap: 16px; flex-wrap: wrap; margin-top: 32px; }
+
+.stack-section { padding-block: var(--section-y); }
+.stack-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px; margin-top: 48px; }
+.stack-card { border-top: 1px solid var(--gold); padding: 24px 0 0; }
+.stack-name { font-family: var(--serif); font-size: clamp(28px, 2.5vw, 36px); font-weight: 400; letter-spacing: -0.015em; line-height: 1.05; margin-bottom: 14px; }
+.stack-body { font-family: var(--sans); font-weight: 300; font-size: 16px; line-height: 1.55; color: var(--ink-dim); }
+
+.process-section { padding-block: var(--section-y); }
+.process-list { list-style: none; display: flex; flex-direction: column; gap: 0; margin-top: 48px; }
+.process-row { display: grid; grid-template-columns: 100px minmax(0, 1fr); gap: 32px; padding: 32px 0; border-top: 1px solid var(--rule); align-items: start; }
+.process-row:last-child { border-bottom: 1px solid var(--rule); }
+.process-num { font-size: 14px; letter-spacing: 0.25em; color: var(--gold); padding-top: 6px; }
+.process-name { font-family: var(--serif); font-size: clamp(28px, 3vw, 40px); font-weight: 400; letter-spacing: -0.02em; line-height: 1; margin-bottom: 12px; }
+.process-body { font-family: var(--sans); font-weight: 300; font-size: 17px; line-height: 1.6; color: var(--ink-dim); max-width: 640px; }
+.process-foot { margin-top: 48px; }
+
+.ascend-faq { padding-block: var(--section-y); }
+.faq-grid { display: grid; grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.4fr); gap: clamp(48px, 6vw, 96px); align-items: start; }
+.faq-head { position: sticky; top: 100px; display: flex; flex-direction: column; gap: 24px; }
+
+.faq-list { list-style: none; }
+.faq-item { border-top: 1px solid var(--rule); }
+.faq-item:last-child { border-bottom: 1px solid var(--rule); }
+.faq-item details summary { list-style: none; cursor: pointer; padding: 24px 0; display: flex; justify-content: space-between; align-items: flex-start; gap: 24px; }
+.faq-item details summary::-webkit-details-marker { display: none; }
+.faq-q { font-family: var(--serif); font-weight: 400; font-size: clamp(20px, 2vw, 26px); letter-spacing: -0.015em; line-height: 1.3; color: var(--ink); }
+.faq-toggle { font-family: var(--mono); font-size: 24px; color: var(--gold); flex: none; width: 32px; text-align: center; line-height: 1; transition: transform 220ms ease; }
+.faq-item details[open] .faq-toggle { transform: rotate(45deg); }
+.faq-a { padding: 0 0 28px 0; max-width: 720px; }
+.faq-a p { font-family: var(--sans); font-weight: 300; font-size: 17px; line-height: 1.65; color: var(--ink-dim); }
+
+.ascend-cta { padding-block: 80px; }
+.ascend-cta-row { display: flex; align-items: center; justify-content: space-between; gap: 32px; flex-wrap: wrap; }
+
+@media (max-width: 880px) {
+  .stack-grid { grid-template-columns: 1fr; gap: 16px; }
+  .process-row { grid-template-columns: 1fr; }
+  .faq-grid { grid-template-columns: 1fr; }
+  .faq-head { position: static; }
+}
+</style>

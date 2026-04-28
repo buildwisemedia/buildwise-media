@@ -1,0 +1,164 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const title = "Book a Discovery Call — Buildwise Media";
+const description = "Fifteen minutes on the calendar tells us — and you — whether the Buildwise Revenue Engine fits your shop.";
+
+const breadcrumb = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://buildwisemedia.com/' },
+    { '@type': 'ListItem', position: 2, name: 'Book', item: 'https://buildwisemedia.com/book' },
+  ],
+};
+---
+<BaseLayout title={title} description={description} jsonLd={[breadcrumb]}>
+
+  <section class="book-page">
+    <div class="container book-grid">
+
+      <aside class="book-context">
+        <p class="eyebrow">Discovery call</p>
+        <h1 class="h-hero">
+          Fifteen minutes.<br/>
+          <em>One</em> answer.
+        </h1>
+        <p class="hero-sub">
+          You bring your numbers. We bring the audit. The call ends with a clear yes or no on whether Ascend fits your shop.
+        </p>
+
+        <ul class="expect-list">
+          <li>
+            <p class="expect-label mono">What we'll cover</p>
+            <p class="expect-body">Where leads are coming from now, where the system would intervene, what the install timeline looks like for your specific stack.</p>
+          </li>
+          <li>
+            <p class="expect-label mono">How long</p>
+            <p class="expect-body">15 minutes. We respect the calendar of someone running a business; this is a fit check, not a sales walkthrough.</p>
+          </li>
+          <li>
+            <p class="expect-label mono">No obligation</p>
+            <p class="expect-body">Whether we engage or not, you leave with the audit framing. Use it with us, with another vendor, or to do it yourself.</p>
+          </li>
+        </ul>
+      </aside>
+
+      <div class="book-embed">
+        <div id="cal-inline" class="cal-frame" aria-label="Booking calendar">
+          <div class="cal-skeleton" aria-hidden="true">
+            <div class="sk-row"></div>
+            <div class="sk-row"></div>
+            <div class="sk-grid">
+              <span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+              <span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+              <span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+            </div>
+            <p class="sk-foot mono">Loading calendar…</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+</BaseLayout>
+
+<script is:inline>
+  // Self-hosted booking inline embed at book.buildwisemedia.com
+  (function (C, A, L) {
+    let p = function (a, ar) { a.q.push(ar); };
+    let d = C.document;
+    C.Cal = C.Cal || function () {
+      let cal = C.Cal; let ar = arguments;
+      if (!cal.loaded) {
+        cal.ns = {}; cal.q = cal.q || [];
+        d.head.appendChild(d.createElement("script")).src = A;
+        cal.loaded = true;
+      }
+      if (ar[0] === L) {
+        const api = function () { p(api, arguments); };
+        const namespace = ar[1];
+        api.q = api.q || [];
+        if (typeof namespace === "string") {
+          cal.ns[namespace] = cal.ns[namespace] || api;
+          p(cal.ns[namespace], ar); p(cal, ["initNamespace", namespace]);
+        } else { p(cal, ar); }
+        return;
+      }
+      p(cal, ar);
+    };
+  })(window, "https://book.buildwisemedia.com/embed/embed.js", "init");
+
+  Cal("init", "discovery-call", { origin: "https://book.buildwisemedia.com" });
+  Cal.ns["discovery-call"]("inline", {
+    elementOrSelector: "#cal-inline",
+    config: { layout: "month_view" },
+    calLink: "bwm/discovery-call",
+  });
+  Cal.ns["discovery-call"]("ui", {
+    theme: "dark",
+    cssVarsPerTheme: {
+      light: { "cal-brand": "#d4a955" },
+      dark: { "cal-brand": "#d4a955" },
+    },
+    hideEventTypeDetails: false,
+    layout: "month_view",
+  });
+
+  // Hide skeleton when iframe paints
+  const obs = new MutationObserver(() => {
+    const el = document.getElementById('cal-inline');
+    if (el && el.querySelector('iframe')) {
+      const sk = el.querySelector('.cal-skeleton');
+      if (sk) sk.remove();
+      obs.disconnect();
+    }
+  });
+  obs.observe(document.getElementById('cal-inline'), { childList: true, subtree: true });
+</script>
+
+<style>
+.book-page {
+  padding-top: clamp(140px, 14vw, 180px);
+  padding-bottom: var(--section-y);
+}
+.book-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.4fr);
+  gap: clamp(48px, 6vw, 80px);
+  align-items: start;
+}
+.book-context { display: flex; flex-direction: column; gap: 24px; position: sticky; top: 100px; }
+
+.expect-list { list-style: none; display: flex; flex-direction: column; gap: 24px; padding-top: 32px; border-top: 1px solid var(--rule); margin-top: 16px; }
+.expect-list li { display: flex; flex-direction: column; gap: 8px; }
+.expect-label { font-size: 10px; letter-spacing: 0.2em; color: var(--gold); }
+.expect-body { font-size: 15px; font-weight: 300; line-height: 1.6; color: var(--ink-dim); }
+
+.book-embed { width: 100%; min-height: 720px; }
+.cal-frame {
+  width: 100%;
+  min-height: 720px;
+  background: var(--bg-elev);
+  border: 1px solid var(--rule);
+  position: relative;
+  overflow: hidden;
+}
+.cal-frame iframe { background: var(--bg-elev) !important; }
+
+.cal-skeleton { padding: 32px; display: flex; flex-direction: column; gap: 16px; height: 100%; }
+.sk-row { height: 16px; background: linear-gradient(90deg, var(--rule), var(--rule-bright), var(--rule)); background-size: 200% 100%; animation: sk 1.4s ease-in-out infinite; border-radius: 1px; }
+.sk-row:nth-child(1) { width: 70%; }
+.sk-row:nth-child(2) { width: 40%; margin-bottom: 16px; }
+.sk-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 8px; flex: 1; }
+.sk-grid span { background: linear-gradient(90deg, var(--rule), var(--rule-bright), var(--rule)); background-size: 200% 100%; animation: sk 1.4s ease-in-out infinite; border-radius: 1px; }
+.sk-foot { margin-top: 16px; color: var(--ink-faint); font-size: 10px; letter-spacing: 0.2em; text-align: center; }
+@keyframes sk { 0% { background-position: 0% 0; } 100% { background-position: -200% 0; } }
+@media (prefers-reduced-motion: reduce) { .sk-row, .sk-grid span { animation: none; } }
+
+@media (max-width: 880px) {
+  .book-grid { grid-template-columns: 1fr; }
+  .book-context { position: static; }
+}
+</style>

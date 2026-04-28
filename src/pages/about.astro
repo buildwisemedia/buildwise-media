@@ -1,0 +1,156 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const title = "About — Buildwise Media";
+const description = "Buildwise Media runs marketing as operations for ambition-disposed service-business owners. Built by operators, for operators.";
+
+const breadcrumb = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://buildwisemedia.com/' },
+    { '@type': 'ListItem', position: 2, name: 'About', item: 'https://buildwisemedia.com/about' },
+  ],
+};
+
+const org = {
+  '@context': 'https://schema.org',
+  '@type': 'Organization',
+  '@id': 'https://buildwisemedia.com/#org',
+  name: 'Buildwise Media',
+  legalName: 'Buildwise Media LLC',
+  url: 'https://buildwisemedia.com',
+  email: 'hello@buildwisemedia.com',
+  description,
+  foundingLocation: { '@type': 'Place', address: { '@type': 'PostalAddress', addressLocality: 'Atlanta', addressRegion: 'GA', addressCountry: 'US' } },
+};
+
+const values = [
+  { name: 'Build', body: 'We don\'t produce decks; we install systems. The system is operational on day one — not in month six.' },
+  { name: 'Speed', body: 'Speed isn\'t a side effect. It\'s the system. Days, not quarters. Receipts, not roadmaps.' },
+  { name: 'Verified', body: 'Every claim audits against a captured baseline. Every connector audited weekly. The numbers are real or they don\'t go on the page.' },
+  { name: 'Owner-to-owner', body: 'We work with operators, not approvers. The relationship runs at the speed of the people who own the outcome.' },
+];
+---
+<BaseLayout title={title} description={description} jsonLd={[org, breadcrumb]}>
+
+  <section class="about-hero">
+    <div class="container">
+      <p class="eyebrow">About Buildwise Media</p>
+      <h1 class="h-hero">
+        We run marketing<br/>
+        like <em>operations.</em>
+      </h1>
+      <p class="hero-sub" style="max-width: 720px;">
+        Most agencies sell projects with hope as the delivery mechanism. We install systems with measurement as the delivery mechanism. The difference shows up on the P&L.
+      </p>
+    </div>
+  </section>
+
+  <section class="story elev">
+    <div class="container">
+      <p class="section-tag">The story</p>
+      <div class="story-grid">
+        <div class="prose">
+          <p class="lead">
+            Buildwise Media exists because most service businesses don't have a lead problem. They have an operations problem dressed as a marketing problem.
+          </p>
+          <p>
+            Across hundreds of audits, the same pattern surfaced: the marketing budget went out the door, the work happened, the dashboards looked plausible — and nobody could trace a closed deal back to a specific dollar of spend. Vendors didn't talk. Tracking was broken in places nobody had checked. Strategy decks aged faster than the data they were built on.
+          </p>
+          <p>
+            So we stopped acting like a marketing agency and started acting like an operations team. Same disciplines a good operator already runs in the rest of the business — captured baseline, weekly audit, source-of-truth discipline, instrumented from day one — applied to the marketing layer.
+          </p>
+          <p>
+            We're a small team (BWM team + AI system) operating an opinionated stack that already runs on its own books. We eat our own cooking before we plate yours.
+          </p>
+        </div>
+        <aside class="story-aside">
+          <p class="kpi-label mono">Operating posture</p>
+          <ul class="aside-list">
+            <li><span class="dot live"></span><span>System runs against captured baseline</span></li>
+            <li><span class="dot live"></span><span>Weekly connector audit · 13/13 healthy</span></li>
+            <li><span class="dot live"></span><span>Confidence floor 75% on every commitment</span></li>
+            <li><span class="dot live"></span><span>Month-to-month, never locked-in</span></li>
+          </ul>
+        </aside>
+      </div>
+    </div>
+  </section>
+
+  <section class="values">
+    <div class="container">
+      <p class="section-tag">What we hold ourselves to</p>
+      <h2 class="h-section">Four words. Every <em>shipping</em> day.</h2>
+      <ul class="values-grid" role="list">
+        {values.map((v) => (
+          <li class="value-card reveal">
+            <h3 class="value-name">{v.name}</h3>
+            <p class="value-body">{v.body}</p>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <section class="about-cta elev">
+    <div class="container about-cta-row">
+      <div>
+        <h2 class="h-closer">Run marketing like the <em>rest</em> of your business.</h2>
+        <p class="lede" style="margin-top: 16px;">Fifteen minutes tells us — and you — whether the system fits.</p>
+      </div>
+      <a href="/book" class="cta" data-cta-source="about">See If We're a Fit<span class="cta-arrow" aria-hidden="true">→</span></a>
+    </div>
+  </section>
+
+</BaseLayout>
+
+<style>
+.about-hero { padding-top: clamp(140px, 14vw, 180px); padding-bottom: clamp(80px, 10vw, 120px); }
+.story { padding-block: var(--section-y); }
+.story-grid { display: grid; grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr); gap: clamp(48px, 6vw, 96px); margin-top: 32px; }
+.story-aside {
+  background: var(--bg-card);
+  border: 1px solid var(--rule);
+  padding: 32px 28px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  align-self: start;
+  position: sticky;
+  top: 100px;
+}
+.aside-list { list-style: none; display: flex; flex-direction: column; gap: 12px; padding-top: 16px; border-top: 1px solid var(--rule); }
+.aside-list li { display: flex; align-items: flex-start; gap: 10px; font-size: 14px; line-height: 1.5; color: var(--ink-dim); }
+.aside-list .dot { margin-top: 8px; }
+
+.values { padding-block: var(--section-y); }
+.values-grid {
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 24px;
+  margin-top: 48px;
+}
+.value-card {
+  border-top: 1px solid var(--gold);
+  padding: 24px 0 0;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.value-name { font-family: var(--serif); font-size: clamp(28px, 2.5vw, 36px); font-weight: 400; letter-spacing: -0.02em; line-height: 1; color: var(--ink); }
+.value-body { font-family: var(--sans); font-weight: 300; font-size: 15px; line-height: 1.55; color: var(--ink-dim); }
+
+.about-cta { padding-block: 80px; }
+.about-cta-row { display: flex; align-items: center; justify-content: space-between; gap: 32px; flex-wrap: wrap; }
+
+@media (max-width: 880px) {
+  .story-grid { grid-template-columns: 1fr; }
+  .story-aside { position: static; }
+  .values-grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 480px) {
+  .values-grid { grid-template-columns: 1fr; }
+}
+</style>

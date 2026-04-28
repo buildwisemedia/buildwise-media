@@ -1,0 +1,110 @@
+---
+// Solution Introduction — the Revenue Engine mechanism (3-step abstraction)
+// Source: BO Phase 5 §6 Core Mechanism + Inner Pages Build Plan
+const steps = [
+  {
+    n: '01',
+    name: 'Build',
+    body: 'The system installs in 30 days, not six months. Website, ads, CRM, content, analytics — wired together on day one, not stitched together over quarters.',
+    chip: 'Day 1',
+  },
+  {
+    n: '02',
+    name: 'Speed',
+    body: 'First leads inside 30 days. Full-system instrumentation inside 30 days. No "wait 90 days for the SEO to mature" runway. Speed is the system, not a side effect.',
+    chip: 'Day 30',
+  },
+  {
+    n: '03',
+    name: 'Verified',
+    body: 'Every claim audits against a captured baseline. Connector health checked weekly. Confidence floor of 75%. Ad spend in. Revenue out. Receipts every Monday.',
+    chip: 'Every Mon',
+  },
+];
+---
+<section class="solution elev">
+  <div class="container">
+
+    <header class="solution-head reveal">
+      <p class="section-tag">The Revenue Engine</p>
+      <h2 class="h-section">
+        Three moves on repeat.<br/>
+        Build. Speed. <em>Verified.</em>
+      </h2>
+      <p class="lede">
+        We don't sell six services. We install one operating system. The same one BWM runs on its own books — eating its own cooking before you ever see a number.
+      </p>
+    </header>
+
+    <ol class="solution-steps" role="list">
+      {steps.map((s) => (
+        <li class="step reveal">
+          <div class="step-rail" aria-hidden="true">
+            <p class="step-num mono">{s.n}</p>
+            <p class="step-chip mono">{s.chip}</p>
+          </div>
+          <div class="step-body">
+            <h3 class="step-name">{s.name}</h3>
+            <p class="step-prose">{s.body}</p>
+          </div>
+        </li>
+      ))}
+    </ol>
+
+    <div class="solution-foot reveal">
+      <a href="/how-it-works" class="cta-ghost" data-cta-source="solution">See the full process<span class="cta-arrow" aria-hidden="true">→</span></a>
+    </div>
+
+  </div>
+</section>
+
+<style>
+.solution { background: var(--bg-elev); }
+.solution-head { display: flex; flex-direction: column; gap: 24px; margin-bottom: 56px; max-width: 880px; }
+
+.solution-steps { list-style: none; display: flex; flex-direction: column; gap: 32px; }
+.step {
+  display: grid;
+  grid-template-columns: 180px minmax(0, 1fr);
+  gap: 48px;
+  padding: 32px 0;
+  border-top: 1px solid var(--rule);
+  align-items: start;
+}
+.step:last-child { border-bottom: 1px solid var(--rule); }
+
+.step-rail { display: flex; flex-direction: column; gap: 12px; }
+.step-num { font-size: 13px; letter-spacing: 0.25em; color: var(--gold); }
+.step-chip {
+  font-size: 10px;
+  letter-spacing: 0.2em;
+  color: var(--ink-faint);
+  border: 1px solid var(--rule);
+  padding: 6px 10px;
+  align-self: start;
+}
+
+.step-name {
+  font-family: var(--serif);
+  font-weight: 400;
+  font-size: clamp(36px, 4vw, 48px);
+  letter-spacing: -0.02em;
+  line-height: 1;
+  color: var(--ink);
+  margin-bottom: 14px;
+}
+.step-prose {
+  font-family: var(--sans);
+  font-weight: 300;
+  font-size: 19px;
+  line-height: 1.6;
+  color: var(--ink-dim);
+  max-width: 640px;
+}
+
+.solution-foot { margin-top: 48px; }
+
+@media (max-width: 720px) {
+  .step { grid-template-columns: 1fr; gap: 16px; }
+}
+</style>

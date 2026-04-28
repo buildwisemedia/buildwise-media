@@ -1,0 +1,88 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const title = "You're booked — Buildwise Media";
+const description = "Discovery call confirmed. Here's what happens next.";
+---
+<BaseLayout title={title} description={description} noindex={true}>
+
+  <section class="confirm">
+    <div class="container confirm-grid">
+
+      <div class="confirm-text">
+        <p class="eyebrow">Booking confirmed</p>
+        <h1 class="h-hero">
+          You're <em>booked.</em><br/>
+          Here's what happens next.
+        </h1>
+        <p class="hero-sub" style="max-width: 640px;">
+          Calendar invite is on the way. The call is 15 minutes. We respect the time of someone running a business — this is a fit check, not a pitch.
+        </p>
+      </div>
+
+      <aside class="confirm-aside">
+        <p class="kpi-label mono">Before the call</p>
+        <ul class="confirm-list">
+          <li>
+            <span class="confirm-num mono">01</span>
+            <div>
+              <p class="confirm-name">Bring your numbers.</p>
+              <p class="confirm-body">Current monthly marketing spend, lead source mix, conversion rate (if you know it). Rough is fine.</p>
+            </div>
+          </li>
+          <li>
+            <span class="confirm-num mono">02</span>
+            <div>
+              <p class="confirm-name">Pick a quiet 15.</p>
+              <p class="confirm-body">Headphones, no interruptions. The call moves fast — we want you on it.</p>
+            </div>
+          </li>
+          <li>
+            <span class="confirm-num mono">03</span>
+            <div>
+              <p class="confirm-name">Expect a yes or no.</p>
+              <p class="confirm-body">By the end of the call you'll know if Ascend fits. So will we. Either way, you leave with the audit framing.</p>
+            </div>
+          </li>
+        </ul>
+
+        <p class="confirm-foot mono">
+          Need to reschedule? Use the link in your calendar invite. Need anything else? Reply to that invite — it routes to the team.
+        </p>
+      </aside>
+
+    </div>
+  </section>
+
+  <section class="confirm-cta elev">
+    <div class="container confirm-cta-row">
+      <p class="confirm-cta-h">
+        While you wait, <em>see</em> the system.
+      </p>
+      <a href="/how-it-works" class="cta-ghost" data-cta-source="confirmation">See How It Works<span class="cta-arrow" aria-hidden="true">→</span></a>
+    </div>
+  </section>
+
+</BaseLayout>
+
+<style>
+.confirm { padding-top: clamp(140px, 14vw, 180px); padding-bottom: var(--section-y); }
+.confirm-grid { display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr); gap: clamp(48px, 6vw, 80px); align-items: start; }
+.confirm-text { display: flex; flex-direction: column; gap: 24px; }
+
+.confirm-aside { background: var(--bg-card); border: 1px solid var(--rule); padding: 36px 32px; display: flex; flex-direction: column; gap: 24px; }
+.confirm-list { list-style: none; display: flex; flex-direction: column; gap: 24px; padding-top: 16px; border-top: 1px solid var(--rule); }
+.confirm-list li { display: grid; grid-template-columns: 56px 1fr; gap: 16px; align-items: start; }
+.confirm-num { font-size: 13px; letter-spacing: 0.25em; color: var(--gold); padding-top: 6px; }
+.confirm-name { font-family: var(--sans); font-size: 17px; font-weight: 500; color: var(--ink); margin-bottom: 6px; }
+.confirm-body { font-family: var(--sans); font-size: 15px; font-weight: 300; line-height: 1.55; color: var(--ink-dim); }
+.confirm-foot { font-size: 10px; letter-spacing: 0.18em; color: var(--ink-faint); padding-top: 16px; border-top: 1px solid var(--rule); line-height: 1.6; }
+
+.confirm-cta { padding-block: 80px; }
+.confirm-cta-row { display: flex; align-items: center; justify-content: space-between; gap: 24px; flex-wrap: wrap; }
+.confirm-cta-h { font-family: var(--serif); font-weight: 400; font-size: clamp(32px, 4vw, 56px); letter-spacing: -0.02em; line-height: 1.05; color: var(--ink); }
+
+@media (max-width: 880px) {
+  .confirm-grid { grid-template-columns: 1fr; }
+}
+</style>

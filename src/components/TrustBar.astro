@@ -1,0 +1,69 @@
+---
+// Trust Bar — homepage stats LOCKED 2026-03-12
+// stats-homepage lock: $20M+ Pipeline · 3-5x Lead Increase · 18+ Hours Saved Weekly · 90 Days Time to ROI
+const stats = [
+  { num: '$20M', tail: '+', label: 'Pipeline generated for clients' },
+  { num: '3', mid: '–', tailNum: '5', tail: 'x', label: 'Lead increase, baseline-verified' },
+  { num: '18', tail: '+', label: 'Hours saved weekly per owner' },
+  { num: '90', tail: 'd', label: 'Time to first ROI signal' },
+];
+---
+<section class="trust-bar" aria-label="Operating results">
+  <div class="container">
+    <p class="section-tag">Verified Outcomes</p>
+    <div class="stats-grid">
+      {stats.map((s) => (
+        <div class="stat-block reveal">
+          <p class="stat-num">
+            {s.num}{s.mid && <em>{s.mid}</em>}{s.tailNum}<em>{s.tail}</em>
+          </p>
+          <p class="stat-label mono">{s.label}</p>
+        </div>
+      ))}
+    </div>
+    <p class="trust-foot mono">
+      Each number is computed against a captured baseline. Every claim audits against the source. Confidence floor: 75%.
+    </p>
+  </div>
+</section>
+
+<style>
+.trust-bar { background: var(--bg-elev); border-block: 1px solid var(--rule); padding-block: 80px; }
+.section-tag { display: inline-flex; }
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 32px;
+  margin-block: 48px;
+}
+.stat-block {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 24px 0;
+  border-top: 1px solid var(--gold);
+}
+.stat-num {
+  font-family: var(--serif);
+  font-weight: 400;
+  font-size: clamp(52px, 6vw, 72px);
+  letter-spacing: -0.025em;
+  line-height: 1;
+  color: var(--ink);
+}
+.stat-label { color: var(--ink-faint); }
+.trust-foot {
+  font-size: 11px;
+  letter-spacing: 0.15em;
+  color: var(--ink-faint);
+  text-transform: uppercase;
+  max-width: 720px;
+  line-height: 1.65;
+}
+@media (max-width: 880px) {
+  .stats-grid { grid-template-columns: repeat(2, 1fr); gap: 24px; }
+}
+@media (max-width: 480px) {
+  .stats-grid { grid-template-columns: 1fr; }
+}
+</style>

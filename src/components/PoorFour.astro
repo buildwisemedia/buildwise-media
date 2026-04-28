@@ -1,104 +1,117 @@
 ---
-const constraints = [
+// Problem Agitation — "The Poor Four" pillar framework
+// Source: BO Phase 4 + CB Pillar 2 + Marketing Strategy ICP pain states
+const problems = [
   {
-    icon: '🔻',
-    title: 'Lead Droughts',
-    desc: 'Feast-or-famine cycles that make it impossible to plan ahead or hire with confidence.',
+    n: '01',
+    name: 'Lead Drought',
+    body: 'Some weeks the phone rings. Other weeks it doesn\'t. You can\'t plan, can\'t hire, can\'t breathe. Every quiet stretch is its own emergency.',
   },
   {
-    icon: '⏳',
-    title: 'The Owner Trap',
-    desc: 'You ARE the sales team, the marketer, and the closer — leaving zero time to actually run the business.',
+    n: '02',
+    name: 'Owner Trap',
+    body: 'You are the brand, the closer, the operator, the marketing department. You can\'t take a vacation without watching the pipeline collapse.',
   },
   {
-    icon: '🔧',
-    title: 'Manual Mayhem',
-    desc: 'Sticky notes, spreadsheets, and missed follow-ups costing you deals every single week.',
+    n: '03',
+    name: 'Manual Mayhem',
+    body: 'A vendor for ads. A different one for SEO. A third for the website. None of them talk. You\'re the integration layer — by accident.',
   },
   {
-    icon: '🔥',
-    title: 'Reactive Mode',
-    desc: 'Always putting out fires instead of building systems that grow without you.',
+    n: '04',
+    name: 'Reactive Mode',
+    body: 'You spend the day putting out fires you didn\'t start. Strategy keeps slipping to "after this quarter." The quarter never ends.',
   },
 ];
 ---
-
-<section class="section section--medium" id="problems">
+<section id="problem" class="poor-four">
   <div class="container">
-    <div class="poor-four-header reveal">
-      <span class="section-label">Sound Familiar?</span>
-      <h2 class="section-title">The Four Walls Holding<br />Your Business Back</h2>
-      <p class="section-subtitle">
-        These aren't just frustrations — they're profit leaks. And most service businesses deal with all four at once.
+
+    <header class="poor-four-head reveal">
+      <p class="section-tag">The Pattern</p>
+      <h2 class="h-section">
+        Most service businesses don't<br/>
+        have a <em>lead</em> problem.<br/>
+        They have an <em>operations</em> problem.
+      </h2>
+      <p class="lede">
+        Four gaps show up in nearly every $1M–$5M shop we audit. Name yours. We've named ours.
       </p>
-    </div>
-    <div class="poor-four-grid">
-      {constraints.map((item, i) => (
-        <div class={`poor-four-card reveal reveal-delay-${i + 1}`}>
-          <span class="poor-four-icon">{item.icon}</span>
-          <h3 class="poor-four-title">{item.title}</h3>
-          <p class="poor-four-desc">{item.desc}</p>
-        </div>
+    </header>
+
+    <ol class="problems-grid" role="list">
+      {problems.map((p) => (
+        <li class="problem-card reveal">
+          <p class="problem-num mono">{p.n}</p>
+          <h3 class="problem-name">{p.name}</h3>
+          <p class="problem-body">{p.body}</p>
+        </li>
       ))}
-    </div>
+    </ol>
+
+    <p class="poor-four-foot reveal">
+      If three of these sound familiar, you don't have a marketing problem.<br/>
+      You have an <em>operations</em> problem dressed as a marketing problem.
+    </p>
+
   </div>
 </section>
 
 <style>
-  .poor-four-header {
-    text-align: center;
-    margin-bottom: var(--space-3xl);
-  }
+.poor-four { padding-block: var(--section-y); }
+.poor-four-head { display: flex; flex-direction: column; gap: 24px; margin-bottom: 64px; max-width: 880px; }
 
-  .poor-four-header .section-subtitle {
-    margin: 0 auto;
-  }
+.problems-grid {
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 24px;
+  margin-block: 24px 64px;
+}
+.problem-card {
+  background: var(--bg-card);
+  border: 1px solid var(--rule);
+  border-radius: 2px;
+  padding: 36px 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  transition: border-color 220ms ease, transform 220ms ease;
+}
+.problem-card:hover {
+  border-color: var(--gold);
+  transform: translateY(-2px);
+}
+.problem-num { font-size: 11px; letter-spacing: 0.25em; color: var(--gold); }
+.problem-name {
+  font-family: var(--serif);
+  font-weight: 400;
+  font-size: clamp(28px, 3vw, 36px);
+  letter-spacing: -0.015em;
+  line-height: 1.05;
+  color: var(--ink);
+}
+.problem-body {
+  font-family: var(--sans);
+  font-weight: 300;
+  font-size: 17px;
+  line-height: 1.55;
+  color: var(--ink-dim);
+}
 
-  .poor-four-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: var(--space-xl);
-    max-width: 900px;
-    margin: 0 auto;
-  }
+.poor-four-foot {
+  font-family: var(--serif);
+  font-weight: 400;
+  font-size: clamp(24px, 2.6vw, 32px);
+  line-height: 1.3;
+  color: var(--ink);
+  border-top: 1px solid var(--rule);
+  padding-top: 32px;
+  max-width: 760px;
+}
 
-  .poor-four-card {
-    padding: var(--space-2xl);
-    background: var(--surface-card);
-    border: 1px solid var(--border-card);
-    border-radius: var(--radius-lg);
-    box-shadow: var(--shadow-card);
-    transition: border-color var(--transition-base);
-  }
-
-  .poor-four-card:hover {
-    border-color: var(--border-accent-hover);
-  }
-
-  .poor-four-icon {
-    display: block;
-    font-size: 2rem;
-    margin-bottom: var(--space-lg);
-  }
-
-  .poor-four-title {
-    font-size: 1.25rem;
-    margin-bottom: var(--space-sm);
-  }
-
-  .poor-four-desc {
-    font-size: 0.9375rem;
-    color: var(--color-text-secondary);
-    line-height: 1.7;
-  }
-
-  @media (max-width: 768px) {
-    .poor-four-grid {
-      grid-template-columns: 1fr;
-      gap: var(--space-lg);
-    }
-    .poor-four-card {
-      padding: var(--space-xl);
-    }
-  }
+@media (max-width: 720px) {
+  .problems-grid { grid-template-columns: 1fr; gap: 16px; }
+  .problem-card { padding: 28px 24px; }
+}
 </style>

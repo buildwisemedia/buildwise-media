@@ -1,0 +1,151 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const title = "Results — Buildwise Media";
+const description = "Verified outcomes from the Buildwise Revenue Engine. Baseline-first attribution. Confidence floor 75%. Receipts every Monday.";
+
+const breadcrumb = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://buildwisemedia.com/' },
+    { '@type': 'ListItem', position: 2, name: 'Results', item: 'https://buildwisemedia.com/results' },
+  ],
+};
+
+const headlineStats = [
+  { num: '$20M', tail: '+', label: 'Pipeline generated for clients' },
+  { num: '3', mid: '–', tailNum: '5', tail: 'x', label: 'Lead increase, baseline-verified' },
+  { num: '92', tail: '%', label: 'Clients on platform after 90 days' },
+  { num: '4.9', label: 'Aggregate review rating' },
+];
+
+const stories = [
+  {
+    quote: 'For the first time the marketing budget feels like a P&L line, not a black hole. We see what spent, what closed, what\'s next.',
+    role: 'Operations director',
+    context: 'Specialty contractor · Northeast',
+    delta: '+47% qualified leads · 90 days',
+    evidence: 'Measured · Confidence: 92%',
+  },
+  {
+    quote: 'They installed in three weeks what our last agency couldn\'t finish in nine months. And we can read the dashboard.',
+    role: 'Founder/operator',
+    context: 'Multi-location service brand · Southeast',
+    delta: 'Day 22 system live · Day 28 first lead',
+    evidence: 'Measured · Confidence: 95%',
+  },
+  {
+    quote: 'The connector audit alone changed how I think about every other vendor we work with. Quiet things were broken for months.',
+    role: 'CEO',
+    context: 'Home-services franchise · Midwest',
+    delta: '11 broken integrations surfaced · all resolved',
+    evidence: 'Attributed · Confidence: 88%',
+  },
+];
+---
+<BaseLayout title={title} description={description} jsonLd={[breadcrumb]}>
+
+  <section class="results-hero">
+    <div class="container">
+      <p class="eyebrow">Receipts</p>
+      <h1 class="h-hero">
+        We'd rather<br/>
+        <em>show</em> you.
+      </h1>
+      <p class="hero-sub" style="max-width: 720px;">
+        Every claim below carries a confidence percentage, an evidence class, and a captured baseline. Sub-75% confidence numbers don't show up here at all.
+      </p>
+    </div>
+  </section>
+
+  <section class="metrics-bar elev">
+    <div class="container">
+      <div class="metrics-grid">
+        {headlineStats.map((s) => (
+          <div class="metric-block reveal">
+            <p class="metric-val">{s.num}{s.mid && <em>{s.mid}</em>}{s.tailNum}<em>{s.tail || ''}</em></p>
+            <p class="metric-label mono">{s.label}</p>
+          </div>
+        ))}
+      </div>
+      <p class="metrics-foot mono">All figures audited against captured baseline · Confidence floor 75% · Evidence class label per metric</p>
+    </div>
+  </section>
+
+  <section class="stories-section">
+    <div class="container">
+      <p class="section-tag">Case stories</p>
+      <h2 class="h-section">What the system <em>moved.</em></h2>
+
+      <div class="stories-grid">
+        {stories.map((s) => (
+          <article class="story-card reveal">
+            <p class="story-evidence mono"><span class="dot live"></span>{s.evidence}</p>
+            <blockquote class="pull">"{s.quote}"</blockquote>
+            <footer class="story-meta">
+              <p class="story-role">{s.role}</p>
+              <p class="story-context mono">{s.context}</p>
+              <p class="story-delta mono">{s.delta}</p>
+            </footer>
+          </article>
+        ))}
+      </div>
+
+      <p class="stories-foot mono">Identifying details abstracted while public-facing case-study sign-off completes. Underlying data verifiable on a discovery call.</p>
+    </div>
+  </section>
+
+  <section class="results-cta elev">
+    <div class="container ascend-cta-row">
+      <div>
+        <h2 class="h-closer">See what the system can <em>do</em> for yours.</h2>
+        <p class="lede" style="margin-top: 16px;">Fifteen minutes on the calendar — bring your numbers, leave with the audit.</p>
+      </div>
+      <a href="/book" class="cta" data-cta-source="results-final">See If We're a Fit<span class="cta-arrow" aria-hidden="true">→</span></a>
+    </div>
+  </section>
+
+</BaseLayout>
+
+<style>
+.results-hero { padding-top: clamp(140px, 14vw, 180px); padding-bottom: clamp(60px, 8vw, 100px); }
+
+.metrics-bar { padding-block: 80px; }
+.metrics-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 32px; }
+.metric-block { display: flex; flex-direction: column; gap: 8px; padding: 24px 0; border-top: 1px solid var(--gold); }
+.metric-val { font-family: var(--serif); font-weight: 400; font-size: clamp(48px, 6vw, 72px); letter-spacing: -0.025em; line-height: 1; color: var(--ink); }
+.metric-label { color: var(--ink-faint); }
+.metrics-foot {
+  margin-top: 40px;
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  color: var(--ink-faint);
+  text-transform: uppercase;
+  max-width: 760px;
+  line-height: 1.7;
+}
+
+.stories-section { padding-block: var(--section-y); }
+.stories-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px; margin-top: 48px; }
+.story-card { background: var(--bg-card); border: 1px solid var(--rule); padding: 32px 28px; display: flex; flex-direction: column; gap: 20px; }
+.story-card .pull { font-size: clamp(20px, 1.8vw, 24px); border-left-width: 1px; padding-left: 20px; line-height: 1.35; }
+.story-evidence { font-size: 10px; letter-spacing: 0.18em; color: var(--ink-faint); display: inline-flex; align-items: center; }
+.story-meta { display: flex; flex-direction: column; gap: 6px; padding-top: 16px; border-top: 1px solid var(--rule); }
+.story-role { font-family: var(--sans); font-size: 15px; font-weight: 500; color: var(--ink); }
+.story-context { font-size: 10px; letter-spacing: 0.2em; color: var(--ink-faint); }
+.story-delta { font-size: 11px; letter-spacing: 0.18em; color: var(--gold); }
+
+.stories-foot { margin-top: 48px; font-size: 10px; letter-spacing: 0.18em; color: var(--ink-faint); max-width: 760px; line-height: 1.7; }
+
+.results-cta { padding-block: 80px; }
+.ascend-cta-row { display: flex; align-items: center; justify-content: space-between; gap: 32px; flex-wrap: wrap; }
+
+@media (max-width: 880px) {
+  .metrics-grid { grid-template-columns: repeat(2, 1fr); gap: 24px; }
+  .stories-grid { grid-template-columns: 1fr; }
+}
+@media (max-width: 480px) {
+  .metrics-grid { grid-template-columns: 1fr; }
+}
+</style>

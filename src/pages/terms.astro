@@ -1,0 +1,67 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const title = "Terms of Service — Buildwise Media";
+const description = "Terms governing use of buildwisemedia.com and Buildwise Media services.";
+const lastUpdated = "April 2026";
+---
+<BaseLayout title={title} description={description} noindex={false}>
+
+  <article class="legal-page">
+    <div class="container legal-container">
+
+      <header class="legal-head">
+        <p class="eyebrow">Legal</p>
+        <h1 class="h-hero">Terms of <em>Service</em></h1>
+        <p class="legal-meta mono">Last updated: {lastUpdated}</p>
+      </header>
+
+      <section class="prose">
+        <h2 class="h-sub">1. Agreement</h2>
+        <p>By using buildwisemedia.com you agree to these terms. The website is operated by Buildwise Media LLC, a Georgia limited liability company.</p>
+
+        <h2 class="h-sub">2. Services</h2>
+        <p>Buildwise Media offers marketing operations services to qualified business clients. Engagement specifics, deliverables, fees, and termination terms are governed by a separate written services agreement signed at engagement start. This page does not constitute that agreement.</p>
+
+        <h2 class="h-sub">3. Discovery calls</h2>
+        <p>The discovery call booked through this website is a fit-assessment conversation, not a sales walkthrough. Both parties may end the call or decline to proceed at any time. Information shared on the call is confidential by default.</p>
+
+        <h2 class="h-sub">4. Pricing</h2>
+        <p>Pricing for Buildwise Media services is set per engagement during the discovery call. We do not publish a generic price tile because the system that fits a $1.5M shop is genuinely different from the one that fits a $4M shop. Engagements run month-to-month with no long-term lock-in.</p>
+
+        <h2 class="h-sub">5. The Build-Right Guarantee</h2>
+        <p>If we miss the install milestones defined in your services agreement, we keep working at no additional cost until we hit them. The guarantee covers install milestones only — not market-driven outcomes (lead volume, conversion rates) which depend on factors outside any vendor's control.</p>
+
+        <h2 class="h-sub">6. Intellectual property</h2>
+        <p>The website code, design, copy, logos, and trademarks on this site are owned by Buildwise Media LLC. The content of client engagements (websites built, content produced, configurations) is owned by the respective client per the services agreement.</p>
+
+        <h2 class="h-sub">7. Disclaimers</h2>
+        <p>Information on this website is provided as-is. We strive for accuracy but make no warranty about specific outcomes. Past results referenced on the Results page are not a guarantee of future performance.</p>
+
+        <h2 class="h-sub">8. Limitation of liability</h2>
+        <p>To the maximum extent permitted by law, Buildwise Media's liability arising from website use is limited to the greater of $100 or the fees paid by you to Buildwise Media in the 12 months preceding the claim.</p>
+
+        <h2 class="h-sub">9. Governing law</h2>
+        <p>These terms are governed by the laws of the State of Georgia, USA, without regard to conflict-of-laws principles.</p>
+
+        <h2 class="h-sub">10. Changes</h2>
+        <p>We may update these terms when our practices change. The "Last updated" date at the top reflects the most recent revision. Continued use of the website after a revision constitutes acceptance of the revised terms.</p>
+
+        <h2 class="h-sub">11. Contact</h2>
+        <p>Questions about these terms: <a href="mailto:hello@buildwisemedia.com">hello@buildwisemedia.com</a></p>
+      </section>
+
+    </div>
+  </article>
+
+</BaseLayout>
+
+<style>
+.legal-page { padding-top: clamp(140px, 14vw, 180px); padding-bottom: var(--section-y); }
+.legal-container { max-width: 760px; }
+.legal-head { display: flex; flex-direction: column; gap: 16px; margin-bottom: 56px; padding-bottom: 32px; border-bottom: 1px solid var(--rule); }
+.legal-meta { font-size: 11px; letter-spacing: 0.18em; color: var(--ink-faint); }
+
+.prose h2 { margin-top: 48px; margin-bottom: 16px; }
+.prose p { margin-bottom: 18px; }
+</style>
