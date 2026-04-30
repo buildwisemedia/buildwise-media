@@ -100,3 +100,15 @@ jobs:
           fi
 
           echo "✓ build.shipped event emitted for $TAG"
+
+      - name: Notify done-check Worker
+        if: success()
+        env:
+          DONE_CHECK_WEBHOOK_SECRET: ${{ secrets.DONE_CHECK_WEBHOOK_SECRET }}
+        run: |
+          curl -fsS --max-time 10 -X POST \
+            -H "x-webhook-secret: $DONE_CHECK_WEBHOOK_SECRET" \
+            -H "content-type: application/json" \
+            -d "{\"repo\":\"$REPO\",\"branch\":\"main\"}" \
+            https://bwm-done-check.robert-ba0.workers.dev/webhook/git-push \
+          || echo "::warning::done-check webhook failed (non-fatal)"
