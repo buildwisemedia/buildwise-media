@@ -21,8 +21,8 @@
       <svg viewBox="0 0 1200 360" aria-hidden="true" preserveAspectRatio="none" class="curve-svg">
         <defs>
           <linearGradient id="curveFill" x1="0" x2="0" y1="0" y2="1">
-            <stop offset="0%" stop-color="#d4a955" stop-opacity="0.22"/>
-            <stop offset="100%" stop-color="#d4a955" stop-opacity="0"/>
+            <stop offset="0%" stop-color="var(--y2)" stop-opacity="0.22"/>
+            <stop offset="100%" stop-color="var(--y2)" stop-opacity="0"/>
           </linearGradient>
           <pattern id="grid" width="60" height="60" patternUnits="userSpaceOnUse">
             <path d="M 60 0 L 0 0 0 60" fill="none" stroke="#1f1d27" stroke-width="0.5"/>
@@ -33,13 +33,13 @@
         <line x1="0" y1="280" x2="1200" y2="260" stroke="#5a5650" stroke-width="1" stroke-dasharray="4 6"/>
         <text x="1180" y="252" text-anchor="end" fill="#5a5650" font-family="JetBrains Mono, monospace" font-size="12" letter-spacing="2">TYPICAL AGENCY</text>
         <!-- Compounding curve — BWM -->
-        <path d="M 0 320 Q 300 320 540 280 T 1200 40" fill="none" stroke="#d4a955" stroke-width="2"/>
+        <path d="M 0 320 Q 300 320 540 280 T 1200 40" fill="none" stroke="var(--y2)" stroke-width="2"/>
         <path d="M 0 320 Q 300 320 540 280 T 1200 40 L 1200 360 L 0 360 Z" fill="url(#curveFill)"/>
-        <text x="20" y="50" fill="#d4a955" font-family="JetBrains Mono, monospace" font-size="12" letter-spacing="3">BWM REVENUE ENGINE</text>
+        <text x="20" y="50" fill="var(--y2)" font-family="JetBrains Mono, monospace" font-size="12" letter-spacing="3">BWM REVENUE ENGINE</text>
         <!-- Markers -->
-        <circle cx="200" cy="316" r="4" fill="#d4a955"/>
-        <circle cx="540" cy="280" r="4" fill="#d4a955"/>
-        <circle cx="900" cy="160" r="5" fill="#d4a955"/>
+        <circle cx="200" cy="316" r="4" fill="var(--y2)"/>
+        <circle cx="540" cy="280" r="4" fill="var(--y2)"/>
+        <circle cx="900" cy="160" r="5" fill="var(--y2)"/>
         <text x="200" y="346" text-anchor="middle" fill="#5a5650" font-family="JetBrains Mono, monospace" font-size="10" letter-spacing="2">DAY 1</text>
         <text x="540" y="346" text-anchor="middle" fill="#5a5650" font-family="JetBrains Mono, monospace" font-size="10" letter-spacing="2">DAY 30</text>
         <text x="900" y="346" text-anchor="middle" fill="#5a5650" font-family="JetBrains Mono, monospace" font-size="10" letter-spacing="2">DAY 90</text>
@@ -127,9 +127,9 @@
   border: 3px solid var(--bg-elev);
   cursor: pointer;
   box-shadow: 0 0 0 1px var(--gold);
-  transition: transform 180ms ease;
+  transition: box-shadow 180ms ease;
 }
-.slider-input::-webkit-slider-thumb:hover { transform: scale(1.15); }
+.slider-input::-webkit-slider-thumb:hover { box-shadow: 0 0 0 1px var(--y2); }
 .slider-input::-moz-range-thumb {
   width: 18px; height: 18px;
   background: var(--gold);

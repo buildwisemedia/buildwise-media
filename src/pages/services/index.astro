@@ -86,13 +86,12 @@ const breadcrumb = {
   padding: clamp(32px, 5vw, 64px);
   text-decoration: none;
   color: var(--ink);
-  transition: border-color 220ms ease, transform 220ms ease;
+  transition: border-color 220ms ease;
 }
 .ascend-card:hover {
-  border-color: var(--gold);
-  transform: translateY(-2px);
+  border-color: var(--y2);
 }
-.ascend-card:hover .card-cta-arrow { transform: translateX(8px); color: var(--gold); }
+.ascend-card:hover .card-cta-arrow { color: var(--y2); }
 
 .card-head { display: flex; justify-content: space-between; align-items: center; gap: 16px; padding-bottom: 24px; border-bottom: 1px solid var(--rule); margin-bottom: 32px; flex-wrap: wrap; }
 .card-chip { border: 1px solid var(--rule-bright); padding: 6px 12px; font-size: 10px; letter-spacing: 0.2em; color: var(--ink-dim); }

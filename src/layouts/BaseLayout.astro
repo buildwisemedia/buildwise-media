@@ -48,7 +48,7 @@ const jsonLdArray = Array.isArray(jsonLd) ? jsonLd : jsonLd ? [jsonLd] : [];
     <link rel="canonical" href={canonicalUrl} />
 
     <!-- Theme + favicon -->
-    <meta name="theme-color" content="#07070c" />
+    <meta name="theme-color" content="#050507" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="alternate icon" href="/favicon.ico" />
 
@@ -61,17 +61,17 @@ const jsonLdArray = Array.isArray(jsonLd) ? jsonLd : jsonLd ? [jsonLd] : [];
     <meta property="og:image" content={`${siteUrl}/og-image.svg`} />
     <meta name="twitter:card" content="summary_large_image" />
 
-    <!-- Fonts: Instrument Serif (display) + Inter Tight (body) + JetBrains Mono (micro) -->
+    <!-- Fonts: Inter (display + body) + JetBrains Mono (micro) -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
       rel="preload"
       as="style"
-      href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter+Tight:wght@300;400;500;600&family=JetBrains+Mono:wght@300;400;500&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@300;400;500;700&display=swap"
     />
     <link
       rel="stylesheet"
-      href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter+Tight:wght@300;400;500;600&family=JetBrains+Mono:wght@300;400;500&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@300;400;500;700&display=swap"
     />
 
     <!-- Google Tag Manager -->
@@ -160,22 +160,6 @@ const jsonLdArray = Array.isArray(jsonLd) ? jsonLd : jsonLd ? [jsonLd] : [];
     </main>
 
     <Footer />
-
-    <!-- Reveal-on-scroll observer -->
-    <script is:inline>
-      (function () {
-        if (!('IntersectionObserver' in window)) return;
-        var io = new IntersectionObserver(function (entries) {
-          entries.forEach(function (e) {
-            if (e.isIntersecting) {
-              e.target.classList.add('in');
-              io.unobserve(e.target);
-            }
-          });
-        }, { rootMargin: '0px 0px -10% 0px', threshold: 0.05 });
-        document.querySelectorAll('.reveal').forEach(function (el) { io.observe(el); });
-      })();
-    </script>
 
     <!-- CTA click telemetry -->
     <script is:inline>

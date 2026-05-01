@@ -1,6 +1,5 @@
 ---
-// BWM canonical lockup — B-mark + BUILDWISE/MEDIA stacked sans
-// Source: brand/BWM-Brand-Identity.md §5 (LOCKED 2026-04-27)
+// BWM Triangulation lockup — configuration A horizontal
 import BMark from './BMark.astro';
 interface Props {
   size?: 'nav' | 'footer' | 'large';
@@ -14,8 +13,8 @@ const h = heights[size];
   <BMark size={h} ariaLabel="" />
   <span class="lockup-divider" aria-hidden="true"></span>
   <span class="lockup-text">
-    <span class="lockup-line">BUILDWISE</span>
-    <span class="lockup-line">MEDIA</span>
+    <span class="lockup-line lockup-line--brand">BUILDWISE</span>
+    <span class="lockup-line lockup-line--media">MEDIA</span>
   </span>
 </a>
 
@@ -38,14 +37,28 @@ const h = heights[size];
 }
 
 .lockup-text {
-  font-family: var(--sans);
-  font-weight: 600;
   font-size: 14px;
   line-height: 1.05;
-  letter-spacing: 0.06em;
   text-transform: uppercase;
   display: flex;
   flex-direction: column;
+}
+
+.lockup-line {
+  font-family: var(--sans);
+  text-transform: uppercase;
+}
+
+.lockup-line--brand {
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  color: var(--ink);
+}
+
+.lockup-line--media {
+  font-weight: 300;
+  letter-spacing: 0.12em;
+  color: var(--y2);
 }
 
 .wordmark--footer .lockup-text { font-size: 13px; }

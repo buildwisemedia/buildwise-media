@@ -1,15 +1,14 @@
 /* ============================================================================
-   BWM — Black Gold Brand Identity
-   Source of truth: brand/BWM-Brand-Identity.md (LOCKED 2026-04-27)
-   PROJ-BRAND-001 Phase 2 Sprint 1
+   BWM — Triangulation Brand System (LOCKED 2026-04-30)
+   Source of truth: brand/BWM-Visual-Direction-Locked.md
    ============================================================================ */
 
 /* ---------- 1. Color & Type Tokens (LOCKED) ---------- */
 :root {
-  /* Surfaces */
-  --bg: #07070c;
-  --bg-elev: #0d0d14;
-  --bg-card: #11111a;
+  /* Surfaces — Triangulation cool near-black */
+  --bg: #050507;
+  --bg-elev: #0a0a0e;
+  --bg-card: #0f0f14;
 
   /* Text */
   --ink: #f4f1ea;
@@ -20,24 +19,27 @@
   --rule: #1f1d27;
   --rule-bright: #2d2a36;
 
-  /* Identity accent — single accent per Black Gold lock */
-  --gold: #d4a955;
-  --gold-bright: #e8be64;
-  --gold-deep: #8a6a2b;
-
-  /* Semantic — only for state, never decorative */
-  --green: #6ee7a3;
-  --red: #ff6b6b;
+  /* Triangulation dual-yellow */
+  --y2: #F0FF00;          /* Hi-vis hero — marketing surfaces */
+  --y2-bright: #FFFD58;   /* Metallic gradient top stop */
+  --y2-deep: #C8D300;     /* Metallic gradient bottom stop */
+  --y1: #B8FF3A;          /* Chartreuse dashboard — product surfaces only */
 
   /* Type stacks */
-  --serif: 'Instrument Serif', Georgia, 'Times New Roman', serif;
-  --sans: 'Inter Tight', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
   --mono: 'JetBrains Mono', 'SF Mono', Menlo, Consolas, monospace;
 
   /* Spacing rhythm */
   --section-y: clamp(80px, 10vw, 144px);
   --container-x: clamp(20px, 5vw, 64px);
   --max-w: 1200px;
+
+  /* Transition aliases — keep unbuilt sections renderable during section-by-section
+     Triangulation rebuild. Each section's rebuild will remove its var(--gold)/var(--serif)
+     usages explicitly; these aliases retire automatically as references hit zero. */
+  --gold: var(--y2);
+  --serif: var(--sans);
+  --green: var(--y2);
 }
 
 /* ---------- 2. Reset & Base ---------- */
@@ -53,7 +55,7 @@ html {
 
 body {
   font-family: var(--sans);
-  font-weight: 300;
+  font-weight: 400;
   font-size: 18px;
   line-height: 1.65;
   letter-spacing: -0.005em;
@@ -66,54 +68,73 @@ body {
 img, svg, video { max-width: 100%; height: auto; display: block; }
 
 a { color: inherit; text-decoration: none; transition: color 180ms ease; }
-a:hover { color: var(--gold); }
-a:focus-visible { outline: 2px solid var(--gold); outline-offset: 3px; border-radius: 2px; }
+a:hover { color: var(--y2); }
+a:focus-visible { outline: 2px solid var(--y2); outline-offset: 3px; border-radius: 2px; }
 
 button { font: inherit; color: inherit; background: none; border: none; cursor: pointer; }
 
-::selection { background: var(--gold); color: var(--bg); }
+::selection { background: var(--y2); color: var(--bg); }
 
-/* ---------- 3. Italic-Gold Em (THE Signature Move) ---------- */
-/* Universal: em becomes italic gold across every serif context.
-   Black Gold lock #2 — "the move that makes any BWM surface recognizable in 200ms." */
-em { font-style: italic; color: var(--gold); }
-
-/* ---------- 4. Display Type (Instrument Serif) ---------- */
+/* ---------- 3. Display Type (Inter condensed) ---------- */
 h1, h2, h3, h4 {
-  font-family: var(--serif);
-  font-weight: 400;
+  font-family: var(--sans);
+  font-weight: 800;
+  font-stretch: 75%;
   color: var(--ink);
-  letter-spacing: -0.02em;
+  letter-spacing: -0.03em;
 }
 
 .h-hero {
-  font-size: clamp(44px, 6vw, 92px);
-  line-height: 0.96;
-  letter-spacing: -0.025em;
+  font-family: var(--sans);
+  font-weight: 800;
+  font-stretch: 75%;
+  font-size: clamp(44px, 6vw, 88px);
+  line-height: 0.88;
+  letter-spacing: -0.04em;
+}
+
+.h-hero-num {
+  font-family: var(--sans);
+  font-weight: 800;
+  font-stretch: 75%;
+  font-size: clamp(72px, 12vw, 110px);
+  line-height: 0.84;
+  letter-spacing: -0.06em;
+  color: var(--y2);
+  display: block;
 }
 
 .h-closer {
+  font-family: var(--sans);
+  font-weight: 800;
+  font-stretch: 75%;
   font-size: clamp(48px, 7vw, 96px);
   line-height: 0.95;
-  letter-spacing: -0.025em;
+  letter-spacing: -0.04em;
 }
 
 .h-section {
+  font-family: var(--sans);
+  font-weight: 800;
+  font-stretch: 75%;
   font-size: clamp(40px, 5.5vw, 72px);
   line-height: 1.0;
-  letter-spacing: -0.02em;
+  letter-spacing: -0.035em;
 }
 
 .h-sub {
+  font-family: var(--sans);
+  font-weight: 800;
+  font-stretch: 75%;
   font-size: clamp(28px, 3.5vw, 42px);
   line-height: 1.15;
-  letter-spacing: -0.015em;
+  letter-spacing: -0.03em;
 }
 
-/* ---------- 5. Body Type (Inter Tight) ---------- */
+/* ---------- 4. Body Type (Inter) ---------- */
 .lede {
   font-size: 22px;
-  font-weight: 300;
+  font-weight: 400;
   line-height: 1.5;
   color: var(--ink-dim);
   max-width: 680px;
@@ -121,7 +142,7 @@ h1, h2, h3, h4 {
 
 .hero-sub {
   font-size: 21px;
-  font-weight: 300;
+  font-weight: 400;
   line-height: 1.55;
   color: var(--ink-dim);
   max-width: 620px;
@@ -129,7 +150,7 @@ h1, h2, h3, h4 {
 
 .prose p {
   font-size: 19px;
-  font-weight: 300;
+  font-weight: 400;
   line-height: 1.7;
   color: var(--ink);
   max-width: 680px;
@@ -138,13 +159,13 @@ h1, h2, h3, h4 {
 
 .prose .lead {
   font-size: 28px;
-  font-weight: 400;
+  font-weight: 500;
   line-height: 1.4;
   color: var(--ink);
-  font-family: var(--serif);
+  font-family: var(--sans);
 }
 
-/* ---------- 6. Micro Type (JetBrains Mono) — always uppercase + tracked ---------- */
+/* ---------- 5. Micro Type (JetBrains Mono) — always uppercase + tracked ---------- */
 .eyebrow,
 .section-tag,
 .kpi-label,
@@ -159,8 +180,8 @@ h1, h2, h3, h4 {
 
 .eyebrow {
   font-size: 11px;
-  letter-spacing: 0.30em;
-  color: var(--gold);
+  letter-spacing: 0.18em;
+  color: var(--y2);
   display: inline-flex;
   align-items: center;
   gap: 14px;
@@ -170,13 +191,13 @@ h1, h2, h3, h4 {
   display: inline-block;
   width: 24px;
   height: 1px;
-  background: var(--gold);
+  background: var(--y2);
 }
 
 .section-tag {
   font-size: 11px;
   letter-spacing: 0.25em;
-  color: var(--gold);
+  color: var(--y2);
   display: inline-flex;
   align-items: center;
   gap: 14px;
@@ -187,7 +208,7 @@ h1, h2, h3, h4 {
   display: inline-block;
   width: 24px;
   height: 1px;
-  background: var(--gold);
+  background: var(--y2);
 }
 
 .kpi-label, .stat-label, .metric-label {
@@ -198,24 +219,27 @@ h1, h2, h3, h4 {
 
 .reveal-caption { font-size: 11px; letter-spacing: 0.25em; color: var(--ink-faint); }
 
-/* ---------- 7. Numerals — Serif, never mono ---------- */
+/* ---------- 6. Numerals — Inter condensed ---------- */
 .num, .stat-num, .metric-val {
-  font-family: var(--serif);
-  font-weight: 400;
-  letter-spacing: -0.02em;
+  font-family: var(--sans);
+  font-weight: 800;
+  font-stretch: 75%;
+  letter-spacing: -0.04em;
   line-height: 1;
 }
 .stat-num { font-size: clamp(42px, 6vw, 56px); color: var(--ink); }
 .metric-val { font-size: clamp(40px, 5vw, 52px); color: var(--ink); }
 .reveal-num {
+  font-family: var(--sans);
+  font-weight: 800;
+  font-stretch: 75%;
   font-size: clamp(120px, 22vw, 320px);
-  font-style: italic;
   line-height: 0.9;
-  letter-spacing: -0.04em;
-  color: var(--gold);
+  letter-spacing: -0.06em;
+  color: var(--y2);
 }
 
-/* ---------- 8. Layout primitives ---------- */
+/* ---------- 7. Layout primitives ---------- */
 .container {
   max-width: var(--max-w);
   margin: 0 auto;
@@ -227,9 +251,9 @@ section { padding-block: var(--section-y); position: relative; }
 section.elev { background: var(--bg-elev); }
 
 .divider { height: 1px; background: var(--rule); border: 0; margin: 0; }
-.gold-rule { height: 1px; background: var(--gold); border: 0; }
+.gold-rule { height: 1px; background: var(--y2); border: 0; }
 
-/* ---------- 9. CTAs ---------- */
+/* ---------- 8. CTAs ---------- */
 .cta {
   display: inline-flex;
   align-items: center;
@@ -240,19 +264,18 @@ section.elev { background: var(--bg-elev); }
   font-size: 16px;
   letter-spacing: 0.01em;
   color: var(--bg);
-  background: var(--gold);
-  border: 1px solid var(--gold);
+  background: var(--y2);
+  border: 1px solid var(--y2);
   border-radius: 2px;
-  transition: all 180ms ease;
+  transition: color 180ms ease, background-color 180ms ease, border-color 180ms ease;
   white-space: nowrap;
 }
 .cta:hover {
-  background: var(--gold-bright);
-  border-color: var(--gold-bright);
+  background: var(--y2-bright);
+  border-color: var(--y2-bright);
   color: var(--bg);
-  transform: translateY(-1px);
 }
-.cta:focus-visible { outline: 2px solid var(--gold-bright); outline-offset: 3px; }
+.cta:focus-visible { outline: 2px solid var(--y2-bright); outline-offset: 3px; }
 
 .cta-ghost {
   display: inline-flex;
@@ -267,13 +290,13 @@ section.elev { background: var(--bg-elev); }
   background: transparent;
   border: 1px solid var(--rule-bright);
   border-radius: 2px;
-  transition: all 180ms ease;
+  transition: color 180ms ease, background-color 180ms ease, border-color 180ms ease;
   white-space: nowrap;
 }
 .cta-ghost:hover {
-  border-color: var(--gold);
-  color: var(--gold);
-  background: rgba(212, 169, 85, 0.04);
+  border-color: var(--y2);
+  color: var(--y2);
+  background: rgba(240, 255, 0, 0.04);
 }
 
 .cta-arrow {
@@ -284,7 +307,7 @@ section.elev { background: var(--bg-elev); }
   transform: translateY(-1px);
 }
 
-/* ---------- 10. Cards ---------- */
+/* ---------- 9. Cards ---------- */
 .card {
   background: var(--bg-card);
   border: 1px solid var(--rule);
@@ -304,24 +327,25 @@ section.elev { background: var(--bg-elev); }
 
 .card-body {
   font-size: 14px;
-  font-weight: 300;
+  font-weight: 400;
   line-height: 1.5;
   color: var(--ink-dim);
 }
 
-/* ---------- 11. Pull quote / testimonial ---------- */
+/* ---------- 10. Pull quote / testimonial ---------- */
 .pull {
-  font-family: var(--serif);
+  font-family: var(--sans);
   font-size: clamp(28px, 3.5vw, 42px);
-  font-weight: 400;
-  font-style: italic;
+  font-weight: 800;
+  font-stretch: 75%;
   line-height: 1.25;
+  letter-spacing: -0.03em;
   color: var(--ink);
-  border-left: 1px solid var(--gold);
+  border-left: 1px solid var(--y2);
   padding-left: 32px;
 }
 
-/* ---------- 12. Status dot ---------- */
+/* ---------- 11. Status dot ---------- */
 .dot {
   display: inline-block;
   width: 8px;
@@ -331,12 +355,12 @@ section.elev { background: var(--bg-elev); }
   margin-right: 8px;
 }
 .dot.live {
-  background: var(--green);
-  box-shadow: 0 0 12px rgba(110, 231, 163, 0.5);
+  background: var(--y2);
+  box-shadow: 0 0 12px rgba(240, 255, 0, 0.5);
 }
 .dot.idle { background: var(--ink-faint); }
 
-/* ---------- 13. Mobile lift (≤520px) ---------- */
+/* ---------- 12. Mobile lift (≤520px) ---------- */
 @media (max-width: 520px) {
   body { font-size: 20px; }
   .prose p { font-size: 24px; line-height: 1.6; }
@@ -347,32 +371,25 @@ section.elev { background: var(--bg-elev); }
   .section-tag, .eyebrow { font-size: 16px; letter-spacing: 0.18em; }
 }
 
-/* ---------- 14. Reveal-on-scroll utility ---------- */
-.reveal { opacity: 0; transform: translateY(16px); transition: opacity 700ms ease, transform 700ms ease; }
-.reveal.in { opacity: 1; transform: none; }
-@media (prefers-reduced-motion: reduce) {
-  .reveal { opacity: 1; transform: none; transition: none; }
-}
-
-/* ---------- 15. Accessibility ---------- */
+/* ---------- 13. Accessibility ---------- */
 .sr-only {
   position: absolute; width: 1px; height: 1px; padding: 0;
   margin: -1px; overflow: hidden; clip: rect(0,0,0,0);
   white-space: nowrap; border: 0;
 }
 
-/* ---------- 16. Dot grid (atmospheric AI section) ---------- */
+/* ---------- 14. Dot grid (atmospheric AI section) ---------- */
 .dot-grid {
   background-image: radial-gradient(circle at center, var(--rule) 1px, transparent 1px);
   background-size: 32px 32px;
 }
 
-/* ---------- 17. Skip link ---------- */
+/* ---------- 15. Skip link ---------- */
 .skip-link {
   position: absolute; top: -100px; left: 16px;
-  padding: 12px 18px; background: var(--bg); color: var(--gold);
+  padding: 12px 18px; background: var(--bg); color: var(--y2);
   font-family: var(--mono); font-size: 12px; letter-spacing: 0.15em;
-  text-transform: uppercase; border: 1px solid var(--gold);
+  text-transform: uppercase; border: 1px solid var(--y2);
   z-index: 9999; transition: top 200ms ease;
 }
 .skip-link:focus { top: 16px; }
