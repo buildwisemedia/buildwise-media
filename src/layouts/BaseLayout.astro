@@ -47,19 +47,25 @@ const jsonLdArray = Array.isArray(jsonLd) ? jsonLd : jsonLd ? [jsonLd] : [];
     {noindex && <meta name="robots" content="noindex,nofollow" />}
     <link rel="canonical" href={canonicalUrl} />
 
-    <!-- Theme + favicon -->
+    <!-- Theme + favicon (Triangulation V3 mark — locked 2026-04-30 against brand/BWM-Logo-System-Locked.md) -->
     <meta name="theme-color" content="#050507" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="alternate icon" href="/favicon.ico" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon-180.png" />
 
-    <!-- Open Graph -->
+    <!-- Open Graph (image hosted on R2: bwm-assets/marks/triangulation-v3/exports/banner/og-1200x630-v1.png) -->
     <meta property="og:type" content="website" />
     <meta property="og:title" content={ogT} />
     <meta property="og:description" content={ogD} />
     <meta property="og:url" content={canonicalUrl} />
     <meta property="og:site_name" content="Buildwise Media" />
-    <meta property="og:image" content={`${siteUrl}/og-image.svg`} />
+    <meta property="og:image" content="https://pub-85c635a2536e438b9927af5e6723b0f7.r2.dev/marks/triangulation-v3/exports/banner/og-1200x630-v1.png" />
+    <meta property="og:image:type" content="image/png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Buildwise Media — Your AI Department" />
     <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:image" content="https://pub-85c635a2536e438b9927af5e6723b0f7.r2.dev/marks/triangulation-v3/exports/banner/og-1200x630-v1.png" />
 
     <!-- Fonts: Inter (display + body) + JetBrains Mono (micro) -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
