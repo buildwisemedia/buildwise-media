@@ -4,21 +4,25 @@
 const problems = [
   {
     n: '01',
+    slug: 'lead-drought',
     name: 'Lead Drought',
     body: 'Some weeks the phone rings. Other weeks it doesn\'t. You can\'t plan, can\'t hire, can\'t breathe. Every quiet stretch is its own emergency.',
   },
   {
     n: '02',
+    slug: 'owner-trap',
     name: 'Owner Trap',
     body: 'You are the brand, the closer, the operator, the marketing department. You can\'t take a vacation without watching the pipeline collapse.',
   },
   {
     n: '03',
+    slug: 'manual-mayhem',
     name: 'Manual Mayhem',
     body: 'A vendor for ads. A different one for SEO. A third for the website. None of them talk. You\'re the integration layer — by accident.',
   },
   {
     n: '04',
+    slug: 'reactive-mode',
     name: 'Reactive Mode',
     body: 'You spend the day putting out fires you didn\'t start. Strategy keeps slipping to "after this quarter." The quarter never ends.',
   },
@@ -41,15 +45,19 @@ const problems = [
 
     <ol class="problems-grid" role="list">
       {problems.map((p) => (
-        <li class="problem-card reveal">
-          <p class="problem-num mono">{p.n}</p>
-          <h3 class="problem-name">{p.name}</h3>
-          <p class="problem-body">{p.body}</p>
+        <li class="problem-card-li reveal">
+          <a class="problem-card" href={`/problem/${p.slug}`}>
+            <span class="problem-dot" aria-hidden="true"></span>
+            <p class="problem-num">{p.n}</p>
+            <h3 class="problem-name h-sub">{p.name}</h3>
+            <p class="problem-body">{p.body}</p>
+            <span class="problem-cta mono">Read more <em>→</em></span>
+          </a>
         </li>
       ))}
     </ol>
 
-    <p class="poor-four-foot reveal">
+    <p class="poor-four-foot h-sub reveal">
       If three of these sound familiar, you don't have a marketing problem.<br/>
       You have an <em>operations</em> problem dressed as a marketing problem.
     </p>
@@ -60,6 +68,12 @@ const problems = [
 <style>
 .poor-four { padding-block: var(--section-y); }
 .poor-four-head { display: flex; flex-direction: column; gap: 24px; margin-bottom: 64px; max-width: 880px; }
+.poor-four-head h2 em,
+.poor-four-foot em {
+  color: var(--y2);
+  font-style: normal;
+  font-weight: inherit;
+}
 
 .problems-grid {
   list-style: none;
@@ -68,7 +82,9 @@ const problems = [
   gap: 24px;
   margin-block: 24px 64px;
 }
+.problem-card-li { list-style: none; }
 .problem-card {
+  position: relative;
   background: var(--bg-card);
   border: 1px solid var(--rule);
   border-radius: 2px;
@@ -76,20 +92,47 @@ const problems = [
   display: flex;
   flex-direction: column;
   gap: 14px;
-  transition: border-color 220ms ease, transform 220ms ease;
+  text-decoration: none;
+  color: inherit;
+  transition: border-color 220ms ease;
 }
 .problem-card:hover {
-  border-color: var(--gold);
-  transform: translateY(-2px);
+  border-color: var(--y2);
 }
-.problem-num { font-size: 11px; letter-spacing: 0.25em; color: var(--gold); }
-.problem-name {
-  font-family: var(--serif);
-  font-weight: 400;
-  font-size: clamp(28px, 3vw, 36px);
-  letter-spacing: -0.015em;
-  line-height: 1.05;
-  color: var(--ink);
+.problem-dot {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--y2);
+  opacity: 0;
+  transition: opacity 220ms ease;
+}
+.problem-card:hover .problem-dot,
+.problem-card:focus-visible .problem-dot {
+  opacity: 1;
+}
+.problem-cta {
+  margin-top: 4px;
+  font-size: 11px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+  transition: color 220ms ease;
+}
+.problem-cta em { font-style: normal; color: inherit; }
+.problem-card:hover .problem-cta { color: var(--y2); }
+.problem-num {
+  font-family: var(--sans);
+  font-weight: 800;
+  font-stretch: 75%;
+  font-size: clamp(28px, 3vw, 40px);
+  letter-spacing: -0.03em;
+  line-height: 0.9;
+  color: var(--ink-faint);
+  margin-bottom: 4px;
 }
 .problem-body {
   font-family: var(--sans);
@@ -100,10 +143,6 @@ const problems = [
 }
 
 .poor-four-foot {
-  font-family: var(--serif);
-  font-weight: 400;
-  font-size: clamp(24px, 2.6vw, 32px);
-  line-height: 1.3;
   color: var(--ink);
   border-top: 1px solid var(--rule);
   padding-top: 32px;

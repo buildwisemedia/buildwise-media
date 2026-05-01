@@ -10,6 +10,10 @@ const pages = [
   { loc: '/how-it-works', priority: '0.8', changefreq: 'monthly' },
   { loc: '/results', priority: '0.8', changefreq: 'weekly' },
   { loc: '/book', priority: '0.9', changefreq: 'monthly' },
+  { loc: '/problem/lead-drought', priority: '0.7', changefreq: 'monthly' },
+  { loc: '/problem/owner-trap', priority: '0.7', changefreq: 'monthly' },
+  { loc: '/problem/manual-mayhem', priority: '0.7', changefreq: 'monthly' },
+  { loc: '/problem/reactive-mode', priority: '0.7', changefreq: 'monthly' },
   { loc: '/privacy', priority: '0.3', changefreq: 'yearly' },
   { loc: '/terms', priority: '0.3', changefreq: 'yearly' },
 ];

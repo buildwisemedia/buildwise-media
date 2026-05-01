@@ -1,0 +1,101 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+const title = "Manual Mayhem — Buildwise Media";
+const description = "A vendor for ads. A different one for SEO. A third for the website. None of them talk. Manual mayhem isn't a tooling problem — it's the integration tax you pay because nobody owns the whole stack.";
+
+const breadcrumb = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://buildwisemedia.com/' },
+    { '@type': 'ListItem', position: 2, name: 'Manual Mayhem', item: 'https://buildwisemedia.com/problem/manual-mayhem' },
+  ],
+};
+---
+<BaseLayout title={title} description={description} jsonLd={[breadcrumb]}>
+
+  <section class="problem-hero">
+    <div class="container">
+      <p class="eyebrow"><a href="/#problem" class="back-link">← The Poor Four</a> · 03</p>
+      <h1 class="h-hero">
+        Manual <em>mayhem.</em>
+      </h1>
+      <p class="hero-sub">
+        A vendor for ads. A different one for SEO. A third for the website. None of them talk to each other. You're the integration layer — by accident — and you didn't sign up to be a project manager for five contractors.
+      </p>
+    </div>
+  </section>
+
+  <section class="problem-cost elev">
+    <div class="container">
+      <p class="section-tag">What it actually costs</p>
+      <h2 class="h-section">The integration tax.</h2>
+      <ol class="cost-list" role="list">
+        <li><strong>Tools that don't talk.</strong> The ads platform doesn't see the CRM. The CRM doesn't see the website. The website doesn't see the calendar. Every connection is a manual export.</li>
+        <li><strong>Duplicate billing, slower iteration.</strong> Three vendors charging for overlapping work, none with the full picture, none accountable for the result.</li>
+        <li><strong>You are the project manager.</strong> Hours per week chasing status, reconciling reports, and explaining the same context to four different inboxes.</li>
+        <li><strong>No unified view.</strong> What's working? What's broken? What changed last month? Nobody can answer because nobody can see the whole stack.</li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="problem-fix">
+    <div class="container">
+      <p class="section-tag">How we close it</p>
+      <h2 class="h-section">One operator. <em>Whole</em> stack.</h2>
+      <p class="lede">
+        We don't add a vendor to your stack. We replace the stack with a system one operator can run end-to-end. Acquisition, qualifying, scheduling, attribution, dashboards — designed to compose, not stitched together.
+      </p>
+      <p class="prose">
+        You stop being the integration layer. The system is the integration layer. Your inbox gets quieter. Iteration moves in days, not quarters.
+      </p>
+    </div>
+  </section>
+
+  <section class="problem-cta elev">
+    <div class="container">
+      <h2 class="h-closer">The mayhem is <em>optional.</em></h2>
+      <p class="lede">Most service businesses pay the integration tax for years before they realize it's a tax, not a feature. You don't have to.</p>
+      <p class="cta-row">
+        <a class="cta-primary" href="/book">See If We're a Fit <span class="cta-arrow">→</span></a>
+        <a class="cta-ghost" href="/#problem">Back to The Poor Four</a>
+      </p>
+    </div>
+  </section>
+
+</BaseLayout>
+
+<style>
+.problem-hero { padding-block: clamp(80px, 12vw, 144px); }
+.back-link { color: var(--ink-faint); transition: color 180ms ease; }
+.back-link:hover { color: var(--y2); }
+.problem-hero h1 em { color: var(--y2); font-style: normal; font-weight: inherit; }
+.problem-fix h2 em, .problem-cta h2 em { color: var(--y2); font-style: normal; font-weight: inherit; }
+
+.cost-list { list-style: none; counter-reset: cost; display: flex; flex-direction: column; gap: 24px; margin-top: 32px; max-width: 880px; }
+.cost-list li {
+  counter-increment: cost;
+  position: relative;
+  padding-left: 56px;
+  font-size: 17px;
+  line-height: 1.6;
+  color: var(--ink-dim);
+}
+.cost-list li::before {
+  content: counter(cost, decimal-leading-zero);
+  position: absolute;
+  left: 0;
+  top: 0;
+  font-family: var(--mono);
+  font-size: 13px;
+  letter-spacing: 0.18em;
+  color: var(--y2);
+}
+.cost-list strong { color: var(--ink); font-weight: 500; }
+
+.prose { font-size: 17px; line-height: 1.7; color: var(--ink-dim); max-width: 720px; margin-top: 24px; }
+.problem-fix .lede { margin-top: 32px; }
+
+.cta-row { display: flex; flex-wrap: wrap; gap: 16px; margin-top: 32px; }
+</style>

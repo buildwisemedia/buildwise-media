@@ -1,0 +1,101 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+const title = "Lead Drought — Buildwise Media";
+const description = "Some weeks the phone rings. Other weeks it doesn't. Lead drought is a system failure, not a marketing problem. Here's how we close it.";
+
+const breadcrumb = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://buildwisemedia.com/' },
+    { '@type': 'ListItem', position: 2, name: 'Lead Drought', item: 'https://buildwisemedia.com/problem/lead-drought' },
+  ],
+};
+---
+<BaseLayout title={title} description={description} jsonLd={[breadcrumb]}>
+
+  <section class="problem-hero">
+    <div class="container">
+      <p class="eyebrow"><a href="/#problem" class="back-link">← The Poor Four</a> · 01</p>
+      <h1 class="h-hero">
+        Lead <em>drought.</em>
+      </h1>
+      <p class="hero-sub">
+        Some weeks the phone rings. Other weeks it doesn't. You can't plan, can't hire, can't breathe. Every quiet stretch is its own emergency — and the next stretch is already coming.
+      </p>
+    </div>
+  </section>
+
+  <section class="problem-cost elev">
+    <div class="container">
+      <p class="section-tag">What it actually costs</p>
+      <h2 class="h-section">The drought tax.</h2>
+      <ol class="cost-list" role="list">
+        <li><strong>Planning becomes impossible.</strong> You can't commit to a hire, a build-out, or a long-cycle deal because next month is a coin flip.</li>
+        <li><strong>You take bad-fit work.</strong> When the phone goes quiet, the cheap "yes" feels safer than the expensive "no." Six months later the bad-fit client is the one eating your operations.</li>
+        <li><strong>Founder time gets vaporized.</strong> Quiet stretches turn into all-hands-on-marketing emergencies. The day job becomes survival, not building.</li>
+        <li><strong>Hiring stalls or panics.</strong> You under-hire (and burn out the team you have) or over-hire on a flush month and watch payroll outrun cash.</li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="problem-fix">
+    <div class="container">
+      <p class="section-tag">How we close it</p>
+      <h2 class="h-section">A pipeline you can <em>throttle</em>.</h2>
+      <p class="lede">
+        Lead drought isn't a marketing problem. It's a missing system. We install paid acquisition that runs daily, qualifying that filters for fit, and a pipeline you can throttle up or down based on capacity — not hope.
+      </p>
+      <p class="prose">
+        The system runs in 30 days, not 90. The numbers are real or they don't go on the page. The first qualified lead lands before the second invoice does.
+      </p>
+    </div>
+  </section>
+
+  <section class="problem-cta elev">
+    <div class="container">
+      <h2 class="h-closer">Quiet phones are <em>fixable.</em></h2>
+      <p class="lede">If three of the Poor Four sound familiar, the operations gap is bigger than the lead gap. That's the conversation worth having.</p>
+      <p class="cta-row">
+        <a class="cta-primary" href="/book">See If We're a Fit <span class="cta-arrow">→</span></a>
+        <a class="cta-ghost" href="/#problem">Back to The Poor Four</a>
+      </p>
+    </div>
+  </section>
+
+</BaseLayout>
+
+<style>
+.problem-hero { padding-block: clamp(80px, 12vw, 144px); }
+.back-link { color: var(--ink-faint); transition: color 180ms ease; }
+.back-link:hover { color: var(--y2); }
+.problem-hero h1 em { color: var(--y2); font-style: normal; font-weight: inherit; }
+.problem-fix h2 em, .problem-cta h2 em { color: var(--y2); font-style: normal; font-weight: inherit; }
+
+.cost-list { list-style: none; counter-reset: cost; display: flex; flex-direction: column; gap: 24px; margin-top: 32px; max-width: 880px; }
+.cost-list li {
+  counter-increment: cost;
+  position: relative;
+  padding-left: 56px;
+  font-size: 17px;
+  line-height: 1.6;
+  color: var(--ink-dim);
+}
+.cost-list li::before {
+  content: counter(cost, decimal-leading-zero);
+  position: absolute;
+  left: 0;
+  top: 0;
+  font-family: var(--mono);
+  font-size: 13px;
+  letter-spacing: 0.18em;
+  color: var(--y2);
+}
+.cost-list strong { color: var(--ink); font-weight: 500; }
+
+.prose { font-size: 17px; line-height: 1.7; color: var(--ink-dim); max-width: 720px; margin-top: 24px; }
+.problem-fix .lede { margin-top: 32px; }
+
+.cta-row { display: flex; flex-wrap: wrap; gap: 16px; margin-top: 32px; }
+</style>

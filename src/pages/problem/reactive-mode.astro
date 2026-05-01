@@ -1,0 +1,101 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+const title = "Reactive Mode — Buildwise Media";
+const description = "You spend the day putting out fires you didn't start. Strategy slips to next quarter. The quarter never ends. Reactive mode isn't a discipline failure — it's an instrumentation failure.";
+
+const breadcrumb = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://buildwisemedia.com/' },
+    { '@type': 'ListItem', position: 2, name: 'Reactive Mode', item: 'https://buildwisemedia.com/problem/reactive-mode' },
+  ],
+};
+---
+<BaseLayout title={title} description={description} jsonLd={[breadcrumb]}>
+
+  <section class="problem-hero">
+    <div class="container">
+      <p class="eyebrow"><a href="/#problem" class="back-link">← The Poor Four</a> · 04</p>
+      <h1 class="h-hero">
+        Reactive <em>mode.</em>
+      </h1>
+      <p class="hero-sub">
+        You spend the day putting out fires you didn't start. Strategy keeps slipping to "after this quarter." The quarter never ends. The work compounds — but in the wrong direction, because nothing measured means nothing learned.
+      </p>
+    </div>
+  </section>
+
+  <section class="problem-cost elev">
+    <div class="container">
+      <p class="section-tag">What it actually costs</p>
+      <h2 class="h-section">The reaction tax.</h2>
+      <ol class="cost-list" role="list">
+        <li><strong>No compounding.</strong> Every quarter starts at zero because last quarter's lessons were never captured. Three years of operating, one year of learning.</li>
+        <li><strong>Strategy lives in next-quarter purgatory.</strong> The plan keeps slipping because the calendar keeps filling with reactions to whatever broke this morning.</li>
+        <li><strong>No instrumentation, no steering.</strong> Without dashboards, you're flying by feel. Sometimes feel is right. Often it isn't, and you don't find out until the bank balance tells you.</li>
+        <li><strong>Decisions get smaller, not bigger.</strong> The brain stays in tactical-firefighting mode. Strategic decisions don't even surface — and the ones that do, you postpone.</li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="problem-fix">
+    <div class="container">
+      <p class="section-tag">How we close it</p>
+      <h2 class="h-section">Steering, not <em>firefighting</em>.</h2>
+      <p class="lede">
+        Reactive mode ends when the system has its own instrumentation. Dashboards show you what's working before you have to ask. Anomalies surface as alerts, not as crises three weeks late. Strategy moves from "after this quarter" to "this Tuesday."
+      </p>
+      <p class="prose">
+        We install measurement first, then the system on top of it. Every claim audits against a captured baseline. Every connector audits weekly. The numbers are real or they don't go on the page.
+      </p>
+    </div>
+  </section>
+
+  <section class="problem-cta elev">
+    <div class="container">
+      <h2 class="h-closer">Reactive isn't a <em>personality.</em></h2>
+      <p class="lede">It's the predictable output of a system without instrumentation. Change the system, change the mode.</p>
+      <p class="cta-row">
+        <a class="cta-primary" href="/book">See If We're a Fit <span class="cta-arrow">→</span></a>
+        <a class="cta-ghost" href="/#problem">Back to The Poor Four</a>
+      </p>
+    </div>
+  </section>
+
+</BaseLayout>
+
+<style>
+.problem-hero { padding-block: clamp(80px, 12vw, 144px); }
+.back-link { color: var(--ink-faint); transition: color 180ms ease; }
+.back-link:hover { color: var(--y2); }
+.problem-hero h1 em { color: var(--y2); font-style: normal; font-weight: inherit; }
+.problem-fix h2 em, .problem-cta h2 em { color: var(--y2); font-style: normal; font-weight: inherit; }
+
+.cost-list { list-style: none; counter-reset: cost; display: flex; flex-direction: column; gap: 24px; margin-top: 32px; max-width: 880px; }
+.cost-list li {
+  counter-increment: cost;
+  position: relative;
+  padding-left: 56px;
+  font-size: 17px;
+  line-height: 1.6;
+  color: var(--ink-dim);
+}
+.cost-list li::before {
+  content: counter(cost, decimal-leading-zero);
+  position: absolute;
+  left: 0;
+  top: 0;
+  font-family: var(--mono);
+  font-size: 13px;
+  letter-spacing: 0.18em;
+  color: var(--y2);
+}
+.cost-list strong { color: var(--ink); font-weight: 500; }
+
+.prose { font-size: 17px; line-height: 1.7; color: var(--ink-dim); max-width: 720px; margin-top: 24px; }
+.problem-fix .lede { margin-top: 32px; }
+
+.cta-row { display: flex; flex-wrap: wrap; gap: 16px; margin-top: 32px; }
+</style>

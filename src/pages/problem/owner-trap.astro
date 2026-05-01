@@ -1,0 +1,101 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+const title = "Owner Trap — Buildwise Media";
+const description = "You are the brand, the closer, the operator, the marketing department. The owner trap isn't about effort. It's about a system that can't run without you.";
+
+const breadcrumb = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://buildwisemedia.com/' },
+    { '@type': 'ListItem', position: 2, name: 'Owner Trap', item: 'https://buildwisemedia.com/problem/owner-trap' },
+  ],
+};
+---
+<BaseLayout title={title} description={description} jsonLd={[breadcrumb]}>
+
+  <section class="problem-hero">
+    <div class="container">
+      <p class="eyebrow"><a href="/#problem" class="back-link">← The Poor Four</a> · 02</p>
+      <h1 class="h-hero">
+        The owner <em>trap.</em>
+      </h1>
+      <p class="hero-sub">
+        You are the brand, the closer, the operator, the marketing department. You can't take a vacation without watching the pipeline collapse. The business doesn't have a marketing problem — it has a single-point-of-failure problem, and you are the point.
+      </p>
+    </div>
+  </section>
+
+  <section class="problem-cost elev">
+    <div class="container">
+      <p class="section-tag">What it actually costs</p>
+      <h2 class="h-section">The trap tax.</h2>
+      <ol class="cost-list" role="list">
+        <li><strong>You can't take a real vacation.</strong> The phone is on. The laptop is open. Family time runs on a 30-minute timer because the pipeline is you.</li>
+        <li><strong>Scaling stalls at delegation.</strong> Every attempt to hand off marketing dies because the system lives in your head, not on a screen.</li>
+        <li><strong>Burnout is structural, not personal.</strong> You aren't tired because you're weak. You're tired because the org chart has one node.</li>
+        <li><strong>Sale value evaporates.</strong> An owner-dependent business sells at 2x EBITDA. A system-dependent business sells at 5x or doesn't need to sell.</li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="problem-fix">
+    <div class="container">
+      <p class="section-tag">How we close it</p>
+      <h2 class="h-section">Marketing as a <em>system</em>, not a person.</h2>
+      <p class="lede">
+        We don't build a marketing department around you. We install a marketing system that runs without you. The system handles acquisition, qualifying, and routing — your time goes to the conversations that actually need a human.
+      </p>
+      <p class="prose">
+        Day one: the system is operational. Month two: you take a real weekend. Month six: the business runs at the speed of the system, not the speed of the founder.
+      </p>
+    </div>
+  </section>
+
+  <section class="problem-cta elev">
+    <div class="container">
+      <h2 class="h-closer">The trap is <em>solvable.</em></h2>
+      <p class="lede">If you've been the marketing department for too long, the cost isn't time — it's optionality. Let's get it back.</p>
+      <p class="cta-row">
+        <a class="cta-primary" href="/book">See If We're a Fit <span class="cta-arrow">→</span></a>
+        <a class="cta-ghost" href="/#problem">Back to The Poor Four</a>
+      </p>
+    </div>
+  </section>
+
+</BaseLayout>
+
+<style>
+.problem-hero { padding-block: clamp(80px, 12vw, 144px); }
+.back-link { color: var(--ink-faint); transition: color 180ms ease; }
+.back-link:hover { color: var(--y2); }
+.problem-hero h1 em { color: var(--y2); font-style: normal; font-weight: inherit; }
+.problem-fix h2 em, .problem-cta h2 em { color: var(--y2); font-style: normal; font-weight: inherit; }
+
+.cost-list { list-style: none; counter-reset: cost; display: flex; flex-direction: column; gap: 24px; margin-top: 32px; max-width: 880px; }
+.cost-list li {
+  counter-increment: cost;
+  position: relative;
+  padding-left: 56px;
+  font-size: 17px;
+  line-height: 1.6;
+  color: var(--ink-dim);
+}
+.cost-list li::before {
+  content: counter(cost, decimal-leading-zero);
+  position: absolute;
+  left: 0;
+  top: 0;
+  font-family: var(--mono);
+  font-size: 13px;
+  letter-spacing: 0.18em;
+  color: var(--y2);
+}
+.cost-list strong { color: var(--ink); font-weight: 500; }
+
+.prose { font-size: 17px; line-height: 1.7; color: var(--ink-dim); max-width: 720px; margin-top: 24px; }
+.problem-fix .lede { margin-top: 32px; }
+
+.cta-row { display: flex; flex-wrap: wrap; gap: 16px; margin-top: 32px; }
+</style>
