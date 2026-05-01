@@ -22,7 +22,7 @@ const stats = [
       ))}
     </div>
     <p class="trust-foot mono">
-      Each number is computed against a captured baseline. Every claim audits against the source. Confidence floor: 75%.
+      Each number is computed against a captured baseline. Every claim audits against the source. Confidence floor: 75%. <a href="/results" class="trust-foot-link" data-cta-source="trustbar-results">See the receipts <span aria-hidden="true">→</span></a>
     </p>
   </div>
 </section>
@@ -52,6 +52,8 @@ const stats = [
   max-width: 720px;
   line-height: 1.65;
 }
+.trust-foot-link { color: var(--y2); white-space: nowrap; transition: opacity 180ms ease; }
+.trust-foot-link:hover { opacity: 0.75; }
 @media (max-width: 880px) {
   .stats-grid { grid-template-columns: repeat(2, 1fr); gap: 24px; }
 }
