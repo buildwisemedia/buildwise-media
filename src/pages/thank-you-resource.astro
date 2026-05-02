@@ -1,0 +1,122 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const title = "Thanks for your interest — Buildwise Media";
+const description = "Based on what you shared, here's the resource you'd find more useful right now.";
+---
+<BaseLayout title={title} description={description} jsonLd={[]}>
+
+  <section class="ty-page">
+    <div class="container ty-grid">
+
+      <div class="ty-content">
+        <p class="eyebrow">Thank you</p>
+        <h1 class="h-hero">
+          We're not the right fit<br/>
+          <em>right now</em>.
+        </h1>
+        <p class="ty-sub">
+          Based on what you shared, our system is built for a different stage. We don't want to waste your time on a sales call we'd both regret.
+        </p>
+
+        <p class="ty-body">
+          That said — most founders we work with were once in your position. The compounding move at your stage is fixing the leverage points <em>before</em> you scale ad spend. We've put together a 9-page diagnostic that walks through the most common ones.
+        </p>
+
+        <a class="ty-cta" href="/resources/marketing-leverage-diagnostic.pdf" data-cta-source="thank-you-resource-cta" download>
+          Download the diagnostic <span aria-hidden="true">→</span>
+        </a>
+
+        <p class="ty-followup">
+          We'll check back in 6 months — if your numbers have grown, we'd love to revisit. No spam, no upsells in the meantime.
+        </p>
+      </div>
+
+      <aside class="ty-meta">
+        <p class="meta-label mono">Why this gate exists</p>
+        <p class="meta-body">
+          BWM's system is built for businesses with proven offer economics. Bringing on clients before that point doesn't help them — it adds cost without leverage. We'd rather be the right partner at the right time.
+        </p>
+      </aside>
+
+    </div>
+  </section>
+
+</BaseLayout>
+
+<script is:inline>
+  // Capture which classification reason landed here (for nurture sequence personalization)
+  (function () {
+    const params = new URLSearchParams(window.location.search);
+    const reason = params.get('reason') || 'unspecified';
+    sessionStorage.setItem('bwm_disqualification_reason', reason);
+  })();
+</script>
+
+<style>
+.ty-page { padding-top: clamp(96px, 10vw, 180px); padding-bottom: var(--section-y); }
+.ty-page .h-hero {
+  font-size: clamp(36px, 4.5vw, 64px) !important;
+  line-height: 1.05 !important;
+  text-wrap: balance;
+}
+.ty-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr);
+  gap: clamp(48px, 6vw, 80px);
+  align-items: start;
+}
+.ty-content { display: flex; flex-direction: column; gap: 24px; }
+.ty-sub {
+  font-size: 18px;
+  font-weight: 300;
+  line-height: 1.5;
+  color: var(--ink-dim);
+  margin: 0;
+}
+.ty-body {
+  font-size: 16px;
+  font-weight: 300;
+  line-height: 1.65;
+  color: var(--ink-dim);
+  margin: 0;
+}
+.ty-cta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  padding: 18px 28px;
+  background: var(--gold);
+  color: #050507;
+  text-decoration: none;
+  font-family: 'Inter', sans-serif;
+  font-weight: 700;
+  font-size: 16px;
+  letter-spacing: -0.01em;
+  border: 1px solid var(--gold);
+  align-self: flex-start;
+  transition: opacity 0.15s;
+}
+.ty-cta:hover, .ty-cta:focus-visible { opacity: 0.85; }
+.ty-followup {
+  font-size: 13px;
+  color: var(--ink-faint);
+  font-style: italic;
+  margin: 16px 0 0 0;
+}
+.ty-meta {
+  position: sticky;
+  top: 100px;
+  padding: 24px;
+  background: var(--bg-elev);
+  border-left: 2px solid var(--gold);
+}
+.meta-label { font-size: 10px; letter-spacing: 0.2em; color: var(--gold); margin: 0 0 12px 0; }
+.meta-body { font-size: 14px; font-weight: 300; line-height: 1.6; color: var(--ink-dim); margin: 0; }
+
+@media (max-width: 880px) {
+  .ty-grid { grid-template-columns: 1fr; }
+  .ty-meta { position: static; }
+}
+</style>

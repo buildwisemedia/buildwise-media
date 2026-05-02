@@ -1,0 +1,275 @@
+---
+// Qualifier form gating Cal.com embed on /book.
+// On submit: POSTs to bwm-form-handler /buildwisemedia/discovery-qualifier
+// On qualified: hides form, reveals #cal-inline, pre-fills Cal name+email
+// On disqualified: redirects to /thank-you-resource?reason=<reason>
+---
+<form id="qualifier-form" class="qualifier-form" novalidate>
+  <p class="q-eyebrow mono">FIT CHECK · 30 SECONDS</p>
+  <h2 class="q-heading">Four questions before we put time on the calendar.</h2>
+  <p class="q-sub">We respect your time. Calls only happen if there's mutual fit.</p>
+
+  <div class="q-row">
+    <label class="q-label" for="q-first-name">First name</label>
+    <input id="q-first-name" name="first_name" type="text" required autocomplete="given-name" />
+  </div>
+
+  <div class="q-row">
+    <label class="q-label" for="q-email">Work email</label>
+    <input id="q-email" name="email" type="email" required autocomplete="email" />
+  </div>
+
+  <div class="q-row">
+    <label class="q-label" for="q-company">Company</label>
+    <input id="q-company" name="company" type="text" required autocomplete="organization" />
+  </div>
+
+  <fieldset class="q-fieldset">
+    <legend class="q-label">Annual revenue</legend>
+    <div class="q-options">
+      <label><input type="radio" name="revenue_range" value="less_than_250k" required /><span>Less than $250K</span></label>
+      <label><input type="radio" name="revenue_range" value="250k_to_1m" /><span>$250K - $1M</span></label>
+      <label><input type="radio" name="revenue_range" value="1m_to_5m" /><span>$1M - $5M</span></label>
+      <label><input type="radio" name="revenue_range" value="5m_to_10m" /><span>$5M - $10M</span></label>
+      <label><input type="radio" name="revenue_range" value="over_10m" /><span>Over $10M</span></label>
+    </div>
+  </fieldset>
+
+  <fieldset class="q-fieldset">
+    <legend class="q-label">Current monthly marketing spend</legend>
+    <div class="q-options">
+      <label><input type="radio" name="marketing_spend" value="less_than_1000" required /><span>Less than $1,000</span></label>
+      <label><input type="radio" name="marketing_spend" value="1k_to_5k" /><span>$1,000 - $5,000</span></label>
+      <label><input type="radio" name="marketing_spend" value="5k_to_20k" /><span>$5,000 - $20,000</span></label>
+      <label><input type="radio" name="marketing_spend" value="20k_plus" /><span>$20,000+</span></label>
+    </div>
+  </fieldset>
+
+  <div class="q-row">
+    <label class="q-label" for="q-top-goal">What result would you want in the next 90 days?</label>
+    <textarea id="q-top-goal" name="top_goal" required maxlength="200" rows="2" placeholder="One sentence is enough."></textarea>
+  </div>
+
+  <fieldset class="q-fieldset">
+    <legend class="q-label">Are you the decision-maker on marketing investments?</legend>
+    <div class="q-options">
+      <label><input type="radio" name="decision_maker" value="yes_i_decide" required /><span>Yes, I make the call</span></label>
+      <label><input type="radio" name="decision_maker" value="i_influence" /><span>I influence the decision</span></label>
+      <label><input type="radio" name="decision_maker" value="no_someone_else" /><span>No, someone else decides</span></label>
+    </div>
+  </fieldset>
+
+  <button type="submit" class="q-submit" id="q-submit-btn">
+    <span class="q-submit-label">Check fit</span>
+    <span class="q-submit-loading" hidden>Checking…</span>
+  </button>
+
+  <p class="q-error" id="q-error" hidden></p>
+</form>
+
+<script is:inline>
+(function () {
+  const form = document.getElementById('qualifier-form');
+  const submitBtn = document.getElementById('q-submit-btn');
+  const errorEl = document.getElementById('q-error');
+
+  if (!form) return;
+
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    errorEl.hidden = true;
+    submitBtn.disabled = true;
+    submitBtn.querySelector('.q-submit-label').hidden = true;
+    submitBtn.querySelector('.q-submit-loading').hidden = false;
+
+    const fd = new FormData(form);
+    const payload = {
+      first_name: fd.get('first_name'),
+      email: fd.get('email'),
+      company: fd.get('company'),
+      revenue_range: fd.get('revenue_range'),
+      marketing_spend: fd.get('marketing_spend'),
+      top_goal: fd.get('top_goal'),
+      decision_maker: fd.get('decision_maker'),
+      // attribution from sessionStorage (existing first-touch capture in BaseLayout)
+      referrer: sessionStorage.getItem('bwm_referrer') || document.referrer || '',
+      landing_page: sessionStorage.getItem('bwm_landing_page') || window.location.href,
+      utm_source: new URLSearchParams(window.location.search).get('utm_source') || '',
+      utm_medium: new URLSearchParams(window.location.search).get('utm_medium') || '',
+      utm_campaign: new URLSearchParams(window.location.search).get('utm_campaign') || '',
+      utm_content: new URLSearchParams(window.location.search).get('utm_content') || '',
+      fbclid: new URLSearchParams(window.location.search).get('fbclid') || '',
+    };
+
+    try {
+      const res = await fetch('https://bwm-form-handler.robert-ba0.workers.dev/buildwisemedia/discovery-qualifier', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload),
+      });
+
+      if (!res.ok) {
+        throw new Error(`Server ${res.status}`);
+      }
+
+      const data = await res.json();
+
+      if (data.classification === 'qualified') {
+        // Hide form, reveal Cal embed, scroll to it
+        form.style.display = 'none';
+        const calWrap = document.getElementById('cal-inline');
+        if (calWrap) {
+          calWrap.removeAttribute('hidden');
+          calWrap.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+        // Stash for Cal.com prefill (Cal init reads these)
+        window.__qualifiedPrefill = {
+          name: payload.first_name,
+          email: payload.email,
+          tier_routing: data.tier_routing,
+          contact_id: data.contact_id,
+        };
+        // Re-trigger Cal.com initialization with prefill
+        if (window.Cal && window.Cal.ns && window.Cal.ns['discovery-call']) {
+          window.Cal.ns['discovery-call']('inline', {
+            elementOrSelector: '#cal-inline',
+            calLink: 'bwm/discovery-call',
+            config: {
+              name: payload.first_name,
+              email: payload.email,
+              theme: 'dark',
+            },
+          });
+        }
+      } else if (data.classification === 'disqualified') {
+        const reason = encodeURIComponent(data.reason || 'fit_check');
+        window.location.href = `/thank-you-resource?reason=${reason}`;
+      } else {
+        throw new Error('Unexpected response');
+      }
+    } catch (err) {
+      console.error('Qualifier submit failed:', err);
+      errorEl.textContent = 'Something went wrong. Please try again, or email hello@buildwisemedia.com.';
+      errorEl.hidden = false;
+      submitBtn.disabled = false;
+      submitBtn.querySelector('.q-submit-label').hidden = false;
+      submitBtn.querySelector('.q-submit-loading').hidden = true;
+    }
+  });
+})();
+</script>
+
+<style>
+.qualifier-form {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  background: var(--bg-elev);
+  border: 1px solid var(--rule);
+  padding: clamp(24px, 4vw, 40px);
+}
+.q-eyebrow {
+  font-size: 10px;
+  letter-spacing: 0.2em;
+  color: var(--gold);
+  margin: 0;
+}
+.q-heading {
+  font-family: 'Inter', sans-serif;
+  font-weight: 800;
+  font-size: clamp(20px, 2.4vw, 28px);
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+  margin: 0;
+  color: var(--ink);
+}
+.q-sub {
+  font-size: 14px;
+  font-weight: 300;
+  line-height: 1.5;
+  color: var(--ink-dim);
+  margin: 0 0 8px 0;
+}
+.q-row { display: flex; flex-direction: column; gap: 8px; }
+.q-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ink-dim);
+}
+.q-row input, .q-row textarea {
+  background: transparent;
+  border: 1px solid var(--rule);
+  color: var(--ink);
+  padding: 12px 14px;
+  font-family: 'Inter', sans-serif;
+  font-size: 15px;
+  font-weight: 400;
+  outline: none;
+  transition: border-color 0.15s;
+}
+.q-row input:focus, .q-row textarea:focus { border-color: var(--gold); }
+.q-row textarea { resize: vertical; min-height: 64px; }
+
+.q-fieldset { border: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 10px; }
+.q-fieldset legend { padding: 0; margin-bottom: 4px; }
+.q-options { display: flex; flex-direction: column; gap: 8px; }
+.q-options label {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 12px;
+  border: 1px solid var(--rule);
+  cursor: pointer;
+  font-size: 14px;
+  color: var(--ink-dim);
+  transition: border-color 0.15s, color 0.15s;
+}
+.q-options label:hover { border-color: var(--ink-faint); }
+.q-options input[type="radio"] {
+  appearance: none;
+  width: 14px;
+  height: 14px;
+  border: 1px solid var(--ink-faint);
+  border-radius: 50%;
+  margin: 0;
+  flex-shrink: 0;
+  position: relative;
+}
+.q-options input[type="radio"]:checked { border-color: var(--gold); }
+.q-options input[type="radio"]:checked::after {
+  content: '';
+  position: absolute;
+  inset: 3px;
+  background: var(--gold);
+  border-radius: 50%;
+}
+.q-options label:has(input:checked) { border-color: var(--gold); color: var(--ink); }
+
+.q-submit {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 18px 28px;
+  background: var(--gold);
+  color: #050507;
+  border: 1px solid var(--gold);
+  font-family: 'Inter', sans-serif;
+  font-weight: 700;
+  font-size: 16px;
+  letter-spacing: -0.01em;
+  cursor: pointer;
+  transition: opacity 0.15s;
+  align-self: stretch;
+}
+.q-submit:hover:not(:disabled) { opacity: 0.85; }
+.q-submit:disabled { cursor: wait; opacity: 0.6; }
+
+.q-error {
+  color: #ff6b6b;
+  font-size: 14px;
+  margin: 0;
+}
+</style>
