@@ -106,16 +106,23 @@ const breadcrumb = {
     config: { layout: "month_view" },
     calLink: "bwm/discovery-call",
   });
+  // Cal.com's atoms don't publicly enumerate which token controls
+  // text-on-brand contrast, so we set all plausible candidates. The selected
+  // date cell renders cell-bg = cal-brand (#F0FF00 Y2 yellow). Default text
+  // color on selected is near-white = ~1.4:1 contrast. We force #050507
+  // cool near-black via every documented + likely token name.
+  const calBrandTokens = {
+    "cal-brand": "#F0FF00",
+    "cal-brand-emphasis": "#050507",
+    "cal-brand-foreground": "#050507",
+    "cal-text-brand": "#050507",
+    "cal-bg-brand": "#F0FF00",
+    "cal-brand-text": "#050507",
+  };
   Cal.ns["discovery-call"]("ui", {
     theme: "dark",
-    cssVarsPerTheme: {
-      // cal-brand-emphasis is the text color rendered ON brand-colored
-      // surfaces (selected date cell, filled buttons). Without it Cal.com
-      // falls back to a near-white which on Y2 yellow is ~1.4:1 contrast.
-      // #050507 (cool near-black) on #F0FF00 is ~17:1 — readable.
-      light: { "cal-brand": "#F0FF00", "cal-brand-emphasis": "#050507" },
-      dark:  { "cal-brand": "#F0FF00", "cal-brand-emphasis": "#050507" },
-    },
+    styles: { branding: { brandColor: "#F0FF00" } },
+    cssVarsPerTheme: { light: calBrandTokens, dark: calBrandTokens },
     hideEventTypeDetails: false,
     layout: "month_view",
   });
@@ -159,12 +166,14 @@ const breadcrumb = {
 
 /* Scope hero size down on /book — the global .h-hero is sized for the
    homepage where it's the centerpiece. On /book the calendar is the
-   centerpiece, so the headline shares space (was clamp 44-88px → 36-64px)
-   to keep the two columns balanced and avoid awkward 2-line wraps on the
-   "Fifteen minutes." / "One answer." h1. */
+   centerpiece, so the headline shares space. Earlier attempt at
+   clamp(36-64px) still let "Fifteen minutes." wrap on a ~458px left
+   column. Tightened to 28-48px + !important to win against any cached
+   global rule, and balance="balance" on the h1 to break naturally. */
 .book-page .h-hero {
-  font-size: clamp(36px, 4.2vw, 64px);
-  line-height: 0.95;
+  font-size: clamp(28px, 3.2vw, 48px) !important;
+  line-height: 1 !important;
+  text-wrap: balance;
 }
 .book-grid {
   display: grid;
