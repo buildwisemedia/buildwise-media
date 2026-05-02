@@ -70,6 +70,10 @@ const jsonLdArray = Array.isArray(jsonLd) ? jsonLd : jsonLd ? [jsonLd] : [];
     <!-- Fonts: Inter (display + body) + JetBrains Mono (micro) -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+    <!-- Cal.com booking embed (used on /book) — preconnect cuts ~200-500ms off first paint of the calendar iframe. EXP-002 telemetry shows 50% click-to-LPV drop, primary suspect = TLS cold-start on this subdomain. -->
+    <link rel="preconnect" href="https://book.buildwisemedia.com" />
+    <link rel="dns-prefetch" href="https://book.buildwisemedia.com" />
     <link
       rel="preload"
       as="style"

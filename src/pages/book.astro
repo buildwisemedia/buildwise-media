@@ -45,6 +45,16 @@ const breadcrumb = {
       </aside>
 
       <div class="book-embed">
+        <a
+          id="book-cta-fallback"
+          class="book-cta"
+          href="https://book.buildwisemedia.com/bwm/discovery-call"
+          rel="noopener"
+          data-cta-source="book-page-fallback"
+        >
+          Pick a time <span aria-hidden="true">→</span>
+        </a>
+
         <div id="cal-inline" class="cal-frame" aria-label="Booking calendar">
           <div class="cal-skeleton" aria-hidden="true">
             <div class="sk-row"></div>
@@ -106,21 +116,40 @@ const breadcrumb = {
     layout: "month_view",
   });
 
-  // Hide skeleton when iframe paints
+  // Hide skeleton + fallback CTA when iframe paints
   const obs = new MutationObserver(() => {
     const el = document.getElementById('cal-inline');
     if (el && el.querySelector('iframe')) {
       const sk = el.querySelector('.cal-skeleton');
       if (sk) sk.remove();
+      const cta = document.getElementById('book-cta-fallback');
+      if (cta) cta.remove();
       obs.disconnect();
     }
   });
   obs.observe(document.getElementById('cal-inline'), { childList: true, subtree: true });
+
+  // Paid-traffic fast-path: Meta clickers already saw the ad copy upstream — skip
+  // the explainer aside and scroll straight to the calendar / CTA on page load.
+  // Keeps organic / direct traffic on the full-explainer experience.
+  (function () {
+    try {
+      const params = new URLSearchParams(window.location.search);
+      const utmSource = (params.get('utm_source') || '').toLowerCase();
+      if (utmSource === 'facebook' || utmSource === 'instagram' || utmSource === 'meta') {
+        // Defer one tick so layout settles before scroll
+        requestAnimationFrame(function () {
+          const target = document.getElementById('book-cta-fallback') || document.getElementById('cal-inline');
+          if (target) target.scrollIntoView({ behavior: 'instant', block: 'start' });
+        });
+      }
+    } catch (_e) { /* no-op */ }
+  })();
 </script>
 
 <style>
 .book-page {
-  padding-top: clamp(140px, 14vw, 180px);
+  padding-top: clamp(96px, 10vw, 180px);
   padding-bottom: var(--section-y);
 }
 .book-grid {
@@ -136,7 +165,32 @@ const breadcrumb = {
 .expect-label { font-size: 10px; letter-spacing: 0.2em; color: var(--gold); }
 .expect-body { font-size: 15px; font-weight: 300; line-height: 1.6; color: var(--ink-dim); }
 
-.book-embed { width: 100%; min-height: 720px; }
+.book-embed { width: 100%; min-height: 720px; display: flex; flex-direction: column; gap: 16px; }
+
+/* Fallback CTA — visible until iframe paints, then JS removes. Gives mobile users
+   a tappable path even when Cal.com embed is still loading. Per EXP-002 telemetry:
+   50% of ad clickers were dropping before LPV; primary suspect = embed cold-start. */
+.book-cta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  padding: 18px 28px;
+  background: var(--gold, #F0FF00);
+  color: #050507;
+  text-decoration: none;
+  font-family: 'Inter', sans-serif;
+  font-weight: 700;
+  font-size: 16px;
+  letter-spacing: -0.01em;
+  border: 1px solid var(--gold, #F0FF00);
+  align-self: stretch;
+  text-align: center;
+  transition: opacity 0.15s ease;
+}
+.book-cta:hover, .book-cta:focus-visible { opacity: 0.85; }
+.book-cta span { font-weight: 400; }
+
 .cal-frame {
   width: 100%;
   min-height: 720px;
@@ -158,7 +212,15 @@ const breadcrumb = {
 @media (prefers-reduced-motion: reduce) { .sk-row, .sk-grid span { animation: none; } }
 
 @media (max-width: 880px) {
-  .book-grid { grid-template-columns: 1fr; }
-  .book-context { position: static; }
+  .book-grid {
+    grid-template-columns: 1fr;
+    /* Mobile: surface the calendar / CTA above the explainer. Paid-traffic JS
+       also auto-scrolls to the embed; this is the no-JS / organic-mobile fallback. */
+    grid-template-areas: "embed" "context";
+  }
+  .book-context { position: static; grid-area: context; }
+  .book-embed { grid-area: embed; min-height: auto; }
+  .cal-frame { min-height: 560px; }
+  .book-cta { padding: 16px 24px; font-size: 15px; }
 }
 </style>
