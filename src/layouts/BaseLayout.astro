@@ -176,7 +176,8 @@ const jsonLdArray = Array.isArray(jsonLd) ? jsonLd : jsonLd ? [jsonLd] : [];
         try {
           window.dataLayer = window.dataLayer || [];
           window.dataLayer.push({ event: 'cta_click', cta_label: a.textContent.trim(), cta_source: src });
-          if (window.fbq) window.fbq('track', 'Lead');
+          // InitiateCheckout signals click-intent. Real Lead fires from Cal.com booking webhook → CAPI server-side, deduplicated by event_id. Meta optimizes delivery toward whatever fires Lead — keeping it server-side = optimization toward bookers, not clickers.
+          if (window.fbq) window.fbq('track', 'InitiateCheckout');
         } catch (err) {}
       });
     </script>
