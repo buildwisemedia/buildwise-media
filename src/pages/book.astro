@@ -109,8 +109,12 @@ const breadcrumb = {
   Cal.ns["discovery-call"]("ui", {
     theme: "dark",
     cssVarsPerTheme: {
-      light: { "cal-brand": "#F0FF00" },
-      dark: { "cal-brand": "#F0FF00" },
+      // cal-brand-emphasis is the text color rendered ON brand-colored
+      // surfaces (selected date cell, filled buttons). Without it Cal.com
+      // falls back to a near-white which on Y2 yellow is ~1.4:1 contrast.
+      // #050507 (cool near-black) on #F0FF00 is ~17:1 — readable.
+      light: { "cal-brand": "#F0FF00", "cal-brand-emphasis": "#050507" },
+      dark:  { "cal-brand": "#F0FF00", "cal-brand-emphasis": "#050507" },
     },
     hideEventTypeDetails: false,
     layout: "month_view",
@@ -151,6 +155,16 @@ const breadcrumb = {
 .book-page {
   padding-top: clamp(96px, 10vw, 180px);
   padding-bottom: var(--section-y);
+}
+
+/* Scope hero size down on /book — the global .h-hero is sized for the
+   homepage where it's the centerpiece. On /book the calendar is the
+   centerpiece, so the headline shares space (was clamp 44-88px → 36-64px)
+   to keep the two columns balanced and avoid awkward 2-line wraps on the
+   "Fifteen minutes." / "One answer." h1. */
+.book-page .h-hero {
+  font-size: clamp(36px, 4.2vw, 64px);
+  line-height: 0.95;
 }
 .book-grid {
   display: grid;
