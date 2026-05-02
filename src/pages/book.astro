@@ -1,5 +1,6 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import QualifierForm from '../components/QualifierForm.astro';
 
 const title = "Book a Discovery Call — Buildwise Media";
 const description = "Fifteen minutes on the calendar tells us — and you — whether the Buildwise Revenue Engine fits your shop.";
@@ -45,17 +46,9 @@ const breadcrumb = {
       </aside>
 
       <div class="book-embed">
-        <a
-          id="book-cta-fallback"
-          class="book-cta"
-          href="https://book.buildwisemedia.com/bwm/discovery-call"
-          rel="noopener"
-          data-cta-source="book-page-fallback"
-        >
-          Pick a time <span aria-hidden="true">→</span>
-        </a>
+        <QualifierForm />
 
-        <div id="cal-inline" class="cal-frame" aria-label="Booking calendar">
+        <div id="cal-inline" class="cal-frame" aria-label="Booking calendar" hidden>
           <div class="cal-skeleton" aria-hidden="true">
             <div class="sk-row"></div>
             <div class="sk-row"></div>
