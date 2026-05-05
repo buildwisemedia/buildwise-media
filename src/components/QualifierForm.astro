@@ -80,7 +80,26 @@
 
       const data = await res.json();
 
+      // GA4: form_submit fires for both qualified + disqualified (denominator for conversion rate).
+      // Native submit event is preempted by e.preventDefault() above, so enhanced measurement won't
+      // catch it — fire manually.
+      window.gtag?.('event', 'form_submit', {
+        form_id: 'qualifier-form',
+        form_name: 'discovery_qualifier',
+        classification: data.classification,
+      });
+
       if (data.classification === 'qualified') {
+        // GA4: generate_lead fires only on qualified (the actual lead-gen milestone).
+        // value: 0 because monetized Lead fires server-side from Cal.com booking webhook → CAPI
+        // (see BaseLayout CTA telemetry comment) — this avoids double-counting in revenue dashboards.
+        window.gtag?.('event', 'generate_lead', {
+          currency: 'USD',
+          value: 0,
+          form_id: 'qualifier-form',
+          tier_routing: data.tier_routing,
+        });
+
         // Hide form, reveal Cal embed, scroll to it
         form.style.display = 'none';
         const calWrap = document.getElementById('cal-inline');
