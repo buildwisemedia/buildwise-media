@@ -3,10 +3,11 @@
 // On submit: POSTs to bwm-form-handler /buildwisemedia/discovery-qualifier
 // On qualified: hides form, reveals #cal-inline, pre-fills Cal name+email
 // On disqualified: redirects to /thank-you-resource?reason=<reason>
+// qualifier-fix-001: reduced from 7 fields to 3 (dropped company, revenue_range, marketing_spend, top_goal)
 ---
 <form id="qualifier-form" class="qualifier-form" novalidate>
   <p class="q-eyebrow mono">FIT CHECK · 30 SECONDS</p>
-  <h2 class="q-heading">Four questions before we put time on the calendar.</h2>
+  <h2 class="q-heading">Two questions before we put time on the calendar.</h2>
   <p class="q-sub">We respect your time. Calls only happen if there's mutual fit.</p>
 
   <div class="q-row">
@@ -17,37 +18,6 @@
   <div class="q-row">
     <label class="q-label" for="q-email">Work email</label>
     <input id="q-email" name="email" type="email" required autocomplete="email" />
-  </div>
-
-  <div class="q-row">
-    <label class="q-label" for="q-company">Company</label>
-    <input id="q-company" name="company" type="text" required autocomplete="organization" />
-  </div>
-
-  <fieldset class="q-fieldset">
-    <legend class="q-label">Annual revenue</legend>
-    <div class="q-options">
-      <label><input type="radio" name="revenue_range" value="less_than_250k" required /><span>Less than $250K</span></label>
-      <label><input type="radio" name="revenue_range" value="250k_to_1m" /><span>$250K - $1M</span></label>
-      <label><input type="radio" name="revenue_range" value="1m_to_5m" /><span>$1M - $5M</span></label>
-      <label><input type="radio" name="revenue_range" value="5m_to_10m" /><span>$5M - $10M</span></label>
-      <label><input type="radio" name="revenue_range" value="over_10m" /><span>Over $10M</span></label>
-    </div>
-  </fieldset>
-
-  <fieldset class="q-fieldset">
-    <legend class="q-label">Current monthly marketing spend</legend>
-    <div class="q-options">
-      <label><input type="radio" name="marketing_spend" value="less_than_1000" required /><span>Less than $1,000</span></label>
-      <label><input type="radio" name="marketing_spend" value="1k_to_5k" /><span>$1,000 - $5,000</span></label>
-      <label><input type="radio" name="marketing_spend" value="5k_to_20k" /><span>$5,000 - $20,000</span></label>
-      <label><input type="radio" name="marketing_spend" value="20k_plus" /><span>$20,000+</span></label>
-    </div>
-  </fieldset>
-
-  <div class="q-row">
-    <label class="q-label" for="q-top-goal">What result would you want in the next 90 days?</label>
-    <textarea id="q-top-goal" name="top_goal" required maxlength="200" rows="2" placeholder="One sentence is enough."></textarea>
   </div>
 
   <fieldset class="q-fieldset">
@@ -86,10 +56,6 @@
     const payload = {
       first_name: fd.get('first_name'),
       email: fd.get('email'),
-      company: fd.get('company'),
-      revenue_range: fd.get('revenue_range'),
-      marketing_spend: fd.get('marketing_spend'),
-      top_goal: fd.get('top_goal'),
       decision_maker: fd.get('decision_maker'),
       // attribution from sessionStorage (existing first-touch capture in BaseLayout)
       referrer: sessionStorage.getItem('bwm_referrer') || document.referrer || '',
