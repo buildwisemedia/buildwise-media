@@ -99,7 +99,7 @@ const breadcrumb = {
     config: { layout: "month_view" },
     calLink: "bwm/discovery-call",
   });
-  // Cal.com's atoms don't publicly enumerate which token controls
+  // The booking widget's atoms don't publicly enumerate which token controls
   // text-on-brand contrast, so we set all plausible candidates. The selected
   // date cell renders cell-bg = cal-brand (#F0FF00 Y2 yellow). Default text
   // color on selected is near-white = ~1.4:1 contrast. We force #050507
@@ -184,7 +184,7 @@ const breadcrumb = {
 .book-embed { width: 100%; min-height: 720px; display: flex; flex-direction: column; gap: 16px; }
 
 /* Fallback CTA — visible until iframe paints, then JS removes. Gives mobile users
-   a tappable path even when Cal.com embed is still loading. Per EXP-002 telemetry:
+   a tappable path even when the booking embed is still loading. Per EXP-002 telemetry:
    50% of ad clickers were dropping before LPV; primary suspect = embed cold-start. */
 .book-cta {
   display: inline-flex;

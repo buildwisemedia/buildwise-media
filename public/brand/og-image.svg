@@ -1,0 +1,37 @@
+<!--
+  asset: BWM open-graph card
+  brand-system: triangulation-v3
+  lockup: b (vertical — mark above stacked wordmark)
+  variant: og-image · 1200x630 · #050507 canvas · "Your AI Department" tagline · v2 alignment fix
+  concept: og-image · v2
+  source: brand/BWM-Logo-System-Locked.md (Brain) · spec's Lockup B
+  locked: 2026-04-30
+  tagline: "Your AI Department" (placeholder positioning, 2026-05-01)
+  use: og:image meta on buildwisemedia.com, social-share preview card
+  v2 fixes:
+    - Removed letter-spacing on text-anchor=middle elements (rsvg-convert under-counts
+      letter-spacing in width calc, was shifting wordmark + tagline ~10px right of mark center)
+  superseded: og-image-v1.svg (2026-05-01)
+-->
+<svg viewBox="0 0 1200 630" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="metallic-y2" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#FFFD58"/>
+      <stop offset="48%" stop-color="#F0FF00"/>
+      <stop offset="100%" stop-color="#C8D300"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="630" fill="#050507"/>
+  <g transform="translate(540, 110) scale(1.2)">
+    <line x1="50" y1="22" x2="22" y2="70" stroke="#7A8400" stroke-width="1.4" stroke-linecap="round"/>
+    <line x1="50" y1="22" x2="78" y2="70" stroke="#7A8400" stroke-width="1.4" stroke-linecap="round"/>
+    <line x1="22" y1="70" x2="78" y2="70" stroke="#7A8400" stroke-width="1.4" stroke-linecap="round"/>
+    <circle cx="50" cy="22" r="9" fill="url(#metallic-y2)"/>
+    <circle cx="22" cy="70" r="6.5" fill="#F0FF00"/>
+    <circle cx="78" cy="70" r="6.5" fill="#F0FF00"/>
+    <circle cx="50" cy="54" r="3" fill="#F0FF00"/>
+  </g>
+  <text x="600" y="380" text-anchor="middle" font-family="Inter, sans-serif" font-weight="800" font-size="92" fill="#FAFAFA">BUILDWISE</text>
+  <text x="600" y="438" text-anchor="middle" font-family="Inter, sans-serif" font-weight="300" font-size="40" fill="#F0FF00">MEDIA</text>
+  <text x="600" y="540" text-anchor="middle" font-family="Inter, sans-serif" font-weight="500" font-size="32" fill="#A8A298">Your AI Department</text>
+</svg>

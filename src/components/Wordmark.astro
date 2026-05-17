@@ -1,70 +1,53 @@
 ---
-// BWM Triangulation lockup — configuration A horizontal
-import BMark from './BMark.astro';
+// BWM Triangulation horizontal lockup - vendored asset, not inline SVG.
 interface Props {
   size?: 'nav' | 'footer' | 'large';
   href?: string;
 }
+
 const { size = 'nav', href = '/' } = Astro.props;
-const heights = { nav: 32, footer: 28, large: 56 };
-const h = heights[size];
+const widths = { nav: 200, footer: 190, large: 280 };
+const width = widths[size];
 ---
-<a href={href} class={`wordmark wordmark--${size}`} aria-label="Buildwise Media — home">
-  <BMark size={h} ariaLabel="" />
-  <span class="lockup-divider" aria-hidden="true"></span>
-  <span class="lockup-text">
-    <span class="lockup-line lockup-line--brand">BUILDWISE</span>
-    <span class="lockup-line lockup-line--media">MEDIA</span>
-  </span>
+<a href={href} class={`wordmark wordmark--${size}`} aria-label="Buildwise Media - home">
+  <img src="/brand/lockup-horizontal.svg" alt="Buildwise Media" width={width} loading={size === 'nav' ? 'eager' : 'lazy'} decoding="async" />
 </a>
 
 <style>
 .wordmark {
   display: inline-flex;
   align-items: center;
-  gap: 14px;
   text-decoration: none;
   color: var(--ink);
   transition: opacity 180ms ease;
-}
-.wordmark:hover { color: var(--ink); opacity: 0.85; }
-
-.lockup-divider {
-  width: 1px;
-  height: 1.5em;
-  background: currentColor;
-  opacity: 0.35;
+  flex: 0 0 auto;
 }
 
-.lockup-text {
-  font-size: 14px;
-  line-height: 1.05;
-  text-transform: uppercase;
-  display: flex;
-  flex-direction: column;
-}
-
-.lockup-line {
-  font-family: var(--sans);
-  text-transform: uppercase;
-}
-
-.lockup-line--brand {
-  font-weight: 800;
-  letter-spacing: -0.03em;
+.wordmark:hover {
   color: var(--ink);
+  opacity: 0.85;
 }
 
-.lockup-line--media {
-  font-weight: 300;
-  letter-spacing: 0.12em;
-  color: var(--y2);
+.wordmark img {
+  width: auto;
+  max-width: min(52vw, 200px);
+  height: 32px;
 }
 
-.wordmark--footer .lockup-text { font-size: 13px; }
-.wordmark--large .lockup-text { font-size: 22px; }
+.wordmark--footer img {
+  max-width: 190px;
+  height: 30px;
+}
+
+.wordmark--large img {
+  max-width: 280px;
+  height: 48px;
+}
 
 @media (max-width: 520px) {
-  .lockup-text { font-size: 12px; }
+  .wordmark img {
+    height: 28px;
+    max-width: 180px;
+  }
 }
 </style>

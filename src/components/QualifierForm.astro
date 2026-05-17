@@ -1,5 +1,5 @@
 ---
-// Qualifier form gating Cal.com embed on /book.
+// Qualifier form gating the booking embed on /book.
 // On submit: POSTs to bwm-form-handler /buildwisemedia/discovery-qualifier
 // On qualified: hides form, reveals #cal-inline, pre-fills Cal name+email
 // On disqualified: redirects to /thank-you-resource?reason=<reason>
@@ -91,7 +91,7 @@
 
       if (data.classification === 'qualified') {
         // GA4: generate_lead fires only on qualified (the actual lead-gen milestone).
-        // value: 0 because monetized Lead fires server-side from Cal.com booking webhook → CAPI
+        // value: 0 because monetized Lead fires server-side from the booking webhook → CAPI
         // (see BaseLayout CTA telemetry comment) — this avoids double-counting in revenue dashboards.
         window.gtag?.('event', 'generate_lead', {
           currency: 'USD',
@@ -107,14 +107,14 @@
           calWrap.removeAttribute('hidden');
           calWrap.scrollIntoView({ behavior: 'smooth', block: 'start' });
         }
-        // Stash for Cal.com prefill (Cal init reads these)
+        // Stash for the booking prefill (Cal init reads these)
         window.__qualifiedPrefill = {
           name: payload.first_name,
           email: payload.email,
           tier_routing: data.tier_routing,
           contact_id: data.contact_id,
         };
-        // Re-trigger Cal.com initialization with prefill
+        // Re-trigger the booking initialization with prefill
         if (window.Cal && window.Cal.ns && window.Cal.ns['discovery-call']) {
           window.Cal.ns['discovery-call']('inline', {
             elementOrSelector: '#cal-inline',

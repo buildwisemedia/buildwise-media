@@ -1,0 +1,314 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+const title = "AI Marketing Audit - Buildwise Media";
+const description = "Stop guessing where your next clients come from. The free AI Marketing Audit takes 5 minutes.";
+
+const auditFindings = [
+  "Where qualified leads come from now, and which sources are worth protecting.",
+  "Where the path leaks after a buyer searches, clicks, calls, or asks AI for help.",
+  "What proof is compounding for you, and what proof is helping a competitor.",
+  "Which next step should move first so the owner is not stuck sorting it alone.",
+];
+
+const auditSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Service',
+  name: 'AI Marketing Audit',
+  serviceType: 'Marketing audit',
+  provider: {
+    '@type': 'Organization',
+    '@id': 'https://buildwisemedia.com/#org',
+    name: 'Buildwise Media',
+    url: 'https://buildwisemedia.com',
+  },
+  areaServed: {
+    '@type': 'Country',
+    name: 'United States',
+  },
+  description,
+  url: 'https://buildwisemedia.com/audit',
+  offers: {
+    '@type': 'Offer',
+    url: 'https://buildwisemedia.com/audit',
+    priceCurrency: 'USD',
+    price: '0',
+    availability: 'https://schema.org/InStock',
+  },
+};
+---
+<BaseLayout title={title} description={description} jsonLd={[auditSchema]}>
+  <section class="audit-hero" aria-labelledby="audit-title">
+    <div class="container audit-hero-grid">
+      <div class="audit-copy">
+        <p class="eyebrow">The AI Marketing Audit</p>
+        <h1 id="audit-title" class="h-hero">Do you want to end the feast or famine?</h1>
+        <p class="hero-sub">
+          Stop guessing where your next clients come from. The free AI Marketing Audit takes 5 minutes.
+        </p>
+      </div>
+      <div class="audit-mark" aria-hidden="true">
+        <img src="/brand/mark-on-canvas.svg" alt="" width="300" height="300" loading="eager" />
+      </div>
+    </div>
+  </section>
+
+  <section class="audit-body elev" aria-labelledby="audit-shows-title">
+    <div class="container audit-grid">
+      <div class="audit-findings">
+        <p class="section-tag">What the audit shows you</p>
+        <h2 id="audit-shows-title" class="h-section">A clear read on what is leaking, what is working, and what should move next.</h2>
+        <ul class="audit-list" role="list">
+          {auditFindings.map((finding) => (
+            <li><span class="dot live" aria-hidden="true"></span>{finding}</li>
+          ))}
+        </ul>
+      </div>
+
+      <form id="audit-form" class="audit-form" method="post" action="https://bwm-form-handler.robert-ba0.workers.dev/buildwisemedia/ai-marketing-audit" novalidate>
+        <p class="form-kicker mono">Audit kickoff</p>
+        <h2>Start the audit.</h2>
+        <div class="form-row">
+          <label for="audit-email">Work email</label>
+          <input id="audit-email" name="email" type="email" autocomplete="email" required />
+        </div>
+        <div class="form-row">
+          <label for="audit-url">Business URL</label>
+          <input id="audit-url" name="business_url" type="url" autocomplete="url" inputmode="url" required />
+        </div>
+        <input type="hidden" name="source" value="audit-stage-0" />
+        <button type="submit" class="audit-submit">
+          <span class="submit-ready">Run the audit</span>
+          <span class="submit-loading" hidden>Starting...</span>
+        </button>
+        <p id="audit-error" class="audit-error" hidden>Something went wrong. Please try again.</p>
+      </form>
+    </div>
+  </section>
+
+  <section class="audit-trust" aria-label="Trust anchor">
+    <div class="container">
+      <p>It actually works.</p>
+    </div>
+  </section>
+</BaseLayout>
+
+<script is:inline>
+  (function () {
+    const form = document.getElementById('audit-form');
+    const errorEl = document.getElementById('audit-error');
+    if (!form) return;
+
+    form.addEventListener('submit', async function (event) {
+      event.preventDefault();
+      const button = form.querySelector('button[type="submit"]');
+      const ready = form.querySelector('.submit-ready');
+      const loading = form.querySelector('.submit-loading');
+      if (errorEl) errorEl.hidden = true;
+      if (button) button.disabled = true;
+      if (ready) ready.hidden = true;
+      if (loading) loading.hidden = false;
+
+      const data = new FormData(form);
+      const payload = {
+        email: data.get('email'),
+        business_url: data.get('business_url'),
+        source: data.get('source'),
+        landing_page: window.location.href,
+        referrer: document.referrer || '',
+        utm_source: new URLSearchParams(window.location.search).get('utm_source') || '',
+        utm_medium: new URLSearchParams(window.location.search).get('utm_medium') || '',
+        utm_campaign: new URLSearchParams(window.location.search).get('utm_campaign') || '',
+      };
+
+      try {
+        const response = await fetch(form.action, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload),
+        });
+        if (!response.ok) throw new Error('Audit submit failed');
+        window.location.href = '/book?source=audit';
+      } catch (error) {
+        if (errorEl) errorEl.hidden = false;
+        if (button) button.disabled = false;
+        if (ready) ready.hidden = false;
+        if (loading) loading.hidden = true;
+      }
+    });
+  })();
+</script>
+
+<style>
+.audit-hero {
+  padding-top: clamp(116px, 13vw, 180px);
+  padding-bottom: clamp(64px, 8vw, 112px);
+}
+
+.audit-hero-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(220px, 320px);
+  gap: clamp(36px, 7vw, 88px);
+  align-items: center;
+}
+
+.audit-copy {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.audit-copy .h-hero {
+  max-width: 900px;
+}
+
+.audit-copy .hero-sub {
+  max-width: 680px;
+  font-size: clamp(21px, 2.1vw, 24px);
+  font-weight: 500;
+  color: var(--ink);
+}
+
+.audit-mark {
+  border-left: 1px solid var(--rule);
+  padding-left: clamp(24px, 5vw, 56px);
+}
+
+.audit-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(320px, 420px);
+  gap: clamp(40px, 7vw, 96px);
+  align-items: start;
+}
+
+.audit-findings .h-section {
+  max-width: 760px;
+}
+
+.audit-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  margin-top: 34px;
+  max-width: 720px;
+}
+
+.audit-list li {
+  display: grid;
+  grid-template-columns: 18px minmax(0, 1fr);
+  gap: 12px;
+  color: var(--ink-dim);
+  font-size: 18px;
+  line-height: 1.55;
+  padding-bottom: 18px;
+  border-bottom: 1px solid var(--rule);
+}
+
+.audit-list .dot {
+  margin-top: 11px;
+}
+
+.audit-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: clamp(24px, 4vw, 36px);
+  background: var(--bg);
+  border: 1px solid var(--rule-bright);
+  border-radius: 4px;
+}
+
+.form-kicker {
+  color: var(--y2);
+  font-size: 10px;
+  letter-spacing: 0.18em;
+}
+
+.audit-form h2 {
+  font-size: clamp(26px, 3vw, 36px);
+  line-height: 1;
+}
+
+.form-row {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.form-row label {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--ink-dim);
+}
+
+.form-row input {
+  width: 100%;
+  background: var(--bg-elev);
+  border: 1px solid var(--rule);
+  border-radius: 2px;
+  color: var(--ink);
+  font-family: var(--sans);
+  font-size: 16px;
+  padding: 14px 14px;
+  outline: 0;
+}
+
+.form-row input:focus {
+  border-color: var(--y2);
+}
+
+.audit-submit {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 56px;
+  padding: 16px 24px;
+  color: var(--bg);
+  background: var(--y2);
+  border: 1px solid var(--y2);
+  border-radius: 2px;
+  font-weight: 700;
+}
+
+.audit-submit:disabled {
+  cursor: wait;
+  opacity: 0.7;
+}
+
+.audit-error {
+  color: var(--ink);
+  font-size: 14px;
+  line-height: 1.5;
+  margin: 0;
+}
+
+.audit-trust {
+  padding-block: clamp(56px, 7vw, 90px);
+}
+
+.audit-trust p {
+  font-size: clamp(34px, 5vw, 72px);
+  font-weight: 800;
+  line-height: 1;
+}
+
+@media (max-width: 900px) {
+  .audit-hero-grid,
+  .audit-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .audit-mark {
+    display: none;
+  }
+}
+
+@media (max-width: 520px) {
+  .audit-hero {
+    padding-top: 104px;
+  }
+}
+</style>

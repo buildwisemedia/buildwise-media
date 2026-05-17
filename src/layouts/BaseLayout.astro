@@ -71,7 +71,7 @@ const jsonLdArray = Array.isArray(jsonLd) ? jsonLd : jsonLd ? [jsonLd] : [];
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 
-    <!-- Cal.com booking embed (used on /book) — preconnect cuts ~200-500ms off first paint of the calendar iframe. EXP-002 telemetry shows 50% click-to-LPV drop, primary suspect = TLS cold-start on this subdomain. -->
+    <!-- Booking embed preconnect (used on /book) — cuts ~200-500ms off first paint of the calendar iframe. EXP-002 telemetry shows 50% click-to-LPV drop, primary suspect = TLS cold-start on this subdomain. -->
     <link rel="preconnect" href="https://book.buildwisemedia.com" />
     <link rel="dns-prefetch" href="https://book.buildwisemedia.com" />
     <link
@@ -180,7 +180,7 @@ const jsonLdArray = Array.isArray(jsonLd) ? jsonLd : jsonLd ? [jsonLd] : [];
         try {
           window.dataLayer = window.dataLayer || [];
           window.dataLayer.push({ event: 'cta_click', cta_label: a.textContent.trim(), cta_source: src });
-          // InitiateCheckout signals click-intent. Real Lead fires from Cal.com booking webhook → CAPI server-side, deduplicated by event_id. Meta optimizes delivery toward whatever fires Lead — keeping it server-side = optimization toward bookers, not clickers.
+          // InitiateCheckout signals click-intent. Real Lead fires from the booking webhook → CAPI server-side, deduplicated by event_id. Meta optimizes delivery toward whatever fires Lead — keeping it server-side = optimization toward bookers, not clickers.
           if (window.fbq) window.fbq('track', 'InitiateCheckout');
         } catch (err) {}
       });

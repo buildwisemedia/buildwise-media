@@ -1,90 +1,457 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import Hero from '../components/Hero.astro';
-import TrustBar from '../components/TrustBar.astro';
-import PoorFour from '../components/PoorFour.astro';
-import SolutionBridge from '../components/SolutionBridge.astro';
-import AIStorySection from '../components/AIStorySection.astro';
-import SocialProof from '../components/SocialProof.astro';
-import FinalCta from '../components/FinalCta.astro';
-import FAQ from '../components/FAQ.astro';
 
-const title = "Buildwise Media — Your AI Department";
-const description = "AI-native lead-generation system for ambition-disposed service-business owners. Ad spend in. Revenue out. Verified weekly. Full system live in 30 days, month-to-month.";
+const title = "Buildwise Media - The AI Marketing Audit";
+const description = "Stop guessing where your next clients come from. The free AI Marketing Audit takes 5 minutes.";
 
-const proService = {
-  '@context': 'https://schema.org',
-  '@type': 'ProfessionalService',
-  '@id': 'https://buildwisemedia.com/#org',
-  name: 'Buildwise Media',
-  legalName: 'Buildwise Media LLC',
-  url: 'https://buildwisemedia.com',
-  email: 'hello@buildwisemedia.com',
-  telephone: '+14049993258',
-  description,
-  address: {
-    '@type': 'PostalAddress',
-    addressLocality: 'Atlanta',
-    addressRegion: 'GA',
-    addressCountry: 'US',
+const outcomes = [
+  {
+    headline: "Your mornings stop being firefighting.",
+    body: "Lead flow, follow-up, reviews, and local search get handled before the day starts.",
   },
-  areaServed: { '@type': 'Country', name: 'United States' },
-  priceRange: '$$$',
-  image: 'https://buildwisemedia.com/og-image.svg',
-  sameAs: [], // TODO: populate with verified LinkedIn / X / GitHub URLs once Robert confirms canonical slugs
-};
+  {
+    headline: "Qualified leads land where the team can act.",
+    body: "The right prospects get sorted, routed, and ready for a real conversation.",
+  },
+  {
+    headline: "Your best work becomes easier to find.",
+    body: "Reviews, service pages, and local listings start telling the same story.",
+  },
+  {
+    headline: "You stop guessing what next month looks like.",
+    body: "The pipeline has a source, a status, and a next step instead of a shrug.",
+  },
+  {
+    headline: "The system keeps following up.",
+    body: "No more lost inquiries sitting in an inbox while the team is on a job.",
+  },
+  {
+    headline: "You become the most-chosen name in your market.",
+    body: "When people search your category, the default answer starts pointing at you.",
+  },
+];
 
-const service = {
+const proofPoints = [
+  "Qualified-lead share grew 3.2x after install.",
+  "Review velocity, local search, and follow-up moved as one system.",
+];
+
+const systemItems = [
+  {
+    name: "AI marketing audit",
+    body: "Free, 5 minutes, and built to show where qualified leads are leaking.",
+  },
+  {
+    name: "Lead-gen system installed in your business",
+    body: "Qualifies, books, follows up, and keeps the next step visible.",
+  },
+  {
+    name: "Review velocity engine",
+    body: "Turns happy clients into proof that compounds every month.",
+  },
+  {
+    name: "Local search dominance",
+    body: "Service pages, citations, and map presence aligned around your market.",
+  },
+  {
+    name: "Brand presence across AI search",
+    body: "ChatGPT, Perplexity, and Claude can cite the right story when buyers ask.",
+  },
+  {
+    name: "Weekly operating checks",
+    body: "Broken paths get found before they drain the month.",
+  },
+];
+
+const serviceSchema = {
   '@context': 'https://schema.org',
   '@type': 'Service',
-  name: 'Ascend — The Buildwise Revenue Engine',
-  serviceType: 'AI-native lead-generation system',
-  provider: { '@id': 'https://buildwisemedia.com/#org' },
-  areaServed: { '@type': 'Country', name: 'United States' },
-  description: 'Complete AI-native lead-generation system installed and operated for ambition-disposed service-business owners. Includes website built to AI-search-era standards, paid acquisition wired to baseline-first attribution, AI-assisted content production with human QA, integrated operations layer (CRM, analytics, weekly connector audit), AI business tools.',
-  url: 'https://buildwisemedia.com/services/ascend',
+  name: 'Ascend',
+  serviceType: 'Run-for-you AI marketing system',
+  provider: {
+    '@type': 'Organization',
+    '@id': 'https://buildwisemedia.com/#org',
+    name: 'Buildwise Media',
+    url: 'https://buildwisemedia.com',
+  },
+  areaServed: {
+    '@type': 'Country',
+    name: 'United States',
+  },
+  description:
+    'Buildwise Media installs Ascend for American service-business owners who want qualified leads, review velocity, local search strength, and AI search presence operated as one system.',
+  url: 'https://buildwisemedia.com/',
   offers: {
     '@type': 'Offer',
-    priceSpecification: {
-      '@type': 'PriceSpecification',
-      priceCurrency: 'USD',
-      price: '7000',
-      unitText: 'MONTH',
-      description: '$7,000/mo total ($6,000/mo management + $1,000/mo included ad spend) + $2,500 one-time Engine Build at signup. Layer 3 — machine readable. Month-to-month, no long-term lock-in.',
-    },
-    availability: 'https://schema.org/InStock',
+    url: 'https://buildwisemedia.com/book',
     priceCurrency: 'USD',
+    price: 'contact for pricing',
+    availability: 'https://schema.org/InStock',
   },
 };
 
 const breadcrumb = {
   '@context': 'https://schema.org',
   '@type': 'BreadcrumbList',
-  itemListElement: [{ '@type': 'ListItem', position: 1, name: 'Home', item: 'https://buildwisemedia.com/' }],
-};
-
-const faqSchema = {
-  '@context': 'https://schema.org',
-  '@type': 'FAQPage',
-  mainEntity: [
-    { '@type': 'Question', name: 'What does Buildwise Media actually do?', acceptedAnswer: { '@type': 'Answer', text: 'We install and operate one integrated lead-generation system — the Buildwise Revenue Engine. That includes the website built to AI-search-era standards, paid acquisition wired to baseline-first attribution, AI-assisted content production with a human quality gate, and an integrated operations layer.' } },
-    { '@type': 'Question', name: 'Who is Buildwise Media for?', acceptedAnswer: { '@type': 'Answer', text: 'Service-business owners who want to run marketing the way they run their business — measurable, accountable, instrumented. Owners looking for a savior or hoping for comfort tend to bounce off our process.' } },
-    { '@type': 'Question', name: 'How fast does the system go live?', acceptedAnswer: { '@type': 'Answer', text: 'Inside 30 days the website is live, ad accounts are wired, the CRM is instrumented, and first leads start to flow. Full-system instrumentation completes in the same window.' } },
-    { '@type': 'Question', name: 'Is there a long-term contract?', acceptedAnswer: { '@type': 'Answer', text: 'No. The engagement runs month-to-month, no long-term lock-in. The build-right guarantee covers install milestones; if we miss them we keep working.' } },
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://buildwisemedia.com/' },
   ],
 };
 ---
-<BaseLayout
-  title={title}
-  description={description}
-  jsonLd={[proService, service, breadcrumb, faqSchema]}
->
-  <Hero />
-  <TrustBar />
-  <PoorFour />
-  <SolutionBridge />
-  <AIStorySection />
-  <SocialProof />
-  <FAQ />
-  <FinalCta />
+<BaseLayout title={title} description={description} jsonLd={[serviceSchema, breadcrumb]}>
+  <section class="home-hero" aria-labelledby="home-hero-title">
+    <div class="container hero-grid">
+      <div class="hero-copy">
+        <p class="eyebrow">The AI Marketing Audit</p>
+        <h1 id="home-hero-title" class="h-hero">Do you want to end the feast or famine?</h1>
+        <p class="hero-sub">
+          Stop guessing where your next clients come from. The free AI Marketing Audit takes 5 minutes.
+        </p>
+        <div class="hero-actions" aria-label="Primary actions">
+          <a href="/book" class="cta" data-cta-source="home-hero">See If We're a Fit<span class="cta-arrow" aria-hidden="true">-&gt;</span></a>
+          <a href="#system" class="cta-ghost" data-cta-source="home-hero-system">See the System</a>
+        </div>
+      </div>
+      <div class="hero-mark" aria-hidden="true">
+        <img src="/brand/mark-on-canvas.svg" alt="" width="360" height="360" loading="eager" />
+      </div>
+    </div>
+  </section>
+
+  <section class="outcomes-ladder" aria-labelledby="outcomes-title">
+    <div class="container">
+      <div class="section-head">
+        <p class="section-tag">Outcomes ladder</p>
+        <h2 id="outcomes-title" class="h-section">What changes when Ascend is installed.</h2>
+      </div>
+      <ol class="ladder-list" role="list">
+        {outcomes.map((item, index) => (
+          <li class="ladder-card">
+            <span class="ladder-num">{String(index + 1).padStart(2, '0')}</span>
+            <div>
+              <h3>{item.headline}</h3>
+              <p>{item.body}</p>
+            </div>
+          </li>
+        ))}
+      </ol>
+    </div>
+  </section>
+
+  <section class="proof-section elev" aria-labelledby="proof-title">
+    <div class="container">
+      <article class="proof-card">
+        <p class="section-tag">Proof</p>
+        <h2 id="proof-title" class="proof-headline">
+          One service business went from $300K to $10M in 12 months. Same owner. Same hours. Different system.
+        </h2>
+        <ul class="proof-list" role="list">
+          {proofPoints.map((point) => (
+            <li><span class="dot live" aria-hidden="true"></span>{point}</li>
+          ))}
+        </ul>
+      </article>
+      <div class="mid-cta">
+        <a href="/book" class="cta" data-cta-source="home-proof">See If We're a Fit<span class="cta-arrow" aria-hidden="true">-&gt;</span></a>
+      </div>
+    </div>
+  </section>
+
+  <section id="system" class="system-section" aria-labelledby="system-title">
+    <div class="container system-grid">
+      <div class="system-copy">
+        <p class="section-tag">The system</p>
+        <h2 id="system-title" class="h-section">Here's what runs for you while you run the business.</h2>
+        <p class="lede">
+          Ascend does not ask the owner to become a marketer. It installs the operating layer that keeps demand moving.
+        </p>
+      </div>
+      <ul class="system-list" role="list">
+        {systemItems.map((item) => (
+          <li>
+            <span class="dot live" aria-hidden="true"></span>
+            <div>
+              <h3>{item.name}</h3>
+              <p>{item.body}</p>
+            </div>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <section class="urgency-section elev" aria-labelledby="urgency-title">
+    <div class="container urgency-inner">
+      <p class="section-tag">Time matters</p>
+      <h2 id="urgency-title" class="h-section">Every quiet quarter compounds.</h2>
+      <p class="lede">
+        When the next month depends on referrals and luck, your market keeps moving. The best-run competitors are installing AI now, training search, reviews, and follow-up to choose them first.
+      </p>
+    </div>
+  </section>
+
+  <section class="final-section" aria-labelledby="final-title">
+    <div class="container final-inner">
+      <div>
+        <p class="section-tag">Start with the audit</p>
+        <h2 id="final-title" class="h-closer">Stop guessing where the next client comes from.</h2>
+        <p class="lede">The free AI Marketing Audit takes 5 minutes. The answer tells us whether Ascend should be installed next.</p>
+      </div>
+      <a href="/book" class="cta" data-cta-source="home-final">See If We're a Fit<span class="cta-arrow" aria-hidden="true">-&gt;</span></a>
+    </div>
+  </section>
 </BaseLayout>
+
+<style>
+.home-hero {
+  min-height: 100svh;
+  display: flex;
+  align-items: center;
+  padding-top: clamp(104px, 12vw, 168px);
+  padding-bottom: clamp(56px, 8vw, 104px);
+}
+
+.hero-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.12fr) minmax(240px, 0.88fr);
+  gap: clamp(36px, 7vw, 96px);
+  align-items: center;
+}
+
+.hero-copy {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.hero-copy .h-hero {
+  max-width: 880px;
+}
+
+.hero-copy .hero-sub {
+  max-width: 680px;
+  font-size: clamp(21px, 2.1vw, 24px);
+  font-weight: 500;
+  color: var(--ink);
+}
+
+.hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  align-items: center;
+}
+
+.hero-mark {
+  justify-self: end;
+  width: min(32vw, 360px);
+  min-width: 240px;
+  border-left: 1px solid var(--rule);
+  padding-left: clamp(24px, 5vw, 64px);
+}
+
+.section-head {
+  max-width: 780px;
+  margin-bottom: 40px;
+}
+
+.outcomes-ladder {
+  padding-top: clamp(72px, 9vw, 128px);
+}
+
+.ladder-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.ladder-card {
+  display: grid;
+  grid-template-columns: 72px minmax(0, 1fr);
+  gap: clamp(18px, 4vw, 40px);
+  align-items: start;
+  padding: clamp(22px, 4vw, 34px);
+  background: var(--bg-card);
+  border: 1px solid var(--rule);
+  border-radius: 4px;
+}
+
+.ladder-num {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border: 1px solid var(--y2);
+  border-radius: 50%;
+  color: var(--y2);
+  font-family: var(--mono);
+  font-size: 12px;
+  letter-spacing: 0.16em;
+}
+
+.ladder-card h3,
+.system-list h3 {
+  font-size: clamp(21px, 2.3vw, 28px);
+  line-height: 1.12;
+  margin-bottom: 8px;
+}
+
+.ladder-card p,
+.system-list p,
+.proof-list li {
+  color: var(--ink-dim);
+  font-size: 17px;
+  line-height: 1.55;
+}
+
+.proof-card {
+  border: 1px solid var(--rule-bright);
+  border-radius: 4px;
+  padding: clamp(28px, 6vw, 64px);
+  background: var(--bg);
+}
+
+.proof-headline {
+  max-width: 980px;
+  font-size: clamp(40px, 6vw, 82px);
+  line-height: 0.98;
+}
+
+.proof-list {
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+  margin-top: 36px;
+  padding-top: 28px;
+  border-top: 1px solid var(--rule);
+}
+
+.proof-list li {
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+}
+
+.proof-list .dot {
+  flex: 0 0 auto;
+  margin-top: 10px;
+}
+
+.mid-cta {
+  margin-top: 28px;
+  display: flex;
+  justify-content: center;
+}
+
+.system-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 0.86fr) minmax(0, 1.14fr);
+  gap: clamp(44px, 7vw, 96px);
+  align-items: start;
+}
+
+.system-copy {
+  position: sticky;
+  top: 104px;
+}
+
+.system-copy .lede {
+  margin-top: 22px;
+}
+
+.system-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.system-list li {
+  display: grid;
+  grid-template-columns: 18px minmax(0, 1fr);
+  gap: 14px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid var(--rule);
+}
+
+.system-list .dot {
+  margin-top: 12px;
+}
+
+.urgency-inner {
+  max-width: 860px;
+}
+
+.urgency-inner .lede,
+.final-inner .lede {
+  margin-top: 22px;
+}
+
+.final-inner {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: clamp(28px, 5vw, 72px);
+  align-items: end;
+}
+
+.final-inner .cta {
+  margin-bottom: 8px;
+}
+
+@media (max-width: 900px) {
+  .home-hero {
+    min-height: auto;
+  }
+
+  .hero-grid,
+  .system-grid,
+  .final-inner {
+    grid-template-columns: 1fr;
+  }
+
+  .hero-mark {
+    display: none;
+  }
+
+  .system-copy {
+    position: static;
+  }
+
+  .proof-list {
+    grid-template-columns: 1fr;
+  }
+
+  .final-inner {
+    align-items: start;
+  }
+}
+
+@media (max-width: 520px) {
+  .home-hero {
+    padding-top: 96px;
+  }
+
+  .hero-actions {
+    align-items: stretch;
+  }
+
+  .hero-actions .cta,
+  .hero-actions .cta-ghost,
+  .final-inner .cta {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .ladder-card {
+    grid-template-columns: 1fr;
+  }
+
+  .ladder-num {
+    width: 38px;
+    height: 38px;
+  }
+}
+</style>

@@ -4,6 +4,7 @@ const SITE = 'https://buildwisemedia.com';
 
 const pages = [
   { loc: '/', priority: '1.0', changefreq: 'weekly' },
+  { loc: '/audit', priority: '0.9', changefreq: 'weekly' },
   { loc: '/about', priority: '0.7', changefreq: 'monthly' },
   { loc: '/services', priority: '0.8', changefreq: 'monthly' },
   { loc: '/services/ascend', priority: '0.9', changefreq: 'monthly' },
