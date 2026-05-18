@@ -1,8 +1,36 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 
-const title = "Buildwise Media - The AI Marketing Audit";
-const description = "Stop guessing where your next clients come from. The free AI Marketing Audit takes 5 minutes.";
+const heroVariants = {
+  A: {
+    question: "Do you want to be the #1 service business in your market?",
+    subhead: "Most #1 shops aren't the best — they're the most-found. The free AI Marketing Audit takes 5 minutes.",
+  },
+  B: {
+    question: "Do you want 3-6 new clients every 90 days?",
+    subhead: "Stop running the same playbook and hoping for more leads. The free AI Marketing Audit takes 5 minutes.",
+  },
+  C: {
+    question: "Do you want to add $1M+ to your service business?",
+    subhead: "Stop leaving the next $1M on the table. The free AI Marketing Audit takes 5 minutes.",
+  },
+  D: {
+    question: "Do you want to end the feast or famine?",
+    subhead: "Stop guessing where your next clients come from. The free AI Marketing Audit takes 5 minutes.",
+  },
+} as const;
+
+type HeroArm = keyof typeof heroVariants;
+
+const isHeroArm = (value: string | null): value is HeroArm =>
+  value === 'A' || value === 'B' || value === 'C' || value === 'D';
+
+const requestedArm = Astro.url.searchParams.get('arm')?.toUpperCase() ?? null;
+const arm = isHeroArm(requestedArm) ? requestedArm : 'D';
+const heroVariant = heroVariants[arm];
+
+const title = `${heroVariant.subhead} | Buildwise Media`;
+const description = heroVariant.subhead;
 
 const outcomes = [
   {
@@ -99,14 +127,12 @@ const breadcrumb = {
 };
 ---
 <BaseLayout title={title} description={description} jsonLd={[serviceSchema, breadcrumb]}>
-  <section class="home-hero" aria-labelledby="home-hero-title">
+  <section class="home-hero" aria-labelledby="home-hero-title" data-arm={arm} data-hero-arm-root>
     <div class="container hero-grid">
       <div class="hero-copy">
         <p class="eyebrow">The AI Marketing Audit</p>
-        <h1 id="home-hero-title" class="h-hero">Do you want to end the feast or famine?</h1>
-        <p class="hero-sub">
-          Stop guessing where your next clients come from. The free AI Marketing Audit takes 5 minutes.
-        </p>
+        <h1 id="home-hero-title" class="h-hero">{heroVariant.question}</h1>
+        <p class="hero-sub" data-hero-subhead>{heroVariant.subhead}</p>
         <div class="hero-actions" aria-label="Primary actions">
           <a href="/book" class="cta" data-cta-source="home-hero">See If We're a Fit<span class="cta-arrow" aria-hidden="true">-&gt;</span></a>
           <a href="#system" class="cta-ghost" data-cta-source="home-hero-system">See the System</a>
@@ -117,6 +143,50 @@ const breadcrumb = {
       </figure>
     </div>
   </section>
+
+  <script is:inline>
+    (function () {
+      var cQuestionAmount = String.fromCharCode(36) + '1M+';
+      var cSubheadAmount = String.fromCharCode(36) + '1M';
+      var variants = {
+        A: {
+          question: "Do you want to be the #1 service business in your market?",
+          subhead: "Most #1 shops aren't the best — they're the most-found. The free AI Marketing Audit takes 5 minutes.",
+        },
+        B: {
+          question: "Do you want 3-6 new clients every 90 days?",
+          subhead: "Stop running the same playbook and hoping for more leads. The free AI Marketing Audit takes 5 minutes.",
+        },
+        C: {
+          question: "Do you want to add " + cQuestionAmount + " to your service business?",
+          subhead: "Stop leaving the next " + cSubheadAmount + " on the table. The free AI Marketing Audit takes 5 minutes.",
+        },
+        D: {
+          question: "Do you want to end the feast or famine?",
+          subhead: "Stop guessing where your next clients come from. The free AI Marketing Audit takes 5 minutes.",
+        },
+      };
+
+      var arm = new URL(window.location.href).searchParams.get('arm');
+      arm = arm ? arm.toUpperCase() : 'D';
+      if (!Object.prototype.hasOwnProperty.call(variants, arm)) arm = 'D';
+
+      var variant = variants[arm];
+      var heroRoot = document.querySelector('[data-hero-arm-root]');
+      var heroTitle = document.getElementById('home-hero-title');
+      var heroSubhead = document.querySelector('[data-hero-subhead]');
+      var metaDescription = document.querySelector('meta[name="description"]');
+      var ogDescription = document.querySelector('meta[property="og:description"]');
+
+      if (heroRoot) heroRoot.setAttribute('data-arm', arm);
+      if (heroTitle) heroTitle.textContent = variant.question;
+      if (heroSubhead) heroSubhead.textContent = variant.subhead;
+      document.title = variant.subhead + ' | Buildwise Media';
+      if (metaDescription) metaDescription.setAttribute('content', variant.subhead);
+      if (ogDescription) ogDescription.setAttribute('content', variant.subhead);
+      window.__bwmHeroArm = arm;
+    })();
+  </script>
 
   <section class="outcomes-ladder" aria-labelledby="outcomes-title">
     <div class="container">
