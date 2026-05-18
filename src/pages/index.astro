@@ -112,9 +112,9 @@ const breadcrumb = {
           <a href="#system" class="cta-ghost" data-cta-source="home-hero-system">See the System</a>
         </div>
       </div>
-      <div class="hero-mark" aria-hidden="true">
-        <img src="/brand/mark-on-canvas.svg" alt="" width="360" height="360" loading="eager" />
-      </div>
+      <figure class="hero-photo">
+        <img src="/images/bwm-hero-atmospheric-v1.webp" alt="An empty leather chair pulled back from a clean desk in a small-business owner's office at first light, a monitor glowing dim with a soft accent of light on the screen." width="1920" height="1080" loading="eager" decoding="async" />
+      </figure>
     </div>
   </section>
 
@@ -124,6 +124,9 @@ const breadcrumb = {
         <p class="section-tag">Outcomes ladder</p>
         <h2 id="outcomes-title" class="h-section">What changes when Ascend is installed.</h2>
       </div>
+      <figure class="section-photo section-photo--banner">
+        <img src="/images/bwm-outcomes-environmental-cinematic-v1.webp" alt="A quiet morning workspace: open notebook, plain coffee mug, pen, and a single desk lamp throwing warm light against cool shadow." width="1920" height="1080" loading="lazy" decoding="async" />
+      </figure>
       <ol class="ladder-list" role="list">
         {outcomes.map((item, index) => (
           <li class="ladder-card">
@@ -139,7 +142,7 @@ const breadcrumb = {
   </section>
 
   <section class="proof-section elev" aria-labelledby="proof-title">
-    <div class="container">
+    <div class="container proof-grid">
       <article class="proof-card">
         <p class="section-tag">Proof</p>
         <h2 id="proof-title" class="proof-headline">
@@ -151,6 +154,9 @@ const breadcrumb = {
           ))}
         </ul>
       </article>
+      <figure class="section-photo section-photo--proof">
+        <img src="/images/bwm-proof-still-life-v1.webp" alt="Macro still-life: an illegible printed graph on aged paper beside a fountain pen and a magnifying glass picking up a hint of accent light." width="1920" height="1080" loading="lazy" decoding="async" />
+      </figure>
       <div class="mid-cta">
         <a href="/book" class="cta" data-cta-source="home-proof">See If We're a Fit<span class="cta-arrow" aria-hidden="true">-&gt;</span></a>
       </div>
@@ -177,11 +183,17 @@ const breadcrumb = {
           </li>
         ))}
       </ul>
+      <figure class="section-photo section-photo--system">
+        <img src="/images/bwm-system-architecture-atmospheric-v1.webp" alt="An abstract dark corridor of ordered steel geometry with a single distant accent light far down the aisle, evoking infrastructure that runs in the background." width="1920" height="1080" loading="lazy" decoding="async" />
+      </figure>
     </div>
   </section>
 
   <section class="urgency-section elev" aria-labelledby="urgency-title">
     <div class="container urgency-inner">
+      <figure class="section-photo section-photo--urgency">
+        <img src="/images/bwm-urgency-cinematic-v1.webp" alt="Dusk on a quiet service-business main street emptying out — one storefront still lit by a restrained accent of practical light." width="1920" height="1080" loading="lazy" decoding="async" />
+      </figure>
       <p class="section-tag">Time matters</p>
       <h2 id="urgency-title" class="h-section">Every quiet quarter compounds.</h2>
       <p class="lede">
@@ -248,6 +260,70 @@ const breadcrumb = {
   min-width: 240px;
   border-left: 1px solid var(--rule);
   padding-left: clamp(24px, 5vw, 64px);
+}
+
+.hero-photo {
+  margin: 0;
+  border-radius: 6px;
+  overflow: hidden;
+  border: 1px solid var(--rule);
+  aspect-ratio: 16 / 11;
+  width: 100%;
+}
+
+.hero-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.section-photo {
+  margin: clamp(40px, 6vw, 72px) 0 0;
+  border-radius: 6px;
+  overflow: hidden;
+  border: 1px solid var(--rule);
+  aspect-ratio: 21 / 9;
+  width: 100%;
+}
+
+.section-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.section-photo--banner {
+  aspect-ratio: 21 / 9;
+  margin-top: clamp(32px, 4vw, 48px);
+  margin-bottom: clamp(40px, 6vw, 72px);
+}
+
+.section-photo--proof {
+  aspect-ratio: 16 / 10;
+  margin-top: clamp(28px, 4vw, 48px);
+}
+
+.section-photo--system {
+  grid-column: 1 / -1;
+  aspect-ratio: 21 / 9;
+  margin-top: clamp(40px, 6vw, 72px);
+}
+
+.section-photo--urgency {
+  aspect-ratio: 21 / 8;
+  margin-bottom: clamp(32px, 4vw, 56px);
+  margin-top: 0;
+}
+
+@media (max-width: 880px) {
+  .hero-photo {
+    aspect-ratio: 16 / 10;
+  }
+  .section-photo, .section-photo--banner, .section-photo--system, .section-photo--urgency {
+    aspect-ratio: 16 / 10;
+  }
 }
 
 .section-head {

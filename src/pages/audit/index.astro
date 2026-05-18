@@ -47,9 +47,9 @@ const auditSchema = {
           Stop guessing where your next clients come from. The free AI Marketing Audit takes 5 minutes.
         </p>
       </div>
-      <div class="audit-mark" aria-hidden="true">
-        <img src="/brand/mark-on-canvas.svg" alt="" width="300" height="300" loading="eager" />
-      </div>
+      <figure class="audit-hero-photo">
+        <img src="/images/bwm-audit-editorial-v1.webp" alt="A top-down editorial frame: printed audit report mid-annotation, fountain pen, coffee cup. The audit as a real artifact, not vapor." width="1920" height="1080" loading="eager" decoding="async" />
+      </figure>
     </div>
   </section>
 
@@ -63,6 +63,9 @@ const auditSchema = {
             <li><span class="dot live" aria-hidden="true"></span>{finding}</li>
           ))}
         </ul>
+        <figure class="section-photo section-photo--audit-findings">
+          <img src="/images/bwm-proof-still-life-v1.webp" alt="Macro still-life: illegible graph on aged paper beside a magnifying glass and fountain pen. Reading what the numbers actually say." width="1920" height="1080" loading="lazy" decoding="async" />
+        </figure>
       </div>
 
       <form id="audit-form" class="audit-form" method="post" action="https://bwm-form-handler.robert-ba0.workers.dev/buildwisemedia/ai-marketing-audit" novalidate>
@@ -88,6 +91,9 @@ const auditSchema = {
 
   <section class="audit-trust" aria-label="Trust anchor">
     <div class="container">
+      <figure class="section-photo section-photo--audit-trust">
+        <img src="/images/bwm-system-architecture-atmospheric-v1.webp" alt="A dark infrastructure corridor with ordered geometry and a single distant accent light. What runs in the background after the audit." width="1920" height="1080" loading="lazy" decoding="async" />
+      </figure>
       <p>It actually works.</p>
     </div>
   </section>
@@ -172,6 +178,54 @@ const auditSchema = {
 .audit-mark {
   border-left: 1px solid var(--rule);
   padding-left: clamp(24px, 5vw, 56px);
+}
+
+.audit-hero-photo {
+  margin: 0;
+  border-radius: 6px;
+  overflow: hidden;
+  border: 1px solid var(--rule);
+  aspect-ratio: 4 / 3;
+  width: 100%;
+}
+
+.audit-hero-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.section-photo {
+  margin: clamp(32px, 4vw, 56px) 0 0;
+  border-radius: 6px;
+  overflow: hidden;
+  border: 1px solid var(--rule);
+  aspect-ratio: 21 / 9;
+  width: 100%;
+}
+
+.section-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.section-photo--audit-findings {
+  aspect-ratio: 16 / 10;
+  margin-top: clamp(28px, 4vw, 40px);
+}
+
+.section-photo--audit-trust {
+  aspect-ratio: 21 / 8;
+  margin: 0 0 clamp(28px, 4vw, 48px);
+}
+
+@media (max-width: 880px) {
+  .audit-hero-photo, .section-photo, .section-photo--audit-findings, .section-photo--audit-trust {
+    aspect-ratio: 16 / 10;
+  }
 }
 
 .audit-grid {

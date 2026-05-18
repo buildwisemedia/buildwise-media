@@ -55,6 +55,9 @@ const breadcrumb = {
       <h1 id="about-title" class="h-hero">
         You run the business. Ascend makes you the most-chosen name in your market within 12 months.
       </h1>
+      <figure class="section-photo section-photo--about-hero">
+        <img src="/images/bwm-about-atmospheric-v1.webp" alt="First-light operations floor: workbench, monitor, paper plans, and a single visible desk lamp. The team and its AI system at work before the world wakes up." width="1920" height="1080" loading="eager" decoding="async" />
+      </figure>
     </div>
   </section>
 
@@ -77,6 +80,9 @@ const breadcrumb = {
           The Buildwise team runs the system with our AI operating layer. The owner gets fewer loose ends, clearer demand signals, and a market presence that keeps compounding.
         </p>
       </div>
+      <figure class="section-photo section-photo--mission">
+        <img src="/images/bwm-proof-still-life-v1.webp" alt="Macro still-life: an illegible printed graph on aged paper beside a fountain pen and a magnifying glass." width="1920" height="1080" loading="lazy" decoding="async" />
+      </figure>
     </div>
   </section>
 
@@ -86,6 +92,9 @@ const breadcrumb = {
         <p class="section-tag">How we work</p>
         <h2 id="work-title" class="h-section">Audit, install, run.</h2>
       </div>
+      <figure class="section-photo section-photo--work">
+        <img src="/images/bwm-about-environmental-cinematic-v1.webp" alt="A hand mid-annotation in a notebook beside a monitor showing blurred code. Human and machine collaborating quietly." width="1920" height="1080" loading="lazy" decoding="async" />
+      </figure>
       <div class="work-grid">
         {workSteps.map((step, index) => (
           <article class="work-card">
@@ -114,6 +123,44 @@ const breadcrumb = {
 .about-hero {
   padding-top: clamp(132px, 14vw, 196px);
   padding-bottom: clamp(72px, 9vw, 128px);
+}
+
+.section-photo {
+  margin: clamp(40px, 6vw, 72px) 0 0;
+  border-radius: 6px;
+  overflow: hidden;
+  border: 1px solid var(--rule);
+  aspect-ratio: 21 / 9;
+  width: 100%;
+}
+
+.section-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.section-photo--about-hero {
+  aspect-ratio: 21 / 9;
+  margin-top: clamp(32px, 4vw, 48px);
+}
+
+.section-photo--mission {
+  aspect-ratio: 16 / 10;
+  margin-top: clamp(28px, 4vw, 40px);
+}
+
+.section-photo--work {
+  aspect-ratio: 21 / 9;
+  margin-top: clamp(28px, 4vw, 40px);
+  margin-bottom: clamp(40px, 6vw, 72px);
+}
+
+@media (max-width: 880px) {
+  .section-photo, .section-photo--about-hero, .section-photo--mission, .section-photo--work {
+    aspect-ratio: 16 / 10;
+  }
 }
 
 .about-hero-inner {
