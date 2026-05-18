@@ -5,7 +5,7 @@
   locked: 2026-04-30 against brand/BWM-Imagery-Direction-Locked.md
   use: capability section on buildwisemedia.com, deck capability slide, /review proof block
   density: granular (capability requires stage labels + percentages — non-negotiable per lock)
-  stage labels: BWM lead-system canonical (VISITS / ENGAGED / QLS / BOOKED / CLOSED)
+  stage labels: SMB-owner plain language (VISITS / INQUIRED / LEADS / BOOKED / WON) — internal-jargon variant (VISITS / ENGAGED / QLS / BOOKED / CLOSED) retired 2026-05-18; not spec-locked in Brain — only the visual register (granular density + JetBrains Mono labels + %) is locked per brand/BWM-Imagery-Direction-Locked.md
   baseline conversion: 100 / 52% / 21% / 8% / 3.2% (illustrative, replace with client data at use site)
   pre-flight:
     fills/strokes: #050507 canvas + rgba(250,250,250,*) hairlines + #F0FF00 top verdict only
@@ -35,10 +35,10 @@
     <text x="288" y="182" fill="rgba(250,250,250,0.6)">100</text>
   </g>
   <g font-family="JetBrains Mono, ui-monospace, Menlo, monospace" font-size="8" letter-spacing="0.14em">
-    <text x="20" y="62" fill="#F0FF00">CLOSED</text>
+    <text x="20" y="62" fill="#F0FF00">WON</text>
     <text x="20" y="92" fill="rgba(250,250,250,0.55)">BOOKED</text>
-    <text x="20" y="122" fill="rgba(250,250,250,0.55)">QLS</text>
-    <text x="20" y="152" fill="rgba(250,250,250,0.55)">ENGAGED</text>
+    <text x="20" y="122" fill="rgba(250,250,250,0.55)">LEADS</text>
+    <text x="20" y="152" fill="rgba(250,250,250,0.55)">INQUIRED</text>
     <text x="20" y="182" fill="rgba(250,250,250,0.55)">VISITS</text>
   </g>
 </svg>
