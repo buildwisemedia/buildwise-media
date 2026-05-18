@@ -56,6 +56,9 @@ const stories = [
       <p class="hero-sub" style="max-width: 720px;">
         Every claim below carries a confidence percentage, an evidence class, and a captured baseline. Sub-75% confidence numbers don't show up here at all.
       </p>
+      <figure class="section-photo section-photo--diagram">
+        <img src="/images/node-mesh-ascending-v1.svg" alt="Isometric node mesh ascending — the lead-generation network growing in three converging layers." width="1200" height="900" loading="lazy" decoding="async" />
+      </figure>
     </div>
   </section>
 
@@ -78,6 +81,10 @@ const stories = [
       <p class="section-tag">Case stories</p>
       <h2 class="h-section">What the system <em>moved.</em></h2>
 
+      <figure class="section-photo section-photo--banner">
+        <img src="/images/bwm-results-editorial-v1.webp" alt="An operator in profile silhouette reviewing a single illuminated dashboard tile — quiet authority, monitor glow lighting the desk." width="1920" height="1080" loading="lazy" decoding="async" />
+      </figure>
+
       <div class="stories-grid">
         {stories.map((s) => (
           <article class="story-card reveal">
@@ -93,6 +100,14 @@ const stories = [
       </div>
 
       <p class="stories-foot mono">Identifying details abstracted while public-facing case-study sign-off completes. Underlying data verifiable on a discovery call.</p>
+    </div>
+  </section>
+
+  <section class="results-receipt">
+    <div class="container">
+      <figure class="section-photo section-photo--receipt">
+        <img src="/images/bwm-receipts-still-life-v1.webp" alt="Macro detail of a single dashboard tile: +47% qualified leads, 90-day window, 92% confidence — the receipt as artifact." width="1920" height="1080" loading="lazy" decoding="async" />
+      </figure>
     </div>
   </section>
 
@@ -139,11 +154,51 @@ const stories = [
 .stories-foot { margin-top: 48px; font-size: 10px; letter-spacing: 0.18em; color: var(--ink-faint); max-width: 760px; line-height: 1.7; }
 
 .results-cta { padding-block: 80px; }
+.results-receipt { padding-block: clamp(48px, 7vw, 96px); }
 .ascend-cta-row { display: flex; align-items: center; justify-content: space-between; gap: 32px; flex-wrap: wrap; }
+
+.section-photo {
+  margin: clamp(40px, 6vw, 72px) 0 0;
+  border-radius: 6px;
+  overflow: hidden;
+  border: 1px solid var(--rule);
+  aspect-ratio: 21 / 9;
+  width: 100%;
+}
+.section-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+.section-photo--banner {
+  aspect-ratio: 21 / 9;
+  margin-top: clamp(32px, 4vw, 48px);
+  margin-bottom: clamp(40px, 6vw, 72px);
+}
+.section-photo--receipt {
+  aspect-ratio: 16 / 9;
+  margin-top: 0;
+  max-width: 960px;
+  margin-inline: auto;
+}
+.section-photo--diagram {
+  aspect-ratio: 16 / 10;
+  max-width: 720px;
+  margin-inline: auto;
+  margin-top: clamp(32px, 5vw, 56px);
+  background: #050507;
+}
+.section-photo--diagram img {
+  object-fit: contain;
+}
 
 @media (max-width: 880px) {
   .metrics-grid { grid-template-columns: repeat(2, 1fr); gap: 24px; }
   .stories-grid { grid-template-columns: 1fr; }
+  .section-photo, .section-photo--banner, .section-photo--receipt {
+    aspect-ratio: 16 / 10;
+  }
 }
 @media (max-width: 480px) {
   .metrics-grid { grid-template-columns: 1fr; }

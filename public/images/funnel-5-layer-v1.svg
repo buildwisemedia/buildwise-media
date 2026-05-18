@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  bwm-brand-assets · register=b · surface=capability · concept=funnel-5-layer · v1
+  source: round-015b-decode.html · surface 02 · reading 3 (B · granular 5-layer with stage %)
+  locked: 2026-04-30 against brand/BWM-Imagery-Direction-Locked.md
+  use: capability section on buildwisemedia.com, deck capability slide, /review proof block
+  density: granular (capability requires stage labels + percentages — non-negotiable per lock)
+  stage labels: BWM lead-system canonical (VISITS / ENGAGED / QLS / BOOKED / CLOSED)
+  baseline conversion: 100 / 52% / 21% / 8% / 3.2% (illustrative, replace with client data at use site)
+  pre-flight:
+    fills/strokes: #050507 canvas + rgba(250,250,250,*) hairlines + #F0FF00 top verdict only
+    no warm tones · no banned typefaces · JetBrains Mono only for text-in-image
+-->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 220" preserveAspectRatio="xMidYMid meet" role="img" aria-label="Five-layer lead system funnel with stage labels and conversion percentages">
+  <rect width="360" height="220" fill="#050507"/>
+  <g stroke="rgba(250,250,250,0.4)" stroke-width="0.7" fill="none">
+    <path d="M 50 195 L 250 195 L 150 165 Z"/>
+    <path d="M 50 165 L 250 165 L 150 135 Z" stroke="rgba(250,250,250,0.5)"/>
+    <path d="M 50 135 L 250 135 L 150 105 Z" stroke="rgba(250,250,250,0.6)"/>
+    <path d="M 50 105 L 250 105 L 150 75 Z" stroke="rgba(250,250,250,0.7)"/>
+    <path d="M 50 75 L 250 75 L 150 45 Z" stroke="#F0FF00" stroke-width="1.2" fill="rgba(240,255,0,0.10)"/>
+    <line x1="150" y1="165" x2="150" y2="45" stroke-dasharray="2 2"/>
+    <line x1="260" y1="180" x2="280" y2="180" stroke="rgba(250,250,250,0.3)"/>
+    <line x1="260" y1="150" x2="280" y2="150" stroke="rgba(250,250,250,0.3)"/>
+    <line x1="260" y1="120" x2="280" y2="120" stroke="rgba(250,250,250,0.3)"/>
+    <line x1="260" y1="90" x2="280" y2="90" stroke="rgba(250,250,250,0.3)"/>
+    <line x1="260" y1="60" x2="280" y2="60" stroke="#F0FF00"/>
+  </g>
+  <circle cx="150" cy="45" r="3" fill="#F0FF00"/>
+  <g font-family="JetBrains Mono, ui-monospace, Menlo, monospace" font-size="9" letter-spacing="0.10em">
+    <text x="288" y="62" fill="#F0FF00">3.2%</text>
+    <text x="288" y="92" fill="rgba(250,250,250,0.6)">8%</text>
+    <text x="288" y="122" fill="rgba(250,250,250,0.6)">21%</text>
+    <text x="288" y="152" fill="rgba(250,250,250,0.6)">52%</text>
+    <text x="288" y="182" fill="rgba(250,250,250,0.6)">100</text>
+  </g>
+  <g font-family="JetBrains Mono, ui-monospace, Menlo, monospace" font-size="8" letter-spacing="0.14em">
+    <text x="20" y="62" fill="#F0FF00">CLOSED</text>
+    <text x="20" y="92" fill="rgba(250,250,250,0.55)">BOOKED</text>
+    <text x="20" y="122" fill="rgba(250,250,250,0.55)">QLS</text>
+    <text x="20" y="152" fill="rgba(250,250,250,0.55)">ENGAGED</text>
+    <text x="20" y="182" fill="rgba(250,250,250,0.55)">VISITS</text>
+  </g>
+</svg>

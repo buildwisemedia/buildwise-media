@@ -81,6 +81,9 @@ const process = [
         <a href="/book" class="cta" data-cta-source="ascend-hero">See If We're a Fit<span class="cta-arrow" aria-hidden="true">→</span></a>
         <a href="#stack" class="cta-ghost" data-cta-source="ascend-hero-secondary">See What's Inside</a>
       </div>
+      <figure class="section-photo section-photo--diagram">
+        <img src="/images/funnel-3-layer-v1.svg" alt="Isometric three-layer funnel — the operating system rendered as visits ascending to qualified leads ascending to booked revenue." width="1200" height="750" loading="lazy" decoding="async" />
+      </figure>
     </div>
   </section>
 
@@ -96,6 +99,9 @@ const process = [
           </article>
         ))}
       </div>
+      <figure class="section-photo section-photo--diagram">
+        <img src="/images/node-mesh-ascending-v1.svg" alt="Isometric ascending node mesh — six layers wired together as one coherent operating system." width="1200" height="750" loading="lazy" decoding="async" />
+      </figure>
     </div>
   </section>
 
@@ -117,6 +123,9 @@ const process = [
       <p class="process-foot">
         <a href="/how-it-works" class="cta-ghost" data-cta-source="ascend-process">See the full process<span class="cta-arrow" aria-hidden="true">→</span></a>
       </p>
+      <figure class="section-photo section-photo--pause">
+        <img src="/images/bwm-ascend-still-life-v1.webp" alt="Macro detail of three stacked matte-black modules labeled WEBSITE, ATTRIBUTION, OPERATIONS — the system rendered as quiet hardware." width="1920" height="1080" loading="lazy" decoding="async" />
+      </figure>
     </div>
   </section>
 
@@ -191,10 +200,44 @@ const process = [
 .ascend-cta { padding-block: 80px; }
 .ascend-cta-row { display: flex; align-items: center; justify-content: space-between; gap: 32px; flex-wrap: wrap; }
 
+.section-photo {
+  margin: clamp(40px, 6vw, 72px) 0 0;
+  border-radius: 6px;
+  overflow: hidden;
+  border: 1px solid var(--rule);
+  aspect-ratio: 21 / 9;
+  width: 100%;
+}
+.section-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+.section-photo--pause {
+  aspect-ratio: 16 / 9;
+  margin-top: clamp(40px, 6vw, 72px);
+  max-width: 960px;
+  margin-inline: auto;
+}
+.section-photo--diagram {
+  aspect-ratio: 16 / 10;
+  max-width: 720px;
+  margin-inline: auto;
+  margin-top: clamp(32px, 5vw, 56px);
+  background: #050507;
+}
+.section-photo--diagram img {
+  object-fit: contain;
+}
+
 @media (max-width: 880px) {
   .stack-grid { grid-template-columns: 1fr; gap: 16px; }
   .process-row { grid-template-columns: 1fr; }
   .faq-grid { grid-template-columns: 1fr; }
   .faq-head { position: static; }
+  .section-photo, .section-photo--pause {
+    aspect-ratio: 16 / 10;
+  }
 }
 </style>

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  bwm-brand-assets · register=b · surface=deck-hero · concept=stacked-planes · v1
+  source: round-015-imagery-direction.html · option B · cell B.1 (stacked rectangular planes)
+        + round-015b-decode.html · surface 01 · reading 1 (4-layer stacked system)
+  locked: 2026-04-30 against brand/BWM-Imagery-Direction-Locked.md
+  use: deck title slide, deck section dividers, deck hero compositions (16:9 aspect)
+  density: high
+  pre-flight: #050507 canvas + rgba(250,250,250,*) hairlines + #F0FF00 verdict at top plane
+-->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 270" preserveAspectRatio="xMidYMid meet" role="img" aria-label="Four stacked rectangular planes ascending to verdict at top plane">
+  <rect width="480" height="270" fill="#050507"/>
+  <g stroke="rgba(250,250,250,0.4)" stroke-width="1" fill="none">
+    <path d="M 140 80 L 240 50 L 340 80 L 240 110 Z" stroke="#F0FF00" stroke-width="1.5" fill="rgba(240,255,0,0.10)"/>
+    <path d="M 140 130 L 240 100 L 340 130 L 240 160 Z"/>
+    <path d="M 140 180 L 240 150 L 340 180 L 240 210 Z"/>
+    <path d="M 140 230 L 240 200 L 340 230 L 240 260 Z"/>
+    <line x1="140" y1="80" x2="140" y2="230"/>
+    <line x1="240" y1="50" x2="240" y2="200"/>
+    <line x1="340" y1="80" x2="340" y2="230"/>
+  </g>
+  <circle cx="240" cy="50" r="4" fill="#F0FF00"/>
+</svg>

@@ -208,6 +208,9 @@ const breadcrumb = {
           </li>
         ))}
       </ol>
+      <figure class="section-photo section-photo--method">
+        <img src="/images/bwm-method-editorial-v1.webp" alt="An operator's hands at a laptop keyboard at first light, a faint dashboard on a second monitor showing a single accent metric — the system running quietly while the work continues." width="1920" height="1080" loading="lazy" decoding="async" />
+      </figure>
     </div>
   </section>
 
@@ -253,6 +256,9 @@ const breadcrumb = {
           </li>
         ))}
       </ul>
+      <figure class="section-photo section-photo--diagram">
+        <img src="/images/funnel-3-layer-v1.svg" alt="Isometric diagram of a three-layer funnel — the website, the acquisition layer, and the operations layer stacked and converging at the top vertex." width="1200" height="900" loading="lazy" decoding="async" />
+      </figure>
       <figure class="section-photo section-photo--system">
         <img src="/images/bwm-system-architecture-atmospheric-v1.webp" alt="An abstract dark corridor of ordered steel geometry with a single distant accent light far down the aisle, evoking infrastructure that runs in the background." width="1920" height="1080" loading="lazy" decoding="async" />
       </figure>
@@ -387,11 +393,30 @@ const breadcrumb = {
   margin-top: 0;
 }
 
+.section-photo--method {
+  aspect-ratio: 21 / 9;
+  margin-top: clamp(32px, 4vw, 48px);
+  margin-bottom: clamp(40px, 6vw, 72px);
+}
+
+.section-photo--diagram {
+  grid-column: 1 / -1;
+  aspect-ratio: 16 / 10;
+  max-width: 720px;
+  margin-inline: auto;
+  margin-top: clamp(40px, 6vw, 72px);
+  border: 1px solid var(--rule);
+  background: #050507;
+}
+.section-photo--diagram img {
+  object-fit: contain;
+}
+
 @media (max-width: 880px) {
   .hero-photo {
     aspect-ratio: 16 / 10;
   }
-  .section-photo, .section-photo--banner, .section-photo--system, .section-photo--urgency {
+  .section-photo, .section-photo--banner, .section-photo--system, .section-photo--urgency, .section-photo--method {
     aspect-ratio: 16 / 10;
   }
 }

@@ -53,6 +53,14 @@ const auditSchema = {
     </div>
   </section>
 
+  <section class="audit-diagram" aria-hidden="true">
+    <div class="container">
+      <figure class="section-photo section-photo--diagram">
+        <img src="/images/exploded-triangle-v1.svg" alt="" width="1200" height="900" loading="lazy" decoding="async" />
+      </figure>
+    </div>
+  </section>
+
   <section class="audit-body elev" aria-labelledby="audit-shows-title">
     <div class="container audit-grid">
       <div class="audit-findings">
@@ -220,6 +228,20 @@ const auditSchema = {
 .section-photo--audit-trust {
   aspect-ratio: 21 / 8;
   margin: 0 0 clamp(28px, 4vw, 48px);
+}
+
+.audit-diagram {
+  padding-block: clamp(40px, 6vw, 80px);
+}
+.section-photo--diagram {
+  aspect-ratio: 16 / 10;
+  max-width: 720px;
+  margin-inline: auto;
+  margin-top: 0;
+  background: #050507;
+}
+.section-photo--diagram img {
+  object-fit: contain;
 }
 
 @media (max-width: 880px) {

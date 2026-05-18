@@ -26,6 +26,9 @@ const breadcrumb = {
       <p class="hero-sub" style="max-width: 720px;">
         Most agencies pad the menu. We pulled ours down to one offering — Ascend — because that's what the work actually is. Below is what's inside it.
       </p>
+      <figure class="section-photo section-photo--diagram">
+        <img src="/images/stacked-planes-v1.svg" alt="Isometric stacked planes — one integrated operating system rendered as layered structure." width="1200" height="675" loading="lazy" decoding="async" />
+      </figure>
     </div>
   </section>
 
@@ -53,12 +56,24 @@ const breadcrumb = {
           <li><span class="dot live"></span><span>Weekly connector audit · 13/13 healthy or it's a task in the queue</span></li>
         </ul>
 
+        <figure class="section-photo section-photo--diagram">
+          <img src="/images/funnel-5-layer-v1.svg" alt="Isometric five-layer diagram — website, acquisition, content, operations, AI tools — all wired into a single funnel." width="1200" height="733" loading="lazy" decoding="async" />
+        </figure>
+
         <p class="card-cta-row">
           <span class="card-cta-label mono">See the deep dive</span>
           <span class="card-cta-arrow" aria-hidden="true">→</span>
         </p>
       </a>
 
+    </div>
+  </section>
+
+  <section class="services-atmosphere">
+    <div class="container">
+      <figure class="section-photo section-photo--banner">
+        <img src="/images/bwm-services-atmospheric-v1.webp" alt="An empty modern workspace at dusk: laptop glowing cool, coffee mug, notebook — the operator stepped away while the system kept running." width="1920" height="1080" loading="lazy" decoding="async" />
+      </figure>
     </div>
   </section>
 
@@ -109,5 +124,42 @@ const breadcrumb = {
 .card-cta-arrow { color: var(--ink-dim); font-family: var(--mono); font-size: 18px; transition: transform 220ms ease, color 220ms ease; }
 
 .services-cta { padding-block: 80px; }
+.services-atmosphere { padding-block: clamp(48px, 7vw, 96px); }
 .about-cta-row { display: flex; align-items: center; justify-content: space-between; gap: 32px; flex-wrap: wrap; }
+
+.section-photo {
+  margin: clamp(40px, 6vw, 72px) 0 0;
+  border-radius: 6px;
+  overflow: hidden;
+  border: 1px solid var(--rule);
+  aspect-ratio: 21 / 9;
+  width: 100%;
+}
+.section-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+.section-photo--banner {
+  aspect-ratio: 21 / 9;
+  margin-top: 0;
+  margin-bottom: 0;
+}
+.section-photo--diagram {
+  aspect-ratio: 16 / 10;
+  max-width: 720px;
+  margin-inline: auto;
+  margin-top: clamp(32px, 5vw, 56px);
+  background: #050507;
+}
+.section-photo--diagram img {
+  object-fit: contain;
+}
+
+@media (max-width: 880px) {
+  .section-photo, .section-photo--banner {
+    aspect-ratio: 16 / 10;
+  }
+}
 </style>
