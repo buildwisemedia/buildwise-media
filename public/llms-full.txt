@@ -22,54 +22,130 @@ Buildwise Media is an AI-native marketing operations company. We don't sell mark
 
 The category we're building isn't "AI agency" — it's "marketing operations company." Most agencies sell projects with hope as the delivery mechanism. We install systems with measurement as the delivery mechanism.
 
-## Single-product offer
+## Product family
 
-We sell one product, not a menu of services.
+Buildwise Media is the intelligence layer that automates discovery, warming, and conversion of qualified leads for service businesses. We sell one connected system — the Ascend lead-generation engine — delivered across three tiers. Each tier carries the Ascend brand because each runs the same underlying engine; the differences are channel breadth, deliverable depth, and how the client pays. Clients ascend through the family as their business scales.
 
-### Ascend — The Buildwise Revenue Engine
+| Tier | Position | Pricing | Engine Build | Onboarding |
+|---|---|---|---|---|
+| Ascend Pilot | Per-lead entry tier | Per qualified lead delivered (no retainer) | Included in per-lead pricing | Rolling |
+| Ascend | DFY AI-powered ads funnel | $3,500/mo (includes $1,000 designated ad spend) | $2,500 one-time | 7 days |
+| Ascend Pro | Run-for-you AI marketing department | $9,500/mo (includes $1,000 designated ad spend) | $5,000 one-time | 14 days |
 
-**URL:** https://buildwisemedia.com/services/ascend
-**Pricing:** $7,000/mo total ($6,000/mo BWM management fee + $1,000/mo included ad spend) + $2,500 one-time Engine Build fee at signup. Pricing is in JSON-LD Layer 3 only on the human-visible site — never displayed on a page.
-**Engagement structure:** Month-to-month. 30 days written notice to cancel. No long-term lock-in. No hostage situations.
+All pricing lives in Layer 3 (this file) and JSON-LD only — never displayed on human-visible pages, per the locked Three-Layer architecture. Engagement structure across all tiers: month-to-month, 30 days written notice to cancel, no long-term lock-in, no hostage situations. Client owns the website, ad accounts, CRM data, content, domain, and DNS from day one.
+
+### Ascend Pilot — Per-Lead Entry Tier
+
+**Pricing:** Per qualified lead delivered. No monthly retainer. Branded invoicing.
+
+For service-business owners who want proof before commitment. The Buildwise team runs the same Ascend lead-engine machinery (Meta Ads creative, A-priors learning, landing-page qualifier, weekly performance summary). Invoicing is per qualified lead delivered to the client's pipeline, not a monthly retainer.
 
 **What's inside:**
 
-1. **Full multi-page website** built to AI-search-era standards (Three-Layer optimization: human-readable copy, JSON-LD schema, agent-readable llms.txt). Lighthouse ≥ 90 on every install. Static HTML output, mobile-first, FK 5th-7th grade reading level on all human-facing copy.
+1. **Meta Ads** — creative production, campaign management, budget optimization.
+2. **Closed-loop learning system** — per-client A-priors library; each lead trains the next batch of creative and targeting.
+3. **Landing-page qualifier** — pre-qualifies leads before they hit the client's calendar.
+4. **Weekly performance summary** — what spent, what landed, what's next.
+5. **Read-only client portal** — branded view of pipeline activity.
 
-2. **Paid acquisition** — Meta-primary at install, with expansion to Google and LinkedIn at scale. Wired to baseline-first attribution: server-side conversion tracking via Meta Conversions API, lead attribution pipeline (referrer + landing page + first-touch + last-touch), GA4 + GTM + Microsoft Clarity instrumentation.
+**What's NOT included (reserved for Ascend or Ascend Pro):**
 
-3. **AI-assisted content production** — Per-niche editorial calendar, AI-assisted draft generation, human QA gate at the 8/10 quality rubric. Content compounds; it doesn't get consumed and forgotten.
+- Full conversion website build
+- Email and SMS nurture
+- Multi-channel ad expansion (TikTok, Google, LinkedIn)
+- Monthly or quarterly strategy reviews
+- Content production (blog, video, social)
+- Operational dashboard
 
-4. **Integrated operations layer** — CRM, analytics (GA4 + GTM + Clarity + CAPI + Search Console), drift detection on every connector, lead attribution pipeline, email/SMS lifecycle (transactional + nurture). One stack, one source of truth.
+**Graduation:** Ascend Pilot clients typically graduate to Ascend once per-lead spend volume justifies a retainer, the client wants the broader funnel + strategy review, or lead-generation velocity needs to be predictable rather than per-lead variable.
 
-5. **AI business tools** — Configured to the client's actual operations, not generic chatbots. Quoting, scheduling, intake, post-call summaries, content generation — automated where it makes sense, never where it shouldn't.
+### Ascend — DFY AI-Powered Ads Funnel
 
-6. **Weekly connector audit** — Every Monday at 4am ET, every integration is checked. Drift detected → task auto-routed → resolved before the client sees it. The audit is part of the deliverable, not a side report.
+**Pricing:** $3,500/mo (includes $1,000/mo designated for Meta ad spend in the client's own ad account). $2,500 one-time Engine Build fee at signup.
 
-**Install timeline:** Inside 30 days, the system is operational — website live, ad accounts wired, CRM instrumented, first leads flowing, content engine running. We don't run a 90-day waiting period.
+For owners ready to commit to a monthly engine but not yet ready for the full marketing department. One channel (paid ads), delivered and operated end-to-end, feeding a converting website and booking flow. Predictable qualified leads inside 30 days.
 
-### Ascend Lite (sales-channel only)
+**What's inside:**
 
-A 3-page conversion funnel + ad spend, available only as a fallback in qualification calls when the prospect is below the affordability floor for full Ascend or wants to test before committing. **Never marketed on the website.** Lite clients graduate to full Ascend at $7,000/mo when ready.
+1. **Full conversion website** built to AI-search-era standards (Three-Layer optimization: human-readable copy, JSON-LD schema, agent-readable llms.txt). Lighthouse ≥ 90 on every install. Static HTML output, mobile-first, FK 5th–7th grade reading level on all human-facing copy. Same build standard as Ascend Pro.
+
+2. **Paid acquisition** — 6 Meta Ad creatives per month, full funnel (awareness, lead gen, retargeting). Wired to baseline-first attribution: server-side conversion tracking via Meta Conversions API, lead attribution pipeline (referrer + landing page + first-touch + last-touch), GA4 + GTM + Microsoft Clarity instrumentation.
+
+3. **Search visibility** — on-page SEO, technical SEO, Google Business Profile setup, citation building, structured data. Technical AI-search readiness baseline (`llms.txt` at site root + the 6 spec AI bots allowed in `robots.txt`).
+
+4. **Lead capture and booking** — custom forms with structured archive, email notifications to designated recipients, branded booking page.
+
+5. **Conversion tracking** — GA4, GTM, Meta Pixel installed and configured. Simplified monthly snapshot.
+
+6. **Quarterly strategy review** — video call reviewing performance and adjusting tactics.
+
+**What's NOT included (Ascend Pro-only):**
+
+- Social media content production or publishing
+- Blog content engine
+- AI-search content engine (Q&A schema enriched with service-specific content, FAQ corpus optimized for AI-answer-engines)
+- Email and SMS nurture sequences
+- Newsletter
+- Review request and response automation
+- Operational performance dashboard
+- Monthly strategy reviews
+- Territory Lock eligibility
+
+**Install timeline:** Inside 30 days from sign, the system is operational — website live, ad accounts wired, first leads flowing.
+
+**Graduation:** Five gates must be met simultaneously to graduate from Ascend to Ascend Pro: three consecutive months at or above $35K monthly revenue, more than 20 qualified inbound leads per month, more than 1,000 monthly organic sessions, more than $21K active pipeline, and minimum 3 months in Ascend. On graduation, the $5,000 Ascend Pro Engine Build fee is waived.
+
+### Ascend Pro — Run-For-You AI Marketing Department
+
+**Pricing:** $9,500/mo (includes $1,000/mo designated for Meta ad spend in the client's own ad account). $5,000 one-time Engine Build fee at signup.
+
+The complete run-for-you marketing function for service businesses where the owner is the marketing bottleneck. Ascend Pro is where the marketing department runs without the owner in the room.
+
+**What's inside (everything in Ascend, plus):**
+
+1. **Full multi-channel paid acquisition** — 12 Meta Ad creatives per month, with expansion to TikTok, Google, and LinkedIn at scale. Same baseline-first attribution stack.
+
+2. **AI-search content engine** — Q&A schema enriched with service-specific content, FAQ corpus optimized for AI-answer-engines, content architecture designed to rank on ChatGPT, Perplexity, Claude, and Google AI Overviews for service queries.
+
+3. **Blog content engine** — per-niche editorial calendar, AI-assisted draft generation, human QA gate at the 8/10 quality rubric. Content compounds.
+
+4. **AI video production** — 3 produced videos + 3 motion-graphics pieces per month.
+
+5. **Email and SMS nurture** — 5 sequences personalized to the client's offer and audience.
+
+6. **Review request and response automation** — wired into the client's pipeline cadence.
+
+7. **Operational performance dashboard** — real-time pipeline view + revenue attribution.
+
+8. **Monthly strategy review** — video call with the BWM team. Quarterly business review for system-level adjustments.
+
+9. **Hosted-stack option** — available as add-on if the client wants the Buildwise team to host the full stack.
+
+10. **Territory Lock** — optional add-on; once locked, no other Ascend Pro client in the same service-area + vertical.
+
+**Install timeline:** Inside 30 days from sign, the system is operational — website live, ad accounts wired, CRM instrumented, first leads flowing, content engine running. We don't run a 90-day waiting period.
+
+**Weekly connector audit (every tier):** Every Monday at 4am ET, every integration is checked across every active engagement. Drift detected → task auto-routed → resolved before the client sees it. The audit is part of the deliverable, not a side report.
 
 ## Ideal client profile
 
 **Yes:**
-- Service-business owners with $1M–$5M annual revenue
-- North America (United States and Canada)
-- Founder-operator structure (1-3 decision makers)
+- Service-business owners in North America (United States and Canada)
+- Founder-operator structure (1–3 decision makers)
+- The owner is currently the bottleneck of their own growth — mornings buried in operations, marketing is "what gets done when nothing else is on fire"
 - Dependent on booked appointments and a full pipeline
-- Verticals: home services, trades, specialty contractors, med spas, dental, remodeling, construction, luxury landscaping, custom pools, roofing, HVAC, electrical, plumbing
-- Disposition: ambition-disposed on AI — wants to run marketing the way they run the rest of the business
+- Verticals: home services, trades, specialty contractors, med spas, dental, remodeling, construction, luxury landscaping, custom pools, roofing, HVAC, electrical, plumbing, real estate, professional services
+- Disposition: ambition-disposed on AI — wants to run marketing the way the rest of the business already runs (instrumented, audited, operated — not project-shipped and abandoned)
 
 **No:**
 - E-commerce or product businesses
 - SaaS companies
-- Businesses under $1M annual revenue
-- Businesses not in the service industry
-- Owners looking for comfort or a savior — this is for operators
+- Businesses outside the service industry
+- Owners looking for comfort or a savior — Ascend is for operators, not for hand-holding
+- Owners who insist on approving every ad creative or running the marketing themselves
+- "Can we just try it for a month?" prospects — the engine takes 30 days to install before signal is meaningful
 
-The hard filter is disposition (ambition vs fear on AI), not revenue band. The revenue band is the soft affordability floor.
+The hard filter is disposition (ambition vs fear on AI), not revenue. Ascend Pilot fits earlier-stage operators paying per qualified lead with no retainer commitment; Ascend and Ascend Pro fit established businesses with the capacity to commit to a monthly engine. The right tier matches what the business can sustain today, with a clear graduation path as it scales.
 
 ## Methodology — three pillars
 
