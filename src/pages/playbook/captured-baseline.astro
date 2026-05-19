@@ -66,10 +66,13 @@ const faqSchema = {
   <section class="playbook-hero">
     <div class="container">
       <p class="eyebrow"><a href="/playbook" class="back-link">← Playbook</a></p>
-      <h1 class="h-hero">Captured Baseline</h1>
+      <h1 class="h-hero"><em>Captured</em> baseline.</h1>
       <p class="lede">
         A captured baseline is a tracked snapshot of your lead flow, attribution, and pipeline taken before any marketing change runs. It is the only honest measurement floor. Without it, lift claims are guesses. With it, every change — yours or the Buildwise team's — is provable against a known starting point.
       </p>
+      <figure class="hero-photo">
+        <img src="/images/bwm-proof-still-life-v1.webp" alt="Macro still-life: an illegible printed graph on aged paper beside a fountain pen and a magnifying glass picking up a hint of accent light." width="1920" height="1080" loading="eager" decoding="async" />
+      </figure>
     </div>
   </section>
 
@@ -86,6 +89,9 @@ const faqSchema = {
       <p class="prose">
         This is not a report. It is a reference point. "Leads increased 40%" means a specific number on a specific date — not a feeling, not a rolling average, not a cherry-picked window.
       </p>
+      <figure class="section-photo section-photo--diagram">
+        <img src="/images/stacked-planes-v1.svg" alt="Isometric stacked-planes diagram — three horizontal measurement layers labeled source, landing page, and attribution converging on a single locked record at the base." width="1200" height="900" loading="lazy" decoding="async" />
+      </figure>
     </div>
   </section>
 
@@ -105,6 +111,12 @@ const faqSchema = {
       <p class="prose">
         A captured baseline ends that. It gives you a specific floor to measure against. It makes lift claims provable. Agencies that skip this step skip it for a reason.
       </p>
+      <blockquote class="pull-quote">
+        <p>Agencies that skip the baseline step skip it for a reason. We capture it because we intend to be held to the numbers.</p>
+      </blockquote>
+      <figure class="section-photo">
+        <img src="/images/bwm-receipts-still-life-v1.webp" alt="Still-life close-up: a stack of printed weekly reports on a matte surface, edges slightly uneven, a single line graph visible on the top sheet under cool directional light." width="1920" height="1080" loading="lazy" decoding="async" />
+      </figure>
     </div>
   </section>
 
@@ -173,9 +185,23 @@ const faqSchema = {
 .back-link { color: var(--ink-faint); transition: color 180ms ease; }
 .back-link:hover { color: var(--y2); }
 
+.h-hero em { color: var(--y2); font-style: normal; font-weight: inherit; }
+.h-section em { color: var(--y2); font-style: normal; font-weight: inherit; }
+
+.hero-photo { margin-top: 56px; max-width: 1120px; border-radius: 4px; overflow: hidden; border: 1px solid var(--rule); }
+.hero-photo img { width: 100%; height: auto; display: block; }
+
 .playbook-section { padding-block: clamp(56px, 8vw, 96px); }
 .playbook-section .prose { font-size: 17px; line-height: 1.7; color: var(--ink-dim); max-width: 720px; }
 .playbook-section .prose + .prose { margin-top: 16px; }
+
+.section-photo { margin: 48px 0 0; max-width: 1120px; border-radius: 4px; overflow: hidden; border: 1px solid var(--rule); }
+.section-photo img { width: 100%; height: auto; display: block; }
+.section-photo--diagram { max-width: 980px; border-color: transparent; background: transparent; }
+.section-photo--diagram img { background: transparent; }
+
+.pull-quote { margin: 56px 0; padding: 32px 0; border-block: 1px solid var(--rule); max-width: 880px; }
+.pull-quote p { font-size: 24px; line-height: 1.35; color: var(--ink); font-weight: 500; font-style: italic; }
 
 .playbook-faq { padding-block: clamp(64px, 10vw, 112px); }
 .faq-list { display: flex; flex-direction: column; gap: 16px; margin-top: 32px; max-width: 880px; }

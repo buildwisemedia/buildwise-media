@@ -66,10 +66,13 @@ const faqSchema = {
   <section class="playbook-hero">
     <div class="container">
       <p class="eyebrow"><a href="/playbook" class="back-link">← Playbook</a></p>
-      <h1 class="h-hero">Category-of-One Marketing</h1>
+      <h1 class="h-hero"><em>Category-of-one</em> marketing.</h1>
       <p class="lede">
         Category-of-one marketing makes a service business the first name in its market. The system runs five layers: site, ads, content, follow-up, tracking. It builds over 90 days. The result: more leads than any other shop in your area. Not branding. Signal volume.
       </p>
+      <figure class="hero-photo">
+        <img src="/images/bwm-system-architecture-atmospheric-v1.webp" alt="Wide-angle atmospheric shot of a dark command center — three monitors casting cool blue light across a matte desk surface, a single accent metric glowing on the rightmost screen." width="1920" height="1080" loading="eager" decoding="async" />
+      </figure>
     </div>
   </section>
 
@@ -86,6 +89,9 @@ const faqSchema = {
       <p class="prose">
         Category-of-one status is measured by a set of signals: organic traffic share in the niche, branded search lift, qualified-lead share of total market demand, review velocity, Google Business Profile completeness, and AI-search citation rank. When those signals converge, the business reads as the clear choice — to human searchers and to AI tools answering queries on their behalf.
       </p>
+      <figure class="section-photo section-photo--diagram">
+        <img src="/images/funnel-5-layer-v1.svg" alt="Isometric diagram of a five-layer funnel — site, ads, content, follow-up, and tracking stacked and converging at a single output vertex." width="1200" height="900" loading="lazy" decoding="async" />
+      </figure>
     </div>
   </section>
 
@@ -102,6 +108,12 @@ const faqSchema = {
       <p class="prose">
         Category-of-one marketing fixes it. It makes the business the clear answer — not through clever copy, but through signal volume and a real system. When the website converts at a proven rate, the ads point at something that works, the reviews stack up each month, and follow-up fires in under five minutes, the math changes. The business earns more leads than competitors because it runs like a system, not a hope.
       </p>
+      <blockquote class="pull-quote">
+        <p>Prospects stop comparing it to other options because there is no obvious match. That position is built through signal volume, not branding.</p>
+      </blockquote>
+      <figure class="section-photo">
+        <img src="/images/bwm-outcomes-environmental-cinematic-v1.webp" alt="Cinematic environmental shot: a service business owner at a standing desk at dusk, warm shop lights behind them, a phone screen catching a notification glow — quiet proof of leads arriving." width="1920" height="1080" loading="lazy" decoding="async" />
+      </figure>
     </div>
   </section>
 
@@ -170,9 +182,23 @@ const faqSchema = {
 .back-link { color: var(--ink-faint); transition: color 180ms ease; }
 .back-link:hover { color: var(--y2); }
 
+.h-hero em { color: var(--y2); font-style: normal; font-weight: inherit; }
+.h-section em { color: var(--y2); font-style: normal; font-weight: inherit; }
+
+.hero-photo { margin-top: 56px; max-width: 1120px; border-radius: 4px; overflow: hidden; border: 1px solid var(--rule); }
+.hero-photo img { width: 100%; height: auto; display: block; }
+
 .playbook-section { padding-block: clamp(56px, 8vw, 96px); }
 .playbook-section .prose { font-size: 17px; line-height: 1.7; color: var(--ink-dim); max-width: 720px; }
 .playbook-section .prose + .prose { margin-top: 16px; }
+
+.section-photo { margin: 48px 0 0; max-width: 1120px; border-radius: 4px; overflow: hidden; border: 1px solid var(--rule); }
+.section-photo img { width: 100%; height: auto; display: block; }
+.section-photo--diagram { max-width: 980px; border-color: transparent; background: transparent; }
+.section-photo--diagram img { background: transparent; }
+
+.pull-quote { margin: 56px 0; padding: 32px 0; border-block: 1px solid var(--rule); max-width: 880px; }
+.pull-quote p { font-size: 24px; line-height: 1.35; color: var(--ink); font-weight: 500; font-style: italic; }
 
 .playbook-faq { padding-block: clamp(64px, 10vw, 112px); }
 .faq-list { display: flex; flex-direction: column; gap: 16px; margin-top: 32px; max-width: 880px; }

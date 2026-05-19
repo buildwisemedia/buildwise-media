@@ -62,10 +62,13 @@ const faqSchema = {
   <section class="playbook-hero">
     <div class="container">
       <p class="eyebrow"><a href="/playbook" class="back-link">← Playbook</a></p>
-      <h1 class="h-hero">The Poor Four</h1>
+      <h1 class="h-hero">The <em>Poor Four.</em></h1>
       <p class="lede">
         The Poor Four are the four lead-system failure modes that kill growth for service businesses. Lead drought. Manual mayhem. The owner trap. Reactive mode. Most owners with a lead problem don't have one of them — they have all four, compounding against each other, quietly, every week.
       </p>
+      <figure class="hero-photo">
+        <img src="/images/bwm-urgency-cinematic-v1.webp" alt="Cinematic wide shot: a service business interior at golden hour, tools at rest, an empty whiteboard with a single word visible — the quiet weight of a system that isn't running." width="1920" height="1080" loading="eager" decoding="async" />
+      </figure>
     </div>
   </section>
 
@@ -98,6 +101,9 @@ const faqSchema = {
       <p class="prose">
         Owners burned by agencies before find this framing useful for a specific reason. Past agencies fixed one piece and left the others running. The website got rebuilt. The ads got managed. But the integration tax kept running, the owner stayed in the middle, and the marketing went quiet again. The Poor Four is why that cycle repeats until all four are closed.
       </p>
+      <blockquote class="pull-quote">
+        <p>You can't fix what you haven't named. Each failure mode has a mechanism. Each has a fix.</p>
+      </blockquote>
     </div>
   </section>
 
@@ -123,22 +129,26 @@ const faqSchema = {
       <h2 class="h-section">Each failure mode, named.</h2>
       <div class="cards-grid">
         <div class="pf-card">
-          <h3 class="pf-card-title">1. Lead drought</h3>
+          <span class="process-num mono">01</span>
+          <h3 class="pf-card-title">Lead drought</h3>
           <p class="pf-card-body">Some weeks the phone rings. Other weeks it doesn't. Lead drought is not a marketing problem — it's a missing system. Most service businesses run referral-and-luck pipelines with no daily acquisition and no follow-up engine. The pipeline goes quiet because nothing is built to keep it running.</p>
           <a href="/problem/lead-drought" class="pf-card-link">Read more →</a>
         </div>
         <div class="pf-card">
-          <h3 class="pf-card-title">2. Manual mayhem</h3>
+          <span class="process-num mono">02</span>
+          <h3 class="pf-card-title">Manual mayhem</h3>
           <p class="pf-card-body">A vendor for ads. A different one for the website. A third for the CRM. None of them talk to each other. The owner ends up as the integration layer — by accident — spending hours per week chasing status between inboxes instead of running the business. The fix is not a new tool. It's one operator running a stack built to compose.</p>
           <a href="/problem/manual-mayhem" class="pf-card-link">Read more →</a>
         </div>
         <div class="pf-card">
-          <h3 class="pf-card-title">3. Owner trap</h3>
+          <span class="process-num mono">03</span>
+          <h3 class="pf-card-title">Owner trap</h3>
           <p class="pf-card-body">You are the brand, the closer, the operator, and the marketing department. Take a vacation and the pipeline collapses. Try to delegate and there's nothing written down to delegate to. The business doesn't have a marketing problem — it has a single-point-of-failure problem, and the owner is the point.</p>
           <a href="/problem/owner-trap" class="pf-card-link">Read more →</a>
         </div>
         <div class="pf-card">
-          <h3 class="pf-card-title">4. Reactive mode</h3>
+          <span class="process-num mono">04</span>
+          <h3 class="pf-card-title">Reactive mode</h3>
           <p class="pf-card-body">Strategy keeps slipping to "after this quarter." The quarter never ends. Every problem surfaces as a crisis instead of a metric because there's no instrumentation. The calendar fills with reactions to whatever broke this morning. Reactive mode isn't a discipline failure — it's an instrumentation failure. Put the dashboards in first, then the system on top.</p>
           <a href="/problem/reactive-mode" class="pf-card-link">Read more →</a>
         </div>
@@ -195,9 +205,20 @@ const faqSchema = {
 .back-link { color: var(--ink-faint); transition: color 180ms ease; }
 .back-link:hover { color: var(--y2); }
 
+.h-hero em { color: var(--y2); font-style: normal; font-weight: inherit; }
+.h-section em { color: var(--y2); font-style: normal; font-weight: inherit; }
+
+.hero-photo { margin-top: 56px; max-width: 1120px; border-radius: 4px; overflow: hidden; border: 1px solid var(--rule); }
+.hero-photo img { width: 100%; height: auto; display: block; }
+
 .playbook-section { padding-block: clamp(56px, 8vw, 96px); }
 .playbook-section .prose { font-size: 17px; line-height: 1.7; color: var(--ink-dim); max-width: 720px; }
 .playbook-section .prose + .prose { margin-top: 16px; }
+
+.pull-quote { margin: 56px 0; padding: 32px 0; border-block: 1px solid var(--rule); max-width: 880px; }
+.pull-quote p { font-size: 24px; line-height: 1.35; color: var(--ink); font-weight: 500; font-style: italic; }
+
+.process-num { display: inline-block; font-size: 14px; color: var(--y2); letter-spacing: 0.08em; margin-bottom: 8px; font-family: var(--mono); }
 
 .playbook-poor-four-cards { padding-block: clamp(56px, 8vw, 96px); background: var(--surface-raised, #0d0d10); }
 .cards-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 24px; margin-top: 40px; max-width: 1080px; }

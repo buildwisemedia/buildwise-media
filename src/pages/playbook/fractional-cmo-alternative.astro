@@ -66,10 +66,13 @@ const faqSchema = {
   <section class="playbook-hero">
     <div class="container">
       <p class="eyebrow"><a href="/playbook" class="back-link">← Playbook</a></p>
-      <h1 class="h-hero">Fractional CMO Alternative</h1>
+      <h1 class="h-hero">Fractional CMO <em>alternative.</em></h1>
       <p class="lede">
         A fractional CMO is a part-time senior marketer who sets strategy. An AI marketing department is different — it runs the whole job, not just the plan. The Buildwise team builds the system and runs it, so the owner steps out. Two shapes of help. Two different problems they solve.
       </p>
+      <figure class="hero-photo">
+        <img src="/images/bwm-services-atmospheric-v1.webp" alt="Atmospheric wide shot of a conference table at dusk — a single document centered under a focused overhead light, two empty chairs framing the frame, the rest of the room in shadow." width="1920" height="1080" loading="eager" decoding="async" />
+      </figure>
     </div>
   </section>
 
@@ -86,6 +89,9 @@ const faqSchema = {
       <p class="prose">
         The shape is different. A fractional CMO is a person with senior judgment, part-time. An AI marketing department is a system built to run the whole function, continuously.
       </p>
+      <figure class="section-photo section-photo--diagram">
+        <img src="/images/exploded-triangle-v1.svg" alt="Isometric exploded triangle diagram — strategy, execution, and operations as three separated planes pulling apart from a central vertex, each labeled with its role in the marketing function." width="1200" height="900" loading="lazy" decoding="async" />
+      </figure>
     </div>
   </section>
 
@@ -96,12 +102,15 @@ const faqSchema = {
       <p class="prose">
         Most owners who hire a fractional CMO end up with a plan but not a pipeline. Three months in, there are decks. There are positioning documents. There may even be a revised messaging framework. But the ads are still not running. The follow-up is still not wired. The website still converts at 1%.
       </p>
-      <p class="prose">
-        Strategy without operations does not ship leads. It ships documents.
-      </p>
+      <blockquote class="pull-quote">
+        <p>Strategy without operations does not ship leads. It ships documents.</p>
+      </blockquote>
       <p class="prose">
         The gap is not the strategy. Most service business owners know their market well enough to know what they need. The gap is execution — someone who runs the work week over week, not someone who advises on it quarterly. A fractional CMO solves the first problem. It leaves the second one open.
       </p>
+      <figure class="section-photo">
+        <img src="/images/bwm-method-editorial-v1.webp" alt="Editorial still-life: a worn leather notebook open to a hand-annotated diagram, a mechanical pencil resting across the page, diffuse window light picking out the texture of the paper." width="1920" height="1080" loading="lazy" decoding="async" />
+      </figure>
     </div>
   </section>
 
@@ -186,9 +195,23 @@ const faqSchema = {
 .back-link { color: var(--ink-faint); transition: color 180ms ease; }
 .back-link:hover { color: var(--y2); }
 
+.h-hero em { color: var(--y2); font-style: normal; font-weight: inherit; }
+.h-section em { color: var(--y2); font-style: normal; font-weight: inherit; }
+
+.hero-photo { margin-top: 56px; max-width: 1120px; border-radius: 4px; overflow: hidden; border: 1px solid var(--rule); }
+.hero-photo img { width: 100%; height: auto; display: block; }
+
 .playbook-section { padding-block: clamp(56px, 8vw, 96px); }
 .playbook-section .prose { font-size: 17px; line-height: 1.7; color: var(--ink-dim); max-width: 720px; }
 .playbook-section .prose + .prose { margin-top: 16px; }
+
+.section-photo { margin: 48px 0 0; max-width: 1120px; border-radius: 4px; overflow: hidden; border: 1px solid var(--rule); }
+.section-photo img { width: 100%; height: auto; display: block; }
+.section-photo--diagram { max-width: 980px; border-color: transparent; background: transparent; }
+.section-photo--diagram img { background: transparent; }
+
+.pull-quote { margin: 56px 0; padding: 32px 0; border-block: 1px solid var(--rule); max-width: 880px; }
+.pull-quote p { font-size: 24px; line-height: 1.35; color: var(--ink); font-weight: 500; font-style: italic; }
 
 .playbook-faq { padding-block: clamp(64px, 10vw, 112px); }
 .faq-list { display: flex; flex-direction: column; gap: 16px; margin-top: 32px; max-width: 880px; }

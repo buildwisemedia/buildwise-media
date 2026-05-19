@@ -33,10 +33,13 @@ const definedTermSet = {
   <section class="playbook-hero">
     <div class="container">
       <p class="eyebrow">Playbook · 5 terms</p>
-      <h1 class="h-hero">The terms behind <em>the system.</em></h1>
+      <h1 class="h-hero">The terms <em>behind the system.</em></h1>
       <p class="lede">
         How a service business becomes the category of one in its market — the mechanisms, measurement discipline, and failure modes the Buildwise team works against every week.
       </p>
+      <figure class="hero-photo">
+        <img src="/images/bwm-system-architecture-atmospheric-v1.webp" alt="Wide-angle atmospheric shot of a dark command center — three monitors casting cool blue light across a matte desk surface, a single accent metric glowing on the rightmost screen." width="1920" height="1080" loading="eager" decoding="async" />
+      </figure>
     </div>
   </section>
 
@@ -94,6 +97,9 @@ const definedTermSet = {
 .playbook-hero { padding-block: clamp(80px, 12vw, 144px); }
 .playbook-hero h1 em { color: var(--y2); font-style: normal; font-weight: inherit; }
 .playbook-hero .lede { margin-top: 24px; max-width: 720px; }
+
+.hero-photo { margin-top: 56px; max-width: 1120px; border-radius: 4px; overflow: hidden; border: 1px solid var(--rule); }
+.hero-photo img { width: 100%; height: auto; display: block; }
 
 .playbook-index { padding-block: clamp(64px, 10vw, 112px); }
 .term-list { list-style: none; display: flex; flex-direction: column; gap: 24px; max-width: 880px; }

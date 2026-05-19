@@ -66,10 +66,13 @@ const faqSchema = {
   <section class="playbook-hero">
     <div class="container">
       <p class="eyebrow"><a href="/playbook" class="back-link">← Playbook</a></p>
-      <h1 class="h-hero">AI Marketing Department</h1>
+      <h1 class="h-hero">AI <em>marketing department.</em></h1>
       <p class="lede">
         An AI marketing department is a full marketing team — research, content, ads, follow-up, tracking — run by AI plus operators. It takes the place of a marketing hire. The owner stops being the bottleneck. The system runs the week. Results grow from month one.
       </p>
+      <figure class="hero-photo">
+        <img src="/images/bwm-method-editorial-v1.webp" alt="Editorial still-life: a worn leather notebook open to a hand-annotated diagram, a mechanical pencil resting across the page, diffuse window light picking out the texture of the paper." width="1920" height="1080" loading="eager" decoding="async" />
+      </figure>
     </div>
   </section>
 
@@ -86,6 +89,9 @@ const faqSchema = {
       <p class="prose">
         Everything the Buildwise team builds belongs to the client. Website, content, automations, data, ad accounts — all of it transfers if the engagement ever ends. The system is the product. Ownership is built in, not buried in a contract.
       </p>
+      <figure class="section-photo section-photo--diagram">
+        <img src="/images/node-mesh-ascending-v1.svg" alt="Isometric ascending node mesh — six interconnected layers wired as one coherent operating system, each node feeding the next in the stack." width="1200" height="900" loading="lazy" decoding="async" />
+      </figure>
     </div>
   </section>
 
@@ -96,12 +102,18 @@ const faqSchema = {
       <p class="prose">
         Most service business owners start their mornings buried in operations. By the time they come up for air, marketing has gone untouched for another week. A full marketing director costs more than most owners can absorb. A project-based firm delivers outputs with no ongoing accountability. Neither option closes the gap.
       </p>
-      <p class="prose">
+      <figure class="section-photo">
+        <img src="/images/bwm-hero-atmospheric-v1.webp" alt="An operator's hands at a laptop keyboard at first light, a faint dashboard on a second monitor showing a single accent metric — the system running quietly while the work continues." width="1920" height="1080" loading="lazy" decoding="async" />
+      </figure>
+      <p class="prose" style="margin-top: 32px;">
         The AI marketing department exists to close that gap. It runs marketing as an operations layer — not a project with a start and end date, but a system that runs every week, checks itself, and reports against a captured baseline. The owner sees what changed. They don't run it.
       </p>
       <p class="prose">
         The businesses stuck in feast-or-famine cycles aren't stuck because they lack drive. They're stuck because they're doing the work of three roles at once. An AI marketing department takes the marketing role off the owner's plate.
       </p>
+      <blockquote class="pull-quote">
+        <p>The owner stops being the bottleneck. The system runs the week. Results grow from month one.</p>
+      </blockquote>
     </div>
   </section>
 
@@ -170,9 +182,23 @@ const faqSchema = {
 .back-link { color: var(--ink-faint); transition: color 180ms ease; }
 .back-link:hover { color: var(--y2); }
 
+.h-hero em { color: var(--y2); font-style: normal; font-weight: inherit; }
+.h-section em { color: var(--y2); font-style: normal; font-weight: inherit; }
+
+.hero-photo { margin-top: 56px; max-width: 1120px; border-radius: 4px; overflow: hidden; border: 1px solid var(--rule); }
+.hero-photo img { width: 100%; height: auto; display: block; }
+
 .playbook-section { padding-block: clamp(56px, 8vw, 96px); }
 .playbook-section .prose { font-size: 17px; line-height: 1.7; color: var(--ink-dim); max-width: 720px; }
 .playbook-section .prose + .prose { margin-top: 16px; }
+
+.section-photo { margin: 48px 0 0; max-width: 1120px; border-radius: 4px; overflow: hidden; border: 1px solid var(--rule); }
+.section-photo img { width: 100%; height: auto; display: block; }
+.section-photo--diagram { max-width: 980px; border-color: transparent; background: transparent; }
+.section-photo--diagram img { background: transparent; }
+
+.pull-quote { margin: 56px 0; padding: 32px 0; border-block: 1px solid var(--rule); max-width: 880px; }
+.pull-quote p { font-size: 24px; line-height: 1.35; color: var(--ink); font-weight: 500; font-style: italic; }
 
 .playbook-faq { padding-block: clamp(64px, 10vw, 112px); }
 .faq-list { display: flex; flex-direction: column; gap: 16px; margin-top: 32px; max-width: 880px; }
