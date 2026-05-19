@@ -37,7 +37,12 @@ const auditSchema = {
   },
 };
 ---
-<BaseLayout title={title} description={description} jsonLd={[auditSchema]}>
+<BaseLayout
+  title={title}
+  description={description}
+  jsonLd={[auditSchema]}
+  preloadImage="/images/bwm-audit-editorial-v1.webp"
+>
   <section class="audit-hero" aria-labelledby="audit-title">
     <div class="container audit-hero-grid">
       <div class="audit-copy">
@@ -48,7 +53,7 @@ const auditSchema = {
         </p>
       </div>
       <figure class="audit-hero-photo">
-        <img src="/images/bwm-audit-editorial-v1.webp" alt="A top-down editorial frame: printed audit report mid-annotation, fountain pen, coffee cup. The audit as a real artifact, not vapor." width="1920" height="1080" loading="eager" decoding="async" />
+        <img src="/images/bwm-audit-editorial-v1.webp" alt="A top-down editorial frame: printed audit report mid-annotation, fountain pen, coffee cup. The audit as a real artifact, not vapor." width="1920" height="1080" loading="eager" decoding="async" fetchpriority="high" />
       </figure>
     </div>
   </section>

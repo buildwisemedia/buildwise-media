@@ -160,7 +160,12 @@ const faqSchema = {
   })),
 };
 ---
-<BaseLayout title={title} description={description} jsonLd={[serviceSchema, breadcrumb, faqSchema]}>
+<BaseLayout
+  title={title}
+  description={description}
+  jsonLd={[serviceSchema, breadcrumb, faqSchema]}
+  preloadImage="/images/bwm-hero-atmospheric-v1.webp"
+>
   <section class="home-hero" aria-labelledby="home-hero-title" data-arm={arm} data-hero-arm-root>
     <div class="container hero-grid">
       <div class="hero-copy">
@@ -173,7 +178,7 @@ const faqSchema = {
         </div>
       </div>
       <figure class="hero-photo">
-        <img src="/images/bwm-hero-atmospheric-v1.webp" alt="An empty leather chair pulled back from a clean desk in a small-business owner's office at first light, a monitor glowing dim with a soft accent of light on the screen." width="1920" height="1080" loading="eager" decoding="async" />
+        <img src="/images/bwm-hero-atmospheric-v1.webp" alt="An empty leather chair pulled back from a clean desk in a small-business owner's office at first light, a monitor glowing dim with a soft accent of light on the screen." width="1920" height="1080" loading="eager" decoding="async" fetchpriority="high" />
       </figure>
     </div>
   </section>

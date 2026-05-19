@@ -40,7 +40,12 @@ const aboutPage = {
   about: { '@id': 'https://buildwisemedia.com/#org' },
 };
 ---
-<BaseLayout title={title} description={description} jsonLd={[aboutPage, breadcrumb]}>
+<BaseLayout
+  title={title}
+  description={description}
+  jsonLd={[aboutPage, breadcrumb]}
+  preloadImage="/images/bwm-about-atmospheric-v1.webp"
+>
   <section class="about-hero" aria-labelledby="about-title">
     <div class="container about-hero-inner">
       <p class="eyebrow">About Buildwise Media</p>
@@ -48,7 +53,7 @@ const aboutPage = {
         You run the business. Ascend makes you the most-chosen name in your market within 12 months.
       </h1>
       <figure class="section-photo section-photo--about-hero">
-        <img src="/images/bwm-about-atmospheric-v1.webp" alt="First-light operations floor: workbench, monitor, paper plans, and a single visible desk lamp. The team and its AI system at work before the world wakes up." width="1920" height="1080" loading="eager" decoding="async" />
+        <img src="/images/bwm-about-atmospheric-v1.webp" alt="First-light operations floor: workbench, monitor, paper plans, and a single visible desk lamp. The team and its AI system at work before the world wakes up." width="1920" height="1080" loading="eager" decoding="async" fetchpriority="high" />
       </figure>
     </div>
   </section>

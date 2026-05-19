@@ -12,6 +12,11 @@ interface Props {
   ogTitle?: string;
   ogDescription?: string;
   jsonLd?: Record<string, unknown> | Record<string, unknown>[];
+  // LCP image preload — path to the page's hero <img> src. Emits a
+  // <link rel="preload" as="image" fetchpriority="high"> early in <head> so the
+  // preload scanner fires the fetch before body parsing discovers the <img>.
+  // Pair with fetchpriority="high" on the <img> tag itself.
+  preloadImage?: string;
 }
 
 const {
@@ -22,6 +27,7 @@ const {
   ogTitle,
   ogDescription,
   jsonLd,
+  preloadImage,
 } = Astro.props;
 
 const siteUrl = 'https://buildwisemedia.com';
@@ -97,6 +103,16 @@ const graph = [...siteSchemas, ...perPageSchemas];
     <meta name="description" content={description} />
     {noindex && <meta name="robots" content="noindex,nofollow" />}
     <link rel="canonical" href={canonicalUrl} />
+
+    {preloadImage && (
+      <link
+        rel="preload"
+        as="image"
+        href={preloadImage}
+        fetchpriority="high"
+        type={preloadImage.endsWith('.webp') ? 'image/webp' : undefined}
+      />
+    )}
 
     <!-- Theme + favicon (Triangulation V3 mark — locked 2026-04-30 against brand/BWM-Logo-System-Locked.md) -->
     <meta name="theme-color" content="#050507" />
