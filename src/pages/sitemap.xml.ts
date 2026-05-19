@@ -24,6 +24,12 @@ const PRIORITY_OVERRIDES: Record<string, { priority: string; changefreq: string 
   '/services': { priority: '0.8', changefreq: 'monthly' },
   '/how-it-works': { priority: '0.8', changefreq: 'monthly' },
   '/about': { priority: '0.7', changefreq: 'monthly' },
+  '/playbook': { priority: '0.8', changefreq: 'monthly' },
+  '/playbook/category-of-one-marketing': { priority: '0.7', changefreq: 'monthly' },
+  '/playbook/ai-marketing-department': { priority: '0.7', changefreq: 'monthly' },
+  '/playbook/captured-baseline': { priority: '0.7', changefreq: 'monthly' },
+  '/playbook/poor-four': { priority: '0.7', changefreq: 'monthly' },
+  '/playbook/fractional-cmo-alternative': { priority: '0.7', changefreq: 'monthly' },
   '/privacy': { priority: '0.3', changefreq: 'yearly' },
   '/terms': { priority: '0.3', changefreq: 'yearly' },
 };

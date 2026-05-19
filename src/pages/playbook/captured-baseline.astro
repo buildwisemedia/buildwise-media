@@ -1,0 +1,199 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+const title = "Captured Baseline — Buildwise Media";
+const description = "A captured baseline is an instrumented snapshot of your lead flow and pipeline before any marketing change runs — the only honest measurement floor for proving lift.";
+
+const definedTerm = {
+  '@context': 'https://schema.org',
+  '@type': 'DefinedTerm',
+  '@id': 'https://buildwisemedia.com/playbook/captured-baseline#term',
+  name: 'Captured Baseline',
+  description: "A captured baseline is a tracked snapshot of your lead flow, attribution, and pipeline taken before any marketing change runs. It is the only honest measurement floor. Without it, lift claims are guesses. With it, every change — yours or the Buildwise team's — is provable against a known starting point.",
+  inDefinedTermSet: {
+    '@type': 'DefinedTermSet',
+    '@id': 'https://buildwisemedia.com/playbook/',
+    name: 'Buildwise Media Playbook',
+  },
+};
+
+const breadcrumb = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://buildwisemedia.com/' },
+    { '@type': 'ListItem', position: 2, name: 'Playbook', item: 'https://buildwisemedia.com/playbook/' },
+    { '@type': 'ListItem', position: 3, name: 'Captured Baseline', item: 'https://buildwisemedia.com/playbook/captured-baseline' },
+  ],
+};
+
+const faqs = [
+  {
+    q: 'What exactly gets captured in a baseline?',
+    a: 'We capture three data points: lead source (where each lead came from), landing page (which page they first visited), and first-touch plus last-touch attribution (which steps get credit). These are logged to a structured record with a date stamp and evidence class before any marketing change runs. That record is the floor every later result is measured against.',
+  },
+  {
+    q: 'How long does it take to capture a baseline?',
+    a: 'The tracking runs for 30 days before we make changes. That window gives us enough data to see normal variation — slow days, spike days — so the baseline reflects your real rhythm, not a single good week. Shorter windows produce wrong floors. We do not skip this step.',
+  },
+  {
+    q: "Why do other agencies skip the baseline step?",
+    a: 'A captured baseline makes claims provable. If an agency commits to a starting point, you can hold them to it. Skipping the baseline means results can always be framed well — things improved without saying what they improved from. The baseline removes that. We capture it because we intend to be held to the numbers.',
+  },
+  {
+    q: "Can't I just use my current data as a baseline?",
+    a: 'Only if it is already tracked correctly. Most service business CRMs log contact names but not referrer source or landing page. If attribution is missing or inconsistent, the data cannot serve as a reliable floor. The first step we take is checking what is already tracked and filling gaps before we lock anything as the official baseline.',
+  },
+  {
+    q: 'How does the baseline connect to the outcomes Buildwise commits to?',
+    a: 'Every outcome commitment the Buildwise team makes includes three fields: a numeric confidence percentage, an evidence class, and a captured baseline. The baseline is the starting value the outcome is measured against. Nothing is committed without one. That structure is what makes our guarantees provable, not just a promise.',
+  },
+];
+
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  '@id': 'https://buildwisemedia.com/playbook/captured-baseline#faq',
+  mainEntity: faqs.map((f) => ({
+    '@type': 'Question',
+    name: f.q,
+    acceptedAnswer: { '@type': 'Answer', text: f.a },
+  })),
+};
+---
+<BaseLayout title={title} description={description} jsonLd={[definedTerm, breadcrumb, faqSchema]}>
+
+  <section class="playbook-hero">
+    <div class="container">
+      <p class="eyebrow"><a href="/playbook" class="back-link">← Playbook</a></p>
+      <h1 class="h-hero">Captured Baseline</h1>
+      <p class="lede">
+        A captured baseline is a tracked snapshot of your lead flow, attribution, and pipeline taken before any marketing change runs. It is the only honest measurement floor. Without it, lift claims are guesses. With it, every change — yours or the Buildwise team's — is provable against a known starting point.
+      </p>
+    </div>
+  </section>
+
+  <section class="playbook-section elev">
+    <div class="container">
+      <p class="section-tag">How it works</p>
+      <h2 class="h-section">How it works.</h2>
+      <p class="prose">
+        The Buildwise team tracks three things before touching anything: referrer source, landing page, and first/last-touch attribution. We record where each lead came from, which page they hit, and which step gets credit for the conversion. We run this tracking for 30 days minimum before any ads go live or any copy changes.
+      </p>
+      <p class="prose">
+        Once the 30-day window closes, we lock the snapshot. It goes into a structured record with a date, method, and evidence class. That locked record becomes the "before." Every result we report is measured above it.
+      </p>
+      <p class="prose">
+        This is not a report. It is a reference point. "Leads increased 40%" means a specific number on a specific date — not a feeling, not a rolling average, not a cherry-picked window.
+      </p>
+    </div>
+  </section>
+
+  <section class="playbook-section">
+    <div class="container">
+      <p class="section-tag">Why it matters</p>
+      <h2 class="h-section">Why it matters.</h2>
+      <p class="prose">
+        Most service business owners have been through the same cycle. A new marketing effort launches. Three months later the agency sends a report that says results improved. But no one remembers the starting numbers. There is no written baseline. There is only the agency's word.
+      </p>
+      <p class="prose">
+        That is not measurement. That is a story.
+      </p>
+      <p class="prose">
+        Every quarter can feel different with no one able to say why. Lead volume shifts. Calls rise then drop. With no captured baseline, you cannot tell whether a change caused a result — or a seasonal shift did, or a referral spike, or a competitor going quiet. The agency claims credit. You have no way to check.
+      </p>
+      <p class="prose">
+        A captured baseline ends that. It gives you a specific floor to measure against. It makes lift claims provable. Agencies that skip this step skip it for a reason.
+      </p>
+    </div>
+  </section>
+
+  <section class="playbook-section elev">
+    <div class="container">
+      <p class="section-tag">How Buildwise Media uses it</p>
+      <h2 class="h-section">How Buildwise Media uses it.</h2>
+      <p class="prose">
+        The Buildwise team captures the baseline before changing anything. Before we touch an ad account. Before we rewrite copy. Before we adjust any follow-up sequence. The baseline comes first. This is the "measure before you move" method that sets running marketing as an operation apart from running it as a project.
+      </p>
+      <p class="prose">
+        Every Ascend client gets baseline-first attribution. The first 30 days are tracked — lead source, landing page, first-touch and last-touch attribution logged and locked. When we report results at 60 or 90 days, every number is measured above a date-stamped starting point you can see. Details on the <a href="/services/ascend">Ascend services page</a> and the <a href="/how-it-works">how it works page</a>.
+      </p>
+      <p class="prose">
+        Every outcome commitment we make carries three fields: a numeric confidence percentage, an evidence class — Measured, Attributed, Modeled, or Benchmark — and a captured baseline. The baseline is the starting point the outcome is measured against. Without it, no honest confidence number is possible.
+      </p>
+    </div>
+  </section>
+
+  <section class="playbook-faq">
+    <div class="container">
+      <p class="section-tag">FAQ</p>
+      <h2 class="h-section">Common questions.</h2>
+      <div class="faq-list">
+        {faqs.map((f) => (
+          <details class="faq-item">
+            <summary class="faq-q">{f.q}</summary>
+            <div class="faq-a">
+              <p>{f.a}</p>
+            </div>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="playbook-related elev">
+    <div class="container">
+      <p class="section-tag">Related</p>
+      <h2 class="h-section">More from the playbook.</h2>
+      <ul class="related-list">
+        <li><a href="/playbook/ai-marketing-department">AI Marketing Department</a> — what a run-for-you marketing operation looks like and how baseline-first attribution fits inside it</li>
+        <li><a href="/playbook/category-of-one-marketing">Category-of-One Marketing</a> — how becoming the most-chosen business in your market is measured from a known floor</li>
+        <li><a href="/playbook/poor-four">The Poor Four</a> — the four lead-system failure modes that a missing baseline allows to go undetected</li>
+        <li><a href="/playbook/fractional-cmo-alternative">Fractional CMO Alternative</a> — why fractional CMO engagements rarely capture a baseline before advising on strategy</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="playbook-cta elev">
+    <div class="container">
+      <h2 class="h-closer">Ready to see if we're a fit?</h2>
+      <p class="lede">If the operations gap is bigger than the lead gap, that's the conversation worth having.</p>
+      <p class="cta-row">
+        <a class="cta-primary" href="/book" data-cta-source="playbook-captured-baseline-cta">See If We're a Fit <span class="cta-arrow">→</span></a>
+        <a class="cta-ghost" href="/playbook">Back to Playbook</a>
+      </p>
+    </div>
+  </section>
+
+</BaseLayout>
+
+<style>
+.playbook-hero { padding-block: clamp(80px, 12vw, 144px); }
+.playbook-hero .lede { margin-top: 24px; }
+.back-link { color: var(--ink-faint); transition: color 180ms ease; }
+.back-link:hover { color: var(--y2); }
+
+.playbook-section { padding-block: clamp(56px, 8vw, 96px); }
+.playbook-section .prose { font-size: 17px; line-height: 1.7; color: var(--ink-dim); max-width: 720px; }
+.playbook-section .prose + .prose { margin-top: 16px; }
+
+.playbook-faq { padding-block: clamp(64px, 10vw, 112px); }
+.faq-list { display: flex; flex-direction: column; gap: 16px; margin-top: 32px; max-width: 880px; }
+.faq-item { border-top: 1px solid var(--rule); padding-block: 20px; }
+.faq-item[open] summary { color: var(--y2); }
+.faq-q { font-size: 17px; font-weight: 500; color: var(--ink); cursor: pointer; line-height: 1.4; list-style: none; }
+.faq-q::marker, .faq-q::-webkit-details-marker { display: none; }
+.faq-q::after { content: "+"; float: right; font-family: var(--mono); font-size: 18px; color: var(--y2); }
+.faq-item[open] .faq-q::after { content: "−"; }
+.faq-a { margin-top: 12px; }
+.faq-a p { font-size: 16px; line-height: 1.65; color: var(--ink-dim); max-width: 720px; }
+
+.playbook-related { padding-block: clamp(56px, 8vw, 96px); }
+.related-list { list-style: none; display: flex; flex-direction: column; gap: 12px; margin-top: 32px; max-width: 880px; }
+.related-list a { color: var(--ink); font-weight: 500; text-decoration: none; border-bottom: 1px solid transparent; transition: border-color 180ms ease, color 180ms ease; }
+.related-list a:hover { color: var(--y2); border-bottom-color: var(--y2); }
+
+.playbook-cta { padding-block: clamp(64px, 10vw, 112px); }
+.playbook-cta .lede { margin-top: 16px; }
+.cta-row { display: flex; flex-wrap: wrap; gap: 16px; margin-top: 32px; }
+</style>

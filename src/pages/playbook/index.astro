@@ -1,0 +1,108 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+const title = "Playbook — Buildwise Media";
+const description = "How a service business becomes the category of one in its market — the terms, mechanisms, and measurement discipline that make it work.";
+
+const breadcrumb = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://buildwisemedia.com/' },
+    { '@type': 'ListItem', position: 2, name: 'Playbook', item: 'https://buildwisemedia.com/playbook/' },
+  ],
+};
+
+const definedTermSet = {
+  '@context': 'https://schema.org',
+  '@type': 'DefinedTermSet',
+  '@id': 'https://buildwisemedia.com/playbook/',
+  name: 'Buildwise Media Playbook',
+  description: 'The terms, mechanisms, and measurement discipline behind how Buildwise Media installs an AI marketing department for service businesses.',
+  hasDefinedTerm: [
+    { '@type': 'DefinedTerm', '@id': 'https://buildwisemedia.com/playbook/category-of-one-marketing#term', name: 'Category-of-One Marketing', url: 'https://buildwisemedia.com/playbook/category-of-one-marketing' },
+    { '@type': 'DefinedTerm', '@id': 'https://buildwisemedia.com/playbook/ai-marketing-department#term', name: 'AI Marketing Department', url: 'https://buildwisemedia.com/playbook/ai-marketing-department' },
+    { '@type': 'DefinedTerm', '@id': 'https://buildwisemedia.com/playbook/captured-baseline#term', name: 'Captured Baseline', url: 'https://buildwisemedia.com/playbook/captured-baseline' },
+    { '@type': 'DefinedTerm', '@id': 'https://buildwisemedia.com/playbook/poor-four#term', name: 'The Poor Four', url: 'https://buildwisemedia.com/playbook/poor-four' },
+    { '@type': 'DefinedTerm', '@id': 'https://buildwisemedia.com/playbook/fractional-cmo-alternative#term', name: 'Fractional CMO Alternative', url: 'https://buildwisemedia.com/playbook/fractional-cmo-alternative' },
+  ],
+};
+---
+<BaseLayout title={title} description={description} jsonLd={[definedTermSet, breadcrumb]}>
+
+  <section class="playbook-hero">
+    <div class="container">
+      <p class="eyebrow">Playbook · 5 terms</p>
+      <h1 class="h-hero">The terms behind <em>the system.</em></h1>
+      <p class="lede">
+        How a service business becomes the category of one in its market — the mechanisms, measurement discipline, and failure modes the Buildwise team works against every week.
+      </p>
+    </div>
+  </section>
+
+  <section class="playbook-index elev">
+    <div class="container">
+      <ul class="term-list">
+        <li>
+          <a href="/playbook/category-of-one-marketing">
+            <span class="term-name">Category-of-One Marketing</span>
+            <span class="term-gloss">Being the undisputed first choice in your service area — through signal volume, not branding exercises.</span>
+          </a>
+        </li>
+        <li>
+          <a href="/playbook/ai-marketing-department">
+            <span class="term-name">AI Marketing Department</span>
+            <span class="term-gloss">A run-for-you marketing function delivered by AI plus operators — the alternative to a marketing hire.</span>
+          </a>
+        </li>
+        <li>
+          <a href="/playbook/captured-baseline">
+            <span class="term-name">Captured Baseline</span>
+            <span class="term-gloss">The instrumented snapshot of lead flow taken before any marketing change runs — the only honest measurement floor.</span>
+          </a>
+        </li>
+        <li>
+          <a href="/playbook/poor-four">
+            <span class="term-name">The Poor Four</span>
+            <span class="term-gloss">The four lead-system failure modes that stall most service businesses — lead drought, manual mayhem, owner trap, reactive mode.</span>
+          </a>
+        </li>
+        <li>
+          <a href="/playbook/fractional-cmo-alternative">
+            <span class="term-name">Fractional CMO Alternative</span>
+            <span class="term-gloss">Strategy vs execution — when a fractional CMO is the right call, and when an AI marketing department is.</span>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="playbook-cta elev">
+    <div class="container">
+      <h2 class="h-closer">See the system <em>in motion.</em></h2>
+      <p class="lede">If the Poor Four sound familiar and the operations gap is bigger than the lead gap, that's the conversation worth having.</p>
+      <p class="cta-row">
+        <a class="cta-primary" href="/book" data-cta-source="playbook-hub-cta">See If We're a Fit <span class="cta-arrow">→</span></a>
+        <a class="cta-ghost" href="/services/ascend">See the System</a>
+      </p>
+    </div>
+  </section>
+
+</BaseLayout>
+
+<style>
+.playbook-hero { padding-block: clamp(80px, 12vw, 144px); }
+.playbook-hero h1 em { color: var(--y2); font-style: normal; font-weight: inherit; }
+.playbook-hero .lede { margin-top: 24px; max-width: 720px; }
+
+.playbook-index { padding-block: clamp(64px, 10vw, 112px); }
+.term-list { list-style: none; display: flex; flex-direction: column; gap: 24px; max-width: 880px; }
+.term-list a { display: block; padding: 24px 28px; border: 1px solid var(--rule); border-radius: 6px; text-decoration: none; transition: border-color 180ms ease, transform 180ms ease; }
+.term-list a:hover { border-color: var(--y2); transform: translateX(2px); }
+.term-name { display: block; font-size: 22px; font-weight: 600; color: var(--ink); margin-bottom: 8px; }
+.term-gloss { display: block; font-size: 16px; line-height: 1.6; color: var(--ink-dim); }
+
+.playbook-cta { padding-block: clamp(64px, 10vw, 112px); }
+.playbook-cta h2 em { color: var(--y2); font-style: normal; font-weight: inherit; }
+.cta-row { display: flex; flex-wrap: wrap; gap: 16px; margin-top: 32px; }
+</style>

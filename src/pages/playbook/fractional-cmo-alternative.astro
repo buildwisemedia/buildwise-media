@@ -1,0 +1,212 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+const title = "Fractional CMO Alternative — Buildwise Media";
+const description = "A fractional CMO brings strategy. An AI marketing department brings execution. Here's how to tell which one your business actually needs.";
+
+const definedTerm = {
+  '@context': 'https://schema.org',
+  '@type': 'DefinedTerm',
+  '@id': 'https://buildwisemedia.com/playbook/fractional-cmo-alternative#term',
+  name: 'Fractional CMO Alternative',
+  description: 'A fractional CMO is a part-time senior marketer who sets strategy. An AI marketing department is different — it runs the whole job, not just the plan. The Buildwise team builds the system and runs it, so the owner steps out. Two shapes of help. Two different problems they solve.',
+  inDefinedTermSet: {
+    '@type': 'DefinedTermSet',
+    '@id': 'https://buildwisemedia.com/playbook/',
+    name: 'Buildwise Media Playbook',
+  },
+};
+
+const breadcrumb = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://buildwisemedia.com/' },
+    { '@type': 'ListItem', position: 2, name: 'Playbook', item: 'https://buildwisemedia.com/playbook/' },
+    { '@type': 'ListItem', position: 3, name: 'Fractional CMO Alternative', item: 'https://buildwisemedia.com/playbook/fractional-cmo-alternative' },
+  ],
+};
+
+const faqs = [
+  {
+    q: 'What is the difference between a fractional CMO and a marketing department?',
+    a: 'A fractional CMO is an advisor. They set strategy and direction, part-time, across multiple clients. A marketing department runs the execution — ads, content, follow-up, attribution — week over week. The two can coexist, but they solve different problems. Strategy without execution produces plans, not leads.',
+  },
+  {
+    q: 'When does a fractional CMO not work for a service business?',
+    a: 'When execution is the gap, not direction. Most service business owners already understand their market. What they are missing is someone running the campaigns, managing the follow-up, and reporting against real numbers every week. A strategist cannot fill that role. An operations-built system can.',
+  },
+  {
+    q: 'Can a fractional CMO and an AI marketing department work together?',
+    a: 'Yes. A fractional CMO can direct strategy while the AI marketing department handles execution. For businesses with an in-house team, the combination works. For owner-operators who are still the marketing department, the AI department alone typically covers both roles — senior judgment built into the system design from day one.',
+  },
+  {
+    q: 'How is the Buildwise approach different from hiring a fractional CMO?',
+    a: 'The Buildwise team runs the marketing function, not just a portion of it. Research, offer architecture, website, content, paid acquisition, automated follow-up, attribution, and weekly audits — all of it is installed and operated. Outcomes are measured against a captured baseline. Every claim is verifiable. The owner reviews what changed. They do not manage the work.',
+  },
+  {
+    q: 'Is the Buildwise system a fit for every business considering a fractional CMO?',
+    a: 'No. The system is built for service business owners who are ready to stop being their own marketing department. If you have a team that needs executive direction, a fractional CMO may be the right call. The fastest way to know which one fits your situation is a single conversation.',
+  },
+];
+
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  '@id': 'https://buildwisemedia.com/playbook/fractional-cmo-alternative#faq',
+  mainEntity: faqs.map((f) => ({
+    '@type': 'Question',
+    name: f.q,
+    acceptedAnswer: { '@type': 'Answer', text: f.a },
+  })),
+};
+---
+<BaseLayout title={title} description={description} jsonLd={[definedTerm, breadcrumb, faqSchema]}>
+
+  <section class="playbook-hero">
+    <div class="container">
+      <p class="eyebrow"><a href="/playbook" class="back-link">← Playbook</a></p>
+      <h1 class="h-hero">Fractional CMO Alternative</h1>
+      <p class="lede">
+        A fractional CMO is a part-time senior marketer who sets strategy. An AI marketing department is different — it runs the whole job, not just the plan. The Buildwise team builds the system and runs it, so the owner steps out. Two shapes of help. Two different problems they solve.
+      </p>
+    </div>
+  </section>
+
+  <section class="playbook-section elev">
+    <div class="container">
+      <p class="section-tag">How it works</p>
+      <h2 class="h-section">How it works.</h2>
+      <p class="prose">
+        A fractional CMO works as an executive advisor. They set the direction, define the positioning, build the roadmap, and attend key meetings. They are not operators. They do not write the ads, run the follow-up sequences, or manage the attribution stack. That work falls to whoever else is on the team.
+      </p>
+      <p class="prose">
+        An <a href="/playbook/ai-marketing-department">AI marketing department</a> runs the function. Research, content production, paid acquisition, automated follow-up, attribution reporting — all of it runs as an operations layer. AI handles the production. Human operators manage the system. The owner attends one call a month.
+      </p>
+      <p class="prose">
+        The shape is different. A fractional CMO is a person with senior judgment, part-time. An AI marketing department is a system built to run the whole function, continuously.
+      </p>
+    </div>
+  </section>
+
+  <section class="playbook-section">
+    <div class="container">
+      <p class="section-tag">Why it matters</p>
+      <h2 class="h-section">Why it matters.</h2>
+      <p class="prose">
+        Most owners who hire a fractional CMO end up with a plan but not a pipeline. Three months in, there are decks. There are positioning documents. There may even be a revised messaging framework. But the ads are still not running. The follow-up is still not wired. The website still converts at 1%.
+      </p>
+      <p class="prose">
+        Strategy without operations does not ship leads. It ships documents.
+      </p>
+      <p class="prose">
+        The gap is not the strategy. Most service business owners know their market well enough to know what they need. The gap is execution — someone who runs the work week over week, not someone who advises on it quarterly. A fractional CMO solves the first problem. It leaves the second one open.
+      </p>
+    </div>
+  </section>
+
+  <section class="playbook-section elev">
+    <div class="container">
+      <p class="section-tag">How Buildwise Media uses it</p>
+      <h2 class="h-section">How Buildwise Media uses it.</h2>
+      <p class="prose">
+        The Buildwise team installs and operates the marketing function as part of the <a href="/services/ascend">Ascend tier family</a>. Ascend Pilot validates the system on a per-qualified-lead basis. Ascend runs the full done-for-you operation. Ascend Pro is the complete run-for-you marketing department — ads, content, follow-up, attribution, weekly audits, all of it.
+      </p>
+      <p class="prose">
+        Every engagement follows the <a href="/how-it-works">dependency-gated build sequence</a>: the website goes live first, attribution wires on day one, paid acquisition turns on only after the conversion surface is ready. Operations are running in 30 days. Outcomes are measured against a <a href="/playbook/captured-baseline">captured baseline</a> established before the system turns on.
+      </p>
+      <p class="prose">
+        The goal is not to advise on marketing. The goal is to run it. The client sees what changed, not what was planned.
+      </p>
+    </div>
+  </section>
+
+  <section class="playbook-section">
+    <div class="container">
+      <p class="section-tag">When a fractional CMO is the right call</p>
+      <h2 class="h-section">When it's the right call.</h2>
+      <p class="prose">
+        A fractional CMO is the right hire for businesses with marketing teams already in place who lack executive-level direction. If the business has multiple departments, an in-house marketing team, and is navigating a major positioning shift or enterprise sales motion — a senior strategist at the table makes sense. That is a real scenario. They earn it there.
+      </p>
+      <p class="prose">
+        If you are the marketing department, if execution is the gap, if there is no team to direct — a fractional CMO does not close that gap. That is where the <a href="/playbook/ai-marketing-department">AI marketing department model</a> fits.
+      </p>
+      <p class="prose">
+        Both are legitimate. They solve different problems. The question is which problem you actually have.
+      </p>
+    </div>
+  </section>
+
+  <section class="playbook-faq">
+    <div class="container">
+      <p class="section-tag">FAQ</p>
+      <h2 class="h-section">Common questions.</h2>
+      <div class="faq-list">
+        {faqs.map((f) => (
+          <details class="faq-item">
+            <summary class="faq-q">{f.q}</summary>
+            <div class="faq-a">
+              <p>{f.a}</p>
+            </div>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="playbook-related elev">
+    <div class="container">
+      <p class="section-tag">Related</p>
+      <h2 class="h-section">More from the playbook.</h2>
+      <ul class="related-list">
+        <li><a href="/playbook/ai-marketing-department">AI Marketing Department</a> — what the Buildwise team ships instead of a strategy-only hire: a full run-for-you marketing function</li>
+        <li><a href="/playbook/category-of-one-marketing">Category-of-One Marketing</a> — what the system is built toward: the most-chosen name in your service area, not just a contender</li>
+        <li><a href="/playbook/captured-baseline">Captured Baseline</a> — why every outcome needs a measured starting point before the system turns on</li>
+        <li><a href="/playbook/poor-four">The Poor Four</a> — the four ways a lead system fails before it starts, and how the build sequence prevents each one</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="playbook-cta elev">
+    <div class="container">
+      <h2 class="h-closer">Ready to see if we're a fit?</h2>
+      <p class="lede">If the operations gap is bigger than the lead gap, that's the conversation worth having.</p>
+      <p class="cta-row">
+        <a class="cta-primary" href="/book" data-cta-source="playbook-fractional-cmo-alternative-cta">See If We're a Fit <span class="cta-arrow">→</span></a>
+        <a class="cta-ghost" href="/playbook">Back to Playbook</a>
+      </p>
+    </div>
+  </section>
+
+</BaseLayout>
+
+<style>
+.playbook-hero { padding-block: clamp(80px, 12vw, 144px); }
+.playbook-hero .lede { margin-top: 24px; }
+.back-link { color: var(--ink-faint); transition: color 180ms ease; }
+.back-link:hover { color: var(--y2); }
+
+.playbook-section { padding-block: clamp(56px, 8vw, 96px); }
+.playbook-section .prose { font-size: 17px; line-height: 1.7; color: var(--ink-dim); max-width: 720px; }
+.playbook-section .prose + .prose { margin-top: 16px; }
+
+.playbook-faq { padding-block: clamp(64px, 10vw, 112px); }
+.faq-list { display: flex; flex-direction: column; gap: 16px; margin-top: 32px; max-width: 880px; }
+.faq-item { border-top: 1px solid var(--rule); padding-block: 20px; }
+.faq-item[open] summary { color: var(--y2); }
+.faq-q { font-size: 17px; font-weight: 500; color: var(--ink); cursor: pointer; line-height: 1.4; list-style: none; }
+.faq-q::marker, .faq-q::-webkit-details-marker { display: none; }
+.faq-q::after { content: "+"; float: right; font-family: var(--mono); font-size: 18px; color: var(--y2); }
+.faq-item[open] .faq-q::after { content: "−"; }
+.faq-a { margin-top: 12px; }
+.faq-a p { font-size: 16px; line-height: 1.65; color: var(--ink-dim); max-width: 720px; }
+
+.playbook-related { padding-block: clamp(56px, 8vw, 96px); }
+.related-list { list-style: none; display: flex; flex-direction: column; gap: 12px; margin-top: 32px; max-width: 880px; }
+.related-list a { color: var(--ink); font-weight: 500; text-decoration: none; border-bottom: 1px solid transparent; transition: border-color 180ms ease, color 180ms ease; }
+.related-list a:hover { color: var(--y2); border-bottom-color: var(--y2); }
+
+.playbook-cta { padding-block: clamp(64px, 10vw, 112px); }
+.playbook-cta .lede { margin-top: 16px; }
+.cta-row { display: flex; flex-wrap: wrap; gap: 16px; margin-top: 32px; }
+</style>

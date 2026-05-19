@@ -1,0 +1,229 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+const title = "The Poor Four — Buildwise Media";
+const description = "The Poor Four are the four lead-system failure modes that stall most service businesses: lead drought, manual mayhem, owner trap, and reactive mode.";
+
+const definedTerm = {
+  '@context': 'https://schema.org',
+  '@type': 'DefinedTerm',
+  '@id': 'https://buildwisemedia.com/playbook/poor-four#term',
+  name: 'The Poor Four',
+  description: "The Poor Four are the four lead-system failure modes that kill growth for service businesses. Lead drought. Manual mayhem. The owner trap. Reactive mode. Most owners with a lead problem don't have one of them — they have all four, compounding against each other, quietly, every week.",
+  inDefinedTermSet: {
+    '@type': 'DefinedTermSet',
+    '@id': 'https://buildwisemedia.com/playbook/',
+    name: 'Buildwise Media Playbook',
+  },
+};
+
+const breadcrumb = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://buildwisemedia.com/' },
+    { '@type': 'ListItem', position: 2, name: 'Playbook', item: 'https://buildwisemedia.com/playbook/' },
+    { '@type': 'ListItem', position: 3, name: 'The Poor Four', item: 'https://buildwisemedia.com/playbook/poor-four' },
+  ],
+};
+
+const faqs = [
+  {
+    q: 'What are the Poor Four lead-system failure modes?',
+    a: "The Poor Four are lead drought, manual mayhem, the owner trap, and reactive mode. They are the four most common reasons a service business has a lead problem. Most owners dealing with inconsistent leads have all four running at once — each one makes the others harder to close until the whole set is addressed.",
+  },
+  {
+    q: 'Do most service businesses have all four of the Poor Four?',
+    a: 'Most do. Lead drought draws attention first because it\'s the most visible. But the root cause is usually the owner trap or reactive mode running underneath it. The Buildwise team runs every prospect through the Poor Four diagnostic to find the actual failure mode before deciding where the install starts.',
+  },
+  {
+    q: "Why doesn't fixing just one of the Poor Four solve the lead problem?",
+    a: 'The four failure modes compound. Fixing lead drought while the owner trap is still running means the pipeline depends on the founder\'s time. Closing manual mayhem while reactive mode is intact means no one can read the dashboard to see what\'s working. A complete fix has to close all four.',
+  },
+  {
+    q: 'How long does it take to close all four of the Poor Four?',
+    a: 'The Buildwise system is operational in 30 days, not 90. All four failure modes are addressed in the install — not staged across quarters — because they compound and have to close together to hold. The first qualified lead lands before the second invoice.',
+  },
+];
+
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  '@id': 'https://buildwisemedia.com/playbook/poor-four#faq',
+  mainEntity: faqs.map((f) => ({
+    '@type': 'Question',
+    name: f.q,
+    acceptedAnswer: { '@type': 'Answer', text: f.a },
+  })),
+};
+---
+<BaseLayout title={title} description={description} jsonLd={[definedTerm, breadcrumb, faqSchema]}>
+
+  <section class="playbook-hero">
+    <div class="container">
+      <p class="eyebrow"><a href="/playbook" class="back-link">← Playbook</a></p>
+      <h1 class="h-hero">The Poor Four</h1>
+      <p class="lede">
+        The Poor Four are the four lead-system failure modes that kill growth for service businesses. Lead drought. Manual mayhem. The owner trap. Reactive mode. Most owners with a lead problem don't have one of them — they have all four, compounding against each other, quietly, every week.
+      </p>
+    </div>
+  </section>
+
+  <section class="playbook-section elev">
+    <div class="container">
+      <p class="section-tag">How it works</p>
+      <h2 class="h-section">How it works.</h2>
+      <p class="prose">
+        Every service business that struggles with leads tends to blame one thing. The ads aren't working. The website is old. The referrals dried up. But those are symptoms. The actual failure almost always traces back to one or more of the Poor Four — and fixing one while ignoring the others leaves the problem intact.
+      </p>
+      <p class="prose">
+        The four failure modes compound. Lead drought gets worse when the owner is the only one running marketing. Manual mayhem makes reactive mode permanent because nobody can see a coherent dashboard. Naming them separately gives the owner a way to diagnose what's actually broken, not just what feels broken on a bad Monday.
+      </p>
+      <p class="prose">
+        Each failure mode has a dedicated page on this site with the full framing. Read the one that hits closest first. Then read the others — the odds are high they're all running.
+      </p>
+    </div>
+  </section>
+
+  <section class="playbook-section">
+    <div class="container">
+      <p class="section-tag">Why it matters</p>
+      <h2 class="h-section">Why it matters.</h2>
+      <p class="prose">
+        For years, service business owners have been told "you need better marketing" without anyone naming what better means. Better ads? A better website? More posts? The advice doesn't land because it skips the failure mode. You can't fix what you haven't named.
+      </p>
+      <p class="prose">
+        The Poor Four ends the abstraction. Each failure mode has a mechanism. Each has a fix. None require a bigger budget or six months of waiting. They require a system built to address all four at once — not piecemeal.
+      </p>
+      <p class="prose">
+        Owners burned by agencies before find this framing useful for a specific reason. Past agencies fixed one piece and left the others running. The website got rebuilt. The ads got managed. But the integration tax kept running, the owner stayed in the middle, and the marketing went quiet again. The Poor Four is why that cycle repeats until all four are closed.
+      </p>
+    </div>
+  </section>
+
+  <section class="playbook-section elev">
+    <div class="container">
+      <p class="section-tag">How Buildwise Media uses it</p>
+      <h2 class="h-section">How Buildwise Media uses it.</h2>
+      <p class="prose">
+        The Buildwise team runs every prospect against the Poor Four during qualification. It's not a sales script — it's a diagnostic. Most business owners walking into an Ascend conversation have three of the four in play. Some have all four.
+      </p>
+      <p class="prose">
+        The <a href="/services/ascend">Ascend install</a> closes all four at the same time. <a href="/problem/lead-drought">Lead drought</a> closes with daily paid acquisition on a baseline-first attribution layer. <a href="/problem/manual-mayhem">Manual mayhem</a> closes when one operator runs the whole stack instead of four vendors running separate pieces. <a href="/problem/owner-trap">The owner trap</a> closes when acquisition, qualifying, and routing run on a system — not on the founder's calendar. <a href="/problem/reactive-mode">Reactive mode</a> closes when measurement goes in first and dashboards surface anomalies before they become crises.
+      </p>
+      <p class="prose">
+        All four close together because that's the only way the fix holds.
+      </p>
+    </div>
+  </section>
+
+  <section class="playbook-poor-four-cards">
+    <div class="container">
+      <p class="section-tag">The four problems</p>
+      <h2 class="h-section">Each failure mode, named.</h2>
+      <div class="cards-grid">
+        <div class="pf-card">
+          <h3 class="pf-card-title">1. Lead drought</h3>
+          <p class="pf-card-body">Some weeks the phone rings. Other weeks it doesn't. Lead drought is not a marketing problem — it's a missing system. Most service businesses run referral-and-luck pipelines with no daily acquisition and no follow-up engine. The pipeline goes quiet because nothing is built to keep it running.</p>
+          <a href="/problem/lead-drought" class="pf-card-link">Read more →</a>
+        </div>
+        <div class="pf-card">
+          <h3 class="pf-card-title">2. Manual mayhem</h3>
+          <p class="pf-card-body">A vendor for ads. A different one for the website. A third for the CRM. None of them talk to each other. The owner ends up as the integration layer — by accident — spending hours per week chasing status between inboxes instead of running the business. The fix is not a new tool. It's one operator running a stack built to compose.</p>
+          <a href="/problem/manual-mayhem" class="pf-card-link">Read more →</a>
+        </div>
+        <div class="pf-card">
+          <h3 class="pf-card-title">3. Owner trap</h3>
+          <p class="pf-card-body">You are the brand, the closer, the operator, and the marketing department. Take a vacation and the pipeline collapses. Try to delegate and there's nothing written down to delegate to. The business doesn't have a marketing problem — it has a single-point-of-failure problem, and the owner is the point.</p>
+          <a href="/problem/owner-trap" class="pf-card-link">Read more →</a>
+        </div>
+        <div class="pf-card">
+          <h3 class="pf-card-title">4. Reactive mode</h3>
+          <p class="pf-card-body">Strategy keeps slipping to "after this quarter." The quarter never ends. Every problem surfaces as a crisis instead of a metric because there's no instrumentation. The calendar fills with reactions to whatever broke this morning. Reactive mode isn't a discipline failure — it's an instrumentation failure. Put the dashboards in first, then the system on top.</p>
+          <a href="/problem/reactive-mode" class="pf-card-link">Read more →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="playbook-faq">
+    <div class="container">
+      <p class="section-tag">FAQ</p>
+      <h2 class="h-section">Common questions.</h2>
+      <div class="faq-list">
+        {faqs.map((f) => (
+          <details class="faq-item">
+            <summary class="faq-q">{f.q}</summary>
+            <div class="faq-a">
+              <p>{f.a}</p>
+            </div>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="playbook-related elev">
+    <div class="container">
+      <p class="section-tag">Related</p>
+      <h2 class="h-section">More from the playbook.</h2>
+      <ul class="related-list">
+        <li><a href="/playbook/ai-marketing-department">AI Marketing Department</a> — what it means to have marketing that runs without the owner in the middle</li>
+        <li><a href="/playbook/captured-baseline">Captured Baseline</a> — how baseline-first measurement closes the reactive mode failure</li>
+        <li><a href="/playbook/category-of-one-marketing">Category-of-One Marketing</a> — where you end up after the Poor Four are closed</li>
+        <li><a href="/playbook/fractional-cmo-alternative">Fractional CMO Alternative</a> — why a fractional CMO addresses strategy but leaves the Poor Four running</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="playbook-cta elev">
+    <div class="container">
+      <h2 class="h-closer">Ready to see if we're a fit?</h2>
+      <p class="lede">If the operations gap is bigger than the lead gap, that's the conversation worth having.</p>
+      <p class="cta-row">
+        <a class="cta-primary" href="/book" data-cta-source="playbook-poor-four-cta">See If We're a Fit <span class="cta-arrow">→</span></a>
+        <a class="cta-ghost" href="/playbook">Back to Playbook</a>
+      </p>
+    </div>
+  </section>
+
+</BaseLayout>
+
+<style>
+.playbook-hero { padding-block: clamp(80px, 12vw, 144px); }
+.playbook-hero .lede { margin-top: 24px; }
+.back-link { color: var(--ink-faint); transition: color 180ms ease; }
+.back-link:hover { color: var(--y2); }
+
+.playbook-section { padding-block: clamp(56px, 8vw, 96px); }
+.playbook-section .prose { font-size: 17px; line-height: 1.7; color: var(--ink-dim); max-width: 720px; }
+.playbook-section .prose + .prose { margin-top: 16px; }
+
+.playbook-poor-four-cards { padding-block: clamp(56px, 8vw, 96px); background: var(--surface-raised, #0d0d10); }
+.cards-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 24px; margin-top: 40px; max-width: 1080px; }
+.pf-card { border: 1px solid var(--rule); border-radius: 6px; padding: 28px; display: flex; flex-direction: column; gap: 12px; }
+.pf-card-title { font-size: 18px; font-weight: 600; color: var(--ink); }
+.pf-card-body { font-size: 16px; line-height: 1.65; color: var(--ink-dim); flex: 1; }
+.pf-card-link { font-size: 14px; font-family: var(--mono); color: var(--y2); text-decoration: none; letter-spacing: 0.04em; transition: opacity 180ms ease; }
+.pf-card-link:hover { opacity: 0.75; }
+
+.playbook-faq { padding-block: clamp(64px, 10vw, 112px); }
+.faq-list { display: flex; flex-direction: column; gap: 16px; margin-top: 32px; max-width: 880px; }
+.faq-item { border-top: 1px solid var(--rule); padding-block: 20px; }
+.faq-item[open] summary { color: var(--y2); }
+.faq-q { font-size: 17px; font-weight: 500; color: var(--ink); cursor: pointer; line-height: 1.4; list-style: none; }
+.faq-q::marker, .faq-q::-webkit-details-marker { display: none; }
+.faq-q::after { content: "+"; float: right; font-family: var(--mono); font-size: 18px; color: var(--y2); }
+.faq-item[open] .faq-q::after { content: "−"; }
+.faq-a { margin-top: 12px; }
+.faq-a p { font-size: 16px; line-height: 1.65; color: var(--ink-dim); max-width: 720px; }
+
+.playbook-related { padding-block: clamp(56px, 8vw, 96px); }
+.related-list { list-style: none; display: flex; flex-direction: column; gap: 12px; margin-top: 32px; max-width: 880px; }
+.related-list a { color: var(--ink); font-weight: 500; text-decoration: none; border-bottom: 1px solid transparent; transition: border-color 180ms ease, color 180ms ease; }
+.related-list a:hover { color: var(--y2); border-bottom-color: var(--y2); }
+
+.playbook-cta { padding-block: clamp(64px, 10vw, 112px); }
+.playbook-cta .lede { margin-top: 16px; }
+.cta-row { display: flex; flex-wrap: wrap; gap: 16px; margin-top: 32px; }
+</style>

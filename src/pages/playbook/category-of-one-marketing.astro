@@ -1,0 +1,196 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+const title = "Category-of-One Marketing — Buildwise Media";
+const description = "Category-of-one marketing is how service businesses become the undisputed first choice in their local market — using a connected lead system that compounds over 90 days.";
+
+const definedTerm = {
+  '@context': 'https://schema.org',
+  '@type': 'DefinedTerm',
+  '@id': 'https://buildwisemedia.com/playbook/category-of-one-marketing#term',
+  name: 'Category-of-One Marketing',
+  description: 'Category-of-one marketing makes a service business the first name in its market. The system runs five layers: site, ads, content, follow-up, tracking. It builds over 90 days. The result: more leads than any other shop in your area. Not branding. Signal volume.',
+  inDefinedTermSet: {
+    '@type': 'DefinedTermSet',
+    '@id': 'https://buildwisemedia.com/playbook/',
+    name: 'Buildwise Media Playbook',
+  },
+};
+
+const breadcrumb = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://buildwisemedia.com/' },
+    { '@type': 'ListItem', position: 2, name: 'Playbook', item: 'https://buildwisemedia.com/playbook/' },
+    { '@type': 'ListItem', position: 3, name: 'Category-of-One Marketing', item: 'https://buildwisemedia.com/playbook/category-of-one-marketing' },
+  ],
+};
+
+const faqs = [
+  {
+    q: 'What does "category of one" mean for a service business?',
+    a: 'It means the business is the clear first choice in its service area — for organic search, paid search, AI-search citations, and word-of-mouth. Prospects stop comparing it to other options because there is no obvious match. That position is built through signal volume, not branding. It takes 90 days to build up, and longer to fully own.',
+  },
+  {
+    q: 'How is category-of-one marketing different from running ads or organic content alone?',
+    a: "Ads alone and organic content alone are single tactics. They don't talk to each other. Category-of-one marketing is a connected system where the website, ads, content, follow-up, and attribution all feed the same pipeline. Each layer makes the others more effective over time. Single tactics plateau. A connected system keeps building.",
+  },
+  {
+    q: 'How long does it take to reach category-of-one status?',
+    a: 'The system is live within 30 days. First leads come in that window. The full effect — where the business is clearly leading its niche across organic traffic, lead volume, review velocity, and AI-search rank — takes 90 days to show and 6 to 12 months to fully own. Every step is measured against the captured baseline.',
+  },
+  {
+    q: 'Does this require the business owner to be involved daily?',
+    a: "No. The system is built to run without the owner's daily input. One 30-minute call per month covers results and any adjustments. Everything else — content, ads, lead follow-up, reporting — is handled by the Buildwise team and our AI system.",
+  },
+  {
+    q: 'Is category-of-one marketing only for large service businesses?',
+    a: 'No. It is built for owner-run service businesses where the founder is still the one doing the marketing — big enough that the waste costs real money, small enough that the owner is still in the middle of the work. The system is sized for that stage. It is not a cut-down enterprise tool. It was built for this gap.',
+  },
+];
+
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  '@id': 'https://buildwisemedia.com/playbook/category-of-one-marketing#faq',
+  mainEntity: faqs.map((f) => ({
+    '@type': 'Question',
+    name: f.q,
+    acceptedAnswer: { '@type': 'Answer', text: f.a },
+  })),
+};
+---
+<BaseLayout title={title} description={description} jsonLd={[definedTerm, breadcrumb, faqSchema]}>
+
+  <section class="playbook-hero">
+    <div class="container">
+      <p class="eyebrow"><a href="/playbook" class="back-link">← Playbook</a></p>
+      <h1 class="h-hero">Category-of-One Marketing</h1>
+      <p class="lede">
+        Category-of-one marketing makes a service business the first name in its market. The system runs five layers: site, ads, content, follow-up, tracking. It builds over 90 days. The result: more leads than any other shop in your area. Not branding. Signal volume.
+      </p>
+    </div>
+  </section>
+
+  <section class="playbook-section elev">
+    <div class="container">
+      <p class="section-tag">How it works</p>
+      <h2 class="h-section">How it works.</h2>
+      <p class="prose">
+        A category-of-one system runs on signals that build up over time — not one-time campaigns. It captures a baseline — traffic, leads, cost-per-lead — before any paid channel turns on. Every dollar spent is measured against that baseline, week over week.
+      </p>
+      <p class="prose">
+        The system runs five connected layers at once: a conversion-built website, paid ads with weekly creative rotation, organic content, follow-up under five minutes, and a live attribution dashboard. Each layer feeds the next. When one layer improves, every layer after it benefits.
+      </p>
+      <p class="prose">
+        Category-of-one status is measured by a set of signals: organic traffic share in the niche, branded search lift, qualified-lead share of total market demand, review velocity, Google Business Profile completeness, and AI-search citation rank. When those signals converge, the business reads as the clear choice — to human searchers and to AI tools answering queries on their behalf.
+      </p>
+    </div>
+  </section>
+
+  <section class="playbook-section">
+    <div class="container">
+      <p class="section-tag">Why it matters</p>
+      <h2 class="h-section">Why it matters.</h2>
+      <p class="prose">
+        Most service businesses look the same to prospects. The plumber, the HVAC contractor, the home stager — they all say "experienced," "reliable," and "free estimates." Nothing sets them apart. Prospects pick whoever shows up first or whoever a neighbor mentioned last week.
+      </p>
+      <p class="prose">
+        That leaves revenue stuck. The owner wakes up at 6am, spends two hours chasing leads before the first job, and still closes the year with the same feast-or-famine cycle. More ad spend doesn't fix it. A new website doesn't fix it. A pile of disconnected tactics doesn't fix it.
+      </p>
+      <p class="prose">
+        Category-of-one marketing fixes it. It makes the business the clear answer — not through clever copy, but through signal volume and a real system. When the website converts at a proven rate, the ads point at something that works, the reviews stack up each month, and follow-up fires in under five minutes, the math changes. The business earns more leads than competitors because it runs like a system, not a hope.
+      </p>
+    </div>
+  </section>
+
+  <section class="playbook-section elev">
+    <div class="container">
+      <p class="section-tag">How Buildwise Media uses it</p>
+      <h2 class="h-section">How Buildwise Media uses it.</h2>
+      <p class="prose">
+        The Buildwise team installs category-of-one marketing as a full operations layer. We start with the <a href="/playbook/captured-baseline">captured baseline</a> — measuring traffic, lead volume, and cost-per-lead before any change is made. That baseline is the floor every future result is measured against.
+      </p>
+      <p class="prose">
+        From there, we build the full connected system: the conversion site, the <a href="/playbook/ai-marketing-department">AI-run marketing department</a> that handles content and ads, the follow-up, and the attribution dashboard. The system runs without the owner. Their only job is a 30-minute call per month.
+      </p>
+      <p class="prose">
+        The full scope is on the <a href="/services/ascend">Ascend service page</a> and the <a href="/how-it-works">how it works</a> walkthrough. Ascend clients move toward category-of-one status on a set timeline — measured against the same five signals every 30 days. The target is in writing before work begins. Every claim ties back to a baseline the client owns.
+      </p>
+    </div>
+  </section>
+
+  <section class="playbook-faq">
+    <div class="container">
+      <p class="section-tag">FAQ</p>
+      <h2 class="h-section">Common questions.</h2>
+      <div class="faq-list">
+        {faqs.map((f) => (
+          <details class="faq-item">
+            <summary class="faq-q">{f.q}</summary>
+            <div class="faq-a">
+              <p>{f.a}</p>
+            </div>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="playbook-related elev">
+    <div class="container">
+      <p class="section-tag">Related</p>
+      <h2 class="h-section">More from the playbook.</h2>
+      <ul class="related-list">
+        <li><a href="/playbook/ai-marketing-department">AI Marketing Department</a> — the run-for-you marketing department that executes day-to-day without the owner's involvement</li>
+        <li><a href="/playbook/captured-baseline">Captured Baseline</a> — the baseline-first measurement discipline that makes every claim verifiable</li>
+        <li><a href="/playbook/poor-four">The Poor Four</a> — the four lead-system failure modes that keep service businesses stuck in commodity positioning</li>
+        <li><a href="/playbook/fractional-cmo-alternative">Fractional CMO Alternative</a> — why fractional CMO strategy doesn't close the execution gap</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="playbook-cta elev">
+    <div class="container">
+      <h2 class="h-closer">Ready to see if we're a fit?</h2>
+      <p class="lede">If the operations gap is bigger than the lead gap, that's the conversation worth having.</p>
+      <p class="cta-row">
+        <a class="cta-primary" href="/book" data-cta-source="playbook-category-of-one-marketing-cta">See If We're a Fit <span class="cta-arrow">→</span></a>
+        <a class="cta-ghost" href="/playbook">Back to Playbook</a>
+      </p>
+    </div>
+  </section>
+
+</BaseLayout>
+
+<style>
+.playbook-hero { padding-block: clamp(80px, 12vw, 144px); }
+.playbook-hero .lede { margin-top: 24px; }
+.back-link { color: var(--ink-faint); transition: color 180ms ease; }
+.back-link:hover { color: var(--y2); }
+
+.playbook-section { padding-block: clamp(56px, 8vw, 96px); }
+.playbook-section .prose { font-size: 17px; line-height: 1.7; color: var(--ink-dim); max-width: 720px; }
+.playbook-section .prose + .prose { margin-top: 16px; }
+
+.playbook-faq { padding-block: clamp(64px, 10vw, 112px); }
+.faq-list { display: flex; flex-direction: column; gap: 16px; margin-top: 32px; max-width: 880px; }
+.faq-item { border-top: 1px solid var(--rule); padding-block: 20px; }
+.faq-item[open] summary { color: var(--y2); }
+.faq-q { font-size: 17px; font-weight: 500; color: var(--ink); cursor: pointer; line-height: 1.4; list-style: none; }
+.faq-q::marker, .faq-q::-webkit-details-marker { display: none; }
+.faq-q::after { content: "+"; float: right; font-family: var(--mono); font-size: 18px; color: var(--y2); }
+.faq-item[open] .faq-q::after { content: "−"; }
+.faq-a { margin-top: 12px; }
+.faq-a p { font-size: 16px; line-height: 1.65; color: var(--ink-dim); max-width: 720px; }
+
+.playbook-related { padding-block: clamp(56px, 8vw, 96px); }
+.related-list { list-style: none; display: flex; flex-direction: column; gap: 12px; margin-top: 32px; max-width: 880px; }
+.related-list a { color: var(--ink); font-weight: 500; text-decoration: none; border-bottom: 1px solid transparent; transition: border-color 180ms ease, color 180ms ease; }
+.related-list a:hover { color: var(--y2); border-bottom-color: var(--y2); }
+
+.playbook-cta { padding-block: clamp(64px, 10vw, 112px); }
+.playbook-cta .lede { margin-top: 16px; }
+.cta-row { display: flex; flex-wrap: wrap; gap: 16px; margin-top: 32px; }
+</style>
