@@ -29,7 +29,7 @@ const howTo = {
 const phases = [
   {
     n: '01', name: 'Audit', when: 'Day 0 → Day 5',
-    body: 'Before we build anything, we map what already exists. The current pipeline, every active channel, every integration, every conversion path. Each finding goes against a captured baseline — the starting-point number we\'ll compute the delta against. The audit ships as a written document. You keep it whether you engage or not.',
+    body: 'Before we build anything, we map what already exists. The current pipeline, every active channel, every integration, every conversion path. Each finding goes against a <a href="/playbook/captured-baseline">captured baseline</a> — the starting-point number we\'ll compute the delta against. The audit ships as a written document. You keep it whether you engage or not.',
     deliverables: ['Pipeline map (current state)', 'Channel + spend audit', 'Integration health report', 'Captured baseline document'],
   },
   {
@@ -70,7 +70,7 @@ const phases = [
               <span class="phase-when mono">{p.when}</span>
             </header>
             <h2 class="phase-name">{p.name}</h2>
-            <p class="phase-body">{p.body}</p>
+            <p class="phase-body" set:html={p.body}></p>
             <p class="phase-deliv-label kpi-label mono">What ships</p>
             <ul class="phase-deliv-list">
               {p.deliverables.map((d) => (
@@ -107,6 +107,7 @@ const phases = [
           </ul>
         </div>
       </div>
+      <p class="diff-footer mono"><a href="/playbook/poor-four">The four failure modes</a> · <a href="/playbook/fractional-cmo-alternative">Why fractional CMO doesn't close the gap</a></p>
     </div>
   </section>
 
@@ -147,6 +148,10 @@ const phases = [
 .diff-list { list-style: none; display: flex; flex-direction: column; gap: 14px; }
 .diff-list li { font-size: 15px; line-height: 1.55; color: var(--ink-dim); padding-left: 14px; border-left: 1px solid var(--rule); }
 .diff-col:last-child .diff-list li { border-left-color: var(--gold); }
+
+.diff-footer { margin-top: 40px; font-size: 11px; letter-spacing: 0.18em; color: var(--ink-faint); text-align: center; text-transform: uppercase; }
+.diff-footer a { color: var(--ink-dim); transition: color 180ms ease; }
+.diff-footer a:hover { color: var(--y2); }
 
 .how-cta { padding-block: 80px; }
 .ascend-cta-row { display: flex; align-items: center; justify-content: space-between; gap: 32px; flex-wrap: wrap; }

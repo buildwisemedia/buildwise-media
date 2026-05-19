@@ -281,7 +281,7 @@ const faqSchema = {
         <p class="section-tag">The system</p>
         <h2 id="system-title" class="h-section">Here's what runs for you while you run the business.</h2>
         <p class="lede">
-          Ascend does not ask the owner to become a marketer. It installs the operating layer that keeps demand moving.
+          Ascend does not ask the owner to become a marketer. It installs the <a href="/playbook/ai-marketing-department">operating layer that keeps demand moving</a>.
         </p>
       </div>
       <ul class="system-list" role="list">
@@ -314,6 +314,45 @@ const faqSchema = {
       <p class="lede">
         When the next month depends on referrals and luck, your market keeps moving. The best-run competitors are installing AI now, training search, reviews, and follow-up to choose them first.
       </p>
+    </div>
+  </section>
+
+  <section class="playbook-teaser" aria-labelledby="playbook-teaser-title">
+    <div class="container">
+      <p class="section-tag">The playbook</p>
+      <h2 id="playbook-teaser-title" class="h-section">What we believe.</h2>
+      <ul class="playbook-list" role="list">
+        <li>
+          <a href="/playbook/ai-marketing-department">
+            <span class="playbook-link-title">The AI marketing department</span>
+            <span class="playbook-link-sub">What a run-for-you marketing operation looks like.</span>
+          </a>
+        </li>
+        <li>
+          <a href="/playbook/category-of-one-marketing">
+            <span class="playbook-link-title">Category-of-one marketing</span>
+            <span class="playbook-link-sub">Becoming the most-chosen name in your market.</span>
+          </a>
+        </li>
+        <li>
+          <a href="/playbook/captured-baseline">
+            <span class="playbook-link-title">Captured baseline</span>
+            <span class="playbook-link-sub">Measuring the floor before the system turns on.</span>
+          </a>
+        </li>
+        <li>
+          <a href="/playbook/poor-four">
+            <span class="playbook-link-title">The Poor Four</span>
+            <span class="playbook-link-sub">The four ways a lead system fails before it starts.</span>
+          </a>
+        </li>
+        <li>
+          <a href="/playbook/fractional-cmo-alternative">
+            <span class="playbook-link-title">Fractional CMO alternative</span>
+            <span class="playbook-link-sub">Strategy without execution leaves the gap open.</span>
+          </a>
+        </li>
+      </ul>
     </div>
   </section>
 
@@ -611,6 +650,53 @@ const faqSchema = {
 
 .final-inner .cta {
   margin-bottom: 8px;
+}
+
+.playbook-teaser {
+  padding-block: clamp(72px, 9vw, 128px);
+  border-top: 1px solid var(--rule);
+}
+
+.playbook-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  margin-top: 40px;
+  border-top: 1px solid var(--rule);
+}
+
+.playbook-list li {
+  border-bottom: 1px solid var(--rule);
+}
+
+.playbook-list a {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 6px;
+  padding: 28px 0;
+  color: var(--ink);
+  transition: color 180ms ease, padding-left 220ms ease;
+}
+
+.playbook-list a:hover {
+  color: var(--y2);
+  padding-left: 14px;
+}
+
+.playbook-link-title {
+  font-family: var(--serif);
+  font-weight: 400;
+  font-size: clamp(22px, 2.6vw, 30px);
+  letter-spacing: -0.015em;
+  line-height: 1.15;
+}
+
+.playbook-link-sub {
+  font-family: var(--sans);
+  font-weight: 300;
+  font-size: 16px;
+  line-height: 1.5;
+  color: var(--ink-dim);
 }
 
 @media (max-width: 900px) {
