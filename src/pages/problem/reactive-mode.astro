@@ -12,8 +12,47 @@ const breadcrumb = {
     { '@type': 'ListItem', position: 2, name: 'Reactive Mode', item: 'https://buildwisemedia.com/problem/reactive-mode' },
   ],
 };
+
+const service = {
+  '@context': 'https://schema.org',
+  '@type': 'Service',
+  '@id': 'https://buildwisemedia.com/problem/reactive-mode#fix',
+  name: 'Reactive mode fix — instrumentation first, then the system',
+  serviceType: 'AI marketing department for service businesses',
+  provider: { '@id': 'https://buildwisemedia.com/#org' },
+  areaServed: { '@type': 'Country', name: 'United States' },
+  description:
+    'Installs measurement first, then the system on top. Dashboards surface what\'s working before it has to be asked; anomalies surface as alerts, not as crises three weeks late.',
+  url: 'https://buildwisemedia.com/problem/reactive-mode',
+};
+
+const faqs = [
+  {
+    q: 'Why does my service business feel stuck in firefighting mode?',
+    a: 'Firefighting is the predictable output of a system without instrumentation. Without dashboards, every problem surfaces as a crisis instead of a metric. Strategy keeps slipping to next quarter because the calendar keeps filling with reactions to whatever broke this morning. The fix is instrumentation, not discipline.',
+  },
+  {
+    q: 'How do I get out of reactive mode and into strategic mode?',
+    a: 'Install measurement before installing the system. Every claim audits against a captured baseline. Every connector audits weekly. Anomalies surface as alerts before they become crises. Strategy moves from "after this quarter" to "this Tuesday" because the calendar finally has space.',
+  },
+  {
+    q: 'What instrumentation does a service business need to stop reacting?',
+    a: 'Captured baseline on every metric. Weekly connector audit. Live attribution from ad spend to closed deal. Anomaly alerts on lead-source drops, conversion-rate shifts, and budget pacing. Dashboards owners can read in 90 seconds. The instrumentation does not have to be elaborate — it has to be honest.',
+  },
+];
+
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  '@id': 'https://buildwisemedia.com/problem/reactive-mode#faq',
+  mainEntity: faqs.map((f) => ({
+    '@type': 'Question',
+    name: f.q,
+    acceptedAnswer: { '@type': 'Answer', text: f.a },
+  })),
+};
 ---
-<BaseLayout title={title} description={description} jsonLd={[breadcrumb]}>
+<BaseLayout title={title} description={description} jsonLd={[service, breadcrumb, faqSchema]}>
 
   <section class="problem-hero">
     <div class="container">

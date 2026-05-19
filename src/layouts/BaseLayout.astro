@@ -2,6 +2,7 @@
 import '../styles/global.css';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
+import JsonLdGraph from '../components/seo/JsonLdGraph.astro';
 
 interface Props {
   title: string;
@@ -34,7 +35,57 @@ const GTM = 'GTM-P5JSD86L';
 const PIXEL = '2728397250833051';
 const CLARITY = 'w7ga9q22fa';
 
-const jsonLdArray = Array.isArray(jsonLd) ? jsonLd : jsonLd ? [jsonLd] : [];
+const perPageSchemas = Array.isArray(jsonLd) ? jsonLd : jsonLd ? [jsonLd] : [];
+
+// Site-wide schemas — emitted on every page so AI engines have a stable
+// WebSite/Organization @id graph to traverse. Per LOCKED Triangulation voice:
+// author = "the Buildwise team + our AI system" (no sole-prop framing).
+const siteSchemas: Record<string, unknown>[] = [
+  {
+    '@type': 'Organization',
+    '@id': `${siteUrl}/#org`,
+    name: 'Buildwise Media',
+    legalName: 'Buildwise Media LLC',
+    url: siteUrl,
+    email: 'hello@buildwisemedia.com',
+    description:
+      'AI marketing department for service businesses — installs in 30 days, operated weekly, owned by you.',
+    foundingLocation: {
+      '@type': 'Place',
+      address: {
+        '@type': 'PostalAddress',
+        addressLocality: 'Atlanta',
+        addressRegion: 'GA',
+        addressCountry: 'US',
+      },
+    },
+  },
+  {
+    '@type': 'WebSite',
+    '@id': `${siteUrl}/#website`,
+    url: siteUrl,
+    name: 'Buildwise Media',
+    description:
+      'AI marketing department for service businesses — installs in 30 days, operated weekly, owned by you.',
+    publisher: { '@id': `${siteUrl}/#org` },
+    inLanguage: 'en-US',
+  },
+  {
+    '@type': 'WebPage',
+    '@id': `${canonicalUrl}#webpage`,
+    url: canonicalUrl,
+    name: title,
+    description,
+    isPartOf: { '@id': `${siteUrl}/#website` },
+    inLanguage: 'en-US',
+    speakable: {
+      '@type': 'SpeakableSpecification',
+      cssSelector: ['.h-hero', '.hero-sub', '.h-section', '.lede', '.faq-q', '.faq-a p'],
+    },
+  },
+];
+
+const graph = [...siteSchemas, ...perPageSchemas];
 ---
 <!doctype html>
 <html lang="en">
@@ -147,9 +198,7 @@ const jsonLdArray = Array.isArray(jsonLd) ? jsonLd : jsonLd ? [jsonLd] : [];
       })();
     </script>
 
-    {jsonLdArray.map((data) => (
-      <script is:inline type="application/ld+json" set:html={JSON.stringify(data)} />
-    ))}
+    <JsonLdGraph graph={graph} />
   </head>
 
   <body>

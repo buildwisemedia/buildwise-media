@@ -12,8 +12,47 @@ const breadcrumb = {
     { '@type': 'ListItem', position: 2, name: 'Lead Drought', item: 'https://buildwisemedia.com/problem/lead-drought' },
   ],
 };
+
+const service = {
+  '@context': 'https://schema.org',
+  '@type': 'Service',
+  '@id': 'https://buildwisemedia.com/problem/lead-drought#fix',
+  name: 'Lead drought fix — pipeline you can throttle',
+  serviceType: 'AI marketing department for service businesses',
+  provider: { '@id': 'https://buildwisemedia.com/#org' },
+  areaServed: { '@type': 'Country', name: 'United States' },
+  description:
+    'Installs paid acquisition, qualifying filters, and a throttleable pipeline so the next quiet quarter is the last one. First qualified lead lands before the second invoice.',
+  url: 'https://buildwisemedia.com/problem/lead-drought',
+};
+
+const faqs = [
+  {
+    q: 'How do I stop the feast-or-famine cycle in my service business?',
+    a: 'Feast-or-famine ends when paid acquisition runs daily on a baseline-first attribution system, qualifying filters out bad-fit work, and the pipeline has a throttle you control by capacity instead of hope. We install the whole loop in 30 days so the next quiet stretch is the last one.',
+  },
+  {
+    q: 'What causes inconsistent lead flow for owner-led service businesses?',
+    a: 'Inconsistent leads are an operations gap, not a marketing gap. Most service businesses run referral-and-luck pipelines with no daily acquisition, no follow-up engine, and no captured baseline to learn from. The phone goes quiet because nothing is engineered to keep it ringing.',
+  },
+  {
+    q: 'How fast can a service business install a reliable lead pipeline?',
+    a: 'Inside 30 days the website is live, ad accounts are wired, the CRM is instrumented, and the first qualified leads start to flow. We do not run a 90-day waiting period — the system is operational on Day 30, not theoretical.',
+  },
+];
+
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  '@id': 'https://buildwisemedia.com/problem/lead-drought#faq',
+  mainEntity: faqs.map((f) => ({
+    '@type': 'Question',
+    name: f.q,
+    acceptedAnswer: { '@type': 'Answer', text: f.a },
+  })),
+};
 ---
-<BaseLayout title={title} description={description} jsonLd={[breadcrumb]}>
+<BaseLayout title={title} description={description} jsonLd={[service, breadcrumb, faqSchema]}>
 
   <section class="problem-hero">
     <div class="container">

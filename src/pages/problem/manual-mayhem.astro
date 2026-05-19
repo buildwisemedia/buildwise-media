@@ -12,8 +12,47 @@ const breadcrumb = {
     { '@type': 'ListItem', position: 2, name: 'Manual Mayhem', item: 'https://buildwisemedia.com/problem/manual-mayhem' },
   ],
 };
+
+const service = {
+  '@context': 'https://schema.org',
+  '@type': 'Service',
+  '@id': 'https://buildwisemedia.com/problem/manual-mayhem#fix',
+  name: 'Manual mayhem fix — one operator, whole stack',
+  serviceType: 'AI marketing department for service businesses',
+  provider: { '@id': 'https://buildwisemedia.com/#org' },
+  areaServed: { '@type': 'Country', name: 'United States' },
+  description:
+    'Replaces the disconnected vendor stack (ads vendor, SEO vendor, web vendor, CRM vendor) with one system one operator runs end to end. Acquisition, qualifying, scheduling, attribution, and dashboards designed to compose.',
+  url: 'https://buildwisemedia.com/problem/manual-mayhem',
+};
+
+const faqs = [
+  {
+    q: 'Why don\'t my marketing vendors talk to each other?',
+    a: 'Most marketing vendors are paid for outputs, not integrations. The ads vendor optimizes for clicks, the SEO vendor for rankings, the web vendor for builds — none are paid to make the stack compose. The owner becomes the integration layer by accident, because nobody else owns the whole picture.',
+  },
+  {
+    q: 'How do I stop being the project manager for my marketing contractors?',
+    a: 'Stop assembling a stack of vendors and install one system one operator runs end to end. Acquisition, qualifying, scheduling, attribution, and dashboards designed to compose — not stitched together. The system becomes the integration layer; the owner steps out of the middle.',
+  },
+  {
+    q: 'Can one operator run a full marketing stack for a service business?',
+    a: 'Yes — when the stack is built to compose. Most can\'t, because they\'re assembled from vendors paid for siloed outputs. The Buildwise Revenue Engine is one stack, one source of truth, one operator on top. The owner gets the inbox back. Iteration moves in days, not quarters.',
+  },
+];
+
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  '@id': 'https://buildwisemedia.com/problem/manual-mayhem#faq',
+  mainEntity: faqs.map((f) => ({
+    '@type': 'Question',
+    name: f.q,
+    acceptedAnswer: { '@type': 'Answer', text: f.a },
+  })),
+};
 ---
-<BaseLayout title={title} description={description} jsonLd={[breadcrumb]}>
+<BaseLayout title={title} description={description} jsonLd={[service, breadcrumb, faqSchema]}>
 
   <section class="problem-hero">
     <div class="container">

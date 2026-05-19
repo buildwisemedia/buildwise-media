@@ -12,8 +12,47 @@ const breadcrumb = {
     { '@type': 'ListItem', position: 2, name: 'Owner Trap', item: 'https://buildwisemedia.com/problem/owner-trap' },
   ],
 };
+
+const service = {
+  '@context': 'https://schema.org',
+  '@type': 'Service',
+  '@id': 'https://buildwisemedia.com/problem/owner-trap#fix',
+  name: 'Owner trap fix — marketing as a system, not a person',
+  serviceType: 'AI marketing department for service businesses',
+  provider: { '@id': 'https://buildwisemedia.com/#org' },
+  areaServed: { '@type': 'Country', name: 'United States' },
+  description:
+    'Installs a marketing system that runs without the owner. The system handles acquisition, qualifying, and routing; the owner\'s time goes to the conversations that actually need a human.',
+  url: 'https://buildwisemedia.com/problem/owner-trap',
+};
+
+const faqs = [
+  {
+    q: 'Why can\'t my service business run marketing without me?',
+    a: 'Because the marketing system lives in the owner\'s head, not on a screen. Every campaign, every follow-up, every qualifying rule is something the owner has done a hundred times — and never written down. Delegation fails because there\'s nothing to delegate to. The fix is installing the system out of the head and into the operations layer.',
+  },
+  {
+    q: 'How do I get out of being the marketing department for my own business?',
+    a: 'You install a system that runs without you. We build acquisition, qualifying, routing, follow-up, and attribution as one operating layer. Day one: operational. Month two: you take a real weekend. Month six: the business runs at the speed of the system, not the speed of the founder.',
+  },
+  {
+    q: 'What does an owner-independent service business look like?',
+    a: 'It looks like a business that sells at 5x EBITDA instead of 2x. The pipeline, the qualifying logic, and the follow-up engine run on a system the buyer can inherit. The founder is in the business by choice, not by necessity. Optionality is the asset — and it compounds.',
+  },
+];
+
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  '@id': 'https://buildwisemedia.com/problem/owner-trap#faq',
+  mainEntity: faqs.map((f) => ({
+    '@type': 'Question',
+    name: f.q,
+    acceptedAnswer: { '@type': 'Answer', text: f.a },
+  })),
+};
 ---
-<BaseLayout title={title} description={description} jsonLd={[breadcrumb]}>
+<BaseLayout title={title} description={description} jsonLd={[service, breadcrumb, faqSchema]}>
 
   <section class="problem-hero">
     <div class="container">

@@ -1,31 +1,16 @@
 ---
-// Homepage FAQ — voice-search phrased; FAQPage schema emitted at page level
-const faqs = [
-  {
-    q: "What does Buildwise Media actually do?",
-    a: "We install and operate one integrated lead-generation system — the Buildwise Revenue Engine. That includes the website built to AI-search-era standards, paid acquisition wired to baseline-first attribution, AI-assisted content production with a human quality gate, and an integrated operations layer (CRM, analytics, weekly connector audit). We treat marketing as operations: ad spend in, revenue out, verified weekly.",
-  },
-  {
-    q: "Who is Buildwise Media for?",
-    a: "Service-business owners between $1M and $5M who want to run marketing the way they run their business — measurable, accountable, instrumented. Owners looking for a savior or hoping for comfort tend to bounce off our process. Owners who want to operate the system themselves tend to thrive.",
-  },
-  {
-    q: "How fast does the system go live?",
-    a: "Inside 30 days the website is live, ad accounts are wired, the CRM is instrumented, and first leads start to flow. Full-system instrumentation completes in the same window. We don't run a 90-day waiting period before anything is observable.",
-  },
-  {
-    q: "How do you measure success?",
-    a: "Every commitment carries three required fields — a confidence percentage (75% floor), an evidence class (Measured / Attributed / Modeled / Benchmark), and a captured baseline. Outcomes ratchet up as real data arrives. The Outcomes Commitment Card is the contract; it's not aspirational copy.",
-  },
-  {
-    q: "Is there a long-term contract?",
-    a: "No. The engagement runs month-to-month, no long-term lock-in. The build-right guarantee covers install milestones; if we miss them we keep working until we don't. We earn the retainer every month or we don't.",
-  },
-  {
-    q: "What does it cost?",
-    a: "Pricing is set per engagement and exposed only to qualified prospects in the discovery call. We don't publish a generic price tile because the system that fits a $1.5M shop is genuinely different from the one that fits a $4M shop. Booking a call is the way to find out.",
-  },
-];
+// Voice-search phrased FAQ — FAQPage schema emitted at the page level
+// alongside the rendered section so AI agents see matching content.
+interface FaqItem {
+  q: string;
+  a: string;
+}
+
+interface Props {
+  faqs: FaqItem[];
+}
+
+const { faqs } = Astro.props;
 ---
 <section class="faq">
   <div class="container faq-grid">

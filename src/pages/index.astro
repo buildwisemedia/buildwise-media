@@ -1,5 +1,6 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import FAQ from '../components/FAQ.astro';
 
 const heroVariants = {
   A: {
@@ -94,27 +95,22 @@ const systemItems = [
 const serviceSchema = {
   '@context': 'https://schema.org',
   '@type': 'Service',
+  '@id': 'https://buildwisemedia.com/#service-ascend',
   name: 'Ascend',
-  serviceType: 'Run-for-you AI marketing system',
-  provider: {
-    '@type': 'Organization',
-    '@id': 'https://buildwisemedia.com/#org',
-    name: 'Buildwise Media',
-    url: 'https://buildwisemedia.com',
-  },
-  areaServed: {
-    '@type': 'Country',
-    name: 'United States',
-  },
+  serviceType: 'AI marketing department for service businesses',
+  provider: { '@id': 'https://buildwisemedia.com/#org' },
+  areaServed: { '@type': 'Country', name: 'United States' },
   description:
-    'Buildwise Media installs Ascend for American service-business owners who want qualified leads, review velocity, local search strength, and AI search presence operated as one system.',
-  url: 'https://buildwisemedia.com/',
-  offers: {
-    '@type': 'Offer',
-    url: 'https://buildwisemedia.com/book',
-    priceCurrency: 'USD',
-    price: 'contact for pricing',
-    availability: 'https://schema.org/InStock',
+    'Ascend is an AI marketing department installed inside the business — qualified leads, review velocity, local search strength, and AI-search presence operated as one system.',
+  url: 'https://buildwisemedia.com/services/ascend',
+  hasOfferCatalog: {
+    '@type': 'OfferCatalog',
+    name: 'Ascend tiers',
+    itemListElement: [
+      { '@type': 'Offer', name: 'Ascend Pilot', description: 'Foundation tier — install the system and capture baseline.' },
+      { '@type': 'Offer', name: 'Ascend', description: 'Full system — installed, operated weekly, owned by the client.' },
+      { '@type': 'Offer', name: 'Ascend Pro', description: 'Operator-led "category of one" build for owners chasing market dominance.' },
+    ],
   },
 };
 
@@ -125,8 +121,46 @@ const breadcrumb = {
     { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://buildwisemedia.com/' },
   ],
 };
+
+const faqs = [
+  {
+    q: 'What does Buildwise Media actually do?',
+    a: 'We install and operate one integrated lead-generation system — the Buildwise Revenue Engine. That includes the website built to AI-search-era standards, paid acquisition wired to baseline-first attribution, AI-assisted content production with a human quality gate, and an integrated operations layer (CRM, analytics, weekly connector audit). We treat marketing as operations: ad spend in, revenue out, verified weekly.',
+  },
+  {
+    q: 'Who is Buildwise Media for?',
+    a: 'Service-business owners who are the bottleneck of their own growth — buried in operations, watching lead flow swing month to month, tired of running marketing on hope. Owners who want a system that runs whether they watch it or not tend to thrive. Owners looking for a savior or hoping for comfort tend to bounce off our process.',
+  },
+  {
+    q: 'How fast does the system go live?',
+    a: 'Inside 30 days the website is live, ad accounts are wired, the CRM is instrumented, and first leads start to flow. Full-system instrumentation completes in the same window. We do not run a 90-day waiting period before anything is observable.',
+  },
+  {
+    q: 'How do you measure success?',
+    a: 'Every commitment carries three required fields — a confidence percentage (75% floor), an evidence class (Measured / Attributed / Modeled / Benchmark), and a captured baseline. Outcomes ratchet up as real data arrives. The Outcomes Commitment Card is the contract; it is not aspirational copy.',
+  },
+  {
+    q: 'Is there a long-term contract?',
+    a: 'No. The engagement runs month to month, no long-term lock-in. The build-right guarantee covers install milestones; if we miss them we keep working until we do not. We earn the retainer every month or we do not.',
+  },
+  {
+    q: 'What does it cost?',
+    a: 'There are three tiers — Ascend Pilot for owners getting the foundation in place, Ascend for owners running the full system, and Ascend Pro for the operator-led "category of one" build. The 5-minute audit and discovery call are how we figure out which tier fits — and whether we should be the team to deliver it.',
+  },
+];
+
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  '@id': 'https://buildwisemedia.com/#faq-home',
+  mainEntity: faqs.map((f) => ({
+    '@type': 'Question',
+    name: f.q,
+    acceptedAnswer: { '@type': 'Answer', text: f.a },
+  })),
+};
 ---
-<BaseLayout title={title} description={description} jsonLd={[serviceSchema, breadcrumb]}>
+<BaseLayout title={title} description={description} jsonLd={[serviceSchema, breadcrumb, faqSchema]}>
   <section class="home-hero" aria-labelledby="home-hero-title" data-arm={arm} data-hero-arm-root>
     <div class="container hero-grid">
       <div class="hero-copy">
@@ -277,6 +311,8 @@ const breadcrumb = {
       </p>
     </div>
   </section>
+
+  <FAQ faqs={faqs} />
 
   <section class="final-section" aria-labelledby="final-title">
     <div class="container final-inner">

@@ -1,0 +1,21 @@
+---
+// Single-script @graph emitter — consolidates all per-page schemas into one
+// connected JSON-LD payload so AI engines can traverse @id references across
+// entities. Closes bwm-website-qa.sh WARN "Multiple JSON-LD script blocks".
+interface Props {
+  graph: Record<string, unknown>[];
+}
+
+const { graph } = Astro.props;
+
+const nodes = graph.map((node) => {
+  const { ['@context']: _drop, ...rest } = node as Record<string, unknown>;
+  return rest;
+});
+
+const payload = {
+  '@context': 'https://schema.org',
+  '@graph': nodes,
+};
+---
+<script is:inline type="application/ld+json" set:html={JSON.stringify(payload)} />
