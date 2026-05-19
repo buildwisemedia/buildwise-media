@@ -141,15 +141,22 @@ const graph = [...siteSchemas, ...perPageSchemas];
     <!-- Booking embed preconnect (used on /book) — cuts ~200-500ms off first paint of the calendar iframe. EXP-002 telemetry shows 50% click-to-LPV drop, primary suspect = TLS cold-start on this subdomain. -->
     <link rel="preconnect" href="https://book.buildwisemedia.com" />
     <link rel="dns-prefetch" href="https://book.buildwisemedia.com" />
-    <link
-      rel="preload"
-      as="style"
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@300;400;500;700&display=swap"
-    />
+    {/* Non-blocking font CSS: download as print stylesheet (which doesn't block render),
+        then onload swap media to all so it applies. display=swap in the URL governs the
+        font swap itself; this pattern unblocks the *CSS file fetch* which is the
+        FCP-blocker even with display=swap. <noscript> fallback for JS-off readers. */}
     <link
       rel="stylesheet"
       href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@300;400;500;700&display=swap"
+      media="print"
+      onload="this.media='all'"
     />
+    <noscript>
+      <link
+        rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@300;400;500;700&display=swap"
+      />
+    </noscript>
 
     <!-- Google Tag Manager -->
     <script is:inline define:vars={{ GTM }}>
