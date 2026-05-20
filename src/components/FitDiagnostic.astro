@@ -1,0 +1,2922 @@
+---
+// Mo' Money campaign — Fit Diagnostic
+// Ported 2026-05-20 from bwm-campaigns/mo-money-mo-peace/landing.html
+// Self-contained: state machine + 7 question screens + reveal + verdict routing
+// Submit handler POSTs to bwm-form-handler /buildwisemedia/fit-diagnostic
+// Email is OPTIONAL per locked promise "The reveal is yours regardless"
+//
+// Token swap from source: --canvas → --bg, --text → --ink, --text-dim → --ink-dim,
+// --hairline → --rule. Component scoped via #diagnostic wrapper to avoid bleed.
+---
+
+<section id="diagnostic" class="bwm-fit-diagnostic">
+<header class="doc-header">
+    <div class="container">
+      <div class="doc-header-inner">
+        <div class="doc-mark">
+          <div class="doc-mark-glyph">
+            <svg viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <defs>
+                <linearGradient id="markGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" stop-color="#F0FF00"/>
+                  <stop offset="100%" stop-color="#B8FF3A" stop-opacity="0.85"/>
+                </linearGradient>
+              </defs>
+              <circle cx="5" cy="23" r="2.4" fill="url(#markGrad)"/>
+              <circle cx="23" cy="23" r="2.4" fill="url(#markGrad)"/>
+              <circle cx="14" cy="5" r="2.4" fill="url(#markGrad)"/>
+              <line x1="6.5" y1="21.5" x2="13" y2="6.5" stroke="#F0FF00" stroke-width="0.8" opacity="0.55"/>
+              <line x1="21.5" y1="21.5" x2="15" y2="6.5" stroke="#F0FF00" stroke-width="0.8" opacity="0.55"/>
+              <line x1="7.5" y1="23" x2="20.5" y2="23" stroke="#F0FF00" stroke-width="0.8" opacity="0.55"/>
+              <circle cx="14" cy="16" r="1.3" fill="#F0FF00"/>
+            </svg>
+          </div>
+          <div class="doc-mark-text">Buildwise&nbsp;Media</div>
+          <div class="doc-mark-separator"></div>
+          <div class="doc-mark-tag">Fit Diagnostic</div>
+        </div>
+        <div class="progress-mark" id="progress" style="display: none;">
+          <svg viewBox="0 0 36 36" fill="none">
+            <circle cx="6" cy="30" r="3" fill="none" stroke="#F0FF00" stroke-width="1" id="vtx-1"/>
+            <circle cx="30" cy="30" r="3" fill="none" stroke="#F0FF00" stroke-width="1" id="vtx-2"/>
+            <circle cx="18" cy="6" r="3" fill="none" stroke="#F0FF00" stroke-width="1" id="vtx-3"/>
+            <line x1="8" y1="28" x2="16" y2="8" stroke="#F0FF00" stroke-width="0.6" opacity="0.35"/>
+            <line x1="28" y1="28" x2="20" y2="8" stroke="#F0FF00" stroke-width="0.6" opacity="0.35"/>
+            <line x1="9" y1="30" x2="27" y2="30" stroke="#F0FF00" stroke-width="0.6" opacity="0.35"/>
+          </svg>
+          <span class="progress-mark-label"><span class="current" id="q-current">01</span> / 07 · <span id="q-cat">Service</span></span>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  
+
+    <section class="screen screen-welcome">
+      <div class="welcome-hero">
+        <div class="container">
+          <div class="welcome-eyebrow">
+            <span class="verdict-dot"></span>
+            <span class="mono-eyebrow">For Service Businesses Only · ~3 Minutes · No Email Required</span>
+          </div>
+          <div class="welcome-hero-grid">
+            <div class="welcome-hero-text">
+              <h1 class="welcome-headline">
+                Most consultations <span class="strike">qualify you</span>.<br>
+                Ours shows you what your business could <span class="y">become</span>.
+              </h1>
+              <p class="welcome-subhead">
+                Answer 7 questions. We'll show you <strong>exactly where your business sits today</strong>, <strong>where the bottleneck is</strong>, and what your AI growth system would look like over the next 12 months — <strong>even if we never work together</strong>.
+              </p>
+              <div class="welcome-trust">
+                <div class="trust-item"><span class="verdict-dot-sm"></span> 7 Questions</div>
+                <div class="trust-item"><span class="verdict-dot-sm"></span> ~3 Minutes</div>
+                <div class="trust-item"><span class="verdict-dot-sm"></span> No Email To See Result</div>
+                <div class="trust-item"><span class="verdict-dot-sm"></span> Tailored To You</div>
+              </div>
+              <div class="welcome-cta-wrap">
+                <button class="cta-primary" data-action="start">
+                  See If We're A Fit
+                  <span class="arrow">→</span>
+                </button>
+                <a href="/book" class="cta-secondary">Or just book a 15-min call →</a>
+              </div>
+            </div>
+            <div class="welcome-hero-visual">
+              <img src="assets/photography/v1-black-owner.jpg" alt="A service-business owner in his work truck at dawn, looking out at the road ahead" loading="eager" decoding="async" width="1600" height="1200">
+              <div class="welcome-hero-visual-overlay"></div>
+              <span class="welcome-hero-visual-dot"></span>
+              <span class="welcome-hero-visual-hairline"></span>
+              <div class="welcome-hero-visual-meta">
+                <div class="welcome-hero-visual-label">This is <span class="y">your morning</span>.</div>
+                <div class="welcome-hero-visual-cite">Service Owner<br>Pre-Shift · Dawn</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="welcome-divider-section">
+        <div class="container">
+          <div class="mono-eyebrow" style="margin-bottom: 32px;">Why This Is Different</div>
+          <div class="divider-grid">
+            <div class="divider-cell">
+              <div class="divider-cell-num">01 · The Premise</div>
+              <h3 class="divider-cell-title">No transaction. No free PDF.</h3>
+              <p class="divider-cell-body">
+                Most lead-gen funnels extract from you — your email, your time, your data — in exchange for a hope. We're doing the opposite. The diagnostic itself is the value. The reveal is yours regardless.
+              </p>
+            </div>
+            <div class="divider-cell">
+              <div class="divider-cell-num">02 · The Reveal</div>
+              <h3 class="divider-cell-title">A personalized growth report.</h3>
+              <p class="divider-cell-body">
+                Your inputs synthesize into a real diagnostic: where you sit, where your bottleneck is, what your custom AI growth system would look like, and a 12-month projection. Generated for you, not from a template.
+              </p>
+            </div>
+            <div class="divider-cell">
+              <div class="divider-cell-num">03 · The Verdict</div>
+              <h3 class="divider-cell-title">Three honest paths.</h3>
+              <p class="divider-cell-body">
+                If you're a Fit, we'll book the strategy call. If you're close, we'll show you the 3 things to lock in first. If you're not ready yet, we'll hand you the exact playbook to fix the gaps. We don't waste your time.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="screen screen-q1 q-screen">
+      <div class="container">
+        <div class="q-eyebrow">
+          <span class="q-eyebrow-num">/01</span>
+          <span class="q-eyebrow-sep">·</span>
+          <span class="q-eyebrow-cat">Service</span>
+        </div>
+        <h2 class="q-text">What kind of <span class="y">service business</span> do you run?</h2>
+        <p class="q-help">Pick the one that fits best. If your service is mixed, pick the line that's the largest share of revenue today.</p>
+        <div class="chip-grid" data-single="service">
+          <button class="chip" data-value="hvac">
+            <svg class="chip-icon" viewBox="0 0 32 32" aria-hidden="true">
+              <rect x="3" y="8" width="26" height="16" rx="1"/>
+              <path d="M6 12h20 M6 16h20 M6 20h20" class="hair"/>
+              <circle cx="23" cy="16" r="3.2" class="verdict-glow"/>
+              <circle cx="23" cy="16" r="1.4" class="verdict"/>
+            </svg>
+            <span class="chip-label">HVAC</span>
+            <span class="chip-sub">Heat pumps · ducted · mini-splits</span>
+          </button>
+          <button class="chip" data-value="roofing">
+            <svg class="chip-icon" viewBox="0 0 32 32" aria-hidden="true">
+              <path d="M3 24 L16 7 L29 24"/>
+              <path d="M7 21 L16 11 L25 21" class="hair"/>
+              <path d="M11 24 L16 17 L21 24" class="hair"/>
+              <circle cx="16" cy="7" r="2.6" class="verdict-glow"/>
+              <circle cx="16" cy="7" r="1.4" class="verdict"/>
+            </svg>
+            <span class="chip-label">Roofing</span>
+            <span class="chip-sub">Tearoffs · replacements · storm</span>
+          </button>
+          <button class="chip" data-value="plumbing">
+            <svg class="chip-icon" viewBox="0 0 32 32" aria-hidden="true">
+              <path d="M16 4 C12.5 8 8 13 8 19 a8 8 0 0 0 16 0 c0 -6 -4.5 -11 -8 -15 Z"/>
+              <path d="M12 19 a4 4 0 0 0 4 4" class="hair"/>
+              <circle cx="20" cy="13" r="1.7" class="verdict"/>
+            </svg>
+            <span class="chip-label">Plumbing</span>
+            <span class="chip-sub">Service · water heaters · drains</span>
+          </button>
+          <button class="chip" data-value="pest">
+            <svg class="chip-icon" viewBox="0 0 32 32" aria-hidden="true">
+              <circle cx="13" cy="13" r="7.5"/>
+              <path d="M18.5 18.5 L27 27"/>
+              <path d="M10 13 h6 M13 10 v6" class="hair"/>
+              <circle cx="13" cy="13" r="2.4" class="verdict-glow"/>
+              <circle cx="13" cy="13" r="1.3" class="verdict"/>
+            </svg>
+            <span class="chip-label">Pest Control</span>
+            <span class="chip-sub">Recurring · wildlife removal</span>
+          </button>
+          <button class="chip" data-value="realtor">
+            <svg class="chip-icon" viewBox="0 0 32 32" aria-hidden="true">
+              <path d="M4 15 L16 5 L28 15 V27 H4 Z"/>
+              <path d="M12 27 V19 H20 V27" class="hair"/>
+              <path d="M9 13 L9 9 L13 9" class="hair"/>
+              <circle cx="16" cy="12" r="2.6" class="verdict-glow"/>
+              <circle cx="16" cy="12" r="1.4" class="verdict"/>
+            </svg>
+            <span class="chip-label">Real Estate</span>
+            <span class="chip-sub">Listings · buyer-side</span>
+          </button>
+          <button class="chip" data-value="concrete">
+            <svg class="chip-icon" viewBox="0 0 32 32" aria-hidden="true">
+              <path d="M3 18 L16 10 L29 18 L16 26 Z"/>
+              <path d="M9.5 14 L22.5 22" class="hair"/>
+              <path d="M22.5 14 L9.5 22" class="hair"/>
+              <path d="M16 10 L16 26" class="hair"/>
+              <circle cx="29" cy="18" r="1.5" class="verdict"/>
+            </svg>
+            <span class="chip-label">Concrete</span>
+            <span class="chip-sub">Driveways · slabs · foundations</span>
+          </button>
+          <button class="chip" data-value="cleaning">
+            <svg class="chip-icon" viewBox="0 0 32 32" aria-hidden="true">
+              <path d="M12 13 H22 V28 H12 Z"/>
+              <path d="M14 13 V8 H20 V13"/>
+              <path d="M20 8 L27 5 L27 10 L20 10" class="hair"/>
+              <path d="M14 18 H20" class="hair"/>
+              <circle cx="28.5" cy="3.5" r="1.2" class="verdict"/>
+              <circle cx="30" cy="6" r="0.9" class="verdict"/>
+              <circle cx="29.5" cy="9" r="0.7" class="verdict"/>
+            </svg>
+            <span class="chip-label">Cleaning</span>
+            <span class="chip-sub">Recurring residential · commercial</span>
+          </button>
+          <button class="chip" data-value="other">
+            <svg class="chip-icon" viewBox="0 0 32 32" aria-hidden="true">
+              <path d="M4 12 H28 V27 H4 Z"/>
+              <path d="M10 12 V7 H22 V12"/>
+              <path d="M4 18 H28" class="hair"/>
+              <circle cx="16" cy="22.5" r="2.4" class="verdict-glow"/>
+              <circle cx="16" cy="22.5" r="1.3" class="verdict"/>
+            </svg>
+            <span class="chip-label">Other Service</span>
+            <span class="chip-sub">Tell us what you do</span>
+          </button>
+        </div>
+        <div class="q-nav">
+          <button class="q-nav-back" data-back="welcome">← Back</button>
+          <button class="q-nav-next" id="next-q1" data-next="q2" disabled>Next →</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="screen screen-q2 q-screen">
+      <div class="container">
+        <div class="q-eyebrow">
+          <span class="q-eyebrow-num">/02</span>
+          <span class="q-eyebrow-sep">·</span>
+          <span class="q-eyebrow-cat">Acquisition</span>
+        </div>
+        <h2 class="q-text">Where do <span class="y">new clients</span> come from today?</h2>
+        <p class="q-help">Select all that apply. We're looking at your acquisition mix — the channels that bring you actual new business in the last 90 days.</p>
+        <div class="q2-split">
+          <div class="multiselect-grid" data-multi="leadSources">
+            <button class="ms-card" data-value="referrals">
+              <div class="ms-card-checkbox"></div>
+              <svg class="ms-card-icon" viewBox="0 0 32 32" aria-hidden="true">
+                <circle cx="6" cy="16" r="2.6"/>
+                <circle cx="16" cy="6" r="2.6"/>
+                <circle cx="26" cy="16" r="2.6"/>
+                <circle cx="16" cy="26" r="2.6"/>
+                <path d="M8.2 14 L13.6 8.4 M18.4 8.4 L23.8 14 M23.8 18 L18.4 23.6 M13.6 23.6 L8.2 18" class="hair"/>
+                <circle cx="16" cy="16" r="1.6" class="verdict"/>
+              </svg>
+              <div class="ms-card-title">Referrals &amp; word-of-mouth</div>
+              <div class="ms-card-sub">Past clients, neighbors, partners</div>
+              <div class="ms-card-tag">Hardest to scale · slowest growth lever</div>
+            </button>
+            <button class="ms-card" data-value="google-organic">
+              <div class="ms-card-checkbox"></div>
+              <svg class="ms-card-icon" viewBox="0 0 32 32" aria-hidden="true">
+                <path d="M16 28 C10 22 7 17 7 13 a9 9 0 0 1 18 0 c0 4 -3 9 -9 15 Z"/>
+                <circle cx="16" cy="13" r="3.6" class="hair"/>
+                <circle cx="16" cy="13" r="1.6" class="verdict"/>
+              </svg>
+              <div class="ms-card-title">Google search (organic)</div>
+              <div class="ms-card-sub">Map pack, SEO, Google Business Profile</div>
+              <div class="ms-card-tag">Slow to build · sticky once won</div>
+            </button>
+            <button class="ms-card" data-value="paid-ads">
+              <div class="ms-card-checkbox"></div>
+              <svg class="ms-card-icon" viewBox="0 0 32 32" aria-hidden="true">
+                <path d="M6 26 L26 6"/>
+                <path d="M16 6 L26 6 L26 16"/>
+                <path d="M11 23 L19 15" class="hair"/>
+                <circle cx="26" cy="6" r="2.6" class="verdict-glow"/>
+                <circle cx="26" cy="6" r="1.4" class="verdict"/>
+              </svg>
+              <div class="ms-card-title">Paid ads</div>
+              <div class="ms-card-sub">Meta, Google Ads, YouTube</div>
+              <div class="ms-card-tag">Fastest scale · biggest spend exposure</div>
+            </button>
+            <button class="ms-card" data-value="social">
+              <div class="ms-card-checkbox"></div>
+              <svg class="ms-card-icon" viewBox="0 0 32 32" aria-hidden="true">
+                <path d="M4 8 H18 V18 H10 L6 22 V18 H4 Z"/>
+                <path d="M14 14 H28 V22 H22 L26 26 V22" class="hair"/>
+                <circle cx="11" cy="13" r="1.2" class="verdict"/>
+              </svg>
+              <div class="ms-card-title">Social content</div>
+              <div class="ms-card-sub">Organic posts, video, community</div>
+              <div class="ms-card-tag">Brand lift · attribution-blind</div>
+            </button>
+            <button class="ms-card" data-value="cold-outreach">
+              <div class="ms-card-checkbox"></div>
+              <svg class="ms-card-icon" viewBox="0 0 32 32" aria-hidden="true">
+                <path d="M6 6 H11 L13 11 L10 14 C12 18 14 20 18 22 L21 19 L26 21 V26 H22 C13 26 6 19 6 10 Z"/>
+                <circle cx="22" cy="8" r="2.4" class="verdict-glow"/>
+                <circle cx="22" cy="8" r="1.3" class="verdict"/>
+              </svg>
+              <div class="ms-card-title">Cold outreach</div>
+              <div class="ms-card-sub">Door-knocking, calls, email lists</div>
+              <div class="ms-card-tag">Predictable · operationally heavy</div>
+            </button>
+            <button class="ms-card" data-value="unsure">
+              <div class="ms-card-checkbox"></div>
+              <svg class="ms-card-icon" viewBox="0 0 32 32" aria-hidden="true">
+                <circle cx="16" cy="16" r="11"/>
+                <path d="M12 13 a4 4 0 0 1 8 0 c0 3 -4 3 -4 6"/>
+                <circle cx="16" cy="22" r="1.3" class="verdict"/>
+              </svg>
+              <div class="ms-card-title">Honestly? Not sure.</div>
+              <div class="ms-card-sub">No tracking, can't attribute</div>
+              <div class="ms-card-tag">Attribution gap · we install the layer</div>
+            </button>
+          </div>
+
+          <aside class="q2-aside" aria-label="Live acquisition-mix readout">
+            <span class="q2-aside-eyebrow">Your Acquisition Mix · Live</span>
+            <svg class="q2-donut" id="q2-donut" viewBox="0 0 200 200" aria-hidden="true">
+              <circle class="donut-arc" data-channel="referrals"      cx="100" cy="100" r="65" stroke-dasharray="63.5 408.4" transform="rotate(-116 100 100)"/>
+              <circle class="donut-arc" data-channel="google-organic" cx="100" cy="100" r="65" stroke-dasharray="63.5 408.4" transform="rotate(-56 100 100)"/>
+              <circle class="donut-arc" data-channel="paid-ads"       cx="100" cy="100" r="65" stroke-dasharray="63.5 408.4" transform="rotate(4 100 100)"/>
+              <circle class="donut-arc" data-channel="social"         cx="100" cy="100" r="65" stroke-dasharray="63.5 408.4" transform="rotate(64 100 100)"/>
+              <circle class="donut-arc" data-channel="cold-outreach"  cx="100" cy="100" r="65" stroke-dasharray="63.5 408.4" transform="rotate(124 100 100)"/>
+              <circle class="donut-arc" data-channel="unsure"         cx="100" cy="100" r="65" stroke-dasharray="63.5 408.4" transform="rotate(184 100 100)"/>
+              <text class="donut-count" id="q2-donut-count" x="100" y="108" text-anchor="middle">0</text>
+              <text class="donut-count-label" x="100" y="130" text-anchor="middle">CHANNELS</text>
+            </svg>
+            <div class="q2-diagnostic" id="q2-diagnostic">
+              <div class="diagnostic-headline idle" id="q2-diag-headline">—</div>
+              <div class="diagnostic-sub" id="q2-diag-sub">Pick all that apply</div>
+            </div>
+          </aside>
+        </div>
+        <div class="q-nav">
+          <button class="q-nav-back" data-back="q1">← Back</button>
+          <button class="q-nav-next" id="next-q2" data-next="q3" disabled>Next →</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="screen screen-q3 q-screen">
+      <div class="container">
+        <div class="q-eyebrow">
+          <span class="q-eyebrow-num">/03</span>
+          <span class="q-eyebrow-sep">·</span>
+          <span class="q-eyebrow-cat">Scale</span>
+        </div>
+        <h2 class="q-text">What's your <span class="y">current monthly revenue</span>?</h2>
+        <p class="q-help">Pick the range you're trending in. This tells us where the system needs to plug in — you don't need to be precise.</p>
+        <div class="slider-block">
+          <div class="slider-readout" id="revenue-readout">Pick A Range</div>
+          <div class="slider-readout-label">Monthly Recurring Revenue</div>
+          <div class="slider-track" id="revenueSlider">
+            <div class="slider-line">
+              <div class="slider-line-fill" id="revenue-fill" style="width: 0%;"></div>
+            </div>
+            <div class="slider-snap" data-value="1" data-label="&lt; $10K" style="left: 0%;">
+              <div class="slider-snap-label">&lt; $10K</div>
+            </div>
+            <div class="slider-snap" data-value="2" data-label="$10–25K" style="left: 16.66%;">
+              <div class="slider-snap-label">$10–25K</div>
+            </div>
+            <div class="slider-snap" data-value="3" data-label="$25–50K" style="left: 33.33%;">
+              <div class="slider-snap-label">$25–50K</div>
+            </div>
+            <div class="slider-snap" data-value="4" data-label="$50–100K" style="left: 50%;">
+              <div class="slider-snap-label">$50–100K</div>
+            </div>
+            <div class="slider-snap" data-value="5" data-label="$100–250K" style="left: 66.66%;">
+              <div class="slider-snap-label">$100–250K</div>
+            </div>
+            <div class="slider-snap" data-value="6" data-label="$250–500K" style="left: 83.33%;">
+              <div class="slider-snap-label">$250–500K</div>
+            </div>
+            <div class="slider-snap" data-value="7" data-label="$500K+" style="left: 100%;">
+              <div class="slider-snap-label">$500K+</div>
+            </div>
+          </div>
+        </div>
+        <div class="q-nav">
+          <button class="q-nav-back" data-back="q2">← Back</button>
+          <button class="q-nav-next" id="next-q3" data-next="q4" disabled>Next →</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="screen screen-q4 q-screen">
+      <div class="container">
+        <div class="q-eyebrow">
+          <span class="q-eyebrow-num">/04</span>
+          <span class="q-eyebrow-sep">·</span>
+          <span class="q-eyebrow-cat">Time</span>
+        </div>
+        <h2 class="q-text">How does your <span class="y">working week</span> split today?</h2>
+        <p class="q-help">In a typical week, what share of YOUR personal hours go to operations (running the work) vs. growth (sales, marketing, hiring, system-building)? Be honest — the gap is often the diagnosis.</p>
+        <div class="split-block">
+          <div class="split-readout">
+            <span class="split-ops"><span id="ops-pct">—</span> Operations</span>
+            <span class="split-growth"><span id="growth-pct">—</span> Growth</span>
+          </div>
+          <div class="split-bar">
+            <div class="split-bar-ops" id="split-ops" style="width: 0%;"></div>
+            <div class="split-bar-growth" id="split-growth" style="width: 0%;"></div>
+          </div>
+          <div class="split-buttons" data-split-buttons>
+            <button class="split-btn" data-ops="90">90% / 10%</button>
+            <button class="split-btn" data-ops="80">80% / 20%</button>
+            <button class="split-btn" data-ops="70">70% / 30%</button>
+            <button class="split-btn" data-ops="60">60% / 40%</button>
+            <button class="split-btn" data-ops="50">50% / 50%</button>
+            <button class="split-btn" data-ops="40">40% / 60%</button>
+          </div>
+        </div>
+        <div class="q-nav">
+          <button class="q-nav-back" data-back="q3">← Back</button>
+          <button class="q-nav-next" id="next-q4" data-next="q5" disabled>Next →</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="screen screen-q5 q-screen">
+      <div class="container">
+        <div class="q-eyebrow">
+          <span class="q-eyebrow-num">/05</span>
+          <span class="q-eyebrow-sep">·</span>
+          <span class="q-eyebrow-cat">Bottleneck</span>
+        </div>
+        <h2 class="q-text">When you try to <span class="y">grow</span>, what breaks first?</h2>
+        <p class="q-help">There's always one constraint that binds before the others. Pick the one that's currently the loudest.</p>
+        <div class="bottleneck-grid" data-single="bottleneck">
+          <button class="bn-card" data-value="leads">
+            <div class="bn-card-num">01</div>
+            <div class="bn-card-title">Lead volume</div>
+            <div class="bn-card-body">Not enough qualified people raising their hand to keep the calendar full.</div>
+          </button>
+          <button class="bn-card" data-value="quality">
+            <div class="bn-card-num">02</div>
+            <div class="bn-card-title">Lead quality</div>
+            <div class="bn-card-body">Plenty of leads, but most are price-shoppers or not the work you want.</div>
+          </button>
+          <button class="bn-card" data-value="capacity">
+            <div class="bn-card-num">03</div>
+            <div class="bn-card-title">Delivery capacity</div>
+            <div class="bn-card-body">Crew / schedule / install windows can't absorb more without quality slipping.</div>
+          </button>
+          <button class="bn-card" data-value="speed">
+            <div class="bn-card-num">04</div>
+            <div class="bn-card-title">Response speed</div>
+            <div class="bn-card-body">Leads come in, but you can't get to them fast enough and they go cold.</div>
+          </button>
+          <button class="bn-card" data-value="conversion">
+            <div class="bn-card-num">05</div>
+            <div class="bn-card-title">Conversion</div>
+            <div class="bn-card-body">You talk to plenty of leads but close-rate is below where it should be.</div>
+          </button>
+        </div>
+        <div class="q-nav">
+          <button class="q-nav-back" data-back="q4">← Back</button>
+          <button class="q-nav-next" id="next-q5" data-next="q6" disabled>Next →</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="screen screen-q6 q-screen">
+      <div class="container">
+        <div class="q-eyebrow">
+          <span class="q-eyebrow-num">/06</span>
+          <span class="q-eyebrow-sep">·</span>
+          <span class="q-eyebrow-cat">Constraints</span>
+        </div>
+        <h2 class="q-text">If we sent you <span class="y">10x leads tomorrow</span>, what couldn't handle it?</h2>
+        <p class="q-help">Select all that apply. This is the inverse of the bottleneck question — we want to know which downstream systems would buckle under the load.</p>
+        <div class="multiselect-grid" data-multi="capacityGaps">
+          <button class="ms-card" data-value="sales-closing">
+            <div class="ms-card-checkbox"></div>
+            <div class="ms-card-title">Sales / closing</div>
+            <div class="ms-card-sub">Quoting, follow-up, booking</div>
+          </button>
+          <button class="ms-card" data-value="ops-dispatch">
+            <div class="ms-card-checkbox"></div>
+            <div class="ms-card-title">Ops / dispatch</div>
+            <div class="ms-card-sub">Scheduling, routing, crew assignment</div>
+          </button>
+          <button class="ms-card" data-value="quality">
+            <div class="ms-card-checkbox"></div>
+            <div class="ms-card-title">Delivery quality</div>
+            <div class="ms-card-sub">Standards slip when volume goes up</div>
+          </button>
+          <button class="ms-card" data-value="hiring">
+            <div class="ms-card-checkbox"></div>
+            <div class="ms-card-title">Hiring / training</div>
+            <div class="ms-card-sub">Can't find or onboard people fast enough</div>
+          </button>
+          <button class="ms-card" data-value="tech">
+            <div class="ms-card-checkbox"></div>
+            <div class="ms-card-title">Tech / systems</div>
+            <div class="ms-card-sub">CRM, scheduling, billing tools break</div>
+          </button>
+          <button class="ms-card" data-value="cash">
+            <div class="ms-card-checkbox"></div>
+            <div class="ms-card-title">Cash flow</div>
+            <div class="ms-card-sub">Growth eats working capital faster than collections</div>
+          </button>
+        </div>
+        <div class="q-nav">
+          <button class="q-nav-back" data-back="q5">← Back</button>
+          <button class="q-nav-next" id="next-q6" data-next="q7" disabled>Next →</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="screen screen-q7 q-screen">
+      <div class="container">
+        <div class="q-eyebrow">
+          <span class="q-eyebrow-num">/07</span>
+          <span class="q-eyebrow-sep">·</span>
+          <span class="q-eyebrow-cat">Vision</span>
+        </div>
+        <h2 class="q-text">Where do you want to be in <span class="y">12 months</span>?</h2>
+        <p class="q-help">Be ambitious but real. We're calibrating the system to your actual destination — not someone else's playbook.</p>
+        <div class="target-block">
+          <p class="target-sentence">
+            In 12 months, I want to be doing
+            <input type="text" class="target-input short" id="target-revenue" placeholder="$ ___">
+            in monthly revenue with
+            <input type="text" class="target-input short" id="target-team" placeholder="___">
+            people on the team, and I want to personally spend
+            <input type="text" class="target-input short" id="target-hours" placeholder="___">
+            hours a week on operations.
+          </p>
+        </div>
+        <div class="q-nav">
+          <button class="q-nav-back" data-back="q6">← Back</button>
+          <button class="q-nav-next" id="next-q7" data-action="reveal" disabled>See My Diagnostic →</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="screen screen-reveal reveal-screen">
+      <div class="reveal-hero">
+        <div class="container">
+          <div class="reveal-eyebrow">
+            <span class="verdict-dot"></span>
+            <span class="reveal-eyebrow-tag">Diagnostic Generated <span id="reveal-timestamp">—</span> · For <span class="y" id="reveal-service">Your Business</span></span>
+          </div>
+          <h1 class="reveal-headline">Here's what your <span class="y">growth system</span> would look like.</h1>
+          <p class="reveal-subhead">Built from your 7 answers. Synthesized in seconds. Yours regardless of whether we ever work together.</p>
+        </div>
+      </div>
+
+      <div class="container">
+        <div class="growth-index">
+          <div class="growth-index-label">
+            <span class="mono-eyebrow">Your Growth Index</span>
+            <span class="growth-index-value" id="growth-index-value">—</span>
+            <span class="growth-index-suffix">Out Of 100</span>
+          </div>
+          <div class="growth-index-explainer">
+            <p>Your Growth Index combines revenue stage, channel maturity, time-on-growth, and target ambition into a single readout. <strong>Above 65 = system-ready.</strong> Below 30 = foundations need work first. Between = close, with specific gaps to lock.</p>
+          </div>
+        </div>
+      </div>
+
+      <section class="reveal-section">
+        <div class="container">
+          <div class="reveal-section-eyebrow">
+            <span class="verdict-dot-sm"></span>
+            <span class="mono-eyebrow">/01 · Snapshot</span>
+          </div>
+          <h2 class="reveal-section-title">What you told us. <span class="y">Synthesized.</span></h2>
+          <div class="snapshot-grid">
+            <div class="snap-cell">
+              <div class="snap-cell-label">Service Category</div>
+              <div class="snap-cell-value text" id="snap-service">—</div>
+              <div class="snap-cell-detail">Your primary line of business</div>
+            </div>
+            <div class="snap-cell">
+              <div class="snap-cell-label">Revenue Band</div>
+              <div class="snap-cell-value" id="snap-revenue">—</div>
+              <div class="snap-cell-detail">Monthly recurring</div>
+            </div>
+            <div class="snap-cell">
+              <div class="snap-cell-label">Time on Growth</div>
+              <div class="snap-cell-value" id="snap-growth">—</div>
+              <div class="snap-cell-detail">Of your weekly hours</div>
+            </div>
+            <div class="snap-cell">
+              <div class="snap-cell-label">Acquisition Mix</div>
+              <div class="snap-cell-value text" id="snap-channels">—</div>
+              <div class="snap-cell-detail">Today's primary channels</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="reveal-section">
+        <div class="container">
+          <div class="reveal-section-eyebrow">
+            <span class="verdict-dot-sm"></span>
+            <span class="mono-eyebrow">/02 · Diagnosis</span>
+          </div>
+          <h2 class="reveal-section-title">Here's where your <span class="y">bottleneck</span> is.</h2>
+          <div class="diagnosis-block">
+            <div class="diagnosis-eyebrow">Primary Constraint</div>
+            <h3 class="diagnosis-title">
+              <span id="diagnosis-title-lead">—</span>
+              <span class="y" id="diagnosis-title-bottleneck">—</span>
+              <span id="diagnosis-title-tail">—</span>
+            </h3>
+            <p class="diagnosis-body" id="diagnosis-body">—</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="reveal-section">
+        <div class="container">
+          <div class="reveal-section-eyebrow">
+            <span class="verdict-dot-sm"></span>
+            <span class="mono-eyebrow">/03 · The System</span>
+          </div>
+          <h2 class="reveal-section-title">Your custom <span class="y">AI growth system</span>, mapped.</h2>
+          <p style="font-size: 17px; line-height: 1.55; color: var(--ink-dim); margin-bottom: 32px; max-width: 760px;">Modules in <span style="color: var(--y2);">yellow</span> are tailored to your specific bottleneck. Modules in outline are standard across every BWM system.</p>
+          <div class="system-grid" id="system-grid"></div>
+          <div class="system-legend">
+            <span class="legend-dot"><span class="legend-dot-tailored"></span> Tailored To Your Bottleneck</span>
+            <span class="legend-dot"><span class="legend-dot-standard"></span> Standard Module</span>
+          </div>
+        </div>
+      </section>
+
+      <section class="reveal-section">
+        <div class="container">
+          <div class="reveal-section-eyebrow">
+            <span class="verdict-dot-sm"></span>
+            <span class="mono-eyebrow">/04 · 12-Month Projection</span>
+          </div>
+          <h2 class="reveal-section-title">The gap between <span class="y">today and your target</span>.</h2>
+          <div class="projection-block">
+            <div class="projection-chart">
+              <svg viewBox="0 0 1200 420" preserveAspectRatio="none" id="projection-svg"></svg>
+            </div>
+            <div class="projection-legend">
+              <div class="proj-legend-item">
+                <span class="proj-legend-color current"></span>
+                <span class="proj-legend-text">Current Trajectory</span>
+              </div>
+              <div class="proj-legend-item">
+                <span class="proj-legend-color system"></span>
+                <span class="proj-legend-text">With AI Growth System Installed</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="verdict-section">
+        <div class="container">
+          <div class="verdict-card" id="verdict-card" data-verdict="fit">
+            <div class="verdict-eyebrow">Your Fit Verdict</div>
+            <div class="verdict-status" id="verdict-status">—</div>
+            <p class="verdict-explainer" id="verdict-explainer">—</p>
+            <p class="verdict-detail" id="verdict-detail">—</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="path-section">
+        <div class="container">
+          <div class="path-grid">
+            <div class="path-content">
+              <div class="mono-eyebrow" style="margin-bottom: 24px;">Your Path Forward</div>
+              <h2 class="path-title">
+                <span id="path-title-lead">—</span>
+                <span class="y" id="path-title-y">—</span>
+                <span id="path-title-tail">—</span>
+              </h2>
+              <p class="path-body" id="path-body">—</p>
+              <div class="path-list" id="path-list"></div>
+            </div>
+            <div class="path-cta-block" id="path-cta-block"></div>
+          </div>
+        </div>
+      </section>
+
+    </section>
+
+  
+
+  
+
+  <script>
+    // ============ STATE ============
+    const state = {
+      service: null,
+      leadSources: [],
+      revenue: null,
+      revenueLabel: null,
+      opsRatio: null,
+      bottleneck: null,
+      capacityGaps: [],
+      target: { revenue: '', team: '', hours: '' }
+    };
+
+    const SERVICE_LABEL = {
+      hvac: 'HVAC', roofing: 'Roofing', plumbing: 'Plumbing',
+      pest: 'Pest Control', realtor: 'Real Estate', concrete: 'Concrete',
+      cleaning: 'Cleaning', other: 'Service Business'
+    };
+    const BOTTLENECK_LABEL = {
+      leads: 'Lead Volume', quality: 'Lead Quality', capacity: 'Delivery Capacity',
+      speed: 'Response Speed', conversion: 'Conversion'
+    };
+    const LEAD_SOURCE_LABEL = {
+      referrals: 'Referrals', 'google-organic': 'Google Organic',
+      'paid-ads': 'Paid Ads', social: 'Social', 'cold-outreach': 'Cold Outreach', unsure: 'Untracked'
+    };
+
+    // ============ NAVIGATION ============
+    function goTo(screen) {
+      document.body.dataset.screen = screen;
+      window.scrollTo({ top: 0, behavior: 'instant' });
+      updateProgress(screen);
+    }
+
+    const SCREEN_CATEGORIES = {
+      q1: { num: '01', cat: 'Service' }, q2: { num: '02', cat: 'Acquisition' },
+      q3: { num: '03', cat: 'Scale' },   q4: { num: '04', cat: 'Time' },
+      q5: { num: '05', cat: 'Bottleneck' }, q6: { num: '06', cat: 'Constraints' },
+      q7: { num: '07', cat: 'Vision' }
+    };
+
+    function updateProgress(screen) {
+      const progress = document.getElementById('progress');
+      if (screen.startsWith('q')) {
+        progress.style.display = 'flex';
+        const meta = SCREEN_CATEGORIES[screen];
+        if (meta) {
+          document.getElementById('q-current').textContent = meta.num;
+          document.getElementById('q-cat').textContent = meta.cat;
+        }
+        const qNum = parseInt((meta && meta.num) || '01', 10);
+        document.getElementById('vtx-1').setAttribute('fill', qNum >= 2 ? '#F0FF00' : 'none');
+        document.getElementById('vtx-2').setAttribute('fill', qNum >= 4 ? '#F0FF00' : 'none');
+        document.getElementById('vtx-3').setAttribute('fill', qNum >= 6 ? '#F0FF00' : 'none');
+      } else {
+        progress.style.display = 'none';
+      }
+    }
+
+    // ============ ANSWER HANDLERS ============
+    document.querySelectorAll('[data-single]').forEach(grid => {
+      const key = grid.dataset.single;
+      grid.querySelectorAll('button[data-value]').forEach(btn => {
+        btn.addEventListener('click', () => {
+          state[key] = btn.dataset.value;
+          grid.querySelectorAll('button[data-value]').forEach(b => b.classList.remove('selected'));
+          btn.classList.add('selected');
+          const screen = document.body.dataset.screen;
+          const nextBtn = document.getElementById('next-' + screen);
+          if (nextBtn) nextBtn.disabled = false;
+        });
+      });
+    });
+
+    document.querySelectorAll('[data-multi]').forEach(grid => {
+      const key = grid.dataset.multi;
+      grid.querySelectorAll('button[data-value]').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const arr = state[key];
+          const val = btn.dataset.value;
+          const idx = arr.indexOf(val);
+          if (idx >= 0) { arr.splice(idx, 1); btn.classList.remove('selected'); }
+          else { arr.push(val); btn.classList.add('selected'); }
+          const screen = document.body.dataset.screen;
+          const nextBtn = document.getElementById('next-' + screen);
+          if (nextBtn) nextBtn.disabled = arr.length === 0;
+          if (key === 'leadSources' && typeof renderQ2Donut === 'function') renderQ2Donut();
+        });
+      });
+    });
+
+    // /02 — Live acquisition-mix donut + diagnostic readout (R020 F2 Proof + F3 CTA-Pull)
+    const renderQ2Donut = (function() {
+      const donut = document.getElementById('q2-donut');
+      if (!donut) return function(){};
+      const countEl = document.getElementById('q2-donut-count');
+      const headlineEl = document.getElementById('q2-diag-headline');
+      const subEl = document.getElementById('q2-diag-sub');
+      const arcs = donut.querySelectorAll('[data-channel]');
+      return function() {
+        const sel = state.leadSources || [];
+        arcs.forEach(a => {
+          if (sel.indexOf(a.dataset.channel) >= 0) a.classList.add('active');
+          else a.classList.remove('active');
+        });
+        if (countEl) countEl.textContent = sel.length;
+        if (!headlineEl || !subEl) return;
+        const onlyUnsure = sel.length === 1 && sel[0] === 'unsure';
+        let h, s;
+        if (sel.length === 0)               { h = '—';                       s = 'Pick all that apply'; headlineEl.classList.add('idle'); }
+        else if (onlyUnsure)                { h = 'Attribution gap';         s = 'No tracking layer · we install one'; headlineEl.classList.remove('idle'); }
+        else if (sel.length === 1)          { h = 'Single-channel risk';     s = '100% dependency on one source'; headlineEl.classList.remove('idle'); }
+        else if (sel.length === 2)          { h = 'Light diversification';   s = 'Two channels in motion'; headlineEl.classList.remove('idle'); }
+        else if (sel.length === 3)          { h = 'Healthy mix forming';     s = 'Three active acquisition lanes'; headlineEl.classList.remove('idle'); }
+        else                                { h = 'Diversified mix';         s = 'Attribution gap likely · we untangle it'; headlineEl.classList.remove('idle'); }
+        headlineEl.textContent = h;
+        subEl.textContent = s;
+      };
+    })();
+    renderQ2Donut();
+
+    document.querySelectorAll('#revenueSlider .slider-snap').forEach(snap => {
+      snap.addEventListener('click', () => {
+        const value = parseInt(snap.dataset.value, 10);
+        state.revenue = value;
+        state.revenueLabel = snap.dataset.label;
+        document.querySelectorAll('#revenueSlider .slider-snap').forEach(s => s.classList.remove('active'));
+        snap.classList.add('active');
+        const pct = ((value - 1) / 6) * 100;
+        document.getElementById('revenue-fill').style.width = pct + '%';
+        document.getElementById('revenue-readout').textContent = snap.dataset.label + '/mo';
+        document.getElementById('next-q3').disabled = false;
+      });
+    });
+
+    document.querySelectorAll('[data-split-buttons] button').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const opsPct = parseInt(btn.dataset.ops, 10);
+        state.opsRatio = opsPct;
+        const growthPct = 100 - opsPct;
+        document.getElementById('split-ops').style.width = opsPct + '%';
+        document.getElementById('split-growth').style.width = growthPct + '%';
+        document.getElementById('ops-pct').textContent = opsPct + '%';
+        document.getElementById('growth-pct').textContent = growthPct + '%';
+        document.querySelectorAll('[data-split-buttons] button').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        document.getElementById('next-q4').disabled = false;
+      });
+    });
+
+    function updateTargetState() {
+      state.target.revenue = document.getElementById('target-revenue').value;
+      state.target.team = document.getElementById('target-team').value;
+      state.target.hours = document.getElementById('target-hours').value;
+      const hasAny = state.target.revenue || state.target.team || state.target.hours;
+      document.getElementById('next-q7').disabled = !hasAny;
+    }
+    ['target-revenue', 'target-team', 'target-hours'].forEach(id => {
+      document.getElementById(id).addEventListener('input', updateTargetState);
+    });
+
+    // ============ BUTTON BINDINGS ============
+    document.querySelectorAll('[data-back]').forEach(btn => {
+      btn.addEventListener('click', () => goTo(btn.dataset.back));
+    });
+    document.querySelectorAll('[data-next]').forEach(btn => {
+      btn.addEventListener('click', () => goTo(btn.dataset.next));
+    });
+    document.querySelector('[data-action="start"]').addEventListener('click', () => goTo('q1'));
+    document.querySelector('[data-action="reveal"]').addEventListener('click', computeAndReveal);
+
+    // ============ DOM HELPERS (no innerHTML) ============
+    function el(tag, attrs, children) {
+      const node = document.createElementNS(tag === 'svg' || tag === 'g' || tag === 'path' || tag === 'line' || tag === 'circle' || tag === 'rect' || tag === 'text'
+        ? 'http://www.w3.org/2000/svg' : 'http://www.w3.org/1999/xhtml', tag);
+      if (attrs) Object.keys(attrs).forEach(k => {
+        if (k === 'className') node.setAttribute('class', attrs[k]);
+        else if (k === 'text') node.textContent = attrs[k];
+        else node.setAttribute(k, attrs[k]);
+      });
+      if (children) children.forEach(c => { if (c) node.appendChild(c); });
+      return node;
+    }
+    function clearChildren(parent) {
+      while (parent.firstChild) parent.removeChild(parent.firstChild);
+    }
+
+    // ============ COMPUTE + REVEAL ============
+    function computeAndReveal() {
+      // ---- Growth Index ----
+      let revScore = 0;
+      if (state.revenue >= 2) revScore = 1;
+      if (state.revenue >= 4) revScore = 2;
+      if (state.revenue >= 6) revScore = 3;
+
+      let channelScore = 0;
+      const hasOrganic = state.leadSources.indexOf('google-organic') >= 0;
+      const hasPaid = state.leadSources.indexOf('paid-ads') >= 0;
+      const hasReferral = state.leadSources.indexOf('referrals') >= 0;
+      const isUntracked = state.leadSources.indexOf('unsure') >= 0;
+      if ((hasOrganic || hasPaid) && hasReferral) channelScore = 2;
+      else if (hasOrganic || hasPaid || hasReferral) channelScore = 1;
+      if (isUntracked && state.leadSources.length === 1) channelScore = 0;
+
+      const growthHours = 100 - (state.opsRatio || 90);
+      let timeScore = 0;
+      if (growthHours >= 20) timeScore = 1;
+      if (growthHours >= 40) timeScore = 2;
+
+      const targetRev = parseInt((state.target.revenue || '').replace(/[^0-9]/g, ''), 10) || 0;
+      let ambitionScore = 0;
+      const currentRevMid = [0, 5000, 17500, 37500, 75000, 175000, 375000, 750000][state.revenue || 1];
+      if (targetRev > currentRevMid * 1.5) ambitionScore = 1;
+      if (targetRev > currentRevMid * 2.5) ambitionScore = 2;
+
+      const totalRaw = revScore + channelScore + timeScore + ambitionScore;
+      const growthIndex = Math.round((totalRaw / 9) * 100);
+
+      // ---- Verdict ----
+      let verdict, verdictLabel, verdictExplainer, verdictDetail;
+      const bottleneckLabel = BOTTLENECK_LABEL[state.bottleneck] || 'unknown';
+      if (growthIndex >= 65) {
+        verdict = 'fit'; verdictLabel = "You're A Fit.";
+        verdictExplainer = "You're at the stage where an AI growth system installed correctly compounds. Revenue traction is real, you've already got channel diversity, and your target is ambitious enough that hand-rolled workflows will hold you back.";
+        verdictDetail = "The system pays for itself in the first 90 days at your current revenue band. Your bottleneck (" + bottleneckLabel + ") is exactly the kind we engineer around — we've shipped this pattern 7 times in the last 18 months. The next move is a 30-minute call to map your install plan.";
+      } else if (growthIndex >= 35) {
+        verdict = 'maybe'; verdictLabel = "Close. Three Things To Lock.";
+        verdictExplainer = "You're not far. The diagnostic shows you've got real revenue traction, but one or two foundational pieces aren't dialed in yet. Lock those first, then come back — the system installs cleaner when these are in place.";
+        verdictDetail = "Locking these takes most operators 60-90 days of focused work. We'll send you the exact playbook so you can move on it. When the gaps close, the diagnostic flips to Fit and we book the strategy call.";
+      } else {
+        verdict = 'not-yet'; verdictLabel = "Not Yet — But Here's The Map.";
+        verdictExplainer = "Honest read: installing a growth system at your stage would amplify whatever's already breaking, not fix it. The foundation has to come first. We'd rather hand you the playbook than sell you a system you're not ready for.";
+        verdictDetail = "Most operators in your position need 6-12 months of focused foundational work before an AI growth system is the right move. We'll send you the exact 5-step playbook tailored to your bottleneck — yours regardless of whether we ever work together.";
+      }
+
+      // ---- Populate Reveal ----
+      const now = new Date();
+      const pad = n => String(n).padStart(2, '0');
+      const ts = pad(now.getMonth() + 1) + '/' + pad(now.getDate()) + ' ' + pad(now.getHours()) + ':' + pad(now.getMinutes());
+      document.getElementById('reveal-timestamp').textContent = ts;
+      document.getElementById('reveal-service').textContent = SERVICE_LABEL[state.service] || 'Your Business';
+
+      document.getElementById('growth-index-value').textContent = growthIndex;
+
+      document.getElementById('snap-service').textContent = SERVICE_LABEL[state.service] || '—';
+      document.getElementById('snap-revenue').textContent = state.revenueLabel || '—';
+      document.getElementById('snap-growth').textContent = (100 - state.opsRatio) + '%';
+      const channels = state.leadSources.map(s => LEAD_SOURCE_LABEL[s]).slice(0, 2).join(' + ');
+      document.getElementById('snap-channels').textContent = channels || '—';
+
+      // Diagnosis — populate three span slots + body text
+      const DIAGNOSIS = {
+        leads: {
+          lead: 'Your bottleneck is ',
+          y: 'lead volume',
+          tail: ' — and your acquisition mix tells us why.',
+          body: 'You have ' + state.leadSources.length + ' active channels but ' + (isUntracked ? 'no attribution layer' : 'no compounding asset that fills the calendar on autopilot') + '. Referrals are great when they show up — but they don\'t scale at will. Without a system that creates leads predictably (paid, organic, or both), every growth attempt feels like starting over. The fix isn\'t more activity — it\'s building the lead-generation engine that runs without you starting it each morning.'
+        },
+        quality: {
+          lead: 'Your bottleneck is ',
+          y: 'lead quality',
+          tail: ' — the funnel is leaking before the call.',
+          body: 'You\'re getting leads, but the ones reaching you aren\'t pre-qualified. This is a positioning + filtering problem, not a volume problem. Most service businesses solve this by adding more leads on top, which makes the problem worse. The right move is an upstream qualifier (positioning, pricing display, ICP-tight ad targeting) that filters out the wrong people before they consume your calendar.'
+        },
+        capacity: {
+          lead: 'Your bottleneck is ',
+          y: 'delivery capacity',
+          tail: ' — growth would amplify a structural ceiling.',
+          body: 'You\'re already at or near the ceiling of what your crew/schedule can absorb. Adding leads without expanding capacity just turns leads into lost-revenue rage. The system has to solve delivery alongside acquisition — productized scope, dispatch automation, and crew-augmentation patterns. Otherwise the diagnostic becomes the disease.'
+        },
+        speed: {
+          lead: 'Your bottleneck is ',
+          y: 'response speed',
+          tail: ' — and that\'s the most fixable one.',
+          body: 'Leads come in, they go cold before you reach them. Studies show response in under 5 minutes converts at 4-9x the rate of response after 30 minutes. This is the highest-leverage fix in your funnel — automated triage, instant-callback workflows, and AI-first-touch can lift your close-rate without changing anything upstream. Often the cheapest win in the whole system.'
+        },
+        conversion: {
+          lead: 'Your bottleneck is ',
+          y: 'conversion',
+          tail: ' — the lead reaches you, then doesn\'t close.',
+          body: 'You\'ve got volume + speed dialed, but close-rate is below where it should be for your service category. This is usually a sales-system problem, not a sales-skill problem. Standardized discovery, structured proposals, follow-up sequences, and objection-handling automations close the gap. The good news: every percentage point of close-rate compounds on existing traffic. No new leads needed.'
+        }
+      };
+      const diag = DIAGNOSIS[state.bottleneck] || DIAGNOSIS.leads;
+      document.getElementById('diagnosis-title-lead').textContent = diag.lead;
+      document.getElementById('diagnosis-title-bottleneck').textContent = diag.y;
+      document.getElementById('diagnosis-title-tail').textContent = diag.tail;
+      document.getElementById('diagnosis-body').textContent = diag.body;
+
+      // System modules
+      const tailored = state.bottleneck;
+      const cap = state.capacityGaps;
+      const modules = [
+        { title: 'Lead Generation Engine', body: 'Multi-channel intake — paid + organic + referral — funnel-tagged with UTM attribution to every channel.', tailored: tailored === 'leads' },
+        { title: 'Lead Qualifier (Diagnostic)', body: 'Front-door qualifier that filters out price-shoppers and routes by ICP fit before consuming your calendar.', tailored: tailored === 'quality' },
+        { title: 'Instant-Response Workflow', body: 'AI-first-touch + escalation. New leads get a meaningful reply in under 60 seconds — even on weekends.', tailored: tailored === 'speed' },
+        { title: 'Sales Conversion Stack', body: 'Standardized discovery, structured proposals, automated follow-up sequences. Close-rate compounds on existing traffic.', tailored: tailored === 'conversion' },
+        { title: 'Delivery Capacity Layer', body: 'Productized scope + dispatch automation + crew assignment. Volume scales without quality drift.', tailored: tailored === 'capacity' || cap.indexOf('ops-dispatch') >= 0 || cap.indexOf('quality') >= 0 },
+        { title: 'Attribution + Dashboards', body: 'Every lead, every dollar, every channel — traced back to source with weekly reporting you actually read.', tailored: state.leadSources.indexOf('unsure') >= 0 }
+      ];
+      const systemGrid = document.getElementById('system-grid');
+      clearChildren(systemGrid);
+      modules.forEach((m, i) => {
+        const card = document.createElement('div');
+        card.className = 'system-module' + (m.tailored ? ' tailored' : '');
+        const num = document.createElement('div');
+        num.className = 'system-module-num';
+        const dot = document.createElement('span');
+        dot.className = m.tailored ? 'verdict-dot-sm' : 'verdict-dot-hollow';
+        num.appendChild(dot);
+        num.appendChild(document.createTextNode(' Module ' + pad(i + 1)));
+        const title = document.createElement('div');
+        title.className = 'system-module-title';
+        title.textContent = m.title;
+        const body = document.createElement('div');
+        body.className = 'system-module-body';
+        body.textContent = m.body;
+        const tag = document.createElement('div');
+        tag.className = 'system-module-tag';
+        tag.textContent = m.tailored ? 'Tailored' : 'Standard';
+        card.appendChild(num);
+        card.appendChild(title);
+        card.appendChild(body);
+        card.appendChild(tag);
+        systemGrid.appendChild(card);
+      });
+
+      // Projection chart (SVG via createElementNS — no innerHTML)
+      drawProjection(state);
+
+      // Verdict
+      document.getElementById('verdict-card').dataset.verdict = verdict;
+      document.getElementById('verdict-status').textContent = verdictLabel;
+      document.getElementById('verdict-explainer').textContent = verdictExplainer;
+      document.getElementById('verdict-detail').textContent = verdictDetail;
+
+      // Path
+      renderPath(verdict, state);
+
+      goTo('reveal');
+    }
+
+    function drawProjection(state) {
+      const NS = 'http://www.w3.org/2000/svg';
+      const svg = document.getElementById('projection-svg');
+      clearChildren(svg);
+
+      const currentRev = [0, 5000, 17500, 37500, 75000, 175000, 375000, 750000][state.revenue || 1];
+      const targetRev = parseInt((state.target.revenue || '').replace(/[^0-9]/g, ''), 10) || currentRev * 2;
+
+      const months = 12;
+      const w = 1200, h = 420;
+      const padX = 80, padY = 60;
+      const innerW = w - padX * 2, innerH = h - padY * 2;
+      const currentEnd = currentRev * 1.08;
+      const systemEnd = Math.max(targetRev, currentRev * 2);
+      const maxRev = systemEnd * 1.1;
+
+      const xAt = m => padX + (m / months) * innerW;
+      const yAt = r => padY + innerH - (r / maxRev) * innerH;
+
+      const mkNS = (tag, attrs) => {
+        const n = document.createElementNS(NS, tag);
+        Object.keys(attrs).forEach(k => n.setAttribute(k, attrs[k]));
+        return n;
+      };
+      const mkText = (x, y, content, attrs) => {
+        const n = mkNS('text', Object.assign({ x: x, y: y }, attrs));
+        n.textContent = content;
+        return n;
+      };
+
+      // Gridlines + revenue labels
+      for (let i = 0; i <= 4; i++) {
+        const r = (maxRev / 4) * i;
+        const y = yAt(r);
+        svg.appendChild(mkNS('line', { x1: padX, y1: y, x2: w - padX, y2: y, stroke: 'rgba(240,255,0,0.06)', 'stroke-width': '1' }));
+        svg.appendChild(mkText(padX - 12, y + 4, '$' + (r / 1000).toFixed(0) + 'K',
+          { fill: '#5e5e66', 'font-family': 'JetBrains Mono', 'font-size': '10', 'text-anchor': 'end' }));
+      }
+
+      // Month labels
+      for (let m = 0; m <= 12; m += 3) {
+        svg.appendChild(mkText(xAt(m), h - 20, 'M' + pad(m),
+          { fill: '#5e5e66', 'font-family': 'JetBrains Mono', 'font-size': '11', 'letter-spacing': '2', 'text-anchor': 'middle' }));
+      }
+
+      // Current trajectory
+      let currentPath = 'M ' + xAt(0) + ' ' + yAt(currentRev);
+      for (let m = 1; m <= months; m++) {
+        const r = currentRev * (1 + (m / 12) * 0.08);
+        currentPath += ' L ' + xAt(m) + ' ' + yAt(r);
+      }
+
+      // System trajectory (S-curve)
+      let systemPath = 'M ' + xAt(0) + ' ' + yAt(currentRev);
+      for (let m = 1; m <= months; m++) {
+        const t = m / months;
+        const sCurve = 1 / (1 + Math.exp(-8 * (t - 0.5)));
+        const r = currentRev + (systemEnd - currentRev) * sCurve;
+        systemPath += ' L ' + xAt(m) + ' ' + yAt(r);
+      }
+
+      // Gap shaded region
+      let gapPath = 'M ' + xAt(0) + ' ' + yAt(currentRev) + ' L ' + xAt(months) + ' ' + yAt(currentEnd) + ' L ' + xAt(months) + ' ' + yAt(systemEnd);
+      for (let m = months; m >= 0; m--) {
+        const t = m / months;
+        const sCurve = 1 / (1 + Math.exp(-8 * (t - 0.5)));
+        const r = currentRev + (systemEnd - currentRev) * sCurve;
+        gapPath += ' L ' + xAt(m) + ' ' + yAt(r);
+      }
+      gapPath += ' Z';
+      svg.appendChild(mkNS('path', { d: gapPath, fill: 'rgba(240,255,0,0.06)' }));
+
+      // Current line (dashed)
+      svg.appendChild(mkNS('path', { d: currentPath, fill: 'none', stroke: '#9a9aa3', 'stroke-width': '2', 'stroke-dasharray': '4 4' }));
+      // System line (glowing Y2)
+      svg.appendChild(mkNS('path', { d: systemPath, fill: 'none', stroke: '#F0FF00', 'stroke-width': '3', filter: 'drop-shadow(0 0 8px rgba(240,255,0,0.4))' }));
+
+      // End-point dots
+      svg.appendChild(mkNS('circle', { cx: xAt(months), cy: yAt(currentEnd), r: '6', fill: '#9a9aa3' }));
+      svg.appendChild(mkNS('circle', { cx: xAt(months), cy: yAt(systemEnd), r: '8', fill: '#F0FF00', filter: 'drop-shadow(0 0 8px rgba(240,255,0,0.6))' }));
+
+      // Annotations
+      svg.appendChild(mkText(xAt(months) - 16, yAt(systemEnd) - 16, '$' + (systemEnd / 1000).toFixed(0) + 'K/mo',
+        { fill: '#F0FF00', 'font-family': 'Inter', 'font-weight': '700', 'font-size': '22', 'text-anchor': 'end' }));
+      svg.appendChild(mkText(xAt(months) - 16, yAt(currentEnd) + 24, '$' + (currentEnd / 1000).toFixed(0) + 'K/mo',
+        { fill: '#9a9aa3', 'font-family': 'JetBrains Mono', 'font-size': '12', 'text-anchor': 'end' }));
+    }
+
+    function renderPath(verdict, state) {
+      const pathTitleLead = document.getElementById('path-title-lead');
+      const pathTitleY = document.getElementById('path-title-y');
+      const pathTitleTail = document.getElementById('path-title-tail');
+      const pathBody = document.getElementById('path-body');
+      const pathList = document.getElementById('path-list');
+      const pathCta = document.getElementById('path-cta-block');
+
+      clearChildren(pathList);
+      clearChildren(pathCta);
+
+      const mkListItem = (num, text, strongs) => {
+        const item = document.createElement('div');
+        item.className = 'path-list-item';
+        const numEl = document.createElement('span');
+        numEl.className = 'path-list-num';
+        numEl.textContent = pad(num);
+        const textEl = document.createElement('span');
+        textEl.className = 'path-list-text';
+        // strongs is array of [strongText, restText] pairs OR a single string
+        if (typeof text === 'string') {
+          textEl.textContent = text;
+        } else {
+          text.forEach(segment => {
+            if (segment.strong) {
+              const s = document.createElement('strong');
+              s.textContent = segment.strong;
+              textEl.appendChild(s);
+            }
+            if (segment.text) {
+              textEl.appendChild(document.createTextNode(segment.text));
+            }
+          });
+        }
+        item.appendChild(numEl);
+        item.appendChild(textEl);
+        return item;
+      };
+
+      const mkCtaForm = (placeholder, btnText) => {
+        const form = document.createElement('form');
+        form.className = 'path-cta-form';
+        form.addEventListener('submit', e => e.preventDefault());
+        const input = document.createElement('input');
+        input.type = 'email';
+        input.className = 'path-cta-input';
+        input.placeholder = placeholder;
+        const btn = document.createElement('button');
+        btn.className = 'path-cta-btn';
+        btn.textContent = btnText;
+        form.appendChild(input);
+        form.appendChild(btn);
+        return form;
+      };
+
+      const mkCtaBlock = (eyebrow, title, body, formOrLink) => {
+        const e = document.createElement('div');
+        e.className = 'path-cta-eyebrow';
+        e.textContent = eyebrow;
+        const t = document.createElement('h3');
+        t.className = 'path-cta-title';
+        t.textContent = title;
+        const b = document.createElement('p');
+        b.className = 'path-cta-body';
+        b.textContent = body;
+        pathCta.appendChild(e);
+        pathCta.appendChild(t);
+        pathCta.appendChild(b);
+        pathCta.appendChild(formOrLink);
+      };
+
+      if (verdict === 'fit') {
+        pathTitleLead.textContent = 'Let\'s ';
+        pathTitleY.textContent = 'build your install plan';
+        pathTitleTail.textContent = '.';
+        pathBody.textContent = 'Book a 30-minute strategy call. We\'ll walk through your diagnostic, map the exact modules to your business, and put a 90-day install timeline on the table.';
+        pathList.appendChild(mkListItem(1, [{ strong: '30 minutes' }, { text: ' — walk through your diagnostic together' }]));
+        pathList.appendChild(mkListItem(2, [{ strong: 'Tailored install plan' }, { text: ' — modules, sequence, 90-day milestones' }]));
+        pathList.appendChild(mkListItem(3, [{ strong: 'Honest go/no-go' }, { text: " — if it's not the right fit on the call, we'll tell you" }]));
+        const link = document.createElement('a');
+        link.href = '/book';
+        link.className = 'cta-primary';
+        link.style.display = 'inline-flex';
+        link.style.padding = '18px 28px';
+        link.style.fontSize = '15px';
+        link.appendChild(document.createTextNode('Book The Call '));
+        const arrow = document.createElement('span');
+        arrow.className = 'arrow';
+        arrow.textContent = '→';
+        link.appendChild(arrow);
+        mkCtaBlock('Book Your Strategy Call', "Pick a time. We'll see you there.",
+          'Direct link to the team\'s calendar. No discovery questionnaire — we already have your diagnostic.', link);
+      } else if (verdict === 'maybe') {
+        pathTitleLead.textContent = 'Three ';
+        pathTitleY.textContent = 'foundation moves';
+        pathTitleTail.textContent = ' would lock you in.';
+        pathBody.textContent = 'Below are the gaps the diagnostic surfaced. Most operators close these in 60-90 days. When they\'re locked, come back — we\'ll re-diagnose for free.';
+        const fixes = [];
+        if (state.leadSources.indexOf('google-organic') < 0 && state.leadSources.indexOf('paid-ads') < 0) {
+          fixes.push([{ strong: 'Lock one paid + one organic channel.' }, { text: ' Even at a small budget, dual-channel traction signals system-readiness.' }]);
+        }
+        if ((100 - state.opsRatio) < 20) {
+          fixes.push([{ strong: 'Reclaim 8 hours/week for growth work.' }, { text: " Delegate or systematize 2 things you're still doing yourself." }]);
+        }
+        if (state.leadSources.indexOf('unsure') >= 0) {
+          fixes.push([{ strong: 'Install basic attribution.' }, { text: ' Even a spreadsheet — every lead, source, status. The data unlocks every other move.' }]);
+        }
+        if (state.revenue < 3) {
+          fixes.push([{ strong: 'Get to $25K/mo first.' }, { text: ' Below that, foundational distribution matters more than a system.' }]);
+        }
+        while (fixes.length < 3) {
+          fixes.push([{ strong: 'Document your current sales process.' }, { text: ' Even a 1-pager. The system needs something to standardize.' }]);
+        }
+        fixes.slice(0, 3).forEach((f, i) => pathList.appendChild(mkListItem(i + 1, f)));
+        mkCtaBlock('Get The Playbook', 'Send me the foundation playbook.',
+          '90-day playbook tailored to your gaps. We\'ll check in at day 90 to re-diagnose.',
+          mkCtaForm('your@email.com', 'Send It →'));
+      } else {
+        pathTitleLead.textContent = 'Here\'s the ';
+        pathTitleY.textContent = 'exact playbook';
+        pathTitleTail.textContent = ' to get ready.';
+        pathBody.textContent = "You're not ready for a system installation — yet. Below is the 5-step sequence that gets you there. Most operators take 6-12 months. We'll send the playbook, you do the work, we re-diagnose when you're ready.";
+        const steps = [
+          [{ strong: 'Distribution before automation.' }, { text: ' Get to consistent $15-25K/mo via referrals + 1 channel.' }],
+          [{ strong: 'One pricing model, one offer.' }, { text: ' Stop bidding ad-hoc. Productize one core service.' }],
+          [{ strong: 'Track every lead.' }, { text: ' Even on paper. The data unlocks the next move.' }],
+          [{ strong: 'Free 10 hours/week.' }, { text: ' Delegate or systematize. System-readiness requires capacity.' }],
+          [{ strong: 'Come back when 1–4 are done.' }, { text: " The diagnostic flips. We'll install then." }]
+        ];
+        steps.forEach((s, i) => pathList.appendChild(mkListItem(i + 1, s)));
+        mkCtaBlock('Yours Regardless', 'Send me the playbook.',
+          'Tailored 5-step playbook for your service category + bottleneck. No follow-up sales. We\'ll check in at month 6.',
+          mkCtaForm('your@email.com', 'Send It →'));
+      }
+    }
+
+    function pad(n) { return String(n).padStart(2, '0'); }
+  </script>
+</section>
+
+<style is:global>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #050507;
+      --bg-lift: #0a0a0d;
+      --bg-card: #0d0d11;
+      --bg-elev: #15151a;
+      --bg-deep: #1a1a22;
+      --rule: rgba(240, 255, 0, 0.10);
+      --rule-bright: rgba(240, 255, 0, 0.32);
+      --rule-bright: rgba(240, 255, 0, 0.55);
+      --y2: #F0FF00;
+      --y2-glow: rgba(240, 255, 0, 0.45);
+      --y2-dim: rgba(240, 255, 0, 0.62);
+      --y2-shade: rgba(240, 255, 0, 0.08);
+      --ink: #f4f4f6;
+      --ink-dim: #9a9aa3;
+      --ink-faint: #5e5e66;
+      --ink-dimmest: #3a3a40;
+      --y2: #c0c0a8;
+      --ink-dim: #6c6c75;
+    }
+
+    @media (prefers-reduced-motion: no-preference) {
+      html { scroll-behavior: smooth; }
+    }
+    html { background: var(--bg); }
+    body {
+      background: var(--bg);
+      color: var(--ink);
+      font-family: 'Inter', sans-serif;
+      font-weight: 400;
+      line-height: 1.5;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      min-height: 100vh;
+    }
+    body::before {
+      content: ""; position: fixed; inset: 0; pointer-events: none;
+      background-image:
+        radial-gradient(rgba(255,255,255,0.025) 1px, transparent 1px),
+        radial-gradient(rgba(240,255,0,0.012) 1px, transparent 1px);
+      background-size: 3px 3px, 7px 7px;
+      background-position: 0 0, 1px 1px;
+      z-index: 1; mix-blend-mode: overlay;
+    }
+    body::after {
+      content: ""; position: fixed; top: -300px; right: -300px;
+      width: 800px; height: 800px;
+      background: radial-gradient(circle, rgba(240, 255, 0, 0.07) 0%, transparent 60%);
+      pointer-events: none; z-index: 0; transition: opacity 1s ease;
+    }
+    main, header, footer { position: relative; z-index: 2; }
+
+    .container { max-width: 1320px; margin: 0 auto; padding: 0 48px; }
+    .container-narrow { max-width: 880px; margin: 0 auto; padding: 0 48px; }
+
+    .mono-eyebrow {
+      font-family: 'JetBrains Mono', monospace; font-weight: 500;
+      font-size: 11px; letter-spacing: 0.20em; text-transform: uppercase;
+      color: var(--y2-dim);
+    }
+    .label-micro {
+      font-family: 'JetBrains Mono', monospace; font-weight: 400;
+      font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase;
+      color: var(--ink-faint);
+    }
+
+    .verdict-dot {
+      display: inline-block; width: 9px; height: 9px;
+      border-radius: 50%; background: var(--y2);
+      box-shadow: 0 0 14px var(--y2-glow);
+      vertical-align: middle; flex-shrink: 0;
+    }
+    .verdict-dot-sm {
+      display: inline-block; width: 6px; height: 6px;
+      border-radius: 50%; background: var(--y2);
+      box-shadow: 0 0 8px var(--y2-glow);
+      vertical-align: middle; flex-shrink: 0;
+    }
+    .verdict-dot-hollow {
+      display: inline-block; width: 8px; height: 8px;
+      border-radius: 50%; border: 1px solid var(--y2);
+      vertical-align: middle; flex-shrink: 0;
+    }
+
+    .doc-header {
+      padding: 24px 0; border-bottom: 1px solid var(--rule);
+      position: sticky; top: 0;
+      background: rgba(5, 5, 7, 0.88);
+      backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+      z-index: 50;
+    }
+    .doc-header-inner {
+      display: flex; justify-content: space-between;
+      align-items: center; gap: 32px;
+    }
+    .doc-mark { display: flex; align-items: center; gap: 14px; }
+    .doc-mark-glyph { width: 28px; height: 28px; }
+    .doc-mark-text {
+      font-family: 'Inter', sans-serif; font-weight: 800;
+      font-size: 13px; letter-spacing: 0.06em;
+      text-transform: uppercase; color: var(--ink);
+    }
+    .doc-mark-separator { width: 1px; height: 16px; background: var(--rule-bright); }
+    .doc-mark-tag {
+      font-family: 'JetBrains Mono', monospace; font-size: 11px;
+      letter-spacing: 0.14em; text-transform: uppercase;
+      color: var(--ink-faint);
+    }
+
+    .progress-mark { display: flex; align-items: center; gap: 14px; }
+    .progress-mark svg { width: 36px; height: 36px; }
+    .progress-mark-label {
+      font-family: 'JetBrains Mono', monospace; font-size: 11px;
+      letter-spacing: 0.16em; color: var(--ink-dim); text-transform: uppercase;
+    }
+    .progress-mark-label .current { color: var(--y2); }
+
+    .screen { display: none; }
+    body[data-screen="welcome"] .screen-welcome,
+    body[data-screen="q1"] .screen-q1,
+    body[data-screen="q2"] .screen-q2,
+    body[data-screen="q3"] .screen-q3,
+    body[data-screen="q4"] .screen-q4,
+    body[data-screen="q5"] .screen-q5,
+    body[data-screen="q6"] .screen-q6,
+    body[data-screen="q7"] .screen-q7,
+    body[data-screen="reveal"] .screen-reveal { display: block; }
+
+    .welcome-hero { padding: 120px 0 80px; }
+    .welcome-eyebrow { display: flex; align-items: center; gap: 14px; margin-bottom: 56px; }
+    .welcome-hero-grid {
+      display: grid;
+      grid-template-columns: 1.25fr 1fr;
+      gap: 80px;
+      align-items: center;
+    }
+    .welcome-hero-text { min-width: 0; }
+    .welcome-hero-visual {
+      position: relative;
+      aspect-ratio: 4 / 5;
+      overflow: hidden;
+      background: var(--bg-lift);
+      border: 1px solid var(--rule);
+    }
+    .welcome-hero-visual img {
+      width: 100%; height: 100%;
+      object-fit: cover; display: block;
+      filter: saturate(0.92) contrast(1.02);
+    }
+    .welcome-hero-visual-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(180deg, transparent 35%, rgba(5,5,7,0.65) 100%);
+      pointer-events: none;
+      z-index: 1;
+    }
+    .welcome-hero-visual-dot {
+      position: absolute;
+      top: 18px; left: 18px;
+      width: 12px; height: 12px;
+      border-radius: 50%;
+      background: var(--y2);
+      box-shadow: 0 0 18px var(--y2-glow);
+      z-index: 2;
+    }
+    .welcome-hero-visual-meta {
+      position: absolute;
+      bottom: 24px; left: 24px; right: 24px;
+      z-index: 2;
+      display: flex; align-items: flex-end; justify-content: space-between; gap: 20px;
+    }
+    .welcome-hero-visual-label {
+      font-family: 'Inter', sans-serif;
+      font-weight: 800;
+      font-size: 19px;
+      line-height: 1.1;
+      letter-spacing: -0.02em;
+      color: var(--ink);
+      max-width: 220px;
+    }
+    .welcome-hero-visual-label .y { color: var(--y2); }
+    .welcome-hero-visual-cite {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 9px; letter-spacing: 0.18em;
+      text-transform: uppercase; color: var(--ink-faint);
+      flex-shrink: 0; text-align: right;
+    }
+    .welcome-hero-visual-hairline {
+      position: absolute;
+      bottom: 0; right: 0;
+      width: 75%; height: 1px;
+      background: linear-gradient(90deg, transparent, var(--rule-bright) 75%, var(--y2));
+      transform: rotate(-10deg);
+      transform-origin: right;
+      z-index: 2;
+    }
+    .welcome-headline {
+      font-family: 'Inter', sans-serif; font-weight: 800;
+      font-size: clamp(40px, 5.5vw, 76px);
+      line-height: 0.96; letter-spacing: -0.038em;
+      color: var(--ink);
+    }
+    .welcome-headline .y { color: var(--y2); }
+    .welcome-headline .strike {
+      position: relative; color: rgba(244,244,246,0.32); display: inline-block;
+    }
+    .welcome-headline .strike::before {
+      content: ""; position: absolute; top: 52%; left: -3%; right: -3%;
+      height: 6px; background: var(--y2);
+      transform: translateY(-50%) rotate(-2deg);
+      box-shadow: 0 0 20px var(--y2-glow);
+    }
+    .welcome-subhead {
+      margin-top: 48px; font-size: clamp(19px, 2.1vw, 26px);
+      line-height: 1.45; color: var(--ink-dim);
+      max-width: 800px; letter-spacing: -0.012em;
+    }
+    .welcome-subhead strong { color: var(--ink); font-weight: 600; }
+    .welcome-trust { margin-top: 56px; display: flex; gap: 32px; flex-wrap: wrap; }
+    .trust-item {
+      display: flex; align-items: center; gap: 10px;
+      font-family: 'JetBrains Mono', monospace; font-size: 12px;
+      letter-spacing: 0.10em; text-transform: uppercase; color: var(--ink-dim);
+    }
+    .welcome-cta-wrap { margin-top: 72px; display: flex; flex-wrap: wrap; align-items: center; gap: 28px; }
+
+    .cta-primary {
+      display: inline-flex; align-items: center; gap: 16px;
+      padding: 26px 42px; background: var(--y2); color: var(--bg);
+      font-family: 'Inter', sans-serif; font-weight: 700; font-size: 18px;
+      letter-spacing: -0.005em; text-decoration: none;
+      border: 0; cursor: pointer; position: relative;
+      transition: transform .25s cubic-bezier(.2,.7,.3,1), box-shadow .25s cubic-bezier(.2,.7,.3,1);
+    }
+    .cta-primary::before {
+      content: ""; position: absolute; inset: 0;
+      border: 1px solid var(--y2); transform: translate(0, 0);
+      pointer-events: none;
+      transition: transform .25s cubic-bezier(.2,.7,.3,1);
+    }
+    .cta-primary:hover { transform: translate(-3px, -3px); }
+    .cta-primary:hover::before { transform: translate(6px, 6px); }
+    .cta-primary .arrow { display: inline-block; transition: transform .25s cubic-bezier(.2,.7,.3,1); }
+    .cta-primary:hover .arrow { transform: translateX(5px); }
+
+    .cta-secondary {
+      display: inline-flex; align-items: center; gap: 12px;
+      padding: 18px 0; background: transparent;
+      color: var(--ink-dim); font-family: 'Inter', sans-serif;
+      font-weight: 500; font-size: 15px; text-decoration: none;
+      border: 0; cursor: pointer;
+      border-bottom: 1px solid var(--rule);
+      transition: color .25s ease, border-color .25s ease;
+    }
+    .cta-secondary:hover { color: var(--y2); border-bottom-color: var(--y2); }
+
+    .welcome-divider-section {
+      padding: 80px 0 100px;
+      border-top: 1px solid var(--rule);
+      margin-top: 80px;
+    }
+    .divider-grid {
+      display: grid; grid-template-columns: 1fr 1fr 1fr;
+      gap: 1px; background: var(--rule); border: 1px solid var(--rule);
+    }
+    .divider-cell { background: var(--bg); padding: 36px 32px; }
+    .divider-cell-num {
+      font-family: 'JetBrains Mono', monospace; font-size: 11px;
+      letter-spacing: 0.18em; color: var(--y2); margin-bottom: 24px;
+    }
+    .divider-cell-title {
+      font-family: 'Inter', sans-serif; font-weight: 700;
+      font-size: 21px; line-height: 1.2; letter-spacing: -0.015em;
+      color: var(--ink); margin-bottom: 14px;
+    }
+    .divider-cell-body { font-size: 14px; line-height: 1.6; color: var(--ink-dim); }
+
+    .q-screen { padding: 60px 0 120px; min-height: 80vh; }
+    .q-eyebrow { display: flex; align-items: center; gap: 16px; margin-bottom: 48px; }
+    .q-eyebrow-num {
+      font-family: 'JetBrains Mono', monospace; font-size: 11px;
+      letter-spacing: 0.18em; color: var(--y2); text-transform: uppercase;
+    }
+    .q-eyebrow-cat {
+      font-family: 'JetBrains Mono', monospace; font-size: 11px;
+      letter-spacing: 0.18em; color: var(--ink-dim); text-transform: uppercase;
+    }
+    .q-eyebrow-sep { color: var(--ink-faint); }
+    .q-text {
+      font-family: 'Inter', sans-serif; font-weight: 700;
+      font-size: clamp(32px, 4.5vw, 56px);
+      line-height: 1.08; letter-spacing: -0.028em;
+      color: var(--ink); max-width: 1000px; margin-bottom: 16px;
+    }
+    .q-text .y { color: var(--y2); }
+    .q-help {
+      font-size: 17px; line-height: 1.5; color: var(--ink-dim);
+      max-width: 720px; margin-bottom: 48px;
+    }
+    .q-nav { margin-top: 64px; display: flex; align-items: center; gap: 24px; }
+    .q-nav-back {
+      padding: 16px 20px; background: transparent; color: var(--ink-dim);
+      font-family: 'Inter', sans-serif; font-weight: 500; font-size: 14px;
+      border: 1px solid var(--rule-bright); cursor: pointer;
+      transition: color .25s ease, border-color .25s ease;
+    }
+    .q-nav-back:hover { color: var(--y2); border-color: var(--y2); }
+    .q-nav-next {
+      padding: 20px 32px; background: var(--y2); color: var(--bg);
+      font-family: 'Inter', sans-serif; font-weight: 700; font-size: 15px;
+      border: 0; cursor: pointer;
+      transition: transform .25s cubic-bezier(.2,.7,.3,1), opacity .25s ease;
+    }
+    .q-nav-next:hover { transform: translate(-2px, -2px); box-shadow: 4px 4px 0 var(--y2); }
+    .q-nav-next:disabled {
+      background: var(--bg-elev); color: var(--ink-faint);
+      cursor: not-allowed; box-shadow: none; transform: none;
+    }
+
+    .chip-grid {
+      display: grid; grid-template-columns: repeat(4, 1fr);
+      gap: 1px; background: var(--rule); border: 1px solid var(--rule);
+    }
+    .chip {
+      background: var(--bg); padding: 28px 24px; cursor: pointer;
+      transition: background .2s ease; display: flex; flex-direction: column;
+      gap: 12px; text-align: left; border: 0;
+      color: var(--ink); font-family: 'Inter', sans-serif;
+    }
+    .chip:hover { background: var(--bg-lift); }
+    .chip.selected { background: var(--bg-elev); box-shadow: inset 0 0 0 2px var(--y2); }
+    .chip-icon {
+      width: 40px; height: 40px;
+      stroke: var(--y2); stroke-width: 1.3; fill: none;
+      stroke-linecap: round; stroke-linejoin: round;
+      transition: transform .25s cubic-bezier(.2,.7,.3,1);
+    }
+    .chip-icon .hair { stroke-opacity: 0.45; }
+    .chip-icon .verdict { fill: var(--y2); stroke: none; }
+    .chip-icon .verdict-glow { fill: var(--y2); stroke: none; opacity: 0.2; }
+    .chip:hover .chip-icon { transform: translate(0, -2px); }
+    .chip.selected .chip-icon { transform: translate(0, -2px); }
+    .chip.selected .chip-icon .verdict { filter: drop-shadow(0 0 6px var(--y2-glow)); }
+    .chip-label { font-weight: 600; font-size: 17px; letter-spacing: -0.008em; }
+    .chip-sub {
+      font-family: 'JetBrains Mono', monospace; font-size: 10.5px;
+      letter-spacing: 0.10em; text-transform: uppercase;
+      color: var(--ink-faint); margin-top: auto; line-height: 1.5;
+    }
+    .chip.selected .chip-sub { color: var(--y2-dim); }
+
+    .multiselect-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      gap: 1px; background: var(--rule); border: 1px solid var(--rule);
+    }
+    .ms-card {
+      background: var(--bg); padding: 28px 24px; cursor: pointer;
+      transition: background .2s ease; border: 0; text-align: left;
+      color: var(--ink); font-family: 'Inter', sans-serif; position: relative;
+    }
+    .ms-card:hover { background: var(--bg-lift); }
+    .ms-card.selected { background: var(--bg-elev); box-shadow: inset 0 0 0 2px var(--y2); }
+    .ms-card-checkbox {
+      position: absolute; top: 24px; right: 24px;
+      width: 18px; height: 18px; border: 1px solid var(--rule-bright);
+      display: flex; align-items: center; justify-content: center;
+    }
+    .ms-card.selected .ms-card-checkbox { background: var(--y2); border-color: var(--y2); }
+    .ms-card.selected .ms-card-checkbox::after {
+      content: "✓"; color: var(--bg); font-weight: 800; font-size: 12px;
+    }
+    .ms-card-title {
+      font-weight: 600; font-size: 18px; letter-spacing: -0.012em;
+      margin-bottom: 8px; padding-right: 36px;
+    }
+    .ms-card-sub { font-size: 13px; color: var(--ink-dim); line-height: 1.45; }
+
+    /* /02 — split layout: cards + acquisition-mix donut + live diagnostic */
+    .q2-split {
+      display: grid;
+      grid-template-columns: 1.45fr 1fr;
+      gap: 56px;
+      align-items: start;
+    }
+    .q2-split .multiselect-grid {
+      grid-template-columns: 1fr 1fr;
+    }
+    .ms-card-icon {
+      width: 32px; height: 32px;
+      stroke: var(--y2); stroke-width: 1.25; fill: none;
+      stroke-linecap: round; stroke-linejoin: round;
+      margin-bottom: 16px; opacity: 0.55;
+      transition: opacity .3s ease, transform .3s cubic-bezier(.2,.7,.3,1);
+    }
+    .ms-card-icon .hair { stroke-opacity: 0.45; }
+    .ms-card-icon .verdict { fill: var(--y2); stroke: none; }
+    .ms-card-icon .verdict-glow { fill: var(--y2); stroke: none; opacity: 0.22; }
+    .ms-card:hover .ms-card-icon { opacity: 0.85; }
+    .ms-card.selected .ms-card-icon { opacity: 1; transform: translate(0, -2px); }
+    .ms-card-tag {
+      margin-top: 14px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 10.5px; letter-spacing: 0.10em;
+      text-transform: uppercase; color: var(--y2-dim);
+      opacity: 0; max-height: 0; overflow: hidden;
+      transition: opacity .35s ease, max-height .35s ease, margin-top .35s ease;
+    }
+    .ms-card.selected .ms-card-tag {
+      opacity: 1; max-height: 60px;
+    }
+
+    .q2-aside {
+      position: sticky; top: 24px;
+      display: flex; flex-direction: column;
+      align-items: center; gap: 28px;
+      padding: 36px 20px 32px;
+      border: 1px solid var(--rule);
+      background: rgba(240, 255, 0, 0.015);
+    }
+    .q2-aside-eyebrow {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 10px; letter-spacing: 0.22em;
+      text-transform: uppercase; color: var(--ink-faint);
+    }
+    .q2-donut {
+      width: 100%; max-width: 240px; height: auto;
+      display: block;
+    }
+    .donut-arc {
+      fill: none;
+      stroke: rgba(240, 255, 0, 0.10);
+      stroke-width: 14;
+      stroke-linecap: butt;
+      transition: stroke .4s ease, filter .4s ease;
+    }
+    .donut-arc.active {
+      stroke: var(--y2);
+      filter: drop-shadow(0 0 10px var(--y2-glow));
+    }
+    .donut-count {
+      font-family: 'Inter', sans-serif;
+      font-weight: 800;
+      font-size: 64px;
+      fill: var(--y2);
+      letter-spacing: -0.04em;
+    }
+    .donut-count-label {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 9px;
+      letter-spacing: 0.22em;
+      fill: var(--ink-faint);
+    }
+    .q2-diagnostic {
+      text-align: center;
+      padding-top: 8px;
+      border-top: 1px solid var(--rule);
+      width: 100%;
+      padding: 20px 8px 0;
+    }
+    .diagnostic-headline {
+      font-family: 'Inter', sans-serif; font-weight: 700;
+      font-size: 17px; letter-spacing: -0.005em;
+      color: var(--y2); margin-bottom: 6px;
+      min-height: 24px;
+      transition: color .3s ease;
+    }
+    .diagnostic-headline.idle { color: var(--ink-dim); }
+    .diagnostic-sub {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 10.5px; letter-spacing: 0.10em;
+      text-transform: uppercase; color: var(--ink-dim);
+      line-height: 1.55;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .donut-arc, .ms-card-icon, .ms-card-tag, .chip-icon { transition: none !important; }
+    }
+
+    .slider-block { padding: 24px 0 48px; }
+    .slider-readout {
+      font-family: 'Inter', sans-serif; font-weight: 800;
+      font-size: clamp(48px, 7vw, 96px); line-height: 1;
+      letter-spacing: -0.035em; color: var(--y2);
+      text-shadow: 0 0 30px rgba(240, 255, 0, 0.25); margin-bottom: 8px;
+    }
+    .slider-readout-label {
+      font-family: 'JetBrains Mono', monospace; font-size: 12px;
+      letter-spacing: 0.18em; text-transform: uppercase;
+      color: var(--ink-dim); margin-bottom: 48px;
+    }
+    .slider-track { position: relative; height: 60px; display: flex; align-items: center; cursor: pointer; }
+    .slider-line { width: 100%; height: 2px; background: var(--rule); position: relative; }
+    .slider-line-fill {
+      position: absolute; left: 0; top: 0; height: 100%;
+      background: var(--y2); box-shadow: 0 0 14px var(--y2-glow);
+      transition: width .25s cubic-bezier(.2,.7,.3,1);
+    }
+    .slider-snap {
+      position: absolute; top: 50%; transform: translate(-50%, -50%);
+      width: 14px; height: 14px; border-radius: 50%;
+      background: var(--bg); border: 1px solid var(--rule-bright);
+      cursor: pointer; transition: all .25s ease;
+    }
+    .slider-snap.active {
+      background: var(--y2); border-color: var(--y2);
+      box-shadow: 0 0 16px var(--y2-glow);
+      width: 18px; height: 18px;
+    }
+    .slider-snap-label {
+      position: absolute; top: 40px; left: 50%; transform: translateX(-50%);
+      font-family: 'JetBrains Mono', monospace; font-size: 10px;
+      letter-spacing: 0.14em; text-transform: uppercase;
+      color: var(--ink-faint); white-space: nowrap;
+    }
+    .slider-snap.active .slider-snap-label { color: var(--y2); }
+
+    .split-block { padding: 24px 0 48px; }
+    .split-readout {
+      display: flex; justify-content: space-between; margin-bottom: 28px;
+      font-family: 'JetBrains Mono', monospace; font-size: 12px;
+      letter-spacing: 0.16em; text-transform: uppercase;
+    }
+    .split-ops { color: var(--ink-dim); }
+    .split-growth { color: var(--y2); }
+    .split-bar {
+      display: flex; height: 60px; border: 1px solid var(--rule);
+      overflow: hidden; position: relative;
+    }
+    .split-bar-ops {
+      background: var(--bg-elev); transition: width .25s ease;
+      display: flex; align-items: center; justify-content: center;
+      font-family: 'Inter', sans-serif; font-weight: 700;
+      font-size: 24px; color: var(--ink);
+    }
+    .split-bar-growth {
+      background: var(--y2); transition: width .25s ease;
+      display: flex; align-items: center; justify-content: center;
+      font-family: 'Inter', sans-serif; font-weight: 800;
+      font-size: 24px; color: var(--bg);
+    }
+    .split-buttons { margin-top: 32px; display: flex; gap: 12px; flex-wrap: wrap; }
+    .split-btn {
+      padding: 10px 18px; background: transparent; color: var(--ink-dim);
+      font-family: 'JetBrains Mono', monospace; font-size: 11px;
+      letter-spacing: 0.14em; text-transform: uppercase;
+      border: 1px solid var(--rule-bright); cursor: pointer;
+      transition: all .25s ease;
+    }
+    .split-btn:hover { color: var(--y2); border-color: var(--y2); }
+    .split-btn.active { background: var(--y2); color: var(--bg); border-color: var(--y2); }
+
+    .bottleneck-grid {
+      display: grid; grid-template-columns: repeat(5, 1fr);
+      gap: 1px; background: var(--rule); border: 1px solid var(--rule);
+    }
+    .bn-card {
+      background: var(--bg); padding: 32px 22px; cursor: pointer;
+      transition: background .2s ease; border: 0; text-align: left;
+      color: var(--ink); font-family: 'Inter', sans-serif;
+      display: flex; flex-direction: column; gap: 14px; min-height: 200px;
+    }
+    .bn-card:hover { background: var(--bg-lift); }
+    .bn-card.selected { background: var(--bg-elev); box-shadow: inset 0 0 0 2px var(--y2); }
+    .bn-card-num {
+      font-family: 'JetBrains Mono', monospace; font-size: 11px;
+      letter-spacing: 0.16em; color: var(--y2);
+    }
+    .bn-card-title { font-weight: 700; font-size: 18px; letter-spacing: -0.012em; }
+    .bn-card-body { font-size: 12px; line-height: 1.45; color: var(--ink-dim); margin-top: auto; }
+
+    .target-block { padding: 24px 0 48px; }
+    .target-sentence {
+      font-family: 'Inter', sans-serif; font-weight: 600;
+      font-size: clamp(22px, 2.6vw, 32px); line-height: 1.45;
+      letter-spacing: -0.018em; color: var(--ink); max-width: 1000px;
+    }
+    .target-input {
+      display: inline-block; background: var(--bg); border: 0;
+      border-bottom: 2px solid var(--y2); color: var(--y2);
+      font-family: 'Inter', sans-serif; font-weight: 700;
+      font-size: inherit; padding: 4px 8px; min-width: 200px;
+      letter-spacing: -0.012em; transition: background .25s ease;
+    }
+    .target-input::placeholder { color: var(--ink-faint); font-weight: 400; }
+    .target-input:focus { outline: none; background: var(--y2-shade); }
+    .target-input.short { min-width: 100px; }
+
+    .reveal-screen { padding-bottom: 0; }
+    .reveal-hero { padding: 80px 0 60px; border-bottom: 1px solid var(--rule); }
+    .reveal-eyebrow { display: flex; align-items: center; gap: 14px; margin-bottom: 40px; }
+    .reveal-eyebrow-tag {
+      font-family: 'JetBrains Mono', monospace; font-size: 11px;
+      letter-spacing: 0.18em; color: var(--ink-dim); text-transform: uppercase;
+    }
+    .reveal-eyebrow-tag .y { color: var(--y2); }
+    .reveal-headline {
+      font-family: 'Inter', sans-serif; font-weight: 800;
+      font-size: clamp(48px, 7vw, 96px); line-height: 0.96;
+      letter-spacing: -0.036em; color: var(--ink); max-width: 1100px;
+    }
+    .reveal-headline .y { color: var(--y2); }
+    .reveal-subhead {
+      margin-top: 32px; font-size: 19px; line-height: 1.5;
+      color: var(--ink-dim); max-width: 760px;
+    }
+
+    .growth-index {
+      padding: 60px 0; border-bottom: 1px solid var(--rule);
+      display: grid; grid-template-columns: 1.2fr 2fr;
+      gap: 56px; align-items: center;
+    }
+    .growth-index-label { display: flex; flex-direction: column; gap: 16px; }
+    .growth-index-label .mono-eyebrow { color: var(--y2-dim); }
+    .growth-index-value {
+      font-family: 'Inter', sans-serif; font-weight: 800;
+      font-size: clamp(80px, 12vw, 168px); line-height: 0.92;
+      letter-spacing: -0.045em; color: var(--y2);
+      text-shadow: 0 0 40px rgba(240, 255, 0, 0.3);
+    }
+    .growth-index-suffix {
+      font-family: 'JetBrains Mono', monospace; font-size: 14px;
+      letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-dim);
+    }
+    .growth-index-explainer { font-size: 16px; line-height: 1.6; color: var(--ink-dim); }
+    .growth-index-explainer strong { color: var(--ink); font-weight: 600; }
+
+    .reveal-section { padding: 80px 0; border-bottom: 1px solid var(--rule); }
+    .reveal-section-eyebrow { display: flex; align-items: center; gap: 14px; margin-bottom: 32px; }
+    .reveal-section-title {
+      font-family: 'Inter', sans-serif; font-weight: 800;
+      font-size: clamp(32px, 4.5vw, 52px); line-height: 1.05;
+      letter-spacing: -0.028em; color: var(--ink);
+      max-width: 980px; margin-bottom: 32px;
+    }
+    .reveal-section-title .y { color: var(--y2); }
+
+    .snapshot-grid {
+      display: grid; grid-template-columns: repeat(4, 1fr);
+      gap: 1px; background: var(--rule); border: 1px solid var(--rule);
+    }
+    .snap-cell { background: var(--bg); padding: 28px 24px; }
+    .snap-cell-label {
+      font-family: 'JetBrains Mono', monospace; font-size: 10px;
+      letter-spacing: 0.18em; text-transform: uppercase;
+      color: var(--ink-faint); margin-bottom: 18px;
+    }
+    .snap-cell-value {
+      font-family: 'Inter', sans-serif; font-weight: 800;
+      font-size: 30px; line-height: 1.05; letter-spacing: -0.022em;
+      color: var(--y2); margin-bottom: 8px;
+    }
+    .snap-cell-value.text { font-size: 20px; letter-spacing: -0.012em; }
+    .snap-cell-detail { font-size: 12px; line-height: 1.4; color: var(--ink-dim); }
+
+    .diagnosis-block {
+      padding: 48px;
+      background: linear-gradient(135deg, var(--bg-lift) 0%, var(--bg) 100%);
+      border-left: 3px solid var(--y2); position: relative;
+    }
+    .diagnosis-eyebrow {
+      font-family: 'JetBrains Mono', monospace; font-size: 11px;
+      letter-spacing: 0.18em; color: var(--y2);
+      text-transform: uppercase; margin-bottom: 24px;
+    }
+    .diagnosis-title {
+      font-family: 'Inter', sans-serif; font-weight: 700;
+      font-size: clamp(26px, 3.2vw, 38px); line-height: 1.18;
+      letter-spacing: -0.022em; color: var(--ink); margin-bottom: 20px;
+    }
+    .diagnosis-title .y { color: var(--y2); }
+    .diagnosis-body { font-size: 17px; line-height: 1.65; color: var(--ink-dim); max-width: 800px; }
+    .diagnosis-body em { font-style: italic; color: var(--ink); }
+
+    .system-block { margin-top: 32px; }
+    .system-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      gap: 1px; background: var(--rule); border: 1px solid var(--rule);
+    }
+    .system-module {
+      background: var(--bg); padding: 32px 28px;
+      position: relative; min-height: 200px;
+      display: flex; flex-direction: column; gap: 16px;
+    }
+    .system-module.tailored {
+      background: var(--bg-lift);
+      box-shadow: inset 0 0 0 1px var(--rule-bright);
+    }
+    .system-module-num {
+      display: flex; align-items: center; gap: 10px;
+      font-family: 'JetBrains Mono', monospace; font-size: 11px;
+      letter-spacing: 0.16em; color: var(--y2);
+    }
+    .system-module-title {
+      font-family: 'Inter', sans-serif; font-weight: 700;
+      font-size: 19px; line-height: 1.22; letter-spacing: -0.012em;
+      color: var(--ink);
+    }
+    .system-module-body { font-size: 13px; line-height: 1.55; color: var(--ink-dim); }
+    .system-module-tag {
+      margin-top: auto; font-family: 'JetBrains Mono', monospace;
+      font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase;
+      color: var(--y2);
+    }
+    .system-legend {
+      margin-top: 24px; display: flex; align-items: center; gap: 24px;
+      font-family: 'JetBrains Mono', monospace; font-size: 11px;
+      letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-dim);
+    }
+    .legend-dot { display: inline-flex; align-items: center; gap: 8px; }
+    .legend-dot-tailored {
+      width: 10px; height: 10px;
+      background: var(--y2); box-shadow: 0 0 8px var(--y2-glow);
+    }
+    .legend-dot-standard {
+      width: 10px; height: 10px;
+      background: transparent; border: 1px solid var(--y2);
+    }
+
+    .projection-block { padding: 48px 0 24px; }
+    .projection-chart {
+      width: 100%; height: 420px; position: relative;
+      border: 1px solid var(--rule); background: var(--bg); overflow: hidden;
+    }
+    .projection-chart svg { width: 100%; height: 100%; }
+    .projection-legend { margin-top: 24px; display: flex; gap: 32px; flex-wrap: wrap; }
+    .proj-legend-item { display: flex; align-items: center; gap: 12px; }
+    .proj-legend-color { width: 24px; height: 2px; }
+    .proj-legend-color.current { background: var(--ink-dim); }
+    .proj-legend-color.system { background: var(--y2); box-shadow: 0 0 6px var(--y2-glow); }
+    .proj-legend-text {
+      font-family: 'JetBrains Mono', monospace; font-size: 11px;
+      letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-dim);
+    }
+
+    .verdict-section { padding: 100px 0; border-bottom: 1px solid var(--rule-bright); }
+    .verdict-card {
+      padding: 64px;
+      background: linear-gradient(135deg, var(--bg-lift) 0%, var(--bg) 100%);
+      border: 1px solid var(--rule-bright);
+      position: relative; overflow: hidden;
+    }
+    .verdict-card::before {
+      content: ""; position: absolute; top: -100px; right: -100px;
+      width: 500px; height: 500px;
+      background: radial-gradient(circle, var(--y2-glow) 0%, transparent 60%);
+      opacity: 0.18; pointer-events: none;
+    }
+    .verdict-card[data-verdict="fit"] .verdict-status { color: var(--y2); }
+    .verdict-card[data-verdict="maybe"] .verdict-status { color: var(--y2); }
+    .verdict-card[data-verdict="not-yet"] .verdict-status { color: var(--ink-dim); }
+    .verdict-card[data-verdict="not-yet"]::before { opacity: 0.05; }
+
+    .verdict-eyebrow {
+      font-family: 'JetBrains Mono', monospace; font-size: 11px;
+      letter-spacing: 0.20em; text-transform: uppercase;
+      color: var(--y2-dim); margin-bottom: 32px;
+    }
+    .verdict-status {
+      font-family: 'Inter', sans-serif; font-weight: 900;
+      font-size: clamp(64px, 9vw, 128px); line-height: 0.95;
+      letter-spacing: -0.042em; margin-bottom: 24px;
+      text-shadow: 0 0 30px rgba(240, 255, 0, 0.3);
+    }
+    .verdict-explainer {
+      font-family: 'Inter', sans-serif; font-weight: 500;
+      font-size: clamp(20px, 2.4vw, 28px); line-height: 1.35;
+      letter-spacing: -0.018em; color: var(--ink);
+      max-width: 880px; margin-bottom: 32px;
+    }
+    .verdict-detail { font-size: 16px; line-height: 1.65; color: var(--ink-dim); max-width: 760px; }
+
+    .path-section { padding: 100px 0; }
+    .path-grid { display: grid; grid-template-columns: 1.5fr 1fr; gap: 56px; align-items: center; }
+    .path-title {
+      font-family: 'Inter', sans-serif; font-weight: 800;
+      font-size: clamp(32px, 4.2vw, 48px); line-height: 1.08;
+      letter-spacing: -0.028em; color: var(--ink); margin-bottom: 20px;
+    }
+    .path-title .y { color: var(--y2); }
+    .path-body {
+      font-size: 17px; line-height: 1.65; color: var(--ink-dim);
+      margin-bottom: 40px; max-width: 540px;
+    }
+    .path-list { margin-bottom: 40px; max-width: 540px; }
+    .path-list-item {
+      display: flex; gap: 16px; padding: 20px 0;
+      border-bottom: 1px solid var(--rule);
+    }
+    .path-list-num {
+      font-family: 'JetBrains Mono', monospace; font-size: 13px;
+      letter-spacing: 0.12em; color: var(--y2); flex-shrink: 0; padding-top: 2px;
+    }
+    .path-list-text { font-size: 15px; line-height: 1.55; color: var(--ink); }
+    .path-list-text strong { color: var(--y2); font-weight: 600; }
+    .path-cta-block {
+      padding: 48px; background: var(--bg-lift);
+      border: 1px solid var(--rule-bright); position: relative;
+    }
+    .path-cta-eyebrow {
+      font-family: 'JetBrains Mono', monospace; font-size: 11px;
+      letter-spacing: 0.20em; text-transform: uppercase;
+      color: var(--y2); margin-bottom: 20px;
+    }
+    .path-cta-title {
+      font-family: 'Inter', sans-serif; font-weight: 700;
+      font-size: 24px; line-height: 1.2; letter-spacing: -0.015em;
+      color: var(--ink); margin-bottom: 16px;
+    }
+    .path-cta-body { font-size: 14px; line-height: 1.55; color: var(--ink-dim); margin-bottom: 32px; }
+    .path-cta-form { display: flex; gap: 8px; flex-wrap: wrap; }
+    .path-cta-input {
+      flex: 1; min-width: 200px; padding: 14px 16px;
+      background: var(--bg); border: 1px solid var(--rule-bright);
+      color: var(--ink); font-family: 'Inter', sans-serif; font-size: 14px;
+      transition: border-color .25s ease;
+    }
+    .path-cta-input:focus { outline: none; border-color: var(--y2); }
+    .path-cta-btn {
+      padding: 14px 24px; background: var(--y2); color: var(--bg);
+      font-family: 'Inter', sans-serif; font-weight: 700; font-size: 14px;
+      border: 0; cursor: pointer; transition: transform .25s ease;
+    }
+    .path-cta-btn:hover { transform: translate(-2px, -2px); box-shadow: 4px 4px 0 var(--y2); }
+
+    footer { padding: 56px 0 72px; border-top: 1px solid var(--rule); }
+    .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 48px; align-items: start; }
+    .footer-block-label {
+      font-family: 'JetBrains Mono', monospace; font-size: 10px;
+      letter-spacing: 0.20em; text-transform: uppercase;
+      color: var(--y2-dim); margin-bottom: 14px;
+    }
+    .footer-block-body { font-size: 13px; line-height: 1.65; color: var(--ink-dim); }
+    .footer-block-body a {
+      color: var(--y2); text-decoration: none;
+      border-bottom: 1px dashed var(--rule-bright);
+    }
+    .footer-block-body a:hover { border-bottom-style: solid; }
+    .footer-bottom {
+      margin-top: 48px; padding-top: 28px;
+      border-top: 1px solid var(--rule);
+      display: flex; justify-content: space-between; align-items: center;
+      font-family: 'JetBrains Mono', monospace; font-size: 10px;
+      letter-spacing: 0.18em; text-transform: uppercase; color: var(--ink-faint);
+    }
+
+    @media (max-width: 1100px) {
+      .container, .container-narrow { padding: 0 36px; }
+      .welcome-hero-grid { grid-template-columns: 1fr; gap: 48px; }
+      .welcome-hero-visual { aspect-ratio: 16 / 10; max-height: 500px; }
+      .chip-grid { grid-template-columns: repeat(3, 1fr); }
+      .multiselect-grid { grid-template-columns: 1fr 1fr; }
+      .bottleneck-grid { grid-template-columns: 1fr 1fr; }
+      .system-grid { grid-template-columns: 1fr 1fr; }
+      .snapshot-grid { grid-template-columns: 1fr 1fr; }
+      .growth-index { grid-template-columns: 1fr; gap: 24px; }
+      .divider-grid { grid-template-columns: 1fr; }
+      .path-grid { grid-template-columns: 1fr; gap: 32px; }
+      .footer-grid { grid-template-columns: 1fr 1fr; gap: 32px; }
+      .q2-split { grid-template-columns: 1fr; gap: 32px; }
+      .q2-aside { position: static; padding: 28px 20px; }
+      .q2-donut { max-width: 220px; }
+    }
+    @media (max-width: 640px) {
+      .container, .container-narrow { padding: 0 20px; }
+      .welcome-hero { padding: 60px 0 40px; }
+      .chip-grid { grid-template-columns: 1fr 1fr; }
+      .multiselect-grid { grid-template-columns: 1fr; }
+      .q2-split .multiselect-grid { grid-template-columns: 1fr; }
+      .bottleneck-grid { grid-template-columns: 1fr; }
+      .system-grid { grid-template-columns: 1fr; }
+      .snapshot-grid { grid-template-columns: 1fr; }
+      .diagnosis-block, .verdict-card, .path-cta-block { padding: 32px 24px; }
+      .reveal-hero { padding: 48px 0 32px; }
+    }
+
+/* BWM scoping overrides — keep the diagnostic styling self-contained */
+.bwm-fit-diagnostic {
+  display: block;
+  position: relative;
+}
+.bwm-fit-email-form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 16px;
+}
+.bwm-fit-email-form input[type="email"] {
+  background: transparent;
+  border: 1px solid var(--rule);
+  color: var(--ink);
+  padding: 14px 16px;
+  font-family: var(--sans);
+  font-size: 16px;
+  outline: none;
+  transition: border-color .15s ease;
+}
+.bwm-fit-email-form input[type="email"]:focus {
+  border-color: var(--y2);
+}
+.bwm-fit-email-form button {
+  align-self: flex-start;
+}
+</style>
+
+<script is:inline>
+// ============ STATE ============
+    const state = {
+      service: null,
+      leadSources: [],
+      revenue: null,
+      revenueLabel: null,
+      opsRatio: null,
+      bottleneck: null,
+      capacityGaps: [],
+      target: { revenue: '', team: '', hours: '' }
+    };
+
+    const SERVICE_LABEL = {
+      hvac: 'HVAC', roofing: 'Roofing', plumbing: 'Plumbing',
+      pest: 'Pest Control', realtor: 'Real Estate', concrete: 'Concrete',
+      cleaning: 'Cleaning', other: 'Service Business'
+    };
+    const BOTTLENECK_LABEL = {
+      leads: 'Lead Volume', quality: 'Lead Quality', capacity: 'Delivery Capacity',
+      speed: 'Response Speed', conversion: 'Conversion'
+    };
+    const LEAD_SOURCE_LABEL = {
+      referrals: 'Referrals', 'google-organic': 'Google Organic',
+      'paid-ads': 'Paid Ads', social: 'Social', 'cold-outreach': 'Cold Outreach', unsure: 'Untracked'
+    };
+
+    // ============ NAVIGATION ============
+    function goTo(screen) {
+      document.body.dataset.screen = screen;
+      window.scrollTo({ top: 0, behavior: 'instant' });
+      updateProgress(screen);
+    }
+
+    const SCREEN_CATEGORIES = {
+      q1: { num: '01', cat: 'Service' }, q2: { num: '02', cat: 'Acquisition' },
+      q3: { num: '03', cat: 'Scale' },   q4: { num: '04', cat: 'Time' },
+      q5: { num: '05', cat: 'Bottleneck' }, q6: { num: '06', cat: 'Constraints' },
+      q7: { num: '07', cat: 'Vision' }
+    };
+
+    function updateProgress(screen) {
+      const progress = document.getElementById('progress');
+      if (screen.startsWith('q')) {
+        progress.style.display = 'flex';
+        const meta = SCREEN_CATEGORIES[screen];
+        if (meta) {
+          document.getElementById('q-current').textContent = meta.num;
+          document.getElementById('q-cat').textContent = meta.cat;
+        }
+        const qNum = parseInt((meta && meta.num) || '01', 10);
+        document.getElementById('vtx-1').setAttribute('fill', qNum >= 2 ? '#F0FF00' : 'none');
+        document.getElementById('vtx-2').setAttribute('fill', qNum >= 4 ? '#F0FF00' : 'none');
+        document.getElementById('vtx-3').setAttribute('fill', qNum >= 6 ? '#F0FF00' : 'none');
+      } else {
+        progress.style.display = 'none';
+      }
+    }
+
+    // ============ ANSWER HANDLERS ============
+    document.querySelectorAll('[data-single]').forEach(grid => {
+      const key = grid.dataset.single;
+      grid.querySelectorAll('button[data-value]').forEach(btn => {
+        btn.addEventListener('click', () => {
+          state[key] = btn.dataset.value;
+          grid.querySelectorAll('button[data-value]').forEach(b => b.classList.remove('selected'));
+          btn.classList.add('selected');
+          const screen = document.body.dataset.screen;
+          const nextBtn = document.getElementById('next-' + screen);
+          if (nextBtn) nextBtn.disabled = false;
+        });
+      });
+    });
+
+    document.querySelectorAll('[data-multi]').forEach(grid => {
+      const key = grid.dataset.multi;
+      grid.querySelectorAll('button[data-value]').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const arr = state[key];
+          const val = btn.dataset.value;
+          const idx = arr.indexOf(val);
+          if (idx >= 0) { arr.splice(idx, 1); btn.classList.remove('selected'); }
+          else { arr.push(val); btn.classList.add('selected'); }
+          const screen = document.body.dataset.screen;
+          const nextBtn = document.getElementById('next-' + screen);
+          if (nextBtn) nextBtn.disabled = arr.length === 0;
+          if (key === 'leadSources' && typeof renderQ2Donut === 'function') renderQ2Donut();
+        });
+      });
+    });
+
+    // /02 — Live acquisition-mix donut + diagnostic readout (R020 F2 Proof + F3 CTA-Pull)
+    const renderQ2Donut = (function() {
+      const donut = document.getElementById('q2-donut');
+      if (!donut) return function(){};
+      const countEl = document.getElementById('q2-donut-count');
+      const headlineEl = document.getElementById('q2-diag-headline');
+      const subEl = document.getElementById('q2-diag-sub');
+      const arcs = donut.querySelectorAll('[data-channel]');
+      return function() {
+        const sel = state.leadSources || [];
+        arcs.forEach(a => {
+          if (sel.indexOf(a.dataset.channel) >= 0) a.classList.add('active');
+          else a.classList.remove('active');
+        });
+        if (countEl) countEl.textContent = sel.length;
+        if (!headlineEl || !subEl) return;
+        const onlyUnsure = sel.length === 1 && sel[0] === 'unsure';
+        let h, s;
+        if (sel.length === 0)               { h = '—';                       s = 'Pick all that apply'; headlineEl.classList.add('idle'); }
+        else if (onlyUnsure)                { h = 'Attribution gap';         s = 'No tracking layer · we install one'; headlineEl.classList.remove('idle'); }
+        else if (sel.length === 1)          { h = 'Single-channel risk';     s = '100% dependency on one source'; headlineEl.classList.remove('idle'); }
+        else if (sel.length === 2)          { h = 'Light diversification';   s = 'Two channels in motion'; headlineEl.classList.remove('idle'); }
+        else if (sel.length === 3)          { h = 'Healthy mix forming';     s = 'Three active acquisition lanes'; headlineEl.classList.remove('idle'); }
+        else                                { h = 'Diversified mix';         s = 'Attribution gap likely · we untangle it'; headlineEl.classList.remove('idle'); }
+        headlineEl.textContent = h;
+        subEl.textContent = s;
+      };
+    })();
+    renderQ2Donut();
+
+    document.querySelectorAll('#revenueSlider .slider-snap').forEach(snap => {
+      snap.addEventListener('click', () => {
+        const value = parseInt(snap.dataset.value, 10);
+        state.revenue = value;
+        state.revenueLabel = snap.dataset.label;
+        document.querySelectorAll('#revenueSlider .slider-snap').forEach(s => s.classList.remove('active'));
+        snap.classList.add('active');
+        const pct = ((value - 1) / 6) * 100;
+        document.getElementById('revenue-fill').style.width = pct + '%';
+        document.getElementById('revenue-readout').textContent = snap.dataset.label + '/mo';
+        document.getElementById('next-q3').disabled = false;
+      });
+    });
+
+    document.querySelectorAll('[data-split-buttons] button').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const opsPct = parseInt(btn.dataset.ops, 10);
+        state.opsRatio = opsPct;
+        const growthPct = 100 - opsPct;
+        document.getElementById('split-ops').style.width = opsPct + '%';
+        document.getElementById('split-growth').style.width = growthPct + '%';
+        document.getElementById('ops-pct').textContent = opsPct + '%';
+        document.getElementById('growth-pct').textContent = growthPct + '%';
+        document.querySelectorAll('[data-split-buttons] button').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        document.getElementById('next-q4').disabled = false;
+      });
+    });
+
+    function updateTargetState() {
+      state.target.revenue = document.getElementById('target-revenue').value;
+      state.target.team = document.getElementById('target-team').value;
+      state.target.hours = document.getElementById('target-hours').value;
+      const hasAny = state.target.revenue || state.target.team || state.target.hours;
+      document.getElementById('next-q7').disabled = !hasAny;
+    }
+    ['target-revenue', 'target-team', 'target-hours'].forEach(id => {
+      document.getElementById(id).addEventListener('input', updateTargetState);
+    });
+
+    // ============ BUTTON BINDINGS ============
+    document.querySelectorAll('[data-back]').forEach(btn => {
+      btn.addEventListener('click', () => goTo(btn.dataset.back));
+    });
+    document.querySelectorAll('[data-next]').forEach(btn => {
+      btn.addEventListener('click', () => goTo(btn.dataset.next));
+    });
+    document.querySelector('[data-action="start"]').addEventListener('click', () => goTo('q1'));
+    document.querySelector('[data-action="reveal"]').addEventListener('click', computeAndReveal);
+
+    // ============ DOM HELPERS (no innerHTML) ============
+    function el(tag, attrs, children) {
+      const node = document.createElementNS(tag === 'svg' || tag === 'g' || tag === 'path' || tag === 'line' || tag === 'circle' || tag === 'rect' || tag === 'text'
+        ? 'http://www.w3.org/2000/svg' : 'http://www.w3.org/1999/xhtml', tag);
+      if (attrs) Object.keys(attrs).forEach(k => {
+        if (k === 'className') node.setAttribute('class', attrs[k]);
+        else if (k === 'text') node.textContent = attrs[k];
+        else node.setAttribute(k, attrs[k]);
+      });
+      if (children) children.forEach(c => { if (c) node.appendChild(c); });
+      return node;
+    }
+    function clearChildren(parent) {
+      while (parent.firstChild) parent.removeChild(parent.firstChild);
+    }
+
+    // ============ COMPUTE + REVEAL ============
+    function computeAndReveal() {
+      // ---- Growth Index ----
+      let revScore = 0;
+      if (state.revenue >= 2) revScore = 1;
+      if (state.revenue >= 4) revScore = 2;
+      if (state.revenue >= 6) revScore = 3;
+
+      let channelScore = 0;
+      const hasOrganic = state.leadSources.indexOf('google-organic') >= 0;
+      const hasPaid = state.leadSources.indexOf('paid-ads') >= 0;
+      const hasReferral = state.leadSources.indexOf('referrals') >= 0;
+      const isUntracked = state.leadSources.indexOf('unsure') >= 0;
+      if ((hasOrganic || hasPaid) && hasReferral) channelScore = 2;
+      else if (hasOrganic || hasPaid || hasReferral) channelScore = 1;
+      if (isUntracked && state.leadSources.length === 1) channelScore = 0;
+
+      const growthHours = 100 - (state.opsRatio || 90);
+      let timeScore = 0;
+      if (growthHours >= 20) timeScore = 1;
+      if (growthHours >= 40) timeScore = 2;
+
+      const targetRev = parseInt((state.target.revenue || '').replace(/[^0-9]/g, ''), 10) || 0;
+      let ambitionScore = 0;
+      const currentRevMid = [0, 5000, 17500, 37500, 75000, 175000, 375000, 750000][state.revenue || 1];
+      if (targetRev > currentRevMid * 1.5) ambitionScore = 1;
+      if (targetRev > currentRevMid * 2.5) ambitionScore = 2;
+
+      const totalRaw = revScore + channelScore + timeScore + ambitionScore;
+      const growthIndex = Math.round((totalRaw / 9) * 100);
+
+      // ---- Verdict ----
+      let verdict, verdictLabel, verdictExplainer, verdictDetail;
+      const bottleneckLabel = BOTTLENECK_LABEL[state.bottleneck] || 'unknown';
+      if (growthIndex >= 65) {
+        verdict = 'fit'; verdictLabel = "You're A Fit.";
+        verdictExplainer = "You're at the stage where an AI growth system installed correctly compounds. Revenue traction is real, you've already got channel diversity, and your target is ambitious enough that hand-rolled workflows will hold you back.";
+        verdictDetail = "The system pays for itself in the first 90 days at your current revenue band. Your bottleneck (" + bottleneckLabel + ") is exactly the kind we engineer around — we've shipped this pattern 7 times in the last 18 months. The next move is a 30-minute call to map your install plan.";
+      } else if (growthIndex >= 35) {
+        verdict = 'maybe'; verdictLabel = "Close. Three Things To Lock.";
+        verdictExplainer = "You're not far. The diagnostic shows you've got real revenue traction, but one or two foundational pieces aren't dialed in yet. Lock those first, then come back — the system installs cleaner when these are in place.";
+        verdictDetail = "Locking these takes most operators 60-90 days of focused work. We'll send you the exact playbook so you can move on it. When the gaps close, the diagnostic flips to Fit and we book the strategy call.";
+      } else {
+        verdict = 'not-yet'; verdictLabel = "Not Yet — But Here's The Map.";
+        verdictExplainer = "Honest read: installing a growth system at your stage would amplify whatever's already breaking, not fix it. The foundation has to come first. We'd rather hand you the playbook than sell you a system you're not ready for.";
+        verdictDetail = "Most operators in your position need 6-12 months of focused foundational work before an AI growth system is the right move. We'll send you the exact 5-step playbook tailored to your bottleneck — yours regardless of whether we ever work together.";
+      }
+
+      // ---- Populate Reveal ----
+      const now = new Date();
+      const pad = n => String(n).padStart(2, '0');
+      const ts = pad(now.getMonth() + 1) + '/' + pad(now.getDate()) + ' ' + pad(now.getHours()) + ':' + pad(now.getMinutes());
+      document.getElementById('reveal-timestamp').textContent = ts;
+      document.getElementById('reveal-service').textContent = SERVICE_LABEL[state.service] || 'Your Business';
+
+      document.getElementById('growth-index-value').textContent = growthIndex;
+
+      document.getElementById('snap-service').textContent = SERVICE_LABEL[state.service] || '—';
+      document.getElementById('snap-revenue').textContent = state.revenueLabel || '—';
+      document.getElementById('snap-growth').textContent = (100 - state.opsRatio) + '%';
+      const channels = state.leadSources.map(s => LEAD_SOURCE_LABEL[s]).slice(0, 2).join(' + ');
+      document.getElementById('snap-channels').textContent = channels || '—';
+
+      // Diagnosis — populate three span slots + body text
+      const DIAGNOSIS = {
+        leads: {
+          lead: 'Your bottleneck is ',
+          y: 'lead volume',
+          tail: ' — and your acquisition mix tells us why.',
+          body: 'You have ' + state.leadSources.length + ' active channels but ' + (isUntracked ? 'no attribution layer' : 'no compounding asset that fills the calendar on autopilot') + '. Referrals are great when they show up — but they don\'t scale at will. Without a system that creates leads predictably (paid, organic, or both), every growth attempt feels like starting over. The fix isn\'t more activity — it\'s building the lead-generation engine that runs without you starting it each morning.'
+        },
+        quality: {
+          lead: 'Your bottleneck is ',
+          y: 'lead quality',
+          tail: ' — the funnel is leaking before the call.',
+          body: 'You\'re getting leads, but the ones reaching you aren\'t pre-qualified. This is a positioning + filtering problem, not a volume problem. Most service businesses solve this by adding more leads on top, which makes the problem worse. The right move is an upstream qualifier (positioning, pricing display, ICP-tight ad targeting) that filters out the wrong people before they consume your calendar.'
+        },
+        capacity: {
+          lead: 'Your bottleneck is ',
+          y: 'delivery capacity',
+          tail: ' — growth would amplify a structural ceiling.',
+          body: 'You\'re already at or near the ceiling of what your crew/schedule can absorb. Adding leads without expanding capacity just turns leads into lost-revenue rage. The system has to solve delivery alongside acquisition — productized scope, dispatch automation, and crew-augmentation patterns. Otherwise the diagnostic becomes the disease.'
+        },
+        speed: {
+          lead: 'Your bottleneck is ',
+          y: 'response speed',
+          tail: ' — and that\'s the most fixable one.',
+          body: 'Leads come in, they go cold before you reach them. Studies show response in under 5 minutes converts at 4-9x the rate of response after 30 minutes. This is the highest-leverage fix in your funnel — automated triage, instant-callback workflows, and AI-first-touch can lift your close-rate without changing anything upstream. Often the cheapest win in the whole system.'
+        },
+        conversion: {
+          lead: 'Your bottleneck is ',
+          y: 'conversion',
+          tail: ' — the lead reaches you, then doesn\'t close.',
+          body: 'You\'ve got volume + speed dialed, but close-rate is below where it should be for your service category. This is usually a sales-system problem, not a sales-skill problem. Standardized discovery, structured proposals, follow-up sequences, and objection-handling automations close the gap. The good news: every percentage point of close-rate compounds on existing traffic. No new leads needed.'
+        }
+      };
+      const diag = DIAGNOSIS[state.bottleneck] || DIAGNOSIS.leads;
+      document.getElementById('diagnosis-title-lead').textContent = diag.lead;
+      document.getElementById('diagnosis-title-bottleneck').textContent = diag.y;
+      document.getElementById('diagnosis-title-tail').textContent = diag.tail;
+      document.getElementById('diagnosis-body').textContent = diag.body;
+
+      // System modules
+      const tailored = state.bottleneck;
+      const cap = state.capacityGaps;
+      const modules = [
+        { title: 'Lead Generation Engine', body: 'Multi-channel intake — paid + organic + referral — funnel-tagged with UTM attribution to every channel.', tailored: tailored === 'leads' },
+        { title: 'Lead Qualifier (Diagnostic)', body: 'Front-door qualifier that filters out price-shoppers and routes by ICP fit before consuming your calendar.', tailored: tailored === 'quality' },
+        { title: 'Instant-Response Workflow', body: 'AI-first-touch + escalation. New leads get a meaningful reply in under 60 seconds — even on weekends.', tailored: tailored === 'speed' },
+        { title: 'Sales Conversion Stack', body: 'Standardized discovery, structured proposals, automated follow-up sequences. Close-rate compounds on existing traffic.', tailored: tailored === 'conversion' },
+        { title: 'Delivery Capacity Layer', body: 'Productized scope + dispatch automation + crew assignment. Volume scales without quality drift.', tailored: tailored === 'capacity' || cap.indexOf('ops-dispatch') >= 0 || cap.indexOf('quality') >= 0 },
+        { title: 'Attribution + Dashboards', body: 'Every lead, every dollar, every channel — traced back to source with weekly reporting you actually read.', tailored: state.leadSources.indexOf('unsure') >= 0 }
+      ];
+      const systemGrid = document.getElementById('system-grid');
+      clearChildren(systemGrid);
+      modules.forEach((m, i) => {
+        const card = document.createElement('div');
+        card.className = 'system-module' + (m.tailored ? ' tailored' : '');
+        const num = document.createElement('div');
+        num.className = 'system-module-num';
+        const dot = document.createElement('span');
+        dot.className = m.tailored ? 'verdict-dot-sm' : 'verdict-dot-hollow';
+        num.appendChild(dot);
+        num.appendChild(document.createTextNode(' Module ' + pad(i + 1)));
+        const title = document.createElement('div');
+        title.className = 'system-module-title';
+        title.textContent = m.title;
+        const body = document.createElement('div');
+        body.className = 'system-module-body';
+        body.textContent = m.body;
+        const tag = document.createElement('div');
+        tag.className = 'system-module-tag';
+        tag.textContent = m.tailored ? 'Tailored' : 'Standard';
+        card.appendChild(num);
+        card.appendChild(title);
+        card.appendChild(body);
+        card.appendChild(tag);
+        systemGrid.appendChild(card);
+      });
+
+      // Projection chart (SVG via createElementNS — no innerHTML)
+      drawProjection(state);
+
+      // Verdict
+      document.getElementById('verdict-card').dataset.verdict = verdict;
+      document.getElementById('verdict-status').textContent = verdictLabel;
+      document.getElementById('verdict-explainer').textContent = verdictExplainer;
+      document.getElementById('verdict-detail').textContent = verdictDetail;
+
+      // Path
+      renderPath(verdict, state);
+
+      goTo('reveal');
+    }
+
+    function drawProjection(state) {
+      const NS = 'http://www.w3.org/2000/svg';
+      const svg = document.getElementById('projection-svg');
+      clearChildren(svg);
+
+      const currentRev = [0, 5000, 17500, 37500, 75000, 175000, 375000, 750000][state.revenue || 1];
+      const targetRev = parseInt((state.target.revenue || '').replace(/[^0-9]/g, ''), 10) || currentRev * 2;
+
+      const months = 12;
+      const w = 1200, h = 420;
+      const padX = 80, padY = 60;
+      const innerW = w - padX * 2, innerH = h - padY * 2;
+      const currentEnd = currentRev * 1.08;
+      const systemEnd = Math.max(targetRev, currentRev * 2);
+      const maxRev = systemEnd * 1.1;
+
+      const xAt = m => padX + (m / months) * innerW;
+      const yAt = r => padY + innerH - (r / maxRev) * innerH;
+
+      const mkNS = (tag, attrs) => {
+        const n = document.createElementNS(NS, tag);
+        Object.keys(attrs).forEach(k => n.setAttribute(k, attrs[k]));
+        return n;
+      };
+      const mkText = (x, y, content, attrs) => {
+        const n = mkNS('text', Object.assign({ x: x, y: y }, attrs));
+        n.textContent = content;
+        return n;
+      };
+
+      // Gridlines + revenue labels
+      for (let i = 0; i <= 4; i++) {
+        const r = (maxRev / 4) * i;
+        const y = yAt(r);
+        svg.appendChild(mkNS('line', { x1: padX, y1: y, x2: w - padX, y2: y, stroke: 'rgba(240,255,0,0.06)', 'stroke-width': '1' }));
+        svg.appendChild(mkText(padX - 12, y + 4, '$' + (r / 1000).toFixed(0) + 'K',
+          { fill: '#5e5e66', 'font-family': 'JetBrains Mono', 'font-size': '10', 'text-anchor': 'end' }));
+      }
+
+      // Month labels
+      for (let m = 0; m <= 12; m += 3) {
+        svg.appendChild(mkText(xAt(m), h - 20, 'M' + pad(m),
+          { fill: '#5e5e66', 'font-family': 'JetBrains Mono', 'font-size': '11', 'letter-spacing': '2', 'text-anchor': 'middle' }));
+      }
+
+      // Current trajectory
+      let currentPath = 'M ' + xAt(0) + ' ' + yAt(currentRev);
+      for (let m = 1; m <= months; m++) {
+        const r = currentRev * (1 + (m / 12) * 0.08);
+        currentPath += ' L ' + xAt(m) + ' ' + yAt(r);
+      }
+
+      // System trajectory (S-curve)
+      let systemPath = 'M ' + xAt(0) + ' ' + yAt(currentRev);
+      for (let m = 1; m <= months; m++) {
+        const t = m / months;
+        const sCurve = 1 / (1 + Math.exp(-8 * (t - 0.5)));
+        const r = currentRev + (systemEnd - currentRev) * sCurve;
+        systemPath += ' L ' + xAt(m) + ' ' + yAt(r);
+      }
+
+      // Gap shaded region
+      let gapPath = 'M ' + xAt(0) + ' ' + yAt(currentRev) + ' L ' + xAt(months) + ' ' + yAt(currentEnd) + ' L ' + xAt(months) + ' ' + yAt(systemEnd);
+      for (let m = months; m >= 0; m--) {
+        const t = m / months;
+        const sCurve = 1 / (1 + Math.exp(-8 * (t - 0.5)));
+        const r = currentRev + (systemEnd - currentRev) * sCurve;
+        gapPath += ' L ' + xAt(m) + ' ' + yAt(r);
+      }
+      gapPath += ' Z';
+      svg.appendChild(mkNS('path', { d: gapPath, fill: 'rgba(240,255,0,0.06)' }));
+
+      // Current line (dashed)
+      svg.appendChild(mkNS('path', { d: currentPath, fill: 'none', stroke: '#9a9aa3', 'stroke-width': '2', 'stroke-dasharray': '4 4' }));
+      // System line (glowing Y2)
+      svg.appendChild(mkNS('path', { d: systemPath, fill: 'none', stroke: '#F0FF00', 'stroke-width': '3', filter: 'drop-shadow(0 0 8px rgba(240,255,0,0.4))' }));
+
+      // End-point dots
+      svg.appendChild(mkNS('circle', { cx: xAt(months), cy: yAt(currentEnd), r: '6', fill: '#9a9aa3' }));
+      svg.appendChild(mkNS('circle', { cx: xAt(months), cy: yAt(systemEnd), r: '8', fill: '#F0FF00', filter: 'drop-shadow(0 0 8px rgba(240,255,0,0.6))' }));
+
+      // Annotations
+      svg.appendChild(mkText(xAt(months) - 16, yAt(systemEnd) - 16, '$' + (systemEnd / 1000).toFixed(0) + 'K/mo',
+        { fill: '#F0FF00', 'font-family': 'Inter', 'font-weight': '700', 'font-size': '22', 'text-anchor': 'end' }));
+      svg.appendChild(mkText(xAt(months) - 16, yAt(currentEnd) + 24, '$' + (currentEnd / 1000).toFixed(0) + 'K/mo',
+        { fill: '#9a9aa3', 'font-family': 'JetBrains Mono', 'font-size': '12', 'text-anchor': 'end' }));
+    }
+
+    function renderPath(verdict, state) {
+      const pathTitleLead = document.getElementById('path-title-lead');
+      const pathTitleY = document.getElementById('path-title-y');
+      const pathTitleTail = document.getElementById('path-title-tail');
+      const pathBody = document.getElementById('path-body');
+      const pathList = document.getElementById('path-list');
+      const pathCta = document.getElementById('path-cta-block');
+
+      clearChildren(pathList);
+      clearChildren(pathCta);
+
+      const mkListItem = (num, text, strongs) => {
+        const item = document.createElement('div');
+        item.className = 'path-list-item';
+        const numEl = document.createElement('span');
+        numEl.className = 'path-list-num';
+        numEl.textContent = pad(num);
+        const textEl = document.createElement('span');
+        textEl.className = 'path-list-text';
+        // strongs is array of [strongText, restText] pairs OR a single string
+        if (typeof text === 'string') {
+          textEl.textContent = text;
+        } else {
+          text.forEach(segment => {
+            if (segment.strong) {
+              const s = document.createElement('strong');
+              s.textContent = segment.strong;
+              textEl.appendChild(s);
+            }
+            if (segment.text) {
+              textEl.appendChild(document.createTextNode(segment.text));
+            }
+          });
+        }
+        item.appendChild(numEl);
+        item.appendChild(textEl);
+        return item;
+      };
+
+      const mkCtaForm = (placeholder, btnText) => {
+        const form = document.createElement('form');
+        form.className = 'path-cta-form';
+        form.addEventListener('submit', e => e.preventDefault());
+        const input = document.createElement('input');
+        input.type = 'email';
+        input.className = 'path-cta-input';
+        input.placeholder = placeholder;
+        const btn = document.createElement('button');
+        btn.className = 'path-cta-btn';
+        btn.textContent = btnText;
+        form.appendChild(input);
+        form.appendChild(btn);
+        return form;
+      };
+
+      const mkCtaBlock = (eyebrow, title, body, formOrLink) => {
+        const e = document.createElement('div');
+        e.className = 'path-cta-eyebrow';
+        e.textContent = eyebrow;
+        const t = document.createElement('h3');
+        t.className = 'path-cta-title';
+        t.textContent = title;
+        const b = document.createElement('p');
+        b.className = 'path-cta-body';
+        b.textContent = body;
+        pathCta.appendChild(e);
+        pathCta.appendChild(t);
+        pathCta.appendChild(b);
+        pathCta.appendChild(formOrLink);
+      };
+
+      if (verdict === 'fit') {
+        pathTitleLead.textContent = 'Let\'s ';
+        pathTitleY.textContent = 'build your install plan';
+        pathTitleTail.textContent = '.';
+        pathBody.textContent = 'Book a 30-minute strategy call. We\'ll walk through your diagnostic, map the exact modules to your business, and put a 90-day install timeline on the table.';
+        pathList.appendChild(mkListItem(1, [{ strong: '30 minutes' }, { text: ' — walk through your diagnostic together' }]));
+        pathList.appendChild(mkListItem(2, [{ strong: 'Tailored install plan' }, { text: ' — modules, sequence, 90-day milestones' }]));
+        pathList.appendChild(mkListItem(3, [{ strong: 'Honest go/no-go' }, { text: " — if it's not the right fit on the call, we'll tell you" }]));
+        const link = document.createElement('a');
+        link.href = '/book';
+        link.className = 'cta-primary';
+        link.style.display = 'inline-flex';
+        link.style.padding = '18px 28px';
+        link.style.fontSize = '15px';
+        link.appendChild(document.createTextNode('Book The Call '));
+        const arrow = document.createElement('span');
+        arrow.className = 'arrow';
+        arrow.textContent = '→';
+        link.appendChild(arrow);
+        mkCtaBlock('Book Your Strategy Call', "Pick a time. We'll see you there.",
+          'Direct link to the team\'s calendar. No discovery questionnaire — we already have your diagnostic.', link);
+      } else if (verdict === 'maybe') {
+        pathTitleLead.textContent = 'Three ';
+        pathTitleY.textContent = 'foundation moves';
+        pathTitleTail.textContent = ' would lock you in.';
+        pathBody.textContent = 'Below are the gaps the diagnostic surfaced. Most operators close these in 60-90 days. When they\'re locked, come back — we\'ll re-diagnose for free.';
+        const fixes = [];
+        if (state.leadSources.indexOf('google-organic') < 0 && state.leadSources.indexOf('paid-ads') < 0) {
+          fixes.push([{ strong: 'Lock one paid + one organic channel.' }, { text: ' Even at a small budget, dual-channel traction signals system-readiness.' }]);
+        }
+        if ((100 - state.opsRatio) < 20) {
+          fixes.push([{ strong: 'Reclaim 8 hours/week for growth work.' }, { text: " Delegate or systematize 2 things you're still doing yourself." }]);
+        }
+        if (state.leadSources.indexOf('unsure') >= 0) {
+          fixes.push([{ strong: 'Install basic attribution.' }, { text: ' Even a spreadsheet — every lead, source, status. The data unlocks every other move.' }]);
+        }
+        if (state.revenue < 3) {
+          fixes.push([{ strong: 'Get to $25K/mo first.' }, { text: ' Below that, foundational distribution matters more than a system.' }]);
+        }
+        while (fixes.length < 3) {
+          fixes.push([{ strong: 'Document your current sales process.' }, { text: ' Even a 1-pager. The system needs something to standardize.' }]);
+        }
+        fixes.slice(0, 3).forEach((f, i) => pathList.appendChild(mkListItem(i + 1, f)));
+        mkCtaBlock('Get The Playbook', 'Send me the foundation playbook.',
+          '90-day playbook tailored to your gaps. We\'ll check in at day 90 to re-diagnose.',
+          mkCtaForm('your@email.com', 'Send It →'));
+      } else {
+        pathTitleLead.textContent = 'Here\'s the ';
+        pathTitleY.textContent = 'exact playbook';
+        pathTitleTail.textContent = ' to get ready.';
+        pathBody.textContent = "You're not ready for a system installation — yet. Below is the 5-step sequence that gets you there. Most operators take 6-12 months. We'll send the playbook, you do the work, we re-diagnose when you're ready.";
+        const steps = [
+          [{ strong: 'Distribution before automation.' }, { text: ' Get to consistent $15-25K/mo via referrals + 1 channel.' }],
+          [{ strong: 'One pricing model, one offer.' }, { text: ' Stop bidding ad-hoc. Productize one core service.' }],
+          [{ strong: 'Track every lead.' }, { text: ' Even on paper. The data unlocks the next move.' }],
+          [{ strong: 'Free 10 hours/week.' }, { text: ' Delegate or systematize. System-readiness requires capacity.' }],
+          [{ strong: 'Come back when 1–4 are done.' }, { text: " The diagnostic flips. We'll install then." }]
+        ];
+        steps.forEach((s, i) => pathList.appendChild(mkListItem(i + 1, s)));
+        mkCtaBlock('Yours Regardless', 'Send me the playbook.',
+          'Tailored 5-step playbook for your service category + bottleneck. No follow-up sales. We\'ll check in at month 6.',
+          mkCtaForm('your@email.com', 'Send It →'));
+      }
+    }
+
+    function pad(n) { return String(n).padStart(2, '0'); }
+
+// ============ BWM SUBMIT HANDLER (added 2026-05-20 — Mo' Money funnel build) ============
+// On reveal screen entry: POST state to bwm-form-handler /buildwisemedia/fit-diagnostic
+// Verdict routing: FIT (>=65) reveals Cal.com inline; MAYBE (35-64) shows ack screen;
+// NO (<35) redirects to /thank-you-resource?reason=fit_check.
+// Email is OPTIONAL — diagnostic promise "The reveal is yours regardless" preserved.
+
+(function bwmDiagnosticSubmit(){
+  let submitted = false;
+  let revealRendered = false;
+
+  function getUtms(){
+    try {
+      const attr = (window.__bwmAttribution && window.__bwmAttribution.last_touch && window.__bwmAttribution.last_touch.utm) || {};
+      return {
+        utm_source: attr.utm_source || null,
+        utm_medium: attr.utm_medium || null,
+        utm_campaign: attr.utm_campaign || null,
+        utm_content: attr.utm_content || null,
+        utm_term: attr.utm_term || null,
+        fbclid: attr.fbclid || null,
+        gclid: attr.gclid || null,
+      };
+    } catch (_e) { return {}; }
+  }
+
+  async function submitDiagnostic(emailValue){
+    if (submitted && !emailValue) return;
+    submitted = true;
+    const utms = getUtms();
+    const payload = Object.assign({}, state, utms, {
+      email: emailValue || "",
+      landing_page: location.pathname,
+      referrer: document.referrer || "",
+    });
+    try {
+      const res = await fetch("https://bwm-form-handler.robert-ba0.workers.dev/buildwisemedia/fit-diagnostic", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload),
+      });
+      const data = await res.json();
+      handleVerdict(data, emailValue);
+    } catch (err) {
+      console.error("fit-diagnostic submit failed:", err);
+    }
+  }
+
+  function handleVerdict(data, hadEmail){
+    const card = document.getElementById("verdict-card");
+    const status = document.getElementById("verdict-status");
+    const explainer = document.getElementById("verdict-explainer");
+    const detail = document.getElementById("verdict-detail");
+    const pathLead = document.getElementById("path-title-lead");
+    const pathY = document.getElementById("path-title-y");
+    const pathTail = document.getElementById("path-title-tail");
+    const pathBody = document.getElementById("path-body");
+    const pathList = document.getElementById("path-list");
+    const pathCta = document.getElementById("path-cta-block");
+    if (!card || !status) return;
+
+    const v = data.verdict || "MAYBE";
+    const idx = typeof data.growth_index === "number" ? data.growth_index : 50;
+
+    if (v === "FIT") {
+      card.setAttribute("data-verdict", "fit");
+      status.textContent = "FIT · " + idx + "/100";
+      if (explainer) explainer.textContent = "Your shop matches the install profile. The system delivers the most lift here.";
+      if (detail) detail.textContent = "What we'd install for you in 30 days: lead capture, qualification, follow-up, attribution, review velocity, and the AI growth engine that runs the marketing department without you in the loop.";
+      if (pathLead) pathLead.textContent = "Book a";
+      if (pathY) pathY.textContent = " 30-minute architecture call. ";
+      if (pathTail) pathTail.textContent = "";
+      if (pathBody) pathBody.textContent = "On the call we walk through your specific stack, what the system replaces, and what week one looks like.";
+      if (pathCta) pathCta.innerHTML = '<a href="#cal-inline" class="cta" data-cta-source="mo-fit-verdict-cal" onclick="document.getElementById(\'cal-inline\').scrollIntoView({behavior:\'smooth\'});return false;">See If We\'re A Fit <span class="cta-arrow">→</span></a><p class="mono" style="margin-top:14px;font-size:11px;letter-spacing:.18em;color:var(--ink-faint);">For service businesses only.</p>';
+      mountCalInline();
+    } else if (v === "MAYBE") {
+      card.setAttribute("data-verdict", "maybe");
+      status.textContent = "MAYBE · " + idx + "/100";
+      if (explainer) explainer.textContent = "Your shop is in range, but one or two pieces are still forming. We'll be in touch within 48 hours.";
+      if (detail) detail.textContent = "Based on what you shared, the system would help — but timing or stack readiness needs a quick conversation before we'd commit to the install. We'll reach out to figure out the right next step.";
+      if (pathLead) pathLead.textContent = "We'll";
+      if (pathY) pathY.textContent = " be in touch within 48h. ";
+      if (pathTail) pathTail.textContent = "";
+      if (pathBody) pathBody.textContent = "Want to speed it up? Drop your email below and we'll send your full audit + a focused next step.";
+      if (pathCta && !hadEmail) pathCta.innerHTML = bwmEmailCaptureMarkup("maybe");
+    } else {
+      // NO
+      card.setAttribute("data-verdict", "not-yet");
+      status.textContent = "NOT YET · " + idx + "/100";
+      if (explainer) explainer.textContent = "Your business isn't a fit for the AI growth system yet — and that's a deliberate read, not a brush-off.";
+      if (detail) detail.textContent = "The system pays back hardest at a specific stage. Below that stage, the install cost is more than the return. We'll redirect you to a free resource that fits where you are now.";
+      if (pathLead) pathLead.textContent = "Get the";
+      if (pathY) pathY.textContent = " free Marketing Leverage Diagnostic ";
+      if (pathTail) pathTail.textContent = "instead.";
+      if (pathBody) pathBody.textContent = "We send it whether you become a client or not. It's the framework we use; you can run it yourself.";
+      if (pathCta) pathCta.innerHTML = '<a href="/thank-you-resource?reason=fit_check" class="cta" data-cta-source="mo-fit-verdict-resource">Get the diagnostic <span class="cta-arrow">→</span></a>';
+    }
+  }
+
+  function bwmEmailCaptureMarkup(){
+    return [
+      '<form id="bwm-fit-email-form" class="bwm-fit-email-form">',
+      '  <label class="mono" for="bwm-fit-email" style="font-size:11px;letter-spacing:.18em;color:var(--ink-dim);">Email me my audit</label>',
+      '  <input type="email" id="bwm-fit-email" name="email" required placeholder="you@yourbusiness.com" autocomplete="email" />',
+      '  <button type="submit" class="cta">Send my audit <span class="cta-arrow">→</span></button>',
+      '  <p id="bwm-fit-email-status" class="mono" style="font-size:10px;letter-spacing:.18em;color:var(--ink-faint);margin-top:8px;"></p>',
+      '</form>',
+    ].join("");
+  }
+
+  function mountCalInline(){
+    if (document.getElementById("cal-inline")) return;
+    const section = document.querySelector("#diagnostic") || document.body;
+    const wrap = document.createElement("div");
+    wrap.id = "cal-inline";
+    wrap.className = "bwm-cal-inline";
+    wrap.style.cssText = "max-width:1200px;margin:48px auto 0;min-height:720px;background:var(--bg-elev);border:1px solid var(--rule);";
+    section.appendChild(wrap);
+    // Cal.com loader (matches /book.astro pattern)
+    (function (C, A, L) {
+      let p = function (a, ar) { a.q.push(ar); };
+      let d = C.document;
+      C.Cal = C.Cal || function () {
+        let cal = C.Cal; let ar = arguments;
+        if (!cal.loaded) {
+          cal.ns = {}; cal.q = cal.q || [];
+          d.head.appendChild(d.createElement("script")).src = A;
+          cal.loaded = true;
+        }
+        if (ar[0] === L) {
+          const api = function () { p(api, arguments); };
+          const namespace = ar[1];
+          api.q = api.q || [];
+          if (typeof namespace === "string") {
+            cal.ns[namespace] = cal.ns[namespace] || api;
+            p(cal.ns[namespace], ar); p(cal, ["initNamespace", namespace]);
+          } else { p(cal, ar); }
+          return;
+        }
+        p(cal, ar);
+      };
+    })(window, "https://book.buildwisemedia.com/embed/embed.js", "init");
+    window.Cal("init", "discovery-call", { origin: "https://book.buildwisemedia.com" });
+    window.Cal.ns["discovery-call"]("inline", {
+      elementOrSelector: "#cal-inline",
+      config: { layout: "month_view" },
+      calLink: "bwm/discovery-call",
+    });
+    window.Cal.ns["discovery-call"]("ui", {
+      theme: "dark",
+      styles: { branding: { brandColor: "#F0FF00" } },
+      hideEventTypeDetails: false,
+      layout: "month_view",
+    });
+  }
+
+  // Wire MAYBE email capture (delegated)
+  document.addEventListener("submit", function (e) {
+    if (e.target && e.target.id === "bwm-fit-email-form") {
+      e.preventDefault();
+      const input = document.getElementById("bwm-fit-email");
+      const statusEl = document.getElementById("bwm-fit-email-status");
+      const email = input ? input.value.trim() : "";
+      if (!email) return;
+      submitted = false;  // allow re-submission with email
+      if (statusEl) statusEl.textContent = "Sending...";
+      submitDiagnostic(email).then(function(){
+        if (statusEl) statusEl.textContent = "Done. Check your inbox in the next 48 hours.";
+        const btn = e.target.querySelector("button");
+        if (btn) btn.disabled = true;
+      });
+    }
+  });
+
+  // Hook into goTo: when we land on reveal, fire submit (anonymous)
+  const _origGoTo = window.goTo || goTo;
+  window.goTo = function (screen) {
+    _origGoTo(screen);
+    if (screen === "reveal" && !revealRendered) {
+      revealRendered = true;
+      submitDiagnostic("");
+    }
+  };
+})();
+
+</script>

@@ -1,0 +1,27 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import MoHero from '../components/campaign/MoHero.astro';
+import MoChainSection from '../components/campaign/MoChainSection.astro';
+import MoPayoffSection from '../components/campaign/MoPayoffSection.astro';
+import FitDiagnostic from '../components/FitDiagnostic.astro';
+
+// Mo' Money campaign — mechanism register (FREEDOM)
+// Chain stage: mechanism — "the cause of recovery"
+// Matched ad creative: meta-ads/2026-05-mo-money-tagline-test/typography--tagline-axis--bwm-self/tagline-mo-freedom.png
+// UTM contract: utm_content=tagline-mo-freedom
+
+const subhead = `You're not stuck because you're not working hard enough. You're stuck because every system in your business still routes through you. We replace the routing — the AI growth system runs the marketing layer end-to-end. That's the disengagement permission you've been waiting for.`;
+---
+
+<BaseLayout
+  title="Mo' freedom. | Buildwise Media"
+  description="Freedom from being the bottleneck of your own growth. The AI growth system runs the marketing layer end-to-end. Take the 3-minute Fit Diagnostic."
+  ogTitle="Mo' freedom."
+  ogDescription="The disengagement permission service-business owners have been waiting for."
+  noindex={true}
+>
+  <MoHero keyword="freedom" subhead={subhead} />
+  <MoChainSection />
+  <MoPayoffSection keyword="freedom" />
+  <FitDiagnostic />
+</BaseLayout>

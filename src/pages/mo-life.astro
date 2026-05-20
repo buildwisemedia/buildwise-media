@@ -1,0 +1,27 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import MoHero from '../components/campaign/MoHero.astro';
+import MoChainSection from '../components/campaign/MoChainSection.astro';
+import MoPayoffSection from '../components/campaign/MoPayoffSection.astro';
+import FitDiagnostic from '../components/FitDiagnostic.astro';
+
+// Mo' Money campaign — whole-chain compression register (LIFE)
+// Chain stage: identity reclamation — "the whole sequence as one reclaimed existence"
+// Matched ad creative: meta-ads/2026-05-mo-money-tagline-test/typography--tagline-axis--bwm-self/tagline-mo-life.png
+// UTM contract: utm_content=tagline-mo-life
+
+const subhead = `At some point your business stopped being something you did and became something you were. We're not here to help you grow that — we're here to give you back the version of you that existed before. The AI growth system runs the business of getting customers so you can do everything else.`;
+---
+
+<BaseLayout
+  title="Mo' life. | Buildwise Media"
+  description="More life is the whole point. Not more revenue. The AI growth system gives back the dinners, the trips, the mornings your business has been borrowing against. Take the 3-minute Fit Diagnostic."
+  ogTitle="Mo' life."
+  ogDescription="Give yourself back the version of you that existed before the business swallowed it."
+  noindex={true}
+>
+  <MoHero keyword="life" subhead={subhead} />
+  <MoChainSection />
+  <MoPayoffSection keyword="life" />
+  <FitDiagnostic />
+</BaseLayout>

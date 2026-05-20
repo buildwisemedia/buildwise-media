@@ -1,0 +1,27 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import MoHero from '../components/campaign/MoHero.astro';
+import MoChainSection from '../components/campaign/MoChainSection.astro';
+import MoPayoffSection from '../components/campaign/MoPayoffSection.astro';
+import FitDiagnostic from '../components/FitDiagnostic.astro';
+
+// Mo' Money campaign — payoff register (TIME)
+// Chain stage: payoff — "the resource recovered"
+// Matched ad creative: meta-ads/2026-05-mo-money-tagline-test/typography--tagline-axis--bwm-self/tagline-mo-time.png
+// UTM contract: utm_content=tagline-mo-time
+
+const subhead = `Time is the only thing your business can't make more of. The AI growth system runs the marketing engine — qualified leads land, calls book themselves, follow-ups go out without you. The hours your business has been eating? You get them back.`;
+---
+
+<BaseLayout
+  title="Mo' time. | Buildwise Media"
+  description="The AI growth system runs the marketing department while you sleep. Lead capture, qualification, follow-up, attribution — all of it happens without you. Take the 3-minute Fit Diagnostic."
+  ogTitle="Mo' time."
+  ogDescription="Stop being the person who answers leads. The marketing department runs while you sleep."
+  noindex={true}
+>
+  <MoHero keyword="time" subhead={subhead} />
+  <MoChainSection />
+  <MoPayoffSection keyword="time" />
+  <FitDiagnostic />
+</BaseLayout>

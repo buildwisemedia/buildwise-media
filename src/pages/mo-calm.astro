@@ -1,0 +1,27 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import MoHero from '../components/campaign/MoHero.astro';
+import MoChainSection from '../components/campaign/MoChainSection.astro';
+import MoPayoffSection from '../components/campaign/MoPayoffSection.astro';
+import FitDiagnostic from '../components/FitDiagnostic.astro';
+
+// Mo' Money campaign — downstream emotion register (CALM)
+// Chain stage: downstream emotion — "nervous-system relief"
+// Matched ad creative: meta-ads/2026-05-mo-money-tagline-test/typography--tagline-axis--bwm-self/tagline-mo-calm.png
+// UTM contract: utm_content=tagline-mo-calm
+
+const subhead = `The constant low-grade alert your nervous system has been running on for months? That's not "just how owning a business feels." It's the cost of being the only redundancy in your marketing system. We give you a different redundancy — the AI growth system runs without you in the loop.`;
+---
+
+<BaseLayout
+  title="Mo' calm. | Buildwise Media"
+  description="Calm is a nervous-system state. It shows up when the part of your brain that's been on alert finally lets go. Take the 3-minute Fit Diagnostic."
+  ogTitle="Mo' calm."
+  ogDescription="Stop being the only redundancy in your marketing system."
+  noindex={true}
+>
+  <MoHero keyword="calm" subhead={subhead} />
+  <MoChainSection />
+  <MoPayoffSection keyword="calm" />
+  <FitDiagnostic />
+</BaseLayout>

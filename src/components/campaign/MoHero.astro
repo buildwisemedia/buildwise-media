@@ -1,0 +1,144 @@
+---
+// Mo' Money campaign hero — three-line strikethrough headline matched to ad creative
+// Locked 2026-05-20: Y2 rotated strikethrough at -1.6deg + text-shadow glow per concept.html ref
+// Source visual register: bwm-campaigns/mo-money-mo-peace/concept.html lines 254-273
+//
+// Props:
+//   keyword: 'time' | 'peace' | 'freedom' | 'life' | 'calm'
+//   subhead: string  (2-3 sentence chain-stage anchor — see ~/.claude/plans/mo-money-build-brief.md §B)
+
+interface Props {
+  keyword: 'time' | 'peace' | 'freedom' | 'life' | 'calm';
+  subhead: string;
+}
+
+const { keyword, subhead } = Astro.props;
+---
+
+<section class="mo-hero" aria-labelledby="mo-hero-headline">
+  <div class="container mo-hero-grid">
+    <div class="mo-hero-text">
+      <p class="eyebrow">Buildwise Media · AI marketing run for you</p>
+
+      <h1 id="mo-hero-headline" class="mo-headline">
+        <span class="mo-line">Mo' money.</span>
+        <span class="mo-line"><span class="mo-strike">Mo' problems.</span></span>
+        <span class="mo-line"><span class="mo-accent">Mo' {keyword}.</span></span>
+      </h1>
+
+      <p class="mo-subhead">{subhead}</p>
+
+      <div class="mo-ctas">
+        <a href="#diagnostic" class="cta" data-cta-source={`mo-${keyword}-hero-primary`}>
+          See If We're A Fit
+          <span class="cta-arrow" aria-hidden="true">→</span>
+        </a>
+        <a href="#mechanism" class="cta-ghost" data-cta-source={`mo-${keyword}-hero-secondary`}>See the System</a>
+      </div>
+      <p class="mo-icp mono">For service businesses only.</p>
+    </div>
+  </div>
+</section>
+
+<style>
+.mo-hero {
+  padding-top: clamp(96px, 11vw, 168px);
+  padding-bottom: clamp(64px, 7vw, 112px);
+  position: relative;
+  overflow: hidden;
+  background: var(--bg);
+}
+
+/* Subtle 32px dot grid at 2.5% opacity — matches flagship hero pattern */
+.mo-hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(circle at center, rgba(255,255,255,0.025) 1px, transparent 1px);
+  background-size: 32px 32px;
+  pointer-events: none;
+  z-index: 0;
+}
+.mo-hero > * { position: relative; z-index: 1; }
+
+.mo-hero-grid {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(40px, 5vw, 72px);
+}
+
+.mo-hero-text { display: flex; flex-direction: column; gap: 32px; max-width: 1240px; }
+
+/* THE HEADLINE — port of concept.html .headline (lines 240-279) */
+.mo-headline {
+  font-family: var(--sans);
+  font-weight: 800;
+  font-stretch: 75%;
+  font-size: clamp(56px, 11vw, 168px);
+  line-height: 0.90;
+  letter-spacing: -0.048em;
+  color: var(--ink);
+  max-width: 1240px;
+  margin: 0;
+}
+
+.mo-line {
+  display: block;
+}
+
+/* THE STRIKETHROUGH — the rhetorical move (concept.html lines 254-273) */
+.mo-strike {
+  position: relative;
+  color: rgba(244, 244, 246, 0.28);
+  display: inline-block;
+  padding: 0 0.05em;
+}
+
+.mo-strike::before {
+  content: "";
+  position: absolute;
+  top: 52%;
+  left: -2%;
+  right: -2%;
+  height: clamp(6px, 0.9vw, 11px);
+  background: var(--y2);
+  transform: translateY(-50%) rotate(-1.6deg);
+  transform-origin: center;
+  box-shadow: 0 0 28px rgba(240, 255, 0, 0.6), 0 0 60px rgba(240, 255, 0, 0.15);
+}
+
+.mo-accent {
+  color: var(--y2);
+  text-shadow: 0 0 40px rgba(240, 255, 0, 0.25);
+}
+
+.mo-subhead {
+  font-family: var(--sans);
+  font-weight: 400;
+  font-size: clamp(20px, 2.2vw, 28px);
+  line-height: 1.42;
+  color: var(--ink-dim);
+  max-width: 820px;
+  letter-spacing: -0.012em;
+}
+
+.mo-ctas {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  align-items: center;
+  margin-top: 8px;
+}
+
+.mo-icp {
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  color: var(--ink-faint);
+  margin: 0;
+}
+
+@media (max-width: 768px) {
+  .mo-headline { font-size: clamp(48px, 14vw, 88px); }
+  .mo-subhead { font-size: 17px; }
+}
+</style>

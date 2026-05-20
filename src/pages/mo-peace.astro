@@ -1,0 +1,27 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import MoHero from '../components/campaign/MoHero.astro';
+import MoChainSection from '../components/campaign/MoChainSection.astro';
+import MoPayoffSection from '../components/campaign/MoPayoffSection.astro';
+import FitDiagnostic from '../components/FitDiagnostic.astro';
+
+// Mo' Money campaign — downstream emotion register (PEACE)
+// Chain stage: downstream emotion — "spiritual stillness after the system delivers"
+// Matched ad creative: meta-ads/2026-05-mo-money-tagline-test/typography--tagline-axis--bwm-self/tagline-mo-peace.png
+// UTM contract: utm_content=tagline-mo-peace
+
+const subhead = `The phone stops feeling like a threat. The Sunday-night dread fades. The marketing keeps running whether you check on it or not. That's what peace looks like for the owner of a growing service business — and it's not a personality trait. It's a system.`;
+---
+
+<BaseLayout
+  title="Mo' peace. | Buildwise Media"
+  description="The marketing keeps running whether you check on it or not. Peace, for the overworked owner, is the byproduct of a system. Take the 3-minute Fit Diagnostic."
+  ogTitle="Mo' peace."
+  ogDescription="The phone stops feeling like a threat. The Sunday-night dread fades."
+  noindex={true}
+>
+  <MoHero keyword="peace" subhead={subhead} />
+  <MoChainSection />
+  <MoPayoffSection keyword="peace" />
+  <FitDiagnostic />
+</BaseLayout>
