@@ -1,0 +1,400 @@
+---
+// L6 — Earn-Back Calculator
+// Plan ref: based-on-all-nifty-karp.md §L6
+// Pricing lock flip: RATIFIED 2026-05-20 — canonical pricing publicly visible on this surface
+// R020: F3-CTA-pull primary + F2-Proof secondary | R017: user-input driven only, no ambient animation
+// Source: canonical.json → products.pilot.price.oneshot + products.ascend.price.recurring
+import canonical from '../data/canonical.json';
+
+const pilotOneshot: number = canonical.products.pilot.price.oneshot;           // 15000
+const ascendRecurring: number = canonical.products.ascend.price.recurring;     // 7000
+// Y1 cost: Pilot up-front + ~9 months Ascend (Pilot covers first ~45 days = ~1.5 months;
+// remaining Y1 after conversion ≈ 10.5 months; plan spec says "~9 months" explicitly)
+const y1Months = 9;
+const y1Cost: number = pilotOneshot + ascendRecurring * y1Months;              // 15000 + 63000 = 78000
+
+// Default slider values (matching plan §L6 + Robert's screenshot showing ≈5.4× ROI)
+const defaultLeads = 20;
+const defaultAvgValue = 8000;
+const defaultCloseRate = 22;
+---
+
+<section class="ebc-section">
+  <div class="container">
+
+    <header class="ebc-header">
+      <p class="eyebrow">DO THE MATH · DRAG THE SLIDERS</p>
+      <h2 class="h-section ebc-h2">
+        What does the Y1 commitment earn you back?
+      </h2>
+      <div class="ebc-body-text prose">
+        <p>
+          Pilot (<strong>${pilotOneshot.toLocaleString()}</strong> on Day 0) + Ascend
+          (<strong>${ascendRecurring.toLocaleString()}/mo</strong> for the remaining ~{y1Months} months
+          of Y1 after Day&#8209;45 conversion) = <strong>${y1Cost.toLocaleString()} Y1 system cost.</strong>
+          The calculator below puts your numbers next to that commitment. Per-deal math is the easiest
+          way to see whether the system pays itself back — and our 5× ROI floor (we keep building until
+          you hit it) means we're as accountable to this math as you are.
+        </p>
+      </div>
+    </header>
+
+    <!-- Calculator card -->
+    <div class="ebc-calc card">
+
+      <!-- Slider inputs — 3 columns desktop, 1 column mobile -->
+      <div class="ebc-sliders-grid">
+
+        <!-- Slider 1: Qualified leads / month -->
+        <div class="ebc-slider-col">
+          <label class="ebc-slider-label mono" for="slider-leads">
+            QUALIFIED LEADS / MO
+          </label>
+          <div class="ebc-slider-row">
+            <input
+              id="slider-leads"
+              type="range"
+              min="5"
+              max="100"
+              value={defaultLeads}
+              step="1"
+              class="slider-input ebc-range"
+              data-slider-input="leads"
+              aria-label="Qualified leads per month"
+            />
+          </div>
+          <output class="ebc-slider-out mono" data-out-leads>{defaultLeads}</output>
+        </div>
+
+        <!-- Slider 2: Average customer value -->
+        <div class="ebc-slider-col">
+          <label class="ebc-slider-label mono" for="slider-value">
+            AVG CUSTOMER VALUE
+          </label>
+          <div class="ebc-slider-row">
+            <input
+              id="slider-value"
+              type="range"
+              min="500"
+              max="50000"
+              value={defaultAvgValue}
+              step="500"
+              class="slider-input ebc-range"
+              data-slider-input="value"
+              aria-label="Average customer value in dollars"
+            />
+          </div>
+          <output class="ebc-slider-out mono" data-out-value>${defaultAvgValue.toLocaleString()}</output>
+        </div>
+
+        <!-- Slider 3: Close rate -->
+        <div class="ebc-slider-col">
+          <label class="ebc-slider-label mono" for="slider-close">
+            CLOSE RATE
+          </label>
+          <div class="ebc-slider-row">
+            <input
+              id="slider-close"
+              type="range"
+              min="5"
+              max="50"
+              value={defaultCloseRate}
+              step="1"
+              class="slider-input ebc-range"
+              data-slider-input="close"
+              aria-label="Close rate as a percentage"
+            />
+          </div>
+          <output class="ebc-slider-out mono" data-out-close>{defaultCloseRate}%</output>
+        </div>
+
+      </div>
+
+      <!-- Divider -->
+      <hr class="ebc-divider" />
+
+      <!-- 4 live outputs — 2×2 grid -->
+      <div class="ebc-outputs-grid">
+
+        <div class="ebc-output-cell">
+          <p class="kpi-label mono">Deals closed / mo</p>
+          <p class="ebc-kpi-num" data-out-deals>
+            <!-- Computed: Math.round(leads × (closeRate/100) × 10) / 10 -->
+            4.4
+          </p>
+        </div>
+
+        <div class="ebc-output-cell">
+          <p class="kpi-label mono">Monthly revenue lift</p>
+          <p class="ebc-kpi-num" data-out-monthly>
+            $35,200
+          </p>
+        </div>
+
+        <div class="ebc-output-cell">
+          <p class="kpi-label mono">Annual revenue lift</p>
+          <p class="ebc-kpi-num" data-out-annual>
+            $422,400
+          </p>
+        </div>
+
+        <div class="ebc-output-cell ebc-roi-cell">
+          <p class="kpi-label mono">Y1 ROI multiple</p>
+          <p class="ebc-kpi-num ebc-roi-num" data-out-roi>
+            5.4×
+          </p>
+        </div>
+
+      </div>
+
+    </div>
+
+    <!-- ROI floor card -->
+    <div class="ebc-floor-card card">
+      <p class="eyebrow ebc-floor-eyebrow">ROI FLOOR · CONTRACTUAL</p>
+      <blockquote class="ebc-floor-quote">
+        "If your math doesn't hit 5× in 24 months, we keep building until it does."
+      </blockquote>
+    </div>
+
+    <!-- CTA -->
+    <div class="ebc-cta-wrap">
+      <a href="/book" class="cta" data-cta-source="calculator-cta">
+        See If We're a Fit
+        <span class="cta-arrow" aria-hidden="true">→</span>
+      </a>
+    </div>
+
+  </div>
+</section>
+
+<style>
+/* ============ Section shell ============ */
+.ebc-section {
+  padding-block: var(--section-y);
+  background: var(--bg-elev);
+  position: relative;
+}
+
+/* ============ Header ============ */
+.ebc-header {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  margin-bottom: 48px;
+  max-width: 840px;
+}
+.ebc-h2 { color: var(--ink); }
+.ebc-body-text { max-width: 760px; }
+.ebc-body-text p { font-size: 17px; color: var(--ink-dim); }
+.ebc-body-text strong { color: var(--ink); }
+
+/* ============ Calculator card ============ */
+.ebc-calc {
+  padding: 40px 36px;
+  margin-bottom: 24px;
+}
+
+/* ============ Slider grid — 3 columns ============ */
+.ebc-sliders-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 36px;
+  margin-bottom: 32px;
+}
+@media (max-width: 760px) {
+  .ebc-sliders-grid { grid-template-columns: 1fr; gap: 28px; }
+}
+
+.ebc-slider-col {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.ebc-slider-label {
+  font-size: 10px;
+  letter-spacing: 0.18em;
+  color: var(--ink-faint);
+  display: block;
+}
+.ebc-slider-row { width: 100%; }
+
+/* Range input — matches AIStorySection.astro slider pattern */
+.ebc-range {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  height: 2px;
+  background: var(--rule);
+  border-radius: 1px;
+  outline: none;
+  cursor: pointer;
+}
+.ebc-range::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 18px;
+  height: 18px;
+  background: var(--y2);
+  border-radius: 50%;
+  border: 3px solid var(--bg-elev);
+  cursor: pointer;
+  box-shadow: 0 0 0 1px var(--y2);
+  transition: box-shadow 180ms ease;
+}
+.ebc-range::-webkit-slider-thumb:hover {
+  box-shadow: 0 0 0 4px rgba(240, 255, 0, 0.2);
+}
+.ebc-range::-moz-range-thumb {
+  width: 18px;
+  height: 18px;
+  background: var(--y2);
+  border-radius: 50%;
+  border: 3px solid var(--bg-elev);
+  cursor: pointer;
+}
+.ebc-range:focus-visible {
+  outline: 2px solid var(--y2);
+  outline-offset: 4px;
+  border-radius: 1px;
+}
+
+/* prefers-reduced-motion: slider still works; just no entrance animations */
+@media (prefers-reduced-motion: reduce) {
+  .ebc-range::-webkit-slider-thumb { transition: none; }
+}
+
+.ebc-slider-out {
+  font-size: 22px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: var(--y2);
+  display: block;
+  line-height: 1;
+}
+
+/* ============ Divider ============ */
+.ebc-divider {
+  border: 0;
+  height: 1px;
+  background: var(--rule);
+  margin: 0 0 32px;
+}
+
+/* ============ Output grid — 2×2 ============ */
+.ebc-outputs-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 24px;
+}
+@media (max-width: 520px) {
+  .ebc-outputs-grid { grid-template-columns: 1fr; }
+}
+
+.ebc-output-cell {
+  background: var(--bg);
+  border: 1px solid var(--rule);
+  border-radius: 2px;
+  padding: 24px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.ebc-kpi-num {
+  font-family: var(--sans);
+  font-weight: 800;
+  font-stretch: 75%;
+  font-size: clamp(36px, 5vw, 56px);
+  line-height: 1;
+  letter-spacing: -0.04em;
+  color: var(--y2);
+}
+
+/* ROI cell: slightly emphasized */
+.ebc-roi-cell {
+  border-color: var(--y2);
+}
+.ebc-roi-num {
+  font-size: clamp(44px, 6vw, 72px);
+}
+
+/* ============ ROI floor card ============ */
+.ebc-floor-card {
+  border-left: 2px solid var(--y2);
+  padding: 28px 32px;
+  margin-bottom: 40px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.ebc-floor-eyebrow { margin-bottom: 0; }
+.ebc-floor-eyebrow::before { display: none; }
+.ebc-floor-quote {
+  font-family: var(--sans);
+  font-size: clamp(20px, 2.5vw, 28px);
+  font-weight: 500;
+  line-height: 1.35;
+  color: var(--ink);
+  font-style: normal;
+  border: none;
+  padding: 0;
+  margin: 0;
+}
+
+/* ============ CTA ============ */
+.ebc-cta-wrap {
+  display: flex;
+  justify-content: flex-start;
+}
+</style>
+
+<script is:inline define:vars={{ pilotOneshot, ascendRecurring, y1Months }}>
+  // EarnBackCalculator — vanilla JS inline (is:inline + define:vars for Astro data bridge)
+  // Pattern: data-slider-input + data-out-* (matches AIStorySection.astro)
+  // prefers-reduced-motion: no entrance animation; sliders always functional
+  (function () {
+    const y1Cost = pilotOneshot + ascendRecurring * y1Months;
+
+    const sliderLeads = document.querySelector('[data-slider-input="leads"]');
+    const sliderValue = document.querySelector('[data-slider-input="value"]');
+    const sliderClose = document.querySelector('[data-slider-input="close"]');
+
+    const outLeads   = document.querySelector('[data-out-leads]');
+    const outValue   = document.querySelector('[data-out-value]');
+    const outClose   = document.querySelector('[data-out-close]');
+    const outDeals   = document.querySelector('[data-out-deals]');
+    const outMonthly = document.querySelector('[data-out-monthly]');
+    const outAnnual  = document.querySelector('[data-out-annual]');
+    const outRoi     = document.querySelector('[data-out-roi]');
+
+    const fmtDollar = function(n) { return '$' + Math.round(n).toLocaleString('en-US'); };
+    const fmtDeals  = function(n) { return (Math.round(n * 10) / 10).toFixed(1); };
+
+    const calculate = function() {
+      const leads     = Number(sliderLeads ? sliderLeads.value : 20);
+      const avgValue  = Number(sliderValue ? sliderValue.value : 8000);
+      const closeRate = Number(sliderClose ? sliderClose.value : 22);
+
+      const dealsPerMo  = leads * (closeRate / 100);
+      const monthlyLift = dealsPerMo * avgValue;
+      const annualLift  = monthlyLift * 12;
+      const roi         = y1Cost > 0 ? annualLift / y1Cost : 0;
+
+      if (outLeads)   outLeads.textContent   = String(leads);
+      if (outValue)   outValue.textContent   = '$' + avgValue.toLocaleString('en-US');
+      if (outClose)   outClose.textContent   = closeRate + '%';
+      if (outDeals)   outDeals.textContent   = fmtDeals(dealsPerMo);
+      if (outMonthly) outMonthly.textContent = fmtDollar(monthlyLift);
+      if (outAnnual)  outAnnual.textContent  = fmtDollar(annualLift);
+      if (outRoi)     outRoi.textContent     = roi.toFixed(1) + '×';
+    };
+
+    if (sliderLeads) sliderLeads.addEventListener('input', calculate);
+    if (sliderValue) sliderValue.addEventListener('input', calculate);
+    if (sliderClose) sliderClose.addEventListener('input', calculate);
+
+    // Run on load to set correct initial state
+    calculate();
+  })();
+</script>

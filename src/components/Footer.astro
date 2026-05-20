@@ -19,9 +19,10 @@ const masthead = 'BUILDWISE·MEDIA';
         <ul class="footer-list">
           <li><a href="/services/ascend">Ascend</a></li>
           <li><a href="/how-it-works">How It Works</a></li>
+          <li><a href="/pricing">Pricing</a></li>
           <li><a href="/results">Results</a></li>
-          <li><a href="/about">About</a></li>
           <li><a href="/playbook">Playbook</a></li>
+          <li><a href="/about">About</a></li>
         </ul>
       </div>
 
@@ -50,6 +51,8 @@ const masthead = 'BUILDWISE·MEDIA';
       </p>
       <p class="copy mono">© {year} Buildwise Media LLC · Atlanta, GA</p>
     </div>
+
+    <p class="team-voice mono">By the Buildwise team + our AI orchestration system.</p>
   </div>
 </footer>
 
@@ -76,8 +79,20 @@ const masthead = 'BUILDWISE·MEDIA';
   font-family: var(--mono);
   font-size: 10px;
   letter-spacing: 0.20em;
-  color: var(--gold);
+  color: var(--y2);
   margin-bottom: 14px;
+}
+
+.team-voice {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.18em;
+  color: var(--ink-faint);
+  text-transform: uppercase;
+  text-align: center;
+  margin-top: 24px;
+  padding-top: 24px;
+  border-top: 1px solid var(--rule);
 }
 
 .footer-list { list-style: none; display: flex; flex-direction: column; gap: 10px; }
@@ -88,7 +103,7 @@ const masthead = 'BUILDWISE·MEDIA';
   color: var(--ink-dim);
   transition: color 180ms ease;
 }
-.footer-list a:hover { color: var(--gold); }
+.footer-list a:hover { color: var(--y2); }
 
 .masthead {
   font-family: var(--mono);
@@ -97,7 +112,7 @@ const masthead = 'BUILDWISE·MEDIA';
   color: var(--ink-dim);
   text-transform: uppercase;
 }
-.masthead .dot-sep { color: var(--gold); margin: 0 0.5em; }
+.masthead .dot-sep { color: var(--y2); margin: 0 0.5em; }
 
 .copy {
   font-family: var(--mono);

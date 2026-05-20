@@ -1,92 +1,102 @@
 ---
-// AI Story Arc — REQUIRED per ai-sections-required lock 2026-03-12
-// Three stitched panels: Acceleration Curve · Compounding Slider · Dot Grid (factory horizon)
+// L7 — The Exponential Capability Curve
+// Plan: ~/.claude/plans/based-on-all-nifty-karp.md
+// Refactored 2026-05-20 from prior 3-panel "Compounding Edge" component into the
+// capability-inheritance arc. Compounding Slider lock satisfied by the new
+// EarnBackCalculator (L6) which is a slider with compounding outputs.
+// Vendor names BANNED per CLAUDE.md client-voice lock — "frontier AI" / "AI assistant"
+// stand in for Anthropic / Google / OpenAI / xAI / Claude / ChatGPT / Gemini.
 ---
-<section class="ai-story">
+<section class="capability-curve" aria-labelledby="curve-headline">
   <div class="container">
 
-    <header class="ai-head reveal">
-      <p class="section-tag">The Compounding Edge</p>
-      <h2 class="h-section">
-        Two AIs are now<br/>
-        <em>building together.</em>
+    <header class="curve-head reveal">
+      <p class="section-tag">The Curve</p>
+      <h2 id="curve-headline" class="h-section">
+        Your system inherits every<br/>
+        frontier AI improvement.<br/>
+        <em>Automatically.</em>
       </h2>
       <p class="lede">
-        The marketing engine isn't a static deliverable. Every week it sees more, learns more, and quietly out-performs the last. The leverage compounds whether you're paying attention or not.
+        When a better AI model ships — and a better one ships every few months — your system routes there next session. No re-platforming cost. No contract renegotiation. The capability compounds inside your business.
       </p>
     </header>
 
-    <!-- Panel 1: AI Acceleration Curve (SVG) -->
-    <figure class="ai-panel ai-curve reveal" aria-labelledby="ai-curve-cap">
-      <svg viewBox="0 0 1200 360" aria-hidden="true" preserveAspectRatio="none" class="curve-svg">
+    <!-- Panel 1: Capability inheritance curve — 36 months, 4 named milestones -->
+    <figure class="curve-panel reveal" aria-labelledby="curve-cap">
+      <svg viewBox="0 0 1200 420" aria-hidden="true" preserveAspectRatio="none" class="curve-svg">
         <defs>
           <linearGradient id="curveFill" x1="0" x2="0" y1="0" y2="1">
             <stop offset="0%" stop-color="var(--y2)" stop-opacity="0.22"/>
             <stop offset="100%" stop-color="var(--y2)" stop-opacity="0"/>
           </linearGradient>
-          <pattern id="grid" width="60" height="60" patternUnits="userSpaceOnUse">
+          <pattern id="curveGrid" width="60" height="60" patternUnits="userSpaceOnUse">
             <path d="M 60 0 L 0 0 0 60" fill="none" stroke="#1f1d27" stroke-width="0.5"/>
           </pattern>
         </defs>
-        <rect width="1200" height="360" fill="url(#grid)"/>
-        <!-- Reference flat line — typical agency -->
-        <line x1="0" y1="280" x2="1200" y2="260" stroke="#5a5650" stroke-width="1" stroke-dasharray="4 6"/>
-        <text x="1180" y="252" text-anchor="end" fill="#5a5650" font-family="JetBrains Mono, monospace" font-size="12" letter-spacing="2">TYPICAL AGENCY</text>
-        <!-- Compounding curve — BWM -->
-        <path d="M 0 320 Q 300 320 540 280 T 1200 40" fill="none" stroke="var(--y2)" stroke-width="2"/>
-        <path d="M 0 320 Q 300 320 540 280 T 1200 40 L 1200 360 L 0 360 Z" fill="url(#curveFill)"/>
-        <text x="20" y="50" fill="var(--y2)" font-family="JetBrains Mono, monospace" font-size="12" letter-spacing="3">BWM REVENUE ENGINE</text>
-        <!-- Markers -->
-        <circle cx="200" cy="316" r="4" fill="var(--y2)"/>
-        <circle cx="540" cy="280" r="4" fill="var(--y2)"/>
-        <circle cx="900" cy="160" r="5" fill="var(--y2)"/>
-        <text x="200" y="346" text-anchor="middle" fill="#5a5650" font-family="JetBrains Mono, monospace" font-size="10" letter-spacing="2">DAY 1</text>
-        <text x="540" y="346" text-anchor="middle" fill="#5a5650" font-family="JetBrains Mono, monospace" font-size="10" letter-spacing="2">DAY 30</text>
-        <text x="900" y="346" text-anchor="middle" fill="#5a5650" font-family="JetBrains Mono, monospace" font-size="10" letter-spacing="2">DAY 90</text>
+        <rect width="1200" height="420" fill="url(#curveGrid)"/>
+
+        <!-- Reference flat line — typical static agency -->
+        <line x1="0" y1="340" x2="1200" y2="320" stroke="#5a5650" stroke-width="1" stroke-dasharray="4 6"/>
+        <text x="1180" y="312" text-anchor="end" fill="#5a5650" font-family="JetBrains Mono, monospace" font-size="11" letter-spacing="2">TYPICAL AGENCY — STATIC OVER 36 MONTHS</text>
+
+        <!-- Compounding curve — your Ascend system inheriting frontier AI -->
+        <path d="M 0 380 Q 200 380 400 340 Q 600 300 800 220 Q 1000 140 1200 30" fill="none" stroke="var(--y2)" stroke-width="2"/>
+        <path d="M 0 380 Q 200 380 400 340 Q 600 300 800 220 Q 1000 140 1200 30 L 1200 420 L 0 420 Z" fill="url(#curveFill)"/>
+        <text x="20" y="50" fill="var(--y2)" font-family="JetBrains Mono, monospace" font-size="12" letter-spacing="3">YOUR ASCEND SYSTEM — CAPABILITY COMPOUNDS</text>
+
+        <!-- 4 milestone markers + labels -->
+        <g class="milestone" data-milestone="6mo">
+          <circle cx="200" cy="380" r="5" fill="var(--y2)"/>
+          <text x="200" y="408" text-anchor="middle" fill="#5a5650" font-family="JetBrains Mono, monospace" font-size="10" letter-spacing="2">6 MO</text>
+        </g>
+        <g class="milestone" data-milestone="12mo">
+          <circle cx="400" cy="340" r="5" fill="var(--y2)"/>
+          <text x="400" y="408" text-anchor="middle" fill="#5a5650" font-family="JetBrains Mono, monospace" font-size="10" letter-spacing="2">12 MO</text>
+        </g>
+        <g class="milestone" data-milestone="24mo">
+          <circle cx="800" cy="220" r="6" fill="var(--y2)"/>
+          <text x="800" y="408" text-anchor="middle" fill="#5a5650" font-family="JetBrains Mono, monospace" font-size="10" letter-spacing="2">24 MO</text>
+        </g>
+        <g class="milestone" data-milestone="36mo">
+          <circle cx="1180" cy="30" r="7" fill="var(--y2)"/>
+          <text x="1180" y="408" text-anchor="end" fill="#5a5650" font-family="JetBrains Mono, monospace" font-size="10" letter-spacing="2">36 MO</text>
+        </g>
       </svg>
-      <figcaption id="ai-curve-cap" class="ai-cap mono">Acceleration curve · BWM operations vs typical agency · 90-day window</figcaption>
+      <figcaption id="curve-cap" class="curve-cap mono">Capability inheritance · BWM Ascend system vs typical static agency · 36-month horizon</figcaption>
     </figure>
 
-    <!-- Panel 2: Compounding Slider — interactive -->
-    <div class="ai-panel ai-slider reveal" data-slider>
-      <div class="slider-head">
-        <p class="kpi-label mono">Compounding model</p>
-        <p class="slider-prompt">Drag to see the leverage at different time horizons.</p>
-      </div>
+    <!-- 4 milestone tiles below the curve — what each marker actually means -->
+    <ol class="milestone-list reveal" role="list">
+      <li class="milestone-card">
+        <span class="milestone-num mono">6 MO</span>
+        <h3 class="card-title">AI video at social scale</h3>
+        <p class="card-body">Automated creative testing at 10–100× your current throughput. Every winning concept compounds the next.</p>
+      </li>
+      <li class="milestone-card">
+        <span class="milestone-num mono">12 MO</span>
+        <h3 class="card-title">Autonomous workflows running 8+ hours</h3>
+        <p class="card-body">Our AI system handles long-running operations end-to-end — uninterrupted, audited, with human signoff at the gates.</p>
+      </li>
+      <li class="milestone-card">
+        <span class="milestone-num mono">24 MO</span>
+        <h3 class="card-title">Self-improving capability</h3>
+        <p class="card-body">The system gets better without us touching it. Your business compounds while you keep running operations.</p>
+      </li>
+      <li class="milestone-card">
+        <span class="milestone-num mono">36 MO</span>
+        <h3 class="card-title">Capability beyond what anyone can predict</h3>
+        <p class="card-body">Whatever the frontier ships in 2029 lands in your business the same week. No re-platforming. No new contract.</p>
+      </li>
+    </ol>
 
-      <div class="slider-body">
-        <div class="slider-row">
-          <span class="slider-label mono">Months in</span>
-          <input type="range" min="1" max="24" value="6" class="slider-input" aria-label="Months operating" />
-          <output class="slider-out mono"><span data-out-months>6</span> mo</output>
-        </div>
-
-        <div class="slider-out-grid">
-          <div class="slider-cell">
-            <p class="kpi-label mono">Pipeline · model</p>
-            <p class="metric-val">$<em data-out-pipeline>180k</em></p>
-          </div>
-          <div class="slider-cell">
-            <p class="kpi-label mono">Hours back · weekly</p>
-            <p class="metric-val"><em data-out-hours>14</em></p>
-          </div>
-          <div class="slider-cell">
-            <p class="kpi-label mono">System knowledge</p>
-            <p class="metric-val"><em data-out-knowledge>32%</em></p>
-          </div>
-        </div>
-
-        <p class="slider-foot mono">Range modeled from BWM client cohort baselines · Confidence: 78% · Evidence class: Modeled</p>
-      </div>
-    </div>
-
-    <!-- Panel 3: Dot Grid factory horizon -->
-    <div class="ai-panel ai-grid reveal">
+    <!-- Panel 2: Dot Grid horizon — the system runs while you don't -->
+    <div class="curve-grid reveal" aria-label="System runs 24/7">
       <div class="grid-canvas dot-grid" aria-hidden="true"></div>
       <div class="grid-overlay">
         <p class="reveal-num"><em>24/7</em></p>
         <p class="grid-cap">
-          The system runs while you don't. Connectors audited every Monday at 4 a.m. ET. Drift detected, surfaced, and routed before you read your inbox.
+          The system runs while you don't. Every Monday at 4 a.m. ET, the operating layer audits itself. Drift gets surfaced and routed before you read your inbox.
         </p>
       </div>
     </div>
@@ -95,99 +105,69 @@
 </section>
 
 <style>
-.ai-story { padding-block: var(--section-y); position: relative; }
-.ai-head { display: flex; flex-direction: column; gap: 24px; margin-bottom: 64px; max-width: 880px; }
+.capability-curve { padding-block: var(--section-y); position: relative; background: var(--bg); }
 
-.ai-panel { margin-bottom: 64px; }
-.ai-panel:last-child { margin-bottom: 0; }
+.curve-head { display: flex; flex-direction: column; gap: 24px; margin-bottom: 56px; max-width: 920px; }
+.curve-head h2 em { color: var(--y2); font-style: normal; font-weight: inherit; }
 
-/* Panel 1 — Curve */
-.ai-curve { background: var(--bg-elev); border: 1px solid var(--rule); border-radius: 2px; padding: 32px; }
-.curve-svg { width: 100%; height: clamp(220px, 30vw, 360px); }
-.ai-cap { margin-top: 16px; font-size: 10px; letter-spacing: 0.18em; color: var(--ink-faint); }
+.curve-panel { background: var(--bg-elev); border: 1px solid var(--rule); border-radius: 2px; padding: 32px; margin-bottom: 48px; }
+.curve-svg { width: 100%; height: clamp(260px, 32vw, 420px); }
+.curve-cap { margin-top: 16px; font-size: 10px; letter-spacing: 0.18em; color: var(--ink-faint); }
 
-/* Panel 2 — Slider */
-.ai-slider { background: var(--bg-elev); border: 1px solid var(--rule); border-radius: 2px; padding: 40px 32px; }
-.slider-head { display: flex; flex-direction: column; gap: 8px; margin-bottom: 32px; }
-.slider-prompt { font-family: var(--serif); font-size: clamp(22px, 2.2vw, 28px); line-height: 1.3; color: var(--ink); }
-.slider-row { display: grid; grid-template-columns: 110px minmax(0, 1fr) 90px; gap: 24px; align-items: center; margin-bottom: 32px; }
-.slider-label { font-size: 10px; letter-spacing: 0.2em; color: var(--ink-faint); }
-.slider-out { font-size: 14px; letter-spacing: 0.1em; color: var(--gold); text-align: right; }
-
-.slider-input {
-  -webkit-appearance: none; appearance: none;
-  width: 100%; height: 2px; background: var(--rule);
-  border-radius: 1px; outline: none;
-}
-.slider-input::-webkit-slider-thumb {
-  -webkit-appearance: none; appearance: none;
-  width: 18px; height: 18px;
-  background: var(--gold);
-  border-radius: 50%;
-  border: 3px solid var(--bg-elev);
-  cursor: pointer;
-  box-shadow: 0 0 0 1px var(--gold);
-  transition: box-shadow 180ms ease;
-}
-.slider-input::-webkit-slider-thumb:hover { box-shadow: 0 0 0 1px var(--y2); }
-.slider-input::-moz-range-thumb {
-  width: 18px; height: 18px;
-  background: var(--gold);
-  border-radius: 50%;
-  border: 3px solid var(--bg-elev);
-  cursor: pointer;
-}
-
-.slider-out-grid {
+/* 4 milestone tiles — Y2 numerals, hairline-divided cards */
+.milestone-list {
+  list-style: none;
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 24px;
-  padding-block: 24px;
-  border-top: 1px solid var(--rule);
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 16px;
+  margin-bottom: 48px;
 }
-.slider-cell { display: flex; flex-direction: column; gap: 6px; }
+.milestone-card {
+  background: var(--bg-card);
+  border: 1px solid var(--rule);
+  border-radius: 2px;
+  padding: 28px 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  transition: border-color 220ms ease;
+}
+.milestone-card:hover {
+  border-color: var(--y2);
+}
+.milestone-num {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.22em;
+  color: var(--y2);
+}
+.milestone-card .card-title {
+  font-family: var(--sans);
+  font-weight: 600;
+  font-size: 17px;
+  line-height: 1.25;
+  color: var(--ink);
+}
+.milestone-card .card-body {
+  font-family: var(--sans);
+  font-weight: 300;
+  font-size: 14px;
+  line-height: 1.55;
+  color: var(--ink-dim);
+}
 
-.slider-foot { margin-top: 8px; font-size: 10px; letter-spacing: 0.18em; color: var(--ink-faint); }
-
-/* Panel 3 — Dot Grid */
-.ai-grid { position: relative; height: clamp(280px, 36vw, 420px); border: 1px solid var(--rule); overflow: hidden; }
+/* Panel 2 — Dot Grid horizon */
+.curve-grid { position: relative; height: clamp(260px, 32vw, 380px); border: 1px solid var(--rule); overflow: hidden; }
 .grid-canvas { position: absolute; inset: 0; opacity: 0.35; mask-image: radial-gradient(ellipse 60% 60% at center, black 30%, transparent 100%); }
 .grid-overlay { position: absolute; inset: 0; padding: 32px; display: flex; flex-direction: column; justify-content: center; align-items: flex-start; gap: 24px; }
-.grid-cap { font-family: var(--serif); font-size: clamp(20px, 2vw, 26px); line-height: 1.35; color: var(--ink-dim); max-width: 540px; }
+.grid-cap { font-family: var(--sans); font-size: clamp(18px, 1.8vw, 24px); line-height: 1.45; color: var(--ink-dim); max-width: 540px; }
 
-@media (max-width: 720px) {
-  .slider-row { grid-template-columns: 1fr; gap: 12px; }
-  .slider-out { text-align: left; }
-  .slider-out-grid { grid-template-columns: 1fr; }
+@media (max-width: 880px) {
+  .milestone-list { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }
+@media (max-width: 520px) {
+  .milestone-list { grid-template-columns: 1fr; }
+}
+
+/* prefers-reduced-motion: nothing to disable — SVG is static, dot-grid is CSS pattern */
 </style>
-
-<script>
-  const slider = document.querySelector<HTMLInputElement>('.slider-input');
-  if (slider) {
-    const monthsOut = document.querySelector<HTMLElement>('[data-out-months]');
-    const pipelineOut = document.querySelector<HTMLElement>('[data-out-pipeline]');
-    const hoursOut = document.querySelector<HTMLElement>('[data-out-hours]');
-    const knowledgeOut = document.querySelector<HTMLElement>('[data-out-knowledge]');
-
-    const fmt = (n: number) => {
-      if (n >= 1000) return (n / 1000).toFixed(n >= 10000 ? 0 : 1) + 'k';
-      return String(n);
-    };
-
-    const update = () => {
-      const m = Number(slider.value);
-      // Modeled compounding: pipeline grows with mild curve, hours stabilize, knowledge approaches 100%.
-      const pipeline = Math.round(15000 * m * (1 + m / 24));
-      const hours = Math.min(20, Math.round(4 + m * 1.1));
-      const knowledge = Math.min(98, Math.round(8 + m * 4.5));
-      if (monthsOut) monthsOut.textContent = String(m);
-      if (pipelineOut) pipelineOut.textContent = fmt(pipeline);
-      if (hoursOut) hoursOut.textContent = String(hours);
-      if (knowledgeOut) knowledgeOut.textContent = `${knowledge}%`;
-    };
-
-    slider.addEventListener('input', update);
-    update();
-  }
-</script>

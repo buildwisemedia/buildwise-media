@@ -1,0 +1,319 @@
+---
+// L3 — The 8-Layer Revenue Operating System
+// Plan ref: based-on-all-nifty-karp.md §L3
+// Source of truth: canonical.json → products.ascend.eight_layers
+// R020: F2-Proof + F4-Curiosity | R017: hover-state only, no ambient loop
+import canonical from '../data/canonical.json';
+
+const layers = canonical.products.ascend.eight_layers.map((raw: string, i: number) => {
+  const dotIndex = raw.indexOf('·');
+  const namePart = raw.slice(raw.indexOf('·') > 0 ? 2 : 0, dotIndex).trim();
+  // Extract: "1 · Visibility — GBP..." → name="Visibility", body=everything after "—"
+  // Format is "N · Name — description"
+  const dashIndex = raw.indexOf('—');
+  const name = dashIndex > 0
+    ? raw.slice(raw.indexOf('·') + 1, dashIndex).trim()
+    : raw.slice(raw.indexOf('·') + 1).trim();
+  const body = dashIndex > 0 ? raw.slice(dashIndex + 1).trim() : '';
+  const num = String(i + 1).padStart(2, '0');
+  return { num, name, body };
+});
+
+// Compass positions for 8 nodes around a radial diagram (SVG viewBox 240×240, center 120,120)
+// N=0°, NE=45°, E=90°, SE=135°, S=180°, SW=225°, W=270°, NW=315°
+const radius = 88;
+const cx = 120;
+const cy = 120;
+const nodePositions = [0, 45, 90, 135, 180, 225, 270, 315].map((deg, i) => {
+  const rad = (deg - 90) * (Math.PI / 180);
+  return {
+    x: cx + radius * Math.cos(rad),
+    y: cy + radius * Math.sin(rad),
+    idx: i,
+  };
+});
+---
+
+<section id="system" class="eight-layer-section">
+  <div class="container">
+
+    <header class="els-header">
+      <p class="eyebrow">THE SYSTEM</p>
+      <h2 class="h-section els-h2">
+        The 8-layer revenue operating system that makes you the most-chosen name in Atlanta.
+      </h2>
+      <p class="lede els-lede">
+        Our AI system runs it. You own it. Every layer connects so the whole system tightens together.
+      </p>
+    </header>
+
+    <!-- Radial SVG diagram — hover-state interactive, NO ambient animation (R017 marketing-static) -->
+    <div class="els-diagram-wrap" aria-hidden="true">
+      <svg
+        class="els-diagram-svg"
+        viewBox="0 0 240 240"
+        width="240"
+        height="240"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <!-- Hairline rings -->
+        <circle cx="120" cy="120" r="88" fill="none" stroke="var(--rule)" stroke-width="0.5"/>
+        <circle cx="120" cy="120" r="44" fill="none" stroke="var(--rule)" stroke-width="0.5"/>
+
+        <!-- Spokes + perimeter nodes per layer -->
+        {nodePositions.map((pos, i) => (
+          <g class={`els-node-group els-node-${i}`} data-layer-idx={i}>
+            <!-- Spoke from center to node -->
+            <line
+              x1="120"
+              y1="120"
+              x2={pos.x}
+              y2={pos.y}
+              stroke="var(--rule)"
+              stroke-width="0.75"
+              class="els-spoke"
+            />
+            <!-- Perimeter node: hollow circle at rest, fills Y2 on hover -->
+            <circle
+              cx={pos.x}
+              cy={pos.y}
+              r="7"
+              fill="var(--bg)"
+              stroke="var(--y2)"
+              stroke-width="1"
+              class="els-perim-node"
+            />
+            <!-- Index label -->
+            <text
+              x={pos.x}
+              y={pos.y + 0.5}
+              text-anchor="middle"
+              dominant-baseline="middle"
+              fill="var(--ink-faint)"
+              font-family="JetBrains Mono, monospace"
+              font-size="5"
+              letter-spacing="0"
+              class="els-node-label"
+            >{String(i + 1).padStart(2, '0')}</text>
+          </g>
+        ))}
+
+        <!-- Orchestrator center node -->
+        <circle cx="120" cy="120" r="12" fill="var(--bg)" stroke="var(--y2)" stroke-width="1"/>
+        <circle cx="120" cy="120" r="3" fill="var(--y2)"/>
+      </svg>
+    </div>
+
+    <!-- 8-card grid -->
+    <div class="els-grid">
+      {layers.map((layer, i) => (
+        <article
+          class={`els-card card els-card-${i}`}
+          data-layer-idx={i}
+        >
+          <header class="els-card-header">
+            <span class="els-num eyebrow">{layer.num}</span>
+          </header>
+          <h3 class="h-sub els-card-name">{layer.name}</h3>
+          <p class="els-card-body card-body">{layer.body}</p>
+          <footer class="els-card-foot">
+            <span class="els-tag">
+              <span class="dot live"></span>
+              <span class="els-tag-text mono">LIVE</span>
+            </span>
+          </footer>
+        </article>
+      ))}
+    </div>
+
+    <!-- Legend -->
+    <p class="els-legend mono">
+      All 8 layers are live and shipping today.
+    </p>
+
+  </div>
+</section>
+
+<style>
+/* ============ Section shell ============ */
+.eight-layer-section {
+  padding-block: var(--section-y);
+  background: var(--bg);
+  position: relative;
+}
+
+/* ============ Header ============ */
+.els-header {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  margin-bottom: 48px;
+  max-width: 780px;
+}
+.els-h2 { color: var(--ink); }
+.els-lede { max-width: 640px; }
+
+/* ============ Radial diagram ============ */
+.els-diagram-wrap {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 48px;
+}
+.els-diagram-svg {
+  width: clamp(160px, 20vw, 240px);
+  height: auto;
+  overflow: visible;
+}
+
+/* Hover: card hover → corresponding perimeter node fills Y2 */
+/* Uses CSS :has() where supported; falls back to JS data-attr approach */
+.els-perim-node {
+  transition: fill 180ms ease, stroke 180ms ease;
+}
+.els-spoke {
+  transition: stroke 180ms ease;
+}
+
+/* ============ Grid — 4-col desktop, 2-col tablet, 1-col mobile ============ */
+.els-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 1px;
+  background: var(--rule);
+  border: 1px solid var(--rule);
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+@media (max-width: 960px) {
+  .els-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+@media (max-width: 520px) {
+  .els-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ============ Individual tri-card ============ */
+.els-card {
+  background: var(--bg-card);
+  border: none;
+  border-radius: 0;
+  padding: 28px 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  transition: background 180ms ease;
+  cursor: default;
+}
+.els-card:hover {
+  background: var(--bg-elev);
+  border-color: var(--rule-bright);
+}
+
+.els-card-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.els-num {
+  color: var(--y2);
+  font-size: 10px;
+  letter-spacing: 0.18em;
+  /* override eyebrow::before — no leading dash inside cards */
+}
+.els-num::before { display: none; }
+
+.els-card-name {
+  font-size: clamp(18px, 2vw, 24px);
+  color: var(--ink);
+  line-height: 1.2;
+}
+.els-card-body {
+  font-size: 13px;
+  line-height: 1.55;
+  color: var(--ink-dim);
+  flex: 1;
+}
+
+/* ============ Card foot — LIVE tag ============ */
+.els-card-foot {
+  margin-top: 8px;
+  padding-top: 12px;
+  border-top: 1px solid var(--rule);
+}
+.els-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+.els-tag-text {
+  font-size: 9px;
+  letter-spacing: 0.22em;
+  color: var(--y2);
+}
+
+/* ============ Legend ============ */
+.els-legend {
+  margin-top: 24px;
+  font-size: 10px;
+  letter-spacing: 0.18em;
+  color: var(--ink-faint);
+  text-align: center;
+}
+
+/* ============ Hover coupling: card → diagram node ============ */
+/* When a card is hovered, set a custom property on the SVG to highlight
+   the corresponding perimeter node. Achieved via JS data-attribute toggling. */
+.els-perim-node.active {
+  fill: var(--y2);
+  stroke: var(--y2);
+}
+.els-spoke.active {
+  stroke: var(--y2);
+}
+.els-node-label.active {
+  fill: var(--bg);
+}
+</style>
+
+<script>
+  // Hover coupling: hovering a card illuminates the matching SVG perimeter node.
+  // NO ambient animation — state-driven by user action only (R017 marketing-static).
+  (function() {
+    const cards = document.querySelectorAll<HTMLElement>('.els-card[data-layer-idx]');
+    const svg = document.querySelector('.els-diagram-svg');
+    if (!svg) return;
+
+    const getNode = (idx: string) => svg.querySelector<SVGElement>(`.els-node-${idx} .els-perim-node`);
+    const getSpoke = (idx: string) => svg.querySelector<SVGElement>(`.els-node-${idx} .els-spoke`);
+    const getLabel = (idx: string) => svg.querySelector<SVGElement>(`.els-node-${idx} .els-node-label`);
+
+    cards.forEach((card) => {
+      const idx = card.dataset.layerIdx ?? '';
+
+      card.addEventListener('mouseenter', () => {
+        getNode(idx)?.classList.add('active');
+        getSpoke(idx)?.classList.add('active');
+        getLabel(idx)?.classList.add('active');
+      });
+      card.addEventListener('mouseleave', () => {
+        getNode(idx)?.classList.remove('active');
+        getSpoke(idx)?.classList.remove('active');
+        getLabel(idx)?.classList.remove('active');
+      });
+      card.addEventListener('focusin', () => {
+        getNode(idx)?.classList.add('active');
+        getSpoke(idx)?.classList.add('active');
+        getLabel(idx)?.classList.add('active');
+      });
+      card.addEventListener('focusout', () => {
+        getNode(idx)?.classList.remove('active');
+        getSpoke(idx)?.classList.remove('active');
+        getLabel(idx)?.classList.remove('active');
+      });
+    });
+  })();
+</script>

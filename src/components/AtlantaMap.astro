@@ -1,0 +1,291 @@
+---
+// L8 — Atlanta local dominance: SVG metro map + 3 mechanism cards
+// plan: ~/.claude/plans/based-on-all-nifty-karp.md § L8
+// R020 F1-Emotion (hometown pride) + F2-Proof (specific named cities)
+// No vendor names — "AI assistant" not Claude/Google/etc. (CLAUDE.md vendor-name ban)
+// Dots use .dot.live class (existing global.css) with Y2 glow
+// Section background: --bg-card (third surface tone, per L4 alternation rhythm)
+
+const submarkets = [
+  // Each: label, approximate cx/cy as % of SVG viewport (100×60), tooltip
+  { id: "buckhead",      label: "Buckhead",       cx: 47, cy: 22, desc: "Prime commercial + high-income residential" },
+  { id: "sandysprings",  label: "Sandy Springs",  cx: 55, cy: 16, desc: "Dense professional services corridor" },
+  { id: "marietta",      label: "Marietta",        cx: 28, cy: 20, desc: "Northwest metro anchor" },
+  { id: "decatur",       label: "Decatur",          cx: 60, cy: 34, desc: "East Atlanta dense residential" },
+  { id: "smyrna",        label: "Smyrna",           cx: 33, cy: 30, desc: "Growing northwest mid-market" },
+  { id: "roswell",       label: "Roswell",          cx: 52, cy: 10, desc: "North Fulton high-value residential" },
+];
+
+// Atlanta metro approximate outline path — simplified recognizable silhouette
+// Coordinates scaled to 100×60 viewBox. Not cartographically precise;
+// intent is a recognizable skyline-shape + local signal for AEO crawlers.
+const metroPath = "M 15,8 L 22,5 L 32,4 L 45,3 L 58,5 L 68,8 L 75,13 L 80,20 L 82,28 L 80,36 L 76,42 L 70,48 L 62,52 L 52,54 L 42,54 L 33,52 L 25,48 L 18,43 L 12,36 L 10,27 L 11,18 Z";
+
+// Hairline arteries connecting dots (from city center outward to rough center)
+// Center approximation: cx=47, cy=32 (downtown Atlanta)
+const center = { cx: 47, cy: 32 };
+
+const mechanisms = [
+  {
+    title: "Neighborhood-level presence",
+    body: "Your business listing optimized. Neighborhood service-area pages. Review velocity tuned to your category and submarket. Every page targets the buyer around the corner.",
+  },
+  {
+    title: "Local citation graph",
+    body: "Directory authority compounding monthly. Atlanta-specific data flowing into every search surface — typed search, voice search, AI search. Each citation reinforces the next.",
+  },
+  {
+    title: "AI-search citation",
+    body: "When buyers ask an AI assistant 'best HVAC in Atlanta,' your business is the answer the model returns. Not the second result. The first one cited.",
+  },
+];
+---
+
+<section class="atlanta-map" aria-label="Atlanta local dominance">
+  <div class="container">
+
+    <!-- Section header -->
+    <div class="am-intro">
+      <p class="eyebrow">Local Dominance</p>
+      <h2 class="h-section am-h2">Built for owners who want to own Atlanta.</h2>
+      <p class="lede am-lede">
+        Buckhead, Sandy Springs, Marietta, Decatur, Smyrna, Roswell. Your business shows up first
+        whether the buyer is searching online, asking an AI assistant, or driving past a competitor's job site.
+      </p>
+    </div>
+
+    <!-- SVG metro map (R020 F1-Emotion + F2-Proof) -->
+    <div class="am-map-wrap" role="img" aria-label="Atlanta metro map showing six target submarkets: Buckhead, Sandy Springs, Marietta, Decatur, Smyrna, and Roswell">
+      <svg
+        class="am-map"
+        viewBox="0 0 100 60"
+        xmlns="http://www.w3.org/2000/svg"
+        aria-hidden="true"
+        focusable="false"
+      >
+        <!-- Metro outline -->
+        <path
+          d={metroPath}
+          fill="rgba(240, 255, 0, 0.03)"
+          stroke="var(--rule-bright)"
+          stroke-width="0.5"
+          stroke-linejoin="round"
+        />
+
+        <!-- Hairline arteries from each submarket to city center -->
+        {submarkets.map((city) => (
+          <line
+            class="am-artery"
+            x1={city.cx}
+            y1={city.cy}
+            x2={center.cx}
+            y2={center.cy}
+            stroke="var(--rule)"
+            stroke-width="0.35"
+            stroke-dasharray="1.5 1.5"
+          />
+        ))}
+
+        <!-- Downtown center node -->
+        <circle
+          cx={center.cx}
+          cy={center.cy}
+          r="1.8"
+          fill="rgba(240, 255, 0, 0.15)"
+          stroke="var(--y2)"
+          stroke-width="0.4"
+        />
+
+        <!-- Submarket dots — each is a <g> so hover tooltip works cleanly -->
+        {submarkets.map((city) => (
+          <g class="am-city" data-city={city.id} role="listitem">
+            <!-- Outer glow ring -->
+            <circle
+              cx={city.cx}
+              cy={city.cy}
+              r="2.4"
+              fill="rgba(240, 255, 0, 0.12)"
+              class="am-glow"
+            />
+            <!-- Y2 dot -->
+            <circle
+              cx={city.cx}
+              cy={city.cy}
+              r="1.2"
+              fill="var(--y2)"
+              class="am-dot"
+            />
+            <!-- City label (hidden by default, revealed on hover via CSS sibling) -->
+            <text
+              x={city.cx}
+              y={city.cy - 3.5}
+              class="am-city-label"
+              text-anchor="middle"
+              dominant-baseline="auto"
+            >
+              {city.label}
+            </text>
+          </g>
+        ))}
+      </svg>
+
+      <!-- Screen-reader city list inside map wrap -->
+      <ul class="sr-only">
+        {submarkets.map((city) => (
+          <li>{city.label} — {city.desc}</li>
+        ))}
+      </ul>
+    </div>
+
+    <!-- 3 mechanism cards below the map -->
+    <div class="am-cards" role="list" aria-label="Local dominance mechanisms">
+      {mechanisms.map((m) => (
+        <div class="card am-card" role="listitem">
+          <h3 class="am-card-title">{m.title}</h3>
+          <p class="am-card-body">{m.body}</p>
+        </div>
+      ))}
+    </div>
+
+  </div>
+</section>
+
+<style>
+  .atlanta-map {
+    background: var(--bg-card);
+    padding-block: var(--section-y);
+  }
+
+  /* ── Intro ── */
+  .am-intro {
+    max-width: 720px;
+    margin-bottom: clamp(40px, 6vw, 64px);
+  }
+  .am-intro .eyebrow { margin-bottom: 20px; }
+  .am-h2 { margin-bottom: 20px; }
+  .am-lede { max-width: 620px; }
+
+  /* ── SVG map container ── */
+  .am-map-wrap {
+    position: relative;
+    margin-bottom: clamp(40px, 6vw, 64px);
+    background: var(--bg-elev);
+    border: 1px solid var(--rule);
+    border-radius: 2px;
+    padding: 32px;
+    /* Constrain to reasonable width so SVG cities are legible */
+    max-width: 760px;
+  }
+
+  .am-map {
+    width: 100%;
+    height: auto;
+    display: block;
+    /* Minimum height so cities never collapse to zero */
+    min-height: 220px;
+  }
+
+  /* Artery animation: subtle pulse opacity — state-driven on map hover (R017 compliant:
+     marketing-static means no ambient loops; hover-activate = user-driven state) */
+  .am-map-wrap:hover .am-artery {
+    stroke: var(--rule-bright);
+    transition: stroke 300ms ease;
+  }
+
+  /* City group hover: reveal label, brighten dot */
+  .am-city { cursor: default; }
+
+  .am-city-label {
+    font-family: var(--mono);
+    font-size: 3.5px; /* SVG user units — relative to 100×60 viewBox */
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    fill: var(--ink-faint);
+    opacity: 0;
+    transition: opacity 200ms ease, fill 200ms ease;
+    pointer-events: none;
+  }
+
+  .am-glow {
+    opacity: 0.6;
+    transition: r 200ms ease, opacity 200ms ease;
+  }
+
+  .am-dot {
+    /* Native SVG glow approximation via filter — scoped to marketing surface (System A) */
+    filter: drop-shadow(0 0 1.2px rgba(240, 255, 0, 0.7));
+    transition: r 200ms ease;
+  }
+
+  /* Hover state: reveal label + brighten glow */
+  .am-city:hover .am-city-label {
+    opacity: 1;
+    fill: var(--y2);
+  }
+  .am-city:hover .am-glow {
+    opacity: 1;
+  }
+  .am-city:hover .am-dot {
+    filter: drop-shadow(0 0 2px rgba(240, 255, 0, 0.9));
+  }
+
+  /* Reduced motion: skip filter transitions */
+  @media (prefers-reduced-motion: reduce) {
+    .am-city-label,
+    .am-glow,
+    .am-dot,
+    .am-artery {
+      transition: none;
+    }
+  }
+
+  /* ── Mechanism cards ── */
+  .am-cards {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+  }
+
+  .am-card {
+    padding: clamp(24px, 3vw, 36px);
+    background: var(--bg-elev);
+    /* Override global .card bg for this context */
+  }
+
+  .am-card-title {
+    font-family: var(--sans);
+    font-weight: 700;
+    font-stretch: 75%;
+    font-size: clamp(17px, 1.8vw, 21px);
+    letter-spacing: -0.02em;
+    color: var(--ink);
+    margin-bottom: 12px;
+    line-height: 1.2;
+  }
+
+  .am-card-body {
+    font-size: 15px;
+    line-height: 1.6;
+    color: var(--ink-dim);
+  }
+
+  /* Responsive */
+  @media (max-width: 840px) {
+    .am-cards {
+      grid-template-columns: 1fr;
+      max-width: 480px;
+    }
+
+    .am-map-wrap {
+      max-width: 100%;
+      padding: 20px;
+    }
+  }
+
+  @media (max-width: 520px) {
+    .am-cards { max-width: 100%; }
+
+    .am-card-body { font-size: 17px; }
+  }
+</style>
