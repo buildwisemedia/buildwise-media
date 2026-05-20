@@ -6,7 +6,8 @@
     "dev": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
-    "astro": "astro"
+    "astro": "astro",
+    "sync-canonical": "cp ../bwm-strategic-roadmap/data/canonical.json src/data/canonical.json && echo 'canonical.json synced from The Book — commit + push the change so CF Pages builds against the committed file (NOT a live sibling-repo copy)'"
   },
   "dependencies": {
     "astro": "^5.17.1"

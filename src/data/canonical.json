@@ -1,0 +1,366 @@
+{
+  "schema_version": "1.1",
+  "effective_date": "2026-05-20",
+  "supersedes": "product-prices.html v6.7-v6.11 + scattered pricing across GTM/CX/Sales",
+  "applies_to": "NEW signings only · existing clients grandfathered at signed price",
+  "v15_corrections": [
+    "Ascend Pro territorial exclusivity reverted from v6 plan 'default 1 per metro' to Brain SOP model 'default 2 per territory + Territory Lock add-on'",
+    "Ascend 8-layer names aligned to Brain Technology canonical (Visibility / Conversion / Speed-to-Lead / Sales Ops / Reputation / Paid Media / Reporting / Strategy)",
+    "Pilot install menu restricted to BWM-proven layers (Paid Media excluded until own-funnel paid leads proven)",
+    "Install fee waiver for Pilot graduates → Ascend codified ($15K Pilot fee = the install; no double-charge on graduation)"
+  ],
+
+  "products": {
+    "pilot": {
+      "name": "Ascend Pilot",
+      "tier": 1,
+      "tier_label": "entry",
+      "price": {
+        "oneshot": 15000,
+        "oneshot_display": "$15,000",
+        "recurring": null
+      },
+      "duration": "45 days",
+      "operating_period_days": 45,
+      "conversion_target_to_ascend": "≥55% at Day 45",
+      "filter_mechanic": "Cash commitment up-front · NOT exit penalty (Brand Spine sovereignty lock)",
+      "pilot_fee_is_install": "The $15,000 Pilot fee covers the Ascend install scope. Pilot graduates begin Ascend at $7,000/mo recurring with no additional install fee — they've already paid for it.",
+      "deliverables": [
+        "Day 0: Contract signature + 1:1 ad-spend gate verified + capacity audit (Brain SOP § Process: Client Acquisition Engine)",
+        "Days 1-7: Market Dominance Dossier (12-dimension gap analysis, see /sample-dossier.html for shape)",
+        "Days 8-45: Proof sprint on the single highest-leverage layer from the proven-layer menu (Paid Media excluded until BWM own-funnel paid leads proven)",
+        "Live read-only attribution dashboard (bwm-form-handler + UTM taxonomy, identical to operational tier dashboards)",
+        "Weekly performance report against the layer's KPI (delivered Sunday, automated)",
+        "Day 45 conversion conversation — proof sprint outcome reviewed; if both agree, Ascend operating contract starts at $7,000/mo (install fee waived since Pilot fee covered it)"
+      ],
+      "proven_layer_menu": {
+        "policy": "Pilot install scope restricted to layers BWM has already shipped for clients. Paid Media is excluded until own-funnel paid leads are proven (per dogfood lock v6.3 — 0 own-funnel paid leads lifetime as of 2026-05-20).",
+        "available_for_pilot_install": [
+          "1 · Visibility — GBP cleanup + AEO citations + local SEO (proven: Ursula migration in flight; ASAP / D2S / TRG live)",
+          "2 · Conversion — landing pages + form handler + UTM-tagged attribution (proven: bwm-form-handler LIVE for all 6 clients)",
+          "3 · Speed-to-Lead — email/SMS instant-touch automation (email worker LIVE; SMS worker queued)",
+          "4 · Sales Ops — CRM hygiene + pipeline stages + lost-lead reactivation (proven: bwm-command LIVE)",
+          "5 · Reputation — review-request automation + reply cadence (proven: ASAP / D2S patterns)",
+          "7 · Reporting — first-touch + last-touch attribution + booked-job stitching (proven: D2S attribution LIVE 2026-04-21)",
+          "8 · Strategy — weekly growth diagnosis + next-best-action (proven: every BWM client gets this via Bob orchestrator)"
+        ],
+        "excluded_from_pilot_install_until_dogfooded": [
+          "6 · Paid Media — Meta + Google + LSA orchestration (BWM has 0 own-funnel paid leads lifetime; selling this as a Pilot install would violate honest-product principle)"
+        ]
+      },
+      "dossier_dimensions": [
+        "Competitor GBP share",
+        "Review velocity",
+        "Website conversion rate",
+        "Local-pack rank",
+        "AI-answer visibility (Perplexity / ChatGPT / Claude / Gemini citations)",
+        "Paid-search waste analysis",
+        "Meta creative gap",
+        "Speed-to-lead measurement",
+        "Nurture gaps",
+        "ServiceTitan / BuildOps integration readiness",
+        "AI-native maturity score",
+        "Estimated booked-job revenue upside"
+      ]
+    },
+    "ascend": {
+      "name": "Ascend",
+      "tier": 2,
+      "tier_label": "main product",
+      "price": {
+        "oneshot": 15000,
+        "oneshot_display": "$15,000",
+        "oneshot_label": "one-time install",
+        "recurring": 7000,
+        "recurring_display": "$7,000/mo"
+      },
+      "duration": "indefinite",
+      "operating_period_days": 90,
+      "contract_after_operating_period": "true month-to-month no penalty",
+      "ad_spend_commitment": "≥$7,000/mo client-funded distribution budget · 1:1 match · paid directly to ad platforms",
+      "install_window_days": "45 (within 90-day initial operating period; dovetails with Pilot proof sprint)",
+      "install_deliverables": [
+        "Full 8-layer revenue operating system installed in client environment",
+        "All integrations wired and tested (ads, CRM, attribution, calendar, nurture)",
+        "First creative load",
+        "Live read-only dashboard handoff",
+        "Weekly cadence locked"
+      ],
+      "recurring_deliverables_always_on": [
+        "Done-for-you ad operation across Meta + LinkedIn + AEO",
+        "24/7 speed-to-lead automation",
+        "Nurture sequences running",
+        "Attribution + pipeline always current"
+      ],
+      "recurring_deliverables_weekly": [
+        "Campaign tuning + creative refresh",
+        "Lead scoring recalibration",
+        "Nurture content extended with new touches",
+        "Performance report",
+        "HITL signoff queue cleared"
+      ],
+      "recurring_deliverables_monthly": [
+        "30-min Senior CS review (Allaine post-Q2-2026 hire)",
+        "Layer-by-layer KPI review"
+      ],
+      "recurring_deliverables_quarterly": [
+        "Strategic review + ICP refresh",
+        "Offering ladder audit",
+        "Channel mix re-evaluation",
+        "Forward roadmap aligned to client goals"
+      ],
+      "eight_layers": [
+        "1 · Visibility — GBP + AEO + local SEO + schema + citations + AI-search readiness (Perplexity / ChatGPT / Claude / Google AIO)",
+        "2 · Conversion — Landing pages · offers · forms · call tracking · chat · quote flows · dynamic content per channel",
+        "3 · Speed-to-Lead — Instant SMS/email/call follow-up · automated qualification · appointment routing · ServiceTitan/BuildOps/Avoca integration",
+        "4 · Sales Ops — CRM hygiene · pipeline stages · quote reminders · lost-lead reactivation · automated proposal generation",
+        "5 · Reputation — Review requests · review replies · complaint escalation · testimonial mining · platform diversification",
+        "6 · Paid Media — Campaign monitoring · creative testing · budget alerts · lead-quality feedback · Meta + Google + LSA + TikTok orchestration",
+        "7 · Reporting — Attribution · call summaries · close-rate analysis · margin by channel · booked-job revenue stitching",
+        "8 · Strategy — Weekly growth diagnosis · next-best-action · quarterly enterprise-value review · annual category-position analysis"
+      ],
+      "install_fee_for_pilot_graduates": "$0 — the $15,000 Pilot fee already covered the install scope. Graduates begin Ascend at $7,000/mo recurring with no additional install fee."
+    },
+    "ascend_pro": {
+      "name": "Ascend Pro",
+      "tier": 3,
+      "tier_label": "top · 2 per territory default (Lock add-on for 1)",
+      "price": {
+        "oneshot": 25000,
+        "oneshot_display": "$25,000",
+        "oneshot_label": "one-time install",
+        "recurring": 15000,
+        "recurring_display": "$15,000/mo"
+      },
+      "duration": "indefinite",
+      "operating_period_days": 90,
+      "contract_after_operating_period": "true month-to-month no penalty",
+      "ad_spend_commitment": "1:1 match minimum · Pro prospects typically commit 1.5x-3x recurring fee · client-funded direct to platforms",
+      "install_window_days": "14",
+      "install_deliverables": [
+        "Everything in Ascend install, plus:",
+        "Multi-location operational setup with per-location attribution",
+        "Outbound infrastructure stood up against client ICP",
+        "Custom AI agents purpose-built for client workflows",
+        "RevOps build-out (pipeline architecture, forecasting, retention systems)",
+        "Vertical-SaaS workflow installation (ServiceTitan / BuildOps / Avoca / Housecall Pro)",
+        "Dedicated brand spine v1+v2 (locked voice + visual system + positioning)",
+        "Pro-tier sales prep cadence locked (dossier on every active deal)"
+      ],
+      "recurring_deliverables_delta_vs_ascend": [
+        "Multi-location operation continued",
+        "Sales-team integration + dossier-on-every-deal cadence",
+        "Custom AI agent maintenance + iteration",
+        "RevOps build-out continued evolution",
+        "Brand spine evolution as market position deepens"
+      ],
+      "territorial_exclusivity": {
+        "model": "Two-tier · default cap + opt-in Territory Lock add-on (Brain SOP products/Product-Ascend-Pro.md § Territory Lock)",
+        "default_cap_per_territory": 2,
+        "default_cap_description": "Ascend Pro default = at most 2 clients per territory (same GBP category × metro-or-30mi-radius). Both clients share the operational depth; neither gets refusal-of-competitors.",
+        "territory_definition": "GBP category × metro-or-30mi-radius × density cap",
+        "territory_lock_add_on": {
+          "name": "Territory Lock",
+          "premium_monthly": 1500,
+          "premium_monthly_display": "$1,500/mo",
+          "all_in_with_lock_monthly": 16500,
+          "all_in_with_lock_display": "$16,500/mo",
+          "cap_with_lock": 1,
+          "cap_with_lock_description": "Drops territory cap to 1 — BWM contractually refuses qualifying competitors in the locked territory for the duration of the engagement.",
+          "rationale": "Reflects ~$210K/yr forgone ARR per locked territory · anchor is floor not ceiling · revisit after first 3-5 Lock signings",
+          "definition_of_qualifying_competitor": "An independent third-party service-trade operator in the locked client's GBP category × locked metro × 30-mile radius · operates under its own brand · its own customers · its own P&L · would consume the locked client's market share if onboarded.",
+          "carve_outs": [
+            "BWM-owned vertically-integrated AI-native service brands (e.g. a robotics-augmented HVAC operation built by BWM, using the BWM system internally) — NOT 'competitors' for Territory Lock purposes. They are platform extensions, not third-party operators. Disclosed in MSA at signature.",
+            "Affiliated brands operating under common ownership/control with the Locked client (their own multi-location / multi-brand expansion) — Territory Lock protects against EXTERNAL competitors, not the Locked client's own brand extensions.",
+            "ServiceTitan / BuildOps / Avoca / Housecall Pro vertical-SaaS partnerships where BWM's system is co-distributed — partnership-driven distribution does not introduce new third-party operators into the territory."
+          ],
+          "carve_out_rationale": "Territory Lock protects against parity-competitive threats — a rival operator buying the same system to outrun the Locked client. BWM-owned brands using the system internally are not parity threats; they're the platform extending itself. Carve-out preserves Phase 3 platform-pivot optionality (Bob OS GA Y3 Q1-Q2 + potential vertically-integrated AI-native service brands) without contracting it away at first Lock signing. Disclosure-at-signature is non-negotiable — Locked clients sign with eyes open."
+        },
+        "y3_plus_permanent": "Permanent exclusivity available on Territory Lock clients once pipeline density supports turning away next-best buyer",
+        "operational_requirements": [
+          "Territory registry (per-client lock status + defined territory in Supabase)",
+          "Sales-qualification gate: new Ascend Pro prospects in locked territories get routed to waitlist or referred out",
+          "Disclosure: when default-cap territory has 1 of 2 slots filled, new prospect sees slot count"
+        ],
+        "supersedes": "v6 plan default '1 per metro' (CLAUDE.md 2026-05-19) — that lock conflicted with Brain SOP and forced unnecessary refusals at the default tier without offering the Lock upgrade revenue"
+      },
+      "optional_outcome_kicker": {
+        "trigger": "attributable revenue exceeds 5x ROI baseline",
+        "rate_percent_of_excess": "2-3%",
+        "cap": "1x annual recurring fee",
+        "payable_cadence": "quarterly from closed invoices"
+      }
+    }
+  },
+
+  "company": {
+    "category_claim": "Verifiable autonomous marketing systems for service businesses",
+    "brand_story": "You run the business. Ascend makes you the most-chosen name in your market within 12 months.",
+    "mission": "We democratize AI capabilities for American small business owners by installing Ascend in their business.",
+    "brand_spine": "BWM builds an AI growth system on the client's domain, runs it on their behalf, and leaves the asset in their hands.",
+    "beachhead_y1": "Atlanta home services broadly · HVAC + plumbing primary cold-acquisition",
+    "audience": {
+      "ascend_y1_floor": "$3M annual revenue",
+      "ascend_y1_ceiling": "$8M annual revenue",
+      "pro_y2_y3_floor": "$5M annual revenue",
+      "pro_y2_y3_ceiling": "$15M annual revenue",
+      "persona": "Owner-led service business, US-based, AI-receptive, has burned-by-1-2-agencies skepticism"
+    }
+  },
+
+  "framework": {
+    "poor_four": ["Invisible Market", "Leaky Revenue", "Owner Bottleneck", "Reactive Growth"],
+    "bwm_four": ["GSD", "Integrity", "Excellence", "Add the Light"]
+  },
+
+  "product_labels": {
+    "system": "8-layer revenue operating system",
+    "system_short": "8-layer system",
+    "system_install_short": "8-layer install"
+  },
+
+  "verifiable_outcome_ladder": [
+    {
+      "name": "Install velocity",
+      "guarantee": "25-page hyper-personalized SEO+AEO site in 1 day · 750+ data points behind every page · Triangulation intake",
+      "auditable": "Ship date in deliverables log + page-count audit + intake artifact"
+    },
+    {
+      "name": "Capability compounding",
+      "guarantee": "Your system inherits every frontier AI improvement automatically — no re-platforming cost",
+      "auditable": "Multi-vendor router log + AI Capability Radar daily digest"
+    },
+    {
+      "name": "Domain focus",
+      "guarantee": "Only AI growth system built exclusively for service businesses; the Brain only thinks about service-business growth",
+      "auditable": "Brain audit log (every prompt + routing decision)"
+    },
+    {
+      "name": "Operational HITL",
+      "guarantee": "Every autonomous deploy passes human signoff before going live to consumers",
+      "auditable": "HITL gate logs are contractual via MSA"
+    },
+    {
+      "name": "ROI floor",
+      "guarantee": "5x attributable ROI within 24 months — or we keep building until you hit it",
+      "auditable": "Booked-job attribution dashboard (Y1 Q4 ship) + per-client ROI dossier"
+    }
+  ],
+
+  "contract": {
+    "universal_template": {
+      "structure": "Paid Pilot $15K up-front + 1:1 ad-spend gate + 90-day initial operating period + true m-t-m no-penalty after Day 90",
+      "supersedes": "v3-v5 m-t-m + 6mo penalty (was indistinguishable from agency lock-in to burned-owner audience)",
+      "filter_mechanic": "Cash commitment ($15K up front), NOT exit penalty"
+    },
+    "msa_locked_clauses": [
+      "Capability inheritance at no add-on cost (capability guarantee)",
+      "HITL signoff contractually binding on every autonomous deploy",
+      "Sovereignty: client owns code + data + ad accounts + customer list",
+      "ROI floor: 5x attributable within 24 months OR we keep building",
+      "No vendor lock-in: multi-vendor orchestration",
+      "True m-t-m no penalty after Day 90: no clawback, no exit fee"
+    ],
+    "install_fee_waiver": {
+      "pilot_to_ascend": "The $15,000 Pilot fee covers the Ascend install scope. Pilot graduates begin Ascend at $7,000/mo recurring only — no additional install fee, regardless of conversion timing within the Day-45 window.",
+      "ascend_to_ascend_pro": "$25,000 Pro install waived if Ascend → Pro graduation accepted within 7 days of the $1,000,000 qualified-pipeline trigger (per Brain SOP Process-Ascend-→-Ascend-Pro-Graduation.md)"
+    }
+  },
+
+  "pricing_power_gate": {
+    "trigger_conditions_all_required": [
+      "5x attributable revenue across all clients",
+      "≥10 active clients meeting the ROI floor",
+      "≥90 consecutive days above the floor"
+    ],
+    "on_trip_lift_band": "15-25% on NEW signings",
+    "estimated_post_trip_pricing": {
+      "ascend_recurring": "$8,000-$8,500/mo",
+      "ascend_pro_recurring": "$17,500-$19,000/mo"
+    },
+    "existing_clients_treatment": "grandfathered at signed price · no retroactive raise"
+  },
+
+  "gtm": {
+    "outbound_start_date": "July 1, 2026",
+    "outbound_start_date_short": "Jul 1, 2026",
+    "y1_revenue_floor_display": "$3M+",
+    "y1_revenue_floor_label": "Y1 revenue floor",
+    "beachhead_y1_short": "Atlanta home services · $3-8M owner-led",
+    "channel_mix_y1": {
+      "outbound_pct": 50,
+      "outbound_label": "Outbound · Automated Prospector + founder ABM",
+      "outbound_detail": "50 personalized Mini-Dossiers/week · 5-10% reply · 5 teardowns/week · 1-2 closes/week",
+      "referral_pct": 20,
+      "referral_label": "Referral · Cathryn channel + mastermind",
+      "referral_detail": "Cathryn verbal-committed to 10 paying clients in 2026 · highest-trust + fastest-close",
+      "inbound_pct": 15,
+      "inbound_label": "Inbound · content + AI-search + case studies",
+      "inbound_detail": "3-6 months to first inbound paid lead · becomes primary Y2 once dogfood proof artifact ships",
+      "partnerships_pct": 15,
+      "partnerships_label": "Partnerships · event-driven + integrator co-sell",
+      "partnerships_detail": "ServiceTitan partner pilot Y3 Q3 · masterminds + community-sourced introductions"
+    },
+    "conversion_targets": {
+      "dossiers_per_week_y1": 50,
+      "dossiers_per_week_y3": 200,
+      "reply_rate_y1_display": "5-10%",
+      "reply_rate_y3_display": "8-12%",
+      "teardown_to_pilot_y1_pct": 25,
+      "teardown_to_pilot_y3_pct": 30,
+      "pilot_to_ascend_y1_pct": 55,
+      "pilot_to_ascend_y3_pct": 65,
+      "ascend_to_pro_y1_pct": 10,
+      "ascend_to_pro_y3_pct": 15,
+      "pro_retention_24mo_y1_pct": 80,
+      "pro_retention_24mo_y3_pct": 85
+    }
+  },
+
+  "hires": {
+    "supersedes": "v6 plan AE-hire-Q3-2026 + AE-2-Y3 (both human) — replaced 2026-05-20 with AI AE agent track per No-Employees Goal LOCKED 2026-04-28",
+    "ai_ae_q3_2026": {
+      "title": "AI AE agent",
+      "timing": "Q3 2026 — built, not hired",
+      "human_headcount_delta": 0,
+      "implementation": "Custom Bob orchestrator workflows + Sonnet/Codex agents · zero new human headcount",
+      "scope": [
+        "Mini-Dossier reply triage (inbound responses to outbound + warm-lead retargeting)",
+        "Qualification scoring + ICP fit check",
+        "Pre-call dossier prep (deeper company research before founder teardown)",
+        "Calendar booking + reschedule handling",
+        "Post-call admin (CRM updates · proposal generation · contract drafting · follow-up cadence)"
+      ],
+      "human_stratum_retained": "Founder retains the teardown conversation + the Pro close · that's the high-leverage human stratum",
+      "rationale": "Founder model breaks at ~20 clients ONLY if the founder is also doing AE admin work. Strip the AE function from the founder + automate it = founder closes through 30-client cap without a human AE."
+    },
+    "ai_ae_2_y2_y3": {
+      "title": "AI AE 2.0 · capability expansion",
+      "timing": "Y2 / Y3 capability expansion (not hire)",
+      "human_headcount_delta": 0,
+      "scope": [
+        "Voice qualification (inbound + outbound)",
+        "SMS nurture cadence with two-way conversation",
+        "Multi-language qualification (Spanish primary)",
+        "Custom vertical workflows (ServiceTitan / BuildOps / Avoca / Housecall Pro)",
+        "Pro-tier dossier-on-every-deal automation"
+      ],
+      "rationale": "Iteration on the AI AE agent, not a second human hire. Composes with Bob IP codification cadence (≥80% of orchestration workflows captured as proprietary artifacts by EOY2 Q2)."
+    },
+    "human_pro_closer_y3_conditional": {
+      "title": "Human Pro-tier closer · conditional · default = hold",
+      "timing": "Y3 reconsideration only",
+      "trigger": "ONLY if Pro-tier pipeline density > 8 qualified prospects/quarter AND founder's calendar is the hard bottleneck for Pro closes (not for Ascend closes — those route to AI AE qualification + founder via async path). Default = hold across all 3 years.",
+      "rationale": "Composes with No-Employees Goal LOCKED 2026-04-28 — bias every spec toward 'no human team member needed.' If we hit this trigger, the Pro closer is the FIRST possible human hire — not the default expected one."
+    },
+    "explicitly_not_hired": "SDRs · BDRs · field reps · marketing managers · Account Executives (replaced by AI AE agent Q3 2026 build) · Customer Success reps (Bob handles Ascend ops post-install) · the no-employees goal is biased into every team decision · humans handle teardown + Pro close · AI handles everything around the conversation"
+  },
+
+  "clients": {
+    "cap_phase_1": 30,
+    "cap_phase_1_label": "30 paying-client cap · Phase 1 through May 2027",
+    "cap_phase_1_rationale": "Protects delivery quality + HITL throughput + 70/30 operating model · re-evaluation gate at EOY1 + EOY2 milestones",
+    "current_paying": 6,
+    "current_paying_label": "current paying clients (snapshot 2026-05-20)"
+  }
+}
