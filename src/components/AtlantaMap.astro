@@ -165,24 +165,23 @@ const mechanisms = [
   .am-h2 { margin-bottom: 20px; }
   .am-lede { max-width: 620px; }
 
-  /* ── SVG map container ── */
+  /* ── SVG map container — iteration 3: full-section dominance ── */
   .am-map-wrap {
     position: relative;
     margin-bottom: clamp(40px, 6vw, 64px);
     background: var(--bg-elev);
     border: 1px solid var(--rule);
     border-radius: 2px;
-    padding: 32px;
-    /* Constrain to reasonable width so SVG cities are legible */
-    max-width: 760px;
+    padding: clamp(32px, 4vw, 48px);
+    max-width: 100%;
   }
 
   .am-map {
     width: 100%;
     height: auto;
     display: block;
-    /* Minimum height so cities never collapse to zero */
-    min-height: 220px;
+    /* Minimum height so cities never collapse to zero — enlarged for section dominance */
+    min-height: 360px;
   }
 
   /* Artery animation: subtle pulse opacity — state-driven on map hover (R017 compliant:
@@ -202,7 +201,7 @@ const mechanisms = [
     letter-spacing: 0.04em;
     text-transform: uppercase;
     fill: var(--ink-faint);
-    opacity: 0;
+    opacity: 0.65; /* iteration 3: labels persistently visible (was 0 hidden) */
     transition: opacity 200ms ease, fill 200ms ease;
     pointer-events: none;
   }

@@ -288,6 +288,19 @@ const playbookItems = [
   <!-- ============================================ -->
   <PoorFour />
 
+  <!-- L2.5 · transitional scene (R020 F1-Emotion) — the audit moment of recognition -->
+  <figure class="scene-photo scene-photo--recognition" aria-labelledby="scene-recognition-cap">
+    <img
+      src="/images/bwm-method-editorial-v1.webp"
+      alt="A dark, ordered workspace caught mid-audit — the documentary moment when the four leaks become visible on paper, before the operations layer takes them off the owner's plate."
+      width="1920"
+      height="1080"
+      loading="lazy"
+      decoding="async"
+    />
+    <figcaption id="scene-recognition-cap" class="scene-cap mono">The audit moment · where the four leaks become visible · before the system takes over.</figcaption>
+  </figure>
+
   <!-- ============================================ -->
   <!-- L3 · 8-Layer Revenue Operating System       -->
   <!-- ============================================ -->
@@ -297,6 +310,19 @@ const playbookItems = [
   <!-- L4 · Sovereignty                             -->
   <!-- ============================================ -->
   <Sovereignty />
+
+  <!-- L4.5 · transitional scene (R020 F2-Proof) — sovereignty as a material object -->
+  <figure class="scene-photo scene-photo--receipts" aria-labelledby="scene-receipts-cap">
+    <img
+      src="/images/bwm-ascend-still-life-v1.webp"
+      alt="A precise stack of slate-black hardware — website, attribution, operations — with a single accent indicator illuminated. The physical signature of a system that belongs to its owner."
+      width="1920"
+      height="1080"
+      loading="lazy"
+      decoding="async"
+    />
+    <figcaption id="scene-receipts-cap" class="scene-cap mono">Your stack · website · attribution · operations · one indicator at a time.</figcaption>
+  </figure>
 
   <!-- ============================================ -->
   <!-- L5 · Product Comparison                      -->
@@ -312,6 +338,19 @@ const playbookItems = [
   <!-- L7 · Capability Curve (AIStorySection)      -->
   <!-- ============================================ -->
   <AIStorySection />
+
+  <!-- L7.5 · transitional scene (R020 F4-Curiosity + F1-Emotion) — the horizon you're building toward -->
+  <figure class="scene-photo scene-photo--horizon" aria-labelledby="scene-horizon-cap">
+    <img
+      src="/images/bwm-outcomes-environmental-cinematic-v1.webp"
+      alt="A cool, expansive dusk landscape stretching toward a horizon — the long-arc view a service business owner gets back once the operating layer is running and the days stop being defensive."
+      width="1920"
+      height="1080"
+      loading="lazy"
+      decoding="async"
+    />
+    <figcaption id="scene-horizon-cap" class="scene-cap mono">The long arc · what compounding capability looks like at month thirty-six.</figcaption>
+  </figure>
 
   <!-- ============================================ -->
   <!-- L8 · Atlanta Local Dominance                 -->
@@ -466,6 +505,14 @@ const playbookItems = [
   <!-- L12 · Final CTA + scarcity ribbon            -->
   <!-- ============================================ -->
   <section class="final-section" aria-labelledby="final-title">
+    <img
+      class="final-backdrop"
+      src="/images/bwm-urgency-cinematic-v1.webp"
+      alt=""
+      aria-hidden="true"
+      loading="lazy"
+      decoding="async"
+    />
     <div class="container final-inner">
       <div>
         <p class="section-tag">Start with the audit</p>
@@ -772,6 +819,7 @@ const playbookItems = [
   padding-block: var(--section-y);
   background: var(--bg-card);
   position: relative;
+  overflow: hidden;
 }
 .final-section::before {
   content: '';
@@ -779,8 +827,23 @@ const playbookItems = [
   inset: 0;
   background: radial-gradient(ellipse 80% 60% at 70% 50%, rgba(240, 255, 0, 0.04), transparent 65%);
   pointer-events: none;
+  z-index: 1;
 }
-.final-section > * { position: relative; z-index: 1; }
+/* Iteration 3: atmospheric backdrop photograph at low opacity, fades at top/bottom */
+.final-backdrop {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.22;
+  z-index: 0;
+  pointer-events: none;
+  mask-image: linear-gradient(to bottom, transparent 0%, var(--bg) 22%, var(--bg) 78%, transparent 100%);
+  -webkit-mask-image: linear-gradient(to bottom, transparent 0%, var(--bg) 22%, var(--bg) 78%, transparent 100%);
+}
+.final-section > .container,
+.final-section > .final-ribbon { position: relative; z-index: 2; }
 
 .final-inner {
   display: grid;
@@ -843,6 +906,20 @@ const playbookItems = [
   padding-block: clamp(64px, 8vw, 112px);
   background: var(--bg);
   border-top: 1px solid var(--rule);
+}
+/* New mid-page interstitials (iteration 3) — all R020-functional, atmospheric narrative anchors */
+.scene-photo--recognition {
+  padding-block: clamp(56px, 7vw, 96px);
+  background: var(--bg);
+}
+.scene-photo--receipts {
+  padding-block: clamp(56px, 7vw, 96px);
+  background: var(--bg);
+  border-top: 1px solid var(--rule);
+}
+.scene-photo--horizon {
+  padding-block: clamp(56px, 7vw, 96px);
+  background: var(--bg);
 }
 
 @media (max-width: 880px) {

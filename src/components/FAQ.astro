@@ -15,14 +15,26 @@ const { faqs } = Astro.props;
 <section class="faq">
   <div class="container faq-grid">
 
-    <header class="faq-head reveal">
-      <p class="section-tag">Questions, answered</p>
-      <h2 class="h-section">
-        Real systems.<br/>
-        Real <em>numbers.</em><br/>
-        Real answers.
-      </h2>
-    </header>
+    <div class="faq-head reveal">
+      <header class="faq-head-text">
+        <p class="section-tag">Questions, answered</p>
+        <h2 class="h-section">
+          Real systems.<br/>
+          Real <em>numbers.</em><br/>
+          Real answers.
+        </h2>
+      </header>
+      <figure class="faq-aside" aria-hidden="true">
+        <img
+          src="/images/bwm-about-atmospheric-v1.webp"
+          alt=""
+          width="960"
+          height="1200"
+          loading="lazy"
+          decoding="async"
+        />
+      </figure>
+    </div>
 
     <ul class="faq-list" role="list">
       {faqs.map((f, i) => (
@@ -44,7 +56,18 @@ const { faqs } = Astro.props;
 <style>
 .faq { padding-block: var(--section-y); }
 .faq-grid { display: grid; grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.4fr); gap: clamp(48px, 6vw, 96px); align-items: start; }
-.faq-head { position: sticky; top: 100px; display: flex; flex-direction: column; gap: 24px; }
+.faq-head { position: sticky; top: 100px; display: flex; flex-direction: column; gap: 32px; }
+.faq-head-text { display: flex; flex-direction: column; gap: 24px; }
+.faq-aside { margin: 0; }
+.faq-aside img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border: 1px solid var(--rule);
+  border-radius: 2px;
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+}
 
 .faq-list { list-style: none; }
 .faq-item { border-top: 1px solid var(--rule); }
@@ -96,6 +119,7 @@ const { faqs } = Astro.props;
 
 @media (max-width: 880px) {
   .faq-grid { grid-template-columns: 1fr; }
-  .faq-head { position: static; }
+  .faq-head { position: static; gap: 24px; }
+  .faq-aside { display: none; }
 }
 </style>
