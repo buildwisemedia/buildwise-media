@@ -230,10 +230,10 @@ function cellClass(val: string, highlight: boolean | undefined, column: 'pilot' 
     </div>
 
     <!-- 3 product cards above -->
-    <div class="pc-cards" role="list">
+    <div class="pc-cards">
 
       <!-- Ascend Pilot — Y1 tier-encoding -->
-      <a href="/services/ascend#pilot" class="card pc-card pc-card--pilot" role="listitem" aria-label="Ascend Pilot tier details">
+      <a href="/services/ascend#pilot" class="card pc-card pc-card--pilot" aria-label="Ascend Pilot tier details">
         <figure class="pc-card-photo">
           <img
             src="/images/bwm-audit-editorial-v1.webp"
@@ -254,7 +254,7 @@ function cellClass(val: string, highlight: boolean | undefined, column: 'pilot' 
       </a>
 
       <!-- Ascend — center, Y2 fill emphasis + MOST CHOSEN badge -->
-      <a href="/services/ascend" class="card pc-card pc-card--ascend" role="listitem" aria-label="Ascend tier details (most chosen)">
+      <a href="/services/ascend" class="card pc-card pc-card--ascend" aria-label="Ascend tier details (most chosen)">
         <span class="pc-most-chosen" aria-hidden="true">Most Chosen</span>
         <figure class="pc-card-photo">
           <img
@@ -278,7 +278,7 @@ function cellClass(val: string, highlight: boolean | undefined, column: 'pilot' 
       </a>
 
       <!-- Ascend Pro -->
-      <a href="/services/ascend#pro" class="card pc-card pc-card--pro" role="listitem" aria-label="Ascend Pro tier details">
+      <a href="/services/ascend#pro" class="card pc-card pc-card--pro" aria-label="Ascend Pro tier details">
         <figure class="pc-card-photo">
           <img
             src="/images/bwm-team-editorial-v1.webp"
@@ -304,7 +304,7 @@ function cellClass(val: string, highlight: boolean | undefined, column: 'pilot' 
 
     <!-- Comparison table (desktop) -->
     <div class="pc-table-wrap">
-      <table class="pc-table" role="table" aria-label="Feature comparison across tiers">
+      <table class="pc-table" aria-label="Feature comparison across tiers">
         <thead>
           <tr>
             <th scope="col" class="pc-th pc-th--feature">Feature</th>
@@ -316,21 +316,21 @@ function cellClass(val: string, highlight: boolean | undefined, column: 'pilot' 
         <tbody>
           {categories.map((cat) => (
             <>
-              <tr class="pc-cat-row" role="row">
-                <td colspan="4" class="pc-cat-cell" role="cell">
+              <tr class="pc-cat-row">
+                <td colspan="4" class="pc-cat-cell">
                   <span class="pc-cat-label">{cat.label}</span>
                 </td>
               </tr>
               {cat.rows.map((row) => (
-                <tr class="pc-row" role="row">
-                  <td class="pc-td pc-td--feature" role="rowheader">{row.feature}</td>
-                  <td class={`pc-td pc-td--center pc-td--pilot ${cellClass(row.pilot, row.pilotHighlight, 'pilot')}`} role="cell">
+                <tr class="pc-row">
+                  <th class="pc-td pc-td--feature" scope="row">{row.feature}</th>
+                  <td class={`pc-td pc-td--center pc-td--pilot ${cellClass(row.pilot, row.pilotHighlight, 'pilot')}`}>
                     {row.pilot}
                   </td>
-                  <td class={`pc-td pc-td--center pc-td--ascend ${cellClass(row.ascend, row.ascendHighlight, 'ascend')}`} role="cell">
+                  <td class={`pc-td pc-td--center pc-td--ascend ${cellClass(row.ascend, row.ascendHighlight, 'ascend')}`}>
                     {row.ascend}
                   </td>
-                  <td class={`pc-td pc-td--center ${cellClass(row.pro, row.proHighlight, 'pro')}`} role="cell">
+                  <td class={`pc-td pc-td--center ${cellClass(row.pro, row.proHighlight, 'pro')}`}>
                     {row.pro}
                   </td>
                 </tr>
@@ -343,7 +343,7 @@ function cellClass(val: string, highlight: boolean | undefined, column: 'pilot' 
 
     <!-- Mobile stacked cards — 3 per-tier summaries -->
     <!-- Hidden on desktop (≥961px), visible below -->
-    <div class="pc-mobile-tiers" aria-label="Tier comparison (mobile)">
+    <div class="pc-mobile-tiers" role="group" aria-label="Tier comparison (mobile)">
       {[
         {
           name: "Ascend Pilot",
@@ -384,7 +384,7 @@ function cellClass(val: string, highlight: boolean | undefined, column: 'pilot' 
               return (
                 <li class="pc-mobile-item">
                   <span class={checkClass}>{row.value === "✓" ? "✓ " : ""}</span>
-                  <span class="pc-mobile-feat">{row.feature}</span>
+                  <span class="pc-mobile-feat">{row.feature}.</span>
                 </li>
               );
             })}

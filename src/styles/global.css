@@ -11,18 +11,18 @@
   --bg-card: #0f0f14;
 
   /* Text */
-  --ink: #f4f1ea;
-  --ink-dim: #a8a298;
-  --ink-faint: #5a5650;
+  --ink: #F5F5F5;
+  --ink-dim: #9B9B9B;
+  --ink-faint: #62626A;
 
   /* Rules / borders */
-  --rule: #1f1d27;
+  --rule: #1A1A1E;
   --rule-bright: #2d2a36;
 
   /* Triangulation dual-yellow */
   --y2: #F0FF00;          /* Hi-vis hero — marketing surfaces */
-  --y2-bright: #FFFD58;   /* Metallic gradient top stop */
-  --y2-deep: #C8D300;     /* Metallic gradient bottom stop */
+  --y2-bright: #FFFD58;   /* Accent gradient top stop */
+  --y2-deep: #C8D300;     /* Accent gradient bottom stop */
   --y1: #B8FF3A;          /* Chartreuse dashboard — product surfaces + tier-encoding data viz (Path B, 2026-05-20) */
 
   /* Type stacks */
@@ -33,13 +33,6 @@
   --section-y: clamp(80px, 10vw, 144px);
   --container-x: clamp(20px, 5vw, 64px);
   --max-w: 1200px;
-
-  /* Transition aliases — keep unbuilt sections renderable during section-by-section
-     Triangulation rebuild. Each section's rebuild will remove its var(--gold)/var(--serif)
-     usages explicitly; these aliases retire automatically as references hit zero. */
-  --gold: var(--y2);
-  --serif: var(--sans);
-  --green: var(--y2);
 }
 
 /* ---------- 2. Reset & Base ---------- */
@@ -53,6 +46,17 @@ html {
   background: var(--bg);
 }
 
+/* @r020:identity: global brand noise overlay to give analog film texture to near-black canvas */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 10;
+  pointer-events: none;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='256' height='256' filter='url(%23noise)' opacity='0.035'/%3E%3C/svg%3E");
+  mix-blend-mode: screen;
+}
+
 body {
   font-family: var(--sans);
   font-weight: 400;
@@ -60,7 +64,11 @@ body {
   line-height: 1.65;
   letter-spacing: -0.005em;
   color: var(--ink);
-  background: var(--bg);
+  background:
+    linear-gradient(90deg, rgba(240, 255, 0, 0.015) 1px, transparent 1px),
+    linear-gradient(180deg, rgba(240, 255, 0, 0.012) 1px, transparent 1px),
+    var(--bg);
+  background-size: 64px 64px;
   min-height: 100vh;
   overflow-x: hidden;
 }
@@ -393,3 +401,41 @@ section.elev { background: var(--bg-elev); }
   z-index: 9999; transition: top 200ms ease;
 }
 .skip-link:focus { top: 16px; }
+
+/* ---------- 16. Custom Reimaging Keyframe Animations ---------- */
+@keyframes statusPulse {
+  0%, 100% { box-shadow: 0 0 0 6px rgba(240, 255, 0, 0.12), 0 0 24px rgba(240, 255, 0, 0.2); }
+  50% { box-shadow: 0 0 0 10px rgba(240, 255, 0, 0.04), 0 0 34px rgba(240, 255, 0, 0.48); }
+}
+
+@keyframes orbitDraw {
+  to { stroke-dashoffset: 0; }
+}
+
+@keyframes signalPulse {
+  0%, 100% { opacity: 0.24; transform: scale(0.96); }
+  50% { opacity: 0.64; transform: scale(1.04); }
+}
+
+@keyframes nodeRise {
+  from { opacity: 0; transform: translateY(10px) scale(0.96); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+@keyframes drawLine {
+  to { stroke-dashoffset: 0; }
+}
+
+@keyframes tickerMove {
+  to { transform: translateX(-50%); }
+}
+
+@keyframes proofGlow {
+  0% { opacity: 0.02; }
+  100% { opacity: 0.1; }
+}
+
+@keyframes branchRise {
+  from { opacity: 0; transform: translateY(-8px); }
+  to { opacity: 1; transform: translateY(0); }
+}

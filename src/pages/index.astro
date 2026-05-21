@@ -20,34 +20,8 @@ import EarnBackCalculator from '../components/EarnBackCalculator.astro';
 import AIStorySection from '../components/AIStorySection.astro';
 import FAQ from '../components/FAQ.astro';
 
-// L1 — 4-arm A/B preserved (proven harness, D default)
-const heroVariants = {
-  A: {
-    question: "Do you want to be the #1 service business in your market?",
-    subhead: "Most #1 shops aren't the best — they're the most-found. The free AI Marketing Audit takes 5 minutes.",
-  },
-  B: {
-    question: "Do you want 3-6 new clients every 90 days?",
-    subhead: "Stop running the same playbook and hoping for more leads. The free AI Marketing Audit takes 5 minutes.",
-  },
-  C: {
-    question: "Do you want to add $1M+ to your service business?",
-    subhead: "Stop leaving the next $1M on the table. The free AI Marketing Audit takes 5 minutes.",
-  },
-  D: {
-    question: "Do you want to end the feast or famine?",
-    subhead: "Stop guessing where your next clients come from. The free AI Marketing Audit takes 5 minutes.",
-  },
-} as const;
-
-type HeroArm = keyof typeof heroVariants;
-const isHeroArm = (v: string | null): v is HeroArm => v === 'A' || v === 'B' || v === 'C' || v === 'D';
-const requestedArm = Astro.url.searchParams.get('arm')?.toUpperCase() ?? null;
-const arm = isHeroArm(requestedArm) ? requestedArm : 'D';
-const heroVariant = heroVariants[arm];
-
-const title = `${heroVariant.subhead} | Buildwise Media`;
-const description = heroVariant.subhead;
+const title = "Ascend — Most-Chosen in Your Market | Buildwise Media";
+const description = "Buildwise installs and runs Ascend: an 8-layer revenue operating system for service businesses. You own it. We run it. The math is verified weekly.";
 
 // L8 — Category-of-one mechanism set
 // Geo-personalization gate: Astro.locals.metro.known === true → metro-specific copy;
@@ -66,7 +40,7 @@ const dominanceMechanisms = [
   },
   {
     name: 'Local-search dominance',
-    body: 'Service pages, citations, and Google Business Profile aligned around the exact search terms your buyers use. Not generic SEO — the specific phrases that lead to a booked job.',
+    body: 'Service pages, citations, and business profile signals aligned around the exact search terms your buyers use. Not generic SEO — the specific phrases that lead to a booked job.',
   },
   {
     name: 'Review velocity',
@@ -83,6 +57,50 @@ const proofTiles = [
   { label: 'Qualified-lead share lift · Measured', num: '3.2×' },
   { label: 'Speed-to-lead · Attributed', num: '<5', unit: 'min' },
   { label: 'Day-90 attribution · Modeled', num: 'Live' },
+];
+
+const commandMetrics = [
+  { label: 'Market visibility', value: '68%', trend: '+12 pts' },
+  { label: 'Lead response', value: '<5m', trend: 'live' },
+  { label: 'Review velocity', value: '2.4×', trend: 'rising' },
+  { label: 'Weekly proof', value: 'Mon', trend: 'locked' },
+];
+
+const installSteps = [
+  {
+    day: 'Day 0',
+    label: 'Audit',
+    body: 'Capture the baseline, map the lead path, and name which Poor Four gaps are costing the most.',
+  },
+  {
+    day: 'Day 14',
+    label: 'Install',
+    body: 'Wire visibility, conversion, speed-to-lead, reporting, and follow-up into one operating layer.',
+  },
+  {
+    day: 'Day 30',
+    label: 'System live',
+    body: 'Start the weekly operating rhythm: what spent, what booked, what needs to move next.',
+  },
+];
+
+const objections = [
+  {
+    q: 'We were burned by an agency before.',
+    a: 'Ascend is built on your domain, your accounts, and your data. No proprietary trap. No mystery reporting.',
+  },
+  {
+    q: "I don't have time to manage another vendor.",
+    a: 'The system surfaces decisions, not chores. The weekly rhythm shows what matters and what we already handled.',
+  },
+  {
+    q: 'AI sounds risky in a real business.',
+    a: 'Every autonomous deploy passes human signoff. AI does the work; operators clear the gates.',
+  },
+  {
+    q: 'The math has to make sense.',
+    a: 'Pricing is public, the ROI floor is written into the engagement, and the baseline is captured before claims begin.',
+  },
 ];
 
 // L10 — Playbook teaser (8 items, expanded from rejected branch)
@@ -109,11 +127,11 @@ const faqs = [
   },
   {
     q: 'How fast does the system go live?',
-    a: 'Inside 30 days the website is live, ad accounts are wired, the CRM is instrumented, and the first qualified leads start to flow. Full-system instrumentation completes in the same window. We do not run a 90-day waiting period before anything is observable.',
+    a: 'Inside 30 days the website is live, ad accounts are wired, the CRM is instrumented, and the first qualified leads start to flow. Full-system instrumentation completes in the same window.',
   },
   {
     q: 'How do you measure success?',
-    a: 'Every commitment carries a confidence percentage (75% floor), an evidence class (Measured / Attributed / Modeled / Benchmark), and a captured baseline. The Outcomes Commitment Card is the contract. Headline floor: 5× attributable ROI inside 24 months, measured against the baseline we capture on Day 0.',
+    a: 'Every commitment carries a confidence percentage, an evidence class, and a captured baseline. Headline floor: 5× attributable ROI inside 24 months, measured against the baseline we capture on Day 0.',
   },
   {
     q: "What if the system doesn't hit 5×?",
@@ -200,83 +218,119 @@ const faqSchema = {
   title={title}
   description={description}
   jsonLd={[serviceSchema, breadcrumb, faqSchema]}
-  preloadImage="/images/bwm-hero-atmospheric-v1.webp"
 >
 
   <!-- ============================================ -->
-  <!-- L1 · Hero (4-arm A/B preserved)              -->
+  <!-- L1 · Hero                                    -->
   <!-- ============================================ -->
-  <section class="home-hero" aria-labelledby="home-hero-title" data-arm={arm} data-hero-arm-root>
+  <section class="home-hero" aria-labelledby="home-hero-title">
     <div class="container hero-grid">
       <div class="hero-copy">
-        <p class="eyebrow">The AI Marketing Audit</p>
-        <h1 id="home-hero-title" class="h-hero">{heroVariant.question}</h1>
-        <p class="hero-sub" data-hero-subhead>{heroVariant.subhead}</p>
-        <div class="hero-actions" aria-label="Primary actions">
+        <p class="eyebrow">Verifiable autonomous marketing systems for service businesses</p>
+        <h1 id="home-hero-title" class="h-hero">You run the business. Ascend makes you the <em>most-chosen</em> name in your market.</h1>
+        <p class="hero-sub">
+          Buildwise installs and runs an 8-layer revenue operating system on your domain: visibility, conversion, speed-to-lead, sales ops, reputation, paid media, reporting, and strategy. You own it. We run it. The math is verified weekly.
+        </p>
+        <div class="hero-actions" role="group" aria-label="Primary actions">
           <a href="/book" class="cta" data-cta-source="home-hero">See If We're a Fit<span class="cta-arrow" aria-hidden="true">&rarr;</span></a>
           <a href={SYSTEM_ANCHOR} class="cta-ghost" data-cta-source="home-hero-system">See the System</a>
         </div>
+        <ul class="hero-proof-strip" aria-label="Ascend proof points">
+          <li><strong>30 days</strong><span>system live</span></li>
+          <li><strong>5×</strong><span>24-month ROI floor</span></li>
+          <li><strong>HITL</strong><span>human signoff</span></li>
+        </ul>
       </div>
-      <figure class="hero-photo">
-        <img
-          src="/images/bwm-hero-atmospheric-v1.webp"
-          alt="A leather chair pulled back from a clean desk in a small-business owner's office at first light, a monitor glowing dim with a soft accent of light on the screen — the moment before the workday starts, with the system already running."
-          width="1920"
-          height="1080"
-          loading="eager"
-          decoding="async"
-          fetchpriority="high"
-        />
-        <figcaption class="hero-photo-cap mono">
-          The morning before the work begins · your seat empty because the system is already running.
-        </figcaption>
-      </figure>
+      <aside class="command-center" aria-label="Ascend command center preview">
+        <div class="command-topline">
+          <span class="dot live"></span>
+          <span class="mono">ASCEND SYSTEM · OPERATING</span>
+        </div>
+        <div class="command-score">
+          <p class="command-score-label mono">Market leak map</p>
+          <p class="command-score-value">4 gaps</p>
+          <p class="command-score-body">Visibility, follow-up, owner load, and reporting are connected in one weekly rhythm.</p>
+        </div>
+        <div class="command-metrics">
+          {commandMetrics.map((metric) => (
+            <div class="command-metric">
+              <span class="mono">{metric.label}</span>
+              <strong>{metric.value}</strong>
+              <em>{metric.trend}</em>
+            </div>
+          ))}
+        </div>
+        <!-- @r020:F2 proof: self-drawing console SVG loop representing the revenue operational loop -->
+        <svg class="command-flow-svg" viewBox="0 0 400 120" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <!-- Main Loop Path -->
+          <path d="M 50,35 L 350,35 C 375,35 375,85 350,85 L 50,85 C 25,85 25,35 50,35 Z" stroke="var(--rule-bright)" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+          <path d="M 50,35 L 350,35 C 375,35 375,85 350,85 L 50,85 C 25,85 25,35 50,35 Z" stroke="var(--y1)" stroke-width="2" fill="none" stroke-linecap="round" class="loop-track-pulse"/>
+
+          <!-- Nodes -->
+          <!-- Ingest Node -->
+          <g class="loop-node" transform="translate(90, 35)">
+            <circle cx="0" cy="0" r="6" stroke="var(--y2)" stroke-width="1" fill="var(--bg)" opacity="0.8" class="node-pulse"/>
+            <circle cx="0" cy="0" r="3" fill="var(--y2)"/>
+            <text x="0" y="-12" text-anchor="middle" font-family="var(--mono)" font-size="8" fill="var(--ink-dim)" letter-spacing="1">INGEST</text>
+          </g>
+
+          <!-- Engage Node -->
+          <g class="loop-node" transform="translate(310, 35)">
+            <circle cx="0" cy="0" r="6" stroke="var(--y2)" stroke-width="1" fill="var(--bg)" opacity="0.8" class="node-pulse"/>
+            <circle cx="0" cy="0" r="3" fill="var(--y2)"/>
+            <text x="0" y="-12" text-anchor="middle" font-family="var(--mono)" font-size="8" fill="var(--ink-dim)" letter-spacing="1">ENGAGE</text>
+          </g>
+
+          <!-- Convert Node -->
+          <g class="loop-node" transform="translate(310, 85)">
+            <circle cx="0" cy="0" r="6" stroke="var(--y2)" stroke-width="1" fill="var(--bg)" opacity="0.8" class="node-pulse"/>
+            <circle cx="0" cy="0" r="3" fill="var(--y2)"/>
+            <text x="0" y="18" text-anchor="middle" font-family="var(--mono)" font-size="8" fill="var(--ink-dim)" letter-spacing="1">CONVERT</text>
+          </g>
+
+          <!-- Stitch Node -->
+          <g class="loop-node" transform="translate(90, 85)">
+            <circle cx="0" cy="0" r="6" stroke="var(--y2)" stroke-width="1" fill="var(--bg)" opacity="0.8" class="node-pulse"/>
+            <circle cx="0" cy="0" r="3" fill="var(--y2)"/>
+            <text x="0" y="18" text-anchor="middle" font-family="var(--mono)" font-size="8" fill="var(--ink-dim)" letter-spacing="1">STITCH</text>
+          </g>
+        </svg>
+
+        <div class="evidence-ticker" aria-hidden="true">
+          <div class="ticker-track">
+            <div class="ticker-items">
+              <span>LEADS INGESTED</span>
+              <span class="ticker-sep">·</span>
+              <span>CRM STITCHED</span>
+              <span class="ticker-sep">·</span>
+              <span>SPEED-TO-LEAD &lt;5M</span>
+              <span class="ticker-sep">·</span>
+              <span>SYSTEM ACTIVE</span>
+              <span class="ticker-sep">·</span>
+              <span>MATH VERIFIED</span>
+              <span class="ticker-sep">·</span>
+              <span>SOVEREIGN DATA</span>
+              <span class="ticker-sep">·</span>
+            </div>
+            <div class="ticker-items">
+              <span>LEADS INGESTED</span>
+              <span class="ticker-sep">·</span>
+              <span>CRM STITCHED</span>
+              <span class="ticker-sep">·</span>
+              <span>SPEED-TO-LEAD &lt;5M</span>
+              <span class="ticker-sep">·</span>
+              <span>SYSTEM ACTIVE</span>
+              <span class="ticker-sep">·</span>
+              <span>MATH VERIFIED</span>
+              <span class="ticker-sep">·</span>
+              <span>SOVEREIGN DATA</span>
+              <span class="ticker-sep">·</span>
+            </div>
+          </div>
+        </div>
+      </aside>
     </div>
   </section>
-
-  <script is:inline>
-    (function () {
-      var cQuestionAmount = String.fromCharCode(36) + '1M+';
-      var cSubheadAmount = String.fromCharCode(36) + '1M';
-      var variants = {
-        A: {
-          question: "Do you want to be the #1 service business in your market?",
-          subhead: "Most #1 shops aren't the best — they're the most-found. The free AI Marketing Audit takes 5 minutes.",
-        },
-        B: {
-          question: "Do you want 3-6 new clients every 90 days?",
-          subhead: "Stop running the same playbook and hoping for more leads. The free AI Marketing Audit takes 5 minutes.",
-        },
-        C: {
-          question: "Do you want to add " + cQuestionAmount + " to your service business?",
-          subhead: "Stop leaving the next " + cSubheadAmount + " on the table. The free AI Marketing Audit takes 5 minutes.",
-        },
-        D: {
-          question: "Do you want to end the feast or famine?",
-          subhead: "Stop guessing where your next clients come from. The free AI Marketing Audit takes 5 minutes.",
-        },
-      };
-
-      var arm = new URL(window.location.href).searchParams.get('arm');
-      arm = arm ? arm.toUpperCase() : 'D';
-      if (!Object.prototype.hasOwnProperty.call(variants, arm)) arm = 'D';
-
-      var variant = variants[arm];
-      var heroRoot = document.querySelector('[data-hero-arm-root]');
-      var heroTitle = document.getElementById('home-hero-title');
-      var heroSubhead = document.querySelector('[data-hero-subhead]');
-      var metaDescription = document.querySelector('meta[name="description"]');
-      var ogDescription = document.querySelector('meta[property="og:description"]');
-
-      if (heroRoot) heroRoot.setAttribute('data-arm', arm);
-      if (heroTitle) heroTitle.textContent = variant.question;
-      if (heroSubhead) heroSubhead.textContent = variant.subhead;
-      document.title = variant.subhead + ' | Buildwise Media';
-      if (metaDescription) metaDescription.setAttribute('content', variant.subhead);
-      if (ogDescription) ogDescription.setAttribute('content', variant.subhead);
-      window.__bwmHeroArm = arm;
-    })();
-  </script>
 
   <!-- ============================================ -->
   <!-- L2 · Poor Four                                -->
@@ -289,27 +343,51 @@ const faqSchema = {
   <EightLayerSystem />
 
   <!-- ============================================ -->
-  <!-- L4 · Sovereignty                              -->
+  <!-- L4 · 30-day operating change                 -->
+  <!-- ============================================ -->
+  <section class="install-section elev" aria-labelledby="install-title">
+    <div class="container install-grid">
+      <header class="install-head">
+        <p class="section-tag">What changes in 30 days</p>
+        <h2 id="install-title" class="h-section">The system goes live before the old excuses do.</h2>
+        <p class="lede">
+          Ascend starts with the baseline, installs the operating layer, then moves into a weekly rhythm your business can actually read.
+        </p>
+      </header>
+      <ol class="install-steps" role="list">
+        {installSteps.map((step) => (
+          <li>
+            <span class="install-day mono">{step.day}</span>
+            <h3>{step.label}</h3>
+            <p>{step.body}</p>
+          </li>
+        ))}
+      </ol>
+    </div>
+  </section>
+
+  <!-- ============================================ -->
+  <!-- L5 · Sovereignty                              -->
   <!-- ============================================ -->
   <Sovereignty />
 
   <!-- ============================================ -->
-  <!-- L5 · Product Comparison                       -->
+  <!-- L6 · Product Comparison                       -->
   <!-- ============================================ -->
   <ProductComparison />
 
   <!-- ============================================ -->
-  <!-- L6 · Earn-Back Calculator                     -->
+  <!-- L7 · Earn-Back Calculator                     -->
   <!-- ============================================ -->
   <EarnBackCalculator />
 
   <!-- ============================================ -->
-  <!-- L7 · Capability Curve                         -->
+  <!-- L8 · Capability Curve                         -->
   <!-- ============================================ -->
   <AIStorySection />
 
   <!-- ============================================ -->
-  <!-- L8 · Category-of-one                          -->
+  <!-- L9 · Category-of-one                          -->
   <!-- Geo-personalized when Astro.locals.metro.known -->
   <!-- ============================================ -->
   <section class="dominance-section" aria-labelledby="dominance-title">
@@ -331,6 +409,7 @@ const faqSchema = {
       </header>
 
       <figure class="dominance-figure">
+        <!-- @r020:F2 proof: Node mesh diagram showing AI search rank, reviews and local citations converging on one business -->
         <img
           src="/images/node-mesh-ascending-v1.svg"
           alt="An abstract node-mesh diagram: AI-search citations, local-search rankings, review velocity, and neighborhood-level mentions converging into a single ascending node — the business buyers default to when they look for the category."
@@ -359,7 +438,7 @@ const faqSchema = {
   </section>
 
   <!-- ============================================ -->
-  <!-- L9 · Proof — numeric receipts                 -->
+  <!-- L10 · Proof — numeric receipts                -->
   <!-- ============================================ -->
   <section class="proof-section elev" aria-labelledby="proof-title">
     <div class="container">
@@ -405,11 +484,37 @@ const faqSchema = {
         </div>
       </article>
 
+      <div class="bar-comparison" aria-label="Attributed lead clarity comparison: legacy agency vs Ascend system">
+        <h4 class="comparison-title mono">Clear-view Lead Attribution</h4>
+        <div class="comparison-bars">
+          <div class="comparison-bar legacy">
+            <div class="bar-info">
+              <span class="bar-label">Legacy Agency GTM</span>
+              <span class="bar-value">12% clarity</span>
+            </div>
+            <div class="bar-track">
+              <!-- @r020:F2 proof: Clip-path animated bar showing low lead attribution visibility in legacy models -->
+              <div class="bar-fill legacy-fill figure-band"></div>
+            </div>
+          </div>
+          <div class="comparison-bar ascend">
+            <div class="bar-info">
+              <span class="bar-label">Ascend System</span>
+              <span class="bar-value">100% verified</span>
+            </div>
+            <div class="bar-track">
+              <!-- @r020:F2 proof: Clip-path animated bar showing complete lead attribution visibility in Ascend model -->
+              <div class="bar-fill ascend-fill figure-band"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
     </div>
   </section>
 
   <!-- ============================================ -->
-  <!-- L10 · Playbook teaser (8 items)               -->
+  <!-- L11 · Playbook teaser (8 items)               -->
   <!-- ============================================ -->
   <section class="playbook-teaser" aria-labelledby="playbook-teaser-title">
     <div class="container">
@@ -429,24 +534,47 @@ const faqSchema = {
   </section>
 
   <!-- ============================================ -->
-  <!-- L11 · FAQ                                     -->
+  <!-- L12 · Objection handling                      -->
+  <!-- ============================================ -->
+  <section class="objection-section elev" aria-labelledby="objection-title">
+    <div class="container objection-grid">
+      <header class="objection-head">
+        <p class="section-tag">Before the call</p>
+        <h2 id="objection-title" class="h-section">The hard questions are already in the system.</h2>
+        <p class="lede">
+          Owners who buy Ascend are practical. They have been promised things before. The site should answer that skepticism in plain language.
+        </p>
+      </header>
+      <div class="objection-list">
+        {objections.map((item) => (
+          <article class="objection-card">
+            <h3>{item.q}</h3>
+            <p>{item.a}</p>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================ -->
+  <!-- L13 · FAQ                                     -->
   <!-- ============================================ -->
   <FAQ faqs={faqs} />
 
   <!-- ============================================ -->
-  <!-- L12 · Final CTA                               -->
+  <!-- L14 · Final CTA                               -->
   <!-- ============================================ -->
   <section class="final-section" aria-labelledby="final-title">
     <div class="container">
       <div class="final-inner">
         <div>
-          <p class="section-tag">Start with the audit</p>
-          <h2 id="final-title" class="h-closer">Stop guessing where the next client <em>comes from.</em></h2>
-          <p class="lede">The free AI Marketing Audit takes 5 minutes. The answer tells us whether Ascend should be installed next.</p>
+          <p class="section-tag">Start with the diagnostic</p>
+          <h2 id="final-title" class="h-closer">Find the leak. Then decide if Ascend should run it.</h2>
+          <p class="lede">The fit diagnostic names the market leaks, captures the context, and routes qualified owners into a short discovery call.</p>
         </div>
         <a href="/book" class="cta" data-cta-source="home-final">See If We're a Fit<span class="cta-arrow" aria-hidden="true">&rarr;</span></a>
       </div>
-      <!-- 30-day install timeline · F3 CTA-pull + F2 proof (3 named milestones) -->
+      <!-- @r020:F2 proof: SVG timeline graphic showing the 30-day install milestones to system-live -->
       <figure class="final-timeline" aria-labelledby="timeline-cap">
         <svg viewBox="0 0 1000 90" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="From audit to system-live in 30 days: three milestones across one month">
           <line x1="60" y1="50" x2="940" y2="50" stroke="var(--rule)" stroke-width="1"/>
@@ -462,26 +590,66 @@ const faqSchema = {
           <text x="940" y="78" text-anchor="end" fill="var(--ink-dim)" font-family="JetBrains Mono, monospace" font-size="10" letter-spacing="2">SYSTEM LIVE</text>
         </svg>
         <figcaption id="timeline-cap" class="final-timeline-cap mono">
-          Audit to system-live · 30 days · no 90-day waiting period.
+          Diagnostic to system-live · 30 days · weekly proof rhythm begins.
         </figcaption>
       </figure>
     </div>
   </section>
+
+  <script>
+    // 1. Hero interactive spotlight mouse tracking
+    const hero = document.querySelector('.home-hero');
+    if (hero && window.matchMedia('(hover: hover)').matches) {
+      const updateSpotlight = (e) => {
+        const rect = hero.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+        hero.style.setProperty('--spot-x', `${x}px`);
+        hero.style.setProperty('--spot-y', `${y}px`);
+      };
+      
+      window.addEventListener('pointermove', updateSpotlight);
+      
+      // Init position
+      const rect = hero.getBoundingClientRect();
+      hero.style.setProperty('--spot-x', `${rect.width / 2}px`);
+      hero.style.setProperty('--spot-y', `${rect.height * 0.3}px`);
+    }
+
+    // 2. Scroll listener to animate comparative progress bars
+    const bands = document.querySelectorAll('.figure-band');
+    const checkReveal = () => {
+      bands.forEach((b) => {
+        const rect = b.getBoundingClientRect();
+        if (rect.top < window.innerHeight * 0.9) {
+          b.classList.add('is-visible');
+        }
+      });
+    };
+    window.addEventListener('scroll', checkReveal);
+    checkReveal();
+  </script>
 </BaseLayout>
 
 <style>
 /* ===== L1 Hero ===== */
 .home-hero {
+  position: relative;
   min-height: 100svh;
   display: flex;
   align-items: center;
   padding-top: clamp(104px, 12vw, 168px);
   padding-bottom: clamp(56px, 8vw, 104px);
+  overflow: hidden;
+  background: 
+    radial-gradient(circle 800px at var(--spot-x, 50%) var(--spot-y, 30%), rgba(240, 255, 0, 0.08), transparent 60%),
+    var(--bg);
+  transition: background 0.1s ease;
 }
 
 .hero-grid {
   display: grid;
-  grid-template-columns: minmax(0, 1.12fr) minmax(240px, 0.88fr);
+  grid-template-columns: minmax(0, 1.08fr) minmax(280px, 0.92fr);
   gap: clamp(36px, 7vw, 96px);
   align-items: center;
 }
@@ -493,11 +661,15 @@ const faqSchema = {
 }
 
 .hero-copy .h-hero { max-width: 880px; }
+.hero-copy .h-hero em {
+  color: var(--y2);
+  font-style: normal;
+}
 .hero-copy .hero-sub {
   max-width: 680px;
-  font-size: clamp(21px, 2.1vw, 24px);
-  font-weight: 500;
-  color: var(--ink);
+  font-size: clamp(18px, 1.8vw, 22px);
+  font-weight: 400;
+  color: var(--ink-dim);
 }
 
 .hero-actions {
@@ -507,27 +679,315 @@ const faqSchema = {
   align-items: center;
 }
 
-.hero-photo {
-  margin: 0;
+.hero-proof-strip {
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1px;
+  background: var(--rule);
+  border: 1px solid var(--rule);
+  max-width: 680px;
+  margin-top: 8px;
+}
+.hero-proof-strip li {
+  background: var(--bg-card);
+  padding: 18px 16px;
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 6px;
 }
-.hero-photo img {
+.hero-proof-strip strong {
+  font-size: clamp(22px, 2.5vw, 34px);
+  line-height: 1;
+  letter-spacing: -0.04em;
+  color: var(--ink);
+}
+.hero-proof-strip span {
+  font-family: var(--mono);
+  font-size: 9px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+}
+
+.command-center {
+  position: relative;
+  border: 1px solid var(--rule-bright);
+  background:
+    linear-gradient(180deg, rgba(240, 255, 0, 0.045), transparent 32%),
+    var(--bg-card);
+  padding: clamp(22px, 3vw, 34px);
+  min-height: 540px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  box-shadow: 0 24px 80px rgba(0, 0, 0, 0.35);
+}
+.command-center::before {
+  content: "";
+  position: absolute;
+  inset: 18px;
+  border: 1px solid rgba(240, 255, 0, 0.12);
+  pointer-events: none;
+}
+.command-topline {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--y2);
+  font-size: 10px;
+  letter-spacing: 0.18em;
+}
+.command-score {
+  border-bottom: 1px solid var(--rule);
+  padding-bottom: 24px;
+}
+.command-score-label {
+  color: var(--ink-faint);
+  font-size: 10px;
+  letter-spacing: 0.2em;
+  margin-bottom: 10px;
+}
+.command-score-value {
+  font-size: clamp(64px, 8vw, 108px);
+  font-weight: 800;
+  font-stretch: 75%;
+  letter-spacing: -0.06em;
+  line-height: 0.9;
+  color: var(--y2);
+}
+.command-score-body {
+  max-width: 420px;
+  margin-top: 14px;
+  color: var(--ink-dim);
+  font-size: 15px;
+  line-height: 1.55;
+}
+.command-metrics {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1px;
+  background: var(--rule);
+  border: 1px solid var(--rule);
+  align-self: stretch;
+}
+.command-metric {
+  background: var(--bg);
+  padding: 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.command-metric span {
+  color: var(--ink-faint);
+  font-size: 9px;
+  letter-spacing: 0.18em;
+}
+.command-metric strong {
+  font-size: clamp(28px, 3vw, 44px);
+  line-height: 1;
+  letter-spacing: -0.04em;
+}
+.command-metric em {
+  font-family: var(--mono);
+  font-style: normal;
+  text-transform: uppercase;
+  font-size: 9px;
+  letter-spacing: 0.18em;
+  color: var(--y2);
+}
+.command-flow-svg {
   width: 100%;
   height: auto;
-  aspect-ratio: 16 / 11;
-  object-fit: cover;
-  display: block;
-  border-radius: 6px;
+  margin-block: 8px 16px;
+  overflow: visible;
+}
+.loop-track-pulse {
+  stroke-dasharray: 60 250;
+  animation: loopFlow 4s linear infinite;
+}
+.node-pulse {
+  animation: signalPulse 2s ease-in-out infinite;
+  transform-origin: center;
+}
+@keyframes loopFlow {
+  from { stroke-dashoffset: 714; }
+  to { stroke-dashoffset: 0; }
+}
+
+.evidence-ticker {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  border-top: 1px solid var(--rule);
+  padding-top: 16px;
+  margin-top: auto;
+  mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+  -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+}
+.ticker-track {
+  display: flex;
+  width: max-content;
+  animation: tickerMove 25s linear infinite;
+}
+.ticker-items {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  padding-right: 20px;
+  white-space: nowrap;
+  font-family: var(--mono);
+  font-size: 8px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+}
+.ticker-sep {
+  color: var(--y2);
+  font-weight: bold;
+}
+
+/* ===== Comparative Progress Bars ===== */
+.bar-comparison {
+  margin-top: 48px;
+  padding: 36px;
+  background: var(--bg-card);
+  border: 1px solid var(--rule);
+  border-radius: 4px;
+}
+.comparison-title {
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  color: var(--ink-faint);
+  margin-bottom: 24px;
+  text-transform: uppercase;
+}
+.comparison-bars {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+.comparison-bar {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.bar-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+.bar-label {
+  color: var(--ink-dim);
+}
+.bar-value {
+  color: var(--ink);
+}
+.legacy .bar-value {
+  color: var(--ink-faint);
+}
+.ascend .bar-value {
+  color: var(--y2);
+  font-weight: bold;
+}
+.bar-track {
+  width: 100%;
+  height: 8px;
+  background: var(--bg);
+  border: 1px solid var(--rule);
+  border-radius: 2px;
+  overflow: hidden;
+}
+.bar-fill {
+  height: 100%;
+  border-radius: 2px;
+  clip-path: inset(0 100% 0 0);
+  transition: clip-path 1.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.legacy-fill {
+  width: 12%;
+  background: var(--ink-faint);
+  opacity: 0.5;
+}
+.ascend-fill {
+  width: 100%;
+  background: linear-gradient(90deg, var(--y1), var(--y2));
+  box-shadow: 0 0 12px rgba(240, 255, 0, 0.3);
+}
+.bar-fill.is-visible {
+  clip-path: inset(0 0 0 0);
+}
+
+/* ===== L4 Install section ===== */
+.install-section { padding-block: var(--section-y); }
+.install-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr);
+  gap: clamp(40px, 6vw, 80px);
+  align-items: start;
+}
+.install-head { position: sticky; top: 104px; }
+.install-head .lede { margin-top: 22px; }
+.install-steps {
+  list-style: none;
+  display: grid;
+  gap: 1px;
+  background: var(--rule);
   border: 1px solid var(--rule);
 }
-.hero-photo-cap {
+.install-steps li {
+  background: var(--bg-card);
+  padding: clamp(26px, 4vw, 42px);
+}
+.install-day {
+  color: var(--y2);
   font-size: 10px;
-  letter-spacing: 0.16em;
-  color: var(--ink-faint);
-  text-transform: uppercase;
-  line-height: 1.5;
+  letter-spacing: 0.2em;
+}
+.install-steps h3 {
+  font-size: clamp(30px, 4vw, 52px);
+  line-height: 1;
+  margin-block: 14px;
+}
+.install-steps p {
+  color: var(--ink-dim);
+  font-size: 17px;
+  line-height: 1.6;
+  max-width: 620px;
+}
+
+/* ===== Objection section ===== */
+.objection-section { padding-block: var(--section-y); }
+.objection-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+  gap: clamp(40px, 6vw, 80px);
+  align-items: start;
+}
+.objection-head .lede { margin-top: 22px; }
+.objection-list {
+  display: grid;
+  gap: 1px;
+  background: var(--rule);
+  border: 1px solid var(--rule);
+}
+.objection-card {
+  background: var(--bg-card);
+  padding: clamp(24px, 3vw, 36px);
+}
+.objection-card h3 {
+  font-size: clamp(22px, 2.2vw, 30px);
+  line-height: 1.15;
+  margin-bottom: 12px;
+}
+.objection-card p {
+  color: var(--ink-dim);
+  font-size: 16px;
+  line-height: 1.6;
 }
 
 /* ===== L8 Dominance section ===== */
@@ -727,8 +1187,9 @@ const faqSchema = {
   padding-left: 14px;
 }
 .playbook-link-title {
-  font-family: var(--serif);
-  font-weight: 400;
+  font-family: var(--sans);
+  font-weight: 800;
+  font-stretch: 75%;
   font-size: clamp(22px, 2.6vw, 30px);
   letter-spacing: -0.015em;
   line-height: 1.15;
@@ -776,12 +1237,42 @@ const faqSchema = {
 /* ===== Responsive ===== */
 @media (max-width: 900px) {
   .home-hero { min-height: auto; }
-  .hero-grid, .final-inner { grid-template-columns: 1fr; }
+  .hero-grid,
+  .install-grid,
+  .objection-grid,
+  .final-inner { grid-template-columns: 1fr; }
+  .install-head { position: static; }
   .final-inner { align-items: start; }
 }
 
 @media (max-width: 520px) {
-  .home-hero { padding-top: 96px; }
+  .home-hero { padding-top: 82px; }
+  .hero-copy { gap: 18px; }
+  .hero-copy .h-hero {
+    font-size: 40px;
+    line-height: 0.92;
+  }
+  .hero-copy .h-hero em {
+    color: var(--y2);
+    font-style: normal;
+  }
+  .hero-copy .hero-sub {
+    order: 4;
+    font-size: 17px;
+    line-height: 1.45;
+  }
+  .hero-actions {
+    order: 3;
+  }
+  .hero-proof-strip {
+    order: 5;
+  }
+  .command-center { min-height: 0; padding: 20px; }
+  .command-center::before { inset: 10px; }
+  .command-metrics,
+  .hero-proof-strip {
+    grid-template-columns: 1fr;
+  }
   .hero-actions { align-items: stretch; }
   .hero-actions .cta,
   .hero-actions .cta-ghost,

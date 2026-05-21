@@ -7,33 +7,22 @@
 
 // Receipt tiles sourced verbatim from canonical contract.msa_locked_clauses.
 // The "client owns X" framing is the most conversion-relevant subset of the 6 clauses.
-// Iteration 3 (2026-05-20): each receipt now anchored by an R018d still-life photograph
-// generated via bwm-codex (Codex-exec OAuth, flat-rate), Python-graded for R015 compliance
-// (≥90% dark cool · ≤10% Y2 accent · 0% warm pixels above 40% saturation).
 const receipts = [
   {
     eyebrow: "Client owns the code",
     body: "Your site, your funnel, your AI agents — built on your domain, in your repo. Take it anywhere.",
-    image: "/images/bwm-sovereignty-code-v1.webp",
-    alt: "Macro still-life: dark slate paper with faint lines of computer code, a single small acid-yellow paperclip in the upper-right corner — the literal artifact of code that belongs to the owner.",
   },
   {
     eyebrow: "Client owns the data",
     body: "Every lead, booking, and conversation lives in your system. Export anytime — no permission required.",
-    image: "/images/bwm-sovereignty-data-v1.webp",
-    alt: "Macro still-life: brushed steel filing cabinet drawer with brass keyhole and label slot, a single acid-yellow status LED illuminated above the keyhole — the sovereign weight of data ownership.",
   },
   {
     eyebrow: "Client owns the ad accounts",
     body: "Every channel — all under your business, not ours. We operate them. You hold the keys.",
-    image: "/images/bwm-sovereignty-ad-accounts-v1.webp",
-    alt: "Macro still-life: brushed-metal server rack panel with a row of small status indicators, one bright acid-yellow LED illuminated among a row of dim grey-blue inactives — the active channel under client control.",
   },
   {
     eyebrow: "Client owns the customer list",
     body: "When you leave, you take the relationship history. The system goes home with you. We leave empty-handed.",
-    image: "/images/bwm-sovereignty-customer-list-v1.webp",
-    alt: "Macro still-life: cream index card on dark slate wood with handwritten names in dark ink, a small acid-yellow registration mark in the upper-right corner — the relationship history captured on paper.",
   },
 ];
 ---
@@ -54,16 +43,11 @@ const receipts = [
     <div class="sovereignty__grid" role="list">
       {receipts.map((tile) => (
         <div class="card sovereignty__card" role="listitem">
-          <figure class="sovereignty__card-figure" aria-hidden="false">
-            <img
-              src={tile.image}
-              alt={tile.alt}
-              width="1600"
-              height="900"
-              loading="lazy"
-              decoding="async"
-            />
-          </figure>
+          <div class="sovereignty__receipt-rail" aria-hidden="true">
+            <span class="sovereignty__receipt-dot"></span>
+            <span class="sovereignty__receipt-line"></span>
+            <span class="sovereignty__receipt-line sovereignty__receipt-line--short"></span>
+          </div>
           <div class="sovereignty__card-body-wrap">
             <p class="sovereignty__card-eyebrow">{tile.eyebrow}</p>
             <p class="card-body sovereignty__card-body">{tile.body}</p>
@@ -125,23 +109,33 @@ const receipts = [
     border-color: transparent;
   }
 
-  /* Photo at top of each tile — R018d still-life, 16:9 aspect */
-  .sovereignty__card-figure {
-    margin: 0;
-    width: 100%;
-    aspect-ratio: 16 / 9;
-    overflow: hidden;
-    background: var(--bg);
+  .sovereignty__receipt-rail {
+    min-height: clamp(132px, 15vw, 188px);
+    border-bottom: 1px solid var(--rule);
+    background:
+      linear-gradient(90deg, rgba(240, 255, 0, 0.14), transparent 34%),
+      repeating-linear-gradient(0deg, rgba(255, 255, 255, 0.04) 0 1px, transparent 1px 18px),
+      var(--bg);
+    padding: 28px;
+    display: grid;
+    align-content: end;
+    gap: 12px;
   }
-  .sovereignty__card-figure img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
+  .sovereignty__receipt-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 999px;
+    background: var(--y2);
+    box-shadow: 0 0 28px rgba(240, 255, 0, 0.25);
+  }
+  .sovereignty__receipt-line {
     display: block;
-    transition: transform 480ms ease;
+    height: 1px;
+    width: 78%;
+    background: var(--rule-bright);
   }
-  .sovereignty__card:hover .sovereignty__card-figure img {
-    transform: scale(1.04);
+  .sovereignty__receipt-line--short {
+    width: 48%;
   }
 
   /* Text wrapper preserves the original padding rhythm */
@@ -173,11 +167,8 @@ const receipts = [
 
   /* Respect reduced motion */
   @media (prefers-reduced-motion: reduce) {
-    .sovereignty__card-figure img {
+    .sovereignty__card {
       transition: none;
-    }
-    .sovereignty__card:hover .sovereignty__card-figure img {
-      transform: none;
     }
   }
 

@@ -1,0 +1,127 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import EightLayerSystem from '../components/EightLayerSystem.astro';
+import Sovereignty from '../components/Sovereignty.astro';
+import EarnBackCalculator from '../components/EarnBackCalculator.astro';
+
+const title = "The Ascend System — Buildwise Media";
+const description = "The full Ascend system: an 8-layer revenue operating system for service businesses, installed on your domain, run by Buildwise, and owned by you.";
+
+const breadcrumb = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://buildwisemedia.com/' },
+    { '@type': 'ListItem', position: 2, name: 'The System', item: 'https://buildwisemedia.com/system' },
+  ],
+};
+---
+<BaseLayout title={title} description={description} jsonLd={[breadcrumb]}>
+
+  <section class="system-hero">
+    <div class="container system-hero-grid">
+      <div>
+        <p class="eyebrow">The system</p>
+        <h1 class="h-hero">Marketing as operations, installed inside the business.</h1>
+        <p class="hero-sub">
+          Ascend connects the surfaces buyers see with the follow-up, reporting, and weekly cadence owners need. The point is not more marketing activity. The point is a revenue system that keeps improving without making the owner the integration layer.
+        </p>
+        <div class="system-ctas">
+          <a href="/book" class="cta" data-cta-source="system-hero">See If We're a Fit<span class="cta-arrow" aria-hidden="true">→</span></a>
+          <a href="/pricing" class="cta-ghost" data-cta-source="system-pricing">See Pricing</a>
+        </div>
+      </div>
+      <aside class="system-panel">
+        <p class="panel-label mono">Operating loop</p>
+        <ol>
+          <li>Capture baseline</li>
+          <li>Install 8 layers</li>
+          <li>Clear HITL gates</li>
+          <li>Report weekly</li>
+        </ol>
+      </aside>
+    </div>
+  </section>
+
+  <EightLayerSystem />
+  <Sovereignty />
+  <EarnBackCalculator />
+
+  <section class="system-final elev">
+    <div class="container final-row">
+      <div>
+        <h2 class="h-closer">Want to see where your current system leaks?</h2>
+        <p class="lede">The fit diagnostic builds the Market Leak Map before the call.</p>
+      </div>
+      <a href="/book" class="cta" data-cta-source="system-final">See If We're a Fit<span class="cta-arrow" aria-hidden="true">→</span></a>
+    </div>
+  </section>
+
+</BaseLayout>
+
+<style>
+.system-hero {
+  padding-top: clamp(132px, 14vw, 188px);
+  padding-bottom: clamp(64px, 8vw, 112px);
+}
+.system-hero-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.1fr) minmax(260px, 0.9fr);
+  gap: clamp(40px, 6vw, 88px);
+  align-items: center;
+}
+.hero-sub { margin-top: 24px; }
+.system-ctas {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+  margin-top: 32px;
+}
+.system-panel {
+  border: 1px solid var(--rule-bright);
+  background: var(--bg-card);
+  padding: clamp(28px, 4vw, 44px);
+}
+.panel-label {
+  color: var(--y2);
+  font-size: 10px;
+  letter-spacing: 0.2em;
+}
+.system-panel ol {
+  list-style: none;
+  display: grid;
+  gap: 1px;
+  margin-top: 28px;
+  background: var(--rule);
+  border: 1px solid var(--rule);
+}
+.system-panel li {
+  background: var(--bg);
+  padding: 18px;
+  font-family: var(--mono);
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  font-size: 10px;
+  color: var(--ink-dim);
+}
+.system-final { padding-block: 80px; }
+.final-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 32px;
+  flex-wrap: wrap;
+}
+.final-row .lede { margin-top: 16px; }
+@media (max-width: 840px) {
+  .system-hero-grid { grid-template-columns: 1fr; }
+}
+@media (max-width: 560px) {
+  .system-ctas .cta,
+  .system-ctas .cta-ghost,
+  .final-row .cta {
+    width: 100%;
+    justify-content: center;
+  }
+}
+</style>

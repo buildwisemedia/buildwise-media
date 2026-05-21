@@ -4,8 +4,7 @@
 // Refactored 2026-05-20 from prior 3-panel "Compounding Edge" component into the
 // capability-inheritance arc. Compounding Slider lock satisfied by the new
 // EarnBackCalculator (L6) which is a slider with compounding outputs.
-// Vendor names BANNED per CLAUDE.md client-voice lock — "frontier AI" / "AI assistant"
-// stand in for Anthropic / Google / OpenAI / xAI / Claude / ChatGPT / Gemini.
+// Public copy uses "frontier AI" / "AI assistant" instead of borrowed provider brands.
 ---
 <section class="capability-curve" aria-labelledby="curve-headline">
   <div class="container">
@@ -132,7 +131,7 @@
     </ol>
 
     <!-- Panel 2: Dot Grid horizon — the system runs while you don't -->
-    <div class="curve-grid reveal" aria-label="System runs 24/7">
+    <div class="curve-grid reveal" role="group" aria-label="System runs 24/7">
       <div class="grid-canvas dot-grid" aria-hidden="true"></div>
       <div class="grid-overlay">
         <p class="reveal-num"><em>24/7</em></p>

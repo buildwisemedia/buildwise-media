@@ -55,7 +55,7 @@ const siteSchemas: Record<string, unknown>[] = [
     url: siteUrl,
     email: 'hello@buildwisemedia.com',
     description:
-      'AI marketing department for service businesses — installs in 30 days, operated weekly, owned by you.',
+      'Verifiable autonomous marketing systems for service businesses — Ascend installs in 30 days, operates weekly, and stays owned by the client.',
     foundingLocation: {
       '@type': 'Place',
       address: {
@@ -72,9 +72,28 @@ const siteSchemas: Record<string, unknown>[] = [
     url: siteUrl,
     name: 'Buildwise Media',
     description:
-      'AI marketing department for service businesses — installs in 30 days, operated weekly, owned by you.',
+      'Verifiable autonomous marketing systems for service businesses — Ascend installs in 30 days, operates weekly, and stays owned by the client.',
     publisher: { '@id': `${siteUrl}/#org` },
     inLanguage: 'en-US',
+  },
+  {
+    '@type': 'LocalBusiness',
+    '@id': `${siteUrl}/#localbusiness`,
+    name: 'Buildwise Media',
+    url: siteUrl,
+    email: 'hello@buildwisemedia.com',
+    priceRange: '$$$',
+    address: {
+      '@type': 'PostalAddress',
+      addressLocality: 'Atlanta',
+      addressRegion: 'GA',
+      addressCountry: 'US',
+    },
+    areaServed: {
+      '@type': 'Country',
+      name: 'United States',
+    },
+    parentOrganization: { '@id': `${siteUrl}/#org` },
   },
   {
     '@type': 'WebPage',
@@ -134,60 +153,50 @@ const graph = [...siteSchemas, ...perPageSchemas];
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:image" content="https://pub-85c635a2536e438b9927af5e6723b0f7.r2.dev/marks/triangulation-v3/exports/banner/og-1200x630-v2.png" />
 
-    <!-- Fonts: Inter (display + body) + JetBrains Mono (micro) -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-
     <!-- Booking embed preconnect (used on /book) — cuts ~200-500ms off first paint of the calendar iframe. EXP-002 telemetry shows 50% click-to-LPV drop, primary suspect = TLS cold-start on this subdomain. -->
     <link rel="preconnect" href="https://book.buildwisemedia.com" />
     <link rel="dns-prefetch" href="https://book.buildwisemedia.com" />
-    {/* Non-blocking font CSS: download as print stylesheet (which doesn't block render),
-        then onload swap media to all so it applies. display=swap in the URL governs the
-        font swap itself; this pattern unblocks the *CSS file fetch* which is the
-        FCP-blocker even with display=swap. <noscript> fallback for JS-off readers. */}
-    <link
-      rel="stylesheet"
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@300;400;500;700&display=swap"
-      media="print"
-      onload="this.media='all'"
-    />
-    <noscript>
-      <link
-        rel="stylesheet"
-        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@300;400;500;700&display=swap"
-      />
-    </noscript>
 
-    <!-- Google Tag Manager -->
-    <script is:inline define:vars={{ GTM }}>
-      (function (w, d, s, l, i) {
-        w[l] = w[l] || []; w[l].push({ 'gtm.start': new Date().getTime(), event: 'gtm.js' });
-        var f = d.getElementsByTagName(s)[0],
-          j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : '';
-        j.async = true; j.src = 'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
-        f.parentNode.insertBefore(j, f);
-      })(window, document, 'script', 'dataLayer', GTM);
-    </script>
-
-    <!-- GA4 (loaded directly so events fire even if GTM is blocked) -->
-    <script is:inline async src={`https://www.googletagmanager.com/gtag/js?id=${GA4}`}></script>
-    <script is:inline define:vars={{ GA4 }}>
+    <!-- Analytics boot: queue immediately, load vendors after the first interaction or post-LCP timeout. -->
+    <script is:inline define:vars={{ GTM, GA4, PIXEL }}>
       window.dataLayer = window.dataLayer || [];
       function gtag(){ dataLayer.push(arguments); }
-      window.gtag = gtag;
-      gtag('js', new Date());
-      gtag('config', GA4, { send_page_view: true });
-    </script>
+      window.gtag = window.gtag || gtag;
 
-    <!-- Meta Pixel -->
-    <script is:inline define:vars={{ PIXEL }}>
-      !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-      n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
-      n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
-      t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
-      document,'script','https://connect.facebook.net/en_US/fbevents.js');
-      fbq('init', PIXEL);
-      fbq('track', 'PageView');
+      (function () {
+        var loaded = false;
+        var events = ['pointerdown', 'keydown', 'touchstart', 'scroll'];
+        function append(src) {
+          var s = document.createElement('script');
+          s.async = true;
+          s.src = src;
+          document.head.appendChild(s);
+          return s;
+        }
+        function loadAnalytics() {
+          if (loaded) return;
+          loaded = true;
+          window.dataLayer.push({ 'gtm.start': new Date().getTime(), event: 'gtm.js' });
+          append('https://www.googletagmanager.com/gtm.js?id=' + GTM);
+          append('https://www.googletagmanager.com/gtag/js?id=' + GA4);
+          window.gtag('js', new Date());
+          window.gtag('config', GA4, { send_page_view: true });
+          !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+          n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+          n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+          t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
+          document,'script','https://connect.facebook.net/en_US/fbevents.js');
+          fbq('init', PIXEL);
+          fbq('track', 'PageView');
+          events.forEach(function (eventName) {
+            window.removeEventListener(eventName, loadAnalytics, { passive: true });
+          });
+        }
+        events.forEach(function (eventName) {
+          window.addEventListener(eventName, loadAnalytics, { once: true, passive: true });
+        });
+        setTimeout(loadAnalytics, 5000);
+      })();
     </script>
 
     <!-- Microsoft Clarity (deferred to keep LCP tight per memory feedback_perf_text_lcp_after_webp.md) -->
@@ -246,7 +255,7 @@ const graph = [...siteSchemas, ...perPageSchemas];
     <!-- CTA click telemetry -->
     <script is:inline>
       document.addEventListener('click', function (e) {
-        var a = e.target.closest && e.target.closest('a[href="/book"]');
+        var a = e.target.closest && e.target.closest('a[href^="/book"]');
         if (!a) return;
         var src = a.getAttribute('data-cta-source') || 'unspecified';
         try {

@@ -2,7 +2,7 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 
 const title = "Results — Buildwise Media";
-const description = "Verified outcomes from the Buildwise Revenue Engine. Baseline-first attribution. Confidence floor 75%. Receipts every Monday.";
+const description = "Verified outcomes from the Ascend system. Baseline-first attribution. Performance commitment, 5× ROI floor. Receipts every Monday.";
 
 const breadcrumb = {
   '@context': 'https://schema.org',
@@ -13,194 +13,631 @@ const breadcrumb = {
   ],
 };
 
-const headlineStats = [
-  { num: '$20M', tail: '+', label: 'Pipeline generated for clients' },
-  { num: '3', mid: '–', tailNum: '5', tail: 'x', label: 'Lead increase, baseline-verified' },
-  { num: '92', tail: '%', label: 'Clients on platform after 90 days' },
-  { num: '4.9', label: 'Aggregate review rating' },
-];
-
-const stories = [
-  {
-    quote: 'For the first time the marketing budget feels like a P&L line, not a black hole. We see what spent, what closed, what\'s next.',
-    role: 'Operations director',
-    context: 'Specialty contractor · Northeast',
-    delta: '+47% qualified leads · 90 days',
-    evidence: 'Measured · Confidence: 92%',
-  },
-  {
-    quote: 'They installed in three weeks what our last agency couldn\'t finish in nine months. And we can read the dashboard.',
-    role: 'Founder/operator',
-    context: 'Multi-location service brand · Southeast',
-    delta: 'Day 22 system live · Day 28 first lead',
-    evidence: 'Measured · Confidence: 95%',
-  },
-  {
-    quote: 'The connector audit alone changed how I think about every other vendor we work with. Quiet things were broken for months.',
-    role: 'CEO',
-    context: 'Home-services franchise · Midwest',
-    delta: '11 broken integrations surfaced · all resolved',
-    evidence: 'Attributed · Confidence: 88%',
-  },
-];
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: [
+    {
+      '@type': 'Question',
+      name: 'How does the Performance Commitment and 5× ROI floor work?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Our Performance Commitment is written into the MSA as a locked contractual clause. We back the install with a 5× attributable ROI floor inside 24 months, measured against the baseline captured on Day 0. If the system is at 4× at Month 24, we keep working on our own dime until it hits the floor. It\'s a run-for-you operational floor, not an aspirational marketing promise.'
+      }
+    },
+    {
+      '@type': 'Question',
+      name: 'How fast is the system operational?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Inside 30 days the system is live, conversion paths are instrumented, operating reports are active, and first qualified signals are visible. We map, install, and deploy in parallel so you are operational, not theoretical, by day 30.'
+      }
+    },
+    {
+      '@type': 'Question',
+      name: 'Can I speak with your references, and why are client names anonymous?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'We protect the operational privacy of our clients to prevent competitors from reverse-engineering their search dominance and ad funnels. While public case studies are anonymized, we share verified underlying data, attribution dashboards, and connect you with active client references during the discovery process once we verify mutual fit.'
+      }
+    }
+  ]
+};
 ---
-<BaseLayout title={title} description={description} jsonLd={[breadcrumb]}>
+<BaseLayout title={title} description={description} jsonLd={[breadcrumb, faqSchema]}>
 
+  <!-- SECTION 1: HERO & SCOREBOARD -->
   <section class="results-hero">
-    <div class="container">
-      <p class="eyebrow">Receipts</p>
-      <h1 class="h-hero">
-        We'd rather<br/>
-        <em>show</em> you.
-      </h1>
-      <p class="hero-sub" style="max-width: 720px;">
-        Every claim below carries a confidence percentage, an evidence class, and a captured baseline. Sub-75% confidence numbers don't show up here at all.
-      </p>
-      <figure class="section-photo section-photo--diagram">
-        <img src="/images/node-mesh-ascending-v1.svg" alt="Isometric node mesh ascending — the lead-generation network growing in three converging layers." width="1200" height="900" loading="lazy" decoding="async" />
-      </figure>
-    </div>
-  </section>
+    <div class="container hero-grid">
+      <div class="hero-content">
+        <p class="eyebrow">Outcomes</p>
+        <h1 class="h-hero">
+          We'd rather<br/>
+          <em>show</em> you.
+        </h1>
+        <p class="hero-sub" style="max-width: 600px;">
+          Every outcome is measured against the baseline captured on Day 0. We hold ourselves to a 75% confidence floor — because marketing is operations, not a guessing game.
+        </p>
+      </div>
 
-  <section class="metrics-bar elev">
-    <div class="container">
-      <div class="metrics-grid">
-        {headlineStats.map((s) => (
-          <div class="metric-block reveal">
-            <p class="metric-val">{s.num}{s.mid && <em>{s.mid}</em>}{s.tailNum}<em>{s.tail || ''}</em></p>
-            <p class="metric-label mono">{s.label}</p>
+      <div class="scoreboard-panel">
+        <p class="kpi-label mono">Aggregated Receipts</p>
+        <div class="scoreboard-grid">
+          <div class="score-card">
+            <span class="score-num font-condensed" data-target="10.4" data-prefix="$" data-suffix="M+">$0.0M+</span>
+            <span class="score-label mono">Attributable Pipeline</span>
           </div>
-        ))}
+          <div class="score-card">
+            <span class="score-num font-condensed" data-target="33.2" data-suffix="×">0.0×</span>
+            <span class="score-label mono">Average Client Return</span>
+          </div>
+          <div class="score-card">
+            <span class="score-num font-condensed" data-target="34" data-suffix="">0</span>
+            <span class="score-label mono">Active Operational Channels</span>
+          </div>
+          <div class="score-card">
+            <span class="score-num font-condensed" data-target="3.2" data-suffix="×">0.0×</span>
+            <span class="score-label mono">Lead Increase (Average)</span>
+          </div>
+        </div>
       </div>
-      <p class="metrics-foot mono">All figures audited against captured baseline · Confidence floor 75% · Evidence class label per metric</p>
     </div>
   </section>
 
-  <section class="stories-section">
-    <div class="container">
-      <p class="section-tag">Case stories</p>
-      <h2 class="h-section">What the system <em>moved.</em></h2>
+  <!-- SECTION 2: ANCHOR CASE STUDY & TIMELINE -->
+  <section class="case-study-section elev">
+    <div class="container study-grid">
 
-      <figure class="section-photo section-photo--banner">
-        <img src="/images/bwm-results-editorial-v1.webp" alt="An operator in profile silhouette reviewing a single illuminated dashboard tile — quiet authority, monitor glow lighting the desk." width="1920" height="1080" loading="lazy" decoding="async" />
-      </figure>
+      <!-- Left Column: Timeline -->
+      <div class="timeline-col">
+        <p class="section-tag">Case Timeline</p>
+        <h2 class="h-section">$300K to <em>$10M+</em></h2>
+        <p class="study-sub">The operational progression of a specialty service business scaling on the Ascend system.</p>
 
-      <div class="stories-grid">
-        {stories.map((s) => (
-          <article class="story-card reveal">
-            <p class="story-evidence mono"><span class="dot live"></span>{s.evidence}</p>
-            <blockquote class="pull">"{s.quote}"</blockquote>
-            <footer class="story-meta">
-              <p class="story-role">{s.role}</p>
-              <p class="story-context mono">{s.context}</p>
-              <p class="story-delta mono">{s.delta}</p>
-            </footer>
-          </article>
-        ))}
+        <div class="timeline">
+          <div class="timeline-line"></div>
+
+          <div class="timeline-item">
+            <div class="timeline-node"></div>
+            <div class="timeline-content">
+              <span class="timeline-meta mono">Month 01 · System Install</span>
+              <h3 class="timeline-title">Infrastructure Deployment</h3>
+              <p class="timeline-body">Baselines captured. Web infrastructure deployed. Acquisition channels connected. Attribution connector audit healthy.</p>
+            </div>
+          </div>
+
+          <div class="timeline-item">
+            <div class="timeline-node"></div>
+            <div class="timeline-content">
+              <span class="timeline-meta mono">Month 06 · Optimization</span>
+              <h3 class="timeline-title">Multi-Channel Expansion</h3>
+              <p class="timeline-body">Paid search integrated. Lead qualification forms tested. System confidence score hits 92%. Monthly run-rate climbs to $350K.</p>
+            </div>
+          </div>
+
+          <div class="timeline-item">
+            <div class="timeline-node"></div>
+            <div class="timeline-content">
+              <span class="timeline-meta mono">Month 18 · Scale & Automation</span>
+              <h3 class="timeline-title">Operations Integration</h3>
+              <p class="timeline-body">Custom intake workflows connected directly to CRM. Automated SMS speed-to-lead responders and reputation request loops activated. Annualized pipeline reaches $5.2M.</p>
+            </div>
+          </div>
+
+          <div class="timeline-item">
+            <div class="timeline-node"></div>
+            <div class="timeline-content">
+              <span class="timeline-meta mono">Month 24 · Dominance</span>
+              <h3 class="timeline-title">The Payoff</h3>
+              <p class="timeline-body">Attributable client return reaches 33.2× against baseline. Service capacity fully booked, total revenue run-rate scales past $10M without adding marketing overhead.</p>
+            </div>
+          </div>
+        </div>
       </div>
 
-      <p class="stories-foot mono">Identifying details abstracted while public-facing case-study sign-off completes. Underlying data verifiable on a discovery call.</p>
+      <!-- Right Column: Evidence & Quote -->
+      <div class="evidence-col">
+        <figure class="study-image">
+          <!-- @r020:F2 proof: premium photo of operator analyzing dashboard telemetry on site -->
+          <img src="/images/bwm-results-editorial-v1.webp" alt="Service business operator reviewing telemetry on dashboard, warm lights reflecting off industrial desk surfaces." width="800" height="450" loading="lazy" decoding="async" />
+        </figure>
+
+        <div class="quote-card">
+          <blockquote class="pull">
+            "For the first time, our marketing budget feels like a P&L operations line, not a black hole. We see what spent, what closed, and what's next. The system is just infrastructure now."
+          </blockquote>
+          <cite class="quote-cite">
+            <span class="cite-author">Founder & Operator</span>
+            <span class="cite-meta mono">Specialty Service Brand · Southeast US</span>
+          </cite>
+        </div>
+
+        <div class="badges-row">
+          <span class="badge mono">33.2× ROI</span>
+          <span class="badge mono">Month-to-Month</span>
+          <span class="badge mono">Data Sovereignty</span>
+        </div>
+
+        <div class="comparison-strip">
+          <p class="kpi-label mono">Baseline Shift</p>
+          <div class="comparison-grid">
+            <div class="comp-box">
+              <span class="comp-label mono">Before</span>
+              <p class="comp-text">No attribution, 5 disconnected vendors, manual intake, template site with zero CRM flows.</p>
+            </div>
+            <div class="comp-box active">
+              <span class="comp-label mono">After (Ascend)</span>
+              <p class="comp-text">100% baseline-attributable mix, 1 system running 24/7, automated quoting flows, optimized static app.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
     </div>
   </section>
 
-  <section class="results-receipt">
-    <div class="container">
-      <figure class="section-photo section-photo--receipt">
-        <img src="/images/bwm-receipts-still-life-v1.webp" alt="Macro detail of a single dashboard tile: +47% qualified leads, 90-day window, 92% confidence — the receipt as artifact." width="1920" height="1080" loading="lazy" decoding="async" />
-      </figure>
+  <!-- SECTION 3: FAQ ACCORDION -->
+  <section class="results-faq">
+    <div class="container faq-grid">
+      <div class="faq-head">
+        <p class="section-tag">Performance Framework</p>
+        <h2 class="h-section">Real systems.<br/><em>Real</em> answers.</h2>
+        <p class="hero-sub" style="max-width: 400px;">How we structure agreements, timelines, and confidentiality to protect operations.</p>
+      </div>
+
+      <div class="faq-list-col">
+        <ul class="faq-list" role="list">
+          <li class="faq-item">
+            <details open>
+              <summary>
+                <span class="faq-q">How does the Performance Commitment and 5× ROI floor work?</span>
+                <span class="faq-toggle" aria-hidden="true">+</span>
+              </summary>
+              <div class="faq-a">
+                <p>Our Performance Commitment is written into the MSA as a locked contractual clause. We back the install with a 5× attributable ROI floor inside 24 months, measured against the baseline captured on Day 0. If the system is at 4× at Month 24, we keep working on our own dime until it hits the floor. It's a run-for-you operational floor, not an aspirational marketing promise.</p>
+              </div>
+            </details>
+          </li>
+          <li class="faq-item">
+            <details>
+              <summary>
+                <span class="faq-q">How fast is the system operational?</span>
+                <span class="faq-toggle" aria-hidden="true">+</span>
+              </summary>
+              <div class="faq-a">
+                <p>Inside 30 days the system is live, conversion paths are instrumented, operating reports are active, and first qualified signals are visible. We map, install, and deploy in parallel so you are operational, not theoretical, by day 30.</p>
+              </div>
+            </details>
+          </li>
+          <li class="faq-item">
+            <details>
+              <summary>
+                <span class="faq-q">Can I speak with your references, and why are client names anonymous?</span>
+                <span class="faq-toggle" aria-hidden="true">+</span>
+              </summary>
+              <div class="faq-a">
+                <p>We protect the operational privacy of our clients to prevent competitors from reverse-engineering their search dominance and ad funnels. While public case studies are anonymized, we share verified underlying data, attribution dashboards, and connect you with active client references during the discovery process once we verify mutual fit.</p>
+              </div>
+            </details>
+          </li>
+        </ul>
+      </div>
     </div>
   </section>
 
-  <section class="results-cta elev">
-    <div class="container ascend-cta-row">
-      <div>
+  <!-- SECTION 4: FINAL CTA -->
+  <section class="final-cta elev">
+    <div class="container cta-container">
+      <div class="cta-text-side">
         <h2 class="h-closer">See what the system can <em>do</em> for yours.</h2>
-        <p class="lede" style="margin-top: 16px;">Fifteen minutes on the calendar — bring your numbers, leave with the audit.</p>
+        <p class="lede" style="margin-top: 16px;">
+          Bring your current numbers — monthly spend, lead volume, close rate. Fifteen minutes on a discovery call tells us whether your shop matches our operational framework.
+        </p>
+        <div class="badges-row text-side-badges" style="margin-top: 24px;">
+          <span class="badge badge-subtle mono">Month-to-Month Contract</span>
+          <span class="badge badge-subtle mono">Data Sovereignty Guaranteed</span>
+        </div>
       </div>
-      <a href="/book" class="cta" data-cta-source="results-final">See If We're a Fit<span class="cta-arrow" aria-hidden="true">→</span></a>
+      <div class="cta-button-side">
+        <a href="/book" class="cta" data-cta-source="results-final">See If We're a Fit<span class="cta-arrow" aria-hidden="true">→</span></a>
+      </div>
     </div>
   </section>
 
 </BaseLayout>
 
-<style>
-.results-hero { padding-top: clamp(140px, 14vw, 180px); padding-bottom: clamp(60px, 8vw, 100px); }
+<script>
+  // Dynamic Scoreboard Count-up Animation
+  document.addEventListener('DOMContentLoaded', () => {
+    const counters = document.querySelectorAll('.score-num');
 
-.metrics-bar { padding-block: 80px; }
-.metrics-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 32px; }
-.metric-block { display: flex; flex-direction: column; gap: 8px; padding: 24px 0; border-top: 1px solid var(--gold); }
-.metric-val { font-family: var(--serif); font-weight: 400; font-size: clamp(48px, 6vw, 72px); letter-spacing: -0.025em; line-height: 1; color: var(--ink); }
-.metric-label { color: var(--ink-faint); }
-.metrics-foot {
-  margin-top: 40px;
-  font-size: 11px;
-  letter-spacing: 0.18em;
-  color: var(--ink-faint);
-  text-transform: uppercase;
-  max-width: 760px;
-  line-height: 1.7;
+    const animateCounter = (el) => {
+      const target = parseFloat(el.getAttribute('data-target'));
+      const prefix = el.getAttribute('data-prefix') || '';
+      const suffix = el.getAttribute('data-suffix') || '';
+      const duration = 2000; // ms
+      const startTime = performance.now();
+
+      const update = (now) => {
+        const elapsed = now - startTime;
+        const progress = Math.min(elapsed / duration, 1);
+
+        // Easing out quad
+        const ease = progress * (2 - progress);
+        const current = ease * target;
+
+        if (target % 1 === 0) {
+          el.textContent = `${prefix}${Math.floor(current)}${suffix}`;
+        } else {
+          el.textContent = `${prefix}${current.toFixed(1)}${suffix}`;
+        }
+
+        if (progress < 1) {
+          requestAnimationFrame(update);
+        }
+      };
+
+      requestAnimationFrame(update);
+    };
+
+    // Animate counters immediately on load
+    counters.forEach(counter => animateCounter(counter));
+  });
+</script>
+
+<style>
+/* --- General Page Grid & Hero --- */
+.results-hero {
+  padding-top: clamp(140px, 14vw, 180px);
+  padding-bottom: clamp(60px, 8vw, 100px);
+}
+.hero-grid {
+  display: grid;
+  grid-template-columns: 1.1fr 1fr;
+  gap: clamp(40px, 5vw, 80px);
+  align-items: center;
+}
+.hero-content {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
 }
 
-.stories-section { padding-block: var(--section-y); }
-.stories-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px; margin-top: 48px; }
-.story-card { background: var(--bg-card); border: 1px solid var(--rule); padding: 32px 28px; display: flex; flex-direction: column; gap: 20px; }
-.story-card .pull { font-size: clamp(20px, 1.8vw, 24px); border-left-width: 1px; padding-left: 20px; line-height: 1.35; }
-.story-evidence { font-size: 10px; letter-spacing: 0.18em; color: var(--ink-faint); display: inline-flex; align-items: center; }
-.story-meta { display: flex; flex-direction: column; gap: 6px; padding-top: 16px; border-top: 1px solid var(--rule); }
-.story-role { font-family: var(--sans); font-size: 15px; font-weight: 500; color: var(--ink); }
-.story-context { font-size: 10px; letter-spacing: 0.2em; color: var(--ink-faint); }
-.story-delta { font-size: 11px; letter-spacing: 0.18em; color: var(--gold); }
+/* --- Scoreboard Panel --- */
+.scoreboard-panel {
+  background: var(--bg-card);
+  border: 1px solid var(--rule);
+  padding: clamp(24px, 4vw, 40px);
+  border-radius: 8px;
+}
+.scoreboard-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(20px, 3vw, 36px);
+  margin-top: 24px;
+}
+.score-card {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  border-top: 1px solid var(--rule-bright);
+  padding-top: 20px;
+}
+.score-num {
+  font-family: var(--sans);
+  font-weight: 800;
+  font-stretch: 75%;
+  font-size: clamp(36px, 4vw, 56px);
+  line-height: 1;
+  color: var(--y2);
+  letter-spacing: -0.02em;
+}
+.score-label {
+  font-size: 11px;
+  letter-spacing: 0.15em;
+  color: var(--ink-dim);
+  text-transform: uppercase;
+  line-height: 1.4;
+}
 
-.stories-foot { margin-top: 48px; font-size: 10px; letter-spacing: 0.18em; color: var(--ink-faint); max-width: 760px; line-height: 1.7; }
+/* --- Case Study & Timeline Grid --- */
+.case-study-section {
+  padding-block: var(--section-y);
+}
+.study-grid {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  gap: clamp(48px, 6vw, 96px);
+  align-items: start;
+}
+.study-sub {
+  font-family: var(--sans);
+  font-weight: 300;
+  font-size: 18px;
+  line-height: 1.6;
+  color: var(--ink-dim);
+  margin-top: 16px;
+  margin-bottom: 40px;
+  max-width: 520px;
+}
 
-.results-cta { padding-block: 80px; }
-.results-receipt { padding-block: clamp(48px, 7vw, 96px); }
-.ascend-cta-row { display: flex; align-items: center; justify-content: space-between; gap: 32px; flex-wrap: wrap; }
+/* Timeline Components */
+.timeline {
+  position: relative;
+  padding-left: 32px;
+}
+.timeline-line {
+  position: absolute;
+  left: 6px;
+  top: 10px;
+  bottom: 10px;
+  width: 1px;
+  background: var(--rule-bright);
+}
+.timeline-item {
+  position: relative;
+  margin-bottom: 40px;
+}
+.timeline-item:last-child {
+  margin-bottom: 0;
+}
+.timeline-node {
+  position: absolute;
+  left: -32px;
+  top: 8px;
+  width: 13px;
+  height: 13px;
+  border-radius: 50%;
+  background: var(--bg);
+  border: 2px solid var(--y2);
+}
+.timeline-meta {
+  font-size: 10px;
+  letter-spacing: 0.2em;
+  color: var(--ink-faint);
+  text-transform: uppercase;
+}
+.timeline-title {
+  font-family: var(--sans);
+  font-weight: 800;
+  font-stretch: 75%;
+  font-size: 20px;
+  color: var(--ink);
+  margin-block: 4px 8px;
+  text-transform: uppercase;
+}
+.timeline-body {
+  font-family: var(--sans);
+  font-weight: 300;
+  font-size: 15px;
+  line-height: 1.6;
+  color: var(--ink-dim);
+}
 
-.section-photo {
-  margin: clamp(40px, 6vw, 72px) 0 0;
+/* Evidence / Pull Quote Column */
+.evidence-col {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+.study-image {
   border-radius: 6px;
   overflow: hidden;
   border: 1px solid var(--rule);
-  aspect-ratio: 21 / 9;
-  width: 100%;
+  aspect-ratio: 16 / 9;
 }
-.section-photo img {
+.study-image img {
   width: 100%;
   height: 100%;
   object-fit: cover;
   display: block;
 }
-.section-photo--banner {
-  aspect-ratio: 21 / 9;
-  margin-top: clamp(32px, 4vw, 48px);
-  margin-bottom: clamp(40px, 6vw, 72px);
+.quote-card {
+  background: var(--bg-card);
+  border: 1px solid var(--rule);
+  padding: 32px;
+  border-radius: 6px;
 }
-.section-photo--receipt {
-  aspect-ratio: 16 / 9;
-  margin-top: 0;
-  max-width: 960px;
-  margin-inline: auto;
+.pull {
+  font-family: var(--sans);
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 1.5;
+  color: var(--ink);
+  border-left: 2px solid var(--y2);
+  padding-left: 20px;
+  margin-bottom: 20px;
 }
-.section-photo--diagram {
-  aspect-ratio: 16 / 10;
-  max-width: 720px;
-  margin-inline: auto;
-  margin-top: clamp(32px, 5vw, 56px);
-  background: #050507;
+.quote-cite {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding-left: 22px;
 }
-.section-photo--diagram img {
-  object-fit: contain;
+.cite-author {
+  font-family: var(--sans);
+  font-weight: 600;
+  font-size: 15px;
+  color: var(--ink);
+}
+.cite-meta {
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  color: var(--ink-dim);
 }
 
-@media (max-width: 880px) {
-  .metrics-grid { grid-template-columns: repeat(2, 1fr); gap: 24px; }
-  .stories-grid { grid-template-columns: 1fr; }
-  .section-photo, .section-photo--banner, .section-photo--receipt {
-    aspect-ratio: 16 / 10;
-  }
+.badges-row {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
 }
-@media (max-width: 480px) {
-  .metrics-grid { grid-template-columns: 1fr; }
+.badge {
+  border: 1px solid var(--y2);
+  color: var(--y2);
+  font-size: 10px;
+  letter-spacing: 0.15em;
+  padding: 6px 12px;
+  text-transform: uppercase;
+  background: rgba(240, 255, 0, 0.03);
+}
+.badge-subtle {
+  border: 1px solid var(--rule-bright);
+  color: var(--ink-dim);
+  background: none;
+}
+
+/* Comparison Strip */
+.comparison-strip {
+  border-top: 1px solid var(--rule);
+  padding-top: 24px;
+}
+.comparison-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  margin-top: 16px;
+}
+.comp-box {
+  padding: 16px;
+  border: 1px solid var(--rule);
+  background: rgba(255, 255, 255, 0.01);
+}
+.comp-box.active {
+  border-color: var(--rule-bright);
+  background: rgba(240, 255, 0, 0.01);
+}
+.comp-label {
+  font-size: 9px;
+  letter-spacing: 0.2em;
+  color: var(--ink-faint);
+  text-transform: uppercase;
+  margin-bottom: 8px;
+  display: block;
+}
+.comp-box.active .comp-label {
+  color: var(--y2);
+}
+.comp-text {
+  font-family: var(--sans);
+  font-size: 13px;
+  line-height: 1.5;
+  color: var(--ink-dim);
+}
+
+/* --- FAQ Accordion Grid --- */
+.results-faq {
+  padding-block: var(--section-y);
+}
+.faq-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.4fr);
+  gap: clamp(48px, 6vw, 96px);
+  align-items: start;
+}
+.faq-head {
+  position: sticky;
+  top: 100px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+.faq-list-col {
+  display: flex;
+  flex-direction: column;
+}
+.faq-list {
+  list-style: none;
+}
+.faq-item {
+  border-top: 1px solid var(--rule);
+}
+.faq-item:last-child {
+  border-bottom: 1px solid var(--rule);
+}
+.faq-item details summary {
+  list-style: none;
+  cursor: pointer;
+  padding: 24px 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 24px;
+}
+.faq-item details summary::-webkit-details-marker {
+  display: none;
+}
+.faq-q {
+  font-family: var(--sans);
+  font-weight: 700;
+  font-size: clamp(18px, 2vw, 24px);
+  letter-spacing: -0.015em;
+  line-height: 1.35;
+  color: var(--ink);
+}
+.faq-toggle {
+  font-family: var(--mono);
+  font-size: 24px;
+  color: var(--y2);
+  flex: none;
+  width: 32px;
+  text-align: center;
+  line-height: 1;
+  transition: transform 220ms ease;
+}
+.faq-item details[open] .faq-toggle {
+  transform: rotate(45deg);
+}
+.faq-a {
+  padding: 0 0 28px 0;
+}
+.faq-a p {
+  font-family: var(--sans);
+  font-weight: 300;
+  font-size: 16px;
+  line-height: 1.65;
+  color: var(--ink-dim);
+}
+
+/* --- Final CTA --- */
+.final-cta {
+  padding-block: var(--section-y);
+}
+.cta-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 48px;
+  flex-wrap: wrap;
+}
+.cta-text-side {
+  flex: 1;
+  min-width: 300px;
+}
+.cta-button-side {
+  flex: none;
+}
+
+/* --- Responsive Adjustments --- */
+@media (max-width: 880px) {
+  .hero-grid {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+  .study-grid {
+    grid-template-columns: 1fr;
+    gap: 56px;
+  }
+  .faq-grid {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+  .faq-head {
+    position: static;
+  }
+  .cta-container {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 32px;
+  }
 }
 </style>

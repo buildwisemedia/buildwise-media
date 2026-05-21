@@ -1,0 +1,48 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+const title = "Capability Overhang — Buildwise Media";
+const description = "Capability overhang is the gap between what frontier AI can do and what most businesses get from generic prompts. Ascend turns that unused capability into service-business growth work.";
+
+const definedTerm = {
+  '@context': 'https://schema.org',
+  '@type': 'DefinedTerm',
+  '@id': 'https://buildwisemedia.com/playbook/capability-overhang#term',
+  name: 'Capability Overhang',
+  description,
+  inDefinedTermSet: { '@type': 'DefinedTermSet', '@id': 'https://buildwisemedia.com/playbook/', name: 'Buildwise Media Playbook' },
+};
+---
+<BaseLayout title={title} description={description} jsonLd={[definedTerm]}>
+  <section class="playbook-hero">
+    <div class="container">
+      <p class="eyebrow"><a href="/playbook" class="back-link">← Playbook</a></p>
+      <h1 class="h-hero"><em>Capability</em> overhang.</h1>
+      <p class="lede">Frontier AI is more capable than most business use cases reveal. The missing piece is a focused harness: context, workflows, data, and human signoff around one kind of business problem.</p>
+    </div>
+  </section>
+  <section class="playbook-section elev">
+    <div class="container">
+      <p class="section-tag">Why it matters</p>
+      <h2 class="h-section">Same models. More useful output.</h2>
+      <p class="prose">Generic AI usage asks broad tools to solve broad problems. Ascend narrows the job: service-business growth, local visibility, lead follow-up, review velocity, attribution, and weekly operating decisions.</p>
+      <p class="prose">That focus is the harness. It lets Buildwise extract useful work from capability that would otherwise sit unused behind generic prompts and disconnected tasks.</p>
+    </div>
+  </section>
+  <section class="playbook-cta">
+    <div class="container">
+      <h2 class="h-closer">The harness is the product.</h2>
+      <p class="cta-row"><a class="cta" href="/system">See the System <span class="cta-arrow">→</span></a><a class="cta-ghost" href="/book">See If We're a Fit</a></p>
+    </div>
+  </section>
+</BaseLayout>
+<style>
+.playbook-hero { padding-block: clamp(96px, 13vw, 168px) clamp(64px, 8vw, 100px); }
+.back-link { color: var(--ink-faint); }
+.back-link:hover { color: var(--y2); }
+.h-hero em { color: var(--y2); font-style: normal; }
+.playbook-section,.playbook-cta { padding-block: var(--section-y); }
+.playbook-section .prose { color: var(--ink-dim); font-size: 18px; line-height: 1.7; max-width: 760px; }
+.playbook-section .prose + .prose { margin-top: 18px; }
+.cta-row { display: flex; flex-wrap: wrap; gap: 16px; margin-top: 32px; }
+</style>

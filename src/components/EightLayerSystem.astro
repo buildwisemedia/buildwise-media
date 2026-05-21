@@ -4,13 +4,21 @@
 // 8 cards ARE the data viz — radial diagram dropped 2026-05-21 (R020: decoration banned, hand-judgment)
 import canonical from '../data/canonical.json';
 
+const publicLayerBody = (body: string) => body
+  .replace(/\s*\([^)]*\)/g, '')
+  .replace(/GBP \+ AEO \+ local SEO \+ schema \+ citations \+ AI-search readiness/g, 'local search, AEO, schema, citations, and AI-search readiness')
+  .replace(/Instant SMS\/email\/call follow-up · automated qualification · appointment routing · .* integration/g, 'instant follow-up, automated qualification, appointment routing, and operations integration')
+  .replace(/Campaign monitoring · creative testing · budget alerts · lead-quality feedback · .*/g, 'Campaign monitoring, creative testing, budget alerts, and lead-quality feedback')
+  .replace(/\s+/g, ' ')
+  .trim();
+
 const layers = canonical.products.ascend.eight_layers.map((raw: string, i: number) => {
   // Format: "N · Name — description"
   const dashIndex = raw.indexOf('—');
   const name = dashIndex > 0
     ? raw.slice(raw.indexOf('·') + 1, dashIndex).trim()
     : raw.slice(raw.indexOf('·') + 1).trim();
-  const body = dashIndex > 0 ? raw.slice(dashIndex + 1).trim() : '';
+  const body = dashIndex > 0 ? publicLayerBody(raw.slice(dashIndex + 1).trim()) : '';
   const num = String(i + 1).padStart(2, '0');
   return { num, name, body };
 });

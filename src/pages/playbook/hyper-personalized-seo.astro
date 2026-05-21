@@ -1,0 +1,57 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+const title = "Hyper-Personalized SEO — Buildwise Media";
+const description = "Hyper-personalized SEO means search and AI-answer strategy built from the business, niche, locality, customer journey, and real competitors.";
+
+const axes = [
+  'Per-business: the actual digital footprint, offers, proof, and follow-up path.',
+  'Per-niche: trade-specific buyer language and urgency patterns.',
+  'Per-locality: service-area competition, citations, maps, and neighborhood demand.',
+  'Per-customer journey: voice search, typed search, and AI-assisted search treated separately.',
+  'Per-competitor: the local businesses buyers actually compare against.',
+];
+
+const definedTerm = {
+  '@context': 'https://schema.org',
+  '@type': 'DefinedTerm',
+  '@id': 'https://buildwisemedia.com/playbook/hyper-personalized-seo#term',
+  name: 'Hyper-Personalized SEO',
+  description,
+  inDefinedTermSet: { '@type': 'DefinedTermSet', '@id': 'https://buildwisemedia.com/playbook/', name: 'Buildwise Media Playbook' },
+};
+---
+<BaseLayout title={title} description={description} jsonLd={[definedTerm]}>
+  <section class="playbook-hero">
+    <div class="container">
+      <p class="eyebrow"><a href="/playbook" class="back-link">← Playbook</a></p>
+      <h1 class="h-hero"><em>Hyper-personalized</em> SEO.</h1>
+      <p class="lede">Generic local SEO tells an owner what they already know. Ascend builds visibility from the specific business, market, search behavior, and competitor set.</p>
+    </div>
+  </section>
+  <section class="axis-section elev">
+    <div class="container">
+      <p class="section-tag">Five axes</p>
+      <h2 class="h-section">Personalization is the work.</h2>
+      <ul class="axis-list">
+        {axes.map((axis) => <li>{axis}</li>)}
+      </ul>
+    </div>
+  </section>
+  <section class="playbook-cta">
+    <div class="container">
+      <h2 class="h-closer">Visibility is fixable when the map is specific.</h2>
+      <p class="cta-row"><a class="cta" href="/book">See If We're a Fit <span class="cta-arrow">→</span></a><a class="cta-ghost" href="/problem/invisible-market">Read Invisible Market</a></p>
+    </div>
+  </section>
+</BaseLayout>
+<style>
+.playbook-hero { padding-block: clamp(96px, 13vw, 168px) clamp(64px, 8vw, 100px); }
+.back-link { color: var(--ink-faint); }
+.back-link:hover { color: var(--y2); }
+.h-hero em { color: var(--y2); font-style: normal; }
+.axis-section,.playbook-cta { padding-block: var(--section-y); }
+.axis-list { list-style: none; display: grid; gap: 1px; background: var(--rule); border: 1px solid var(--rule); margin-top: 42px; max-width: 900px; }
+.axis-list li { background: var(--bg-card); padding: 24px; color: var(--ink-dim); font-size: 17px; line-height: 1.6; }
+.cta-row { display: flex; flex-wrap: wrap; gap: 16px; margin-top: 32px; }
+</style>

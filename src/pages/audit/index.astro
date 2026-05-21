@@ -1,8 +1,8 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 
-const title = "AI Marketing Audit - Buildwise Media";
-const description = "Stop guessing where your next clients come from. The free AI Marketing Audit takes 5 minutes.";
+const title = "Market Leak Map - Buildwise Media";
+const description = "Use the five-minute Market Leak Map to identify the revenue leaks holding back a service business before booking a fit call.";
 
 const auditFindings = [
   "Where qualified leads come from now, and which sources are worth protecting.",
@@ -14,8 +14,8 @@ const auditFindings = [
 const auditSchema = {
   '@context': 'https://schema.org',
   '@type': 'Service',
-  name: 'AI Marketing Audit',
-  serviceType: 'Marketing audit',
+  name: 'Market Leak Map',
+  serviceType: 'Fit diagnostic',
   provider: {
     '@type': 'Organization',
     '@id': 'https://buildwisemedia.com/#org',
@@ -46,10 +46,10 @@ const auditSchema = {
   <section class="audit-hero" aria-labelledby="audit-title">
     <div class="container audit-hero-grid">
       <div class="audit-copy">
-        <p class="eyebrow">The AI Marketing Audit</p>
-        <h1 id="audit-title" class="h-hero">Do you want to end the feast or famine?</h1>
+        <p class="eyebrow">Market Leak Map</p>
+        <h1 id="audit-title" class="h-hero">Find the leak before you buy the system.</h1>
         <p class="hero-sub">
-          Stop guessing where your next clients come from. The free AI Marketing Audit takes 5 minutes.
+          The diagnostic names the active Poor Four gaps, shows what should move first, and routes qualified owners into a discovery call.
         </p>
       </div>
       <figure class="audit-hero-photo">
@@ -69,7 +69,7 @@ const auditSchema = {
   <section class="audit-body elev" aria-labelledby="audit-shows-title">
     <div class="container audit-grid">
       <div class="audit-findings">
-        <p class="section-tag">What the audit shows you</p>
+        <p class="section-tag">What the diagnostic shows you</p>
         <h2 id="audit-shows-title" class="h-section">A clear read on what is leaking, what is working, and what should move next.</h2>
         <ul class="audit-list" role="list">
           {auditFindings.map((finding) => (
@@ -81,24 +81,16 @@ const auditSchema = {
         </figure>
       </div>
 
-      <form id="audit-form" class="audit-form" method="post" action="https://bwm-form-handler.robert-ba0.workers.dev/buildwisemedia/ai-marketing-audit" novalidate>
-        <p class="form-kicker mono">Audit kickoff</p>
-        <h2>Start the audit.</h2>
-        <div class="form-row">
-          <label for="audit-email">Work email</label>
-          <input id="audit-email" name="email" type="email" autocomplete="email" required />
-        </div>
-        <div class="form-row">
-          <label for="audit-url">Business URL</label>
-          <input id="audit-url" name="business_url" type="url" autocomplete="url" inputmode="url" required />
-        </div>
-        <input type="hidden" name="source" value="audit-stage-0" />
-        <button type="submit" class="audit-submit">
-          <span class="submit-ready">Run the audit</span>
-          <span class="submit-loading" hidden>Starting...</span>
-        </button>
-        <p id="audit-error" class="audit-error" hidden>Something went wrong. Please try again.</p>
-      </form>
+      <aside class="audit-form">
+        <p class="form-kicker mono">Diagnostic first</p>
+        <h2>Build your Market Leak Map.</h2>
+        <p class="audit-panel-copy">
+          Answer a short fit diagnostic. If Ascend looks like the right instrument, the page opens the booking handoff after your leak map is built.
+        </p>
+        <a href="/book?source=market-leak-map" class="audit-submit" data-cta-source="audit-to-book">
+          Start the diagnostic
+        </a>
+      </aside>
     </div>
   </section>
 
@@ -107,56 +99,10 @@ const auditSchema = {
       <figure class="section-photo section-photo--audit-trust">
         <img src="/images/bwm-system-architecture-atmospheric-v1.webp" alt="A dark infrastructure corridor with ordered geometry and a single distant accent light. What runs in the background after the audit." width="1920" height="1080" loading="lazy" decoding="async" />
       </figure>
-      <p>It actually works.</p>
+      <p>Start with the leak. Then decide if the system fits.</p>
     </div>
   </section>
 </BaseLayout>
-
-<script is:inline>
-  (function () {
-    const form = document.getElementById('audit-form');
-    const errorEl = document.getElementById('audit-error');
-    if (!form) return;
-
-    form.addEventListener('submit', async function (event) {
-      event.preventDefault();
-      const button = form.querySelector('button[type="submit"]');
-      const ready = form.querySelector('.submit-ready');
-      const loading = form.querySelector('.submit-loading');
-      if (errorEl) errorEl.hidden = true;
-      if (button) button.disabled = true;
-      if (ready) ready.hidden = true;
-      if (loading) loading.hidden = false;
-
-      const data = new FormData(form);
-      const payload = {
-        email: data.get('email'),
-        business_url: data.get('business_url'),
-        source: data.get('source'),
-        landing_page: window.location.href,
-        referrer: document.referrer || '',
-        utm_source: new URLSearchParams(window.location.search).get('utm_source') || '',
-        utm_medium: new URLSearchParams(window.location.search).get('utm_medium') || '',
-        utm_campaign: new URLSearchParams(window.location.search).get('utm_campaign') || '',
-      };
-
-      try {
-        const response = await fetch(form.action, {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(payload),
-        });
-        if (!response.ok) throw new Error('Audit submit failed');
-        window.location.href = '/book?source=audit';
-      } catch (error) {
-        if (errorEl) errorEl.hidden = false;
-        if (button) button.disabled = false;
-        if (ready) ready.hidden = false;
-        if (loading) loading.hidden = true;
-      }
-    });
-  })();
-</script>
 
 <style>
 .audit-hero {
@@ -311,6 +257,12 @@ const auditSchema = {
   line-height: 1;
 }
 
+.audit-panel-copy {
+  color: var(--ink-dim);
+  line-height: 1.65;
+  margin: 0;
+}
+
 .form-row {
   display: flex;
   flex-direction: column;
@@ -345,6 +297,7 @@ const auditSchema = {
   display: inline-flex;
   justify-content: center;
   align-items: center;
+  text-decoration: none;
   min-height: 56px;
   padding: 16px 24px;
   color: var(--bg);

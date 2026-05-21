@@ -14,6 +14,13 @@ const ascend = canonical.products.ascend;
 const pro    = canonical.products.ascend_pro;
 const layers = canonical.products.ascend.eight_layers;
 const msa    = canonical.contract.msa_locked_clauses;
+const publicLayerBody = (body: string) => body
+  .replace(/\s*\([^)]*\)/g, '')
+  .replace(/GBP \+ AEO \+ local SEO \+ schema \+ citations \+ AI-search readiness/g, 'local search, AEO, schema, citations, and AI-search readiness')
+  .replace(/Instant SMS\/email\/call follow-up · automated qualification · appointment routing · .* integration/g, 'instant follow-up, automated qualification, appointment routing, and operations integration')
+  .replace(/Campaign monitoring · creative testing · budget alerts · lead-quality feedback · .*/g, 'Campaign monitoring, creative testing, budget alerts, and lead-quality feedback')
+  .replace(/\s+/g, ' ')
+  .trim();
 
 // JSON-LD: Service schema with 3-tier offer catalog (canonical-sourced)
 const pricingJsonLd = {
@@ -138,7 +145,7 @@ const pricingJsonLd = {
           const name    = dashIdx > 0
             ? raw.slice(dotIdx + 1, dashIdx).trim()
             : raw.slice(dotIdx + 1).trim();
-          const body    = dashIdx > 0 ? raw.slice(dashIdx + 1).trim() : '';
+          const body    = dashIdx > 0 ? publicLayerBody(raw.slice(dashIdx + 1).trim()) : '';
           const num     = String(i + 1).padStart(2, '0');
           return (
             <article class="pricing-layer-card card">

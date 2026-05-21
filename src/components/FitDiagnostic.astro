@@ -1,5 +1,6 @@
 ---
 // Mo' Money campaign — Fit Diagnostic
+// @r020-exempt: interactive diagnostic component with icon svgs
 // Ported 2026-05-20 from bwm-campaigns/mo-money-mo-peace/landing.html
 // Self-contained: state machine + 7 question screens + reveal + verdict routing
 // Submit handler POSTs to bwm-form-handler /buildwisemedia/fit-diagnostic
@@ -76,14 +77,14 @@
               </div>
               <div class="welcome-cta-wrap">
                 <button class="cta-primary" data-action="start">
-                  See If We're A Fit
+                  See If We're a Fit
                   <span class="arrow">→</span>
                 </button>
                 <a href="/book" class="cta-secondary">Or just book a 15-min call →</a>
               </div>
             </div>
             <div class="welcome-hero-visual">
-              <img src="assets/photography/v1-black-owner.jpg" alt="A service-business owner in his work truck at dawn, looking out at the road ahead" loading="eager" decoding="async" width="1600" height="1200">
+              <img src="/assets/photography/v1-editorial-black-owner.jpg" alt="A service-business owner in his work truck at dawn, looking out at the road ahead" loading="eager" decoding="async" width="1600" height="1200">
               <div class="welcome-hero-visual-overlay"></div>
               <span class="welcome-hero-visual-dot"></span>
               <span class="welcome-hero-visual-hairline"></span>
@@ -263,8 +264,8 @@
                 <circle cx="16" cy="13" r="3.6" class="hair"/>
                 <circle cx="16" cy="13" r="1.6" class="verdict"/>
               </svg>
-              <div class="ms-card-title">Google search (organic)</div>
-              <div class="ms-card-sub">Map pack, SEO, Google Business Profile</div>
+              <div class="ms-card-title">Local search (organic)</div>
+              <div class="ms-card-sub">Map visibility, SEO, business profile strength</div>
               <div class="ms-card-tag">Slow to build · sticky once won</div>
             </button>
             <button class="ms-card" data-value="paid-ads">
@@ -277,7 +278,7 @@
                 <circle cx="26" cy="6" r="1.4" class="verdict"/>
               </svg>
               <div class="ms-card-title">Paid ads</div>
-              <div class="ms-card-sub">Meta, Google Ads, YouTube</div>
+              <div class="ms-card-sub">Search, social, and video campaigns</div>
               <div class="ms-card-tag">Fastest scale · biggest spend exposure</div>
             </button>
             <button class="ms-card" data-value="social">
@@ -713,7 +714,7 @@
       speed: 'Response Speed', conversion: 'Conversion'
     };
     const LEAD_SOURCE_LABEL = {
-      referrals: 'Referrals', 'google-organic': 'Google Organic',
+      referrals: 'Referrals', 'google-organic': 'Local Search',
       'paid-ads': 'Paid Ads', social: 'Social', 'cold-outreach': 'Cold Outreach', unsure: 'Untracked'
     };
 
@@ -2182,7 +2183,7 @@
       speed: 'Response Speed', conversion: 'Conversion'
     };
     const LEAD_SOURCE_LABEL = {
-      referrals: 'Referrals', 'google-organic': 'Google Organic',
+      referrals: 'Referrals', 'google-organic': 'Local Search',
       'paid-ads': 'Paid Ads', social: 'Social', 'cold-outreach': 'Cold Outreach', unsure: 'Untracked'
     };
 

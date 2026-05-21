@@ -3,7 +3,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import QualifierForm from '../components/QualifierForm.astro';
 
 const title = "Book a Discovery Call — Buildwise Media";
-const description = "Fifteen minutes on the calendar tells us — and you — whether the Buildwise Revenue Engine fits your shop.";
+const description = "Build your Market Leak Map, then book a discovery call if Ascend looks like a fit.";
 
 const breadcrumb = {
   '@context': 'https://schema.org',
@@ -20,27 +20,27 @@ const breadcrumb = {
     <div class="container book-grid">
 
       <aside class="book-context">
-        <p class="eyebrow">Discovery call</p>
+        <p class="eyebrow">Fit diagnostic</p>
         <h1 class="h-hero">
-          Fifteen minutes.<br/>
-          <em>One</em> answer.
+          Build the leak map.<br/>
+          Then book the call.
         </h1>
         <p class="hero-sub">
-          You bring your numbers. We bring the audit. The call ends with a clear yes or no on whether Ascend fits your shop.
+          The diagnostic names the active Poor Four gaps, captures the context, and routes qualified owners into a short discovery call.
         </p>
 
         <ul class="expect-list">
           <li>
             <p class="expect-label mono">What we'll cover</p>
-            <p class="expect-body">Where leads are coming from now, where the system would intervene, what the install timeline looks like for your specific stack.</p>
+            <p class="expect-body">Which market leaks are active, where the system would intervene, and what the install timeline looks like for your current operating layer.</p>
           </li>
           <li>
             <p class="expect-label mono">How long</p>
-            <p class="expect-body">15 minutes. We respect the calendar of someone running a business; this is a fit check, not a sales walkthrough.</p>
+            <p class="expect-body">The diagnostic takes about five minutes. The call is short because the map does the setup work first.</p>
           </li>
           <li>
             <p class="expect-label mono">No obligation</p>
-            <p class="expect-body">Whether we engage or not, you leave with the audit framing. Use it with us, with another vendor, or to do it yourself.</p>
+            <p class="expect-body">Whether we engage or not, you leave with the failure-mode framing. Use it with us, with another operator, or internally.</p>
           </li>
         </ul>
       </aside>
@@ -59,6 +59,9 @@ const breadcrumb = {
             </div>
             <p class="sk-foot mono">Loading calendar…</p>
           </div>
+          <a id="book-cta-fallback" class="book-cta" href="https://book.buildwisemedia.com/bwm/discovery-call" rel="noopener" target="_blank">
+            Open booking calendar <span aria-hidden="true">→</span>
+          </a>
         </div>
       </div>
 
@@ -68,57 +71,68 @@ const breadcrumb = {
 </BaseLayout>
 
 <script is:inline>
-  // Self-hosted booking inline embed at book.buildwisemedia.com
-  (function (C, A, L) {
-    let p = function (a, ar) { a.q.push(ar); };
-    let d = C.document;
-    C.Cal = C.Cal || function () {
-      let cal = C.Cal; let ar = arguments;
-      if (!cal.loaded) {
-        cal.ns = {}; cal.q = cal.q || [];
-        d.head.appendChild(d.createElement("script")).src = A;
-        cal.loaded = true;
-      }
-      if (ar[0] === L) {
-        const api = function () { p(api, arguments); };
-        const namespace = ar[1];
-        api.q = api.q || [];
-        if (typeof namespace === "string") {
-          cal.ns[namespace] = cal.ns[namespace] || api;
-          p(cal.ns[namespace], ar); p(cal, ["initNamespace", namespace]);
-        } else { p(cal, ar); }
-        return;
-      }
-      p(cal, ar);
+  (function () {
+    const origin = "https://book.buildwisemedia.com";
+    const embedSrc = `${origin}/embed/embed.js`;
+    const calBrandTokens = {
+      "cal-brand": "#F0FF00",
+      "cal-brand-emphasis": "#050507",
+      "cal-brand-foreground": "#050507",
+      "cal-text-brand": "#050507",
+      "cal-bg-brand": "#F0FF00",
+      "cal-brand-text": "#050507",
     };
-  })(window, "https://book.buildwisemedia.com/embed/embed.js", "init");
 
-  Cal("init", "discovery-call", { origin: "https://book.buildwisemedia.com" });
-  Cal.ns["discovery-call"]("inline", {
-    elementOrSelector: "#cal-inline",
-    config: { layout: "month_view" },
-    calLink: "bwm/discovery-call",
-  });
-  // The booking widget's atoms don't publicly enumerate which token controls
-  // text-on-brand contrast, so we set all plausible candidates. The selected
-  // date cell renders cell-bg = cal-brand (#F0FF00 Y2 yellow). Default text
-  // color on selected is near-white = ~1.4:1 contrast. We force #050507
-  // cool near-black via every documented + likely token name.
-  const calBrandTokens = {
-    "cal-brand": "#F0FF00",
-    "cal-brand-emphasis": "#050507",
-    "cal-brand-foreground": "#050507",
-    "cal-text-brand": "#050507",
-    "cal-bg-brand": "#F0FF00",
-    "cal-brand-text": "#050507",
-  };
-  Cal.ns["discovery-call"]("ui", {
-    theme: "dark",
-    styles: { branding: { brandColor: "#F0FF00" } },
-    cssVarsPerTheme: { light: calBrandTokens, dark: calBrandTokens },
-    hideEventTypeDetails: false,
-    layout: "month_view",
-  });
+    function installCalStub(C, A, L) {
+      if (C.Cal && C.Cal.loaded) return;
+      const p = function (a, ar) { a.q.push(ar); };
+      const d = C.document;
+      C.Cal = C.Cal || function () {
+        const cal = C.Cal;
+        const ar = arguments;
+        if (!cal.loaded) {
+          cal.ns = {};
+          cal.q = cal.q || [];
+          d.head.appendChild(d.createElement("script")).src = A;
+          cal.loaded = true;
+        }
+        if (ar[0] === L) {
+          const api = function () { p(api, arguments); };
+          const namespace = ar[1];
+          api.q = api.q || [];
+          if (typeof namespace === "string") {
+            cal.ns[namespace] = cal.ns[namespace] || api;
+            p(cal.ns[namespace], ar);
+            p(cal, ["initNamespace", namespace]);
+          } else {
+            p(cal, ar);
+          }
+          return;
+        }
+        p(cal, ar);
+      };
+    }
+
+    window.__loadBwmCalendar = function loadBwmCalendar(prefill) {
+      const target = document.getElementById('cal-inline');
+      if (!target) return;
+      target.removeAttribute('hidden');
+      installCalStub(window, embedSrc, "init");
+      Cal("init", "discovery-call", { origin });
+      Cal.ns["discovery-call"]("inline", {
+        elementOrSelector: "#cal-inline",
+        config: Object.assign({ layout: "month_view", theme: "dark" }, prefill || {}),
+        calLink: "bwm/discovery-call",
+      });
+      Cal.ns["discovery-call"]("ui", {
+        theme: "dark",
+        styles: { branding: { brandColor: "#F0FF00" } },
+        cssVarsPerTheme: { light: calBrandTokens, dark: calBrandTokens },
+        hideEventTypeDetails: false,
+        layout: "month_view",
+      });
+    };
+  })();
 
   // Hide skeleton + fallback CTA when iframe paints
   const obs = new MutationObserver(() => {
@@ -133,8 +147,8 @@ const breadcrumb = {
   });
   obs.observe(document.getElementById('cal-inline'), { childList: true, subtree: true });
 
-  // Paid-traffic fast-path: Meta clickers already saw the ad copy upstream — skip
-  // the explainer aside and scroll straight to the calendar / CTA on page load.
+  // Paid-traffic fast-path: visitors already saw the ad copy upstream, so skip
+  // the explainer aside and scroll straight to the diagnostic on page load.
   // Keeps organic / direct traffic on the full-explainer experience.
   (function () {
     try {
@@ -143,7 +157,7 @@ const breadcrumb = {
       if (utmSource === 'facebook' || utmSource === 'instagram' || utmSource === 'meta') {
         // Defer one tick so layout settles before scroll
         requestAnimationFrame(function () {
-          const target = document.getElementById('book-cta-fallback') || document.getElementById('cal-inline');
+          const target = document.getElementById('qualifier-form') || document.getElementById('cal-inline');
           if (target) target.scrollIntoView({ behavior: 'instant', block: 'start' });
         });
       }
@@ -178,7 +192,7 @@ const breadcrumb = {
 
 .expect-list { list-style: none; display: flex; flex-direction: column; gap: 24px; padding-top: 32px; border-top: 1px solid var(--rule); margin-top: 16px; }
 .expect-list li { display: flex; flex-direction: column; gap: 8px; }
-.expect-label { font-size: 10px; letter-spacing: 0.2em; color: var(--gold); }
+.expect-label { font-size: 10px; letter-spacing: 0.2em; color: var(--y2); }
 .expect-body { font-size: 15px; font-weight: 300; line-height: 1.6; color: var(--ink-dim); }
 
 .book-embed { width: 100%; min-height: 720px; display: flex; flex-direction: column; gap: 16px; }
@@ -192,14 +206,14 @@ const breadcrumb = {
   justify-content: center;
   gap: 12px;
   padding: 18px 28px;
-  background: var(--gold, #F0FF00);
+  background: var(--y2, #F0FF00);
   color: #050507;
   text-decoration: none;
   font-family: 'Inter', sans-serif;
   font-weight: 700;
   font-size: 16px;
   letter-spacing: -0.01em;
-  border: 1px solid var(--gold, #F0FF00);
+  border: 1px solid var(--y2, #F0FF00);
   align-self: stretch;
   text-align: center;
   transition: opacity 0.15s ease;
