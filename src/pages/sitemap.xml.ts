@@ -37,7 +37,7 @@ const PRIORITY_OVERRIDES: Record<string, { priority: string; changefreq: string 
 function pathToUrl(modulePath: string): string {
   // './index.astro' → '/'
   // './about.astro' → '/about'
-  // './problem/lead-drought.astro' → '/problem/lead-drought'
+  // './problem/invisible-market.astro' → '/problem/invisible-market'
   // './services/index.astro' → '/services'
   let url = modulePath.replace(/^\.\//, '/').replace(/\.astro$/, '');
   if (url.endsWith('/index')) url = url.replace(/\/index$/, '') || '/';

@@ -25,6 +25,14 @@
   --y2-deep: #C8D300;     /* Accent gradient bottom stop */
   --y1: #B8FF3A;          /* Chartreuse dashboard — product surfaces + tier-encoding data viz (Path B, 2026-05-20) */
 
+  /* Operating Console status colors — controlled, functional, not decorative */
+  --signal-cyan: #38D8FF;     /* visibility / search signal */
+  --signal-green: #65FF8E;    /* verified proof / healthy */
+  --signal-orange: #FFB84A;   /* urgency / bottleneck */
+  --signal-red: #FF4D6D;      /* leak / failure state */
+  --cream: #FBF7EC;           /* rare warm editorial contrast */
+  --panel-glow: rgba(56, 216, 255, 0.14);
+
   /* Type stacks */
   --sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
   --mono: 'JetBrains Mono', 'SF Mono', Menlo, Consolas, monospace;
@@ -62,9 +70,10 @@ body {
   font-weight: 400;
   font-size: 18px;
   line-height: 1.65;
-  letter-spacing: -0.005em;
+  letter-spacing: 0;
   color: var(--ink);
   background:
+    linear-gradient(135deg, rgba(56, 216, 255, 0.026) 0, transparent 30%),
     linear-gradient(90deg, rgba(240, 255, 0, 0.015) 1px, transparent 1px),
     linear-gradient(180deg, rgba(240, 255, 0, 0.012) 1px, transparent 1px),
     var(--bg);
@@ -249,6 +258,7 @@ h1, h2, h3, h4 {
 
 /* ---------- 7. Layout primitives ---------- */
 .container {
+  width: 100%;
   max-width: var(--max-w);
   margin: 0 auto;
   padding-left: var(--container-x);
@@ -277,6 +287,7 @@ section.elev { background: var(--bg-elev); }
   border-radius: 2px;
   transition: color 180ms ease, background-color 180ms ease, border-color 180ms ease;
   white-space: nowrap;
+  max-width: 100%;
 }
 .cta:hover {
   background: var(--y2-bright);
@@ -300,6 +311,7 @@ section.elev { background: var(--bg-elev); }
   border-radius: 2px;
   transition: color 180ms ease, background-color 180ms ease, border-color 180ms ease;
   white-space: nowrap;
+  max-width: 100%;
 }
 .cta-ghost:hover {
   border-color: var(--y2);
@@ -366,17 +378,148 @@ section.elev { background: var(--bg-elev); }
   background: var(--y2);
   box-shadow: 0 0 12px rgba(240, 255, 0, 0.5);
 }
+.dot.cyan {
+  background: var(--signal-cyan);
+  box-shadow: 0 0 12px rgba(56, 216, 255, 0.5);
+}
+.dot.green {
+  background: var(--signal-green);
+  box-shadow: 0 0 12px rgba(101, 255, 142, 0.42);
+}
+.dot.orange {
+  background: var(--signal-orange);
+  box-shadow: 0 0 12px rgba(255, 184, 74, 0.42);
+}
+.dot.red {
+  background: var(--signal-red);
+  box-shadow: 0 0 12px rgba(255, 77, 109, 0.42);
+}
 .dot.idle { background: var(--ink-faint); }
+
+/* ---------- 12. Operating Console primitives ---------- */
+.ops-panel {
+  position: relative;
+  border: 1px solid var(--rule-bright);
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.035), transparent 34%),
+    linear-gradient(135deg, rgba(56, 216, 255, 0.055), transparent 42%),
+    var(--bg-card);
+  box-shadow: 0 24px 80px rgba(0, 0, 0, 0.34);
+}
+
+.ops-panel::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    linear-gradient(90deg, rgba(245, 245, 245, 0.04) 1px, transparent 1px),
+    linear-gradient(180deg, rgba(245, 245, 245, 0.03) 1px, transparent 1px);
+  background-size: 32px 32px;
+  mask-image: linear-gradient(to bottom, black, transparent 72%);
+  -webkit-mask-image: linear-gradient(to bottom, black, transparent 72%);
+}
+
+.ops-kicker {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+}
+
+.ops-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 28px;
+  padding: 6px 10px;
+  border: 1px solid var(--rule-bright);
+  background: rgba(255, 255, 255, 0.02);
+  font-family: var(--mono);
+  font-size: 9px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ink-dim);
+}
+
+.tone-cyan { color: var(--signal-cyan) !important; }
+.tone-green { color: var(--signal-green) !important; }
+.tone-orange { color: var(--signal-orange) !important; }
+.tone-red { color: var(--signal-red) !important; }
+.tone-yellow { color: var(--y2) !important; }
 
 /* ---------- 12. Mobile lift (≤520px) ---------- */
 @media (max-width: 520px) {
-  body { font-size: 20px; }
-  .prose p { font-size: 24px; line-height: 1.6; }
-  .prose .lead { font-size: 32px; line-height: 1.35; }
-  .lede { font-size: 26px; line-height: 1.45; }
-  .hero-sub { font-size: 24px; line-height: 1.55; }
-  .pull { font-size: 28px; line-height: 1.4; }
-  .section-tag, .eyebrow { font-size: 16px; letter-spacing: 0.18em; }
+  :root {
+    --container-x: 24px;
+    --section-y: 64px;
+  }
+
+  body {
+    font-size: 16px;
+    line-height: 1.6;
+  }
+
+  .h-hero {
+    font-size: 40px;
+    line-height: 1.02;
+    letter-spacing: 0;
+    text-wrap: balance;
+    overflow-wrap: anywhere;
+  }
+
+  .h-section {
+    font-size: 34px;
+    line-height: 1.06;
+    letter-spacing: 0;
+    text-wrap: balance;
+  }
+
+  .h-sub {
+    font-size: 24px;
+    line-height: 1.15;
+    letter-spacing: 0;
+  }
+
+  .h-closer {
+    font-size: 40px;
+    line-height: 1.05;
+    letter-spacing: 0;
+    text-wrap: balance;
+  }
+
+  .prose p { font-size: 17px; line-height: 1.65; }
+  .prose .lead { font-size: 23px; line-height: 1.35; }
+  .lede { font-size: 18px; line-height: 1.5; }
+  .hero-sub { font-size: 17px; line-height: 1.5; }
+  .pull { font-size: 24px; line-height: 1.35; }
+
+  .section-tag,
+  .eyebrow {
+    max-width: 100%;
+    min-width: 0;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    font-size: 11px;
+    line-height: 1.35;
+    letter-spacing: 0.12em;
+    overflow-wrap: anywhere;
+  }
+
+  .section-tag::before,
+  .eyebrow::before {
+    margin-top: 0.65em;
+    flex: 0 0 24px;
+  }
+
+  .cta,
+  .cta-ghost {
+    width: 100%;
+    justify-content: center;
+    white-space: normal;
+    text-align: center;
+  }
 }
 
 /* ---------- 13. Accessibility ---------- */
@@ -438,4 +581,16 @@ section.elev { background: var(--bg-elev); }
 @keyframes branchRise {
   from { opacity: 0; transform: translateY(-8px); }
   to { opacity: 1; transform: translateY(0); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    transition-duration: 0.001ms !important;
+  }
 }

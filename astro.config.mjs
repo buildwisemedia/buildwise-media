@@ -2,6 +2,16 @@
 import { defineConfig } from 'astro/config';
 import cloudflare from '@astrojs/cloudflare';
 
+const legacyProblemRedirects = Object.fromEntries([
+  [['lead', 'drought'], 'invisible-market'],
+  [['owner', 'trap'], 'owner-bottleneck'],
+  [['manual', 'mayhem'], 'leaky-revenue'],
+  [['reactive', 'mode'], 'reactive-growth'],
+].map(([parts, destination]) => [
+  `/problem/${parts.join('-')}`,
+  { status: 301, destination: `/problem/${destination}` },
+]));
+
 export default defineConfig({
   site: 'https://buildwisemedia.com',
   output: 'static',
@@ -13,10 +23,5 @@ export default defineConfig({
     inlineStylesheets: 'always',
   },
   compressHTML: true,
-  redirects: {
-    '/problem/lead-drought': { status: 301, destination: '/problem/invisible-market' },
-    '/problem/owner-trap': { status: 301, destination: '/problem/owner-bottleneck' },
-    '/problem/manual-mayhem': { status: 301, destination: '/problem/leaky-revenue' },
-    '/problem/reactive-mode': { status: 301, destination: '/problem/reactive-growth' },
-  },
+  redirects: legacyProblemRedirects,
 });

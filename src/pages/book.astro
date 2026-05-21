@@ -26,7 +26,7 @@ const breadcrumb = {
           Then book the call.
         </h1>
         <p class="hero-sub">
-          The diagnostic names the active Poor Four gaps, captures the context, and routes qualified owners into a short discovery call.
+          The diagnostic names the active market leaks, captures the context, and routes qualified owners into a short discovery call.
         </p>
 
         <ul class="expect-list">
@@ -184,10 +184,11 @@ const breadcrumb = {
 }
 .book-grid {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(0, 1.4fr);
-  gap: clamp(48px, 6vw, 80px);
+  grid-template-columns: minmax(260px, 0.72fr) minmax(620px, 1.5fr);
+  gap: clamp(36px, 5vw, 64px);
   align-items: start;
 }
+.book-grid > * { min-width: 0; }
 .book-context { display: flex; flex-direction: column; gap: 24px; position: sticky; top: 100px; }
 
 .expect-list { list-style: none; display: flex; flex-direction: column; gap: 24px; padding-top: 32px; border-top: 1px solid var(--rule); margin-top: 16px; }
@@ -241,7 +242,7 @@ const breadcrumb = {
 @keyframes sk { 0% { background-position: 0% 0; } 100% { background-position: -200% 0; } }
 @media (prefers-reduced-motion: reduce) { .sk-row, .sk-grid span { animation: none; } }
 
-@media (max-width: 880px) {
+@media (max-width: 1100px) {
   .book-grid {
     grid-template-columns: 1fr;
     /* Mobile: surface the calendar / CTA above the explainer. Paid-traffic JS
@@ -252,5 +253,16 @@ const breadcrumb = {
   .book-embed { grid-area: embed; min-height: auto; }
   .cal-frame { min-height: 560px; }
   .book-cta { padding: 16px 24px; font-size: 15px; }
+}
+@media (max-width: 520px) {
+  .book-page {
+    padding-top: 96px;
+  }
+
+  .book-page .h-hero {
+    font-size: 38px !important;
+    line-height: 1.03 !important;
+    letter-spacing: 0;
+  }
 }
 </style>

@@ -4,6 +4,13 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 const title = "Results — Buildwise Media";
 const description = "Verified outcomes from the Ascend system. Baseline-first attribution. Performance commitment, 5× ROI floor. Receipts every Monday.";
 
+const proofLedger = [
+  { label: 'Measured', value: 'source truth', body: 'Numbers tied to captured baseline, CRM events, call tracking, or analytics records.', tone: 'green' },
+  { label: 'Attributed', value: 'path visible', body: 'Lead source, landing page, first touch, last touch, and booked-work handoff are stitched.', tone: 'cyan' },
+  { label: 'Modeled', value: 'confidence stated', body: 'When proof is directional, it carries a confidence label instead of pretending to be absolute.', tone: 'yellow' },
+  { label: 'Benchmark', value: 'risk priced', body: 'External benchmarks are used only to frame risk, not to manufacture a client result.', tone: 'orange' },
+];
+
 const breadcrumb = {
   '@context': 'https://schema.org',
   '@type': 'BreadcrumbList',
@@ -52,11 +59,10 @@ const faqSchema = {
       <div class="hero-content">
         <p class="eyebrow">Outcomes</p>
         <h1 class="h-hero">
-          We'd rather<br/>
-          <em>show</em> you.
+          Proof should feel like a ledger, not a testimonial wall.
         </h1>
         <p class="hero-sub" style="max-width: 600px;">
-          Every outcome is measured against the baseline captured on Day 0. We hold ourselves to a 75% confidence floor — because marketing is operations, not a guessing game.
+          Every outcome is measured against the baseline captured on Day 0. The persuasive thing is not a big claim. The persuasive thing is being able to see what moved, why it moved, and how confident the system is.
         </p>
       </div>
 
@@ -64,22 +70,41 @@ const faqSchema = {
         <p class="kpi-label mono">Aggregated Receipts</p>
         <div class="scoreboard-grid">
           <div class="score-card">
-            <span class="score-num font-condensed" data-target="10.4" data-prefix="$" data-suffix="M+">$0.0M+</span>
+            <span class="score-num font-condensed">$10.4M+</span>
             <span class="score-label mono">Attributable Pipeline</span>
           </div>
           <div class="score-card">
-            <span class="score-num font-condensed" data-target="33.2" data-suffix="×">0.0×</span>
+            <span class="score-num font-condensed">33.2×</span>
             <span class="score-label mono">Average Client Return</span>
           </div>
           <div class="score-card">
-            <span class="score-num font-condensed" data-target="34" data-suffix="">0</span>
+            <span class="score-num font-condensed">34</span>
             <span class="score-label mono">Active Operational Channels</span>
           </div>
           <div class="score-card">
-            <span class="score-num font-condensed" data-target="3.2" data-suffix="×">0.0×</span>
+            <span class="score-num font-condensed">3.2×</span>
             <span class="score-label mono">Lead Increase (Average)</span>
           </div>
         </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="proof-ledger-section" aria-labelledby="proof-ledger-title">
+    <div class="container proof-ledger-grid">
+      <header>
+        <p class="section-tag">Proof ledger</p>
+        <h2 id="proof-ledger-title" class="h-section">The labels matter because owners have been trained to distrust marketing math.</h2>
+        <p class="lede">Ascend separates hard evidence from directional signal. That is how the weekly report becomes useful instead of performative.</p>
+      </header>
+      <div class="ledger-grid">
+        {proofLedger.map((item) => (
+          <article class={`ledger-card tone-${item.tone}`}>
+            <p class="ops-kicker">{item.label}</p>
+            <strong>{item.value}</strong>
+            <p>{item.body}</p>
+          </article>
+        ))}
       </div>
     </div>
   </section>
@@ -246,45 +271,6 @@ const faqSchema = {
 
 </BaseLayout>
 
-<script>
-  // Dynamic Scoreboard Count-up Animation
-  document.addEventListener('DOMContentLoaded', () => {
-    const counters = document.querySelectorAll('.score-num');
-
-    const animateCounter = (el) => {
-      const target = parseFloat(el.getAttribute('data-target'));
-      const prefix = el.getAttribute('data-prefix') || '';
-      const suffix = el.getAttribute('data-suffix') || '';
-      const duration = 2000; // ms
-      const startTime = performance.now();
-
-      const update = (now) => {
-        const elapsed = now - startTime;
-        const progress = Math.min(elapsed / duration, 1);
-
-        // Easing out quad
-        const ease = progress * (2 - progress);
-        const current = ease * target;
-
-        if (target % 1 === 0) {
-          el.textContent = `${prefix}${Math.floor(current)}${suffix}`;
-        } else {
-          el.textContent = `${prefix}${current.toFixed(1)}${suffix}`;
-        }
-
-        if (progress < 1) {
-          requestAnimationFrame(update);
-        }
-      };
-
-      requestAnimationFrame(update);
-    };
-
-    // Animate counters immediately on load
-    counters.forEach(counter => animateCounter(counter));
-  });
-</script>
-
 <style>
 /* --- General Page Grid & Hero --- */
 .results-hero {
@@ -305,10 +291,12 @@ const faqSchema = {
 
 /* --- Scoreboard Panel --- */
 .scoreboard-panel {
-  background: var(--bg-card);
-  border: 1px solid var(--rule);
+  background:
+    linear-gradient(135deg, rgba(56,216,255,0.045), transparent 42%),
+    var(--bg-card);
+  border: 1px solid var(--rule-bright);
   padding: clamp(24px, 4vw, 40px);
-  border-radius: 8px;
+  border-radius: 6px;
 }
 .scoreboard-grid {
   display: grid;
@@ -338,6 +326,48 @@ const faqSchema = {
   color: var(--ink-dim);
   text-transform: uppercase;
   line-height: 1.4;
+}
+
+/* --- Proof Ledger --- */
+.proof-ledger-section {
+  padding-block: var(--section-y);
+  border-top: 1px solid var(--rule);
+}
+.proof-ledger-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 0.82fr) minmax(0, 1.18fr);
+  gap: clamp(40px, 6vw, 80px);
+  align-items: start;
+}
+.proof-ledger-grid header {
+  position: sticky;
+  top: 104px;
+}
+.proof-ledger-grid .lede { margin-top: 22px; }
+.ledger-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1px;
+  background: var(--rule);
+  border: 1px solid var(--rule);
+}
+.ledger-card {
+  background: var(--bg-card);
+  border-top: 3px solid currentColor;
+  padding: clamp(24px, 3vw, 34px);
+}
+.ledger-card strong {
+  display: block;
+  margin-block: 12px;
+  font-size: clamp(28px, 3.2vw, 46px);
+  line-height: 1;
+  letter-spacing: -0.045em;
+  color: var(--ink);
+}
+.ledger-card p:last-child {
+  color: var(--ink-dim);
+  font-size: 15px;
+  line-height: 1.55;
 }
 
 /* --- Case Study & Timeline Grid --- */
@@ -623,6 +653,12 @@ const faqSchema = {
     grid-template-columns: 1fr;
     gap: 40px;
   }
+  .proof-ledger-grid {
+    grid-template-columns: 1fr;
+  }
+  .proof-ledger-grid header {
+    position: static;
+  }
   .study-grid {
     grid-template-columns: 1fr;
     gap: 56px;
@@ -638,6 +674,29 @@ const faqSchema = {
     flex-direction: column;
     align-items: flex-start;
     gap: 32px;
+  }
+}
+
+@media (max-width: 560px) {
+  .results-hero {
+    padding-top: 104px;
+  }
+
+  .results-hero .h-hero {
+    font-size: 38px;
+    line-height: 1.03;
+    letter-spacing: 0;
+  }
+
+  .results-hero .hero-sub {
+    font-size: 17px;
+    line-height: 1.5;
+  }
+
+  .scoreboard-grid,
+  .ledger-grid,
+  .comparison-grid {
+    grid-template-columns: 1fr;
   }
 }
 </style>

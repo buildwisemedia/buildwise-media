@@ -1,7 +1,7 @@
 ---
 // /pricing — Pricing route
 // Plan ref: based-on-all-nifty-karp.md §3.8 + §L5 + §6 Phase 3
-// Pricing-visible lock: RATIFIED 2026-05-20 (flip from pricing-hidden-from-humans)
+// Pricing-public lock: RATIFIED 2026-05-20
 // JSON-LD: Service schema with hasOfferCatalog (3 Offer items sourced from canonical)
 // Voice: team voice — no "I", no Robert, no vendors named
 import BaseLayout from '../layouts/BaseLayout.astro';
@@ -14,6 +14,21 @@ const ascend = canonical.products.ascend;
 const pro    = canonical.products.ascend_pro;
 const layers = canonical.products.ascend.eight_layers;
 const msa    = canonical.contract.msa_locked_clauses;
+const pricingSignals = [
+  { label: 'Entry sprint', name: pilot.name, price: pilot.price.oneshot_display, tone: 'cyan' },
+  { label: 'Main system', name: ascend.name, price: ascend.price.recurring_display, tone: 'yellow' },
+  { label: 'Market lock', name: pro.name, price: pro.price.recurring_display, tone: 'green' },
+];
+const valueMath = [
+  { label: 'Typical Y1 system cost', value: '$78K', body: 'Pilot plus nine operating months after conversion.' },
+  { label: 'Break-even test', value: 'Job math', body: 'A handful of closed jobs must repay the install and run cost.' },
+  { label: 'Distribution budget', value: '1:1', body: 'Client-funded ad spend is matched to the operating tier.' },
+];
+const roiChecks = [
+  { label: 'What must be true', body: 'A handful of closed jobs must repay the install and operating cost. If your average deal cannot support that, the diagnostic should stop us before a sales call wastes time.', tone: 'cyan' },
+  { label: 'Why public pricing', body: 'Premium owners do not need coy pricing. They need to know whether the system is in the right economic class before they share numbers.', tone: 'green' },
+  { label: 'Why it earns back', body: 'Ascend attacks the leaks closest to cash first: response lag, quote follow-up, booked-job attribution, and the channels already producing signal.', tone: 'orange' },
+];
 const publicLayerBody = (body: string) => body
   .replace(/\s*\([^)]*\)/g, '')
   .replace(/GBP \+ AEO \+ local SEO \+ schema \+ citations \+ AI-search readiness/g, 'local search, AEO, schema, citations, and AI-search readiness')
@@ -109,18 +124,69 @@ const pricingJsonLd = {
   <!-- Pricing hero -->
   <section class="pricing-hero">
     <div class="container pricing-hero-inner">
-      <p class="eyebrow">PRICING</p>
-      <h1 class="h-hero pricing-h1">Pricing.</h1>
-      <p class="lede pricing-lede">
-        Three commitment shapes. Same 8-layer revenue operating system. Same 5× ROI floor. Choose the one that fits how you want to enter.
-      </p>
+      <div>
+        <p class="eyebrow">PRICING</p>
+        <h1 class="h-hero pricing-h1">Public pricing for a system that has to earn its place.</h1>
+        <p class="lede pricing-lede">
+          Three commitment shapes. Same 8-layer revenue operating system. Same 5× ROI floor. The fit question is not whether marketing sounds exciting. It is whether the leaks are expensive enough for Ascend to be obvious.
+        </p>
+        <div class="pricing-hero-actions">
+          <a href="/book" class="cta" data-cta-source="pricing-hero">See If We're a Fit<span class="cta-arrow" aria-hidden="true">→</span></a>
+          <a href="#price-architecture" class="cta-ghost" data-cta-source="pricing-architecture">Compare offers</a>
+        </div>
+        <dl class="pricing-math-strip" aria-label="Pricing value math">
+          {valueMath.map((item) => (
+            <div>
+              <dt class="mono">{item.label}</dt>
+              <dd>
+                <strong>{item.value}</strong>
+                <span>{item.body}</span>
+              </dd>
+            </div>
+          ))}
+        </dl>
+      </div>
+      <aside class="pricing-console ops-panel" aria-label="Pricing architecture console">
+        <div class="pricing-console-head">
+          <p class="ops-kicker">Price architecture</p>
+          <span class="ops-chip"><span class="dot green" aria-hidden="true"></span>public</span>
+        </div>
+        <div class="pricing-console-grid">
+          {pricingSignals.map((item) => (
+            <article class={`pricing-signal tone-${item.tone}`}>
+              <span class="mono">{item.label}</span>
+              <strong>{item.price}</strong>
+              <em>{item.name}</em>
+            </article>
+          ))}
+        </div>
+        <p class="pricing-console-note">The diagnostic checks whether your market leaks can realistically support the operating cost before we ask for a booking.</p>
+      </aside>
     </div>
   </section>
 
   <!-- Product comparison (built by parallel agent — L5) -->
-  <section class="pricing-comparison-section">
+  <section id="price-architecture" class="pricing-comparison-section">
     <div class="container">
       <ProductComparison />
+    </div>
+  </section>
+
+  <section class="pricing-roi-section elev" aria-labelledby="pricing-roi-title">
+    <div class="container pricing-roi-grid">
+      <header>
+        <p class="section-tag">Why this is worth it</p>
+        <h2 id="pricing-roi-title" class="h-section">Premium pricing only works when the math has nowhere to hide.</h2>
+        <p class="lede">Ascend is not priced for hobby demand generation. It is priced for service businesses where one or two fixed leaks can change the year.</p>
+      </header>
+      <div class="roi-check-grid">
+        {roiChecks.map((item) => (
+          <article class={`roi-check tone-${item.tone}`}>
+            <p class="ops-kicker">{item.label}</p>
+            <p>{item.body}</p>
+          </article>
+        ))}
+      </div>
     </div>
   </section>
 
@@ -170,7 +236,7 @@ const pricingJsonLd = {
           What the agreement actually says.
         </h2>
         <p class="lede">
-          Every client signs the same universal contract. No hidden conditions.
+          Every client signs the same universal contract. No surprise conditions.
         </p>
       </header>
 
@@ -209,18 +275,147 @@ const pricingJsonLd = {
   background: var(--bg);
 }
 .pricing-hero-inner {
+  display: grid;
+  grid-template-columns: minmax(0, 0.95fr) minmax(300px, 0.78fr);
+  gap: clamp(40px, 6vw, 88px);
+  align-items: center;
+}
+.pricing-h1 {
+  color: var(--ink);
+  margin-bottom: 26px;
+}
+.pricing-lede { max-width: 680px; }
+.pricing-hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  margin-top: 32px;
+}
+.pricing-math-strip {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1px;
+  margin-top: 26px;
+  max-width: 720px;
+  background: var(--rule);
+  border: 1px solid var(--rule);
+}
+.pricing-math-strip div {
+  min-width: 0;
+  background: rgba(15, 15, 20, 0.72);
+  padding: 16px;
+  border-top: 2px solid var(--y2);
+}
+.pricing-math-strip dt {
+  color: var(--ink-faint);
+  font-size: 8px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+.pricing-math-strip dd {
+  margin: 8px 0 0;
   display: flex;
   flex-direction: column;
-  gap: 24px;
-  max-width: 900px;
+  gap: 5px;
 }
-.pricing-h1 { color: var(--ink); }
-.pricing-lede { max-width: 680px; }
+.pricing-math-strip strong {
+  color: var(--ink);
+  font-size: 28px;
+  line-height: 1;
+}
+.pricing-math-strip span {
+  color: var(--ink-dim);
+  font-size: 12px;
+  line-height: 1.35;
+}
+.pricing-console {
+  padding: clamp(22px, 3vw, 34px);
+}
+.pricing-console > * {
+  position: relative;
+  z-index: 1;
+}
+.pricing-console-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 22px;
+}
+.pricing-console-grid {
+  display: grid;
+  gap: 1px;
+  background: var(--rule);
+  border: 1px solid var(--rule);
+}
+.pricing-signal {
+  background: var(--bg);
+  border-left: 3px solid currentColor;
+  padding: 22px;
+}
+.pricing-signal span {
+  color: var(--ink-faint);
+  font-size: 9px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+.pricing-signal strong {
+  display: block;
+  margin-block: 10px 6px;
+  font-size: clamp(30px, 4vw, 54px);
+  line-height: 1;
+  letter-spacing: -0.05em;
+  color: var(--ink);
+}
+.pricing-signal em {
+  font-family: var(--mono);
+  font-style: normal;
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: currentColor;
+}
+.pricing-console-note {
+  margin-top: 18px;
+  color: var(--ink-dim);
+  font-size: 14px;
+  line-height: 1.55;
+}
 
 /* ============ Comparison section ============ */
 .pricing-comparison-section {
   padding-block: 0 var(--section-y);
   background: var(--bg);
+}
+
+.pricing-roi-section { padding-block: var(--section-y); }
+.pricing-roi-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 0.82fr) minmax(0, 1.18fr);
+  gap: clamp(40px, 6vw, 80px);
+  align-items: start;
+}
+.pricing-roi-grid header {
+  position: sticky;
+  top: 104px;
+}
+.pricing-roi-grid .lede { margin-top: 22px; }
+.roi-check-grid {
+  display: grid;
+  gap: 1px;
+  background: var(--rule);
+  border: 1px solid var(--rule);
+}
+.roi-check {
+  background: var(--bg-card);
+  border-left: 3px solid currentColor;
+  padding: clamp(24px, 3vw, 34px);
+}
+.roi-check p:last-child {
+  margin-top: 12px;
+  color: var(--ink-dim);
+  font-size: 16px;
+  line-height: 1.6;
 }
 
 /* ============ 8-layer section ============ */
@@ -301,6 +496,39 @@ const pricingJsonLd = {
 }
 @media (max-width: 640px) {
   .pricing-contract-grid { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 900px) {
+  .pricing-hero-inner,
+  .pricing-roi-grid { grid-template-columns: 1fr; }
+  .pricing-roi-grid header { position: static; }
+}
+
+@media (max-width: 560px) {
+  .pricing-hero {
+    padding-top: 104px;
+  }
+
+  .pricing-h1 {
+    font-size: 38px;
+    line-height: 1.03;
+    letter-spacing: 0;
+  }
+
+  .pricing-lede {
+    font-size: 17px;
+    line-height: 1.5;
+  }
+
+  .pricing-math-strip {
+    grid-template-columns: 1fr;
+  }
+
+  .pricing-hero-actions .cta,
+  .pricing-hero-actions .cta-ghost {
+    width: 100%;
+    justify-content: center;
+  }
 }
 
 .pricing-contract-card {

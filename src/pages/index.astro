@@ -3,7 +3,7 @@
 // Replaces rejected homepage-redesign-2026-05-20 work (R020 + geo-broadcast failures)
 // 12 sections, every section visual drives R020 action (F1/F2/F3/F4 only)
 // No transitional scene-photos, no radial diagrams, no geo-hardcoding
-// Pricing-visible RATIFIED 2026-05-20 (canonical.json source of truth)
+// Pricing-public RATIFIED 2026-05-20 (canonical.json source of truth)
 
 // SSR opt-in: L8 reads Astro.locals.metro (populated by middleware from cf-ipcity).
 // Unknown / missing → generic copy; known metro → personalized H2 + first mechanism.
@@ -60,10 +60,51 @@ const proofTiles = [
 ];
 
 const commandMetrics = [
-  { label: 'Market visibility', value: '68%', trend: '+12 pts' },
-  { label: 'Lead response', value: '<5m', trend: 'live' },
-  { label: 'Review velocity', value: '2.4×', trend: 'rising' },
-  { label: 'Weekly proof', value: 'Mon', trend: 'locked' },
+  { label: 'AI-search visibility', value: '68%', trend: '+12 pts', tone: 'cyan' },
+  { label: 'Lead response', value: '<5m', trend: 'routing live', tone: 'green' },
+  { label: 'Review velocity', value: '2.4×', trend: 'compounding', tone: 'yellow' },
+  { label: 'Owner dependency', value: '↓', trend: 'load removed', tone: 'orange' },
+];
+
+const leakRadar = [
+  { label: 'Invisible Market', status: 'signal low', tone: 'cyan' },
+  { label: 'Leaky Revenue', status: 'money escaping', tone: 'red' },
+  { label: 'Owner Bottleneck', status: 'handoff risk', tone: 'orange' },
+  { label: 'Reactive Growth', status: 'late data', tone: 'yellow' },
+];
+
+const weeklyProofRail = [
+  { label: 'Baseline', value: 'captured', tone: 'cyan' },
+  { label: 'Routes', value: 'wired', tone: 'green' },
+  { label: 'Spend', value: 'visible', tone: 'yellow' },
+  { label: 'Next move', value: 'queued', tone: 'orange' },
+];
+
+const signalQueue = [
+  { label: 'Search intent', value: 'mapped to service pages', tone: 'cyan' },
+  { label: 'Proof graph', value: 'reviews + jobs stitched', tone: 'green' },
+  { label: 'Lead route', value: 'form, call, booking armed', tone: 'yellow' },
+];
+
+const operatingTruths = [
+  {
+    label: 'Not an agency',
+    title: 'Agencies sell activity. Ascend installs an operating layer.',
+    body: 'The difference is simple: the system lives in your business, not in our pitch deck. You can see the baseline, the routes, the account ownership, and the weekly proof.',
+    tone: 'cyan',
+  },
+  {
+    label: 'Owner bottleneck',
+    title: 'The quiet tax is the owner acting as the marketing router.',
+    body: 'When every lead question, campaign decision, review request, and reporting answer routes through you, growth gets capped by your attention before the market ever gets a vote.',
+    tone: 'orange',
+  },
+  {
+    label: 'Compounding asset',
+    title: 'Every improvement becomes infrastructure you keep.',
+    body: 'The visibility layer teaches search. The conversion layer teaches paid media. The CRM layer teaches follow-up. The weekly operating rhythm makes the whole system harder to copy.',
+    tone: 'green',
+  },
 ];
 
 const installSteps = [
@@ -229,7 +270,7 @@ const faqSchema = {
         <p class="eyebrow">Verifiable autonomous marketing systems for service businesses</p>
         <h1 id="home-hero-title" class="h-hero">You run the business. Ascend makes you the <em>most-chosen</em> name in your market.</h1>
         <p class="hero-sub">
-          Buildwise installs and runs an 8-layer revenue operating system on your domain: visibility, conversion, speed-to-lead, sales ops, reputation, paid media, reporting, and strategy. You own it. We run it. The math is verified weekly.
+          Buildwise installs and operates Ascend on your domain: visibility, conversion, speed-to-lead, sales ops, reputation, paid media, reporting, and strategy. You own the asset. We run the cadence. The math is verified weekly.
         </p>
         <div class="hero-actions" role="group" aria-label="Primary actions">
           <a href="/book" class="cta" data-cta-source="home-hero">See If We're a Fit<span class="cta-arrow" aria-hidden="true">&rarr;</span></a>
@@ -241,60 +282,91 @@ const faqSchema = {
           <li><strong>HITL</strong><span>human signoff</span></li>
         </ul>
       </div>
-      <aside class="command-center" aria-label="Ascend command center preview">
+      <aside class="command-center ops-panel" aria-label="Ascend command center preview">
         <div class="command-topline">
-          <span class="dot live"></span>
-          <span class="mono">ASCEND SYSTEM · OPERATING</span>
+          <span class="dot green"></span>
+          <span class="mono">ASCEND OPERATING CONSOLE · LIVE</span>
+          <span class="console-lock mono">CLIENT-OWNED</span>
         </div>
-        <div class="command-score">
-          <p class="command-score-label mono">Market leak map</p>
-          <p class="command-score-value">4 gaps</p>
-          <p class="command-score-body">Visibility, follow-up, owner load, and reporting are connected in one weekly rhythm.</p>
+
+        <div class="console-shell">
+          <div class="signal-map-panel">
+            <div class="panel-head">
+              <p class="ops-kicker">Market signal map</p>
+              <span class="ops-chip"><span class="dot cyan" aria-hidden="true"></span>AI search / local / proof</span>
+            </div>
+            <svg class="market-signal-svg" viewBox="0 0 520 320" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Ascend routes search, reviews, ads, follow-up, and attribution into one operating center.">
+              <defs>
+                <linearGradient id="sig-cyan" x1="0" x2="1">
+                  <stop stop-color="var(--signal-cyan)" stop-opacity="0.9" />
+                  <stop offset="1" stop-color="var(--y2)" stop-opacity="0.9" />
+                </linearGradient>
+                <linearGradient id="sig-green" x1="0" x2="1">
+                  <stop stop-color="var(--signal-green)" stop-opacity="0.9" />
+                  <stop offset="1" stop-color="var(--y1)" stop-opacity="0.9" />
+                </linearGradient>
+              </defs>
+              <rect x="16" y="18" width="488" height="284" rx="6" fill="rgba(255,255,255,0.015)" stroke="var(--rule)" />
+              <path class="signal-path path-a" d="M78 84 C158 42 236 64 260 152 C286 248 396 226 452 116" fill="none" stroke="url(#sig-cyan)" stroke-width="2" stroke-linecap="round" />
+              <path class="signal-path path-b" d="M70 236 C164 228 182 134 258 154 C354 180 374 86 448 72" fill="none" stroke="url(#sig-green)" stroke-width="2" stroke-linecap="round" />
+              <path class="signal-path path-c" d="M86 160 C162 122 206 252 274 192 C338 138 398 158 452 238" fill="none" stroke="var(--signal-orange)" stroke-width="1.5" stroke-linecap="round" opacity="0.78" />
+              <g class="map-node core">
+                <circle cx="260" cy="160" r="42" fill="rgba(240,255,0,0.08)" stroke="var(--y2)" />
+                <circle cx="260" cy="160" r="7" fill="var(--y2)" />
+                <text x="260" y="146" text-anchor="middle" font-family="var(--mono)" font-size="10" fill="var(--ink)" letter-spacing="1.8">ASCEND</text>
+                <text x="260" y="180" text-anchor="middle" font-family="var(--mono)" font-size="8" fill="var(--ink-faint)" letter-spacing="1.6">CONTROL PLANE</text>
+              </g>
+              <g class="map-node"><circle cx="78" cy="84" r="9" fill="var(--signal-cyan)" /><text x="78" y="62" text-anchor="middle" font-family="var(--mono)" font-size="8" fill="var(--ink-dim)" letter-spacing="1.4">AI SEARCH</text></g>
+              <g class="map-node"><circle cx="452" cy="116" r="9" fill="var(--y2)" /><text x="452" y="96" text-anchor="middle" font-family="var(--mono)" font-size="8" fill="var(--ink-dim)" letter-spacing="1.4">REVIEWS</text></g>
+              <g class="map-node"><circle cx="70" cy="236" r="9" fill="var(--signal-green)" /><text x="70" y="264" text-anchor="middle" font-family="var(--mono)" font-size="8" fill="var(--ink-dim)" letter-spacing="1.4">CRM</text></g>
+              <g class="map-node"><circle cx="448" cy="72" r="9" fill="var(--signal-green)" /><text x="448" y="51" text-anchor="middle" font-family="var(--mono)" font-size="8" fill="var(--ink-dim)" letter-spacing="1.4">BOOKED</text></g>
+              <g class="map-node"><circle cx="452" cy="238" r="9" fill="var(--signal-orange)" /><text x="452" y="264" text-anchor="middle" font-family="var(--mono)" font-size="8" fill="var(--ink-dim)" letter-spacing="1.4">NEXT MOVE</text></g>
+            </svg>
+            <div class="signal-queue" aria-label="Active operating routes">
+              {signalQueue.map((item) => (
+                <div class={`signal-queue-row tone-${item.tone}`}>
+                  <span class="mono">{item.label}</span>
+                  <strong>{item.value}</strong>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <div class="leak-radar-panel">
+            <div class="panel-head">
+              <p class="ops-kicker">Leak radar</p>
+              <span class="ops-chip"><span class="dot red" aria-hidden="true"></span>4 active checks</span>
+            </div>
+            <ul class="radar-list" role="list">
+              {leakRadar.map((item) => (
+                <li class={`radar-item tone-${item.tone}`}>
+                  <span class={`dot ${item.tone === 'yellow' ? 'live' : item.tone}`} aria-hidden="true"></span>
+                  <strong>{item.label}</strong>
+                  <em>{item.status}</em>
+                </li>
+              ))}
+            </ul>
+          </div>
         </div>
+
         <div class="command-metrics">
           {commandMetrics.map((metric) => (
-            <div class="command-metric">
+            <div class={`command-metric tone-${metric.tone}`}>
               <span class="mono">{metric.label}</span>
               <strong>{metric.value}</strong>
               <em>{metric.trend}</em>
             </div>
           ))}
         </div>
-        <!-- @r020:F2 proof: self-drawing console SVG loop representing the revenue operational loop -->
-        <svg class="command-flow-svg" viewBox="0 0 400 120" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-          <!-- Main Loop Path -->
-          <path d="M 50,35 L 350,35 C 375,35 375,85 350,85 L 50,85 C 25,85 25,35 50,35 Z" stroke="var(--rule-bright)" stroke-width="1.5" fill="none" stroke-linecap="round"/>
-          <path d="M 50,35 L 350,35 C 375,35 375,85 350,85 L 50,85 C 25,85 25,35 50,35 Z" stroke="var(--y1)" stroke-width="2" fill="none" stroke-linecap="round" class="loop-track-pulse"/>
 
-          <!-- Nodes -->
-          <!-- Ingest Node -->
-          <g class="loop-node" transform="translate(90, 35)">
-            <circle cx="0" cy="0" r="6" stroke="var(--y2)" stroke-width="1" fill="var(--bg)" opacity="0.8" class="node-pulse"/>
-            <circle cx="0" cy="0" r="3" fill="var(--y2)"/>
-            <text x="0" y="-12" text-anchor="middle" font-family="var(--mono)" font-size="8" fill="var(--ink-dim)" letter-spacing="1">INGEST</text>
-          </g>
-
-          <!-- Engage Node -->
-          <g class="loop-node" transform="translate(310, 35)">
-            <circle cx="0" cy="0" r="6" stroke="var(--y2)" stroke-width="1" fill="var(--bg)" opacity="0.8" class="node-pulse"/>
-            <circle cx="0" cy="0" r="3" fill="var(--y2)"/>
-            <text x="0" y="-12" text-anchor="middle" font-family="var(--mono)" font-size="8" fill="var(--ink-dim)" letter-spacing="1">ENGAGE</text>
-          </g>
-
-          <!-- Convert Node -->
-          <g class="loop-node" transform="translate(310, 85)">
-            <circle cx="0" cy="0" r="6" stroke="var(--y2)" stroke-width="1" fill="var(--bg)" opacity="0.8" class="node-pulse"/>
-            <circle cx="0" cy="0" r="3" fill="var(--y2)"/>
-            <text x="0" y="18" text-anchor="middle" font-family="var(--mono)" font-size="8" fill="var(--ink-dim)" letter-spacing="1">CONVERT</text>
-          </g>
-
-          <!-- Stitch Node -->
-          <g class="loop-node" transform="translate(90, 85)">
-            <circle cx="0" cy="0" r="6" stroke="var(--y2)" stroke-width="1" fill="var(--bg)" opacity="0.8" class="node-pulse"/>
-            <circle cx="0" cy="0" r="3" fill="var(--y2)"/>
-            <text x="0" y="18" text-anchor="middle" font-family="var(--mono)" font-size="8" fill="var(--ink-dim)" letter-spacing="1">STITCH</text>
-          </g>
-        </svg>
+        <div class="weekly-proof-rail" aria-label="Weekly operating proof rail">
+          {weeklyProofRail.map((item) => (
+            <div class={`proof-rail-item tone-${item.tone}`}>
+              <span class="mono">{item.label}</span>
+              <strong>{item.value}</strong>
+            </div>
+          ))}
+        </div>
 
         <div class="evidence-ticker" aria-hidden="true">
           <div class="ticker-track">
@@ -329,6 +401,27 @@ const faqSchema = {
           </div>
         </div>
       </aside>
+    </div>
+  </section>
+
+  <!-- ============================================ -->
+  <!-- L1.5 · Operating reframe                     -->
+  <!-- ============================================ -->
+  <section class="operating-reframe" aria-labelledby="operating-reframe-title">
+    <div class="container reframe-grid">
+      <header class="reframe-head">
+        <p class="section-tag">The reframe</p>
+        <h2 id="operating-reframe-title" class="h-section">The problem is not that you need more marketing. The problem is that marketing still needs you.</h2>
+      </header>
+      <div class="reframe-ledger" role="list">
+        {operatingTruths.map((item) => (
+          <article class={`reframe-card tone-${item.tone}`} role="listitem">
+            <p class="ops-kicker">{item.label}</p>
+            <h3>{item.title}</h3>
+            <p>{item.body}</p>
+          </article>
+        ))}
+      </div>
     </div>
   </section>
 
@@ -597,26 +690,7 @@ const faqSchema = {
   </section>
 
   <script>
-    // 1. Hero interactive spotlight mouse tracking
-    const hero = document.querySelector('.home-hero');
-    if (hero && window.matchMedia('(hover: hover)').matches) {
-      const updateSpotlight = (e) => {
-        const rect = hero.getBoundingClientRect();
-        const x = e.clientX - rect.left;
-        const y = e.clientY - rect.top;
-        hero.style.setProperty('--spot-x', `${x}px`);
-        hero.style.setProperty('--spot-y', `${y}px`);
-      };
-      
-      window.addEventListener('pointermove', updateSpotlight);
-      
-      // Init position
-      const rect = hero.getBoundingClientRect();
-      hero.style.setProperty('--spot-x', `${rect.width / 2}px`);
-      hero.style.setProperty('--spot-y', `${rect.height * 0.3}px`);
-    }
-
-    // 2. Scroll listener to animate comparative progress bars
+    // Animate comparative progress bars when the proof section enters view.
     const bands = document.querySelectorAll('.figure-band');
     const checkReveal = () => {
       bands.forEach((b) => {
@@ -641,10 +715,10 @@ const faqSchema = {
   padding-top: clamp(104px, 12vw, 168px);
   padding-bottom: clamp(56px, 8vw, 104px);
   overflow: hidden;
-  background: 
-    radial-gradient(circle 800px at var(--spot-x, 50%) var(--spot-y, 30%), rgba(240, 255, 0, 0.08), transparent 60%),
+  background:
+    linear-gradient(115deg, rgba(56, 216, 255, 0.08), transparent 38%),
+    linear-gradient(245deg, rgba(240, 255, 0, 0.07), transparent 42%),
     var(--bg);
-  transition: background 0.1s ease;
 }
 
 .hero-grid {
@@ -653,11 +727,13 @@ const faqSchema = {
   gap: clamp(36px, 7vw, 96px);
   align-items: center;
 }
+.hero-grid > * { min-width: 0; }
 
 .hero-copy {
   display: flex;
   flex-direction: column;
   gap: 24px;
+  min-width: 0;
 }
 
 .hero-copy .h-hero { max-width: 880px; }
@@ -712,16 +788,19 @@ const faqSchema = {
 
 .command-center {
   position: relative;
+  min-width: 0;
   border: 1px solid var(--rule-bright);
   background:
-    linear-gradient(180deg, rgba(240, 255, 0, 0.045), transparent 32%),
+    linear-gradient(180deg, rgba(56, 216, 255, 0.06), transparent 34%),
+    linear-gradient(125deg, rgba(240, 255, 0, 0.055), transparent 48%),
     var(--bg-card);
   padding: clamp(22px, 3vw, 34px);
-  min-height: 540px;
+  min-height: 620px;
   display: flex;
   flex-direction: column;
   gap: 24px;
   box-shadow: 0 24px 80px rgba(0, 0, 0, 0.35);
+  overflow: hidden;
 }
 .command-center::before {
   content: "";
@@ -730,6 +809,18 @@ const faqSchema = {
   border: 1px solid rgba(240, 255, 0, 0.12);
   pointer-events: none;
 }
+.command-center::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    linear-gradient(180deg, transparent 0 47%, rgba(240, 255, 0, 0.08) 48%, transparent 50%),
+    radial-gradient(circle at 74% 16%, rgba(101, 255, 142, 0.12), transparent 20%),
+    radial-gradient(circle at 22% 82%, rgba(56, 216, 255, 0.1), transparent 18%);
+  mix-blend-mode: screen;
+  opacity: 0.62;
+}
 .command-topline {
   display: flex;
   align-items: center;
@@ -737,31 +828,120 @@ const faqSchema = {
   color: var(--y2);
   font-size: 10px;
   letter-spacing: 0.18em;
+  position: relative;
+  z-index: 1;
 }
-.command-score {
-  border-bottom: 1px solid var(--rule);
-  padding-bottom: 24px;
+.console-lock {
+  margin-left: auto;
+  color: var(--signal-green);
+  font-size: 8px;
+  letter-spacing: 0.16em;
 }
-.command-score-label {
+
+.console-shell {
+  display: grid;
+  grid-template-columns: minmax(0, 1.2fr) minmax(160px, 0.8fr);
+  gap: 14px;
+  position: relative;
+  z-index: 1;
+}
+.signal-map-panel,
+.leak-radar-panel {
+  min-width: 0;
+  border: 1px solid var(--rule);
+  background: rgba(5, 5, 7, 0.62);
+  padding: 14px;
+}
+.signal-map-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.panel-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+.market-signal-svg {
+  width: 100%;
+  height: auto;
+  border: 1px solid rgba(255, 255, 255, 0.03);
+}
+.signal-queue {
+  display: grid;
+  gap: 1px;
+  background: var(--rule);
+  border: 1px solid var(--rule);
+}
+.signal-queue-row {
+  display: grid;
+  grid-template-columns: minmax(78px, 0.7fr) minmax(0, 1.3fr);
+  gap: 10px;
+  align-items: center;
+  background: rgba(5, 5, 7, 0.72);
+  border-left: 2px solid currentColor;
+  padding: 10px 12px;
+}
+.signal-queue-row span {
   color: var(--ink-faint);
-  font-size: 10px;
-  letter-spacing: 0.2em;
-  margin-bottom: 10px;
+  font-size: 8px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
 }
-.command-score-value {
-  font-size: clamp(64px, 8vw, 108px);
-  font-weight: 800;
-  font-stretch: 75%;
-  letter-spacing: -0.06em;
-  line-height: 0.9;
-  color: var(--y2);
+.signal-queue-row strong {
+  color: var(--ink);
+  font-family: var(--mono);
+  font-size: 9px;
+  font-weight: 400;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
 }
-.command-score-body {
-  max-width: 420px;
-  margin-top: 14px;
-  color: var(--ink-dim);
-  font-size: 15px;
-  line-height: 1.55;
+.signal-path {
+  stroke-dasharray: 15 16;
+  animation: signalRoute 8s linear infinite;
+}
+.path-b { animation-duration: 10s; animation-direction: reverse; }
+.path-c { animation-duration: 12s; }
+.map-node:not(.core) circle {
+  animation: nodeBlink 2.8s ease-in-out infinite;
+  transform-origin: center;
+}
+.leak-radar-panel {
+  display: flex;
+  flex-direction: column;
+}
+.radar-list {
+  list-style: none;
+  display: grid;
+  gap: 8px;
+  margin: 0;
+  padding: 0;
+}
+.radar-item {
+  display: grid;
+  grid-template-columns: 10px minmax(0, 1fr);
+  gap: 8px 10px;
+  align-items: center;
+  padding: 10px;
+  border: 1px solid var(--rule);
+  background: rgba(255, 255, 255, 0.015);
+}
+.radar-item .dot { margin: 0; }
+.radar-item strong {
+  color: var(--ink);
+  font-size: 12px;
+  line-height: 1.2;
+}
+.radar-item em {
+  grid-column: 2;
+  font-family: var(--mono);
+  font-style: normal;
+  font-size: 8px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: currentColor;
 }
 .command-metrics {
   display: grid;
@@ -770,6 +950,8 @@ const faqSchema = {
   background: var(--rule);
   border: 1px solid var(--rule);
   align-self: stretch;
+  position: relative;
+  z-index: 1;
 }
 .command-metric {
   background: var(--bg);
@@ -777,6 +959,7 @@ const faqSchema = {
   display: flex;
   flex-direction: column;
   gap: 8px;
+  border-top: 2px solid currentColor;
 }
 .command-metric span {
   color: var(--ink-faint);
@@ -787,6 +970,7 @@ const faqSchema = {
   font-size: clamp(28px, 3vw, 44px);
   line-height: 1;
   letter-spacing: -0.04em;
+  color: var(--ink);
 }
 .command-metric em {
   font-family: var(--mono);
@@ -794,25 +978,44 @@ const faqSchema = {
   text-transform: uppercase;
   font-size: 9px;
   letter-spacing: 0.18em;
-  color: var(--y2);
+  color: currentColor;
 }
-.command-flow-svg {
-  width: 100%;
-  height: auto;
-  margin-block: 8px 16px;
-  overflow: visible;
+
+.weekly-proof-rail {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 1px;
+  background: var(--rule);
+  border: 1px solid var(--rule);
+  position: relative;
+  z-index: 1;
 }
-.loop-track-pulse {
-  stroke-dasharray: 60 250;
-  animation: loopFlow 4s linear infinite;
+.proof-rail-item {
+  background: rgba(5, 5, 7, 0.72);
+  padding: 13px 12px;
+  border-top: 2px solid currentColor;
 }
-.node-pulse {
-  animation: signalPulse 2s ease-in-out infinite;
-  transform-origin: center;
+.proof-rail-item span {
+  display: block;
+  font-size: 8px;
+  letter-spacing: 0.14em;
+  color: var(--ink-faint);
 }
-@keyframes loopFlow {
-  from { stroke-dashoffset: 714; }
-  to { stroke-dashoffset: 0; }
+.proof-rail-item strong {
+  display: block;
+  margin-top: 6px;
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: currentColor;
+}
+@keyframes signalRoute {
+  to { stroke-dashoffset: -180; }
+}
+@keyframes nodeBlink {
+  0%, 100% { opacity: 0.7; }
+  50% { opacity: 1; }
 }
 
 .evidence-ticker {
@@ -824,6 +1027,51 @@ const faqSchema = {
   margin-top: auto;
   mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
   -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+  position: relative;
+  z-index: 1;
+}
+
+/* ===== L1.5 Operating reframe ===== */
+.operating-reframe {
+  padding-block: clamp(72px, 9vw, 124px);
+  border-block: 1px solid var(--rule);
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.018), transparent),
+    var(--bg-elev);
+}
+.reframe-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 0.78fr) minmax(0, 1.22fr);
+  gap: clamp(36px, 6vw, 76px);
+  align-items: start;
+}
+.reframe-head {
+  position: sticky;
+  top: 104px;
+}
+.reframe-ledger {
+  display: grid;
+  gap: 1px;
+  background: var(--rule);
+  border: 1px solid var(--rule);
+}
+.reframe-card {
+  background: var(--bg-card);
+  padding: clamp(24px, 4vw, 42px);
+  border-left: 3px solid currentColor;
+}
+.reframe-card h3 {
+  margin-top: 12px;
+  max-width: 740px;
+  font-size: clamp(24px, 3vw, 42px);
+  line-height: 1.04;
+}
+.reframe-card p:last-child {
+  margin-top: 16px;
+  color: var(--ink-dim);
+  font-size: 16px;
+  line-height: 1.6;
+  max-width: 700px;
 }
 .ticker-track {
   display: flex;
@@ -1238,9 +1486,11 @@ const faqSchema = {
 @media (max-width: 900px) {
   .home-hero { min-height: auto; }
   .hero-grid,
+  .reframe-grid,
   .install-grid,
   .objection-grid,
   .final-inner { grid-template-columns: 1fr; }
+  .reframe-head,
   .install-head { position: static; }
   .final-inner { align-items: start; }
 }
@@ -1248,37 +1498,54 @@ const faqSchema = {
 @media (max-width: 520px) {
   .home-hero { padding-top: 82px; }
   .hero-copy { gap: 18px; }
+  .home-hero .eyebrow {
+    max-width: 100%;
+    align-items: flex-start;
+    line-height: 1.45;
+    overflow-wrap: anywhere;
+  }
   .hero-copy .h-hero {
-    font-size: 40px;
-    line-height: 0.92;
+    max-width: 100%;
+    font-size: 38px;
+    line-height: 1.02;
+    letter-spacing: 0;
+    overflow-wrap: anywhere;
+    text-wrap: balance;
   }
   .hero-copy .h-hero em {
     color: var(--y2);
     font-style: normal;
   }
   .hero-copy .hero-sub {
-    order: 4;
     font-size: 17px;
     line-height: 1.45;
   }
-  .hero-actions {
-    order: 3;
-  }
-  .hero-proof-strip {
-    order: 5;
-  }
   .command-center { min-height: 0; padding: 20px; }
   .command-center::before { inset: 10px; }
+  .console-shell,
   .command-metrics,
+  .weekly-proof-rail,
   .hero-proof-strip {
     grid-template-columns: 1fr;
   }
+  .panel-head {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+  .signal-queue-row {
+    grid-template-columns: 1fr;
+    gap: 4px;
+  }
+  .console-lock { display: none; }
   .hero-actions { align-items: stretch; }
   .hero-actions .cta,
   .hero-actions .cta-ghost,
   .final-inner .cta {
     width: 100%;
     justify-content: center;
+    white-space: normal;
+    text-align: center;
+    min-height: 58px;
   }
 }
 </style>

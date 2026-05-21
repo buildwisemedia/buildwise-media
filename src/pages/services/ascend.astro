@@ -22,11 +22,24 @@ const layers = canonical.products.ascend.eight_layers.map((raw: string, i: numbe
   const dotIndex = raw.indexOf('·');
   const name = dashIndex > 0 ? raw.slice(dotIndex + 1, dashIndex).trim() : raw.slice(dotIndex + 1).trim();
   const body = dashIndex > 0 ? publicLayerBody(raw.slice(dashIndex + 1).trim()) : '';
-  return { n: String(i + 1).padStart(2, '0'), name, body };
+  return { n: String(i + 1).padStart(2, '0'), name, body, tone: ['cyan', 'green', 'yellow', 'orange', 'green', 'cyan', 'yellow', 'green'][i] };
 });
 
+const productSpecs = [
+  { label: 'Install', value: '30 days', body: 'Website, tracking, CRM routes, reports, and first operating cadence live.', tone: 'cyan' },
+  { label: 'Run', value: 'weekly', body: 'Buildwise operates the system, clears gates, and adjusts underperforming layers.', tone: 'green' },
+  { label: 'Prove', value: 'Monday', body: 'Spend, leads, booked work, confidence labels, and next moves in one proof rhythm.', tone: 'yellow' },
+  { label: 'Own', value: '100%', body: 'Code, data, accounts, customer list, and built assets stay in your business.', tone: 'orange' },
+];
+
+const productArtifacts = [
+  { label: 'Domain app', value: 'conversion surface' },
+  { label: 'Workflow agents', value: 'HITL routed' },
+  { label: 'Proof packet', value: 'weekly ledger' },
+];
+
 const phases = [
-  { n: '01', name: 'Audit', body: 'Capture the baseline, name the Poor Four gaps, and identify the first layer that should move revenue fastest.' },
+  { n: '01', name: 'Audit', body: 'Capture the baseline, name the active market leaks, and identify the first layer that should move revenue fastest.' },
   { n: '02', name: 'Install', body: 'Wire the site, conversion paths, follow-up, attribution, reporting, and weekly operating rhythm into your business.' },
   { n: '03', name: 'Run', body: 'Operate the system weekly: review the math, clear human signoff gates, adjust what is underperforming, and keep the asset compounding.' },
 ];
@@ -92,14 +105,50 @@ const service = {
         </div>
       </div>
 
-      <aside class="ascend-panel" aria-label="Ascend operating preview">
-        <p class="panel-label mono">System state</p>
+      <aside class="ascend-panel ops-panel" aria-label="Ascend operating preview">
+        <div class="ascend-panel-head">
+          <p class="panel-label mono">Product state</p>
+          <span class="ops-chip"><span class="dot green" aria-hidden="true"></span>run for you</span>
+        </div>
         <p class="panel-number">8</p>
         <p class="panel-copy">layers installed, measured, and adjusted as one operating rhythm.</p>
         <div class="panel-bars" aria-hidden="true">
-          {layers.map((layer) => <span title={layer.name}></span>)}
+          {layers.map((layer) => <span class={`tone-${layer.tone}`} title={layer.name}></span>)}
+        </div>
+        <div class="ascend-panel-ledger">
+          <span class="mono">BASELINE</span>
+          <strong>captured before claims</strong>
+          <span class="mono">OWNERSHIP</span>
+          <strong>client keeps the asset</strong>
+        </div>
+        <div class="product-artifacts" aria-label="Ascend product artifacts">
+          {productArtifacts.map((item) => (
+            <div>
+              <span class="mono">{item.label}</span>
+              <strong>{item.value}</strong>
+            </div>
+          ))}
         </div>
       </aside>
+    </div>
+  </section>
+
+  <section class="product-spec-section" aria-labelledby="product-spec-title">
+    <div class="container product-spec-grid">
+      <header class="section-head">
+        <p class="section-tag">Product specification</p>
+        <h2 id="product-spec-title" class="h-section">Ascend is the operating product, not a menu of marketing tasks.</h2>
+        <p class="lede">The site, AI workflows, CRM routes, attribution, and weekly decision cadence are one installed system. The team operates it; the business owns it.</p>
+      </header>
+      <div class="spec-grid">
+        {productSpecs.map((spec) => (
+          <article class={`spec-card tone-${spec.tone}`}>
+            <p class="ops-kicker">{spec.label}</p>
+            <strong>{spec.value}</strong>
+            <p>{spec.body}</p>
+          </article>
+        ))}
+      </div>
     </div>
   </section>
 
@@ -199,8 +248,16 @@ const service = {
 .hero-ctas { display: flex; gap: 16px; flex-wrap: wrap; margin-top: 32px; }
 .ascend-panel {
   border: 1px solid var(--rule-bright);
-  background: var(--bg-card);
   padding: clamp(28px, 4vw, 44px);
+  position: relative;
+  overflow: hidden;
+}
+.ascend-panel > * { position: relative; z-index: 1; }
+.ascend-panel-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
 }
 .panel-label,
 .layer-num,
@@ -233,14 +290,98 @@ const service = {
 .panel-bars span {
   height: clamp(48px, 7vw, 92px);
   border: 1px solid var(--rule);
-  background: linear-gradient(to top, rgba(240,255,0,0.18), rgba(240,255,0,0.02));
+  background: linear-gradient(to top, currentColor, rgba(240,255,0,0.02));
+  opacity: 0.38;
+}
+.ascend-panel-ledger {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  gap: 10px 16px;
+  margin-top: 28px;
+  padding-top: 22px;
+  border-top: 1px solid var(--rule);
+}
+.ascend-panel-ledger span {
+  color: var(--ink-faint);
+  font-size: 9px;
+  letter-spacing: 0.16em;
+}
+.ascend-panel-ledger strong {
+  color: var(--ink);
+  font-size: 14px;
+  line-height: 1.3;
+}
+.product-artifacts {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1px;
+  margin-top: 18px;
+  background: var(--rule);
+  border: 1px solid var(--rule);
+}
+.product-artifacts div {
+  min-width: 0;
+  background: rgba(5, 5, 7, 0.72);
+  padding: 12px;
+  border-top: 2px solid var(--signal-cyan);
+}
+.product-artifacts span {
+  display: block;
+  color: var(--ink-faint);
+  font-size: 8px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+.product-artifacts strong {
+  display: block;
+  margin-top: 6px;
+  color: var(--ink);
+  font-size: 12px;
+  line-height: 1.2;
 }
 .section-head { max-width: 780px; margin-bottom: 48px; }
 .section-head .lede { margin-top: 20px; }
+.product-spec-section,
 .layers-section,
 .process-section,
 .commitments-section,
 .pricing-snapshot { padding-block: var(--section-y); }
+.product-spec-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 0.82fr) minmax(0, 1.18fr);
+  gap: clamp(40px, 6vw, 80px);
+  align-items: start;
+}
+.product-spec-grid .section-head {
+  position: sticky;
+  top: 104px;
+  margin-bottom: 0;
+}
+.spec-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1px;
+  background: var(--rule);
+  border: 1px solid var(--rule);
+}
+.spec-card {
+  background: var(--bg-card);
+  border-top: 3px solid currentColor;
+  padding: clamp(24px, 3vw, 36px);
+}
+.spec-card strong {
+  display: block;
+  margin-block: 12px;
+  font-size: clamp(34px, 4vw, 60px);
+  line-height: 1;
+  letter-spacing: -0.055em;
+  color: var(--ink);
+}
+.spec-card p:last-child {
+  color: var(--ink-dim);
+  font-size: 15px;
+  line-height: 1.55;
+}
 .layers-grid {
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
@@ -329,13 +470,32 @@ const service = {
 
 @media (max-width: 960px) {
   .ascend-hero-grid,
+  .product-spec-grid,
   .process-grid,
   .commitments-grid { grid-template-columns: 1fr; }
+  .product-spec-grid .section-head { position: static; }
   .layers-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .offer-grid { grid-template-columns: 1fr; }
 }
 @media (max-width: 560px) {
+  .ascend-hero {
+    padding-top: 104px;
+  }
+
+  .ascend-hero .h-hero {
+    font-size: 38px;
+    line-height: 1.03;
+    letter-spacing: 0;
+  }
+
+  .ascend-hero .hero-sub {
+    font-size: 17px;
+    line-height: 1.5;
+  }
+
+  .spec-grid,
   .layers-grid { grid-template-columns: 1fr; }
+  .product-artifacts { grid-template-columns: 1fr; }
   .hero-ctas .cta,
   .hero-ctas .cta-ghost,
   .ascend-cta .cta {
