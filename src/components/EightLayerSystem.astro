@@ -1,0 +1,170 @@
+---
+// L3 — The 8-Layer Revenue Operating System
+// Source of truth: canonical.json → products.ascend.eight_layers
+// 8 cards ARE the data viz — radial diagram dropped 2026-05-21 (R020: decoration banned, hand-judgment)
+import canonical from '../data/canonical.json';
+
+const layers = canonical.products.ascend.eight_layers.map((raw: string, i: number) => {
+  // Format: "N · Name — description"
+  const dashIndex = raw.indexOf('—');
+  const name = dashIndex > 0
+    ? raw.slice(raw.indexOf('·') + 1, dashIndex).trim()
+    : raw.slice(raw.indexOf('·') + 1).trim();
+  const body = dashIndex > 0 ? raw.slice(dashIndex + 1).trim() : '';
+  const num = String(i + 1).padStart(2, '0');
+  return { num, name, body };
+});
+---
+
+<section id="system" class="eight-layer-section">
+  <div class="container">
+
+    <header class="els-header">
+      <p class="eyebrow">THE SYSTEM</p>
+      <h2 class="h-section els-h2">
+        The 8-layer revenue operating system that makes you the most-chosen name in your market.
+      </h2>
+      <p class="lede els-lede">
+        Our AI system runs it. You own it. Every layer connects so the whole system tightens together.
+      </p>
+    </header>
+
+    <!-- 8-card grid — the cards ARE the data viz (one per layer, named in canonical.json) -->
+    <div class="els-grid">
+      {layers.map((layer, i) => (
+        <article
+          class={`els-card card els-card-${i}`}
+          data-layer-idx={i}
+        >
+          <header class="els-card-header">
+            <span class="els-num eyebrow">{layer.num}</span>
+          </header>
+          <h3 class="h-sub els-card-name">{layer.name}</h3>
+          <p class="els-card-body card-body">{layer.body}</p>
+          <footer class="els-card-foot">
+            <span class="els-tag">
+              <span class="dot live"></span>
+              <span class="els-tag-text mono">LIVE</span>
+            </span>
+          </footer>
+        </article>
+      ))}
+    </div>
+
+    <!-- Legend -->
+    <p class="els-legend mono">
+      All 8 layers are live and shipping today.
+    </p>
+
+  </div>
+</section>
+
+<style>
+/* ============ Section shell ============ */
+.eight-layer-section {
+  padding-block: var(--section-y);
+  background: var(--bg);
+  position: relative;
+}
+
+/* ============ Header ============ */
+.els-header {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  margin-bottom: 48px;
+  max-width: 780px;
+}
+.els-h2 { color: var(--ink); }
+.els-lede { max-width: 640px; }
+
+/* ============ Grid — 4-col desktop, 2-col tablet, 1-col mobile ============ */
+.els-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 1px;
+  background: var(--rule);
+  border: 1px solid var(--rule);
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+@media (max-width: 960px) {
+  .els-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+@media (max-width: 520px) {
+  .els-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ============ Individual tri-card ============ */
+.els-card {
+  background: var(--bg-card);
+  border: none;
+  border-radius: 0;
+  padding: 28px 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  transition: background 180ms ease;
+  cursor: default;
+}
+.els-card:hover {
+  background: var(--bg-elev);
+  border-color: var(--rule-bright);
+}
+
+.els-card-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.els-num {
+  color: var(--y2);
+  font-size: 10px;
+  letter-spacing: 0.18em;
+  /* override eyebrow::before — no leading dash inside cards */
+}
+.els-num::before { display: none; }
+
+.els-card-name {
+  font-size: clamp(18px, 2vw, 24px);
+  color: var(--ink);
+  line-height: 1.2;
+}
+.els-card-body {
+  font-size: 13px;
+  line-height: 1.55;
+  color: var(--ink-dim);
+  flex: 1;
+}
+
+/* ============ Card foot — LIVE tag ============ */
+.els-card-foot {
+  margin-top: 8px;
+  padding-top: 12px;
+  border-top: 1px solid var(--rule);
+}
+.els-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+.els-tag-text {
+  font-size: 9px;
+  letter-spacing: 0.22em;
+  color: var(--y2);
+}
+
+/* ============ Legend ============ */
+.els-legend {
+  margin-top: 24px;
+  font-size: 10px;
+  letter-spacing: 0.18em;
+  color: var(--ink-faint);
+  text-align: center;
+}
+</style>

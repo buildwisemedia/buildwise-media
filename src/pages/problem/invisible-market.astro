@@ -1,0 +1,140 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+const title = "Invisible Market — Buildwise Media";
+const description = "When buyers search for what you do, they can't find you. Invisible Market is a system failure. Here's how we close it.";
+
+const breadcrumb = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://buildwisemedia.com/' },
+    { '@type': 'ListItem', position: 2, name: 'Invisible Market', item: 'https://buildwisemedia.com/problem/invisible-market' },
+  ],
+};
+
+const service = {
+  '@context': 'https://schema.org',
+  '@type': 'Service',
+  '@id': 'https://buildwisemedia.com/problem/invisible-market#fix',
+  name: 'Invisible Market fix — AI-search and local visibility engine',
+  serviceType: 'AI marketing department for service businesses',
+  provider: { '@id': 'https://buildwisemedia.com/#org' },
+  areaServed: { '@type': 'Country', name: 'United States' },
+  description:
+    'Installs AI-search citation coverage, local SEO dominance, and AEO discipline so your business shows up where buyers are already looking — in search results, AI assistants, and local map packs.',
+  url: 'https://buildwisemedia.com/problem/invisible-market',
+};
+
+const faqs = [
+  {
+    q: 'How do I get my service business found online in 2026?',
+    a: 'Getting found in 2026 means owning three surfaces simultaneously: traditional search rankings, local map packs, and the AI assistants that buyers now ask instead of typing into a search bar. Most service businesses are visible on none of them in any systematic way. We install the full coverage layer — optimized local presence, neighborhood-level content, and the citation signals that AI assistants use to recommend businesses — so buyers find you wherever they look.',
+  },
+  {
+    q: 'Why don\'t AI assistants recommend my business?',
+    a: 'AI assistants pull from structured signals: authoritative mentions across the web, consistent business data, review depth, and topic authority. Most service businesses have none of these built intentionally. The result is that AI answers recommend whoever has invested in those signals — usually your largest or most-established competitor. We close the gap by building the citation infrastructure and content authority that AI assistants treat as trust signals.',
+  },
+  {
+    q: 'How fast can I dominate local search in my market?',
+    a: 'Meaningful local visibility movement starts within the first 30 days — Google Business Profile saturation, foundational citation cleanup, and neighborhood-level content all produce measurable shifts quickly. Full market dominance — where your name appears first across search, map packs, and AI assistants — compounds over 90 days. The system is running and producing data before the second invoice.',
+  },
+];
+
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  '@id': 'https://buildwisemedia.com/problem/invisible-market#faq',
+  mainEntity: faqs.map((f) => ({
+    '@type': 'Question',
+    name: f.q,
+    acceptedAnswer: { '@type': 'Answer', text: f.a },
+  })),
+};
+---
+<BaseLayout title={title} description={description} jsonLd={[service, breadcrumb, faqSchema]}>
+
+  <section class="problem-hero">
+    <div class="container">
+      <p class="eyebrow"><a href="/#problem" class="back-link">← The Poor Four</a> · 01</p>
+      <h1 class="h-hero">
+        Invisible <em>market.</em>
+      </h1>
+      <p class="hero-sub">
+        When buyers search for what you do, they can't find you. When they hear your name, they don't remember it. When competitors show up first in search, in AI answers, and in their friend's recommendation, you start every quarter from behind. Visibility is the foundation everything else depends on.
+      </p>
+    </div>
+  </section>
+
+  <section class="problem-cost elev">
+    <div class="container">
+      <p class="section-tag">What it actually costs</p>
+      <h2 class="h-section">The cost of staying hidden.</h2>
+      <ol class="cost-list" role="list">
+        <li><strong>Buyer-intent searches go to someone else.</strong> Every day, buyers in your market search for exactly what you offer. If you're not on the first page — and increasingly, in the AI answer — that search routes to a competitor. You never know the opportunity existed.</li>
+        <li><strong>AI assistants recommend your competitors by name.</strong> When a buyer asks an AI assistant who to call for your service, it cites businesses with authoritative citation signals. If you haven't built those signals, your name doesn't come up — and the buyer assumes the recommendation is definitive.</li>
+        <li><strong>Brand recall erodes as competitors out-publish you.</strong> Visibility is cumulative. Every piece of content a competitor publishes, every review they earn, every citation they build makes their name stickier. Silence compounds into irrelevance faster than most owners expect.</li>
+        <li><strong>High-intent local-pack searches convert to someone else.</strong> Local map pack results drive the highest-intent clicks in local search. If your business profile is incomplete, under-reviewed, or missing neighborhood-level content, you're invisible at the exact moment buyers are ready to call.</li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="problem-fix">
+    <div class="container">
+      <p class="section-tag">How we close it</p>
+      <h2 class="h-section">Built to be <em>found</em>.</h2>
+      <p class="lede">
+        Invisible Market isn't a content problem. It's a missing signals system. We install AI-search citation coverage, local SEO dominance, and AEO discipline so your business shows up where buyers are already looking — in search results, AI assistants, and map packs.
+      </p>
+      <p class="prose">
+        The system covers all three surfaces simultaneously: structured local presence so map packs and AI assistants trust your data, neighborhood-level content so you rank for high-intent local searches, and citation authority so the AI assistants buyers now rely on cite you by name. Built in 30 days, not 90.
+      </p>
+    </div>
+  </section>
+
+  <section class="problem-cta elev">
+    <div class="container">
+      <h2 class="h-closer">Being invisible is <em>fixable.</em></h2>
+      <p class="lede">If three of the Poor Four sound familiar, the operations gap is bigger than the visibility gap. That's the conversation worth having.</p>
+      <p class="cta-row">
+        <a class="cta-primary" href="/book" data-cta-source="problem-invisible-market-cta">See If We're a Fit <span class="cta-arrow">→</span></a>
+        <a class="cta-ghost" href="/#problem">Back to The Poor Four</a>
+      </p>
+    </div>
+  </section>
+
+</BaseLayout>
+
+<style>
+.problem-hero { padding-block: clamp(80px, 12vw, 144px); }
+.back-link { color: var(--ink-faint); transition: color 180ms ease; }
+.back-link:hover { color: var(--y2); }
+.problem-hero h1 em { color: var(--y2); font-style: normal; font-weight: inherit; }
+.problem-fix h2 em, .problem-cta h2 em { color: var(--y2); font-style: normal; font-weight: inherit; }
+
+.cost-list { list-style: none; counter-reset: cost; display: flex; flex-direction: column; gap: 24px; margin-top: 32px; max-width: 880px; }
+.cost-list li {
+  counter-increment: cost;
+  position: relative;
+  padding-left: 56px;
+  font-size: 17px;
+  line-height: 1.6;
+  color: var(--ink-dim);
+}
+.cost-list li::before {
+  content: counter(cost, decimal-leading-zero);
+  position: absolute;
+  left: 0;
+  top: 0;
+  font-family: var(--mono);
+  font-size: 13px;
+  letter-spacing: 0.18em;
+  color: var(--y2);
+}
+.cost-list strong { color: var(--ink); font-weight: 500; }
+
+.prose { font-size: 17px; line-height: 1.7; color: var(--ink-dim); max-width: 720px; margin-top: 24px; }
+.problem-fix .lede { margin-top: 32px; }
+
+.cta-row { display: flex; flex-wrap: wrap; gap: 16px; margin-top: 32px; }
+</style>

@@ -1,30 +1,33 @@
 ---
-// Problem Agitation — "The Poor Four" pillar framework
-// Source: BO Phase 4 + CB Pillar 2 + Marketing Strategy ICP pain states
+// L2 — The Poor Four (evolved framing)
+// Plan: ~/.claude/plans/based-on-all-nifty-karp.md
+// Source of truth: ~/bwm-strategic-roadmap/data/canonical.json line 212 — framework.poor_four
+// Slugs evolved from stale (lead-drought/owner-trap/manual-mayhem/reactive-mode) to canonical.
+// Old slug SEO equity preserved via 301 redirects in astro.config.mjs.
 const problems = [
   {
     n: '01',
-    slug: 'lead-drought',
-    name: 'Lead Drought',
-    body: 'Some weeks the phone rings. Other weeks it doesn\'t. You can\'t plan, can\'t hire, can\'t breathe. Every quiet stretch is its own emergency.',
+    slug: 'invisible-market',
+    name: 'Invisible Market',
+    body: 'Not found in search. Not remembered when buyers ask around. Not trusted enough to call first. Competitors show up before you in Google, in AI answers, and in the recommendation a buyer gets from a friend.',
   },
   {
     n: '02',
-    slug: 'owner-trap',
-    name: 'Owner Trap',
-    body: 'You are the brand, the closer, the operator, the marketing department. You can\'t take a vacation without watching the pipeline collapse.',
+    slug: 'leaky-revenue',
+    name: 'Leaky Revenue',
+    body: 'Leads come in. Calls go unanswered. Reviews go un-requested. Quotes go un-followed-up. Every leak is a revenue line draining quietly — and most owners spot the leaks too late to save the month.',
   },
   {
     n: '03',
-    slug: 'manual-mayhem',
-    name: 'Manual Mayhem',
-    body: 'A vendor for ads. A different one for SEO. A third for the website. None of them talk. You\'re the integration layer — by accident.',
+    slug: 'owner-bottleneck',
+    name: 'Owner Bottleneck',
+    body: 'You are the brand, the closer, the operator, and the marketing department. The business can\'t grow past you because you ARE the business. Take a week off and the pipeline stalls.',
   },
   {
     n: '04',
-    slug: 'reactive-mode',
-    name: 'Reactive Mode',
-    body: 'You spend the day putting out fires you didn\'t start. Strategy keeps slipping to "after this quarter." The quarter never ends.',
+    slug: 'reactive-growth',
+    name: 'Reactive Growth',
+    body: 'No weekly rhythm. No clear scoreboard. By the time you spot a trend in the numbers, the quarter is over. Big decisions get made on tiny data, and the whole operation is always one step behind.',
   },
 ];
 ---
@@ -34,14 +37,44 @@ const problems = [
     <header class="poor-four-head reveal">
       <p class="section-tag">The Pattern</p>
       <h2 class="h-section">
-        Most service businesses don't<br/>
-        have a <em>lead</em> problem.<br/>
+        Most service businesses don't have a <em>lead</em> problem.<br/>
         They have an <em>operations</em> problem.
       </h2>
       <p class="lede">
-        Four gaps show up in nearly every $1M–$5M shop we audit. Name yours. We've named ours.
+        Four gaps show up in nearly every service business we audit. Name yours. We've named ours.
       </p>
     </header>
+
+    <figure class="poor-four-diagram-wrap reveal" aria-labelledby="poor-four-diagram-cap">
+      <svg class="poor-four-diagram" viewBox="0 0 800 280" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Four problem leaks converging into one operations gap">
+        <text class="pf-diag-label" x="100" y="22" text-anchor="middle">01 · INVISIBLE MARKET</text>
+        <text class="pf-diag-label" x="300" y="22" text-anchor="middle">02 · LEAKY REVENUE</text>
+        <text class="pf-diag-label" x="500" y="22" text-anchor="middle">03 · OWNER BOTTLENECK</text>
+        <text class="pf-diag-label" x="700" y="22" text-anchor="middle">04 · REACTIVE GROWTH</text>
+
+        <line class="pf-diag-source" x1="100" y1="34" x2="100" y2="80" />
+        <line class="pf-diag-source" x1="300" y1="34" x2="300" y2="80" />
+        <line class="pf-diag-source" x1="500" y1="34" x2="500" y2="80" />
+        <line class="pf-diag-source" x1="700" y1="34" x2="700" y2="80" />
+
+        <circle class="pf-diag-dot" cx="100" cy="84" r="4" />
+        <circle class="pf-diag-dot" cx="300" cy="84" r="4" />
+        <circle class="pf-diag-dot" cx="500" cy="84" r="4" />
+        <circle class="pf-diag-dot" cx="700" cy="84" r="4" />
+
+        <line class="pf-diag-flow" x1="100" y1="86" x2="284" y2="178" />
+        <line class="pf-diag-flow" x1="300" y1="86" x2="345" y2="178" />
+        <line class="pf-diag-flow" x1="500" y1="86" x2="455" y2="178" />
+        <line class="pf-diag-flow" x1="700" y1="86" x2="516" y2="178" />
+
+        <rect class="pf-diag-drain" x="280" y="180" width="240" height="64" rx="2" />
+        <text class="pf-diag-drain-label" x="400" y="218" text-anchor="middle">OPERATIONS GAP</text>
+        <text class="pf-diag-drain-sub" x="400" y="234" text-anchor="middle">WHERE REVENUE DISAPPEARS</text>
+      </svg>
+      <figcaption id="poor-four-diagram-cap" class="poor-four-diagram-cap">
+        Four leaks converge into one drain. Fix the drain, every leak slows.
+      </figcaption>
+    </figure>
 
     <ol class="problems-grid" role="list">
       {problems.map((p) => (
@@ -57,10 +90,24 @@ const problems = [
       ))}
     </ol>
 
-    <p class="poor-four-foot h-sub reveal">
-      If three of these sound familiar, you don't have a marketing problem.<br/>
-      You have an <em>operations</em> problem dressed as a marketing problem.
-    </p>
+    <div class="poor-four-foot reveal">
+      <div class="poor-four-foot-statement">
+        <p class="poor-four-foot-lede">Three of these fit?</p>
+        <p class="poor-four-foot-verdict">
+          It's not a marketing problem.<br/>
+          It's an <em>operations</em> problem.
+        </p>
+      </div>
+      <aside class="poor-four-foot-card" aria-label="Diagnose your operations gap">
+        <span class="poor-four-foot-dot" aria-hidden="true"></span>
+        <p class="poor-four-foot-eyebrow">The Diagnostic</p>
+        <p class="poor-four-foot-card-body">Five minutes. We name the leaks. You decide what to do next.</p>
+        <a href="/book" class="cta poor-four-foot-cta" data-cta-source="poor-four-footer">
+          See If We're a Fit
+          <span class="cta-arrow" aria-hidden="true">→</span>
+        </a>
+      </aside>
+    </div>
 
   </div>
 </section>
@@ -142,15 +189,165 @@ const problems = [
   color: var(--ink-dim);
 }
 
+/* ── Scene illustration: 4 leaks → 1 drain (R020 F1-Emotion) ── */
+.poor-four-diagram-wrap {
+  margin: 0 0 64px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+}
+.poor-four-diagram {
+  width: 100%;
+  max-width: 1100px;
+  height: auto;
+  display: block;
+}
+.poor-four-diagram .pf-diag-label {
+  fill: var(--ink-faint);
+  font-family: var(--mono);
+  font-size: 9.5px;
+  letter-spacing: 0.16em;
+}
+.poor-four-diagram .pf-diag-source {
+  stroke: var(--rule-bright);
+  stroke-width: 1;
+}
+.poor-four-diagram .pf-diag-dot {
+  fill: var(--y2);
+}
+.poor-four-diagram .pf-diag-flow {
+  stroke: var(--y2);
+  stroke-width: 1;
+  opacity: 0.5;
+}
+.poor-four-diagram .pf-diag-drain {
+  stroke: var(--y2);
+  stroke-width: 1.5;
+  fill: rgba(240, 255, 0, 0.04);
+}
+.poor-four-diagram .pf-diag-drain-label {
+  fill: var(--ink);
+  font-family: var(--sans);
+  font-weight: 800;
+  font-stretch: 75%;
+  font-size: 18px;
+  letter-spacing: -0.01em;
+}
+.poor-four-diagram .pf-diag-drain-sub {
+  fill: var(--ink-faint);
+  font-family: var(--mono);
+  font-size: 9px;
+  letter-spacing: 0.20em;
+}
+.poor-four-diagram-cap {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+  text-align: center;
+}
+
+/* ── Footer diagnostic block (2-col on desktop, stacked on mobile) ── */
 .poor-four-foot {
-  color: var(--ink);
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: clamp(24px, 4vw, 56px);
+  align-items: stretch;
   border-top: 1px solid var(--rule);
-  padding-top: 32px;
-  max-width: 760px;
+  padding-top: 40px;
+}
+.poor-four-foot-statement {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  max-width: 520px;
+  align-self: center;
+}
+.poor-four-foot-lede {
+  font-family: var(--mono);
+  font-size: 12px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+  margin: 0;
+}
+.poor-four-foot-verdict {
+  font-family: var(--sans);
+  font-weight: 500;
+  font-size: clamp(22px, 2.4vw, 30px);
+  line-height: 1.25;
+  color: var(--ink);
+  margin: 0;
+  letter-spacing: -0.01em;
+}
+.poor-four-foot-verdict em {
+  color: var(--y2);
+  font-style: normal;
+  font-weight: 600;
+}
+
+.poor-four-foot-card {
+  position: relative;
+  background: var(--bg-card);
+  border: 1px solid var(--rule-bright);
+  border-left: 2px solid var(--y2);
+  border-radius: 2px;
+  padding: 24px 28px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  min-width: 280px;
+  max-width: 340px;
+}
+.poor-four-foot-dot {
+  position: absolute;
+  top: 18px;
+  right: 18px;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--y2);
+}
+.poor-four-foot-eyebrow {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--y2);
+  margin: 0;
+}
+.poor-four-foot-card-body {
+  font-family: var(--sans);
+  font-weight: 300;
+  font-size: 14px;
+  line-height: 1.5;
+  color: var(--ink-dim);
+  margin: 0 0 4px;
+}
+.poor-four-foot-cta {
+  align-self: flex-start;
+  font-size: 13px;
+  padding: 12px 20px;
+}
+
+@media (max-width: 860px) {
+  .poor-four-foot {
+    grid-template-columns: 1fr;
+    gap: 28px;
+  }
+  .poor-four-foot-card {
+    max-width: 100%;
+    min-width: 0;
+  }
 }
 
 @media (max-width: 720px) {
   .problems-grid { grid-template-columns: 1fr; gap: 16px; }
   .problem-card { padding: 28px 24px; }
+  .poor-four-diagram-wrap { margin-bottom: 48px; }
+  .poor-four-diagram .pf-diag-label { font-size: 11px; }
+  .poor-four-diagram .pf-diag-drain-label { font-size: 22px; }
 }
 </style>

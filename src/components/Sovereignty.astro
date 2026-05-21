@@ -1,0 +1,199 @@
+---
+// L4 — Sovereignty: risk reversal before the price reveal in L5
+// plan: ~/.claude/plans/based-on-all-nifty-karp.md § L4
+// Source: canonical.json → contract.msa_locked_clauses
+// No images per Show-Don't-Tell exemption: the 4-receipt grid IS the visual
+// (tile arrangement = data viz; receipts = proof). R020 F1-Emotion + F2-Proof.
+
+// Receipt tiles sourced verbatim from canonical contract.msa_locked_clauses.
+// The "client owns X" framing is the most conversion-relevant subset of the 6 clauses.
+// Iteration 3 (2026-05-20): each receipt now anchored by an R018d still-life photograph
+// generated via bwm-codex (Codex-exec OAuth, flat-rate), Python-graded for R015 compliance
+// (≥90% dark cool · ≤10% Y2 accent · 0% warm pixels above 40% saturation).
+const receipts = [
+  {
+    eyebrow: "Client owns the code",
+    body: "Your site, your funnel, your AI agents — built on your domain, in your repo. Take it anywhere.",
+    image: "/images/bwm-sovereignty-code-v1.webp",
+    alt: "Macro still-life: dark slate paper with faint lines of computer code, a single small acid-yellow paperclip in the upper-right corner — the literal artifact of code that belongs to the owner.",
+  },
+  {
+    eyebrow: "Client owns the data",
+    body: "Every lead, booking, and conversation lives in your system. Export anytime — no permission required.",
+    image: "/images/bwm-sovereignty-data-v1.webp",
+    alt: "Macro still-life: brushed steel filing cabinet drawer with brass keyhole and label slot, a single acid-yellow status LED illuminated above the keyhole — the sovereign weight of data ownership.",
+  },
+  {
+    eyebrow: "Client owns the ad accounts",
+    body: "Every channel — all under your business, not ours. We operate them. You hold the keys.",
+    image: "/images/bwm-sovereignty-ad-accounts-v1.webp",
+    alt: "Macro still-life: brushed-metal server rack panel with a row of small status indicators, one bright acid-yellow LED illuminated among a row of dim grey-blue inactives — the active channel under client control.",
+  },
+  {
+    eyebrow: "Client owns the customer list",
+    body: "When you leave, you take the relationship history. The system goes home with you. We leave empty-handed.",
+    image: "/images/bwm-sovereignty-customer-list-v1.webp",
+    alt: "Macro still-life: cream index card on dark slate wood with handwritten names in dark ink, a small acid-yellow registration mark in the upper-right corner — the relationship history captured on paper.",
+  },
+];
+---
+
+<section class="sovereignty" aria-label="Data sovereignty and ownership guarantees">
+  <div class="container">
+    <div class="sovereignty__intro">
+      <p class="eyebrow">Sovereignty</p>
+      <h2 class="h-section sovereignty__h2">
+        You leave with everything — the code, the customer list, the ad accounts.
+      </h2>
+      <p class="lede sovereignty__lede">
+        We build it on your domain. We run it on your behalf. If you walk, you walk with the whole system.
+        We walk empty-handed. That's the contract.
+      </p>
+    </div>
+
+    <div class="sovereignty__grid" role="list">
+      {receipts.map((tile) => (
+        <div class="card sovereignty__card" role="listitem">
+          <figure class="sovereignty__card-figure" aria-hidden="false">
+            <img
+              src={tile.image}
+              alt={tile.alt}
+              width="1600"
+              height="900"
+              loading="lazy"
+              decoding="async"
+            />
+          </figure>
+          <div class="sovereignty__card-body-wrap">
+            <p class="sovereignty__card-eyebrow">{tile.eyebrow}</p>
+            <p class="card-body sovereignty__card-body">{tile.body}</p>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .sovereignty {
+    background: var(--bg-card);
+    padding-block: var(--section-y);
+  }
+
+  .sovereignty__intro {
+    max-width: 760px;
+    margin-bottom: clamp(40px, 6vw, 72px);
+  }
+
+  .sovereignty__intro .eyebrow {
+    margin-bottom: 20px;
+  }
+
+  .sovereignty__h2 {
+    margin-bottom: 20px;
+  }
+
+  .sovereignty__lede {
+    /* override max-width for this specific context */
+    max-width: 640px;
+  }
+
+  /* 4-col on desktop, 2-col on tablet, 1-col on mobile */
+  .sovereignty__grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1px; /* gap renders as hairline via bg-card bleed through */
+    background: var(--rule);
+    border: 1px solid var(--rule);
+    border-radius: 2px;
+    overflow: hidden;
+  }
+
+  .sovereignty__card {
+    background: var(--bg-elev);
+    border: none;
+    border-radius: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    /* Remove global .card border + border-radius since grid gaps act as dividers */
+    overflow: hidden;
+  }
+
+  .sovereignty__card:hover {
+    background: var(--bg-card);
+    border-color: transparent;
+  }
+
+  /* Photo at top of each tile — R018d still-life, 16:9 aspect */
+  .sovereignty__card-figure {
+    margin: 0;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    overflow: hidden;
+    background: var(--bg);
+  }
+  .sovereignty__card-figure img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 480ms ease;
+  }
+  .sovereignty__card:hover .sovereignty__card-figure img {
+    transform: scale(1.04);
+  }
+
+  /* Text wrapper preserves the original padding rhythm */
+  .sovereignty__card-body-wrap {
+    padding: clamp(24px, 3vw, 36px);
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    flex: 1;
+  }
+
+  .sovereignty__card-eyebrow {
+    font-family: var(--mono);
+    font-weight: 500;
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--y2);
+    margin: 0;
+    line-height: 1.4;
+  }
+
+  .sovereignty__card-body {
+    font-size: 15px;
+    line-height: 1.6;
+    color: var(--ink-dim);
+    margin: 0;
+  }
+
+  /* Respect reduced motion */
+  @media (prefers-reduced-motion: reduce) {
+    .sovereignty__card-figure img {
+      transition: none;
+    }
+    .sovereignty__card:hover .sovereignty__card-figure img {
+      transform: none;
+    }
+  }
+
+  @media (max-width: 960px) {
+    .sovereignty__grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (max-width: 520px) {
+    .sovereignty__grid {
+      grid-template-columns: 1fr;
+    }
+
+    .sovereignty__card-body {
+      font-size: 17px;
+    }
+  }
+</style>

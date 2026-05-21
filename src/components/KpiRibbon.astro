@@ -1,0 +1,107 @@
+---
+// L0 / L1 / L12 — Reusable KPI trust ribbon
+// plan: ~/.claude/plans/based-on-all-nifty-karp.md § L1 + L12
+// Use: pass tiles array from parent. Parent imports canonical.json and computes
+// any dynamic values (e.g. `${canonical.clients.current_paying} / ${canonical.clients.cap_phase_1}`)
+// before passing as strings. Component itself is purely presentational.
+
+export interface Tile {
+  num: string;
+  label: string;
+}
+
+interface Props {
+  tiles: Tile[];
+}
+
+const { tiles } = Astro.props;
+---
+
+<div class="kpi-ribbon" role="list" aria-label="Key performance indicators">
+  {tiles.map((tile, i) => (
+    <div class="kpi-ribbon__tile" role="listitem">
+      {i > 0 && <div class="kpi-ribbon__divider" aria-hidden="true" />}
+      <span class="kpi-ribbon__num" aria-label={`${tile.num} — ${tile.label}`}>
+        {tile.num}
+      </span>
+      <span class="kpi-ribbon__label">{tile.label}</span>
+    </div>
+  ))}
+</div>
+
+<style>
+  .kpi-ribbon {
+    display: flex;
+    align-items: stretch;
+    width: 100%;
+    border: 1px solid var(--rule);
+    border-radius: 2px;
+    overflow: hidden;
+  }
+
+  .kpi-ribbon__tile {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    flex: 1;
+    padding: 20px 16px;
+    position: relative;
+  }
+
+  /* Hairline vertical divider — rendered as a sibling element so it
+     participates in flex layout and disappears cleanly on stack */
+  .kpi-ribbon__divider {
+    width: 1px;
+    background: var(--rule);
+    align-self: stretch;
+    flex-shrink: 0;
+  }
+
+  .kpi-ribbon__num {
+    font-family: var(--sans);
+    font-weight: 800;
+    font-stretch: 75%;
+    font-size: clamp(28px, 4vw, 48px);
+    line-height: 0.9;
+    letter-spacing: -0.05em;
+    color: var(--y2);
+    display: block;
+    text-align: center;
+  }
+
+  .kpi-ribbon__label {
+    font-family: var(--mono);
+    font-weight: 400;
+    font-size: 10px;
+    letter-spacing: 0.20em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    text-align: center;
+  }
+
+  /* Stack vertically on narrow screens; hide hairline dividers */
+  @media (max-width: 600px) {
+    .kpi-ribbon {
+      flex-direction: column;
+    }
+
+    .kpi-ribbon__divider {
+      display: none;
+    }
+
+    .kpi-ribbon__tile {
+      border-bottom: 1px solid var(--rule);
+      padding: 16px;
+    }
+
+    .kpi-ribbon__tile:last-child {
+      border-bottom: none;
+    }
+
+    .kpi-ribbon__num {
+      font-size: clamp(32px, 8vw, 44px);
+    }
+  }
+</style>

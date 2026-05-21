@@ -1,7 +1,22 @@
 ---
+// buildwisemedia.com homepage — Triangulation, fresh architecture 2026-05-21
+// Replaces rejected homepage-redesign-2026-05-20 work (R020 + geo-broadcast failures)
+// 12 sections, every section visual drives R020 action (F1/F2/F3/F4 only)
+// No transitional scene-photos, no radial diagrams, no geo-hardcoding
+// Pricing-visible RATIFIED 2026-05-20 (canonical.json source of truth)
+
 import BaseLayout from '../layouts/BaseLayout.astro';
+import canonical from '../data/canonical.json';
+
+import PoorFour from '../components/PoorFour.astro';
+import EightLayerSystem from '../components/EightLayerSystem.astro';
+import Sovereignty from '../components/Sovereignty.astro';
+import ProductComparison from '../components/ProductComparison.astro';
+import EarnBackCalculator from '../components/EarnBackCalculator.astro';
+import AIStorySection from '../components/AIStorySection.astro';
 import FAQ from '../components/FAQ.astro';
 
+// L1 — 4-arm A/B preserved (proven harness, D default)
 const heroVariants = {
   A: {
     question: "Do you want to be the #1 service business in your market?",
@@ -22,10 +37,7 @@ const heroVariants = {
 } as const;
 
 type HeroArm = keyof typeof heroVariants;
-
-const isHeroArm = (value: string | null): value is HeroArm =>
-  value === 'A' || value === 'B' || value === 'C' || value === 'D';
-
+const isHeroArm = (v: string | null): v is HeroArm => v === 'A' || v === 'B' || v === 'C' || v === 'D';
 const requestedArm = Astro.url.searchParams.get('arm')?.toUpperCase() ?? null;
 const arm = isHeroArm(requestedArm) ? requestedArm : 'D';
 const heroVariant = heroVariants[arm];
@@ -33,65 +45,86 @@ const heroVariant = heroVariants[arm];
 const title = `${heroVariant.subhead} | Buildwise Media`;
 const description = heroVariant.subhead;
 
-const outcomes = [
+// L8 — Category-of-one mechanism set (replaces rejected Atlanta-specific section)
+// No geo-hardcoding: copy speaks to "your market" universally
+const dominanceMechanisms = [
   {
-    headline: "Your mornings stop being firefighting.",
-    body: "Lead flow, follow-up, reviews, and local search get handled before the day starts.",
+    name: 'AI-search citation rank',
+    body: 'When buyers ask AI assistants who the best in your category is near them, the answer points at you. We train the underlying signals — schema, citations, structured proof — so the AI tools cite your business with confidence.',
   },
   {
-    headline: "Qualified leads land where the team can act.",
-    body: "The right prospects get sorted, routed, and ready for a real conversation.",
+    name: 'Local-search dominance',
+    body: 'Service pages, citations, and Google Business Profile aligned around the exact search terms your buyers use. Not generic SEO — the specific phrases that lead to a booked job.',
   },
   {
-    headline: "Your best work becomes easier to find.",
-    body: "Reviews, service pages, and local listings start telling the same story.",
+    name: 'Review velocity',
+    body: 'Happy clients turn into proof that compounds month over month — no manual asking, no scripts taped to dashboards. The system handles the request at the moment the work just landed.',
   },
   {
-    headline: "You stop guessing what next month looks like.",
-    body: "The pipeline has a source, a status, and a next step instead of a shrug.",
-  },
-  {
-    headline: "The system keeps following up.",
-    body: "No more lost inquiries sitting in an inbox while the team is on a job.",
-  },
-  {
-    headline: "You become the most-chosen name in your market.",
-    body: "When people search your category, the default answer starts pointing at you.",
+    name: 'Neighborhood presence',
+    body: 'The signals that tell algorithms (and buyers) you are the default answer for this category in this market. The compound effect of everything above, measured weekly.',
   },
 ];
 
-const proofPoints = [
-  "Qualified-lead share grew 3.2x after install.",
-  "Review velocity, local search, and follow-up moved as one system.",
+// L9 — Proof tiles + headline
+const proofTiles = [
+  { label: 'Qualified-lead share lift · Measured', num: '3.2×' },
+  { label: 'Speed-to-lead · Attributed', num: '<5', unit: 'min' },
+  { label: 'Day-90 attribution · Modeled', num: 'Live' },
 ];
 
-const systemItems = [
+// L10 — Playbook teaser (8 items, expanded from rejected branch)
+const playbookItems = [
+  { title: 'The AI marketing department', sub: 'What a run-for-you marketing operation looks like.', href: '/playbook/ai-marketing-department' },
+  { title: 'Category-of-one marketing', sub: 'Becoming the most-chosen name in your market.', href: '/playbook/category-of-one-marketing' },
+  { title: 'Captured baseline', sub: 'Measuring the floor before the system turns on.', href: '/playbook/captured-baseline' },
+  { title: 'The Poor Four', sub: 'The four operating gaps that cap service-business growth.', href: '/playbook/poor-four' },
+  { title: 'Fractional CMO alternative', sub: 'Strategy without execution leaves the gap open.', href: '/playbook/fractional-cmo-alternative' },
+  { title: 'Capability inheritance guarantee', sub: 'Why your system gets better without renegotiation.', href: '/playbook/capability-inheritance' },
+  { title: 'Hyper-personalized SEO', sub: 'Five axes that separate your audit from a templated one.', href: '/playbook/hyper-personalized-seo' },
+  { title: 'Capability overhang + harness', sub: 'Why frontier AI in a service-business harness compounds.', href: '/playbook/capability-overhang' },
+];
+
+// L11 — FAQ (8 questions; "Where do you operate?" replaces "Why Atlanta?" for national broadcast)
+const faqs = [
   {
-    name: "AI marketing audit",
-    body: "Free, 5 minutes, and built to show where qualified leads are leaking.",
+    q: 'What does Buildwise Media actually do?',
+    a: 'We install and run an 8-layer revenue operating system for your service business — visibility, conversion, speed-to-lead, sales ops, reputation, paid media, reporting, and strategy operated as one engine. The website is the visible layer. Behind it, our AI system runs the marketing operation 24/7 with human signoff at the gates. We treat marketing as operations: investment in, qualified revenue out, verified weekly.',
   },
   {
-    name: "Lead-gen system installed in your business",
-    body: "Qualifies, books, follows up, and keeps the next step visible.",
+    q: 'Who is Buildwise Media for?',
+    a: 'Service-business owners who are already generating real revenue and want to stop running their marketing on hope. Owners who want a system that runs whether they watch it or not tend to thrive. Owners looking for a savior, or hoping for comfort, tend to bounce off our process — and that is the right outcome for both of us.',
   },
   {
-    name: "Review velocity engine",
-    body: "Turns happy clients into proof that compounds every month.",
+    q: 'How fast does the system go live?',
+    a: 'Inside 30 days the website is live, ad accounts are wired, the CRM is instrumented, and the first qualified leads start to flow. Full-system instrumentation completes in the same window. We do not run a 90-day waiting period before anything is observable.',
   },
   {
-    name: "Local search dominance",
-    body: "Service pages, citations, and map presence aligned around your market.",
+    q: 'How do you measure success?',
+    a: 'Every commitment carries a confidence percentage (75% floor), an evidence class (Measured / Attributed / Modeled / Benchmark), and a captured baseline. The Outcomes Commitment Card is the contract. Headline floor: 5× attributable ROI inside 24 months, measured against the baseline we capture on Day 0.',
   },
   {
-    name: "Brand presence across AI search",
-    body: "ChatGPT, Perplexity, and Claude can cite the right story when buyers ask.",
+    q: "What if the system doesn't hit 5×?",
+    a: 'We keep building until it does. That is contractual — written into the MSA as a locked clause, not aspirational marketing copy. The 5× ROI floor is the floor we hold ourselves to. If your business is at 4× at Month 24, we are still working. That is what the floor means.',
   },
   {
-    name: "Weekly operating checks",
-    body: "Broken paths get found before they drain the month.",
+    q: 'Is there a long-term contract?',
+    a: 'No long-term lock-in. The paid Pilot runs 45 days. The 90-day initial operating period starts on the Ascend handoff. After Day 90, the engagement is true month-to-month with no penalty, no clawback, no exit fee. We earn the retainer every month or we don’t.',
+  },
+  {
+    q: 'Where do you operate?',
+    a: 'We serve service businesses across the United States. The system installs the same way regardless of metro — local-search depth gets tuned to your specific market during install. Our team is based in Atlanta and we travel to clients on the install when on-site work moves the build forward faster.',
+  },
+  {
+    q: 'How do I own my data?',
+    a: 'Everything we build, you own. The code lives in your repository. The customer list lives in your CRM. The ad accounts are in your business. The custom AI agents are configured against your workflows. If you leave, you take the whole system. We walk empty-handed. That sovereignty is in the MSA as a locked clause.',
   },
 ];
 
+// Anchor for "See the System" secondary CTA → L3 EightLayerSystem
+const SYSTEM_ANCHOR = '#system';
+
+// JSON-LD
 const serviceSchema = {
   '@context': 'https://schema.org',
   '@type': 'Service',
@@ -101,15 +134,33 @@ const serviceSchema = {
   provider: { '@id': 'https://buildwisemedia.com/#org' },
   areaServed: { '@type': 'Country', name: 'United States' },
   description:
-    'Ascend is an AI marketing department installed inside the business — qualified leads, review velocity, local search strength, and AI-search presence operated as one system.',
+    'Ascend installs an 8-layer revenue operating system inside the business — qualified leads, review velocity, local search strength, and AI-search presence operated as one system. Client owns the code, data, ad accounts, and customer list.',
   url: 'https://buildwisemedia.com/services/ascend',
   hasOfferCatalog: {
     '@type': 'OfferCatalog',
     name: 'Ascend tiers',
     itemListElement: [
-      { '@type': 'Offer', name: 'Ascend Pilot', description: 'Foundation tier — install the system and capture baseline.' },
-      { '@type': 'Offer', name: 'Ascend', description: 'Full system — installed, operated weekly, owned by the client.' },
-      { '@type': 'Offer', name: 'Ascend Pro', description: 'Operator-led "category of one" build for owners chasing market dominance.' },
+      {
+        '@type': 'Offer',
+        name: canonical.products.pilot.name,
+        price: canonical.products.pilot.price.oneshot,
+        priceCurrency: 'USD',
+        description: 'Ascend Pilot — 45-day proof sprint. One-time investment. Converts to Ascend with install fee waived.',
+      },
+      {
+        '@type': 'Offer',
+        name: canonical.products.ascend.name,
+        price: canonical.products.ascend.price.recurring,
+        priceCurrency: 'USD',
+        description: 'Ascend — full 8-layer revenue operating system installed and operated. Month-to-month after day 90.',
+      },
+      {
+        '@type': 'Offer',
+        name: canonical.products.ascend_pro.name,
+        price: canonical.products.ascend_pro.price.recurring,
+        priceCurrency: 'USD',
+        description: 'Ascend Pro — multi-location operator build with custom AI agents, RevOps, and territorial cap.',
+      },
     ],
   },
 };
@@ -121,33 +172,6 @@ const breadcrumb = {
     { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://buildwisemedia.com/' },
   ],
 };
-
-const faqs = [
-  {
-    q: 'What does Buildwise Media actually do?',
-    a: 'We install and operate one integrated lead-generation system — the Buildwise Revenue Engine. That includes the website built to AI-search-era standards, paid acquisition wired to baseline-first attribution, AI-assisted content production with a human quality gate, and an integrated operations layer (CRM, analytics, weekly connector audit). We treat marketing as operations: ad spend in, revenue out, verified weekly.',
-  },
-  {
-    q: 'Who is Buildwise Media for?',
-    a: 'Service-business owners who are the bottleneck of their own growth — buried in operations, watching lead flow swing month to month, tired of running marketing on hope. Owners who want a system that runs whether they watch it or not tend to thrive. Owners looking for a savior or hoping for comfort tend to bounce off our process.',
-  },
-  {
-    q: 'How fast does the system go live?',
-    a: 'Inside 30 days the website is live, ad accounts are wired, the CRM is instrumented, and first leads start to flow. Full-system instrumentation completes in the same window. We do not run a 90-day waiting period before anything is observable.',
-  },
-  {
-    q: 'How do you measure success?',
-    a: 'Every commitment carries three required fields — a confidence percentage (75% floor), an evidence class (Measured / Attributed / Modeled / Benchmark), and a captured baseline. Outcomes ratchet up as real data arrives. The Outcomes Commitment Card is the contract; it is not aspirational copy.',
-  },
-  {
-    q: 'Is there a long-term contract?',
-    a: 'No. The engagement runs month to month, no long-term lock-in. The build-right guarantee covers install milestones; if we miss them we keep working until we do not. We earn the retainer every month or we do not.',
-  },
-  {
-    q: 'What does it cost?',
-    a: 'There are three tiers — Ascend Pilot for owners getting the foundation in place, Ascend for owners running the full system, and Ascend Pro for the operator-led "category of one" build. The 5-minute audit and discovery call are how we figure out which tier fits — and whether we should be the team to deliver it.',
-  },
-];
 
 const faqSchema = {
   '@context': 'https://schema.org',
@@ -166,6 +190,10 @@ const faqSchema = {
   jsonLd={[serviceSchema, breadcrumb, faqSchema]}
   preloadImage="/images/bwm-hero-atmospheric-v1.webp"
 >
+
+  <!-- ============================================ -->
+  <!-- L1 · Hero (4-arm A/B preserved)              -->
+  <!-- ============================================ -->
   <section class="home-hero" aria-labelledby="home-hero-title" data-arm={arm} data-hero-arm-root>
     <div class="container hero-grid">
       <div class="hero-copy">
@@ -173,12 +201,23 @@ const faqSchema = {
         <h1 id="home-hero-title" class="h-hero">{heroVariant.question}</h1>
         <p class="hero-sub" data-hero-subhead>{heroVariant.subhead}</p>
         <div class="hero-actions" aria-label="Primary actions">
-          <a href="/book" class="cta" data-cta-source="home-hero">See If We're a Fit<span class="cta-arrow" aria-hidden="true">-&gt;</span></a>
-          <a href="#system" class="cta-ghost" data-cta-source="home-hero-system">See the System</a>
+          <a href="/book" class="cta" data-cta-source="home-hero">See If We're a Fit<span class="cta-arrow" aria-hidden="true">&rarr;</span></a>
+          <a href={SYSTEM_ANCHOR} class="cta-ghost" data-cta-source="home-hero-system">See the System</a>
         </div>
       </div>
       <figure class="hero-photo">
-        <img src="/images/bwm-hero-atmospheric-v1.webp" alt="An empty leather chair pulled back from a clean desk in a small-business owner's office at first light, a monitor glowing dim with a soft accent of light on the screen." width="1920" height="1080" loading="eager" decoding="async" fetchpriority="high" />
+        <img
+          src="/images/bwm-hero-atmospheric-v1.webp"
+          alt="A leather chair pulled back from a clean desk in a small-business owner's office at first light, a monitor glowing dim with a soft accent of light on the screen — the moment before the workday starts, with the system already running."
+          width="1920"
+          height="1080"
+          loading="eager"
+          decoding="async"
+          fetchpriority="high"
+        />
+        <figcaption class="hero-photo-cap mono">
+          The morning before the work begins · your seat empty because the system is already running.
+        </figcaption>
       </figure>
     </div>
   </section>
@@ -227,150 +266,193 @@ const faqSchema = {
     })();
   </script>
 
-  <section class="outcomes-ladder" aria-labelledby="outcomes-title">
-    <div class="container">
-      <div class="section-head">
-        <p class="section-tag">Outcomes ladder</p>
-        <h2 id="outcomes-title" class="h-section">What changes when Ascend is installed.</h2>
-      </div>
-      <figure class="section-photo section-photo--banner">
-        <img src="/images/bwm-outcomes-environmental-cinematic-v1.webp" alt="A quiet morning workspace: open notebook, plain coffee mug, pen, and a single desk lamp throwing warm light against cool shadow." width="1920" height="1080" loading="lazy" decoding="async" />
-      </figure>
-      <ol class="ladder-list" role="list">
-        {outcomes.map((item, index) => (
-          <li class="ladder-card">
-            <span class="ladder-num">{String(index + 1).padStart(2, '0')}</span>
-            <div>
-              <h3>{item.headline}</h3>
-              <p>{item.body}</p>
-            </div>
-          </li>
-        ))}
-      </ol>
-      <figure class="section-photo section-photo--method">
-        <img src="/images/bwm-method-editorial-v1.webp" alt="An operator's hands at a laptop keyboard at first light, a faint dashboard on a second monitor showing a single accent metric — the system running quietly while the work continues." width="1920" height="1080" loading="lazy" decoding="async" />
-      </figure>
-    </div>
-  </section>
+  <!-- ============================================ -->
+  <!-- L2 · Poor Four                                -->
+  <!-- ============================================ -->
+  <PoorFour />
 
-  <section class="proof-section elev" aria-labelledby="proof-title">
-    <div class="container proof-grid">
-      <article class="proof-card">
-        <p class="section-tag">Proof</p>
-        <h2 id="proof-title" class="proof-headline">
-          One service business went from $300K to $10M in 12 months. Same owner. Same hours. Different system.
+  <!-- ============================================ -->
+  <!-- L3 · 8-Layer Revenue Operating System         -->
+  <!-- ============================================ -->
+  <EightLayerSystem />
+
+  <!-- ============================================ -->
+  <!-- L4 · Sovereignty                              -->
+  <!-- ============================================ -->
+  <Sovereignty />
+
+  <!-- ============================================ -->
+  <!-- L5 · Product Comparison                       -->
+  <!-- ============================================ -->
+  <ProductComparison />
+
+  <!-- ============================================ -->
+  <!-- L6 · Earn-Back Calculator                     -->
+  <!-- ============================================ -->
+  <EarnBackCalculator />
+
+  <!-- ============================================ -->
+  <!-- L7 · Capability Curve                         -->
+  <!-- ============================================ -->
+  <AIStorySection />
+
+  <!-- ============================================ -->
+  <!-- L8 · Category-of-one (generic, non-geo)       -->
+  <!-- Replaces rejected AtlantaMap geo-broadcast    -->
+  <!-- ============================================ -->
+  <section class="dominance-section" aria-labelledby="dominance-title">
+    <div class="container dominance-grid">
+      <header class="dominance-head">
+        <p class="section-tag">Category of one</p>
+        <h2 id="dominance-title" class="h-section">
+          Become the most-chosen name in your market.
         </h2>
-        <ul class="proof-list" role="list">
-          {proofPoints.map((point) => (
-            <li><span class="dot live" aria-hidden="true"></span>{point}</li>
-          ))}
-        </ul>
-      </article>
-      <figure class="section-photo section-photo--proof">
-        <img src="/images/bwm-proof-still-life-v1.webp" alt="Macro still-life: an illegible printed graph on aged paper beside a fountain pen and a magnifying glass picking up a hint of accent light." width="1920" height="1080" loading="lazy" decoding="async" />
-      </figure>
-      <div class="mid-cta">
-        <a href="/book" class="cta" data-cta-source="home-proof">See If We're a Fit<span class="cta-arrow" aria-hidden="true">-&gt;</span></a>
-      </div>
-    </div>
-  </section>
-
-  <section id="system" class="system-section" aria-labelledby="system-title">
-    <div class="container system-grid">
-      <div class="system-copy">
-        <p class="section-tag">The system</p>
-        <h2 id="system-title" class="h-section">Here's what runs for you while you run the business.</h2>
         <p class="lede">
-          Ascend does not ask the owner to become a marketer. It installs the <a href="/playbook/ai-marketing-department">operating layer that keeps demand moving</a>.
+          Local dominance is not won on one channel. It is won when every signal — AI search, local search, reviews, and neighborhood presence — points to the same business.
         </p>
-      </div>
-      <ul class="system-list" role="list">
-        {systemItems.map((item) => (
-          <li>
+      </header>
+
+      <figure class="dominance-figure">
+        <img
+          src="/images/node-mesh-ascending-v1.svg"
+          alt="An abstract node-mesh diagram: AI-search citations, local-search rankings, review velocity, and neighborhood-level mentions converging into a single ascending node — the business buyers default to when they look for the category."
+          width="800"
+          height="600"
+          loading="lazy"
+          decoding="async"
+        />
+        <figcaption class="dominance-cap mono">
+          Every signal converging on the same answer · your business as the default.
+        </figcaption>
+      </figure>
+
+      <ul class="dominance-mechanisms" role="list">
+        {dominanceMechanisms.map((m) => (
+          <li class="dominance-mech">
             <span class="dot live" aria-hidden="true"></span>
             <div>
-              <h3>{item.name}</h3>
-              <p>{item.body}</p>
+              <h3 class="h-sub">{m.name}</h3>
+              <p>{m.body}</p>
             </div>
           </li>
         ))}
       </ul>
-      <figure class="section-photo section-photo--diagram">
-        <img src="/images/funnel-3-layer-v1.svg" alt="Isometric diagram of a three-layer funnel — the website, the acquisition layer, and the operations layer stacked and converging at the top vertex." width="1200" height="900" loading="lazy" decoding="async" />
-      </figure>
-      <figure class="section-photo section-photo--system">
-        <img src="/images/bwm-system-architecture-atmospheric-v1.webp" alt="An abstract dark corridor of ordered steel geometry with a single distant accent light far down the aisle, evoking infrastructure that runs in the background." width="1920" height="1080" loading="lazy" decoding="async" />
-      </figure>
     </div>
   </section>
 
-  <section class="urgency-section elev" aria-labelledby="urgency-title">
-    <div class="container urgency-inner">
-      <figure class="section-photo section-photo--urgency">
-        <img src="/images/bwm-urgency-cinematic-v1.webp" alt="Dusk on a quiet service-business main street emptying out — one storefront still lit by a restrained accent of practical light." width="1920" height="1080" loading="lazy" decoding="async" />
-      </figure>
-      <p class="section-tag">Time matters</p>
-      <h2 id="urgency-title" class="h-section">Every quiet quarter compounds.</h2>
-      <p class="lede">
-        When the next month depends on referrals and luck, your market keeps moving. The best-run competitors are installing AI now, training search, reviews, and follow-up to choose them first.
-      </p>
+  <!-- ============================================ -->
+  <!-- L9 · Proof — numeric receipts                 -->
+  <!-- ============================================ -->
+  <section class="proof-section elev" aria-labelledby="proof-title">
+    <div class="container">
+
+      <header class="proof-head">
+        <p class="section-tag">Proof</p>
+        <h2 id="proof-title" class="h-section">Real numbers. <em>Real receipts.</em></h2>
+      </header>
+
+      <ul class="outcome-tiles" role="list">
+        {proofTiles.map((tile) => (
+          <li class="outcome-tile">
+            <span class="kpi-label mono">{tile.label}</span>
+            <p class="outcome-num">
+              {tile.num}{tile.unit && <span class="outcome-num-unit">{tile.unit}</span>}
+            </p>
+          </li>
+        ))}
+      </ul>
+
+      <article class="proof-card">
+        <p class="proof-headline">
+          One service business went from $300K to $10M in 12 months.<br/>
+          Same owner. Same hours. <em>Different system.</em>
+        </p>
+        <ul class="proof-evidence" role="list">
+          <li>
+            <span class="tri-tag tri-tag-y2">Measured</span>
+            3.2× lift in qualified-lead share at Day-90.
+          </li>
+          <li>
+            <span class="tri-tag tri-tag-y2">Attributed</span>
+            Booked-job stitching via UTM + first-touch / last-touch attribution.
+          </li>
+          <li>
+            <span class="tri-tag tri-tag-y2">Modeled</span>
+            Review velocity, local search, and AI-search citation moved as one system.
+          </li>
+        </ul>
+        <div class="proof-cta-row">
+          <a href="/book" class="cta" data-cta-source="proof-cta">See If We're a Fit<span class="cta-arrow" aria-hidden="true">&rarr;</span></a>
+          <a href="/results" class="cta-ghost" data-cta-source="proof-results">See more receipts</a>
+        </div>
+      </article>
+
     </div>
   </section>
 
+  <!-- ============================================ -->
+  <!-- L10 · Playbook teaser (8 items)               -->
+  <!-- ============================================ -->
   <section class="playbook-teaser" aria-labelledby="playbook-teaser-title">
     <div class="container">
-      <p class="section-tag">The playbook</p>
+      <p class="section-tag">The Playbook</p>
       <h2 id="playbook-teaser-title" class="h-section">What we believe.</h2>
       <ul class="playbook-list" role="list">
-        <li>
-          <a href="/playbook/ai-marketing-department">
-            <span class="playbook-link-title">The AI marketing department</span>
-            <span class="playbook-link-sub">What a run-for-you marketing operation looks like.</span>
-          </a>
-        </li>
-        <li>
-          <a href="/playbook/category-of-one-marketing">
-            <span class="playbook-link-title">Category-of-one marketing</span>
-            <span class="playbook-link-sub">Becoming the most-chosen name in your market.</span>
-          </a>
-        </li>
-        <li>
-          <a href="/playbook/captured-baseline">
-            <span class="playbook-link-title">Captured baseline</span>
-            <span class="playbook-link-sub">Measuring the floor before the system turns on.</span>
-          </a>
-        </li>
-        <li>
-          <a href="/playbook/poor-four">
-            <span class="playbook-link-title">The Poor Four</span>
-            <span class="playbook-link-sub">The four ways a lead system fails before it starts.</span>
-          </a>
-        </li>
-        <li>
-          <a href="/playbook/fractional-cmo-alternative">
-            <span class="playbook-link-title">Fractional CMO alternative</span>
-            <span class="playbook-link-sub">Strategy without execution leaves the gap open.</span>
-          </a>
-        </li>
+        {playbookItems.map((item) => (
+          <li>
+            <a href={item.href}>
+              <span class="playbook-link-title">{item.title}</span>
+              <span class="playbook-link-sub">{item.sub}</span>
+            </a>
+          </li>
+        ))}
       </ul>
     </div>
   </section>
 
+  <!-- ============================================ -->
+  <!-- L11 · FAQ                                     -->
+  <!-- ============================================ -->
   <FAQ faqs={faqs} />
 
+  <!-- ============================================ -->
+  <!-- L12 · Final CTA                               -->
+  <!-- ============================================ -->
   <section class="final-section" aria-labelledby="final-title">
-    <div class="container final-inner">
-      <div>
-        <p class="section-tag">Start with the audit</p>
-        <h2 id="final-title" class="h-closer">Stop guessing where the next client comes from.</h2>
-        <p class="lede">The free AI Marketing Audit takes 5 minutes. The answer tells us whether Ascend should be installed next.</p>
+    <div class="container">
+      <div class="final-inner">
+        <div>
+          <p class="section-tag">Start with the audit</p>
+          <h2 id="final-title" class="h-closer">Stop guessing where the next client <em>comes from.</em></h2>
+          <p class="lede">The free AI Marketing Audit takes 5 minutes. The answer tells us whether Ascend should be installed next.</p>
+        </div>
+        <a href="/book" class="cta" data-cta-source="home-final">See If We're a Fit<span class="cta-arrow" aria-hidden="true">&rarr;</span></a>
       </div>
-      <a href="/book" class="cta" data-cta-source="home-final">See If We're a Fit<span class="cta-arrow" aria-hidden="true">-&gt;</span></a>
+      <!-- 30-day install timeline · F3 CTA-pull + F2 proof (3 named milestones) -->
+      <figure class="final-timeline" aria-labelledby="timeline-cap">
+        <svg viewBox="0 0 1000 90" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="From audit to system-live in 30 days: three milestones across one month">
+          <line x1="60" y1="50" x2="940" y2="50" stroke="var(--rule)" stroke-width="1"/>
+          <line x1="60" y1="50" x2="940" y2="50" stroke="var(--y2)" stroke-width="1.5" stroke-dasharray="2 6"/>
+          <circle cx="60" cy="50" r="5" fill="var(--y2)"/>
+          <circle cx="500" cy="50" r="5" fill="var(--y2)"/>
+          <circle cx="940" cy="50" r="5" fill="var(--y2)"/>
+          <text x="60" y="32" text-anchor="start" fill="var(--y2)" font-family="JetBrains Mono, monospace" font-size="11" letter-spacing="2">DAY 0</text>
+          <text x="60" y="78" text-anchor="start" fill="var(--ink-dim)" font-family="JetBrains Mono, monospace" font-size="10" letter-spacing="2">AUDIT</text>
+          <text x="500" y="32" text-anchor="middle" fill="var(--y2)" font-family="JetBrains Mono, monospace" font-size="11" letter-spacing="2">DAY 14</text>
+          <text x="500" y="78" text-anchor="middle" fill="var(--ink-dim)" font-family="JetBrains Mono, monospace" font-size="10" letter-spacing="2">INSTALL</text>
+          <text x="940" y="32" text-anchor="end" fill="var(--y2)" font-family="JetBrains Mono, monospace" font-size="11" letter-spacing="2">DAY 30</text>
+          <text x="940" y="78" text-anchor="end" fill="var(--ink-dim)" font-family="JetBrains Mono, monospace" font-size="10" letter-spacing="2">SYSTEM LIVE</text>
+        </svg>
+        <figcaption id="timeline-cap" class="final-timeline-cap mono">
+          Audit to system-live · 30 days · no 90-day waiting period.
+        </figcaption>
+      </figure>
     </div>
   </section>
 </BaseLayout>
 
 <style>
+/* ===== L1 Hero ===== */
 .home-hero {
   min-height: 100svh;
   display: flex;
@@ -392,10 +474,7 @@ const faqSchema = {
   gap: 24px;
 }
 
-.hero-copy .h-hero {
-  max-width: 880px;
-}
-
+.hero-copy .h-hero { max-width: 880px; }
 .hero-copy .hero-sub {
   max-width: 680px;
   font-size: clamp(21px, 2.1vw, 24px);
@@ -410,151 +489,144 @@ const faqSchema = {
   align-items: center;
 }
 
-.hero-mark {
-  justify-self: end;
-  width: min(32vw, 360px);
-  min-width: 240px;
-  border-left: 1px solid var(--rule);
-  padding-left: clamp(24px, 5vw, 64px);
-}
-
 .hero-photo {
   margin: 0;
-  border-radius: 6px;
-  overflow: hidden;
-  border: 1px solid var(--rule);
-  aspect-ratio: 16 / 11;
-  width: 100%;
-}
-
-.hero-photo img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
-}
-
-.section-photo {
-  margin: clamp(40px, 6vw, 72px) 0 0;
-  border-radius: 6px;
-  overflow: hidden;
-  border: 1px solid var(--rule);
-  aspect-ratio: 21 / 9;
-  width: 100%;
-}
-
-.section-photo img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
-}
-
-.section-photo--banner {
-  aspect-ratio: 21 / 9;
-  margin-top: clamp(32px, 4vw, 48px);
-  margin-bottom: clamp(40px, 6vw, 72px);
-}
-
-.section-photo--proof {
-  aspect-ratio: 16 / 10;
-  margin-top: clamp(28px, 4vw, 48px);
-}
-
-.section-photo--system {
-  grid-column: 1 / -1;
-  aspect-ratio: 21 / 9;
-  margin-top: clamp(40px, 6vw, 72px);
-}
-
-.section-photo--urgency {
-  aspect-ratio: 21 / 8;
-  margin-bottom: clamp(32px, 4vw, 56px);
-  margin-top: 0;
-}
-
-.section-photo--method {
-  aspect-ratio: 21 / 9;
-  margin-top: clamp(32px, 4vw, 48px);
-  margin-bottom: clamp(40px, 6vw, 72px);
-}
-
-.section-photo--diagram {
-  grid-column: 1 / -1;
-  aspect-ratio: 16 / 10;
-  max-width: 720px;
-  margin-inline: auto;
-  margin-top: clamp(40px, 6vw, 72px);
-  border: 1px solid var(--rule);
-  background: #050507;
-}
-.section-photo--diagram img {
-  object-fit: contain;
-}
-
-@media (max-width: 880px) {
-  .hero-photo {
-    aspect-ratio: 16 / 10;
-  }
-  .section-photo, .section-photo--banner, .section-photo--system, .section-photo--urgency, .section-photo--method {
-    aspect-ratio: 16 / 10;
-  }
-}
-
-.section-head {
-  max-width: 780px;
-  margin-bottom: 40px;
-}
-
-.outcomes-ladder {
-  padding-top: clamp(72px, 9vw, 128px);
-}
-
-.ladder-list {
-  list-style: none;
   display: flex;
   flex-direction: column;
-  gap: 14px;
+  gap: 12px;
 }
-
-.ladder-card {
-  display: grid;
-  grid-template-columns: 72px minmax(0, 1fr);
-  gap: clamp(18px, 4vw, 40px);
-  align-items: start;
-  padding: clamp(22px, 4vw, 34px);
-  background: var(--bg-card);
+.hero-photo img {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 16 / 11;
+  object-fit: cover;
+  display: block;
+  border-radius: 6px;
   border: 1px solid var(--rule);
-  border-radius: 4px;
 }
-
-.ladder-num {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 44px;
-  height: 44px;
-  border: 1px solid var(--y2);
-  border-radius: 50%;
-  color: var(--y2);
-  font-family: var(--mono);
-  font-size: 12px;
+.hero-photo-cap {
+  font-size: 10px;
   letter-spacing: 0.16em;
+  color: var(--ink-faint);
+  text-transform: uppercase;
+  line-height: 1.5;
 }
 
-.ladder-card h3,
-.system-list h3 {
-  font-size: clamp(21px, 2.3vw, 28px);
-  line-height: 1.12;
+/* ===== L8 Dominance section ===== */
+.dominance-section {
+  padding-block: var(--section-y);
+  background: var(--bg);
+}
+
+.dominance-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: clamp(40px, 5vw, 64px);
+}
+
+.dominance-head {
+  max-width: 820px;
+}
+.dominance-head .lede {
+  margin-top: 22px;
+}
+
+.dominance-figure {
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  align-items: center;
+}
+.dominance-figure img {
+  width: 100%;
+  max-width: 640px;
+  height: auto;
+  display: block;
+}
+.dominance-cap {
+  font-size: 10px;
+  letter-spacing: 0.16em;
+  color: var(--ink-faint);
+  text-transform: uppercase;
+  text-align: center;
+}
+
+.dominance-mechanisms {
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 28px;
+  padding: 0;
+  margin: 0;
+}
+.dominance-mech {
+  display: grid;
+  grid-template-columns: 18px minmax(0, 1fr);
+  gap: 14px;
+  padding-bottom: 22px;
+  border-bottom: 1px solid var(--rule);
+}
+.dominance-mech .dot {
+  margin-top: 12px;
+}
+.dominance-mech h3 {
+  font-size: clamp(20px, 2.2vw, 26px);
+  line-height: 1.15;
   margin-bottom: 8px;
 }
-
-.ladder-card p,
-.system-list p,
-.proof-list li {
+.dominance-mech p {
   color: var(--ink-dim);
-  font-size: 17px;
+  font-size: 16px;
   line-height: 1.55;
+}
+
+@media (max-width: 720px) {
+  .dominance-mechanisms { grid-template-columns: 1fr; }
+}
+
+/* ===== L9 Proof ===== */
+.proof-section { padding-block: var(--section-y); }
+.proof-head { margin-bottom: 36px; max-width: 720px; }
+
+.outcome-tiles {
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1px;
+  background: var(--rule);
+  border: 1px solid var(--rule);
+  border-radius: 2px;
+  overflow: hidden;
+  margin-bottom: 48px;
+}
+.outcome-tile {
+  background: var(--bg-card);
+  padding: 28px 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.kpi-label {
+  font-size: 10px;
+  letter-spacing: 0.18em;
+  color: var(--ink-faint);
+  text-transform: uppercase;
+}
+.outcome-num {
+  font-family: var(--mono);
+  font-size: clamp(40px, 5vw, 56px);
+  font-weight: 400;
+  color: var(--y2);
+  line-height: 1;
+  margin: 0;
+}
+.outcome-num-unit {
+  font-size: 0.45em;
+  letter-spacing: 0.12em;
+  color: var(--ink-faint);
+  margin-left: 6px;
+  text-transform: uppercase;
 }
 
 .proof-card {
@@ -563,112 +635,67 @@ const faqSchema = {
   padding: clamp(28px, 6vw, 64px);
   background: var(--bg);
 }
-
 .proof-headline {
   max-width: 980px;
-  font-size: clamp(40px, 6vw, 82px);
-  line-height: 0.98;
+  font-size: clamp(32px, 4.5vw, 56px);
+  line-height: 1.05;
+  margin: 0;
 }
-
-.proof-list {
+.proof-evidence {
   list-style: none;
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 16px;
   margin-top: 36px;
   padding-top: 28px;
   border-top: 1px solid var(--rule);
 }
-
-.proof-list li {
+.proof-evidence li {
+  font-size: 14px;
+  line-height: 1.5;
+  color: var(--ink-dim);
+}
+.proof-evidence li .tri-tag {
+  display: inline-block;
+  font-family: var(--mono);
+  font-size: 9px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  padding: 4px 8px;
+  border-radius: 2px;
+  margin-bottom: 6px;
+}
+.tri-tag-y2 {
+  background: var(--y2);
+  color: var(--bg);
+}
+.proof-cta-row {
   display: flex;
-  gap: 10px;
-  align-items: flex-start;
-}
-
-.proof-list .dot {
-  flex: 0 0 auto;
-  margin-top: 10px;
-}
-
-.mid-cta {
-  margin-top: 28px;
-  display: flex;
-  justify-content: center;
-}
-
-.system-grid {
-  display: grid;
-  grid-template-columns: minmax(0, 0.86fr) minmax(0, 1.14fr);
-  gap: clamp(44px, 7vw, 96px);
-  align-items: start;
-}
-
-.system-copy {
-  position: sticky;
-  top: 104px;
-}
-
-.system-copy .lede {
-  margin-top: 22px;
-}
-
-.system-list {
-  list-style: none;
-  display: flex;
-  flex-direction: column;
-  gap: 18px;
-}
-
-.system-list li {
-  display: grid;
-  grid-template-columns: 18px minmax(0, 1fr);
+  flex-wrap: wrap;
   gap: 14px;
-  padding-bottom: 20px;
-  border-bottom: 1px solid var(--rule);
+  align-items: center;
+  margin-top: 32px;
 }
 
-.system-list .dot {
-  margin-top: 12px;
+@media (max-width: 720px) {
+  .outcome-tiles { grid-template-columns: 1fr; }
+  .proof-evidence { grid-template-columns: 1fr; }
 }
 
-.urgency-inner {
-  max-width: 860px;
-}
-
-.urgency-inner .lede,
-.final-inner .lede {
-  margin-top: 22px;
-}
-
-.final-inner {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) auto;
-  gap: clamp(28px, 5vw, 72px);
-  align-items: end;
-}
-
-.final-inner .cta {
-  margin-bottom: 8px;
-}
-
+/* ===== L10 Playbook teaser ===== */
 .playbook-teaser {
   padding-block: clamp(72px, 9vw, 128px);
   border-top: 1px solid var(--rule);
 }
-
 .playbook-list {
   list-style: none;
   display: flex;
   flex-direction: column;
   margin-top: 40px;
   border-top: 1px solid var(--rule);
+  padding: 0;
 }
-
-.playbook-list li {
-  border-bottom: 1px solid var(--rule);
-}
-
+.playbook-list li { border-bottom: 1px solid var(--rule); }
 .playbook-list a {
   display: grid;
   grid-template-columns: minmax(0, 1fr);
@@ -677,12 +704,10 @@ const faqSchema = {
   color: var(--ink);
   transition: color 180ms ease, padding-left 220ms ease;
 }
-
 .playbook-list a:hover {
   color: var(--y2);
   padding-left: 14px;
 }
-
 .playbook-link-title {
   font-family: var(--serif);
   font-weight: 400;
@@ -690,7 +715,6 @@ const faqSchema = {
   letter-spacing: -0.015em;
   line-height: 1.15;
 }
-
 .playbook-link-sub {
   font-family: var(--sans);
   font-weight: 300;
@@ -699,57 +723,53 @@ const faqSchema = {
   color: var(--ink-dim);
 }
 
+/* ===== L12 Final CTA ===== */
+.final-section { padding-block: var(--section-y); }
+.final-inner {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: clamp(28px, 5vw, 72px);
+  align-items: end;
+}
+.final-inner .lede { margin-top: 22px; }
+.final-inner .cta { margin-bottom: 8px; }
+
+.final-timeline {
+  margin: clamp(40px, 5vw, 64px) 0 0;
+  padding-top: clamp(32px, 4vw, 48px);
+  border-top: 1px solid var(--rule);
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+.final-timeline svg {
+  width: 100%;
+  height: auto;
+  max-height: 90px;
+}
+.final-timeline-cap {
+  font-size: 10px;
+  letter-spacing: 0.18em;
+  color: var(--ink-faint);
+  text-transform: uppercase;
+  text-align: center;
+}
+
+/* ===== Responsive ===== */
 @media (max-width: 900px) {
-  .home-hero {
-    min-height: auto;
-  }
-
-  .hero-grid,
-  .system-grid,
-  .final-inner {
-    grid-template-columns: 1fr;
-  }
-
-  .hero-mark {
-    display: none;
-  }
-
-  .system-copy {
-    position: static;
-  }
-
-  .proof-list {
-    grid-template-columns: 1fr;
-  }
-
-  .final-inner {
-    align-items: start;
-  }
+  .home-hero { min-height: auto; }
+  .hero-grid, .final-inner { grid-template-columns: 1fr; }
+  .final-inner { align-items: start; }
 }
 
 @media (max-width: 520px) {
-  .home-hero {
-    padding-top: 96px;
-  }
-
-  .hero-actions {
-    align-items: stretch;
-  }
-
+  .home-hero { padding-top: 96px; }
+  .hero-actions { align-items: stretch; }
   .hero-actions .cta,
   .hero-actions .cta-ghost,
   .final-inner .cta {
     width: 100%;
     justify-content: center;
-  }
-
-  .ladder-card {
-    grid-template-columns: 1fr;
-  }
-
-  .ladder-num {
-    width: 38px;
-    height: 38px;
   }
 }
 </style>
