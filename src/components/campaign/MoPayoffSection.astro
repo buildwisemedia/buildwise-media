@@ -4,12 +4,27 @@
 //
 // Props:
 //   keyword: 'time' | 'peace' | 'freedom' | 'life' | 'calm'
+import A4 from '../atoms/A4.astro';
+import A5 from '../atoms/A5.astro';
+import A2 from '../atoms/A2.astro';
 
 interface Props {
   keyword: 'time' | 'peace' | 'freedom' | 'life' | 'calm';
 }
 
 const { keyword } = Astro.props;
+
+// Per-variant Payoff photography (R018 register per variant — atmospheric/
+// composed/editorial-journalism/cinematic-film). R015 color contract holds:
+// ≥90% dark cool, ≤10% Y2/Y1/O1, 0% warm pixels above 40% saturation.
+// Files in /public/payoff/ — graceful fallback if not yet generated.
+const PHOTO_ALT: Record<Props['keyword'], string> = {
+  peace: 'An owner desk at first light — phone face-down, the morning held still.',
+  time: 'Closed laptop, watch, half-finished coffee in afternoon window-light — work finished, hours returned.',
+  freedom: 'An owner mid-step out the door, hand on the frame — leaving the system to run.',
+  life: 'A family at the dinner table with the owner fully present — no devices, no second screens.',
+  calm: 'A single chair by a window, a plant catching cool light — the room is still while the system runs.',
+};
 
 const COPY: Record<Props['keyword'], { h2: string; body: string; chainStage: string }> = {
   time: {
@@ -39,20 +54,46 @@ const COPY: Record<Props['keyword'], { h2: string; body: string; chainStage: str
   },
 };
 
+// PHOTOS_AVAILABLE: keywords whose payoff photo file ships in /public/payoff/.
+// Flip a keyword into this list AFTER its image lands + clears R015 color gate.
+// Empty by default — keeps the slot hidden until the photo is real.
+const PHOTOS_AVAILABLE: ReadonlyArray<Props['keyword']> = [];
+
 const { h2, body, chainStage } = COPY[keyword];
+const photoAlt = PHOTO_ALT[keyword];
+const photoSrc = `/payoff/${keyword}.webp`;
+const showPhoto = PHOTOS_AVAILABLE.includes(keyword);
 ---
 
 <section class="mo-payoff" aria-labelledby="mo-payoff-heading">
+  <div class="mo-payoff-corner" aria-hidden="true">
+    <A4 size={18} stroke={1.6} />
+  </div>
   <div class="container">
     <p class="section-tag">03 · THE PAYOFF · {chainStage}</p>
+    <div class="mo-payoff-rule"><A5 length={120} stroke={1.6} /></div>
     <h2 id="mo-payoff-heading" class="h-section">{h2}</h2>
+
+    {showPhoto && (
+      <figure class="mo-payoff-figure" aria-hidden="false">
+        <span class="mo-payoff-flank mo-payoff-flank--left" aria-hidden="true"><A2 length={48} stroke={1.4} direction="tl-br" /></span>
+        <img
+          class="mo-payoff-photo"
+          src={photoSrc}
+          alt={photoAlt}
+          loading="lazy"
+          decoding="async"
+          width="1600"
+          height="1000"
+        />
+        <span class="mo-payoff-flank mo-payoff-flank--right" aria-hidden="true"><A2 length={48} stroke={1.4} direction="tr-bl" /></span>
+      </figure>
+    )}
+
     <p class="mo-payoff-body">{body}</p>
 
     <div class="mo-payoff-anchor">
-      <svg class="mo-payoff-mark" viewBox="0 0 40 40" aria-hidden="true">
-        <polygon points="20,4 36,32 4,32" stroke="#F0FF00" stroke-width="1.5" fill="none" />
-        <circle cx="20" cy="22" r="3" fill="#F0FF00" />
-      </svg>
+      <span class="mo-payoff-mark"><A4 size={28} stroke={1.6} /></span>
       <p class="mo-payoff-hook mono">
         Ready to see if the system fits your shop? <a href="#diagnostic">Take the diagnostic ↓</a>
       </p>
@@ -65,11 +106,63 @@ const { h2, body, chainStage } = COPY[keyword];
   padding-block: var(--section-y);
   border-top: 1px solid var(--rule);
   background: var(--bg);
+  position: relative;
+}
+
+/* A4 hollow-vertex corner marker — section-open anchor per R014b */
+.mo-payoff-corner {
+  position: absolute;
+  top: 24px;
+  right: clamp(20px, 4vw, 48px);
+  pointer-events: none;
+}
+
+/* A5 90-hairline section-open transition rule above h2 */
+.mo-payoff-rule {
+  margin-top: 16px;
+  margin-bottom: 8px;
+  line-height: 0;
 }
 
 .mo-payoff .h-section {
-  margin-top: 24px;
+  margin-top: 16px;
   margin-bottom: 40px;
+}
+
+.mo-payoff-figure {
+  margin: 32px 0 40px 0;
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: 20px;
+  max-width: 1040px;
+}
+
+.mo-payoff-flank {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0.7;
+  line-height: 0;
+}
+
+.mo-payoff-photo {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 16 / 10;
+  object-fit: cover;
+  display: block;
+  border: 1px solid var(--rule);
+  background: var(--bg-elev);
+  /* If photo not yet generated, the bg + border still render a clean slot */
+}
+
+@media (max-width: 760px) {
+  .mo-payoff-figure {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+  .mo-payoff-flank { display: none; }
 }
 
 .mo-payoff-body {
@@ -95,9 +188,11 @@ const { h2, body, chainStage } = COPY[keyword];
 }
 
 .mo-payoff-mark {
-  width: 32px;
-  height: 32px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   flex-shrink: 0;
+  line-height: 0;
 }
 
 .mo-payoff-hook {

@@ -1,0 +1,49 @@
+---
+// MechOwn — D4 archetype, modified (Comparison: owner-disengaged vs system-running)
+// 03 OWN · owner stepping back; system runs without operator hand.
+// Composes from R014b atoms only: A1 filled-vertex, A4 hollow-vertex, A5 90-hairline,
+// A2 diagonal hairline (subtle, the hand-off line).
+// Brain · brand/BWM-Geometric-Vocabulary-Locked.md
+//
+// Visual narrative: LEFT = single hollow A4 vertex (the owner, intentionally disengaged
+// from operations). RIGHT = full 2x2 grid of A1 filled-vertices connected by A5
+// orthogonal hairlines (the system, fully operational). A single A2 diagonal hairline
+// from owner-position to the system's top-left corner marks the hand-off.
+//
+// R015 color contract: 100% dark cool + Y2 + Y2-mute. No warm.
+---
+<svg
+  class="mech-illust mech-own"
+  viewBox="0 0 240 180"
+  role="img"
+  aria-label="Owner stepping back — single hollow vertex on the left, with the fully wired system grid running on the right; the hand-off line marks the moment of release."
+>
+  <!-- LEFT: owner — single hollow A4 vertex, slightly larger -->
+  <circle cx="44" cy="90" r="8" fill="none" stroke="#7A8400" stroke-width="1.8" />
+  <!-- A faint inner verdict-dot suggests "present but not engaged" -->
+  <circle cx="44" cy="90" r="1.6" fill="#7A8400" opacity="0.7" />
+
+  <!-- A2 diagonal hand-off line from owner to system top-left corner -->
+  <line x1="56" y1="86" x2="138" y2="58" stroke="#7A8400" stroke-width="1.3" stroke-linecap="round" stroke-dasharray="4 4" opacity="0.55" />
+
+  <!-- RIGHT: system 2x2 grid -->
+  <!-- A5 orthogonal grid hairlines (4 sides + 1 cross) -->
+  <line x1="138" y1="58" x2="208" y2="58" stroke="#7A8400" stroke-width="1.5" stroke-linecap="round" />
+  <line x1="138" y1="122" x2="208" y2="122" stroke="#7A8400" stroke-width="1.5" stroke-linecap="round" />
+  <line x1="138" y1="58" x2="138" y2="122" stroke="#7A8400" stroke-width="1.5" stroke-linecap="round" />
+  <line x1="208" y1="58" x2="208" y2="122" stroke="#7A8400" stroke-width="1.5" stroke-linecap="round" />
+  <line x1="138" y1="90" x2="208" y2="90" stroke="#7A8400" stroke-width="1.2" stroke-linecap="round" opacity="0.6" />
+  <line x1="173" y1="58" x2="173" y2="122" stroke="#7A8400" stroke-width="1.2" stroke-linecap="round" opacity="0.6" />
+
+  <!-- 4 corner system-vertices (A1 filled) -->
+  <circle cx="138" cy="58" r="5" fill="#F0FF00" />
+  <circle cx="208" cy="58" r="5" fill="#F0FF00" />
+  <circle cx="138" cy="122" r="5" fill="#F0FF00" />
+  <circle cx="208" cy="122" r="5" fill="#F0FF00" />
+  <!-- Central system vertex — larger, "running on its own" -->
+  <circle cx="173" cy="90" r="7" fill="#F0FF00" />
+
+  <!-- Verdict-dot above the central vertex — "system is verdict-positive without operator" -->
+  <circle cx="173" cy="36" r="2.8" fill="#F0FF00" />
+  <line x1="173" y1="83" x2="173" y2="42" stroke="#7A8400" stroke-width="1" stroke-linecap="round" opacity="0.5" />
+</svg>

@@ -4,6 +4,12 @@
 // Show-Don't-Tell Standard (LOCKED 2026-05-20): each section carries ≥1 functional visual.
 //   Section 1 = data viz (F2 proof — hours-allocation comparison)
 //   Section 2 = scene illustration (F3 CTA-pull — 3-step install/operate/own staircase)
+import A2 from '../atoms/A2.astro';
+import A3 from '../atoms/A3.astro';
+import A5 from '../atoms/A5.astro';
+import MechInstall from '../illustrations/MechInstall.astro';
+import MechOperate from '../illustrations/MechOperate.astro';
+import MechOwn from '../illustrations/MechOwn.astro';
 ---
 
 <section class="mo-chain-enemy" aria-labelledby="mo-enemy-heading">
@@ -16,7 +22,11 @@
 
     <div class="mo-week-grid">
       <figure class="mo-week-card">
-        <figcaption class="mono mo-week-label">Your week today</figcaption>
+        <figcaption class="mono mo-week-label">
+          <A3 size={6} class="mo-week-flank" />
+          Your week today
+          <A3 size={6} class="mo-week-flank" />
+        </figcaption>
         <svg class="mo-week-svg" viewBox="0 0 400 220" role="img" aria-label="Today: 60% ops, 25% growth tasks routing through you, 15% personal time">
           <!-- Bars: M T W T F S S, each 220h tall with 3-segment stack -->
           {[
@@ -49,7 +59,11 @@
       </figure>
 
       <figure class="mo-week-card mo-week-card--after">
-        <figcaption class="mono mo-week-label">Your week after install</figcaption>
+        <figcaption class="mono mo-week-label">
+          <A3 size={6} class="mo-week-flank" />
+          Your week after install
+          <A3 size={6} class="mo-week-flank" />
+        </figcaption>
         <svg class="mo-week-svg" viewBox="0 0 400 220" role="img" aria-label="After install: 35% ops, 20% strategic review, 45% personal time and life">
           {[
             { day: 'M', ops: 40, growth: 25, personal: 35 },
@@ -87,6 +101,10 @@
       <span class="mo-week-legend-item"><span class="mo-week-swatch" style="background:#F0FF00"></span><span class="mono">Yours</span></span>
     </div>
 
+    <p class="mo-week-caption mono">
+      Modeled · owner-week allocation before and after install · representative shape, not a single client
+    </p>
+
     <p class="mo-chain-close">
       The cost isn't financial. The cost is hours — the resource your business has none of and can't make more of.
     </p>
@@ -96,34 +114,32 @@
 <section class="mo-chain-mechanism" id="mechanism" aria-labelledby="mo-mech-heading">
   <div class="container">
     <p class="section-tag">02 · THE MECHANISM</p>
+    <div class="mo-mech-rule" aria-hidden="true"><A5 length={120} stroke={1.6} /></div>
     <h2 id="mo-mech-heading" class="h-section">We install an AI growth system.<br/>Then it runs without you.</h2>
 
     <div class="mo-staircase">
       <article class="mo-step">
+        <div class="mo-step-illust" aria-hidden="true"><MechInstall /></div>
         <p class="mono mo-step-num">01</p>
         <h3 class="mo-step-title">Install (30 days)</h3>
         <p class="mo-step-body">
           We build your AI growth system — lead capture, qualification, follow-up, attribution, review velocity, content engine. You sign off. It goes live.
         </p>
-        <svg class="mo-step-arrow" viewBox="0 0 60 12" aria-hidden="true">
-          <line x1="0" y1="6" x2="50" y2="6" stroke="#F0FF00" stroke-width="1.5" />
-          <polyline points="44,2 50,6 44,10" stroke="#F0FF00" stroke-width="1.5" fill="none" />
-        </svg>
+        <span class="mo-step-arrow" aria-hidden="true"><A2 length={60} stroke={1.6} direction="horizontal" /></span>
       </article>
 
       <article class="mo-step">
+        <div class="mo-step-illust" aria-hidden="true"><MechOperate /></div>
         <p class="mono mo-step-num">02</p>
         <h3 class="mo-step-title">Operate (weekly)</h3>
         <p class="mo-step-body">
           The system runs the marketing department. Leads land. Calls book. Follow-ups fire. Attribution tracks. You get a weekly summary of what mattered.
         </p>
-        <svg class="mo-step-arrow" viewBox="0 0 60 12" aria-hidden="true">
-          <line x1="0" y1="6" x2="50" y2="6" stroke="#F0FF00" stroke-width="1.5" />
-          <polyline points="44,2 50,6 44,10" stroke="#F0FF00" stroke-width="1.5" fill="none" />
-        </svg>
+        <span class="mo-step-arrow" aria-hidden="true"><A2 length={60} stroke={1.6} direction="horizontal" /></span>
       </article>
 
       <article class="mo-step">
+        <div class="mo-step-illust" aria-hidden="true"><MechOwn /></div>
         <p class="mono mo-step-num">03</p>
         <h3 class="mo-step-title">Own (forever)</h3>
         <p class="mo-step-body">
@@ -170,6 +186,14 @@
   font-size: 11px;
   letter-spacing: 0.18em;
   color: var(--ink-faint);
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.mo-week-label :global(.mo-week-flank) {
+  display: inline-block;
+  vertical-align: middle;
 }
 
 .mo-week-svg {
@@ -198,6 +222,15 @@
   height: 14px;
 }
 
+.mo-week-caption {
+  margin-top: 28px;
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  color: var(--ink-faint);
+  text-transform: uppercase;
+  max-width: 760px;
+}
+
 .mo-chain-close {
   margin-top: 48px;
   font-family: var(--sans);
@@ -215,8 +248,14 @@
   background: var(--bg-elev);
 }
 
+.mo-mech-rule {
+  margin-top: 16px;
+  margin-bottom: 8px;
+  line-height: 0;
+}
+
 .mo-chain-mechanism .h-section {
-  margin-top: 24px;
+  margin-top: 16px;
   margin-bottom: 64px;
 }
 
@@ -230,11 +269,43 @@
 .mo-step {
   position: relative;
   padding: 32px;
+  padding-left: 36px;
   background: var(--bg-card);
   border: 1px solid var(--rule);
+  border-left: 2px solid var(--y2);
   display: flex;
   flex-direction: column;
   gap: 16px;
+}
+
+/* Voicura-register vertical left-spine glow on each step card */
+.mo-step::before {
+  content: '';
+  position: absolute;
+  left: -2px;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: linear-gradient(180deg, rgba(240, 255, 0, 0) 0%, var(--y2) 12%, var(--y2) 88%, rgba(240, 255, 0, 0) 100%);
+  pointer-events: none;
+}
+
+.mo-step-illust {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: -8px -8px 12px -8px;
+  padding: 12px;
+  background: rgba(5, 5, 7, 0.5);
+  border: 1px solid rgba(122, 132, 0, 0.18);
+  border-radius: 1px;
+}
+
+.mo-step-illust svg {
+  width: 100%;
+  height: auto;
+  max-width: 240px;
+  display: block;
 }
 
 .mo-step-num {
@@ -265,8 +336,13 @@
   right: -38px;
   top: 50%;
   width: 60px;
-  height: 12px;
+  height: 60px;
   transform: translateY(-50%);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+  line-height: 0;
 }
 
 @media (max-width: 880px) {

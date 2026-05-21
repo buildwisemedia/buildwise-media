@@ -1,0 +1,38 @@
+---
+// A2 — Diagonal/horizontal hairline. Y2-mute #7A8400 stroke 1.4-1.8.
+// Canonical R014b primitive · brand/BWM-Geometric-Vocabulary-Locked.md
+// Use for: D3 process-flow connectors (horizontal between vertices) + diagonal accents.
+// Stroke weight policy: ≤48px contexts use 1.8; ≥64px hero contexts use 1.5.
+interface Props {
+  length?: number;
+  stroke?: number;
+  direction?: 'horizontal' | 'tl-br' | 'tr-bl' | 'vertical';
+  class?: string;
+}
+const { length = 60, stroke = 1.6, direction = 'horizontal', class: cls = '' } = Astro.props;
+
+const coords = {
+  horizontal: { x1: 0, y1: length / 2, x2: length, y2: length / 2 },
+  vertical:   { x1: length / 2, y1: 0, x2: length / 2, y2: length },
+  'tl-br':    { x1: 0, y1: 0, x2: length, y2: length },
+  'tr-bl':    { x1: length, y1: 0, x2: 0, y2: length },
+}[direction];
+---
+<svg
+  class={`atom atom-a2 ${cls}`}
+  width={length}
+  height={length}
+  viewBox={`0 0 ${length} ${length}`}
+  role="presentation"
+  aria-hidden="true"
+>
+  <line
+    x1={coords.x1}
+    y1={coords.y1}
+    x2={coords.x2}
+    y2={coords.y2}
+    stroke="#7A8400"
+    stroke-width={stroke}
+    stroke-linecap="round"
+  />
+</svg>

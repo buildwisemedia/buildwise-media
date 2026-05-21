@@ -254,6 +254,7 @@ section.elev { background: var(--bg-elev); }
 .gold-rule { height: 1px; background: var(--y2); border: 0; }
 
 /* ---------- 8. CTAs ---------- */
+/* R017 hover state — cubic-bezier(0.22, 1, 0.36, 1) 1.1s lerp on bg, border, Y2 glow */
 .cta {
   display: inline-flex;
   align-items: center;
@@ -267,13 +268,19 @@ section.elev { background: var(--bg-elev); }
   background: var(--y2);
   border: 1px solid var(--y2);
   border-radius: 2px;
-  transition: color 180ms ease, background-color 180ms ease, border-color 180ms ease;
+  box-shadow: 0 0 0 0 rgba(240, 255, 0, 0);
+  transition:
+    color 1.1s cubic-bezier(0.22, 1, 0.36, 1),
+    background-color 1.1s cubic-bezier(0.22, 1, 0.36, 1),
+    border-color 1.1s cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 1.1s cubic-bezier(0.22, 1, 0.36, 1);
   white-space: nowrap;
 }
 .cta:hover {
   background: var(--y2-bright);
   border-color: var(--y2-bright);
   color: var(--bg);
+  box-shadow: 0 0 0 4px rgba(240, 255, 0, 0.18);
 }
 .cta:focus-visible { outline: 2px solid var(--y2-bright); outline-offset: 3px; }
 
@@ -290,13 +297,19 @@ section.elev { background: var(--bg-elev); }
   background: transparent;
   border: 1px solid var(--rule-bright);
   border-radius: 2px;
-  transition: color 180ms ease, background-color 180ms ease, border-color 180ms ease;
+  box-shadow: 0 0 0 0 rgba(240, 255, 0, 0);
+  transition:
+    color 1.1s cubic-bezier(0.22, 1, 0.36, 1),
+    background-color 1.1s cubic-bezier(0.22, 1, 0.36, 1),
+    border-color 1.1s cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 1.1s cubic-bezier(0.22, 1, 0.36, 1);
   white-space: nowrap;
 }
 .cta-ghost:hover {
   border-color: var(--y2);
   color: var(--y2);
   background: rgba(240, 255, 0, 0.04);
+  box-shadow: 0 0 0 3px rgba(240, 255, 0, 0.08);
 }
 
 .cta-arrow {

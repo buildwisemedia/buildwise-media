@@ -1,0 +1,52 @@
+---
+// MechOperate — D3 archetype (Process Flow, sequential)
+// 02 OPERATE · signals flowing through the system, unattended.
+// Composes from R014b atoms only: A1 filled-vertex, A2 horizontal hairline, A3 verdict-dot.
+// Brain · brand/BWM-Geometric-Vocabulary-Locked.md
+//
+// Visual narrative: 5 sequential stages (capture → qualify → follow-up → attribute → review)
+// connected by hairlines, with floating verdict-dots above each stage suggesting
+// "signal landed" at each step. Final vertex is the largest (terminal verdict).
+//
+// R015 color contract: 100% dark cool + Y2 + Y2-mute. No warm.
+---
+<svg
+  class="mech-illust mech-operate"
+  viewBox="0 0 240 180"
+  role="img"
+  aria-label="Five sequential process stages connected by hairlines — signals flowing capture, qualify, follow-up, attribute, review — running on their own."
+>
+  <!-- A2 horizontal hairlines connecting the 5 vertices -->
+  <line x1="32" y1="100" x2="68" y2="100" stroke="#7A8400" stroke-width="1.5" stroke-linecap="round" />
+  <line x1="76" y1="100" x2="112" y2="100" stroke="#7A8400" stroke-width="1.5" stroke-linecap="round" />
+  <line x1="120" y1="100" x2="156" y2="100" stroke="#7A8400" stroke-width="1.5" stroke-linecap="round" />
+  <line x1="164" y1="100" x2="200" y2="100" stroke="#7A8400" stroke-width="1.5" stroke-linecap="round" />
+
+  <!-- 4 mid-flow vertices (A1) -->
+  <circle cx="28" cy="100" r="5" fill="#F0FF00" />
+  <circle cx="72" cy="100" r="5" fill="#F0FF00" />
+  <circle cx="116" cy="100" r="5" fill="#F0FF00" />
+  <circle cx="160" cy="100" r="5" fill="#F0FF00" />
+
+  <!-- Terminal vertex — slightly larger, marks resolution -->
+  <circle cx="208" cy="100" r="7" fill="#F0FF00" />
+  <!-- Subtle Y2-mute ring around terminal — verdict signal -->
+  <circle cx="208" cy="100" r="11" fill="none" stroke="#7A8400" stroke-width="1.2" opacity="0.6" />
+
+  <!-- Floating verdict-dots above stages — "signals landing" -->
+  <circle cx="28" cy="60" r="2.5" fill="#F0FF00" />
+  <circle cx="72" cy="48" r="2.5" fill="#F0FF00" />
+  <circle cx="116" cy="56" r="2.5" fill="#F0FF00" />
+  <circle cx="160" cy="50" r="2.5" fill="#F0FF00" />
+  <circle cx="208" cy="40" r="3" fill="#F0FF00" />
+
+  <!-- Hairlines from stage vertices up to floating signals (signal-routed) -->
+  <line x1="28" y1="92" x2="28" y2="66" stroke="#7A8400" stroke-width="1.2" stroke-linecap="round" opacity="0.55" />
+  <line x1="72" y1="92" x2="72" y2="54" stroke="#7A8400" stroke-width="1.2" stroke-linecap="round" opacity="0.55" />
+  <line x1="116" y1="92" x2="116" y2="62" stroke="#7A8400" stroke-width="1.2" stroke-linecap="round" opacity="0.55" />
+  <line x1="160" y1="92" x2="160" y2="56" stroke="#7A8400" stroke-width="1.2" stroke-linecap="round" opacity="0.55" />
+  <line x1="208" y1="89" x2="208" y2="46" stroke="#7A8400" stroke-width="1.2" stroke-linecap="round" opacity="0.55" />
+
+  <!-- Subtle baseline hairline (process ground line) -->
+  <line x1="20" y1="140" x2="220" y2="140" stroke="#7A8400" stroke-width="1" stroke-linecap="round" opacity="0.35" />
+</svg>

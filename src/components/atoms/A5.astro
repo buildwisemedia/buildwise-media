@@ -1,0 +1,44 @@
+---
+// A5 — 90° hairline. Y2-mute #7A8400 orthogonal stroke.
+// Canonical R014b primitive · brand/BWM-Geometric-Vocabulary-Locked.md
+// Use for: section transitions (full-width horizontal rules), D2 architecture-grid spines,
+// structural icon strokes. Restricted to orthogonal contexts — forbidden in
+// flowing/methodology diagrams (D1 cycle, D3 sequential — those stay A2 diagonal).
+interface Props {
+  length?: number;
+  stroke?: number;
+  orientation?: 'horizontal' | 'vertical';
+  width?: string;
+  class?: string;
+}
+const {
+  length = 120,
+  stroke = 1.6,
+  orientation = 'horizontal',
+  width,
+  class: cls = '',
+} = Astro.props;
+
+const isH = orientation === 'horizontal';
+const w = isH ? length : stroke;
+const h = isH ? stroke : length;
+---
+<svg
+  class={`atom atom-a5 ${cls}`}
+  width={width ?? w}
+  height={h}
+  viewBox={`0 0 ${w} ${h}`}
+  preserveAspectRatio={width ? 'none' : 'xMidYMid meet'}
+  role="presentation"
+  aria-hidden="true"
+>
+  <line
+    x1={isH ? 0 : w / 2}
+    y1={isH ? h / 2 : 0}
+    x2={isH ? w : w / 2}
+    y2={isH ? h / 2 : h}
+    stroke="#7A8400"
+    stroke-width={stroke}
+    stroke-linecap="round"
+  />
+</svg>

@@ -7,6 +7,8 @@
 //   keyword: 'time' | 'peace' | 'freedom' | 'life' | 'calm'
 //   subhead: string  (2-3 sentence chain-stage anchor — see ~/.claude/plans/mo-money-build-brief.md §B)
 
+import A5 from '../atoms/A5.astro';
+
 interface Props {
   keyword: 'time' | 'peace' | 'freedom' | 'life' | 'calm';
   subhead: string;
@@ -36,6 +38,7 @@ const { keyword, subhead } = Astro.props;
         <a href="#mechanism" class="cta-ghost" data-cta-source={`mo-${keyword}-hero-secondary`}>See the System</a>
       </div>
       <p class="mo-icp mono">For service businesses only.</p>
+      <div class="mo-hero-close" aria-hidden="true"><A5 length={160} stroke={1.6} /></div>
     </div>
   </div>
 </section>
@@ -68,6 +71,12 @@ const { keyword, subhead } = Astro.props;
 }
 
 .mo-hero-text { display: flex; flex-direction: column; gap: 32px; max-width: 1240px; }
+
+/* A5 90-hairline section-close rule under ICP tag (R014b R014b R014b vocabulary) */
+.mo-hero-close {
+  margin-top: 12px;
+  line-height: 0;
+}
 
 /* THE HEADLINE — port of concept.html .headline (lines 240-279) */
 .mo-headline {

@@ -1,0 +1,23 @@
+---
+// A4 — Hollow vertex. Y2-mute #7A8400 outline only.
+// Canonical R014b primitive · brand/BWM-Geometric-Vocabulary-Locked.md
+// Use for: absent-state nodes, open-invitation markers, section-open corner anchors,
+// comparison diagrams (paired with A1 = present).
+// Stroke weight: 1.5-1.8 canonical; scale per size context.
+interface Props {
+  size?: number;
+  stroke?: number;
+  class?: string;
+}
+const { size = 12, stroke = 1.6, class: cls = '' } = Astro.props;
+---
+<svg
+  class={`atom atom-a4 ${cls}`}
+  width={size}
+  height={size}
+  viewBox="0 0 24 24"
+  role="presentation"
+  aria-hidden="true"
+>
+  <circle cx="12" cy="12" r={10 - stroke / 2} fill="none" stroke="#7A8400" stroke-width={stroke} />
+</svg>
