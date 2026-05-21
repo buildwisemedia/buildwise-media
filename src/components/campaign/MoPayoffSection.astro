@@ -56,8 +56,8 @@ const COPY: Record<Props['keyword'], { h2: string; body: string; chainStage: str
 
 // PHOTOS_AVAILABLE: keywords whose payoff photo file ships in /public/payoff/.
 // Flip a keyword into this list AFTER its image lands + clears R015 color gate.
-// Empty by default — keeps the slot hidden until the photo is real.
-const PHOTOS_AVAILABLE: ReadonlyArray<Props['keyword']> = [];
+// All 5 generated 2026-05-20 via codex exec, R015 pass (≥91.9% dark_cool, 0% warm).
+const PHOTOS_AVAILABLE: ReadonlyArray<Props['keyword']> = ['peace', 'time', 'freedom', 'life', 'calm'];
 
 const { h2, body, chainStage } = COPY[keyword];
 const photoAlt = PHOTO_ALT[keyword];
