@@ -67,26 +67,67 @@
     </figure>
 
     <!-- 4 milestone tiles below the curve — what each marker actually means -->
+    <!-- Iteration 3: each card gets a R018b/c atmospheric thumbnail that fades in on hover (R017 user-input state) -->
     <ol class="milestone-list reveal" role="list">
       <li class="milestone-card">
-        <span class="milestone-num mono">6 MO</span>
-        <h3 class="card-title">AI video at social scale</h3>
-        <p class="card-body">Automated creative testing at 10–100× your current throughput. Every winning concept compounds the next.</p>
+        <img
+          class="milestone-photo"
+          src="/images/bwm-services-atmospheric-v1.webp"
+          alt=""
+          aria-hidden="true"
+          loading="lazy"
+          decoding="async"
+        />
+        <div class="milestone-content">
+          <span class="milestone-num mono">6 MO</span>
+          <h3 class="card-title">AI video at social scale</h3>
+          <p class="card-body">Automated creative testing at 10–100× your current throughput. Every winning concept compounds the next.</p>
+        </div>
       </li>
       <li class="milestone-card">
-        <span class="milestone-num mono">12 MO</span>
-        <h3 class="card-title">Autonomous workflows running 8+ hours</h3>
-        <p class="card-body">Our AI system handles long-running operations end-to-end — uninterrupted, audited, with human signoff at the gates.</p>
+        <img
+          class="milestone-photo"
+          src="/images/bwm-results-editorial-v1.webp"
+          alt=""
+          aria-hidden="true"
+          loading="lazy"
+          decoding="async"
+        />
+        <div class="milestone-content">
+          <span class="milestone-num mono">12 MO</span>
+          <h3 class="card-title">Autonomous workflows running 8+ hours</h3>
+          <p class="card-body">Our AI system handles long-running operations end-to-end — uninterrupted, audited, with human signoff at the gates.</p>
+        </div>
       </li>
       <li class="milestone-card">
-        <span class="milestone-num mono">24 MO</span>
-        <h3 class="card-title">Self-improving capability</h3>
-        <p class="card-body">The system gets better without us touching it. Your business compounds while you keep running operations.</p>
+        <img
+          class="milestone-photo"
+          src="/images/bwm-proof-still-life-v1.webp"
+          alt=""
+          aria-hidden="true"
+          loading="lazy"
+          decoding="async"
+        />
+        <div class="milestone-content">
+          <span class="milestone-num mono">24 MO</span>
+          <h3 class="card-title">Self-improving capability</h3>
+          <p class="card-body">The system gets better without us touching it. Your business compounds while you keep running operations.</p>
+        </div>
       </li>
       <li class="milestone-card">
-        <span class="milestone-num mono">36 MO</span>
-        <h3 class="card-title">Capability beyond what anyone can predict</h3>
-        <p class="card-body">Whatever the frontier ships in 2029 lands in your business the same week. No re-platforming. No new contract.</p>
+        <img
+          class="milestone-photo"
+          src="/images/exploded-triangle-v1.svg"
+          alt=""
+          aria-hidden="true"
+          loading="lazy"
+          decoding="async"
+        />
+        <div class="milestone-content">
+          <span class="milestone-num mono">36 MO</span>
+          <h3 class="card-title">Capability beyond what anyone can predict</h3>
+          <p class="card-body">Whatever the frontier ships in 2029 lands in your business the same week. No re-platforming. No new contract.</p>
+        </div>
       </li>
     </ol>
 
@@ -123,6 +164,7 @@
   margin-bottom: 48px;
 }
 .milestone-card {
+  position: relative;
   background: var(--bg-card);
   border: 1px solid var(--rule);
   border-radius: 2px;
@@ -131,9 +173,40 @@
   flex-direction: column;
   gap: 12px;
   transition: border-color 220ms ease;
+  overflow: hidden;
+  min-height: 240px;
 }
 .milestone-card:hover {
   border-color: var(--y2);
+}
+.milestone-photo {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0;
+  z-index: 0;
+  pointer-events: none;
+  transition: opacity 320ms ease;
+  mask-image: linear-gradient(to bottom, rgba(0,0,0,0.6) 0%, transparent 70%);
+  -webkit-mask-image: linear-gradient(to bottom, rgba(0,0,0,0.6) 0%, transparent 70%);
+}
+.milestone-card:hover .milestone-photo,
+.milestone-card:focus-within .milestone-photo {
+  opacity: 0.32;
+}
+.milestone-content {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+@media (prefers-reduced-motion: reduce) {
+  .milestone-photo { transition: none; }
+  .milestone-card:hover .milestone-photo,
+  .milestone-card:focus-within .milestone-photo { opacity: 0.2; }
 }
 .milestone-num {
   font-family: var(--mono);

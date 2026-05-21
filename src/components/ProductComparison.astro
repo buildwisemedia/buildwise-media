@@ -234,6 +234,16 @@ function cellClass(val: string, highlight: boolean | undefined, column: 'pilot' 
 
       <!-- Ascend Pilot — Y1 tier-encoding -->
       <a href="/services/ascend#pilot" class="card pc-card pc-card--pilot" role="listitem" aria-label="Ascend Pilot tier details">
+        <figure class="pc-card-photo">
+          <img
+            src="/images/bwm-audit-editorial-v1.webp"
+            alt="An overhead documentary still of an owner mid-audit with a single-page dashboard in hand — the quick-decision moment of a 45-day proof sprint."
+            width="1600"
+            height="900"
+            loading="lazy"
+            decoding="async"
+          />
+        </figure>
         <p class="pc-tier-tag pc-tier-tag--y1">Tier 1 · Entry</p>
         <h3 class="h-sub pc-card-name">Ascend Pilot</h3>
         <div class="pc-price-num pc-price-num--y1">
@@ -246,6 +256,16 @@ function cellClass(val: string, highlight: boolean | undefined, column: 'pilot' 
       <!-- Ascend — center, Y2 fill emphasis + MOST CHOSEN badge -->
       <a href="/services/ascend" class="card pc-card pc-card--ascend" role="listitem" aria-label="Ascend tier details (most chosen)">
         <span class="pc-most-chosen" aria-hidden="true">Most Chosen</span>
+        <figure class="pc-card-photo">
+          <img
+            src="/images/bwm-about-environmental-cinematic-v1.webp"
+            alt="A cool cinematic interior of a service-business showroom in calm operating rhythm — the day the owner stopped being the bottleneck."
+            width="1600"
+            height="900"
+            loading="lazy"
+            decoding="async"
+          />
+        </figure>
         <p class="pc-tier-tag pc-tier-tag--y2-fill">Tier 2 · Main Product</p>
         <h3 class="h-sub pc-card-name">{ascend.name}</h3>
         <div class="pc-price-num pc-price-num--y2">
@@ -259,6 +279,16 @@ function cellClass(val: string, highlight: boolean | undefined, column: 'pilot' 
 
       <!-- Ascend Pro -->
       <a href="/services/ascend#pro" class="card pc-card pc-card--pro" role="listitem" aria-label="Ascend Pro tier details">
+        <figure class="pc-card-photo">
+          <img
+            src="/images/bwm-team-editorial-v1.webp"
+            alt="A premium editorial still of an owner-led team at a flagship location — the category-of-one build for the dominant brand in its territory."
+            width="1600"
+            height="900"
+            loading="lazy"
+            decoding="async"
+          />
+        </figure>
         <p class="pc-tier-tag pc-tier-tag--y2">Tier 3 · Top · 2/territory</p>
         <h3 class="h-sub pc-card-name">{pro.name}</h3>
         <div class="pc-price-num pc-price-num--y2">
@@ -391,11 +421,52 @@ function cellClass(val: string, highlight: boolean | undefined, column: 'pilot' 
   }
 
   .pc-card {
-    display: block;
+    display: flex;
+    flex-direction: column;
     text-decoration: none;
-    padding: clamp(24px, 3vw, 36px);
+    padding: 0;
     text-align: center;
     transition: border-color 180ms ease, background-color 180ms ease;
+    overflow: hidden;
+  }
+
+  /* L5 outcome photo — sits on top of tier card */
+  .pc-card-photo {
+    margin: 0 0 clamp(20px, 2.5vw, 32px);
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    overflow: hidden;
+    background: var(--bg);
+  }
+  .pc-card-photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 480ms ease, filter 320ms ease;
+    filter: saturate(0.92);
+  }
+  .pc-card:hover .pc-card-photo img {
+    transform: scale(1.04);
+    filter: saturate(1);
+  }
+
+  /* Push remaining card content back to the previous padding rhythm */
+  .pc-tier-tag,
+  .pc-card-name,
+  .pc-price-num,
+  .pc-price-label,
+  .pc-card-cta {
+    padding-inline: clamp(24px, 3vw, 36px);
+  }
+  .pc-card-cta {
+    padding-bottom: clamp(24px, 3vw, 36px);
+    margin-top: auto;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .pc-card-photo img { transition: none; }
+    .pc-card:hover .pc-card-photo img { transform: none; }
   }
 
   /* Pilot card — Y1 tier-encoding hint */
