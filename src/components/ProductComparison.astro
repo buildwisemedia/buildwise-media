@@ -206,9 +206,11 @@ const categories = [
   },
 ];
 
-// Helper: render a cell value — checkmarks get Y2 treatment, dashes get ink-faint
-function cellClass(val: string, highlight: boolean | undefined): string {
-  if (val === "✓" || highlight) return "pc-check";
+// Helper: render a cell value — checkmark color depends on column (Y1 = Pilot tier-encoding, Y2 = Ascend/Pro)
+// Path B (LOCKED 2026-05-20): --y1 admitted on tier-encoding data viz only; scope is comparison-chart cells + tier markers
+function cellClass(val: string, highlight: boolean | undefined, column: 'pilot' | 'ascend' | 'pro'): string {
+  const isPositive = val === "✓" || highlight;
+  if (isPositive) return column === 'pilot' ? "pc-check pc-check--y1" : "pc-check";
   if (val === "—") return "pc-dash";
   return "pc-data";
 }
@@ -230,20 +232,21 @@ function cellClass(val: string, highlight: boolean | undefined): string {
     <!-- 3 product cards above -->
     <div class="pc-cards" role="list">
 
-      <!-- Ascend Pilot -->
+      <!-- Ascend Pilot — Y1 tier-encoding -->
       <a href="/services/ascend#pilot" class="card pc-card pc-card--pilot" role="listitem" aria-label="Ascend Pilot tier details">
-        <p class="pc-tier-tag">Tier 1 · Entry</p>
+        <p class="pc-tier-tag pc-tier-tag--y1">Tier 1 · Entry</p>
         <h3 class="h-sub pc-card-name">Ascend Pilot</h3>
-        <div class="pc-price-num">
+        <div class="pc-price-num pc-price-num--y1">
           ${pilot.price.oneshot.toLocaleString()}
         </div>
         <p class="pc-price-label">one-time · 45-day proof sprint</p>
-        <p class="pc-card-cta">→ see full product</p>
+        <p class="pc-card-cta pc-card-cta--y1">→ see full product</p>
       </a>
 
-      <!-- Ascend — center, Y2 border emphasis -->
-      <a href="/services/ascend" class="card pc-card pc-card--ascend" role="listitem" aria-label="Ascend tier details">
-        <p class="pc-tier-tag pc-tier-tag--y2">Tier 2 · Main Product</p>
+      <!-- Ascend — center, Y2 fill emphasis + MOST CHOSEN badge -->
+      <a href="/services/ascend" class="card pc-card pc-card--ascend" role="listitem" aria-label="Ascend tier details (most chosen)">
+        <span class="pc-most-chosen" aria-hidden="true">Most Chosen</span>
+        <p class="pc-tier-tag pc-tier-tag--y2-fill">Tier 2 · Main Product</p>
         <h3 class="h-sub pc-card-name">{ascend.name}</h3>
         <div class="pc-price-num pc-price-num--y2">
           ${ascend.price.recurring.toLocaleString()}<span class="pc-price-mo">/mo</span>
@@ -275,7 +278,7 @@ function cellClass(val: string, highlight: boolean | undefined): string {
         <thead>
           <tr>
             <th scope="col" class="pc-th pc-th--feature">Feature</th>
-            <th scope="col" class="pc-th">Ascend Pilot</th>
+            <th scope="col" class="pc-th pc-th--pilot">Ascend Pilot</th>
             <th scope="col" class="pc-th pc-th--ascend">Ascend</th>
             <th scope="col" class="pc-th">Ascend Pro</th>
           </tr>
@@ -291,13 +294,13 @@ function cellClass(val: string, highlight: boolean | undefined): string {
               {cat.rows.map((row) => (
                 <tr class="pc-row" role="row">
                   <td class="pc-td pc-td--feature" role="rowheader">{row.feature}</td>
-                  <td class={`pc-td pc-td--center ${cellClass(row.pilot, row.pilotHighlight)}`} role="cell">
+                  <td class={`pc-td pc-td--center pc-td--pilot ${cellClass(row.pilot, row.pilotHighlight, 'pilot')}`} role="cell">
                     {row.pilot}
                   </td>
-                  <td class={`pc-td pc-td--center pc-td--ascend ${cellClass(row.ascend, row.ascendHighlight)}`} role="cell">
+                  <td class={`pc-td pc-td--center pc-td--ascend ${cellClass(row.ascend, row.ascendHighlight, 'ascend')}`} role="cell">
                     {row.ascend}
                   </td>
-                  <td class={`pc-td pc-td--center ${cellClass(row.pro, row.proHighlight)}`} role="cell">
+                  <td class={`pc-td pc-td--center ${cellClass(row.pro, row.proHighlight, 'pro')}`} role="cell">
                     {row.pro}
                   </td>
                 </tr>
@@ -315,7 +318,7 @@ function cellClass(val: string, highlight: boolean | undefined): string {
         {
           name: "Ascend Pilot",
           tag: "Tier 1 · Entry",
-          tagY2: false,
+          palette: 'y1' as const,
           price: `$${pilot.price.oneshot.toLocaleString()} one-time`,
           href: "/services/ascend#pilot",
           rows: categories.flatMap(c => c.rows.map(r => ({ feature: r.feature, value: r.pilot, highlight: r.pilotHighlight }))),
@@ -323,7 +326,7 @@ function cellClass(val: string, highlight: boolean | undefined): string {
         {
           name: ascend.name,
           tag: "Tier 2 · Main Product",
-          tagY2: true,
+          palette: 'y2-fill' as const,
           price: `$${ascend.price.recurring.toLocaleString()}/mo + $${ascend.price.oneshot.toLocaleString()} install`,
           href: "/services/ascend",
           rows: categories.flatMap(c => c.rows.map(r => ({ feature: r.feature, value: r.ascend, highlight: r.ascendHighlight }))),
@@ -331,25 +334,30 @@ function cellClass(val: string, highlight: boolean | undefined): string {
         {
           name: pro.name,
           tag: "Tier 3 · Top",
-          tagY2: true,
+          palette: 'y2-border' as const,
           price: `$${pro.price.recurring.toLocaleString()}/mo + $${pro.price.oneshot.toLocaleString()} install`,
           href: "/services/ascend#pro",
           rows: categories.flatMap(c => c.rows.map(r => ({ feature: r.feature, value: r.pro, highlight: r.proHighlight }))),
         },
       ].map((tier) => (
-        <div class={`card pc-mobile-tier ${tier.tagY2 ? 'pc-mobile-tier--y2' : ''}`}>
-          <p class={`pc-tier-tag ${tier.tagY2 ? 'pc-tier-tag--y2' : ''}`}>{tier.tag}</p>
+        <div class={`card pc-mobile-tier pc-mobile-tier--${tier.palette}`}>
+          {tier.palette === 'y2-fill' && (
+            <span class="pc-most-chosen pc-most-chosen--mobile" aria-hidden="true">Most Chosen</span>
+          )}
+          <p class={`pc-tier-tag ${tier.palette === 'y1' ? 'pc-tier-tag--y1' : tier.palette === 'y2-fill' ? 'pc-tier-tag--y2-fill' : 'pc-tier-tag--y2'}`}>{tier.tag}</p>
           <h3 class="h-sub pc-card-name">{tier.name}</h3>
-          <p class="pc-mobile-price">{tier.price}</p>
+          <p class={`pc-mobile-price ${tier.palette === 'y1' ? 'pc-mobile-price--y1' : ''}`}>{tier.price}</p>
           <ul class="pc-mobile-list">
-            {tier.rows.filter(r => r.value !== "—").map((row) => (
-              <li class="pc-mobile-item">
-                <span class={row.highlight || row.value === "✓" ? "pc-check" : "pc-data"}>
-                  {row.value === "✓" ? "✓ " : ""}
-                </span>
-                <span class="pc-mobile-feat">{row.feature}</span>
-              </li>
-            ))}
+            {tier.rows.filter(r => r.value !== "—").map((row) => {
+              const isPositive = row.highlight || row.value === "✓";
+              const checkClass = isPositive ? (tier.palette === 'y1' ? "pc-check pc-check--y1" : "pc-check") : "pc-data";
+              return (
+                <li class="pc-mobile-item">
+                  <span class={checkClass}>{row.value === "✓" ? "✓ " : ""}</span>
+                  <span class="pc-mobile-feat">{row.feature}</span>
+                </li>
+              );
+            })}
           </ul>
           <a href={tier.href} class="cta-ghost pc-mobile-cta">See full product <span class="cta-arrow">→</span></a>
         </div>
@@ -390,14 +398,45 @@ function cellClass(val: string, highlight: boolean | undefined): string {
     transition: border-color 180ms ease, background-color 180ms ease;
   }
 
+  /* Pilot card — Y1 tier-encoding hint */
+  .pc-card--pilot {
+    border-color: rgba(184, 255, 58, 0.24);
+  }
+  .pc-card--pilot:hover {
+    background: rgba(184, 255, 58, 0.02);
+    border-color: var(--y1);
+  }
+
+  /* Ascend card — Y2 emphasis + elevated -8px + MOST CHOSEN badge anchor */
   .pc-card--ascend {
+    position: relative;
     border-color: var(--y2);
     border-width: 2px;
     background: rgba(240, 255, 0, 0.02);
+    transform: translateY(-8px);
   }
   .pc-card--ascend:hover {
     background: rgba(240, 255, 0, 0.05);
     border-color: var(--y2-bright);
+  }
+
+  /* MOST CHOSEN badge — small Y2 pill on top of Ascend card */
+  .pc-most-chosen {
+    position: absolute;
+    top: -12px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--y2);
+    color: var(--bg);
+    font-family: var(--mono);
+    font-size: 9.5px;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    padding: 5px 12px;
+    border-radius: 2px;
+    white-space: nowrap;
+    z-index: 2;
   }
 
   .pc-tier-tag {
@@ -413,9 +452,22 @@ function cellClass(val: string, highlight: boolean | undefined): string {
     border: 1px solid var(--rule-bright);
     border-radius: 2px;
   }
+  /* Pilot tier-tag — Y1 outline */
+  .pc-tier-tag--y1 {
+    color: var(--y1);
+    border-color: rgba(184, 255, 58, 0.32);
+  }
+  /* Pro tier-tag — Y2 outline (existing pattern) */
   .pc-tier-tag--y2 {
     color: var(--y2);
     border-color: rgba(240, 255, 0, 0.32);
+  }
+  /* Ascend tier-tag — Y2 solid fill (strongest emphasis) */
+  .pc-tier-tag--y2-fill {
+    background: var(--y2);
+    color: var(--bg);
+    border-color: var(--y2);
+    font-weight: 700;
   }
 
   .pc-card-name {
@@ -435,6 +487,7 @@ function cellClass(val: string, highlight: boolean | undefined): string {
     margin-bottom: 10px;
   }
   .pc-price-num--y2 { color: var(--y2); }
+  .pc-price-num--y1 { color: var(--y1); }
 
   .pc-price-mo {
     font-size: 0.45em;
@@ -462,7 +515,9 @@ function cellClass(val: string, highlight: boolean | undefined): string {
     transition: color 180ms ease;
   }
   .pc-card-cta--y2 { color: var(--y2); }
+  .pc-card-cta--y1 { color: var(--y1); }
   .pc-card:hover .pc-card-cta { color: var(--y2); }
+  .pc-card--pilot:hover .pc-card-cta { color: var(--y1); }
 
   /* ── Table (desktop) ── */
   .pc-table-wrap {
@@ -489,19 +544,36 @@ function cellClass(val: string, highlight: boolean | undefined): string {
     text-align: left;
     white-space: nowrap;
   }
+  .pc-th--pilot { color: var(--y1); }
   .pc-th--ascend { color: var(--y2); }
   .pc-th--feature { width: 36%; }
 
-  /* Category header rows */
+  /* Category header rows — Y2 chapter separator with dot indicator */
   .pc-cat-row { background: rgba(240, 255, 0, 0.04); }
-  .pc-cat-cell { padding: 10px 16px; }
+  .pc-cat-cell {
+    padding: 12px 16px;
+    border-top: 1px solid var(--rule-bright);
+  }
   .pc-cat-label {
+    position: relative;
+    padding-left: 16px;
     font-family: var(--mono);
     font-size: 10px;
     font-weight: 500;
     letter-spacing: 0.14em;
     text-transform: uppercase;
-    color: var(--ink-dim);
+    color: var(--ink);
+  }
+  .pc-cat-label::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--y2);
   }
 
   .pc-row { transition: background 100ms ease; }
@@ -517,12 +589,18 @@ function cellClass(val: string, highlight: boolean | undefined): string {
   }
   .pc-td--center { text-align: center; }
   .pc-td--feature { color: var(--ink-dim); }
+  /* Pilot column subtle Y1 fill (tier-encoding) */
+  .pc-td--pilot { background: rgba(184, 255, 58, 0.02); }
   /* Ascend column subtle Y2 fill */
   .pc-td--ascend { background: rgba(240, 255, 0, 0.03); }
 
   /* Cell value classes */
   :global(.pc-check) {
     color: var(--y2);
+    font-weight: 700;
+  }
+  :global(.pc-check--y1) {
+    color: var(--y1);
     font-weight: 700;
   }
   :global(.pc-dash) {
@@ -539,10 +617,28 @@ function cellClass(val: string, highlight: boolean | undefined): string {
     gap: 20px;
   }
 
-  .pc-mobile-tier { padding: 24px; }
-  .pc-mobile-tier--y2 {
+  .pc-mobile-tier {
+    position: relative;
+    padding: 24px;
+  }
+  /* Mobile palette variants — match desktop tier-encoding */
+  .pc-mobile-tier--y1 {
+    border-color: rgba(184, 255, 58, 0.32);
+  }
+  .pc-mobile-tier--y2-fill {
     border-color: var(--y2);
     border-width: 2px;
+  }
+  .pc-mobile-tier--y2-border {
+    border-color: var(--y2);
+    border-width: 2px;
+  }
+  .pc-most-chosen--mobile {
+    /* Override desktop center-anchor — mobile = top-right corner pill */
+    top: 12px;
+    left: auto;
+    right: 12px;
+    transform: none;
   }
 
   .pc-mobile-price {
@@ -553,6 +649,7 @@ function cellClass(val: string, highlight: boolean | undefined): string {
     color: var(--y2);
     margin: 12px 0 20px;
   }
+  .pc-mobile-price--y1 { color: var(--y1); }
 
   .pc-mobile-list {
     list-style: none;
