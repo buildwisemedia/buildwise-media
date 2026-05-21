@@ -5,6 +5,10 @@
 // No transitional scene-photos, no radial diagrams, no geo-hardcoding
 // Pricing-visible RATIFIED 2026-05-20 (canonical.json source of truth)
 
+// SSR opt-in: L8 reads Astro.locals.metro (populated by middleware from cf-ipcity).
+// Unknown / missing → generic copy; known metro → personalized H2 + first mechanism.
+export const prerender = false;
+
 import BaseLayout from '../layouts/BaseLayout.astro';
 import canonical from '../data/canonical.json';
 
@@ -45,12 +49,20 @@ const heroVariant = heroVariants[arm];
 const title = `${heroVariant.subhead} | Buildwise Media`;
 const description = heroVariant.subhead;
 
-// L8 — Category-of-one mechanism set (replaces rejected Atlanta-specific section)
-// No geo-hardcoding: copy speaks to "your market" universally
+// L8 — Category-of-one mechanism set
+// Geo-personalization gate: Astro.locals.metro.known === true → metro-specific copy;
+// otherwise → generic "your market" copy. Strict-match gate naturally routes crawlers
+// (no cf-ipcity on most bots) to the SEO-canonical generic variant.
+const metro = Astro.locals.metro ?? { known: false, name: null, slug: null };
+
 const dominanceMechanisms = [
   {
-    name: 'AI-search citation rank',
-    body: 'When buyers ask AI assistants who the best in your category is near them, the answer points at you. We train the underlying signals — schema, citations, structured proof — so the AI tools cite your business with confidence.',
+    name: metro.known && metro.name
+      ? `AI-search citation rank in ${metro.name}`
+      : 'AI-search citation rank',
+    body: metro.known && metro.name
+      ? `When buyers ask AI assistants who the best in your category is in ${metro.name}, the answer points at you. We train the underlying signals — schema, citations, structured proof — so the AI tools cite your business with confidence.`
+      : 'When buyers ask AI assistants who the best in your category is near them, the answer points at you. We train the underlying signals — schema, citations, structured proof — so the AI tools cite your business with confidence.',
   },
   {
     name: 'Local-search dominance',
@@ -297,16 +309,22 @@ const faqSchema = {
   <AIStorySection />
 
   <!-- ============================================ -->
-  <!-- L8 · Category-of-one (generic, non-geo)       -->
-  <!-- Replaces rejected AtlantaMap geo-broadcast    -->
+  <!-- L8 · Category-of-one                          -->
+  <!-- Geo-personalized when Astro.locals.metro.known -->
   <!-- ============================================ -->
   <section class="dominance-section" aria-labelledby="dominance-title">
     <div class="container dominance-grid">
       <header class="dominance-head">
         <p class="section-tag">Category of one</p>
-        <h2 id="dominance-title" class="h-section">
-          Become the most-chosen name in your market.
-        </h2>
+        {metro.known && metro.name ? (
+          <h2 id="dominance-title" class="h-section">
+            Become the most-chosen name in {metro.name}.
+          </h2>
+        ) : (
+          <h2 id="dominance-title" class="h-section">
+            Become the most-chosen name in your market.
+          </h2>
+        )}
         <p class="lede">
           Local dominance is not won on one channel. It is won when every signal — AI search, local search, reviews, and neighborhood presence — points to the same business.
         </p>

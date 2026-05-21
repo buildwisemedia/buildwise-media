@@ -1,9 +1,13 @@
 // @ts-check
 import { defineConfig } from 'astro/config';
+import cloudflare from '@astrojs/cloudflare';
 
 export default defineConfig({
   site: 'https://buildwisemedia.com',
   output: 'static',
+  adapter: cloudflare({
+    imageService: 'compile',
+  }),
   build: {
     assets: 'assets',
     inlineStylesheets: 'always',

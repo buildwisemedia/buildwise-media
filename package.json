@@ -10,6 +10,7 @@
     "sync-canonical": "cp ../bwm-strategic-roadmap/data/canonical.json src/data/canonical.json && echo 'canonical.json synced from The Book — commit + push the change so CF Pages builds against the committed file (NOT a live sibling-repo copy)'"
   },
   "dependencies": {
+    "@astrojs/cloudflare": "^12.6.13",
     "astro": "^5.17.1"
   }
 }
