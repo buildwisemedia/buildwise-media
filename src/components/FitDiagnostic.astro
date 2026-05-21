@@ -1263,25 +1263,17 @@
 <style is:global>
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-    :root {
-      --bg: #050507;
-      --bg-lift: #0a0a0d;
-      --bg-card: #0d0d11;
-      --bg-elev: #15151a;
-      --bg-deep: #1a1a22;
-      --rule: rgba(240, 255, 0, 0.10);
-      --rule-bright: rgba(240, 255, 0, 0.32);
-      --rule-bright: rgba(240, 255, 0, 0.55);
-      --y2: #F0FF00;
+    /* Diagnostic-specific tokens scoped to #diagnostic so they don't leak.
+       Flagship global.css provides the canonical --bg / --y2 / --ink / --rule tokens
+       (--y2: #F0FF00). The original ported :root block redefined --y2 to #c0c0a8
+       which broke the MoHero brand accent — root-cause fix 2026-05-20. */
+    #diagnostic {
+      --bg-lift: var(--bg-elev);
+      --bg-deep: #050505;
       --y2-glow: rgba(240, 255, 0, 0.45);
       --y2-dim: rgba(240, 255, 0, 0.62);
       --y2-shade: rgba(240, 255, 0, 0.08);
-      --ink: #f4f4f6;
-      --ink-dim: #9a9aa3;
-      --ink-faint: #5e5e66;
-      --ink-dimmest: #3a3a40;
-      --y2: #c0c0a8;
-      --ink-dim: #6c6c75;
+      --ink-dimmest: var(--ink-faint);
     }
 
     @media (prefers-reduced-motion: no-preference) {
