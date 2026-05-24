@@ -2,8 +2,8 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import QualifierForm from '../components/QualifierForm.astro';
 
-const title = "Book a Discovery Call — Buildwise Media";
-const description = "Build your Market Leak Map, then book a discovery call if Ascend looks like a fit.";
+const title = "Build Your Market Dominance Dossier — Buildwise Media";
+const description = "Start the Market Dominance Dossier, then book a discovery call if Ascend looks like a fit.";
 
 const breadcrumb = {
   '@context': 'https://schema.org',
@@ -20,27 +20,42 @@ const breadcrumb = {
     <div class="container book-grid">
 
       <aside class="book-context">
-        <p class="eyebrow">Fit diagnostic</p>
+        <p class="eyebrow">Market Dominance Dossier</p>
         <h1 class="h-hero">
-          Build the leak map.<br/>
+          Build the Dossier.<br/>
           Then book the call.
         </h1>
         <p class="hero-sub">
-          The diagnostic names the active market leaks, captures the context, and routes qualified owners into a short discovery call.
+          The diagnostic starts the buyer-side Dossier: where the market leaks, which layer should move first, and whether Ascend has enough room to pay for itself.
         </p>
+
+        <div class="book-image-strip" aria-label="Market Dominance Dossier preview imagery">
+          <figure>
+            <!-- @r020:F2 proof: editorial audit artifact demonstrates the Dossier is concrete -->
+            <img src="/images/bwm-audit-editorial-v1.webp" alt="Printed audit report on a desk with pen annotations and focused task lighting." width="640" height="426" loading="eager" decoding="async" />
+          </figure>
+          <figure>
+            <!-- @r020:F2 proof: weekly operating method rendered as human-machine review -->
+            <img src="/images/bwm-method-editorial-v1.webp" alt="Operator hand annotating a notebook beside a blurred operating dashboard." width="640" height="426" loading="lazy" decoding="async" />
+          </figure>
+          <figure>
+            <!-- @r020:F2 proof: receipt-style artifact supports conservative proof math -->
+            <img src="/images/bwm-receipts-still-life-v1.webp" alt="Close detail of printed proof notes, paper texture, and measurement tools on a dark desk." width="640" height="426" loading="lazy" decoding="async" />
+          </figure>
+        </div>
 
         <ul class="expect-list">
           <li>
             <p class="expect-label mono">What we'll cover</p>
-            <p class="expect-body">Which market leaks are active, where the system would intervene, and what the install timeline looks like for your current operating layer.</p>
+            <p class="expect-body">Which leaks are active, what the first proof sprint should attack, and whether the install timeline fits your current business.</p>
           </li>
           <li>
             <p class="expect-label mono">How long</p>
-            <p class="expect-body">The diagnostic takes about five minutes. The call is short because the map does the setup work first.</p>
+            <p class="expect-body">The diagnostic takes about five minutes. The call is short because the Dossier does the setup work first.</p>
           </li>
           <li>
-            <p class="expect-label mono">No obligation</p>
-            <p class="expect-body">Whether we engage or not, you leave with the failure-mode framing. Use it with us, with another operator, or internally.</p>
+            <p class="expect-label mono">Useful either way</p>
+            <p class="expect-body">Whether we engage or not, you leave with a cleaner read on the revenue system your business needs next.</p>
           </li>
         </ul>
       </aside>
@@ -82,6 +97,24 @@ const breadcrumb = {
       "cal-bg-brand": "#F0FF00",
       "cal-brand-text": "#050507",
     };
+    const metadataKeys = [
+      'booking_event_id',
+      'contact_id',
+      'capi_event_id',
+      'tier_routing',
+      'utm_source',
+      'utm_medium',
+      'utm_campaign',
+      'utm_content',
+      'utm_term',
+      'fbclid',
+      'gclid',
+      'fbc',
+      'fbp',
+      'referrer',
+      'landing_page',
+    ];
+    let bookingCompleteFired = false;
 
     function installCalStub(C, A, L) {
       if (C.Cal && C.Cal.loaded) return;
@@ -113,15 +146,123 @@ const breadcrumb = {
       };
     }
 
+    function getAttribution(extra) {
+      const base = typeof window.__bwmGetAttributionPayload === 'function'
+        ? window.__bwmGetAttributionPayload()
+        : {};
+      return Object.assign({}, base, extra || {});
+    }
+
+    function ensureBookingEventId(value) {
+      if (typeof window.__bwmEnsureBookingEventId === 'function') {
+        return window.__bwmEnsureBookingEventId(value);
+      }
+      return value || '';
+    }
+
+    function compact(object) {
+      const out = {};
+      Object.keys(object || {}).forEach((key) => {
+        const value = object[key];
+        if (value !== undefined && value !== null && String(value) !== '') out[key] = value;
+      });
+      return out;
+    }
+
+    function metadataFrom(payload) {
+      const metadata = {};
+      metadataKeys.forEach((key) => {
+        if (payload[key] !== undefined && payload[key] !== null && String(payload[key]) !== '') {
+          metadata[key] = payload[key];
+        }
+      });
+      return metadata;
+    }
+
+    function bookingPayload(prefill) {
+      const payload = getAttribution(prefill);
+      payload.booking_event_id = ensureBookingEventId(payload.booking_event_id);
+      return payload;
+    }
+
+    function calConfigFrom(payload) {
+      const utms = compact({
+        utm_source: payload.utm_source,
+        utm_medium: payload.utm_medium,
+        utm_campaign: payload.utm_campaign,
+        utm_content: payload.utm_content,
+        utm_term: payload.utm_term,
+      });
+      return Object.assign({
+        layout: "month_view",
+        theme: "dark",
+        name: payload.name || '',
+        email: payload.email || '',
+        metadata: metadataFrom(payload),
+      }, utms);
+    }
+
+    function track(name, payload, opts) {
+      if (typeof window.__bwmTrackEvent === 'function') {
+        window.__bwmTrackEvent(name, payload, opts || {});
+        return;
+      }
+      window.dataLayer = window.dataLayer || [];
+      window.dataLayer.push(Object.assign({ event: name }, payload || {}));
+      if (typeof window.gtag === 'function') {
+        try { window.gtag('event', name, payload || {}); } catch (_) {}
+      }
+    }
+
+    function eventData(event) {
+      return event?.detail?.data || event?.detail || event?.data?.data || event?.data || {};
+    }
+
+    function bookingUidFrom(data) {
+      return data?.booking?.uid || data?.bookingUid || data?.booking_uid || data?.uid || data?.id || '';
+    }
+
+    function fireBookingComplete(event) {
+      if (bookingCompleteFired) return;
+      bookingCompleteFired = true;
+      const current = window.__bwmCurrentBookingPayload || bookingPayload(window.__qualifiedPrefill || {});
+      const data = eventData(event);
+      track('booking_complete', {
+        booking_event_id: current.booking_event_id,
+        capi_event_id: current.capi_event_id || '',
+        contact_id: current.contact_id || '',
+        tier_routing: current.tier_routing || '',
+        form_id: 'fit-diagnostic',
+        cal_booking_uid: bookingUidFrom(data),
+        utm_source: current.utm_source || '',
+        utm_medium: current.utm_medium || '',
+        utm_campaign: current.utm_campaign || '',
+        utm_content: current.utm_content || '',
+      }, { fbqEvent: 'Schedule', eventId: current.booking_event_id });
+    }
+
+    function bindCalSuccess() {
+      try {
+        if (Cal?.ns?.["discovery-call"]) {
+          Cal.ns["discovery-call"]("on", {
+            action: "bookingSuccessful",
+            callback: fireBookingComplete,
+          });
+        }
+      } catch (_) {}
+    }
+
     window.__loadBwmCalendar = function loadBwmCalendar(prefill) {
       const target = document.getElementById('cal-inline');
       if (!target) return;
       target.removeAttribute('hidden');
+      const payload = bookingPayload(prefill || {});
+      window.__bwmCurrentBookingPayload = payload;
       installCalStub(window, embedSrc, "init");
       Cal("init", "discovery-call", { origin });
       Cal.ns["discovery-call"]("inline", {
         elementOrSelector: "#cal-inline",
-        config: Object.assign({ layout: "month_view", theme: "dark" }, prefill || {}),
+        config: calConfigFrom(payload),
         calLink: "bwm/discovery-call",
       });
       Cal.ns["discovery-call"]("ui", {
@@ -131,7 +272,27 @@ const breadcrumb = {
         hideEventTypeDetails: false,
         layout: "month_view",
       });
+      bindCalSuccess();
+      track('booking_calendar_shown', {
+        booking_event_id: payload.booking_event_id,
+        capi_event_id: payload.capi_event_id || '',
+        contact_id: payload.contact_id || '',
+        tier_routing: payload.tier_routing || '',
+        form_id: 'fit-diagnostic',
+        utm_source: payload.utm_source || '',
+        utm_medium: payload.utm_medium || '',
+        utm_campaign: payload.utm_campaign || '',
+        utm_content: payload.utm_content || '',
+      });
     };
+
+    window.addEventListener('message', function (event) {
+      const data = event?.data || {};
+      const action = data?.type || data?.action || data?.event || data?.data?.action || '';
+      if (String(action).toLowerCase().includes('bookingsuccessful')) {
+        fireBookingComplete(event);
+      }
+    });
   })();
 
   // Hide skeleton + fallback CTA when iframe paints
@@ -167,8 +328,8 @@ const breadcrumb = {
 
 <style>
 .book-page {
-  padding-top: clamp(96px, 10vw, 180px);
-  padding-bottom: var(--section-y);
+  padding-top: clamp(88px, 7vw, 128px);
+  padding-bottom: clamp(64px, 8vw, 104px);
 }
 
 /* Scope hero size down on /book — the global .h-hero is sized for the
@@ -185,18 +346,37 @@ const breadcrumb = {
 .book-grid {
   display: grid;
   grid-template-columns: minmax(260px, 0.72fr) minmax(620px, 1.5fr);
-  gap: clamp(36px, 5vw, 64px);
+  gap: clamp(28px, 4vw, 48px);
   align-items: start;
 }
 .book-grid > * { min-width: 0; }
-.book-context { display: flex; flex-direction: column; gap: 24px; position: sticky; top: 100px; }
+.book-context { display: flex; flex-direction: column; gap: 20px; position: sticky; top: 100px; }
 
-.expect-list { list-style: none; display: flex; flex-direction: column; gap: 24px; padding-top: 32px; border-top: 1px solid var(--rule); margin-top: 16px; }
+.book-image-strip {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 8px;
+  margin-top: 2px;
+}
+.book-image-strip figure {
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+  border: 1px solid var(--rule);
+  background: var(--bg-card);
+}
+.book-image-strip img {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+}
+
+.expect-list { list-style: none; display: flex; flex-direction: column; gap: 18px; padding-top: 24px; border-top: 1px solid var(--rule); margin-top: 8px; }
 .expect-list li { display: flex; flex-direction: column; gap: 8px; }
 .expect-label { font-size: 10px; letter-spacing: 0.2em; color: var(--y2); }
 .expect-body { font-size: 15px; font-weight: 300; line-height: 1.6; color: var(--ink-dim); }
 
-.book-embed { width: 100%; min-height: 720px; display: flex; flex-direction: column; gap: 16px; }
+.book-embed { width: 100%; min-height: 640px; display: flex; flex-direction: column; gap: 16px; }
 
 /* Fallback CTA — visible until iframe paints, then JS removes. Gives mobile users
    a tappable path even when the booking embed is still loading. Per EXP-002 telemetry:
@@ -256,13 +436,23 @@ const breadcrumb = {
 }
 @media (max-width: 520px) {
   .book-page {
-    padding-top: 96px;
+    padding-top: 80px;
+    padding-bottom: 64px;
   }
+  .book-grid { gap: 26px; }
 
   .book-page .h-hero {
-    font-size: 38px !important;
+    font-size: 34px !important;
     line-height: 1.03 !important;
     letter-spacing: 0;
+  }
+
+  .book-image-strip {
+    grid-template-columns: 1fr;
+  }
+
+  .book-image-strip figure:nth-child(n+2) {
+    display: none;
   }
 }
 </style>

@@ -17,9 +17,10 @@ const poorFour = [
   </div>
 
   <header class="q-head">
-    <p class="q-eyebrow mono">FIT DIAGNOSTIC · FIVE MINUTES</p>
-    <h2 class="q-heading">Map the leaks before the call.</h2>
-    <p class="q-sub">The goal is a sharper conversation: which gap is costing you, where Ascend would intervene, and whether the numbers justify the next step.</p>
+    <p class="q-eyebrow mono">MARKET DOMINANCE DOSSIER · FIVE MINUTES</p>
+    <h2 class="q-heading">Build the Dossier before the call.</h2>
+    <p class="q-sub">The goal is a useful first map: where revenue leaks now, which Ascend layer should move first, and whether the numbers justify a real conversation.</p>
+    <button type="button" class="q-submit q-mobile-start" data-mobile-next>Continue</button>
   </header>
 
   <div class="q-layout">
@@ -53,7 +54,7 @@ const poorFour = [
 
       <section class="q-step" data-step="2" aria-labelledby="q-step-2">
         <p class="q-step-kicker mono">Step 2 / 5</p>
-        <h3 id="q-step-2" class="q-step-title">Which leaks feel active?</h3>
+        <h3 id="q-step-2" class="q-step-title">Which market leaks feel active?</h3>
         <div class="q-options q-options--grid">
           {poorFour.map((item) => (
             <label class="q-option-card">
@@ -111,7 +112,7 @@ const poorFour = [
 
       <section class="q-step" data-step="5" aria-labelledby="q-step-5">
         <p class="q-step-kicker mono">Step 5 / 5</p>
-        <h3 id="q-step-5" class="q-step-title">Is there enough readiness to talk?</h3>
+        <h3 id="q-step-5" class="q-step-title">Can the system get enough fuel to work?</h3>
         <div class="q-grid">
           <div class="q-row">
             <label class="q-label" for="q-revenue">Operating scale</label>
@@ -157,7 +158,7 @@ const poorFour = [
         <button type="button" class="q-secondary" data-prev hidden>Back</button>
         <button type="button" class="q-submit" data-next>Continue</button>
         <button type="submit" class="q-submit" id="q-submit-btn" hidden>
-          <span class="q-submit-label">Build Market Leak Map</span>
+          <span class="q-submit-label">Build Dossier Preview</span>
           <span class="q-submit-loading" hidden>Building...</span>
         </button>
       </div>
@@ -193,14 +194,14 @@ const poorFour = [
       </dl>
       <div class="q-map-routing">
         <span class="dot cyan" aria-hidden="true"></span>
-        <p>The call gets sharper as this map fills in. Weak-fit traffic exits without wasting a calendar slot.</p>
+        <p>The call gets sharper as this fills in. Weak-fit traffic exits without wasting a calendar slot.</p>
       </div>
     </aside>
   </div>
 </form>
 
 <section id="market-leak-map" class="market-leak-map" hidden aria-live="polite">
-  <p class="q-eyebrow mono">MARKET LEAK MAP · PREVIEW</p>
+  <p class="q-eyebrow mono">MARKET DOMINANCE DOSSIER · PREVIEW</p>
   <h2 class="q-heading">Here is what the call should solve.</h2>
   <div class="map-grid">
     <div>
@@ -216,7 +217,7 @@ const poorFour = [
       <p class="map-value" data-map-readiness>Pending</p>
     </div>
   </div>
-  <p class="map-note">If there is mutual fit, the discovery call uses this map to decide whether Ascend Pilot, Ascend, or Ascend Pro makes sense.</p>
+  <p class="map-note">If there is mutual fit, the discovery call uses this preview to decide whether Ascend Pilot, Ascend, or Ascend Pro makes sense.</p>
 </section>
 
 <script is:inline>
@@ -224,6 +225,7 @@ const poorFour = [
   const form = document.getElementById('qualifier-form');
   const submitBtn = document.getElementById('q-submit-btn');
   const nextBtn = form?.querySelector('[data-next]');
+  const mobileNextBtn = form?.querySelector('[data-mobile-next]');
   const prevBtn = form?.querySelector('[data-prev]');
   const errorEl = document.getElementById('q-error');
   const steps = form ? Array.from(form.querySelectorAll('[data-step]')) : [];
@@ -239,11 +241,19 @@ const poorFour = [
 
   if (!form || !submitBtn || !nextBtn || !prevBtn || !errorEl) return;
 
-  function event(name, params) {
+  function event(name, params, opts) {
     try {
+      let payload = Object.assign({}, params || {});
+      if (typeof window.__bwmGetAttributionPayload === 'function') {
+        payload = Object.assign(window.__bwmGetAttributionPayload(), payload);
+      }
+      if (typeof window.__bwmTrackEvent === 'function') {
+        window.__bwmTrackEvent(name, payload, opts || {});
+        return;
+      }
       window.dataLayer = window.dataLayer || [];
-      window.dataLayer.push(Object.assign({ event: name }, params || {}));
-      window.gtag?.('event', name, params || {});
+      window.dataLayer.push(Object.assign({ event: name }, payload));
+      window.gtag?.('event', name, payload);
     } catch (_) {}
   }
 
@@ -255,6 +265,7 @@ const poorFour = [
     if (progress) progress.style.transform = `scaleX(${currentStep / steps.length})`;
     prevBtn.hidden = currentStep === 1;
     nextBtn.hidden = currentStep === steps.length;
+    if (mobileNextBtn) mobileNextBtn.hidden = currentStep !== 1;
     submitBtn.hidden = currentStep !== steps.length;
     updateMapRail();
     event('diagnostic_step_complete', { diagnostic_step: currentStep });
@@ -289,9 +300,16 @@ const poorFour = [
   }
 
   function attributionPayload() {
+    if (typeof window.__bwmGetAttributionPayload === 'function') {
+      return window.__bwmGetAttributionPayload();
+    }
     let stored = {};
     try { stored = JSON.parse(localStorage.getItem('_bwm_attribution') || '{}'); } catch (_) {}
     const params = new URLSearchParams(window.location.search);
+    const cookie = (name) => {
+      const match = document.cookie.match(new RegExp('(?:^|; )' + name.replace(/[.$?*|{}()[\]\\/+^]/g, '\\$&') + '=([^;]*)'));
+      return match ? decodeURIComponent(match[1]) : '';
+    };
     return {
       attribution: stored,
       referrer: sessionStorage.getItem('bwm_referrer') || document.referrer || '',
@@ -303,6 +321,9 @@ const poorFour = [
       utm_term: params.get('utm_term') || '',
       fbclid: params.get('fbclid') || '',
       gclid: params.get('gclid') || '',
+      fbc: cookie('_fbc'),
+      fbp: cookie('_fbp'),
+      booking_event_id: typeof window.__bwmEnsureBookingEventId === 'function' ? window.__bwmEnsureBookingEventId() : '',
     };
   }
 
@@ -396,6 +417,11 @@ const poorFour = [
     if (currentStep === 1) event('diagnostic_start', { form_id: 'fit-diagnostic' });
     showStep(currentStep + 1);
   });
+  mobileNextBtn?.addEventListener('click', () => {
+    if (!validateStep()) return;
+    event('diagnostic_start', { form_id: 'fit-diagnostic', entry: 'mobile_header' });
+    showStep(currentStep + 1);
+  });
 
   prevBtn.addEventListener('click', () => showStep(currentStep - 1));
   form.addEventListener('input', updateMapRail);
@@ -426,14 +452,35 @@ const poorFour = [
         classification: data.classification,
         selected_poor_four: payload.selected_poor_four.join(','),
         offer_interest: payload.offer_interest,
+        contact_id: data.contact_id || '',
+        capi_event_id: data.capi_event_id || '',
+        booking_event_id: payload.booking_event_id || '',
       });
 
       if (data.classification === 'qualified') {
-        window.gtag?.('event', 'generate_lead', {
+        const bookingEventId = typeof window.__bwmEnsureBookingEventId === 'function'
+          ? window.__bwmEnsureBookingEventId(payload.booking_event_id)
+          : payload.booking_event_id;
+        const prefill = Object.assign({}, attributionPayload(), {
+          name: payload.first_name,
+          email: payload.email,
+          tier_routing: data.tier_routing,
+          contact_id: data.contact_id || '',
+          capi_event_id: data.capi_event_id || '',
+          booking_event_id: bookingEventId || payload.booking_event_id || '',
+        });
+
+        event('generate_lead', {
           currency: 'USD',
           value: 0,
           form_id: 'fit-diagnostic',
           tier_routing: data.tier_routing,
+          classification: data.classification,
+          selected_poor_four: payload.selected_poor_four.join(','),
+          offer_interest: payload.offer_interest,
+          contact_id: data.contact_id || '',
+          capi_event_id: data.capi_event_id || '',
+          booking_event_id: prefill.booking_event_id,
         });
 
         revealLeakMap(payload);
@@ -441,21 +488,11 @@ const poorFour = [
         const calWrap = document.getElementById('cal-inline');
         if (calWrap) {
           calWrap.removeAttribute('hidden');
-          calWrap.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            calWrap.scrollIntoView({ behavior: 'smooth', block: 'start' });
         }
-        window.__qualifiedPrefill = {
-          name: payload.first_name,
-          email: payload.email,
-          tier_routing: data.tier_routing,
-          contact_id: data.contact_id,
-        };
+        window.__qualifiedPrefill = prefill;
         if (window.__loadBwmCalendar) {
-          window.__loadBwmCalendar({
-            name: payload.first_name,
-            email: payload.email,
-            tier_routing: data.tier_routing,
-            contact_id: data.contact_id,
-          });
+          window.__loadBwmCalendar(prefill);
         } else if (window.Cal && window.Cal.ns && window.Cal.ns['discovery-call']) {
           window.Cal.ns['discovery-call']('inline', {
             elementOrSelector: '#cal-inline',
@@ -464,6 +501,7 @@ const poorFour = [
               name: payload.first_name,
               email: payload.email,
               theme: 'dark',
+              metadata: prefill,
             },
           });
         }
@@ -494,13 +532,13 @@ const poorFour = [
   max-width: 100%;
   display: flex;
   flex-direction: column;
-  gap: 24px;
+  gap: 20px;
   background:
     linear-gradient(135deg, rgba(56, 216, 255, 0.055), transparent 42%),
     linear-gradient(225deg, rgba(240, 255, 0, 0.04), transparent 46%),
     var(--bg-elev);
   border: 1px solid var(--rule);
-  padding: clamp(24px, 4vw, 40px);
+  padding: clamp(22px, 3vw, 32px);
 }
 .qualifier-form [hidden] { display: none !important; }
 .market-leak-map[hidden] { display: none; }
@@ -521,7 +559,7 @@ const poorFour = [
 .q-head {
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 10px;
   max-width: 760px;
 }
 .q-eyebrow,
@@ -543,8 +581,8 @@ const poorFour = [
   text-wrap: balance;
 }
 .q-sub {
-  font-size: 15px;
-  line-height: 1.55;
+  font-size: 14px;
+  line-height: 1.5;
   color: var(--ink-dim);
   margin: 0;
   max-width: 68ch;
@@ -556,7 +594,7 @@ const poorFour = [
 .q-step.is-active {
   display: flex;
   flex-direction: column;
-  gap: 22px;
+  gap: 18px;
 }
 .q-layout {
   display: grid;
@@ -569,7 +607,7 @@ const poorFour = [
   min-width: 0;
   display: flex;
   flex-direction: column;
-  gap: 24px;
+  gap: 18px;
 }
 .q-step-title {
   font-size: clamp(24px, 2.6vw, 36px);
@@ -579,7 +617,7 @@ const poorFour = [
 .q-grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 16px;
+  gap: 12px;
 }
 .q-grid > * { min-width: 0; }
 .q-row,
@@ -600,7 +638,7 @@ const poorFour = [
 .q-row select {
   width: 100%;
   min-width: 0;
-  min-height: 52px;
+  min-height: 48px;
   background: rgba(5, 5, 7, 0.68);
   border: 1px solid var(--rule);
   color: var(--ink);
@@ -638,8 +676,8 @@ const poorFour = [
   align-items: flex-start;
   gap: 12px;
   min-width: 0;
-  min-height: 52px;
-  padding: 13px 14px;
+  min-height: 48px;
+  padding: 12px 13px;
   border: 1px solid var(--rule);
   background: rgba(5, 5, 7, 0.42);
   cursor: pointer;
@@ -737,6 +775,13 @@ const poorFour = [
   cursor: wait;
   opacity: 0.6;
 }
+.q-mobile-start {
+  display: none;
+  align-self: flex-start;
+  margin-top: 4px;
+  min-width: min(100%, 220px);
+  margin-left: 0;
+}
 .q-error {
   color: #ff6b6b;
   font-size: 14px;
@@ -749,10 +794,10 @@ const poorFour = [
   background:
     linear-gradient(180deg, rgba(56, 216, 255, 0.05), transparent 36%),
     rgba(5, 5, 7, 0.72);
-  padding: 18px;
+  padding: 16px;
   display: flex;
   flex-direction: column;
-  gap: 18px;
+  gap: 14px;
 }
 .q-map-top {
   display: flex;
@@ -842,18 +887,25 @@ const poorFour = [
 @media (max-width: 680px) {
   .qualifier-form,
   .market-leak-map {
-    gap: 20px;
+    gap: 18px;
     padding: 24px;
   }
 
   .q-heading {
-    font-size: 24px;
-    line-height: 1.1;
+    font-size: 30px;
+    line-height: 1.02;
   }
 
   .q-sub {
-    font-size: 14px;
-    line-height: 1.5;
+    font-size: 15px;
+    line-height: 1.45;
+  }
+
+  .q-mobile-start:not([hidden]) {
+    display: inline-flex;
+    width: 100%;
+    min-height: 58px;
+    margin-top: 6px;
   }
 
   .q-grid,
@@ -863,7 +915,7 @@ const poorFour = [
   }
   .q-layout { grid-template-columns: 1fr; }
   .q-map-rail {
-    position: static;
+    display: none;
   }
   .q-map-signals dd {
     overflow-wrap: anywhere;

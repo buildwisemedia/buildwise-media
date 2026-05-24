@@ -25,22 +25,26 @@ const defaultCloseRate = 22;
     <header class="ebc-header">
       <p class="eyebrow">DO THE MATH · DRAG THE SLIDERS</p>
       <h2 class="h-section ebc-h2">
-        What does the Y1 commitment earn you back?
+        Is the opportunity big enough for Ascend to be obvious?
       </h2>
       <div class="ebc-body-text prose">
         <p>
-          Pilot (<strong>${pilotOneshot.toLocaleString()}</strong> on Day 0) + Ascend
-          (<strong>${ascendRecurring.toLocaleString()}/mo</strong> for the remaining ~{y1Months} months
-          of Y1 after Day&#8209;45 conversion) = <strong>${y1Cost.toLocaleString()} Y1 system cost.</strong>
-          The calculator below puts your numbers next to that commitment. Per-deal math is the easiest
-          way to see whether the system pays itself back — and our 5× ROI floor (we keep building until
-          you hit it) means we're as accountable to this math as you are.
+          Ascend is not a cheap marketing task. It is an installed system. Pilot
+          (<strong>${pilotOneshot.toLocaleString()}</strong> on Day 0) covers the install scope.
+          If you graduate, Ascend runs at <strong>${ascendRecurring.toLocaleString()}/mo</strong>.
+          Put your job math next to the <strong>${y1Cost.toLocaleString()} Y1 system cost</strong>
+          and the fit question gets much cleaner.
         </p>
       </div>
     </header>
 
     <!-- Calculator card -->
     <div class="ebc-calc card">
+
+      <div class="ebc-control-note" aria-live="polite">
+        <span class="ebc-control-rule" aria-hidden="true"></span>
+        <span>Adjust the sliders to model your monthly lift.</span>
+      </div>
 
       <!-- Slider inputs — 3 columns desktop, 1 column mobile -->
       <div class="ebc-sliders-grid">
@@ -64,6 +68,10 @@ const defaultCloseRate = 22;
             />
             <output class="ebc-slider-out mono" data-out-leads>{defaultLeads}</output>
           </div>
+          <div class="ebc-range-labels mono" aria-hidden="true">
+            <span>5</span>
+            <span>100</span>
+          </div>
         </div>
 
         <!-- Slider 2: Average customer value -->
@@ -85,6 +93,10 @@ const defaultCloseRate = 22;
             />
             <output class="ebc-slider-out mono" data-out-value>${defaultAvgValue.toLocaleString()}</output>
           </div>
+          <div class="ebc-range-labels mono" aria-hidden="true">
+            <span>$500</span>
+            <span>$50K</span>
+          </div>
         </div>
 
         <!-- Slider 3: Close rate -->
@@ -105,6 +117,10 @@ const defaultCloseRate = 22;
               aria-label="Close rate as a percentage"
             />
             <output class="ebc-slider-out mono" data-out-close>{defaultCloseRate}%</output>
+          </div>
+          <div class="ebc-range-labels mono" aria-hidden="true">
+            <span>5%</span>
+            <span>50%</span>
           </div>
         </div>
 
@@ -181,7 +197,7 @@ const defaultCloseRate = 22;
   display: flex;
   flex-direction: column;
   gap: 20px;
-  margin-bottom: 48px;
+  margin-bottom: 34px;
   max-width: 840px;
 }
 .ebc-h2 { color: var(--ink); }
@@ -191,16 +207,34 @@ const defaultCloseRate = 22;
 
 /* ============ Calculator card ============ */
 .ebc-calc {
-  padding: 40px 36px;
-  margin-bottom: 24px;
+  padding: 30px 28px;
+  margin-bottom: 20px;
+}
+.ebc-control-note {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 26px;
+  color: var(--ink);
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.18em;
+  line-height: 1.4;
+  text-transform: uppercase;
+}
+.ebc-control-rule {
+  width: 36px;
+  height: 1px;
+  background: var(--y2);
+  box-shadow: 0 0 12px rgba(240, 255, 0, 0.32);
 }
 
 /* ============ Slider grid — 3 columns ============ */
 .ebc-sliders-grid {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 36px;
-  margin-bottom: 32px;
+  gap: 28px;
+  margin-bottom: 24px;
 }
 @media (max-width: 760px) {
   .ebc-sliders-grid { grid-template-columns: 1fr; gap: 28px; }
@@ -222,7 +256,7 @@ const defaultCloseRate = 22;
   width: 100%;
   position: relative;
   /* Extra top padding leaves room for the floating chip (chip height ~24px + 13px gap above thumb) */
-  padding-top: 40px;
+  padding-top: 42px;
 }
 
 /* Range input — active-track fill via --fill-pct CSS custom property */
@@ -253,7 +287,7 @@ const defaultCloseRate = 22;
   border-radius: 50%;
   border: 3px solid var(--bg-elev);
   cursor: grab;
-  box-shadow: 0 2px 8px rgba(240, 255, 0, 0.3);
+  box-shadow: 0 0 0 7px rgba(240, 255, 0, 0.1), 0 2px 10px rgba(240, 255, 0, 0.34);
   transition: transform 180ms ease, box-shadow 180ms ease;
 }
 .ebc-range:hover::-webkit-slider-thumb {
@@ -272,7 +306,7 @@ const defaultCloseRate = 22;
   border-radius: 50%;
   border: 3px solid var(--bg-elev);
   cursor: grab;
-  box-shadow: 0 2px 8px rgba(240, 255, 0, 0.3);
+  box-shadow: 0 0 0 7px rgba(240, 255, 0, 0.1), 0 2px 10px rgba(240, 255, 0, 0.34);
   transition: transform 180ms ease, box-shadow 180ms ease;
 }
 .ebc-range:hover::-moz-range-thumb {
@@ -350,8 +384,8 @@ const defaultCloseRate = 22;
   line-height: 1;
   white-space: nowrap;
   pointer-events: none;
-  opacity: 0;
-  transition: opacity 150ms ease;
+  opacity: 1;
+  transition: transform 150ms ease;
   z-index: 10;
 }
 /* Hairline triangle pointing down toward the thumb */
@@ -370,7 +404,15 @@ const defaultCloseRate = 22;
 /* Show chip when slider is hovered or focused */
 .ebc-slider-row:hover .ebc-slider-out,
 .ebc-slider-row:focus-within .ebc-slider-out {
-  opacity: 1;
+  transform: translateX(-50%) translateY(-2px);
+}
+.ebc-range-labels {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
+  color: var(--ink-faint);
+  font-size: 9px;
+  letter-spacing: 0.12em;
 }
 
 /* ============ Divider ============ */

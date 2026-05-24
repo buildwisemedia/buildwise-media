@@ -7,25 +7,25 @@ const problems = [
     n: '01',
     slug: 'invisible-market',
     name: 'Invisible Market',
-    body: 'Not found in search. Not remembered when buyers ask around. Not trusted enough to call first. Competitors show up before you in search, in AI answers, and in the recommendation a buyer gets from a friend.',
+    body: 'Buyers search, ask AI, ask a neighbor, or compare options and your name is not the default answer. The market cannot choose you if it does not see you.',
   },
   {
     n: '02',
     slug: 'leaky-revenue',
     name: 'Leaky Revenue',
-    body: 'Leads come in. Calls go unanswered. Reviews go un-requested. Quotes go un-followed-up. Every leak is a revenue line draining quietly — and most owners spot the leaks too late to save the month.',
+    body: 'Calls wait. Quotes drift. Reviews never get asked for. Past customers go cold. The leak is not one big hole. It is ten small misses that cost real jobs.',
   },
   {
     n: '03',
     slug: 'owner-bottleneck',
     name: 'Owner Bottleneck',
-    body: 'You are the brand, the closer, the operator, and the marketing department. The business can\'t grow past you because you ARE the business. Take a week off and the pipeline stalls.',
+    body: 'The business still needs you to notice the problem, make the decision, and push the next step. That is not scale. That is your attention holding the system together.',
   },
   {
     n: '04',
     slug: 'reactive-growth',
     name: 'Reactive Growth',
-    body: 'No weekly rhythm. No clear scoreboard. By the time you spot a trend in the numbers, the quarter is over. Big decisions get made on tiny data, and the whole operation is always one step behind.',
+    body: 'The numbers arrive late. The team reacts after the slow month hurts. Big calls get made from stale data instead of a clear weekly scoreboard.',
   },
 ];
 ---
@@ -39,7 +39,7 @@ const problems = [
         They have an <em>operations</em> problem.
       </h2>
       <p class="lede">
-        Four gaps show up in nearly every service business we audit. Name yours. We've named ours.
+        Four gaps show up in owner-led service businesses again and again. Name the active leak before buying another tactic.
       </p>
     </header>
 
@@ -92,14 +92,14 @@ const problems = [
       <div class="poor-four-foot-statement">
         <p class="poor-four-foot-lede">Three of these fit?</p>
         <p class="poor-four-foot-verdict">
-          It's not a marketing problem.<br/>
+          It is probably not a lead problem.<br/>
           It's an <em>operations</em> problem.
         </p>
       </div>
       <aside class="poor-four-foot-card" aria-label="Diagnose your operations gap">
         <span class="poor-four-foot-dot" aria-hidden="true"></span>
-        <p class="poor-four-foot-eyebrow">The Diagnostic</p>
-        <p class="poor-four-foot-card-body">Five minutes. We name the leaks. You decide what to do next.</p>
+        <p class="poor-four-foot-eyebrow">Market Dominance Dossier</p>
+        <p class="poor-four-foot-card-body">Five minutes starts the map. We name the leaks. You decide what to do next.</p>
         <a href="/book" class="cta poor-four-foot-cta" data-cta-source="poor-four-footer">
           See If We're a Fit
           <span class="cta-arrow" aria-hidden="true">→</span>
@@ -112,7 +112,7 @@ const problems = [
 
 <style>
 .poor-four { padding-block: var(--section-y); }
-.poor-four-head { display: flex; flex-direction: column; gap: 24px; margin-bottom: 64px; max-width: 880px; }
+.poor-four-head { display: flex; flex-direction: column; gap: 20px; margin-bottom: 44px; max-width: 880px; }
 .poor-four-head h2 em,
 .poor-four-foot em {
   color: var(--y2);
@@ -124,8 +124,8 @@ const problems = [
   list-style: none;
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 24px;
-  margin-block: 24px 64px;
+  gap: 16px;
+  margin-block: 20px 44px;
 }
 .problem-card-li { list-style: none; }
 .problem-card {
@@ -133,7 +133,7 @@ const problems = [
   background: var(--bg-card);
   border: 1px solid var(--rule);
   border-radius: 2px;
-  padding: 36px 32px;
+  padding: 28px 24px;
   display: flex;
   flex-direction: column;
   gap: 14px;
@@ -189,7 +189,7 @@ const problems = [
 
 /* ── Scene illustration: 4 leaks → 1 drain (R020 F1-Emotion) ── */
 .poor-four-diagram-wrap {
-  margin: 0 0 64px;
+  margin: 0 0 40px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -254,7 +254,7 @@ const problems = [
   gap: clamp(24px, 4vw, 56px);
   align-items: stretch;
   border-top: 1px solid var(--rule);
-  padding-top: 40px;
+  padding-top: 30px;
 }
 .poor-four-foot-statement {
   display: flex;
@@ -342,9 +342,17 @@ const problems = [
 }
 
 @media (max-width: 720px) {
-  .problems-grid { grid-template-columns: 1fr; gap: 16px; }
-  .problem-card { padding: 28px 24px; }
-  .poor-four-diagram-wrap { margin-bottom: 48px; }
+  .poor-four-head { margin-bottom: 32px; }
+  .problems-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1px; }
+  .problem-card {
+    min-height: 148px;
+    padding: 18px 16px;
+    gap: 10px;
+  }
+  .problem-name { font-size: 17px; line-height: 1.08; }
+  .problem-body,
+  .problem-cta { display: none; }
+  .poor-four-diagram-wrap { margin-bottom: 28px; }
   .poor-four-diagram .pf-diag-label { font-size: 11px; }
   .poor-four-diagram .pf-diag-drain-label { font-size: 22px; }
 }

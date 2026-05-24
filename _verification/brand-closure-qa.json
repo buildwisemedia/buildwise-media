@@ -1,0 +1,36 @@
+{
+  "generated_at": "2026-05-24T09:34:12.580Z",
+  "branch": null,
+  "dist": "dist",
+  "pass_count": 6,
+  "warning_count": 0,
+  "failure_count": 0,
+  "passes": [
+    {
+      "gate": "dist-present",
+      "detail": "dist/ exists"
+    },
+    {
+      "gate": "rendered-lock-scans",
+      "detail": "38 rendered files scanned"
+    },
+    {
+      "gate": "legacy-problem-redirects",
+      "detail": "legacy Poor Four routes are explicit 301 redirects"
+    },
+    {
+      "gate": "body-imagery-floor",
+      "detail": "core static routes meet body visual minimums"
+    },
+    {
+      "gate": "html-basics",
+      "detail": "32 HTML files checked"
+    },
+    {
+      "gate": "canonical-site-files",
+      "detail": "robots.txt and llms.txt meet the local contract"
+    }
+  ],
+  "warnings": [],
+  "failures": []
+}

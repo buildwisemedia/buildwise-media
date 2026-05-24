@@ -2,13 +2,19 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 
 const title = "Results — Buildwise Media";
-const description = "Verified outcomes from the Ascend system. Baseline-first attribution. Performance commitment, 5× ROI floor. Receipts every Monday.";
+const description = "Verified outcomes from Ascend: measured, attributed, and modeled proof with baseline-first reporting and an honest 5× ROI floor.";
 
 const proofLedger = [
-  { label: 'Measured', value: 'source truth', body: 'Numbers tied to captured baseline, CRM events, call tracking, or analytics records.', tone: 'green' },
-  { label: 'Attributed', value: 'path visible', body: 'Lead source, landing page, first touch, last touch, and booked-work handoff are stitched.', tone: 'cyan' },
-  { label: 'Modeled', value: 'confidence stated', body: 'When proof is directional, it carries a confidence label instead of pretending to be absolute.', tone: 'yellow' },
-  { label: 'Benchmark', value: 'risk priced', body: 'External benchmarks are used only to frame risk, not to manufacture a client result.', tone: 'orange' },
+  { label: 'Measured', value: 'source truth', body: 'Tied to baseline, CRM events, call tracking, analytics, or dashboard records.', tone: 'green' },
+  { label: 'Attributed', value: 'path visible', body: 'Source, page, first touch, last touch, and booked-work handoff are stitched.', tone: 'cyan' },
+  { label: 'Modeled', value: 'confidence stated', body: 'Directional proof gets a confidence label instead of pretending to be exact.', tone: 'yellow' },
+  { label: 'Excluded', value: 'kept honest', body: 'If we cannot tie revenue to an audited touchpoint, it does not count toward ROI.', tone: 'orange' },
+];
+
+const attributionHonesty = [
+  { label: 'Counts', body: 'Booked jobs tied to a tracked lead path inside the dashboard.' },
+  { label: 'Does not count', body: 'Old referrals, pre-existing SEO, or channels we cannot prove we moved.' },
+  { label: 'Why owners care', body: 'The ROI floor only matters if the math is conservative enough to trust.' },
 ];
 
 const breadcrumb = {
@@ -26,10 +32,10 @@ const faqSchema = {
   mainEntity: [
     {
       '@type': 'Question',
-      name: 'How does the Performance Commitment and 5× ROI floor work?',
+      name: 'How does the 5× ROI floor work?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'Our Performance Commitment is written into the MSA as a locked contractual clause. We back the install with a 5× attributable ROI floor inside 24 months, measured against the baseline captured on Day 0. If the system is at 4× at Month 24, we keep working on our own dime until it hits the floor. It\'s a run-for-you operational floor, not an aspirational marketing promise.'
+        text: 'The 5× attributable ROI floor is written into the MSA. It is measured against the baseline captured on Day 0. If the system is at 4× at Month 24, Buildwise keeps working until it hits the floor.'
       }
     },
     {
@@ -37,7 +43,7 @@ const faqSchema = {
       name: 'How fast is the system operational?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'Inside 30 days the system is live, conversion paths are instrumented, operating reports are active, and first qualified signals are visible. We map, install, and deploy in parallel so you are operational, not theoretical, by day 30.'
+        text: 'Inside 30 days the system is live, the dashboard is open, and first qualified signals are visible. The full proof sprint runs inside the 45-day Pilot window.'
       }
     },
     {
@@ -45,7 +51,7 @@ const faqSchema = {
       name: 'Can I speak with your references, and why are client names anonymous?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'We protect the operational privacy of our clients to prevent competitors from reverse-engineering their search dominance and ad funnels. While public case studies are anonymized, we share verified underlying data, attribution dashboards, and connect you with active client references during the discovery process once we verify mutual fit.'
+        text: 'We protect client privacy so competitors cannot reverse-engineer their search, follow-up, and proof systems. Public cases may be anonymized, but verified data, dashboards, and references can be shared during discovery after mutual fit.'
       }
     }
   ]
@@ -59,11 +65,15 @@ const faqSchema = {
       <div class="hero-content">
         <p class="eyebrow">Outcomes</p>
         <h1 class="h-hero">
-          Proof should feel like a ledger, not a testimonial wall.
+          Proof should make the math easier to trust.
         </h1>
         <p class="hero-sub" style="max-width: 600px;">
-          Every outcome is measured against the baseline captured on Day 0. The persuasive thing is not a big claim. The persuasive thing is being able to see what moved, why it moved, and how confident the system is.
+          Every outcome starts against a baseline. The claim is less important than seeing what moved, why it moved, and whether the dashboard can prove it.
         </p>
+        <div class="results-hero-actions">
+          <a href="/book" class="cta" data-cta-source="results-hero">See If We're a Fit<span class="cta-arrow" aria-hidden="true">→</span></a>
+          <a href="/pricing" class="cta-ghost" data-cta-source="results-hero-pricing">See Pricing</a>
+        </div>
       </div>
 
       <div class="scoreboard-panel">
@@ -75,15 +85,15 @@ const faqSchema = {
           </div>
           <div class="score-card">
             <span class="score-num font-condensed">33.2×</span>
-            <span class="score-label mono">Average Client Return</span>
+            <span class="score-label mono">Client Return Anchor</span>
           </div>
           <div class="score-card">
             <span class="score-num font-condensed">34</span>
-            <span class="score-label mono">Active Operational Channels</span>
+            <span class="score-label mono">Operational Channels</span>
           </div>
           <div class="score-card">
             <span class="score-num font-condensed">3.2×</span>
-            <span class="score-label mono">Lead Increase (Average)</span>
+            <span class="score-label mono">Qualified-Lead Share Lift</span>
           </div>
         </div>
       </div>
@@ -94,7 +104,7 @@ const faqSchema = {
     <div class="container proof-ledger-grid">
       <header>
         <p class="section-tag">Proof ledger</p>
-        <h2 id="proof-ledger-title" class="h-section">The labels matter because owners have been trained to distrust marketing math.</h2>
+        <h2 id="proof-ledger-title" class="h-section">Owners have been trained to distrust marketing math. Good.</h2>
         <p class="lede">Ascend separates hard evidence from directional signal. That is how the weekly report becomes useful instead of performative.</p>
       </header>
       <div class="ledger-grid">
@@ -105,6 +115,16 @@ const faqSchema = {
             <p>{item.body}</p>
           </article>
         ))}
+      </div>
+      <div class="proof-image-pair" aria-label="Proof artifact imagery">
+        <figure>
+          <!-- @r020:F2 proof: still-life of measured proof artifacts -->
+          <img src="/images/bwm-proof-still-life-v1.webp" alt="Printed graph, magnifying glass, and pen arranged as conservative proof artifacts." width="720" height="480" loading="lazy" decoding="async" />
+        </figure>
+        <figure>
+          <!-- @r020:F2 proof: receipt packet supports attribution honesty -->
+          <img src="/images/bwm-receipts-still-life-v1.webp" alt="Close detail of receipts, notes, and measured evidence on a dark operations desk." width="720" height="480" loading="lazy" decoding="async" />
+        </figure>
       </div>
     </div>
   </section>
@@ -117,7 +137,7 @@ const faqSchema = {
       <div class="timeline-col">
         <p class="section-tag">Case Timeline</p>
         <h2 class="h-section">$300K to <em>$10M+</em></h2>
-        <p class="study-sub">The operational progression of a specialty service business scaling on the Ascend system.</p>
+        <p class="study-sub">One specialty service business changed its operating model and crossed eight figures.</p>
 
         <div class="timeline">
           <div class="timeline-line"></div>
@@ -125,36 +145,36 @@ const faqSchema = {
           <div class="timeline-item">
             <div class="timeline-node"></div>
             <div class="timeline-content">
-              <span class="timeline-meta mono">Month 01 · System Install</span>
-              <h3 class="timeline-title">Infrastructure Deployment</h3>
-              <p class="timeline-body">Baselines captured. Web infrastructure deployed. Acquisition channels connected. Attribution connector audit healthy.</p>
+              <span class="timeline-meta mono">Month 01 · Baseline + install</span>
+              <h3 class="timeline-title">The system could finally see the work.</h3>
+              <p class="timeline-body">Baseline captured. Lead paths connected. Dashboard live. The owner stopped guessing which calls and forms were worth chasing.</p>
             </div>
           </div>
 
           <div class="timeline-item">
             <div class="timeline-node"></div>
             <div class="timeline-content">
-              <span class="timeline-meta mono">Month 06 · Optimization</span>
-              <h3 class="timeline-title">Multi-Channel Expansion</h3>
-              <p class="timeline-body">Paid search integrated. Lead qualification forms tested. System confidence score hits 92%. Monthly run-rate climbs to $350K.</p>
+              <span class="timeline-meta mono">Month 06 · Faster follow-up</span>
+              <h3 class="timeline-title">Leads stopped sitting cold.</h3>
+              <p class="timeline-body">Forms, calls, and follow-up routes tightened. Speed-to-lead moved under five minutes on tracked paths. Monthly run-rate climbed.</p>
             </div>
           </div>
 
           <div class="timeline-item">
             <div class="timeline-node"></div>
             <div class="timeline-content">
-              <span class="timeline-meta mono">Month 18 · Scale & Automation</span>
-              <h3 class="timeline-title">Operations Integration</h3>
-              <p class="timeline-body">Custom intake workflows connected directly to CRM. Automated SMS speed-to-lead responders and reputation request loops activated. Annualized pipeline reaches $5.2M.</p>
+              <span class="timeline-meta mono">Month 18 · Proof loops</span>
+              <h3 class="timeline-title">Reviews, quotes, and booked jobs started compounding.</h3>
+              <p class="timeline-body">Intake workflows, quote reminders, review requests, and reporting moved together. Annualized pipeline reached $5.2M.</p>
             </div>
           </div>
 
           <div class="timeline-item">
             <div class="timeline-node"></div>
             <div class="timeline-content">
-              <span class="timeline-meta mono">Month 24 · Dominance</span>
-              <h3 class="timeline-title">The Payoff</h3>
-              <p class="timeline-body">Attributable client return reaches 33.2× against baseline. Service capacity fully booked, total revenue run-rate scales past $10M without adding marketing overhead.</p>
+              <span class="timeline-meta mono">Month 24 · Scale</span>
+              <h3 class="timeline-title">The system became infrastructure.</h3>
+              <p class="timeline-body">Attributable return reached 33.2x against baseline. Total revenue run-rate moved past $10M without turning the owner into the marketing department.</p>
             </div>
           </div>
         </div>
@@ -178,9 +198,9 @@ const faqSchema = {
         </div>
 
         <div class="badges-row">
-          <span class="badge mono">33.2× ROI</span>
-          <span class="badge mono">Month-to-Month</span>
-          <span class="badge mono">Data Sovereignty</span>
+            <span class="badge mono">33.2× ROI</span>
+            <span class="badge mono">Month-to-Month</span>
+            <span class="badge mono">Data Sovereignty</span>
         </div>
 
         <div class="comparison-strip">
@@ -188,16 +208,34 @@ const faqSchema = {
           <div class="comparison-grid">
             <div class="comp-box">
               <span class="comp-label mono">Before</span>
-              <p class="comp-text">No attribution, 5 disconnected vendors, manual intake, template site with zero CRM flows.</p>
+              <p class="comp-text">No attribution, disconnected vendors, manual intake, and no clear path from lead to booked work.</p>
             </div>
             <div class="comp-box active">
               <span class="comp-label mono">After (Ascend)</span>
-              <p class="comp-text">100% baseline-attributable mix, 1 system running 24/7, automated quoting flows, optimized static app.</p>
+              <p class="comp-text">One system running weekly, faster response, review loops, quote follow-up, and clearer booked-job attribution.</p>
             </div>
           </div>
         </div>
       </div>
 
+    </div>
+  </section>
+
+  <section class="attribution-section" aria-labelledby="attribution-title">
+    <div class="container attribution-grid">
+      <header>
+        <p class="section-tag">Attribution honesty</p>
+        <h2 id="attribution-title" class="h-section">The ROI floor only works if the math is conservative.</h2>
+        <p class="lede">The goal is not to claim every dollar. The goal is to prove what the system actually moved.</p>
+      </header>
+      <div class="attribution-cards">
+        {attributionHonesty.map((item) => (
+          <article>
+            <p class="ops-kicker">{item.label}</p>
+            <p>{item.body}</p>
+          </article>
+        ))}
+      </div>
     </div>
   </section>
 
@@ -207,7 +245,7 @@ const faqSchema = {
       <div class="faq-head">
         <p class="section-tag">Performance Framework</p>
         <h2 class="h-section">Real systems.<br/><em>Real</em> answers.</h2>
-        <p class="hero-sub" style="max-width: 400px;">How we structure agreements, timelines, and confidentiality to protect operations.</p>
+        <p class="hero-sub" style="max-width: 400px;">How we structure agreements, timelines, and confidentiality so owners can inspect the system before trusting it.</p>
       </div>
 
       <div class="faq-list-col">
@@ -215,11 +253,11 @@ const faqSchema = {
           <li class="faq-item">
             <details open>
               <summary>
-                <span class="faq-q">How does the Performance Commitment and 5× ROI floor work?</span>
+                <span class="faq-q">How does the 5× ROI floor work?</span>
                 <span class="faq-toggle" aria-hidden="true">+</span>
               </summary>
               <div class="faq-a">
-                <p>Our Performance Commitment is written into the MSA as a locked contractual clause. We back the install with a 5× attributable ROI floor inside 24 months, measured against the baseline captured on Day 0. If the system is at 4× at Month 24, we keep working on our own dime until it hits the floor. It's a run-for-you operational floor, not an aspirational marketing promise.</p>
+                <p>The 5× attributable ROI floor is written into the MSA. It is measured against the baseline captured on Day 0. If the system is at 4× at Month 24, Buildwise keeps working until it hits the floor. It is an operating floor, not a slogan.</p>
               </div>
             </details>
           </li>
@@ -230,7 +268,7 @@ const faqSchema = {
                 <span class="faq-toggle" aria-hidden="true">+</span>
               </summary>
               <div class="faq-a">
-                <p>Inside 30 days the system is live, conversion paths are instrumented, operating reports are active, and first qualified signals are visible. We map, install, and deploy in parallel so you are operational, not theoretical, by day 30.</p>
+                <p>Inside 30 days the system is live, the dashboard is open, and first qualified signals are visible. The full proof sprint runs inside the 45-day Pilot window.</p>
               </div>
             </details>
           </li>
@@ -241,7 +279,7 @@ const faqSchema = {
                 <span class="faq-toggle" aria-hidden="true">+</span>
               </summary>
               <div class="faq-a">
-                <p>We protect the operational privacy of our clients to prevent competitors from reverse-engineering their search dominance and ad funnels. While public case studies are anonymized, we share verified underlying data, attribution dashboards, and connect you with active client references during the discovery process once we verify mutual fit.</p>
+                <p>We protect client privacy so competitors cannot reverse-engineer their search, follow-up, and proof systems. Public cases may be anonymized, but verified data, dashboards, and references can be shared during discovery after mutual fit.</p>
               </div>
             </details>
           </li>
@@ -256,7 +294,7 @@ const faqSchema = {
       <div class="cta-text-side">
         <h2 class="h-closer">See what the system can <em>do</em> for yours.</h2>
         <p class="lede" style="margin-top: 16px;">
-          Bring your current numbers — monthly spend, lead volume, close rate. Fifteen minutes on a discovery call tells us whether your shop matches our operational framework.
+          Bring your current numbers: monthly spend, lead volume, close rate, and average job value. The Market Dominance Dossier tells us whether Ascend has room to pay for itself.
         </p>
         <div class="badges-row text-side-badges" style="margin-top: 24px;">
           <span class="badge badge-subtle mono">Month-to-Month Contract</span>
@@ -274,19 +312,26 @@ const faqSchema = {
 <style>
 /* --- General Page Grid & Hero --- */
 .results-hero {
-  padding-top: clamp(140px, 14vw, 180px);
-  padding-bottom: clamp(60px, 8vw, 100px);
+  padding-top: clamp(108px, 10vw, 144px);
+  padding-bottom: clamp(48px, 6vw, 80px);
 }
 .hero-grid {
   display: grid;
   grid-template-columns: 1.1fr 1fr;
-  gap: clamp(40px, 5vw, 80px);
+  gap: clamp(32px, 5vw, 64px);
   align-items: center;
 }
 .hero-content {
   display: flex;
   flex-direction: column;
   gap: 20px;
+}
+.results-hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  align-items: center;
+  margin-top: 4px;
 }
 
 /* --- Scoreboard Panel --- */
@@ -295,14 +340,14 @@ const faqSchema = {
     linear-gradient(135deg, rgba(56,216,255,0.045), transparent 42%),
     var(--bg-card);
   border: 1px solid var(--rule-bright);
-  padding: clamp(24px, 4vw, 40px);
+  padding: clamp(22px, 3vw, 32px);
   border-radius: 6px;
 }
 .scoreboard-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: clamp(20px, 3vw, 36px);
-  margin-top: 24px;
+  gap: clamp(16px, 2.5vw, 28px);
+  margin-top: 20px;
 }
 .score-card {
   display: flex;
@@ -330,13 +375,13 @@ const faqSchema = {
 
 /* --- Proof Ledger --- */
 .proof-ledger-section {
-  padding-block: var(--section-y);
+  padding-block: clamp(56px, 7vw, 88px);
   border-top: 1px solid var(--rule);
 }
 .proof-ledger-grid {
   display: grid;
   grid-template-columns: minmax(0, 0.82fr) minmax(0, 1.18fr);
-  gap: clamp(40px, 6vw, 80px);
+  gap: clamp(32px, 5vw, 64px);
   align-items: start;
 }
 .proof-ledger-grid header {
@@ -354,7 +399,7 @@ const faqSchema = {
 .ledger-card {
   background: var(--bg-card);
   border-top: 3px solid currentColor;
-  padding: clamp(24px, 3vw, 34px);
+  padding: clamp(20px, 2.5vw, 28px);
 }
 .ledger-card strong {
   display: block;
@@ -369,15 +414,33 @@ const faqSchema = {
   font-size: 15px;
   line-height: 1.55;
 }
+.proof-image-pair {
+  grid-column: 2;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+}
+.proof-image-pair figure {
+  aspect-ratio: 3 / 2;
+  overflow: hidden;
+  border: 1px solid var(--rule);
+  background: var(--bg-card);
+}
+.proof-image-pair img {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+}
 
 /* --- Case Study & Timeline Grid --- */
 .case-study-section {
-  padding-block: var(--section-y);
+  padding-block: clamp(56px, 7vw, 88px);
 }
 .study-grid {
   display: grid;
   grid-template-columns: 1.2fr 1fr;
-  gap: clamp(48px, 6vw, 96px);
+  gap: clamp(32px, 5vw, 64px);
   align-items: start;
 }
 .study-sub {
@@ -387,7 +450,7 @@ const faqSchema = {
   line-height: 1.6;
   color: var(--ink-dim);
   margin-top: 16px;
-  margin-bottom: 40px;
+  margin-bottom: 28px;
   max-width: 520px;
 }
 
@@ -406,7 +469,7 @@ const faqSchema = {
 }
 .timeline-item {
   position: relative;
-  margin-bottom: 40px;
+  margin-bottom: 28px;
 }
 .timeline-item:last-child {
   margin-bottom: 0;
@@ -448,7 +511,7 @@ const faqSchema = {
 .evidence-col {
   display: flex;
   flex-direction: column;
-  gap: 32px;
+  gap: 22px;
 }
 .study-image {
   border-radius: 6px;
@@ -465,7 +528,7 @@ const faqSchema = {
 .quote-card {
   background: var(--bg-card);
   border: 1px solid var(--rule);
-  padding: 32px;
+  padding: 24px;
   border-radius: 6px;
 }
 .pull {
@@ -554,14 +617,54 @@ const faqSchema = {
   color: var(--ink-dim);
 }
 
+/* --- Attribution Honesty --- */
+.attribution-section {
+  padding-block: clamp(56px, 7vw, 88px);
+  border-top: 1px solid var(--rule);
+}
+.attribution-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 0.86fr) minmax(0, 1.14fr);
+  gap: clamp(32px, 5vw, 64px);
+  align-items: start;
+}
+.attribution-grid header {
+  position: sticky;
+  top: 100px;
+}
+.attribution-grid .lede {
+  margin-top: 22px;
+}
+.attribution-cards {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1px;
+  background: var(--rule);
+  border: 1px solid var(--rule);
+}
+.attribution-cards article {
+  min-width: 0;
+  background: var(--bg-card);
+  padding: clamp(18px, 2.2vw, 26px);
+  border-top: 2px solid var(--y2);
+}
+.attribution-cards article:nth-child(2) { border-top-color: var(--signal-orange); }
+.attribution-cards article:nth-child(3) { border-top-color: var(--signal-green); }
+.attribution-cards p:last-child {
+  margin-top: 10px;
+  color: var(--ink-dim);
+  font-size: 15px;
+  line-height: 1.55;
+}
+
 /* --- FAQ Accordion Grid --- */
 .results-faq {
-  padding-block: var(--section-y);
+  padding-block: clamp(56px, 7vw, 88px);
 }
 .faq-grid {
   display: grid;
   grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.4fr);
-  gap: clamp(48px, 6vw, 96px);
+  gap: clamp(32px, 5vw, 64px);
   align-items: start;
 }
 .faq-head {
@@ -587,7 +690,7 @@ const faqSchema = {
 .faq-item details summary {
   list-style: none;
   cursor: pointer;
-  padding: 24px 0;
+  padding: 20px 0;
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
@@ -630,7 +733,7 @@ const faqSchema = {
 
 /* --- Final CTA --- */
 .final-cta {
-  padding-block: var(--section-y);
+  padding-block: clamp(56px, 7vw, 88px);
 }
 .cta-container {
   display: flex;
@@ -656,8 +759,15 @@ const faqSchema = {
   .proof-ledger-grid {
     grid-template-columns: 1fr;
   }
-  .proof-ledger-grid header {
+  .proof-image-pair {
+    grid-column: auto;
+  }
+  .proof-ledger-grid header,
+  .attribution-grid header {
     position: static;
+  }
+  .attribution-grid {
+    grid-template-columns: 1fr;
   }
   .study-grid {
     grid-template-columns: 1fr;
@@ -679,23 +789,25 @@ const faqSchema = {
 
 @media (max-width: 560px) {
   .results-hero {
-    padding-top: 104px;
+    padding-top: 92px;
+    padding-bottom: 48px;
   }
 
   .results-hero .h-hero {
-    font-size: 38px;
+    font-size: 34px;
     line-height: 1.03;
     letter-spacing: 0;
   }
 
   .results-hero .hero-sub {
-    font-size: 17px;
+    font-size: 16px;
     line-height: 1.5;
   }
 
   .scoreboard-grid,
   .ledger-grid,
-  .comparison-grid {
+  .comparison-grid,
+  .attribution-cards {
     grid-template-columns: 1fr;
   }
 }

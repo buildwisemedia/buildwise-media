@@ -1,7 +1,7 @@
 ---
 // buildwisemedia.com homepage — Triangulation, fresh architecture 2026-05-21
 // Replaces rejected homepage-redesign-2026-05-20 work (R020 + geo-broadcast failures)
-// 12 sections, every section visual drives R020 action (F1/F2/F3/F4 only)
+// Installed Advantage pass: the homepage sells the owned AI growth system first.
 // No transitional scene-photos, no radial diagrams, no geo-hardcoding
 // Pricing-public RATIFIED 2026-05-20 (canonical.json source of truth)
 
@@ -15,13 +15,12 @@ import canonical from '../data/canonical.json';
 import PoorFour from '../components/PoorFour.astro';
 import EightLayerSystem from '../components/EightLayerSystem.astro';
 import Sovereignty from '../components/Sovereignty.astro';
-import ProductComparison from '../components/ProductComparison.astro';
 import EarnBackCalculator from '../components/EarnBackCalculator.astro';
 import AIStorySection from '../components/AIStorySection.astro';
 import FAQ from '../components/FAQ.astro';
 
-const title = "Ascend — Most-Chosen in Your Market | Buildwise Media";
-const description = "Buildwise installs and runs Ascend: an 8-layer revenue operating system for service businesses. You own it. We run it. The math is verified weekly.";
+const title = "Ascend — Installed AI Growth System You Own | Buildwise Media";
+const description = "Buildwise installs and operates Ascend, a fast-improving AI growth system for owner-led service businesses. It runs on your domain, uses your data, and stays yours.";
 
 // L8 — Category-of-one mechanism set
 // Geo-personalization gate: Astro.locals.metro.known === true → metro-specific copy;
@@ -60,79 +59,188 @@ const proofTiles = [
 ];
 
 const commandMetrics = [
-  { label: 'AI-search visibility', value: '68%', trend: '+12 pts', tone: 'cyan' },
-  { label: 'Lead response', value: '<5m', trend: 'routing live', tone: 'green' },
-  { label: 'Review velocity', value: '2.4×', trend: 'compounding', tone: 'yellow' },
-  { label: 'Owner dependency', value: '↓', trend: 'load removed', tone: 'orange' },
+  { label: 'Install window', value: '30d', trend: 'system live', tone: 'cyan' },
+  { label: 'Ownership', value: '100%', trend: 'client-held', tone: 'green' },
+  { label: 'Upgrade path', value: 'auto', trend: 'frontier routed', tone: 'yellow' },
+  { label: 'Owner load', value: '↓', trend: 'work routed', tone: 'orange' },
 ];
 
 const leakRadar = [
-  { label: 'Invisible Market', status: 'signal low', tone: 'cyan' },
-  { label: 'Leaky Revenue', status: 'money escaping', tone: 'red' },
-  { label: 'Owner Bottleneck', status: 'handoff risk', tone: 'orange' },
-  { label: 'Reactive Growth', status: 'late data', tone: 'yellow' },
+  { label: 'Domain', status: 'system mounted', tone: 'cyan' },
+  { label: 'CRM + calls', status: 'routes wired', tone: 'green' },
+  { label: 'AI router', status: 'models live', tone: 'yellow' },
+  { label: 'Proof ledger', status: 'baseline open', tone: 'orange' },
 ];
 
 const weeklyProofRail = [
-  { label: 'Baseline', value: 'captured', tone: 'cyan' },
-  { label: 'Routes', value: 'wired', tone: 'green' },
-  { label: 'Spend', value: 'visible', tone: 'yellow' },
-  { label: 'Next move', value: 'queued', tone: 'orange' },
+  { label: 'Installed', value: '30d', tone: 'cyan' },
+  { label: 'Operated', value: 'weekly', tone: 'green' },
+  { label: 'Upgraded', value: 'frontier', tone: 'yellow' },
+  { label: 'Owned', value: 'by you', tone: 'orange' },
 ];
 
 const signalQueue = [
-  { label: 'Search intent', value: 'mapped to service pages', tone: 'cyan' },
-  { label: 'Proof graph', value: 'reviews + jobs stitched', tone: 'green' },
-  { label: 'Lead route', value: 'form, call, booking armed', tone: 'yellow' },
+  { label: 'Your domain', value: 'website + tracking live', tone: 'cyan' },
+  { label: 'Your data', value: 'CRM + calls stitched', tone: 'green' },
+  { label: 'AI upgrades', value: 'routed without rebuild', tone: 'yellow' },
 ];
 
 const operatingTruths = [
   {
-    label: 'Not an agency',
-    title: 'Agencies sell activity. Ascend installs an operating layer.',
-    body: 'The difference is simple: the system lives in your business, not in our pitch deck. You can see the baseline, the routes, the account ownership, and the weekly proof.',
+    label: 'AI velocity',
+    titleLead: 'AI ships ',
+    titleEm: 'faster',
+    titleTail: ' than owners can use it.',
+    body: 'New models, new search surfaces, new agent workflows, and new buyer expectations keep shipping. Learning it yourself costs the same attention you need to run the business.',
     tone: 'cyan',
   },
   {
-    label: 'Owner bottleneck',
-    title: 'The quiet tax is the owner acting as the marketing router.',
-    body: 'When every lead question, campaign decision, review request, and reporting answer routes through you, growth gets capped by your attention before the market ever gets a vote.',
+    label: 'Installed advantage',
+    titleLead: 'Ascend puts capability ',
+    titleEm: 'inside',
+    titleTail: ' your business.',
+    body: 'Buildwise installs the system on your domain, wires it to your data and workflows, then operates it every week so the capability turns into growth work.',
     tone: 'orange',
   },
   {
-    label: 'Compounding asset',
-    title: 'Every improvement becomes infrastructure you keep.',
-    body: 'The visibility layer teaches search. The conversion layer teaches paid media. The CRM layer teaches follow-up. The weekly operating rhythm makes the whole system harder to copy.',
+    label: 'Compounding gap',
+    titleLead: 'The first system starts ',
+    titleEm: 'learning',
+    titleTail: ' first.',
+    body: 'Every month the system collects signal, improves the next move, and inherits better AI capability. Waiting is not neutral when the operating layer is learning.',
     tone: 'green',
+  },
+];
+
+const frontierStats = [
+  {
+    source: 'Stanford AI Index',
+    value: 'near 100%',
+    label: 'SWE-bench Verified performance after a one-year jump from 60%',
+    href: 'https://hai.stanford.edu/ai-index/2026-ai-index-report',
+  },
+  {
+    source: 'METR',
+    value: '7 mo',
+    label: 'approximate doubling pace for frontier AI task-completion horizons',
+    href: 'https://metr.org/blog/2025-03-19-measuring-ai-ability-to-complete-long-tasks/',
+  },
+  {
+    source: 'The Book',
+    value: 'auto',
+    label: 'frontier AI improvements routed into Ascend without a client rebuild',
+    href: '/playbook/capability-inheritance',
   },
 ];
 
 const installSteps = [
   {
     day: 'Day 0',
-    label: 'Audit',
-    body: 'Capture the baseline, map the lead path, and name which Poor Four gaps are costing the most.',
+    label: 'Baseline',
+    metric: 'Current leak map',
+    fill: '18%',
+    body: 'Capture the current state, agree on the starting point, and initialize the client-owned system environment.',
   },
   {
-    day: 'Day 14',
-    label: 'Install',
-    body: 'Wire visibility, conversion, speed-to-lead, reporting, and follow-up into one operating layer.',
+    day: 'Day 7',
+    label: 'Install map',
+    metric: 'First layer wired',
+    fill: '54%',
+    body: 'Name the first layer to move, wire the core routes, and point the system at the highest-value growth constraint.',
   },
   {
     day: 'Day 30',
-    label: 'System live',
-    body: 'Start the weekly operating rhythm: what spent, what booked, what needs to move next.',
+    label: 'Live',
+    metric: 'Weekly rhythm running',
+    fill: '100%',
+    body: 'The system is running, the dashboard is filling, and the weekly operating rhythm begins.',
+  },
+];
+
+const valueEquation = [
+  {
+    label: 'Installed',
+    title: 'The system goes into your business.',
+    body: 'Ascend runs on your domain, your data, your accounts, and your workflows. It is not a report or a rented dashboard.',
+    tone: 'green',
+  },
+  {
+    label: 'Operated',
+    title: 'Buildwise runs the week.',
+    body: 'We watch the signals, clear the gates, adjust what underperforms, and keep the system moving.',
+    tone: 'cyan',
+  },
+  {
+    label: 'Owned',
+    title: 'The asset stays with you.',
+    body: 'Code, data, ad accounts, customer list, and configured workflows remain client-owned.',
+    tone: 'yellow',
+  },
+  {
+    label: 'Improving',
+    title: 'It inherits the frontier.',
+    body: 'When better AI capability becomes useful, the system can route to it without a re-platform.',
+    tone: 'orange',
+  },
+];
+
+const dossierSignals = [
+  { label: 'Market rank', value: 'search + AI answer visibility', score: 62, cue: 'who appears before you' },
+  { label: 'Revenue leaks', value: 'calls, forms, quotes, follow-up', score: 78, cue: 'where buyers stall' },
+  { label: 'Proof gaps', value: 'reviews, reputation, citations', score: 44, cue: 'where trust thins out' },
+  { label: 'First move', value: 'highest-leverage layer', score: 91, cue: 'what should move first' },
+];
+
+const contractProofs = [
+  { group: 'Capability', clause: 'Inheritance', title: 'Capability inheritance', body: 'When better AI ships, your system can use it without a new platform fee or rebuild.' },
+  { group: 'Control', clause: 'Human gate', title: 'Human signoff', body: 'Nothing autonomous goes live to buyers without a human gate.' },
+  { group: 'Ownership', clause: 'Client assets', title: 'Sovereignty', body: 'You own code, data, ad accounts, customer list, and built assets.' },
+  { group: 'Economics', clause: 'ROI floor', title: 'ROI floor', body: '5x attributable ROI within 24 months, or Buildwise keeps building.' },
+  { group: 'Portability', clause: 'No lock-in', title: 'No vendor lock-in', body: 'The system is portable across models, tools, and channels.' },
+  { group: 'Exit rights', clause: 'After Day 90', title: 'True m-t-m after Day 90', body: 'No clawback. No exit fee. No long-term penalty.' },
+];
+
+const attributionRules = [
+  { label: 'Counts', body: 'Booked work tied to an audited touchpoint in the dashboard.' },
+  { label: 'Does not count', body: 'Existing referrals, old SEO, or outside channels we cannot trace.' },
+  { label: 'Why it matters', body: 'The math stays conservative so trust does not depend on our storytelling.' },
+];
+
+const entryPaths = [
+  {
+    name: 'Ascend Pilot',
+    price: canonical.products.pilot.price.oneshot_display,
+    label: 'Proof sprint',
+    body: 'A 45-day paid sprint that proves the highest-leverage layer before a full operating relationship.',
+    href: '/pricing#pilot',
+    tone: 'cyan',
+  },
+  {
+    name: 'Ascend',
+    price: `${canonical.products.ascend.price.oneshot_display} + ${canonical.products.ascend.price.recurring_display}`,
+    label: 'Main system',
+    body: 'The owned AI growth system installed in your environment and operated weekly by Buildwise.',
+    href: '/pricing#ascend',
+    tone: 'yellow',
+  },
+  {
+    name: 'Ascend Pro',
+    price: `${canonical.products.ascend_pro.price.oneshot_display} + ${canonical.products.ascend_pro.price.recurring_display}`,
+    label: 'Expansion system',
+    body: 'For multi-location operators and category leaders who need deeper AI agents, RevOps, and territory strategy.',
+    href: '/pricing#pro',
+    tone: 'green',
   },
 ];
 
 const objections = [
   {
     q: 'We were burned by an agency before.',
-    a: 'Ascend is built on your domain, your accounts, and your data. No proprietary trap. No mystery reporting.',
+    a: 'Ascend is built on your domain, your accounts, and your data. You keep the asset. You see the work. There is no mystery dashboard.',
   },
   {
     q: "I don't have time to manage another vendor.",
-    a: 'The system surfaces decisions, not chores. The weekly rhythm shows what matters and what we already handled.',
+    a: 'That is the point. You approve the important gates. Buildwise runs the weekly work.',
   },
   {
     q: 'AI sounds risky in a real business.',
@@ -142,18 +250,6 @@ const objections = [
     q: 'The math has to make sense.',
     a: 'Pricing is public, the ROI floor is written into the engagement, and the baseline is captured before claims begin.',
   },
-];
-
-// L10 — Playbook teaser (8 items, expanded from rejected branch)
-const playbookItems = [
-  { title: 'The AI marketing department', sub: 'What a run-for-you marketing operation looks like.', href: '/playbook/ai-marketing-department' },
-  { title: 'Category-of-one marketing', sub: 'Becoming the most-chosen name in your market.', href: '/playbook/category-of-one-marketing' },
-  { title: 'Captured baseline', sub: 'Measuring the floor before the system turns on.', href: '/playbook/captured-baseline' },
-  { title: 'The Poor Four', sub: 'The four operating gaps that cap service-business growth.', href: '/playbook/poor-four' },
-  { title: 'Fractional CMO alternative', sub: 'Strategy without execution leaves the gap open.', href: '/playbook/fractional-cmo-alternative' },
-  { title: 'Capability inheritance guarantee', sub: 'Why your system gets better without renegotiation.', href: '/playbook/capability-inheritance' },
-  { title: 'Hyper-personalized SEO', sub: 'Five axes that separate your audit from a templated one.', href: '/playbook/hyper-personalized-seo' },
-  { title: 'Capability overhang + harness', sub: 'Why frontier AI in a service-business harness compounds.', href: '/playbook/capability-overhang' },
 ];
 
 // L11 — FAQ (8 questions; "Where do you operate?" replaces "Why Atlanta?" for national broadcast)
@@ -168,11 +264,11 @@ const faqs = [
   },
   {
     q: 'How fast does the system go live?',
-    a: 'Inside 30 days the website is live, ad accounts are wired, the CRM is instrumented, and the first qualified leads start to flow. Full-system instrumentation completes in the same window.',
+    a: 'Inside 30 days the system is live, the dashboard is open, and the first proof sprint is aimed at the leak with the fastest path to cash. The full install runs through the 45-day proof window.',
   },
   {
     q: 'How do you measure success?',
-    a: 'Every commitment carries a confidence percentage, an evidence class, and a captured baseline. Headline floor: 5× attributable ROI inside 24 months, measured against the baseline we capture on Day 0.',
+    a: 'We start with a written baseline. From there, the dashboard tracks spend, source, follow-up, booked work, and the next move. The headline floor is 5x attributable ROI inside 24 months.',
   },
   {
     q: "What if the system doesn't hit 5×?",
@@ -205,7 +301,7 @@ const serviceSchema = {
   provider: { '@id': 'https://buildwisemedia.com/#org' },
   areaServed: { '@type': 'Country', name: 'United States' },
   description:
-    'Ascend installs an 8-layer revenue operating system inside the business — qualified leads, review velocity, local search strength, and AI-search presence operated as one system. Client owns the code, data, ad accounts, and customer list.',
+    'Ascend installs a revenue AI system inside owner-led service businesses. Buildwise operates the system, the client owns the code, data, ad accounts, and customer list, and the math is visible from Day 1.',
   url: 'https://buildwisemedia.com/services/ascend',
   hasOfferCatalog: {
     '@type': 'OfferCatalog',
@@ -267,25 +363,25 @@ const faqSchema = {
   <section class="home-hero" aria-labelledby="home-hero-title">
     <div class="container hero-grid">
       <div class="hero-copy">
-        <p class="eyebrow">Verifiable autonomous marketing systems for service businesses</p>
-        <h1 id="home-hero-title" class="h-hero">You run the business. Ascend makes you the <em>most-chosen</em> name in your market.</h1>
+        <p class="eyebrow">AI growth system for owner-led service businesses</p>
+        <h1 id="home-hero-title" class="h-hero">Own the AI growth system your competitors wish they had.</h1>
         <p class="hero-sub">
-          Buildwise installs and operates Ascend on your domain: visibility, conversion, speed-to-lead, sales ops, reputation, paid media, reporting, and strategy. You own the asset. We run the cadence. The math is verified weekly.
+          Buildwise installs Ascend on your domain and runs it every week. It handles visibility, follow-up, reputation, attribution, and AI upgrades while the system stays yours.
         </p>
         <div class="hero-actions" role="group" aria-label="Primary actions">
           <a href="/book" class="cta" data-cta-source="home-hero">See If We're a Fit<span class="cta-arrow" aria-hidden="true">&rarr;</span></a>
           <a href={SYSTEM_ANCHOR} class="cta-ghost" data-cta-source="home-hero-system">See the System</a>
         </div>
         <ul class="hero-proof-strip" aria-label="Ascend proof points">
-          <li><strong>30 days</strong><span>system live</span></li>
-          <li><strong>5×</strong><span>24-month ROI floor</span></li>
-          <li><strong>HITL</strong><span>human signoff</span></li>
+          <li><strong>30 days</strong><span>installed</span></li>
+          <li><strong>Yours</strong><span>domain · data · accounts</span></li>
+          <li><strong>Auto</strong><span>frontier upgrades routed</span></li>
         </ul>
       </div>
-      <aside class="command-center ops-panel" aria-label="Ascend command center preview">
+      <aside class="command-center ops-panel" aria-label="Ascend installed system preview">
         <div class="command-topline">
           <span class="dot green"></span>
-          <span class="mono">ASCEND OPERATING CONSOLE · LIVE</span>
+          <span class="mono">ASCEND INSTALLATION · LIVE</span>
           <span class="console-lock mono">CLIENT-OWNED</span>
         </div>
 
@@ -314,13 +410,13 @@ const faqSchema = {
                 <circle cx="260" cy="160" r="42" fill="rgba(240,255,0,0.08)" stroke="var(--y2)" />
                 <circle cx="260" cy="160" r="7" fill="var(--y2)" />
                 <text x="260" y="146" text-anchor="middle" font-family="var(--mono)" font-size="10" fill="var(--ink)" letter-spacing="1.8">ASCEND</text>
-                <text x="260" y="180" text-anchor="middle" font-family="var(--mono)" font-size="8" fill="var(--ink-faint)" letter-spacing="1.6">CONTROL PLANE</text>
+                <text x="260" y="180" text-anchor="middle" font-family="var(--mono)" font-size="8" fill="var(--ink-faint)" letter-spacing="1.6">INSTALLED LAYER</text>
               </g>
-              <g class="map-node"><circle cx="78" cy="84" r="9" fill="var(--signal-cyan)" /><text x="78" y="62" text-anchor="middle" font-family="var(--mono)" font-size="8" fill="var(--ink-dim)" letter-spacing="1.4">AI SEARCH</text></g>
-              <g class="map-node"><circle cx="452" cy="116" r="9" fill="var(--y2)" /><text x="452" y="96" text-anchor="middle" font-family="var(--mono)" font-size="8" fill="var(--ink-dim)" letter-spacing="1.4">REVIEWS</text></g>
+              <g class="map-node"><circle cx="78" cy="84" r="9" fill="var(--signal-cyan)" /><text x="78" y="62" text-anchor="middle" font-family="var(--mono)" font-size="8" fill="var(--ink-dim)" letter-spacing="1.4">DOMAIN</text></g>
+              <g class="map-node"><circle cx="452" cy="116" r="9" fill="var(--y2)" /><text x="452" y="96" text-anchor="middle" font-family="var(--mono)" font-size="8" fill="var(--ink-dim)" letter-spacing="1.4">AI ROUTER</text></g>
               <g class="map-node"><circle cx="70" cy="236" r="9" fill="var(--signal-green)" /><text x="70" y="264" text-anchor="middle" font-family="var(--mono)" font-size="8" fill="var(--ink-dim)" letter-spacing="1.4">CRM</text></g>
-              <g class="map-node"><circle cx="448" cy="72" r="9" fill="var(--signal-green)" /><text x="448" y="51" text-anchor="middle" font-family="var(--mono)" font-size="8" fill="var(--ink-dim)" letter-spacing="1.4">BOOKED</text></g>
-              <g class="map-node"><circle cx="452" cy="238" r="9" fill="var(--signal-orange)" /><text x="452" y="264" text-anchor="middle" font-family="var(--mono)" font-size="8" fill="var(--ink-dim)" letter-spacing="1.4">NEXT MOVE</text></g>
+              <g class="map-node"><circle cx="448" cy="72" r="9" fill="var(--signal-green)" /><text x="448" y="51" text-anchor="middle" font-family="var(--mono)" font-size="8" fill="var(--ink-dim)" letter-spacing="1.4">PROOF</text></g>
+              <g class="map-node"><circle cx="452" cy="238" r="9" fill="var(--signal-orange)" /><text x="452" y="264" text-anchor="middle" font-family="var(--mono)" font-size="8" fill="var(--ink-dim)" letter-spacing="1.4">WEEKLY OPS</text></g>
             </svg>
             <div class="signal-queue" aria-label="Active operating routes">
               {signalQueue.map((item) => (
@@ -371,31 +467,31 @@ const faqSchema = {
         <div class="evidence-ticker" aria-hidden="true">
           <div class="ticker-track">
             <div class="ticker-items">
-              <span>LEADS INGESTED</span>
+              <span>DOMAIN OWNED</span>
               <span class="ticker-sep">·</span>
-              <span>CRM STITCHED</span>
+              <span>DATA OWNED</span>
               <span class="ticker-sep">·</span>
-              <span>SPEED-TO-LEAD &lt;5M</span>
+              <span>AI ROUTER LIVE</span>
               <span class="ticker-sep">·</span>
-              <span>SYSTEM ACTIVE</span>
+              <span>HUMAN GATES</span>
               <span class="ticker-sep">·</span>
-              <span>MATH VERIFIED</span>
+              <span>WEEKLY OPERATED</span>
               <span class="ticker-sep">·</span>
-              <span>SOVEREIGN DATA</span>
+              <span>CAPABILITY INHERITED</span>
               <span class="ticker-sep">·</span>
             </div>
             <div class="ticker-items">
-              <span>LEADS INGESTED</span>
+              <span>DOMAIN OWNED</span>
               <span class="ticker-sep">·</span>
-              <span>CRM STITCHED</span>
+              <span>DATA OWNED</span>
               <span class="ticker-sep">·</span>
-              <span>SPEED-TO-LEAD &lt;5M</span>
+              <span>AI ROUTER LIVE</span>
               <span class="ticker-sep">·</span>
-              <span>SYSTEM ACTIVE</span>
+              <span>HUMAN GATES</span>
               <span class="ticker-sep">·</span>
-              <span>MATH VERIFIED</span>
+              <span>WEEKLY OPERATED</span>
               <span class="ticker-sep">·</span>
-              <span>SOVEREIGN DATA</span>
+              <span>CAPABILITY INHERITED</span>
               <span class="ticker-sep">·</span>
             </div>
           </div>
@@ -410,12 +506,63 @@ const faqSchema = {
   <section class="operating-reframe" aria-labelledby="operating-reframe-title">
     <div class="container reframe-grid">
       <header class="reframe-head">
-        <p class="section-tag">The reframe</p>
-        <h2 id="operating-reframe-title" class="h-section">The problem is not that you need more marketing. The problem is that marketing still needs you.</h2>
+        <p class="section-tag">Why now</p>
+        <h2 id="operating-reframe-title" class="h-section">
+          AI is moving faster.<br/>
+          Owners need a <em>system</em>.
+        </h2>
       </header>
       <div class="reframe-ledger" role="list">
         {operatingTruths.map((item) => (
           <article class={`reframe-card tone-${item.tone}`} role="listitem">
+            <p class="ops-kicker">{item.label}</p>
+            <h3>{item.titleLead}<em>{item.titleEm}</em>{item.titleTail}</h3>
+            <p>{item.body}</p>
+          </article>
+        ))}
+      </div>
+      <div class="frontier-proof-grid" aria-label="AI capability proof points">
+        {frontierStats.map((item) => (
+          <a class="frontier-proof-card" href={item.href} target={item.href.startsWith('http') ? '_blank' : undefined} rel={item.href.startsWith('http') ? 'noopener' : undefined}>
+            <span class="mono">{item.source}</span>
+            <strong>{item.value}</strong>
+            <p>{item.label}</p>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================ -->
+  <!-- L1.6 · Capability Curve                       -->
+  <!-- ============================================ -->
+  <AIStorySection />
+
+  <!-- ============================================ -->
+  <!-- L1.7 · Earn-Back Calculator                   -->
+  <!-- ============================================ -->
+  <EarnBackCalculator />
+
+  <!-- ============================================ -->
+  <!-- L2 · Poor Four                                -->
+  <!-- ============================================ -->
+  <PoorFour />
+
+  <!-- ============================================ -->
+  <!-- L2.5 · Value Equation                         -->
+  <!-- ============================================ -->
+  <section class="offer-equation-section elev" aria-labelledby="offer-equation-title">
+    <div class="container offer-equation-grid">
+      <header>
+        <p class="section-tag">The installed advantage</p>
+        <h2 id="offer-equation-title" class="h-section">What they get is not advice. It is an operating layer inside the business.</h2>
+        <p class="lede">
+          The Dossier aims the system. Ascend is the thing Buildwise installs, operates, and keeps improving for the owner.
+        </p>
+      </header>
+      <div class="offer-equation-cards">
+        {valueEquation.map((item) => (
+          <article class={`offer-equation-card tone-${item.tone}`}>
             <p class="ops-kicker">{item.label}</p>
             <h3>{item.title}</h3>
             <p>{item.body}</p>
@@ -424,11 +571,6 @@ const faqSchema = {
       </div>
     </div>
   </section>
-
-  <!-- ============================================ -->
-  <!-- L2 · Poor Four                                -->
-  <!-- ============================================ -->
-  <PoorFour />
 
   <!-- ============================================ -->
   <!-- L3 · 8-Layer Revenue Operating System         -->
@@ -442,20 +584,31 @@ const faqSchema = {
     <div class="container install-grid">
       <header class="install-head">
         <p class="section-tag">What changes in 30 days</p>
-        <h2 id="install-title" class="h-section">The system goes live before the old excuses do.</h2>
+        <h2 id="install-title" class="h-section">In 30 days, the gap is visibly closing.</h2>
         <p class="lede">
-          Ascend starts with the baseline, installs the operating layer, then moves into a weekly rhythm your business can actually read.
+          The system is installed inside your environment, the dashboard is visible, and the next month starts with more signal than the last.
         </p>
       </header>
-      <ol class="install-steps" role="list">
-        {installSteps.map((step) => (
-          <li>
-            <span class="install-day mono">{step.day}</span>
-            <h3>{step.label}</h3>
-            <p>{step.body}</p>
-          </li>
-        ))}
-      </ol>
+      <div class="install-console" aria-label="30-day install progress panel">
+        <div class="install-pulse" aria-hidden="true">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+        <ol class="install-steps" role="list">
+          {installSteps.map((step) => (
+            <li style={`--fill: ${step.fill};`}>
+              <div class="install-step-top">
+                <span class="install-day mono">{step.day}</span>
+                <span class="install-metric mono">{step.metric}</span>
+              </div>
+              <div class="install-meter" aria-hidden="true"><span></span></div>
+              <h3>{step.label}</h3>
+              <p>{step.body}</p>
+            </li>
+          ))}
+        </ol>
+      </div>
     </div>
   </section>
 
@@ -465,19 +618,112 @@ const faqSchema = {
   <Sovereignty />
 
   <!-- ============================================ -->
-  <!-- L6 · Product Comparison                       -->
+  <!-- L5.5 · Market Dominance Dossier               -->
   <!-- ============================================ -->
-  <ProductComparison />
+  <section class="dossier-section" aria-labelledby="dossier-title">
+    <div class="container dossier-grid">
+      <header>
+        <p class="section-tag">Before the sales call</p>
+        <h2 id="dossier-title" class="h-section">Start with the Market Dominance Dossier.</h2>
+        <p class="lede">
+          The Dossier turns the website from a pitch into a diagnosis. It shows where your market position leaks, which layer should move first, and whether the economics deserve a real conversation.
+        </p>
+      </header>
+      <div class="dossier-preview ops-panel" aria-label="Market Dominance Dossier preview">
+        <div class="dossier-preview-head">
+          <span class="mono">Market Dominance Dossier</span>
+          <strong>First move identified before the call</strong>
+        </div>
+        <div class="dossier-score-stack">
+          {dossierSignals.map((item) => (
+            <div class="dossier-score-row" style={`--score: ${item.score}%;`}>
+              <div>
+                <span class="mono">{item.label}</span>
+                <strong>{item.value}</strong>
+              </div>
+              <div class="dossier-score-bar" aria-hidden="true"><span></span></div>
+            </div>
+          ))}
+        </div>
+        <div class="dossier-leak-map">
+          {dossierSignals.map((item) => (
+            <article>
+              <span>{item.score}</span>
+              <strong>{item.cue}</strong>
+            </article>
+          ))}
+        </div>
+        <div class="dossier-first-move">
+          <span class="mono">Recommended first move</span>
+          <strong>Fix the highest-leverage leak before buying more attention.</strong>
+        </div>
+      </div>
+    </div>
+  </section>
 
   <!-- ============================================ -->
-  <!-- L7 · Earn-Back Calculator                     -->
+  <!-- L5.6 · Contract Proof                         -->
   <!-- ============================================ -->
-  <EarnBackCalculator />
+  <section class="contract-proof-section elev" aria-labelledby="contract-proof-title">
+    <div class="container">
+      <header class="contract-proof-head">
+        <p class="section-tag">Risk reversal</p>
+        <h2 id="contract-proof-title" class="h-section">The promise gets teeth in the agreement.</h2>
+        <p class="lede">
+          A guarantee is only useful if both sides can see what it means. These clauses are the buyer-risk reducers behind the offer.
+        </p>
+      </header>
+      <div class="contract-proof-board" aria-label="Agreement clauses grouped by buyer anxiety">
+        <div class="contract-proof-page">
+          <div class="contract-proof-page-head">
+            <span class="mono">Agreement layer</span>
+            <strong>Buyer risk reducers</strong>
+          </div>
+          <div class="contract-proof-clauses">
+            {contractProofs.map((item) => (
+              <article class="contract-proof-clause">
+                <span class="contract-clause-group mono">{item.group}</span>
+                <div>
+                  <span class="contract-clause-label mono">{item.clause}</span>
+                  <h3>{item.title}</h3>
+                  <p>{item.body}</p>
+                </div>
+              </article>
+            ))}
+          </div>
+        </div>
+        <aside class="contract-proof-stamp" aria-label="Risk reversal summary">
+          <span class="mono">Risk moved off the buyer</span>
+          <strong>Owned asset. Human gate. ROI floor. Clean exit.</strong>
+        </aside>
+      </div>
+    </div>
+  </section>
 
   <!-- ============================================ -->
-  <!-- L8 · Capability Curve                         -->
+  <!-- L6 · Entry Paths                              -->
   <!-- ============================================ -->
-  <AIStorySection />
+  <section class="entry-paths-section" aria-labelledby="entry-paths-title">
+    <div class="container entry-paths-grid">
+      <header>
+        <p class="section-tag">Entry paths</p>
+        <h2 id="entry-paths-title" class="h-section">Same owned system. Three commitment shapes.</h2>
+        <p class="lede">
+          Pricing stays public because fit should be about the size of the opportunity, not a proposal reveal.
+        </p>
+      </header>
+      <div class="entry-path-cards">
+        {entryPaths.map((path) => (
+          <a class={`entry-path-card tone-${path.tone}`} href={path.href}>
+            <span class="ops-kicker">{path.label}</span>
+            <h3>{path.name}</h3>
+            <strong>{path.price}</strong>
+            <p>{path.body}</p>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
 
   <!-- ============================================ -->
   <!-- L9 · Category-of-one                          -->
@@ -555,7 +801,7 @@ const faqSchema = {
       <article class="proof-card">
         <p class="proof-headline">
           One service business went from $300K to $10M in 12 months.<br/>
-          Same owner. Same hours. <em>Different system.</em>
+          Same owner. Same hours. <em>Different operating model.</em>
         </p>
         <ul class="proof-evidence" role="list">
           <li>
@@ -603,26 +849,19 @@ const faqSchema = {
         </div>
       </div>
 
-    </div>
-  </section>
+      <div class="attribution-honesty">
+        <p class="ops-kicker">Attribution honesty</p>
+        <h3>What counts toward ROI has to be visible.</h3>
+        <div class="attribution-rule-grid">
+          {attributionRules.map((item) => (
+            <article>
+              <span class="mono">{item.label}</span>
+              <p>{item.body}</p>
+            </article>
+          ))}
+        </div>
+      </div>
 
-  <!-- ============================================ -->
-  <!-- L11 · Playbook teaser (8 items)               -->
-  <!-- ============================================ -->
-  <section class="playbook-teaser" aria-labelledby="playbook-teaser-title">
-    <div class="container">
-      <p class="section-tag">The Playbook</p>
-      <h2 id="playbook-teaser-title" class="h-section">What we believe.</h2>
-      <ul class="playbook-list" role="list">
-        {playbookItems.map((item) => (
-          <li>
-            <a href={item.href}>
-              <span class="playbook-link-title">{item.title}</span>
-              <span class="playbook-link-sub">{item.sub}</span>
-            </a>
-          </li>
-        ))}
-      </ul>
     </div>
   </section>
 
@@ -660,11 +899,11 @@ const faqSchema = {
   <section class="final-section" aria-labelledby="final-title">
     <div class="container">
       <div class="final-inner">
-        <div>
-          <p class="section-tag">Start with the diagnostic</p>
-          <h2 id="final-title" class="h-closer">Find the leak. Then decide if Ascend should run it.</h2>
-          <p class="lede">The fit diagnostic names the market leaks, captures the context, and routes qualified owners into a short discovery call.</p>
-        </div>
+      <div>
+        <p class="section-tag">Start with the Dossier</p>
+          <h2 id="final-title" class="h-closer">See where Ascend would install first.</h2>
+          <p class="lede">The fit diagnostic starts the Market Dominance Dossier, checks whether the economics are real, and shows whether Buildwise should install the system in your business.</p>
+      </div>
         <a href="/book" class="cta" data-cta-source="home-final">See If We're a Fit<span class="cta-arrow" aria-hidden="true">&rarr;</span></a>
       </div>
       <!-- @r020:F2 proof: SVG timeline graphic showing the 30-day install milestones to system-live -->
@@ -709,11 +948,11 @@ const faqSchema = {
 /* ===== L1 Hero ===== */
 .home-hero {
   position: relative;
-  min-height: 100svh;
+  min-height: clamp(720px, 92svh, 900px);
   display: flex;
-  align-items: center;
-  padding-top: clamp(104px, 12vw, 168px);
-  padding-bottom: clamp(56px, 8vw, 104px);
+  align-items: flex-start;
+  padding-top: clamp(96px, 9vw, 128px);
+  padding-bottom: clamp(44px, 6vw, 72px);
   overflow: hidden;
   background:
     linear-gradient(115deg, rgba(56, 216, 255, 0.08), transparent 38%),
@@ -723,28 +962,34 @@ const faqSchema = {
 
 .hero-grid {
   display: grid;
-  grid-template-columns: minmax(0, 1.08fr) minmax(280px, 0.92fr);
-  gap: clamp(36px, 7vw, 96px);
-  align-items: center;
+  grid-template-columns: minmax(0, 1.14fr) minmax(280px, 0.86fr);
+  gap: clamp(30px, 5.5vw, 72px);
+  align-items: start;
 }
 .hero-grid > * { min-width: 0; }
 
 .hero-copy {
   display: flex;
   flex-direction: column;
-  gap: 24px;
+  gap: 18px;
   min-width: 0;
 }
 
-.hero-copy .h-hero { max-width: 880px; }
+.hero-copy .h-hero {
+  max-width: 760px;
+  font-size: clamp(44px, 5.2vw, 74px);
+  line-height: 0.93;
+  letter-spacing: -0.035em;
+}
 .hero-copy .h-hero em {
   color: var(--y2);
   font-style: normal;
 }
 .hero-copy .hero-sub {
-  max-width: 680px;
-  font-size: clamp(18px, 1.8vw, 22px);
+  max-width: 620px;
+  font-size: clamp(17px, 1.55vw, 20px);
   font-weight: 400;
+  line-height: 1.48;
   color: var(--ink-dim);
 }
 
@@ -753,6 +998,7 @@ const faqSchema = {
   flex-wrap: wrap;
   gap: 14px;
   align-items: center;
+  margin-top: 2px;
 }
 
 .hero-proof-strip {
@@ -767,7 +1013,7 @@ const faqSchema = {
 }
 .hero-proof-strip li {
   background: var(--bg-card);
-  padding: 18px 16px;
+  padding: 14px 14px;
   display: flex;
   flex-direction: column;
   gap: 6px;
@@ -794,18 +1040,18 @@ const faqSchema = {
     linear-gradient(180deg, rgba(56, 216, 255, 0.06), transparent 34%),
     linear-gradient(125deg, rgba(240, 255, 0, 0.055), transparent 48%),
     var(--bg-card);
-  padding: clamp(22px, 3vw, 34px);
-  min-height: 620px;
+  padding: clamp(18px, 2.4vw, 28px);
+  min-height: 520px;
   display: flex;
   flex-direction: column;
-  gap: 24px;
+  gap: 16px;
   box-shadow: 0 24px 80px rgba(0, 0, 0, 0.35);
   overflow: hidden;
 }
 .command-center::before {
   content: "";
   position: absolute;
-  inset: 18px;
+  inset: 14px;
   border: 1px solid rgba(240, 255, 0, 0.12);
   pointer-events: none;
 }
@@ -840,8 +1086,8 @@ const faqSchema = {
 
 .console-shell {
   display: grid;
-  grid-template-columns: minmax(0, 1.2fr) minmax(160px, 0.8fr);
-  gap: 14px;
+  grid-template-columns: minmax(0, 1.18fr) minmax(140px, 0.82fr);
+  gap: 12px;
   position: relative;
   z-index: 1;
 }
@@ -850,12 +1096,12 @@ const faqSchema = {
   min-width: 0;
   border: 1px solid var(--rule);
   background: rgba(5, 5, 7, 0.62);
-  padding: 14px;
+  padding: 12px;
 }
 .signal-map-panel {
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 10px;
 }
 .panel-head {
   display: flex;
@@ -882,7 +1128,7 @@ const faqSchema = {
   align-items: center;
   background: rgba(5, 5, 7, 0.72);
   border-left: 2px solid currentColor;
-  padding: 10px 12px;
+  padding: 8px 10px;
 }
 .signal-queue-row span {
   color: var(--ink-faint);
@@ -915,7 +1161,7 @@ const faqSchema = {
 .radar-list {
   list-style: none;
   display: grid;
-  gap: 8px;
+  gap: 6px;
   margin: 0;
   padding: 0;
 }
@@ -924,7 +1170,7 @@ const faqSchema = {
   grid-template-columns: 10px minmax(0, 1fr);
   gap: 8px 10px;
   align-items: center;
-  padding: 10px;
+  padding: 8px;
   border: 1px solid var(--rule);
   background: rgba(255, 255, 255, 0.015);
 }
@@ -955,7 +1201,7 @@ const faqSchema = {
 }
 .command-metric {
   background: var(--bg);
-  padding: 18px;
+  padding: 14px;
   display: flex;
   flex-direction: column;
   gap: 8px;
@@ -992,7 +1238,7 @@ const faqSchema = {
 }
 .proof-rail-item {
   background: rgba(5, 5, 7, 0.72);
-  padding: 13px 12px;
+  padding: 10px 10px;
   border-top: 2px solid currentColor;
 }
 .proof-rail-item span {
@@ -1010,6 +1256,104 @@ const faqSchema = {
   text-transform: uppercase;
   color: currentColor;
 }
+
+@media (min-width: 901px) and (max-height: 900px) {
+  .home-hero {
+    min-height: 100svh;
+    padding-top: clamp(72px, 8svh, 92px);
+    padding-bottom: clamp(28px, 4svh, 44px);
+  }
+  .hero-grid {
+    grid-template-columns: minmax(0, 1.08fr) minmax(270px, 0.92fr);
+    gap: clamp(24px, 4vw, 52px);
+  }
+  .hero-copy { gap: 14px; }
+  .hero-copy .h-hero {
+    max-width: 700px;
+    font-size: clamp(40px, 4.75vw, 64px);
+    line-height: 0.94;
+  }
+  .hero-copy .hero-sub {
+    max-width: 580px;
+    font-size: clamp(16px, 1.4vw, 18px);
+    line-height: 1.42;
+  }
+  .hero-actions {
+    gap: 12px;
+    margin-top: 0;
+  }
+  .hero-proof-strip {
+    max-width: 620px;
+    margin-top: 4px;
+  }
+  .hero-proof-strip li {
+    padding: 11px 12px;
+    gap: 4px;
+  }
+  .hero-proof-strip strong {
+    font-size: clamp(21px, 2.2vw, 30px);
+  }
+  .command-center {
+    min-height: 0;
+    padding: 18px;
+    gap: 12px;
+  }
+  .command-center::before { inset: 10px; }
+  .console-shell {
+    grid-template-columns: minmax(0, 1.1fr) minmax(126px, 0.9fr);
+    gap: 10px;
+  }
+  .signal-map-panel,
+  .leak-radar-panel {
+    padding: 10px;
+  }
+  .panel-head {
+    margin-bottom: 8px;
+  }
+  .market-signal-svg {
+    max-height: 144px;
+  }
+  .signal-map-panel {
+    gap: 8px;
+  }
+  .signal-queue-row {
+    grid-template-columns: minmax(68px, 0.64fr) minmax(0, 1.36fr);
+    gap: 8px;
+    padding: 6px 8px;
+  }
+  .radar-list { gap: 5px; }
+  .radar-item {
+    gap: 6px 8px;
+    padding: 6px;
+  }
+  .radar-item strong {
+    font-size: 11px;
+  }
+  .command-metric {
+    padding: 10px 12px;
+    gap: 6px;
+  }
+  .command-metric strong {
+    font-size: clamp(26px, 2.5vw, 36px);
+  }
+  .command-metric em {
+    font-size: 8px;
+  }
+  .proof-rail-item {
+    padding: 8px;
+  }
+  .proof-rail-item span {
+    font-size: 7px;
+  }
+  .proof-rail-item strong {
+    margin-top: 5px;
+    font-size: 9px;
+  }
+  .evidence-ticker {
+    padding-top: 8px;
+  }
+}
+
 @keyframes signalRoute {
   to { stroke-dashoffset: -180; }
 }
@@ -1023,7 +1367,7 @@ const faqSchema = {
   width: 100%;
   overflow: hidden;
   border-top: 1px solid var(--rule);
-  padding-top: 16px;
+  padding-top: 12px;
   margin-top: auto;
   mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
   -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
@@ -1033,7 +1377,7 @@ const faqSchema = {
 
 /* ===== L1.5 Operating reframe ===== */
 .operating-reframe {
-  padding-block: clamp(72px, 9vw, 124px);
+  padding-block: var(--section-y);
   border-block: 1px solid var(--rule);
   background:
     linear-gradient(180deg, rgba(255, 255, 255, 0.018), transparent),
@@ -1048,6 +1392,19 @@ const faqSchema = {
 .reframe-head {
   position: sticky;
   top: 104px;
+  min-width: 0;
+  padding-right: clamp(8px, 2vw, 24px);
+}
+.reframe-head .h-section {
+  max-width: 9.6ch;
+  line-height: 0.98;
+  text-wrap: balance;
+}
+.reframe-head .h-section em,
+.reframe-card h3 em {
+  color: var(--y2);
+  font-style: normal;
+  font-weight: inherit;
 }
 .reframe-ledger {
   display: grid;
@@ -1057,7 +1414,7 @@ const faqSchema = {
 }
 .reframe-card {
   background: var(--bg-card);
-  padding: clamp(24px, 4vw, 42px);
+  padding: clamp(22px, 3vw, 32px);
   border-left: 3px solid currentColor;
 }
 .reframe-card h3 {
@@ -1065,6 +1422,7 @@ const faqSchema = {
   max-width: 740px;
   font-size: clamp(24px, 3vw, 42px);
   line-height: 1.04;
+  text-wrap: balance;
 }
 .reframe-card p:last-child {
   margin-top: 16px;
@@ -1072,6 +1430,54 @@ const faqSchema = {
   font-size: 16px;
   line-height: 1.6;
   max-width: 700px;
+}
+.frontier-proof-grid {
+  grid-column: 2;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1px;
+  background: var(--rule);
+  border: 1px solid var(--rule);
+  margin-top: clamp(24px, 4vw, 40px);
+}
+.frontier-proof-card {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: clamp(22px, 3vw, 34px);
+  background:
+    linear-gradient(145deg, rgba(240, 255, 0, 0.045), transparent 58%),
+    var(--bg-card);
+  text-decoration: none;
+  color: inherit;
+  border-top: 3px solid var(--y2);
+}
+.frontier-proof-card:nth-child(2) { border-top-color: var(--signal-cyan); }
+.frontier-proof-card:nth-child(3) { border-top-color: var(--signal-green); }
+.frontier-proof-card span {
+  font-size: 9px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+}
+.frontier-proof-card strong {
+  display: block;
+  font-size: clamp(30px, 3.2vw, 46px);
+  line-height: 0.92;
+  letter-spacing: -0.04em;
+  color: var(--ink);
+  overflow-wrap: anywhere;
+}
+.frontier-proof-card p {
+  max-width: 34ch;
+  font-size: 14px;
+  line-height: 1.5;
+  color: var(--ink-dim);
+}
+.frontier-proof-card:hover strong,
+.frontier-proof-card:focus-visible strong {
+  color: var(--y2);
 }
 .ticker-track {
   display: flex;
@@ -1097,8 +1503,8 @@ const faqSchema = {
 
 /* ===== Comparative Progress Bars ===== */
 .bar-comparison {
-  margin-top: 48px;
-  padding: 36px;
+  margin-top: 32px;
+  padding: 28px;
   background: var(--bg-card);
   border: 1px solid var(--rule);
   border-radius: 4px;
@@ -1180,32 +1586,108 @@ const faqSchema = {
 }
 .install-head { position: sticky; top: 104px; }
 .install-head .lede { margin-top: 22px; }
+.install-console {
+  position: relative;
+  border: 1px solid var(--rule);
+  background:
+    linear-gradient(90deg, rgba(255, 255, 255, 0.035) 1px, transparent 1px),
+    linear-gradient(0deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+    var(--bg-card);
+  background-size: 44px 44px;
+  padding: clamp(18px, 3vw, 32px);
+  overflow: hidden;
+}
+.install-console::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 78% 18%, rgba(240, 255, 0, 0.13), transparent 34%);
+  pointer-events: none;
+}
+.install-pulse {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 18px;
+  margin-bottom: 18px;
+}
+.install-pulse span {
+  height: 42px;
+  border: 1px solid var(--rule);
+  background:
+    linear-gradient(90deg, rgba(240, 255, 0, 0.16), transparent 58%),
+    rgba(5, 5, 7, 0.72);
+}
+.install-pulse span:nth-child(2) {
+  background:
+    linear-gradient(90deg, rgba(240, 255, 0, 0.32), transparent 70%),
+    rgba(5, 5, 7, 0.72);
+}
+.install-pulse span:nth-child(3) {
+  background:
+    linear-gradient(90deg, var(--y2), rgba(240, 255, 0, 0.1)),
+    rgba(5, 5, 7, 0.72);
+  box-shadow: 0 0 28px rgba(240, 255, 0, 0.12);
+}
 .install-steps {
+  position: relative;
+  z-index: 1;
   list-style: none;
   display: grid;
-  gap: 1px;
-  background: var(--rule);
-  border: 1px solid var(--rule);
+  gap: 14px;
+  margin: 0;
+  padding: 0;
 }
 .install-steps li {
-  background: var(--bg-card);
-  padding: clamp(26px, 4vw, 42px);
+  display: grid;
+  gap: 14px;
+  background: rgba(5, 5, 7, 0.82);
+  border: 1px solid var(--rule);
+  padding: clamp(22px, 3vw, 32px);
+}
+.install-step-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
 }
 .install-day {
   color: var(--y2);
   font-size: 10px;
   letter-spacing: 0.2em;
 }
+.install-metric {
+  color: var(--ink-faint);
+  font-size: 9px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  text-align: right;
+}
+.install-meter {
+  height: 8px;
+  border: 1px solid rgba(240, 255, 0, 0.28);
+  background: rgba(255, 255, 255, 0.04);
+  overflow: hidden;
+}
+.install-meter span {
+  display: block;
+  width: var(--fill);
+  height: 100%;
+  background: linear-gradient(90deg, var(--y1), var(--y2));
+  box-shadow: 0 0 18px rgba(240, 255, 0, 0.24);
+}
 .install-steps h3 {
-  font-size: clamp(30px, 4vw, 52px);
+  font-size: clamp(24px, 2.8vw, 38px);
   line-height: 1;
-  margin-block: 14px;
+  margin: 0;
 }
 .install-steps p {
   color: var(--ink-dim);
-  font-size: 17px;
-  line-height: 1.6;
+  font-size: 15px;
+  line-height: 1.55;
   max-width: 620px;
+  margin: 0;
 }
 
 /* ===== Objection section ===== */
@@ -1225,7 +1707,7 @@ const faqSchema = {
 }
 .objection-card {
   background: var(--bg-card);
-  padding: clamp(24px, 3vw, 36px);
+  padding: clamp(22px, 2.6vw, 30px);
 }
 .objection-card h3 {
   font-size: clamp(22px, 2.2vw, 30px);
@@ -1328,7 +1810,7 @@ const faqSchema = {
 }
 .outcome-tile {
   background: var(--bg-card);
-  padding: 28px 24px;
+  padding: 22px 20px;
   display: flex;
   flex-direction: column;
   gap: 8px;
@@ -1358,7 +1840,7 @@ const faqSchema = {
 .proof-card {
   border: 1px solid var(--rule-bright);
   border-radius: 4px;
-  padding: clamp(28px, 6vw, 64px);
+  padding: clamp(24px, 4vw, 44px);
   background: var(--bg);
 }
 .proof-headline {
@@ -1372,8 +1854,8 @@ const faqSchema = {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 16px;
-  margin-top: 36px;
-  padding-top: 28px;
+  margin-top: 28px;
+  padding-top: 22px;
   border-top: 1px solid var(--rule);
 }
 .proof-evidence li {
@@ -1408,16 +1890,419 @@ const faqSchema = {
   .proof-evidence { grid-template-columns: 1fr; }
 }
 
+/* ===== Offer Sales Sections ===== */
+.offer-equation-section,
+.dossier-section,
+.contract-proof-section,
+.pilot-scope-section,
+.entry-paths-section {
+  padding-block: var(--section-y);
+}
+
+.offer-equation-grid,
+.dossier-grid,
+.pilot-scope-grid,
+.entry-paths-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 0.82fr) minmax(0, 1.18fr);
+  gap: clamp(36px, 6vw, 84px);
+  align-items: start;
+}
+
+.offer-equation-grid header,
+.dossier-grid header,
+.pilot-scope-grid header,
+.entry-paths-grid header {
+  position: sticky;
+  top: 104px;
+}
+
+.offer-equation-grid .lede,
+.dossier-grid .lede,
+.pilot-scope-grid .lede,
+.entry-paths-grid .lede,
+.contract-proof-head .lede {
+  margin-top: 22px;
+}
+
+.offer-equation-cards {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1px;
+  background: var(--rule);
+  border: 1px solid var(--rule);
+}
+
+.offer-equation-card {
+  min-width: 0;
+  background: var(--bg-card);
+  padding: clamp(20px, 2.4vw, 28px);
+  border-top: 2px solid currentColor;
+}
+
+.offer-equation-card h3 {
+  margin-top: 14px;
+  color: var(--ink);
+  font-size: clamp(20px, 2vw, 28px);
+  line-height: 1.12;
+}
+
+.offer-equation-card p:last-child {
+  margin-top: 12px;
+  color: var(--ink-dim);
+  font-size: 15px;
+  line-height: 1.55;
+}
+
+.dossier-preview {
+  display: grid;
+  gap: 18px;
+  padding: clamp(20px, 3vw, 34px);
+  background:
+    linear-gradient(135deg, rgba(56,216,255,0.055), transparent 44%),
+    var(--bg-card);
+}
+
+.dossier-preview-head {
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  gap: 18px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--rule);
+}
+
+.dossier-preview-head span,
+.dossier-score-row span,
+.dossier-first-move span {
+  color: var(--ink-faint);
+  font-size: 9px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+.dossier-preview-head strong {
+  max-width: 320px;
+  color: var(--ink);
+  font-size: clamp(20px, 2.2vw, 28px);
+  line-height: 1.05;
+  text-align: right;
+}
+
+.dossier-score-stack {
+  display: grid;
+  gap: 14px;
+}
+
+.dossier-score-row {
+  display: grid;
+  grid-template-columns: minmax(0, 0.85fr) minmax(120px, 0.6fr);
+  gap: 18px;
+  align-items: center;
+}
+
+.dossier-score-row strong {
+  display: block;
+  margin-top: 6px;
+  color: var(--ink);
+  font-size: clamp(16px, 1.7vw, 22px);
+  line-height: 1.12;
+}
+
+.dossier-score-bar {
+  height: 10px;
+  border: 1px solid rgba(240, 255, 0, 0.32);
+  background: rgba(255, 255, 255, 0.04);
+  overflow: hidden;
+}
+
+.dossier-score-bar span {
+  display: block;
+  width: var(--score);
+  height: 100%;
+  background: linear-gradient(90deg, var(--y1), var(--y2));
+}
+
+.dossier-leak-map {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 1px;
+  background: var(--rule);
+  border: 1px solid var(--rule);
+}
+
+.dossier-leak-map article {
+  min-width: 0;
+  padding: 16px;
+  background: rgba(5, 5, 7, 0.78);
+}
+
+.dossier-leak-map span {
+  display: block;
+  color: var(--y2);
+  font-family: var(--mono);
+  font-size: clamp(22px, 2.5vw, 34px);
+  line-height: 1;
+}
+
+.dossier-leak-map strong {
+  display: block;
+  margin-top: 10px;
+  color: var(--ink-dim);
+  font-size: 12px;
+  line-height: 1.3;
+}
+
+.dossier-first-move {
+  display: grid;
+  gap: 8px;
+  padding: 18px;
+  border-left: 3px solid var(--y2);
+  background: rgba(240, 255, 0, 0.06);
+}
+
+.dossier-first-move strong {
+  color: var(--ink);
+  font-size: clamp(18px, 2vw, 26px);
+  line-height: 1.12;
+}
+
+.contract-proof-head {
+  max-width: 820px;
+  margin-bottom: clamp(30px, 4vw, 44px);
+}
+
+.contract-proof-board {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(220px, 0.32fr);
+  gap: clamp(18px, 3vw, 30px);
+  align-items: stretch;
+}
+
+.contract-proof-page {
+  border: 1px solid var(--rule);
+  background:
+    linear-gradient(90deg, rgba(255, 255, 255, 0.026) 1px, transparent 1px),
+    linear-gradient(0deg, rgba(255, 255, 255, 0.026) 1px, transparent 1px),
+    var(--bg-card);
+  background-size: 40px 40px;
+  padding: clamp(18px, 3vw, 32px);
+}
+
+.contract-proof-page-head {
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  gap: 18px;
+  margin-bottom: 18px;
+  padding-bottom: 14px;
+  border-bottom: 1px solid var(--rule);
+}
+
+.contract-proof-page-head span,
+.contract-clause-group,
+.contract-clause-label,
+.contract-proof-stamp span {
+  color: var(--ink-faint);
+  font-size: 9px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+.contract-proof-page-head strong {
+  color: var(--ink);
+  font-size: clamp(20px, 2vw, 28px);
+  line-height: 1.05;
+}
+
+.contract-proof-clauses {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.contract-proof-clause {
+  min-width: 0;
+  display: grid;
+  grid-template-columns: 92px minmax(0, 1fr);
+  gap: 14px;
+  padding: 16px;
+  border: 1px solid var(--rule);
+  background: rgba(5, 5, 7, 0.78);
+}
+
+.contract-clause-group {
+  color: var(--y2);
+  writing-mode: vertical-rl;
+  text-orientation: mixed;
+}
+
+.contract-clause-label {
+  display: inline-block;
+  color: var(--bg);
+  background: var(--y2);
+  font-weight: 700;
+  padding: 5px 8px;
+}
+
+.contract-proof-clause h3 {
+  color: var(--ink);
+  font-size: 18px;
+  line-height: 1.2;
+  margin-top: 12px;
+}
+
+.contract-proof-clause p {
+  margin-top: 10px;
+  color: var(--ink-dim);
+  font-size: 14px;
+  line-height: 1.55;
+}
+
+.contract-proof-stamp {
+  display: grid;
+  align-content: center;
+  gap: 16px;
+  padding: clamp(22px, 3vw, 32px);
+  border: 1px solid var(--y2);
+  background:
+    radial-gradient(circle at 50% 30%, rgba(240, 255, 0, 0.18), transparent 42%),
+    var(--bg);
+}
+
+.contract-proof-stamp strong {
+  color: var(--y2);
+  font-size: clamp(24px, 3vw, 40px);
+  line-height: 0.98;
+  letter-spacing: 0;
+}
+
+.pilot-scope-cards {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1px;
+  background: var(--rule);
+  border: 1px solid var(--rule);
+}
+
+.pilot-scope-cards article {
+  min-width: 0;
+  background: var(--bg-card);
+  padding: clamp(18px, 2.2vw, 26px);
+  border-top: 2px solid var(--signal-cyan);
+}
+
+.pilot-scope-cards article:nth-child(2) { border-top-color: var(--signal-orange); }
+.pilot-scope-cards article:nth-child(3) { border-top-color: var(--signal-green); }
+
+.pilot-scope-cards p:last-child {
+  margin-top: 10px;
+  color: var(--ink-dim);
+  font-size: 15px;
+  line-height: 1.55;
+}
+
+.entry-path-cards {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1px;
+  background: var(--rule);
+  border: 1px solid var(--rule);
+}
+
+.entry-path-card {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  padding: clamp(20px, 2.5vw, 30px);
+  background:
+    linear-gradient(160deg, rgba(240, 255, 0, 0.035), transparent 60%),
+    var(--bg-card);
+  color: inherit;
+  text-decoration: none;
+  border-top: 3px solid currentColor;
+}
+
+.entry-path-card h3 {
+  font-size: clamp(24px, 2.6vw, 34px);
+  line-height: 1;
+  letter-spacing: -0.04em;
+  color: var(--ink);
+}
+
+.entry-path-card strong {
+  min-height: 2.4em;
+  font-size: clamp(19px, 2vw, 26px);
+  line-height: 1.12;
+  letter-spacing: -0.04em;
+  color: var(--y2);
+}
+
+.entry-path-card p {
+  color: var(--ink-dim);
+  font-size: 15px;
+  line-height: 1.55;
+}
+
+.entry-path-card:hover h3,
+.entry-path-card:focus-visible h3 {
+  color: var(--y2);
+}
+
+.attribution-honesty {
+  margin-top: 36px;
+  border: 1px solid var(--rule);
+  background: var(--bg-card);
+  padding: clamp(24px, 3vw, 36px);
+}
+
+.attribution-honesty h3 {
+  margin-top: 12px;
+  color: var(--ink);
+  font-size: clamp(22px, 2.4vw, 32px);
+  line-height: 1.12;
+}
+
+.attribution-rule-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1px;
+  margin-top: 22px;
+  background: var(--rule);
+  border: 1px solid var(--rule);
+}
+
+.attribution-rule-grid article {
+  min-width: 0;
+  background: rgba(5, 5, 7, 0.76);
+  padding: 18px;
+}
+
+.attribution-rule-grid span {
+  color: var(--y2);
+  font-size: 9px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+.attribution-rule-grid p {
+  margin-top: 10px;
+  color: var(--ink-dim);
+  font-size: 14px;
+  line-height: 1.5;
+}
+
 /* ===== L10 Playbook teaser ===== */
 .playbook-teaser {
-  padding-block: clamp(72px, 9vw, 128px);
+  padding-block: var(--section-y);
   border-top: 1px solid var(--rule);
 }
 .playbook-list {
   list-style: none;
   display: flex;
   flex-direction: column;
-  margin-top: 40px;
+  margin-top: 28px;
   border-top: 1px solid var(--rule);
   padding: 0;
 }
@@ -1426,7 +2311,7 @@ const faqSchema = {
   display: grid;
   grid-template-columns: minmax(0, 1fr);
   gap: 6px;
-  padding: 28px 0;
+  padding: 22px 0;
   color: var(--ink);
   transition: color 180ms ease, padding-left 220ms ease;
 }
@@ -1484,20 +2369,34 @@ const faqSchema = {
 
 /* ===== Responsive ===== */
 @media (max-width: 900px) {
-  .home-hero { min-height: auto; }
+  .home-hero {
+    min-height: auto;
+    padding-bottom: 56px;
+  }
   .hero-grid,
   .reframe-grid,
+  .offer-equation-grid,
+  .dossier-grid,
+  .pilot-scope-grid,
+  .entry-paths-grid,
   .install-grid,
   .objection-grid,
   .final-inner { grid-template-columns: 1fr; }
   .reframe-head,
+  .offer-equation-grid header,
+  .dossier-grid header,
+  .pilot-scope-grid header,
+  .entry-paths-grid header,
   .install-head { position: static; }
+  .frontier-proof-grid { grid-column: auto; }
   .final-inner { align-items: start; }
+  .contract-proof-board { grid-template-columns: 1fr; }
 }
 
 @media (max-width: 520px) {
   .home-hero { padding-top: 82px; }
-  .hero-copy { gap: 18px; }
+  .hero-grid { gap: 28px; }
+  .hero-copy { gap: 14px; }
   .home-hero .eyebrow {
     max-width: 100%;
     align-items: flex-start;
@@ -1506,8 +2405,8 @@ const faqSchema = {
   }
   .hero-copy .h-hero {
     max-width: 100%;
-    font-size: 38px;
-    line-height: 1.02;
+    font-size: 32px;
+    line-height: 1.04;
     letter-spacing: 0;
     overflow-wrap: anywhere;
     text-wrap: balance;
@@ -1517,17 +2416,25 @@ const faqSchema = {
     font-style: normal;
   }
   .hero-copy .hero-sub {
-    font-size: 17px;
+    font-size: 16px;
     line-height: 1.45;
   }
-  .command-center { min-height: 0; padding: 20px; }
+  .command-center { min-height: 0; padding: 18px; gap: 14px; }
   .command-center::before { inset: 10px; }
   .console-shell,
   .command-metrics,
   .weekly-proof-rail,
-  .hero-proof-strip {
+  .frontier-proof-grid,
+  .hero-proof-strip,
+  .offer-equation-cards,
+  .dossier-leak-map,
+  .contract-proof-clauses,
+  .entry-path-cards,
+  .pilot-scope-cards,
+  .attribution-rule-grid {
     grid-template-columns: 1fr;
   }
+  .frontier-proof-grid { grid-column: auto; }
   .panel-head {
     align-items: flex-start;
     flex-direction: column;
@@ -1538,6 +2445,48 @@ const faqSchema = {
   }
   .console-lock { display: none; }
   .hero-actions { align-items: stretch; }
+  .hero-proof-strip {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+  .hero-proof-strip li {
+    padding: 14px 12px;
+  }
+  .hero-proof-strip span {
+    font-size: 8px;
+    letter-spacing: 0.12em;
+  }
+  .command-metrics,
+  .weekly-proof-rail {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .leak-radar-panel,
+  .evidence-ticker {
+    display: none;
+  }
+  .market-signal-svg {
+    max-height: 170px;
+  }
+  .install-pulse {
+    grid-template-columns: 1fr;
+  }
+  .install-step-top,
+  .dossier-preview-head,
+  .contract-proof-page-head {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+  .dossier-preview-head strong {
+    text-align: left;
+  }
+  .dossier-score-row {
+    grid-template-columns: 1fr;
+  }
+  .contract-proof-clause {
+    grid-template-columns: 1fr;
+  }
+  .contract-clause-group {
+    writing-mode: horizontal-tb;
+  }
   .hero-actions .cta,
   .hero-actions .cta-ghost,
   .final-inner .cta {

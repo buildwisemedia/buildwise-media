@@ -224,8 +224,7 @@ function cellClass(val: string, highlight: boolean | undefined, column: 'pilot' 
       <p class="eyebrow">Three Ways to Start</p>
       <h2 class="h-section pc-h2">Same system. Three commitment shapes.</h2>
       <p class="lede pc-lede">
-        Most owners land in Ascend. Pilot is the proof sprint.
-        Pro is for owners chasing market dominance.
+        Pilot proves the first layer. Ascend runs the full system. Pro is for owners trying to widen the market gap faster.
       </p>
     </div>
 
@@ -234,38 +233,45 @@ function cellClass(val: string, highlight: boolean | undefined, column: 'pilot' 
 
       <!-- Ascend Pilot — Y1 tier-encoding -->
       <a href="/services/ascend#pilot" class="card pc-card pc-card--pilot" aria-label="Ascend Pilot tier details">
-        <figure class="pc-card-photo">
-          <img
-            src="/images/bwm-audit-editorial-v1.webp"
-            alt="An overhead documentary still of an owner mid-audit with a single-page dashboard in hand — the quick-decision moment of a 45-day proof sprint."
-            width="1600"
-            height="900"
-            loading="lazy"
-            decoding="async"
-          />
-        </figure>
+        <div class="pc-card-visual pc-card-visual--pilot" aria-hidden="true">
+          <div class="pc-dossier-sheet">
+            <span>Diagnostic sprint</span>
+            <strong>45</strong>
+            <em>day proof meter</em>
+            <div class="pc-sprint-meter"><span></span></div>
+          </div>
+          <p class="pc-visual-caption">diagnose -> prove -> graduate</p>
+        </div>
         <p class="pc-tier-tag pc-tier-tag--y1">Tier 1 · Entry</p>
         <h3 class="h-sub pc-card-name">Ascend Pilot</h3>
         <div class="pc-price-num pc-price-num--y1">
           ${pilot.price.oneshot.toLocaleString()}
         </div>
         <p class="pc-price-label">one-time · 45-day proof sprint</p>
+        <p class="pc-card-note">Includes the install scope. Pilot graduates do not pay the install twice.</p>
         <p class="pc-card-cta pc-card-cta--y1">→ see full product.</p>
       </a>
 
       <!-- Ascend — center, Y2 fill emphasis + MOST CHOSEN badge -->
       <a href="/services/ascend" class="card pc-card pc-card--ascend" aria-label="Ascend tier details (most chosen)">
         <span class="pc-most-chosen" aria-hidden="true">Most Chosen</span>
-        <figure class="pc-card-photo">
-          <img
-            src="/images/bwm-about-environmental-cinematic-v1.webp"
-            alt="A cool cinematic interior of a service-business showroom in calm operating rhythm — the day the owner stopped being the bottleneck."
-            width="1600"
-            height="900"
-            loading="lazy"
-            decoding="async"
-          />
-        </figure>
+        <div class="pc-card-visual pc-card-visual--ascend" aria-hidden="true">
+          <div class="pc-os-orbit">
+            <span class="pc-orbit-node pc-orbit-node--1"></span>
+            <span class="pc-orbit-node pc-orbit-node--2"></span>
+            <span class="pc-orbit-node pc-orbit-node--3"></span>
+            <span class="pc-orbit-node pc-orbit-node--4"></span>
+            <strong>8</strong>
+            <em>layer OS</em>
+          </div>
+          <div class="pc-week-rhythm">
+            <span>MON</span>
+            <span>TUE</span>
+            <span>WED</span>
+            <span>THU</span>
+            <span>FRI</span>
+          </div>
+        </div>
         <p class="pc-tier-tag pc-tier-tag--y2-fill">Tier 2 · Main Product</p>
         <h3 class="h-sub pc-card-name">{ascend.name}</h3>
         <div class="pc-price-num pc-price-num--y2">
@@ -274,21 +280,23 @@ function cellClass(val: string, highlight: boolean | undefined, column: 'pilot' 
         <p class="pc-price-label">
           + ${ascend.price.oneshot.toLocaleString()} install · 45-day install window
         </p>
+        <p class="pc-card-note">Full system operated weekly. 1:1 ad spend is paid by you directly to the platforms.</p>
         <p class="pc-card-cta pc-card-cta--y2">→ see full product.</p>
       </a>
 
       <!-- Ascend Pro -->
       <a href="/services/ascend#pro" class="card pc-card pc-card--pro" aria-label="Ascend Pro tier details">
-        <figure class="pc-card-photo">
-          <img
-            src="/images/bwm-team-editorial-v1.webp"
-            alt="A premium editorial still of an owner-led team at a flagship location — the category-of-one build for the dominant brand in its territory."
-            width="1600"
-            height="900"
-            loading="lazy"
-            decoding="async"
-          />
-        </figure>
+        <div class="pc-card-visual pc-card-visual--pro" aria-hidden="true">
+          <div class="pc-territory-map">
+            <span class="pc-territory-route pc-territory-route--a"></span>
+            <span class="pc-territory-route pc-territory-route--b"></span>
+            <span class="pc-market-node pc-market-node--hq">HQ</span>
+            <span class="pc-market-node pc-market-node--west">W</span>
+            <span class="pc-market-node pc-market-node--east">E</span>
+            <strong>2/TERRITORY</strong>
+          </div>
+          <p class="pc-visual-caption">multi-location lock</p>
+        </div>
         <p class="pc-tier-tag pc-tier-tag--y2">Tier 3 · Top · 2/territory</p>
         <h3 class="h-sub pc-card-name">{pro.name}</h3>
         <div class="pc-price-num pc-price-num--y2">
@@ -297,6 +305,7 @@ function cellClass(val: string, highlight: boolean | undefined, column: 'pilot' 
         <p class="pc-price-label">
           + ${pro.price.oneshot.toLocaleString()} install · 14-day install window
         </p>
+        <p class="pc-card-note">Adds multi-location, custom workflows, and territory strategy for dominance plays.</p>
         <p class="pc-card-cta pc-card-cta--y2">→ see full product.</p>
       </a>
 
@@ -400,13 +409,13 @@ function cellClass(val: string, highlight: boolean | undefined, column: 'pilot' 
 <style>
   .product-comparison {
     background: var(--bg);
-    padding-block: var(--section-y);
+    padding-block: clamp(56px, 7vw, 88px);
   }
 
   /* ── Intro ── */
   .pc-intro {
     max-width: 720px;
-    margin-bottom: clamp(40px, 6vw, 64px);
+    margin-bottom: clamp(30px, 4vw, 44px);
   }
   .pc-intro .eyebrow { margin-bottom: 20px; }
   .pc-h2 { margin-bottom: 20px; }
@@ -416,8 +425,8 @@ function cellClass(val: string, highlight: boolean | undefined, column: 'pilot' 
   .pc-cards {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 16px;
-    margin-bottom: 40px;
+    gap: 10px;
+    margin-bottom: 28px;
   }
 
   .pc-card {
@@ -430,25 +439,228 @@ function cellClass(val: string, highlight: boolean | undefined, column: 'pilot' 
     overflow: hidden;
   }
 
-  /* L5 outcome photo — sits on top of tier card */
-  .pc-card-photo {
-    margin: 0 0 clamp(20px, 2.5vw, 32px);
+  /* L5 tier visuals — each card gets a different decision shape */
+  .pc-card-visual {
+    position: relative;
+    margin: 0 0 clamp(14px, 2vw, 22px);
     width: 100%;
     aspect-ratio: 16 / 9;
     overflow: hidden;
-    background: var(--bg);
+    display: grid;
+    place-items: center;
+    background:
+      linear-gradient(90deg, rgba(255, 255, 255, 0.035) 1px, transparent 1px),
+      linear-gradient(0deg, rgba(255, 255, 255, 0.035) 1px, transparent 1px),
+      var(--bg);
+    background-size: 38px 38px;
+    border-bottom: 1px solid var(--rule);
   }
-  .pc-card-photo img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
+
+  .pc-card-visual::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    opacity: 0.72;
+    background: radial-gradient(circle at 50% 50%, rgba(240, 255, 0, 0.12), transparent 44%);
+  }
+
+  .pc-card-visual--pilot::before {
+    background: linear-gradient(135deg, rgba(184, 255, 58, 0.14), transparent 58%);
+  }
+
+  .pc-card-visual--pro::before {
+    background: radial-gradient(circle at 70% 32%, rgba(56, 216, 255, 0.12), transparent 40%);
+  }
+
+  .pc-dossier-sheet,
+  .pc-os-orbit,
+  .pc-territory-map {
+    position: relative;
+    z-index: 1;
+  }
+
+  .pc-dossier-sheet {
+    width: 48%;
+    min-width: 170px;
+    padding: 18px;
+    text-align: left;
+    border: 1px solid rgba(184, 255, 58, 0.38);
+    background: rgba(5, 5, 7, 0.78);
+    box-shadow: 18px 18px 0 rgba(184, 255, 58, 0.08);
+  }
+
+  .pc-dossier-sheet span,
+  .pc-dossier-sheet em,
+  .pc-visual-caption,
+  .pc-week-rhythm,
+  .pc-territory-map strong {
+    font-family: var(--mono);
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+  }
+
+  .pc-dossier-sheet span,
+  .pc-dossier-sheet em {
     display: block;
-    transition: transform 480ms ease, filter 320ms ease;
-    filter: saturate(0.92);
+    color: var(--ink-faint);
+    font-size: 8px;
+    font-style: normal;
   }
-  .pc-card:hover .pc-card-photo img {
-    transform: scale(1.04);
-    filter: saturate(1);
+
+  .pc-dossier-sheet strong {
+    display: block;
+    margin: 4px 0 2px;
+    color: var(--y1);
+    font-size: clamp(44px, 6vw, 72px);
+    line-height: 0.9;
+    letter-spacing: 0;
+  }
+
+  .pc-sprint-meter {
+    height: 7px;
+    margin-top: 14px;
+    border: 1px solid rgba(184, 255, 58, 0.32);
+    background: rgba(255, 255, 255, 0.05);
+    overflow: hidden;
+  }
+
+  .pc-sprint-meter span {
+    display: block;
+    width: 74%;
+    height: 100%;
+    background: var(--y1);
+    box-shadow: 0 0 18px rgba(184, 255, 58, 0.28);
+  }
+
+  .pc-visual-caption {
+    position: absolute;
+    left: 18px;
+    bottom: 14px;
+    z-index: 1;
+    color: var(--ink-faint);
+    font-size: 8px;
+    margin: 0;
+  }
+
+  .pc-os-orbit {
+    width: clamp(150px, 20vw, 230px);
+    aspect-ratio: 1;
+    display: grid;
+    place-content: center;
+    gap: 4px;
+    border: 1px solid rgba(240, 255, 0, 0.48);
+    border-radius: 50%;
+    box-shadow:
+      0 0 0 38px rgba(240, 255, 0, 0.045),
+      0 0 0 76px rgba(240, 255, 0, 0.025);
+  }
+
+  .pc-os-orbit strong {
+    color: var(--y2);
+    font-size: clamp(42px, 6vw, 76px);
+    line-height: 0.86;
+    letter-spacing: 0;
+  }
+
+  .pc-os-orbit em {
+    color: var(--ink);
+    font-family: var(--mono);
+    font-size: 9px;
+    font-style: normal;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+
+  .pc-orbit-node {
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    border-radius: 999px;
+    background: var(--y2);
+    box-shadow: 0 0 22px rgba(240, 255, 0, 0.36);
+  }
+
+  .pc-orbit-node--1 { left: 48%; top: -5px; }
+  .pc-orbit-node--2 { right: -5px; top: 48%; }
+  .pc-orbit-node--3 { left: 48%; bottom: -5px; }
+  .pc-orbit-node--4 { left: -5px; top: 48%; }
+
+  .pc-week-rhythm {
+    position: absolute;
+    left: 18px;
+    right: 18px;
+    bottom: 14px;
+    z-index: 1;
+    display: grid;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    gap: 8px;
+    color: var(--ink-faint);
+    font-size: 7px;
+  }
+
+  .pc-week-rhythm span {
+    padding-top: 8px;
+    border-top: 2px solid var(--y2);
+  }
+
+  .pc-territory-map {
+    width: 72%;
+    height: 70%;
+    border: 1px solid rgba(240, 255, 0, 0.32);
+    background:
+      linear-gradient(90deg, transparent 49%, rgba(255, 255, 255, 0.1) 50%, transparent 51%),
+      linear-gradient(0deg, transparent 49%, rgba(255, 255, 255, 0.1) 50%, transparent 51%);
+  }
+
+  .pc-territory-map strong {
+    position: absolute;
+    right: 12px;
+    bottom: 12px;
+    color: var(--y2);
+    font-size: 8px;
+  }
+
+  .pc-territory-route {
+    position: absolute;
+    height: 1px;
+    background: rgba(240, 255, 0, 0.45);
+    transform-origin: left center;
+  }
+
+  .pc-territory-route--a {
+    left: 24%;
+    top: 48%;
+    width: 50%;
+    transform: rotate(-18deg);
+  }
+
+  .pc-territory-route--b {
+    left: 24%;
+    top: 48%;
+    width: 52%;
+    transform: rotate(24deg);
+  }
+
+  .pc-market-node {
+    position: absolute;
+    display: grid;
+    place-items: center;
+    width: 34px;
+    height: 34px;
+    border: 1px solid var(--y2);
+    background: var(--bg);
+    color: var(--y2);
+    font-family: var(--mono);
+    font-size: 9px;
+    letter-spacing: 0;
+  }
+
+  .pc-market-node--hq { left: 18%; top: 40%; }
+  .pc-market-node--west { left: 62%; top: 26%; }
+  .pc-market-node--east { left: 68%; bottom: 22%; }
+
+  .pc-card:hover .pc-card-visual::before {
+    opacity: 1;
   }
 
   /* Push remaining card content back to the previous padding rhythm */
@@ -457,16 +669,15 @@ function cellClass(val: string, highlight: boolean | undefined, column: 'pilot' 
   .pc-price-num,
   .pc-price-label,
   .pc-card-cta {
-    padding-inline: clamp(24px, 3vw, 36px);
+    padding-inline: clamp(20px, 2.5vw, 28px);
   }
   .pc-card-cta {
-    padding-bottom: clamp(24px, 3vw, 36px);
+    padding-bottom: clamp(20px, 2.5vw, 28px);
     margin-top: auto;
   }
 
   @media (prefers-reduced-motion: reduce) {
-    .pc-card-photo img { transition: none; }
-    .pc-card:hover .pc-card-photo img { transform: none; }
+    .pc-card-visual::before { transition: none; }
   }
 
   /* Pilot card — Y1 tier-encoding hint */
@@ -543,17 +754,17 @@ function cellClass(val: string, highlight: boolean | undefined, column: 'pilot' 
 
   .pc-card-name {
     color: var(--ink);
-    margin-bottom: 16px;
-    font-size: clamp(22px, 2.8vw, 32px);
+    margin-bottom: 12px;
+    font-size: clamp(22px, 2.4vw, 28px);
   }
 
   .pc-price-num {
     font-family: var(--sans);
     font-weight: 800;
     font-stretch: 75%;
-    font-size: clamp(36px, 4.5vw, 52px);
+    font-size: clamp(34px, 4vw, 46px);
     line-height: 0.95;
-    letter-spacing: -0.05em;
+    letter-spacing: 0;
     color: var(--ink);
     margin-bottom: 10px;
   }
@@ -574,7 +785,14 @@ function cellClass(val: string, highlight: boolean | undefined, column: 'pilot' 
     letter-spacing: 0.16em;
     text-transform: uppercase;
     color: var(--ink-dim);
-    margin-bottom: 20px;
+    margin-bottom: 14px;
+  }
+
+  .pc-card-note {
+    color: var(--ink-dim);
+    font-size: 14px;
+    line-height: 1.45;
+    margin-bottom: 16px;
   }
 
   .pc-card-cta {
@@ -610,7 +828,7 @@ function cellClass(val: string, highlight: boolean | undefined, column: 'pilot' 
     letter-spacing: 0.10em;
     text-transform: uppercase;
     color: var(--ink-dim);
-    padding: 14px 16px;
+    padding: 11px 14px;
     border-bottom: 1px solid var(--rule-bright);
     text-align: left;
     white-space: nowrap;
@@ -622,7 +840,7 @@ function cellClass(val: string, highlight: boolean | undefined, column: 'pilot' 
   /* Category header rows — Y2 chapter separator with dot indicator */
   .pc-cat-row { background: rgba(240, 255, 0, 0.04); }
   .pc-cat-cell {
-    padding: 12px 16px;
+    padding: 10px 14px;
     border-top: 1px solid var(--rule-bright);
   }
   .pc-cat-label {
@@ -651,7 +869,7 @@ function cellClass(val: string, highlight: boolean | undefined, column: 'pilot' 
   .pc-row:hover { background: rgba(240, 255, 0, 0.02); }
 
   .pc-td {
-    padding: 14px 16px;
+    padding: 11px 14px;
     border-bottom: 1px solid var(--rule);
     color: var(--ink);
     font-size: 14px;
@@ -685,12 +903,12 @@ function cellClass(val: string, highlight: boolean | undefined, column: 'pilot' 
   .pc-mobile-tiers {
     display: none;
     flex-direction: column;
-    gap: 20px;
+    gap: 14px;
   }
 
   .pc-mobile-tier {
     position: relative;
-    padding: 24px;
+    padding: 18px;
   }
   /* Mobile palette variants — match desktop tier-encoding */
   .pc-mobile-tier--y1 {
@@ -718,21 +936,21 @@ function cellClass(val: string, highlight: boolean | undefined, column: 'pilot' 
     letter-spacing: 0.10em;
     text-transform: uppercase;
     color: var(--y2);
-    margin: 12px 0 20px;
+    margin: 10px 0 14px;
   }
   .pc-mobile-price--y1 { color: var(--y1); }
 
   .pc-mobile-list {
     list-style: none;
     padding: 0;
-    margin: 0 0 24px;
+    margin: 0 0 18px;
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 8px;
   }
 
   .pc-mobile-item {
-    font-size: 14px;
+    font-size: 13px;
     color: var(--ink-dim);
     display: flex;
     align-items: flex-start;
@@ -753,14 +971,23 @@ function cellClass(val: string, highlight: boolean | undefined, column: 'pilot' 
   @media (max-width: 960px) {
     .pc-cards {
       grid-template-columns: 1fr;
-      max-width: 480px;
+      max-width: 440px;
     }
 
-    .pc-table-wrap { display: none; }
-    .pc-mobile-tiers { display: flex; }
+    .pc-table-wrap {
+      display: block;
+      margin-inline: calc(var(--container-x) * -1);
+      border-inline: 0;
+      border-radius: 0;
+    }
+    .pc-table { min-width: 760px; }
+    .pc-mobile-tiers { display: none; }
   }
 
   @media (max-width: 520px) {
     .pc-cards { max-width: 100%; }
+    .pc-card-visual {
+      aspect-ratio: 1.35;
+    }
   }
 </style>

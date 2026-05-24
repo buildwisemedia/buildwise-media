@@ -17,7 +17,7 @@
         <em>Automatically.</em>
       </h2>
       <p class="lede">
-        When a better AI model ships — and a better one ships every few months — your system routes there next session. No re-platforming cost. No contract renegotiation. The capability compounds inside your business.
+        When better AI ships, your system can route useful work to it without a new platform fee, a new contract, or a rebuild. That is the first-mover advantage: the system starts learning now, then keeps inheriting stronger tools.
       </p>
     </header>
 
@@ -46,19 +46,27 @@
 
         <!-- 4 milestone markers + labels -->
         <g class="milestone" data-milestone="6mo">
-          <circle cx="200" cy="380" r="5" fill="var(--y2)"/>
+          <line class="milestone-stem" x1="200" y1="380" x2="200" y2="360"/>
+          <circle class="milestone-node" cx="200" cy="352" r="10"/>
+          <circle cx="200" cy="352" r="4" fill="var(--y2)"/>
           <text x="200" y="408" text-anchor="middle" fill="#5a5650" font-family="JetBrains Mono, monospace" font-size="10" letter-spacing="2">6 MO</text>
         </g>
         <g class="milestone" data-milestone="12mo">
-          <circle cx="400" cy="340" r="5" fill="var(--y2)"/>
+          <line class="milestone-stem" x1="400" y1="340" x2="400" y2="316"/>
+          <circle class="milestone-node" cx="400" cy="308" r="10"/>
+          <circle cx="400" cy="308" r="4" fill="var(--y2)"/>
           <text x="400" y="408" text-anchor="middle" fill="#5a5650" font-family="JetBrains Mono, monospace" font-size="10" letter-spacing="2">12 MO</text>
         </g>
         <g class="milestone" data-milestone="24mo">
-          <circle cx="800" cy="220" r="6" fill="var(--y2)"/>
+          <line class="milestone-stem" x1="800" y1="220" x2="800" y2="194"/>
+          <circle class="milestone-node" cx="800" cy="186" r="11"/>
+          <circle cx="800" cy="186" r="4" fill="var(--y2)"/>
           <text x="800" y="408" text-anchor="middle" fill="#5a5650" font-family="JetBrains Mono, monospace" font-size="10" letter-spacing="2">24 MO</text>
         </g>
         <g class="milestone" data-milestone="36mo">
-          <circle cx="1180" cy="30" r="7" fill="var(--y2)"/>
+          <line class="milestone-stem" x1="1180" y1="30" x2="1138" y2="58"/>
+          <circle class="milestone-node" cx="1130" cy="64" r="12"/>
+          <circle cx="1130" cy="64" r="5" fill="var(--y2)"/>
           <text x="1180" y="408" text-anchor="end" fill="#5a5650" font-family="JetBrains Mono, monospace" font-size="10" letter-spacing="2">36 MO</text>
         </g>
       </svg>
@@ -79,8 +87,8 @@
         />
         <div class="milestone-content">
           <span class="milestone-num mono">6 MO</span>
-          <h3 class="card-title">AI video at social scale</h3>
-          <p class="card-body">Automated creative testing at 10–100× your current throughput. Every winning concept compounds the next.</p>
+          <h3 class="card-title">More work handled</h3>
+          <p class="card-body">The installed system takes on the repeatable growth work first: analysis, routing, follow-up, reporting, and creative testing.</p>
         </div>
       </li>
       <li class="milestone-card">
@@ -94,8 +102,8 @@
         />
         <div class="milestone-content">
           <span class="milestone-num mono">12 MO</span>
-          <h3 class="card-title">Autonomous workflows running 8+ hours</h3>
-          <p class="card-body">Our AI system handles long-running operations end-to-end — uninterrupted, audited, with human signoff at the gates.</p>
+          <h3 class="card-title">Longer workflows chained</h3>
+          <p class="card-body">As models hold context and complete longer tasks, Buildwise routes more of the weekly operating work through the system.</p>
         </div>
       </li>
       <li class="milestone-card">
@@ -109,8 +117,8 @@
         />
         <div class="milestone-content">
           <span class="milestone-num mono">24 MO</span>
-          <h3 class="card-title">Self-improving capability</h3>
-          <p class="card-body">The system gets better without us touching it. Your business compounds while you keep running operations.</p>
+          <h3 class="card-title">Better tools without a rebuild</h3>
+          <p class="card-body">A stronger model should not mean buying a new platform. The router evaluates capability and swaps the useful work forward.</p>
         </div>
       </li>
       <li class="milestone-card">
@@ -124,8 +132,8 @@
         />
         <div class="milestone-content">
           <span class="milestone-num mono">36 MO</span>
-          <h3 class="card-title">Capability beyond what anyone can predict</h3>
-          <p class="card-body">Whatever the frontier ships in 2029 lands in your business the same week. No re-platforming. No new contract.</p>
+          <h3 class="card-title">A system that keeps gaining power</h3>
+          <p class="card-body">The exact frontier is unknowable. The architecture matters because it keeps the owner's system pointed at the edge.</p>
         </div>
       </li>
     </ol>
@@ -136,7 +144,7 @@
       <div class="grid-overlay">
         <p class="reveal-num"><em>24/7</em></p>
         <p class="grid-cap">
-          The system runs while you don't. Every Monday at 4 a.m. ET, the operating layer audits itself. Drift gets surfaced and routed before you read your inbox.
+          The system runs while you don't. Every week, it surfaces drift, proof, and the next move before the month gets away.
         </p>
       </div>
     </div>
@@ -147,33 +155,45 @@
 <style>
 .capability-curve { padding-block: var(--section-y); position: relative; background: var(--bg); }
 
-.curve-head { display: flex; flex-direction: column; gap: 24px; margin-bottom: 56px; max-width: 920px; }
+.curve-head { display: flex; flex-direction: column; gap: 18px; margin-bottom: 36px; max-width: 920px; }
 .curve-head h2 em { color: var(--y2); font-style: normal; font-weight: inherit; }
 
-.curve-panel { background: var(--bg-elev); border: 1px solid var(--rule); border-radius: 2px; padding: 32px; margin-bottom: 48px; }
-.curve-svg { width: 100%; height: clamp(260px, 32vw, 420px); }
+.curve-panel { background: var(--bg-elev); border: 1px solid var(--rule); border-radius: 2px; padding: 24px; margin-bottom: 32px; }
+.curve-svg { width: 100%; height: clamp(220px, 28vw, 340px); }
 .curve-cap { margin-top: 16px; font-size: 10px; letter-spacing: 0.18em; color: var(--ink-faint); }
+.milestone-stem {
+  stroke: var(--y2);
+  stroke-width: 1;
+  stroke-dasharray: 3 4;
+  opacity: 0.72;
+}
+.milestone-node {
+  fill: var(--bg);
+  stroke: var(--y2);
+  stroke-width: 2;
+  filter: drop-shadow(0 0 8px rgba(240, 255, 0, 0.28));
+}
 
 /* 4 milestone tiles — Y2 numerals, hairline-divided cards */
 .milestone-list {
   list-style: none;
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 16px;
-  margin-bottom: 48px;
+  gap: 10px;
+  margin-bottom: 32px;
 }
 .milestone-card {
   position: relative;
   background: var(--bg-card);
   border: 1px solid var(--rule);
   border-radius: 2px;
-  padding: 28px 24px;
+  padding: 20px 18px;
   display: flex;
   flex-direction: column;
   gap: 12px;
   transition: border-color 220ms ease;
   overflow: hidden;
-  min-height: 240px;
+  min-height: 190px;
 }
 .milestone-card:hover {
   border-color: var(--y2);
@@ -229,16 +249,28 @@
 }
 
 /* Panel 2 — Dot Grid horizon */
-.curve-grid { position: relative; height: clamp(260px, 32vw, 380px); border: 1px solid var(--rule); overflow: hidden; }
+.curve-grid { position: relative; min-height: clamp(340px, 34vw, 430px); border: 1px solid var(--rule); overflow: hidden; }
 .grid-canvas { position: absolute; inset: 0; opacity: 0.35; mask-image: radial-gradient(ellipse 60% 60% at center, black 30%, transparent 100%); }
-.grid-overlay { position: absolute; inset: 0; padding: 32px; display: flex; flex-direction: column; justify-content: center; align-items: flex-start; gap: 24px; }
-.grid-cap { font-family: var(--sans); font-size: clamp(18px, 1.8vw, 24px); line-height: 1.45; color: var(--ink-dim); max-width: 540px; }
+.grid-overlay { position: absolute; inset: 0; padding: clamp(28px, 5vw, 56px); display: flex; flex-direction: column; justify-content: center; align-items: flex-start; gap: clamp(18px, 3vw, 28px); }
+.curve-grid .reveal-num {
+  font-size: clamp(92px, 18vw, 230px);
+  line-height: 0.86;
+  letter-spacing: -0.055em;
+}
+.curve-grid .reveal-num em { font-style: normal; }
+.grid-cap { font-family: var(--sans); font-size: clamp(18px, 1.8vw, 24px); line-height: 1.45; color: var(--ink-dim); max-width: 640px; }
 
 @media (max-width: 880px) {
   .milestone-list { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }
 @media (max-width: 520px) {
-  .milestone-list { grid-template-columns: 1fr; }
+  .curve-panel { padding: 18px; }
+  .milestone-list { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .milestone-card { min-height: 128px; padding: 16px; }
+  .milestone-card .card-body { display: none; }
+  .curve-grid { min-height: 280px; }
+  .curve-grid .reveal-num { font-size: clamp(76px, 28vw, 118px); }
+  .grid-overlay { padding: 24px; justify-content: center; }
 }
 
 /* prefers-reduced-motion: nothing to disable — SVG is static, dot-grid is CSS pattern */

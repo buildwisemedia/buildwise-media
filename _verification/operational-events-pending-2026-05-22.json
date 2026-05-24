@@ -1,0 +1,75 @@
+{
+  "blocked_by": "SUPABASE_SERVICE_ROLE_KEY missing in shell",
+  "payloads": [
+    {
+      "event_type": "build.shipped",
+      "client": "buildwise-media",
+      "session_id": "proj-brand-001-full-surface-closure-2026-05-22",
+      "payload": {
+        "project": "PROJ-BRAND-001",
+        "build_kind": "full",
+        "url": "https://buildwisemedia.com",
+        "deploy_url": "https://1f8d01e3.buildwise-media.pages.dev",
+        "repo": "buildwisemedia.com",
+        "branch": "homepage-redesign-2026-05-21",
+        "commit": "e3e76faf42e3eb3f7d2257e1cdd331ce4cd03f4f",
+        "tag": "direct-pages-main-2026-05-22-1f8d01e3"
+      }
+    },
+    {
+      "event_type": "narrative",
+      "client": "buildwise-media",
+      "session_id": "proj-brand-001-full-surface-closure-2026-05-22",
+      "payload": {
+        "kind": "qa-pass-completed",
+        "project": "PROJ-BRAND-001",
+        "scope": "flagship",
+        "qa_bundle": "/Users/robertechevarria/buildwisemedia.com/_verification"
+      }
+    },
+    {
+      "event_type": "narrative",
+      "client": null,
+      "session_id": "proj-brand-001-full-surface-closure-2026-05-22",
+      "payload": {
+        "kind": "qa-pass-completed",
+        "project": "PROJ-BRAND-001",
+        "scope": "fleet",
+        "clients": [
+          "008-concrete",
+          "asap-pest-wildlife",
+          "design2sell",
+          "rutherfordmade",
+          "townsend-realty-group",
+          "ursula-and-associates",
+          "buildwise-media"
+        ],
+        "blocker_count": 0
+      }
+    },
+    {
+      "event_type": "narrative",
+      "client": null,
+      "session_id": "proj-brand-001-full-surface-closure-2026-05-22",
+      "payload": {
+        "kind": "cascade-audit-complete",
+        "project": "PROJ-BRAND-001",
+        "repos_audited": 7,
+        "repos_with_blockers": 0,
+        "artifact": "/Users/robertechevarria/buildwisemedia.com/_verification/brand-closure-fleet-2026-05-22/fleet-audit.md"
+      }
+    },
+    {
+      "event_type": "narrative",
+      "client": null,
+      "session_id": "proj-brand-001-full-surface-closure-2026-05-22",
+      "payload": {
+        "kind": "project-complete",
+        "project": "PROJ-BRAND-001",
+        "closure_mode": "full_surface_closure",
+        "production_url": "https://buildwisemedia.com",
+        "deploy_url": "https://1f8d01e3.buildwise-media.pages.dev"
+      }
+    }
+  ]
+}

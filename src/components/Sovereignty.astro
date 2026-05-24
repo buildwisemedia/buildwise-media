@@ -2,26 +2,34 @@
 // L4 — Sovereignty: risk reversal before the price reveal in L5
 // plan: ~/.claude/plans/based-on-all-nifty-karp.md § L4
 // Source: canonical.json → contract.msa_locked_clauses
-// No images per Show-Don't-Tell exemption: the 4-receipt grid IS the visual
-// (tile arrangement = data viz; receipts = proof). R020 F1-Emotion + F2-Proof.
+// Visual job: reduce lock-in anxiety by showing where each owned asset lives.
+// Native asset map keeps this in R020 F1-Emotion + F2-Proof without generic imagery.
 
 // Receipt tiles sourced verbatim from canonical contract.msa_locked_clauses.
 // The "client owns X" framing is the most conversion-relevant subset of the 6 clauses.
 const receipts = [
   {
+    key: "CODE",
     eyebrow: "Client owns the code",
-    body: "Your site, your funnel, your AI agents — built on your domain, in your repo. Take it anywhere.",
+    proof: "Repo + workflows",
+    body: "Your site, funnel, and AI workflows are built on your domain and in your repo. Take them anywhere.",
   },
   {
+    key: "DATA",
     eyebrow: "Client owns the data",
+    proof: "Leads + conversations",
     body: "Every lead, booking, and conversation lives in your system. Export anytime — no permission required.",
   },
   {
+    key: "ADS",
     eyebrow: "Client owns the ad accounts",
+    proof: "Channels + keys",
     body: "Every channel — all under your business, not ours. We operate them. You hold the keys.",
   },
   {
+    key: "LIST",
     eyebrow: "Client owns the customer list",
+    proof: "History + relationships",
     body: "When you leave, you take the relationship history. The system goes home with you. We leave empty-handed.",
   },
 ];
@@ -32,28 +40,47 @@ const receipts = [
     <div class="sovereignty__intro">
       <p class="eyebrow">Sovereignty</p>
       <h2 class="h-section sovereignty__h2">
-        You leave with everything — the code, the customer list, the ad accounts.
+        You leave with the system, not just the reports.
       </h2>
       <p class="lede sovereignty__lede">
-        We build it on your domain. We run it on your behalf. If you walk, you walk with the whole system.
-        We walk empty-handed. That's the contract.
+        Buildwise runs Ascend on your behalf, but the asset lives in your business. If you leave, the code, data, ad accounts, customer list, and built workflows go with you.
       </p>
     </div>
 
-    <div class="sovereignty__grid" role="list">
-      {receipts.map((tile) => (
-        <div class="card sovereignty__card" role="listitem">
-          <div class="sovereignty__receipt-rail" aria-hidden="true">
-            <span class="sovereignty__receipt-dot"></span>
-            <span class="sovereignty__receipt-line"></span>
-            <span class="sovereignty__receipt-line sovereignty__receipt-line--short"></span>
-          </div>
-          <div class="sovereignty__card-body-wrap">
-            <p class="sovereignty__card-eyebrow">{tile.eyebrow}</p>
-            <p class="card-body sovereignty__card-body">{tile.body}</p>
-          </div>
+    <div class="sovereignty__asset-map">
+      <div class="sovereignty__map-panel" aria-hidden="true">
+        <svg class="sovereignty__link-field" viewBox="0 0 520 520" preserveAspectRatio="none">
+          <path d="M260 260 L112 118" fill="none" stroke="rgba(240, 255, 0, 0.26)" stroke-width="1" vector-effect="non-scaling-stroke" />
+          <path d="M260 260 L408 118" fill="none" stroke="rgba(240, 255, 0, 0.26)" stroke-width="1" vector-effect="non-scaling-stroke" />
+          <path d="M260 260 L112 402" fill="none" stroke="rgba(240, 255, 0, 0.26)" stroke-width="1" vector-effect="non-scaling-stroke" />
+          <path d="M260 260 L408 402" fill="none" stroke="rgba(240, 255, 0, 0.26)" stroke-width="1" vector-effect="non-scaling-stroke" />
+          <circle cx="260" cy="260" r="122" fill="none" stroke="rgba(255, 255, 255, 0.08)" stroke-width="1" vector-effect="non-scaling-stroke" />
+          <circle cx="260" cy="260" r="186" fill="none" stroke="rgba(255, 255, 255, 0.08)" stroke-width="1" vector-effect="non-scaling-stroke" />
+        </svg>
+        <div class="sovereignty__core">
+          <span>Client-owned</span>
+          <strong>Environment</strong>
+          <em>domain · repo · accounts · data</em>
         </div>
-      ))}
+        {receipts.map((tile, index) => (
+          <div class={`sovereignty__asset-node sovereignty__asset-node--${index + 1}`}>
+            <span>{tile.key}</span>
+            <strong>{tile.proof}</strong>
+          </div>
+        ))}
+      </div>
+
+      <div class="sovereignty__proof-list" role="list">
+        {receipts.map((tile) => (
+          <div class="sovereignty__proof-card" role="listitem">
+            <span class="sovereignty__proof-key">{tile.key}</span>
+            <div>
+              <p class="sovereignty__card-eyebrow">{tile.eyebrow}</p>
+              <p class="card-body sovereignty__card-body">{tile.body}</p>
+            </div>
+          </div>
+        ))}
+      </div>
     </div>
   </div>
 </section>
@@ -66,7 +93,7 @@ const receipts = [
 
   .sovereignty__intro {
     max-width: 760px;
-    margin-bottom: clamp(40px, 6vw, 72px);
+    margin-bottom: clamp(30px, 4vw, 44px);
   }
 
   .sovereignty__intro .eyebrow {
@@ -82,69 +109,165 @@ const receipts = [
     max-width: 640px;
   }
 
-  /* 4-col on desktop, 2-col on tablet, 1-col on mobile */
-  .sovereignty__grid {
+  .sovereignty__asset-map {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 1px; /* gap renders as hairline via bg-card bleed through */
-    background: var(--rule);
+    grid-template-columns: minmax(320px, 0.92fr) minmax(0, 1.08fr);
+    gap: clamp(26px, 5vw, 70px);
+    align-items: center;
+  }
+
+  .sovereignty__map-panel {
+    position: relative;
+    aspect-ratio: 1;
+    min-height: 360px;
     border: 1px solid var(--rule);
-    border-radius: 2px;
-    overflow: hidden;
-  }
-
-  .sovereignty__card {
-    background: var(--bg-elev);
-    border: none;
-    border-radius: 0;
-    padding: 0;
-    display: flex;
-    flex-direction: column;
-    /* Remove global .card border + border-radius since grid gaps act as dividers */
-    overflow: hidden;
-  }
-
-  .sovereignty__card:hover {
-    background: var(--bg-card);
-    border-color: transparent;
-  }
-
-  .sovereignty__receipt-rail {
-    min-height: clamp(132px, 15vw, 188px);
-    border-bottom: 1px solid var(--rule);
     background:
-      linear-gradient(90deg, rgba(240, 255, 0, 0.14), transparent 34%),
-      repeating-linear-gradient(0deg, rgba(255, 255, 255, 0.04) 0 1px, transparent 1px 18px),
+      radial-gradient(circle at 50% 50%, rgba(240, 255, 0, 0.11), transparent 24%),
+      linear-gradient(90deg, rgba(255, 255, 255, 0.035) 1px, transparent 1px),
+      linear-gradient(0deg, rgba(255, 255, 255, 0.035) 1px, transparent 1px),
       var(--bg);
-    padding: 28px;
-    display: grid;
-    align-content: end;
-    gap: 12px;
+    background-size: auto, 42px 42px, 42px 42px, auto;
+    overflow: hidden;
   }
-  .sovereignty__receipt-dot {
-    width: 10px;
-    height: 10px;
+
+  .sovereignty__map-panel::before {
+    content: '';
+    position: absolute;
+    inset: 9%;
+    border: 1px solid rgba(240, 255, 0, 0.22);
+    box-shadow: inset 0 0 32px rgba(240, 255, 0, 0.06);
+  }
+
+  .sovereignty__link-field {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .sovereignty__link-field path,
+  .sovereignty__link-field circle {
+    fill: none;
+    stroke: rgba(240, 255, 0, 0.26);
+    stroke-width: 1;
+    vector-effect: non-scaling-stroke;
+  }
+
+  .sovereignty__link-field circle {
+    stroke: rgba(255, 255, 255, 0.08);
+  }
+
+  .sovereignty__core {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: min(48%, 230px);
+    min-height: 150px;
+    transform: translate(-50%, -50%);
+    display: grid;
+    place-content: center;
+    gap: 7px;
+    text-align: center;
+    border: 1px solid var(--y2);
+    background:
+      linear-gradient(180deg, rgba(240, 255, 0, 0.13), rgba(5, 5, 7, 0.92)),
+      var(--bg);
+    box-shadow: 0 0 46px rgba(240, 255, 0, 0.1);
+    z-index: 1;
+  }
+
+  .sovereignty__core span,
+  .sovereignty__core em,
+  .sovereignty__asset-node span,
+  .sovereignty__proof-key {
+    font-family: var(--mono);
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+  }
+
+  .sovereignty__core span {
+    color: var(--ink-dim);
+    font-size: 9px;
+  }
+
+  .sovereignty__core strong {
+    color: var(--ink);
+    font-size: clamp(22px, 3vw, 34px);
+    line-height: 0.94;
+    letter-spacing: 0;
+  }
+
+  .sovereignty__core em {
+    color: var(--y2);
+    font-size: 8px;
+    font-style: normal;
+  }
+
+  .sovereignty__asset-node {
+    position: absolute;
+    width: min(34%, 160px);
+    min-height: 82px;
+    display: grid;
+    align-content: center;
+    gap: 8px;
+    padding: 14px;
+    border: 1px solid var(--rule-bright);
+    background: rgba(5, 5, 7, 0.84);
+    box-shadow: 0 14px 34px rgba(0, 0, 0, 0.28);
+    z-index: 1;
+  }
+
+  .sovereignty__asset-node::before {
+    content: '';
+    width: 9px;
+    height: 9px;
     border-radius: 999px;
     background: var(--y2);
-    box-shadow: 0 0 28px rgba(240, 255, 0, 0.25);
-  }
-  .sovereignty__receipt-line {
-    display: block;
-    height: 1px;
-    width: 78%;
-    background: var(--rule-bright);
-  }
-  .sovereignty__receipt-line--short {
-    width: 48%;
+    box-shadow: 0 0 24px rgba(240, 255, 0, 0.34);
   }
 
-  /* Text wrapper preserves the original padding rhythm */
-  .sovereignty__card-body-wrap {
-    padding: clamp(24px, 3vw, 36px);
-    display: flex;
-    flex-direction: column;
-    gap: 14px;
-    flex: 1;
+  .sovereignty__asset-node span {
+    color: var(--y2);
+    font-size: 9px;
+  }
+
+  .sovereignty__asset-node strong {
+    color: var(--ink);
+    font-size: clamp(13px, 1.4vw, 16px);
+    line-height: 1.12;
+  }
+
+  .sovereignty__asset-node--1 { left: 7%; top: 8%; }
+  .sovereignty__asset-node--2 { right: 7%; top: 8%; }
+  .sovereignty__asset-node--3 { left: 7%; bottom: 8%; }
+  .sovereignty__asset-node--4 { right: 7%; bottom: 8%; }
+
+  .sovereignty__proof-list {
+    display: grid;
+    gap: 12px;
+  }
+
+  .sovereignty__proof-card {
+    display: grid;
+    grid-template-columns: 72px minmax(0, 1fr);
+    gap: 18px;
+    align-items: start;
+    padding: clamp(18px, 2.2vw, 26px);
+    border: 1px solid var(--rule);
+    background:
+      linear-gradient(90deg, rgba(240, 255, 0, 0.055), transparent 46%),
+      var(--bg-elev);
+  }
+
+  .sovereignty__proof-key {
+    color: var(--bg);
+    background: var(--y2);
+    font-size: 9px;
+    font-weight: 700;
+    text-align: center;
+    padding: 8px 10px;
   }
 
   .sovereignty__card-eyebrow {
@@ -165,26 +288,40 @@ const receipts = [
     margin: 0;
   }
 
-  /* Respect reduced motion */
-  @media (prefers-reduced-motion: reduce) {
-    .sovereignty__card {
-      transition: none;
-    }
-  }
-
   @media (max-width: 960px) {
-    .sovereignty__grid {
-      grid-template-columns: repeat(2, 1fr);
+    .sovereignty__asset-map {
+      grid-template-columns: 1fr;
+    }
+
+    .sovereignty__map-panel {
+      min-height: 460px;
     }
   }
 
   @media (max-width: 520px) {
-    .sovereignty__grid {
+    .sovereignty__map-panel {
+      min-height: 0;
+      aspect-ratio: 1 / 1.16;
+    }
+
+    .sovereignty__asset-node {
+      width: 38%;
+      min-height: 72px;
+      padding: 12px;
+    }
+
+    .sovereignty__core {
+      width: 50%;
+      min-height: 124px;
+    }
+
+    .sovereignty__proof-card {
       grid-template-columns: 1fr;
+      gap: 12px;
     }
 
     .sovereignty__card-body {
-      font-size: 17px;
+      font-size: 15px;
     }
   }
 </style>

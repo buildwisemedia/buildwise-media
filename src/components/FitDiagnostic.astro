@@ -62,10 +62,10 @@
           </div>
           <div class="welcome-hero-grid">
             <div class="welcome-hero-text">
-              <h1 class="welcome-headline">
+              <h2 class="welcome-headline">
                 Most consultations <span class="strike">qualify you</span>.<br>
                 Ours shows you what your business could <span class="y">become</span>.
-              </h1>
+              </h2>
               <p class="welcome-subhead">
                 Answer 7 questions. We'll show you <strong>exactly where your business sits today</strong>, <strong>where the bottleneck is</strong>, and what your AI growth system would look like over the next 12 months — <strong>even if we never work together</strong>.
               </p>
@@ -546,7 +546,7 @@
             <span class="verdict-dot"></span>
             <span class="reveal-eyebrow-tag">Diagnostic Generated <span id="reveal-timestamp">—</span> · For <span class="y" id="reveal-service">Your Business</span></span>
           </div>
-          <h1 class="reveal-headline">Here's what your <span class="y">growth system</span> would look like.</h1>
+          <h2 class="reveal-headline">Here's what your <span class="y">growth system</span> would look like.</h2>
           <p class="reveal-subhead">Built from your 7 answers. Synthesized in seconds. Yours regardless of whether we ever work together.</p>
         </div>
       </div>
@@ -2730,7 +2730,7 @@
 
 // ============ BWM SUBMIT HANDLER (added 2026-05-20 — Mo' Money funnel build) ============
 // On reveal screen entry: POST state to bwm-form-handler /buildwisemedia/fit-diagnostic
-// Verdict routing: FIT (>=65) reveals Cal.com inline; MAYBE (35-64) shows ack screen;
+// Verdict routing: FIT (>=65) reveals the inline booking calendar; MAYBE (35-64) shows ack screen;
 // NO (<35) redirects to /thank-you-resource?reason=fit_check.
 // Email is OPTIONAL — diagnostic promise "The reveal is yours regardless" preserved.
 
@@ -2800,7 +2800,7 @@
       if (pathY) pathY.textContent = " 30-minute architecture call. ";
       if (pathTail) pathTail.textContent = "";
       if (pathBody) pathBody.textContent = "On the call we walk through your specific stack, what the system replaces, and what week one looks like.";
-      if (pathCta) pathCta.innerHTML = '<a href="#cal-inline" class="cta" data-cta-source="mo-fit-verdict-cal" onclick="document.getElementById(\'cal-inline\').scrollIntoView({behavior:\'smooth\'});return false;">See If We\'re A Fit <span class="cta-arrow">→</span></a><p class="mono" style="margin-top:14px;font-size:11px;letter-spacing:.18em;color:var(--ink-faint);">For service businesses only.</p>';
+      if (pathCta) pathCta.innerHTML = '<a href="#cal-inline" class="cta" data-cta-source="mo-fit-verdict-cal" onclick="document.getElementById(\'cal-inline\').scrollIntoView({behavior:\'smooth\'});return false;">See If We\'re a Fit <span class="cta-arrow">→</span></a><p class="mono" style="margin-top:14px;font-size:11px;letter-spacing:.18em;color:var(--ink-faint);">For service businesses only.</p>';
       mountCalInline();
     } else if (v === "MAYBE") {
       card.setAttribute("data-verdict", "maybe");
@@ -2845,7 +2845,7 @@
     wrap.className = "bwm-cal-inline";
     wrap.style.cssText = "max-width:1200px;margin:48px auto 0;min-height:720px;background:var(--bg-elev);border:1px solid var(--rule);";
     section.appendChild(wrap);
-    // Cal.com loader (matches /book.astro pattern)
+    // Booking-calendar loader (matches /book.astro pattern)
     (function (C, A, L) {
       let p = function (a, ar) { a.q.push(ar); };
       let d = C.document;

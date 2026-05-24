@@ -1,16 +1,63 @@
 ---
 // L3 — The 8-Layer Revenue Operating System
 // Source of truth: canonical.json → products.ascend.eight_layers
-// 8 cards ARE the data viz — radial diagram dropped 2026-05-21 (R020: decoration banned, hand-judgment)
+// Visual job: make the operating system legible as connected buyer-flow stages,
+// not eight identical inventory cards.
 import canonical from '../data/canonical.json';
 
-const publicLayerBody = (body: string) => body
-  .replace(/\s*\([^)]*\)/g, '')
-  .replace(/GBP \+ AEO \+ local SEO \+ schema \+ citations \+ AI-search readiness/g, 'local search, AEO, schema, citations, and AI-search readiness')
-  .replace(/Instant SMS\/email\/call follow-up · automated qualification · appointment routing · .* integration/g, 'instant follow-up, automated qualification, appointment routing, and operations integration')
-  .replace(/Campaign monitoring · creative testing · budget alerts · lead-quality feedback · .*/g, 'Campaign monitoring, creative testing, budget alerts, and lead-quality feedback')
-  .replace(/\s+/g, ' ')
-  .trim();
+const ownerLayerBodies: Record<string, string> = {
+  Visibility: 'Your business shows up when buyers search, ask AI, or compare local options.',
+  Conversion: 'Pages, forms, calls, chat, and quote paths make the next step clear.',
+  'Speed-to-Lead': 'New leads get a fast answer before they cool off or call the next shop.',
+  'Sales Ops': 'Quotes, reminders, pipeline stages, and old leads stop living in someone\'s head.',
+  Reputation: 'Review requests, replies, and proof collection run at the right moment.',
+  'Paid Media': 'Campaigns get watched, tested, and adjusted against lead quality.',
+  Reporting: 'Spend, calls, leads, booked work, and next moves show up in one dashboard.',
+  Strategy: 'Weekly choices are based on the numbers, not end-of-month surprise.',
+};
+
+const layerMeta: Record<string, { group: string; signal: string; visual: string }> = {
+  Visibility: {
+    group: 'Demand capture',
+    signal: 'search + AI answer share',
+    visual: 'visibility',
+  },
+  Conversion: {
+    group: 'Decision path',
+    signal: 'forms · calls · quote paths',
+    visual: 'conversion',
+  },
+  'Speed-to-Lead': {
+    group: 'Response gate',
+    signal: 'answer before cool-off',
+    visual: 'speed',
+  },
+  'Sales Ops': {
+    group: 'Revenue motion',
+    signal: 'quote + pipeline memory',
+    visual: 'pipeline',
+  },
+  Reputation: {
+    group: 'Proof loop',
+    signal: 'reviews + replies',
+    visual: 'reputation',
+  },
+  'Paid Media': {
+    group: 'Spend watch',
+    signal: 'budget to lead quality',
+    visual: 'paid',
+  },
+  Reporting: {
+    group: 'Command view',
+    signal: 'one dashboard',
+    visual: 'reporting',
+  },
+  Strategy: {
+    group: 'Weekly cadence',
+    signal: 'numbers drive next move',
+    visual: 'strategy',
+  },
+};
 
 const layers = canonical.products.ascend.eight_layers.map((raw: string, i: number) => {
   // Format: "N · Name — description"
@@ -18,9 +65,11 @@ const layers = canonical.products.ascend.eight_layers.map((raw: string, i: numbe
   const name = dashIndex > 0
     ? raw.slice(raw.indexOf('·') + 1, dashIndex).trim()
     : raw.slice(raw.indexOf('·') + 1).trim();
-  const body = dashIndex > 0 ? publicLayerBody(raw.slice(dashIndex + 1).trim()) : '';
+  const body = ownerLayerBodies[name] ?? (dashIndex > 0 ? raw.slice(dashIndex + 1).trim() : '');
   const num = String(i + 1).padStart(2, '0');
-  return { num, name, body };
+  const meta = layerMeta[name] ?? { group: 'Operating layer', signal: 'live signal', visual: 'reporting' };
+  const slug = name.toLowerCase().replace(/[^a-z0-9]+/g, '-');
+  return { num, name, body, slug, ...meta };
 });
 ---
 
@@ -30,38 +79,52 @@ const layers = canonical.products.ascend.eight_layers.map((raw: string, i: numbe
     <header class="els-header">
       <p class="eyebrow">THE SYSTEM</p>
       <h2 class="h-section els-h2">
-        The 8-layer revenue operating system that makes you the most-chosen name in your market.
+        Eight layers that run without making you the router.
       </h2>
       <p class="lede els-lede">
-        Our AI system runs it. You own it. Every layer connects so the whole system tightens together.
+        Each layer handles a job that usually falls back on the owner. Together they turn marketing into a weekly operating system.
       </p>
     </header>
 
-    <!-- 8-card grid — the cards ARE the data viz (one per layer, named in canonical.json) -->
-    <div class="els-grid">
-      {layers.map((layer, i) => (
-        <article
-          class={`els-card card els-card-${i}`}
-          data-layer-idx={i}
-        >
-          <header class="els-card-header">
-            <span class="els-num eyebrow">{layer.num}</span>
-          </header>
-          <h3 class="h-sub els-card-name">{layer.name}</h3>
-          <p class="els-card-body card-body">{layer.body}</p>
-          <footer class="els-card-foot">
-            <span class="els-tag">
-              <span class="dot live"></span>
-              <span class="els-tag-text mono">LIVE</span>
-            </span>
-          </footer>
-        </article>
-      ))}
+    <div class="els-system-map" aria-label="Connected eight-layer operating system map">
+      <div class="els-flow-rail" aria-hidden="true">
+        <span>Demand</span>
+        <span>Convert</span>
+        <span>Operate</span>
+        <span>Learn</span>
+      </div>
+      <div class="els-grid">
+        {layers.map((layer, i) => (
+          <article
+            class={`els-card card els-card-${i} els-card--${layer.slug}`}
+            data-layer-idx={i}
+          >
+            <header class="els-card-header">
+              <span class="els-num eyebrow">{layer.num}</span>
+              <span class="els-group mono">{layer.group}</span>
+            </header>
+            <div class={`els-mini els-mini--${layer.visual}`} aria-hidden="true">
+              <span></span>
+              <span></span>
+              <span></span>
+              <span></span>
+            </div>
+            <h3 class="h-sub els-card-name">{layer.name}</h3>
+            <p class="els-card-body card-body">{layer.body}</p>
+            <footer class="els-card-foot">
+              <span class="els-tag">
+                <span class="dot live"></span>
+                <span class="els-tag-text mono">{layer.signal}</span>
+              </span>
+            </footer>
+          </article>
+        ))}
+      </div>
     </div>
 
     <!-- Legend -->
     <p class="els-legend mono">
-      All 8 layers are live and shipping today.
+      All 8 layers connect to one dashboard, one weekly rhythm, and one ownership model.
     </p>
 
   </div>
@@ -80,21 +143,61 @@ const layers = canonical.products.ascend.eight_layers.map((raw: string, i: numbe
   display: flex;
   flex-direction: column;
   gap: 20px;
-  margin-bottom: 48px;
+  margin-bottom: 34px;
   max-width: 780px;
 }
 .els-h2 { color: var(--ink); }
 .els-lede { max-width: 640px; }
 
-/* ============ Grid — 4-col desktop, 2-col tablet, 1-col mobile ============ */
-.els-grid {
+/* ============ Operating system map ============ */
+.els-system-map {
+  position: relative;
+  border: 1px solid var(--rule);
+  background:
+    linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+    linear-gradient(0deg, rgba(255, 255, 255, 0.025) 1px, transparent 1px),
+    var(--bg-card);
+  background-size: 44px 44px;
+  padding: clamp(16px, 2.2vw, 26px);
+  overflow: hidden;
+}
+
+.els-system-map::before {
+  content: '';
+  position: absolute;
+  left: 9%;
+  right: 9%;
+  top: 50%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(240, 255, 0, 0.52), transparent);
+  pointer-events: none;
+}
+
+.els-flow-rail {
+  position: relative;
+  z-index: 1;
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 1px;
-  background: var(--rule);
-  border: 1px solid var(--rule);
-  border-radius: 2px;
-  overflow: hidden;
+  gap: 14px;
+  margin-bottom: 14px;
+}
+
+.els-flow-rail span {
+  font-family: var(--mono);
+  font-size: 9px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+  border-bottom: 1px solid var(--rule-bright);
+  padding-bottom: 8px;
+}
+
+.els-grid {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 14px;
 }
 
 @media (max-width: 960px) {
@@ -110,24 +213,27 @@ const layers = canonical.products.ascend.eight_layers.map((raw: string, i: numbe
 
 /* ============ Individual tri-card ============ */
 .els-card {
-  background: var(--bg-card);
-  border: none;
-  border-radius: 0;
-  padding: 28px 24px;
+  min-height: 330px;
+  background: rgba(5, 5, 7, 0.82);
+  border: 1px solid var(--rule);
+  border-radius: 2px;
+  padding: 22px 20px;
   display: flex;
   flex-direction: column;
-  gap: 10px;
-  transition: background 180ms ease;
+  gap: 12px;
+  transition: border-color 180ms ease, background 180ms ease, transform 180ms ease;
   cursor: default;
 }
 .els-card:hover {
   background: var(--bg-elev);
   border-color: var(--rule-bright);
+  transform: translateY(-2px);
 }
 
 .els-card-header {
   display: flex;
   align-items: center;
+  justify-content: space-between;
   gap: 8px;
 }
 .els-num {
@@ -137,6 +243,148 @@ const layers = canonical.products.ascend.eight_layers.map((raw: string, i: numbe
   /* override eyebrow::before — no leading dash inside cards */
 }
 .els-num::before { display: none; }
+
+.els-group {
+  color: var(--ink-faint);
+  font-size: 8px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  text-align: right;
+}
+
+.els-mini {
+  position: relative;
+  height: 88px;
+  margin-block: 4px 6px;
+  border: 1px solid var(--rule);
+  background:
+    linear-gradient(90deg, rgba(255, 255, 255, 0.035) 1px, transparent 1px),
+    linear-gradient(0deg, rgba(255, 255, 255, 0.035) 1px, transparent 1px),
+    var(--bg);
+  background-size: 22px 22px;
+  overflow: hidden;
+}
+
+.els-mini span {
+  position: absolute;
+  display: block;
+}
+
+.els-mini--visibility span {
+  left: 18px;
+  right: 18px;
+  height: 8px;
+  border: 1px solid rgba(240, 255, 0, 0.38);
+}
+.els-mini--visibility span:nth-child(1) { top: 15px; width: 82%; background: rgba(240, 255, 0, 0.24); }
+.els-mini--visibility span:nth-child(2) { top: 35px; width: 64%; }
+.els-mini--visibility span:nth-child(3) { top: 55px; width: 46%; }
+.els-mini--visibility span:nth-child(4) { top: 72px; width: 28%; border-color: var(--rule-bright); }
+
+.els-mini--conversion span {
+  top: 50%;
+  width: 12px;
+  height: 12px;
+  border-radius: 999px;
+  background: var(--y2);
+  box-shadow: 0 0 18px rgba(240, 255, 0, 0.28);
+}
+.els-mini--conversion span:nth-child(1) { left: 14%; }
+.els-mini--conversion span:nth-child(2) { left: 38%; }
+.els-mini--conversion span:nth-child(3) { left: 62%; }
+.els-mini--conversion span:nth-child(4) {
+  right: 12%;
+  width: 28px;
+  border-radius: 2px;
+}
+.els-mini--conversion::before {
+  content: '';
+  position: absolute;
+  left: 18%;
+  right: 18%;
+  top: calc(50% + 5px);
+  height: 1px;
+  background: rgba(240, 255, 0, 0.42);
+}
+
+.els-mini--speed {
+  display: grid;
+  place-items: center;
+}
+.els-mini--speed::before {
+  content: '00:47';
+  width: 74px;
+  height: 74px;
+  display: grid;
+  place-items: center;
+  border: 1px solid var(--y2);
+  border-radius: 50%;
+  color: var(--y2);
+  font-family: var(--mono);
+  font-size: 13px;
+  letter-spacing: 0.08em;
+  box-shadow: inset 0 0 0 10px rgba(240, 255, 0, 0.06);
+}
+.els-mini--speed span { display: none; }
+
+.els-mini--pipeline span {
+  left: 18px;
+  right: 18px;
+  height: 12px;
+  border-left: 3px solid var(--y2);
+  border-bottom: 1px solid var(--rule-bright);
+}
+.els-mini--pipeline span:nth-child(1) { top: 15px; width: 76%; }
+.els-mini--pipeline span:nth-child(2) { top: 34px; width: 58%; }
+.els-mini--pipeline span:nth-child(3) { top: 53px; width: 42%; }
+.els-mini--pipeline span:nth-child(4) { top: 72px; width: 68%; }
+
+.els-mini--reputation span {
+  width: 38px;
+  height: 38px;
+  border: 1px solid rgba(240, 255, 0, 0.5);
+  border-radius: 50%;
+}
+.els-mini--reputation span:nth-child(1) { left: 20%; top: 28%; }
+.els-mini--reputation span:nth-child(2) { left: 38%; top: 28%; }
+.els-mini--reputation span:nth-child(3) { left: 56%; top: 28%; }
+.els-mini--reputation span:nth-child(4) {
+  left: 46%;
+  top: 43%;
+  width: 10px;
+  height: 10px;
+  background: var(--y2);
+}
+
+.els-mini--paid span {
+  bottom: 14px;
+  width: 14%;
+  background: linear-gradient(180deg, var(--y2), rgba(240, 255, 0, 0.12));
+}
+.els-mini--paid span:nth-child(1) { left: 16%; height: 24px; }
+.els-mini--paid span:nth-child(2) { left: 36%; height: 42px; }
+.els-mini--paid span:nth-child(3) { left: 56%; height: 30px; }
+.els-mini--paid span:nth-child(4) { left: 76%; height: 58px; }
+
+.els-mini--reporting span {
+  border: 1px solid var(--rule-bright);
+  background: rgba(240, 255, 0, 0.08);
+}
+.els-mini--reporting span:nth-child(1) { left: 14px; top: 14px; width: 36%; height: 24px; }
+.els-mini--reporting span:nth-child(2) { right: 14px; top: 14px; width: 36%; height: 24px; }
+.els-mini--reporting span:nth-child(3) { left: 14px; right: 14px; bottom: 14px; height: 24px; background: rgba(240, 255, 0, 0.18); }
+.els-mini--reporting span:nth-child(4) { display: none; }
+
+.els-mini--strategy span {
+  top: 18px;
+  bottom: 18px;
+  width: 1px;
+  background: rgba(240, 255, 0, 0.42);
+}
+.els-mini--strategy span:nth-child(1) { left: 20%; }
+.els-mini--strategy span:nth-child(2) { left: 40%; }
+.els-mini--strategy span:nth-child(3) { left: 60%; }
+.els-mini--strategy span:nth-child(4) { left: 80%; background: var(--y2); box-shadow: 0 0 20px rgba(240, 255, 0, 0.26); }
 
 .els-card-name {
   font-size: clamp(18px, 2vw, 24px);
@@ -163,8 +411,9 @@ const layers = canonical.products.ascend.eight_layers.map((raw: string, i: numbe
 }
 .els-tag-text {
   font-size: 9px;
-  letter-spacing: 0.22em;
+  letter-spacing: 0.12em;
   color: var(--y2);
+  line-height: 1.35;
 }
 
 /* ============ Legend ============ */
@@ -174,5 +423,18 @@ const layers = canonical.products.ascend.eight_layers.map((raw: string, i: numbe
   letter-spacing: 0.18em;
   color: var(--ink-faint);
   text-align: center;
+}
+
+@media (max-width: 520px) {
+  .els-system-map { padding: 12px; }
+  .els-flow-rail { display: none; }
+  .els-system-map::before { display: none; }
+  .els-grid { grid-template-columns: 1fr; }
+  .els-header { margin-bottom: 28px; }
+  .els-card { min-height: 0; padding: 18px 16px; }
+  .els-card-name { font-size: 16px; line-height: 1.1; }
+  .els-mini { height: 76px; }
+  .els-card-body { font-size: 12px; }
+  .els-tag-text { font-size: 8px; }
 }
 </style>

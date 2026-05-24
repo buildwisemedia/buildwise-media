@@ -21,29 +21,32 @@ const pricingSignals = [
 ];
 const valueMath = [
   { label: 'Typical Y1 system cost', value: '$78K', body: 'Pilot plus nine operating months after conversion.' },
-  { label: 'Break-even test', value: 'Job math', body: 'A handful of closed jobs must repay the install and run cost.' },
-  { label: 'Distribution budget', value: '1:1', body: 'Client-funded ad spend is matched to the operating tier.' },
+  { label: 'Pilot graduates', value: '$0', body: 'No second install fee after the $15K Pilot.' },
+  { label: 'Distribution budget', value: '1:1', body: 'You pay ad platforms direct. Buildwise never touches ad dollars.' },
 ];
 const roiChecks = [
-  { label: 'What must be true', body: 'A handful of closed jobs must repay the install and operating cost. If your average deal cannot support that, the diagnostic should stop us before a sales call wastes time.', tone: 'cyan' },
-  { label: 'Why public pricing', body: 'Premium owners do not need coy pricing. They need to know whether the system is in the right economic class before they share numbers.', tone: 'green' },
-  { label: 'Why it earns back', body: 'Ascend attacks the leaks closest to cash first: response lag, quote follow-up, booked-job attribution, and the channels already producing signal.', tone: 'orange' },
+  { label: 'What must be true', body: 'A few closed jobs must repay the install and operating cost. If your average job cannot support that, the diagnostic should stop us early.', tone: 'cyan' },
+  { label: 'Why public pricing', body: 'Qualified owners should know the economic class before sharing company numbers. No price-discovery call required.', tone: 'green' },
+  { label: 'Why it earns back', body: 'Ascend attacks leaks closest to cash first: slow response, quote follow-up, booked-job tracking, and channels already showing signal.', tone: 'orange' },
 ];
-const publicLayerBody = (body: string) => body
-  .replace(/\s*\([^)]*\)/g, '')
-  .replace(/GBP \+ AEO \+ local SEO \+ schema \+ citations \+ AI-search readiness/g, 'local search, AEO, schema, citations, and AI-search readiness')
-  .replace(/Instant SMS\/email\/call follow-up · automated qualification · appointment routing · .* integration/g, 'instant follow-up, automated qualification, appointment routing, and operations integration')
-  .replace(/Campaign monitoring · creative testing · budget alerts · lead-quality feedback · .*/g, 'Campaign monitoring, creative testing, budget alerts, and lead-quality feedback')
-  .replace(/\s+/g, ' ')
-  .trim();
+const ownerLayerBodies: Record<string, string> = {
+  Visibility: 'Show up when buyers search, ask AI, or compare local providers.',
+  Conversion: 'Make calls, forms, pages, and quote paths easier to act on.',
+  'Speed-to-Lead': 'Reply before the lead cools off or calls a competitor.',
+  'Sales Ops': 'Keep quotes, pipeline stages, and past leads moving.',
+  Reputation: 'Turn finished work into reviews and proof.',
+  'Paid Media': 'Watch spend, test creative, and move budget toward better leads.',
+  Reporting: 'Show spend, source, calls, leads, booked work, and next moves.',
+  Strategy: 'Use a weekly scoreboard instead of a late-month guess.',
+};
 
 // JSON-LD: Service schema with 3-tier offer catalog (canonical-sourced)
 const pricingJsonLd = {
   '@type': 'Service',
   '@id': 'https://buildwisemedia.com/pricing#service',
-  name: 'Buildwise Media — 8-Layer Revenue Operating System',
+  name: 'Buildwise Media — Installed AI Growth System',
   description:
-    'AI-operated marketing system for service businesses. Three commitment shapes: Ascend Pilot, Ascend, and Ascend Pro. Same 8-layer revenue operating system. Same 5× ROI floor.',
+    'Owned AI growth system for service businesses. Three commitment shapes: Ascend Pilot, Ascend, and Ascend Pro. Same 5× ROI floor.',
   provider: { '@id': 'https://buildwisemedia.com/#org' },
   areaServed: {
     '@type': 'Place',
@@ -117,7 +120,7 @@ const pricingJsonLd = {
 
 <BaseLayout
   title="Pricing — Buildwise Media"
-  description={`Three commitment shapes. Same 8-layer revenue operating system. Pilot $${pilot.price.oneshot.toLocaleString()} one-time · Ascend $${ascend.price.recurring.toLocaleString()}/mo + $${ascend.price.oneshot.toLocaleString()} install · Pro $${pro.price.recurring.toLocaleString()}/mo + $${pro.price.oneshot.toLocaleString()} install. Month-to-month after day 90.`}
+  description={`Public pricing for the owned AI growth system. Pilot $${pilot.price.oneshot.toLocaleString()} one-time · Ascend $${ascend.price.recurring.toLocaleString()}/mo + $${ascend.price.oneshot.toLocaleString()} install · Pro $${pro.price.recurring.toLocaleString()}/mo + $${pro.price.oneshot.toLocaleString()} install. Month-to-month after day 90.`}
   jsonLd={pricingJsonLd}
 >
 
@@ -126,9 +129,9 @@ const pricingJsonLd = {
     <div class="container pricing-hero-inner">
       <div>
         <p class="eyebrow">PRICING</p>
-        <h1 class="h-hero pricing-h1">Public pricing for a system that has to earn its place.</h1>
+        <h1 class="h-hero pricing-h1">Public pricing for the system you own.</h1>
         <p class="lede pricing-lede">
-          Three commitment shapes. Same 8-layer revenue operating system. Same 5× ROI floor. The fit question is not whether marketing sounds exciting. It is whether the leaks are expensive enough for Ascend to be obvious.
+          Three commitment shapes. Same installed AI growth system. Same 5× ROI floor. The fit question is whether your market opportunity is large enough for Ascend to be obvious.
         </p>
         <div class="pricing-hero-actions">
           <a href="/book" class="cta" data-cta-source="pricing-hero">See If We're a Fit<span class="cta-arrow" aria-hidden="true">→</span></a>
@@ -160,7 +163,7 @@ const pricingJsonLd = {
             </article>
           ))}
         </div>
-        <p class="pricing-console-note">The diagnostic checks whether your market leaks can realistically support the operating cost before we ask for a booking.</p>
+        <p class="pricing-console-note">The diagnostic checks whether your market opportunity can support the operating cost before we ask for a booking.</p>
       </aside>
     </div>
   </section>
@@ -176,8 +179,8 @@ const pricingJsonLd = {
     <div class="container pricing-roi-grid">
       <header>
         <p class="section-tag">Why this is worth it</p>
-        <h2 id="pricing-roi-title" class="h-section">Premium pricing only works when the math has nowhere to hide.</h2>
-        <p class="lede">Ascend is not priced for hobby demand generation. It is priced for service businesses where one or two fixed leaks can change the year.</p>
+        <h2 id="pricing-roi-title" class="h-section">Premium pricing only works when the math is visible.</h2>
+        <p class="lede">Ascend is not priced for hobby marketing. It is priced for service businesses where an owned, improving system can change the year.</p>
       </header>
       <div class="roi-check-grid">
         {roiChecks.map((item) => (
@@ -200,7 +203,7 @@ const pricingJsonLd = {
           The 8 layers that run your growth.
         </h2>
         <p class="lede">
-          Every tier runs on the same 8-layer operating system. The layers connect — so improving one tightens the others automatically.
+          Every tier runs on the same operating system. The layers connect so improving one helps the rest.
         </p>
       </header>
 
@@ -211,7 +214,7 @@ const pricingJsonLd = {
           const name    = dashIdx > 0
             ? raw.slice(dotIdx + 1, dashIdx).trim()
             : raw.slice(dotIdx + 1).trim();
-          const body    = dashIdx > 0 ? publicLayerBody(raw.slice(dashIdx + 1).trim()) : '';
+          const body    = ownerLayerBodies[name] ?? '';
           const num     = String(i + 1).padStart(2, '0');
           return (
             <article class="pricing-layer-card card">
@@ -253,10 +256,10 @@ const pricingJsonLd = {
       <div class="pricing-contract-highlight card">
         <p class="eyebrow">UNIVERSAL CONTRACT SHAPE</p>
         <p class="pricing-contract-highlight-text">
-          Paid Pilot ${pilot.price.oneshot.toLocaleString()} up-front · 90-day initial operating period · true month-to-month, no penalty, after Day 90.
+          Paid Pilot ${pilot.price.oneshot.toLocaleString()} up-front · 1:1 ad spend paid direct to platforms · 90-day initial operating period · true month-to-month after Day 90.
         </p>
         <p class="pricing-contract-note mono">
-          No exit fee. No clawback. No long-term lock-in.
+          Pilot graduates do not pay a second install fee. No exit fee. No clawback.
         </p>
       </div>
 
@@ -271,13 +274,13 @@ const pricingJsonLd = {
 <style>
 /* ============ Hero ============ */
 .pricing-hero {
-  padding-block: var(--section-y);
+  padding-block: clamp(96px, 9vw, 128px) clamp(56px, 7vw, 88px);
   background: var(--bg);
 }
 .pricing-hero-inner {
   display: grid;
   grid-template-columns: minmax(0, 0.95fr) minmax(300px, 0.78fr);
-  gap: clamp(40px, 6vw, 88px);
+  gap: clamp(32px, 5vw, 64px);
   align-items: center;
 }
 .pricing-h1 {
@@ -289,13 +292,13 @@ const pricingJsonLd = {
   display: flex;
   flex-wrap: wrap;
   gap: 14px;
-  margin-top: 32px;
+  margin-top: 24px;
 }
 .pricing-math-strip {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 1px;
-  margin-top: 26px;
+  margin-top: 22px;
   max-width: 720px;
   background: var(--rule);
   border: 1px solid var(--rule);
@@ -329,7 +332,7 @@ const pricingJsonLd = {
   line-height: 1.35;
 }
 .pricing-console {
-  padding: clamp(22px, 3vw, 34px);
+  padding: clamp(20px, 2.5vw, 28px);
 }
 .pricing-console > * {
   position: relative;
@@ -340,7 +343,7 @@ const pricingJsonLd = {
   justify-content: space-between;
   align-items: center;
   gap: 14px;
-  margin-bottom: 22px;
+  margin-bottom: 16px;
 }
 .pricing-console-grid {
   display: grid;
@@ -351,7 +354,7 @@ const pricingJsonLd = {
 .pricing-signal {
   background: var(--bg);
   border-left: 3px solid currentColor;
-  padding: 22px;
+  padding: 18px;
 }
 .pricing-signal span {
   color: var(--ink-faint);
@@ -362,7 +365,7 @@ const pricingJsonLd = {
 .pricing-signal strong {
   display: block;
   margin-block: 10px 6px;
-  font-size: clamp(30px, 4vw, 54px);
+  font-size: clamp(28px, 3.4vw, 46px);
   line-height: 1;
   letter-spacing: -0.05em;
   color: var(--ink);
@@ -384,15 +387,15 @@ const pricingJsonLd = {
 
 /* ============ Comparison section ============ */
 .pricing-comparison-section {
-  padding-block: 0 var(--section-y);
+  padding-block: 0 clamp(56px, 7vw, 88px);
   background: var(--bg);
 }
 
-.pricing-roi-section { padding-block: var(--section-y); }
+.pricing-roi-section { padding-block: clamp(56px, 7vw, 88px); }
 .pricing-roi-grid {
   display: grid;
   grid-template-columns: minmax(0, 0.82fr) minmax(0, 1.18fr);
-  gap: clamp(40px, 6vw, 80px);
+  gap: clamp(32px, 5vw, 64px);
   align-items: start;
 }
 .pricing-roi-grid header {
@@ -409,7 +412,7 @@ const pricingJsonLd = {
 .roi-check {
   background: var(--bg-card);
   border-left: 3px solid currentColor;
-  padding: clamp(24px, 3vw, 34px);
+  padding: clamp(20px, 2.5vw, 28px);
 }
 .roi-check p:last-child {
   margin-top: 12px;
@@ -420,14 +423,14 @@ const pricingJsonLd = {
 
 /* ============ 8-layer section ============ */
 .pricing-layers-section {
-  padding-block: var(--section-y);
+  padding-block: clamp(56px, 7vw, 88px);
   background: var(--bg-elev);
 }
 .pricing-layers-header {
   display: flex;
   flex-direction: column;
   gap: 20px;
-  margin-bottom: 48px;
+  margin-bottom: 36px;
   max-width: 760px;
 }
 .pricing-layers-h2 { color: var(--ink); }
@@ -445,14 +448,17 @@ const pricingJsonLd = {
   .pricing-layers-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }
 @media (max-width: 520px) {
-  .pricing-layers-grid { grid-template-columns: 1fr; }
+  .pricing-layers-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .pricing-layer-card { padding: 18px 16px; }
+  .pricing-layer-name { font-size: 17px; }
+  .pricing-layer-body { display: none; }
 }
 
 .pricing-layer-card {
   background: var(--bg-card);
   border: none;
   border-radius: 0;
-  padding: 28px 24px;
+  padding: 22px 20px;
   display: flex;
   flex-direction: column;
   gap: 10px;
@@ -477,14 +483,14 @@ const pricingJsonLd = {
 
 /* ============ Contract section ============ */
 .pricing-contract-section {
-  padding-block: var(--section-y);
+  padding-block: clamp(56px, 7vw, 88px);
   background: var(--bg);
 }
 .pricing-contract-header {
   display: flex;
   flex-direction: column;
   gap: 20px;
-  margin-bottom: 48px;
+  margin-bottom: 36px;
   max-width: 760px;
 }
 
@@ -506,19 +512,23 @@ const pricingJsonLd = {
 
 @media (max-width: 560px) {
   .pricing-hero {
-    padding-top: 104px;
+    padding-top: 92px;
+    padding-bottom: 48px;
   }
 
   .pricing-h1 {
-    font-size: 38px;
+    font-size: 34px;
     line-height: 1.03;
     letter-spacing: 0;
   }
 
   .pricing-lede {
-    font-size: 17px;
+    font-size: 16px;
     line-height: 1.5;
   }
+  .pricing-console { padding: 18px; }
+  .pricing-signal { padding: 14px; }
+  .pricing-signal strong { font-size: 32px; }
 
   .pricing-math-strip {
     grid-template-columns: 1fr;

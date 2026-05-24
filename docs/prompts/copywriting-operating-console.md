@@ -20,6 +20,15 @@ Core routes:
 
 Your job in this session is copywriting strategy first, implementation second.
 
+Current copy state as of 2026-05-21:
+- Public site uses Buildwise team voice.
+- Homepage is the main long-form offer page, not just an executive hub.
+- `/book` is framed around the Market Dominance Dossier.
+- Public pricing is intentional and current.
+- Current Poor Four names are Invisible Market, Leaky Revenue, Owner Bottleneck, Reactive Growth.
+- The site should be judged against the newer Book breakthrough offer: dream outcome, proof of likelihood, time-to-value, effort reduction, risk reversal, objections, and a clear CTA.
+- Avoid judging this copy against stale hidden-pricing or "See If I Qualify" locks.
+
 Before editing any copy:
 1. Audit the rendered site and the relevant source files.
 2. Summarize what the current copy is trying to do.
