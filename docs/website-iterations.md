@@ -54,3 +54,25 @@ This ledger tracks meaningful website direction changes so future design, copy, 
 - Treat heading readability, semantic highlights, chart marker clarity, slider affordance, and display-numeral crop safety as blocking visual QA checks.
 - Do not claim review-ready or full surface closure until the visual QA bundle includes a `manual-visual-review.md` file with `Status: accepted`.
 - Keep the page credible for owner/operators of service businesses: high-value, concrete, operational, and no vague AI hype.
+
+## BC-2026-05-24 - Public-Tier Business Card Design Iterations
+
+- **Name:** Public-Tier Business Card (Regular Card)
+- **Status:** Vector templates implemented; design iterations uploaded to Cloudflare R2 bucket (`bwm-assets`).
+- **Branch:** `homepage-redesign-2026-05-21`
+- **Dieline SVG Paths:**
+  - [public_front.svg](file:///Users/robertechevarria/buildwisemedia.com/public/assets/print/business-card/public_front.svg) — Front layout matching Lockup B + Stripe-leaning composition. Includes a simulated Y1 neon-green outline (`#B8FF3A` edge paint).
+  - [public_back.svg](file:///Users/robertechevarria/buildwisemedia.com/public/assets/print/business-card/public_back.svg) — Back layout matching the spec-grid, with direct email/book/NFC links (no `www.`) and a small flat-fill top-left mark.
+- **R2 Storage Locations (binaries):**
+  - R2 Bucket: `bwm-assets`
+  - Public CDN Root: `https://pub-85c635a2536e438b9927af5e6723b0f7.r2.dev/`
+  - Mockups & Iterations:
+    - [variant_a_minimal.png](https://pub-85c635a2536e438b9927af5e6723b0f7.r2.dev/print/business-card/iterations/variant_a_minimal.png)
+    - [variant_b_technical.png](https://pub-85c635a2536e438b9927af5e6723b0f7.r2.dev/print/business-card/iterations/variant_b_technical.png)
+    - [variant_c_holo.png](https://pub-85c635a2536e438b9927af5e6723b0f7.r2.dev/print/business-card/iterations/variant_c_holo.png)
+    - [variant_d_physical.png](https://pub-85c635a2536e438b9927af5e6723b0f7.r2.dev/print/business-card/iterations/variant_d_physical.png)
+    - [public_concave_front.png](https://pub-85c635a2536e438b9927af5e6723b0f7.r2.dev/print/business-card/iterations/public_concave_front.png)
+    - [public_concave_angle.png](https://pub-85c635a2536e438b9927af5e6723b0f7.r2.dev/print/business-card/iterations/public_concave_angle.png)
+    - [public_real_front.png](https://pub-85c635a2536e438b9927af5e6723b0f7.r2.dev/print/business-card/iterations/public_real_front.png) (Final photorealistic card mockup: vertical 55x85mm, 38pt premium matte black uncoated cardstock, foil-stamped Y2 logo mark, opaque white/Y2 printed wordmarks, thin green painted edges on sharp 90° corners, correct name "Robert Echevarria").
+    - [public_real_back.png](https://pub-85c635a2536e438b9927af5e6723b0f7.r2.dev/print/business-card/iterations/public_real_back.png) (Final photorealistic card back: direct email/book/NFC links, no `www.`).
+- **QA evidence:** `npm run qa:brand` passed with 0 warnings. Binary assets successfully uploaded to remote R2 bucket. Git tracking cleaned.
