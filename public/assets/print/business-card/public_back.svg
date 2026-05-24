@@ -1,0 +1,54 @@
+<!--
+  asset: BWM Public-Tier Business Card · Back
+  spec: brand/BWM-Public-Card.md
+  dimensions: 55mm x 85mm (550px x 850px)
+  finish: Y2 Flat mark + printed contacts (no microtype)
+  color: Canvas #050507, Y2 Accent #F0FF00
+-->
+<svg width="550" height="850" viewBox="0 0 550 850" xmlns="http://www.w3.org/2000/svg">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter&amp;family=JetBrains+Mono&amp;display=swap');
+    .bg { fill: #050507; }
+    .lbl-contact { font-family: 'JetBrains Mono', monospace; font-size: 9px; fill: #525560; letter-spacing: 0.18em; }
+    .val-contact { font-family: 'Inter', sans-serif; font-size: 12px; fill: #ECECEC; text-anchor: end; letter-spacing: 0.02em; }
+    .hairline { stroke: #7A8400; stroke-opacity: 0.3; stroke-width: 1; }
+    .url-line { font-family: 'JetBrains Mono', monospace; font-size: 11px; fill: #F0FF00; letter-spacing: 0.05em; }
+  </style>
+  <rect width="550" height="850" class="bg"/>
+  
+  <!-- Y1 Green Edge Paint indicator (painted edge visual simulation) -->
+  <rect x="1" y="1" width="548" height="848" fill="none" stroke="#B8FF3A" stroke-width="2" opacity="0.45"/>
+
+  <!-- Top-left Mark (Dashboard scale, 22px) -->
+  <g transform="translate(26, 32) scale(0.22)">
+    <!-- @r020:identity: Flat Triangulation V3 brand mark on public card back -->
+    <line x1="50" y1="22" x2="22" y2="70" stroke="#7A8400" stroke-width="1.5" opacity="0.7"/>
+    <line x1="50" y1="22" x2="78" y2="70" stroke="#7A8400" stroke-width="1.5" opacity="0.7"/>
+    <line x1="22" y1="70" x2="78" y2="70" stroke="#7A8400" stroke-width="1.5" opacity="0.7"/>
+    <circle cx="50" cy="54" r="3" fill="#F0FF00" opacity="0.85"/>
+    <circle cx="50" cy="22" r="9" fill="#F0FF00"/>
+    <circle cx="22" cy="70" r="6.5" fill="#F0FF00"/>
+    <circle cx="78" cy="70" r="6.5" fill="#F0FF00"/>
+  </g>
+
+  <!-- Bottom Contact Info Zone -->
+  <g transform="translate(26, 610)">
+    <!-- Email block -->
+    <text class="lbl-contact" y="0">EMAIL</text>
+    <text class="val-contact" x="498" y="0">robert@buildwisemedia.com</text>
+
+    <!-- Book block -->
+    <text class="lbl-contact" y="30">BOOK</text>
+    <text class="val-contact" x="498" y="30">buildwisemedia.com/book</text>
+
+    <!-- NFC block -->
+    <text class="lbl-contact" y="60">NFC</text>
+    <text class="val-contact" x="498" y="60">tap → /audit</text>
+
+    <!-- Divider -->
+    <line x1="0" y1="90" x2="498" y2="90" class="hairline"/>
+
+    <!-- URL -->
+    <text class="url-line" y="120">BUILDWISEMEDIA.COM</text>
+  </g>
+</svg>
