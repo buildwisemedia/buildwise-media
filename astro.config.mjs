@@ -12,6 +12,12 @@ const legacyProblemRedirects = Object.fromEntries([
   { status: 301, destination: `/problem/${destination}` },
 ]));
 
+const allRedirects = {
+  ...legacyProblemRedirects,
+  '/m': '/',
+  '/m/': '/',
+};
+
 export default defineConfig({
   site: 'https://buildwisemedia.com',
   output: 'static',
@@ -23,5 +29,5 @@ export default defineConfig({
     inlineStylesheets: 'always',
   },
   compressHTML: true,
-  redirects: legacyProblemRedirects,
+  redirects: allRedirects,
 });
