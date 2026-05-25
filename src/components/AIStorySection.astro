@@ -23,6 +23,7 @@
 
     <!-- Panel 1: Capability inheritance curve — 36 months, 4 named milestones -->
     <figure class="curve-panel reveal" aria-labelledby="curve-cap">
+      <!-- @r020:F2 proof: capability-inheritance curve — Ascend's compounding capability vs a static agency over 36 months; the visual proof of the "inherits the frontier" claim -->
       <svg viewBox="0 0 1200 420" aria-hidden="true" preserveAspectRatio="none" class="curve-svg">
         <defs>
           <linearGradient id="curveFill" x1="0" x2="0" y1="0" y2="1">
@@ -74,17 +75,8 @@
     </figure>
 
     <!-- 4 milestone tiles below the curve — what each marker actually means -->
-    <!-- Iteration 3: each card gets a R018b/c atmospheric thumbnail that fades in on hover (R017 user-input state) -->
     <ol class="milestone-list reveal" role="list">
       <li class="milestone-card">
-        <img
-          class="milestone-photo"
-          src="/images/bwm-services-atmospheric-v1.webp"
-          alt=""
-          aria-hidden="true"
-          loading="lazy"
-          decoding="async"
-        />
         <div class="milestone-content">
           <span class="milestone-num mono">6 MO</span>
           <h3 class="card-title">More work handled</h3>
@@ -92,14 +84,6 @@
         </div>
       </li>
       <li class="milestone-card">
-        <img
-          class="milestone-photo"
-          src="/images/bwm-results-editorial-v1.webp"
-          alt=""
-          aria-hidden="true"
-          loading="lazy"
-          decoding="async"
-        />
         <div class="milestone-content">
           <span class="milestone-num mono">12 MO</span>
           <h3 class="card-title">Longer workflows chained</h3>
@@ -107,14 +91,6 @@
         </div>
       </li>
       <li class="milestone-card">
-        <img
-          class="milestone-photo"
-          src="/images/bwm-proof-still-life-v1.webp"
-          alt=""
-          aria-hidden="true"
-          loading="lazy"
-          decoding="async"
-        />
         <div class="milestone-content">
           <span class="milestone-num mono">24 MO</span>
           <h3 class="card-title">Better tools without a rebuild</h3>
@@ -122,14 +98,6 @@
         </div>
       </li>
       <li class="milestone-card">
-        <img
-          class="milestone-photo"
-          src="/images/exploded-triangle-v1.svg"
-          alt=""
-          aria-hidden="true"
-          loading="lazy"
-          decoding="async"
-        />
         <div class="milestone-content">
           <span class="milestone-num mono">36 MO</span>
           <h3 class="card-title">A system that keeps gaining power</h3>
@@ -183,7 +151,6 @@
   margin-bottom: 32px;
 }
 .milestone-card {
-  position: relative;
   background: var(--bg-card);
   border: 1px solid var(--rule);
   border-radius: 2px;
@@ -192,40 +159,15 @@
   flex-direction: column;
   gap: 12px;
   transition: border-color 220ms ease;
-  overflow: hidden;
   min-height: 190px;
 }
 .milestone-card:hover {
   border-color: var(--y2);
 }
-.milestone-photo {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  opacity: 0;
-  z-index: 0;
-  pointer-events: none;
-  transition: opacity 320ms ease;
-  mask-image: linear-gradient(to bottom, rgba(0,0,0,0.6) 0%, transparent 70%);
-  -webkit-mask-image: linear-gradient(to bottom, rgba(0,0,0,0.6) 0%, transparent 70%);
-}
-.milestone-card:hover .milestone-photo,
-.milestone-card:focus-within .milestone-photo {
-  opacity: 0.32;
-}
 .milestone-content {
-  position: relative;
-  z-index: 1;
   display: flex;
   flex-direction: column;
   gap: 12px;
-}
-@media (prefers-reduced-motion: reduce) {
-  .milestone-photo { transition: none; }
-  .milestone-card:hover .milestone-photo,
-  .milestone-card:focus-within .milestone-photo { opacity: 0.2; }
 }
 .milestone-num {
   font-family: var(--mono);

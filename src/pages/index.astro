@@ -757,17 +757,26 @@ const faqSchema = {
       </header>
 
       <figure class="dominance-figure">
-        <!-- @r020:F2 proof: Node mesh diagram showing AI search rank, reviews and local citations converging on one business -->
-        <img
-          src="/images/node-mesh-ascending-v1.svg"
-          alt="An abstract node-mesh diagram: AI-search citations, local-search rankings, review velocity, and neighborhood-level mentions converging into a single ascending node — the business buyers default to when they look for the category."
-          width="800"
-          height="600"
-          loading="lazy"
-          decoding="async"
-        />
+        <!-- @r020:F2 proof + F4 curiosity: the four named ranking signals converging on one outcome — your business as the default answer; shows the category-of-one mechanism instead of an abstract doodle -->
+        <div class="default-answer">
+          <p class="da-prompt">When a buyer asks, "who's the best near me?"</p>
+          <div class="da-flow">
+            <ul class="da-signals" role="list">
+              <li>AI search</li>
+              <li>Local search</li>
+              <li>Reviews</li>
+              <li>Neighborhood</li>
+            </ul>
+            <span class="da-arrow mono" aria-hidden="true">&rarr;</span>
+            <div class="da-answer">
+              <span class="ops-kicker">The answer</span>
+              <strong>Your business</strong>
+              <span class="da-answer-sub">the name they default to</span>
+            </div>
+          </div>
+        </div>
         <figcaption class="dominance-cap mono">
-          Every signal converging on the same answer · your business as the default.
+          Every signal points to one answer · your business as the default.
         </figcaption>
       </figure>
 
@@ -1755,11 +1764,69 @@ const faqSchema = {
   gap: 12px;
   align-items: center;
 }
-.dominance-figure img {
+.default-answer {
   width: 100%;
-  max-width: 640px;
-  height: auto;
-  display: block;
+  max-width: 720px;
+  border: 1px solid var(--rule);
+  border-radius: 6px;
+  background: var(--bg-card);
+  padding: clamp(22px, 4vw, 38px);
+}
+.da-prompt {
+  font-family: var(--sans);
+  font-size: clamp(17px, 1.9vw, 20px);
+  font-weight: 500;
+  line-height: 1.4;
+  color: var(--ink);
+  margin-bottom: 26px;
+}
+.da-flow {
+  display: flex;
+  align-items: center;
+  gap: clamp(16px, 3vw, 30px);
+  flex-wrap: wrap;
+}
+.da-signals {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  flex: 0 0 auto;
+}
+.da-signals li {
+  font-family: var(--mono);
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  color: var(--ink-dim);
+  padding: 8px 14px;
+  border: 1px solid var(--rule);
+  border-radius: 4px;
+}
+.da-arrow { font-size: 26px; color: var(--y2); flex: 0 0 auto; }
+.da-answer {
+  flex: 1 1 220px;
+  border: 1px solid var(--y2);
+  border-radius: 4px;
+  padding: 20px 22px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.da-answer .ops-kicker { color: var(--y2); }
+.da-answer strong {
+  font-family: var(--sans);
+  font-weight: 800;
+  font-stretch: 75%;
+  font-size: clamp(24px, 3vw, 34px);
+  line-height: 1;
+  letter-spacing: -0.02em;
+  color: var(--ink);
+}
+.da-answer-sub { font-size: 14px; color: var(--ink-dim); }
+@media (max-width: 560px) {
+  .da-flow { flex-direction: column; align-items: stretch; }
+  .da-arrow { transform: rotate(90deg); align-self: center; }
+  .da-signals { flex-direction: row; flex-wrap: wrap; }
 }
 .dominance-cap {
   font-size: 10px;
