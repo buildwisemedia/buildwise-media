@@ -474,41 +474,81 @@ async function readManualAcceptance() {
 // fast path preserved for pages within the limit.
 const MAX_CAPTURE_TILE_HEIGHT = 12000;
 
+// captureBeyondViewport re-anchors `position: fixed` elements to each tile's
+// viewport, so a fixed header repeats at the top of every stitched tile. Pin
+// fixed elements to their absolute document position for the duration of the
+// capture so each is painted once where it truly sits, then restore originals.
+function pinFixedElements() {
+  const saved = [];
+  document.querySelectorAll('body *').forEach((el) => {
+    if (window.getComputedStyle(el).position === 'fixed') {
+      const rect = el.getBoundingClientRect();
+      saved.push({ el, cssText: el.style.cssText });
+      el.style.position = 'absolute';
+      el.style.top = `${Math.round(rect.top + window.scrollY)}px`;
+      el.style.bottom = 'auto';
+    }
+  });
+  window.__bwmPinnedFixed = saved;
+  return saved.length;
+}
+
+function restoreFixedElements() {
+  const saved = window.__bwmPinnedFixed || [];
+  saved.forEach(({ el, cssText }) => {
+    el.style.cssText = cssText;
+  });
+  delete window.__bwmPinnedFixed;
+  return saved.length;
+}
+
 async function captureFullPage(cdp, filePath) {
   const { contentSize } = await cdp.send('Page.getLayoutMetrics');
   const width = Math.ceil(contentSize.width);
   const height = Math.ceil(contentSize.height);
 
-  if (height <= MAX_CAPTURE_TILE_HEIGHT) {
-    const screenshot = await cdp.send('Page.captureScreenshot', {
-      format: 'png',
-      fromSurface: true,
-      captureBeyondViewport: true,
-      clip: { x: 0, y: 0, width, height, scale: 1 },
-    });
-    await fs.writeFile(filePath, Buffer.from(screenshot.data, 'base64'));
-    return;
-  }
+  await cdp.send('Runtime.evaluate', {
+    expression: `(${pinFixedElements.toString()})()`,
+    returnByValue: true,
+  });
 
-  const { default: sharp } = await import('sharp');
-  const composite = [];
-  for (let y = 0; y < height; y += MAX_CAPTURE_TILE_HEIGHT) {
-    const tileHeight = Math.min(MAX_CAPTURE_TILE_HEIGHT, height - y);
-    const screenshot = await cdp.send('Page.captureScreenshot', {
-      format: 'png',
-      fromSurface: true,
-      captureBeyondViewport: true,
-      clip: { x: 0, y, width, height: tileHeight, scale: 1 },
-    });
-    composite.push({ input: Buffer.from(screenshot.data, 'base64'), top: y, left: 0 });
-  }
+  try {
+    if (height <= MAX_CAPTURE_TILE_HEIGHT) {
+      const screenshot = await cdp.send('Page.captureScreenshot', {
+        format: 'png',
+        fromSurface: true,
+        captureBeyondViewport: true,
+        clip: { x: 0, y: 0, width, height, scale: 1 },
+      });
+      await fs.writeFile(filePath, Buffer.from(screenshot.data, 'base64'));
+      return;
+    }
 
-  await sharp({
-    create: { width, height, channels: 3, background: { r: 5, g: 5, b: 7 } },
-  })
-    .composite(composite)
-    .png()
-    .toFile(filePath);
+    const { default: sharp } = await import('sharp');
+    const composite = [];
+    for (let y = 0; y < height; y += MAX_CAPTURE_TILE_HEIGHT) {
+      const tileHeight = Math.min(MAX_CAPTURE_TILE_HEIGHT, height - y);
+      const screenshot = await cdp.send('Page.captureScreenshot', {
+        format: 'png',
+        fromSurface: true,
+        captureBeyondViewport: true,
+        clip: { x: 0, y, width, height: tileHeight, scale: 1 },
+      });
+      composite.push({ input: Buffer.from(screenshot.data, 'base64'), top: y, left: 0 });
+    }
+
+    await sharp({
+      create: { width, height, channels: 3, background: { r: 5, g: 5, b: 7 } },
+    })
+      .composite(composite)
+      .png()
+      .toFile(filePath);
+  } finally {
+    await cdp.send('Runtime.evaluate', {
+      expression: `(${restoreFixedElements.toString()})()`,
+      returnByValue: true,
+    });
+  }
 }
 
 async function main() {
