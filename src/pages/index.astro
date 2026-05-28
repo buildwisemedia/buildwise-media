@@ -149,12 +149,12 @@ const dossierSignals = [
 ];
 
 const contractProofs = [
-  { group: 'Capability', clause: 'Inheritance', title: 'Capability inheritance', body: 'When better AI ships, your system can use it without a new platform fee or rebuild.' },
-  { group: 'Control', clause: 'Human gate', title: 'Human signoff', body: 'Nothing autonomous goes live to buyers without a human gate.' },
-  { group: 'Ownership', clause: 'Client assets', title: 'Sovereignty', body: 'You own code, data, ad accounts, customer list, and built assets.' },
-  { group: 'Economics', clause: 'ROI floor', title: 'ROI floor', body: '5x attributable ROI within 24 months, or Buildwise keeps building.' },
-  { group: 'Portability', clause: 'No lock-in', title: 'No vendor lock-in', body: 'The system is portable across models, tools, and channels.' },
-  { group: 'Exit rights', clause: 'After Day 90', title: 'True m-t-m after Day 90', body: 'No clawback. No exit fee. No long-term penalty.' },
+  { group: 'Capability', clause: 'Inheritance', title: 'Capability inheritance', body: 'When better AI ships, your system can use it without a new platform fee or rebuild.', tone: 'cyan', visual: 'inheritance' },
+  { group: 'Control', clause: 'Human gate', title: 'Human signoff', body: 'Nothing autonomous goes live to buyers without a human gate.', tone: 'green', visual: 'gate' },
+  { group: 'Ownership', clause: 'Client assets', title: 'Sovereignty', body: 'You own code, data, ad accounts, customer list, and built assets.', tone: 'yellow', visual: 'sovereignty' },
+  { group: 'Economics', clause: 'ROI floor', title: 'ROI floor', body: '5x attributable ROI within 24 months, or Buildwise keeps building.', tone: 'orange', visual: 'roi' },
+  { group: 'Portability', clause: 'No lock-in', title: 'No vendor lock-in', body: 'The system is portable across models, tools, and channels.', tone: 'cyan', visual: 'portability' },
+  { group: 'Exit rights', clause: 'After Day 90', title: 'True m-t-m after Day 90', body: 'No clawback. No exit fee. No long-term penalty.', tone: 'green', visual: 'exit' },
 ];
 
 const attributionRules = [
@@ -723,9 +723,55 @@ const faqSchema = {
           </div>
           <div class="contract-proof-clauses">
             {contractProofs.map((item) => (
-              <article class="contract-proof-clause">
-                <span class="contract-clause-group mono">{item.group}</span>
-                <div>
+              <article class={`contract-proof-clause tone-${item.tone}`}>
+                <div class="clause-rail">
+                  <span class="contract-clause-group mono">{item.group}</span>
+                  {/* @r020:F2 proof: per-clause schematic glyph (capability step-up, approval gate, ownership key, ROI-floor bars, portability transfer, clean-exit door) makes each buyer risk-reducer scannable by shape + signal color instead of six identical text boxes */}
+                  <svg class="clause-glyph" viewBox="0 0 48 48" aria-hidden="true">
+                    {item.visual === 'inheritance' && (
+                      <g fill="none" stroke="var(--clause-accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M6 40 H16 V30 H26 V20 H36 V11" />
+                        <path d="M31 11 H37 V17" />
+                      </g>
+                    )}
+                    {item.visual === 'gate' && (
+                      <g fill="none" stroke="var(--clause-accent)" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M11 16 V40 M37 16 V40 M7 16 H41" stroke-width="2" />
+                        <path d="M17 28 L22 33 L33 20" stroke-width="2.6" />
+                      </g>
+                    )}
+                    {item.visual === 'sovereignty' && (
+                      <g fill="none" stroke="var(--clause-accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="18" cy="19" r="8" />
+                        <circle cx="18" cy="19" r="2.4" fill="var(--clause-accent)" />
+                        <path d="M24 25 L39 40 M34 39 L39 34 M30 35 L34 31" />
+                      </g>
+                    )}
+                    {item.visual === 'roi' && (
+                      <g>
+                        <line x1="7" y1="40" x2="41" y2="40" stroke="var(--clause-accent)" stroke-width="3" stroke-linecap="round" />
+                        <rect x="12" y="29" width="6" height="10" fill="var(--clause-accent)" />
+                        <rect x="22" y="21" width="6" height="18" fill="var(--clause-accent)" />
+                        <rect x="32" y="11" width="6" height="28" fill="var(--clause-accent)" />
+                      </g>
+                    )}
+                    {item.visual === 'portability' && (
+                      <g fill="none" stroke="var(--clause-accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <rect x="6" y="17" width="14" height="15" rx="1" />
+                        <rect x="28" y="17" width="14" height="15" rx="1" />
+                        <path d="M21 24.5 H27 M24.5 21.5 L27.5 24.5 L24.5 27.5" />
+                      </g>
+                    )}
+                    {item.visual === 'exit' && (
+                      <g fill="none" stroke="var(--clause-accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M13 9 V41 H30" />
+                        <path d="M13 9 L25 13 V37 L13 41" />
+                        <path d="M31 25 H42 M38 21 L42 25 L38 29" />
+                      </g>
+                    )}
+                  </svg>
+                </div>
+                <div class="clause-body">
                   <span class="contract-clause-label mono">{item.clause}</span>
                   <h3>{item.title}</h3>
                   <p>{item.body}</p>
@@ -2318,17 +2364,44 @@ const faqSchema = {
 }
 
 .contract-proof-clause {
+  --clause-accent: var(--y2);
   min-width: 0;
   display: grid;
-  grid-template-columns: 92px minmax(0, 1fr);
-  gap: 14px;
-  padding: 16px;
+  grid-template-columns: 84px minmax(0, 1fr);
+  gap: 16px;
+  padding: 16px 18px;
   border: 1px solid var(--rule);
-  background: rgba(5, 5, 7, 0.78);
+  border-top: 2px solid var(--clause-accent);
+  background:
+    linear-gradient(135deg, color-mix(in srgb, var(--clause-accent) 9%, transparent), transparent 46%),
+    rgba(5, 5, 7, 0.78);
+  transition: border-color 180ms ease, transform 180ms ease, background 180ms ease;
+}
+.contract-proof-clause.tone-cyan { --clause-accent: var(--signal-cyan); }
+.contract-proof-clause.tone-green { --clause-accent: var(--signal-green); }
+.contract-proof-clause.tone-yellow { --clause-accent: var(--y2); }
+.contract-proof-clause.tone-orange { --clause-accent: var(--signal-orange); }
+.contract-proof-clause:hover {
+  border-color: color-mix(in srgb, var(--clause-accent) 65%, var(--rule-bright));
+  transform: translateY(-2px);
+}
+
+.clause-rail {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 14px;
+}
+
+.clause-glyph {
+  width: 46px;
+  height: 46px;
+  margin-top: auto;
+  filter: drop-shadow(0 0 10px color-mix(in srgb, var(--clause-accent) 28%, transparent));
 }
 
 .contract-clause-group {
-  color: var(--y2);
+  color: var(--clause-accent);
   writing-mode: vertical-rl;
   text-orientation: mixed;
 }
@@ -2336,7 +2409,7 @@ const faqSchema = {
 .contract-clause-label {
   display: inline-block;
   color: var(--bg);
-  background: var(--y2);
+  background: var(--clause-accent);
   font-weight: 700;
   padding: 5px 8px;
 }
@@ -2717,6 +2790,14 @@ const faqSchema = {
   }
   .contract-proof-clause {
     grid-template-columns: 1fr;
+  }
+  .clause-rail {
+    flex-direction: row;
+    align-items: center;
+    gap: 12px;
+  }
+  .clause-glyph {
+    margin-top: 0;
   }
   .contract-clause-group {
     writing-mode: horizontal-tb;

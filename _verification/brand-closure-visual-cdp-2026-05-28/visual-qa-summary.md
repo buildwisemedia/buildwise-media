@@ -1,6 +1,6 @@
 # Brand Closure Visual QA
 
-Base: http://localhost:4322
+Base: http://localhost:4321
 Captures: 24
 Failures: 0
 Manual visual review: pending (/Users/robertechevarria/buildwisemedia.com/_verification/brand-closure-visual-cdp-2026-05-28/manual-visual-review.md)
