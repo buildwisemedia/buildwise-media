@@ -467,17 +467,48 @@ async function readManualAcceptance() {
   };
 }
 
+// Chrome's WebGL/Skia max layer is typically 16384px on one axis (macOS).
+// A single Page.captureScreenshot with `captureBeyondViewport: true` on a taller
+// page silently produces blank tile artifacts below that limit. We clip the
+// page into vertical slices under the limit and stitch with sharp. Single-shot
+// fast path preserved for pages within the limit.
+const MAX_CAPTURE_TILE_HEIGHT = 12000;
+
 async function captureFullPage(cdp, filePath) {
   const { contentSize } = await cdp.send('Page.getLayoutMetrics');
   const width = Math.ceil(contentSize.width);
   const height = Math.ceil(contentSize.height);
-  const screenshot = await cdp.send('Page.captureScreenshot', {
-    format: 'png',
-    fromSurface: true,
-    captureBeyondViewport: true,
-    clip: { x: 0, y: 0, width, height, scale: 1 },
-  });
-  await fs.writeFile(filePath, Buffer.from(screenshot.data, 'base64'));
+
+  if (height <= MAX_CAPTURE_TILE_HEIGHT) {
+    const screenshot = await cdp.send('Page.captureScreenshot', {
+      format: 'png',
+      fromSurface: true,
+      captureBeyondViewport: true,
+      clip: { x: 0, y: 0, width, height, scale: 1 },
+    });
+    await fs.writeFile(filePath, Buffer.from(screenshot.data, 'base64'));
+    return;
+  }
+
+  const { default: sharp } = await import('sharp');
+  const composite = [];
+  for (let y = 0; y < height; y += MAX_CAPTURE_TILE_HEIGHT) {
+    const tileHeight = Math.min(MAX_CAPTURE_TILE_HEIGHT, height - y);
+    const screenshot = await cdp.send('Page.captureScreenshot', {
+      format: 'png',
+      fromSurface: true,
+      captureBeyondViewport: true,
+      clip: { x: 0, y, width, height: tileHeight, scale: 1 },
+    });
+    composite.push({ input: Buffer.from(screenshot.data, 'base64'), top: y, left: 0 });
+  }
+
+  await sharp({
+    create: { width, height, channels: 3, background: { r: 5, g: 5, b: 7 } },
+  })
+    .composite(composite)
+    .png()
+    .toFile(filePath);
 }
 
 async function main() {

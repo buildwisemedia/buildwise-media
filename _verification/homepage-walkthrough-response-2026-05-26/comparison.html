@@ -1,0 +1,519 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>BWM Homepage Walkthrough Response - Comparison Review</title>
+    <style>
+      :root {
+        --bg: #07080b;
+        --panel: #101116;
+        --panel-2: #15171d;
+        --rule: #2a2d36;
+        --rule-hot: #f0ff00;
+        --cyan: #48d8ff;
+        --green: #67ff90;
+        --orange: #ffb44d;
+        --ink: #f4f4f0;
+        --muted: #9a9ba2;
+        --dim: #676a72;
+      }
+
+      * { box-sizing: border-box; }
+      html { background: var(--bg); color: var(--ink); font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; }
+      body {
+        margin: 0;
+        background:
+          radial-gradient(circle at 20% 0%, rgba(72, 216, 255, 0.08), transparent 28rem),
+          radial-gradient(circle at 84% 12%, rgba(240, 255, 0, 0.08), transparent 24rem),
+          linear-gradient(180deg, #08090c, #050608 60%);
+      }
+      body::before {
+        content: "";
+        position: fixed;
+        inset: 0;
+        pointer-events: none;
+        opacity: 0.14;
+        background-image:
+          linear-gradient(rgba(255,255,255,0.06) 1px, transparent 1px),
+          linear-gradient(90deg, rgba(255,255,255,0.06) 1px, transparent 1px);
+        background-size: 64px 64px;
+      }
+      a { color: inherit; }
+      .wrap {
+        width: min(1480px, calc(100vw - 48px));
+        margin: 0 auto;
+        padding: 48px 0 72px;
+      }
+      .mono {
+        font-family: "JetBrains Mono", "SFMono-Regular", Consolas, monospace;
+        text-transform: uppercase;
+        letter-spacing: 0.18em;
+      }
+      .hero {
+        display: grid;
+        grid-template-columns: minmax(0, 1.2fr) minmax(320px, 0.8fr);
+        gap: 28px;
+        align-items: stretch;
+        margin-bottom: 28px;
+      }
+      .hero-main,
+      .status-panel,
+      .row {
+        border: 1px solid var(--rule);
+        background: rgba(16, 17, 22, 0.78);
+        box-shadow: inset 0 1px rgba(255,255,255,0.03);
+      }
+      .hero-main { padding: clamp(28px, 5vw, 64px); }
+      .eyebrow {
+        margin: 0 0 18px;
+        color: var(--rule-hot);
+        font-size: 11px;
+      }
+      h1 {
+        max-width: 12ch;
+        margin: 0;
+        font-size: clamp(52px, 8vw, 118px);
+        line-height: 0.89;
+        letter-spacing: 0;
+      }
+      .hero-main p:not(.eyebrow) {
+        max-width: 760px;
+        margin: 28px 0 0;
+        color: var(--muted);
+        font-size: clamp(18px, 2vw, 24px);
+        line-height: 1.45;
+      }
+      .status-panel {
+        padding: 24px;
+        display: grid;
+        align-content: stretch;
+        gap: 1px;
+        background: var(--rule);
+      }
+      .status-cell {
+        min-height: 136px;
+        padding: 22px;
+        background: var(--panel);
+        border-top: 3px solid var(--rule-hot);
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+      }
+      .status-cell:nth-child(2) { border-top-color: var(--cyan); }
+      .status-cell:nth-child(3) { border-top-color: var(--green); }
+      .status-cell:nth-child(4) { border-top-color: var(--orange); }
+      .status-cell span {
+        color: var(--dim);
+        font-size: 11px;
+      }
+      .status-cell strong {
+        color: var(--ink);
+        font-size: clamp(28px, 4vw, 54px);
+        line-height: 0.95;
+      }
+      .status-cell small {
+        color: var(--rule-hot);
+        font-size: 11px;
+      }
+      .review-nav {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        margin: 0 0 30px;
+      }
+      .review-nav a {
+        border: 1px solid var(--rule);
+        background: rgba(21, 23, 29, 0.8);
+        padding: 10px 12px;
+        color: var(--muted);
+        text-decoration: none;
+        font-size: 10px;
+      }
+      .row {
+        display: grid;
+        grid-template-columns: minmax(320px, 0.9fr) minmax(0, 1.1fr);
+        gap: 0;
+        margin-top: 22px;
+      }
+      .shot {
+        padding: 18px;
+        border-right: 1px solid var(--rule);
+        background: rgba(5, 6, 8, 0.55);
+      }
+      .shot img {
+        width: 100%;
+        height: auto;
+        display: block;
+        border: 1px solid var(--rule);
+        background: #050608;
+      }
+      .shot-label {
+        margin: 0 0 12px;
+        color: var(--dim);
+        font-size: 10px;
+      }
+      .content {
+        padding: clamp(22px, 3vw, 36px);
+        display: grid;
+        gap: 22px;
+      }
+      .content h2 {
+        margin: 0;
+        font-size: clamp(28px, 4vw, 58px);
+        line-height: 0.95;
+        letter-spacing: 0;
+      }
+      .grid {
+        display: grid;
+        grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr);
+        gap: 16px;
+      }
+      .box {
+        border: 1px solid var(--rule);
+        background: rgba(7, 8, 11, 0.7);
+        padding: 18px;
+      }
+      .box h3 {
+        margin: 0 0 12px;
+        color: var(--rule-hot);
+        font-size: 10px;
+      }
+      .box p,
+      .box li {
+        color: var(--muted);
+        font-size: 15px;
+        line-height: 1.5;
+      }
+      .box p { margin: 0; }
+      .box strong { color: var(--ink); }
+      ul {
+        margin: 0;
+        padding-left: 18px;
+      }
+      li + li { margin-top: 7px; }
+      .replacement {
+        border-color: rgba(240, 255, 0, 0.42);
+        box-shadow: inset 0 0 0 1px rgba(240, 255, 0, 0.08);
+      }
+      .alts {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 10px;
+      }
+      .alt {
+        min-height: 126px;
+        border: 1px solid var(--rule);
+        background: rgba(21, 23, 29, 0.58);
+        padding: 14px;
+      }
+      .alt span {
+        display: block;
+        margin-bottom: 10px;
+        color: var(--cyan);
+        font-size: 9px;
+      }
+      .alt p {
+        margin: 0;
+        color: var(--muted);
+        font-size: 13px;
+        line-height: 1.45;
+      }
+      .wire {
+        min-height: 240px;
+        border: 1px solid var(--rule);
+        background:
+          linear-gradient(rgba(255,255,255,0.04) 1px, transparent 1px),
+          linear-gradient(90deg, rgba(255,255,255,0.04) 1px, transparent 1px),
+          #08090c;
+        background-size: 42px 42px;
+        padding: 18px;
+        display: grid;
+        align-items: end;
+      }
+      .curve {
+        width: 100%;
+        height: 200px;
+      }
+      .quote-moment {
+        display: grid;
+        place-items: center;
+        min-height: 220px;
+        text-align: center;
+      }
+      .quote-moment strong {
+        display: block;
+        color: var(--rule-hot);
+        font-size: clamp(56px, 9vw, 108px);
+        line-height: 0.9;
+      }
+      .quote-moment p {
+        max-width: 620px;
+        margin: 18px auto 0;
+        color: var(--muted);
+        font-size: 20px;
+        line-height: 1.4;
+      }
+      .value-strip {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 1px;
+        background: var(--rule);
+      }
+      .value-strip div {
+        background: var(--panel);
+        padding: 18px;
+        border-top: 2px solid var(--rule-hot);
+      }
+      .value-strip span {
+        color: var(--dim);
+        font-size: 9px;
+      }
+      .value-strip strong {
+        display: block;
+        margin-top: 18px;
+        color: var(--rule-hot);
+        font-size: 38px;
+        line-height: 0.9;
+      }
+      .footer {
+        margin-top: 36px;
+        padding: 24px;
+        border: 1px solid var(--rule);
+        color: var(--muted);
+        background: rgba(16, 17, 22, 0.74);
+      }
+      @media (max-width: 980px) {
+        .hero,
+        .row,
+        .grid {
+          grid-template-columns: 1fr;
+        }
+        .shot { border-right: 0; border-bottom: 1px solid var(--rule); }
+        .alts,
+        .value-strip {
+          grid-template-columns: 1fr;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <main class="wrap">
+      <section class="hero" aria-label="Review summary">
+        <div class="hero-main">
+          <p class="eyebrow mono">Homepage walkthrough response - 2026-05-26</p>
+          <h1>Keep the wow. Make it sell.</h1>
+          <p>
+            The direction is not to soften the page. It is to keep the command-center energy and translate every AI-native idea into owner-useful business pressure: fewer rebuilds, less owner chase, weekly proof, and a clear reason to book the Market Dominance Dossier.
+          </p>
+        </div>
+        <aside class="status-panel" aria-label="Implementation decisions">
+          <div class="status-cell">
+            <span class="mono">Visual mandate</span>
+            <strong>bad ass</strong>
+            <small class="mono">preserve command surface</small>
+          </div>
+          <div class="status-cell">
+            <span class="mono">Audience filter</span>
+            <strong>owners</strong>
+            <small class="mono">not AI insiders</small>
+          </div>
+          <div class="status-cell">
+            <span class="mono">Primary pressure</span>
+            <strong>proof</strong>
+            <small class="mono">weekly movement</small>
+          </div>
+          <div class="status-cell">
+            <span class="mono">Action</span>
+            <strong>/book</strong>
+            <small class="mono">Dossier / fit call</small>
+          </div>
+        </aside>
+      </section>
+
+      <nav class="review-nav mono" aria-label="Review rows">
+        <a href="#command">Command Labels</a>
+        <a href="#why-now">Why Now</a>
+        <a href="#capability">Capability Benefit</a>
+        <a href="#247">24/7 Moment</a>
+        <a href="#calculator">Value Calculator</a>
+      </nav>
+
+      <section class="row" id="command">
+        <div class="shot">
+          <p class="shot-label mono">Current reference - command-console language</p>
+          <img src="./assets/ss-06-command-center-wow.png" alt="Current command console section with signal map, leak radar, and technical labels." />
+        </div>
+        <div class="content">
+          <h2>Preserve the command-center wow, but translate the labels.</h2>
+          <div class="grid">
+            <div class="box">
+              <h3 class="mono">Problem</h3>
+              <p>
+                The visual is strong. The weak point is comprehension. Phrases like <strong>AI router</strong>, <strong>models live</strong>, and <strong>frontier routed</strong> sound impressive to builders, but they do not tell an owner why to act.
+              </p>
+            </div>
+            <div class="box replacement">
+              <h3 class="mono">Recommended replacement</h3>
+              <ul>
+                <li><strong>AI router / models live</strong> becomes new AI capabilities routed into your growth system.</li>
+                <li><strong>Frontier routed</strong> becomes upgrades without rebuilds.</li>
+                <li><strong>Work routed</strong> becomes less owner chase.</li>
+                <li><strong>Proof ledger</strong> becomes weekly proof of what moved.</li>
+              </ul>
+            </div>
+          </div>
+          <div class="alts">
+            <div class="alt"><span class="mono">Alt A</span><p>Keep technical labels, but add plain-English subtitles under each signal tile.</p></div>
+            <div class="alt"><span class="mono">Alt B</span><p>Turn the console into a before/after scan: owner-managed chaos versus system-routed growth.</p></div>
+            <div class="alt"><span class="mono">Alt C</span><p>Make every command label a buyer outcome: speed, proof, upgrades, ownership.</p></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="row" id="why-now">
+        <div class="shot">
+          <p class="shot-label mono">Current reference - explainer cards</p>
+          <img src="./assets/ss-02-why-now.png" alt="Current Why Now section with large headline and three explainer cards." />
+        </div>
+        <div class="content">
+          <h2>Make the urgency visual first.</h2>
+          <div class="grid">
+            <div class="box">
+              <h3 class="mono">Problem</h3>
+              <p>
+                The current cards explain the idea, but the audience does not yet feel the speed. Non-AI-native owners need the curve before the argument.
+              </p>
+            </div>
+            <div class="box replacement">
+              <h3 class="mono">Recommended replacement</h3>
+              <p>
+                Replace the cards with one large hockey-stick chart: releases and capability jumps compressing faster than an owner can manually absorb. Buyer takeaway: <strong>AI is moving too fast to manage manually.</strong>
+              </p>
+            </div>
+          </div>
+          <div class="wire" aria-hidden="true">
+            <svg class="curve" viewBox="0 0 900 220">
+              <path d="M30 178 C170 174 260 160 352 132 C478 94 560 58 694 34 C772 20 828 17 872 11" fill="none" stroke="var(--rule-hot)" stroke-width="5" stroke-linecap="round" />
+              <path d="M30 178 C170 174 260 160 352 132 C478 94 560 58 694 34 C772 20 828 17 872 11 L872 208 L30 208 Z" fill="rgba(240,255,0,0.16)" />
+              <path d="M30 176 C232 170 420 156 610 138 C744 125 820 118 872 112" fill="none" stroke="#686868" stroke-width="2" stroke-dasharray="8 12" />
+              <g fill="var(--rule-hot)" font-family="monospace" font-size="15" letter-spacing="3">
+                <text x="30" y="210">2023</text><text x="320" y="210">2024</text><text x="610" y="210">2025</text><text x="820" y="210">2026</text>
+              </g>
+            </svg>
+          </div>
+          <div class="alts">
+            <div class="alt"><span class="mono">Alt A</span><p>Benchmark proof chart with Stanford AI Index and METR callouts.</p></div>
+            <div class="alt"><span class="mono">Alt B</span><p>Model-release timeline showing how fast the operating layer has to absorb change.</p></div>
+            <div class="alt"><span class="mono">Alt C</span><p>Owner learning curve versus AI capability curve, with the gap highlighted.</p></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="row" id="capability">
+        <div class="shot">
+          <p class="shot-label mono">Current reference - feature-heavy benefit</p>
+          <img src="./assets/ss-03-capability-curve.png" alt="Current capability inheritance section with large headline and chart." />
+        </div>
+        <div class="content">
+          <h2>Sell what capability inheritance saves them from.</h2>
+          <div class="grid">
+            <div class="box">
+              <h3 class="mono">Problem</h3>
+              <p>
+                "Your system inherits frontier AI improvement" is true, but it reads like a feature. Owners need the pain removed: no constant relearning, no platform reset, no new agency cycle.
+              </p>
+            </div>
+            <div class="box replacement">
+              <h3 class="mono">Recommended replacement</h3>
+              <p>
+                Reframe the section as: <strong>Every AI leap should become useful growth work. Without a rebuild.</strong> The chart still compounds, but the copy names the buyer benefit.
+              </p>
+            </div>
+          </div>
+          <div class="alts">
+            <div class="alt"><span class="mono">Alt A</span><p>No rebuild. No relearning. No vendor reset. Show this as a three-part owner relief stack.</p></div>
+            <div class="alt"><span class="mono">Alt B</span><p>Compare static agency output against an owned growth system that keeps upgrading.</p></div>
+            <div class="alt"><span class="mono">Alt C</span><p>Use milestone cards: fewer handoffs, better proof, faster routing, bigger gap over time.</p></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="row" id="247">
+        <div class="shot">
+          <p class="shot-label mono">Current reference - bolted-on numeral</p>
+          <img src="./assets/ss-04-24-7.png" alt="Current 24/7 section with large left-aligned numeral." />
+        </div>
+        <div class="content">
+          <h2>Turn 24/7 into a centered narrative moment.</h2>
+          <div class="grid">
+            <div class="box">
+              <h3 class="mono">Problem</h3>
+              <p>
+                The numeral is strong, but the block feels attached instead of inevitable. Left alignment also breaks the downward story rhythm.
+              </p>
+            </div>
+            <div class="box replacement">
+              <h3 class="mono">Recommended replacement</h3>
+              <p>
+                Center the moment around the line: <strong>The system keeps moving while you run the company.</strong> Keep 24/7 as the visual proof, not the whole idea.
+              </p>
+            </div>
+          </div>
+          <div class="quote-moment" aria-hidden="true">
+            <div>
+              <strong>24/7</strong>
+              <p>The system keeps moving while you run the company.</p>
+            </div>
+          </div>
+          <div class="alts">
+            <div class="alt"><span class="mono">Alt A</span><p>Weekly operating loop: drift, proof, next move, owner signoff.</p></div>
+            <div class="alt"><span class="mono">Alt B</span><p>Silent operations moment: the business keeps generating signal while the owner is offline.</p></div>
+            <div class="alt"><span class="mono">Alt C</span><p>Centered kinetic statement with subtle grid, no extra card stack.</p></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="row" id="calculator">
+        <div class="shot">
+          <p class="shot-label mono">Current reference - calculator overload</p>
+          <img src="./assets/ss-05-calculator.png" alt="Current calculator section with sliders and four large output cards." />
+        </div>
+        <div class="content">
+          <h2>Lead with the value conclusion, then let sliders support it.</h2>
+          <div class="grid">
+            <div class="box">
+              <h3 class="mono">Problem</h3>
+              <p>
+                The calculator makes the visitor do too much work before they feel the sale. It should not feel like a finance worksheet.
+              </p>
+            </div>
+            <div class="box replacement">
+              <h3 class="mono">Recommended replacement</h3>
+              <p>
+                Lead with: <strong>A few extra closed jobs can pay for the system.</strong> Show the default value case up front, then let the sliders prove or adjust the math.
+              </p>
+            </div>
+          </div>
+          <div class="value-strip" aria-hidden="true">
+            <div><span class="mono">Default scenario</span><strong>4.4 jobs</strong></div>
+            <div><span class="mono">Annual lift</span><strong>$422K</strong></div>
+            <div><span class="mono">Y1 cost</span><strong>$78K</strong></div>
+          </div>
+          <div class="alts">
+            <div class="alt"><span class="mono">Alt A</span><p>Default-case ROI module first, sliders tucked underneath as proof controls.</p></div>
+            <div class="alt"><span class="mono">Alt B</span><p>One big ROI output, two supporting outputs, and a contractual 5x floor.</p></div>
+            <div class="alt"><span class="mono">Alt C</span><p>Replace sliders entirely with three owner scenarios: conservative, base, aggressive.</p></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="footer">
+        <p class="mono">Implementation note</p>
+        <p>
+          The first-pass code direction follows the recommended column in this review: label cleanup, hockey-stick urgency chart, benefit-led capability curve, centered 24/7 moment, and simplified calculator. Production promotion should wait for visual acceptance and custom-domain proof.
+        </p>
+      </section>
+    </main>
+  </body>
+</html>

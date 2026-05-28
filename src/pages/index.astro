@@ -62,76 +62,28 @@ const proofTiles = [
 const commandMetrics = [
   { label: 'Install window', value: '30d', trend: 'system live', tone: 'cyan' },
   { label: 'Ownership', value: '100%', trend: 'client-held', tone: 'green' },
-  { label: 'Upgrade path', value: 'auto', trend: 'frontier routed', tone: 'yellow' },
-  { label: 'Owner load', value: '↓', trend: 'work routed', tone: 'orange' },
+  { label: 'Upgrade path', value: 'auto', trend: 'no rebuilds', tone: 'yellow' },
+  { label: 'Owner load', value: '↓', trend: 'less chase', tone: 'orange' },
 ];
 
 const leakRadar = [
-  { label: 'Domain', status: 'system mounted', tone: 'cyan' },
-  { label: 'CRM + calls', status: 'routes wired', tone: 'green' },
-  { label: 'AI router', status: 'models live', tone: 'yellow' },
-  { label: 'Proof ledger', status: 'baseline open', tone: 'orange' },
+  { label: 'Your site', status: 'working for you', tone: 'cyan' },
+  { label: 'Calls + jobs', status: 'every lead tracked', tone: 'green' },
+  { label: 'New AI', status: 'growth system uses it', tone: 'yellow' },
+  { label: 'Weekly proof', status: 'what moved', tone: 'orange' },
 ];
 
 const weeklyProofRail = [
   { label: 'Installed', value: '30d', tone: 'cyan' },
   { label: 'Operated', value: 'weekly', tone: 'green' },
-  { label: 'Upgraded', value: 'frontier', tone: 'yellow' },
+  { label: 'Upgraded', value: 'no rebuild', tone: 'yellow' },
   { label: 'Owned', value: 'by you', tone: 'orange' },
 ];
 
 const signalQueue = [
   { label: 'Your domain', value: 'website + tracking live', tone: 'cyan' },
   { label: 'Your data', value: 'CRM + calls stitched', tone: 'green' },
-  { label: 'AI upgrades', value: 'routed without rebuild', tone: 'yellow' },
-];
-
-const operatingTruths = [
-  {
-    label: 'AI velocity',
-    titleLead: 'AI ships ',
-    titleEm: 'faster',
-    titleTail: ' than owners can use it.',
-    body: 'New models, new search surfaces, new agent workflows, and new buyer expectations keep shipping. Learning it yourself costs the same attention you need to run the business.',
-    tone: 'cyan',
-  },
-  {
-    label: 'Installed advantage',
-    titleLead: 'Ascend puts capability ',
-    titleEm: 'inside',
-    titleTail: ' your business.',
-    body: 'Buildwise installs the system on your domain, wires it to your data and workflows, then operates it every week so the capability turns into growth work.',
-    tone: 'orange',
-  },
-  {
-    label: 'Compounding gap',
-    titleLead: 'The first system starts ',
-    titleEm: 'learning',
-    titleTail: ' first.',
-    body: 'Every month the system collects signal, improves the next move, and inherits better AI capability. Waiting is not neutral when the operating layer is learning.',
-    tone: 'green',
-  },
-];
-
-const frontierStats = [
-  {
-    source: 'Stanford AI Index',
-    value: 'near 100%',
-    label: 'SWE-bench Verified performance after a one-year jump from 60%',
-    href: 'https://hai.stanford.edu/ai-index/2026-ai-index-report',
-  },
-  {
-    source: 'METR',
-    value: '7 mo',
-    label: 'approximate doubling pace for frontier AI task-completion horizons',
-    href: 'https://metr.org/blog/2025-03-19-measuring-ai-ability-to-complete-long-tasks/',
-  },
-  {
-    source: 'The Book',
-    value: 'auto',
-    label: 'frontier AI improvements routed into Ascend without a client rebuild',
-    href: '/playbook/capability-inheritance',
-  },
+  { label: 'New AI', value: 'growth work upgraded', tone: 'yellow' },
 ];
 
 const installSteps = [
@@ -161,26 +113,30 @@ const installSteps = [
 const valueEquation = [
   {
     label: 'Installed',
+    metric: '30d',
     title: 'The system goes into your business.',
-    body: 'Ascend runs on your domain, your data, your accounts, and your workflows. It is not a report or a rented dashboard.',
+    body: 'Domain, data, accounts, and workflows wired into one owned operating layer.',
     tone: 'green',
   },
   {
     label: 'Operated',
+    metric: 'weekly',
     title: 'Buildwise runs the week.',
-    body: 'We watch the signals, clear the gates, adjust what underperforms, and keep the system moving.',
+    body: 'Signals watched, gates cleared, underperformers adjusted before the month drifts.',
     tone: 'cyan',
   },
   {
     label: 'Owned',
+    metric: '100%',
     title: 'The asset stays with you.',
-    body: 'Code, data, ad accounts, customer list, and configured workflows remain client-owned.',
+    body: 'Code, data, ad accounts, customer list, and workflows remain client-owned.',
     tone: 'yellow',
   },
   {
     label: 'Improving',
+    metric: 'auto',
     title: 'It inherits the frontier.',
-    body: 'When better AI capability becomes useful, the system can route to it without a re-platform.',
+    body: 'Useful AI upgrades route into the system without a platform reset.',
     tone: 'orange',
   },
 ];
@@ -376,7 +332,7 @@ const faqSchema = {
         <ul class="hero-proof-strip" aria-label="Ascend proof points">
           <li><strong>30 days</strong><span>installed</span></li>
           <li><strong>Yours</strong><span>domain · data · accounts</span></li>
-          <li><strong>Auto</strong><span>frontier upgrades routed</span></li>
+          <li><strong>Auto</strong><span>upgrades without rebuilds</span></li>
         </ul>
       </div>
       <aside class="command-center ops-panel" aria-label="Ascend installed system preview">
@@ -389,8 +345,8 @@ const faqSchema = {
         <div class="console-shell">
           <div class="signal-map-panel">
             <div class="panel-head">
-              <p class="ops-kicker">Market signal map</p>
-              <span class="ops-chip"><span class="dot cyan" aria-hidden="true"></span>AI search / local / proof</span>
+              <p class="ops-kicker">Where buyers find you</p>
+              <span class="ops-chip"><span class="dot cyan" aria-hidden="true"></span>AI search · local · reviews</span>
             </div>
             <!-- @r020:F4 curiosity: hero signal-map diagram — scattered demand signals (search, reviews, ads, follow-up, attribution) routing into one operating center; opens the "what is this one system?" loop that the page resolves. -->
             <svg class="market-signal-svg" viewBox="0 0 520 320" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Ascend routes search, reviews, ads, follow-up, and attribution into one operating center.">
@@ -415,7 +371,7 @@ const faqSchema = {
                 <text x="260" y="180" text-anchor="middle" font-family="var(--mono)" font-size="8" fill="var(--ink-faint)" letter-spacing="1.6">INSTALLED LAYER</text>
               </g>
               <g class="map-node"><circle cx="78" cy="84" r="9" fill="var(--signal-cyan)" /><text x="78" y="62" text-anchor="middle" font-family="var(--mono)" font-size="8" fill="var(--ink-dim)" letter-spacing="1.4">DOMAIN</text></g>
-              <g class="map-node"><circle cx="452" cy="116" r="9" fill="var(--y2)" /><text x="452" y="96" text-anchor="middle" font-family="var(--mono)" font-size="8" fill="var(--ink-dim)" letter-spacing="1.4">AI ROUTER</text></g>
+              <g class="map-node"><circle cx="452" cy="116" r="9" fill="var(--y2)" /><text x="452" y="96" text-anchor="middle" font-family="var(--mono)" font-size="8" fill="var(--ink-dim)" letter-spacing="1.4">SYSTEM</text></g>
               <g class="map-node"><circle cx="70" cy="236" r="9" fill="var(--signal-green)" /><text x="70" y="264" text-anchor="middle" font-family="var(--mono)" font-size="8" fill="var(--ink-dim)" letter-spacing="1.4">CRM</text></g>
               <g class="map-node"><circle cx="448" cy="72" r="9" fill="var(--signal-green)" /><text x="448" y="51" text-anchor="middle" font-family="var(--mono)" font-size="8" fill="var(--ink-dim)" letter-spacing="1.4">PROOF</text></g>
               <g class="map-node"><circle cx="452" cy="238" r="9" fill="var(--signal-orange)" /><text x="452" y="264" text-anchor="middle" font-family="var(--mono)" font-size="8" fill="var(--ink-dim)" letter-spacing="1.4">WEEKLY OPS</text></g>
@@ -432,8 +388,8 @@ const faqSchema = {
 
           <div class="leak-radar-panel">
             <div class="panel-head">
-              <p class="ops-kicker">Leak radar</p>
-              <span class="ops-chip"><span class="dot red" aria-hidden="true"></span>4 active checks</span>
+              <p class="ops-kicker">Where money leaks</p>
+              <span class="ops-chip"><span class="dot red" aria-hidden="true"></span>4 leaks watched</span>
             </div>
             <ul class="radar-list" role="list">
               {leakRadar.map((item) => (
@@ -473,7 +429,7 @@ const faqSchema = {
               <span class="ticker-sep">·</span>
               <span>DATA OWNED</span>
               <span class="ticker-sep">·</span>
-              <span>AI ROUTER LIVE</span>
+              <span>NEW AI USED</span>
               <span class="ticker-sep">·</span>
               <span>HUMAN GATES</span>
               <span class="ticker-sep">·</span>
@@ -487,7 +443,7 @@ const faqSchema = {
               <span class="ticker-sep">·</span>
               <span>DATA OWNED</span>
               <span class="ticker-sep">·</span>
-              <span>AI ROUTER LIVE</span>
+              <span>NEW AI USED</span>
               <span class="ticker-sep">·</span>
               <span>HUMAN GATES</span>
               <span class="ticker-sep">·</span>
@@ -506,32 +462,117 @@ const faqSchema = {
   <!-- L1.5 · Operating reframe                     -->
   <!-- ============================================ -->
   <section class="operating-reframe" aria-labelledby="operating-reframe-title">
-    <div class="container reframe-grid">
-      <header class="reframe-head">
+    <div class="container velocity-stage">
+      <header class="velocity-head">
         <p class="section-tag">Why now</p>
         <h2 id="operating-reframe-title" class="h-section">
-          AI is moving faster.<br/>
-          Owners need a <em>system</em>.
+          AI is outrunning manual marketing.
         </h2>
+        <p class="lede">
+          Since ChatGPT launched in November 2022, AI has moved from chat to reasoning to agents. The next phase is AI improving AI itself. Waiting a month is not neutral.
+        </p>
+        <div class="velocity-phase-rail" aria-label="AI acceleration phases">
+          <span class="mono">Chat</span>
+          <span class="mono">Reasoning</span>
+          <span class="mono">Agents</span>
+          <span class="mono">AI improves AI</span>
+        </div>
+        <p class="velocity-urgent">
+          The owner who installs the operating layer first gets the next capability first.
+        </p>
       </header>
-      <div class="reframe-ledger" role="list">
-        {operatingTruths.map((item) => (
-          <article class={`reframe-card tone-${item.tone}`} role="listitem">
-            <p class="ops-kicker">{item.label}</p>
-            <h3>{item.titleLead}<em>{item.titleEm}</em>{item.titleTail}</h3>
-            <p>{item.body}</p>
-          </article>
-        ))}
-      </div>
-      <div class="frontier-proof-grid" aria-label="AI capability proof points">
-        {frontierStats.map((item) => (
-          <a class="frontier-proof-card" href={item.href} target={item.href.startsWith('http') ? '_blank' : undefined} rel={item.href.startsWith('http') ? 'noopener' : undefined}>
-            <span class="mono">{item.source}</span>
-            <strong>{item.value}</strong>
-            <p>{item.label}</p>
-          </a>
-        ))}
-      </div>
+      <figure class="velocity-chart" aria-labelledby="velocity-chart-title">
+        <div class="velocity-chart-top">
+          <div>
+            <p class="ops-kicker">AI acceleration · Nov 2022 to Dec 2028</p>
+            <h3 id="velocity-chart-title">The curve is exponential.</h3>
+          </div>
+          <span class="velocity-chip mono">2029 / 2030: next curve starts</span>
+        </div>
+        <!-- @r020:F2 proof: AI capability acceleration curve from ChatGPT release through 2028 vs the owner-learning curve below it; visually proves the "waiting a month is not neutral" urgency that drives the Book CTA below. -->
+        <svg class="velocity-svg" viewBox="0 0 1320 540" role="img" aria-label="Exponential AI capability curve from the ChatGPT release in November 2022 through a forecast to December 2028, with a teaser for 2029 and 2030.">
+          <defs>
+            <linearGradient id="velocityFill" x1="0" x2="0" y1="0" y2="1">
+              <stop offset="0%" stop-color="var(--y2)" stop-opacity="0.34" />
+              <stop offset="100%" stop-color="var(--y2)" stop-opacity="0" />
+            </linearGradient>
+            <linearGradient id="velocityStroke" x1="0" x2="1" y1="0" y2="0">
+              <stop stop-color="var(--signal-cyan)" />
+              <stop offset="0.38" stop-color="var(--signal-green)" />
+              <stop offset="0.68" stop-color="var(--y1)" />
+              <stop offset="1" stop-color="var(--y2)" />
+            </linearGradient>
+            <linearGradient id="forecastWash" x1="0" x2="1" y1="0" y2="0">
+              <stop stop-color="rgba(240, 255, 0, 0)" />
+              <stop offset="1" stop-color="rgba(240, 255, 0, 0.13)" />
+            </linearGradient>
+            <pattern id="velocityGrid" width="72" height="72" patternUnits="userSpaceOnUse">
+              <path d="M 72 0 L 0 0 0 72" fill="none" stroke="#24222b" stroke-width="0.8" />
+            </pattern>
+          </defs>
+          <rect x="0" y="0" width="1320" height="540" fill="url(#velocityGrid)" opacity="0.74" />
+          <rect x="760" y="40" width="468" height="402" fill="url(#forecastWash)" opacity="0.95" />
+          <line x1="86" y1="452" x2="1228" y2="452" stroke="var(--rule-bright)" stroke-width="1.2" />
+          <line x1="86" y1="74" x2="86" y2="452" stroke="var(--rule-bright)" stroke-width="1.2" />
+          <path d="M 96 438 C 220 436 322 426 408 388 C 496 350 548 274 608 190 C 660 118 712 76 760 58 C 860 22 988 12 1228 8" fill="none" stroke="url(#velocityStroke)" stroke-width="8" stroke-linecap="round" />
+          <path d="M 96 438 C 220 436 322 426 408 388 C 496 350 548 274 608 190 C 660 118 712 76 760 58 C 860 22 988 12 1228 8 L 1228 452 L 96 452 Z" fill="url(#velocityFill)" />
+          <path d="M 96 438 C 292 434 482 418 666 390 C 866 360 1044 324 1228 276" fill="none" stroke="#6b6766" stroke-width="2.2" stroke-dasharray="9 14" />
+          <text x="1210" y="260" text-anchor="end" fill="#807a7a" font-family="var(--mono)" font-size="16" letter-spacing="4">OWNER LEARNING CURVE</text>
+          <line x1="760" y1="58" x2="760" y2="452" stroke="rgba(240,255,0,0.35)" stroke-width="1.4" stroke-dasharray="7 10" />
+          <text x="778" y="86" fill="var(--y2)" font-family="var(--mono)" font-size="15" letter-spacing="3">FORECAST ZONE</text>
+
+          <g class="velocity-event">
+            <circle cx="108" cy="438" r="11" />
+            <text class="event-date" x="108" y="492" text-anchor="middle">NOV '22</text>
+            <text class="event-label" x="132" y="398">ChatGPT release</text>
+            <text class="event-detail" x="132" y="422">AI goes public</text>
+          </g>
+          <g class="velocity-event">
+            <circle cx="278" cy="426" r="7" />
+            <text class="event-date" x="278" y="492" text-anchor="middle">'23</text>
+          </g>
+          <g class="velocity-event">
+            <circle cx="456" cy="350" r="8" />
+            <text class="event-date" x="456" y="492" text-anchor="middle">'24</text>
+          </g>
+          <g class="velocity-event">
+            <circle cx="590" cy="216" r="13" />
+            <text class="event-label" x="620" y="198">Reasoning</text>
+            <text class="event-detail" x="620" y="222">AI plans before it answers</text>
+          </g>
+          <g class="velocity-event">
+            <circle cx="710" cy="80" r="14" />
+            <text class="event-date" x="710" y="492" text-anchor="middle">'25</text>
+            <text class="event-label" x="732" y="138">Agents</text>
+            <text class="event-detail" x="738" y="148">AI starts doing work</text>
+          </g>
+          <g class="velocity-event velocity-now">
+            <circle cx="760" cy="58" r="15" />
+            <text class="event-date" x="760" y="492" text-anchor="middle">'26</text>
+            <text class="event-label" x="786" y="50">Now</text>
+            <text class="event-detail" x="786" y="74">workflows move to AI</text>
+          </g>
+          <g class="velocity-event forecast">
+            <circle cx="936" cy="18" r="11" />
+            <text class="event-date" x="936" y="492" text-anchor="middle">'27</text>
+          </g>
+          <g class="velocity-event forecast terminal">
+            <circle cx="1088" cy="12" r="16" />
+            <text class="event-date" x="1088" y="492" text-anchor="middle">DEC '28</text>
+            <text class="event-label" x="1184" y="176" text-anchor="end">AI improves AI</text>
+            <text class="event-detail" x="1064" y="150" text-anchor="end">the machine helps build the next machine</text>
+          </g>
+          <g class="velocity-event next-curve">
+            <circle cx="1228" cy="8" r="6" />
+            <text class="event-date" x="1228" y="492" text-anchor="middle">'29 / '30</text>
+            <text class="event-label" x="1210" y="74" text-anchor="end">next curve</text>
+          </g>
+        </svg>
+        <figcaption class="velocity-caption">
+          <strong>What this means for a service business:</strong>
+          every release resets what buyers expect and what competitors can automate. The question is whether your growth system absorbs the next jump before the market moves again.
+        </figcaption>
+      </figure>
     </div>
   </section>
 
@@ -557,15 +598,16 @@ const faqSchema = {
     <div class="container offer-equation-grid">
       <header>
         <p class="section-tag">The installed advantage</p>
-        <h2 id="offer-equation-title" class="h-section">What they get is not advice. It is an operating layer inside the business.</h2>
+        <h2 id="offer-equation-title" class="h-section">Installed. Operated. Owned. Improving.</h2>
         <p class="lede">
-          The Dossier aims the system. Ascend is the thing Buildwise installs, operates, and keeps improving for the owner.
+          Not advice. A growth system in the business, run every week, ready for the next AI jump.
         </p>
       </header>
       <div class="offer-equation-cards">
         {valueEquation.map((item) => (
           <article class={`offer-equation-card tone-${item.tone}`}>
             <p class="ops-kicker">{item.label}</p>
+            <strong class="offer-equation-metric">{item.metric}</strong>
             <h3>{item.title}</h3>
             <p>{item.body}</p>
           </article>
@@ -588,7 +630,7 @@ const faqSchema = {
         <p class="section-tag">What changes in 30 days</p>
         <h2 id="install-title" class="h-section">In 30 days, the gap is visibly closing.</h2>
         <p class="lede">
-          The system is installed inside your environment, the dashboard is visible, and the next month starts with more signal than the last.
+          The system is installed inside your environment, the dashboard is visible, and the next AI jump has somewhere useful to go.
         </p>
       </header>
       <div class="install-console" aria-label="30-day install progress panel">
@@ -628,7 +670,7 @@ const faqSchema = {
         <p class="section-tag">Before the sales call</p>
         <h2 id="dossier-title" class="h-section">Start with the Market Dominance Dossier.</h2>
         <p class="lede">
-          The Dossier turns the website from a pitch into a diagnosis. It shows where your market position leaks, which layer should move first, and whether the economics deserve a real conversation.
+          The Dossier turns the website from a pitch into a diagnosis. It shows where your market position leaks now, which layer should move first, and whether Ascend should install before the next AI jump widens the gap.
         </p>
       </header>
       <div class="dossier-preview ops-panel" aria-label="Market Dominance Dossier preview">
@@ -920,7 +962,7 @@ const faqSchema = {
       <div>
         <p class="section-tag">Start with the Dossier</p>
           <h2 id="final-title" class="h-closer">See where Ascend would install first.</h2>
-          <p class="lede">The fit diagnostic starts the Market Dominance Dossier, checks whether the economics are real, and shows whether Buildwise should install the system in your business.</p>
+          <p class="lede">The fit diagnostic starts the Market Dominance Dossier, checks whether the economics are real, and shows whether Buildwise should install the system before the next AI capability jump moves the market again.</p>
       </div>
         <a href="/book" class="cta" data-cta-source="home-final">See If We're a Fit<span class="cta-arrow" aria-hidden="true">&rarr;</span></a>
       </div>
@@ -1395,107 +1437,163 @@ const faqSchema = {
 
 /* ===== L1.5 Operating reframe ===== */
 .operating-reframe {
-  padding-block: var(--section-y);
+  min-height: calc(100svh - 96px);
+  padding-block: clamp(28px, 4vh, 48px);
   border-block: 1px solid var(--rule);
   background:
     linear-gradient(180deg, rgba(255, 255, 255, 0.018), transparent),
     var(--bg-elev);
-}
-.reframe-grid {
   display: grid;
-  grid-template-columns: minmax(0, 0.78fr) minmax(0, 1.22fr);
-  gap: clamp(36px, 6vw, 76px);
-  align-items: start;
+  align-items: center;
 }
-.reframe-head {
-  position: sticky;
-  top: 104px;
+.velocity-stage {
+  display: grid;
+  grid-template-columns: minmax(310px, 0.72fr) minmax(0, 1.28fr);
+  gap: clamp(28px, 4vw, 58px);
+  align-items: center;
+}
+.velocity-head {
   min-width: 0;
-  padding-right: clamp(8px, 2vw, 24px);
 }
-.reframe-head .h-section {
-  max-width: 9.6ch;
-  line-height: 0.98;
+.velocity-head .h-section {
+  max-width: 10.8ch;
+  font-size: clamp(42px, 4.6vw, 72px);
+  line-height: 0.93;
   text-wrap: balance;
 }
-.reframe-head .h-section em,
-.reframe-card h3 em {
-  color: var(--y2);
-  font-style: normal;
-  font-weight: inherit;
+.velocity-head .lede {
+  margin-top: clamp(18px, 2.6vh, 26px);
+  max-width: 590px;
+  font-size: clamp(17px, 1.6vw, 22px);
+  line-height: 1.42;
 }
-.reframe-ledger {
+.velocity-phase-rail {
   display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: 1px;
+  margin-top: clamp(18px, 2.6vh, 28px);
   background: var(--rule);
   border: 1px solid var(--rule);
 }
-.reframe-card {
+.velocity-phase-rail span {
+  min-height: 38px;
+  display: grid;
+  place-items: center;
+  padding: 10px 12px;
   background: var(--bg-card);
-  padding: clamp(22px, 3vw, 32px);
-  border-left: 3px solid currentColor;
+  color: var(--y2);
+  font-size: 9px;
+  letter-spacing: 0.16em;
+  text-align: center;
 }
-.reframe-card h3 {
-  margin-top: 12px;
-  max-width: 740px;
-  font-size: clamp(24px, 3vw, 42px);
-  line-height: 1.04;
+.velocity-urgent {
+  margin-top: clamp(18px, 2.6vh, 28px);
+  padding: 13px 16px;
+  border-left: 2px solid var(--y2);
+  background: rgba(240, 255, 0, 0.045);
+  color: var(--ink);
+  font-size: clamp(16px, 1.4vw, 19px);
+  line-height: 1.45;
+}
+.velocity-chart {
+  min-width: 0;
+  margin: 0;
+  padding: clamp(18px, 2.4vw, 28px);
+  border: 1px solid var(--rule);
+  background:
+    radial-gradient(circle at 78% 18%, rgba(240, 255, 0, 0.16), transparent 28%),
+    linear-gradient(135deg, rgba(56, 216, 255, 0.07), transparent 42%),
+    var(--bg-card);
+}
+.velocity-chart-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: start;
+  gap: 18px;
+  margin-bottom: 12px;
+}
+.velocity-chart-top h3 {
+  max-width: 560px;
+  margin-top: 8px;
+  font-size: clamp(28px, 3.1vw, 44px);
+  line-height: 0.96;
   text-wrap: balance;
 }
-.reframe-card p:last-child {
-  margin-top: 16px;
-  color: var(--ink-dim);
-  font-size: 16px;
-  line-height: 1.6;
-  max-width: 700px;
-}
-.frontier-proof-grid {
-  grid-column: 2;
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 1px;
-  background: var(--rule);
-  border: 1px solid var(--rule);
-  margin-top: clamp(24px, 4vw, 40px);
-}
-.frontier-proof-card {
-  min-width: 0;
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-  padding: clamp(22px, 3vw, 34px);
-  background:
-    linear-gradient(145deg, rgba(240, 255, 0, 0.045), transparent 58%),
-    var(--bg-card);
-  text-decoration: none;
-  color: inherit;
-  border-top: 3px solid var(--y2);
-}
-.frontier-proof-card:nth-child(2) { border-top-color: var(--signal-cyan); }
-.frontier-proof-card:nth-child(3) { border-top-color: var(--signal-green); }
-.frontier-proof-card span {
-  font-size: 9px;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  color: var(--ink-faint);
-}
-.frontier-proof-card strong {
-  display: block;
-  font-size: clamp(30px, 3.2vw, 46px);
-  line-height: 0.92;
-  letter-spacing: -0.04em;
-  color: var(--ink);
-  overflow-wrap: anywhere;
-}
-.frontier-proof-card p {
-  max-width: 34ch;
-  font-size: 14px;
-  line-height: 1.5;
-  color: var(--ink-dim);
-}
-.frontier-proof-card:hover strong,
-.frontier-proof-card:focus-visible strong {
+.velocity-chip {
+  border: 1px solid rgba(240, 255, 0, 0.42);
   color: var(--y2);
+  padding: 10px 12px;
+  font-size: 9px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+.velocity-svg {
+  display: block;
+  width: 100%;
+  height: min(50svh, 500px);
+  min-height: 360px;
+}
+.velocity-event circle {
+  fill: var(--bg);
+  stroke: var(--y2);
+  stroke-width: 4;
+  filter: drop-shadow(0 0 14px rgba(240, 255, 0, 0.34));
+}
+.velocity-event text {
+  font-family: var(--mono);
+  text-transform: uppercase;
+}
+.event-date {
+  fill: var(--ink-faint);
+  font-size: 17px;
+  letter-spacing: 0.12em;
+}
+.event-label {
+  fill: var(--ink);
+  font-size: 27px;
+  font-weight: 700;
+  letter-spacing: 0.025em;
+  paint-order: stroke;
+  stroke: rgba(7, 7, 9, 0.88);
+  stroke-linejoin: round;
+  stroke-width: 9px;
+}
+.event-detail {
+  display: none;
+  fill: var(--ink-dim);
+  font-size: 15px;
+  letter-spacing: 0.06em;
+}
+.velocity-event.forecast circle {
+  fill: var(--y2);
+  stroke: var(--bg);
+}
+.velocity-event.terminal circle {
+  stroke-width: 5;
+}
+.next-curve circle {
+  fill: var(--signal-cyan);
+  stroke: var(--signal-cyan);
+}
+.next-curve .event-label {
+  fill: var(--signal-cyan);
+  font-size: 21px;
+}
+.velocity-now .event-label {
+  fill: var(--y2);
+}
+.velocity-caption {
+  margin-top: 12px;
+  padding-top: 14px;
+  border-top: 1px solid var(--rule);
+  color: var(--ink-dim);
+  font-size: clamp(15px, 1.25vw, 18px);
+  line-height: 1.42;
+  max-width: 1020px;
+}
+.velocity-caption strong {
+  color: var(--ink);
 }
 .ticker-track {
   display: flex;
@@ -2011,13 +2109,37 @@ const faqSchema = {
 
 .offer-equation-card {
   min-width: 0;
+  position: relative;
   background: var(--bg-card);
   padding: clamp(20px, 2.4vw, 28px);
   border-top: 2px solid currentColor;
+  overflow: hidden;
+}
+
+.offer-equation-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, currentColor, transparent 42%);
+  opacity: 0.07;
+  pointer-events: none;
+}
+
+.offer-equation-metric {
+  display: block;
+  margin-top: 22px;
+  color: currentColor;
+  font-size: clamp(42px, 5.2vw, 72px);
+  font-weight: 800;
+  font-stretch: 75%;
+  line-height: 0.88;
+  letter-spacing: 0;
+  text-transform: lowercase;
+  white-space: nowrap;
 }
 
 .offer-equation-card h3 {
-  margin-top: 14px;
+  margin-top: 22px;
   color: var(--ink);
   font-size: clamp(20px, 2vw, 28px);
   line-height: 1.12;
@@ -2445,12 +2567,16 @@ const faqSchema = {
 
 /* ===== Responsive ===== */
 @media (max-width: 900px) {
+  .operating-reframe {
+    min-height: auto;
+    padding-block: 56px;
+  }
   .home-hero {
     min-height: auto;
     padding-bottom: 56px;
   }
   .hero-grid,
-  .reframe-grid,
+  .velocity-stage,
   .offer-equation-grid,
   .dossier-grid,
   .pilot-scope-grid,
@@ -2458,13 +2584,16 @@ const faqSchema = {
   .install-grid,
   .objection-grid,
   .final-inner { grid-template-columns: 1fr; }
-  .reframe-head,
+  .velocity-head,
   .offer-equation-grid header,
   .dossier-grid header,
   .pilot-scope-grid header,
   .entry-paths-grid header,
   .install-head { position: static; }
-  .frontier-proof-grid { grid-column: auto; }
+  .velocity-head .h-section {
+    max-width: 12ch;
+    font-size: clamp(38px, 8vw, 64px);
+  }
   .final-inner { align-items: start; }
   .contract-proof-board { grid-template-columns: 1fr; }
 }
@@ -2500,7 +2629,6 @@ const faqSchema = {
   .console-shell,
   .command-metrics,
   .weekly-proof-rail,
-  .frontier-proof-grid,
   .hero-proof-strip,
   .offer-equation-cards,
   .dossier-leak-map,
@@ -2510,7 +2638,39 @@ const faqSchema = {
   .attribution-rule-grid {
     grid-template-columns: 1fr;
   }
-  .frontier-proof-grid { grid-column: auto; }
+  .velocity-chart { padding: 18px; }
+  .velocity-phase-rail {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .velocity-chart-top {
+    flex-direction: column;
+  }
+  .velocity-chip {
+    white-space: normal;
+  }
+  .velocity-svg {
+    height: auto;
+    min-height: 310px;
+  }
+  .event-label {
+    font-size: 42px;
+    letter-spacing: 0.02em;
+    stroke-width: 10px;
+  }
+  .next-curve .event-label {
+    font-size: 30px;
+  }
+  .velocity-now .event-label,
+  .next-curve .event-label {
+    display: none;
+  }
+  .event-detail {
+    display: none;
+  }
+  .event-date {
+    font-size: 20px;
+    letter-spacing: 0.08em;
+  }
   .panel-head {
     align-items: flex-start;
     flex-direction: column;

@@ -8,24 +8,28 @@ const problems = [
     slug: 'invisible-market',
     name: 'Invisible Market',
     body: 'Buyers search, ask AI, ask a neighbor, or compare options and your name is not the default answer. The market cannot choose you if it does not see you.',
+    tone: 'cyan',
   },
   {
     n: '02',
     slug: 'leaky-revenue',
     name: 'Leaky Revenue',
     body: 'Calls wait. Quotes drift. Reviews never get asked for. Past customers go cold. The leak is not one big hole. It is ten small misses that cost real jobs.',
+    tone: 'red',
   },
   {
     n: '03',
     slug: 'owner-bottleneck',
     name: 'Owner Bottleneck',
     body: 'The business still needs you to notice the problem, make the decision, and push the next step. That is not scale. That is your attention holding the system together.',
+    tone: 'orange',
   },
   {
     n: '04',
     slug: 'reactive-growth',
     name: 'Reactive Growth',
     body: 'The numbers arrive late. The team reacts after the slow month hurts. Big calls get made from stale data instead of a clear weekly scoreboard.',
+    tone: 'green',
   },
 ];
 ---
@@ -77,7 +81,7 @@ const problems = [
     <ol class="problems-grid" role="list">
       {problems.map((p) => (
         <li class="problem-card-li reveal">
-          <a class="problem-card" href={`/problem/${p.slug}`}>
+          <a class={`problem-card problem-card--${p.tone}`} href={`/problem/${p.slug}`}>
             <span class="problem-dot" aria-hidden="true"></span>
             <p class="problem-num">{p.n}</p>
             <h3 class="problem-name h-sub">{p.name}</h3>
@@ -129,9 +133,11 @@ const problems = [
 }
 .problem-card-li { list-style: none; }
 .problem-card {
+  --problem-accent: var(--y2);
   position: relative;
   background: var(--bg-card);
   border: 1px solid var(--rule);
+  border-top: 2px solid var(--problem-accent);
   border-radius: 2px;
   padding: 28px 24px;
   display: flex;
@@ -139,10 +145,24 @@ const problems = [
   gap: 14px;
   text-decoration: none;
   color: inherit;
-  transition: border-color 220ms ease;
+  transition: border-color 220ms ease, background 220ms ease;
+  overflow: hidden;
+}
+.problem-card--cyan { --problem-accent: var(--signal-cyan); }
+.problem-card--red { --problem-accent: var(--signal-red); }
+.problem-card--orange { --problem-accent: var(--signal-orange); }
+.problem-card--green { --problem-accent: var(--signal-green); }
+.problem-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, color-mix(in srgb, var(--problem-accent) 14%, transparent), transparent 48%);
+  opacity: 0.45;
+  pointer-events: none;
 }
 .problem-card:hover {
-  border-color: var(--y2);
+  border-color: var(--problem-accent);
+  background: var(--bg-elev);
 }
 .problem-dot {
   position: absolute;
@@ -151,7 +171,7 @@ const problems = [
   width: 6px;
   height: 6px;
   border-radius: 50%;
-  background: var(--y2);
+  background: var(--problem-accent);
   opacity: 0;
   transition: opacity 220ms ease;
 }
@@ -168,7 +188,7 @@ const problems = [
   transition: color 220ms ease;
 }
 .problem-cta em { font-style: normal; color: inherit; }
-.problem-card:hover .problem-cta { color: var(--y2); }
+.problem-card:hover .problem-cta { color: var(--problem-accent); }
 .problem-num {
   font-family: var(--sans);
   font-weight: 800;
@@ -176,7 +196,7 @@ const problems = [
   font-size: clamp(28px, 3vw, 40px);
   letter-spacing: -0.03em;
   line-height: 0.9;
-  color: var(--ink-faint);
+  color: color-mix(in srgb, var(--problem-accent) 54%, var(--ink-faint));
   margin-bottom: 4px;
 }
 .problem-body {

@@ -23,18 +23,33 @@ const defaultCloseRate = 22;
   <div class="container">
 
     <header class="ebc-header">
-      <p class="eyebrow">DO THE MATH · DRAG THE SLIDERS</p>
+      <p class="eyebrow">VALUE CHECK · DRAG THE SLIDERS</p>
       <h2 class="h-section ebc-h2">
-        Is the opportunity big enough for Ascend to be obvious?
+        A few extra closed jobs can pay for the system.
       </h2>
       <div class="ebc-body-text prose">
         <p>
-          Ascend is not a cheap marketing task. It is an installed system. Pilot
-          (<strong>${pilotOneshot.toLocaleString()}</strong> on Day 0) covers the install scope.
-          If you graduate, Ascend runs at <strong>${ascendRecurring.toLocaleString()}/mo</strong>.
-          Put your job math next to the <strong>${y1Cost.toLocaleString()} Y1 system cost</strong>
-          and the fit question gets much cleaner.
+          Ascend is an installed growth system, not a cheap marketing task. Use the sliders as a gut check:
+          if a modest lift in qualified jobs can cover the <strong>${y1Cost.toLocaleString()} Y1 system cost</strong>,
+          the question gets clearer fast.
         </p>
+      </div>
+      <div class="ebc-value-strip" aria-label="Default Ascend value scenario">
+        <article>
+          <span class="mono">Default scenario</span>
+          <strong>4.4 jobs / mo</strong>
+          <p>20 qualified leads at a 22% close rate.</p>
+        </article>
+        <article>
+          <span class="mono">Annual lift</span>
+          <strong>$422K</strong>
+          <p>At an $8K average customer value.</p>
+        </article>
+        <article>
+          <span class="mono">Y1 cost</span>
+          <strong>$78K</strong>
+          <p>Pilot plus the first operating year.</p>
+        </article>
       </div>
     </header>
 
@@ -129,35 +144,27 @@ const defaultCloseRate = 22;
       <!-- Divider -->
       <hr class="ebc-divider" />
 
-      <!-- 4 live outputs — 2×2 grid -->
+      <!-- Live outputs: ROI first, supporting math second -->
       <div class="ebc-outputs-grid">
-
-        <div class="ebc-output-cell">
-          <p class="kpi-label mono">Deals closed / mo</p>
-          <p class="ebc-kpi-num" data-out-deals>
-            <!-- Computed: Math.round(leads × (closeRate/100) × 10) / 10 -->
-            4.4
+        <div class="ebc-output-cell ebc-roi-cell ebc-primary-output">
+          <p class="kpi-label mono">Y1 ROI multiple</p>
+          <p class="ebc-kpi-num ebc-roi-num" data-out-roi>
+            5.4x
           </p>
-        </div>
-
-        <div class="ebc-output-cell">
-          <p class="kpi-label mono">Monthly revenue lift</p>
-          <p class="ebc-kpi-num" data-out-monthly>
-            $35,200
-          </p>
+          <p class="ebc-output-help">The simple question: does the upside make the system obvious?</p>
         </div>
 
         <div class="ebc-output-cell">
           <p class="kpi-label mono">12-month lift</p>
           <p class="ebc-kpi-num" data-out-annual>
-            $422,400
+            $422K
           </p>
         </div>
 
-        <div class="ebc-output-cell ebc-roi-cell">
-          <p class="kpi-label mono">Y1 ROI multiple</p>
-          <p class="ebc-kpi-num ebc-roi-num" data-out-roi>
-            5.4×
+        <div class="ebc-output-cell">
+          <p class="kpi-label mono">Extra jobs / mo</p>
+          <p class="ebc-kpi-num" data-out-deals>
+            4.4
           </p>
         </div>
 
@@ -169,7 +176,7 @@ const defaultCloseRate = 22;
     <div class="ebc-floor-card card">
       <p class="eyebrow ebc-floor-eyebrow">ROI FLOOR · CONTRACTUAL</p>
       <blockquote class="ebc-floor-quote">
-        "If your math doesn't hit 5× in 24 months, we keep building until it does."
+        "If the system does not hit 5x in 24 months, we keep building until it does."
       </blockquote>
     </div>
 
@@ -204,6 +211,46 @@ const defaultCloseRate = 22;
 .ebc-body-text { max-width: 760px; }
 .ebc-body-text p { font-size: 17px; color: var(--ink-dim); }
 .ebc-body-text strong { color: var(--ink); }
+.ebc-value-strip {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1px;
+  width: min(100%, 980px);
+  background: var(--rule);
+  border: 1px solid var(--rule);
+}
+.ebc-value-strip article {
+  min-height: 148px;
+  padding: 20px;
+  background: var(--bg-card);
+  border-top: 2px solid var(--y2);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 12px;
+}
+.ebc-value-strip article:nth-child(1) { border-top-color: var(--signal-cyan); }
+.ebc-value-strip article:nth-child(2) { border-top-color: var(--signal-green); }
+.ebc-value-strip span {
+  font-size: 9px;
+  letter-spacing: 0.18em;
+  color: var(--ink-faint);
+  text-transform: uppercase;
+}
+.ebc-value-strip strong {
+  display: block;
+  color: var(--ink);
+  font-size: clamp(26px, 3vw, 38px);
+  line-height: 0.95;
+  letter-spacing: 0;
+}
+.ebc-value-strip p {
+  margin: 0;
+  max-width: 24ch;
+  color: var(--ink-dim);
+  font-size: 13px;
+  line-height: 1.45;
+}
 
 /* ============ Calculator card ============ */
 .ebc-calc {
@@ -423,17 +470,16 @@ const defaultCloseRate = 22;
   margin: 0 0 32px;
 }
 
-/* ============ Output grid — 2×2 ============ */
+/* ============ Output grid ============ */
 .ebc-outputs-grid {
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-template-columns: minmax(0, 1.2fr) repeat(2, minmax(0, 0.9fr));
   gap: 24px;
-}
-@media (max-width: 520px) {
-  .ebc-outputs-grid { grid-template-columns: 1fr; }
 }
 
 .ebc-output-cell {
+  min-width: 0;
+  overflow: hidden;
   background: var(--bg);
   border: 1px solid var(--rule);
   border-radius: 2px;
@@ -447,18 +493,41 @@ const defaultCloseRate = 22;
   font-family: var(--sans);
   font-weight: 800;
   font-stretch: 75%;
-  font-size: clamp(36px, 5vw, 56px);
+  font-size: clamp(34px, 4vw, 58px);
   line-height: 1;
-  letter-spacing: -0.04em;
+  letter-spacing: 0;
   color: var(--y2);
+  white-space: nowrap;
+  font-variant-numeric: tabular-nums;
 }
 
 /* ROI cell: slightly emphasized */
 .ebc-roi-cell {
   border-color: var(--y2);
 }
+.ebc-primary-output {
+  min-height: 180px;
+  justify-content: center;
+}
 .ebc-roi-num {
-  font-size: clamp(44px, 6vw, 72px);
+  font-size: clamp(52px, 7vw, 86px);
+}
+.ebc-output-help {
+  max-width: 34ch;
+  margin: 4px 0 0;
+  color: var(--ink-dim);
+  font-size: 14px;
+  line-height: 1.45;
+}
+
+@media (max-width: 760px) {
+  .ebc-value-strip,
+  .ebc-outputs-grid {
+    grid-template-columns: 1fr;
+  }
+  .ebc-value-strip article {
+    min-height: 118px;
+  }
 }
 
 /* ============ ROI floor card ============ */
@@ -511,6 +580,14 @@ const defaultCloseRate = 22;
     const outRoi     = document.querySelector('[data-out-roi]');
 
     const fmtDollar = function(n) { return '$' + Math.round(n).toLocaleString('en-US'); };
+    const fmtCompactDollar = function(n) {
+      if (n >= 1000000) {
+        const m = n / 1000000;
+        return '$' + (m >= 10 ? Math.round(m) : Math.round(m * 10) / 10) + 'M';
+      }
+      if (n >= 1000) return '$' + Math.round(n / 1000).toLocaleString('en-US') + 'K';
+      return fmtDollar(n);
+    };
     const fmtDeals  = function(n) { return (Math.round(n * 10) / 10).toFixed(1); };
 
     // Pattern 2 + 5: Update active-track fill and floating chip position
@@ -541,8 +618,8 @@ const defaultCloseRate = 22;
       if (outClose)   outClose.textContent   = closeRate + '%';
       if (outDeals)   outDeals.textContent   = fmtDeals(dealsPerMo);
       if (outMonthly) outMonthly.textContent = fmtDollar(monthlyLift);
-      if (outAnnual)  outAnnual.textContent  = fmtDollar(annualLift);
-      if (outRoi)     outRoi.textContent     = roi.toFixed(1) + '×';
+      if (outAnnual)  outAnnual.textContent  = fmtCompactDollar(annualLift);
+      if (outRoi)     outRoi.textContent     = roi.toFixed(1) + 'x';
 
       // Update fill percentages on every calculation
       updateFill(sliderLeads);

@@ -10,14 +10,13 @@
   <div class="container">
 
     <header class="curve-head reveal">
-      <p class="section-tag">The Curve</p>
+      <p class="section-tag">What the owner gets</p>
       <h2 id="curve-headline" class="h-section">
-        Your system inherits every<br/>
-        frontier AI improvement.<br/>
-        <em>Automatically.</em>
+        Every AI leap should turn into more booked work.<br/>
+        <em>Without making you relearn the tools.</em>
       </h2>
       <p class="lede">
-        When better AI ships, your system can route useful work to it without a new platform fee, a new contract, or a rebuild. That is the first-mover advantage: the system starts learning now, then keeps inheriting stronger tools.
+        When a stronger AI model appears, you should not need a new platform, agency reset, or month of owner research. Ascend absorbs useful capability into follow-up, proof, attribution, and local visibility while the asset stays yours.
       </p>
     </header>
 
@@ -43,7 +42,7 @@
         <!-- Compounding curve — your Ascend system inheriting frontier AI -->
         <path d="M 0 380 Q 200 380 400 340 Q 600 300 800 220 Q 1000 140 1200 30" fill="none" stroke="var(--y2)" stroke-width="2"/>
         <path d="M 0 380 Q 200 380 400 340 Q 600 300 800 220 Q 1000 140 1200 30 L 1200 420 L 0 420 Z" fill="url(#curveFill)"/>
-        <text x="20" y="50" fill="var(--y2)" font-family="JetBrains Mono, monospace" font-size="12" letter-spacing="3">YOUR ASCEND SYSTEM — CAPABILITY COMPOUNDS</text>
+        <text x="20" y="50" fill="var(--y2)" font-family="JetBrains Mono, monospace" font-size="12" letter-spacing="3">YOUR ASCEND SYSTEM — USEFUL GROWTH CAPABILITY COMPOUNDS</text>
 
         <!-- 4 milestone markers + labels -->
         <g class="milestone" data-milestone="6mo">
@@ -71,7 +70,7 @@
           <text x="1180" y="408" text-anchor="end" fill="#5a5650" font-family="JetBrains Mono, monospace" font-size="10" letter-spacing="2">36 MO</text>
         </g>
       </svg>
-      <figcaption id="curve-cap" class="curve-cap mono">Capability inheritance · BWM Ascend system vs typical static agency · 36-month horizon</figcaption>
+      <figcaption id="curve-cap" class="curve-cap mono">Useful growth capability · Ascend system vs typical static agency · 36-month horizon</figcaption>
     </figure>
 
     <!-- 4 milestone tiles below the curve — what each marker actually means -->
@@ -79,29 +78,29 @@
       <li class="milestone-card">
         <div class="milestone-content">
           <span class="milestone-num mono">6 MO</span>
-          <h3 class="card-title">More work handled</h3>
-          <p class="card-body">The installed system takes on the repeatable growth work first: analysis, routing, follow-up, reporting, and creative testing.</p>
+          <h3 class="card-title">More buyer work handled</h3>
+          <p class="card-body">The system takes on repeatable growth work first: follow-up, proof collection, reporting, routing, and creative testing.</p>
         </div>
       </li>
       <li class="milestone-card">
         <div class="milestone-content">
           <span class="milestone-num mono">12 MO</span>
-          <h3 class="card-title">Longer workflows chained</h3>
-          <p class="card-body">As models hold context and complete longer tasks, Buildwise routes more of the weekly operating work through the system.</p>
+          <h3 class="card-title">Fewer owner handoffs</h3>
+          <p class="card-body">As AI handles longer workflows, the weekly operating rhythm needs fewer owner-side nudges and more proof-backed decisions.</p>
         </div>
       </li>
       <li class="milestone-card">
         <div class="milestone-content">
           <span class="milestone-num mono">24 MO</span>
-          <h3 class="card-title">Better tools without a rebuild</h3>
-          <p class="card-body">A stronger model should not mean buying a new platform. The router evaluates capability and swaps the useful work forward.</p>
+          <h3 class="card-title">No reset when AI changes</h3>
+          <p class="card-body">A stronger model should not mean a new platform, a new contract, or a restart. The system keeps turning new capability into useful work.</p>
         </div>
       </li>
       <li class="milestone-card">
         <div class="milestone-content">
           <span class="milestone-num mono">36 MO</span>
-          <h3 class="card-title">A system that keeps gaining power</h3>
-          <p class="card-body">The exact frontier is unknowable. The architecture matters because it keeps the owner's system pointed at the edge.</p>
+          <h3 class="card-title">The gap gets expensive</h3>
+          <p class="card-body">The owner who started earlier has more signal, cleaner proof, and a system already pointed at the next jump. Waiting a month starts to compound against you.</p>
         </div>
       </li>
     </ol>
@@ -111,8 +110,9 @@
       <div class="grid-canvas dot-grid" aria-hidden="true"></div>
       <div class="grid-overlay">
         <p class="reveal-num"><em>24/7</em></p>
+        <h3 class="grid-headline">The system keeps moving while you run the company.</h3>
         <p class="grid-cap">
-          The system runs while you don't. Every week, it surfaces drift, proof, and the next move before the month gets away.
+          Every week, it surfaces what changed, what leaked, what proved out, and what should move next before another month gets away.
         </p>
       </div>
     </div>
@@ -191,16 +191,27 @@
 }
 
 /* Panel 2 — Dot Grid horizon */
-.curve-grid { position: relative; min-height: clamp(340px, 34vw, 430px); border: 1px solid var(--rule); overflow: hidden; }
+.curve-grid { position: relative; min-height: clamp(520px, 42vw, 650px); border: 1px solid var(--rule); overflow: hidden; }
 .grid-canvas { position: absolute; inset: 0; opacity: 0.35; mask-image: radial-gradient(ellipse 60% 60% at center, black 30%, transparent 100%); }
-.grid-overlay { position: absolute; inset: 0; padding: clamp(28px, 5vw, 56px); display: flex; flex-direction: column; justify-content: center; align-items: flex-start; gap: clamp(18px, 3vw, 28px); }
+.grid-overlay { position: absolute; inset: 0; padding: clamp(28px, 5vw, 56px); display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; gap: clamp(16px, 2.4vw, 24px); }
 .curve-grid .reveal-num {
-  font-size: clamp(92px, 18vw, 230px);
+  font-size: clamp(88px, 14vw, 190px);
   line-height: 0.86;
   letter-spacing: -0.055em;
 }
 .curve-grid .reveal-num em { font-style: normal; }
-.grid-cap { font-family: var(--sans); font-size: clamp(18px, 1.8vw, 24px); line-height: 1.45; color: var(--ink-dim); max-width: 640px; }
+.grid-headline {
+  max-width: 960px;
+  font-family: var(--sans);
+  font-weight: 800;
+  font-stretch: 75%;
+  font-size: clamp(32px, 4.2vw, 64px);
+  line-height: 0.98;
+  letter-spacing: -0.04em;
+  color: var(--ink);
+  text-wrap: balance;
+}
+.grid-cap { font-family: var(--sans); font-size: clamp(18px, 1.8vw, 24px); line-height: 1.45; color: var(--ink-dim); max-width: 760px; }
 
 @media (max-width: 880px) {
   .milestone-list { grid-template-columns: repeat(2, minmax(0, 1fr)); }
@@ -210,9 +221,10 @@
   .milestone-list { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .milestone-card { min-height: 128px; padding: 16px; }
   .milestone-card .card-body { display: none; }
-  .curve-grid { min-height: 280px; }
-  .curve-grid .reveal-num { font-size: clamp(76px, 28vw, 118px); }
+  .curve-grid { min-height: 480px; }
+  .curve-grid .reveal-num { font-size: clamp(72px, 23vw, 96px); }
   .grid-overlay { padding: 24px; justify-content: center; }
+  .grid-headline { font-size: clamp(28px, 11vw, 42px); }
 }
 
 /* prefers-reduced-motion: nothing to disable — SVG is static, dot-grid is CSS pattern */
