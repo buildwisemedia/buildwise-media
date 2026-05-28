@@ -489,8 +489,8 @@ const faqSchema = {
           </div>
           <span class="velocity-chip mono">2029 / 2030: next curve starts</span>
         </div>
-        <!-- @r020:F2 proof: AI capability acceleration curve from ChatGPT release through 2028 vs the owner-learning curve below it; visually proves the "waiting a month is not neutral" urgency that drives the Book CTA below. -->
-        <svg class="velocity-svg" viewBox="0 0 1320 540" role="img" aria-label="Exponential AI capability curve from the ChatGPT release in November 2022 through a forecast to December 2028, with a teaser for 2029 and 2030.">
+        <!-- @r020:F2 proof: AI capability acceleration curve from ChatGPT release through 2029/2030 vs the owner-learning curve below it; visually proves the "waiting a month is not neutral" urgency that drives the Book CTA below. -->
+        <svg class="velocity-svg" viewBox="0 0 1320 600" role="img" aria-label="Exponential AI capability curve from the ChatGPT release in November 2022 through forecast milestones — AI plans the work in 2027, AI talks to AI in 2028, AI improves AI in 2029 to 2030.">
           <defs>
             <linearGradient id="velocityFill" x1="0" x2="0" y1="0" y2="1">
               <stop offset="0%" stop-color="var(--y2)" stop-opacity="0.34" />
@@ -510,62 +510,60 @@ const faqSchema = {
               <path d="M 72 0 L 0 0 0 72" fill="none" stroke="#24222b" stroke-width="0.8" />
             </pattern>
           </defs>
-          <rect x="0" y="0" width="1320" height="540" fill="url(#velocityGrid)" opacity="0.74" />
-          <rect x="760" y="40" width="468" height="402" fill="url(#forecastWash)" opacity="0.95" />
-          <line x1="86" y1="452" x2="1228" y2="452" stroke="var(--rule-bright)" stroke-width="1.2" />
-          <line x1="86" y1="74" x2="86" y2="452" stroke="var(--rule-bright)" stroke-width="1.2" />
-          <path d="M 96 438 C 220 436 322 426 408 388 C 496 350 548 274 608 190 C 660 118 712 76 760 58 C 860 22 988 12 1228 8" fill="none" stroke="url(#velocityStroke)" stroke-width="8" stroke-linecap="round" />
-          <path d="M 96 438 C 220 436 322 426 408 388 C 496 350 548 274 608 190 C 660 118 712 76 760 58 C 860 22 988 12 1228 8 L 1228 452 L 96 452 Z" fill="url(#velocityFill)" />
-          <path d="M 96 438 C 292 434 482 418 666 390 C 866 360 1044 324 1228 276" fill="none" stroke="#6b6766" stroke-width="2.2" stroke-dasharray="9 14" />
-          <text x="1210" y="260" text-anchor="end" fill="#807a7a" font-family="var(--mono)" font-size="16" letter-spacing="4">OWNER LEARNING CURVE</text>
-          <line x1="760" y1="58" x2="760" y2="452" stroke="rgba(240,255,0,0.35)" stroke-width="1.4" stroke-dasharray="7 10" />
-          <text x="778" y="86" fill="var(--y2)" font-family="var(--mono)" font-size="15" letter-spacing="3">FORECAST ZONE</text>
+          <rect x="0" y="0" width="1320" height="600" fill="url(#velocityGrid)" opacity="0.74" />
+          <rect x="760" y="40" width="468" height="520" fill="url(#forecastWash)" opacity="0.95" />
+          <line x1="86" y1="560" x2="1228" y2="560" stroke="var(--rule-bright)" stroke-width="1.2" />
+          <line x1="86" y1="40" x2="86" y2="560" stroke="var(--rule-bright)" stroke-width="1.2" />
+          <!-- Capability curve — true exponential, no plateau through '29/'30 -->
+          <path d="M 108 555 C 200 554 240 553 278 551 C 360 549 420 544 456 540 C 520 525 555 514 590 500 C 640 478 680 459 710 440 C 735 425 750 416 760 410 C 870 372 900 343 936 305 C 1010 255 1050 200 1088 130 C 1140 80 1180 38 1228 5" fill="none" stroke="url(#velocityStroke)" stroke-width="8" stroke-linecap="round" />
+          <path d="M 108 555 C 200 554 240 553 278 551 C 360 549 420 544 456 540 C 520 525 555 514 590 500 C 640 478 680 459 710 440 C 735 425 750 416 760 410 C 870 372 900 343 936 305 C 1010 255 1050 200 1088 130 C 1140 80 1180 38 1228 5 L 1228 560 L 108 560 Z" fill="url(#velocityFill)" />
+          <!-- Owner learning curve — slow growth; label rides the visual continuation -->
+          <path d="M 108 450 C 280 442 460 425 700 405" fill="none" stroke="#6b6766" stroke-width="2.2" stroke-dasharray="9 14" />
+          <text x="1210" y="395" text-anchor="end" fill="#807a7a" font-family="var(--mono)" font-size="16" letter-spacing="4">OWNER LEARNING CURVE</text>
+          <line x1="760" y1="40" x2="760" y2="560" stroke="rgba(240,255,0,0.35)" stroke-width="1.4" stroke-dasharray="7 10" />
+          <text x="778" y="62" fill="var(--y2)" font-family="var(--mono)" font-size="15" letter-spacing="3">FORECAST ZONE</text>
 
           <g class="velocity-event">
-            <circle cx="108" cy="438" r="11" />
-            <text class="event-date" x="108" y="492" text-anchor="middle">NOV '22</text>
-            <text class="event-label" x="132" y="398">ChatGPT release</text>
-            <text class="event-detail" x="132" y="422">AI goes public</text>
+            <circle cx="108" cy="555" r="11" />
+            <text class="event-date" x="108" y="590" text-anchor="middle">NOV '22</text>
+            <text class="event-label" x="132" y="525">ChatGPT release</text>
           </g>
           <g class="velocity-event">
-            <circle cx="278" cy="426" r="7" />
-            <text class="event-date" x="278" y="492" text-anchor="middle">'23</text>
+            <circle cx="278" cy="551" r="7" />
+            <text class="event-date" x="278" y="590" text-anchor="middle">'23</text>
           </g>
           <g class="velocity-event">
-            <circle cx="456" cy="350" r="8" />
-            <text class="event-date" x="456" y="492" text-anchor="middle">'24</text>
+            <circle cx="456" cy="540" r="8" />
+            <text class="event-date" x="456" y="590" text-anchor="middle">'24</text>
           </g>
           <g class="velocity-event">
-            <circle cx="590" cy="216" r="13" />
-            <text class="event-label" x="620" y="198">Reasoning</text>
-            <text class="event-detail" x="620" y="222">AI plans before it answers</text>
+            <circle cx="590" cy="500" r="13" />
+            <text class="event-label" x="615" y="475">Reasoning</text>
           </g>
           <g class="velocity-event">
-            <circle cx="710" cy="80" r="14" />
-            <text class="event-date" x="710" y="492" text-anchor="middle">'25</text>
-            <text class="event-label" x="732" y="138">Agents</text>
-            <text class="event-detail" x="738" y="148">AI starts doing work</text>
+            <circle cx="710" cy="440" r="14" />
+            <text class="event-date" x="710" y="590" text-anchor="middle">'25</text>
+            <text class="event-label" x="730" y="415">Agents</text>
           </g>
           <g class="velocity-event velocity-now">
-            <circle cx="760" cy="58" r="15" />
-            <text class="event-date" x="760" y="492" text-anchor="middle">'26</text>
-            <text class="event-label" x="786" y="50">Now</text>
-            <text class="event-detail" x="786" y="74">workflows move to AI</text>
+            <circle cx="760" cy="410" r="15" />
+            <text class="event-date" x="760" y="590" text-anchor="middle">'26</text>
+            <text class="event-label" x="790" y="382">Now</text>
           </g>
           <g class="velocity-event forecast">
-            <circle cx="936" cy="18" r="11" />
-            <text class="event-date" x="936" y="492" text-anchor="middle">'27</text>
+            <circle cx="936" cy="305" r="13" />
+            <text class="event-date" x="936" y="590" text-anchor="middle">'27</text>
+            <text class="event-label" x="910" y="282" text-anchor="end">AI plans the work</text>
           </g>
-          <g class="velocity-event forecast terminal">
-            <circle cx="1088" cy="12" r="16" />
-            <text class="event-date" x="1088" y="492" text-anchor="middle">DEC '28</text>
-            <text class="event-label" x="1184" y="176" text-anchor="end">AI improves AI</text>
-            <text class="event-detail" x="1064" y="150" text-anchor="end">the machine helps build the next machine</text>
+          <g class="velocity-event forecast">
+            <circle cx="1088" cy="130" r="16" />
+            <text class="event-date" x="1088" y="590" text-anchor="middle">DEC '28</text>
+            <text class="event-label" x="1058" y="108" text-anchor="end">AI talks to AI</text>
           </g>
-          <g class="velocity-event next-curve">
-            <circle cx="1228" cy="8" r="6" />
-            <text class="event-date" x="1228" y="492" text-anchor="middle">'29 / '30</text>
-            <text class="event-label" x="1210" y="74" text-anchor="end">next curve</text>
+          <g class="velocity-event next-curve forecast terminal">
+            <circle cx="1228" cy="5" r="6" />
+            <text class="event-date" x="1228" y="590" text-anchor="middle">'29 / '30</text>
+            <text class="event-label" x="1170" y="50" text-anchor="end">AI improves AI</text>
           </g>
         </svg>
         <figcaption class="velocity-caption">
@@ -1531,8 +1529,8 @@ const faqSchema = {
 .velocity-svg {
   display: block;
   width: 100%;
-  height: min(50svh, 500px);
-  min-height: 360px;
+  height: min(58svh, 580px);
+  min-height: 420px;
 }
 .velocity-event circle {
   fill: var(--bg);

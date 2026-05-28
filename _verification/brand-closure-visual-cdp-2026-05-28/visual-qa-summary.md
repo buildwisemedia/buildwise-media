@@ -29,7 +29,7 @@ Manual visual review: pending (/Users/robertechevarria/buildwisemedia.com/_verif
 - /book @ mobile-390x844: pass; images 3/1 above fold; overflow 0px; screenshot /Users/robertechevarria/buildwisemedia.com/_verification/brand-closure-visual-cdp-2026-05-28/book/mobile-390x844/full-page.png
 - /system @ mobile-390x844: pass; images 5/0 above fold; overflow 0px; screenshot /Users/robertechevarria/buildwisemedia.com/_verification/brand-closure-visual-cdp-2026-05-28/system/mobile-390x844/full-page.png
 - /pricing @ mobile-390x844: pass; images 2/0 above fold; overflow 0px; screenshot /Users/robertechevarria/buildwisemedia.com/_verification/brand-closure-visual-cdp-2026-05-28/pricing/mobile-390x844/full-page.png
-- /services/ascend @ mobile-390x844: pass; images 5/0 above fold; overflow 0px; screenshot /Users/robertechevarria/buildwisemedia.com/_verification/brand-closure-visual-cdp-2026-05-28/services-ascend/mobile-390x844/full-page.png
+- /services/ascend @ mobile-390x844: pass; images 5/1 above fold; overflow 0px; screenshot /Users/robertechevarria/buildwisemedia.com/_verification/brand-closure-visual-cdp-2026-05-28/services-ascend/mobile-390x844/full-page.png
 - /results @ mobile-390x844: pass; images 5/0 above fold; overflow 0px; screenshot /Users/robertechevarria/buildwisemedia.com/_verification/brand-closure-visual-cdp-2026-05-28/results/mobile-390x844/full-page.png
 
 ## Failures
