@@ -37,3 +37,12 @@ site-download/
 
 # print business card design iterations & mockups (binaries stored on R2)
 public/assets/print/business-card/iterations/
+
+# brand visual-QA bundles (scripts/brand-closure-visual-qa.mjs): heavy per-viewport
+# screenshots + per-route raw data, regenerated every `npm run qa:brand:visual` (~220MB/run).
+# Reviewable summaries stay tracked (visual-qa-summary.*, manual-visual-review.md, *-audit.*,
+# brand-closure-qa.*). Durable full-image proof belongs in R2 (bwm-evidence-bundles/), not git.
+_verification/**/full-page.png
+_verification/**/probe.png
+_verification/**/metrics.json
+_verification/**/browser-events.json
