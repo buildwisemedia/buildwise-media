@@ -200,20 +200,24 @@ const entryPaths = [
 
 const objections = [
   {
+    tone: 'cyan',
     q: 'We were burned by an agency before.',
-    a: 'Ascend is built on your domain, your accounts, and your data. You keep the asset. You see the work. There is no mystery dashboard.',
+    a: 'Everything is built on your domain, your accounts, your data. You keep all of it, you see every move, and you can walk away with the whole system. No mystery dashboard.',
   },
   {
+    tone: 'green',
     q: "I don't have time to manage another vendor.",
-    a: 'That is the point. You approve the important gates. Buildwise runs the weekly work.',
+    a: "That's the whole point. You approve the few calls that matter. We run the weekly work for you — nothing lands back on your plate.",
   },
   {
+    tone: 'orange',
     q: 'AI sounds risky in a real business.',
-    a: 'Every autonomous deploy passes human signoff. AI does the work; operators clear the gates.',
+    a: 'AI does the heavy lifting, but a real person signs off before anything goes live. Nothing ships on autopilot, and you stay in control the whole way.',
   },
   {
+    tone: 'yellow',
     q: 'The math has to make sense.',
-    a: 'Pricing is public, the ROI floor is written into the engagement, and the baseline is captured before claims begin.',
+    a: "Our pricing is public, the return you need is written into the agreement, and we measure where you're starting before we ever claim a win.",
   },
 ];
 
@@ -1027,17 +1031,20 @@ const faqSchema = {
   <section class="objection-section elev" aria-labelledby="objection-title">
     <div class="container objection-grid">
       <header class="objection-head">
-        <p class="section-tag">Before the call</p>
-        <h2 id="objection-title" class="h-section">The hard questions are already in the system.</h2>
+        <p class="section-tag">Straight talk</p>
+        <h2 id="objection-title" class="h-section">You've heard big promises before.</h2>
         <p class="lede">
-          Owners who buy Ascend are practical. They have been promised things before. The site should answer that skepticism in plain language.
+          If you run a real business, you've probably been promised the world and handed a login. So here are straight answers to what you're already thinking — before you ever get on a call.
         </p>
       </header>
       <div class="objection-list">
         {objections.map((item) => (
-          <article class="objection-card">
-            <h3>{item.q}</h3>
-            <p>{item.a}</p>
+          <article class={`objection-card tone-${item.tone}`}>
+            <p class="objection-quote"><span class="objection-qmark" aria-hidden="true">&ldquo;</span>{item.q}</p>
+            <div class="objection-answer">
+              <span class="objection-answer-label mono">The straight answer</span>
+              <p>{item.a}</p>
+            </div>
           </article>
         ))}
       </div>
@@ -1913,23 +1920,57 @@ const faqSchema = {
 .objection-head .lede { margin-top: 22px; }
 .objection-list {
   display: grid;
-  gap: 1px;
-  background: var(--rule);
-  border: 1px solid var(--rule);
+  gap: 14px;
 }
 .objection-card {
-  background: var(--bg-card);
+  --obj-accent: var(--y2);
+  display: grid;
+  gap: 14px;
   padding: clamp(22px, 2.6vw, 30px);
+  border: 1px solid var(--rule);
+  border-left: 3px solid var(--obj-accent);
+  background:
+    linear-gradient(90deg, color-mix(in srgb, var(--obj-accent) 7%, transparent), transparent 62%),
+    var(--bg-card);
 }
-.objection-card h3 {
-  font-size: clamp(22px, 2.2vw, 30px);
-  line-height: 1.15;
-  margin-bottom: 12px;
+.objection-card.tone-cyan { --obj-accent: var(--signal-cyan); }
+.objection-card.tone-green { --obj-accent: var(--signal-green); }
+.objection-card.tone-orange { --obj-accent: var(--signal-orange); }
+.objection-card.tone-yellow { --obj-accent: var(--y2); }
+.objection-quote {
+  position: relative;
+  font-family: var(--sans);
+  font-weight: 700;
+  font-size: clamp(19px, 2vw, 26px);
+  line-height: 1.18;
+  color: var(--ink);
+  padding-left: 28px;
+  margin: 0;
 }
-.objection-card p {
+.objection-qmark {
+  position: absolute;
+  left: 0;
+  top: -4px;
+  color: var(--obj-accent);
+  font-size: 34px;
+  line-height: 1;
+  font-weight: 800;
+}
+.objection-answer {
+  display: grid;
+  gap: 6px;
+}
+.objection-answer-label {
+  font-size: 10px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--obj-accent);
+}
+.objection-answer p {
   color: var(--ink-dim);
   font-size: 16px;
   line-height: 1.6;
+  margin: 0;
 }
 
 /* ===== L8 Dominance section ===== */
