@@ -52,6 +52,14 @@ const dominanceMechanisms = [
   },
 ];
 
+// L9 — Category-of-one: the four buyer signals that all converge on one answer.
+const dominanceSignals = [
+  { label: 'AI search', tone: 'cyan', visual: 'ai' },
+  { label: 'Local search', tone: 'green', visual: 'pin' },
+  { label: 'Reviews', tone: 'orange', visual: 'star' },
+  { label: 'Neighborhood', tone: 'yellow', visual: 'homes' },
+];
+
 // L9 — Proof tiles + headline
 const proofTiles = [
   { label: 'Qualified-lead share lift · Measured', num: '3.2×' },
@@ -676,6 +684,7 @@ const faqSchema = {
           <span class="mono">Market Dominance Dossier</span>
           <strong>First move identified before the call</strong>
         </div>
+        <p class="dossier-sample-note mono">Sample dossier — yours is built from your live market data.</p>
         <div class="dossier-score-stack">
           {dossierSignals.map((item) => (
             <div class="dossier-score-row" style={`--score: ${item.score}%;`}>
@@ -698,6 +707,23 @@ const faqSchema = {
         <div class="dossier-first-move">
           <span class="mono">Recommended first move</span>
           <strong>Fix the highest-leverage leak before buying more attention.</strong>
+        </div>
+      </div>
+    </div>
+    <div class="container">
+      <div class="dossier-cta">
+        <div class="dossier-cta-value">
+          <p class="dossier-cta-kicker mono">What you get — free</p>
+          <ul class="dossier-cta-list" role="list">
+            <li>Your rank against the top names in your market</li>
+            <li>Where leads and revenue leak today</li>
+            <li>Your single highest-leverage first move</li>
+            <li>Whether Ascend is even the right fit</li>
+          </ul>
+        </div>
+        <div class="dossier-cta-action">
+          <a href="/book" class="cta" data-cta-source="home-dossier">See If We're a Fit<span class="cta-arrow" aria-hidden="true">&rarr;</span></a>
+          <p class="dossier-cta-risk">Free. Built on your business. Yours to keep — even if we never work together.</p>
         </div>
       </div>
     </div>
@@ -838,31 +864,57 @@ const faqSchema = {
           </h2>
         )}
         <p class="lede">
-          Local dominance is not won on one channel. It is won when every signal — AI search, local search, reviews, and neighborhood presence — points to the same business.
+          When someone nearby asks who to call — on Google, in an AI answer, or from a neighbor — one name should keep coming up. We make every signal point to yours.
         </p>
       </header>
 
       <figure class="dominance-figure">
-        <!-- @r020:F2 proof + F4 curiosity: the four named ranking signals converging on one outcome — your business as the default answer; shows the category-of-one mechanism instead of an abstract doodle -->
         <div class="default-answer">
-          <p class="da-prompt">When a buyer asks, "who's the best near me?"</p>
+          <p class="da-prompt">When a buyer asks, <em>"who's the best near me?"</em></p>
           <div class="da-flow">
             <ul class="da-signals" role="list">
-              <li>AI search</li>
-              <li>Local search</li>
-              <li>Reviews</li>
-              <li>Neighborhood</li>
+              {dominanceSignals.map((sig) => (
+                <li class={`da-signal tone-${sig.tone}`}>
+                  {/* @r020:F2 proof: per-signal glyph (AI spark / map pin / review star / neighborhood homes) color-codes each ranking signal so the four read as distinct sources all converging on the one answer */}
+                  <svg class="da-signal-glyph" viewBox="0 0 24 24" aria-hidden="true">
+                    {sig.visual === 'ai' && (
+                      <g fill="none" stroke="var(--sig-accent)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M12 3 L13.6 9.4 L20 11 L13.6 12.6 L12 19 L10.4 12.6 L4 11 L10.4 9.4 Z" />
+                        <path d="M18.5 4.5 L19 6.5 L21 7 L19 7.5 L18.5 9.5 L18 7.5 L16 7 L18 6.5 Z" fill="var(--sig-accent)" stroke="none" />
+                      </g>
+                    )}
+                    {sig.visual === 'pin' && (
+                      <g fill="none" stroke="var(--sig-accent)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M12 21 C12 21 5 14.5 5 9.5 A7 7 0 0 1 19 9.5 C19 14.5 12 21 12 21 Z" />
+                        <circle cx="12" cy="9.5" r="2.4" />
+                      </g>
+                    )}
+                    {sig.visual === 'star' && (
+                      <path d="M12 3 L14.6 8.6 L20.8 9.4 L16.2 13.6 L17.5 19.8 L12 16.6 L6.5 19.8 L7.8 13.6 L3.2 9.4 L9.4 8.6 Z" fill="var(--sig-accent)" stroke="none" />
+                    )}
+                    {sig.visual === 'homes' && (
+                      <g fill="none" stroke="var(--sig-accent)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M3 12 L8 7.5 L13 12" />
+                        <path d="M4.5 11 V19 H11.5 V11" />
+                        <path d="M13 12 L17 8.5 L21 12" />
+                        <path d="M14.5 11 V19 H19.5 V13" />
+                      </g>
+                    )}
+                  </svg>
+                  <span>{sig.label}</span>
+                  <span class="da-signal-arrow" aria-hidden="true">&rarr;</span>
+                </li>
+              ))}
             </ul>
-            <span class="da-arrow mono" aria-hidden="true">&rarr;</span>
             <div class="da-answer">
               <span class="ops-kicker">The answer</span>
               <strong>Your business</strong>
-              <span class="da-answer-sub">the name they default to</span>
+              <span class="da-answer-sub">the first name they say — every time</span>
             </div>
           </div>
         </div>
         <figcaption class="dominance-cap mono">
-          Every signal points to one answer · your business as the default.
+          Four signals. One answer. Your business.
         </figcaption>
       </figure>
 
@@ -1923,52 +1975,72 @@ const faqSchema = {
   margin-bottom: 26px;
 }
 .da-flow {
-  display: flex;
+  display: grid;
+  grid-template-columns: minmax(0, auto) minmax(0, 1.05fr);
   align-items: center;
-  gap: clamp(16px, 3vw, 30px);
-  flex-wrap: wrap;
+  gap: clamp(18px, 3.4vw, 40px);
 }
 .da-signals {
   list-style: none;
   display: flex;
   flex-direction: column;
-  gap: 8px;
-  flex: 0 0 auto;
+  gap: 10px;
+  padding: 0;
+  margin: 0;
 }
-.da-signals li {
+.da-signal {
+  --sig-accent: var(--y2);
+  display: grid;
+  grid-template-columns: 20px minmax(0, 1fr) 16px;
+  align-items: center;
+  gap: 12px;
   font-family: var(--mono);
-  font-size: 12px;
-  letter-spacing: 0.08em;
-  color: var(--ink-dim);
-  padding: 8px 14px;
+  font-size: 13px;
+  letter-spacing: 0.06em;
+  color: var(--ink);
+  padding: 11px 14px;
   border: 1px solid var(--rule);
+  border-left: 3px solid var(--sig-accent);
   border-radius: 4px;
+  background: linear-gradient(90deg, color-mix(in srgb, var(--sig-accent) 9%, transparent), transparent 70%);
 }
-.da-arrow { font-size: 26px; color: var(--y2); flex: 0 0 auto; }
+.da-signal.tone-cyan { --sig-accent: var(--signal-cyan); }
+.da-signal.tone-green { --sig-accent: var(--signal-green); }
+.da-signal.tone-orange { --sig-accent: var(--signal-orange); }
+.da-signal.tone-yellow { --sig-accent: var(--y2); }
+.da-signal-glyph { width: 20px; height: 20px; }
+.da-signal-arrow {
+  color: var(--sig-accent);
+  font-size: 18px;
+  font-weight: 700;
+  justify-self: end;
+}
 .da-answer {
-  flex: 1 1 220px;
-  border: 1px solid var(--y2);
-  border-radius: 4px;
-  padding: 20px 22px;
+  position: relative;
+  border: 1.5px solid var(--y2);
+  border-radius: 6px;
+  padding: clamp(24px, 3vw, 38px);
   display: flex;
   flex-direction: column;
-  gap: 6px;
+  gap: 8px;
+  background:
+    radial-gradient(120% 140% at 0% 50%, rgba(240, 255, 0, 0.14), transparent 58%),
+    var(--bg-card);
+  box-shadow: 0 0 54px rgba(240, 255, 0, 0.12), inset 0 0 0 1px rgba(240, 255, 0, 0.08);
 }
 .da-answer .ops-kicker { color: var(--y2); }
 .da-answer strong {
   font-family: var(--sans);
   font-weight: 800;
   font-stretch: 75%;
-  font-size: clamp(24px, 3vw, 34px);
-  line-height: 1;
+  font-size: clamp(30px, 4vw, 46px);
+  line-height: 0.98;
   letter-spacing: -0.02em;
   color: var(--ink);
 }
-.da-answer-sub { font-size: 14px; color: var(--ink-dim); }
-@media (max-width: 560px) {
-  .da-flow { flex-direction: column; align-items: stretch; }
-  .da-arrow { transform: rotate(90deg); align-self: center; }
-  .da-signals { flex-direction: row; flex-wrap: wrap; }
+.da-answer-sub { font-size: 15px; color: var(--ink-dim); }
+@media (max-width: 620px) {
+  .da-flow { grid-template-columns: 1fr; }
 }
 .dominance-cap {
   font-size: 10px;
@@ -2307,6 +2379,81 @@ const faqSchema = {
   color: var(--ink);
   font-size: clamp(18px, 2vw, 26px);
   line-height: 1.12;
+}
+
+.dossier-sample-note {
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+  margin: -6px 0 0;
+}
+
+.dossier-cta {
+  margin-top: clamp(28px, 4vw, 44px);
+  display: grid;
+  grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
+  gap: clamp(24px, 4vw, 56px);
+  align-items: center;
+  padding: clamp(26px, 3.4vw, 40px);
+  border: 1px solid var(--rule);
+  border-top: 2px solid var(--y2);
+  background:
+    radial-gradient(120% 160% at 100% 50%, rgba(240, 255, 0, 0.1), transparent 60%),
+    var(--bg-card);
+}
+
+.dossier-cta-kicker {
+  font-size: 10px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--y2);
+  margin: 0 0 14px;
+}
+
+.dossier-cta-list {
+  list-style: none;
+  display: grid;
+  gap: 10px;
+  padding: 0;
+  margin: 0;
+}
+
+.dossier-cta-list li {
+  position: relative;
+  padding-left: 26px;
+  color: var(--ink);
+  font-size: clamp(15px, 1.6vw, 17px);
+  line-height: 1.4;
+}
+
+.dossier-cta-list li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0.45em;
+  width: 11px;
+  height: 6px;
+  border-left: 2px solid var(--y2);
+  border-bottom: 2px solid var(--y2);
+  transform: rotate(-45deg);
+}
+
+.dossier-cta-action {
+  display: grid;
+  justify-items: start;
+  gap: 14px;
+}
+
+.dossier-cta-risk {
+  font-size: 14px;
+  line-height: 1.5;
+  color: var(--ink-dim);
+  margin: 0;
+}
+
+@media (max-width: 720px) {
+  .dossier-cta { grid-template-columns: 1fr; }
 }
 
 .contract-proof-head {
