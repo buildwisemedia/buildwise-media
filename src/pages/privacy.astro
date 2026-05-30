@@ -4,8 +4,17 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 const title = "Privacy Policy — Buildwise Media";
 const description = "How Buildwise Media collects, uses, and protects information about visitors and clients.";
 const lastUpdated = "May 17, 2026";
+
+// JSON-LD: BreadcrumbList — Home › Privacy (leaf matches the trailing-slash canonical)
+const breadcrumb = {
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://buildwisemedia.com/' },
+    { '@type': 'ListItem', position: 2, name: 'Privacy Policy', item: 'https://buildwisemedia.com/privacy/' },
+  ],
+};
 ---
-<BaseLayout title={title} description={description} noindex={false}>
+<BaseLayout title={title} description={description} noindex={false} jsonLd={[breadcrumb]}>
 
   <article class="legal-page">
     <div class="container legal-container">

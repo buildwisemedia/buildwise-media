@@ -49,8 +49,8 @@ const pricingJsonLd = {
     'Owned AI growth system for service businesses. Three commitment shapes: Ascend Pilot, Ascend, and Ascend Pro. Same 5× ROI floor.',
   provider: { '@id': 'https://buildwisemedia.com/#org' },
   areaServed: {
-    '@type': 'Place',
-    name: 'Atlanta, GA (metro) and surrounding markets',
+    '@type': 'Country',
+    name: 'United States',
   },
   hasOfferCatalog: {
     '@type': 'OfferCatalog',
@@ -116,12 +116,21 @@ const pricingJsonLd = {
     ],
   },
 };
+
+// JSON-LD: BreadcrumbList — Home › Pricing (leaf matches the trailing-slash canonical)
+const pricingBreadcrumb = {
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://buildwisemedia.com/' },
+    { '@type': 'ListItem', position: 2, name: 'Pricing', item: 'https://buildwisemedia.com/pricing/' },
+  ],
+};
 ---
 
 <BaseLayout
   title="Pricing — Buildwise Media"
   description={`Public pricing for the owned AI growth system. Pilot $${pilot.price.oneshot.toLocaleString()} one-time · Ascend $${ascend.price.recurring.toLocaleString()}/mo + $${ascend.price.oneshot.toLocaleString()} install · Pro $${pro.price.recurring.toLocaleString()}/mo + $${pro.price.oneshot.toLocaleString()} install. Month-to-month after day 90.`}
-  jsonLd={pricingJsonLd}
+  jsonLd={[pricingJsonLd, pricingBreadcrumb]}
 >
 
   <!-- Pricing hero -->
