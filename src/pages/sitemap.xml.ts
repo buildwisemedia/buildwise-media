@@ -12,6 +12,13 @@ const EXCLUDE = new Set([
   '/404',
   '/confirmation',
   '/thank-you-resource',
+  // noindex campaign landing pages — keep them out of the sitemap so we don't
+  // ask crawlers to index pages that carry <meta robots noindex>.
+  '/mo-calm',
+  '/mo-freedom',
+  '/mo-life',
+  '/mo-peace',
+  '/mo-time',
 ]);
 
 // Priority overrides — explicit weights for high-intent surfaces.
@@ -60,7 +67,7 @@ ${urls
   .map((url) => {
     const meta = PRIORITY_OVERRIDES[url] ?? { priority: '0.5', changefreq: 'monthly' };
     return `  <url>
-    <loc>${SITE}${url === '/' ? '/' : url}</loc>
+    <loc>${SITE}${url === '/' ? '/' : url + '/'}</loc>
     <lastmod>${lastmod}</lastmod>
     <changefreq>${meta.changefreq}</changefreq>
     <priority>${meta.priority}</priority>
