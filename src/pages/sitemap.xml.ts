@@ -12,6 +12,13 @@ const EXCLUDE = new Set([
   '/404',
   '/confirmation',
   '/thank-you-resource',
+  // noindex campaign landing pages — keep them out of the sitemap so we don't
+  // ask crawlers to index pages that carry <meta robots noindex>.
+  '/mo-calm',
+  '/mo-freedom',
+  '/mo-life',
+  '/mo-peace',
+  '/mo-time',
 ]);
 
 // Priority overrides — explicit weights for high-intent surfaces.
@@ -44,23 +51,61 @@ function pathToUrl(modulePath: string): string {
   return url;
 }
 
-export const GET: APIRoute = () => {
-  const lastmod = new Date().toISOString().slice(0, 10);
+// Per-route <lastmod> = the source file's last git commit date (committer date,
+// YYYY-MM-DD). This endpoint is prerendered to a static file at build time (see
+// _routes.json `exclude` → not in the worker bundle), so node:child_process +
+// git are available here. Anything that can't resolve — git missing, shallow
+// clone with no commit touching the file, or an uncommitted page — falls back
+// to the build date, so the sitemap is never worse than the prior behaviour.
+async function lastmodByModule(
+  modulePaths: string[],
+  fallback: string,
+): Promise<Record<string, string>> {
+  const out: Record<string, string> = {};
+  let execFileSync: typeof import('node:child_process').execFileSync;
+  try {
+    ({ execFileSync } = await import('node:child_process'));
+  } catch {
+    for (const mp of modulePaths) out[mp] = fallback;
+    return out;
+  }
+  for (const mp of modulePaths) {
+    // glob keys are relative to this file (src/pages/); git resolves the path
+    // against process.cwd() = repo root during `astro build`.
+    const rel = 'src/pages/' + mp.replace(/^\.\//, '');
+    try {
+      const date = execFileSync('git', ['log', '-1', '--format=%cs', '--', rel], {
+        encoding: 'utf8',
+        stdio: ['ignore', 'pipe', 'ignore'],
+      }).trim();
+      out[mp] = /^\d{4}-\d{2}-\d{2}$/.test(date) ? date : fallback;
+    } catch {
+      out[mp] = fallback;
+    }
+  }
+  return out;
+}
 
-  const urls = Object.keys(modules)
-    .map(pathToUrl)
-    .filter((url) => !EXCLUDE.has(url))
+export const GET: APIRoute = async () => {
+  const buildDate = new Date().toISOString().slice(0, 10);
+
+  const entries = Object.keys(modules)
+    .map((mp) => ({ mp, url: pathToUrl(mp) }))
+    .filter((e) => !EXCLUDE.has(e.url))
     // Skip dynamic-route files (any `[slug]`-style page); none ship today, but future-proof.
-    .filter((url) => !url.includes('['))
-    .sort();
+    .filter((e) => !e.url.includes('['))
+    .sort((a, b) => (a.url < b.url ? -1 : a.url > b.url ? 1 : 0));
+
+  const lastmods = await lastmodByModule(entries.map((e) => e.mp), buildDate);
 
   const xml = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-${urls
-  .map((url) => {
+${entries
+  .map(({ mp, url }) => {
     const meta = PRIORITY_OVERRIDES[url] ?? { priority: '0.5', changefreq: 'monthly' };
+    const lastmod = lastmods[mp] ?? buildDate;
     return `  <url>
-    <loc>${SITE}${url === '/' ? '/' : url}</loc>
+    <loc>${SITE}${url === '/' ? '/' : url + '/'}</loc>
     <lastmod>${lastmod}</lastmod>
     <changefreq>${meta.changefreq}</changefreq>
     <priority>${meta.priority}</priority>

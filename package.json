@@ -4,6 +4,7 @@
   "version": "0.0.1",
   "scripts": {
     "dev": "astro dev",
+    "prebuild": "node scripts/ensure-full-git-history.mjs",
     "build": "astro build",
     "qa:brand": "node scripts/brand-closure-qa.mjs",
     "qa:brand:visual": "node scripts/brand-closure-visual-qa.mjs",

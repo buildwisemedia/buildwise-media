@@ -4,9 +4,18 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 const title = "Terms of Service — Buildwise Media";
 const description = "Terms governing use of buildwisemedia.com and Buildwise Media services.";
 const lastUpdated = "May 17, 2026";
+
+// JSON-LD: BreadcrumbList — Home › Terms (leaf matches the trailing-slash canonical)
+const breadcrumb = {
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://buildwisemedia.com/' },
+    { '@type': 'ListItem', position: 2, name: 'Terms of Service', item: 'https://buildwisemedia.com/terms/' },
+  ],
+};
 ---
 <!-- @r020-exempt: legal page with no visual budget -->
-<BaseLayout title={title} description={description} noindex={false}>
+<BaseLayout title={title} description={description} noindex={false} jsonLd={[breadcrumb]}>
 
   <article class="legal-page">
     <div class="container legal-container">
