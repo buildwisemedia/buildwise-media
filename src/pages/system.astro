@@ -4,6 +4,7 @@ import EightLayerSystem from '../components/EightLayerSystem.astro';
 import Sovereignty from '../components/Sovereignty.astro';
 import EarnBackCalculator from '../components/EarnBackCalculator.astro';
 import canonical from '../data/canonical.json';
+import FAQ from '../components/FAQ.astro';
 
 const title = "The Installed AI Growth System — Buildwise Media";
 const description = "See the owned AI growth system Buildwise installs and operates for service businesses: visibility, conversion, follow-up, reputation, reporting, weekly proof, and AI upgrades.";
@@ -64,8 +65,40 @@ const serviceSchema = {
   description,
   url: 'https://buildwisemedia.com/system',
 };
+
+// FAQ — voice-search phrased, mined from on-page copy. FAQPage schema emitted
+// alongside the rendered <FAQ> section so answer engines see matching content.
+const faqs = [
+  {
+    q: 'What are the eight layers of the Ascend system?',
+    a: 'Visibility, conversion, speed-to-lead, sales ops, reputation, paid media, reporting, and strategy. They stop living in separate tools and separate people’s heads and run as one connected system, measured against a captured baseline.',
+  },
+  {
+    q: 'Is it fully automated, or are humans involved?',
+    a: 'Humans stay in the loop on the decisions that matter — offers, budget changes, public copy, and reputation replies all pass a signoff gate before they go live. The system runs the routing, follow-up, and reporting; people approve the buyer-facing moves.',
+  },
+  {
+    q: 'What does the owner actually see?',
+    a: 'One dashboard: spend, booked work, where leads leak, how confident each number is, and the next move. The work routes through the system before it routes through you.',
+  },
+  {
+    q: 'Does the system keep up as AI changes?',
+    a: 'Yes. Ascend folds in new AI as it ships and adjusts every week toward what is working, so you do not reset your marketing every time the tools change.',
+  },
+];
+
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  '@id': 'https://buildwisemedia.com/system#faq',
+  mainEntity: faqs.map((f) => ({
+    '@type': 'Question',
+    name: f.q,
+    acceptedAnswer: { '@type': 'Answer', text: f.a },
+  })),
+};
 ---
-<BaseLayout title={title} description={description} jsonLd={[serviceSchema, breadcrumb]}>
+<BaseLayout title={title} description={description} jsonLd={[serviceSchema, breadcrumb, faqSchema]}>
 
   <section class="system-hero">
     <div class="container system-hero-grid">
@@ -86,6 +119,7 @@ const serviceSchema = {
           <span class="ops-chip"><span class="dot green" aria-hidden="true"></span>operational</span>
         </div>
         <div class="system-orbit" aria-hidden="true">
+          <!-- @r020:F4 curiosity: animated operating-loop diagram pulls the eye into how Ascend routes work before it routes through the owner -->
           <svg viewBox="0 0 360 240" xmlns="http://www.w3.org/2000/svg">
             <rect x="16" y="18" width="328" height="204" rx="6" fill="rgba(255,255,255,0.015)" stroke="var(--rule)" />
             <path d="M56 120 H304" stroke="var(--rule-bright)" stroke-width="1" />
@@ -167,6 +201,9 @@ const serviceSchema = {
   <EightLayerSystem />
   <Sovereignty />
   <EarnBackCalculator />
+
+  <!-- FAQ — answer-engine extractable Q&A, matches FAQPage schema -->
+  <FAQ faqs={faqs} />
 
   <section class="system-final elev">
     <div class="container final-row">
