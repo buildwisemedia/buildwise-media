@@ -1,5 +1,6 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import FAQ from '../components/FAQ.astro';
 
 const title = "About - Buildwise Media";
 const description = "You run the business. Ascend makes you the most-chosen name in your market within 12 months.";
@@ -39,11 +40,39 @@ const aboutPage = {
   url: 'https://buildwisemedia.com/about',
   about: { '@id': 'https://buildwisemedia.com/#org' },
 };
+
+// FAQ — voice-search phrased, mined from on-page copy. FAQPage schema emitted
+// alongside the rendered <FAQ> section so answer engines see matching content.
+const faqs = [
+  {
+    q: 'What is Buildwise Media?',
+    a: 'We install Ascend — an owned AI growth system — inside owner-led service businesses, and the Buildwise team runs it with our AI operating layer. The marketing work that usually gets pushed onto the owner after hours becomes a system the business owns.',
+  },
+  {
+    q: 'Where is Buildwise Media based, and where do you work?',
+    a: 'Our team is based in Atlanta, and we serve service businesses across the United States. The system installs the same way regardless of metro — local depth gets tuned to your market during install.',
+  },
+  {
+    q: 'What is the goal for a client?',
+    a: 'To become the most-chosen name in your market within 12 months — the category of one in your service area. We map the lead path, tighten follow-up, grow reviews, and strengthen local and AI search until your presence keeps compounding.',
+  },
+];
+
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  '@id': 'https://buildwisemedia.com/about#faq',
+  mainEntity: faqs.map((f) => ({
+    '@type': 'Question',
+    name: f.q,
+    acceptedAnswer: { '@type': 'Answer', text: f.a },
+  })),
+};
 ---
 <BaseLayout
   title={title}
   description={description}
-  jsonLd={[aboutPage, breadcrumb]}
+  jsonLd={[aboutPage, breadcrumb, faqSchema]}
   preloadImage="/images/bwm-about-atmospheric-v1.webp"
 >
   <section class="about-hero" aria-labelledby="about-title">
@@ -53,6 +82,7 @@ const aboutPage = {
         You run the business. Ascend makes you the most-chosen name in your market within 12 months.
       </h1>
       <figure class="section-photo section-photo--about-hero">
+        <!-- @r020:F1 emotion: first-light operations floor — the team and its AI system already at work, the aspirational "run by people who run a real system" pull toward the fit CTA -->
         <img src="/images/bwm-about-atmospheric-v1.webp" alt="First-light operations floor: workbench, monitor, paper plans, and a single visible desk lamp. The team and its AI system at work before the world wakes up." width="1920" height="1080" loading="eager" decoding="async" fetchpriority="high" />
       </figure>
     </div>
@@ -78,6 +108,7 @@ const aboutPage = {
         </p>
       </div>
       <figure class="section-photo section-photo--mission">
+        <!-- @r020:F2 proof: measurement still-life — printed graph, pen, magnifying glass — the conservative-proof posture behind the baseline-first claim -->
         <img src="/images/bwm-proof-still-life-v1.webp" alt="Macro still-life: an illegible printed graph on aged paper beside a fountain pen and a magnifying glass." width="1920" height="1080" loading="lazy" decoding="async" />
       </figure>
     </div>
@@ -90,6 +121,7 @@ const aboutPage = {
         <h2 id="work-title" class="h-section">Audit, install, run.</h2>
       </div>
       <figure class="section-photo section-photo--work">
+        <!-- @r020:F1 emotion: human-and-machine collaboration — a hand annotating beside live code — grounds "the team runs it with our AI layer" in real work -->
         <img src="/images/bwm-about-environmental-cinematic-v1.webp" alt="A hand mid-annotation in a notebook beside a monitor showing blurred code. Human and machine collaborating quietly." width="1920" height="1080" loading="lazy" decoding="async" />
       </figure>
       <div class="work-grid">
@@ -102,11 +134,15 @@ const aboutPage = {
         ))}
       </div>
       <figure class="section-photo section-photo--team">
+        <!-- @r020:F1 emotion: a real team running the system in parallel focus — the credibility proof that a human team stands behind the AI before the fit CTA -->
         <img src="/images/bwm-team-editorial-v1.webp" alt="Two operators side-by-side at a long desk, both heads-down on laptops in cool morning light — the team running the system in parallel focus." width="1920" height="1080" loading="lazy" decoding="async" />
       </figure>
       <p class="trust-line">It actually works.</p>
     </div>
   </section>
+
+  <!-- FAQ — answer-engine extractable Q&A, matches FAQPage schema -->
+  <FAQ faqs={faqs} />
 
   <section class="about-cta elev" aria-labelledby="about-cta-title">
     <div class="container about-cta-row">

@@ -1,5 +1,6 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import FAQ from '../components/FAQ.astro';
 
 const title = "How It Works — Buildwise Media";
 const description = "Ascend installs in 30 days. Audit, Install, Run — three phases, one 8-layer revenue operating system.";
@@ -43,8 +44,40 @@ const phases = [
     deliverables: ['Weekly performance report', 'Connector audit (Mon 4am ET)', 'Monthly creative drop', 'Quarterly system review'],
   },
 ];
+
+// FAQ — voice-search phrased, mined from on-page copy. FAQPage schema emitted
+// alongside the rendered <FAQ> section so answer engines see matching content.
+const faqs = [
+  {
+    q: 'How long does it take to get the system live?',
+    a: 'Thirty days. The work runs in three phases — Audit (Day 0 to 5), Install (Day 5 to 30), and Operate (Day 30 onward). The system is operational on Day 30.',
+  },
+  {
+    q: 'What happens in the first 30 days?',
+    a: 'First we audit: we map your current pipeline, channels, and conversion paths against a captured baseline, delivered as a written document you keep either way. Then we install the website, conversion paths, follow-up, attribution, and reporting in parallel, so the system is live by Day 30.',
+  },
+  {
+    q: 'Is there a long discovery or strategy phase first?',
+    a: 'No. There is no 30-day discovery phase that ends in a deck. Day 0 starts with the audit, strategy lives inside the running system, and every claim audits against the baseline.',
+  },
+  {
+    q: 'What does the weekly rhythm look like after launch?',
+    a: 'Every Monday a performance digest lands — what spent, what closed, what is next. Underneath, a weekly connector audit, monthly creative refresh, and quarterly system review keep it improving. It runs whether you watch it or not, month-to-month from the first day.',
+  },
+];
+
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  '@id': 'https://buildwisemedia.com/how-it-works#faq',
+  mainEntity: faqs.map((f) => ({
+    '@type': 'Question',
+    name: f.q,
+    acceptedAnswer: { '@type': 'Answer', text: f.a },
+  })),
+};
 ---
-<BaseLayout title={title} description={description} jsonLd={[howTo, breadcrumb]}>
+<BaseLayout title={title} description={description} jsonLd={[howTo, breadcrumb, faqSchema]}>
 
   <section class="how-hero">
     <div class="container">
@@ -110,6 +143,9 @@ const phases = [
       <p class="diff-footer mono"><a href="/playbook/poor-four">The four failure modes</a> · <a href="/playbook/fractional-cmo-alternative">Why fractional CMO doesn't close the gap</a></p>
     </div>
   </section>
+
+  <!-- FAQ — answer-engine extractable Q&A, matches FAQPage schema -->
+  <FAQ faqs={faqs} />
 
   <section class="how-cta elev">
     <div class="container ascend-cta-row">

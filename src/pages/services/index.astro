@@ -1,5 +1,6 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
+import FAQ from '../../components/FAQ.astro';
 
 const title = "Services — Buildwise Media";
 const description = "Buildwise Media installs one integrated 8-layer revenue operating system: Ascend.";
@@ -12,8 +13,40 @@ const breadcrumb = {
     { '@type': 'ListItem', position: 2, name: 'Services', item: 'https://buildwisemedia.com/services' },
   ],
 };
+
+// FAQ — voice-search phrased, mined from on-page copy. FAQPage schema emitted
+// alongside the rendered <FAQ> section so answer engines see matching content.
+const faqs = [
+  {
+    q: 'What services does Buildwise Media offer?',
+    a: 'One. We install a single integrated product — Ascend, an 8-layer revenue operating system — instead of a menu of separate services. Visibility, conversion, speed-to-lead, sales ops, reputation, paid media, reporting, and strategy run as one system, not six invoices.',
+  },
+  {
+    q: 'Why only one product instead of a service menu?',
+    a: 'Most agencies pad the menu so every line item bills separately. The real work is one operating system, so that is what we sell — one stack, one source of truth, one dashboard, and nobody left holding the integration.',
+  },
+  {
+    q: 'What is included in Ascend?',
+    a: 'All eight layers, wired together and measured against a captured baseline: visibility for search and AI answers, conversion paths, speed-to-lead, sales ops, reputation, paid media, reporting, and weekly strategy. You own the code, data, ad accounts, and customer list.',
+  },
+  {
+    q: 'How is this different from hiring an agency?',
+    a: 'You own the system instead of renting a service. The engagement is month-to-month, the math is visible from Day 1, and the agreement holds a 5× attributable ROI floor inside 24 months — or we keep building.',
+  },
+];
+
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  '@id': 'https://buildwisemedia.com/services#faq',
+  mainEntity: faqs.map((f) => ({
+    '@type': 'Question',
+    name: f.q,
+    acceptedAnswer: { '@type': 'Answer', text: f.a },
+  })),
+};
 ---
-<BaseLayout title={title} description={description} jsonLd={[breadcrumb]}>
+<BaseLayout title={title} description={description} jsonLd={[breadcrumb, faqSchema]}>
 
   <section class="services-hero">
     <div class="container">
@@ -81,6 +114,9 @@ const breadcrumb = {
       </figure>
     </div>
   </section>
+
+  <!-- FAQ — answer-engine extractable Q&A, matches FAQPage schema -->
+  <FAQ faqs={faqs} />
 
   <section class="services-cta">
     <div class="container about-cta-row">
