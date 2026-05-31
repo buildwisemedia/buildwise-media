@@ -1,0 +1,238 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+const title = "Agency Alternative — Buildwise Media";
+const description = "A typical agency rents you deliverables you never own. Ascend installs a marketing system you keep — run for you, measured against a baseline, yours if you leave.";
+
+const definedTerm = {
+  '@context': 'https://schema.org',
+  '@type': 'DefinedTerm',
+  '@id': 'https://buildwisemedia.com/playbook/agency-alternative#term',
+  name: 'Agency Alternative',
+  description: 'A typical marketing agency rents you a retainer and a stack of deliverables that live in their accounts. An agency alternative installs an owned system instead — the Buildwise team builds it, runs it, and hands you the keys. You keep the code, the data, and the accounts whether the engagement continues or not.',
+  inDefinedTermSet: {
+    '@type': 'DefinedTermSet',
+    '@id': 'https://buildwisemedia.com/playbook/',
+    name: 'Buildwise Media Playbook',
+  },
+};
+
+const breadcrumb = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://buildwisemedia.com/' },
+    { '@type': 'ListItem', position: 2, name: 'Playbook', item: 'https://buildwisemedia.com/playbook/' },
+    { '@type': 'ListItem', position: 3, name: 'Agency Alternative', item: 'https://buildwisemedia.com/playbook/agency-alternative' },
+  ],
+};
+
+const faqs = [
+  {
+    q: 'How is Buildwise Media different from a marketing agency?',
+    a: 'An agency rents you a retainer and a stack of deliverables that live in their accounts. We install an owned system inside your business — website, lead paths, follow-up, attribution, and reporting on your domain and in your accounts. The Buildwise team runs it, but you own it. If you leave, you take the whole system with you.',
+  },
+  {
+    q: 'Do I own the work, or does Buildwise keep it?',
+    a: 'You own all of it. The code lives in your repository, the customer list in your CRM, the ad accounts in your business, and the AI agents are built around your workflows. There is nothing for us to keep when an engagement ends.',
+  },
+  {
+    q: 'Is there a long contract like an agency retainer?',
+    a: 'No. You pay the Pilot up front, then a 90-day initial operating period starts when the system goes live. After Day 90 it is true month-to-month — no penalty, no exit fee, no clawback. We earn the retainer every month or we do not.',
+  },
+  {
+    q: 'Do you mark up my ad spend the way some agencies do?',
+    a: 'No. Ad spend is 1:1 and paid straight to the platforms from your own accounts. We never touch your ad dollars and never mark them up. You pay us to run the system; you pay the platforms direct.',
+  },
+  {
+    q: 'Is an owned system a fit for every business leaving an agency?',
+    a: 'No. If you only need to rent one capability for a short window, a retainer can fit. The owned system is built for owners who want the asset — the system, the data, the accounts — to be theirs and to keep compounding. The fastest way to know which fits is one conversation.',
+  },
+];
+
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  '@id': 'https://buildwisemedia.com/playbook/agency-alternative#faq',
+  mainEntity: faqs.map((f) => ({
+    '@type': 'Question',
+    name: f.q,
+    acceptedAnswer: { '@type': 'Answer', text: f.a },
+  })),
+};
+---
+<BaseLayout title={title} description={description} jsonLd={[definedTerm, breadcrumb, faqSchema]}>
+
+  <section class="playbook-hero">
+    <div class="container">
+      <p class="eyebrow"><a href="/playbook" class="back-link">← Playbook</a></p>
+      <h1 class="h-hero">The agency <em>alternative.</em></h1>
+      <p class="lede">
+        Most agencies rent you activity — a retainer, a dashboard, a monthly report. When the relationship ends, you walk away with nothing you can keep. Ascend is the opposite: an owned system the Buildwise team installs and runs, and you keep it whether we stay or not.
+      </p>
+      <figure class="hero-photo">
+        <!-- @r020:F4 curiosity: atmospheric dusk workspace opens the rent-vs-own question the page answers -->
+        <img src="/images/bwm-services-atmospheric-v1.webp" alt="Atmospheric dusk workspace: a laptop glowing cool, a notebook, and an empty chair — the system still running after the room has emptied." width="1920" height="1080" loading="eager" decoding="async" />
+      </figure>
+    </div>
+  </section>
+
+  <section class="playbook-section elev">
+    <div class="container">
+      <p class="section-tag">How it works</p>
+      <h2 class="h-section">How it works.</h2>
+      <p class="prose">
+        A typical agency sells a retainer. You pay every month for hours and deliverables — ads managed, posts published, a report at month-end. The work lives in their accounts and their tools. The day you leave, it leaves with them.
+      </p>
+      <p class="prose">
+        Ascend installs an <a href="/services/ascend">operating system</a> inside your business instead. The website, the lead paths, the follow-up, the attribution, and the reporting are built on your domain, in your accounts, owned by you. The Buildwise team runs it week to week, but the asset is yours.
+      </p>
+      <p class="prose">
+        The shape is different. An agency rents you activity. Ascend builds you an asset.
+      </p>
+      <figure class="section-photo section-photo--diagram">
+        <!-- @r020:F2 proof: layered-planes diagram shows the owned system as a stack you keep, not a service you rent -->
+        <img src="/images/stacked-planes-v1.svg" alt="Isometric stacked-planes diagram — the owned operating system rendered as connected layers that stay with the business." width="1200" height="675" loading="lazy" decoding="async" />
+      </figure>
+    </div>
+  </section>
+
+  <section class="playbook-section">
+    <div class="container">
+      <p class="section-tag">Why it matters</p>
+      <h2 class="h-section">Why it matters.</h2>
+      <p class="prose">
+        An agency retainer buys motion, not ownership. Three years and six figures later, the typical service business has a stack of invoices and nothing it can carry to the next provider. No system. No data history. No compounding asset.
+      </p>
+      <blockquote class="pull-quote">
+        <p>You can rent marketing activity for years and still own nothing at the end of it.</p>
+      </blockquote>
+      <p class="prose">
+        Ownership changes the math. When the system, the data, and the accounts are yours, every month of work compounds into an asset that keeps paying — instead of a cost that resets the day you switch providers.
+      </p>
+      <figure class="section-photo">
+        <!-- @r020:F2 proof: receipts still-life grounds "you own the asset" in tangible records the client keeps -->
+        <img src="/images/bwm-receipts-still-life-v1.webp" alt="Close still-life of receipts, notes, and measured records on a dark desk — the owned data history that stays with the business." width="1920" height="1080" loading="lazy" decoding="async" />
+      </figure>
+    </div>
+  </section>
+
+  <section class="playbook-section elev">
+    <div class="container">
+      <p class="section-tag">How Buildwise Media uses it</p>
+      <h2 class="h-section">How Buildwise Media uses it.</h2>
+      <p class="prose">
+        The Buildwise team installs and operates the full marketing function as part of the <a href="/services/ascend">Ascend tier family</a>. We build the system, run it every week, and prove it against a <a href="/playbook/captured-baseline">captured baseline</a>. You own the code, the customer list, the ad accounts, and the agents.
+      </p>
+      <p class="prose">
+        Every engagement is month-to-month after Day 90 — no lock-in, no exit fee, no clawback. We earn the retainer every month, or we do not. The agreement holds a 5× attributable ROI floor inside 24 months, or we keep building.
+      </p>
+      <p class="prose">
+        The goal is not to keep you on a retainer. The goal is to install something that keeps working — and is yours.
+      </p>
+    </div>
+  </section>
+
+  <section class="playbook-section">
+    <div class="container">
+      <p class="section-tag">When a typical agency is the right call</p>
+      <h2 class="h-section">When it's the right call.</h2>
+      <p class="prose">
+        An agency can be the right hire when you want to rent a single capability for a short window — a one-off campaign, a launch, a creative project with a clear end. If you do not want to own a system and only need hands for a season, a retainer can fit.
+      </p>
+      <p class="prose">
+        If you want the asset to be yours — the system, the data, the accounts — and you want it to compound instead of reset, that is what an owned system is for.
+      </p>
+      <p class="prose">
+        Both are legitimate. They buy different things. The question is whether you want to rent activity or own an asset.
+      </p>
+    </div>
+  </section>
+
+  <section class="playbook-faq">
+    <div class="container">
+      <p class="section-tag">FAQ</p>
+      <h2 class="h-section">Common questions.</h2>
+      <div class="faq-list">
+        {faqs.map((f) => (
+          <details class="faq-item">
+            <summary class="faq-q">{f.q}</summary>
+            <div class="faq-a">
+              <p>{f.a}</p>
+            </div>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="playbook-related elev">
+    <div class="container">
+      <p class="section-tag">Related</p>
+      <h2 class="h-section">More from the playbook.</h2>
+      <ul class="related-list">
+        <li><a href="/playbook/in-house-marketing-alternative">In-House Marketing Alternative</a> — owning the system without assembling and managing a full marketing team</li>
+        <li><a href="/playbook/fractional-cmo-alternative">Fractional CMO Alternative</a> — strategy versus execution, and which gap you actually have</li>
+        <li><a href="/playbook/category-of-one-marketing">Category-of-One Marketing</a> — what the owned system is built toward: the most-chosen name in your service area</li>
+        <li><a href="/playbook/captured-baseline">Captured Baseline</a> — why every outcome needs a measured starting point before the system turns on</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="playbook-cta elev">
+    <div class="container">
+      <h2 class="h-closer">Ready to see if we're a fit?</h2>
+      <p class="lede">If you would rather own the asset than rent the activity, that's the conversation worth having.</p>
+      <p class="cta-row">
+        <a class="cta-primary" href="/book" data-cta-source="playbook-agency-alternative-cta">See If We're a Fit <span class="cta-arrow">→</span></a>
+        <a class="cta-ghost" href="/playbook">Back to Playbook</a>
+      </p>
+    </div>
+  </section>
+
+</BaseLayout>
+
+<style>
+.playbook-hero { padding-block: clamp(80px, 12vw, 144px); }
+.playbook-hero .lede { margin-top: 24px; }
+.back-link { color: var(--ink-faint); transition: color 180ms ease; }
+.back-link:hover { color: var(--y2); }
+
+.h-hero em { color: var(--y2); font-style: normal; font-weight: inherit; }
+.h-section em { color: var(--y2); font-style: normal; font-weight: inherit; }
+
+.hero-photo { margin-top: 56px; max-width: 1120px; border-radius: 4px; overflow: hidden; border: 1px solid var(--rule); }
+.hero-photo img { width: 100%; height: auto; display: block; }
+
+.playbook-section { padding-block: clamp(56px, 8vw, 96px); }
+.playbook-section .prose { font-size: 17px; line-height: 1.7; color: var(--ink-dim); max-width: 720px; }
+.playbook-section .prose + .prose { margin-top: 16px; }
+
+.section-photo { margin: 48px 0 0; max-width: 1120px; border-radius: 4px; overflow: hidden; border: 1px solid var(--rule); }
+.section-photo img { width: 100%; height: auto; display: block; }
+.section-photo--diagram { max-width: 980px; border-color: transparent; background: transparent; }
+.section-photo--diagram img { background: transparent; }
+
+.pull-quote { margin: 56px 0; padding: 32px 0; border-block: 1px solid var(--rule); max-width: 880px; }
+.pull-quote p { font-size: 24px; line-height: 1.35; color: var(--ink); font-weight: 500; font-style: italic; }
+
+.playbook-faq { padding-block: clamp(64px, 10vw, 112px); }
+.faq-list { display: flex; flex-direction: column; gap: 16px; margin-top: 32px; max-width: 880px; }
+.faq-item { border-top: 1px solid var(--rule); padding-block: 20px; }
+.faq-item[open] summary { color: var(--y2); }
+.faq-q { font-size: 17px; font-weight: 500; color: var(--ink); cursor: pointer; line-height: 1.4; list-style: none; }
+.faq-q::marker, .faq-q::-webkit-details-marker { display: none; }
+.faq-q::after { content: "+"; float: right; font-family: var(--mono); font-size: 18px; color: var(--y2); }
+.faq-item[open] .faq-q::after { content: "−"; }
+.faq-a { margin-top: 12px; }
+.faq-a p { font-size: 16px; line-height: 1.65; color: var(--ink-dim); max-width: 720px; }
+
+.playbook-related { padding-block: clamp(56px, 8vw, 96px); }
+.related-list { list-style: none; display: flex; flex-direction: column; gap: 12px; margin-top: 32px; max-width: 880px; }
+.related-list a { color: var(--ink); font-weight: 500; text-decoration: none; border-bottom: 1px solid transparent; transition: border-color 180ms ease, color 180ms ease; }
+.related-list a:hover { color: var(--y2); border-bottom-color: var(--y2); }
+
+.playbook-cta { padding-block: clamp(64px, 10vw, 112px); }
+.playbook-cta .lede { margin-top: 16px; }
+.cta-row { display: flex; flex-wrap: wrap; gap: 16px; margin-top: 32px; }
+</style>

@@ -1,0 +1,238 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+const title = "In-House Marketing Alternative — Buildwise Media";
+const description = "Building an in-house marketing team means hiring six specialists and waiting months. Ascend installs the whole stack in 30 days — run for you, owned by you.";
+
+const definedTerm = {
+  '@context': 'https://schema.org',
+  '@type': 'DefinedTerm',
+  '@id': 'https://buildwisemedia.com/playbook/in-house-marketing-alternative#term',
+  name: 'In-House Marketing Alternative',
+  description: 'Building marketing in-house means hiring a strategist, a paid-media manager, a content lead, a web developer, an operations person, and a data analyst — then managing them. An in-house alternative installs the whole function as one owned system in 30 days. The Buildwise team runs it, and the owner skips the assembly and the management.',
+  inDefinedTermSet: {
+    '@type': 'DefinedTermSet',
+    '@id': 'https://buildwisemedia.com/playbook/',
+    name: 'Buildwise Media Playbook',
+  },
+};
+
+const breadcrumb = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://buildwisemedia.com/' },
+    { '@type': 'ListItem', position: 2, name: 'Playbook', item: 'https://buildwisemedia.com/playbook/' },
+    { '@type': 'ListItem', position: 3, name: 'In-House Marketing Alternative', item: 'https://buildwisemedia.com/playbook/in-house-marketing-alternative' },
+  ],
+};
+
+const faqs = [
+  {
+    q: 'Is Buildwise Media a replacement for hiring a marketing team?',
+    a: 'It replaces the need to assemble one. A full in-house function is six or more specialists plus the software each role needs. We install that whole function as one owned system in 30 days, and the Buildwise team runs it — so you get the department without the headcount or the management load.',
+  },
+  {
+    q: 'How does the cost compare to hiring in-house?',
+    a: 'A built-out in-house team is six salaries plus the tools each role needs, carried every month. Ascend lands as one engagement — public pricing is on our pricing page — with ad spend paid 1:1 straight to the platforms. You can weigh the engagement against the assembled cost before you ever share a number.',
+  },
+  {
+    q: 'How fast is it compared to building a team?',
+    a: 'Hiring and integrating a full team takes the better part of a year. The system is operational in 30 days — audit in the first week, install across weeks two through four, running by Day 30.',
+  },
+  {
+    q: 'Do I still own everything if I am not the one who built it?',
+    a: 'Yes. The code lives in your repository, the customer list in your CRM, the ad accounts in your business, and the agents are built around your workflows. If you ever bring marketing fully in-house later, you keep the entire system.',
+  },
+  {
+    q: 'Is an installed system a fit for every business considering in-house?',
+    a: 'No. If marketing is core enough to justify a full team you manage day to day, and you have the time to assemble and lead it, in-house can be right. The installed system is for owners who want the function running now without becoming its manager. One conversation tells you which fits.',
+  },
+];
+
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  '@id': 'https://buildwisemedia.com/playbook/in-house-marketing-alternative#faq',
+  mainEntity: faqs.map((f) => ({
+    '@type': 'Question',
+    name: f.q,
+    acceptedAnswer: { '@type': 'Answer', text: f.a },
+  })),
+};
+---
+<BaseLayout title={title} description={description} jsonLd={[definedTerm, breadcrumb, faqSchema]}>
+
+  <section class="playbook-hero">
+    <div class="container">
+      <p class="eyebrow"><a href="/playbook" class="back-link">← Playbook</a></p>
+      <h1 class="h-hero">The in-house <em>alternative.</em></h1>
+      <p class="lede">
+        Building marketing in-house means hiring six specialists, waiting months, and becoming their manager. Ascend installs the whole stack in 30 days — strategy, web, ads, content, follow-up, and reporting as one owned system the Buildwise team runs for you.
+      </p>
+      <figure class="hero-photo">
+        <!-- @r020:F4 curiosity: infrastructure photo opens the "build the team or install the system" question -->
+        <img src="/images/bwm-system-architecture-atmospheric-v1.webp" alt="Dark infrastructure corridor with a single yellow signal light — the installed function standing in for a team you would otherwise hire." width="1920" height="1080" loading="eager" decoding="async" />
+      </figure>
+    </div>
+  </section>
+
+  <section class="playbook-section elev">
+    <div class="container">
+      <p class="section-tag">How it works</p>
+      <h2 class="h-section">How it works.</h2>
+      <p class="prose">
+        A real in-house marketing function is not one hire. It is a strategist, a paid-media manager, a content lead, a web developer, an operations person, and a data analyst — plus the software each one needs. Assembled well, it works. Assembling it takes months of hiring and a payroll line most service businesses cannot justify.
+      </p>
+      <p class="prose">
+        Ascend installs that entire function as one system. The <a href="/system">eight layers</a> — visibility, conversion, speed-to-lead, sales ops, reputation, paid media, reporting, and strategy — are built and wired together in 30 days. The Buildwise team operates it, AI handles the production, and you own the result.
+      </p>
+      <p class="prose">
+        The shape is different. In-house is a team you hire and manage. Ascend is a system you own and review.
+      </p>
+      <figure class="section-photo section-photo--diagram">
+        <!-- @r020:F2 proof: connected-node diagram shows six roles arriving wired together as one system -->
+        <img src="/images/node-mesh-ascending-v1.svg" alt="Isometric node-mesh diagram — separate marketing roles arriving already connected into one ascending system." width="1200" height="900" loading="lazy" decoding="async" />
+      </figure>
+    </div>
+  </section>
+
+  <section class="playbook-section">
+    <div class="container">
+      <p class="section-tag">Why it matters</p>
+      <h2 class="h-section">Why it matters.</h2>
+      <p class="prose">
+        Assembling the stack is the hard part. Each role is a search, an interview loop, an onboarding, and a risk. Six hires is six chances to mis-hire and a year before the team operates as one. Most owners never finish assembling it — they hire one or two roles, stay the integration layer themselves, and stall.
+      </p>
+      <blockquote class="pull-quote">
+        <p>Hiring the marketing department is a year of assembly before the first lead moves.</p>
+      </blockquote>
+      <p class="prose">
+        One installed system skips the assembly. The capabilities arrive wired together, measured against a <a href="/playbook/captured-baseline">captured baseline</a>, on Day 30 — not after a year of recruiting.
+      </p>
+      <figure class="section-photo">
+        <!-- @r020:F1 emotion: human-and-method image grounds "run for you" — senior judgment inside the system, no team to manage -->
+        <img src="/images/bwm-method-editorial-v1.webp" alt="Editorial still-life: an open notebook with a hand-annotated diagram and a pencil resting across the page, diffuse window light on the paper." width="1920" height="1080" loading="lazy" decoding="async" />
+      </figure>
+    </div>
+  </section>
+
+  <section class="playbook-section elev">
+    <div class="container">
+      <p class="section-tag">How Buildwise Media uses it</p>
+      <h2 class="h-section">How Buildwise Media uses it.</h2>
+      <p class="prose">
+        The Buildwise team installs and runs the full function as part of the <a href="/services/ascend">Ascend tier family</a>. You get the senior judgment, the execution, and the reporting of a complete department — without the headcount, the payroll, or the management load.
+      </p>
+      <p class="prose">
+        The cost lands as one engagement instead of six salaries plus software, and ad spend is paid 1:1 direct to the platforms. Everything is owned by you — code, data, accounts, agents — and proved against a captured baseline every week.
+      </p>
+      <p class="prose">
+        The goal is not to replace one hire. The goal is to install the whole function, run for you, in a fraction of the time and cost of building it.
+      </p>
+    </div>
+  </section>
+
+  <section class="playbook-section">
+    <div class="container">
+      <p class="section-tag">When hiring in-house is the right call</p>
+      <h2 class="h-section">When it's the right call.</h2>
+      <p class="prose">
+        Building in-house is the right move when marketing is core enough, and large enough, to justify a full team you control day to day — and you have the time and management capacity to assemble and lead it. Larger operations with the budget and the bandwidth earn that.
+      </p>
+      <p class="prose">
+        If you are the bottleneck, if you do not want six new direct reports, and you want the function running in 30 days instead of a year, an installed system fits.
+      </p>
+      <p class="prose">
+        Both are legitimate. They cost different things — money, time, and attention. The question is which one you have to spend.
+      </p>
+    </div>
+  </section>
+
+  <section class="playbook-faq">
+    <div class="container">
+      <p class="section-tag">FAQ</p>
+      <h2 class="h-section">Common questions.</h2>
+      <div class="faq-list">
+        {faqs.map((f) => (
+          <details class="faq-item">
+            <summary class="faq-q">{f.q}</summary>
+            <div class="faq-a">
+              <p>{f.a}</p>
+            </div>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="playbook-related elev">
+    <div class="container">
+      <p class="section-tag">Related</p>
+      <h2 class="h-section">More from the playbook.</h2>
+      <ul class="related-list">
+        <li><a href="/playbook/agency-alternative">Agency Alternative</a> — owning the system instead of renting an agency retainer</li>
+        <li><a href="/playbook/fractional-cmo-alternative">Fractional CMO Alternative</a> — strategy versus execution, and which gap you actually have</li>
+        <li><a href="/playbook/ai-marketing-department">AI Marketing Department</a> — the run-for-you function the system delivers in place of a team</li>
+        <li><a href="/playbook/captured-baseline">Captured Baseline</a> — why every outcome needs a measured starting point before the system turns on</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="playbook-cta elev">
+    <div class="container">
+      <h2 class="h-closer">Ready to see if we're a fit?</h2>
+      <p class="lede">If you want the marketing function running in 30 days without assembling and managing a team, that's the conversation worth having.</p>
+      <p class="cta-row">
+        <a class="cta-primary" href="/book" data-cta-source="playbook-in-house-marketing-alternative-cta">See If We're a Fit <span class="cta-arrow">→</span></a>
+        <a class="cta-ghost" href="/playbook">Back to Playbook</a>
+      </p>
+    </div>
+  </section>
+
+</BaseLayout>
+
+<style>
+.playbook-hero { padding-block: clamp(80px, 12vw, 144px); }
+.playbook-hero .lede { margin-top: 24px; }
+.back-link { color: var(--ink-faint); transition: color 180ms ease; }
+.back-link:hover { color: var(--y2); }
+
+.h-hero em { color: var(--y2); font-style: normal; font-weight: inherit; }
+.h-section em { color: var(--y2); font-style: normal; font-weight: inherit; }
+
+.hero-photo { margin-top: 56px; max-width: 1120px; border-radius: 4px; overflow: hidden; border: 1px solid var(--rule); }
+.hero-photo img { width: 100%; height: auto; display: block; }
+
+.playbook-section { padding-block: clamp(56px, 8vw, 96px); }
+.playbook-section .prose { font-size: 17px; line-height: 1.7; color: var(--ink-dim); max-width: 720px; }
+.playbook-section .prose + .prose { margin-top: 16px; }
+
+.section-photo { margin: 48px 0 0; max-width: 1120px; border-radius: 4px; overflow: hidden; border: 1px solid var(--rule); }
+.section-photo img { width: 100%; height: auto; display: block; }
+.section-photo--diagram { max-width: 980px; border-color: transparent; background: transparent; }
+.section-photo--diagram img { background: transparent; }
+
+.pull-quote { margin: 56px 0; padding: 32px 0; border-block: 1px solid var(--rule); max-width: 880px; }
+.pull-quote p { font-size: 24px; line-height: 1.35; color: var(--ink); font-weight: 500; font-style: italic; }
+
+.playbook-faq { padding-block: clamp(64px, 10vw, 112px); }
+.faq-list { display: flex; flex-direction: column; gap: 16px; margin-top: 32px; max-width: 880px; }
+.faq-item { border-top: 1px solid var(--rule); padding-block: 20px; }
+.faq-item[open] summary { color: var(--y2); }
+.faq-q { font-size: 17px; font-weight: 500; color: var(--ink); cursor: pointer; line-height: 1.4; list-style: none; }
+.faq-q::marker, .faq-q::-webkit-details-marker { display: none; }
+.faq-q::after { content: "+"; float: right; font-family: var(--mono); font-size: 18px; color: var(--y2); }
+.faq-item[open] .faq-q::after { content: "−"; }
+.faq-a { margin-top: 12px; }
+.faq-a p { font-size: 16px; line-height: 1.65; color: var(--ink-dim); max-width: 720px; }
+
+.playbook-related { padding-block: clamp(56px, 8vw, 96px); }
+.related-list { list-style: none; display: flex; flex-direction: column; gap: 12px; margin-top: 32px; max-width: 880px; }
+.related-list a { color: var(--ink); font-weight: 500; text-decoration: none; border-bottom: 1px solid transparent; transition: border-color 180ms ease, color 180ms ease; }
+.related-list a:hover { color: var(--y2); border-bottom-color: var(--y2); }
+
+.playbook-cta { padding-block: clamp(64px, 10vw, 112px); }
+.playbook-cta .lede { margin-top: 16px; }
+.cta-row { display: flex; flex-wrap: wrap; gap: 16px; margin-top: 32px; }
+</style>
