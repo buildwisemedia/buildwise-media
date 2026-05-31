@@ -10,7 +10,8 @@ const widths = { nav: 200, footer: 190, large: 280 };
 const width = widths[size];
 ---
 <a href={href} class={`wordmark wordmark--${size}`} aria-label="Buildwise Media - home">
-  <img src="/brand/lockup-horizontal.svg" alt="Buildwise Media" width={width} loading={size === 'nav' ? 'eager' : 'lazy'} decoding="async" />
+  <!-- @r020:identity: BWM Triangulation horizontal lockup — brand mark at identity scale in nav + footer -->
+  <img src="/brand/lockup-horizontal.svg" alt="Buildwise Media" width={width} loading="eager" decoding="async" />
 </a>
 
 <style>

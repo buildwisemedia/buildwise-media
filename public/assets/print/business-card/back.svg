@@ -1,0 +1,64 @@
+<!--
+  asset: BWM Triangulation Edition Member Card · Back
+  spec: brand/BWM-Triangulation-Edition.md
+  dimensions: 55mm x 85mm (550px x 850px)
+  finish: Y2 Flat mark + printed contacts + Variable-data number + Microtype signature
+  color: Canvas #050507, Y2 Accent #F0FF00
+-->
+<svg width="550" height="850" viewBox="0 0 550 850" xmlns="http://www.w3.org/2000/svg">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter&amp;family=JetBrains+Mono&amp;display=swap');
+    .bg { fill: #050507; }
+    .card-num { font-family: 'JetBrains Mono', monospace; font-size: 11px; fill: #525560; text-anchor: end; letter-spacing: 0.05em; }
+    .lbl-contact { font-family: 'JetBrains Mono', monospace; font-size: 8px; fill: #525560; letter-spacing: 0.18em; }
+    .val-contact { font-family: 'Inter', sans-serif; font-size: 12px; fill: #ECECEC; letter-spacing: 0.02em; }
+    .signature-text { font-family: 'JetBrains Mono', monospace; font-size: 6.5px; fill: #1C1E24; letter-spacing: 0.02em; line-height: 1.4; }
+    .hairline { stroke: #24242C; stroke-width: 1; }
+    .url-line { font-family: 'JetBrains Mono', monospace; font-size: 10px; fill: #F0FF00; letter-spacing: 0.05em; }
+  </style>
+  <rect width="550" height="850" class="bg"/>
+  
+  <!-- Duplex Y2 Yellow Core Edge indicator -->
+  <rect x="1" y="1" width="548" height="848" fill="none" stroke="#F0FF00" stroke-width="2" opacity="0.35"/>
+
+  <!-- Top-left Mark (Dashboard scale, 24px) -->
+  <g transform="translate(16, 16) scale(0.24)">
+    <!-- @r020:identity: Flat Triangulation V3 brand mark on physical card back -->
+    <line x1="50" y1="22" x2="22" y2="70" stroke="#7A8400" stroke-width="1.5" opacity="0.7"/>
+    <line x1="50" y1="22" x2="78" y2="70" stroke="#7A8400" stroke-width="1.5" opacity="0.7"/>
+    <line x1="22" y1="70" x2="78" y2="70" stroke="#7A8400" stroke-width="1.5" opacity="0.7"/>
+    <circle cx="50" cy="54" r="3" fill="#F0FF00" opacity="0.85"/>
+    <circle cx="50" cy="22" r="9" fill="#F0FF00"/>
+    <circle cx="22" cy="70" r="6.5" fill="#F0FF00"/>
+    <circle cx="78" cy="70" r="6.5" fill="#F0FF00"/>
+  </g>
+
+  <!-- Top-right Card number -->
+  <text x="534" y="32" class="card-num">№ 011 / 250</text>
+
+  <!-- Cryptographic Signature Microtype Block (Faint debossed/printed look) -->
+  <g transform="translate(36, 260)">
+    <text class="signature-text" y="0">LOCKED 2026-05-24T06:36:00Z · TRIANGULATION V3 ·</text>
+    <text class="signature-text" y="14">MARK VERDICT-COMPLETED · CALIBRATION 2/7/2/12 ·</text>
+    <text class="signature-text" y="28">BUILDWISEMEDIA/BUILDWISE-BRAIN@775c399 ·</text>
+    <text class="signature-text" y="42">SHA256:e7ff6102ed1a · CARD 011 OF 250 ·</text>
+    <text class="signature-text" y="56">ROBERT ECHEVARRIA CEO · 33.7490°N 84.3880°W</text>
+  </g>
+
+  <!-- Bottom Contact Info Zone -->
+  <g transform="translate(36, 610)">
+    <!-- Email block -->
+    <text class="lbl-contact" y="0">EMAIL</text>
+    <text class="val-contact" y="20">robert@buildwisemedia.com</text>
+
+    <!-- Book block -->
+    <text class="lbl-contact" y="50">BOOK</text>
+    <text class="val-contact" y="70">buildwisemedia.com/book</text>
+
+    <!-- Divider -->
+    <line x1="0" y1="100" x2="478" y2="100" class="hairline"/>
+
+    <!-- URL -->
+    <text class="url-line" y="130">BUILDWISEMEDIA.COM</text>
+  </g>
+</svg>

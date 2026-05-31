@@ -4,8 +4,18 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 const title = "Terms of Service — Buildwise Media";
 const description = "Terms governing use of buildwisemedia.com and Buildwise Media services.";
 const lastUpdated = "May 17, 2026";
+
+// JSON-LD: BreadcrumbList — Home › Terms (leaf matches the trailing-slash canonical)
+const breadcrumb = {
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://buildwisemedia.com/' },
+    { '@type': 'ListItem', position: 2, name: 'Terms of Service', item: 'https://buildwisemedia.com/terms/' },
+  ],
+};
 ---
-<BaseLayout title={title} description={description} noindex={false}>
+<!-- @r020-exempt: legal page with no visual budget -->
+<BaseLayout title={title} description={description} noindex={false} jsonLd={[breadcrumb]}>
 
   <article class="legal-page">
     <div class="container legal-container">
@@ -27,10 +37,10 @@ const lastUpdated = "May 17, 2026";
         <p>The discovery call booked through this website is a fit-assessment conversation, not a sales walkthrough. Both parties may end the call or decline to proceed at any time. Information shared on the call is confidential by default.</p>
 
         <h2 class="h-sub">4. Pricing</h2>
-        <p>Pricing for Buildwise Media services is set during the fit assessment and written client agreement. We do not publish a generic price tile because each install depends on scope, data quality, and the operating layer already in place. Services run month-to-month with no long-term lock-in.</p>
+        <p>Current public pricing is listed on the Pricing page. Final scope, fees, ad-spend requirements, and operating terms are governed by the separate written client agreement signed before work begins.</p>
 
-        <h2 class="h-sub">5. The Build-Right Guarantee</h2>
-        <p>If we miss the install milestones defined in your services agreement, we keep working at no additional cost until we hit them. The guarantee covers install milestones only — not market-driven outcomes (lead volume, conversion rates) which depend on factors outside any provider's control.</p>
+        <h2 class="h-sub">5. Outcome and install commitments</h2>
+        <p>Client agreements may include install milestones, human signoff requirements, ownership terms, and ROI-floor language. Those commitments apply only when written into the signed client agreement.</p>
 
         <h2 class="h-sub">6. Intellectual property</h2>
         <p>The website code, design, copy, logos, and trademarks on this site are owned by Buildwise Media LLC. Client-owned assets created during paid work are owned by the respective client per the services agreement.</p>

@@ -1,0 +1,388 @@
+---
+// L4 — Sovereignty: risk reversal before the price reveal in L5
+// plan: ~/.claude/plans/based-on-all-nifty-karp.md § L4
+// Source: canonical.json → contract.msa_locked_clauses
+// Visual job: reduce lock-in anxiety by showing the owner at the center of every owned asset.
+// Native asset map keeps this in R020 F1-Emotion + F2-Proof without generic imagery.
+
+// Receipt tiles sourced verbatim from canonical contract.msa_locked_clauses.
+// The "you own X" framing is the most conversion-relevant subset of the 6 clauses.
+// tone + visual: each owned asset gets its own signal color + glyph so the graphic
+// node and its legend card read as one color-coded pair (mirrors the Contract Proof board).
+const receipts = [
+  {
+    key: "CODE",
+    tone: "cyan",
+    visual: "code",
+    eyebrow: "You own the code",
+    proof: "Repo + workflows",
+    body: "Your site, funnel, and AI workflows are built on your domain and in your repo. Take them anywhere.",
+  },
+  {
+    key: "DATA",
+    tone: "green",
+    visual: "data",
+    eyebrow: "You own the data",
+    proof: "Leads + conversations",
+    body: "Every lead, booking, and conversation lives in your system. Export anytime — no permission required.",
+  },
+  {
+    key: "ADS",
+    tone: "orange",
+    visual: "ads",
+    eyebrow: "You own the ad accounts",
+    proof: "Channels + keys",
+    body: "Every ad channel runs under your business, not ours. We manage them day to day. You always hold the keys.",
+  },
+  {
+    key: "LIST",
+    tone: "yellow",
+    visual: "list",
+    eyebrow: "You own the customer list",
+    proof: "History + relationships",
+    body: "Your customers and the full relationship history stay in your name — yours to keep, and yours to take if you ever go.",
+  },
+];
+---
+
+<section class="sovereignty" aria-label="Data sovereignty and ownership guarantees">
+  <div class="container">
+    <div class="sovereignty__intro">
+      <p class="eyebrow">Sovereignty</p>
+      <h2 class="h-section sovereignty__h2">
+        It's all yours — the system, not just the reports.
+      </h2>
+      <p class="lede sovereignty__lede">
+        We run Ascend for you, but every piece lives in your business from day one — the code, your leads, the ad accounts, and your customer list. Most agencies keep those for themselves. We hand you the keys.
+      </p>
+    </div>
+
+    <div class="sovereignty__asset-map">
+      <div class="sovereignty__map-panel" aria-hidden="true">
+        <!-- @r020:F2 proof: ownership map — color-coded links bind each owned asset (code / data / ads / list) to the owner's own business at the center, proving all four assets sit under the client, not the agency -->
+        <svg class="sovereignty__link-field" viewBox="0 0 520 520" preserveAspectRatio="none">
+          <path d="M260 260 L112 118" stroke="rgba(56, 216, 255, 0.34)" />
+          <path d="M260 260 L408 118" stroke="rgba(101, 255, 142, 0.34)" />
+          <path d="M260 260 L112 402" stroke="rgba(255, 184, 74, 0.34)" />
+          <path d="M260 260 L408 402" stroke="rgba(240, 255, 0, 0.30)" />
+          <circle cx="260" cy="260" r="122" />
+          <circle cx="260" cy="260" r="186" />
+        </svg>
+        <div class="sovereignty__core">
+          <!-- @r020:identity: storefront mark — the owner's own business as the hub everything else belongs to -->
+          <svg class="sovereignty__core-glyph" viewBox="0 0 48 48" aria-hidden="true">
+            <g fill="none" stroke="var(--y2)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M10 21 L24 11 L38 21" />
+              <path d="M13 21 V37 H35 V21" />
+              <path d="M21 37 V28 H27 V37" />
+            </g>
+          </svg>
+          <span>100% yours</span>
+          <strong>Your Business</strong>
+          <em>code · data · ads · list</em>
+        </div>
+        {receipts.map((tile, index) => (
+          <div class={`sovereignty__asset-node sovereignty__asset-node--${index + 1} tone-${tile.tone}`}>
+            {/* @r020:F2 proof: per-asset glyph (code brackets / database / broadcast / people) color-codes each owned asset and links it by signal color to its card in the legend on the right */}
+            <svg class="sovereignty__node-glyph" viewBox="0 0 48 48" aria-hidden="true">
+              {tile.visual === 'code' && (
+                <g fill="none" stroke="var(--node-accent)" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M19 15 L10 24 L19 33" />
+                  <path d="M29 15 L38 24 L29 33" />
+                </g>
+              )}
+              {tile.visual === 'data' && (
+                <g fill="none" stroke="var(--node-accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M12 14 C12 11 17 9 24 9 C31 9 36 11 36 14 V34 C36 37 31 39 24 39 C17 39 12 37 12 34 Z" />
+                  <path d="M12 14 C12 17 17 19 24 19 C31 19 36 17 36 14" />
+                  <path d="M12 24 C12 27 17 29 24 29 C31 29 36 27 36 24" />
+                </g>
+              )}
+              {tile.visual === 'ads' && (
+                <g fill="none" stroke="var(--node-accent)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                  <circle cx="24" cy="33" r="3" fill="var(--node-accent)" stroke="none" />
+                  <path d="M17 28 a10 10 0 0 1 14 0" />
+                  <path d="M13 23 a16 16 0 0 1 22 0" />
+                </g>
+              )}
+              {tile.visual === 'list' && (
+                <g fill="none" stroke="var(--node-accent)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                  <circle cx="18" cy="18" r="5" />
+                  <path d="M9 37 a9 9 0 0 1 18 0" />
+                  <circle cx="33" cy="21" r="4" />
+                  <path d="M30 39 a8 8 0 0 1 11 -7" />
+                </g>
+              )}
+            </svg>
+            <span>{tile.key}</span>
+            <strong>{tile.proof}</strong>
+          </div>
+        ))}
+      </div>
+
+      <div class="sovereignty__proof-list" role="list">
+        {receipts.map((tile) => (
+          <div class={`sovereignty__proof-card tone-${tile.tone}`} role="listitem">
+            <span class="sovereignty__proof-key">{tile.key}</span>
+            <div>
+              <p class="sovereignty__card-eyebrow">{tile.eyebrow}</p>
+              <p class="card-body sovereignty__card-body">{tile.body}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .sovereignty {
+    background: var(--bg-card);
+    padding-block: var(--section-y);
+  }
+
+  .sovereignty__intro {
+    max-width: 760px;
+    margin-bottom: clamp(30px, 4vw, 44px);
+  }
+
+  .sovereignty__intro .eyebrow {
+    margin-bottom: 20px;
+  }
+
+  .sovereignty__h2 {
+    margin-bottom: 20px;
+  }
+
+  .sovereignty__lede {
+    /* override max-width for this specific context */
+    max-width: 660px;
+  }
+
+  .sovereignty__asset-map {
+    display: grid;
+    grid-template-columns: minmax(320px, 0.92fr) minmax(0, 1.08fr);
+    gap: clamp(26px, 5vw, 70px);
+    align-items: center;
+  }
+
+  /* per-asset signal accent — shared by the graphic node and its legend card */
+  .tone-cyan { --node-accent: var(--signal-cyan); }
+  .tone-green { --node-accent: var(--signal-green); }
+  .tone-orange { --node-accent: var(--signal-orange); }
+  .tone-yellow { --node-accent: var(--y2); }
+
+  .sovereignty__map-panel {
+    position: relative;
+    aspect-ratio: 1;
+    min-height: 360px;
+    border: 1px solid var(--rule);
+    background:
+      radial-gradient(circle at 50% 50%, rgba(240, 255, 0, 0.11), transparent 24%),
+      linear-gradient(90deg, rgba(255, 255, 255, 0.035) 1px, transparent 1px),
+      linear-gradient(0deg, rgba(255, 255, 255, 0.035) 1px, transparent 1px),
+      var(--bg);
+    background-size: auto, 42px 42px, 42px 42px, auto;
+    overflow: hidden;
+  }
+
+  .sovereignty__map-panel::before {
+    content: '';
+    position: absolute;
+    inset: 9%;
+    border: 1px solid rgba(240, 255, 0, 0.22);
+    box-shadow: inset 0 0 32px rgba(240, 255, 0, 0.06);
+  }
+
+  .sovereignty__link-field {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .sovereignty__link-field path {
+    fill: none;
+    stroke-width: 1;
+    vector-effect: non-scaling-stroke;
+  }
+
+  .sovereignty__link-field circle {
+    fill: none;
+    stroke: rgba(255, 255, 255, 0.08);
+    stroke-width: 1;
+    vector-effect: non-scaling-stroke;
+  }
+
+  .sovereignty__core {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: min(48%, 230px);
+    min-height: 158px;
+    transform: translate(-50%, -50%);
+    display: grid;
+    place-content: center;
+    gap: 6px;
+    text-align: center;
+    border: 1px solid var(--y2);
+    background:
+      linear-gradient(180deg, rgba(240, 255, 0, 0.13), rgba(5, 5, 7, 0.92)),
+      var(--bg);
+    box-shadow: 0 0 46px rgba(240, 255, 0, 0.1);
+    z-index: 1;
+  }
+
+  .sovereignty__core-glyph {
+    width: 30px;
+    height: 30px;
+    justify-self: center;
+    margin-bottom: 2px;
+  }
+
+  .sovereignty__core span,
+  .sovereignty__core em,
+  .sovereignty__asset-node span,
+  .sovereignty__proof-key {
+    font-family: var(--mono);
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+  }
+
+  .sovereignty__core span {
+    color: var(--y2);
+    font-size: 9px;
+  }
+
+  .sovereignty__core strong {
+    color: var(--ink);
+    font-size: clamp(20px, 2.7vw, 30px);
+    line-height: 0.96;
+    letter-spacing: 0;
+  }
+
+  .sovereignty__core em {
+    color: var(--ink-dim);
+    font-size: 8px;
+    font-style: normal;
+  }
+
+  .sovereignty__asset-node {
+    position: absolute;
+    width: min(34%, 160px);
+    min-height: 82px;
+    display: grid;
+    align-content: center;
+    gap: 7px;
+    padding: 14px;
+    border: 1px solid var(--rule-bright);
+    border-top: 2px solid var(--node-accent);
+    background: rgba(5, 5, 7, 0.84);
+    box-shadow: 0 14px 34px rgba(0, 0, 0, 0.28);
+    z-index: 1;
+  }
+
+  .sovereignty__node-glyph {
+    width: 22px;
+    height: 22px;
+  }
+
+  .sovereignty__asset-node span {
+    color: var(--node-accent);
+    font-size: 9px;
+  }
+
+  .sovereignty__asset-node strong {
+    color: var(--ink);
+    font-size: clamp(13px, 1.4vw, 16px);
+    line-height: 1.12;
+  }
+
+  .sovereignty__asset-node--1 { left: 7%; top: 8%; }
+  .sovereignty__asset-node--2 { right: 7%; top: 8%; }
+  .sovereignty__asset-node--3 { left: 7%; bottom: 8%; }
+  .sovereignty__asset-node--4 { right: 7%; bottom: 8%; }
+
+  .sovereignty__proof-list {
+    display: grid;
+    gap: 12px;
+  }
+
+  .sovereignty__proof-card {
+    display: grid;
+    grid-template-columns: 72px minmax(0, 1fr);
+    gap: 18px;
+    align-items: start;
+    padding: clamp(18px, 2.2vw, 26px);
+    border: 1px solid var(--rule);
+    border-left: 3px solid var(--node-accent);
+    background: var(--bg-elev);
+  }
+
+  .sovereignty__proof-key {
+    color: var(--bg);
+    background: var(--node-accent);
+    font-size: 9px;
+    font-weight: 700;
+    text-align: center;
+    padding: 8px 10px;
+    align-self: start;
+  }
+
+  .sovereignty__card-eyebrow {
+    font-family: var(--mono);
+    font-weight: 500;
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--node-accent);
+    margin: 0;
+    line-height: 1.4;
+  }
+
+  .sovereignty__card-body {
+    font-size: 15px;
+    line-height: 1.6;
+    color: var(--ink-dim);
+    margin: 0;
+  }
+
+  @media (max-width: 960px) {
+    .sovereignty__asset-map {
+      grid-template-columns: 1fr;
+    }
+
+    .sovereignty__map-panel {
+      min-height: 460px;
+    }
+  }
+
+  @media (max-width: 520px) {
+    .sovereignty__map-panel {
+      min-height: 0;
+      aspect-ratio: 1 / 1.16;
+    }
+
+    .sovereignty__asset-node {
+      width: 38%;
+      min-height: 72px;
+      padding: 12px;
+    }
+
+    .sovereignty__core {
+      width: 50%;
+      min-height: 132px;
+    }
+
+    .sovereignty__proof-card {
+      grid-template-columns: 1fr;
+      gap: 12px;
+    }
+
+    .sovereignty__card-body {
+      font-size: 15px;
+    }
+  }
+</style>

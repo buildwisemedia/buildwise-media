@@ -1,8 +1,67 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
+import canonical from '../../data/canonical.json';
 
-const title = "Ascend — The Buildwise Revenue Engine";
-const description = "AI-native lead-generation system installed and operated. Website, paid acquisition, content, CRM, analytics, and weekly connector audit — all wired on day one, measured against captured baseline, month-to-month.";
+const title = "Ascend — The Installed AI Growth System Buildwise Runs";
+const description = "Ascend is the owned AI growth system Buildwise installs and operates for service businesses: follow-up, visibility, reputation, reporting, weekly proof, and frontier AI upgrades.";
+
+const ascend = canonical.products.ascend;
+const pro = canonical.products.ascend_pro;
+const pilot = canonical.products.pilot;
+
+const ownerLayerBodies: Record<string, string> = {
+  Visibility: 'Show up when buyers search, ask AI, or compare local providers.',
+  Conversion: 'Make calls, forms, pages, and quote paths easier to act on.',
+  'Speed-to-Lead': 'Reply before the lead cools off or calls a competitor.',
+  'Sales Ops': 'Keep quotes, pipeline stages, and past leads moving.',
+  Reputation: 'Turn finished work into reviews and proof.',
+  'Paid Media': 'Watch spend, test creative, and move budget toward better leads.',
+  Reporting: 'Show spend, source, calls, leads, booked work, and next moves.',
+  Strategy: 'Use a weekly scoreboard instead of a late-month guess.',
+};
+
+const layers = canonical.products.ascend.eight_layers.map((raw: string, i: number) => {
+  const dashIndex = raw.indexOf('—');
+  const dotIndex = raw.indexOf('·');
+  const name = dashIndex > 0 ? raw.slice(dotIndex + 1, dashIndex).trim() : raw.slice(dotIndex + 1).trim();
+  const body = ownerLayerBodies[name] ?? '';
+  return { n: String(i + 1).padStart(2, '0'), name, body, tone: ['cyan', 'green', 'yellow', 'orange', 'green', 'cyan', 'yellow', 'green'][i] };
+});
+
+const productSpecs = [
+  { label: 'Install', value: '30 days', body: 'Dashboard, tracking, CRM routes, reports, and first operating cadence live.', tone: 'cyan' },
+  { label: 'Run', value: 'weekly', body: 'Buildwise operates the system, clears gates, and adjusts what underperforms.', tone: 'green' },
+  { label: 'Prove', value: 'Day 1', body: 'Spend, leads, booked work, and next moves live in the same proof rhythm.', tone: 'yellow' },
+  { label: 'Own', value: '100%', body: 'Code, data, accounts, customer list, and built assets stay in your business.', tone: 'orange' },
+];
+
+const productArtifacts = [
+  { label: 'Domain app', value: 'conversion surface' },
+  { label: 'Workflow agents', value: 'HITL routed' },
+  { label: 'Proof packet', value: 'weekly ledger' },
+];
+
+const phases = [
+  { n: '01', name: 'Audit', body: 'Capture the baseline, name the active market leaks, and pick the first layer that should move revenue fastest.' },
+  { n: '02', name: 'Install', body: 'Wire conversion paths, follow-up, attribution, reporting, and weekly rhythm into your business.' },
+  { n: '03', name: 'Run', body: 'Review the math, clear human gates, fix what underperforms, and keep the asset compounding.' },
+];
+
+const commitments = [
+  '30-day system-live path from diagnostic to operating rhythm.',
+  'Market Dominance Dossier before the sales call.',
+  'Pilot scope restricted to proven layers; Paid Media is excluded until BWM own-funnel proof is live.',
+  'HITL signoff on every autonomous deploy.',
+  'Client owns code, data, ad accounts, customer list, and built assets.',
+  '5x attributable ROI within 24 months or Buildwise keeps building.',
+  'True month-to-month after Day 90: no clawback, no exit fee.',
+];
+
+const offers = [
+  { name: pilot.name, price: pilot.price.oneshot_display, note: 'one-time · 45-day proof sprint · covers install scope' },
+  { name: ascend.name, price: ascend.price.recurring_display, note: `+ ${ascend.price.oneshot_display} install · waived for Pilot graduates` },
+  { name: pro.name, price: pro.price.recurring_display, note: `+ ${pro.price.oneshot_display} install · multi-location / Pro` },
+];
 
 const breadcrumb = {
   '@context': 'https://schema.org',
@@ -17,145 +76,181 @@ const breadcrumb = {
 const service = {
   '@context': 'https://schema.org',
   '@type': 'Service',
-  name: 'Ascend — The Buildwise Revenue Engine',
-  serviceType: 'AI-native lead-generation system',
+  '@id': 'https://buildwisemedia.com/services/ascend#service',
+  name: 'Ascend',
+  serviceType: 'Installed AI growth system for service businesses',
   provider: { '@id': 'https://buildwisemedia.com/#org' },
   areaServed: { '@type': 'Country', name: 'United States' },
-  description: 'Complete AI-native lead-generation system installed and operated. Includes website, paid acquisition, content production, CRM, analytics, weekly connector audit, AI business tools.',
+  description,
   url: 'https://buildwisemedia.com/services/ascend',
-  offers: {
-    '@type': 'Offer',
-    priceSpecification: {
-      '@type': 'PriceSpecification',
-      priceCurrency: 'USD',
-      price: '7000',
-      unitText: 'MONTH',
-      description: '$7,000/mo recurring + $15,000 one-time Engine Build at signup. Client commits to a 1:1 ad-spend match (≥$7,000/mo client-funded distribution budget, paid direct to ad platforms — separate from the BWM recurring fee). Layer 3 — machine readable. 90-day initial operating period, then true month-to-month with no penalty.',
-    },
+  hasOfferCatalog: {
+    '@type': 'OfferCatalog',
+    name: 'Ascend offers',
+    itemListElement: [
+      { '@type': 'Offer', name: pilot.name, price: pilot.price.oneshot, priceCurrency: 'USD' },
+      { '@type': 'Offer', name: ascend.name, price: ascend.price.recurring, priceCurrency: 'USD' },
+      { '@type': 'Offer', name: pro.name, price: pro.price.recurring, priceCurrency: 'USD' },
+    ],
   },
 };
-
-const faqs = [
-  { q: 'What does Ascend include exactly?', a: 'A full multi-page website built to AI-search-era standards, paid acquisition wired to baseline-first attribution, AI-assisted content production with a human quality gate at the 8/10 rubric, integrated operations layer (CRM, analytics, drift detection, lead attribution, email/SMS lifecycle), AI business tools configured to your operations, and a weekly connector audit. One operating system, not six services.' },
-  { q: 'How long does the install take?', a: 'Inside 30 days the system is operational — website live, ad accounts wired, CRM instrumented, first leads flowing. Full instrumentation completes in the same window. We don\'t run a 90-day waiting period.' },
-  { q: 'Do I own everything when the engagement ends?', a: 'Yes. The website, the content, the analytics setup, the CRM data — all yours. We don\'t use proprietary CMS lock-in. Month-to-month means month-to-month.' },
-  { q: 'How is this different from hiring a fractional CMO?', a: 'A CMO writes strategy. Ascend writes strategy and runs the system. The same person who decides where the dollars go is the one watching the numbers come back. No handoff layer between thinking and doing.' },
-  { q: 'What if Meta is the wrong channel for my business?', a: 'Meta is the primary, not the only. The system is channel-agnostic on the operations layer — Google, LinkedIn, paid search, even direct mail integrate without rebuilding the foundation. We start where the audience is.' },
-  { q: 'Is there a guarantee?', a: 'The Build-Right Guarantee covers install milestones — if we miss them, we keep working until we hit them, on us. The engagement runs month-to-month, so the renewal decision is in your hands every cycle.' },
-];
-
-const faqSchema = {
-  '@context': 'https://schema.org',
-  '@type': 'FAQPage',
-  mainEntity: faqs.map((f) => ({ '@type': 'Question', name: f.q, acceptedAnswer: { '@type': 'Answer', text: f.a } })),
-};
-
-const stack = [
-  { name: 'Website', body: 'Multi-page, statically generated, mobile-first, Three-Layer optimized (human + schema + agent), Lighthouse ≥ 90, AI-permissive robots.' },
-  { name: 'Acquisition', body: 'Meta-primary paid acquisition wired to baseline-first attribution. Server-side conversion tracking. Creative pipeline with quality QA. Phase 1 expansion to Google + LinkedIn.' },
-  { name: 'Content', body: 'AI-assisted content production at scale. Human QA at 8/10 rubric. Per-niche editorial calendar. Content compounds, not consumed.' },
-  { name: 'Operations', body: 'CRM, analytics, drift detection, lead attribution pipeline, email/SMS lifecycle. One stack, one source of truth. Connector audit every Monday.' },
-  { name: 'AI tools', body: 'AI business tools configured to your operations — not generic chatbots. Quoting, scheduling, intake, post-call summaries — automated where it makes sense, never where it shouldn\'t.' },
-  { name: 'Receipts', body: 'Weekly performance reporting. Captured baseline on every metric. Confidence floor 75%. The numbers go on the page or they don\'t go anywhere.' },
-];
-
-const process = [
-  { n: '01', name: 'Audit', body: 'We map your current pipeline, channels, conversion path, and integrations. Every claim about the current state goes against a baseline.' },
-  { n: '02', name: 'Build', body: 'Website, ad accounts, CRM, analytics, content engine — installed in parallel. Day 1 system is operational, not theoretical.' },
-  { n: '03', name: 'Operate', body: 'Weekly connector audit. Monthly creative refresh. Quarterly system review. Receipts every Monday morning.' },
-];
 ---
-<BaseLayout title={title} description={description} jsonLd={[service, breadcrumb, faqSchema]}>
+<BaseLayout title={title} description={description} jsonLd={[service, breadcrumb]}>
 
   <section class="ascend-hero">
-    <div class="container">
-      <p class="eyebrow">Service · Single product</p>
-      <h1 class="h-hero">
-        Ad spend in. <em>Revenue</em><br/>
-        out. Verified weekly.
-      </h1>
-      <p class="hero-sub" style="max-width: 720px;">
-        Ascend is the operating system most service businesses already wish they had — installed in 30 days, audited every week, month-to-month from the first day.
-      </p>
-      <div class="hero-ctas">
-        <a href="/book" class="cta" data-cta-source="ascend-hero">See If We're a Fit<span class="cta-arrow" aria-hidden="true">→</span></a>
-        <a href="#stack" class="cta-ghost" data-cta-source="ascend-hero-secondary">See What's Inside</a>
+    <div class="container ascend-hero-grid">
+      <div>
+        <p class="eyebrow">Ascend · the operating system</p>
+        <h1 class="h-hero">The installed AI growth system Buildwise runs for you.</h1>
+        <p class="hero-sub">
+          Ascend is installed on your domain, run by Buildwise, and owned by your business. It handles the revenue work that usually falls back on the owner, then keeps absorbing useful AI upgrades as the technology improves.
+        </p>
+        <div class="hero-ctas">
+          <a href="/book" class="cta" data-cta-source="ascend-hero">See If We're a Fit<span class="cta-arrow" aria-hidden="true">→</span></a>
+          <a href="#layers" class="cta-ghost" data-cta-source="ascend-hero-secondary">See What's Inside</a>
+        </div>
       </div>
-      <figure class="section-photo section-photo--diagram">
-        <img src="/images/funnel-3-layer-v1.svg" alt="Isometric three-layer funnel — the operating system rendered as visits ascending to qualified leads ascending to booked revenue." width="1200" height="750" loading="lazy" decoding="async" />
+
+      <aside class="ascend-panel ops-panel" aria-label="Ascend operating preview">
+        <div class="ascend-panel-head">
+          <p class="panel-label mono">Product state</p>
+          <span class="ops-chip"><span class="dot green" aria-hidden="true"></span>run for you</span>
+        </div>
+        <p class="panel-number">8</p>
+        <p class="panel-copy">layers installed, measured, upgraded, and adjusted as one operating rhythm.</p>
+        <div class="panel-bars" aria-hidden="true">
+          {layers.map((layer) => <span class={`tone-${layer.tone}`} title={layer.name}></span>)}
+        </div>
+        <div class="ascend-panel-ledger">
+          <span class="mono">BASELINE</span>
+          <strong>captured before claims</strong>
+          <span class="mono">OWNERSHIP</span>
+          <strong>client keeps the asset</strong>
+        </div>
+        <div class="product-artifacts" aria-label="Ascend product artifacts">
+          {productArtifacts.map((item) => (
+            <div>
+              <span class="mono">{item.label}</span>
+              <strong>{item.value}</strong>
+            </div>
+          ))}
+        </div>
+      </aside>
+    </div>
+  </section>
+
+  <section class="ascend-imagery-band" aria-label="Ascend installation imagery">
+    <div class="container ascend-image-grid">
+      <figure>
+        <!-- @r020:F2 proof: Ascend install artifact as concrete product evidence -->
+        <img src="/images/bwm-ascend-still-life-v1.webp" alt="Still-life of installation notes and operating artifacts for the Ascend system." width="720" height="480" loading="lazy" decoding="async" />
+      </figure>
+      <figure>
+        <!-- @r020:F1 emotion: infrastructure-scale atmosphere behind the installed system -->
+        <img src="/images/bwm-services-atmospheric-v1.webp" alt="Dark industrial workspace with a controlled yellow signal light and negative space." width="720" height="480" loading="lazy" decoding="async" />
+      </figure>
+      <figure>
+        <!-- @r020:F2 proof: architecture image makes the system layer tangible -->
+        <img src="/images/bwm-system-architecture-atmospheric-v1.webp" alt="Dim infrastructure corridor with one yellow signal suggesting the operating system underneath." width="720" height="480" loading="lazy" decoding="async" />
       </figure>
     </div>
   </section>
 
-  <section id="stack" class="stack-section elev">
-    <div class="container">
-      <p class="section-tag">What's inside the engine</p>
-      <h2 class="h-section">Six layers. <em>One</em> system.</h2>
-      <div class="stack-grid">
-        {stack.map((s) => (
-          <article class="stack-card reveal">
-            <h3 class="stack-name">{s.name}</h3>
-            <p class="stack-body">{s.body}</p>
+  <section class="product-spec-section" aria-labelledby="product-spec-title">
+    <div class="container product-spec-grid">
+      <header class="section-head">
+        <p class="section-tag">Product specification</p>
+        <h2 id="product-spec-title" class="h-section">Ascend is what runs every week.</h2>
+        <p class="lede">The workflows, CRM routes, attribution, AI routing, and weekly decision cadence are one installed system. Buildwise operates it; your business owns it.</p>
+      </header>
+      <div class="spec-grid">
+        {productSpecs.map((spec) => (
+          <article class={`spec-card tone-${spec.tone}`}>
+            <p class="ops-kicker">{spec.label}</p>
+            <strong>{spec.value}</strong>
+            <p>{spec.body}</p>
           </article>
         ))}
       </div>
-      <figure class="section-photo section-photo--diagram">
-        <img src="/images/node-mesh-ascending-v1.svg" alt="Isometric ascending node mesh — six layers wired together as one coherent operating system." width="1200" height="750" loading="lazy" decoding="async" />
-      </figure>
+    </div>
+  </section>
+
+  <section id="layers" class="layers-section elev">
+    <div class="container">
+      <header class="section-head">
+        <p class="section-tag">What gets installed</p>
+        <h2 class="h-section">Eight layers. One revenue system.</h2>
+        <p class="lede">Each layer can improve on its own. The compounding starts when they are wired together and pointed at booked work.</p>
+      </header>
+      <div class="layers-grid">
+        {layers.map((layer) => (
+          <article class="layer-card">
+            <p class="layer-num mono">{layer.n}</p>
+            <h3>{layer.name}</h3>
+            <p>{layer.body}</p>
+          </article>
+        ))}
+      </div>
     </div>
   </section>
 
   <section class="process-section">
-    <div class="container">
-      <p class="section-tag">How it installs</p>
-      <h2 class="h-section">Three moves. <em>30</em> days.</h2>
+    <div class="container process-grid">
+      <header class="section-head">
+        <p class="section-tag">How it runs</p>
+        <h2 class="h-section">Audit. Install. Run.</h2>
+        <p class="lede">The install is the start. The weekly operating rhythm is what creates the gap.</p>
+      </header>
       <ol class="process-list" role="list">
-        {process.map((p) => (
-          <li class="process-row reveal">
-            <span class="process-num mono">{p.n}</span>
-            <div>
-              <h3 class="process-name">{p.name}</h3>
-              <p class="process-body">{p.body}</p>
-            </div>
+        {phases.map((phase) => (
+          <li>
+            <span class="process-num mono">{phase.n}</span>
+            <h3>{phase.name}</h3>
+            <p>{phase.body}</p>
           </li>
         ))}
       </ol>
-      <p class="process-foot">
-        <a href="/how-it-works" class="cta-ghost" data-cta-source="ascend-process">See the full process<span class="cta-arrow" aria-hidden="true">→</span></a>
-      </p>
-      <figure class="section-photo section-photo--pause">
-        <img src="/images/bwm-ascend-still-life-v1.webp" alt="Macro detail of three stacked matte-black modules labeled WEBSITE, ATTRIBUTION, OPERATIONS — the system rendered as quiet hardware." width="1920" height="1080" loading="lazy" decoding="async" />
-      </figure>
     </div>
   </section>
 
-  <section class="ascend-faq elev">
-    <div class="container faq-grid">
-      <header class="faq-head">
-        <p class="section-tag">Questions about Ascend</p>
-        <h2 class="h-section">Real systems. <em>Real</em> answers.</h2>
+  <section class="commitments-section elev">
+    <div class="container commitments-grid">
+      <header class="section-head">
+        <p class="section-tag">Risk reversal</p>
+        <h2 class="h-section">The asset stays in your hands.</h2>
+        <p class="lede">Ascend is not a black box. The system is yours, the reporting is visible from Day 1, and the engagement earns its place every month.</p>
       </header>
-      <ul class="faq-list" role="list">
-        {faqs.map((f) => (
-          <li class="faq-item">
-            <details>
-              <summary>
-                <span class="faq-q">{f.q}</span>
-                <span class="faq-toggle" aria-hidden="true">+</span>
-              </summary>
-              <div class="faq-a"><p>{f.a}</p></div>
-            </details>
-          </li>
+      <ul class="commitment-list" role="list">
+        {commitments.map((item) => (
+          <li><span class="dot live"></span><span>{item}</span></li>
         ))}
       </ul>
     </div>
   </section>
 
-  <section class="ascend-cta">
+  <section class="pricing-snapshot" id="pilot">
+    <div class="container">
+      <header class="section-head">
+        <p class="section-tag">Pricing snapshot</p>
+        <h2 class="h-section">Three ways to enter Ascend.</h2>
+      </header>
+      <div class="offer-grid">
+        {offers.map((offer) => (
+          <article class="offer-card">
+            <p class="offer-name mono">{offer.name}</p>
+            <p class="offer-price">{offer.price}</p>
+            <p>{offer.note}</p>
+          </article>
+        ))}
+      </div>
+      <p class="pricing-link"><a href="/pricing" class="cta-ghost" data-cta-source="ascend-pricing">See full pricing<span class="cta-arrow" aria-hidden="true">→</span></a></p>
+    </div>
+  </section>
+
+  <section class="ascend-cta elev">
     <div class="container ascend-cta-row">
       <div>
-        <h2 class="h-closer">Run marketing like the <em>rest</em> of your business.</h2>
-        <p class="lede" style="margin-top: 16px;">Fifteen minutes on the calendar tells us — and you — whether Ascend fits your shop.</p>
+        <h2 class="h-closer">Find the leak before you buy the system.</h2>
+        <p class="lede" style="margin-top: 16px;">The fit diagnostic starts the Market Dominance Dossier we use on the discovery call.</p>
       </div>
       <a href="/book" class="cta" data-cta-source="ascend-final">See If We're a Fit<span class="cta-arrow" aria-hidden="true">→</span></a>
     </div>
@@ -164,80 +259,304 @@ const process = [
 </BaseLayout>
 
 <style>
-.ascend-hero { padding-top: clamp(140px, 14vw, 180px); padding-bottom: clamp(60px, 8vw, 100px); }
-.hero-ctas { display: flex; gap: 16px; flex-wrap: wrap; margin-top: 32px; }
-
-.stack-section { padding-block: var(--section-y); }
-.stack-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px; margin-top: 48px; }
-.stack-card { border-top: 1px solid var(--gold); padding: 24px 0 0; }
-.stack-name { font-family: var(--serif); font-size: clamp(28px, 2.5vw, 36px); font-weight: 400; letter-spacing: -0.015em; line-height: 1.05; margin-bottom: 14px; }
-.stack-body { font-family: var(--sans); font-weight: 300; font-size: 16px; line-height: 1.55; color: var(--ink-dim); }
-
-.process-section { padding-block: var(--section-y); }
-.process-list { list-style: none; display: flex; flex-direction: column; gap: 0; margin-top: 48px; }
-.process-row { display: grid; grid-template-columns: 100px minmax(0, 1fr); gap: 32px; padding: 32px 0; border-top: 1px solid var(--rule); align-items: start; }
-.process-row:last-child { border-bottom: 1px solid var(--rule); }
-.process-num { font-size: 14px; letter-spacing: 0.25em; color: var(--gold); padding-top: 6px; }
-.process-name { font-family: var(--serif); font-size: clamp(28px, 3vw, 40px); font-weight: 400; letter-spacing: -0.02em; line-height: 1; margin-bottom: 12px; }
-.process-body { font-family: var(--sans); font-weight: 300; font-size: 17px; line-height: 1.6; color: var(--ink-dim); max-width: 640px; }
-.process-foot { margin-top: 48px; }
-
-.ascend-faq { padding-block: var(--section-y); }
-.faq-grid { display: grid; grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.4fr); gap: clamp(48px, 6vw, 96px); align-items: start; }
-.faq-head { position: sticky; top: 100px; display: flex; flex-direction: column; gap: 24px; }
-
-.faq-list { list-style: none; }
-.faq-item { border-top: 1px solid var(--rule); }
-.faq-item:last-child { border-bottom: 1px solid var(--rule); }
-.faq-item details summary { list-style: none; cursor: pointer; padding: 24px 0; display: flex; justify-content: space-between; align-items: flex-start; gap: 24px; }
-.faq-item details summary::-webkit-details-marker { display: none; }
-.faq-q { font-family: var(--serif); font-weight: 400; font-size: clamp(20px, 2vw, 26px); letter-spacing: -0.015em; line-height: 1.3; color: var(--ink); }
-.faq-toggle { font-family: var(--mono); font-size: 24px; color: var(--gold); flex: none; width: 32px; text-align: center; line-height: 1; transition: transform 220ms ease; }
-.faq-item details[open] .faq-toggle { transform: rotate(45deg); }
-.faq-a { padding: 0 0 28px 0; max-width: 720px; }
-.faq-a p { font-family: var(--sans); font-weight: 300; font-size: 17px; line-height: 1.65; color: var(--ink-dim); }
-
-.ascend-cta { padding-block: 80px; }
-.ascend-cta-row { display: flex; align-items: center; justify-content: space-between; gap: 32px; flex-wrap: wrap; }
-
-.section-photo {
-  margin: clamp(40px, 6vw, 72px) 0 0;
-  border-radius: 6px;
+.ascend-hero { padding-top: clamp(108px, 10vw, 144px); padding-bottom: clamp(48px, 6vw, 80px); }
+.ascend-hero-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.1fr) minmax(280px, 0.9fr);
+  gap: clamp(32px, 5vw, 64px);
+  align-items: center;
+}
+.ascend-hero .h-hero {
+  font-size: clamp(48px, 5.2vw, 74px);
+  line-height: 0.94;
+  letter-spacing: -0.035em;
+}
+.hero-sub { margin-top: 18px; }
+.hero-ctas { display: flex; gap: 16px; flex-wrap: wrap; margin-top: 24px; }
+.ascend-imagery-band {
+  padding-block: clamp(18px, 3vw, 34px) clamp(44px, 5vw, 72px);
+}
+.ascend-image-grid {
+  display: grid;
+  grid-template-columns: 1.15fr 0.92fr 0.92fr;
+  gap: 12px;
+}
+.ascend-image-grid figure {
+  aspect-ratio: 3 / 2;
   overflow: hidden;
   border: 1px solid var(--rule);
-  aspect-ratio: 21 / 9;
-  width: 100%;
+  background: var(--bg-card);
 }
-.section-photo img {
+.ascend-image-grid img {
   width: 100%;
   height: 100%;
-  object-fit: cover;
   display: block;
+  object-fit: cover;
 }
-.section-photo--pause {
-  aspect-ratio: 16 / 9;
-  margin-top: clamp(40px, 6vw, 72px);
-  max-width: 960px;
-  margin-inline: auto;
+.ascend-panel {
+  border: 1px solid var(--rule-bright);
+  padding: clamp(24px, 3vw, 34px);
+  position: relative;
+  overflow: hidden;
 }
-.section-photo--diagram {
-  aspect-ratio: 16 / 10;
-  max-width: 720px;
-  margin-inline: auto;
-  margin-top: clamp(32px, 5vw, 56px);
-  background: #050507;
+.ascend-panel > * { position: relative; z-index: 1; }
+.ascend-panel-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
 }
-.section-photo--diagram img {
-  object-fit: contain;
+.panel-label,
+.layer-num,
+.process-num,
+.offer-name {
+  font-size: 10px;
+  letter-spacing: 0.2em;
+  color: var(--y2);
 }
+.panel-number {
+  font-size: clamp(84px, 10vw, 140px);
+  font-weight: 800;
+  font-stretch: 75%;
+  line-height: 0.8;
+  letter-spacing: -0.07em;
+  color: var(--y2);
+  margin-block: 16px 12px;
+}
+.panel-copy {
+  color: var(--ink-dim);
+  font-size: 17px;
+  line-height: 1.55;
+}
+.panel-bars {
+  display: grid;
+  grid-template-columns: repeat(8, 1fr);
+  gap: 6px;
+  margin-top: 24px;
+}
+.panel-bars span {
+  height: clamp(42px, 5.5vw, 70px);
+  border: 1px solid var(--rule);
+  background: linear-gradient(to top, currentColor, rgba(240,255,0,0.02));
+  opacity: 0.38;
+}
+.ascend-panel-ledger {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  gap: 10px 16px;
+  margin-top: 28px;
+  padding-top: 22px;
+  border-top: 1px solid var(--rule);
+}
+.ascend-panel-ledger span {
+  color: var(--ink-faint);
+  font-size: 9px;
+  letter-spacing: 0.16em;
+}
+.ascend-panel-ledger strong {
+  color: var(--ink);
+  font-size: 14px;
+  line-height: 1.3;
+}
+.product-artifacts {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1px;
+  margin-top: 18px;
+  background: var(--rule);
+  border: 1px solid var(--rule);
+}
+.product-artifacts div {
+  min-width: 0;
+  background: rgba(5, 5, 7, 0.72);
+  padding: 12px;
+  border-top: 2px solid var(--signal-cyan);
+}
+.product-artifacts span {
+  display: block;
+  color: var(--ink-faint);
+  font-size: 8px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+.product-artifacts strong {
+  display: block;
+  margin-top: 6px;
+  color: var(--ink);
+  font-size: 12px;
+  line-height: 1.2;
+}
+.section-head { max-width: 780px; margin-bottom: 36px; }
+.section-head .lede { margin-top: 20px; }
+.product-spec-section,
+.layers-section,
+.process-section,
+.commitments-section,
+.pricing-snapshot { padding-block: var(--section-y); }
+.product-spec-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 0.82fr) minmax(0, 1.18fr);
+  gap: clamp(32px, 5vw, 64px);
+  align-items: start;
+}
+.product-spec-grid .section-head {
+  position: sticky;
+  top: 104px;
+  margin-bottom: 0;
+}
+.spec-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1px;
+  background: var(--rule);
+  border: 1px solid var(--rule);
+}
+.spec-card {
+  background: var(--bg-card);
+  border-top: 3px solid currentColor;
+  padding: clamp(20px, 2.5vw, 30px);
+}
+.spec-card strong {
+  display: block;
+  margin-block: 12px;
+  font-size: clamp(34px, 4vw, 60px);
+  line-height: 1;
+  letter-spacing: -0.055em;
+  color: var(--ink);
+}
+.spec-card p:last-child {
+  color: var(--ink-dim);
+  font-size: 15px;
+  line-height: 1.55;
+}
+.layers-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 1px;
+  background: var(--rule);
+  border: 1px solid var(--rule);
+}
+.layer-card {
+  background: var(--bg-card);
+  padding: 22px 20px;
+}
+.layer-card h3 {
+  font-size: clamp(20px, 2vw, 28px);
+  line-height: 1.1;
+  margin-block: 12px;
+}
+.layer-card p:last-child {
+  color: var(--ink-dim);
+  font-size: 14px;
+  line-height: 1.55;
+}
+.process-grid,
+.commitments-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr);
+  gap: clamp(32px, 5vw, 64px);
+}
+.process-list,
+.commitment-list {
+  list-style: none;
+  display: grid;
+  gap: 1px;
+  background: var(--rule);
+  border: 1px solid var(--rule);
+}
+.process-list li,
+.commitment-list li {
+  background: var(--bg-card);
+  padding: 22px;
+}
+.process-list h3 {
+  font-size: clamp(28px, 3.6vw, 48px);
+  line-height: 1;
+  margin-block: 12px;
+}
+.process-list p,
+.commitment-list li {
+  color: var(--ink-dim);
+  font-size: 16px;
+  line-height: 1.6;
+}
+.commitment-list li {
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+}
+.commitment-list .dot { margin-top: 9px; flex: none; }
+.offer-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1px;
+  background: var(--rule);
+  border: 1px solid var(--rule);
+}
+.offer-card {
+  background: var(--bg-card);
+  padding: 24px;
+}
+.offer-price {
+  font-size: clamp(36px, 4.6vw, 62px);
+  font-weight: 800;
+  font-stretch: 75%;
+  letter-spacing: -0.05em;
+  line-height: 1;
+  color: var(--ink);
+  margin-block: 18px 12px;
+}
+.offer-card p:last-child {
+  color: var(--ink-dim);
+  font-size: 15px;
+  line-height: 1.5;
+}
+.pricing-link { margin-top: 28px; }
+.ascend-cta { padding-block: 64px; }
+.ascend-cta-row { display: flex; align-items: center; justify-content: space-between; gap: 32px; flex-wrap: wrap; }
 
-@media (max-width: 880px) {
-  .stack-grid { grid-template-columns: 1fr; gap: 16px; }
-  .process-row { grid-template-columns: 1fr; }
-  .faq-grid { grid-template-columns: 1fr; }
-  .faq-head { position: static; }
-  .section-photo, .section-photo--pause {
-    aspect-ratio: 16 / 10;
+@media (max-width: 960px) {
+  .ascend-hero-grid,
+  .product-spec-grid,
+  .process-grid,
+  .commitments-grid { grid-template-columns: 1fr; }
+  .ascend-image-grid { grid-template-columns: 1fr; }
+  .product-spec-grid .section-head { position: static; }
+  .layers-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .offer-grid { grid-template-columns: 1fr; }
+}
+@media (max-width: 560px) {
+  .ascend-hero {
+    padding-top: 92px;
+    padding-bottom: 48px;
+  }
+
+  .ascend-hero .h-hero {
+    font-size: 34px;
+    line-height: 1.03;
+    letter-spacing: 0;
+  }
+
+  .ascend-hero .hero-sub {
+    font-size: 16px;
+    line-height: 1.5;
+  }
+  .hero-ctas { margin-top: 22px; }
+  .ascend-panel { padding: 20px; }
+  .panel-number { font-size: 72px; }
+  .panel-bars span { height: 42px; }
+
+  .spec-grid { grid-template-columns: 1fr; }
+  .layers-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .layer-card { padding: 18px 16px; }
+  .layer-card h3 { font-size: 17px; }
+  .layer-card p:last-child { display: none; }
+  .product-artifacts { grid-template-columns: 1fr; }
+  .hero-ctas .cta,
+  .hero-ctas .cta-ghost,
+  .ascend-cta .cta {
+    width: 100%;
+    justify-content: center;
   }
 }
 </style>

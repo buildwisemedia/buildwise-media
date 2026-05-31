@@ -1,0 +1,993 @@
+---
+// L5 — Product comparison: 3-tier product cards + feature comparison table
+// plan: ~/.claude/plans/based-on-all-nifty-karp.md § L5
+// Table pattern ported from ~/bwm-strategic-roadmap/product-prices.html
+// Token logic ported from ~/bwm-strategic-roadmap/assets/css/site.css .tri-table / .kpi-num-y2
+// Re-tokenized against buildwisemedia.com global.css (no new design tokens introduced)
+// Pricing visible — §3.8 lock RATIFIED 2026-05-20
+
+import canonical from '../data/canonical.json';
+
+// Helpers — avoids toLocaleString locale-drift between Node and browser
+const pilot    = canonical.products.pilot;
+const ascend   = canonical.products.ascend;
+const pro      = canonical.products.ascend_pro;
+
+// Comparison table data — sourced verbatim from canonical.json
+// Comment traces: <!-- canonical.<path> --> on each data point
+const categories = [
+  {
+    label: "Commercials",
+    rows: [
+      {
+        feature: "Recurring price",
+        // canonical.products.pilot.price.recurring / canonical.products.ascend.price.recurring / canonical.products.ascend_pro.price.recurring
+        pilot: "—",
+        ascend: `$${ascend.price.recurring.toLocaleString()}/mo`,
+        pro: `$${pro.price.recurring.toLocaleString()}/mo`,
+        ascendHighlight: true,
+        proHighlight: true,
+      },
+      {
+        feature: "One-time at signing",
+        // canonical.products.pilot.price.oneshot / ascend.price.oneshot / ascend_pro.price.oneshot
+        pilot: `$${pilot.price.oneshot.toLocaleString()}`,
+        ascend: `$${ascend.price.oneshot.toLocaleString()} install`,
+        pro: `$${pro.price.oneshot.toLocaleString()} install`,
+        pilotHighlight: true,
+      },
+      {
+        feature: "Duration",
+        // canonical.products.pilot.duration / canonical.products.ascend.duration / canonical.products.ascend_pro.duration
+        pilot: pilot.duration,
+        ascend: "Indefinite (m-t-m after Day 90)",
+        pro: "Indefinite (m-t-m after Day 90)",
+      },
+      {
+        feature: "Install / proof window",
+        // canonical.products.pilot.operating_period_days / ascend.install_window_days / ascend_pro.install_window_days
+        pilot: "45-day proof sprint",
+        ascend: "45 days (within 90-day period)",
+        pro: "14 days",
+      },
+      {
+        feature: "Ad-spend commitment (1:1 match)",
+        // canonical.products.ascend.ad_spend_commitment / canonical.products.ascend_pro.ad_spend_commitment
+        pilot: "✓",
+        ascend: `✓ (≥$${ascend.price.recurring.toLocaleString()}/mo client-funded)`,
+        pro: "✓ (1.5–3x typical)",
+        pilotHighlight: true,
+        ascendHighlight: true,
+        proHighlight: true,
+      },
+    ],
+  },
+  {
+    label: "Revenue Operating System",
+    rows: [
+      {
+        feature: "8-layer install",
+        // canonical.product_labels.system_install_short + canonical.products.ascend.eight_layers (8 layers)
+        pilot: "Proof sprint on 1 layer",
+        ascend: "✓ Full 8",
+        pro: "✓ Full 8 + multi-location",
+        ascendHighlight: true,
+        proHighlight: true,
+      },
+      {
+        feature: "HITL signoff queue",
+        // canonical.products.ascend.recurring_deliverables_weekly[4] / ascend_pro
+        pilot: "—",
+        ascend: "✓",
+        pro: "✓",
+        ascendHighlight: true,
+        proHighlight: true,
+      },
+      {
+        feature: "Capability inheritance (AI improvements at no add-on cost)",
+        // canonical.contract.msa_locked_clauses[0]: "Capability inheritance at no add-on cost"
+        pilot: "—",
+        ascend: "✓",
+        pro: "✓",
+        ascendHighlight: true,
+        proHighlight: true,
+      },
+      {
+        feature: "Sovereignty (client owns code + data + ad accounts)",
+        // canonical.contract.msa_locked_clauses[2]: "Sovereignty: client owns code + data + ad accounts + customer list"
+        pilot: "—",
+        ascend: "✓",
+        pro: "✓",
+        ascendHighlight: true,
+        proHighlight: true,
+      },
+    ],
+  },
+  {
+    label: "Marketing + Content",
+    rows: [
+      {
+        feature: "Done-for-you ad operation",
+        // canonical.products.ascend.recurring_deliverables_always_on[0]
+        pilot: "—",
+        ascend: "✓",
+        pro: "✓",
+        ascendHighlight: true,
+        proHighlight: true,
+      },
+      {
+        feature: "Custom AI agents purpose-built for client workflows",
+        // canonical.products.ascend_pro.install_deliverables[4]
+        pilot: "—",
+        ascend: "—",
+        pro: "✓",
+        proHighlight: true,
+      },
+      {
+        feature: "RevOps build-out (forecasting + retention systems)",
+        // canonical.products.ascend_pro.install_deliverables[5] — RevOps build-out
+        pilot: "—",
+        ascend: "—",
+        pro: "✓",
+        proHighlight: true,
+      },
+      {
+        feature: "Vertical-SaaS workflow install",
+        // canonical.products.ascend_pro.install_deliverables[6] — vertical-SaaS
+        pilot: "—",
+        ascend: "—",
+        pro: "✓",
+        proHighlight: true,
+      },
+    ],
+  },
+  {
+    label: "Strategic Positioning",
+    rows: [
+      {
+        feature: "Category-of-one promise",
+        // canonical.company.brand_story — "most-chosen name in your market"
+        pilot: "—",
+        ascend: "—",
+        pro: "✓",
+        proHighlight: true,
+      },
+      {
+        feature: "Territorial cap (2/territory default · Lock add-on +$1,500/mo for 1)",
+        // canonical.products.ascend_pro.territorial_exclusivity.territory_lock_add_on.premium_monthly_display
+        pilot: "—",
+        ascend: "—",
+        pro: "✓",
+        proHighlight: true,
+      },
+      {
+        feature: "Pro-tier dedicated brand spine",
+        // canonical.products.ascend_pro.install_deliverables[7]
+        pilot: "—",
+        ascend: "—",
+        pro: "✓",
+        proHighlight: true,
+      },
+    ],
+  },
+  {
+    label: "Contract Structure",
+    rows: [
+      {
+        feature: "1:1 ad-spend match contractually binding",
+        // canonical.contract.universal_template.structure — "1:1 ad-spend gate"
+        pilot: "✓",
+        ascend: "✓",
+        pro: "✓",
+        pilotHighlight: true,
+        ascendHighlight: true,
+        proHighlight: true,
+      },
+      {
+        feature: "Universal contract template",
+        // canonical.contract.universal_template.structure — all tiers
+        pilot: "✓",
+        ascend: "✓",
+        pro: "✓",
+        pilotHighlight: true,
+        ascendHighlight: true,
+        proHighlight: true,
+      },
+      {
+        feature: "True m-t-m no penalty after Day 90",
+        // canonical.products.ascend.contract_after_operating_period
+        pilot: "n/a (45-day)",
+        ascend: "✓",
+        pro: "✓",
+        ascendHighlight: true,
+        proHighlight: true,
+      },
+    ],
+  },
+];
+
+// Helper: render a cell value — checkmark color depends on column (Y1 = Pilot tier-encoding, Y2 = Ascend/Pro)
+// Path B (LOCKED 2026-05-20): --y1 admitted on tier-encoding data viz only; scope is comparison-chart cells + tier markers
+function cellClass(val: string, highlight: boolean | undefined, column: 'pilot' | 'ascend' | 'pro'): string {
+  const isPositive = val === "✓" || highlight;
+  if (isPositive) return column === 'pilot' ? "pc-check pc-check--y1" : "pc-check";
+  if (val === "—") return "pc-dash";
+  return "pc-data";
+}
+---
+
+<section class="product-comparison" id="pricing" aria-label="Product comparison">
+  <div class="container">
+
+    <!-- Section header -->
+    <div class="pc-intro">
+      <p class="eyebrow">Three Ways to Start</p>
+      <h2 class="h-section pc-h2">Same system. Three commitment shapes.</h2>
+      <p class="lede pc-lede">
+        Pilot proves the first layer. Ascend runs the full system. Pro is for owners trying to widen the market gap faster.
+      </p>
+    </div>
+
+    <!-- 3 product cards above -->
+    <div class="pc-cards">
+
+      <!-- Ascend Pilot — Y1 tier-encoding -->
+      <a href="/services/ascend#pilot" class="card pc-card pc-card--pilot" aria-label="Ascend Pilot tier details">
+        <div class="pc-card-visual pc-card-visual--pilot" aria-hidden="true">
+          <div class="pc-dossier-sheet">
+            <span>Diagnostic sprint</span>
+            <strong>45</strong>
+            <em>day proof meter</em>
+            <div class="pc-sprint-meter"><span></span></div>
+          </div>
+          <p class="pc-visual-caption">diagnose -> prove -> graduate</p>
+        </div>
+        <p class="pc-tier-tag pc-tier-tag--y1">Tier 1 · Entry</p>
+        <h3 class="h-sub pc-card-name">Ascend Pilot</h3>
+        <div class="pc-price-num pc-price-num--y1">
+          ${pilot.price.oneshot.toLocaleString()}
+        </div>
+        <p class="pc-price-label">one-time · 45-day proof sprint</p>
+        <p class="pc-card-note">Includes the install scope. Pilot graduates do not pay the install twice.</p>
+        <p class="pc-card-cta pc-card-cta--y1">→ see full product.</p>
+      </a>
+
+      <!-- Ascend — center, Y2 fill emphasis + MOST CHOSEN badge -->
+      <a href="/services/ascend" class="card pc-card pc-card--ascend" aria-label="Ascend tier details (most chosen)">
+        <span class="pc-most-chosen" aria-hidden="true">Most Chosen</span>
+        <div class="pc-card-visual pc-card-visual--ascend" aria-hidden="true">
+          <div class="pc-os-orbit">
+            <span class="pc-orbit-node pc-orbit-node--1"></span>
+            <span class="pc-orbit-node pc-orbit-node--2"></span>
+            <span class="pc-orbit-node pc-orbit-node--3"></span>
+            <span class="pc-orbit-node pc-orbit-node--4"></span>
+            <strong>8</strong>
+            <em>layer OS</em>
+          </div>
+          <div class="pc-week-rhythm">
+            <span>MON</span>
+            <span>TUE</span>
+            <span>WED</span>
+            <span>THU</span>
+            <span>FRI</span>
+          </div>
+        </div>
+        <p class="pc-tier-tag pc-tier-tag--y2-fill">Tier 2 · Main Product</p>
+        <h3 class="h-sub pc-card-name">{ascend.name}</h3>
+        <div class="pc-price-num pc-price-num--y2">
+          ${ascend.price.recurring.toLocaleString()}<span class="pc-price-mo">/mo</span>
+        </div>
+        <p class="pc-price-label">
+          + ${ascend.price.oneshot.toLocaleString()} install · 45-day install window
+        </p>
+        <p class="pc-card-note">Full system operated weekly. 1:1 ad spend is paid by you directly to the platforms.</p>
+        <p class="pc-card-cta pc-card-cta--y2">→ see full product.</p>
+      </a>
+
+      <!-- Ascend Pro -->
+      <a href="/services/ascend#pro" class="card pc-card pc-card--pro" aria-label="Ascend Pro tier details">
+        <div class="pc-card-visual pc-card-visual--pro" aria-hidden="true">
+          <div class="pc-territory-map">
+            <span class="pc-territory-route pc-territory-route--a"></span>
+            <span class="pc-territory-route pc-territory-route--b"></span>
+            <span class="pc-market-node pc-market-node--hq">HQ</span>
+            <span class="pc-market-node pc-market-node--west">W</span>
+            <span class="pc-market-node pc-market-node--east">E</span>
+            <strong>2/TERRITORY</strong>
+          </div>
+          <p class="pc-visual-caption">multi-location lock</p>
+        </div>
+        <p class="pc-tier-tag pc-tier-tag--y2">Tier 3 · Top · 2/territory</p>
+        <h3 class="h-sub pc-card-name">{pro.name}</h3>
+        <div class="pc-price-num pc-price-num--y2">
+          ${pro.price.recurring.toLocaleString()}<span class="pc-price-mo">/mo</span>
+        </div>
+        <p class="pc-price-label">
+          + ${pro.price.oneshot.toLocaleString()} install · 14-day install window
+        </p>
+        <p class="pc-card-note">Adds multi-location, custom workflows, and territory strategy for dominance plays.</p>
+        <p class="pc-card-cta pc-card-cta--y2">→ see full product.</p>
+      </a>
+
+    </div>
+
+    <!-- Comparison table (desktop) -->
+    <div class="pc-table-wrap">
+      <table class="pc-table" aria-label="Feature comparison across tiers">
+        <thead>
+          <tr>
+            <th scope="col" class="pc-th pc-th--feature">Feature</th>
+            <th scope="col" class="pc-th pc-th--pilot">Ascend Pilot</th>
+            <th scope="col" class="pc-th pc-th--ascend">Ascend</th>
+            <th scope="col" class="pc-th">Ascend Pro</th>
+          </tr>
+        </thead>
+        <tbody>
+          {categories.map((cat) => (
+            <>
+              <tr class="pc-cat-row">
+                <td colspan="4" class="pc-cat-cell">
+                  <span class="pc-cat-label">{cat.label}.</span>
+                </td>
+              </tr>
+              {cat.rows.map((row) => (
+                <tr class="pc-row">
+                  <th class="pc-td pc-td--feature" scope="row">{row.feature}</th>
+                  <td class={`pc-td pc-td--center pc-td--pilot ${cellClass(row.pilot, row.pilotHighlight, 'pilot')}`}>
+                    {row.pilot}
+                  </td>
+                  <td class={`pc-td pc-td--center pc-td--ascend ${cellClass(row.ascend, row.ascendHighlight, 'ascend')}`}>
+                    {row.ascend}
+                  </td>
+                  <td class={`pc-td pc-td--center ${cellClass(row.pro, row.proHighlight, 'pro')}`}>
+                    {row.pro}
+                  </td>
+                </tr>
+              ))}
+            </>
+          ))}
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Mobile stacked cards — 3 per-tier summaries -->
+    <!-- Hidden on desktop (≥961px), visible below -->
+    <div class="pc-mobile-tiers" role="group" aria-label="Tier comparison (mobile)">
+      {[
+        {
+          name: "Ascend Pilot",
+          tag: "Tier 1 · Entry",
+          palette: 'y1' as const,
+          price: `$${pilot.price.oneshot.toLocaleString()} one-time`,
+          href: "/services/ascend#pilot",
+          rows: categories.flatMap(c => c.rows.map(r => ({ feature: r.feature, value: r.pilot, highlight: r.pilotHighlight }))),
+        },
+        {
+          name: ascend.name,
+          tag: "Tier 2 · Main Product",
+          palette: 'y2-fill' as const,
+          price: `$${ascend.price.recurring.toLocaleString()}/mo + $${ascend.price.oneshot.toLocaleString()} install`,
+          href: "/services/ascend",
+          rows: categories.flatMap(c => c.rows.map(r => ({ feature: r.feature, value: r.ascend, highlight: r.ascendHighlight }))),
+        },
+        {
+          name: pro.name,
+          tag: "Tier 3 · Top",
+          palette: 'y2-border' as const,
+          price: `$${pro.price.recurring.toLocaleString()}/mo + $${pro.price.oneshot.toLocaleString()} install`,
+          href: "/services/ascend#pro",
+          rows: categories.flatMap(c => c.rows.map(r => ({ feature: r.feature, value: r.pro, highlight: r.proHighlight }))),
+        },
+      ].map((tier) => (
+        <div class={`card pc-mobile-tier pc-mobile-tier--${tier.palette}`}>
+          {tier.palette === 'y2-fill' && (
+            <span class="pc-most-chosen pc-most-chosen--mobile" aria-hidden="true">Most Chosen</span>
+          )}
+          <p class={`pc-tier-tag ${tier.palette === 'y1' ? 'pc-tier-tag--y1' : tier.palette === 'y2-fill' ? 'pc-tier-tag--y2-fill' : 'pc-tier-tag--y2'}`}>{tier.tag}</p>
+          <h3 class="h-sub pc-card-name">{tier.name}</h3>
+          <p class={`pc-mobile-price ${tier.palette === 'y1' ? 'pc-mobile-price--y1' : ''}`}>{tier.price}</p>
+          <ul class="pc-mobile-list">
+            {tier.rows.filter(r => r.value !== "—").map((row) => {
+              const isPositive = row.highlight || row.value === "✓";
+              const checkClass = isPositive ? (tier.palette === 'y1' ? "pc-check pc-check--y1" : "pc-check") : "pc-data";
+              return (
+                <li class="pc-mobile-item">
+                  <span class={checkClass}>{row.value === "✓" ? "✓ " : ""}</span>
+                  <span class="pc-mobile-feat">{row.feature}.</span>
+                </li>
+              );
+            })}
+          </ul>
+          <a href={tier.href} class="cta-ghost pc-mobile-cta">See full product <span class="cta-arrow">→</span></a>
+        </div>
+      ))}
+    </div>
+
+  </div>
+</section>
+
+<style>
+  .product-comparison {
+    background: var(--bg);
+    padding-block: clamp(56px, 7vw, 88px);
+  }
+
+  /* ── Intro ── */
+  .pc-intro {
+    max-width: 720px;
+    margin-bottom: clamp(30px, 4vw, 44px);
+  }
+  .pc-intro .eyebrow { margin-bottom: 20px; }
+  .pc-h2 { margin-bottom: 20px; }
+  .pc-lede { max-width: 580px; }
+
+  /* ── Product cards ── */
+  .pc-cards {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    margin-bottom: 28px;
+  }
+
+  .pc-card {
+    display: flex;
+    flex-direction: column;
+    text-decoration: none;
+    padding: 0;
+    text-align: center;
+    transition: border-color 180ms ease, background-color 180ms ease;
+    overflow: hidden;
+  }
+
+  /* L5 tier visuals — each card gets a different decision shape */
+  .pc-card-visual {
+    position: relative;
+    margin: 0 0 clamp(14px, 2vw, 22px);
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    overflow: hidden;
+    display: grid;
+    place-items: center;
+    background:
+      linear-gradient(90deg, rgba(255, 255, 255, 0.035) 1px, transparent 1px),
+      linear-gradient(0deg, rgba(255, 255, 255, 0.035) 1px, transparent 1px),
+      var(--bg);
+    background-size: 38px 38px;
+    border-bottom: 1px solid var(--rule);
+  }
+
+  .pc-card-visual::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    opacity: 0.72;
+    background: radial-gradient(circle at 50% 50%, rgba(240, 255, 0, 0.12), transparent 44%);
+  }
+
+  .pc-card-visual--pilot::before {
+    background: linear-gradient(135deg, rgba(184, 255, 58, 0.14), transparent 58%);
+  }
+
+  .pc-card-visual--pro::before {
+    background: radial-gradient(circle at 70% 32%, rgba(56, 216, 255, 0.12), transparent 40%);
+  }
+
+  .pc-dossier-sheet,
+  .pc-os-orbit,
+  .pc-territory-map {
+    position: relative;
+    z-index: 1;
+  }
+
+  .pc-dossier-sheet {
+    width: 48%;
+    min-width: 170px;
+    padding: 18px;
+    text-align: left;
+    border: 1px solid rgba(184, 255, 58, 0.38);
+    background: rgba(5, 5, 7, 0.78);
+    box-shadow: 18px 18px 0 rgba(184, 255, 58, 0.08);
+  }
+
+  .pc-dossier-sheet span,
+  .pc-dossier-sheet em,
+  .pc-visual-caption,
+  .pc-week-rhythm,
+  .pc-territory-map strong {
+    font-family: var(--mono);
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+  }
+
+  .pc-dossier-sheet span,
+  .pc-dossier-sheet em {
+    display: block;
+    color: var(--ink-faint);
+    font-size: 8px;
+    font-style: normal;
+  }
+
+  .pc-dossier-sheet strong {
+    display: block;
+    margin: 4px 0 2px;
+    color: var(--y1);
+    font-size: clamp(44px, 6vw, 72px);
+    line-height: 0.9;
+    letter-spacing: 0;
+  }
+
+  .pc-sprint-meter {
+    height: 7px;
+    margin-top: 14px;
+    border: 1px solid rgba(184, 255, 58, 0.32);
+    background: rgba(255, 255, 255, 0.05);
+    overflow: hidden;
+  }
+
+  .pc-sprint-meter span {
+    display: block;
+    width: 74%;
+    height: 100%;
+    background: var(--y1);
+    box-shadow: 0 0 18px rgba(184, 255, 58, 0.28);
+  }
+
+  .pc-visual-caption {
+    position: absolute;
+    left: 18px;
+    bottom: 14px;
+    z-index: 1;
+    color: var(--ink-faint);
+    font-size: 8px;
+    margin: 0;
+  }
+
+  .pc-os-orbit {
+    width: clamp(150px, 20vw, 230px);
+    aspect-ratio: 1;
+    display: grid;
+    place-content: center;
+    gap: 4px;
+    border: 1px solid rgba(240, 255, 0, 0.48);
+    border-radius: 50%;
+    box-shadow:
+      0 0 0 38px rgba(240, 255, 0, 0.045),
+      0 0 0 76px rgba(240, 255, 0, 0.025);
+  }
+
+  .pc-os-orbit strong {
+    color: var(--y2);
+    font-size: clamp(42px, 6vw, 76px);
+    line-height: 0.86;
+    letter-spacing: 0;
+  }
+
+  .pc-os-orbit em {
+    color: var(--ink);
+    font-family: var(--mono);
+    font-size: 9px;
+    font-style: normal;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+
+  .pc-orbit-node {
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    border-radius: 999px;
+    background: var(--y2);
+    box-shadow: 0 0 22px rgba(240, 255, 0, 0.36);
+  }
+
+  .pc-orbit-node--1 { left: 48%; top: -5px; }
+  .pc-orbit-node--2 { right: -5px; top: 48%; }
+  .pc-orbit-node--3 { left: 48%; bottom: -5px; }
+  .pc-orbit-node--4 { left: -5px; top: 48%; }
+
+  .pc-week-rhythm {
+    position: absolute;
+    left: 18px;
+    right: 18px;
+    bottom: 14px;
+    z-index: 1;
+    display: grid;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    gap: 8px;
+    color: var(--ink-faint);
+    font-size: 7px;
+  }
+
+  .pc-week-rhythm span {
+    padding-top: 8px;
+    border-top: 2px solid var(--y2);
+  }
+
+  .pc-territory-map {
+    width: 72%;
+    height: 70%;
+    border: 1px solid rgba(240, 255, 0, 0.32);
+    background:
+      linear-gradient(90deg, transparent 49%, rgba(255, 255, 255, 0.1) 50%, transparent 51%),
+      linear-gradient(0deg, transparent 49%, rgba(255, 255, 255, 0.1) 50%, transparent 51%);
+  }
+
+  .pc-territory-map strong {
+    position: absolute;
+    right: 12px;
+    bottom: 12px;
+    color: var(--y2);
+    font-size: 8px;
+  }
+
+  .pc-territory-route {
+    position: absolute;
+    height: 1px;
+    background: rgba(240, 255, 0, 0.45);
+    transform-origin: left center;
+  }
+
+  .pc-territory-route--a {
+    left: 24%;
+    top: 48%;
+    width: 50%;
+    transform: rotate(-18deg);
+  }
+
+  .pc-territory-route--b {
+    left: 24%;
+    top: 48%;
+    width: 52%;
+    transform: rotate(24deg);
+  }
+
+  .pc-market-node {
+    position: absolute;
+    display: grid;
+    place-items: center;
+    width: 34px;
+    height: 34px;
+    border: 1px solid var(--y2);
+    background: var(--bg);
+    color: var(--y2);
+    font-family: var(--mono);
+    font-size: 9px;
+    letter-spacing: 0;
+  }
+
+  .pc-market-node--hq { left: 18%; top: 40%; }
+  .pc-market-node--west { left: 62%; top: 26%; }
+  .pc-market-node--east { left: 68%; bottom: 22%; }
+
+  .pc-card:hover .pc-card-visual::before {
+    opacity: 1;
+  }
+
+  /* Push remaining card content back to the previous padding rhythm */
+  .pc-tier-tag,
+  .pc-card-name,
+  .pc-price-num,
+  .pc-price-label,
+  .pc-card-cta {
+    padding-inline: clamp(20px, 2.5vw, 28px);
+  }
+  .pc-card-cta {
+    padding-bottom: clamp(20px, 2.5vw, 28px);
+    margin-top: auto;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .pc-card-visual::before { transition: none; }
+  }
+
+  /* Pilot card — Y1 tier-encoding hint */
+  .pc-card--pilot {
+    border-color: rgba(184, 255, 58, 0.24);
+  }
+  .pc-card--pilot:hover {
+    background: rgba(184, 255, 58, 0.02);
+    border-color: var(--y1);
+  }
+
+  /* Ascend card — Y2 emphasis + elevated -8px + MOST CHOSEN badge anchor */
+  .pc-card--ascend {
+    position: relative;
+    border-color: var(--y2);
+    border-width: 2px;
+    background: rgba(240, 255, 0, 0.02);
+    transform: translateY(-8px);
+  }
+  .pc-card--ascend:hover {
+    background: rgba(240, 255, 0, 0.05);
+    border-color: var(--y2-bright);
+  }
+
+  /* MOST CHOSEN badge — small Y2 pill on top of Ascend card */
+  .pc-most-chosen {
+    position: absolute;
+    top: -12px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--y2);
+    color: var(--bg);
+    font-family: var(--mono);
+    font-size: 9.5px;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    padding: 5px 12px;
+    border-radius: 2px;
+    white-space: nowrap;
+    z-index: 2;
+  }
+
+  .pc-tier-tag {
+    font-family: var(--mono);
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    margin-bottom: 12px;
+    display: inline-block;
+    padding: 4px 8px;
+    border: 1px solid var(--rule-bright);
+    border-radius: 2px;
+  }
+  /* Pilot tier-tag — Y1 outline */
+  .pc-tier-tag--y1 {
+    color: var(--y1);
+    border-color: rgba(184, 255, 58, 0.32);
+  }
+  /* Pro tier-tag — Y2 outline (existing pattern) */
+  .pc-tier-tag--y2 {
+    color: var(--y2);
+    border-color: rgba(240, 255, 0, 0.32);
+  }
+  /* Ascend tier-tag — Y2 solid fill (strongest emphasis) */
+  .pc-tier-tag--y2-fill {
+    background: var(--y2);
+    color: var(--bg);
+    border-color: var(--y2);
+    font-weight: 700;
+  }
+
+  .pc-card-name {
+    color: var(--ink);
+    margin-bottom: 12px;
+    font-size: clamp(22px, 2.4vw, 28px);
+  }
+
+  .pc-price-num {
+    font-family: var(--sans);
+    font-weight: 800;
+    font-stretch: 75%;
+    font-size: clamp(34px, 4vw, 46px);
+    line-height: 0.95;
+    letter-spacing: 0;
+    color: var(--ink);
+    margin-bottom: 10px;
+  }
+  .pc-price-num--y2 { color: var(--y2); }
+  .pc-price-num--y1 { color: var(--y1); }
+
+  .pc-price-mo {
+    font-size: 0.45em;
+    font-stretch: 100%;
+    letter-spacing: 0;
+    font-weight: 500;
+    vertical-align: baseline;
+  }
+
+  .pc-price-label {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--ink-dim);
+    margin-bottom: 14px;
+  }
+
+  .pc-card-note {
+    color: var(--ink-dim);
+    font-size: 14px;
+    line-height: 1.45;
+    margin-bottom: 16px;
+  }
+
+  .pc-card-cta {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    transition: color 180ms ease;
+  }
+  .pc-card-cta--y2 { color: var(--y2); }
+  .pc-card-cta--y1 { color: var(--y1); }
+  .pc-card:hover .pc-card-cta { color: var(--y2); }
+  .pc-card--pilot:hover .pc-card-cta { color: var(--y1); }
+
+  /* ── Table (desktop) ── */
+  .pc-table-wrap {
+    overflow-x: auto;
+    border: 1px solid var(--rule);
+    border-radius: 2px;
+  }
+
+  .pc-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 14px;
+  }
+
+  .pc-th {
+    font-family: var(--mono);
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.10em;
+    text-transform: uppercase;
+    color: var(--ink-dim);
+    padding: 11px 14px;
+    border-bottom: 1px solid var(--rule-bright);
+    text-align: left;
+    white-space: nowrap;
+  }
+  .pc-th--pilot { color: var(--y1); }
+  .pc-th--ascend { color: var(--y2); }
+  .pc-th--feature { width: 36%; }
+
+  /* Category header rows — Y2 chapter separator with dot indicator */
+  .pc-cat-row { background: rgba(240, 255, 0, 0.04); }
+  .pc-cat-cell {
+    padding: 10px 14px;
+    border-top: 1px solid var(--rule-bright);
+  }
+  .pc-cat-label {
+    position: relative;
+    padding-left: 16px;
+    font-family: var(--mono);
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--ink);
+  }
+  .pc-cat-label::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--y2);
+  }
+
+  .pc-row { transition: background 100ms ease; }
+  .pc-row:hover { background: rgba(240, 255, 0, 0.02); }
+
+  .pc-td {
+    padding: 11px 14px;
+    border-bottom: 1px solid var(--rule);
+    color: var(--ink);
+    font-size: 14px;
+    line-height: 1.45;
+    vertical-align: middle;
+  }
+  .pc-td--center { text-align: center; }
+  .pc-td--feature { color: var(--ink-dim); }
+  /* Pilot column subtle Y1 fill (tier-encoding) */
+  .pc-td--pilot { background: rgba(184, 255, 58, 0.02); }
+  /* Ascend column subtle Y2 fill */
+  .pc-td--ascend { background: rgba(240, 255, 0, 0.03); }
+
+  /* Cell value classes */
+  :global(.pc-check) {
+    color: var(--y2);
+    font-weight: 700;
+  }
+  :global(.pc-check--y1) {
+    color: var(--y1);
+    font-weight: 700;
+  }
+  :global(.pc-dash) {
+    color: var(--ink-faint);
+  }
+  :global(.pc-data) {
+    color: var(--ink);
+  }
+
+  /* ── Mobile stacked tiers (hidden on desktop) ── */
+  .pc-mobile-tiers {
+    display: none;
+    flex-direction: column;
+    gap: 14px;
+  }
+
+  .pc-mobile-tier {
+    position: relative;
+    padding: 18px;
+  }
+  /* Mobile palette variants — match desktop tier-encoding */
+  .pc-mobile-tier--y1 {
+    border-color: rgba(184, 255, 58, 0.32);
+  }
+  .pc-mobile-tier--y2-fill {
+    border-color: var(--y2);
+    border-width: 2px;
+  }
+  .pc-mobile-tier--y2-border {
+    border-color: var(--y2);
+    border-width: 2px;
+  }
+  .pc-most-chosen--mobile {
+    /* Override desktop center-anchor — mobile = top-right corner pill */
+    top: 12px;
+    left: auto;
+    right: 12px;
+    transform: none;
+  }
+
+  .pc-mobile-price {
+    font-family: var(--mono);
+    font-size: 12px;
+    letter-spacing: 0.10em;
+    text-transform: uppercase;
+    color: var(--y2);
+    margin: 10px 0 14px;
+  }
+  .pc-mobile-price--y1 { color: var(--y1); }
+
+  .pc-mobile-list {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 18px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .pc-mobile-item {
+    font-size: 13px;
+    color: var(--ink-dim);
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+    line-height: 1.45;
+  }
+
+  .pc-mobile-feat { flex: 1; }
+
+  .pc-mobile-cta {
+    width: 100%;
+    justify-content: center;
+    font-size: 14px;
+    padding: 14px 24px;
+  }
+
+  /* Responsive breakpoints */
+  @media (max-width: 960px) {
+    .pc-cards {
+      grid-template-columns: 1fr;
+      max-width: 440px;
+    }
+
+    .pc-table-wrap {
+      display: block;
+      margin-inline: calc(var(--container-x) * -1);
+      border-inline: 0;
+      border-radius: 0;
+    }
+    .pc-table { min-width: 760px; }
+    .pc-mobile-tiers { display: none; }
+  }
+
+  @media (max-width: 520px) {
+    .pc-cards { max-width: 100%; }
+    .pc-card-visual {
+      aspect-ratio: 1.35;
+    }
+  }
+</style>

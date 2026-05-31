@@ -2,7 +2,7 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 
 const title = "How It Works — Buildwise Media";
-const description = "The Buildwise Revenue Engine installs in 30 days. Audit, Build, Operate — three phases, one system.";
+const description = "Ascend installs in 30 days. Audit, Install, Run — three phases, one 8-layer revenue operating system.";
 
 const breadcrumb = {
   '@context': 'https://schema.org',
@@ -16,12 +16,12 @@ const breadcrumb = {
 const howTo = {
   '@context': 'https://schema.org',
   '@type': 'HowTo',
-  name: 'How the Buildwise Revenue Engine installs',
-  description: 'Three-phase install of the AI-native lead-generation system.',
+  name: 'How Ascend installs',
+  description: 'Three-phase install of the 8-layer revenue operating system.',
   totalTime: 'P30D',
   step: [
     { '@type': 'HowToStep', name: 'Audit', text: 'Map current pipeline, channels, integrations, and conversion path against a captured baseline.' },
-    { '@type': 'HowToStep', name: 'Build', text: 'Website, ad accounts, CRM, analytics, content engine installed in parallel. Day 1 system operational.' },
+    { '@type': 'HowToStep', name: 'Install', text: 'Website, conversion paths, follow-up, attribution, reporting, and weekly operating rhythm installed in parallel.' },
     { '@type': 'HowToStep', name: 'Operate', text: 'Weekly connector audit, monthly creative refresh, quarterly system review. Receipts every Monday.' },
   ],
 };
@@ -33,9 +33,9 @@ const phases = [
     deliverables: ['Pipeline map (current state)', 'Channel + spend audit', 'Integration health report', 'Captured baseline document'],
   },
   {
-    n: '02', name: 'Build', when: 'Day 5 → Day 30',
-    body: 'Website, ad accounts, CRM, analytics, content engine — built in parallel, not in sequence. Three weeks in, the website is live. Four weeks in, ads are wired with server-side conversion tracking. The system is operational on Day 30 — not "ready to launch" on Day 90.',
-    deliverables: ['Multi-page website (Three-Layer optimized)', 'Ad accounts + tracking infrastructure', 'CRM + lead attribution pipeline', 'Content engine + editorial calendar'],
+    n: '02', name: 'Install', when: 'Day 5 → Day 30',
+    body: 'Website, conversion paths, follow-up, attribution, reporting, and weekly operating rhythm are installed in parallel, not in sequence. The system is operational on Day 30.',
+    deliverables: ['Multi-page website built for human + AI discovery', 'Conversion paths + tracking infrastructure', 'Lead attribution pipeline', 'Weekly operating dashboard'],
   },
   {
     n: '03', name: 'Operate', when: 'Day 30 → ongoing',
@@ -55,7 +55,7 @@ const phases = [
         One operating system.
       </h1>
       <p class="hero-sub" style="max-width: 720px;">
-        Most agencies take 90 days to begin. We take 30 to install. Below is exactly what happens, week by week.
+        Most agencies sell a project. Ascend installs an operating rhythm: baseline first, system live in 30 days, weekly proof after that.
       </p>
     </div>
   </section>
@@ -100,7 +100,7 @@ const phases = [
         <div class="diff-col">
           <p class="diff-label mono diff-label--ours">Buildwise Media</p>
           <ul class="diff-list">
-            <li>30 days from start to operational system</li>
+            <li>30 days from diagnostic to operational system</li>
             <li>Strategy lives inside the system, not in a deck</li>
             <li>One stack, one source of truth, one dashboard</li>
             <li>Every claim audits against a captured baseline</li>
@@ -131,9 +131,9 @@ const phases = [
 .phase-row { padding: 56px 0; border-top: 1px solid var(--rule); display: grid; grid-template-columns: minmax(0, 1fr); gap: 16px; }
 .phase-row:last-child { border-bottom: 1px solid var(--rule); }
 .phase-head { display: flex; gap: 24px; align-items: center; margin-bottom: 8px; }
-.phase-num { font-size: 14px; letter-spacing: 0.25em; color: var(--gold); }
+.phase-num { font-size: 14px; letter-spacing: 0.25em; color: var(--y2); }
 .phase-when { font-size: 11px; letter-spacing: 0.18em; color: var(--ink-faint); }
-.phase-name { font-family: var(--serif); font-weight: 400; font-size: clamp(36px, 4vw, 56px); letter-spacing: -0.02em; line-height: 1; color: var(--ink); }
+.phase-name { font-family: var(--sans); font-weight: 800; font-stretch: 75%; font-size: clamp(36px, 4vw, 56px); letter-spacing: -0.02em; line-height: 1; color: var(--ink); }
 .phase-body { font-family: var(--sans); font-weight: 300; font-size: 18px; line-height: 1.65; color: var(--ink-dim); max-width: 760px; margin-bottom: 16px; }
 .phase-deliv-label { color: var(--ink-faint); margin-top: 8px; }
 .phase-deliv-list { list-style: none; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; max-width: 760px; }
@@ -144,10 +144,10 @@ const phases = [
 .diff-cols { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 32px; margin-top: 48px; }
 .diff-col { background: var(--bg-card); border: 1px solid var(--rule); padding: 32px; }
 .diff-label { color: var(--ink-faint); margin-bottom: 24px; }
-.diff-label--ours { color: var(--gold); }
+.diff-label--ours { color: var(--y2); }
 .diff-list { list-style: none; display: flex; flex-direction: column; gap: 14px; }
 .diff-list li { font-size: 15px; line-height: 1.55; color: var(--ink-dim); padding-left: 14px; border-left: 1px solid var(--rule); }
-.diff-col:last-child .diff-list li { border-left-color: var(--gold); }
+.diff-col:last-child .diff-list li { border-left-color: var(--y2); }
 
 .diff-footer { margin-top: 40px; font-size: 11px; letter-spacing: 0.18em; color: var(--ink-faint); text-align: center; text-transform: uppercase; }
 .diff-footer a { color: var(--ink-dim); transition: color 180ms ease; }

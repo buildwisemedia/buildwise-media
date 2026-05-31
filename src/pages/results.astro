@@ -2,7 +2,20 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 
 const title = "Results — Buildwise Media";
-const description = "Verified outcomes from the Buildwise Revenue Engine. Baseline-first attribution. Confidence floor 75%. Receipts every Monday.";
+const description = "Verified outcomes from Ascend: measured, attributed, and modeled proof with baseline-first reporting and an honest 5× ROI floor.";
+
+const proofLedger = [
+  { label: 'Measured', value: 'source truth', body: 'Tied to baseline, CRM events, call tracking, analytics, or dashboard records.', tone: 'green' },
+  { label: 'Attributed', value: 'path visible', body: 'Source, page, first touch, last touch, and booked-work handoff are stitched.', tone: 'cyan' },
+  { label: 'Modeled', value: 'confidence stated', body: 'Directional proof gets a confidence label instead of pretending to be exact.', tone: 'yellow' },
+  { label: 'Excluded', value: 'kept honest', body: 'If we cannot tie revenue to an audited touchpoint, it does not count toward ROI.', tone: 'orange' },
+];
+
+const attributionHonesty = [
+  { label: 'Counts', body: 'Booked jobs tied to a tracked lead path inside the dashboard.' },
+  { label: 'Does not count', body: 'Old referrals, pre-existing SEO, or channels we cannot prove we moved.' },
+  { label: 'Why owners care', body: 'The ROI floor only matters if the math is conservative enough to trust.' },
+];
 
 const breadcrumb = {
   '@context': 'https://schema.org',
@@ -13,194 +26,789 @@ const breadcrumb = {
   ],
 };
 
-const headlineStats = [
-  { num: '$20M', tail: '+', label: 'Pipeline generated for clients' },
-  { num: '3', mid: '–', tailNum: '5', tail: 'x', label: 'Lead increase, baseline-verified' },
-  { num: '92', tail: '%', label: 'Clients on platform after 90 days' },
-  { num: '4.9', label: 'Aggregate review rating' },
-];
-
-const stories = [
-  {
-    quote: 'For the first time the marketing budget feels like a P&L line, not a black hole. We see what spent, what closed, what\'s next.',
-    role: 'Operations director',
-    context: 'Specialty contractor · Northeast',
-    delta: '+47% qualified leads · 90 days',
-    evidence: 'Measured · Confidence: 92%',
-  },
-  {
-    quote: 'They installed in three weeks what our last agency couldn\'t finish in nine months. And we can read the dashboard.',
-    role: 'Founder/operator',
-    context: 'Multi-location service brand · Southeast',
-    delta: 'Day 22 system live · Day 28 first lead',
-    evidence: 'Measured · Confidence: 95%',
-  },
-  {
-    quote: 'The connector audit alone changed how I think about every other vendor we work with. Quiet things were broken for months.',
-    role: 'CEO',
-    context: 'Home-services franchise · Midwest',
-    delta: '11 broken integrations surfaced · all resolved',
-    evidence: 'Attributed · Confidence: 88%',
-  },
-];
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: [
+    {
+      '@type': 'Question',
+      name: 'How does the 5× ROI floor work?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'The 5× attributable ROI floor is written into the MSA. It is measured against the baseline captured on Day 0. If the system is at 4× at Month 24, Buildwise keeps working until it hits the floor.'
+      }
+    },
+    {
+      '@type': 'Question',
+      name: 'How fast is the system operational?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Inside 30 days the system is live, the dashboard is open, and first qualified signals are visible. The full proof sprint runs inside the 45-day Pilot window.'
+      }
+    },
+    {
+      '@type': 'Question',
+      name: 'Can I speak with your references, and why are client names anonymous?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'We protect client privacy so competitors cannot reverse-engineer their search, follow-up, and proof systems. Public cases may be anonymized, but verified data, dashboards, and references can be shared during discovery after mutual fit.'
+      }
+    }
+  ]
+};
 ---
-<BaseLayout title={title} description={description} jsonLd={[breadcrumb]}>
+<BaseLayout title={title} description={description} jsonLd={[breadcrumb, faqSchema]}>
 
+  <!-- SECTION 1: HERO & SCOREBOARD -->
   <section class="results-hero">
-    <div class="container">
-      <p class="eyebrow">Receipts</p>
-      <h1 class="h-hero">
-        We'd rather<br/>
-        <em>show</em> you.
-      </h1>
-      <p class="hero-sub" style="max-width: 720px;">
-        Every claim below carries a confidence percentage, an evidence class, and a captured baseline. Sub-75% confidence numbers don't show up here at all.
-      </p>
-      <figure class="section-photo section-photo--diagram">
-        <img src="/images/node-mesh-ascending-v1.svg" alt="Isometric node mesh ascending — the lead-generation network growing in three converging layers." width="1200" height="900" loading="lazy" decoding="async" />
-      </figure>
-    </div>
-  </section>
-
-  <section class="metrics-bar elev">
-    <div class="container">
-      <div class="metrics-grid">
-        {headlineStats.map((s) => (
-          <div class="metric-block reveal">
-            <p class="metric-val">{s.num}{s.mid && <em>{s.mid}</em>}{s.tailNum}<em>{s.tail || ''}</em></p>
-            <p class="metric-label mono">{s.label}</p>
-          </div>
-        ))}
+    <div class="container hero-grid">
+      <div class="hero-content">
+        <p class="eyebrow">Outcomes</p>
+        <h1 class="h-hero">
+          Proof should make the math easier to trust.
+        </h1>
+        <p class="hero-sub" style="max-width: 600px;">
+          Every outcome starts against a baseline. The claim is less important than seeing what moved, why it moved, and whether the dashboard can prove it.
+        </p>
+        <div class="results-hero-actions">
+          <a href="/book" class="cta" data-cta-source="results-hero">See If We're a Fit<span class="cta-arrow" aria-hidden="true">→</span></a>
+          <a href="/pricing" class="cta-ghost" data-cta-source="results-hero-pricing">See Pricing</a>
+        </div>
       </div>
-      <p class="metrics-foot mono">All figures audited against captured baseline · Confidence floor 75% · Evidence class label per metric</p>
+
+      <div class="scoreboard-panel">
+        <p class="kpi-label mono">Aggregated Receipts</p>
+        <div class="scoreboard-grid">
+          <div class="score-card">
+            <span class="score-num font-condensed">$10.4M+</span>
+            <span class="score-label mono">Attributable Pipeline</span>
+          </div>
+          <div class="score-card">
+            <span class="score-num font-condensed">33.2×</span>
+            <span class="score-label mono">Client Return Anchor</span>
+          </div>
+          <div class="score-card">
+            <span class="score-num font-condensed">34</span>
+            <span class="score-label mono">Operational Channels</span>
+          </div>
+          <div class="score-card">
+            <span class="score-num font-condensed">3.2×</span>
+            <span class="score-label mono">Qualified-Lead Share Lift</span>
+          </div>
+        </div>
+      </div>
     </div>
   </section>
 
-  <section class="stories-section">
-    <div class="container">
-      <p class="section-tag">Case stories</p>
-      <h2 class="h-section">What the system <em>moved.</em></h2>
-
-      <figure class="section-photo section-photo--banner">
-        <img src="/images/bwm-results-editorial-v1.webp" alt="An operator in profile silhouette reviewing a single illuminated dashboard tile — quiet authority, monitor glow lighting the desk." width="1920" height="1080" loading="lazy" decoding="async" />
-      </figure>
-
-      <div class="stories-grid">
-        {stories.map((s) => (
-          <article class="story-card reveal">
-            <p class="story-evidence mono"><span class="dot live"></span>{s.evidence}</p>
-            <blockquote class="pull">"{s.quote}"</blockquote>
-            <footer class="story-meta">
-              <p class="story-role">{s.role}</p>
-              <p class="story-context mono">{s.context}</p>
-              <p class="story-delta mono">{s.delta}</p>
-            </footer>
+  <section class="proof-ledger-section" aria-labelledby="proof-ledger-title">
+    <div class="container proof-ledger-grid">
+      <header>
+        <p class="section-tag">Proof ledger</p>
+        <h2 id="proof-ledger-title" class="h-section">Owners have been trained to distrust marketing math. Good.</h2>
+        <p class="lede">Ascend separates hard evidence from directional signal. That is how the weekly report becomes useful instead of performative.</p>
+      </header>
+      <div class="ledger-grid">
+        {proofLedger.map((item) => (
+          <article class={`ledger-card tone-${item.tone}`}>
+            <p class="ops-kicker">{item.label}</p>
+            <strong>{item.value}</strong>
+            <p>{item.body}</p>
           </article>
         ))}
       </div>
-
-      <p class="stories-foot mono">Identifying details abstracted while public-facing case-study sign-off completes. Underlying data verifiable on a discovery call.</p>
-    </div>
-  </section>
-
-  <section class="results-receipt">
-    <div class="container">
-      <figure class="section-photo section-photo--receipt">
-        <img src="/images/bwm-receipts-still-life-v1.webp" alt="Macro detail of a single dashboard tile: +47% qualified leads, 90-day window, 92% confidence — the receipt as artifact." width="1920" height="1080" loading="lazy" decoding="async" />
-      </figure>
-    </div>
-  </section>
-
-  <section class="results-cta elev">
-    <div class="container ascend-cta-row">
-      <div>
-        <h2 class="h-closer">See what the system can <em>do</em> for yours.</h2>
-        <p class="lede" style="margin-top: 16px;">Fifteen minutes on the calendar — bring your numbers, leave with the audit.</p>
+      <div class="proof-image-pair" aria-label="Proof artifact imagery">
+        <figure>
+          <!-- @r020:F2 proof: still-life of measured proof artifacts -->
+          <img src="/images/bwm-proof-still-life-v1.webp" alt="Printed graph, magnifying glass, and pen arranged as conservative proof artifacts." width="720" height="480" loading="lazy" decoding="async" />
+        </figure>
+        <figure>
+          <!-- @r020:F2 proof: receipt packet supports attribution honesty -->
+          <img src="/images/bwm-receipts-still-life-v1.webp" alt="Close detail of receipts, notes, and measured evidence on a dark operations desk." width="720" height="480" loading="lazy" decoding="async" />
+        </figure>
       </div>
-      <a href="/book" class="cta" data-cta-source="results-final">See If We're a Fit<span class="cta-arrow" aria-hidden="true">→</span></a>
+    </div>
+  </section>
+
+  <!-- SECTION 2: ANCHOR CASE STUDY & TIMELINE -->
+  <section class="case-study-section elev">
+    <div class="container study-grid">
+
+      <!-- Left Column: Timeline -->
+      <div class="timeline-col">
+        <p class="section-tag">Case Timeline</p>
+        <h2 class="h-section">$300K to <em>$10M+</em></h2>
+        <p class="study-sub">One specialty service business changed its operating model and crossed eight figures.</p>
+
+        <div class="timeline">
+          <div class="timeline-line"></div>
+
+          <div class="timeline-item">
+            <div class="timeline-node"></div>
+            <div class="timeline-content">
+              <span class="timeline-meta mono">Month 01 · Baseline + install</span>
+              <h3 class="timeline-title">The system could finally see the work.</h3>
+              <p class="timeline-body">Baseline captured. Lead paths connected. Dashboard live. The owner stopped guessing which calls and forms were worth chasing.</p>
+            </div>
+          </div>
+
+          <div class="timeline-item">
+            <div class="timeline-node"></div>
+            <div class="timeline-content">
+              <span class="timeline-meta mono">Month 06 · Faster follow-up</span>
+              <h3 class="timeline-title">Leads stopped sitting cold.</h3>
+              <p class="timeline-body">Forms, calls, and follow-up routes tightened. Speed-to-lead moved under five minutes on tracked paths. Monthly run-rate climbed.</p>
+            </div>
+          </div>
+
+          <div class="timeline-item">
+            <div class="timeline-node"></div>
+            <div class="timeline-content">
+              <span class="timeline-meta mono">Month 18 · Proof loops</span>
+              <h3 class="timeline-title">Reviews, quotes, and booked jobs started compounding.</h3>
+              <p class="timeline-body">Intake workflows, quote reminders, review requests, and reporting moved together. Annualized pipeline reached $5.2M.</p>
+            </div>
+          </div>
+
+          <div class="timeline-item">
+            <div class="timeline-node"></div>
+            <div class="timeline-content">
+              <span class="timeline-meta mono">Month 24 · Scale</span>
+              <h3 class="timeline-title">The system became infrastructure.</h3>
+              <p class="timeline-body">Attributable return reached 33.2x against baseline. Total revenue run-rate moved past $10M without turning the owner into the marketing department.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right Column: Evidence & Quote -->
+      <div class="evidence-col">
+        <figure class="study-image">
+          <!-- @r020:F2 proof: premium photo of operator analyzing dashboard telemetry on site -->
+          <img src="/images/bwm-results-editorial-v1.webp" alt="Service business operator reviewing telemetry on dashboard, warm lights reflecting off industrial desk surfaces." width="800" height="450" loading="lazy" decoding="async" />
+        </figure>
+
+        <div class="quote-card">
+          <blockquote class="pull">
+            "For the first time, our marketing budget feels like a P&L operations line, not a black hole. We see what spent, what closed, and what's next. The system is just infrastructure now."
+          </blockquote>
+          <cite class="quote-cite">
+            <span class="cite-author">Founder & Operator</span>
+            <span class="cite-meta mono">Specialty Service Brand · Southeast US</span>
+          </cite>
+        </div>
+
+        <div class="badges-row">
+            <span class="badge mono">33.2× ROI</span>
+            <span class="badge mono">Month-to-Month</span>
+            <span class="badge mono">Data Sovereignty</span>
+        </div>
+
+        <div class="comparison-strip">
+          <p class="kpi-label mono">Baseline Shift</p>
+          <div class="comparison-grid">
+            <div class="comp-box">
+              <span class="comp-label mono">Before</span>
+              <p class="comp-text">No attribution, disconnected vendors, manual intake, and no clear path from lead to booked work.</p>
+            </div>
+            <div class="comp-box active">
+              <span class="comp-label mono">After (Ascend)</span>
+              <p class="comp-text">One system running weekly, faster response, review loops, quote follow-up, and clearer booked-job attribution.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <section class="attribution-section" aria-labelledby="attribution-title">
+    <div class="container attribution-grid">
+      <header>
+        <p class="section-tag">Attribution honesty</p>
+        <h2 id="attribution-title" class="h-section">The ROI floor only works if the math is conservative.</h2>
+        <p class="lede">The goal is not to claim every dollar. The goal is to prove what the system actually moved.</p>
+      </header>
+      <div class="attribution-cards">
+        {attributionHonesty.map((item) => (
+          <article>
+            <p class="ops-kicker">{item.label}</p>
+            <p>{item.body}</p>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 3: FAQ ACCORDION -->
+  <section class="results-faq">
+    <div class="container faq-grid">
+      <div class="faq-head">
+        <p class="section-tag">Performance Framework</p>
+        <h2 class="h-section">Real systems.<br/><em>Real</em> answers.</h2>
+        <p class="hero-sub" style="max-width: 400px;">How we structure agreements, timelines, and confidentiality so owners can inspect the system before trusting it.</p>
+      </div>
+
+      <div class="faq-list-col">
+        <ul class="faq-list" role="list">
+          <li class="faq-item">
+            <details open>
+              <summary>
+                <span class="faq-q">How does the 5× ROI floor work?</span>
+                <span class="faq-toggle" aria-hidden="true">+</span>
+              </summary>
+              <div class="faq-a">
+                <p>The 5× attributable ROI floor is written into the MSA. It is measured against the baseline captured on Day 0. If the system is at 4× at Month 24, Buildwise keeps working until it hits the floor. It is an operating floor, not a slogan.</p>
+              </div>
+            </details>
+          </li>
+          <li class="faq-item">
+            <details>
+              <summary>
+                <span class="faq-q">How fast is the system operational?</span>
+                <span class="faq-toggle" aria-hidden="true">+</span>
+              </summary>
+              <div class="faq-a">
+                <p>Inside 30 days the system is live, the dashboard is open, and first qualified signals are visible. The full proof sprint runs inside the 45-day Pilot window.</p>
+              </div>
+            </details>
+          </li>
+          <li class="faq-item">
+            <details>
+              <summary>
+                <span class="faq-q">Can I speak with your references, and why are client names anonymous?</span>
+                <span class="faq-toggle" aria-hidden="true">+</span>
+              </summary>
+              <div class="faq-a">
+                <p>We protect client privacy so competitors cannot reverse-engineer their search, follow-up, and proof systems. Public cases may be anonymized, but verified data, dashboards, and references can be shared during discovery after mutual fit.</p>
+              </div>
+            </details>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 4: FINAL CTA -->
+  <section class="final-cta elev">
+    <div class="container cta-container">
+      <div class="cta-text-side">
+        <h2 class="h-closer">See what the system can <em>do</em> for yours.</h2>
+        <p class="lede" style="margin-top: 16px;">
+          Bring your current numbers: monthly spend, lead volume, close rate, and average job value. The Market Dominance Dossier tells us whether Ascend has room to pay for itself.
+        </p>
+        <div class="badges-row text-side-badges" style="margin-top: 24px;">
+          <span class="badge badge-subtle mono">Month-to-Month Contract</span>
+          <span class="badge badge-subtle mono">Data Sovereignty Guaranteed</span>
+        </div>
+      </div>
+      <div class="cta-button-side">
+        <a href="/book" class="cta" data-cta-source="results-final">See If We're a Fit<span class="cta-arrow" aria-hidden="true">→</span></a>
+      </div>
     </div>
   </section>
 
 </BaseLayout>
 
 <style>
-.results-hero { padding-top: clamp(140px, 14vw, 180px); padding-bottom: clamp(60px, 8vw, 100px); }
-
-.metrics-bar { padding-block: 80px; }
-.metrics-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 32px; }
-.metric-block { display: flex; flex-direction: column; gap: 8px; padding: 24px 0; border-top: 1px solid var(--gold); }
-.metric-val { font-family: var(--serif); font-weight: 400; font-size: clamp(48px, 6vw, 72px); letter-spacing: -0.025em; line-height: 1; color: var(--ink); }
-.metric-label { color: var(--ink-faint); }
-.metrics-foot {
-  margin-top: 40px;
-  font-size: 11px;
-  letter-spacing: 0.18em;
-  color: var(--ink-faint);
-  text-transform: uppercase;
-  max-width: 760px;
-  line-height: 1.7;
+/* --- General Page Grid & Hero --- */
+.results-hero {
+  padding-top: clamp(108px, 10vw, 144px);
+  padding-bottom: clamp(48px, 6vw, 80px);
+}
+.hero-grid {
+  display: grid;
+  grid-template-columns: 1.1fr 1fr;
+  gap: clamp(32px, 5vw, 64px);
+  align-items: center;
+}
+.hero-content {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+.results-hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  align-items: center;
+  margin-top: 4px;
 }
 
-.stories-section { padding-block: var(--section-y); }
-.stories-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px; margin-top: 48px; }
-.story-card { background: var(--bg-card); border: 1px solid var(--rule); padding: 32px 28px; display: flex; flex-direction: column; gap: 20px; }
-.story-card .pull { font-size: clamp(20px, 1.8vw, 24px); border-left-width: 1px; padding-left: 20px; line-height: 1.35; }
-.story-evidence { font-size: 10px; letter-spacing: 0.18em; color: var(--ink-faint); display: inline-flex; align-items: center; }
-.story-meta { display: flex; flex-direction: column; gap: 6px; padding-top: 16px; border-top: 1px solid var(--rule); }
-.story-role { font-family: var(--sans); font-size: 15px; font-weight: 500; color: var(--ink); }
-.story-context { font-size: 10px; letter-spacing: 0.2em; color: var(--ink-faint); }
-.story-delta { font-size: 11px; letter-spacing: 0.18em; color: var(--gold); }
+/* --- Scoreboard Panel --- */
+.scoreboard-panel {
+  background:
+    linear-gradient(135deg, rgba(56,216,255,0.045), transparent 42%),
+    var(--bg-card);
+  border: 1px solid var(--rule-bright);
+  padding: clamp(22px, 3vw, 32px);
+  border-radius: 6px;
+}
+.scoreboard-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(16px, 2.5vw, 28px);
+  margin-top: 20px;
+}
+.score-card {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  border-top: 1px solid var(--rule-bright);
+  padding-top: 20px;
+}
+.score-num {
+  font-family: var(--sans);
+  font-weight: 800;
+  font-stretch: 75%;
+  font-size: clamp(36px, 4vw, 56px);
+  line-height: 1;
+  color: var(--y2);
+  letter-spacing: -0.02em;
+}
+.score-label {
+  font-size: 11px;
+  letter-spacing: 0.15em;
+  color: var(--ink-dim);
+  text-transform: uppercase;
+  line-height: 1.4;
+}
 
-.stories-foot { margin-top: 48px; font-size: 10px; letter-spacing: 0.18em; color: var(--ink-faint); max-width: 760px; line-height: 1.7; }
+/* --- Proof Ledger --- */
+.proof-ledger-section {
+  padding-block: clamp(56px, 7vw, 88px);
+  border-top: 1px solid var(--rule);
+}
+.proof-ledger-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 0.82fr) minmax(0, 1.18fr);
+  gap: clamp(32px, 5vw, 64px);
+  align-items: start;
+}
+.proof-ledger-grid header {
+  position: sticky;
+  top: 104px;
+}
+.proof-ledger-grid .lede { margin-top: 22px; }
+.ledger-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1px;
+  background: var(--rule);
+  border: 1px solid var(--rule);
+}
+.ledger-card {
+  background: var(--bg-card);
+  border-top: 3px solid currentColor;
+  padding: clamp(20px, 2.5vw, 28px);
+}
+.ledger-card strong {
+  display: block;
+  margin-block: 12px;
+  font-size: clamp(28px, 3.2vw, 46px);
+  line-height: 1;
+  letter-spacing: -0.045em;
+  color: var(--ink);
+}
+.ledger-card p:last-child {
+  color: var(--ink-dim);
+  font-size: 15px;
+  line-height: 1.55;
+}
+.proof-image-pair {
+  grid-column: 2;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+}
+.proof-image-pair figure {
+  aspect-ratio: 3 / 2;
+  overflow: hidden;
+  border: 1px solid var(--rule);
+  background: var(--bg-card);
+}
+.proof-image-pair img {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+}
 
-.results-cta { padding-block: 80px; }
-.results-receipt { padding-block: clamp(48px, 7vw, 96px); }
-.ascend-cta-row { display: flex; align-items: center; justify-content: space-between; gap: 32px; flex-wrap: wrap; }
+/* --- Case Study & Timeline Grid --- */
+.case-study-section {
+  padding-block: clamp(56px, 7vw, 88px);
+}
+.study-grid {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  gap: clamp(32px, 5vw, 64px);
+  align-items: start;
+}
+.study-sub {
+  font-family: var(--sans);
+  font-weight: 300;
+  font-size: 18px;
+  line-height: 1.6;
+  color: var(--ink-dim);
+  margin-top: 16px;
+  margin-bottom: 28px;
+  max-width: 520px;
+}
 
-.section-photo {
-  margin: clamp(40px, 6vw, 72px) 0 0;
+/* Timeline Components */
+.timeline {
+  position: relative;
+  padding-left: 32px;
+}
+.timeline-line {
+  position: absolute;
+  left: 6px;
+  top: 10px;
+  bottom: 10px;
+  width: 1px;
+  background: var(--rule-bright);
+}
+.timeline-item {
+  position: relative;
+  margin-bottom: 28px;
+}
+.timeline-item:last-child {
+  margin-bottom: 0;
+}
+.timeline-node {
+  position: absolute;
+  left: -32px;
+  top: 8px;
+  width: 13px;
+  height: 13px;
+  border-radius: 50%;
+  background: var(--bg);
+  border: 2px solid var(--y2);
+}
+.timeline-meta {
+  font-size: 10px;
+  letter-spacing: 0.2em;
+  color: var(--ink-faint);
+  text-transform: uppercase;
+}
+.timeline-title {
+  font-family: var(--sans);
+  font-weight: 800;
+  font-stretch: 75%;
+  font-size: 20px;
+  color: var(--ink);
+  margin-block: 4px 8px;
+  text-transform: uppercase;
+}
+.timeline-body {
+  font-family: var(--sans);
+  font-weight: 300;
+  font-size: 15px;
+  line-height: 1.6;
+  color: var(--ink-dim);
+}
+
+/* Evidence / Pull Quote Column */
+.evidence-col {
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+}
+.study-image {
   border-radius: 6px;
   overflow: hidden;
   border: 1px solid var(--rule);
-  aspect-ratio: 21 / 9;
-  width: 100%;
+  aspect-ratio: 16 / 9;
 }
-.section-photo img {
+.study-image img {
   width: 100%;
   height: 100%;
   object-fit: cover;
   display: block;
 }
-.section-photo--banner {
-  aspect-ratio: 21 / 9;
-  margin-top: clamp(32px, 4vw, 48px);
-  margin-bottom: clamp(40px, 6vw, 72px);
+.quote-card {
+  background: var(--bg-card);
+  border: 1px solid var(--rule);
+  padding: 24px;
+  border-radius: 6px;
 }
-.section-photo--receipt {
-  aspect-ratio: 16 / 9;
-  margin-top: 0;
-  max-width: 960px;
-  margin-inline: auto;
+.pull {
+  font-family: var(--sans);
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 1.5;
+  color: var(--ink);
+  border-left: 2px solid var(--y2);
+  padding-left: 20px;
+  margin-bottom: 20px;
 }
-.section-photo--diagram {
-  aspect-ratio: 16 / 10;
-  max-width: 720px;
-  margin-inline: auto;
-  margin-top: clamp(32px, 5vw, 56px);
-  background: #050507;
+.quote-cite {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding-left: 22px;
 }
-.section-photo--diagram img {
-  object-fit: contain;
+.cite-author {
+  font-family: var(--sans);
+  font-weight: 600;
+  font-size: 15px;
+  color: var(--ink);
+}
+.cite-meta {
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  color: var(--ink-dim);
 }
 
+.badges-row {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+.badge {
+  border: 1px solid var(--y2);
+  color: var(--y2);
+  font-size: 10px;
+  letter-spacing: 0.15em;
+  padding: 6px 12px;
+  text-transform: uppercase;
+  background: rgba(240, 255, 0, 0.03);
+}
+.badge-subtle {
+  border: 1px solid var(--rule-bright);
+  color: var(--ink-dim);
+  background: none;
+}
+
+/* Comparison Strip */
+.comparison-strip {
+  border-top: 1px solid var(--rule);
+  padding-top: 24px;
+}
+.comparison-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  margin-top: 16px;
+}
+.comp-box {
+  padding: 16px;
+  border: 1px solid var(--rule);
+  background: rgba(255, 255, 255, 0.01);
+}
+.comp-box.active {
+  border-color: var(--rule-bright);
+  background: rgba(240, 255, 0, 0.01);
+}
+.comp-label {
+  font-size: 9px;
+  letter-spacing: 0.2em;
+  color: var(--ink-faint);
+  text-transform: uppercase;
+  margin-bottom: 8px;
+  display: block;
+}
+.comp-box.active .comp-label {
+  color: var(--y2);
+}
+.comp-text {
+  font-family: var(--sans);
+  font-size: 13px;
+  line-height: 1.5;
+  color: var(--ink-dim);
+}
+
+/* --- Attribution Honesty --- */
+.attribution-section {
+  padding-block: clamp(56px, 7vw, 88px);
+  border-top: 1px solid var(--rule);
+}
+.attribution-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 0.86fr) minmax(0, 1.14fr);
+  gap: clamp(32px, 5vw, 64px);
+  align-items: start;
+}
+.attribution-grid header {
+  position: sticky;
+  top: 100px;
+}
+.attribution-grid .lede {
+  margin-top: 22px;
+}
+.attribution-cards {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1px;
+  background: var(--rule);
+  border: 1px solid var(--rule);
+}
+.attribution-cards article {
+  min-width: 0;
+  background: var(--bg-card);
+  padding: clamp(18px, 2.2vw, 26px);
+  border-top: 2px solid var(--y2);
+}
+.attribution-cards article:nth-child(2) { border-top-color: var(--signal-orange); }
+.attribution-cards article:nth-child(3) { border-top-color: var(--signal-green); }
+.attribution-cards p:last-child {
+  margin-top: 10px;
+  color: var(--ink-dim);
+  font-size: 15px;
+  line-height: 1.55;
+}
+
+/* --- FAQ Accordion Grid --- */
+.results-faq {
+  padding-block: clamp(56px, 7vw, 88px);
+}
+.faq-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.4fr);
+  gap: clamp(32px, 5vw, 64px);
+  align-items: start;
+}
+.faq-head {
+  position: sticky;
+  top: 100px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+.faq-list-col {
+  display: flex;
+  flex-direction: column;
+}
+.faq-list {
+  list-style: none;
+}
+.faq-item {
+  border-top: 1px solid var(--rule);
+}
+.faq-item:last-child {
+  border-bottom: 1px solid var(--rule);
+}
+.faq-item details summary {
+  list-style: none;
+  cursor: pointer;
+  padding: 20px 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 24px;
+}
+.faq-item details summary::-webkit-details-marker {
+  display: none;
+}
+.faq-q {
+  font-family: var(--sans);
+  font-weight: 700;
+  font-size: clamp(18px, 2vw, 24px);
+  letter-spacing: -0.015em;
+  line-height: 1.35;
+  color: var(--ink);
+}
+.faq-toggle {
+  font-family: var(--mono);
+  font-size: 24px;
+  color: var(--y2);
+  flex: none;
+  width: 32px;
+  text-align: center;
+  line-height: 1;
+  transition: transform 220ms ease;
+}
+.faq-item details[open] .faq-toggle {
+  transform: rotate(45deg);
+}
+.faq-a {
+  padding: 0 0 28px 0;
+}
+.faq-a p {
+  font-family: var(--sans);
+  font-weight: 300;
+  font-size: 16px;
+  line-height: 1.65;
+  color: var(--ink-dim);
+}
+
+/* --- Final CTA --- */
+.final-cta {
+  padding-block: clamp(56px, 7vw, 88px);
+}
+.cta-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 48px;
+  flex-wrap: wrap;
+}
+.cta-text-side {
+  flex: 1;
+  min-width: 300px;
+}
+.cta-button-side {
+  flex: none;
+}
+
+/* --- Responsive Adjustments --- */
 @media (max-width: 880px) {
-  .metrics-grid { grid-template-columns: repeat(2, 1fr); gap: 24px; }
-  .stories-grid { grid-template-columns: 1fr; }
-  .section-photo, .section-photo--banner, .section-photo--receipt {
-    aspect-ratio: 16 / 10;
+  .hero-grid {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+  .proof-ledger-grid {
+    grid-template-columns: 1fr;
+  }
+  .proof-image-pair {
+    grid-column: auto;
+  }
+  .proof-ledger-grid header,
+  .attribution-grid header {
+    position: static;
+  }
+  .attribution-grid {
+    grid-template-columns: 1fr;
+  }
+  .study-grid {
+    grid-template-columns: 1fr;
+    gap: 56px;
+  }
+  .faq-grid {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+  .faq-head {
+    position: static;
+  }
+  .cta-container {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 32px;
   }
 }
-@media (max-width: 480px) {
-  .metrics-grid { grid-template-columns: 1fr; }
+
+@media (max-width: 560px) {
+  .results-hero {
+    padding-top: 92px;
+    padding-bottom: 48px;
+  }
+
+  .results-hero .h-hero {
+    font-size: 34px;
+    line-height: 1.03;
+    letter-spacing: 0;
+  }
+
+  .results-hero .hero-sub {
+    font-size: 16px;
+    line-height: 1.5;
+  }
+
+  .scoreboard-grid,
+  .ledger-grid,
+  .comparison-grid,
+  .attribution-cards {
+    grid-template-columns: 1fr;
+  }
 }
 </style>

@@ -1,0 +1,48 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+const title = "Capability Inheritance — Buildwise Media";
+const description = "Capability inheritance is the Ascend promise that the system gets the benefit of frontier AI improvements without forcing a re-platform.";
+
+const definedTerm = {
+  '@context': 'https://schema.org',
+  '@type': 'DefinedTerm',
+  '@id': 'https://buildwisemedia.com/playbook/capability-inheritance#term',
+  name: 'Capability Inheritance',
+  description,
+  inDefinedTermSet: { '@type': 'DefinedTermSet', '@id': 'https://buildwisemedia.com/playbook/', name: 'Buildwise Media Playbook' },
+};
+---
+<BaseLayout title={title} description={description} jsonLd={[definedTerm]}>
+  <section class="playbook-hero">
+    <div class="container">
+      <p class="eyebrow"><a href="/playbook" class="back-link">← Playbook</a></p>
+      <h1 class="h-hero"><em>Capability</em> inheritance.</h1>
+      <p class="lede">Your Ascend system should get better as frontier AI improves. No re-platform. No new build. No renegotiation just because the tools got smarter.</p>
+    </div>
+  </section>
+  <section class="playbook-section elev">
+    <div class="container">
+      <p class="section-tag">Mechanism</p>
+      <h2 class="h-section">The system routes to capability, not vendor lock-in.</h2>
+      <p class="prose">Ascend is built as an operating layer. When better AI capability becomes available, Buildwise evaluates it, routes the relevant workflow, and keeps human signoff at the gates. The client gets the compounding benefit without owning the technical churn.</p>
+      <p class="prose">For the owner, this means the marketing system does not freeze at the capability level of the day it was installed. It keeps inheriting improvements while the business keeps operating.</p>
+    </div>
+  </section>
+  <section class="playbook-cta">
+    <div class="container">
+      <h2 class="h-closer">See the system that keeps compounding.</h2>
+      <p class="cta-row"><a class="cta" href="/system">See the System <span class="cta-arrow">→</span></a><a class="cta-ghost" href="/book">See If We're a Fit</a></p>
+    </div>
+  </section>
+</BaseLayout>
+<style>
+.playbook-hero { padding-block: clamp(96px, 13vw, 168px) clamp(64px, 8vw, 100px); }
+.back-link { color: var(--ink-faint); }
+.back-link:hover { color: var(--y2); }
+.h-hero em { color: var(--y2); font-style: normal; }
+.playbook-section,.playbook-cta { padding-block: var(--section-y); }
+.playbook-section .prose { color: var(--ink-dim); font-size: 18px; line-height: 1.7; max-width: 760px; }
+.playbook-section .prose + .prose { margin-top: 18px; }
+.cta-row { display: flex; flex-wrap: wrap; gap: 16px; margin-top: 32px; }
+</style>

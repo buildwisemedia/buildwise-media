@@ -4,7 +4,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 const title = "Thanks for your interest — Buildwise Media";
 const description = "Based on what you shared, here's the resource you'd find more useful right now.";
 ---
-<BaseLayout title={title} description={description} jsonLd={[]}>
+<BaseLayout title={title} description={description} jsonLd={[]} noindex={true}>
 
   <section class="ty-page">
     <div class="container ty-grid">
@@ -87,14 +87,14 @@ const description = "Based on what you shared, here's the resource you'd find mo
   justify-content: center;
   gap: 12px;
   padding: 18px 28px;
-  background: var(--gold);
+  background: var(--y2);
   color: #050507;
   text-decoration: none;
   font-family: 'Inter', sans-serif;
   font-weight: 700;
   font-size: 16px;
   letter-spacing: -0.01em;
-  border: 1px solid var(--gold);
+  border: 1px solid var(--y2);
   align-self: flex-start;
   transition: opacity 0.15s;
 }
@@ -110,9 +110,9 @@ const description = "Based on what you shared, here's the resource you'd find mo
   top: 100px;
   padding: 24px;
   background: var(--bg-elev);
-  border-left: 2px solid var(--gold);
+  border-left: 2px solid var(--y2);
 }
-.meta-label { font-size: 10px; letter-spacing: 0.2em; color: var(--gold); margin: 0 0 12px 0; }
+.meta-label { font-size: 10px; letter-spacing: 0.2em; color: var(--y2); margin: 0 0 12px 0; }
 .meta-body { font-size: 14px; font-weight: 300; line-height: 1.6; color: var(--ink-dim); margin: 0; }
 
 @media (max-width: 880px) {

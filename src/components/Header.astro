@@ -1,10 +1,14 @@
 ---
 // Triangulation site header — sticky frame, transparent over hero, solid on scroll
+// Updated 2026-05-21: nav refreshed for conversion reimagining (How It Works · System · Pricing · Playbook)
+// LOCKED 2026-05-20: pricing-publicly-visible
 import Wordmark from './Wordmark.astro';
 const navLinks = [
   { label: 'How It Works', href: '/how-it-works' },
+  { label: 'The System', href: '/system' },
+  { label: 'Pricing', href: '/pricing' },
+  { label: 'Playbook', href: '/playbook' },
   { label: 'Results', href: '/results' },
-  { label: 'About', href: '/about' },
 ];
 ---
 <a href="#main" class="skip-link">Skip to content</a>
@@ -68,7 +72,7 @@ const navLinks = [
   padding: 8px 0;
   transition: color 180ms ease;
 }
-.nav-link:hover { color: var(--gold); }
+.nav-link:hover { color: var(--y2); }
 
 .cta--header {
   padding: 12px 22px;
@@ -103,7 +107,9 @@ const navLinks = [
 .mobile-nav ul { list-style: none; padding: 24px var(--container-x) 32px; display: flex; flex-direction: column; gap: 8px; }
 .mobile-nav-link {
   display: block;
-  font-family: var(--serif);
+  font-family: var(--sans);
+  font-weight: 800;
+  font-stretch: 75%;
   font-size: 28px;
   line-height: 1.2;
   letter-spacing: -0.02em;

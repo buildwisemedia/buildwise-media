@@ -1,0 +1,50 @@
+<!--
+  asset: BWM Public-Tier Business Card · Front
+  spec: brand/BWM-Public-Card.md
+  dimensions: 55mm x 85mm (550px x 850px)
+  finish: Y2 Foil mark + printed wordmarks (no deboss)
+  color: Canvas #050507, Y2 Accent #F0FF00
+-->
+<svg width="550" height="850" viewBox="0 0 550 850" xmlns="http://www.w3.org/2000/svg">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;500;800&amp;family=JetBrains+Mono&amp;display=swap');
+    .bg { fill: #050507; }
+    .wm-buildwise { font-family: 'Inter', sans-serif; font-weight: 800; font-size: 30px; fill: #FFFFFF; letter-spacing: -0.03em; text-anchor: middle; }
+    .wm-media { font-family: 'Inter', sans-serif; font-weight: 300; font-size: 14px; fill: #F0FF00; letter-spacing: 0.14em; text-anchor: middle; }
+    .lbl-name { font-family: 'Inter', sans-serif; font-weight: 500; font-size: 16px; fill: #ECECEC; text-anchor: middle; }
+    .lbl-role { font-family: 'JetBrains Mono', monospace; font-size: 9px; fill: #525560; text-anchor: middle; letter-spacing: 0.18em; }
+    .hairline { stroke: #FFFFFF; stroke-opacity: 0.1; stroke-width: 1; }
+  </style>
+  <rect width="550" height="850" class="bg"/>
+  
+  <!-- Y1 Green Edge Paint indicator (painted edge visual simulation) -->
+  <rect x="1" y="1" width="548" height="848" fill="none" stroke="#B8FF3A" stroke-width="2" opacity="0.45"/>
+  
+  <!-- Front Mark (Foil-stamped Y2, ~40px scale) -->
+  <g transform="translate(255, 32) scale(0.4)">
+    <defs>
+      <linearGradient id="metallic-y2" x1="0%" y1="0%" x2="0%" y2="100%">
+        <stop offset="0%" stop-color="#FFFD58"/>
+        <stop offset="48%" stop-color="#F0FF00"/>
+        <stop offset="100%" stop-color="#C8D300"/>
+      </linearGradient>
+    </defs>
+    <!-- @r020:identity: Triangulation V3 brand mark foil-stamped on public card front -->
+    <line x1="50" y1="22" x2="22" y2="70" stroke="#7A8400" stroke-width="1.4" stroke-linecap="round"/>
+    <line x1="50" y1="22" x2="78" y2="70" stroke="#7A8400" stroke-width="1.4" stroke-linecap="round"/>
+    <line x1="22" y1="70" x2="78" y2="70" stroke="#7A8400" stroke-width="1.4" stroke-linecap="round"/>
+    <circle cx="50" cy="22" r="9" fill="url(#metallic-y2)"/>
+    <circle cx="22" cy="70" r="6.5" fill="#F0FF00"/>
+    <circle cx="78" cy="70" r="6.5" fill="#F0FF00"/>
+    <circle cx="50" cy="54" r="3" fill="#F0FF00"/>
+  </g>
+
+  <!-- Wordmark Stack -->
+  <text x="275" y="130" class="wm-buildwise">BUILDWISE</text>
+  <text x="275" y="156" class="wm-media">MEDIA</text>
+
+  <!-- Bottom Identity Area -->
+  <text x="275" y="720" class="lbl-name">Robert Echevarria</text>
+  <line x1="26" y1="740" x2="524" y2="740" class="hairline"/>
+  <text x="275" y="770" class="lbl-role">CEO · FOUNDER</text>
+</svg>

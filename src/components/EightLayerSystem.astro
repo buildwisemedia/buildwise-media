@@ -1,0 +1,464 @@
+---
+// L3 — The 8-Layer Revenue Operating System
+// Source of truth: canonical.json → products.ascend.eight_layers
+// Visual job: make the operating system legible as connected buyer-flow stages,
+// not eight identical inventory cards.
+import canonical from '../data/canonical.json';
+
+const ownerLayerBodies: Record<string, string> = {
+  Visibility: 'Your business shows up when buyers search, ask AI, or compare local options.',
+  Conversion: 'Pages, forms, calls, chat, and quote paths make the next step clear.',
+  'Speed-to-Lead': 'New leads get a fast answer before they cool off or call the next shop.',
+  'Sales Ops': 'Quotes, reminders, pipeline stages, and old leads stop living in someone\'s head.',
+  Reputation: 'Review requests, replies, and proof collection run at the right moment.',
+  'Paid Media': 'Campaigns get watched, tested, and adjusted against lead quality.',
+  Reporting: 'Spend, calls, leads, booked work, and next moves show up in one dashboard.',
+  Strategy: 'Weekly choices are based on the numbers, not end-of-month surprise.',
+};
+
+const layerMeta: Record<string, { group: string; signal: string; visual: string; tone: string }> = {
+  Visibility: {
+    group: 'Demand capture',
+    signal: 'search + AI answer share',
+    visual: 'visibility',
+    tone: 'cyan',
+  },
+  Conversion: {
+    group: 'Decision path',
+    signal: 'forms · calls · quote paths',
+    visual: 'conversion',
+    tone: 'green',
+  },
+  'Speed-to-Lead': {
+    group: 'Response gate',
+    signal: 'answer before cool-off',
+    visual: 'speed',
+    tone: 'yellow',
+  },
+  'Sales Ops': {
+    group: 'Revenue motion',
+    signal: 'quote + pipeline memory',
+    visual: 'pipeline',
+    tone: 'orange',
+  },
+  Reputation: {
+    group: 'Proof loop',
+    signal: 'reviews + replies',
+    visual: 'reputation',
+    tone: 'green',
+  },
+  'Paid Media': {
+    group: 'Spend watch',
+    signal: 'budget to lead quality',
+    visual: 'paid',
+    tone: 'yellow',
+  },
+  Reporting: {
+    group: 'Command view',
+    signal: 'one dashboard',
+    visual: 'reporting',
+    tone: 'cyan',
+  },
+  Strategy: {
+    group: 'Weekly cadence',
+    signal: 'numbers drive next move',
+    visual: 'strategy',
+    tone: 'orange',
+  },
+};
+
+const layers = canonical.products.ascend.eight_layers.map((raw: string, i: number) => {
+  // Format: "N · Name — description"
+  const dashIndex = raw.indexOf('—');
+  const name = dashIndex > 0
+    ? raw.slice(raw.indexOf('·') + 1, dashIndex).trim()
+    : raw.slice(raw.indexOf('·') + 1).trim();
+  const body = ownerLayerBodies[name] ?? (dashIndex > 0 ? raw.slice(dashIndex + 1).trim() : '');
+  const num = String(i + 1).padStart(2, '0');
+  const meta = layerMeta[name] ?? { group: 'Operating layer', signal: 'live signal', visual: 'reporting', tone: 'yellow' };
+  const slug = name.toLowerCase().replace(/[^a-z0-9]+/g, '-');
+  return { num, name, body, slug, ...meta };
+});
+---
+
+<section id="system" class="eight-layer-section">
+  <div class="container">
+
+    <header class="els-header">
+      <p class="eyebrow">THE SYSTEM</p>
+      <h2 class="h-section els-h2">
+        Eight layers that run without making you the router.
+      </h2>
+      <p class="lede els-lede">
+        Each layer handles a job that usually falls back on the owner. Together they turn marketing into a weekly operating system.
+      </p>
+    </header>
+
+    <div class="els-system-map" aria-label="Connected eight-layer operating system map">
+      <div class="els-flow-rail" aria-hidden="true">
+        <span>Demand</span>
+        <span>Convert</span>
+        <span>Operate</span>
+        <span>Learn</span>
+      </div>
+      <div class="els-grid">
+        {layers.map((layer, i) => (
+          <article
+            class={`els-card card els-card-${i} els-card--${layer.slug} els-card-tone-${layer.tone}`}
+            data-layer-idx={i}
+          >
+            <header class="els-card-header">
+              <span class="els-num eyebrow">{layer.num}</span>
+              <span class="els-group mono">{layer.group}</span>
+            </header>
+            <div class={`els-mini els-mini--${layer.visual}`} aria-hidden="true">
+              <span></span>
+              <span></span>
+              <span></span>
+              <span></span>
+            </div>
+            <h3 class="h-sub els-card-name">{layer.name}</h3>
+            <p class="els-card-body card-body">{layer.body}</p>
+            <footer class="els-card-foot">
+              <span class="els-tag">
+                <span class="dot live"></span>
+                <span class="els-tag-text mono">{layer.signal}</span>
+              </span>
+            </footer>
+          </article>
+        ))}
+      </div>
+    </div>
+
+    <!-- Legend -->
+    <p class="els-legend mono">
+      All 8 layers connect to one dashboard, one weekly rhythm, and one ownership model.
+    </p>
+
+  </div>
+</section>
+
+<style>
+/* ============ Section shell ============ */
+.eight-layer-section {
+  padding-block: var(--section-y);
+  background: var(--bg);
+  position: relative;
+}
+
+/* ============ Header ============ */
+.els-header {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  margin-bottom: 34px;
+  max-width: 780px;
+}
+.els-h2 { color: var(--ink); }
+.els-lede { max-width: 640px; }
+
+/* ============ Operating system map ============ */
+.els-system-map {
+  position: relative;
+  border: 1px solid var(--rule);
+  background:
+    linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+    linear-gradient(0deg, rgba(255, 255, 255, 0.025) 1px, transparent 1px),
+    var(--bg-card);
+  background-size: 44px 44px;
+  padding: clamp(16px, 2.2vw, 26px);
+  overflow: hidden;
+}
+
+.els-system-map::before {
+  content: '';
+  position: absolute;
+  left: 9%;
+  right: 9%;
+  top: 50%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(240, 255, 0, 0.52), transparent);
+  pointer-events: none;
+}
+
+.els-flow-rail {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 14px;
+  margin-bottom: 14px;
+}
+
+.els-flow-rail span {
+  font-family: var(--mono);
+  font-size: 9px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+  border-bottom: 1px solid var(--rule-bright);
+  padding-bottom: 8px;
+}
+
+.els-grid {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 14px;
+}
+
+@media (max-width: 960px) {
+  .els-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+@media (max-width: 520px) {
+  .els-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ============ Individual tri-card ============ */
+.els-card {
+  --layer-accent: var(--y2);
+  position: relative;
+  min-height: 330px;
+  background: rgba(5, 5, 7, 0.82);
+  border: 1px solid var(--rule);
+  border-top: 2px solid var(--layer-accent);
+  border-radius: 2px;
+  padding: 22px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  transition: border-color 180ms ease, background 180ms ease, transform 180ms ease;
+  cursor: default;
+  overflow: hidden;
+}
+.els-card-tone-cyan { --layer-accent: var(--signal-cyan); }
+.els-card-tone-green { --layer-accent: var(--signal-green); }
+.els-card-tone-yellow { --layer-accent: var(--y2); }
+.els-card-tone-orange { --layer-accent: var(--signal-orange); }
+.els-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, color-mix(in srgb, var(--layer-accent) 12%, transparent), transparent 48%);
+  opacity: 0.34;
+  pointer-events: none;
+}
+.els-card:hover {
+  background: var(--bg-elev);
+  border-color: color-mix(in srgb, var(--layer-accent) 70%, var(--rule-bright));
+  transform: translateY(-2px);
+}
+
+.els-card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+.els-num {
+  color: var(--layer-accent);
+  font-size: 10px;
+  letter-spacing: 0.18em;
+  /* override eyebrow::before — no leading dash inside cards */
+}
+.els-num::before { display: none; }
+
+.els-group {
+  color: var(--ink-faint);
+  font-size: 8px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  text-align: right;
+}
+
+.els-mini {
+  position: relative;
+  height: 88px;
+  margin-block: 4px 6px;
+  border: 1px solid var(--rule);
+  background:
+    linear-gradient(90deg, rgba(255, 255, 255, 0.035) 1px, transparent 1px),
+    linear-gradient(0deg, rgba(255, 255, 255, 0.035) 1px, transparent 1px),
+    var(--bg);
+  background-size: 22px 22px;
+  overflow: hidden;
+}
+
+.els-mini span {
+  position: absolute;
+  display: block;
+}
+
+.els-mini--visibility span {
+  left: 18px;
+  right: 18px;
+  height: 8px;
+  border: 1px solid color-mix(in srgb, var(--layer-accent) 45%, transparent);
+}
+.els-mini--visibility span:nth-child(1) { top: 15px; width: 82%; background: color-mix(in srgb, var(--layer-accent) 24%, transparent); }
+.els-mini--visibility span:nth-child(2) { top: 35px; width: 64%; }
+.els-mini--visibility span:nth-child(3) { top: 55px; width: 46%; }
+.els-mini--visibility span:nth-child(4) { top: 72px; width: 28%; border-color: var(--rule-bright); }
+
+.els-mini--conversion span {
+  top: 50%;
+  width: 12px;
+  height: 12px;
+  border-radius: 999px;
+  background: var(--layer-accent);
+  box-shadow: 0 0 18px color-mix(in srgb, var(--layer-accent) 28%, transparent);
+}
+.els-mini--conversion span:nth-child(1) { left: 14%; }
+.els-mini--conversion span:nth-child(2) { left: 38%; }
+.els-mini--conversion span:nth-child(3) { left: 62%; }
+.els-mini--conversion span:nth-child(4) {
+  right: 12%;
+  width: 28px;
+  border-radius: 2px;
+}
+.els-mini--conversion::before {
+  content: '';
+  position: absolute;
+  left: 18%;
+  right: 18%;
+  top: calc(50% + 5px);
+  height: 1px;
+  background: color-mix(in srgb, var(--layer-accent) 42%, transparent);
+}
+
+.els-mini--speed {
+  display: grid;
+  place-items: center;
+}
+.els-mini--speed::before {
+  content: '00:47';
+  width: 74px;
+  height: 74px;
+  display: grid;
+  place-items: center;
+  border: 1px solid var(--layer-accent);
+  border-radius: 50%;
+  color: var(--layer-accent);
+  font-family: var(--mono);
+  font-size: 13px;
+  letter-spacing: 0.08em;
+  box-shadow: inset 0 0 0 10px color-mix(in srgb, var(--layer-accent) 8%, transparent);
+}
+.els-mini--speed span { display: none; }
+
+.els-mini--pipeline span {
+  left: 18px;
+  right: 18px;
+  height: 12px;
+  border-left: 3px solid var(--layer-accent);
+  border-bottom: 1px solid var(--rule-bright);
+}
+.els-mini--pipeline span:nth-child(1) { top: 15px; width: 76%; }
+.els-mini--pipeline span:nth-child(2) { top: 34px; width: 58%; }
+.els-mini--pipeline span:nth-child(3) { top: 53px; width: 42%; }
+.els-mini--pipeline span:nth-child(4) { top: 72px; width: 68%; }
+
+.els-mini--reputation span {
+  width: 38px;
+  height: 38px;
+  border: 1px solid color-mix(in srgb, var(--layer-accent) 58%, transparent);
+  border-radius: 50%;
+}
+.els-mini--reputation span:nth-child(1) { left: 20%; top: 28%; }
+.els-mini--reputation span:nth-child(2) { left: 38%; top: 28%; }
+.els-mini--reputation span:nth-child(3) { left: 56%; top: 28%; }
+.els-mini--reputation span:nth-child(4) {
+  left: 46%;
+  top: 43%;
+  width: 10px;
+  height: 10px;
+  background: var(--layer-accent);
+}
+
+.els-mini--paid span {
+  bottom: 14px;
+  width: 14%;
+  background: linear-gradient(180deg, var(--layer-accent), color-mix(in srgb, var(--layer-accent) 12%, transparent));
+}
+.els-mini--paid span:nth-child(1) { left: 16%; height: 24px; }
+.els-mini--paid span:nth-child(2) { left: 36%; height: 42px; }
+.els-mini--paid span:nth-child(3) { left: 56%; height: 30px; }
+.els-mini--paid span:nth-child(4) { left: 76%; height: 58px; }
+
+.els-mini--reporting span {
+  border: 1px solid var(--rule-bright);
+  background: color-mix(in srgb, var(--layer-accent) 10%, transparent);
+}
+.els-mini--reporting span:nth-child(1) { left: 14px; top: 14px; width: 36%; height: 24px; }
+.els-mini--reporting span:nth-child(2) { right: 14px; top: 14px; width: 36%; height: 24px; }
+.els-mini--reporting span:nth-child(3) { left: 14px; right: 14px; bottom: 14px; height: 24px; background: color-mix(in srgb, var(--layer-accent) 20%, transparent); }
+.els-mini--reporting span:nth-child(4) { display: none; }
+
+.els-mini--strategy span {
+  top: 18px;
+  bottom: 18px;
+  width: 1px;
+  background: color-mix(in srgb, var(--layer-accent) 48%, transparent);
+}
+.els-mini--strategy span:nth-child(1) { left: 20%; }
+.els-mini--strategy span:nth-child(2) { left: 40%; }
+.els-mini--strategy span:nth-child(3) { left: 60%; }
+.els-mini--strategy span:nth-child(4) { left: 80%; background: var(--layer-accent); box-shadow: 0 0 20px color-mix(in srgb, var(--layer-accent) 30%, transparent); }
+
+.els-card-name {
+  font-size: clamp(18px, 2vw, 24px);
+  color: var(--ink);
+  line-height: 1.2;
+}
+.els-card-body {
+  font-size: 13px;
+  line-height: 1.55;
+  color: var(--ink-dim);
+  flex: 1;
+}
+
+/* ============ Card foot — LIVE tag ============ */
+.els-card-foot {
+  margin-top: 8px;
+  padding-top: 12px;
+  border-top: 1px solid var(--rule);
+}
+.els-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+.els-tag-text {
+  font-size: 9px;
+  letter-spacing: 0.12em;
+  color: var(--layer-accent);
+  line-height: 1.35;
+}
+
+/* ============ Legend ============ */
+.els-legend {
+  margin-top: 24px;
+  font-size: 10px;
+  letter-spacing: 0.18em;
+  color: var(--ink-faint);
+  text-align: center;
+}
+
+@media (max-width: 520px) {
+  .els-system-map { padding: 12px; }
+  .els-flow-rail { display: none; }
+  .els-system-map::before { display: none; }
+  .els-grid { grid-template-columns: 1fr; }
+  .els-header { margin-bottom: 28px; }
+  .els-card { min-height: 0; padding: 18px 16px; }
+  .els-card-name { font-size: 16px; line-height: 1.1; }
+  .els-mini { height: 76px; }
+  .els-card-body { font-size: 12px; }
+  .els-tag-text { font-size: 8px; }
+}
+</style>

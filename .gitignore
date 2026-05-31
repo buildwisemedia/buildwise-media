@@ -34,3 +34,16 @@ site-download/
 
 # draft staging for /playbook ship pipeline (Sonnet → Opus QA → Codex)
 .tmp/
+
+# print business card design iterations & mockups (binaries stored on R2)
+public/assets/print/business-card/iterations/
+
+# _verification/ is QA + review scratch, not source. No screenshots (PNG) or per-route raw
+# data are tracked: the visual-QA bundles regenerate every `npm run qa:brand:visual`
+# (~220MB/run), and the rest are one-off review crops/captures. All stay on disk for local
+# review but out of git. Reviewable TEXT artifacts stay tracked (visual-qa-summary.*,
+# manual-visual-review.md, *-audit.*, brand-closure-qa.*, *.html review docs). Durable image
+# proof belongs in R2 (bwm-evidence-bundles/), not git.
+_verification/**/*.png
+_verification/**/metrics.json
+_verification/**/browser-events.json

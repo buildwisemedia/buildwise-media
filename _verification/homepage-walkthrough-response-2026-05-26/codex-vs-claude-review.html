@@ -1,0 +1,867 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- @r020-exempt: internal code-review comparison artifact, no client-facing imagery, no banned hex/vendor tokens -->
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Codex pass vs Claude review · 2026-05-26 homepage walkthrough</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+    <style>
+      :root {
+        --bg: #050507;
+        --panel: #101116;
+        --panel-2: #15171d;
+        --rule: #2a2d36;
+        --rule-bright: #3a3e49;
+        --y2: #f0ff00;
+        --y1: #b8ff3a;
+        --cyan: #48d8ff;
+        --green: #67ff90;
+        --orange: #ffb44d;
+        --red: #ff5a5a;
+        --ink: #f4f4f0;
+        --ink-dim: #b6b7be;
+        --muted: #9a9ba2;
+        --faint: #676a72;
+        --sans: 'Inter', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+        --mono: 'JetBrains Mono', 'SFMono-Regular', Consolas, monospace;
+      }
+      * { box-sizing: border-box; }
+      html { background: var(--bg); color: var(--ink); font-family: var(--sans); -webkit-font-smoothing: antialiased; }
+      body {
+        margin: 0;
+        background:
+          radial-gradient(circle at 18% 0%, rgba(72, 216, 255, 0.07), transparent 30rem),
+          radial-gradient(circle at 84% 8%, rgba(240, 255, 0, 0.07), transparent 26rem),
+          linear-gradient(180deg, #07080b, var(--bg) 60%);
+      }
+      body::before {
+        content: "";
+        position: fixed;
+        inset: 0;
+        pointer-events: none;
+        opacity: 0.12;
+        background-image:
+          linear-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+          linear-gradient(90deg, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+        background-size: 64px 64px;
+      }
+      a { color: inherit; }
+      .wrap {
+        width: min(1480px, calc(100vw - 48px));
+        margin: 0 auto;
+        padding: 48px 0 96px;
+      }
+      .mono {
+        font-family: var(--mono);
+        text-transform: uppercase;
+        letter-spacing: 0.18em;
+      }
+
+      /* ----------------- Hero summary ----------------- */
+      .hero {
+        display: grid;
+        grid-template-columns: minmax(0, 1.2fr) minmax(320px, 0.85fr);
+        gap: 28px;
+        margin-bottom: 28px;
+      }
+      .hero-main, .status-panel, .row, .agreement, .recommendation {
+        border: 1px solid var(--rule);
+        background: rgba(16, 17, 22, 0.78);
+        box-shadow: inset 0 1px rgba(255, 255, 255, 0.03);
+      }
+      .hero-main { padding: clamp(28px, 5vw, 56px); }
+      .eyebrow { margin: 0 0 18px; color: var(--y2); font-size: 11px; }
+      h1 {
+        max-width: 18ch;
+        margin: 0;
+        font-size: clamp(40px, 6vw, 78px);
+        line-height: 0.94;
+        letter-spacing: -0.02em;
+        font-weight: 800;
+        font-stretch: 85%;
+      }
+      .hero-main p:not(.eyebrow) {
+        max-width: 760px;
+        margin: 24px 0 0;
+        color: var(--ink-dim);
+        font-size: clamp(17px, 1.6vw, 21px);
+        line-height: 1.5;
+      }
+      .status-panel {
+        padding: 22px;
+        display: grid;
+        gap: 1px;
+        background: var(--rule);
+      }
+      .status-cell {
+        min-height: 124px;
+        padding: 20px;
+        background: var(--panel);
+        border-top: 3px solid var(--y2);
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+      }
+      .status-cell:nth-child(2) { border-top-color: var(--red); }
+      .status-cell:nth-child(3) { border-top-color: var(--orange); }
+      .status-cell:nth-child(4) { border-top-color: var(--cyan); }
+      .status-cell span { color: var(--faint); font-size: 10px; }
+      .status-cell strong { color: var(--ink); font-size: clamp(24px, 3vw, 38px); line-height: 0.95; letter-spacing: -0.02em; }
+      .status-cell small { color: var(--y2); font-size: 10px; }
+
+      /* ----------------- Agreement section ----------------- */
+      .agreement {
+        margin-bottom: 32px;
+        padding: clamp(24px, 3vw, 36px);
+        border-color: rgba(184, 255, 58, 0.32);
+        box-shadow: inset 0 0 0 1px rgba(184, 255, 58, 0.06);
+      }
+      .agreement h2 {
+        margin: 0 0 14px;
+        font-size: clamp(20px, 2.2vw, 26px);
+        color: var(--y1);
+        letter-spacing: -0.01em;
+      }
+      .agreement-grid {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 12px;
+        margin-top: 8px;
+      }
+      .agreement-item {
+        background: rgba(7, 8, 11, 0.5);
+        border: 1px solid var(--rule);
+        padding: 16px 18px;
+      }
+      .agreement-item span {
+        font-family: var(--mono);
+        color: var(--y1);
+        font-size: 10px;
+        letter-spacing: 0.16em;
+        text-transform: uppercase;
+      }
+      .agreement-item strong { display: block; margin-top: 8px; color: var(--ink); font-size: 14px; line-height: 1.4; font-weight: 500; }
+
+      /* ----------------- Issue rows ----------------- */
+      .row {
+        margin-top: 24px;
+        padding: 0;
+        overflow: hidden;
+      }
+      .row-head {
+        padding: 24px clamp(22px, 3vw, 36px);
+        border-bottom: 1px solid var(--rule);
+        display: flex;
+        gap: 20px;
+        align-items: baseline;
+        flex-wrap: wrap;
+      }
+      .row-head .issue-num {
+        font-family: var(--mono);
+        font-size: 11px;
+        color: var(--faint);
+        letter-spacing: 0.22em;
+      }
+      .row-head h2 {
+        margin: 0;
+        font-size: clamp(22px, 2.6vw, 34px);
+        line-height: 1.05;
+        letter-spacing: -0.015em;
+        font-weight: 700;
+        font-stretch: 85%;
+      }
+      .row-head .severity {
+        margin-left: auto;
+        font-family: var(--mono);
+        font-size: 10px;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+        padding: 5px 9px;
+        border: 1px solid var(--rule);
+        color: var(--ink-dim);
+      }
+      .severity.severity-block { color: var(--red); border-color: rgba(255, 90, 90, 0.4); }
+      .severity.severity-finish { color: var(--y2); border-color: rgba(240, 255, 0, 0.4); }
+      .severity.severity-process { color: var(--orange); border-color: rgba(255, 180, 77, 0.4); }
+
+      .split {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 0;
+        border-bottom: 1px solid var(--rule);
+      }
+      .col {
+        padding: clamp(20px, 2.4vw, 32px);
+      }
+      .col-current { border-right: 1px solid var(--rule); background: rgba(5, 6, 8, 0.55); }
+      .col-proposed { background: rgba(16, 17, 22, 0.55); position: relative; }
+      .col-proposed::before {
+        content: "";
+        position: absolute;
+        inset: 0 auto 0 0;
+        width: 2px;
+        background: var(--y2);
+        opacity: 0.5;
+      }
+      .col-label {
+        font-family: var(--mono);
+        font-size: 10px;
+        letter-spacing: 0.2em;
+        text-transform: uppercase;
+        color: var(--faint);
+        margin: 0 0 16px;
+      }
+      .col-proposed .col-label { color: var(--y2); }
+      .col-take {
+        margin: 0 0 18px;
+        font-size: 14px;
+        line-height: 1.55;
+        color: var(--ink-dim);
+      }
+      .col-take strong { color: var(--ink); }
+
+      /* ----------------- Command-center mock panels ----------------- */
+      .panel-mock {
+        border: 1px solid var(--rule);
+        background: var(--panel);
+        padding: 16px;
+        font-family: var(--mono);
+        font-size: 10px;
+        letter-spacing: 0.14em;
+        line-height: 1.55;
+        color: var(--ink-dim);
+      }
+      .panel-mock .panel-head {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding-bottom: 10px;
+        border-bottom: 1px solid var(--rule);
+        margin-bottom: 12px;
+      }
+      .panel-mock .kicker { color: var(--ink); font-size: 11px; }
+      .panel-mock .chip { color: var(--faint); }
+      .panel-mock ul {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        display: grid;
+        gap: 8px;
+      }
+      .panel-mock li {
+        display: grid;
+        grid-template-columns: 6px 1fr;
+        gap: 10px;
+        align-items: start;
+        padding: 10px 12px;
+        border: 1px solid var(--rule);
+        background: rgba(7, 8, 11, 0.5);
+      }
+      .panel-mock li::before {
+        content: "";
+        width: 6px;
+        height: 6px;
+        margin-top: 4px;
+        background: var(--cyan);
+        border-radius: 50%;
+      }
+      .panel-mock li:nth-child(2)::before { background: var(--green); }
+      .panel-mock li:nth-child(3)::before { background: var(--y1); }
+      .panel-mock li:nth-child(4)::before { background: var(--orange); }
+      .panel-mock li > div { display: grid; gap: 4px; }
+      .panel-mock li .label { color: var(--ink); text-transform: none; font-family: var(--sans); font-size: 13px; letter-spacing: 0; }
+      .panel-mock li .status { color: var(--faint); font-size: 9px; letter-spacing: 0.16em; }
+      .panel-tag {
+        display: inline-block;
+        padding: 2px 6px;
+        margin-top: 4px;
+        font-size: 8px;
+        letter-spacing: 0.18em;
+        border: 1px solid;
+      }
+      .tag-engineer { color: var(--red); border-color: rgba(255, 90, 90, 0.4); }
+      .tag-owner { color: var(--y2); border-color: rgba(240, 255, 0, 0.4); }
+      .col-proposed .panel-mock { border-color: rgba(240, 255, 0, 0.25); }
+
+      /* ----------------- Diff table ----------------- */
+      .diff-table {
+        padding: clamp(20px, 2.4vw, 32px);
+        background: rgba(7, 8, 11, 0.4);
+      }
+      .diff-table h3 {
+        margin: 0 0 14px;
+        font-family: var(--mono);
+        font-size: 10px;
+        letter-spacing: 0.22em;
+        color: var(--y2);
+        text-transform: uppercase;
+      }
+      .diff-table table {
+        width: 100%;
+        border-collapse: collapse;
+        font-size: 13px;
+      }
+      .diff-table th, .diff-table td {
+        text-align: left;
+        padding: 10px 14px;
+        border-bottom: 1px solid var(--rule);
+        vertical-align: top;
+      }
+      .diff-table th {
+        font-family: var(--mono);
+        font-size: 10px;
+        letter-spacing: 0.18em;
+        color: var(--faint);
+        text-transform: uppercase;
+        font-weight: 500;
+      }
+      .diff-table td:first-child {
+        font-family: var(--mono);
+        font-size: 11px;
+        letter-spacing: 0.08em;
+        color: var(--faint);
+      }
+      .diff-table .from { color: var(--ink-dim); text-decoration: line-through; text-decoration-color: rgba(255, 90, 90, 0.5); }
+      .diff-table .to { color: var(--ink); }
+      .diff-table .to::before { content: "→ "; color: var(--y2); font-family: var(--mono); }
+
+      /* ----------------- Page-render bar ----------------- */
+      .render-bar-wrap {
+        padding: clamp(20px, 2.4vw, 32px);
+        background: rgba(7, 8, 11, 0.4);
+      }
+      .render-bar-wrap h3 {
+        margin: 0 0 16px;
+        font-family: var(--mono);
+        font-size: 10px;
+        letter-spacing: 0.22em;
+        color: var(--y2);
+        text-transform: uppercase;
+      }
+      .render-bar {
+        position: relative;
+        height: 280px;
+        border: 1px solid var(--rule);
+        background: var(--bg);
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 0;
+      }
+      .render-half { position: relative; padding: 12px; overflow: hidden; }
+      .render-half + .render-half { border-left: 1px solid var(--rule); }
+      .render-half h4 {
+        margin: 0;
+        font-family: var(--mono);
+        font-size: 10px;
+        letter-spacing: 0.18em;
+        color: var(--ink);
+        text-transform: uppercase;
+        position: relative;
+        z-index: 2;
+      }
+      .render-half h4 small { display: block; margin-top: 4px; color: var(--faint); font-weight: normal; }
+      .render-track {
+        position: absolute;
+        top: 56px;
+        bottom: 12px;
+        right: 12px;
+        width: 18px;
+        border: 1px solid var(--rule);
+        background: rgba(7, 8, 11, 0.5);
+        display: grid;
+        grid-template-rows: 16% 14% 12% 14% 14% 10% 8% 12%;
+      }
+      .render-track span {
+        position: relative;
+        border-bottom: 1px solid var(--rule);
+      }
+      .render-track span:last-child { border-bottom: 0; }
+      .render-track span.filled { background: linear-gradient(90deg, rgba(240, 255, 0, 0.12), transparent 60%), var(--panel); }
+      .render-track span.gap { background: #f4f4f0; }
+      .render-track span.cta { background: var(--y2); }
+      .render-half .legend {
+        position: absolute;
+        bottom: 12px;
+        left: 12px;
+        right: 50px;
+        font-family: var(--mono);
+        font-size: 9px;
+        letter-spacing: 0.14em;
+        color: var(--ink-dim);
+        line-height: 1.5;
+      }
+      .render-half .legend strong { color: var(--y2); display: block; margin-bottom: 4px; }
+      .render-half .legend em { color: var(--red); font-style: normal; }
+
+      .render-detail {
+        padding: clamp(20px, 2.4vw, 32px) clamp(20px, 2.4vw, 32px) clamp(24px, 2.6vw, 36px);
+      }
+      .render-detail h3 {
+        margin: 0 0 12px;
+        font-family: var(--mono);
+        font-size: 10px;
+        letter-spacing: 0.22em;
+        color: var(--y2);
+        text-transform: uppercase;
+      }
+      .render-detail p { margin: 0 0 10px; color: var(--ink-dim); font-size: 14px; line-height: 1.55; }
+      .render-detail code {
+        font-family: var(--mono);
+        font-size: 12px;
+        background: rgba(240, 255, 0, 0.08);
+        padding: 1px 6px;
+        color: var(--ink);
+      }
+      .render-detail pre {
+        margin: 14px 0 0;
+        padding: 16px;
+        background: rgba(7, 8, 11, 0.7);
+        border: 1px solid var(--rule);
+        font-family: var(--mono);
+        font-size: 12px;
+        line-height: 1.55;
+        color: var(--ink);
+        white-space: pre-wrap;
+        word-break: break-word;
+      }
+      .render-detail pre .c { color: var(--faint); }
+      .render-detail pre .k { color: var(--y2); }
+
+      /* ----------------- Closeout comparison ----------------- */
+      .closeout-block {
+        font-family: var(--mono);
+        font-size: 11px;
+        line-height: 1.6;
+        background: rgba(7, 8, 11, 0.65);
+        border: 1px solid var(--rule);
+        padding: 14px 16px;
+        color: var(--ink-dim);
+      }
+      .closeout-block .key { color: var(--faint); }
+      .closeout-block .val { color: var(--ink); }
+      .closeout-block .bad { color: var(--red); }
+      .closeout-block .good { color: var(--y2); }
+
+      /* ----------------- Recommendation footer ----------------- */
+      .recommendation {
+        margin-top: 36px;
+        padding: clamp(24px, 3vw, 40px);
+      }
+      .recommendation h2 {
+        margin: 0 0 16px;
+        font-size: clamp(22px, 2.6vw, 30px);
+        letter-spacing: -0.015em;
+        font-weight: 700;
+        font-stretch: 85%;
+      }
+      .recommendation ol {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+        counter-reset: step;
+        display: grid;
+        gap: 12px;
+      }
+      .recommendation li {
+        counter-increment: step;
+        padding: 16px 20px 16px 64px;
+        border: 1px solid var(--rule);
+        background: rgba(7, 8, 11, 0.4);
+        position: relative;
+        font-size: 14px;
+        line-height: 1.5;
+        color: var(--ink-dim);
+      }
+      .recommendation li::before {
+        content: counter(step, decimal-leading-zero);
+        position: absolute;
+        left: 20px;
+        top: 16px;
+        font-family: var(--mono);
+        color: var(--y2);
+        font-size: 12px;
+        letter-spacing: 0.16em;
+      }
+      .recommendation li strong { color: var(--ink); display: block; margin-bottom: 4px; font-weight: 600; }
+      .recommendation li code {
+        font-family: var(--mono);
+        font-size: 12px;
+        background: rgba(240, 255, 0, 0.08);
+        padding: 1px 6px;
+        color: var(--ink);
+      }
+      .recommendation li .effort {
+        display: inline-block;
+        margin-top: 8px;
+        padding: 3px 8px;
+        font-family: var(--mono);
+        font-size: 9px;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+        border: 1px solid var(--rule);
+        color: var(--faint);
+      }
+
+      .nav {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        margin: 30px 0 18px;
+      }
+      .nav a {
+        text-decoration: none;
+        border: 1px solid var(--rule);
+        background: rgba(21, 23, 29, 0.7);
+        padding: 9px 12px;
+        color: var(--ink-dim);
+        font-size: 10px;
+      }
+      .nav a:hover { color: var(--y2); border-color: rgba(240, 255, 0, 0.4); }
+
+      .footer-note {
+        margin-top: 36px;
+        padding: 20px 24px;
+        border: 1px solid var(--rule);
+        background: rgba(16, 17, 22, 0.6);
+        font-size: 13px;
+        line-height: 1.55;
+        color: var(--ink-dim);
+      }
+      .footer-note .mono { display: block; color: var(--y2); font-size: 10px; margin-bottom: 6px; }
+      .footer-note a { color: var(--y2); }
+
+      @media (max-width: 980px) {
+        .hero, .agreement-grid, .split, .render-bar { grid-template-columns: 1fr; }
+        .col-current { border-right: 0; border-bottom: 1px solid var(--rule); }
+        .render-half + .render-half { border-left: 0; border-top: 1px solid var(--rule); }
+        .row-head .severity { margin-left: 0; }
+      }
+    </style>
+  </head>
+  <body>
+    <main class="wrap">
+      <!-- ======================================= -->
+      <!-- Hero summary -->
+      <!-- ======================================= -->
+      <section class="hero" aria-label="Review summary">
+        <div class="hero-main">
+          <p class="eyebrow mono">Comparison review · feat/value-stack-cost-anchor · 2026-05-26</p>
+          <h1>Codex shipped most of it. Three holes to close before promotion.</h1>
+          <p>
+            Codex landed 9 of the 12 walkthrough asks cleanly. The hero kept its wow, the velocity chart replaced the explainer cards, the calculator now leads with the conclusion, and the Cost-of-Assembly anchor is in front of Entry Paths exactly where PROJ-VALUE-STACK-001 Phase 2 placed it. Three issues remain: a half-translated hero panel, an unverified screenshot-render gap, and a self-attestation closeout that the AI-peer signoff lock won't accept.
+          </p>
+        </div>
+        <aside class="status-panel" aria-label="At-a-glance">
+          <div class="status-cell">
+            <span class="mono">Issue 01</span>
+            <strong>finish</strong>
+            <small class="mono">labels translated halfway</small>
+          </div>
+          <div class="status-cell">
+            <span class="mono">Issue 02</span>
+            <strong>verify</strong>
+            <small class="mono">~6800px white-gap risk</small>
+          </div>
+          <div class="status-cell">
+            <span class="mono">Issue 03</span>
+            <strong>re-route</strong>
+            <small class="mono">AI self-signoff invalid</small>
+          </div>
+          <div class="status-cell">
+            <span class="mono">Branch state</span>
+            <strong>local</strong>
+            <small class="mono">safe to refine</small>
+          </div>
+        </aside>
+      </section>
+
+      <!-- ======================================= -->
+      <!-- Agreement section -->
+      <!-- ======================================= -->
+      <section class="agreement" aria-label="What landed">
+        <h2>What Codex got right (the floor for the next pass)</h2>
+        <div class="agreement-grid">
+          <div class="agreement-item"><span>Hero</span><strong>Command-center panel preserved · H1 stays owner-readable</strong></div>
+          <div class="agreement-item"><span>Why now</span><strong>Velocity curve Nov '22 → Dec '28 + '29/'30 teaser replaces explainer cards</strong></div>
+          <div class="agreement-item"><span>Capability</span><strong>Reframed as owner relief: "Every AI leap should turn into more booked work"</strong></div>
+          <div class="agreement-item"><span>24/7</span><strong>Centered narrative moment: "The system keeps moving while you run the company"</strong></div>
+          <div class="agreement-item"><span>Calculator</span><strong>Value strip up front · sliders demoted to proof controls · math checks out</strong></div>
+          <div class="agreement-item"><span>Poor Four</span><strong>Cyan / red / orange / green frame tones differentiate the four leaks</strong></div>
+          <div class="agreement-item"><span>Installed Advantage</span><strong>"Installed. Operated. Owned. Improving." + metric-led cards 30d / weekly / 100% / auto</strong></div>
+          <div class="agreement-item"><span>8-Layer</span><strong>Per-layer signal colors land in tile graphics, borders, tags</strong></div>
+          <div class="agreement-item"><span>Cost-of-Assembly</span><strong>Category descriptors only (no named competitors) · anchor line carries the weight</strong></div>
+        </div>
+      </section>
+
+      <nav class="nav mono" aria-label="Issue jump links">
+        <a href="#labels">Issue 01 · Labels</a>
+        <a href="#render">Issue 02 · Render gap</a>
+        <a href="#closeout">Issue 03 · Closeout shape</a>
+        <a href="#sequence">Sequence to clear</a>
+      </nav>
+
+      <!-- ======================================= -->
+      <!-- Issue 01 — Labels -->
+      <!-- ======================================= -->
+      <section class="row" id="labels" aria-labelledby="labels-title">
+        <header class="row-head">
+          <span class="issue-num mono">Issue 01</span>
+          <h2 id="labels-title">Command-center labels translated halfway.</h2>
+          <span class="severity severity-finish mono">Finish the pass · ~8 string edits</span>
+        </header>
+        <div class="split">
+          <div class="col col-current">
+            <p class="col-label mono">Codex pass · as rendered</p>
+            <p class="col-take">
+              The bottom four tiles got translated to owner outcomes (30d / 100% / auto / less chase). The signal-map and leak-radar panels above them <strong>did not</strong>. The eye still lands on builder-UI labels — "leak radar", "routes wired", "CRM + calls stitched" — exactly the comprehension gap the walkthrough was asking us to close.
+            </p>
+            <div class="panel-mock" aria-hidden="true">
+              <div class="panel-head">
+                <span class="kicker">Market signal map</span>
+                <span class="chip">AI search / local / proof</span>
+              </div>
+              <ul>
+                <li><div><span class="label">Domain</span><span class="status">SYSTEM MOUNTED</span><span class="panel-tag tag-engineer">engineer</span></div></li>
+                <li><div><span class="label">CRM + calls</span><span class="status">ROUTES WIRED</span><span class="panel-tag tag-engineer">engineer</span></div></li>
+                <li><div><span class="label">New AI</span><span class="status">GROWTH SYSTEM USES IT</span><span class="panel-tag tag-owner">owner</span></div></li>
+                <li><div><span class="label">Weekly proof</span><span class="status">WHAT MOVED</span><span class="panel-tag tag-owner">owner</span></div></li>
+              </ul>
+            </div>
+            <div class="panel-mock" style="margin-top: 16px;" aria-hidden="true">
+              <div class="panel-head">
+                <span class="kicker">Leak radar</span>
+                <span class="chip">4 active checks</span>
+              </div>
+            </div>
+          </div>
+          <div class="col col-proposed">
+            <p class="col-label mono">Proposed · finish the translation</p>
+            <p class="col-take">
+              Rename the two panel kickers and 4 sub-labels to owner outcomes. Keep the signal-map SVG's short tags (DOMAIN / SYSTEM / CRM / PROOF) — those read as topology, not interface chrome. The four-tile bottom rail is already correct; leave it alone.
+            </p>
+            <div class="panel-mock" aria-hidden="true">
+              <div class="panel-head">
+                <span class="kicker">Where buyers find you</span>
+                <span class="chip">AI search · local · reviews</span>
+              </div>
+              <ul>
+                <li><div><span class="label">Your site</span><span class="status">WORKING FOR YOU</span><span class="panel-tag tag-owner">owner</span></div></li>
+                <li><div><span class="label">Calls + jobs</span><span class="status">EVERY LEAD TRACKED</span><span class="panel-tag tag-owner">owner</span></div></li>
+                <li><div><span class="label">New AI</span><span class="status">GROWTH SYSTEM USES IT</span><span class="panel-tag tag-owner">owner</span></div></li>
+                <li><div><span class="label">Weekly proof</span><span class="status">WHAT MOVED</span><span class="panel-tag tag-owner">owner</span></div></li>
+              </ul>
+            </div>
+            <div class="panel-mock" style="margin-top: 16px;" aria-hidden="true">
+              <div class="panel-head">
+                <span class="kicker">Where money leaks</span>
+                <span class="chip">4 leaks watched</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="diff-table">
+          <h3 class="mono">String diff · src/pages/index.astro</h3>
+          <table>
+            <thead>
+              <tr>
+                <th>Surface</th>
+                <th>Current</th>
+                <th>Proposed</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>L348 panel kicker</td>
+                <td class="from">Market signal map</td>
+                <td class="to">Where buyers find you</td>
+              </tr>
+              <tr>
+                <td>L349 panel chip</td>
+                <td class="from">AI search / local / proof</td>
+                <td class="to">AI search · local · reviews</td>
+              </tr>
+              <tr>
+                <td>L391 panel kicker</td>
+                <td class="from">Leak radar</td>
+                <td class="to">Where money leaks</td>
+              </tr>
+              <tr>
+                <td>L392 panel chip</td>
+                <td class="from">4 active checks</td>
+                <td class="to">4 leaks watched</td>
+              </tr>
+              <tr>
+                <td>L70 leakRadar[0].label</td>
+                <td class="from">Domain</td>
+                <td class="to">Your site</td>
+              </tr>
+              <tr>
+                <td>L70 leakRadar[0].status</td>
+                <td class="from">system mounted</td>
+                <td class="to">working for you</td>
+              </tr>
+              <tr>
+                <td>L71 leakRadar[1].label</td>
+                <td class="from">CRM + calls</td>
+                <td class="to">Calls + jobs</td>
+              </tr>
+              <tr>
+                <td>L71 leakRadar[1].status</td>
+                <td class="from">routes wired</td>
+                <td class="to">every lead tracked</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- ======================================= -->
+      <!-- Issue 02 — Render gap -->
+      <!-- ======================================= -->
+      <section class="row" id="render" aria-labelledby="render-title">
+        <header class="row-head">
+          <span class="issue-num mono">Issue 02</span>
+          <h2 id="render-title">~6,800px of solid white in the rendered screenshot.</h2>
+          <span class="severity severity-block mono">Blocker · verify before commit</span>
+        </header>
+
+        <div class="render-bar-wrap">
+          <h3 class="mono">Visual map · home/desktop-1440x900/full-page.png (1440 × 23,226)</h3>
+          <div class="render-bar" aria-hidden="true">
+            <div class="render-half">
+              <h4>Codex QA verdict<small>visual-qa-summary.md: pass · 24 captures · failures: 0</small></h4>
+              <div class="render-track">
+                <span class="filled"></span>
+                <span class="filled"></span>
+                <span class="filled"></span>
+                <span class="filled"></span>
+                <span class="filled"></span>
+                <span class="filled"></span>
+                <span class="filled"></span>
+                <span class="filled cta"></span>
+              </div>
+              <p class="legend"><strong>What the gate counted</strong>capture count · 24<br/>overflow-x · 0px<br/>broken images · 0</p>
+            </div>
+            <div class="render-half">
+              <h4>What the pixels actually show<small>slices 8–10 of full-page.png · y ≈ 16400 → 23226</small></h4>
+              <div class="render-track">
+                <span class="filled"></span>
+                <span class="filled"></span>
+                <span class="filled"></span>
+                <span class="filled"></span>
+                <span class="filled"></span>
+                <span class="filled"></span>
+                <span class="gap"></span>
+                <span class="filled cta"></span>
+              </div>
+              <p class="legend"><strong>What the gate missed</strong><em>~6,800px solid white</em><br/>~6 viewport heights<br/>Category / Proof / FAQ region</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="render-detail">
+          <h3 class="mono">Diagnosis · the gate counts pages, not pixels</h3>
+          <p>
+            <code>visual-qa-summary.md</code> reported all 24 captures passing with <code>overflow 0px</code> and <code>failures: 0</code>. <code>metrics.json</code> confirms the lower-page elements <em>exist in the DOM</em> — proof-cta at <code>absTop: 18885</code>, home-final at <code>absTop: 22023</code> — but a manual walk of the full-page PNG in slices y≈16,400 to y≈23,200 shows <strong>solid white</strong> where Category-of-One, Proof receipts, Attribution Honesty, Objections, and FAQ should be rendering on dark canvas.
+          </p>
+          <p>
+            Two plausible causes: (a) the <code>.reveal</code> IntersectionObserver pattern blocks static screenshot capture so those sections never become visible to crawlers either — bad for AI-search citation, which the page sells as a primary mechanism — or (b) there is a real CSS regression making a stretch of <code>.elev</code>-classed sections render with a white background. Either way the QA gate's pass/fail criteria don't catch it, because the elements measure as on-page even when they paint white.
+          </p>
+          <h3 class="mono" style="margin-top: 22px;">Verification recipe · ~5 min via Chrome MCP</h3>
+          <pre><span class="c"># 1. Make sure the dev server is up on the same port the QA captured</span>
+<span class="k">cd</span> ~/buildwisemedia.com && npm run dev
+
+<span class="c"># 2. Drive Chrome MCP through the page</span>
+mcp__plugin_playwright_playwright__browser_navigate http://127.0.0.1:4322/
+mcp__plugin_playwright_playwright__browser_evaluate <span class="k">"window.scrollTo(0, 17000)"</span>
+mcp__plugin_playwright_playwright__browser_take_screenshot
+
+<span class="c"># 3. Confirm Category-of-One / Proof / FAQ render on dark canvas at y≈17000–23000</span>
+<span class="c"># 4. If white: open devtools, find the .elev rule painting #fff in that range</span>
+<span class="c"># 5. If dark: the .reveal observer was the gap — make sections render initially visible</span></pre>
+        </div>
+      </section>
+
+      <!-- ======================================= -->
+      <!-- Issue 03 — Closeout -->
+      <!-- ======================================= -->
+      <section class="row" id="closeout" aria-labelledby="closeout-title">
+        <header class="row-head">
+          <span class="issue-num mono">Issue 03</span>
+          <h2 id="closeout-title">Codex's manual-visual-review.md is an AI self-attestation.</h2>
+          <span class="severity severity-process mono">Process · re-route closeout</span>
+        </header>
+        <div class="split">
+          <div class="col col-current">
+            <p class="col-label mono">Codex closeout · as written</p>
+            <p class="col-take">
+              The file marks the homepage rebuild "accepted" with Codex as the reviewer. Per <strong>[LOCKED 2026-05-27]</strong> AI peers cannot use <code>closeout_proof_kind=signoff</code>; per <strong>[LOCKED 2026-05-26]</strong> HITL applies to client-facing design. A self-attestation here doesn't satisfy either lock — the trigger on <code>operational_events</code> will reject it if it tries to ship as a <code>build.shipped</code> event with that closeout shape.
+            </p>
+            <div class="closeout-block">
+              <span class="key">file</span> <span class="val">manual-visual-review.md</span><br/>
+              <span class="key">Status</span> <span class="val bad">accepted</span><br/>
+              <span class="key">Reviewer</span> <span class="val bad">Codex</span><br/>
+              <span class="key">Reviewed at</span> <span class="val">2026-05-27 19:05 ET</span><br/><br/>
+              <span class="key">Implicit closeout shape</span><br/>
+              <span class="val bad">signoff:codex:&lt;...&gt;</span><br/>
+              <span class="key">enforce_closeout_proof_kind() trigger</span> <span class="val bad">reject</span>
+            </div>
+          </div>
+          <div class="col col-proposed">
+            <p class="col-label mono">Proposed · the closeout that will actually clear</p>
+            <p class="col-take">
+              Promote the review to a human verifier — you (Robert), or another seated team member — looking at the live preview with the post-fix screenshot bundle. The valid closeout shape for client-facing visuals is <code>signoff:&lt;human&gt;:&lt;evidence-url&gt;</code>, where the evidence URL points to the verified screenshot bundle (or the CF Pages preview hash if we promote a preview deploy first).
+            </p>
+            <div class="closeout-block">
+              <span class="key">file</span> <span class="val">manual-visual-review.md (re-author)</span><br/>
+              <span class="key">Status</span> <span class="val good">accepted</span><br/>
+              <span class="key">Reviewer</span> <span class="val good">robert</span> <span class="key">(human)</span><br/>
+              <span class="key">Reviewed at</span> <span class="val">post-fix re-screenshot</span><br/><br/>
+              <span class="key">Closeout shape</span><br/>
+              <span class="val good">signoff:robert:&lt;preview-url-or-bundle&gt;</span><br/>
+              <span class="key">enforce_closeout_proof_kind() trigger</span> <span class="val good">accept</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ======================================= -->
+      <!-- Recommendation -->
+      <!-- ======================================= -->
+      <section class="recommendation" id="sequence" aria-labelledby="seq-title">
+        <h2 id="seq-title">Sequence to clear this branch.</h2>
+        <ol>
+          <li>
+            <strong>Verify the render gap (Chrome MCP, ~5 min).</strong>
+            Drive the local dev server, scroll past y=17000, screenshot, confirm Category-of-One / Proof / FAQ render dark — not white. Diagnose root cause before any other edit.
+            <span class="effort mono">Effort · 5 min · this session</span>
+          </li>
+          <li>
+            <strong>Patch the half-translated labels.</strong>
+            Eight string edits in <code>src/pages/index.astro</code> (lines 70–87 and 348–392 per the diff table above). Run <code>npm run build</code> + <code>tools/Pre-Ship-Grep-Gate.sh</code>; both should pass without touching anything else.
+            <span class="effort mono">Effort · 10 min · single commit</span>
+          </li>
+          <li>
+            <strong>Re-screenshot at desktop / tablet / mobile, then get a human visual signoff.</strong>
+            Rewrite <code>manual-visual-review.md</code> with <code>Reviewer: robert</code> (or another human verifier). Closeout proof shape: <code>signoff:robert:&lt;evidence-url&gt;</code> — pointing at the new screenshot bundle or a CF Pages preview hash.
+            <span class="effort mono">Effort · 15 min after fixes</span>
+          </li>
+          <li>
+            <strong>Commit, push, and promote the Brain handoff.</strong>
+            <code>feat/value-stack-cost-anchor</code> merges to <code>main</code>; CF Pages auto-deploys; Brain handoff promotes from local to <code>buildwise-brain/handoffs/</code> via the normal Brain publish path once that checkout is reconciled.
+            <span class="effort mono">Effort · standard ship flow</span>
+          </li>
+        </ol>
+      </section>
+
+      <div class="footer-note">
+        <span class="mono">Working notes</span>
+        Built as a self-contained Triangulation-tokened HTML file per the <code>[LOCKED 2026-05-25] HTML-default for review-worthy deliverables</code> rule. Lives next to Codex's <code>comparison.html</code> in the same verification bundle (<code>_verification/homepage-walkthrough-response-2026-05-26/</code>) so both can be opened together. Branch is local and uncommitted; nothing here ships until the three issues above are closed.
+      </div>
+    </main>
+  </body>
+</html>

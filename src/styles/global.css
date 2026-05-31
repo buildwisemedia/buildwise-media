@@ -11,35 +11,36 @@
   --bg-card: #0f0f14;
 
   /* Text */
-  --ink: #f4f1ea;
-  --ink-dim: #a8a298;
-  --ink-faint: #5a5650;
+  --ink: #F5F5F5;
+  --ink-dim: #9B9B9B;
+  --ink-faint: #62626A;
 
   /* Rules / borders */
-  --rule: #1f1d27;
+  --rule: #1A1A1E;
   --rule-bright: #2d2a36;
 
   /* Triangulation dual-yellow */
   --y2: #F0FF00;          /* Hi-vis hero — marketing surfaces */
-  --y2-bright: #FFFD58;   /* Metallic gradient top stop */
-  --y2-deep: #C8D300;     /* Metallic gradient bottom stop */
-  --y1: #B8FF3A;          /* Chartreuse dashboard — product surfaces only */
+  --y2-bright: #FFFD58;   /* Accent gradient top stop */
+  --y2-deep: #C8D300;     /* Accent gradient bottom stop */
+  --y1: #B8FF3A;          /* Chartreuse dashboard — product surfaces + tier-encoding data viz (Path B, 2026-05-20) */
+
+  /* Operating Console status colors — controlled, functional, not decorative */
+  --signal-cyan: #38D8FF;     /* visibility / search signal */
+  --signal-green: #65FF8E;    /* verified proof / healthy */
+  --signal-orange: #FFB84A;   /* urgency / bottleneck */
+  --signal-red: #FF4D6D;      /* leak / failure state */
+  --cream: #FBF7EC;           /* rare warm editorial contrast */
+  --panel-glow: rgba(56, 216, 255, 0.14);
 
   /* Type stacks */
   --sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
   --mono: 'JetBrains Mono', 'SF Mono', Menlo, Consolas, monospace;
 
   /* Spacing rhythm */
-  --section-y: clamp(80px, 10vw, 144px);
+  --section-y: clamp(64px, 8vw, 112px);
   --container-x: clamp(20px, 5vw, 64px);
   --max-w: 1200px;
-
-  /* Transition aliases — keep unbuilt sections renderable during section-by-section
-     Triangulation rebuild. Each section's rebuild will remove its var(--gold)/var(--serif)
-     usages explicitly; these aliases retire automatically as references hit zero. */
-  --gold: var(--y2);
-  --serif: var(--sans);
-  --green: var(--y2);
 }
 
 /* ---------- 2. Reset & Base ---------- */
@@ -53,14 +54,30 @@ html {
   background: var(--bg);
 }
 
+/* @r020:identity: global brand noise overlay to give analog film texture to near-black canvas */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 10;
+  pointer-events: none;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='256' height='256' filter='url(%23noise)' opacity='0.035'/%3E%3C/svg%3E");
+  mix-blend-mode: screen;
+}
+
 body {
   font-family: var(--sans);
   font-weight: 400;
   font-size: 18px;
   line-height: 1.65;
-  letter-spacing: -0.005em;
+  letter-spacing: 0;
   color: var(--ink);
-  background: var(--bg);
+  background:
+    linear-gradient(135deg, rgba(56, 216, 255, 0.026) 0, transparent 30%),
+    linear-gradient(90deg, rgba(240, 255, 0, 0.015) 1px, transparent 1px),
+    linear-gradient(180deg, rgba(240, 255, 0, 0.012) 1px, transparent 1px),
+    var(--bg);
+  background-size: 64px 64px;
   min-height: 100vh;
   overflow-x: hidden;
 }
@@ -241,6 +258,7 @@ h1, h2, h3, h4 {
 
 /* ---------- 7. Layout primitives ---------- */
 .container {
+  width: 100%;
   max-width: var(--max-w);
   margin: 0 auto;
   padding-left: var(--container-x);
@@ -269,6 +287,7 @@ section.elev { background: var(--bg-elev); }
   border-radius: 2px;
   transition: color 180ms ease, background-color 180ms ease, border-color 180ms ease;
   white-space: nowrap;
+  max-width: 100%;
 }
 .cta:hover {
   background: var(--y2-bright);
@@ -292,6 +311,7 @@ section.elev { background: var(--bg-elev); }
   border-radius: 2px;
   transition: color 180ms ease, background-color 180ms ease, border-color 180ms ease;
   white-space: nowrap;
+  max-width: 100%;
 }
 .cta-ghost:hover {
   border-color: var(--y2);
@@ -358,17 +378,148 @@ section.elev { background: var(--bg-elev); }
   background: var(--y2);
   box-shadow: 0 0 12px rgba(240, 255, 0, 0.5);
 }
+.dot.cyan {
+  background: var(--signal-cyan);
+  box-shadow: 0 0 12px rgba(56, 216, 255, 0.5);
+}
+.dot.green {
+  background: var(--signal-green);
+  box-shadow: 0 0 12px rgba(101, 255, 142, 0.42);
+}
+.dot.orange {
+  background: var(--signal-orange);
+  box-shadow: 0 0 12px rgba(255, 184, 74, 0.42);
+}
+.dot.red {
+  background: var(--signal-red);
+  box-shadow: 0 0 12px rgba(255, 77, 109, 0.42);
+}
 .dot.idle { background: var(--ink-faint); }
+
+/* ---------- 12. Operating Console primitives ---------- */
+.ops-panel {
+  position: relative;
+  border: 1px solid var(--rule-bright);
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.035), transparent 34%),
+    linear-gradient(135deg, rgba(56, 216, 255, 0.055), transparent 42%),
+    var(--bg-card);
+  box-shadow: 0 24px 80px rgba(0, 0, 0, 0.34);
+}
+
+.ops-panel::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    linear-gradient(90deg, rgba(245, 245, 245, 0.04) 1px, transparent 1px),
+    linear-gradient(180deg, rgba(245, 245, 245, 0.03) 1px, transparent 1px);
+  background-size: 32px 32px;
+  mask-image: linear-gradient(to bottom, black, transparent 72%);
+  -webkit-mask-image: linear-gradient(to bottom, black, transparent 72%);
+}
+
+.ops-kicker {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+}
+
+.ops-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 28px;
+  padding: 6px 10px;
+  border: 1px solid var(--rule-bright);
+  background: rgba(255, 255, 255, 0.02);
+  font-family: var(--mono);
+  font-size: 9px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ink-dim);
+}
+
+.tone-cyan { color: var(--signal-cyan) !important; }
+.tone-green { color: var(--signal-green) !important; }
+.tone-orange { color: var(--signal-orange) !important; }
+.tone-red { color: var(--signal-red) !important; }
+.tone-yellow { color: var(--y2) !important; }
 
 /* ---------- 12. Mobile lift (≤520px) ---------- */
 @media (max-width: 520px) {
-  body { font-size: 20px; }
-  .prose p { font-size: 24px; line-height: 1.6; }
-  .prose .lead { font-size: 32px; line-height: 1.35; }
-  .lede { font-size: 26px; line-height: 1.45; }
-  .hero-sub { font-size: 24px; line-height: 1.55; }
-  .pull { font-size: 28px; line-height: 1.4; }
-  .section-tag, .eyebrow { font-size: 16px; letter-spacing: 0.18em; }
+  :root {
+    --container-x: 24px;
+    --section-y: 64px;
+  }
+
+  body {
+    font-size: 16px;
+    line-height: 1.6;
+  }
+
+  .h-hero {
+    font-size: 40px;
+    line-height: 1.02;
+    letter-spacing: 0;
+    text-wrap: balance;
+    overflow-wrap: anywhere;
+  }
+
+  .h-section {
+    font-size: 34px;
+    line-height: 1.06;
+    letter-spacing: 0;
+    text-wrap: balance;
+  }
+
+  .h-sub {
+    font-size: 24px;
+    line-height: 1.15;
+    letter-spacing: 0;
+  }
+
+  .h-closer {
+    font-size: 40px;
+    line-height: 1.05;
+    letter-spacing: 0;
+    text-wrap: balance;
+  }
+
+  .prose p { font-size: 17px; line-height: 1.65; }
+  .prose .lead { font-size: 23px; line-height: 1.35; }
+  .lede { font-size: 18px; line-height: 1.5; }
+  .hero-sub { font-size: 17px; line-height: 1.5; }
+  .pull { font-size: 24px; line-height: 1.35; }
+
+  .section-tag,
+  .eyebrow {
+    max-width: 100%;
+    min-width: 0;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    font-size: 11px;
+    line-height: 1.35;
+    letter-spacing: 0.12em;
+    overflow-wrap: anywhere;
+  }
+
+  .section-tag::before,
+  .eyebrow::before {
+    margin-top: 0.65em;
+    flex: 0 0 24px;
+  }
+
+  .cta,
+  .cta-ghost {
+    width: 100%;
+    justify-content: center;
+    white-space: normal;
+    text-align: center;
+  }
 }
 
 /* ---------- 13. Accessibility ---------- */
@@ -393,3 +544,53 @@ section.elev { background: var(--bg-elev); }
   z-index: 9999; transition: top 200ms ease;
 }
 .skip-link:focus { top: 16px; }
+
+/* ---------- 16. Custom Reimaging Keyframe Animations ---------- */
+@keyframes statusPulse {
+  0%, 100% { box-shadow: 0 0 0 6px rgba(240, 255, 0, 0.12), 0 0 24px rgba(240, 255, 0, 0.2); }
+  50% { box-shadow: 0 0 0 10px rgba(240, 255, 0, 0.04), 0 0 34px rgba(240, 255, 0, 0.48); }
+}
+
+@keyframes orbitDraw {
+  to { stroke-dashoffset: 0; }
+}
+
+@keyframes signalPulse {
+  0%, 100% { opacity: 0.24; transform: scale(0.96); }
+  50% { opacity: 0.64; transform: scale(1.04); }
+}
+
+@keyframes nodeRise {
+  from { opacity: 0; transform: translateY(10px) scale(0.96); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+@keyframes drawLine {
+  to { stroke-dashoffset: 0; }
+}
+
+@keyframes tickerMove {
+  to { transform: translateX(-50%); }
+}
+
+@keyframes proofGlow {
+  0% { opacity: 0.02; }
+  100% { opacity: 0.1; }
+}
+
+@keyframes branchRise {
+  from { opacity: 0; transform: translateY(-8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    transition-duration: 0.001ms !important;
+  }
+}

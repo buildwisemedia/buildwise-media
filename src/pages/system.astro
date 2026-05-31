@@ -1,0 +1,426 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import EightLayerSystem from '../components/EightLayerSystem.astro';
+import Sovereignty from '../components/Sovereignty.astro';
+import EarnBackCalculator from '../components/EarnBackCalculator.astro';
+import canonical from '../data/canonical.json';
+
+const title = "The Installed AI Growth System — Buildwise Media";
+const description = "See the owned AI growth system Buildwise installs and operates for service businesses: visibility, conversion, follow-up, reputation, reporting, weekly proof, and AI upgrades.";
+
+const ownerLayerBodies: Record<string, string> = {
+  Visibility: 'Show up when buyers search, ask AI, or compare local providers.',
+  Conversion: 'Turn visits, calls, forms, chat, and quote paths into clear next steps.',
+  'Speed-to-Lead': 'Answer new leads fast enough that they do not call the next shop.',
+  'Sales Ops': 'Keep quotes, reminders, pipeline stages, and old leads moving.',
+  Reputation: 'Ask for reviews, reply well, and turn good work into proof.',
+  'Paid Media': 'Watch spend, test creative, and move budget toward better leads.',
+  Reporting: 'Show spend, calls, leads, booked work, and next moves in one place.',
+  Strategy: 'Make weekly choices from current numbers, not stale end-of-month reports.',
+};
+
+const layers = canonical.products.ascend.eight_layers.map((raw: string, index: number) => {
+  const dashIndex = raw.indexOf('—');
+  const dotIndex = raw.indexOf('·');
+  const name = dashIndex > 0 ? raw.slice(dotIndex + 1, dashIndex).trim() : raw.slice(dotIndex + 1).trim();
+  return {
+    n: String(index + 1).padStart(2, '0'),
+    name,
+    body: ownerLayerBodies[name] ?? '',
+    tone: ['cyan', 'green', 'yellow', 'orange', 'green', 'cyan', 'yellow', 'green'][index],
+  };
+});
+
+const operatingSignals = [
+  { label: 'Find', value: 'Search, AI answers, ads, referrals', tone: 'cyan' },
+  { label: 'Route', value: 'Forms, calls, booking, CRM', tone: 'green' },
+  { label: 'Approve', value: 'Human gates before buyer-facing work', tone: 'orange' },
+  { label: 'Prove', value: 'Dashboard, baseline, booked work', tone: 'yellow' },
+];
+
+const boardTelemetry = [
+  { label: 'What runs', value: 'Search, calls, forms, reviews, follow-up, spend, reporting' },
+  { label: 'What humans approve', value: 'Offers, budget changes, public copy, reputation replies' },
+  { label: 'What the owner sees', value: 'Spend, booked work, leaks, confidence, next move' },
+];
+
+const breadcrumb = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://buildwisemedia.com/' },
+    { '@type': 'ListItem', position: 2, name: 'The System', item: 'https://buildwisemedia.com/system' },
+  ],
+};
+
+const serviceSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Service',
+  '@id': 'https://buildwisemedia.com/system#ascend-system',
+  name: 'Ascend operating system',
+  serviceType: 'Installed AI growth system for service businesses',
+  provider: { '@id': 'https://buildwisemedia.com/#org' },
+  areaServed: { '@type': 'Country', name: 'United States' },
+  description,
+  url: 'https://buildwisemedia.com/system',
+};
+---
+<BaseLayout title={title} description={description} jsonLd={[serviceSchema, breadcrumb]}>
+
+  <section class="system-hero">
+    <div class="container system-hero-grid">
+      <div>
+        <p class="eyebrow">The system</p>
+        <h1 class="h-hero">See the AI growth system installed inside your business.</h1>
+        <p class="hero-sub">
+          Ascend connects buyer visibility, follow-up, reporting, proof, and AI routing into one owned system. Buildwise operates it every week so the business gets stronger without making the owner the router.
+        </p>
+        <div class="system-ctas">
+          <a href="/book" class="cta" data-cta-source="system-hero">See If We're a Fit<span class="cta-arrow" aria-hidden="true">→</span></a>
+          <a href="/pricing" class="cta-ghost" data-cta-source="system-pricing">See Pricing</a>
+        </div>
+      </div>
+      <aside class="system-panel ops-panel">
+        <div class="system-panel-head">
+          <p class="panel-label mono">Installed layer</p>
+          <span class="ops-chip"><span class="dot green" aria-hidden="true"></span>operational</span>
+        </div>
+        <div class="system-orbit" aria-hidden="true">
+          <svg viewBox="0 0 360 240" xmlns="http://www.w3.org/2000/svg">
+            <rect x="16" y="18" width="328" height="204" rx="6" fill="rgba(255,255,255,0.015)" stroke="var(--rule)" />
+            <path d="M56 120 H304" stroke="var(--rule-bright)" stroke-width="1" />
+            <path d="M180 42 V198" stroke="var(--rule-bright)" stroke-width="1" />
+            <circle cx="180" cy="120" r="54" fill="rgba(240,255,0,0.07)" stroke="var(--y2)" />
+            <circle cx="180" cy="120" r="7" fill="var(--y2)" />
+            <path class="system-flow" d="M66 66 C122 28 170 84 180 120 C194 172 262 166 300 76" fill="none" stroke="var(--signal-cyan)" stroke-width="2" />
+            <path class="system-flow flow-two" d="M62 176 C126 208 150 132 180 120 C222 104 258 132 304 174" fill="none" stroke="var(--signal-green)" stroke-width="2" />
+            <circle cx="66" cy="66" r="8" fill="var(--signal-cyan)" />
+            <circle cx="300" cy="76" r="8" fill="var(--y2)" />
+            <circle cx="62" cy="176" r="8" fill="var(--signal-orange)" />
+            <circle cx="304" cy="174" r="8" fill="var(--signal-green)" />
+          </svg>
+        </div>
+        <ol class="system-loop">
+          <li><span>01</span> Capture baseline</li>
+          <li><span>02</span> Install owned layers</li>
+          <li><span>03</span> Clear human signoff gates</li>
+          <li><span>04</span> Show what booked weekly</li>
+        </ol>
+      </aside>
+    </div>
+  </section>
+
+  <section class="system-imagery-band" aria-label="Installed system imagery">
+    <div class="container system-image-grid">
+      <figure>
+        <!-- @r020:F2 proof: architecture photo makes the invisible operating layer visible -->
+        <img src="/images/bwm-system-architecture-atmospheric-v1.webp" alt="Dark infrastructure corridor with a single yellow signal light at the end." width="720" height="480" loading="lazy" decoding="async" />
+      </figure>
+      <figure>
+        <!-- @r020:F2 proof: method image shows human signoff inside the operating rhythm -->
+        <img src="/images/bwm-method-editorial-v1.webp" alt="Hand writing notes beside a blurred operations dashboard with yellow signal light." width="720" height="480" loading="lazy" decoding="async" />
+      </figure>
+      <figure>
+        <!-- @r020:F2 proof: receipts image grounds the dashboard in evidence -->
+        <img src="/images/bwm-receipts-still-life-v1.webp" alt="Receipt-like proof packet and measurement notes on a dark desk surface." width="720" height="480" loading="lazy" decoding="async" />
+      </figure>
+    </div>
+  </section>
+
+  <section class="routing-section elev" aria-labelledby="routing-title">
+    <div class="container routing-grid">
+      <header>
+        <p class="section-tag">Owner view</p>
+        <h2 id="routing-title" class="h-section">The work routes through the system before it routes through you.</h2>
+        <p class="lede">Ascend works because visibility, conversion, follow-up, reputation, spend, AI upgrades, and reporting stop living in separate tools and separate people's heads.</p>
+      </header>
+      <div class="routing-board">
+        <div class="routing-layer-grid">
+          {layers.map((layer) => (
+            <article class={`routing-layer tone-${layer.tone}`}>
+              <span class="mono">{layer.n}</span>
+              <strong>{layer.name}</strong>
+              <p>{layer.body}</p>
+            </article>
+          ))}
+        </div>
+        <div class="routing-signal-grid">
+          {operatingSignals.map((signal) => (
+            <article class={`routing-signal tone-${signal.tone}`}>
+              <p class="ops-kicker">{signal.label}</p>
+              <strong>{signal.value}</strong>
+            </article>
+          ))}
+        </div>
+        <div class="board-telemetry" aria-label="Operating board telemetry">
+          {boardTelemetry.map((item) => (
+            <div>
+              <span class="mono">{item.label}</span>
+              <strong>{item.value}</strong>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <EightLayerSystem />
+  <Sovereignty />
+  <EarnBackCalculator />
+
+  <section class="system-final elev">
+    <div class="container final-row">
+      <div>
+        <h2 class="h-closer">Want to see where Ascend would install first?</h2>
+        <p class="lede">The fit diagnostic starts the Market Dominance Dossier before the call and checks whether the economics can support the system.</p>
+      </div>
+      <a href="/book" class="cta" data-cta-source="system-final">See If We're a Fit<span class="cta-arrow" aria-hidden="true">→</span></a>
+    </div>
+  </section>
+
+</BaseLayout>
+
+<style>
+.system-hero {
+  padding-top: clamp(108px, 10vw, 144px);
+  padding-bottom: clamp(48px, 6vw, 80px);
+}
+.system-hero-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.1fr) minmax(260px, 0.9fr);
+  gap: clamp(32px, 5vw, 64px);
+  align-items: center;
+}
+.system-hero .h-hero {
+  font-size: clamp(48px, 5.2vw, 74px);
+  line-height: 0.94;
+  letter-spacing: -0.035em;
+}
+.hero-sub { margin-top: 18px; }
+.system-ctas {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+  margin-top: 24px;
+}
+.system-imagery-band {
+  padding-block: clamp(18px, 3vw, 34px) clamp(44px, 5vw, 72px);
+}
+.system-image-grid {
+  display: grid;
+  grid-template-columns: 1.1fr 0.95fr 0.95fr;
+  gap: 12px;
+}
+.system-image-grid figure {
+  aspect-ratio: 3 / 2;
+  overflow: hidden;
+  border: 1px solid var(--rule);
+  background: var(--bg-card);
+}
+.system-image-grid img {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+}
+.system-panel {
+  border: 1px solid var(--rule-bright);
+  padding: clamp(24px, 3vw, 34px);
+  position: relative;
+  overflow: hidden;
+}
+.system-panel > * { position: relative; z-index: 1; }
+.system-panel-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+.panel-label {
+  color: var(--y2);
+  font-size: 10px;
+  letter-spacing: 0.2em;
+}
+.system-orbit {
+  margin-block: 20px;
+  border: 1px solid var(--rule);
+  background: rgba(5, 5, 7, 0.62);
+}
+.system-orbit svg { width: 100%; height: auto; }
+.system-flow {
+  stroke-dasharray: 12 14;
+  animation: systemFlow 7s linear infinite;
+}
+.flow-two { animation-duration: 9s; animation-direction: reverse; }
+.system-loop {
+  list-style: none;
+  display: grid;
+  gap: 1px;
+  margin-top: 20px;
+  background: var(--rule);
+  border: 1px solid var(--rule);
+}
+.system-loop li {
+  background: var(--bg);
+  padding: 14px;
+  font-family: var(--mono);
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  font-size: 10px;
+  color: var(--ink-dim);
+  display: flex;
+  gap: 12px;
+}
+.system-loop li span { color: var(--signal-cyan); }
+.routing-section { padding-block: clamp(56px, 7vw, 96px); }
+.routing-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 0.78fr) minmax(0, 1.22fr);
+  gap: clamp(32px, 5vw, 64px);
+  align-items: start;
+}
+.routing-grid header { position: sticky; top: 104px; }
+.routing-grid .lede { margin-top: 22px; }
+.routing-board {
+  border: 1px solid var(--rule-bright);
+  background:
+    linear-gradient(135deg, rgba(56,216,255,0.045), transparent 40%),
+    var(--bg-card);
+  padding: clamp(18px, 2.5vw, 26px);
+}
+.routing-layer-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1px;
+  background: var(--rule);
+  border: 1px solid var(--rule);
+}
+.routing-layer {
+  background: var(--bg);
+  padding: 14px;
+  border-top: 2px solid currentColor;
+  min-height: 96px;
+}
+.routing-layer span {
+  display: block;
+  color: currentColor;
+  font-size: 9px;
+  letter-spacing: 0.18em;
+}
+.routing-layer strong {
+  display: block;
+  margin-top: 12px;
+  font-size: clamp(18px, 2.1vw, 26px);
+  line-height: 1.05;
+  color: var(--ink);
+}
+.routing-layer p {
+  margin-top: 8px;
+  color: var(--ink-dim);
+  font-size: 13px;
+  line-height: 1.45;
+}
+.routing-signal-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 1px;
+  background: var(--rule);
+  border: 1px solid var(--rule);
+  margin-top: 18px;
+}
+.routing-signal {
+  background: rgba(5, 5, 7, 0.78);
+  padding: 14px;
+  border-top: 2px solid currentColor;
+}
+.routing-signal strong {
+  display: block;
+  margin-top: 8px;
+  color: var(--ink);
+  font-size: 14px;
+  line-height: 1.35;
+}
+.board-telemetry {
+  display: grid;
+  gap: 1px;
+  margin-top: 18px;
+  background: var(--rule);
+  border: 1px solid var(--rule);
+}
+.board-telemetry div {
+  display: grid;
+  grid-template-columns: minmax(130px, 0.34fr) minmax(0, 1fr);
+  gap: 14px;
+  align-items: center;
+  background: rgba(5, 5, 7, 0.76);
+  padding: 13px 14px;
+}
+.board-telemetry span {
+  color: var(--y2);
+  font-size: 9px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+.board-telemetry strong {
+  color: var(--ink);
+  font-family: var(--sans);
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.35;
+}
+@keyframes systemFlow {
+  to { stroke-dashoffset: -160; }
+}
+.system-final { padding-block: 80px; }
+.final-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 32px;
+  flex-wrap: wrap;
+}
+.final-row .lede { margin-top: 16px; }
+@media (max-width: 840px) {
+  .system-hero-grid,
+  .routing-grid { grid-template-columns: 1fr; }
+  .system-image-grid { grid-template-columns: 1fr; }
+  .routing-grid header { position: static; }
+  .routing-signal-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 560px) {
+  .system-hero {
+    padding-top: 92px;
+    padding-bottom: 48px;
+  }
+
+  .system-hero .h-hero {
+    font-size: 34px;
+    line-height: 1.03;
+    letter-spacing: 0;
+  }
+
+  .system-hero .hero-sub {
+    font-size: 16px;
+    line-height: 1.5;
+  }
+  .system-ctas { margin-top: 22px; }
+  .system-panel { padding: 20px; }
+  .system-orbit { margin-block: 16px; }
+
+  .routing-layer-grid,
+  .routing-signal-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .routing-layer { padding: 16px 14px; min-height: 92px; }
+  .routing-layer strong { font-size: 17px; }
+  .routing-layer p { display: none; }
+  .board-telemetry div {
+    grid-template-columns: 1fr;
+    gap: 6px;
+  }
+  .system-ctas .cta,
+  .system-ctas .cta-ghost,
+  .final-row .cta {
+    width: 100%;
+    justify-content: center;
+  }
+}
+</style>

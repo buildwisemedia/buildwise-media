@@ -3,6 +3,7 @@ import '../styles/global.css';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import JsonLdGraph from '../components/seo/JsonLdGraph.astro';
+// @r020-exempt: document shell; the only image is a 1x1 invisible analytics pixel, no visual or conversion role
 
 interface Props {
   title: string;
@@ -55,7 +56,7 @@ const siteSchemas: Record<string, unknown>[] = [
     url: siteUrl,
     email: 'hello@buildwisemedia.com',
     description:
-      'AI marketing department for service businesses — installs in 30 days, operated weekly, owned by you.',
+      'Verifiable autonomous marketing systems for service businesses — Ascend installs in 30 days, operates weekly, and stays owned by the client.',
     foundingLocation: {
       '@type': 'Place',
       address: {
@@ -72,9 +73,28 @@ const siteSchemas: Record<string, unknown>[] = [
     url: siteUrl,
     name: 'Buildwise Media',
     description:
-      'AI marketing department for service businesses — installs in 30 days, operated weekly, owned by you.',
+      'Verifiable autonomous marketing systems for service businesses — Ascend installs in 30 days, operates weekly, and stays owned by the client.',
     publisher: { '@id': `${siteUrl}/#org` },
     inLanguage: 'en-US',
+  },
+  {
+    '@type': 'LocalBusiness',
+    '@id': `${siteUrl}/#localbusiness`,
+    name: 'Buildwise Media',
+    url: siteUrl,
+    email: 'hello@buildwisemedia.com',
+    priceRange: '$$$',
+    address: {
+      '@type': 'PostalAddress',
+      addressLocality: 'Atlanta',
+      addressRegion: 'GA',
+      addressCountry: 'US',
+    },
+    areaServed: {
+      '@type': 'Country',
+      name: 'United States',
+    },
+    parentOrganization: { '@id': `${siteUrl}/#org` },
   },
   {
     '@type': 'WebPage',
@@ -122,6 +142,7 @@ const graph = [...siteSchemas, ...perPageSchemas];
 
     <!-- Open Graph (Triangulation V3 banner — image on R2 bucket bwm-assets/marks/triangulation-v3/) -->
     <meta property="og:type" content="website" />
+    <meta property="og:locale" content="en_US" />
     <meta property="og:title" content={ogT} />
     <meta property="og:description" content={ogD} />
     <meta property="og:url" content={canonicalUrl} />
@@ -132,62 +153,50 @@ const graph = [...siteSchemas, ...perPageSchemas];
     <meta property="og:image:height" content="630" />
     <meta property="og:image:alt" content="Buildwise Media — Your AI Department" />
     <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={ogT} />
+    <meta name="twitter:description" content={ogD} />
     <meta name="twitter:image" content="https://pub-85c635a2536e438b9927af5e6723b0f7.r2.dev/marks/triangulation-v3/exports/banner/og-1200x630-v2.png" />
-
-    <!-- Fonts: Inter (display + body) + JetBrains Mono (micro) -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 
     <!-- Booking embed preconnect (used on /book) — cuts ~200-500ms off first paint of the calendar iframe. EXP-002 telemetry shows 50% click-to-LPV drop, primary suspect = TLS cold-start on this subdomain. -->
     <link rel="preconnect" href="https://book.buildwisemedia.com" />
     <link rel="dns-prefetch" href="https://book.buildwisemedia.com" />
-    {/* Non-blocking font CSS: download as print stylesheet (which doesn't block render),
-        then onload swap media to all so it applies. display=swap in the URL governs the
-        font swap itself; this pattern unblocks the *CSS file fetch* which is the
-        FCP-blocker even with display=swap. <noscript> fallback for JS-off readers. */}
-    <link
-      rel="stylesheet"
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@300;400;500;700&display=swap"
-      media="print"
-      onload="this.media='all'"
-    />
-    <noscript>
-      <link
-        rel="stylesheet"
-        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@300;400;500;700&display=swap"
-      />
-    </noscript>
 
-    <!-- Google Tag Manager -->
-    <script is:inline define:vars={{ GTM }}>
-      (function (w, d, s, l, i) {
-        w[l] = w[l] || []; w[l].push({ 'gtm.start': new Date().getTime(), event: 'gtm.js' });
-        var f = d.getElementsByTagName(s)[0],
-          j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : '';
-        j.async = true; j.src = 'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
-        f.parentNode.insertBefore(j, f);
-      })(window, document, 'script', 'dataLayer', GTM);
-    </script>
-
-    <!-- GA4 (loaded directly so events fire even if GTM is blocked) -->
-    <script is:inline async src={`https://www.googletagmanager.com/gtag/js?id=${GA4}`}></script>
-    <script is:inline define:vars={{ GA4 }}>
+    <!-- Analytics boot: queue immediately, load vendors after the first interaction or post-LCP timeout. -->
+    <script is:inline define:vars={{ GTM, GA4, PIXEL }}>
       window.dataLayer = window.dataLayer || [];
       function gtag(){ dataLayer.push(arguments); }
-      window.gtag = gtag;
-      gtag('js', new Date());
-      gtag('config', GA4, { send_page_view: true });
-    </script>
+      window.gtag = window.gtag || gtag;
 
-    <!-- Meta Pixel -->
-    <script is:inline define:vars={{ PIXEL }}>
-      !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-      n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
-      n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
-      t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
-      document,'script','https://connect.facebook.net/en_US/fbevents.js');
-      fbq('init', PIXEL);
-      fbq('track', 'PageView');
+      (function () {
+        var loaded = false;
+        var events = ['pointerdown', 'keydown', 'touchstart', 'scroll'];
+        function append(src) {
+          var s = document.createElement('script');
+          s.async = true;
+          s.src = src;
+          document.head.appendChild(s);
+          return s;
+        }
+        function loadAnalytics() {
+          if (loaded) return;
+          loaded = true;
+          window.dataLayer.push({ 'gtm.start': new Date().getTime(), event: 'gtm.js' });
+          append('https://www.googletagmanager.com/gtm.js?id=' + GTM);
+          append('https://www.googletagmanager.com/gtag/js?id=' + GA4);
+          window.gtag('js', new Date());
+          // GTM-P5JSD86L already owns base GA4 PageView and Meta Pixel init.
+          // Direct gtag stays available for custom events, but with no automatic
+          // page_view so the container and page script do not double-count LPVs.
+          window.gtag('config', GA4, { send_page_view: false });
+          events.forEach(function (eventName) {
+            window.removeEventListener(eventName, loadAnalytics, { passive: true });
+          });
+        }
+        events.forEach(function (eventName) {
+          window.addEventListener(eventName, loadAnalytics, { once: true, passive: true });
+        });
+        setTimeout(loadAnalytics, 5000);
+      })();
     </script>
 
     <!-- Microsoft Clarity (deferred to keep LCP tight per memory feedback_perf_text_lcp_after_webp.md) -->
@@ -204,20 +213,108 @@ const graph = [...siteSchemas, ...perPageSchemas];
     <!-- Attribution capture (first-touch + last-touch + UTM, persisted to localStorage) -->
     <script is:inline>
       (function () {
-        try {
-          var KEY = '_bwm_attribution';
-          var url = new URL(window.location.href);
-          var utm = {};
-          ['utm_source','utm_medium','utm_campaign','utm_content','utm_term','gclid','fbclid'].forEach(function (k) {
-            var v = url.searchParams.get(k); if (v) utm[k] = v;
+        var KEY = '_bwm_attribution';
+        var BOOKING_EVENT_KEY = 'bwm_booking_event_id';
+        var UTM_KEYS = ['utm_source','utm_medium','utm_campaign','utm_content','utm_term','gclid','fbclid'];
+
+        function safeJson(value, fallback) {
+          try { return JSON.parse(value); } catch (_) { return fallback; }
+        }
+
+        function uuid() {
+          if (window.crypto && typeof window.crypto.randomUUID === 'function') return window.crypto.randomUUID();
+          return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
+            var r = Math.random() * 16 | 0;
+            var v = c === 'x' ? r : (r & 0x3 | 0x8);
+            return v.toString(16);
           });
-          var prior = JSON.parse(localStorage.getItem(KEY) || 'null');
+        }
+
+        function cookie(name) {
+          var match = document.cookie.match(new RegExp('(?:^|; )' + name.replace(/[.$?*|{}()[\]\\/+^]/g, '\\$&') + '=([^;]*)'));
+          return match ? decodeURIComponent(match[1]) : '';
+        }
+
+        function currentUtms() {
+          var params = new URL(window.location.href).searchParams;
+          var out = {};
+          UTM_KEYS.forEach(function (k) {
+            var v = params.get(k);
+            if (v) out[k] = v;
+          });
+          return out;
+        }
+
+        function ensureBookingEventId(preferred) {
+          var clean = preferred && String(preferred).trim();
+          var current = clean || sessionStorage.getItem(BOOKING_EVENT_KEY) || '';
+          if (!current) current = uuid();
+          sessionStorage.setItem(BOOKING_EVENT_KEY, current);
+          return current;
+        }
+
+        function getPayload(extra) {
+          var record = safeJson(localStorage.getItem(KEY) || 'null', null) || window.__bwmAttribution || {};
+          var last = record.last_touch || {};
+          var first = record.first_touch || {};
+          var urlUtms = currentUtms();
+          var utm = Object.assign({}, first.utm || {}, last.utm || {}, urlUtms);
+          var payload = {
+            attribution: record,
+            referrer: sessionStorage.getItem('bwm_referrer') || document.referrer || last.referrer || first.referrer || '',
+            landing_page: sessionStorage.getItem('bwm_landing_page') || last.landing_page || first.landing_page || window.location.href,
+            utm_source: utm.utm_source || '',
+            utm_medium: utm.utm_medium || '',
+            utm_campaign: utm.utm_campaign || '',
+            utm_content: utm.utm_content || '',
+            utm_term: utm.utm_term || '',
+            fbclid: utm.fbclid || '',
+            gclid: utm.gclid || '',
+            fbp: cookie('_fbp'),
+            fbc: cookie('_fbc'),
+            booking_event_id: ensureBookingEventId(),
+          };
+          return Object.assign(payload, extra || {});
+        }
+
+        function trackEvent(name, params, opts) {
+          var payload = Object.assign({}, params || {});
+          var eventId = (opts && opts.eventId) || payload.event_id || payload.capi_event_id || payload.booking_event_id || '';
+          if (eventId) {
+            payload.event_id = eventId;
+          }
+          window.dataLayer = window.dataLayer || [];
+          window.dataLayer.push(Object.assign({ event: name }, payload));
+          if (typeof window.gtag === 'function') {
+            try { window.gtag('event', name, payload); } catch (_) {}
+          }
+          if (opts && opts.fbqEvent && typeof window.fbq === 'function') {
+            try {
+              if (eventId) {
+                window.fbq('track', opts.fbqEvent, opts.fbqParams || {}, { eventID: eventId });
+              } else {
+                window.fbq('track', opts.fbqEvent, opts.fbqParams || {});
+              }
+            } catch (_) {}
+          }
+        }
+
+        try {
+          var url = new URL(window.location.href);
+          var utm = currentUtms();
+          if (!sessionStorage.getItem('bwm_referrer')) sessionStorage.setItem('bwm_referrer', document.referrer || '');
+          if (!sessionStorage.getItem('bwm_landing_page')) sessionStorage.setItem('bwm_landing_page', window.location.href);
+          var prior = safeJson(localStorage.getItem(KEY) || 'null', null);
           var now = new Date().toISOString();
-          var record = prior || { first_touch: { ts: now, referrer: document.referrer || null, landing_page: location.pathname, utm: utm }, last_touch: null };
-          record.last_touch = { ts: now, referrer: document.referrer || null, landing_page: location.pathname, utm: utm };
+          var record = prior || { first_touch: { ts: now, referrer: document.referrer || null, landing_page: window.location.href, utm: utm }, last_touch: null };
+          record.last_touch = { ts: now, referrer: document.referrer || null, landing_page: window.location.href, utm: utm };
           localStorage.setItem(KEY, JSON.stringify(record));
           window.__bwmAttribution = record;
         } catch (e) {}
+
+        window.__bwmGetAttributionPayload = getPayload;
+        window.__bwmEnsureBookingEventId = ensureBookingEventId;
+        window.__bwmTrackEvent = trackEvent;
       })();
     </script>
 
@@ -246,12 +343,20 @@ const graph = [...siteSchemas, ...perPageSchemas];
     <!-- CTA click telemetry -->
     <script is:inline>
       document.addEventListener('click', function (e) {
-        var a = e.target.closest && e.target.closest('a[href="/book"]');
+        var a = e.target.closest && e.target.closest('a[href^="/book"]');
         if (!a) return;
         var src = a.getAttribute('data-cta-source') || 'unspecified';
         try {
+          var payload = { cta_label: a.textContent.trim(), cta_source: src };
+          if (typeof window.__bwmGetAttributionPayload === 'function') {
+            payload = Object.assign(window.__bwmGetAttributionPayload(), payload);
+          }
+          if (typeof window.__bwmTrackEvent === 'function') {
+            window.__bwmTrackEvent('cta_click', payload, { fbqEvent: 'InitiateCheckout' });
+            return;
+          }
           window.dataLayer = window.dataLayer || [];
-          window.dataLayer.push({ event: 'cta_click', cta_label: a.textContent.trim(), cta_source: src });
+          window.dataLayer.push(Object.assign({ event: 'cta_click' }, payload));
           // InitiateCheckout signals click-intent. Real Lead fires from the booking webhook → CAPI server-side, deduplicated by event_id. Meta optimizes delivery toward whatever fires Lead — keeping it server-side = optimization toward bookers, not clickers.
           if (window.fbq) window.fbq('track', 'InitiateCheckout');
         } catch (err) {}
@@ -275,6 +380,13 @@ const graph = [...siteSchemas, ...perPageSchemas];
         function fireClickEvent(eventName, params) {
           var payload = { page_path: location.pathname, page_referrer: document.referrer || '' };
           Object.keys(params || {}).forEach(function (k) { payload[k] = params[k]; });
+          if (typeof window.__bwmGetAttributionPayload === 'function') {
+            payload = Object.assign(window.__bwmGetAttributionPayload(), payload);
+          }
+          if (typeof window.__bwmTrackEvent === 'function') {
+            window.__bwmTrackEvent(eventName, payload);
+            return;
+          }
           window.dataLayer = window.dataLayer || [];
           var dlEvent = { event: eventName };
           Object.keys(payload).forEach(function (k) { dlEvent[k] = payload[k]; });

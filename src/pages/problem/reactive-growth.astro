@@ -1,0 +1,140 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+const title = "Reactive Growth — Buildwise Media";
+const description = "No operating rhythm, weak reporting, slow course correction. Reactive Growth is a system failure, not a strategy problem. Here's how we close it.";
+
+const breadcrumb = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://buildwisemedia.com/' },
+    { '@type': 'ListItem', position: 2, name: 'Reactive Growth', item: 'https://buildwisemedia.com/problem/reactive-growth' },
+  ],
+};
+
+const service = {
+  '@context': 'https://schema.org',
+  '@type': 'Service',
+  '@id': 'https://buildwisemedia.com/problem/reactive-growth#fix',
+  name: 'Reactive Growth fix — live attribution and weekly operating cadence',
+  serviceType: 'AI marketing department for service businesses',
+  provider: { '@id': 'https://buildwisemedia.com/#org' },
+  areaServed: { '@type': 'Country', name: 'United States' },
+  description:
+    'Installs a live attribution dashboard, weekly operating cadence, and baseline-first measurement so every marketing decision is grounded in data — and course corrections happen in days, not quarters.',
+  url: 'https://buildwisemedia.com/problem/reactive-growth',
+};
+
+const faqs = [
+  {
+    q: 'How do I know what\'s working in my marketing before the quarter is over?',
+    a: 'You know what\'s working in real time when your marketing is instrumented with attribution tracking from the first click to the closed job. Most service businesses don\'t have this — they know their total revenue and their total ad spend, but not which channel, which ad, or which landing page drove which jobs. We install first-touch and last-touch attribution so you see exactly what\'s producing qualified leads, week by week, before the quarter gives you the answer.',
+  },
+  {
+    q: 'What does a real weekly operating cadence look like for a service business?',
+    a: 'A real weekly cadence has three components: a fixed review of last week\'s numbers against baseline (not against gut feel), a clear list of what\'s being tested this week and why, and a decision on what to do more of or less of based on the data. Most service businesses have none of these. The cadence doesn\'t require a long meeting — it requires a system that surfaces the right numbers automatically so the review takes 20 minutes, not an afternoon of spreadsheet archaeology.',
+  },
+  {
+    q: 'How do I measure marketing ROI for a service business?',
+    a: 'Marketing ROI for a service business starts with a baseline: how many qualified leads did we get last month, at what cost, and how many converted to jobs? Without a baseline, every month is judged in isolation and trends are invisible. We establish the baseline in the first 30 days, instrument your campaigns with full attribution, and report against it weekly. By month three, you\'re making decisions on real trend data — not hopeful comparisons to a number you vaguely remember.',
+  },
+];
+
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  '@id': 'https://buildwisemedia.com/problem/reactive-growth#faq',
+  mainEntity: faqs.map((f) => ({
+    '@type': 'Question',
+    name: f.q,
+    acceptedAnswer: { '@type': 'Answer', text: f.a },
+  })),
+};
+---
+<BaseLayout title={title} description={description} jsonLd={[service, breadcrumb, faqSchema]}>
+
+  <section class="problem-hero">
+    <div class="container">
+      <p class="eyebrow"><a href="/#problem" class="back-link">← The Poor Four</a> · 04</p>
+      <h1 class="h-hero">
+        Reactive <em>growth.</em>
+      </h1>
+      <p class="hero-sub">
+        Every Monday starts with a different fire. There's no weekly rhythm, no operating cadence, no clear scoreboard. By the time you spot a trend in the numbers, the quarter is over. You're making big decisions on tiny data. The whole operation is one step behind, always.
+      </p>
+    </div>
+  </section>
+
+  <section class="problem-cost elev">
+    <div class="container">
+      <p class="section-tag">What it actually costs</p>
+      <h2 class="h-section">The cost of reaction.</h2>
+      <ol class="cost-list" role="list">
+        <li><strong>Missed early signals become expensive late corrections.</strong> A campaign that's underperforming in week two is fixable. The same campaign discovered at the end of the quarter has already consumed the budget. Reactive operations always pay the correction tax twice: once for the problem, once for the lost time.</li>
+        <li><strong>Late course corrections waste months of spend.</strong> Without a weekly review cadence, underperforming channels run until the pain is visible — which usually means months. The compound cost is the spend itself plus the lost opportunity of what a performing channel would have produced in the same window.</li>
+        <li><strong>Decisions on gut instead of data produce the same results as guessing.</strong> Most service business owners are good operators with strong intuitions. Those intuitions are right more often when they're calibrated against real numbers — and wrong more often when they're substituting for data that doesn't exist yet.</li>
+        <li><strong>Slow learning compounds against fast competitors.</strong> Marketing is an optimization game. The business that tests faster, learns faster, and adjusts faster wins market share over time. Reactive operations learn on a quarterly cycle. Instrumented operations learn weekly. That gap compounds.</li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="problem-fix">
+    <div class="container">
+      <p class="section-tag">How we close it</p>
+      <h2 class="h-section">A cadence that <em>catches problems early</em>.</h2>
+      <p class="lede">
+        Reactive Growth isn't a strategy problem. It's a missing measurement system. We install live attribution tracking, a weekly operating cadence, and baseline-first reporting so every marketing decision is grounded in data — and course corrections happen in days, not quarters.
+      </p>
+      <p class="prose">
+        The dashboard surfaces the numbers that matter — cost per qualified lead, channel attribution, conversion rates by source — automatically, every week. You look at what's working, decide what to adjust, and move. No spreadsheet archaeology. No quarterly surprises. Built in 30 days, producing real trend data by month three.
+      </p>
+    </div>
+  </section>
+
+  <section class="problem-cta elev">
+    <div class="container">
+      <h2 class="h-closer">Reactive operations are <em>fixable.</em></h2>
+      <p class="lede">If three of the Poor Four sound familiar, the operations gap is bigger than the data gap. That's the conversation worth having.</p>
+      <p class="cta-row">
+        <a class="cta-primary" href="/book" data-cta-source="problem-reactive-growth-cta">See If We're a Fit <span class="cta-arrow">→</span></a>
+        <a class="cta-ghost" href="/#problem">Back to The Poor Four</a>
+      </p>
+    </div>
+  </section>
+
+</BaseLayout>
+
+<style>
+.problem-hero { padding-block: clamp(80px, 12vw, 144px); }
+.back-link { color: var(--ink-faint); transition: color 180ms ease; }
+.back-link:hover { color: var(--y2); }
+.problem-hero h1 em { color: var(--y2); font-style: normal; font-weight: inherit; }
+.problem-fix h2 em, .problem-cta h2 em { color: var(--y2); font-style: normal; font-weight: inherit; }
+
+.cost-list { list-style: none; counter-reset: cost; display: flex; flex-direction: column; gap: 24px; margin-top: 32px; max-width: 880px; }
+.cost-list li {
+  counter-increment: cost;
+  position: relative;
+  padding-left: 56px;
+  font-size: 17px;
+  line-height: 1.6;
+  color: var(--ink-dim);
+}
+.cost-list li::before {
+  content: counter(cost, decimal-leading-zero);
+  position: absolute;
+  left: 0;
+  top: 0;
+  font-family: var(--mono);
+  font-size: 13px;
+  letter-spacing: 0.18em;
+  color: var(--y2);
+}
+.cost-list strong { color: var(--ink); font-weight: 500; }
+
+.prose { font-size: 17px; line-height: 1.7; color: var(--ink-dim); max-width: 720px; margin-top: 24px; }
+.problem-fix .lede { margin-top: 32px; }
+
+.cta-row { display: flex; flex-wrap: wrap; gap: 16px; margin-top: 32px; }
+</style>
