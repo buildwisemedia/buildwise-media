@@ -56,8 +56,33 @@ const faqSchema = {
     }
   ]
 };
+
+// Anchor case study — makes the page's already-visible, already-scoped proof
+// machine-readable for answer engines. Honesty boundary: this is ONE specialty
+// service business (exactly as shown on-page), NOT an aggregate, and carries NO
+// invented rating or review count (see the on-page FAQ on why client names stay
+// anonymous). The metrics mirror the visible timeline + scoreboard verbatim.
+const caseStudy = {
+  '@context': 'https://schema.org',
+  '@type': 'CreativeWork',
+  '@id': 'https://buildwisemedia.com/results#case-anchor',
+  name: '$300K to $10M+: a specialty service business',
+  headline: 'One specialty service business crossed eight figures with Ascend',
+  description:
+    'A specialty service business in the Southeast US changed its operating model with Ascend — baseline captured on Day 0, lead paths connected, follow-up under five minutes on tracked paths — and reached 33.2× attributable return against its Day-0 baseline with revenue run-rate past $10M across 24 months, without turning the owner into the marketing department.',
+  creator: { '@id': 'https://buildwisemedia.com/#org' },
+  publisher: { '@id': 'https://buildwisemedia.com/#org' },
+  about: { '@id': 'https://buildwisemedia.com/#service-ascend' },
+  isPartOf: { '@id': 'https://buildwisemedia.com/results#webpage' },
+  additionalProperty: [
+    { '@type': 'PropertyValue', name: 'Attributable return vs Day-0 baseline', value: 33.2, unitText: 'x' },
+    { '@type': 'PropertyValue', name: 'Revenue run-rate', value: '$10M+', description: 'From a ~$300K starting run-rate to $10M+ across 24 months' },
+    { '@type': 'PropertyValue', name: 'Speed-to-lead on tracked paths', value: '<5', unitText: 'minutes' },
+    { '@type': 'PropertyValue', name: 'Engagement window', value: 24, unitText: 'months' },
+  ],
+};
 ---
-<BaseLayout title={title} description={description} jsonLd={[breadcrumb, faqSchema]}>
+<BaseLayout title={title} description={description} jsonLd={[breadcrumb, faqSchema, caseStudy]}>
 
   <!-- SECTION 1: HERO & SCOREBOARD -->
   <section class="results-hero">
