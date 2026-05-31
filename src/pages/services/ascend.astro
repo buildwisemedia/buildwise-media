@@ -1,6 +1,7 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import canonical from '../../data/canonical.json';
+import FAQ from '../../components/FAQ.astro';
 
 const title = "Ascend — The Installed AI Growth System Buildwise Runs";
 const description = "Ascend is the owned AI growth system Buildwise installs and operates for service businesses: follow-up, visibility, reputation, reporting, weekly proof, and frontier AI upgrades.";
@@ -93,8 +94,45 @@ const service = {
     ],
   },
 };
+
+// FAQ — voice-search phrased, mined from the on-page Ascend facts above. FAQPage
+// schema is emitted alongside the rendered <FAQ> section so answer engines see
+// matching question/answer content. Prices inherit from canonical (The Book).
+const faqs = [
+  {
+    q: 'What is Ascend?',
+    a: 'Ascend is an AI growth system we install on your domain, run for you every week, and hand to you to own. It covers the revenue work that usually falls back on the owner — visibility, follow-up, reviews, and reporting — and folds in new AI as it ships.',
+  },
+  {
+    q: 'How fast does Ascend go live?',
+    a: 'Inside 30 days the dashboard, tracking, CRM routes, and reports are live and the first operating rhythm is running. You see spend, leads, and booked work from Day 1 — proof starts before any claim.',
+  },
+  {
+    q: 'Who runs the system — me or your team?',
+    a: 'We do. The Buildwise team and our AI system operate Ascend every week, clear the gates, and fix what underperforms, with a human signoff on every automated change. You stay the owner, not the operator.',
+  },
+  {
+    q: 'What do I actually own?',
+    a: 'Everything. The code lives in your repository, the customer list in your CRM, the ad accounts in your business, and the AI agents are built around your workflows. If you ever leave, you take the whole system with you.',
+  },
+  {
+    q: 'How do I start with Ascend?',
+    a: `There are three ways in. Ascend Pilot is ${pilot.price.oneshot_display} one-time — a 45-day proof sprint that covers your install. Ascend is ${ascend.price.recurring_display} plus install, waived for Pilot graduates. Ascend Pro is ${pro.price.recurring_display} for multi-location operators. The fit diagnostic shows which one matches your market.`,
+  },
+];
+
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  '@id': 'https://buildwisemedia.com/services/ascend#faq',
+  mainEntity: faqs.map((f) => ({
+    '@type': 'Question',
+    name: f.q,
+    acceptedAnswer: { '@type': 'Answer', text: f.a },
+  })),
+};
 ---
-<BaseLayout title={title} description={description} jsonLd={[service, breadcrumb]}>
+<BaseLayout title={title} description={description} jsonLd={[service, breadcrumb, faqSchema]}>
 
   <section class="ascend-hero">
     <div class="container ascend-hero-grid">
@@ -245,6 +283,9 @@ const service = {
       <p class="pricing-link"><a href="/pricing" class="cta-ghost" data-cta-source="ascend-pricing">See full pricing<span class="cta-arrow" aria-hidden="true">→</span></a></p>
     </div>
   </section>
+
+  <!-- FAQ — answer-engine extractable Q&A, matches FAQPage schema -->
+  <FAQ faqs={faqs} />
 
   <section class="ascend-cta elev">
     <div class="container ascend-cta-row">

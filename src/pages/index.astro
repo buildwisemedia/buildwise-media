@@ -16,7 +16,6 @@ import PoorFour from '../components/PoorFour.astro';
 import EightLayerSystem from '../components/EightLayerSystem.astro';
 import Sovereignty from '../components/Sovereignty.astro';
 import EarnBackCalculator from '../components/EarnBackCalculator.astro';
-import AIStorySection from '../components/AIStorySection.astro';
 import CostOfAssembly from '../components/CostOfAssembly.astro';
 import FAQ from '../components/FAQ.astro';
 
@@ -123,14 +122,14 @@ const valueEquation = [
     label: 'Installed',
     metric: '30d',
     title: 'The system goes into your business.',
-    body: 'Domain, data, accounts, and workflows wired into one owned operating layer.',
+    body: 'Your domain, data, accounts, and workflows wired into one system you own.',
     tone: 'green',
   },
   {
     label: 'Operated',
     metric: 'weekly',
-    title: 'Buildwise runs the week.',
-    body: 'Signals watched, gates cleared, underperformers adjusted before the month drifts.',
+    title: 'We run the week for you.',
+    body: 'We watch the signals, clear the gates, and fix what is underperforming before the month drifts.',
     tone: 'cyan',
   },
   {
@@ -160,7 +159,7 @@ const contractProofs = [
   { group: 'Capability', clause: 'Inheritance', title: 'Capability inheritance', body: 'When better AI ships, your system can use it without a new platform fee or rebuild.', tone: 'cyan', visual: 'inheritance' },
   { group: 'Control', clause: 'Human gate', title: 'Human signoff', body: 'Nothing autonomous goes live to buyers without a human gate.', tone: 'green', visual: 'gate' },
   { group: 'Ownership', clause: 'Client assets', title: 'Sovereignty', body: 'You own code, data, ad accounts, customer list, and built assets.', tone: 'yellow', visual: 'sovereignty' },
-  { group: 'Economics', clause: 'ROI floor', title: 'ROI floor', body: '5x attributable ROI within 24 months, or Buildwise keeps building.', tone: 'orange', visual: 'roi' },
+  { group: 'Economics', clause: 'ROI floor', title: 'ROI floor', body: '5x attributable ROI within 24 months, or we keep building.', tone: 'orange', visual: 'roi' },
   { group: 'Portability', clause: 'No lock-in', title: 'No vendor lock-in', body: 'The system is portable across models, tools, and channels.', tone: 'cyan', visual: 'portability' },
   { group: 'Exit rights', clause: 'After Day 90', title: 'True m-t-m after Day 90', body: 'No clawback. No exit fee. No long-term penalty.', tone: 'green', visual: 'exit' },
 ];
@@ -184,7 +183,7 @@ const entryPaths = [
     name: 'Ascend',
     price: `${canonical.products.ascend.price.oneshot_display} + ${canonical.products.ascend.price.recurring_display}`,
     label: 'Main system',
-    body: 'The owned AI growth system installed in your environment and operated weekly by Buildwise.',
+    body: 'The owned AI growth system installed in your business and run for you every week by our team.',
     href: '/pricing#ascend',
     tone: 'yellow',
   },
@@ -335,10 +334,10 @@ const faqSchema = {
         <p class="eyebrow">AI growth system for owner-led service businesses</p>
         <h1 id="home-hero-title" class="h-hero">Own the AI growth system your competitors wish they had.</h1>
         <p class="hero-sub">
-          Buildwise installs Ascend on your domain and runs it every week. It handles visibility, follow-up, reputation, attribution, and AI upgrades while the system stays yours.
+          We install Ascend on your domain and run it for you every week. It handles your visibility, follow-up, reviews, and tracking — and folds in new AI as it ships. The whole system stays yours.
         </p>
         <div class="hero-actions" role="group" aria-label="Primary actions">
-          <a href="/book" class="cta" data-cta-source="home-hero">See If We're a Fit<span class="cta-arrow" aria-hidden="true">&rarr;</span></a>
+          <a href="/book" class="cta" data-cta-source="home-hero">Get My Free Revenue Leak Map<span class="cta-arrow" aria-hidden="true">&rarr;</span></a>
           <a href={SYSTEM_ANCHOR} class="cta-ghost" data-cta-source="home-hero-system">See the System</a>
         </div>
         <ul class="hero-proof-strip" aria-label="Ascend proof points">
@@ -471,135 +470,14 @@ const faqSchema = {
   </section>
 
   <!-- ============================================ -->
-  <!-- L1.5 · Operating reframe                     -->
+  <!-- L2 · Poor Four                                -->
   <!-- ============================================ -->
-  <section class="operating-reframe" aria-labelledby="operating-reframe-title">
-    <div class="container velocity-stage">
-      <header class="velocity-head">
-        <p class="section-tag">Why now</p>
-        <h2 id="operating-reframe-title" class="h-section">
-          AI is outrunning manual marketing.
-        </h2>
-        <p class="lede">
-          Since ChatGPT launched in November 2022, AI has moved from chat to reasoning to agents. The next phase is AI improving AI itself. Waiting a month is not neutral.
-        </p>
-        <div class="velocity-phase-rail" aria-label="AI acceleration phases">
-          <span class="mono">Chat</span>
-          <span class="mono">Reasoning</span>
-          <span class="mono">Agents</span>
-          <span class="mono">AI improves AI</span>
-        </div>
-        <p class="velocity-urgent">
-          The owner who installs the operating layer first gets the next capability first.
-        </p>
-      </header>
-      <figure class="velocity-chart" aria-labelledby="velocity-chart-title">
-        <div class="velocity-chart-top">
-          <div>
-            <p class="ops-kicker">AI acceleration · Nov 2022 to Dec 2028</p>
-            <h3 id="velocity-chart-title">The curve is exponential.</h3>
-          </div>
-          <span class="velocity-chip mono">2029 / 2030: next curve starts</span>
-        </div>
-        <!-- @r020:F2 proof: AI capability acceleration curve from ChatGPT release through 2029/2030 vs the owner-learning curve below it; visually proves the "waiting a month is not neutral" urgency that drives the Book CTA below. -->
-        <svg class="velocity-svg" viewBox="0 0 1320 600" role="img" aria-label="Exponential AI capability curve from the ChatGPT release in November 2022 through forecast milestones — AI plans the work in 2027, AI improves itself in 2028, and Artificial General Intelligence in 2029 to 2030.">
-          <defs>
-            <linearGradient id="velocityFill" x1="0" x2="0" y1="0" y2="1">
-              <stop offset="0%" stop-color="var(--y2)" stop-opacity="0.34" />
-              <stop offset="100%" stop-color="var(--y2)" stop-opacity="0" />
-            </linearGradient>
-            <linearGradient id="velocityStroke" x1="0" x2="1" y1="0" y2="0">
-              <stop stop-color="var(--signal-cyan)" />
-              <stop offset="0.38" stop-color="var(--signal-green)" />
-              <stop offset="0.68" stop-color="var(--y1)" />
-              <stop offset="1" stop-color="var(--y2)" />
-            </linearGradient>
-            <linearGradient id="forecastWash" x1="0" x2="1" y1="0" y2="0">
-              <stop stop-color="rgba(240, 255, 0, 0)" />
-              <stop offset="1" stop-color="rgba(240, 255, 0, 0.13)" />
-            </linearGradient>
-            <pattern id="velocityGrid" width="72" height="72" patternUnits="userSpaceOnUse">
-              <path d="M 72 0 L 0 0 0 72" fill="none" stroke="#24222b" stroke-width="0.8" />
-            </pattern>
-          </defs>
-          <rect x="0" y="0" width="1320" height="600" fill="url(#velocityGrid)" opacity="0.74" />
-          <rect x="760" y="40" width="468" height="520" fill="url(#forecastWash)" opacity="0.95" />
-          <line x1="86" y1="560" x2="1228" y2="560" stroke="var(--rule-bright)" stroke-width="1.2" />
-          <line x1="86" y1="40" x2="86" y2="560" stroke="var(--rule-bright)" stroke-width="1.2" />
-          <!-- Capability curve — true exponential, no plateau through '29/'30 -->
-          <path d="M 108 555 C 200 554 240 553 278 551 C 360 549 420 544 456 540 C 520 525 555 514 590 500 C 640 478 680 459 710 440 C 735 425 750 416 760 410 C 870 372 900 343 936 305 C 1010 255 1050 200 1088 130 C 1140 80 1180 38 1228 5" fill="none" stroke="url(#velocityStroke)" stroke-width="8" stroke-linecap="round" />
-          <path d="M 108 555 C 200 554 240 553 278 551 C 360 549 420 544 456 540 C 520 525 555 514 590 500 C 640 478 680 459 710 440 C 735 425 750 416 760 410 C 870 372 900 343 936 305 C 1010 255 1050 200 1088 130 C 1140 80 1180 38 1228 5 L 1228 560 L 108 560 Z" fill="url(#velocityFill)" />
-          <!-- Owner learning curve — slow growth; label rides the visual continuation -->
-          <path d="M 108 450 C 280 442 460 425 700 405" fill="none" stroke="#6b6766" stroke-width="2.2" stroke-dasharray="9 14" />
-          <text x="1210" y="395" text-anchor="end" fill="#807a7a" font-family="var(--mono)" font-size="16" letter-spacing="4">OWNER LEARNING CURVE</text>
-          <line x1="760" y1="40" x2="760" y2="560" stroke="rgba(240,255,0,0.35)" stroke-width="1.4" stroke-dasharray="7 10" />
-          <text x="778" y="62" fill="var(--y2)" font-family="var(--mono)" font-size="15" letter-spacing="3">FORECAST ZONE</text>
-
-          <g class="velocity-event">
-            <circle cx="108" cy="555" r="11" />
-            <text class="event-date" x="108" y="590" text-anchor="middle">NOV '22</text>
-            <text class="event-label" x="132" y="525">ChatGPT release</text>
-          </g>
-          <g class="velocity-event">
-            <circle cx="278" cy="551" r="7" />
-            <text class="event-date" x="278" y="590" text-anchor="middle">'23</text>
-          </g>
-          <g class="velocity-event">
-            <circle cx="456" cy="540" r="8" />
-            <text class="event-date" x="456" y="590" text-anchor="middle">'24</text>
-          </g>
-          <g class="velocity-event">
-            <circle cx="590" cy="500" r="13" />
-            <text class="event-label" x="566" y="480" text-anchor="end">Reasoning</text>
-          </g>
-          <g class="velocity-event">
-            <circle cx="710" cy="440" r="14" />
-            <text class="event-date" x="710" y="590" text-anchor="middle">'25</text>
-            <text class="event-label" x="686" y="416" text-anchor="end">Agents</text>
-          </g>
-          <g class="velocity-event velocity-now">
-            <circle cx="760" cy="410" r="15" />
-            <text class="event-date" x="760" y="590" text-anchor="middle">'26</text>
-            <text class="event-label" x="760" y="364" text-anchor="middle">Now</text>
-          </g>
-          <g class="velocity-event forecast">
-            <circle cx="936" cy="305" r="13" />
-            <text class="event-date" x="936" y="590" text-anchor="middle">'27</text>
-            <text class="event-label" x="912" y="284" text-anchor="end">AI plans the work</text>
-          </g>
-          <g class="velocity-event forecast">
-            <circle cx="1088" cy="130" r="16" />
-            <text class="event-date" x="1088" y="590" text-anchor="middle">DEC '28</text>
-            <text class="event-label" x="1052" y="112" text-anchor="end">AI improves itself</text>
-          </g>
-          <g class="velocity-event next-curve forecast terminal">
-            <circle cx="1228" cy="5" r="6" />
-            <text class="event-date" x="1228" y="590" text-anchor="middle">'29 / '30</text>
-            <text class="event-label" x="1182" y="34" text-anchor="end"><tspan x="1182" dy="0">Artificial General</tspan><tspan x="1182" dy="23">Intelligence</tspan></text>
-          </g>
-        </svg>
-        <figcaption class="velocity-caption">
-          <strong>What this means for a service business:</strong>
-          every release resets what buyers expect and what competitors can automate. The question is whether your growth system absorbs the next jump before the market moves again.
-        </figcaption>
-      </figure>
-    </div>
-  </section>
-
-  <!-- ============================================ -->
-  <!-- L1.6 · Capability Curve                       -->
-  <!-- ============================================ -->
-  <AIStorySection />
+  <PoorFour />
 
   <!-- ============================================ -->
   <!-- L1.7 · Earn-Back Calculator                   -->
   <!-- ============================================ -->
   <EarnBackCalculator />
-
-  <!-- ============================================ -->
-  <!-- L2 · Poor Four                                -->
-  <!-- ============================================ -->
-  <PoorFour />
 
   <!-- ============================================ -->
   <!-- L2.5 · Value Equation                         -->
@@ -610,7 +488,7 @@ const faqSchema = {
         <p class="section-tag">The installed advantage</p>
         <h2 id="offer-equation-title" class="h-section">Installed. Operated. Owned. Improving.</h2>
         <p class="lede">
-          Not advice. A growth system in the business, run every week, ready for the next AI jump.
+          Not advice. A real growth system inside your business, run for you every week, ready for the next AI jump.
         </p>
       </header>
       <div class="offer-equation-cards">
@@ -677,18 +555,18 @@ const faqSchema = {
   <section class="dossier-section" aria-labelledby="dossier-title">
     <div class="container dossier-grid">
       <header>
-        <p class="section-tag">Before the sales call</p>
-        <h2 id="dossier-title" class="h-section">Start with the Market Dominance Dossier.</h2>
+        <p class="section-tag">Before you spend another dollar on ads</p>
+        <h2 id="dossier-title" class="h-section">Get your free Revenue Leak Map.</h2>
         <p class="lede">
-          The Dossier turns the website from a pitch into a diagnosis. It shows where your market position leaks now, which layer should move first, and whether Ascend should install before the next AI jump widens the gap.
+          We map exactly where your market is leaking revenue right now — who shows up before you, where buyers stall, and the one move that matters most. If we're not the right fit, the map is yours to keep.
         </p>
       </header>
-      <div class="dossier-preview ops-panel" aria-label="Market Dominance Dossier preview">
+      <div class="dossier-preview ops-panel" aria-label="Revenue Leak Map preview">
         <div class="dossier-preview-head">
-          <span class="mono">Market Dominance Dossier</span>
+          <span class="mono">Revenue Leak Map</span>
           <strong>First move identified before the call</strong>
         </div>
-        <p class="dossier-sample-note mono">Sample dossier — yours is built from your live market data.</p>
+        <p class="dossier-sample-note mono">Sample map — yours is built from your live market data.</p>
         <div class="dossier-score-stack">
           {dossierSignals.map((item) => (
             <div class="dossier-score-row" style={`--score: ${item.score}%;`}>
@@ -726,7 +604,7 @@ const faqSchema = {
           </ul>
         </div>
         <div class="dossier-cta-action">
-          <a href="/book" class="cta" data-cta-source="home-dossier">See If We're a Fit<span class="cta-arrow" aria-hidden="true">&rarr;</span></a>
+          <a href="/book" class="cta" data-cta-source="home-dossier">Get My Free Revenue Leak Map<span class="cta-arrow" aria-hidden="true">&rarr;</span></a>
           <p class="dossier-cta-risk">Free. Built on your business. Yours to keep — even if we never work together.</p>
         </div>
       </div>
@@ -978,7 +856,7 @@ const faqSchema = {
           </li>
         </ul>
         <div class="proof-cta-row">
-          <a href="/book" class="cta" data-cta-source="proof-cta">See If We're a Fit<span class="cta-arrow" aria-hidden="true">&rarr;</span></a>
+          <a href="/book" class="cta" data-cta-source="proof-cta">Get My Free Revenue Leak Map<span class="cta-arrow" aria-hidden="true">&rarr;</span></a>
           <a href="/results" class="cta-ghost" data-cta-source="proof-results">See more receipts</a>
         </div>
       </article>
@@ -988,7 +866,7 @@ const faqSchema = {
         <div class="comparison-bars">
           <div class="comparison-bar legacy">
             <div class="bar-info">
-              <span class="bar-label">Legacy Agency GTM</span>
+              <span class="bar-label">Typical agency reporting</span>
               <span class="bar-value">12% clarity</span>
             </div>
             <div class="bar-track">
@@ -1063,11 +941,14 @@ const faqSchema = {
     <div class="container">
       <div class="final-inner">
       <div>
-        <p class="section-tag">Start with the Dossier</p>
-          <h2 id="final-title" class="h-closer">See where Ascend would install first.</h2>
-          <p class="lede">The fit diagnostic starts the Market Dominance Dossier, checks whether the economics are real, and shows whether Buildwise should install the system before the next AI capability jump moves the market again.</p>
+        <p class="section-tag">Get your Revenue Leak Map</p>
+          <h2 id="final-title" class="h-closer">See where you're leaking revenue first.</h2>
+          <p class="lede">Your free Revenue Leak Map shows where the market is beating you, names the highest-leverage first move, and proves whether we can hit your 5&times; guarantee. We build it from your data and walk it with you on a short call &mdash; no pitch.</p>
       </div>
-        <a href="/book" class="cta" data-cta-source="home-final">See If We're a Fit<span class="cta-arrow" aria-hidden="true">&rarr;</span></a>
+        <div class="final-actions" style="display:flex;flex-direction:column;gap:12px;align-items:center">
+          <a href="/book" class="cta" data-cta-source="home-final">Get My Free Revenue Leak Map<span class="cta-arrow" aria-hidden="true">&rarr;</span></a>
+          <a href="/book" class="cta-ghost" data-cta-source="home-final-fit">See If We're a Fit</a>
+        </div>
       </div>
       <!-- @r020:F2 proof: SVG timeline graphic showing the 30-day install milestones to system-live -->
       <figure class="final-timeline" aria-labelledby="timeline-cap">

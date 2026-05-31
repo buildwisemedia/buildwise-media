@@ -1,6 +1,6 @@
 # Brand Closure QA
 
-Generated: 2026-05-28T20:23:01.662Z
+Generated: 2026-05-31T16:15:32.014Z
 
 PASS: 6 | WARN: 0 | FAIL: 0
 
@@ -12,8 +12,8 @@ PASS: 6 | WARN: 0 | FAIL: 0
 
 ## Passes
 - dist-present: dist/ exists
-- rendered-lock-scans: 288 rendered files scanned
+- rendered-lock-scans: 291 rendered files scanned
 - legacy-problem-redirects: legacy Poor Four routes are explicit 301 redirects
 - body-imagery-floor: core static routes meet body visual minimums
-- html-basics: 282 HTML files checked
+- html-basics: 285 HTML files checked
 - canonical-site-files: robots.txt and llms.txt meet the local contract

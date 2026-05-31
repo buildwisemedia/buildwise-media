@@ -1,13 +1,13 @@
 ---
 // Fit diagnostic gating the booking embed on /book.
 // On submit: POSTs to bwm-form-handler /buildwisemedia/discovery-qualifier.
-// On qualified: reveals a Market Leak Map summary, then the booking calendar.
+// On qualified: reveals a Revenue Leak Map summary, then the booking calendar.
 // On disqualified: redirects to /thank-you-resource?reason=<reason>.
 const poorFour = [
-  { value: 'invisible_market', label: 'Invisible Market', body: 'Buyers search, ask, or compare and your business is not the default answer.' },
-  { value: 'leaky_revenue', label: 'Leaky Revenue', body: 'Leads, calls, quotes, reviews, or past customers leak before they turn into booked work.' },
-  { value: 'owner_bottleneck', label: 'Owner Bottleneck', body: 'Growth still depends on the owner watching the marketing every week.' },
-  { value: 'reactive_growth', label: 'Reactive Growth', body: 'The numbers arrive late, decisions feel rushed, and every fix is a correction.' },
+  { value: 'invisible_market', label: 'Invisible Market', body: 'When buyers search, ask AI, or compare, you are not the name that comes up first.' },
+  { value: 'leaky_revenue', label: 'Leaky Revenue', body: 'Leads, calls, quotes, and past customers slip away before they turn into booked work.' },
+  { value: 'owner_bottleneck', label: 'Owner Bottleneck', body: 'Growth still runs through you — stop watching the marketing for a week and it stalls.' },
+  { value: 'reactive_growth', label: 'Reactive Growth', body: 'The numbers reach you late, so decisions feel rushed and every fix is a scramble.' },
 ];
 ---
 
@@ -17,9 +17,9 @@ const poorFour = [
   </div>
 
   <header class="q-head">
-    <p class="q-eyebrow mono">MARKET DOMINANCE DOSSIER · FIVE MINUTES</p>
-    <h2 class="q-heading">Build the Dossier before the call.</h2>
-    <p class="q-sub">The goal is a useful first map: where revenue leaks now, which Ascend layer should move first, and whether the numbers justify a real conversation.</p>
+    <p class="q-eyebrow mono">REVENUE LEAK MAP · FIVE MINUTES</p>
+    <h2 class="q-heading">Build your Revenue Leak Map.</h2>
+    <p class="q-sub">The goal is a useful first map: where your revenue is leaking now, which Ascend layer to move first, and whether the numbers justify a real conversation.</p>
     <button type="button" class="q-submit q-mobile-start" data-mobile-next>Continue</button>
   </header>
 
@@ -32,10 +32,6 @@ const poorFour = [
           <div class="q-row">
             <label class="q-label" for="q-first-name">First name</label>
             <input id="q-first-name" name="first_name" type="text" required autocomplete="given-name" />
-          </div>
-          <div class="q-row">
-            <label class="q-label" for="q-email">Work email</label>
-            <input id="q-email" name="email" type="email" required autocomplete="email" />
           </div>
           <div class="q-row">
             <label class="q-label" for="q-company">Company</label>
@@ -103,9 +99,9 @@ const poorFour = [
         <fieldset class="q-fieldset">
           <legend class="q-label">AI comfort</legend>
           <div class="q-options">
-            <label><input type="radio" name="ai_comfort" value="ready" required /><span>Ready if humans approve the gates</span></label>
-            <label><input type="radio" name="ai_comfort" value="curious_cautious" /><span>Curious, cautious, want proof</span></label>
-            <label><input type="radio" name="ai_comfort" value="skeptical" /><span>Skeptical until the math is clear</span></label>
+            <label><input type="radio" name="ai_comfort" value="ready" required /><span>Ready — as long as a person signs off before anything goes live</span></label>
+            <label><input type="radio" name="ai_comfort" value="curious_cautious" /><span>Curious, but I want to see it work before I trust it</span></label>
+            <label><input type="radio" name="ai_comfort" value="skeptical" /><span>Been burned before — I'll believe the numbers, not the pitch</span></label>
           </div>
         </fieldset>
       </section>
@@ -152,13 +148,17 @@ const poorFour = [
             <label><input type="radio" name="decision_maker" value="no_someone_else" /><span>No, someone else decides</span></label>
           </div>
         </fieldset>
+        <div class="q-row q-row--wide q-email-final">
+          <label class="q-label" for="q-email">Where should we send your Revenue Leak Map?</label>
+          <input id="q-email" name="email" type="email" required autocomplete="email" inputmode="email" placeholder="you@company.com" />
+        </div>
       </section>
 
       <div class="q-actions">
         <button type="button" class="q-secondary" data-prev hidden>Back</button>
         <button type="button" class="q-submit" data-next>Continue</button>
         <button type="submit" class="q-submit" id="q-submit-btn" hidden>
-          <span class="q-submit-label">Build Dossier Preview</span>
+          <span class="q-submit-label">Build My Revenue Leak Map</span>
           <span class="q-submit-loading" hidden>Building...</span>
         </button>
       </div>
@@ -166,9 +166,9 @@ const poorFour = [
       <p class="q-error" id="q-error" hidden></p>
     </div>
 
-    <aside class="q-map-rail" aria-label="Market Leak Map building">
+    <aside class="q-map-rail" aria-label="Revenue Leak Map building">
       <div class="q-map-top">
-        <p class="q-eyebrow mono">MARKET LEAK MAP · BUILDING</p>
+        <p class="q-eyebrow mono">REVENUE LEAK MAP · BUILDING</p>
         <strong data-rail-status>Identity layer open</strong>
       </div>
       <div class="q-map-meter" aria-hidden="true">
@@ -194,15 +194,15 @@ const poorFour = [
       </dl>
       <div class="q-map-routing">
         <span class="dot cyan" aria-hidden="true"></span>
-        <p>The call gets sharper as this fills in. Weak-fit traffic exits without wasting a calendar slot.</p>
+        <p>The call gets sharper as this fills in. If we're not a fit, you'll know before you book a slot.</p>
       </div>
     </aside>
   </div>
 </form>
 
 <section id="market-leak-map" class="market-leak-map" hidden aria-live="polite">
-  <p class="q-eyebrow mono">MARKET DOMINANCE DOSSIER · PREVIEW</p>
-  <h2 class="q-heading">Here is what the call should solve.</h2>
+  <p class="q-eyebrow mono">REVENUE LEAK MAP · PREVIEW</p>
+  <h2 class="q-heading">Here's what we'll dig into on your call.</h2>
   <div class="map-grid">
     <div>
       <p class="map-label mono">Primary leaks</p>
@@ -217,7 +217,7 @@ const poorFour = [
       <p class="map-value" data-map-readiness>Pending</p>
     </div>
   </div>
-  <p class="map-note">If there is mutual fit, the discovery call uses this preview to decide whether Ascend Pilot, Ascend, or Ascend Pro makes sense.</p>
+  <p class="map-note">If we're a fit, we'll use this preview on the call to decide whether Ascend Pilot, Ascend, or Ascend Pro is right for you.</p>
 </section>
 
 <script is:inline>

@@ -1,0 +1,238 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+const title = "DIY Marketing Alternative — Buildwise Media";
+const description = "Running your own marketing after hours makes you the bottleneck. Ascend takes the whole function off your plate — installed in 30 days, run for you, owned by you.";
+
+const definedTerm = {
+  '@context': 'https://schema.org',
+  '@type': 'DefinedTerm',
+  '@id': 'https://buildwisemedia.com/playbook/diy-marketing-alternative#term',
+  name: 'DIY Marketing Alternative',
+  description: 'Do-it-yourself marketing means the owner runs the ads, the posts, the follow-up, and the website between jobs — usually at night. A DIY alternative takes the whole function off the owner plate. The Buildwise team installs an owned system and runs it, so growth stops depending on the owner spare hours.',
+  inDefinedTermSet: {
+    '@type': 'DefinedTermSet',
+    '@id': 'https://buildwisemedia.com/playbook/',
+    name: 'Buildwise Media Playbook',
+  },
+};
+
+const breadcrumb = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://buildwisemedia.com/' },
+    { '@type': 'ListItem', position: 2, name: 'Playbook', item: 'https://buildwisemedia.com/playbook/' },
+    { '@type': 'ListItem', position: 3, name: 'DIY Marketing Alternative', item: 'https://buildwisemedia.com/playbook/diy-marketing-alternative' },
+  ],
+};
+
+const faqs = [
+  {
+    q: 'What is the alternative to doing my own marketing?',
+    a: 'An installed system that runs for you. Instead of writing posts and chasing leads after hours, the Buildwise team installs an owned system — visibility, follow-up, reviews, reporting, and paid media — and runs it every week. You move from doing the marketing to reviewing what it did.',
+  },
+  {
+    q: 'I am already the bottleneck. How does this help?',
+    a: 'It takes the function off your plate. Follow-up fires in minutes whether you see the lead or not, reviews get requested automatically, spend is watched for you, and a report lands every Monday. Growth stops competing with the actual work for your spare hours.',
+  },
+  {
+    q: 'Do I lose control if I hand it over?',
+    a: 'No. You keep the decisions that matter — offers, budget, public copy, and reputation replies pass a human signoff gate before they go live. You own the code, the data, and the accounts. You stay the owner; you just stop being the operator.',
+  },
+  {
+    q: 'How fast does it take the work off my plate?',
+    a: 'The system is operational in 30 days. The audit runs in the first week, the install runs across weeks two through four, and by Day 30 the function is running for you instead of waiting on you.',
+  },
+  {
+    q: 'Is a run-for-you system a fit for every owner doing their own marketing?',
+    a: 'No. If the business is brand new and the budget is thin, doing it yourself is a fair way to learn what your market responds to. The run-for-you system is for owners who have become the bottleneck — where more leads would mean more hours they do not have. One conversation tells you which fits.',
+  },
+];
+
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  '@id': 'https://buildwisemedia.com/playbook/diy-marketing-alternative#faq',
+  mainEntity: faqs.map((f) => ({
+    '@type': 'Question',
+    name: f.q,
+    acceptedAnswer: { '@type': 'Answer', text: f.a },
+  })),
+};
+---
+<BaseLayout title={title} description={description} jsonLd={[definedTerm, breadcrumb, faqSchema]}>
+
+  <section class="playbook-hero">
+    <div class="container">
+      <p class="eyebrow"><a href="/playbook" class="back-link">← Playbook</a></p>
+      <h1 class="h-hero">The DIY marketing <em>alternative.</em></h1>
+      <p class="lede">
+        Running your own marketing means doing it after hours — the ads, the posts, the follow-up, the website — between the work that actually pays. Ascend takes the whole function off your plate: an owned system the Buildwise team installs in 30 days and runs for you.
+      </p>
+      <figure class="hero-photo">
+        <!-- @r020:F1 emotion: first-light operations floor mirrors the owner doing marketing in the only hours left — the relief the page offers -->
+        <img src="/images/bwm-about-atmospheric-v1.webp" alt="First-light operations floor: a workbench, a monitor, paper plans, and a single desk lamp — work happening in the early hours before the day begins." width="1920" height="1080" loading="eager" decoding="async" />
+      </figure>
+    </div>
+  </section>
+
+  <section class="playbook-section elev">
+    <div class="container">
+      <p class="section-tag">How it works</p>
+      <h2 class="h-section">How it works.</h2>
+      <p class="prose">
+        DIY marketing means the owner is the marketing department. You write the posts when you can, boost a few, answer leads when you catch them, and rebuild the website every couple of years. It runs on your spare hours, which means it runs last — after the jobs, the crew, and the quotes.
+      </p>
+      <p class="prose">
+        Ascend installs the function so it stops depending on your hours. Visibility, follow-up, reviews, reporting, and paid media run as <a href="/system">one system</a> the Buildwise team operates. You move from doing the marketing to reviewing what it did.
+      </p>
+      <p class="prose">
+        The shape is different. DIY runs on the hours you have left. Ascend runs whether you watch it or not.
+      </p>
+      <figure class="section-photo section-photo--diagram">
+        <!-- @r020:F4 curiosity: layered-funnel diagram opens the question of what a run-for-you path looks like versus doing it yourself -->
+        <img src="/images/funnel-3-layer-v1.svg" alt="Isometric three-layer funnel diagram — the path from attention to booked work running on its own instead of on the owner's spare time." width="1200" height="733" loading="lazy" decoding="async" />
+      </figure>
+    </div>
+  </section>
+
+  <section class="playbook-section">
+    <div class="container">
+      <p class="section-tag">Why it matters</p>
+      <h2 class="h-section">Why it matters.</h2>
+      <p class="prose">
+        When growth depends on the owner's spare time, growth is the first thing that gets dropped. A busy week kills the follow-up. A big job pauses the ads. Leads cool while you are on a roof or under a sink. The business grows in bursts and stalls in between, and the ceiling is however many hours you can stay awake.
+      </p>
+      <blockquote class="pull-quote">
+        <p>When you are the marketing department, marketing stops the moment you get busy.</p>
+      </blockquote>
+      <p class="prose">
+        Taking the function off your plate removes the ceiling. The follow-up fires in minutes whether you see the lead or not. The reporting lands every Monday. Growth stops competing with the work for your attention.
+      </p>
+      <figure class="section-photo">
+        <!-- @r020:F2 proof: results editorial grounds "the system runs without you" in a real operating outcome -->
+        <img src="/images/bwm-results-editorial-v1.webp" alt="An operator reviewing dashboard telemetry in cool light — the owner watching the numbers instead of running the work." width="1920" height="1080" loading="lazy" decoding="async" />
+      </figure>
+    </div>
+  </section>
+
+  <section class="playbook-section elev">
+    <div class="container">
+      <p class="section-tag">How Buildwise Media uses it</p>
+      <h2 class="h-section">How Buildwise Media uses it.</h2>
+      <p class="prose">
+        The Buildwise team installs and runs the full function as part of the <a href="/services/ascend">Ascend tier family</a>. The work that used to land on you after hours — chasing leads, asking for reviews, watching spend, keeping the site current — becomes a system with human signoff on the moves that matter.
+      </p>
+      <p class="prose">
+        You stay the owner, not the operator. The math is visible from Day 1, the system is owned by you, and the agreement holds a 5× attributable ROI floor inside 24 months, or we keep building.
+      </p>
+      <p class="prose">
+        The goal is not a tool that gives you more to do. The goal is a system that gives you the work back.
+      </p>
+    </div>
+  </section>
+
+  <section class="playbook-section">
+    <div class="container">
+      <p class="section-tag">When doing it yourself is the right call</p>
+      <h2 class="h-section">When it's the right call.</h2>
+      <p class="prose">
+        Doing it yourself can be the right call early — when the business is brand new, the budget is thin, and you are still learning what your market responds to. Hands-on is how you learn the basics, and there is no shame in bootstrapping.
+      </p>
+      <p class="prose">
+        Once you are the bottleneck — when more leads would mean more hours you do not have — DIY has hit its ceiling. That is where an installed, run-for-you system fits, and where the <a href="/problem/owner-bottleneck">owner-bottleneck problem</a> gets solved instead of managed.
+      </p>
+      <p class="prose">
+        Both are legitimate. They cost different things — money or your hours. The question is which one you can spare.
+      </p>
+    </div>
+  </section>
+
+  <section class="playbook-faq">
+    <div class="container">
+      <p class="section-tag">FAQ</p>
+      <h2 class="h-section">Common questions.</h2>
+      <div class="faq-list">
+        {faqs.map((f) => (
+          <details class="faq-item">
+            <summary class="faq-q">{f.q}</summary>
+            <div class="faq-a">
+              <p>{f.a}</p>
+            </div>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="playbook-related elev">
+    <div class="container">
+      <p class="section-tag">Related</p>
+      <h2 class="h-section">More from the playbook.</h2>
+      <ul class="related-list">
+        <li><a href="/playbook/agency-alternative">Agency Alternative</a> — owning the system instead of renting an agency retainer</li>
+        <li><a href="/playbook/in-house-marketing-alternative">In-House Marketing Alternative</a> — the whole function without assembling and managing a team</li>
+        <li><a href="/playbook/category-of-one-marketing">Category-of-One Marketing</a> — what the system is built toward once it is off your plate</li>
+        <li><a href="/playbook/poor-four">The Poor Four</a> — the four ways a lead system stalls, including the owner bottleneck</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="playbook-cta elev">
+    <div class="container">
+      <h2 class="h-closer">Ready to see if we're a fit?</h2>
+      <p class="lede">If you have become the bottleneck and more leads would only mean more hours, that's the conversation worth having.</p>
+      <p class="cta-row">
+        <a class="cta-primary" href="/book" data-cta-source="playbook-diy-marketing-alternative-cta">See If We're a Fit <span class="cta-arrow">→</span></a>
+        <a class="cta-ghost" href="/playbook">Back to Playbook</a>
+      </p>
+    </div>
+  </section>
+
+</BaseLayout>
+
+<style>
+.playbook-hero { padding-block: clamp(80px, 12vw, 144px); }
+.playbook-hero .lede { margin-top: 24px; }
+.back-link { color: var(--ink-faint); transition: color 180ms ease; }
+.back-link:hover { color: var(--y2); }
+
+.h-hero em { color: var(--y2); font-style: normal; font-weight: inherit; }
+.h-section em { color: var(--y2); font-style: normal; font-weight: inherit; }
+
+.hero-photo { margin-top: 56px; max-width: 1120px; border-radius: 4px; overflow: hidden; border: 1px solid var(--rule); }
+.hero-photo img { width: 100%; height: auto; display: block; }
+
+.playbook-section { padding-block: clamp(56px, 8vw, 96px); }
+.playbook-section .prose { font-size: 17px; line-height: 1.7; color: var(--ink-dim); max-width: 720px; }
+.playbook-section .prose + .prose { margin-top: 16px; }
+
+.section-photo { margin: 48px 0 0; max-width: 1120px; border-radius: 4px; overflow: hidden; border: 1px solid var(--rule); }
+.section-photo img { width: 100%; height: auto; display: block; }
+.section-photo--diagram { max-width: 980px; border-color: transparent; background: transparent; }
+.section-photo--diagram img { background: transparent; }
+
+.pull-quote { margin: 56px 0; padding: 32px 0; border-block: 1px solid var(--rule); max-width: 880px; }
+.pull-quote p { font-size: 24px; line-height: 1.35; color: var(--ink); font-weight: 500; font-style: italic; }
+
+.playbook-faq { padding-block: clamp(64px, 10vw, 112px); }
+.faq-list { display: flex; flex-direction: column; gap: 16px; margin-top: 32px; max-width: 880px; }
+.faq-item { border-top: 1px solid var(--rule); padding-block: 20px; }
+.faq-item[open] summary { color: var(--y2); }
+.faq-q { font-size: 17px; font-weight: 500; color: var(--ink); cursor: pointer; line-height: 1.4; list-style: none; }
+.faq-q::marker, .faq-q::-webkit-details-marker { display: none; }
+.faq-q::after { content: "+"; float: right; font-family: var(--mono); font-size: 18px; color: var(--y2); }
+.faq-item[open] .faq-q::after { content: "−"; }
+.faq-a { margin-top: 12px; }
+.faq-a p { font-size: 16px; line-height: 1.65; color: var(--ink-dim); max-width: 720px; }
+
+.playbook-related { padding-block: clamp(56px, 8vw, 96px); }
+.related-list { list-style: none; display: flex; flex-direction: column; gap: 12px; margin-top: 32px; max-width: 880px; }
+.related-list a { color: var(--ink); font-weight: 500; text-decoration: none; border-bottom: 1px solid transparent; transition: border-color 180ms ease, color 180ms ease; }
+.related-list a:hover { color: var(--y2); border-bottom-color: var(--y2); }
+
+.playbook-cta { padding-block: clamp(64px, 10vw, 112px); }
+.playbook-cta .lede { margin-top: 16px; }
+.cta-row { display: flex; flex-wrap: wrap; gap: 16px; margin-top: 32px; }
+</style>
