@@ -1,0 +1,146 @@
+---
+import BaseLayout from './BaseLayout.astro';
+
+const { frontmatter = {} } = Astro.props;
+const title = frontmatter.title ?? 'Buildwise Media draft';
+const description = frontmatter.description ?? 'Draft article pending review.';
+---
+<BaseLayout
+  title={title}
+  description={description}
+  ogTitle={title}
+  ogDescription={description}
+  noindex={true}
+>
+  <div class="draft-banner" role="status" aria-label="Draft status">
+    <div class="container draft-banner-inner">
+      <span class="draft-dot" aria-hidden="true"></span>
+      <span class="draft-label mono">DRAFT — pending review · not live</span>
+    </div>
+  </div>
+
+  <article class="blog-post container" aria-label={title}>
+    <slot />
+  </article>
+</BaseLayout>
+
+<style>
+.draft-banner {
+  margin-top: 72px;
+  border-block: 1px solid var(--y2);
+  background: linear-gradient(180deg, rgba(240, 255, 0, 0.2), rgba(240, 255, 0, 0.08)), var(--bg-elev);
+}
+
+.draft-banner-inner {
+  min-height: 52px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.draft-dot {
+  width: 9px;
+  height: 9px;
+  border-radius: 999px;
+  background: var(--y2);
+  box-shadow: 0 0 16px rgba(240, 255, 0, 0.5);
+  flex: 0 0 auto;
+}
+
+.draft-label {
+  color: var(--y2);
+  font-size: 11px;
+  letter-spacing: 0.16em;
+}
+
+.blog-post {
+  max-width: 760px;
+  padding-top: clamp(54px, 8vw, 92px);
+  padding-bottom: clamp(72px, 9vw, 120px);
+}
+
+:global(.blog-post h1) {
+  font-family: var(--sans);
+  font-size: clamp(40px, 6vw, 68px);
+  font-weight: 800;
+  font-stretch: 75%;
+  line-height: 1.02;
+  letter-spacing: 0;
+  text-wrap: balance;
+  margin-bottom: clamp(28px, 5vw, 44px);
+}
+
+:global(.blog-post h2) {
+  font-family: var(--sans);
+  font-size: clamp(28px, 4vw, 42px);
+  font-weight: 800;
+  font-stretch: 75%;
+  line-height: 1.12;
+  letter-spacing: 0;
+  text-wrap: balance;
+  margin-top: clamp(52px, 7vw, 76px);
+  margin-bottom: 18px;
+  padding-top: 28px;
+  border-top: 1px solid var(--rule);
+}
+
+:global(.blog-post h3) {
+  font-size: clamp(22px, 3vw, 28px);
+  line-height: 1.18;
+  letter-spacing: 0;
+  margin-top: 36px;
+  margin-bottom: 14px;
+}
+
+:global(.blog-post p),
+:global(.blog-post li) {
+  color: var(--ink);
+  font-size: clamp(18px, 2vw, 20px);
+  line-height: 1.78;
+}
+
+:global(.blog-post p + p) {
+  margin-top: 1.2em;
+}
+
+:global(.blog-post ul),
+:global(.blog-post ol) {
+  margin: 22px 0 0;
+  padding-left: 1.2em;
+}
+
+:global(.blog-post li + li) {
+  margin-top: 12px;
+}
+
+:global(.blog-post strong) {
+  color: var(--ink);
+  font-weight: 800;
+}
+
+:global(.blog-post em) {
+  color: var(--ink);
+}
+
+:global(.blog-post a) {
+  color: var(--y2);
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 4px;
+}
+
+:global(.blog-post a:hover) {
+  color: var(--y2-bright);
+}
+
+@media (max-width: 520px) {
+  .draft-label {
+    letter-spacing: 0.1em;
+    line-height: 1.35;
+  }
+
+  .blog-post {
+    padding-top: 44px;
+  }
+}
+</style>

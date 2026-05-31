@@ -1,0 +1,179 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+const title = 'Blog (drafts) | Buildwise Media';
+const description = 'Draft blog review hub for Buildwise Media.';
+
+const posts = [
+  {
+    title: 'The Revenue Leak Map',
+    teaser: 'How hidden lead-tracking gaps form, stay invisible, and cost owner-led service businesses real money.',
+    href: '/blog/revenue-leak-map',
+  },
+  {
+    title: 'Getting Clicks But No Calls? Diagnose These 4 Failures Before You Raise Your Ad Budget',
+    teaser: 'A plain walkthrough of the four leaks that can keep paid clicks from becoming booked jobs.',
+    href: '/blog/clicks-but-no-calls',
+  },
+  {
+    title: 'Cost Per Lead Is Lying to You: The Numbers Home-Service Owners Should Watch Instead',
+    teaser: 'Why cheap leads can hide expensive waste, and which cash-linked metrics matter more.',
+    href: '/blog/cost-per-lead-is-lying',
+  },
+  {
+    title: 'The Run-For-You Marketing Department for Owner-Led Service Businesses',
+    teaser: 'A draft framing for handing the weekly marketing weight to a system and team that runs it.',
+    href: '/blog/run-for-you-marketing-department',
+  },
+  {
+    title: 'How to Tell If Your Marketing Agency Is Quietly Wasting Your Money',
+    teaser: 'A five-point accountability check for owners who need to know whether marketing is actually working.',
+    href: '/blog/is-your-agency-wasting-money',
+  },
+];
+---
+<BaseLayout title={title} description={description} ogTitle={title} ogDescription={description} noindex={true}>
+  <div class="draft-banner" role="status" aria-label="Draft status">
+    <div class="container draft-banner-inner">
+      <span class="draft-dot" aria-hidden="true"></span>
+      <span class="draft-label mono">DRAFT — pending review · not live</span>
+    </div>
+  </div>
+
+  <section class="blog-hub" aria-labelledby="blog-hub-title">
+    <div class="container blog-hub-inner">
+      <p class="eyebrow">Review queue</p>
+      <h1 id="blog-hub-title" class="h-hero">Blog drafts.</h1>
+      <p class="hero-sub">
+        Five draft articles staged for review. These pages are noindex and should stay out of production until approved.
+      </p>
+
+      <ol class="post-list" role="list">
+        {posts.map((post, index) => (
+          <li class="post-card">
+            <p class="post-num mono">{String(index + 1).padStart(2, '0')}</p>
+            <div class="post-copy">
+              <h2>{post.title}</h2>
+              <p>{post.teaser}</p>
+            </div>
+            <a class="post-link mono" href={post.href}>Review draft</a>
+          </li>
+        ))}
+      </ol>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+.draft-banner {
+  margin-top: 72px;
+  border-block: 1px solid var(--y2);
+  background: linear-gradient(180deg, rgba(240, 255, 0, 0.2), rgba(240, 255, 0, 0.08)), var(--bg-elev);
+}
+
+.draft-banner-inner {
+  min-height: 52px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.draft-dot {
+  width: 9px;
+  height: 9px;
+  border-radius: 999px;
+  background: var(--y2);
+  box-shadow: 0 0 16px rgba(240, 255, 0, 0.5);
+  flex: 0 0 auto;
+}
+
+.draft-label {
+  color: var(--y2);
+  font-size: 11px;
+  letter-spacing: 0.16em;
+}
+
+.blog-hub {
+  padding-top: clamp(64px, 9vw, 112px);
+}
+
+.blog-hub-inner {
+  max-width: 980px;
+}
+
+.blog-hub .hero-sub {
+  margin-top: 22px;
+}
+
+.post-list {
+  list-style: none;
+  display: grid;
+  gap: 16px;
+  margin-top: clamp(44px, 6vw, 72px);
+}
+
+.post-card {
+  display: grid;
+  grid-template-columns: 56px minmax(0, 1fr) auto;
+  gap: clamp(18px, 4vw, 32px);
+  align-items: center;
+  padding: clamp(22px, 4vw, 34px);
+  border: 1px solid var(--rule);
+  border-radius: 4px;
+  background:
+    linear-gradient(135deg, rgba(240, 255, 0, 0.035), transparent 38%),
+    var(--bg-card);
+}
+
+.post-num {
+  color: var(--y2);
+  font-size: 12px;
+  letter-spacing: 0.2em;
+}
+
+.post-copy h2 {
+  font-size: clamp(24px, 3vw, 34px);
+  line-height: 1.12;
+  letter-spacing: 0;
+  text-wrap: balance;
+}
+
+.post-copy p {
+  max-width: 680px;
+  margin-top: 10px;
+  color: var(--ink-dim);
+  font-size: 16px;
+  line-height: 1.6;
+}
+
+.post-link {
+  color: var(--y2);
+  font-size: 10px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  padding: 10px 0;
+}
+
+.post-link:hover {
+  color: var(--y2-bright);
+}
+
+@media (max-width: 760px) {
+  .post-card {
+    grid-template-columns: 1fr;
+    align-items: start;
+  }
+
+  .post-link {
+    white-space: normal;
+  }
+}
+
+@media (max-width: 520px) {
+  .draft-label {
+    letter-spacing: 0.1em;
+    line-height: 1.35;
+  }
+}
+</style>
