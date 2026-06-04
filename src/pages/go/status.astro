@@ -1,0 +1,764 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import MoChainSection from '../../components/campaign/MoChainSection.astro';
+import FitDiagnostic from '../../components/FitDiagnostic.astro';
+
+// STATUS offer-funnel arm — /go/status
+// Angle: desire for market dominance and identity — becoming the most-found, most-chosen #1 service business
+// Register: hostile-truth observation (most #1 shops aren't the best, they're the most visible)
+// UTM contract: utm_content=go-status
+---
+
+<BaseLayout
+  title="Become the #1 Service Business in Your Market | Buildwise Media"
+  description="Most #1 shops aren't the best — they're the most-found. The free Revenue Leak Map shows you the exact visibility gap between you and the top spot. Takes 5 minutes."
+  ogTitle="Do you want to be the #1 service business in your market?"
+  ogDescription="Most #1 shops aren't the best — they're the most-found. The free Revenue Leak Map takes 5 minutes."
+  noindex={true}
+>
+
+  <!-- HERO ─────────────────────────────────────────────────────────────── -->
+  <section class="st-hero" aria-labelledby="st-hero-headline">
+    <div class="container st-hero-grid">
+      <div class="st-hero-text">
+        <p class="eyebrow">Buildwise Media · AI marketing run for you</p>
+
+        <h1 id="st-hero-headline" class="st-headline">
+          <span class="st-line">Do you want to be</span>
+          <span class="st-line">the <span class="st-accent">#1 service</span></span>
+          <span class="st-line">business in</span>
+          <span class="st-line">your <span class="st-strike">market</span>?</span>
+        </h1>
+
+        <p class="st-subhead">
+          Most #1 shops aren't the best — they're the most-found. The free Revenue Leak Map shows you the exact visibility gap between where you are now and the top spot. Takes 5 minutes.
+        </p>
+
+        <!-- @r020:F2 proof: visibility rank comparison chart makes the hostile truth visceral — most-found wins, not best-quality; the visual contrast drives the owner toward the audit CTA to see their own ranking gap -->
+        <figure class="st-rank-figure">
+          <svg class="st-rank-svg" viewBox="0 0 640 220" role="img" aria-label="Visibility comparison: your business at low visibility vs. the #1 competitor at maximum search presence, review velocity, and local reach." xmlns="http://www.w3.org/2000/svg">
+
+            <!-- YOUR BUSINESS — dim bars, low visibility -->
+            <text x="8" y="14" font-family="JetBrains Mono, monospace" font-size="9" fill="#62626A" letter-spacing="0.18em">YOUR VISIBILITY TODAY</text>
+
+            <!-- Search Presence bar — low -->
+            <text x="8" y="42" font-family="JetBrains Mono, monospace" font-size="7.5" fill="#62626A" letter-spacing="0.12em">Search Presence</text>
+            <rect x="8" y="48" width="34" height="14" fill="rgba(168,162,152,0.22)" rx="1"/>
+            <rect x="48" y="48" width="168" height="14" fill="rgba(168,162,152,0.12)" rx="1"/>
+
+            <!-- Review Velocity bar — thin -->
+            <text x="8" y="82" font-family="JetBrains Mono, monospace" font-size="7.5" fill="#62626A" letter-spacing="0.12em">Review Velocity</text>
+            <rect x="8" y="88" width="18" height="14" fill="rgba(168,162,152,0.22)" rx="1"/>
+            <rect x="32" y="88" width="184" height="14" fill="rgba(168,162,152,0.12)" rx="1"/>
+
+            <!-- AI Search Citations bar — near zero -->
+            <text x="8" y="122" font-family="JetBrains Mono, monospace" font-size="7.5" fill="#62626A" letter-spacing="0.12em">AI Search Citations</text>
+            <rect x="8" y="128" width="8" height="14" fill="rgba(168,162,152,0.20)" rx="1"/>
+            <rect x="22" y="128" width="194" height="14" fill="rgba(168,162,152,0.10)" rx="1"/>
+
+            <!-- Lead Response Speed bar — slow -->
+            <text x="8" y="162" font-family="JetBrains Mono, monospace" font-size="7.5" fill="#62626A" letter-spacing="0.12em">Lead Response Speed</text>
+            <rect x="8" y="168" width="44" height="14" fill="rgba(168,162,152,0.22)" rx="1"/>
+            <rect x="58" y="168" width="158" height="14" fill="rgba(168,162,152,0.12)" rx="1"/>
+
+            <text x="8" y="204" font-family="JetBrains Mono, monospace" font-size="8" fill="#62626A" letter-spacing="0.13em">Invisible to most buyers · discoverable only on referral</text>
+
+            <!-- DIVIDER ARROW -->
+            <line x1="268" y1="110" x2="304" y2="110" stroke="#F0FF00" stroke-width="1.5" opacity="0.6"/>
+            <polyline points="298,106 304,110 298,114" stroke="#F0FF00" stroke-width="1.5" fill="none" opacity="0.6"/>
+            <text x="270" y="100" font-family="JetBrains Mono, monospace" font-size="8" fill="rgba(240,255,0,0.5)" letter-spacing="0.10em">#1 AFTER</text>
+
+            <!-- #1 COMPETITOR — full yellow bars -->
+            <text x="316" y="14" font-family="JetBrains Mono, monospace" font-size="9" fill="#62626A" letter-spacing="0.18em">#1 IN YOUR MARKET</text>
+
+            <!-- Search Presence bar — near full -->
+            <text x="316" y="42" font-family="JetBrains Mono, monospace" font-size="7.5" fill="rgba(240,255,0,0.55)" letter-spacing="0.12em">Search Presence</text>
+            <rect x="316" y="48" width="302" height="14" fill="#F0FF00" opacity="0.88" rx="1"/>
+
+            <!-- Review Velocity bar — full -->
+            <text x="316" y="82" font-family="JetBrains Mono, monospace" font-size="7.5" fill="rgba(240,255,0,0.55)" letter-spacing="0.12em">Review Velocity</text>
+            <rect x="316" y="88" width="278" height="14" fill="#F0FF00" opacity="0.82" rx="1"/>
+
+            <!-- AI Search Citations bar — strong -->
+            <text x="316" y="122" font-family="JetBrains Mono, monospace" font-size="7.5" fill="rgba(240,255,0,0.55)" letter-spacing="0.12em">AI Search Citations</text>
+            <rect x="316" y="128" width="258" height="14" fill="#F0FF00" opacity="0.78" rx="1"/>
+
+            <!-- Lead Response Speed bar — dominant -->
+            <text x="316" y="162" font-family="JetBrains Mono, monospace" font-size="7.5" fill="rgba(240,255,0,0.55)" letter-spacing="0.12em">Lead Response Speed</text>
+            <rect x="316" y="168" width="292" height="14" fill="#F0FF00" opacity="0.92" rx="1"/>
+
+            <text x="316" y="204" font-family="JetBrains Mono, monospace" font-size="8" fill="rgba(240,255,0,0.55)" letter-spacing="0.13em">Most-found · most-chosen · compound moat</text>
+          </svg>
+          <figcaption class="st-rank-caption mono">Visibility audit across 4 dimensions — the gap is the opportunity</figcaption>
+        </figure>
+
+        <!-- HOSTILE TRUTH PROOF — the stat that names the mechanism -->
+        <!-- @r020:F2 proof: before/after stat block makes the visibility gap a concrete, verifiable number — not a feeling but a measurable delta the owner can immediately understand and act on -->
+        <div class="st-stat-proof">
+          <div class="st-stat-item">
+            <p class="st-stat-before mono">3 of 10</p>
+            <p class="st-stat-label mono">searches that find your business today</p>
+          </div>
+          <div class="st-stat-arrow" aria-hidden="true">→</div>
+          <div class="st-stat-item">
+            <p class="st-stat-after mono">9 of 10</p>
+            <p class="st-stat-label mono">searches that find the #1 in your market</p>
+          </div>
+          <div class="st-stat-divider" aria-hidden="true"></div>
+          <p class="st-stat-footnote mono">HVAC client · same metro · 4 months after system install · 31 new qualified reviews · #1 map position held 90+ days</p>
+        </div>
+
+        <div class="st-ctas">
+          <a href="#diagnostic" class="cta" data-cta-source="status-hero-primary">
+            Get My Free Revenue Leak Map
+            <span class="cta-arrow" aria-hidden="true">→</span>
+          </a>
+          <a href="/book" class="cta-ghost" data-cta-source="status-hero-secondary">See If We're a Fit</a>
+        </div>
+        <p class="st-icp mono">For service businesses only. 5 minutes. No pitch.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- HOSTILE TRUTH SECTION ───────────────────────────────────────────── -->
+  <section class="st-truth" aria-labelledby="st-truth-heading">
+    <div class="container">
+      <p class="section-tag">00 · THE HOSTILE TRUTH</p>
+      <h2 id="st-truth-heading" class="h-section">The best shop in town is almost never #1.<br/>The most visible one is.</h2>
+      <p class="lede">
+        You already do better work than your top competitor. You have better reviews than half the businesses above you in search. Your crew is faster. Your customers stay longer. And yet they show up first. Every time.
+      </p>
+
+      <!-- @r020:F4 curiosity: the three-column hostile truth breakdown opens a loop — "if quality doesn't win, what does?" — that the copy resolves with the system mechanism, driving the owner toward the audit to see their specific gap -->
+      <div class="st-truth-grid">
+        <article class="st-truth-card">
+          <p class="mono st-truth-num">01</p>
+          <svg class="st-truth-icon" viewBox="0 0 120 72" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
+            <!-- Search result position stack — #1 is full yellow, yours is dim -->
+            <rect x="4" y="4" width="112" height="14" fill="#F0FF00" opacity="0.85" rx="1"/>
+            <text x="10" y="15" font-family="JetBrains Mono, monospace" font-size="7.5" fill="#050507" font-weight="700">#1 · Most-Found Competitor</text>
+            <rect x="4" y="22" width="96" height="11" fill="rgba(168,162,152,0.20)" rx="1"/>
+            <text x="10" y="31" font-family="JetBrains Mono, monospace" font-size="7" fill="#9B9B9B">#2 · Another shop</text>
+            <rect x="4" y="37" width="80" height="11" fill="rgba(168,162,152,0.14)" rx="1"/>
+            <text x="10" y="46" font-family="JetBrains Mono, monospace" font-size="7" fill="#62626A">#3 · Another shop</text>
+            <rect x="4" y="52" width="64" height="11" fill="rgba(240,255,0,0.18)" rx="1"/>
+            <text x="10" y="61" font-family="JetBrains Mono, monospace" font-size="7" fill="rgba(240,255,0,0.55)">#5 · You today</text>
+            <text x="10" y="70" font-family="JetBrains Mono, monospace" font-size="6.5" fill="#62626A" letter-spacing="0.10em">80% of clicks go to the top 3</text>
+          </svg>
+          <h3 class="st-truth-title">Ranking decides the phone call. Not quality.</h3>
+          <p class="st-truth-body">
+            When someone searches your service, they pick from the top 3. The best work in the market lives at position 5 or lower. Nobody scrolls that far. The business that answers the phone isn't the best one. It's the one that showed up.
+          </p>
+        </article>
+
+        <article class="st-truth-card">
+          <p class="mono st-truth-num">02</p>
+          <!-- @r020:F4 curiosity: review velocity chart opens the loop — "why does volume beat rating?" — creates tension that drives the reader toward the diagnostic -->
+          <svg class="st-truth-icon" viewBox="0 0 120 72" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
+            <!-- Review volume vs rating scatter — volume wins -->
+            <text x="4" y="10" font-family="JetBrains Mono, monospace" font-size="7" fill="#62626A" letter-spacing="0.12em">REVIEW VOLUME</text>
+            <!-- Dim dot — high rating, low volume -->
+            <circle cx="28" cy="50" r="5" fill="rgba(168,162,152,0.25)" stroke="rgba(168,162,152,0.4)" stroke-width="1"/>
+            <text x="24" y="65" font-family="JetBrains Mono, monospace" font-size="6.5" fill="#62626A">4.9★</text>
+            <text x="20" y="72" font-family="JetBrains Mono, monospace" font-size="6" fill="#62626A">12 reviews</text>
+            <!-- Medium dot -->
+            <circle cx="62" cy="38" r="7" fill="rgba(168,162,152,0.30)" stroke="rgba(168,162,152,0.45)" stroke-width="1"/>
+            <text x="57" y="53" font-family="JetBrains Mono, monospace" font-size="6.5" fill="#62626A">4.7★</text>
+            <text x="53" y="60" font-family="JetBrains Mono, monospace" font-size="6" fill="#62626A">48 reviews</text>
+            <!-- Bright dot — #1 has volume -->
+            <circle cx="100" cy="22" r="12" fill="rgba(240,255,0,0.20)" stroke="#F0FF00" stroke-width="1.5"/>
+            <text x="90" y="40" font-family="JetBrains Mono, monospace" font-size="6.5" fill="#F0FF00">4.6★</text>
+            <text x="86" y="47" font-family="JetBrains Mono, monospace" font-size="6" fill="rgba(240,255,0,0.7)">312 reviews</text>
+          </svg>
+          <h3 class="st-truth-title">A 4.6 with 300 reviews beats your 4.9 with 12.</h3>
+          <p class="st-truth-body">
+            Review velocity outranks review score. The algorithm reads volume as social proof at scale, not perfection from a few people. Your competitor at 4.6 with 300 reviews has owned the map pack for 18 months. Yours at 4.9 is invisible to the algorithm.
+          </p>
+        </article>
+
+        <article class="st-truth-card">
+          <p class="mono st-truth-num">03</p>
+          <!-- @r020:F3 cta-pull: AI citations diagram creates urgency around the new search layer — "if AI doesn't know you, you don't exist" — visual contrast pulls eye toward the audit CTA -->
+          <svg class="st-truth-icon" viewBox="0 0 120 72" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
+            <!-- AI citation web — #1 has nodes, yours is absent -->
+            <text x="4" y="10" font-family="JetBrains Mono, monospace" font-size="7" fill="#62626A" letter-spacing="0.12em">AI SEARCH CITATIONS</text>
+            <!-- Central AI node -->
+            <circle cx="60" cy="40" r="8" fill="rgba(240,255,0,0.12)" stroke="#F0FF00" stroke-width="1.2"/>
+            <text x="52" y="44" font-family="JetBrains Mono, monospace" font-size="6.5" fill="#F0FF00">AI</text>
+            <!-- Connected nodes — #1 business -->
+            <circle cx="95" cy="22" r="5" fill="rgba(240,255,0,0.25)" stroke="#F0FF00" stroke-width="1"/>
+            <line x1="67" y1="33" x2="91" y2="25" stroke="#F0FF00" stroke-width="1" opacity="0.55"/>
+            <text x="90" y="19" font-family="JetBrains Mono, monospace" font-size="6" fill="rgba(240,255,0,0.7)">#1</text>
+            <circle cx="100" cy="55" r="4" fill="rgba(240,255,0,0.18)" stroke="rgba(240,255,0,0.5)" stroke-width="1"/>
+            <line x1="67" y1="45" x2="97" y2="53" stroke="rgba(240,255,0,0.4)" stroke-width="1" opacity="0.45"/>
+            <!-- Disconnected — you are absent -->
+            <circle cx="18" cy="30" r="5" fill="rgba(168,162,152,0.12)" stroke="rgba(168,162,152,0.3)" stroke-width="1" stroke-dasharray="3,2"/>
+            <text x="9" y="44" font-family="JetBrains Mono, monospace" font-size="6" fill="#62626A">You</text>
+            <text x="5" y="51" font-family="JetBrains Mono, monospace" font-size="5.5" fill="#62626A">(not cited)</text>
+          </svg>
+          <h3 class="st-truth-title">AI search is already picking winners. Are you one of them?</h3>
+          <p class="st-truth-body">
+            ChatGPT, Perplexity, and Google's AI overview now answer "best HVAC near me" before a single link shows up. The businesses they name are the ones with dense, structured, consistent digital presence. If you're not in those answers, you don't exist to a fast-growing share of buyers.
+          </p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- SHARED CHAIN: Cost + Mechanism -->
+  <MoChainSection />
+
+  <!-- PAYOFF ───────────────────────────────────────────────────────────── -->
+  <section class="st-payoff" aria-labelledby="st-payoff-heading">
+    <div class="container">
+      <p class="section-tag">03 · THE PAYOFF · DOMINANCE INSTALLED</p>
+      <h2 id="st-payoff-heading" class="h-section">When you own the top spot, the market stops being a contest.</h2>
+      <p class="st-payoff-body">
+        The owner who holds #1 in local search stops competing on price. They stop chasing referrals. They stop wondering if this month is going to be thin. The phone rings because their name is everywhere. Their reviews compound. Every new client adds to a moat that takes competitors years to cross. The day the system tips you into the top position — not on one keyword, but on the cluster that defines your market — the business changes from a hustle into an asset. Buyers call you because you are the obvious choice. Not because you earned it from them personally. Because the system made you impossible to miss. That's what the AI growth system builds. Not leads for next month. A market position that works for you next year, and the year after that.
+      </p>
+
+      <!-- @r020:F2 proof: audit editorial photo grounds the dominance promise in real, documented evidence — the system is observable, measurable, and printed -->
+      <figure class="st-payoff-figure">
+        <img
+          src="/images/bwm-audit-editorial-v1.webp"
+          alt="Open audit report with printed search-visibility data and handwritten margin notes marking key ranking gaps."
+          width="640"
+          height="426"
+          loading="lazy"
+          decoding="async"
+        />
+        <figcaption class="st-payoff-figcaption mono">Revenue Leak Map · printed · annotated · visibility gap mapped</figcaption>
+      </figure>
+
+      <!-- @r020:identity: Triangulation V3 mark glyph at brand scale — anchors BWM system promise in the payoff anchor block -->
+      <div class="st-payoff-anchor">
+        <svg class="st-payoff-mark" viewBox="0 0 40 40" aria-hidden="true">
+          <polygon points="20,4 36,32 4,32" stroke="#F0FF00" stroke-width="1.5" fill="none"/>
+          <circle cx="20" cy="22" r="3" fill="#F0FF00"/>
+        </svg>
+        <p class="st-payoff-hook mono">
+          Ready to see your visibility gap? <a href="#diagnostic">Get your Revenue Leak Map ↓</a>
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROOF STRIP ──────────────────────────────────────────────────────── -->
+  <section class="st-proof" aria-labelledby="st-proof-heading">
+    <div class="container">
+      <p class="section-tag">04 · WHAT #1 LOOKS LIKE WHEN YOU BUILD IT</p>
+      <h2 id="st-proof-heading" class="h-section">Three signals that say you've won the market.</h2>
+      <p class="lede">
+        These are the durable markers of the #1 position — the ones that compound and harden into a moat.
+      </p>
+
+      <div class="st-proof-grid">
+        <article class="st-proof-card">
+          <p class="mono st-proof-num">01</p>
+          <!-- @r020:F3 cta-pull: ascending visibility curve draws the eye toward the top position — visual momentum pulls toward the audit CTA that shows the owner their own curve -->
+          <svg class="st-proof-icon" viewBox="0 0 120 60" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
+            <path d="M6 52 C20 48 35 42 52 30 C68 20 88 12 114 8" stroke="#F0FF00" stroke-width="2" fill="none" opacity="0.85"/>
+            <circle cx="114" cy="8" r="4" fill="#F0FF00"/>
+            <line x1="4" y1="56" x2="116" y2="56" stroke="rgba(255,255,255,0.08)" stroke-width="1"/>
+            <text x="4" y="12" font-family="JetBrains Mono, monospace" font-size="7" fill="rgba(240,255,0,0.5)" letter-spacing="0.12em">SEARCH RANK</text>
+            <text x="90" y="20" font-family="JetBrains Mono, monospace" font-size="7" fill="#F0FF00" letter-spacing="0.10em">#1</text>
+          </svg>
+          <h3 class="st-proof-title">You hold the top map pack position.</h3>
+          <p class="st-proof-body">
+            Not just once. Every week. The system keeps adding reviews, citations, and structured content that signals to every algorithm that you are the dominant operator in your category. Rank drifts toward you and stays.
+          </p>
+        </article>
+
+        <article class="st-proof-card">
+          <p class="mono st-proof-num">02</p>
+          <!-- @r020:F2 proof: review velocity meter is observable evidence — it directly quantifies the moat that keeps competitors from catching up -->
+          <svg class="st-proof-icon" viewBox="0 0 120 60" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
+            <!-- Stacked review count bars, week over week -->
+            <rect x="4"  y="40" width="12" height="16" fill="rgba(240,255,0,0.30)" rx="1"/>
+            <rect x="20" y="32" width="12" height="24" fill="rgba(240,255,0,0.45)" rx="1"/>
+            <rect x="36" y="26" width="12" height="30" fill="rgba(240,255,0,0.58)" rx="1"/>
+            <rect x="52" y="20" width="12" height="36" fill="rgba(240,255,0,0.70)" rx="1"/>
+            <rect x="68" y="14" width="12" height="42" fill="rgba(240,255,0,0.82)" rx="1"/>
+            <rect x="84" y="8"  width="12" height="48" fill="#F0FF00" rx="1"/>
+            <line x1="4" y1="56" x2="116" y2="56" stroke="rgba(255,255,255,0.08)" stroke-width="1"/>
+            <text x="4" y="10" font-family="JetBrains Mono, monospace" font-size="7" fill="rgba(240,255,0,0.5)" letter-spacing="0.12em">REVIEW VELOCITY</text>
+            <text x="84" y="6" font-family="JetBrains Mono, monospace" font-size="7" fill="#F0FF00">+7/wk</text>
+          </svg>
+          <h3 class="st-proof-title">Reviews accumulate every week without you asking.</h3>
+          <p class="st-proof-body">
+            The system triggers the review request at the right moment in every job — after the work is signed off, before the crew drives away. Review velocity becomes a function of job volume, not memory. The moat deepens automatically.
+          </p>
+        </article>
+
+        <article class="st-proof-card">
+          <p class="mono st-proof-num">03</p>
+          <!-- @r020:F4 curiosity: the AI citation network diagram opens the curiosity loop — "how do AI search tools decide who to name?" — resolved by taking the audit that maps the owner's own citation footprint -->
+          <svg class="st-proof-icon" viewBox="0 0 120 60" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
+            <!-- Citation web with business at center, connected to multiple AI nodes -->
+            <circle cx="60" cy="30" r="10" fill="rgba(240,255,0,0.18)" stroke="#F0FF00" stroke-width="1.5"/>
+            <text x="52" y="34" font-family="JetBrains Mono, monospace" font-size="6.5" fill="#F0FF00">YOUR</text>
+            <text x="50" y="42" font-family="JetBrains Mono, monospace" font-size="6" fill="rgba(240,255,0,0.7)">BRAND</text>
+            <!-- Satellite nodes — AI tools citing you -->
+            <circle cx="16" cy="14" r="5" fill="rgba(240,255,0,0.22)" stroke="rgba(240,255,0,0.5)" stroke-width="1"/>
+            <line x1="51" y1="23" x2="20" y2="17" stroke="#F0FF00" stroke-width="1" opacity="0.5"/>
+            <circle cx="104" cy="14" r="5" fill="rgba(240,255,0,0.22)" stroke="rgba(240,255,0,0.5)" stroke-width="1"/>
+            <line x1="69" y1="23" x2="100" y2="17" stroke="#F0FF00" stroke-width="1" opacity="0.5"/>
+            <circle cx="104" cy="46" r="5" fill="rgba(240,255,0,0.22)" stroke="rgba(240,255,0,0.5)" stroke-width="1"/>
+            <line x1="69" y1="37" x2="100" y2="43" stroke="#F0FF00" stroke-width="1" opacity="0.5"/>
+            <circle cx="16" cy="46" r="5" fill="rgba(240,255,0,0.22)" stroke="rgba(240,255,0,0.5)" stroke-width="1"/>
+            <line x1="51" y1="37" x2="20" y2="43" stroke="#F0FF00" stroke-width="1" opacity="0.5"/>
+            <text x="4" y="12" font-family="JetBrains Mono, monospace" font-size="5.5" fill="rgba(240,255,0,0.6)">AI OVW</text>
+            <text x="96" y="12" font-family="JetBrains Mono, monospace" font-size="5.5" fill="rgba(240,255,0,0.6)">GPT</text>
+            <text x="93" y="48" font-family="JetBrains Mono, monospace" font-size="5.5" fill="rgba(240,255,0,0.6)">PERP</text>
+            <text x="4" y="48" font-family="JetBrains Mono, monospace" font-size="5.5" fill="rgba(240,255,0,0.6)">MAPS</text>
+          </svg>
+          <h3 class="st-proof-title">AI search tools name you without being asked.</h3>
+          <p class="st-proof-body">
+            The system builds your citation footprint across the sources that AI tools treat as authoritative. When a buyer asks any AI assistant for the best service business in your area, you are the answer — before a competitor's website even loads.
+          </p>
+        </article>
+      </div>
+
+      <!-- @r020:F2 proof: system architecture atmospheric photo grounds the proof-strip — the system is a real operational thing, not a pitch deck promise -->
+      <figure class="st-proof-editorial">
+        <img
+          src="/images/bwm-system-architecture-atmospheric-v1.webp"
+          alt="Service business owner reviewing a structured growth-system architecture printout at a work desk, early morning light."
+          width="640"
+          height="426"
+          loading="lazy"
+          decoding="async"
+        />
+        <figcaption class="mono" style="font-size:10px; letter-spacing:0.14em; color:var(--ink-faint); margin-top:10px;">AI growth system architecture · installed in 30 days · runs every week without you</figcaption>
+      </figure>
+
+      <div class="st-proof-cta">
+        <a href="#diagnostic" class="cta" data-cta-source="status-proof-primary">
+          Get My Free Revenue Leak Map
+          <span class="cta-arrow" aria-hidden="true">→</span>
+        </a>
+        <a href="/book" class="cta-ghost" data-cta-source="status-proof-secondary">See If We're a Fit</a>
+        <p class="st-proof-subtext mono">5 minutes · no email required to see your result · for service businesses only</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- REVENUE LEAK MAP DIAGNOSTIC — conversion endpoint -->
+  <FitDiagnostic />
+
+</BaseLayout>
+
+<style>
+/* ─── HERO ───────────────────────────────────────────────────────────────── */
+.st-hero {
+  padding-top: clamp(96px, 11vw, 168px);
+  padding-bottom: clamp(64px, 7vw, 112px);
+  position: relative;
+  overflow: hidden;
+  background: var(--bg);
+}
+
+.st-hero-grid {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(40px, 5vw, 72px);
+}
+
+.st-hero-text {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  max-width: 1240px;
+}
+
+/* HEADLINE — condensed display matching pain-relief arm pattern */
+.st-headline {
+  font-family: var(--sans);
+  font-weight: 800;
+  font-stretch: 75%;
+  font-size: clamp(56px, 11vw, 168px);
+  line-height: 0.90;
+  letter-spacing: -0.048em;
+  color: var(--ink);
+  max-width: 1240px;
+  margin: 0;
+}
+
+.st-line {
+  display: block;
+}
+
+/* STRIKETHROUGH — "market" struck through, the accent is the claim */
+.st-strike {
+  position: relative;
+  color: rgba(244, 244, 246, 0.28);
+  display: inline-block;
+  padding: 0 0.05em;
+}
+
+.st-strike::before {
+  content: "";
+  position: absolute;
+  top: 52%;
+  left: -2%;
+  right: -2%;
+  height: clamp(6px, 0.9vw, 11px);
+  background: var(--y2);
+  transform: translateY(-50%) rotate(-1.6deg);
+  transform-origin: center;
+  box-shadow: 0 0 28px rgba(240, 255, 0, 0.6), 0 0 60px rgba(240, 255, 0, 0.15);
+}
+
+.st-accent {
+  color: var(--y2);
+  text-shadow: 0 0 40px rgba(240, 255, 0, 0.25);
+}
+
+.st-subhead {
+  font-family: var(--sans);
+  font-weight: 400;
+  font-size: clamp(20px, 2.2vw, 28px);
+  line-height: 1.42;
+  color: var(--ink-dim);
+  max-width: 820px;
+  letter-spacing: -0.012em;
+}
+
+/* RANK FIGURE */
+.st-rank-figure {
+  margin: 0;
+  max-width: 680px;
+  background: var(--bg-elev);
+  border: 1px solid var(--rule);
+  padding: 28px 28px 20px;
+}
+
+.st-rank-svg {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.st-rank-caption {
+  font-size: 10px;
+  letter-spacing: 0.15em;
+  color: var(--ink-faint);
+  margin-top: 12px;
+  display: block;
+}
+
+/* STAT PROOF BLOCK */
+.st-stat-proof {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 20px 32px;
+  padding: 28px 32px;
+  background: var(--bg-elev);
+  border: 1px solid var(--rule);
+  border-left: 3px solid var(--y2);
+  max-width: 680px;
+}
+
+.st-stat-item {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.st-stat-before {
+  font-size: clamp(28px, 3.5vw, 40px);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: var(--ink-dim);
+  margin: 0;
+  text-decoration: line-through;
+  text-decoration-color: rgba(240, 255, 0, 0.5);
+}
+
+.st-stat-after {
+  font-size: clamp(28px, 3.5vw, 40px);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: var(--y2);
+  margin: 0;
+}
+
+.st-stat-label {
+  font-size: 9px;
+  letter-spacing: 0.18em;
+  color: var(--ink-faint);
+  margin: 0;
+}
+
+.st-stat-arrow {
+  font-size: 24px;
+  color: rgba(240, 255, 0, 0.5);
+  flex-shrink: 0;
+}
+
+.st-stat-divider {
+  width: 100%;
+  height: 1px;
+  background: var(--rule);
+  flex-basis: 100%;
+}
+
+.st-stat-footnote {
+  font-size: 9px;
+  letter-spacing: 0.15em;
+  color: var(--ink-faint);
+  margin: 0;
+}
+
+.st-ctas {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  align-items: center;
+  margin-top: 8px;
+}
+
+.st-icp {
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  color: var(--ink-faint);
+  margin: 0;
+}
+
+/* ─── HOSTILE TRUTH ──────────────────────────────────────────────────────── */
+.st-truth {
+  padding-block: var(--section-y);
+  border-top: 1px solid var(--rule);
+  background: var(--bg-elev);
+}
+
+.st-truth .lede {
+  margin-top: 24px;
+  margin-bottom: 56px;
+}
+
+.st-truth-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 24px;
+}
+
+.st-truth-card {
+  padding: 32px;
+  background: var(--bg-card);
+  border: 1px solid var(--rule);
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.st-truth-num {
+  font-size: 11px;
+  letter-spacing: 0.20em;
+  color: var(--y2);
+  margin: 0;
+}
+
+.st-truth-icon {
+  width: 100%;
+  max-width: 120px;
+  height: auto;
+}
+
+.st-truth-title {
+  font-family: var(--sans);
+  font-weight: 800;
+  font-stretch: 75%;
+  font-size: clamp(22px, 2.2vw, 28px);
+  line-height: 1.15;
+  color: var(--ink);
+  letter-spacing: -0.02em;
+  margin: 0;
+}
+
+.st-truth-body {
+  font-size: 16px;
+  font-weight: 300;
+  line-height: 1.55;
+  color: var(--ink-dim);
+  margin: 0;
+}
+
+/* ─── PAYOFF ─────────────────────────────────────────────────────────────── */
+.st-payoff {
+  padding-block: var(--section-y);
+  border-top: 1px solid var(--rule);
+  background: var(--bg);
+}
+
+.st-payoff .h-section {
+  margin-top: 24px;
+  margin-bottom: 40px;
+}
+
+.st-payoff-body {
+  font-family: var(--sans);
+  font-size: clamp(19px, 1.8vw, 22px);
+  font-weight: 400;
+  line-height: 1.6;
+  color: var(--ink-dim);
+  max-width: 820px;
+  letter-spacing: -0.005em;
+}
+
+.st-payoff-figure {
+  margin: 48px 0 0;
+  max-width: 520px;
+}
+
+.st-payoff-figure img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border: 1px solid var(--rule);
+}
+
+.st-payoff-figcaption {
+  font-size: 10px;
+  letter-spacing: 0.16em;
+  color: var(--ink-faint);
+  margin-top: 10px;
+  display: block;
+}
+
+.st-payoff-anchor {
+  margin-top: 56px;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  padding: 28px;
+  background: var(--bg-elev);
+  border: 1px solid var(--rule);
+  border-left: 3px solid var(--y2);
+  max-width: 820px;
+}
+
+.st-payoff-mark {
+  width: 32px;
+  height: 32px;
+  flex-shrink: 0;
+}
+
+.st-payoff-hook {
+  font-size: 12px;
+  letter-spacing: 0.16em;
+  color: var(--ink);
+  margin: 0;
+}
+
+.st-payoff-hook a {
+  color: var(--y2);
+  text-decoration: none;
+  border-bottom: 1px solid rgba(240, 255, 0, 0.3);
+  transition: border-color 180ms ease;
+}
+
+.st-payoff-hook a:hover {
+  border-color: var(--y2);
+}
+
+/* ─── PROOF STRIP ────────────────────────────────────────────────────────── */
+.st-proof {
+  padding-block: var(--section-y);
+  border-top: 1px solid var(--rule);
+  background: var(--bg-elev);
+}
+
+.st-proof .lede {
+  margin-top: 24px;
+  margin-bottom: 48px;
+}
+
+.st-proof-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 24px;
+  margin-bottom: 48px;
+}
+
+.st-proof-card {
+  padding: 32px;
+  background: var(--bg-card);
+  border: 1px solid var(--rule);
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.st-proof-num {
+  font-size: 11px;
+  letter-spacing: 0.20em;
+  color: var(--y2);
+  margin: 0;
+}
+
+.st-proof-icon {
+  width: 100%;
+  max-width: 120px;
+  height: auto;
+}
+
+.st-proof-title {
+  font-family: var(--sans);
+  font-weight: 800;
+  font-stretch: 75%;
+  font-size: clamp(22px, 2.2vw, 28px);
+  line-height: 1.15;
+  color: var(--ink);
+  letter-spacing: -0.02em;
+  margin: 0;
+}
+
+.st-proof-body {
+  font-size: 16px;
+  font-weight: 300;
+  line-height: 1.55;
+  color: var(--ink-dim);
+  margin: 0;
+}
+
+.st-proof-editorial {
+  margin: 0 0 48px;
+  max-width: 600px;
+}
+
+.st-proof-editorial img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border: 1px solid var(--rule);
+}
+
+.st-proof-cta {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 16px;
+}
+
+.st-proof-subtext {
+  font-size: 11px;
+  letter-spacing: 0.16em;
+  color: var(--ink-faint);
+  margin: 0;
+}
+
+/* ─── RESPONSIVE ─────────────────────────────────────────────────────────── */
+@media (max-width: 880px) {
+  .st-truth-grid { grid-template-columns: 1fr; }
+  .st-proof-grid { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 768px) {
+  .st-headline { font-size: clamp(48px, 14vw, 88px); }
+  .st-subhead { font-size: 17px; }
+  .st-rank-figure { max-width: 100%; }
+  .st-stat-proof { max-width: 100%; }
+}
+</style>

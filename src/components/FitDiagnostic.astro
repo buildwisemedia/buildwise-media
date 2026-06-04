@@ -1,6 +1,6 @@
 ---
 // Mo' Money campaign — Fit Diagnostic
-// @r020-exempt: interactive diagnostic component with icon svgs
+// @r020-exempt: interactive diagnostic UI (icon svgs + progress indicators); the one editorial photo below carries its own annotation
 // Ported 2026-05-20 from bwm-campaigns/mo-money-mo-peace/landing.html
 // Self-contained: state machine + 7 question screens + reveal + verdict routing
 // Submit handler POSTs to bwm-form-handler /buildwisemedia/fit-diagnostic
@@ -77,13 +77,14 @@
               </div>
               <div class="welcome-cta-wrap">
                 <button class="cta-primary" data-action="start">
-                  See If We're a Fit
+                  Get My Free Revenue Leak Map
                   <span class="arrow">→</span>
                 </button>
                 <a href="/book" class="cta-secondary">Or just book a 15-min call →</a>
               </div>
             </div>
             <div class="welcome-hero-visual">
+              <!-- @r020:F1 emotion: pre-dawn owner-in-truck portrait mirrors the visitor's own morning — self-recognition pulls them into the diagnostic -->
               <img src="/assets/photography/v1-editorial-black-owner.jpg" alt="A service-business owner in his work truck at dawn, looking out at the road ahead" loading="eager" decoding="async" width="1600" height="1200">
               <div class="welcome-hero-visual-overlay"></div>
               <span class="welcome-hero-visual-dot"></span>
@@ -134,6 +135,8 @@
           <span class="q-eyebrow-sep">·</span>
           <span class="q-eyebrow-cat">Service</span>
         </div>
+        <!-- @r020:F3 cta-pull: step-progress dots show how close the reveal is — momentum pulls completion -->
+        <svg class="q-progress" viewBox="0 0 136 12" width="136" height="12" role="img" aria-label="Question 1 of 7"><circle cx="10" cy="6" r="4" fill="#F0FF00"/><circle cx="28" cy="6" r="2.5" fill="rgba(168,162,152,0.35)"/><circle cx="46" cy="6" r="2.5" fill="rgba(168,162,152,0.35)"/><circle cx="64" cy="6" r="2.5" fill="rgba(168,162,152,0.35)"/><circle cx="82" cy="6" r="2.5" fill="rgba(168,162,152,0.35)"/><circle cx="100" cy="6" r="2.5" fill="rgba(168,162,152,0.35)"/><circle cx="118" cy="6" r="2.5" fill="rgba(168,162,152,0.35)"/></svg>
         <h2 class="q-text">What kind of <span class="y">service business</span> do you run?</h2>
         <p class="q-help">Pick the one that fits best. If your service is mixed, pick the line that's the largest share of revenue today.</p>
         <div class="chip-grid" data-single="service">
@@ -239,6 +242,8 @@
           <span class="q-eyebrow-sep">·</span>
           <span class="q-eyebrow-cat">Acquisition</span>
         </div>
+        <!-- @r020:F3 cta-pull: step-progress dots show how close the reveal is — momentum pulls completion -->
+        <svg class="q-progress" viewBox="0 0 136 12" width="136" height="12" role="img" aria-label="Question 2 of 7"><circle cx="10" cy="6" r="2.5" fill="#F0FF00"/><circle cx="28" cy="6" r="4" fill="#F0FF00"/><circle cx="46" cy="6" r="2.5" fill="rgba(168,162,152,0.35)"/><circle cx="64" cy="6" r="2.5" fill="rgba(168,162,152,0.35)"/><circle cx="82" cy="6" r="2.5" fill="rgba(168,162,152,0.35)"/><circle cx="100" cy="6" r="2.5" fill="rgba(168,162,152,0.35)"/><circle cx="118" cy="6" r="2.5" fill="rgba(168,162,152,0.35)"/></svg>
         <h2 class="q-text">Where do <span class="y">new clients</span> come from today?</h2>
         <p class="q-help">Select all that apply. We're looking at your acquisition mix — the channels that bring you actual new business in the last 90 days.</p>
         <div class="q2-split">
@@ -348,6 +353,8 @@
           <span class="q-eyebrow-sep">·</span>
           <span class="q-eyebrow-cat">Scale</span>
         </div>
+        <!-- @r020:F3 cta-pull: step-progress dots show how close the reveal is — momentum pulls completion -->
+        <svg class="q-progress" viewBox="0 0 136 12" width="136" height="12" role="img" aria-label="Question 3 of 7"><circle cx="10" cy="6" r="2.5" fill="#F0FF00"/><circle cx="28" cy="6" r="2.5" fill="#F0FF00"/><circle cx="46" cy="6" r="4" fill="#F0FF00"/><circle cx="64" cy="6" r="2.5" fill="rgba(168,162,152,0.35)"/><circle cx="82" cy="6" r="2.5" fill="rgba(168,162,152,0.35)"/><circle cx="100" cy="6" r="2.5" fill="rgba(168,162,152,0.35)"/><circle cx="118" cy="6" r="2.5" fill="rgba(168,162,152,0.35)"/></svg>
         <h2 class="q-text">What's your <span class="y">current monthly revenue</span>?</h2>
         <p class="q-help">Pick the range you're trending in. This tells us where the system needs to plug in — you don't need to be precise.</p>
         <div class="slider-block">
@@ -394,6 +401,8 @@
           <span class="q-eyebrow-sep">·</span>
           <span class="q-eyebrow-cat">Time</span>
         </div>
+        <!-- @r020:F3 cta-pull: step-progress dots show how close the reveal is — momentum pulls completion -->
+        <svg class="q-progress" viewBox="0 0 136 12" width="136" height="12" role="img" aria-label="Question 4 of 7"><circle cx="10" cy="6" r="2.5" fill="#F0FF00"/><circle cx="28" cy="6" r="2.5" fill="#F0FF00"/><circle cx="46" cy="6" r="2.5" fill="#F0FF00"/><circle cx="64" cy="6" r="4" fill="#F0FF00"/><circle cx="82" cy="6" r="2.5" fill="rgba(168,162,152,0.35)"/><circle cx="100" cy="6" r="2.5" fill="rgba(168,162,152,0.35)"/><circle cx="118" cy="6" r="2.5" fill="rgba(168,162,152,0.35)"/></svg>
         <h2 class="q-text">How does your <span class="y">working week</span> split today?</h2>
         <p class="q-help">In a typical week, what share of YOUR personal hours go to operations (running the work) vs. growth (sales, marketing, hiring, system-building)? Be honest — the gap is often the diagnosis.</p>
         <div class="split-block">
@@ -428,6 +437,8 @@
           <span class="q-eyebrow-sep">·</span>
           <span class="q-eyebrow-cat">Bottleneck</span>
         </div>
+        <!-- @r020:F3 cta-pull: step-progress dots show how close the reveal is — momentum pulls completion -->
+        <svg class="q-progress" viewBox="0 0 136 12" width="136" height="12" role="img" aria-label="Question 5 of 7"><circle cx="10" cy="6" r="2.5" fill="#F0FF00"/><circle cx="28" cy="6" r="2.5" fill="#F0FF00"/><circle cx="46" cy="6" r="2.5" fill="#F0FF00"/><circle cx="64" cy="6" r="2.5" fill="#F0FF00"/><circle cx="82" cy="6" r="4" fill="#F0FF00"/><circle cx="100" cy="6" r="2.5" fill="rgba(168,162,152,0.35)"/><circle cx="118" cy="6" r="2.5" fill="rgba(168,162,152,0.35)"/></svg>
         <h2 class="q-text">When you try to <span class="y">grow</span>, what breaks first?</h2>
         <p class="q-help">There's always one constraint that binds before the others. Pick the one that's currently the loudest.</p>
         <div class="bottleneck-grid" data-single="bottleneck">
@@ -471,6 +482,8 @@
           <span class="q-eyebrow-sep">·</span>
           <span class="q-eyebrow-cat">Constraints</span>
         </div>
+        <!-- @r020:F3 cta-pull: step-progress dots show how close the reveal is — momentum pulls completion -->
+        <svg class="q-progress" viewBox="0 0 136 12" width="136" height="12" role="img" aria-label="Question 6 of 7"><circle cx="10" cy="6" r="2.5" fill="#F0FF00"/><circle cx="28" cy="6" r="2.5" fill="#F0FF00"/><circle cx="46" cy="6" r="2.5" fill="#F0FF00"/><circle cx="64" cy="6" r="2.5" fill="#F0FF00"/><circle cx="82" cy="6" r="2.5" fill="#F0FF00"/><circle cx="100" cy="6" r="4" fill="#F0FF00"/><circle cx="118" cy="6" r="2.5" fill="rgba(168,162,152,0.35)"/></svg>
         <h2 class="q-text">If we sent you <span class="y">10x leads tomorrow</span>, what couldn't handle it?</h2>
         <p class="q-help">Select all that apply. This is the inverse of the bottleneck question — we want to know which downstream systems would buckle under the load.</p>
         <div class="multiselect-grid" data-multi="capacityGaps">
@@ -519,6 +532,8 @@
           <span class="q-eyebrow-sep">·</span>
           <span class="q-eyebrow-cat">Vision</span>
         </div>
+        <!-- @r020:F3 cta-pull: step-progress dots show how close the reveal is — momentum pulls completion -->
+        <svg class="q-progress" viewBox="0 0 136 12" width="136" height="12" role="img" aria-label="Question 7 of 7"><circle cx="10" cy="6" r="2.5" fill="#F0FF00"/><circle cx="28" cy="6" r="2.5" fill="#F0FF00"/><circle cx="46" cy="6" r="2.5" fill="#F0FF00"/><circle cx="64" cy="6" r="2.5" fill="#F0FF00"/><circle cx="82" cy="6" r="2.5" fill="#F0FF00"/><circle cx="100" cy="6" r="2.5" fill="#F0FF00"/><circle cx="118" cy="6" r="4" fill="#F0FF00"/></svg>
         <h2 class="q-text">Where do you want to be in <span class="y">12 months</span>?</h2>
         <p class="q-help">Be ambitious but real. We're calibrating the system to your actual destination — not someone else's playbook.</p>
         <div class="target-block">
@@ -1268,7 +1283,8 @@
        Flagship global.css provides the canonical --bg / --y2 / --ink / --rule tokens
        (--y2: #F0FF00). The original ported :root block redefined --y2 to #c0c0a8
        which broke the MoHero brand accent — root-cause fix 2026-05-20. */
-    #diagnostic {
+    .q-progress { display:block; margin: 6px 0 14px; }
+  #diagnostic {
       --bg-lift: var(--bg-elev);
       --bg-deep: #050505;
       --y2-glow: rgba(240, 255, 0, 0.45);
