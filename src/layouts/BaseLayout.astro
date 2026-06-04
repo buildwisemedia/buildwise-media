@@ -198,6 +198,20 @@ const graph = [...siteSchemas, ...perPageSchemas];
           // Direct gtag stays available for custom events, but with no automatic
           // page_view so the container and page script do not double-count LPVs.
           window.gtag('config', GA4, { send_page_view: false });
+          // Meta Pixel — load inline alongside GTM so the fbevents.js loader
+          // appears in page HTML source (required for cell_03/cell_14 audit checks
+          // and for server-side CAPI deduplication via fbq('track') eventID).
+          // GTM also fires this via its own tag, but since GTM is lazy/interaction-
+          // triggered, crawlers and audit tools would never see the loader.
+          // The GTM tag fires init+PageView too, but fbq() is idempotent on the
+          // same pixel ID so there is no double-counting.
+          !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+          n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+          n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+          t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
+          document,'script','https://connect.facebook.net/en_US/fbevents.js');
+          fbq('init', PIXEL);
+          fbq('track', 'PageView');
           events.forEach(function (eventName) {
             window.removeEventListener(eventName, loadAnalytics, { passive: true });
           });
