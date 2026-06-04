@@ -1,0 +1,768 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import MoChainSection from '../../components/campaign/MoChainSection.astro';
+import FitDiagnostic from '../../components/FitDiagnostic.astro';
+
+// MONEY offer-funnel arm — /go/money
+// Angle: active pain of opportunity cost — the owner is leaving the next $1M on the table
+// Register: opportunity-cost framing · active-pain verb · concrete revenue upside
+// UTM contract: utm_content=go-money
+---
+
+<BaseLayout
+  title="Add $1M+ to Your Service Business | Buildwise Media"
+  description="Stop leaving the next $1M on the table. The free Revenue Leak Map takes 5 minutes and shows you the exact revenue gap your marketing isn't closing."
+  ogTitle="Do you want to add $1M+ to your service business?"
+  ogDescription="You're leaving the next $1M on the table. The free Revenue Leak Map shows you exactly where it's going."
+  noindex={true}
+>
+
+  <!-- HERO ─────────────────────────────────────────────────────────────── -->
+  <section class="mn-hero" aria-labelledby="mn-hero-headline">
+    <div class="container mn-hero-grid">
+      <div class="mn-hero-text">
+        <p class="eyebrow">Buildwise Media · AI marketing run for you</p>
+
+        <h1 id="mn-hero-headline" class="mn-headline">
+          <span class="mn-line">Do you want to</span>
+          <span class="mn-line">add <span class="mn-accent">$1M+</span> to your</span>
+          <span class="mn-line"><span class="mn-strike">same business</span>?</span>
+        </h1>
+
+        <p class="mn-subhead">
+          Stop leaving the next $1M on the table. Your leads are real. Your market is there. The gap is in how your marketing captures and converts them. The free Revenue Leak Map takes 5 minutes — and maps exactly where the money is going.
+        </p>
+
+        <!-- @r020:F2 proof: before/after revenue-capture bar chart makes the opportunity gap concrete — left side shows current captured revenue from marketing, right side shows the addressable upside, pulling the owner toward the audit CTA to quantify their specific gap -->
+        <figure class="mn-gap-figure">
+          <svg class="mn-gap-svg" viewBox="0 0 640 220" role="img" aria-label="Before: low captured revenue bars with large uncaptured gap above. After install: full bars reaching total addressable revenue." xmlns="http://www.w3.org/2000/svg">
+            <!-- Before label -->
+            <text x="8" y="14" font-family="JetBrains Mono, monospace" font-size="9" fill="#62626A" letter-spacing="0.18em">YOUR REVENUE TODAY</text>
+
+            <!-- Before bars: partial fill — captured is low, gap is visible above -->
+            <!-- Bar 1 -->
+            <rect x="8"   y="30"  width="20" height="50"  fill="rgba(168,162,152,0.12)" rx="1"/>
+            <rect x="8"   y="80"  width="20" height="90"  fill="rgba(168,162,152,0.40)" rx="1"/>
+            <!-- Bar 2 -->
+            <rect x="34"  y="30"  width="20" height="40"  fill="rgba(168,162,152,0.12)" rx="1"/>
+            <rect x="34"  y="70"  width="20" height="100" fill="rgba(168,162,152,0.40)" rx="1"/>
+            <!-- Bar 3 -->
+            <rect x="60"  y="30"  width="20" height="60"  fill="rgba(168,162,152,0.12)" rx="1"/>
+            <rect x="60"  y="90"  width="20" height="80"  fill="rgba(168,162,152,0.40)" rx="1"/>
+            <!-- Bar 4 -->
+            <rect x="86"  y="30"  width="20" height="55"  fill="rgba(168,162,152,0.12)" rx="1"/>
+            <rect x="86"  y="85"  width="20" height="85"  fill="rgba(168,162,152,0.40)" rx="1"/>
+            <!-- Bar 5 -->
+            <rect x="112" y="30"  width="20" height="45"  fill="rgba(168,162,152,0.12)" rx="1"/>
+            <rect x="112" y="75"  width="20" height="95"  fill="rgba(168,162,152,0.40)" rx="1"/>
+            <!-- Bar 6 -->
+            <rect x="138" y="30"  width="20" height="52"  fill="rgba(168,162,152,0.12)" rx="1"/>
+            <rect x="138" y="82"  width="20" height="88"  fill="rgba(168,162,152,0.40)" rx="1"/>
+
+            <!-- Gap brace annotation -->
+            <line x1="8" y1="28" x2="160" y2="28" stroke="rgba(240,255,0,0.25)" stroke-width="1" stroke-dasharray="3,3"/>
+            <text x="8" y="24" font-family="JetBrains Mono, monospace" font-size="7" fill="rgba(240,255,0,0.45)" letter-spacing="0.12em">REVENUE GAP · UNCAPTURED</text>
+
+            <!-- Before bottom label -->
+            <text x="8" y="186" font-family="JetBrains Mono, monospace" font-size="8" fill="#62626A" letter-spacing="0.13em">Captured · leaving real money behind</text>
+
+            <!-- Divider arrow -->
+            <line x1="186" y1="110" x2="220" y2="110" stroke="#F0FF00" stroke-width="1.5" opacity="0.6"/>
+            <polyline points="214,106 220,110 214,114" stroke="#F0FF00" stroke-width="1.5" fill="none" opacity="0.6"/>
+            <text x="188" y="100" font-family="JetBrains Mono, monospace" font-size="8" fill="rgba(240,255,0,0.5)" letter-spacing="0.10em">AFTER</text>
+
+            <!-- After label -->
+            <text x="232" y="14" font-family="JetBrains Mono, monospace" font-size="9" fill="#62626A" letter-spacing="0.18em">AFTER INSTALL</text>
+
+            <!-- After bars: full capture — bars reach the ceiling -->
+            <rect x="232" y="50"  width="20" height="120" fill="#F0FF00" opacity="0.55" rx="1"/>
+            <rect x="258" y="42"  width="20" height="128" fill="#F0FF00" opacity="0.62" rx="1"/>
+            <rect x="284" y="36"  width="20" height="134" fill="#F0FF00" opacity="0.68" rx="1"/>
+            <rect x="310" y="32"  width="20" height="138" fill="#F0FF00" opacity="0.74" rx="1"/>
+            <rect x="336" y="28"  width="20" height="142" fill="#F0FF00" opacity="0.80" rx="1"/>
+            <rect x="362" y="24"  width="20" height="146" fill="#F0FF00" opacity="0.86" rx="1"/>
+            <rect x="388" y="22"  width="20" height="148" fill="#F0FF00" opacity="0.90" rx="1"/>
+            <rect x="414" y="20"  width="20" height="150" fill="#F0FF00" opacity="0.93" rx="1"/>
+
+            <!-- After ceiling line -->
+            <line x1="232" y1="18" x2="436" y2="18" stroke="rgba(240,255,0,0.30)" stroke-width="1" stroke-dasharray="3,3"/>
+            <text x="232" y="14" font-family="JetBrains Mono, monospace" font-size="7" fill="rgba(240,255,0,0.45)" letter-spacing="0.12em">ADDRESSABLE REVENUE · CAPTURED</text>
+
+            <!-- After bottom label -->
+            <text x="232" y="186" font-family="JetBrains Mono, monospace" font-size="8" fill="rgba(240,255,0,0.55)" letter-spacing="0.13em">Full capture · compounding · owned</text>
+
+            <!-- Baseline -->
+            <line x1="8" y1="173" x2="436" y2="173" stroke="rgba(255,255,255,0.06)" stroke-width="1"/>
+          </svg>
+          <figcaption class="mn-gap-caption mono">Revenue captured vs. revenue addressable — before and after AI system install</figcaption>
+        </figure>
+
+        <!-- SPECIFIC OUTCOME PROOF — before/after stat block, no client named -->
+        <!-- @r020:F2 proof: concrete before/after qualified-lead count makes the revenue upside real and countable — the owner can see the exact number of opportunities disappearing each month -->
+        <div class="mn-stat-proof">
+          <div class="mn-stat-item">
+            <p class="mn-stat-before mono">11 / MO</p>
+            <p class="mn-stat-label mono">qualified leads captured · before</p>
+          </div>
+          <div class="mn-stat-arrow" aria-hidden="true">→</div>
+          <div class="mn-stat-item">
+            <p class="mn-stat-after mono">38 / MO</p>
+            <p class="mn-stat-label mono">qualified leads captured · after</p>
+          </div>
+          <div class="mn-stat-divider" aria-hidden="true"></div>
+          <p class="mn-stat-footnote mono">HVAC client · first 12 weeks · same market · same team · same ad spend</p>
+        </div>
+
+        <div class="mn-ctas">
+          <a href="#diagnostic" class="cta" data-cta-source="money-hero-primary">
+            Get My Free Revenue Leak Map
+            <span class="cta-arrow" aria-hidden="true">→</span>
+          </a>
+          <a href="/book" class="cta-ghost" data-cta-source="money-hero-secondary">See If We're a Fit</a>
+        </div>
+        <p class="mn-icp mono">For service businesses only. 5 minutes. No pitch.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- COST SECTION — opportunity cost framing -->
+  <section class="mn-cost elev" aria-labelledby="mn-cost-heading">
+    <div class="container">
+      <p class="section-tag">01 · THE COST · WHAT YOU'RE LOSING EACH MONTH</p>
+      <h2 id="mn-cost-heading" class="h-section">Every month without the system is a month you paid for leads you didn't close.</h2>
+      <p class="mn-cost-body">
+        You're already spending — ads, tools, time. The problem isn't your market. Most service businesses keep only 20–40% of the leads they generate. The rest leak out to slow or missing follow-up. Every lost lead is a job that went to a faster competitor. The system closes that gap.
+      </p>
+
+      <!-- @r020:F2 proof: leak-flow split bar makes the 28/72 capture loss visceral — the visual IS the argument that money is leaking right now -->
+      <svg class="mn-leak-svg" viewBox="0 0 640 96" role="img" aria-label="Of 100 leads generated, 28 become clients and 72 leak away to slow or missing follow-up." xmlns="http://www.w3.org/2000/svg">
+        <text x="8" y="14" font-family="JetBrains Mono, monospace" font-size="9" fill="#62626A" letter-spacing="0.18em">100 LEADS GENERATED / MO</text>
+        <rect x="8" y="22" width="624" height="16" fill="rgba(168,162,152,0.18)" rx="2"/>
+        <rect x="8" y="22" width="175" height="16" fill="#F0FF00" opacity="0.9" rx="2"/>
+        <line x1="183" y1="18" x2="183" y2="42" stroke="#F0FF00" stroke-width="1" opacity="0.5"/>
+        <text x="8" y="58" font-family="JetBrains Mono, monospace" font-size="9" fill="rgba(240,255,0,0.75)" letter-spacing="0.12em">28 BECOME CLIENTS</text>
+        <text x="196" y="58" font-family="JetBrains Mono, monospace" font-size="9" fill="#62626A" letter-spacing="0.12em">72 LEAK — SLOW OR NO FOLLOW-UP</text>
+        <text x="8" y="84" font-family="JetBrains Mono, monospace" font-size="8" fill="#62626A" letter-spacing="0.13em">At $4K avg. job value → $288K / yr leaving the table</text>
+      </svg>
+
+      <!-- @r020:F4 curiosity: cost-calculator diagram opens the "how much am I losing?" loop — the owner is pulled to complete the audit to get their own specific number -->
+      <div class="mn-cost-calc">
+        <div class="mn-cost-calc-row">
+          <span class="mn-cost-calc-label mono">Leads generated / mo</span>
+          <span class="mn-cost-calc-num mono">100</span>
+        </div>
+        <div class="mn-cost-calc-row">
+          <span class="mn-cost-calc-label mono">Typical capture rate (before)</span>
+          <span class="mn-cost-calc-num mono mn-cost-calc-dim">× 28%</span>
+        </div>
+        <div class="mn-cost-calc-divider" aria-hidden="true"></div>
+        <div class="mn-cost-calc-row">
+          <span class="mn-cost-calc-label mono">Leads becoming clients</span>
+          <span class="mn-cost-calc-num mono mn-cost-calc-dim">28</span>
+        </div>
+        <div class="mn-cost-calc-row mn-cost-calc-gap">
+          <span class="mn-cost-calc-label mono">Leads lost to slow/no follow-up</span>
+          <span class="mn-cost-calc-num mono mn-cost-calc-red">72 / mo</span>
+        </div>
+        <div class="mn-cost-calc-divider" aria-hidden="true"></div>
+        <div class="mn-cost-calc-row">
+          <span class="mn-cost-calc-label mono">At $4K avg. job value</span>
+          <span class="mn-cost-calc-num mono mn-cost-calc-y2">$288K / yr leaving the table</span>
+        </div>
+        <p class="mn-cost-calc-note mono">Your number is different. The audit finds yours.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- SHARED CHAIN: Cost + Mechanism (MoChainSection carries F2 data-viz + F3 staircase) -->
+  <MoChainSection />
+
+  <!-- PAYOFF ─────────────────────────────────────────────────────────────── -->
+  <section class="mn-payoff" aria-labelledby="mn-payoff-heading">
+    <div class="container">
+      <p class="section-tag">03 · THE PAYOFF · OPPORTUNITY COST RECOVERED</p>
+      <h2 id="mn-payoff-heading" class="h-section">The next $1M isn't new — it's already in your market. You're just not capturing it.</h2>
+      <p class="mn-payoff-body">
+        The business that becomes the category of one in their market doesn't necessarily work harder. They just stop leaking. Every lead gets followed up — in seconds, not hours. Every campaign builds on the last one. Every week, the system learns which messages convert and puts more weight there. The gap between where you are and where you could be is almost never a market problem. It's a capture problem. The AI growth system is the capture layer. It runs the marketing end-to-end while you run the business. The math compounds forward. Thirty days after install, the pattern is already visible.
+      </p>
+
+      <!-- @r020:F2 proof: audit editorial image grounds the payoff promise in a physical artifact — the audit output is a real deliverable, not a promise -->
+      <figure class="mn-payoff-figure">
+        <img
+          src="/images/bwm-audit-editorial-v1.webp"
+          alt="Printed AI marketing audit report with annotated revenue gap findings laid flat on a dark work surface."
+          width="640"
+          height="426"
+          loading="lazy"
+          decoding="async"
+        />
+        <figcaption class="mn-payoff-figcaption mono">The Revenue Leak Map · printed · specific to your market · yours to keep</figcaption>
+      </figure>
+
+      <!-- @r020:identity: Triangulation V3 mark glyph anchors the BWM system promise in the payoff block -->
+      <div class="mn-payoff-anchor">
+        <svg class="mn-payoff-mark" viewBox="0 0 40 40" aria-hidden="true">
+          <polygon points="20,4 36,32 4,32" stroke="#F0FF00" stroke-width="1.5" fill="none" />
+          <circle cx="20" cy="22" r="3" fill="#F0FF00" />
+        </svg>
+        <p class="mn-payoff-hook mono">
+          Ready to see what your market is worth? <a href="#diagnostic">Get your Revenue Leak Map ↓</a>
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROOF STRIP ─────────────────────────────────────────────────────────── -->
+  <section class="mn-proof elev" aria-labelledby="mn-proof-heading">
+    <div class="container">
+      <p class="section-tag">04 · HOW THE UPSIDE GETS CAPTURED</p>
+      <h2 id="mn-proof-heading" class="h-section">Three places the revenue is leaking right now.</h2>
+      <p class="lede">
+        The system closes all three — in the first 30 days.
+      </p>
+
+      <div class="mn-proof-grid">
+        <article class="mn-proof-card">
+          <p class="mono mn-proof-num">01</p>
+          <!-- @r020:F3 cta-pull: response-speed timer diagram makes the 47-second first-touch concrete — the visual contrast between "4 hours" and "47 seconds" pulls the owner to take the audit and see their own reply-time gap -->
+          <svg class="mn-proof-icon" viewBox="0 0 120 60" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="28" cy="30" r="18" stroke="rgba(240,255,0,0.20)" stroke-width="1.5" fill="none"/>
+            <line x1="28" y1="16" x2="28" y2="30" stroke="rgba(168,162,152,0.5)" stroke-width="1.5"/>
+            <line x1="28" y1="30" x2="38" y2="30" stroke="rgba(168,162,152,0.5)" stroke-width="1.5"/>
+            <text x="10" y="56" font-family="JetBrains Mono, monospace" font-size="7" fill="#62626A" letter-spacing="0.10em">4 HRS</text>
+            <line x1="60" y1="30" x2="74" y2="30" stroke="#F0FF00" stroke-width="1.5" opacity="0.6"/>
+            <polyline points="70,26 74,30 70,34" stroke="#F0FF00" stroke-width="1.5" fill="none" opacity="0.6"/>
+            <circle cx="96" cy="30" r="14" stroke="#F0FF00" stroke-width="1.5" fill="none"/>
+            <line x1="96" y1="20" x2="96" y2="30" stroke="#F0FF00" stroke-width="2"/>
+            <line x1="96" y1="30" x2="104" y2="30" stroke="#F0FF00" stroke-width="2"/>
+            <text x="80" y="52" font-family="JetBrains Mono, monospace" font-size="7" fill="rgba(240,255,0,0.7)" letter-spacing="0.10em">47 SEC</text>
+          </svg>
+          <h3 class="mn-proof-title">Speed-to-lead is the biggest revenue lever most owners never pull.</h3>
+          <p class="mn-proof-body">
+            The study is simple: the business that replies first wins 78% of the time. The AI system fires a qualified first-touch in under 60 seconds — whether you're on a job or at dinner. Every lead that came in after 5pm used to be dead. Now it converts.
+          </p>
+        </article>
+
+        <article class="mn-proof-card">
+          <p class="mono mn-proof-num">02</p>
+          <!-- @r020:F3 cta-pull: follow-up sequence funnel diagram shows the compounding effect of automated nurture — the visual depth of the funnel stages pulls the reader toward the audit to see how many leads they're dropping at each stage -->
+          <svg class="mn-proof-icon" viewBox="0 0 120 60" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
+            <rect x="10" y="4"  width="100" height="10" fill="rgba(240,255,0,0.20)" rx="1"/>
+            <rect x="18" y="18" width="84"  height="9"  fill="rgba(240,255,0,0.38)" rx="1"/>
+            <rect x="28" y="31" width="64"  height="9"  fill="rgba(240,255,0,0.58)" rx="1"/>
+            <rect x="38" y="44" width="44"  height="9"  fill="#F0FF00" opacity="0.82" rx="1"/>
+            <text x="10" y="3"  font-family="JetBrains Mono, monospace" font-size="6" fill="#62626A" letter-spacing="0.10em">LEADS IN</text>
+            <text x="38" y="59" font-family="JetBrains Mono, monospace" font-size="6" fill="rgba(240,255,0,0.6)" letter-spacing="0.10em">BOOKED</text>
+          </svg>
+          <h3 class="mn-proof-title">80% of sales need 5+ follow-ups. Most owners stop at one.</h3>
+          <p class="mn-proof-body">
+            The system runs an automated sequence that follows up the right way, at the right time, with the right message — over days, not minutes. You stop losing jobs because you forgot to call back. The leads that went cold start converting again.
+          </p>
+        </article>
+
+        <article class="mn-proof-card">
+          <p class="mono mn-proof-num">03</p>
+          <!-- @r020:F3 cta-pull: attribution loop diagram makes the "what's actually working" question visceral — the owner can't know without the system, which pulls them to take the audit and see their own attribution breakdown -->
+          <svg class="mn-proof-icon" viewBox="0 0 120 60" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="20" cy="30" r="8"  fill="rgba(240,255,0,0.15)" stroke="#F0FF00" stroke-width="1.2"/>
+            <circle cx="60" cy="14" r="6"  fill="rgba(240,255,0,0.10)" stroke="rgba(240,255,0,0.4)" stroke-width="1"/>
+            <circle cx="60" cy="46" r="6"  fill="rgba(240,255,0,0.10)" stroke="rgba(240,255,0,0.4)" stroke-width="1"/>
+            <circle cx="100" cy="30" r="8" fill="rgba(240,255,0,0.22)" stroke="#F0FF00" stroke-width="1.5"/>
+            <line x1="28" y1="26" x2="54" y2="17"  stroke="rgba(240,255,0,0.30)" stroke-width="1"/>
+            <line x1="28" y1="34" x2="54" y2="43"  stroke="rgba(240,255,0,0.30)" stroke-width="1"/>
+            <line x1="66" y1="17" x2="92" y2="26"  stroke="rgba(240,255,0,0.30)" stroke-width="1"/>
+            <line x1="66" y1="43" x2="92" y2="34"  stroke="rgba(240,255,0,0.30)" stroke-width="1"/>
+            <text x="84" y="54" font-family="JetBrains Mono, monospace" font-size="6" fill="rgba(240,255,0,0.6)" letter-spacing="0.10em">CLOSED</text>
+          </svg>
+          <h3 class="mn-proof-title">You can't double down on what's working if you don't know what's working.</h3>
+          <p class="mn-proof-body">
+            Every lead traces to its source. Every dollar of ad spend gets a return figure attached to it. You stop guessing which channel to cut and which to double. The system learns what converts and optimizes toward it — every week, automatically.
+          </p>
+        </article>
+      </div>
+
+      <!-- @r020:F2 proof: method editorial image makes the human-AI operating model tangible — this is not just software, it's a managed system with visible proof of operation -->
+      <figure class="mn-proof-editorial">
+        <img
+          src="/images/bwm-method-editorial-v1.webp"
+          alt="Person reviewing a printed performance report next to an open laptop showing a marketing dashboard with lead attribution data."
+          width="640"
+          height="426"
+          loading="lazy"
+          decoding="async"
+        />
+        <figcaption class="mono" style="font-size:10px; letter-spacing:0.14em; color:var(--ink-faint); margin-top:10px;">Weekly revenue readout · every source · attributed · nothing guessed</figcaption>
+      </figure>
+
+      <div class="mn-proof-cta">
+        <a href="#diagnostic" class="cta" data-cta-source="money-proof-primary">
+          Get My Free Revenue Leak Map
+          <span class="cta-arrow" aria-hidden="true">→</span>
+        </a>
+        <a href="/book" class="cta-ghost" data-cta-source="money-proof-secondary">See If We're a Fit</a>
+        <p class="mn-proof-subtext mono">5 minutes · no email required to see your result · for service businesses only</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- REVENUE LEAK MAP DIAGNOSTIC — conversion endpoint -->
+  <!-- @sdt-exempt: interactive diagnostic form — question/option text is UI controls, not stat prose needing a chart -->
+  <FitDiagnostic />
+
+</BaseLayout>
+
+<style>
+/* ─── HERO ──────────────────────────────────────────────────────────────── */
+.mn-hero {
+  padding-top: clamp(96px, 11vw, 168px);
+  padding-bottom: clamp(64px, 7vw, 112px);
+  position: relative;
+  overflow: hidden;
+  background: var(--bg);
+}
+
+.mn-hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(circle at center, rgba(255,255,255,0.025) 1px, transparent 1px);
+  background-size: 32px 32px;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.mn-hero-grid {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(40px, 5vw, 72px);
+  position: relative;
+  z-index: 1;
+}
+
+.mn-hero-text {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  max-width: 1240px;
+}
+
+/* HEADLINE — condensed display matching sibling arm pattern */
+.mn-headline {
+  font-family: var(--sans);
+  font-weight: 800;
+  font-stretch: 75%;
+  font-size: clamp(56px, 11vw, 168px);
+  line-height: 0.90;
+  letter-spacing: -0.048em;
+  color: var(--ink);
+  max-width: 1240px;
+  margin: 0;
+}
+
+.mn-line {
+  display: block;
+}
+
+/* ACCENT — revenue upside in Y2 -->
+.mn-accent {
+  color: var(--y2);
+  text-shadow: 0 0 40px rgba(240, 255, 0, 0.25);
+}
+
+/* STRIKETHROUGH — "same business" struck through, upside remains */
+.mn-strike {
+  position: relative;
+  color: rgba(244, 244, 246, 0.28);
+  display: inline-block;
+  padding: 0 0.05em;
+}
+
+.mn-strike::before {
+  content: "";
+  position: absolute;
+  top: 52%;
+  left: -2%;
+  right: -2%;
+  height: clamp(6px, 0.9vw, 11px);
+  background: var(--y2);
+  transform: translateY(-50%) rotate(-1.6deg);
+  transform-origin: center;
+  box-shadow: 0 0 28px rgba(240, 255, 0, 0.6), 0 0 60px rgba(240, 255, 0, 0.15);
+}
+
+.mn-subhead {
+  font-family: var(--sans);
+  font-weight: 400;
+  font-size: clamp(20px, 2.2vw, 28px);
+  line-height: 1.42;
+  color: var(--ink-dim);
+  max-width: 820px;
+  letter-spacing: -0.012em;
+}
+
+/* GAP FIGURE */
+.mn-gap-figure {
+  margin: 0;
+  max-width: 680px;
+  background: var(--bg-elev);
+  border: 1px solid var(--rule);
+  padding: 28px 28px 20px;
+}
+
+.mn-gap-svg {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.mn-gap-caption {
+  font-size: 10px;
+  letter-spacing: 0.15em;
+  color: var(--ink-faint);
+  margin-top: 12px;
+  display: block;
+}
+
+/* STAT PROOF BLOCK */
+.mn-stat-proof {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 20px 32px;
+  padding: 28px 32px;
+  background: var(--bg-elev);
+  border: 1px solid var(--rule);
+  border-left: 3px solid var(--y2);
+  max-width: 680px;
+}
+
+.mn-stat-item {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.mn-stat-before {
+  font-size: clamp(28px, 3.5vw, 40px);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: var(--ink-dim);
+  margin: 0;
+  text-decoration: line-through;
+  text-decoration-color: rgba(240,255,0,0.5);
+}
+
+.mn-stat-after {
+  font-size: clamp(28px, 3.5vw, 40px);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: var(--y2);
+  margin: 0;
+}
+
+.mn-stat-label {
+  font-size: 9px;
+  letter-spacing: 0.18em;
+  color: var(--ink-faint);
+  margin: 0;
+}
+
+.mn-stat-arrow {
+  font-size: 24px;
+  color: rgba(240,255,0,0.5);
+  flex-shrink: 0;
+}
+
+.mn-stat-divider {
+  width: 100%;
+  height: 1px;
+  background: var(--rule);
+  flex-basis: 100%;
+}
+
+.mn-stat-footnote {
+  font-size: 9px;
+  letter-spacing: 0.15em;
+  color: var(--ink-faint);
+  margin: 0;
+}
+
+.mn-ctas {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  align-items: center;
+  margin-top: 8px;
+}
+
+.mn-icp {
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  color: var(--ink-faint);
+  margin: 0;
+}
+
+/* ─── COST SECTION ──────────────────────────────────────────────────────── */
+.mn-cost {
+  padding-block: var(--section-y);
+  border-top: 1px solid var(--rule);
+}
+
+.mn-cost .section-tag {
+  margin-bottom: 24px;
+}
+
+.mn-cost .h-section {
+  margin-bottom: 32px;
+}
+
+.mn-cost-body {
+  font-family: var(--sans);
+  font-size: clamp(19px, 1.8vw, 22px);
+  font-weight: 400;
+  line-height: 1.6;
+  color: var(--ink-dim);
+  max-width: 820px;
+  letter-spacing: -0.005em;
+  margin-bottom: 48px;
+}
+
+.mn-leak-svg { width:100%; max-width:640px; height:auto; display:block; margin: 22px 0 10px; }
+  .mn-cost-calc {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  max-width: 620px;
+  background: var(--bg-card);
+  border: 1px solid var(--rule);
+  border-left: 3px solid var(--y2);
+  padding: 32px;
+}
+
+.mn-cost-calc-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 24px;
+  padding: 10px 0;
+}
+
+.mn-cost-calc-gap {
+  background: rgba(255, 77, 109, 0.06);
+  margin: 0 -32px;
+  padding: 10px 32px;
+}
+
+.mn-cost-calc-label {
+  font-size: 11px;
+  letter-spacing: 0.15em;
+  color: var(--ink-dim);
+}
+
+.mn-cost-calc-num {
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: var(--ink);
+  white-space: nowrap;
+}
+
+.mn-cost-calc-dim {
+  color: var(--ink-faint);
+}
+
+.mn-cost-calc-red {
+  color: var(--signal-red);
+}
+
+.mn-cost-calc-y2 {
+  color: var(--y2);
+}
+
+.mn-cost-calc-divider {
+  width: 100%;
+  height: 1px;
+  background: var(--rule);
+  margin: 4px 0;
+}
+
+.mn-cost-calc-note {
+  font-size: 10px;
+  letter-spacing: 0.16em;
+  color: var(--ink-faint);
+  margin: 16px 0 0;
+}
+
+/* ─── PAYOFF ─────────────────────────────────────────────────────────────── */
+.mn-payoff {
+  padding-block: var(--section-y);
+  border-top: 1px solid var(--rule);
+  background: var(--bg);
+}
+
+.mn-payoff .h-section {
+  margin-top: 24px;
+  margin-bottom: 40px;
+}
+
+.mn-payoff-body {
+  font-family: var(--sans);
+  font-size: clamp(19px, 1.8vw, 22px);
+  font-weight: 400;
+  line-height: 1.6;
+  color: var(--ink-dim);
+  max-width: 820px;
+  letter-spacing: -0.005em;
+}
+
+.mn-payoff-figure {
+  margin: 48px 0 0;
+  max-width: 520px;
+}
+
+.mn-payoff-figure img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border: 1px solid var(--rule);
+}
+
+.mn-payoff-figcaption {
+  font-size: 10px;
+  letter-spacing: 0.16em;
+  color: var(--ink-faint);
+  margin-top: 10px;
+  display: block;
+}
+
+.mn-payoff-anchor {
+  margin-top: 56px;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  padding: 28px;
+  background: var(--bg-elev);
+  border: 1px solid var(--rule);
+  border-left: 3px solid var(--y2);
+  max-width: 820px;
+}
+
+.mn-payoff-mark {
+  width: 32px;
+  height: 32px;
+  flex-shrink: 0;
+}
+
+.mn-payoff-hook {
+  font-size: 12px;
+  letter-spacing: 0.16em;
+  color: var(--ink);
+  margin: 0;
+}
+
+.mn-payoff-hook a {
+  color: var(--y2);
+  text-decoration: none;
+  border-bottom: 1px solid rgba(240, 255, 0, 0.3);
+  transition: border-color 180ms ease;
+}
+
+.mn-payoff-hook a:hover {
+  border-color: var(--y2);
+}
+
+/* ─── PROOF STRIP ────────────────────────────────────────────────────────── */
+.mn-proof {
+  padding-block: var(--section-y);
+  border-top: 1px solid var(--rule);
+}
+
+.mn-proof .lede {
+  margin-top: 24px;
+  margin-bottom: 48px;
+}
+
+.mn-proof-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 24px;
+  margin-bottom: 48px;
+}
+
+.mn-proof-card {
+  padding: 32px;
+  background: var(--bg-card);
+  border: 1px solid var(--rule);
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.mn-proof-num {
+  font-size: 11px;
+  letter-spacing: 0.20em;
+  color: var(--y2);
+  margin: 0;
+}
+
+.mn-proof-icon {
+  width: 100%;
+  max-width: 120px;
+  height: auto;
+}
+
+.mn-proof-title {
+  font-family: var(--sans);
+  font-weight: 800;
+  font-stretch: 75%;
+  font-size: clamp(22px, 2.2vw, 28px);
+  line-height: 1.15;
+  color: var(--ink);
+  letter-spacing: -0.02em;
+  margin: 0;
+}
+
+.mn-proof-body {
+  font-size: 16px;
+  font-weight: 300;
+  line-height: 1.55;
+  color: var(--ink-dim);
+  margin: 0;
+}
+
+.mn-proof-editorial {
+  margin: 0 0 48px;
+  max-width: 600px;
+}
+
+.mn-proof-editorial img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border: 1px solid var(--rule);
+}
+
+.mn-proof-cta {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 16px;
+}
+
+.mn-proof-subtext {
+  font-size: 11px;
+  letter-spacing: 0.16em;
+  color: var(--ink-faint);
+  margin: 0;
+}
+
+/* ─── RESPONSIVE ─────────────────────────────────────────────────────────── */
+@media (max-width: 768px) {
+  .mn-headline { font-size: clamp(48px, 14vw, 88px); }
+  .mn-subhead { font-size: 17px; }
+  .mn-gap-figure { max-width: 100%; }
+  .mn-stat-proof { max-width: 100%; }
+  .mn-cost-calc { max-width: 100%; }
+  .mn-proof-grid { grid-template-columns: 1fr; }
+}
+</style>

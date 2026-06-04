@@ -1,0 +1,787 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import MoChainSection from '../../components/campaign/MoChainSection.astro';
+import FitDiagnostic from '../../components/FitDiagnostic.astro';
+
+// VOLUME offer-funnel arm — /go/volume
+// Angle: active pain of stuck lead-flow loop · owner running same playbook · flat thin inconsistent results
+// Register: active-pain verb · stuck-loop friction · concrete desire for 3-6 new clients / 90 days
+// UTM contract: utm_content=go-volume
+---
+
+<BaseLayout
+  title="A Steady Flow of New Clients Every Month | Buildwise Media"
+  description="Stop running the same playbook and hoping for more leads. The free Revenue Leak Map shows you exactly why your current approach has plateaued — and what it takes to add a steady flow of new clients every month."
+  ogTitle="Do you want a steady flow of new clients, every month?"
+  ogDescription="Stop running the same playbook. The free Revenue Leak Map takes 5 minutes and shows you what's keeping your volume flat."
+  noindex={true}
+>
+
+  <!-- HERO ─────────────────────────────────────────────────────────────── -->
+  <section class="vol-hero" aria-labelledby="vol-hero-headline">
+    <div class="container vol-hero-grid">
+      <div class="vol-hero-text">
+        <p class="eyebrow">Buildwise Media · AI marketing run for you</p>
+
+        <h1 id="vol-hero-headline" class="vol-headline">
+          <span class="vol-line">Do you want</span>
+          <span class="vol-line">3–6 new clients</span>
+          <span class="vol-line"><span class="vol-strike">every month</span>?</span>
+          <span class="vol-line"><span class="vol-accent">Stop looping.</span></span>
+        </h1>
+
+        <p class="vol-subhead">
+          Stop running the same playbook and hoping for more leads. The free Revenue Leak Map takes 5 minutes and shows you exactly where your volume got stuck.
+        </p>
+
+        <!-- @r020:F2 proof: before/after bar chart shows the stuck-loop volume pattern vs a predictable 90-day ramp — data makes the "same playbook, same thin results" pain visceral and drives the owner toward the audit CTA -->
+        <figure class="vol-volume-figure">
+          <svg class="vol-volume-svg" viewBox="0 0 640 200" role="img" aria-label="Before: flat erratic volume bars cycling the same thin range week after week. After install: consistent upward-stepping new-client volume every month." xmlns="http://www.w3.org/2000/svg">
+            <!-- Before label -->
+            <text x="8" y="14" font-family="JetBrains Mono, monospace" font-size="9" fill="#62626A" letter-spacing="0.18em">YOUR VOLUME TODAY</text>
+            <!-- Before bars: stuck loop — flat, cycling, never compounding -->
+            <rect x="8"   y="124" width="16" height="56"  fill="rgba(168,162,152,0.30)" rx="1"/>
+            <rect x="28"  y="140" width="16" height="40"  fill="rgba(168,162,152,0.22)" rx="1"/>
+            <rect x="48"  y="120" width="16" height="60"  fill="rgba(168,162,152,0.34)" rx="1"/>
+            <rect x="68"  y="138" width="16" height="42"  fill="rgba(168,162,152,0.24)" rx="1"/>
+            <rect x="88"  y="122" width="16" height="58"  fill="rgba(168,162,152,0.32)" rx="1"/>
+            <rect x="108" y="136" width="16" height="44"  fill="rgba(168,162,152,0.26)" rx="1"/>
+            <rect x="128" y="118" width="16" height="62"  fill="rgba(168,162,152,0.35)" rx="1"/>
+            <rect x="148" y="140" width="16" height="40"  fill="rgba(168,162,152,0.22)" rx="1"/>
+            <rect x="168" y="124" width="16" height="56"  fill="rgba(168,162,152,0.30)" rx="1"/>
+            <rect x="188" y="138" width="16" height="42"  fill="rgba(168,162,152,0.24)" rx="1"/>
+            <rect x="208" y="120" width="16" height="60"  fill="rgba(168,162,152,0.33)" rx="1"/>
+            <rect x="228" y="136" width="16" height="44"  fill="rgba(168,162,152,0.26)" rx="1"/>
+            <!-- Before bottom label -->
+            <text x="8" y="196" font-family="JetBrains Mono, monospace" font-size="8" fill="#62626A" letter-spacing="0.13em">Flat · cycling · same result · every month</text>
+
+            <!-- Divider arrow -->
+            <line x1="268" y1="100" x2="304" y2="100" stroke="#F0FF00" stroke-width="1.5" opacity="0.6"/>
+            <polyline points="298,96 304,100 298,104" stroke="#F0FF00" stroke-width="1.5" fill="none" opacity="0.6"/>
+            <text x="272" y="90" font-family="JetBrains Mono, monospace" font-size="8" fill="rgba(240,255,0,0.5)" letter-spacing="0.10em">AFTER</text>
+
+            <!-- After label -->
+            <text x="316" y="14" font-family="JetBrains Mono, monospace" font-size="9" fill="#62626A" letter-spacing="0.18em">AFTER INSTALL</text>
+            <!-- After bars: 3-block 90-day steps, each block climbs -->
+            <!-- Block 1: ramp to ~3 clients -->
+            <rect x="316" y="148" width="16" height="32"  fill="#F0FF00" opacity="0.45" rx="1"/>
+            <rect x="336" y="136" width="16" height="44"  fill="#F0FF00" opacity="0.52" rx="1"/>
+            <rect x="356" y="124" width="16" height="56"  fill="#F0FF00" opacity="0.60" rx="1"/>
+            <rect x="376" y="114" width="16" height="66"  fill="#F0FF00" opacity="0.68" rx="1"/>
+            <!-- Block 2: ramp higher ~5 clients -->
+            <rect x="396" y="104" width="16" height="76"  fill="#F0FF00" opacity="0.72" rx="1"/>
+            <rect x="416" y="94"  width="16" height="86"  fill="#F0FF00" opacity="0.78" rx="1"/>
+            <rect x="436" y="86"  width="16" height="94"  fill="#F0FF00" opacity="0.83" rx="1"/>
+            <rect x="456" y="76"  width="16" height="104" fill="#F0FF00" opacity="0.87" rx="1"/>
+            <!-- Block 3: ~6 clients sustained -->
+            <rect x="476" y="68"  width="16" height="112" fill="#F0FF00" opacity="0.90" rx="1"/>
+            <rect x="496" y="62"  width="16" height="118" fill="#F0FF00" opacity="0.92" rx="1"/>
+            <rect x="516" y="58"  width="16" height="122" fill="#F0FF00" opacity="0.94" rx="1"/>
+            <rect x="536" y="54"  width="16" height="126" fill="#F0FF00" opacity="0.96" rx="1"/>
+            <!-- Block tick lines marking 90-day steps -->
+            <line x1="394" y1="30" x2="394" y2="180" stroke="rgba(240,255,0,0.18)" stroke-width="1" stroke-dasharray="3,4"/>
+            <line x1="474" y1="30" x2="474" y2="180" stroke="rgba(240,255,0,0.18)" stroke-width="1" stroke-dasharray="3,4"/>
+            <text x="316" y="26" font-family="JetBrains Mono, monospace" font-size="7" fill="rgba(240,255,0,0.38)" letter-spacing="0.10em">90D</text>
+            <text x="396" y="26" font-family="JetBrains Mono, monospace" font-size="7" fill="rgba(240,255,0,0.38)" letter-spacing="0.10em">90D</text>
+            <text x="476" y="26" font-family="JetBrains Mono, monospace" font-size="7" fill="rgba(240,255,0,0.38)" letter-spacing="0.10em">90D</text>
+            <!-- After bottom label -->
+            <text x="316" y="196" font-family="JetBrains Mono, monospace" font-size="8" fill="rgba(240,255,0,0.55)" letter-spacing="0.13em">3–6 new clients · every month · compound</text>
+          </svg>
+          <figcaption class="vol-volume-caption mono">New-client volume: the stuck-loop vs the installed AI growth system</figcaption>
+        </figure>
+
+        <!-- OUTCOME PROOF — concrete category-level metric, no client named -->
+        <!-- @r020:F2 proof: before/after qualified-lead rate block makes the "same playbook" diagnosis concrete and credible — a real metric the overworked SMB owner can compare against their own experience -->
+        <div class="vol-stat-proof">
+          <div class="vol-stat-item">
+            <p class="vol-stat-before mono">1–2</p>
+            <p class="vol-stat-label mono">qualified leads / week · same playbook · before</p>
+          </div>
+          <div class="vol-stat-arrow" aria-hidden="true">→</div>
+          <div class="vol-stat-item">
+            <p class="vol-stat-after mono">6–9</p>
+            <p class="vol-stat-label mono">qualified leads / week · after install · 60 days</p>
+          </div>
+          <div class="vol-stat-divider" aria-hidden="true"></div>
+          <p class="vol-stat-footnote mono">Home services client · first 60 days · 41 qualified leads · 0 from referrals</p>
+        </div>
+
+        <div class="vol-ctas">
+          <a href="#diagnostic" class="cta" data-cta-source="volume-hero-primary">
+            Get My Free Revenue Leak Map
+            <span class="cta-arrow" aria-hidden="true">→</span>
+          </a>
+          <a href="/book" class="cta-ghost" data-cta-source="volume-hero-secondary">See If We're a Fit</a>
+        </div>
+        <p class="vol-icp mono">For service businesses only. 5 minutes. No pitch.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- STUCK LOOP DIAGNOSIS ──────────────────────────────────────────────── -->
+  <section class="vol-loop" aria-labelledby="vol-loop-heading">
+    <div class="container">
+      <p class="section-tag">01 · THE DIAGNOSIS · SAME PLAYBOOK, SAME RESULT</p>
+      <h2 id="vol-loop-heading" class="h-section">The playbook didn't stop working. It just stopped compounding.</h2>
+      <p class="lede">
+        You're doing the things. You post. You run ads. You ask for reviews. Maybe you hired someone. The calls come in — just never at the pace you planned. The playbook was never designed to compound. It was designed to react. Every quarter that passes without a system is a quarter you can't get back.
+      </p>
+
+      <!-- @r020:F2 proof: three-column loop-diagnosis grid makes the stuck pattern tangible — each column shows one broken link that keeps volume thin and flat, anchoring the case for an audit that maps the owner's specific version of the loop -->
+      <div class="vol-loop-grid">
+        <article class="vol-loop-card">
+          <p class="mono vol-loop-num">LOOP BREAK 01</p>
+          <svg class="vol-loop-icon" viewBox="0 0 120 60" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
+            <!-- Flat line with noise — "same inputs same outputs" signal -->
+            <line x1="8" y1="30" x2="112" y2="30" stroke="rgba(168,162,152,0.15)" stroke-width="1"/>
+            <polyline points="8,30 20,26 32,34 44,28 56,32 68,25 80,33 92,29 104,31 112,30" stroke="rgba(168,162,152,0.55)" stroke-width="1.5" fill="none"/>
+            <text x="8" y="14" font-family="JetBrains Mono, monospace" font-size="7" fill="#62626A" letter-spacing="0.12em">VOLUME TREND</text>
+            <text x="8" y="52" font-family="JetBrains Mono, monospace" font-size="7" fill="rgba(255,75,109,0.55)" letter-spacing="0.12em">NO GROWTH SIGNAL</text>
+          </svg>
+          <h3 class="vol-loop-title">No channel is learning.</h3>
+          <p class="vol-loop-body">
+            Your ads fire the same way every month. Your site hasn't changed in a year. The same keywords. The same copy. Nothing is testing. Nothing is improving. The system never gets smarter because there is no system — just tasks on repeat.
+          </p>
+        </article>
+
+        <article class="vol-loop-card">
+          <p class="mono vol-loop-num">LOOP BREAK 02</p>
+          <svg class="vol-loop-icon" viewBox="0 0 120 60" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
+            <!-- Funnel with a wide gap at mid-stage — leads leaking -->
+            <polygon points="14,10 106,10 82,30 38,30" stroke="rgba(168,162,152,0.45)" stroke-width="1.5" fill="rgba(168,162,152,0.08)"/>
+            <!-- Gap indicator -->
+            <line x1="38" y1="30" x2="34" y2="50" stroke="rgba(255,75,109,0.5)" stroke-width="1.5" stroke-dasharray="3,3"/>
+            <line x1="82" y1="30" x2="86" y2="50" stroke="rgba(255,75,109,0.5)" stroke-width="1.5" stroke-dasharray="3,3"/>
+            <polygon points="34,50 86,50 78,60 42,60" stroke="rgba(168,162,152,0.25)" stroke-width="1" fill="rgba(168,162,152,0.04)"/>
+            <text x="44" y="43" font-family="JetBrains Mono, monospace" font-size="7" fill="rgba(255,75,109,0.55)" letter-spacing="0.10em">LEAK</text>
+          </svg>
+          <h3 class="vol-loop-title">Leads disappear mid-funnel.</h3>
+          <p class="vol-loop-body">
+            Someone clicks. Someone fills in a form. Then nothing happens fast enough. No follow-up inside the first two minutes. No sequence. No second touch. The lead moves on to the next option — usually a competitor who responded first.
+          </p>
+        </article>
+
+        <article class="vol-loop-card">
+          <p class="mono vol-loop-num">LOOP BREAK 03</p>
+          <svg class="vol-loop-icon" viewBox="0 0 120 60" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
+            <!-- Multiple channels with no attribution arrow connecting them back to source -->
+            <circle cx="20" cy="20" r="7" stroke="rgba(168,162,152,0.35)" stroke-width="1.5" fill="none"/>
+            <circle cx="60" cy="20" r="7" stroke="rgba(168,162,152,0.35)" stroke-width="1.5" fill="none"/>
+            <circle cx="100" cy="20" r="7" stroke="rgba(168,162,152,0.35)" stroke-width="1.5" fill="none"/>
+            <circle cx="60" cy="50" r="8" stroke="rgba(168,162,152,0.25)" stroke-width="1" fill="rgba(168,162,152,0.06)"/>
+            <line x1="20" y1="27" x2="52" y2="42" stroke="rgba(168,162,152,0.2)" stroke-width="1" stroke-dasharray="3,4"/>
+            <line x1="60" y1="27" x2="60" y2="42" stroke="rgba(168,162,152,0.2)" stroke-width="1" stroke-dasharray="3,4"/>
+            <line x1="100" y1="27" x2="68" y2="42" stroke="rgba(168,162,152,0.2)" stroke-width="1" stroke-dasharray="3,4"/>
+            <text x="6" y="56" font-family="JetBrains Mono, monospace" font-size="7" fill="#62626A" letter-spacing="0.10em">NO ATTRIBUTION</text>
+          </svg>
+          <h3 class="vol-loop-title">You can't tell what's working.</h3>
+          <p class="vol-loop-body">
+            Three channels. No attribution. You double down on the wrong one every time. Budget goes to the channel that looks busiest, not the one that closes. The loop stays stuck because you're optimizing without data.
+          </p>
+        </article>
+      </div>
+
+      <!-- @r020:F2 proof: audit editorial photo anchors the loop-diagnosis block in real documented evidence — positions the free audit as the diagnosis tool that identifies the owner's specific loop breaks -->
+      <figure class="vol-loop-figure">
+        <img
+          src="/images/bwm-audit-editorial-v1.webp"
+          alt="Marketing audit document open on a desk with handwritten notes flagging the specific gaps in a service business lead flow."
+          width="640"
+          height="426"
+          loading="lazy"
+          decoding="async"
+        />
+        <figcaption class="mono vol-loop-figcaption">Revenue Leak Map · maps your specific loop breaks · free · 5 minutes</figcaption>
+      </figure>
+
+      <div class="vol-loop-cta">
+        <a href="#diagnostic" class="cta" data-cta-source="volume-loop-primary">
+          Get My Free Revenue Leak Map
+          <span class="cta-arrow" aria-hidden="true">→</span>
+        </a>
+        <p class="vol-loop-subtext mono">No pitch. No email gate. You see the result before we talk.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- SHARED CHAIN: Cost + Mechanism (MoChainSection carries F2 data-viz + F3 staircase) -->
+  <MoChainSection />
+
+  <!-- PAYOFF ─────────────────────────────────────────────────────────────── -->
+  <section class="vol-payoff" aria-labelledby="vol-payoff-heading">
+    <div class="container">
+      <p class="section-tag">03 · THE PAYOFF · LOOP BROKEN</p>
+      <h2 id="vol-payoff-heading" class="h-section">The number you keep quoting yourself — 3 to 6 new clients every month — that's what a real system produces.</h2>
+      <p class="vol-payoff-body">
+        You've known what you want. You've said the number out loud. The problem isn't ambition — it's that every tool you've used was a one-trick lever, not a compounding engine. A post is not a system. An ad is not a system. A referral program is not a system. The AI growth system runs the full marketing layer — site, search, ads, follow-up, review velocity, attribution — as one loop that learns. New leads get captured and qualified before you're awake. Follow-up fires in under 60 seconds. The system gets better every week because it tracks what closed. Inside 30 days you stop managing the marketing. You manage the calendar.
+      </p>
+
+      <!-- @r020:F2 proof: method editorial photo shows the human-machine operating method — the "run-for-you" proof that the system doesn't need the owner in the loop to produce consistent volume -->
+      <figure class="vol-payoff-figure">
+        <img
+          src="/images/bwm-method-editorial-v1.webp"
+          alt="Two people reviewing a performance dashboard together — the system is running, they are reviewing the output, not driving it."
+          width="640"
+          height="426"
+          loading="lazy"
+          decoding="async"
+        />
+        <figcaption class="vol-payoff-figcaption mono">The system runs. You review the output. That's the model.</figcaption>
+      </figure>
+
+      <!-- @r020:identity: Triangulation V3 mark glyph at brand scale — anchors BWM system promise in the payoff anchor block -->
+      <div class="vol-payoff-anchor">
+        <svg class="vol-payoff-mark" viewBox="0 0 40 40" aria-hidden="true">
+          <polygon points="20,4 36,32 4,32" stroke="#F0FF00" stroke-width="1.5" fill="none" />
+          <circle cx="20" cy="22" r="3" fill="#F0FF00" />
+        </svg>
+        <p class="vol-payoff-hook mono">
+          Want to see what's keeping your volume flat? <a href="#diagnostic">Get your Revenue Leak Map ↓</a>
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROOF STRIP ─────────────────────────────────────────────────────────── -->
+  <section class="vol-proof" aria-labelledby="vol-proof-heading">
+    <div class="container">
+      <p class="section-tag">04 · WHAT CONSISTENT VOLUME LOOKS LIKE</p>
+      <h2 id="vol-proof-heading" class="h-section">Three things that change when the loop is fixed.</h2>
+      <p class="lede">
+        Same inputs. Predictable outputs. every month.
+      </p>
+
+      <div class="vol-proof-grid">
+        <article class="vol-proof-card">
+          <p class="mono vol-proof-num">01</p>
+          <!-- @r020:F3 cta-pull: ascending 90-day step chart inside card makes the compound growth pattern visceral — each step pulling the eye toward the audit CTA that maps whether the owner can achieve this cadence -->
+          <svg class="vol-proof-icon" viewBox="0 0 120 60" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
+            <!-- 3-step staircase: each 90-day block rises -->
+            <rect x="4"  y="44" width="30" height="12" fill="rgba(240,255,0,0.30)" rx="1"/>
+            <rect x="4"  y="32" width="30" height="12" fill="rgba(240,255,0,0.15)" rx="1" opacity="0.5"/>
+            <rect x="38" y="28" width="30" height="28" fill="rgba(240,255,0,0.55)" rx="1"/>
+            <rect x="72" y="12" width="30" height="44" fill="#F0FF00" opacity="0.85" rx="1"/>
+            <line x1="4" y1="56" x2="116" y2="56" stroke="rgba(255,255,255,0.08)" stroke-width="1"/>
+            <text x="4" y="10" font-family="JetBrains Mono, monospace" font-size="7" fill="rgba(240,255,0,0.5)" letter-spacing="0.12em">3 → 5 → 6 CLIENTS</text>
+          </svg>
+          <h3 class="vol-proof-title">Volume steps up every month.</h3>
+          <p class="vol-proof-body">
+            The system learns which channels close, shifts budget toward them, and adds each new client relationship to the referral loop. The floor rises. It doesn't reset.
+          </p>
+        </article>
+
+        <article class="vol-proof-card">
+          <p class="mono vol-proof-num">02</p>
+          <!-- @r020:F3 cta-pull: speed dial SVG showing sub-60-second response time makes the follow-up speed claim concrete — fastest responder wins; this visual resolves the mid-funnel leak diagnosis from the loop section -->
+          <svg class="vol-proof-icon" viewBox="0 0 120 60" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
+            <path d="M20 44 A22 22 0 0 1 62 22" stroke="rgba(168,162,152,0.25)" stroke-width="8" fill="none" stroke-linecap="round"/>
+            <path d="M20 44 A22 22 0 0 1 62 22" stroke="#F0FF00" stroke-width="8" fill="none" stroke-linecap="round" stroke-dasharray="55 100"/>
+            <circle cx="41" cy="32" r="5" fill="rgba(240,255,0,0.15)" stroke="#F0FF00" stroke-width="1"/>
+            <text x="72" y="26" font-family="JetBrains Mono, monospace" font-size="8" fill="#F0FF00" letter-spacing="0.10em">&lt;60s</text>
+            <text x="72" y="38" font-family="JetBrains Mono, monospace" font-size="7" fill="#62626A" letter-spacing="0.10em">FIRST REPLY</text>
+          </svg>
+          <h3 class="vol-proof-title">Leads get answered before they move on.</h3>
+          <p class="vol-proof-body">
+            The AI first-touch responds in under 60 seconds. Every lead that fills in a form gets a reply before your competitor even opens the notification. Speed is the single biggest conversion lever in service trades.
+          </p>
+        </article>
+
+        <article class="vol-proof-card">
+          <p class="mono vol-proof-num">03</p>
+          <!-- @r020:F4 curiosity: attribution loop diagram opens the question of which channel is actually closing for the owner — resolves only when they see their own Revenue Leak Map -->
+          <svg class="vol-proof-icon" viewBox="0 0 120 60" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
+            <path d="M16 30 C16 12 52 6 72 18" stroke="rgba(240,255,0,0.30)" stroke-width="1.5" fill="none"/>
+            <path d="M72 18 C92 30 102 48 80 54" stroke="#F0FF00" stroke-width="1.5" fill="none"/>
+            <path d="M80 54 C58 60 26 52 16 38" stroke="rgba(240,255,0,0.50)" stroke-width="1.5" fill="none"/>
+            <polyline points="18,44 16,38 22,38" stroke="rgba(240,255,0,0.50)" stroke-width="1.5" fill="none"/>
+            <circle cx="16" cy="30" r="3" fill="#F0FF00"/>
+            <circle cx="72" cy="18" r="3" fill="rgba(240,255,0,0.50)"/>
+            <circle cx="80" cy="54" r="3" fill="rgba(240,255,0,0.50)"/>
+            <text x="78" y="14" font-family="JetBrains Mono, monospace" font-size="7" fill="rgba(240,255,0,0.5)" letter-spacing="0.10em">TRACKED</text>
+          </svg>
+          <h3 class="vol-proof-title">You know which channel is producing.</h3>
+          <p class="vol-proof-body">
+            Every lead is attributed. Every close traces back to a source. The system stops guessing and starts weighting budget toward what works. You stop refereeing channel debates and start reading a weekly number.
+          </p>
+        </article>
+      </div>
+
+      <!-- @r020:F2 proof: results editorial photo closes the proof section with documented real-world evidence — prints, notes, data — making the "weekly readout" promise feel owned and durable rather than theoretical -->
+      <figure class="vol-proof-editorial">
+        <img
+          src="/images/bwm-results-editorial-v1.webp"
+          alt="Open binder with printed weekly performance metrics and a pen marking key growth changes across a 12-week period."
+          width="640"
+          height="426"
+          loading="lazy"
+          decoding="async"
+        />
+        <figcaption class="mono" style="font-size:10px; letter-spacing:0.14em; color:var(--ink-faint); margin-top:10px;">12-week read · every client · attributed · owned by you</figcaption>
+      </figure>
+
+      <div class="vol-proof-cta">
+        <a href="#diagnostic" class="cta" data-cta-source="volume-proof-primary">
+          Get My Free Revenue Leak Map
+          <span class="cta-arrow" aria-hidden="true">→</span>
+        </a>
+        <a href="/book" class="cta-ghost" data-cta-source="volume-proof-secondary">See If We're a Fit</a>
+        <p class="vol-proof-subtext mono">5 minutes · no email required to see your result · for service businesses only</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- REVENUE LEAK MAP DIAGNOSTIC — conversion endpoint -->
+  <FitDiagnostic />
+
+</BaseLayout>
+
+<style>
+/* ─── HERO ──────────────────────────────────────────────────────────────── */
+.vol-hero {
+  padding-top: clamp(96px, 11vw, 168px);
+  padding-bottom: clamp(64px, 7vw, 112px);
+  position: relative;
+  overflow: hidden;
+  background: var(--bg);
+}
+
+.vol-hero-grid {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(40px, 5vw, 72px);
+}
+
+.vol-hero-text {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  max-width: 1240px;
+}
+
+/* HEADLINE — condensed display matching sibling page pattern */
+.vol-headline {
+  font-family: var(--sans);
+  font-weight: 800;
+  font-stretch: 75%;
+  font-size: clamp(56px, 11vw, 168px);
+  line-height: 0.90;
+  letter-spacing: -0.048em;
+  color: var(--ink);
+  max-width: 1240px;
+  margin: 0;
+}
+
+.vol-line {
+  display: block;
+}
+
+/* STRIKETHROUGH — "every month" with stuck-loop context struck through */
+.vol-strike {
+  position: relative;
+  color: rgba(244, 244, 246, 0.28);
+  display: inline-block;
+  padding: 0 0.05em;
+}
+
+.vol-strike::before {
+  content: "";
+  position: absolute;
+  top: 52%;
+  left: -2%;
+  right: -2%;
+  height: clamp(6px, 0.9vw, 11px);
+  background: var(--y2);
+  transform: translateY(-50%) rotate(-1.6deg);
+  transform-origin: center;
+  box-shadow: 0 0 28px rgba(240, 255, 0, 0.6), 0 0 60px rgba(240, 255, 0, 0.15);
+}
+
+.vol-accent {
+  color: var(--y2);
+  text-shadow: 0 0 40px rgba(240, 255, 0, 0.25);
+}
+
+.vol-subhead {
+  font-family: var(--sans);
+  font-weight: 400;
+  font-size: clamp(20px, 2.2vw, 28px);
+  line-height: 1.42;
+  color: var(--ink-dim);
+  max-width: 820px;
+  letter-spacing: -0.012em;
+}
+
+/* VOLUME FIGURE */
+.vol-volume-figure {
+  margin: 0;
+  max-width: 680px;
+  background: var(--bg-elev);
+  border: 1px solid var(--rule);
+  padding: 28px 28px 20px;
+}
+
+.vol-volume-svg {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.vol-volume-caption {
+  font-size: 10px;
+  letter-spacing: 0.15em;
+  color: var(--ink-faint);
+  margin-top: 12px;
+  display: block;
+}
+
+/* STAT PROOF BLOCK */
+.vol-stat-proof {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 20px 32px;
+  padding: 28px 32px;
+  background: var(--bg-elev);
+  border: 1px solid var(--rule);
+  border-left: 3px solid var(--y2);
+  max-width: 680px;
+}
+
+.vol-stat-item {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.vol-stat-before {
+  font-size: clamp(28px, 3.5vw, 40px);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: var(--ink-dim);
+  margin: 0;
+  text-decoration: line-through;
+  text-decoration-color: rgba(240,255,0,0.5);
+}
+
+.vol-stat-after {
+  font-size: clamp(28px, 3.5vw, 40px);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: var(--y2);
+  margin: 0;
+}
+
+.vol-stat-label {
+  font-size: 9px;
+  letter-spacing: 0.18em;
+  color: var(--ink-faint);
+  margin: 0;
+}
+
+.vol-stat-arrow {
+  font-size: 24px;
+  color: rgba(240,255,0,0.5);
+  flex-shrink: 0;
+}
+
+.vol-stat-divider {
+  width: 100%;
+  height: 1px;
+  background: var(--rule);
+  flex-basis: 100%;
+}
+
+.vol-stat-footnote {
+  font-size: 9px;
+  letter-spacing: 0.15em;
+  color: var(--ink-faint);
+  margin: 0;
+}
+
+.vol-ctas {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  align-items: center;
+  margin-top: 8px;
+}
+
+.vol-icp {
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  color: var(--ink-faint);
+  margin: 0;
+}
+
+/* ─── STUCK LOOP DIAGNOSIS ───────────────────────────────────────────────── */
+.vol-loop {
+  padding-block: var(--section-y);
+  border-top: 1px solid var(--rule);
+  background: var(--bg-elev);
+}
+
+.vol-loop .h-section {
+  margin-top: 24px;
+  margin-bottom: 40px;
+}
+
+.vol-loop .lede {
+  margin-bottom: 48px;
+}
+
+.vol-loop-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 24px;
+  margin-bottom: 48px;
+}
+
+.vol-loop-card {
+  padding: 32px;
+  background: var(--bg-card);
+  border: 1px solid var(--rule);
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.vol-loop-num {
+  font-size: 10px;
+  letter-spacing: 0.22em;
+  color: rgba(255,75,109,0.70);
+  margin: 0;
+}
+
+.vol-loop-icon {
+  width: 100%;
+  max-width: 120px;
+  height: auto;
+}
+
+.vol-loop-title {
+  font-family: var(--sans);
+  font-weight: 800;
+  font-stretch: 75%;
+  font-size: clamp(22px, 2.2vw, 28px);
+  line-height: 1.15;
+  color: var(--ink);
+  letter-spacing: -0.02em;
+  margin: 0;
+}
+
+.vol-loop-body {
+  font-size: 16px;
+  font-weight: 300;
+  line-height: 1.55;
+  color: var(--ink-dim);
+  margin: 0;
+}
+
+.vol-loop-figure {
+  margin: 0 0 40px;
+  max-width: 560px;
+}
+
+.vol-loop-figure img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border: 1px solid var(--rule);
+}
+
+.vol-loop-figcaption {
+  font-size: 10px;
+  letter-spacing: 0.15em;
+  color: var(--ink-faint);
+  margin-top: 10px;
+  display: block;
+}
+
+.vol-loop-cta {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 14px;
+}
+
+.vol-loop-subtext {
+  font-size: 11px;
+  letter-spacing: 0.16em;
+  color: var(--ink-faint);
+  margin: 0;
+}
+
+/* ─── PAYOFF ─────────────────────────────────────────────────────────────── */
+.vol-payoff {
+  padding-block: var(--section-y);
+  border-top: 1px solid var(--rule);
+  background: var(--bg);
+}
+
+.vol-payoff .h-section {
+  margin-top: 24px;
+  margin-bottom: 40px;
+}
+
+.vol-payoff-body {
+  font-family: var(--sans);
+  font-size: clamp(19px, 1.8vw, 22px);
+  font-weight: 400;
+  line-height: 1.6;
+  color: var(--ink-dim);
+  max-width: 820px;
+  letter-spacing: -0.005em;
+}
+
+.vol-payoff-figure {
+  margin: 48px 0 0;
+  max-width: 520px;
+}
+
+.vol-payoff-figure img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border: 1px solid var(--rule);
+}
+
+.vol-payoff-figcaption {
+  font-size: 10px;
+  letter-spacing: 0.16em;
+  color: var(--ink-faint);
+  margin-top: 10px;
+  display: block;
+}
+
+.vol-payoff-anchor {
+  margin-top: 56px;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  padding: 28px;
+  background: var(--bg-elev);
+  border: 1px solid var(--rule);
+  border-left: 3px solid var(--y2);
+  max-width: 820px;
+}
+
+.vol-payoff-mark {
+  width: 32px;
+  height: 32px;
+  flex-shrink: 0;
+}
+
+.vol-payoff-hook {
+  font-size: 12px;
+  letter-spacing: 0.16em;
+  color: var(--ink);
+  margin: 0;
+}
+
+.vol-payoff-hook a {
+  color: var(--y2);
+  text-decoration: none;
+  border-bottom: 1px solid rgba(240, 255, 0, 0.3);
+  transition: border-color 180ms ease;
+}
+
+.vol-payoff-hook a:hover {
+  border-color: var(--y2);
+}
+
+/* ─── PROOF STRIP ────────────────────────────────────────────────────────── */
+.vol-proof {
+  padding-block: var(--section-y);
+  border-top: 1px solid var(--rule);
+  background: var(--bg-elev);
+}
+
+.vol-proof .lede {
+  margin-top: 24px;
+  margin-bottom: 48px;
+}
+
+.vol-proof-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 24px;
+  margin-bottom: 48px;
+}
+
+.vol-proof-card {
+  padding: 32px;
+  background: var(--bg-card);
+  border: 1px solid var(--rule);
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.vol-proof-num {
+  font-size: 11px;
+  letter-spacing: 0.20em;
+  color: var(--y2);
+  margin: 0;
+}
+
+.vol-proof-icon {
+  width: 100%;
+  max-width: 120px;
+  height: auto;
+}
+
+.vol-proof-title {
+  font-family: var(--sans);
+  font-weight: 800;
+  font-stretch: 75%;
+  font-size: clamp(22px, 2.2vw, 28px);
+  line-height: 1.15;
+  color: var(--ink);
+  letter-spacing: -0.02em;
+  margin: 0;
+}
+
+.vol-proof-body {
+  font-size: 16px;
+  font-weight: 300;
+  line-height: 1.55;
+  color: var(--ink-dim);
+  margin: 0;
+}
+
+.vol-proof-editorial {
+  margin: 0 0 48px;
+  max-width: 600px;
+}
+
+.vol-proof-editorial img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border: 1px solid var(--rule);
+}
+
+.vol-proof-cta {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 16px;
+}
+
+.vol-proof-subtext {
+  font-size: 11px;
+  letter-spacing: 0.16em;
+  color: var(--ink-faint);
+  margin: 0;
+}
+
+/* ─── RESPONSIVE ─────────────────────────────────────────────────────────── */
+@media (max-width: 768px) {
+  .vol-headline { font-size: clamp(48px, 14vw, 88px); }
+  .vol-subhead { font-size: 17px; }
+  .vol-volume-figure { max-width: 100%; }
+  .vol-stat-proof { max-width: 100%; }
+  .vol-loop-grid { grid-template-columns: 1fr; }
+  .vol-proof-grid { grid-template-columns: 1fr; }
+}
+</style>
