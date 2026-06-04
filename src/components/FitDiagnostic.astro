@@ -2773,10 +2773,15 @@
     if (submitted && !emailValue) return;
     submitted = true;
     const utms = getUtms();
+    const exp = window.__BWM_EXP || {};
     const payload = Object.assign({}, state, utms, {
       email: emailValue || "",
       landing_page: location.pathname,
       referrer: document.referrer || "",
+      // MVT (PROJ-AUTO-MVT-001): experiment context injected by the edge worker.
+      // Distinct names — variant_id is already used for utm_content semantics.
+      experiment_id: exp.experiment_id || "",
+      experiment_variant_id: exp.variant_id || "",
     });
     try {
       const res = await fetch("https://bwm-form-handler.robert-ba0.workers.dev/buildwisemedia/fit-diagnostic", {
