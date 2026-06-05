@@ -19,13 +19,13 @@ import EarnBackCalculator from '../components/EarnBackCalculator.astro';
 import CostOfAssembly from '../components/CostOfAssembly.astro';
 import FAQ from '../components/FAQ.astro';
 
-const title = "Ascend — Installed AI Growth System You Own | Buildwise Media";
-const description = "Buildwise installs and operates Ascend, a fast-improving AI growth system for owner-led service businesses. It runs on your domain, uses your data, and stays yours.";
+const title = "AI Marketing Agency for Home Services — Buildwise Media";
+const description = "Buildwise Media is the AI marketing agency for home service businesses across the United States. 8-layer revenue OS installed in 30 days, run for you, owned by you.";
 
 // L8 — Category-of-one mechanism set
 // Geo-personalization gate: Astro.locals.metro.known === true → metro-specific copy;
 // otherwise → generic "your market" copy. Strict-match gate naturally routes crawlers
-// (no cf-ipcity on most bots) to the SEO-canonical generic variant.
+// (no cf-ipcity on most bots) to the search-canonical generic variant.
 const metro = Astro.locals.metro ?? { known: false, name: null, slug: null };
 
 const dominanceMechanisms = [
@@ -39,7 +39,7 @@ const dominanceMechanisms = [
   },
   {
     name: 'Local-search dominance',
-    body: 'Service pages, citations, and business profile signals aligned around the exact search terms your buyers use. Not generic SEO — the specific phrases that lead to a booked job.',
+    body: 'Service pages, citations, and business profile signals aligned around the exact search terms your buyers use. Not generic search visibility work — the specific phrases that lead to a booked job.',
   },
   {
     name: 'Review velocity',
@@ -89,7 +89,7 @@ const weeklyProofRail = [
 
 const signalQueue = [
   { label: 'Your domain', value: 'website + tracking live', tone: 'cyan' },
-  { label: 'Your data', value: 'CRM + calls stitched', tone: 'green' },
+  { label: 'Your data', value: 'follow-up + calls stitched', tone: 'green' },
   { label: 'New AI', value: 'growth work upgraded', tone: 'yellow' },
 ];
 
@@ -152,21 +152,21 @@ const dossierSignals = [
   { label: 'Market rank', value: 'search + AI answer visibility', score: 62, cue: 'who appears before you' },
   { label: 'Revenue leaks', value: 'calls, forms, quotes, follow-up', score: 78, cue: 'where buyers stall' },
   { label: 'Proof gaps', value: 'reviews, reputation, citations', score: 44, cue: 'where trust thins out' },
-  { label: 'First move', value: 'highest-leverage layer', score: 91, cue: 'what should move first' },
+  { label: 'First move', value: 'highest-value layer', score: 91, cue: 'what should move first' },
 ];
 
 const contractProofs = [
   { group: 'Capability', clause: 'Inheritance', title: 'Capability inheritance', body: 'When better AI ships, your system can use it without a new platform fee or rebuild.', tone: 'cyan', visual: 'inheritance' },
   { group: 'Control', clause: 'Human gate', title: 'Human signoff', body: 'Nothing autonomous goes live to buyers without a human gate.', tone: 'green', visual: 'gate' },
   { group: 'Ownership', clause: 'Client assets', title: 'Sovereignty', body: 'You own code, data, ad accounts, customer list, and built assets.', tone: 'yellow', visual: 'sovereignty' },
-  { group: 'Economics', clause: 'ROI floor', title: 'ROI floor', body: '5x attributable ROI within 24 months, or we keep building.', tone: 'orange', visual: 'roi' },
+  { group: 'Economics', clause: 'Return floor', title: 'Return floor', body: '5x attributable return on investment within 24 months, or we keep building.', tone: 'orange', visual: 'roi' },
   { group: 'Portability', clause: 'No lock-in', title: 'No vendor lock-in', body: 'The system is portable across models, tools, and channels.', tone: 'cyan', visual: 'portability' },
   { group: 'Exit rights', clause: 'After Day 90', title: 'True m-t-m after Day 90', body: 'No clawback. No exit fee. No long-term penalty.', tone: 'green', visual: 'exit' },
 ];
 
 const attributionRules = [
   { label: 'Counts', body: 'Booked work tied to an audited touchpoint in the dashboard.' },
-  { label: 'Does not count', body: 'Existing referrals, old SEO, or outside channels we cannot trace.' },
+  { label: 'Does not count', body: 'Existing referrals, old search traffic, or outside channels we cannot trace.' },
   { label: 'Why it matters', body: 'The math stays conservative so trust does not depend on our storytelling.' },
 ];
 
@@ -175,7 +175,7 @@ const entryPaths = [
     name: 'Ascend Pilot',
     price: canonical.products.pilot.price.oneshot_display,
     label: 'Proof sprint',
-    body: 'A 45-day paid sprint that proves the highest-leverage layer before a full operating relationship.',
+    body: 'A 45-day paid sprint that proves the highest-value layer before a full operating relationship.',
     href: '/pricing#pilot',
     tone: 'cyan',
   },
@@ -236,15 +236,15 @@ const faqs = [
   },
   {
     q: 'How do you measure success?',
-    a: 'We start with a written baseline. From there, the dashboard tracks spend, source, follow-up, booked work, and the next move. The headline floor is 5x attributable ROI inside 24 months.',
+    a: 'We start with a written baseline. From there, the dashboard tracks spend, source, follow-up, booked work, and the next move. The headline floor is 5x attributable return on investment inside 24 months.',
   },
   {
     q: "What if the system doesn't hit 5×?",
-    a: 'We keep building until it does. That is contractual — written into the MSA as a locked clause, not aspirational marketing copy. The 5× ROI floor is the floor we hold ourselves to. If your business is at 4× at Month 24, we are still working. That is what the floor means.',
+    a: 'We keep building until it does. That is contractual — written into the agreement as a locked clause, not aspirational marketing copy. The 5x return floor is the floor we hold ourselves to. If your business is at 4x at Month 24, we are still working. That is what the floor means.',
   },
   {
     q: 'Is there a long-term contract?',
-    a: 'No long-term lock-in. The paid Pilot runs 45 days. The 90-day initial operating period starts on the Ascend handoff. After Day 90, the engagement is true month-to-month with no penalty, no clawback, no exit fee. We earn the retainer every month or we don’t.',
+    a: 'No long-term lock-in. The paid Pilot runs 45 days. The 90-day initial operating period starts on the Ascend handoff. After Day 90, the system is true month-to-month with no penalty, no clawback, no exit fee. We earn the operating fee every month or we do not.',
   },
   {
     q: 'Where do you operate?',
@@ -252,12 +252,16 @@ const faqs = [
   },
   {
     q: 'How do I own my data?',
-    a: 'Everything we build, you own. The code lives in your repository. The customer list lives in your CRM. The ad accounts are in your business. The custom AI agents are configured against your workflows. If you leave, you take the whole system. We walk empty-handed. That sovereignty is in the MSA as a locked clause.',
+    a: 'Everything we build, you own. The code lives in your repository. The customer list lives in your follow-up system. The ad accounts are in your business. The custom AI agents are configured against your workflows. If you leave, you take the whole system. We walk empty-handed. That ownership is in the agreement as a locked clause.',
   },
 ];
 
-// Anchor for "See the System" secondary CTA → L3 EightLayerSystem
-const SYSTEM_ANCHOR = '#system';
+const heroLinks = [
+  { href: '/system', label: 'See the 8-layer system' },
+  { href: '/services/ascend', label: 'View Ascend' },
+  { href: '/playbook/ai-marketing-department', label: 'AI marketing department playbook' },
+  { href: '/audit', label: 'Start the Revenue Leak Map' },
+];
 
 // JSON-LD
 const serviceSchema = {
@@ -265,11 +269,11 @@ const serviceSchema = {
   '@type': 'Service',
   '@id': 'https://buildwisemedia.com/#service-ascend',
   name: 'Ascend',
-  serviceType: 'AI marketing department for service businesses',
+  serviceType: 'AI marketing agency for home services',
   provider: { '@id': 'https://buildwisemedia.com/#org' },
   areaServed: { '@type': 'Country', name: 'United States' },
   description:
-    'Ascend installs a revenue AI system inside owner-led service businesses. Buildwise operates the system, the client owns the code, data, ad accounts, and customer list, and the math is visible from Day 1.',
+    'Ascend installs a revenue AI system inside owner-led home service businesses. Buildwise operates the system, the client owns the code, data, ad accounts, and customer list, and the math is visible from Day 1.',
   url: 'https://buildwisemedia.com/services/ascend',
   hasOfferCatalog: {
     '@type': 'OfferCatalog',
@@ -331,20 +335,25 @@ const faqSchema = {
   <section class="home-hero" aria-labelledby="home-hero-title">
     <div class="container hero-grid">
       <div class="hero-copy">
-        <p class="eyebrow">AI growth system for owner-led service businesses</p>
-        <h1 id="home-hero-title" class="h-hero">Own the AI growth system your competitors wish they had.</h1>
+        <p class="eyebrow">AI marketing agency for home services</p>
+        <h1 id="home-hero-title" class="h-hero">We Run Marketing as Operations — Not as a Project.</h1>
         <p class="hero-sub">
-          We install Ascend on your domain and run it for you every week. It handles your visibility, follow-up, reviews, and tracking — and folds in new AI as it ships. The whole system stays yours.
+          We install Ascend for home service businesses across the United States and run it every week. It handles your visibility, follow-up, reviews, and tracking. The whole system stays yours.
         </p>
         <div class="hero-actions" role="group" aria-label="Primary actions">
           <a href="/book" class="cta" data-cta-source="home-hero">Get My Free Revenue Leak Map<span class="cta-arrow" aria-hidden="true">&rarr;</span></a>
-          <a href={SYSTEM_ANCHOR} class="cta-ghost" data-cta-source="home-hero-system">See the System</a>
+          <a href="/book" class="cta-ghost" data-cta-source="home-hero-fit">See If We're a Fit</a>
         </div>
         <ul class="hero-proof-strip" aria-label="Ascend proof points">
           <li><strong>30 days</strong><span>installed</span></li>
           <li><strong>Yours</strong><span>domain · data · accounts</span></li>
           <li><strong>Auto</strong><span>upgrades without rebuilds</span></li>
         </ul>
+        <nav class="hero-link-rail" aria-label="Related Buildwise Media pages">
+          {heroLinks.map((link) => (
+            <a href={link.href}>{link.label}</a>
+          ))}
+        </nav>
       </div>
       <aside class="command-center ops-panel" aria-label="Ascend installed system preview">
         <div class="command-topline">
@@ -383,7 +392,7 @@ const faqSchema = {
               </g>
               <g class="map-node"><circle cx="78" cy="84" r="9" fill="var(--signal-cyan)" /><text x="78" y="62" text-anchor="middle" font-family="var(--mono)" font-size="8" fill="var(--ink-dim)" letter-spacing="1.4">DOMAIN</text></g>
               <g class="map-node"><circle cx="452" cy="116" r="9" fill="var(--y2)" /><text x="452" y="96" text-anchor="middle" font-family="var(--mono)" font-size="8" fill="var(--ink-dim)" letter-spacing="1.4">SYSTEM</text></g>
-              <g class="map-node"><circle cx="70" cy="236" r="9" fill="var(--signal-green)" /><text x="70" y="264" text-anchor="middle" font-family="var(--mono)" font-size="8" fill="var(--ink-dim)" letter-spacing="1.4">CRM</text></g>
+              <g class="map-node"><circle cx="70" cy="236" r="9" fill="var(--signal-green)" /><text x="70" y="264" text-anchor="middle" font-family="var(--mono)" font-size="8" fill="var(--ink-dim)" letter-spacing="1.4">LEADS</text></g>
               <g class="map-node"><circle cx="448" cy="72" r="9" fill="var(--signal-green)" /><text x="448" y="51" text-anchor="middle" font-family="var(--mono)" font-size="8" fill="var(--ink-dim)" letter-spacing="1.4">PROOF</text></g>
               <g class="map-node"><circle cx="452" cy="238" r="9" fill="var(--signal-orange)" /><text x="452" y="264" text-anchor="middle" font-family="var(--mono)" font-size="8" fill="var(--ink-dim)" letter-spacing="1.4">WEEKLY OPS</text></g>
             </svg>
@@ -588,7 +597,7 @@ const faqSchema = {
         </div>
         <div class="dossier-first-move">
           <span class="mono">Recommended first move</span>
-          <strong>Fix the highest-leverage leak before buying more attention.</strong>
+          <strong>Fix the highest-value leak before buying more attention.</strong>
         </div>
       </div>
     </div>
@@ -599,7 +608,7 @@ const faqSchema = {
           <ul class="dossier-cta-list" role="list">
             <li>Your rank against the top names in your market</li>
             <li>Where leads and revenue leak today</li>
-            <li>Your single highest-leverage first move</li>
+            <li>Your single highest-value first move</li>
             <li>Whether Ascend is even the right fit</li>
           </ul>
         </div>
@@ -634,7 +643,7 @@ const faqSchema = {
               <article class={`contract-proof-clause tone-${item.tone}`}>
                 <div class="clause-rail">
                   <span class="contract-clause-group mono">{item.group}</span>
-                  {/* @r020:F2 proof: per-clause schematic glyph (capability step-up, approval gate, ownership key, ROI-floor bars, portability transfer, clean-exit door) makes each buyer risk-reducer scannable by shape + signal color instead of six identical text boxes */}
+                  {/* @r020:F2 proof: per-clause schematic glyph (capability step-up, approval gate, ownership key, return-floor bars, portability transfer, clean-exit door) makes each buyer risk-reducer scannable by shape + signal color instead of six identical text boxes */}
                   <svg class="clause-glyph" viewBox="0 0 48 48" aria-hidden="true">
                     {item.visual === 'inheritance' && (
                       <g fill="none" stroke="var(--clause-accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -690,7 +699,7 @@ const faqSchema = {
         </div>
         <aside class="contract-proof-stamp" aria-label="Risk reversal summary">
           <span class="mono">Risk moved off the buyer</span>
-          <strong>Owned asset. Human gate. ROI floor. Clean exit.</strong>
+          <strong>Owned asset. Human gate. Return floor. Clean exit.</strong>
         </aside>
       </div>
     </div>
@@ -889,7 +898,7 @@ const faqSchema = {
 
       <div class="attribution-honesty">
         <p class="ops-kicker">Attribution honesty</p>
-        <h3>What counts toward ROI has to be visible.</h3>
+        <h3>What counts toward return on investment has to be visible.</h3>
         <div class="attribution-rule-grid">
           {attributionRules.map((item) => (
             <article>
@@ -943,7 +952,7 @@ const faqSchema = {
       <div>
         <p class="section-tag">Get your Revenue Leak Map</p>
           <h2 id="final-title" class="h-closer">See where you're leaking revenue first.</h2>
-          <p class="lede">Your free Revenue Leak Map shows where the market is beating you, names the highest-leverage first move, and proves whether we can hit your 5&times; guarantee. We build it from your data and walk it with you on a short call &mdash; no pitch.</p>
+          <p class="lede">Your free Revenue Leak Map shows where the market is beating you, names the highest-value first move, and proves whether we can hit your 5x guarantee. We build it from your data and walk it with you on a short call &mdash; no pitch.</p>
       </div>
         <div class="final-actions" style="display:flex;flex-direction:column;gap:12px;align-items:center">
           <a href="/book" class="cta" data-cta-source="home-final">Get My Free Revenue Leak Map<span class="cta-arrow" aria-hidden="true">&rarr;</span></a>
@@ -1043,6 +1052,28 @@ const faqSchema = {
   gap: 14px;
   align-items: center;
   margin-top: 2px;
+}
+
+.hero-link-rail {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  max-width: 680px;
+}
+.hero-link-rail a {
+  border: 1px solid var(--rule);
+  color: var(--ink-dim);
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  line-height: 1.2;
+  padding: 9px 10px;
+  text-transform: uppercase;
+  transition: border-color 180ms ease, color 180ms ease;
+}
+.hero-link-rail a:hover {
+  border-color: var(--y2);
+  color: var(--ink);
 }
 
 .hero-proof-strip {
@@ -2879,6 +2910,10 @@ const faqSchema = {
     white-space: normal;
     text-align: center;
     min-height: 58px;
+  }
+  .hero-link-rail a {
+    flex: 1 1 100%;
+    text-align: center;
   }
 }
 </style>

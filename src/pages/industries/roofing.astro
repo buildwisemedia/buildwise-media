@@ -1,0 +1,337 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import canonical from '../../data/canonical.json';
+
+const title = "Marketing Agency for Roofing Companies — Buildwise Media";
+const description = "Buildwise Media installs and runs a full AI marketing system for roofing companies — visibility, reputation, speed-to-lead, attribution. Live in 30 days across the US.";
+
+const layerBodies: Record<string, string> = {
+  Visibility: 'Show up when local buyers search, ask AI, or compare roofers after a storm.',
+  Conversion: 'Turn visits, calls, forms, and estimate paths into clear next steps.',
+  'Speed-to-Lead': 'Answer new roof leads before the buyer calls the next shop.',
+  'Sales Ops': 'Keep estimates, reminders, and past roof leads moving after the first touch.',
+  Reputation: 'Ask for reviews, reply with care, and turn finished jobs into proof.',
+  'Paid Media': 'Watch spend and move budget toward calls that can become signed work.',
+  Reporting: 'Show source, spend, calls, estimates, booked jobs, and the next move.',
+  Strategy: 'Run the week from a scoreboard, not a late-month guess.',
+};
+
+const layers = canonical.products.ascend.eight_layers.map((raw: string, index: number) => {
+  const dashIndex = raw.indexOf('—');
+  const dotIndex = raw.indexOf('·');
+  const name = dashIndex > 0 ? raw.slice(dotIndex + 1, dashIndex).trim() : raw.slice(dotIndex + 1).trim();
+  return {
+    n: String(index + 1).padStart(2, '0'),
+    name,
+    body: layerBodies[name] ?? '',
+    tone: ['cyan', 'green', 'yellow', 'orange', 'green', 'cyan', 'yellow', 'green'][index],
+  };
+});
+
+const proofStats = [
+  { label: 'roofing proof', value: '34', body: 'Qualified leads captured in the first 60 days.' },
+  { label: 'referral mix', value: '0', body: 'Those leads came from non-referral sources.' },
+  { label: 'install path', value: '30 days', body: 'Baseline, lead path, and first operating rhythm live.' },
+];
+
+const fitSignals = [
+  'Owner-led roofing company with real demand and no clear source truth.',
+  'Roughly $3M-$8M annual revenue for Ascend fit.',
+  'Service area with enough density for search visibility, reviews, and paid demand.',
+  'Owner wants the system run by the Buildwise team, not another task list.',
+];
+
+const breadcrumb = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://buildwisemedia.com/' },
+    { '@type': 'ListItem', position: 2, name: 'Industries', item: 'https://buildwisemedia.com/industries' },
+    { '@type': 'ListItem', position: 3, name: 'Roofing', item: 'https://buildwisemedia.com/industries/roofing' },
+  ],
+};
+
+const serviceSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Service',
+  '@id': 'https://buildwisemedia.com/industries/roofing#service',
+  name: 'Marketing agency for roofing companies',
+  serviceType: 'Installed AI marketing system for roofing companies',
+  provider: { '@id': 'https://buildwisemedia.com/#org' },
+  areaServed: { '@type': 'Country', name: 'United States' },
+  audience: {
+    '@type': 'BusinessAudience',
+    audienceType: 'Owner-led roofing companies',
+  },
+  description,
+  url: 'https://buildwisemedia.com/industries/roofing',
+};
+
+const faqs = [
+  {
+    q: 'What does Buildwise Media install for a roofing company?',
+    a: 'The Buildwise team installs an AI marketing system for visibility, estimate paths, speed-to-lead, reviews, spend, reporting, and weekly strategy. The system is built around booked roofing work, not vague activity.',
+  },
+  {
+    q: 'How fast can the roofing system go live?',
+    a: 'The install path is 30 days. The first window captures the baseline, wires the lead path, improves follow-up, and starts the weekly operating rhythm.',
+  },
+  {
+    q: 'Is this built for every roofer?',
+    a: 'No. Ascend is built for owner-led roofing companies with enough demand, market density, and revenue to support a full run-for-you system. The fit check confirms that first.',
+  },
+];
+
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  '@id': 'https://buildwisemedia.com/industries/roofing#faq',
+  mainEntity: faqs.map((f) => ({
+    '@type': 'Question',
+    name: f.q,
+    acceptedAnswer: { '@type': 'Answer', text: f.a },
+  })),
+};
+---
+<BaseLayout title={title} description={description} jsonLd={[serviceSchema, breadcrumb, faqSchema]}>
+
+  <section class="industry-hero">
+    <div class="container industry-hero-grid">
+      <div>
+        <p class="eyebrow"><a href="/services/ascend" class="back-link">← Ascend</a> · Roofing</p>
+        <h1 class="h-hero">The Marketing System Built for Roofing Companies</h1>
+        <p class="hero-sub">
+          Roofing demand moves in spikes. A storm hits. A roof starts leaking. A homeowner asks who can show up fast. If your search visibility, follow-up system, reviews, and source tracking live in separate places, the best leads leak before the estimate is even set.
+        </p>
+        <div class="industry-ctas">
+          <a href="/book" class="cta" data-cta-source="roofing-hero-primary">Get My Free Revenue Leak Map<span class="cta-arrow" aria-hidden="true">→</span></a>
+          <a href="/book" class="cta-ghost" data-cta-source="roofing-hero-secondary">See If We're a Fit</a>
+        </div>
+      </div>
+      <aside class="industry-panel ops-panel" aria-label="Roofing operating proof">
+        <div class="industry-panel-head">
+          <p class="panel-label mono">roofing revenue system</p>
+          <span class="ops-chip"><span class="dot green" aria-hidden="true"></span>baseline first</span>
+        </div>
+        <div class="roof-loop" aria-hidden="true">
+          <span>Search</span>
+          <span>Answer</span>
+          <span>Estimate</span>
+          <span>Review</span>
+          <span>Prove</span>
+        </div>
+        <p class="panel-copy">The system connects the first search to the signed estimate, then feeds the proof back into the next buyer's choice.</p>
+      </aside>
+    </div>
+  </section>
+
+  <section class="industry-proof elev" aria-labelledby="proof-title">
+    <div class="container proof-grid">
+      <header class="section-head">
+        <p class="section-tag">Roofing proof</p>
+        <h2 id="proof-title" class="h-section">Referral-heavy growth breaks when the work is not wired.</h2>
+        <p class="lede">A roofing company should not depend only on referrals, storm timing, and a busy inbox. Those can help. They do not show which source brought the job, which call got missed, or which finished roof should have turned into public proof.</p>
+      </header>
+      <div class="proof-cards">
+        {proofStats.map((stat) => (
+          <article class="proof-card">
+            <p class="ops-kicker">{stat.label}</p>
+            <strong>{stat.value}</strong>
+            <p>{stat.body}</p>
+          </article>
+        ))}
+      </div>
+      <p class="proof-note">This proof is cited without the client name because client markets stay private. The method is the point: capture the baseline, install the layers, and measure real lead flow over time.</p>
+    </div>
+  </section>
+
+  <section class="industry-section">
+    <div class="container">
+      <p class="section-tag">The installed system</p>
+      <h2 class="h-section">Eight layers built around signed roofing work.</h2>
+      <p class="prose">
+        A roofing company does not need another loose campaign. It needs a full revenue operating system. The Buildwise team installs the same eight Ascend layers across the business, then runs them as one weekly rhythm.
+      </p>
+      <div class="layers-grid">
+        {layers.map((layer) => (
+          <article class={`layer-card tone-${layer.tone}`}>
+            <p class="layer-num mono">{layer.n}</p>
+            <h3>{layer.name}</h3>
+            <p>{layer.body}</p>
+          </article>
+        ))}
+      </div>
+      <p class="prose">
+        The layers matter most when they talk to each other. Visibility brings the buyer in. Conversion gives them a clean estimate path. Speed-to-Lead answers while the need is fresh. Sales Ops keeps estimates alive. Reputation turns finished roofs into proof. Paid Media gets judged by job quality. Reporting shows what happened. Strategy sets the next week.
+      </p>
+    </div>
+  </section>
+
+  <section class="industry-section elev">
+    <div class="container article-grid">
+      <div>
+        <p class="section-tag">Reputation and AI search</p>
+        <h2 class="h-section">Get named before the buyer makes the short list.</h2>
+        <p class="prose">
+          Roofing buyers do not always start with a form. They ask search engines, map results, neighbors, and AI tools who to trust. The businesses that get named tend to have clear service pages, strong local proof, consistent data, and fresh reviews.
+        </p>
+        <p class="prose">
+          Ascend treats finished jobs as proof. Reviews get asked for. Reputation replies pass through a human gate. Good words become proof on the site. The owner sees whether that proof is making the company easier to find and easier to choose.
+        </p>
+      </div>
+      <figure class="article-photo">
+        <!-- @r020:F2 proof: receipt-style image reinforces that roofing attribution is measured from source to signed work -->
+        <img src="/images/bwm-receipts-still-life-v1.webp" alt="Printed proof packet and measurement notes on a dark desk." width="720" height="480" loading="lazy" decoding="async" />
+      </figure>
+    </div>
+  </section>
+
+  <section class="industry-section">
+    <div class="container">
+      <p class="section-tag">Speed-to-Lead</p>
+      <h2 class="h-section">The window between a search and a signed estimate is short.</h2>
+      <p class="prose">
+        A roof leak does not wait for a slow reply. The buyer may call three companies before lunch. If no one answers quickly, the next roofer gets the estimate. Speed-to-Lead is the layer that closes that gap. The system routes each new call, form, and booking request into a fast next step.
+      </p>
+      <p class="prose">
+        That speed also protects attribution. A good source can look weak when the answer time is slow. A weak source can look strong when one lucky job closes. We separate those signals so the owner can see the real leak.
+      </p>
+    </div>
+  </section>
+
+  <section class="industry-section elev">
+    <div class="container article-grid">
+      <div>
+        <p class="section-tag">Attribution</p>
+        <h2 class="h-section">Know which jobs came from which source.</h2>
+        <p class="prose">
+          A roofing operator should not have to guess which month felt busy. The system ties source, page, form, call, estimate, and booked job into one view. It does not make every number perfect. It makes the unknowns visible.
+        </p>
+        <p class="prose">
+          After 30 days, the owner should see the baseline, the lead path, and the first proof rhythm. After 90 days, the useful question gets clearer: which source brought signed work, which step slowed it down, and which first move deserves more budget or time.
+        </p>
+      </div>
+      <div class="fit-panel">
+        <p class="section-tag">Fit check</p>
+        <h3>Ascend is built for roofing operators who are ready to be run by proof.</h3>
+        <ul role="list">
+          {fitSignals.map((signal) => <li>{signal}</li>)}
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="industry-related">
+    <div class="container">
+      <p class="section-tag">Next reading</p>
+      <h2 class="h-section">See how the system connects.</h2>
+      <ul class="related-list">
+        <li><a href="/system">The System</a> — the full eight-layer operating model</li>
+        <li><a href="/services/ascend">Ascend</a> — what gets installed and run each week</li>
+        <li><a href="/industries/hvac">HVAC</a> — the same operating rhythm in another urgent trade</li>
+        <li><a href="/audit">Revenue Leak Map</a> — the diagnostic that shows the first gap</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="industry-cta elev">
+    <div class="container">
+      <h2 class="h-closer">Ready to see the roofing leaks in your market?</h2>
+      <p class="lede">The free Revenue Leak Map shows where visibility, speed, follow-up, and attribution are holding back signed work.</p>
+      <p class="cta-row">
+        <a class="cta-primary" href="/book" data-cta-source="roofing-final-primary">Get My Free Revenue Leak Map <span class="cta-arrow">→</span></a>
+        <a class="cta-ghost" href="/book" data-cta-source="roofing-final-secondary">See If We're a Fit</a>
+      </p>
+    </div>
+  </section>
+
+  <section class="industry-faq">
+    <div class="container">
+      <p class="section-tag">FAQ</p>
+      <h2 class="h-section">Common questions.</h2>
+      <div class="faq-list">
+        {faqs.map((f) => (
+          <details class="faq-item">
+            <summary class="faq-q">{f.q}</summary>
+            <div class="faq-a">
+              <p>{f.a}</p>
+            </div>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+
+</BaseLayout>
+
+<style>
+.industry-hero { padding-block: clamp(80px, 12vw, 144px); }
+.industry-hero-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(280px, 420px); gap: clamp(32px, 6vw, 72px); align-items: center; }
+.back-link { color: var(--ink-faint); transition: color 180ms ease; }
+.back-link:hover { color: var(--y2); }
+.industry-ctas { display: flex; flex-wrap: wrap; gap: 16px; margin-top: 32px; }
+
+.industry-panel { padding: 28px; }
+.industry-panel-head { display: flex; justify-content: space-between; gap: 16px; align-items: center; }
+.roof-loop { display: grid; grid-template-columns: repeat(5, 1fr); gap: 8px; margin-top: 32px; }
+.roof-loop span {
+  min-height: 64px;
+  display: grid;
+  place-items: center;
+  border: 1px solid var(--rule);
+  color: var(--ink);
+  font-family: var(--mono);
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+}
+.roof-loop span:nth-child(2), .roof-loop span:nth-child(5) { border-color: rgba(240,255,0,0.45); color: var(--y2); }
+.panel-copy { margin-top: 24px; color: var(--ink-dim); line-height: 1.6; }
+
+.industry-proof, .industry-section, .industry-related, .industry-cta, .industry-faq { padding-block: clamp(56px, 8vw, 96px); }
+.proof-grid { display: grid; gap: 32px; }
+.proof-cards { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
+.proof-card, .fit-panel {
+  border: 1px solid var(--rule);
+  background: rgba(255,255,255,0.025);
+  padding: 24px;
+  border-radius: 4px;
+}
+.proof-card strong { display: block; margin-top: 8px; font-size: clamp(30px, 5vw, 56px); line-height: 1; color: var(--y2); font-weight: 600; }
+.proof-card p:last-child, .proof-note { color: var(--ink-dim); line-height: 1.6; }
+.proof-note { max-width: 760px; }
+
+.prose { font-size: 17px; line-height: 1.7; color: var(--ink-dim); max-width: 760px; margin-top: 24px; }
+.prose a, .related-list a { color: var(--ink); text-decoration: none; border-bottom: 1px solid rgba(240,255,0,0.45); }
+.prose a:hover, .related-list a:hover { color: var(--y2); border-bottom-color: var(--y2); }
+.layers-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 16px; margin-block: 40px; }
+.layer-card { border: 1px solid var(--rule); padding: 20px; border-radius: 4px; background: rgba(255,255,255,0.02); }
+.layer-card h3 { margin-top: 16px; font-size: 18px; color: var(--ink); }
+.layer-card p:last-child { margin-top: 12px; color: var(--ink-dim); line-height: 1.55; }
+.layer-num { color: var(--y2); }
+.article-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(280px, 420px); gap: clamp(32px, 6vw, 72px); align-items: start; }
+.article-photo { margin: 0; border: 1px solid var(--rule); border-radius: 4px; overflow: hidden; }
+.article-photo img { display: block; width: 100%; height: auto; }
+.fit-panel h3 { font-size: 24px; line-height: 1.25; color: var(--ink); font-weight: 500; }
+.fit-panel ul { list-style: none; display: flex; flex-direction: column; gap: 14px; margin-top: 24px; }
+.fit-panel li { color: var(--ink-dim); line-height: 1.55; padding-left: 20px; position: relative; }
+.fit-panel li::before { content: ""; position: absolute; left: 0; top: 0.72em; width: 7px; height: 7px; border-radius: 50%; background: var(--y2); }
+.related-list { list-style: none; display: flex; flex-direction: column; gap: 12px; margin-top: 32px; max-width: 880px; }
+.cta-row { display: flex; flex-wrap: wrap; gap: 16px; margin-top: 32px; }
+.industry-faq { padding-top: 0; }
+.faq-list { display: flex; flex-direction: column; gap: 16px; margin-top: 32px; max-width: 880px; }
+.faq-item { border-top: 1px solid var(--rule); padding-block: 20px; }
+.faq-item[open] summary { color: var(--y2); }
+.faq-q { font-size: 17px; font-weight: 500; color: var(--ink); cursor: pointer; line-height: 1.4; list-style: none; }
+.faq-q::marker, .faq-q::-webkit-details-marker { display: none; }
+.faq-q::after { content: "+"; float: right; font-family: var(--mono); font-size: 18px; color: var(--y2); }
+.faq-item[open] .faq-q::after { content: "-"; }
+.faq-a { margin-top: 12px; }
+.faq-a p { font-size: 16px; line-height: 1.65; color: var(--ink-dim); max-width: 720px; }
+
+@media (max-width: 860px) {
+  .industry-hero-grid, .article-grid { grid-template-columns: 1fr; }
+  .proof-cards, .layers-grid { grid-template-columns: 1fr; }
+  .roof-loop { grid-template-columns: 1fr; }
+}
+</style>

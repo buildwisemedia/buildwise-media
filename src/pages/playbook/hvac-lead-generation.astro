@@ -1,0 +1,292 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+const title = "How HVAC Companies Get More Leads Without Another Agency";
+const description = "Most HVAC lead generation advice adds work to your week. A run-for-you AI system installs in 30 days, runs without you, and compounds — no project management required.";
+
+const leakTypes = [
+  {
+    n: '01',
+    name: 'Visibility leak',
+    body: 'Buyers search or ask AI for a local HVAC company, but the same names keep showing up before yours.',
+  },
+  {
+    n: '02',
+    name: 'Speed leak',
+    body: 'The lead is real, but the first answer comes too late. The buyer keeps calling until someone books them.',
+  },
+  {
+    n: '03',
+    name: 'Proof leak',
+    body: 'Finished jobs do not turn into reviews, case proof, or local trust fast enough.',
+  },
+  {
+    n: '04',
+    name: 'Source leak',
+    body: 'The month feels busy, but no one can tie calls, quotes, and booked work back to the source.',
+  },
+];
+
+const systemCovers = [
+  'Search visibility and AI-answer readiness for the services and towns that matter.',
+  'Fast first-touch routing for calls, forms, and booking requests.',
+  'Review requests and reputation handling with human signoff on sensitive replies.',
+  'Source tracking from lead to booked job, so the owner sees what worked.',
+  'Weekly proof rhythm, so next moves come from the baseline instead of gut feel.',
+];
+
+const faqs = [
+  {
+    q: 'How can an HVAC company get more leads without adding more owner work?',
+    a: 'Use a run-for-you system instead of another task list. The Buildwise team installs visibility, speed-to-lead, reviews, attribution, and weekly reporting in 30 days, then runs the rhythm for the owner.',
+  },
+  {
+    q: 'Is this the same as hiring another agency?',
+    a: 'No. The system is installed around owned assets and measured against a captured baseline. The Buildwise team operates it each week, but the business owns the system and the data.',
+  },
+  {
+    q: 'What should an HVAC owner measure after 30 days?',
+    a: 'Source, response speed, calls, forms, booked jobs, review movement, and the first visible leaks. The first 30 days should make the system clearer, not bury the owner in more work.',
+  },
+];
+
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  '@id': 'https://buildwisemedia.com/playbook/hvac-lead-generation#faq',
+  mainEntity: faqs.map((f) => ({
+    '@type': 'Question',
+    name: f.q,
+    acceptedAnswer: { '@type': 'Answer', text: f.a },
+  })),
+};
+
+const articleSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Article',
+  '@id': 'https://buildwisemedia.com/playbook/hvac-lead-generation#article',
+  headline: title,
+  description,
+  author: { '@id': 'https://buildwisemedia.com/#org' },
+  publisher: { '@id': 'https://buildwisemedia.com/#org' },
+  mainEntityOfPage: 'https://buildwisemedia.com/playbook/hvac-lead-generation',
+};
+
+const breadcrumb = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://buildwisemedia.com/' },
+    { '@type': 'ListItem', position: 2, name: 'Playbook', item: 'https://buildwisemedia.com/playbook/' },
+    { '@type': 'ListItem', position: 3, name: 'HVAC Lead Generation', item: 'https://buildwisemedia.com/playbook/hvac-lead-generation' },
+  ],
+};
+---
+<BaseLayout title={title} description={description} jsonLd={[articleSchema, breadcrumb, faqSchema]}>
+
+  <section class="playbook-hero">
+    <div class="container playbook-hero-grid">
+      <div>
+        <p class="eyebrow"><a href="/playbook" class="back-link">← Playbook</a> · HVAC lead generation</p>
+        <h1 class="h-hero">How to Get More Leads for Your HVAC Business — Without Adding to Your Plate</h1>
+        <p class="lede">
+          The short answer: stop treating HVAC lead generation like a list of owner tasks, because more posts, more ads, more forms, and more vendor calls still leave you as the router. A run-for-you system installs the lead path, answers fast, captures proof, and shows which work booked.
+        </p>
+        <p class="cta-row">
+          <a class="cta-primary" href="/book" data-cta-source="hvac-lead-gen-hero-primary">Get My Free Revenue Leak Map <span class="cta-arrow">→</span></a>
+          <a class="cta-ghost" href="/book" data-cta-source="hvac-lead-gen-hero-secondary">See If We're a Fit</a>
+        </p>
+      </div>
+      <aside class="proof-panel ops-panel" aria-label="HVAC proof">
+        <p class="panel-label mono">HVAC proof</p>
+        <strong>#1</strong>
+        <p>Map position held for 90+ days after the system install, with 31 new qualified reviews in the same metro.</p>
+      </aside>
+    </div>
+    <div class="container">
+      <figure class="hero-photo">
+        <!-- @r020:F1 emotion: early operations image mirrors the HVAC owner carrying lead work before the day starts -->
+        <img src="/images/bwm-about-atmospheric-v1.webp" alt="First-light operations floor with a workbench, monitor, paper plans, and one desk lamp." width="1920" height="1080" loading="eager" decoding="async" />
+      </figure>
+    </div>
+  </section>
+
+  <section class="playbook-section elev">
+    <div class="container">
+      <p class="section-tag">The owner trap</p>
+      <h2 class="h-section">Most lead advice adds work to your week.</h2>
+      <p class="prose">
+        The usual advice sounds simple: post more, run more ads, build more pages, ask for more reviews, call faster, and track more. Each idea may be useful, but the pile becomes another job for the owner.
+      </p>
+      <p class="prose">
+        That is why many HVAC companies stall: the owner is already selling, quoting, hiring, checking jobs, and fixing the urgent problem of the day. Lead generation gets done when there is time left, and in a busy shop there is rarely time left.
+      </p>
+      <p class="prose">
+        The fix is not more owner hustle. It is a system that runs the full path from search to booked job. The Buildwise team installs and operates that path inside <a href="/industries/hvac">HVAC companies</a>, then measures it against the captured baseline.
+      </p>
+    </div>
+  </section>
+
+  <section class="playbook-section">
+    <div class="container">
+      <p class="section-tag">Where leads leak</p>
+      <h2 class="h-section">Four places HVAC leads leak before they become booked work.</h2>
+      <div class="leak-grid">
+        {leakTypes.map((leak) => (
+          <article class="leak-card">
+            <p class="leak-num mono">{leak.n}</p>
+            <h3>{leak.name}</h3>
+            <p>{leak.body}</p>
+          </article>
+        ))}
+      </div>
+      <p class="prose">
+        A lead system needs all four signals. Visibility creates the chance to be chosen, speed protects urgent demand, proof helps the buyer trust you, and attribution shows which source brought booked work. One without the others still leaves the owner guessing.
+      </p>
+    </div>
+  </section>
+
+  <section class="playbook-section elev">
+    <div class="container article-grid">
+      <div>
+        <p class="section-tag">Run-for-you system</p>
+        <h2 class="h-section">What the system covers instead of do-it-yourself tactics.</h2>
+        <p class="prose">
+          A do-it-yourself plan gives you tasks. A run-for-you system gives each layer a job, then connects the layers. That matters because a better page still leaks if the lead waits too long. More calls still leak if no one knows which source created them.
+        </p>
+        <ul class="system-list" role="list">
+          {systemCovers.map((item) => <li>{item}</li>)}
+        </ul>
+        <p class="prose">
+          This is the same operating logic behind the <a href="/playbook/diy-marketing-alternative">DIY marketing alternative</a>. The business does not need another pile of tasks. It needs the function taken off the owner's plate.
+        </p>
+      </div>
+      <figure class="section-photo">
+        <!-- @r020:F2 proof: results editorial makes the owner-view proof rhythm tangible rather than abstract -->
+        <img src="/images/bwm-results-editorial-v1.webp" alt="An operator reviewing dashboard telemetry in cool light." width="1920" height="1080" loading="lazy" decoding="async" />
+      </figure>
+    </div>
+  </section>
+
+  <section class="playbook-section">
+    <div class="container">
+      <p class="section-tag">Speed-to-Lead</p>
+      <h2 class="h-section">The first reply often wins the service call.</h2>
+      <p class="prose">
+        HVAC buyers are often in a hurry: the house is too hot, the unit is down, and the quote request is not casual. If no one answers quickly, the buyer keeps calling, so Speed-to-Lead protects that window.
+      </p>
+      <p class="prose">
+        The system routes each new call, form, and booking request into a fast next step. It also shows the difference between a weak source and a slow answer. That matters because a good source can look bad when the follow-up system is late.
+      </p>
+    </div>
+  </section>
+
+  <section class="playbook-section elev">
+    <div class="container">
+      <p class="section-tag">AI search visibility</p>
+      <h2 class="h-section">Get named when buyers ask for the best HVAC company near them.</h2>
+      <p class="prose">
+        HVAC search is no longer just a list of links. Buyers ask search engines and AI tools who to trust. The businesses that get named tend to have clear service pages, strong local proof, consistent data, and fresh reviews.
+      </p>
+      <p class="prose">
+        Ascend treats each finished job as proof. Reviews get asked for. Good words become proof on the site. Reputation replies pass through a human gate. The owner sees whether the work is making the company easier to find and easier to choose.
+      </p>
+      <p class="prose">
+        After 30 days, the right measure is not a vague feeling. The owner should see source, speed, calls, forms, booked work, review movement, and the first leaks. That connects to <a href="/problem/leaky-revenue">Leaky Revenue</a> and the free <a href="/audit">Revenue Leak Map</a>.
+      </p>
+    </div>
+  </section>
+
+  <section class="playbook-related">
+    <div class="container">
+      <p class="section-tag">Related</p>
+      <h2 class="h-section">Keep reading.</h2>
+      <ul class="related-list">
+        <li><a href="/playbook/diy-marketing-alternative">DIY Marketing Alternative</a> — the lead system without owner task debt</li>
+        <li><a href="/industries/hvac">HVAC Companies</a> — how Ascend fits the trade</li>
+        <li><a href="/problem/leaky-revenue">Leaky Revenue</a> — where leads fall through before they book</li>
+        <li><a href="/audit">Revenue Leak Map</a> — the diagnostic that shows the first gap</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="playbook-cta elev">
+    <div class="container">
+      <h2 class="h-closer">Ready to see where HVAC leads are leaking?</h2>
+      <p class="lede">The free Revenue Leak Map shows the first gap in your visibility, speed, proof, or source tracking.</p>
+      <p class="cta-row">
+        <a class="cta-primary" href="/book" data-cta-source="hvac-lead-gen-final-primary">Get My Free Revenue Leak Map <span class="cta-arrow">→</span></a>
+        <a class="cta-ghost" href="/book" data-cta-source="hvac-lead-gen-final-secondary">See If We're a Fit</a>
+      </p>
+    </div>
+  </section>
+
+  <section class="playbook-faq">
+    <div class="container">
+      <p class="section-tag">FAQ</p>
+      <h2 class="h-section">Common questions.</h2>
+      <div class="faq-list">
+        {faqs.map((f) => (
+          <details class="faq-item">
+            <summary class="faq-q">{f.q}</summary>
+            <div class="faq-a">
+              <p>{f.a}</p>
+            </div>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+
+</BaseLayout>
+
+<style>
+.playbook-hero { padding-block: clamp(80px, 12vw, 144px); }
+.playbook-hero-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(260px, 360px); gap: clamp(32px, 6vw, 72px); align-items: center; }
+.playbook-hero .lede { margin-top: 24px; }
+.back-link { color: var(--ink-faint); transition: color 180ms ease; }
+.back-link:hover { color: var(--y2); }
+.proof-panel { padding: 28px; }
+.proof-panel strong { display: block; margin-top: 18px; font-size: clamp(54px, 8vw, 92px); line-height: 0.9; color: var(--y2); font-weight: 600; }
+.proof-panel p:last-child { margin-top: 18px; color: var(--ink-dim); line-height: 1.6; }
+
+.hero-photo { margin-top: 56px; max-width: 1120px; border-radius: 4px; overflow: hidden; border: 1px solid var(--rule); }
+.hero-photo img { width: 100%; height: auto; display: block; }
+
+.playbook-section, .playbook-related, .playbook-cta, .playbook-faq { padding-block: clamp(56px, 8vw, 96px); }
+.prose { font-size: 17px; line-height: 1.7; color: var(--ink-dim); max-width: 760px; margin-top: 24px; }
+.prose + .prose { margin-top: 16px; }
+.prose a, .related-list a { color: var(--ink); text-decoration: none; border-bottom: 1px solid rgba(240,255,0,0.45); }
+.prose a:hover, .related-list a:hover { color: var(--y2); border-bottom-color: var(--y2); }
+
+.leak-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 16px; margin-block: 40px; }
+.leak-card { border: 1px solid var(--rule); background: rgba(255,255,255,0.025); padding: 24px; border-radius: 4px; }
+.leak-num { color: var(--y2); font-size: 10px; letter-spacing: 0.18em; }
+.leak-card h3 { margin-top: 18px; font-size: 22px; line-height: 1.15; color: var(--ink); }
+.leak-card p:last-child { margin-top: 12px; color: var(--ink-dim); line-height: 1.55; }
+
+.article-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(280px, 420px); gap: clamp(32px, 6vw, 72px); align-items: start; }
+.section-photo { margin: 0; border-radius: 4px; overflow: hidden; border: 1px solid var(--rule); }
+.section-photo img { width: 100%; height: auto; display: block; }
+.system-list { list-style: none; display: flex; flex-direction: column; gap: 14px; margin-top: 28px; max-width: 760px; }
+.system-list li { color: var(--ink-dim); line-height: 1.55; padding-left: 20px; position: relative; }
+.system-list li::before { content: ""; position: absolute; left: 0; top: 0.72em; width: 7px; height: 7px; border-radius: 50%; background: var(--y2); }
+
+.related-list { list-style: none; display: flex; flex-direction: column; gap: 12px; margin-top: 32px; max-width: 880px; }
+.cta-row { display: flex; flex-wrap: wrap; gap: 16px; margin-top: 32px; }
+.playbook-faq { padding-top: 0; }
+.faq-list { display: flex; flex-direction: column; gap: 16px; margin-top: 32px; max-width: 880px; }
+.faq-item { border-top: 1px solid var(--rule); padding-block: 20px; }
+.faq-item[open] summary { color: var(--y2); }
+.faq-q { font-size: 17px; font-weight: 500; color: var(--ink); cursor: pointer; line-height: 1.4; list-style: none; }
+.faq-q::marker, .faq-q::-webkit-details-marker { display: none; }
+.faq-q::after { content: "+"; float: right; font-family: var(--mono); font-size: 18px; color: var(--y2); }
+.faq-item[open] .faq-q::after { content: "-"; }
+.faq-a { margin-top: 12px; }
+.faq-a p { font-size: 16px; line-height: 1.65; color: var(--ink-dim); max-width: 720px; }
+
+@media (max-width: 900px) {
+  .playbook-hero-grid, .article-grid { grid-template-columns: 1fr; }
+  .leak-grid { grid-template-columns: 1fr; }
+}
+</style>
