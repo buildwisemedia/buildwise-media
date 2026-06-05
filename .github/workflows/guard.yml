@@ -1,0 +1,32 @@
+name: guard
+
+# Always-on repo hygiene gate. Fails the build if node_modules — or any stray
+# symlink that resolves into it — ever becomes tracked in git.
+#
+# Origin: 2026-06-04 an automated build committed a self-referential
+# `node_modules` symlink (mode 120000 → its own absolute path), which broke
+# every local `astro build` with "Too many levels of symbolic links". The bare
+# symlink slipped past `.gitignore`'s `node_modules/` (trailing slash matches
+# directory contents, not the symlink). Fixed in efbcc0b; this gate stops a
+# recurrence. Local pre-commit hooks aren't shared across machines/executors (the
+# offending build ran without one), so CI is the real enforcement surface.
+#
+# Logic lives in scripts/guard-no-vendored-modules.mjs (also runnable locally via
+# `npm run qa:guard`).
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  no-vendored-modules:
+    name: No vendored node_modules
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Guard against tracked node_modules
+        run: node scripts/guard-no-vendored-modules.mjs

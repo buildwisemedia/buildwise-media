@@ -9,6 +9,7 @@
     "qa:brand": "node scripts/brand-closure-qa.mjs",
     "qa:brand:visual": "node scripts/brand-closure-visual-qa.mjs",
     "qa:brand:build": "npm run build && npm run qa:brand",
+    "qa:guard": "node scripts/guard-no-vendored-modules.mjs",
     "preview": "astro preview",
     "astro": "astro",
     "sync-canonical": "cp ../bwm-strategic-roadmap/data/canonical.json src/data/canonical.json && echo 'canonical.json synced from The Book — commit + push the change so CF Pages builds against the committed file (NOT a live sibling-repo copy)'"
