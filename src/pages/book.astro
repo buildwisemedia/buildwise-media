@@ -160,6 +160,25 @@ const breadcrumb = {
       return value || '';
     }
 
+    // MVT (PROJ-AUTO-MVT-001): the homepage hero experiment converts on /book, which
+    // the edge worker does not serve — the assigned arm arrives via the _bwm_exp_host
+    // carry cookie set on the homepage. Empty for direct-to-/book visitors (correctly
+    // not enrolled). variant_id -> experiment_variant_id to match the handler field.
+    function experimentContext() {
+      const g = window.__BWM_EXP;
+      if (g && g.experiment_id && g.variant_id) {
+        return { experiment_id: g.experiment_id, experiment_variant_id: g.variant_id };
+      }
+      const m = document.cookie.match(/(?:^|; )_bwm_exp_host=([^;]*)/);
+      if (m) {
+        try {
+          const c = JSON.parse(decodeURIComponent(m[1]));
+          if (c && c.e && c.v) return { experiment_id: c.e, experiment_variant_id: c.v };
+        } catch (_) {}
+      }
+      return { experiment_id: '', experiment_variant_id: '' };
+    }
+
     function compact(object) {
       const out = {};
       Object.keys(object || {}).forEach((key) => {
@@ -239,6 +258,24 @@ const breadcrumb = {
         utm_campaign: current.utm_campaign || '',
         utm_content: current.utm_content || '',
       }, { fbqEvent: 'Schedule', eventId: current.booking_event_id });
+
+      // MVT (PROJ-AUTO-MVT-001 connector 1c): record the booked call as the truest
+      // conversion for the hero experiment. Fire-and-forget; no-op without an arm.
+      try {
+        const exp = experimentContext();
+        if (exp.experiment_id && navigator.sendBeacon) {
+          navigator.sendBeacon(
+            'https://bwm-form-handler.robert-ba0.workers.dev/buildwisemedia/booking-outcome',
+            JSON.stringify({
+              experiment_id: exp.experiment_id,
+              experiment_variant_id: exp.experiment_variant_id,
+              booking_event_id: current.booking_event_id || '',
+              contact_id: current.contact_id || '',
+              landing_page: current.landing_page || location.href,
+            }),
+          );
+        }
+      } catch (_) {}
     }
 
     function bindCalSuccess() {

@@ -327,6 +327,27 @@ const poorFour = [
     };
   }
 
+  // MVT (PROJ-AUTO-MVT-001): the homepage hero experiment converts here on /book.
+  // window.__BWM_EXP is injected by the edge worker on pages it serves (/, /go/*);
+  // /book is not worker-served, so the variant arrives via the _bwm_exp_host carry
+  // cookie set on the homepage. variant_id -> experiment_variant_id (the handler's
+  // field name; variant_id already means utm_content elsewhere). Empty when the
+  // visitor was never assigned (direct-to-/book), which the handler treats as no-op.
+  function experimentContext() {
+    const g = window.__BWM_EXP;
+    if (g && g.experiment_id && g.variant_id) {
+      return { experiment_id: g.experiment_id, experiment_variant_id: g.variant_id };
+    }
+    const m = document.cookie.match(/(?:^|; )_bwm_exp_host=([^;]*)/);
+    if (m) {
+      try {
+        const c = JSON.parse(decodeURIComponent(m[1]));
+        if (c && c.e && c.v) return { experiment_id: c.e, experiment_variant_id: c.v };
+      } catch (_) {}
+    }
+    return { experiment_id: '', experiment_variant_id: '' };
+  }
+
   function payloadFromForm() {
     const fd = new FormData(form);
     return Object.assign({
@@ -344,7 +365,7 @@ const poorFour = [
       revenue_range: fd.get('revenue_range'),
       offer_interest: fd.get('offer_interest'),
       decision_maker: fd.get('decision_maker'),
-    }, attributionPayload());
+    }, attributionPayload(), experimentContext());
   }
 
   function labelForValue(name, value) {
