@@ -1,0 +1,195 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+const title = "AI Marketing Department for Small Business — Buildwise Media";
+const description = "An AI marketing department for small business owners runs visibility, content, follow-up, attribution, and reporting without making the owner manage another vendor.";
+
+const definedTerm = {
+  '@context': 'https://schema.org',
+  '@type': 'DefinedTerm',
+  '@id': 'https://buildwisemedia.com/playbook/ai-marketing-department-small-business#term',
+  name: 'AI Marketing Department for Small Business',
+  description: 'An AI marketing department for small business is a run-for-you marketing function. It combines AI systems and operators so the owner is not stuck managing content, follow-up, reporting, and weekly decisions.',
+  inDefinedTermSet: {
+    '@type': 'DefinedTermSet',
+    '@id': 'https://buildwisemedia.com/playbook/',
+    name: 'Buildwise Media Playbook',
+  },
+};
+
+const breadcrumb = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://buildwisemedia.com/' },
+    { '@type': 'ListItem', position: 2, name: 'Playbook', item: 'https://buildwisemedia.com/playbook/' },
+    { '@type': 'ListItem', position: 3, name: 'AI Marketing Department for Small Business', item: 'https://buildwisemedia.com/playbook/ai-marketing-department-small-business' },
+  ],
+};
+
+const faqs = [
+  {
+    q: 'What is an AI marketing department for small business?',
+    a: 'It is a run-for-you marketing function. AI handles repeatable work, and the Buildwise team runs the weekly operating rhythm. The owner sees the results without managing each task.',
+  },
+  {
+    q: 'How is this different from hiring one marketer?',
+    a: 'One hire rarely covers search, content, ads, follow-up, reviews, reporting, and strategy. The department model connects those layers into one system.',
+  },
+  {
+    q: 'How fast can the system go live?',
+    a: 'The install path is 30 days. The first window captures the baseline, wires the lead path, and starts the operating rhythm.',
+  },
+];
+
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  '@id': 'https://buildwisemedia.com/playbook/ai-marketing-department-small-business#faq',
+  mainEntity: faqs.map((f) => ({
+    '@type': 'Question',
+    name: f.q,
+    acceptedAnswer: { '@type': 'Answer', text: f.a },
+  })),
+};
+---
+<BaseLayout title={title} description={description} jsonLd={[definedTerm, breadcrumb, faqSchema]}>
+
+  <section class="playbook-hero">
+    <div class="container">
+      <p class="eyebrow"><a href="/playbook" class="back-link">← Playbook</a></p>
+      <h1 class="h-hero">AI Marketing Department for Small Business Owners</h1>
+      <p class="lede">
+        An AI marketing department for small business is a run-for-you marketing function. It handles visibility, content, follow-up, reviews, reporting, and weekly decisions so the owner can stop carrying every marketing task.
+      </p>
+      <figure class="hero-photo">
+        <!-- @r020:F2 proof: editorial still-life makes the operating method concrete instead of abstract -->
+        <img src="/images/bwm-method-editorial-v1.webp" alt="Editorial still-life: a worn leather notebook open to a hand-annotated diagram, a mechanical pencil resting across the page, diffuse window light picking out the texture of the paper." width="1920" height="1080" loading="eager" decoding="async" />
+      </figure>
+    </div>
+  </section>
+
+  <section class="playbook-section elev">
+    <div class="container">
+      <p class="section-tag">Plain answer</p>
+      <h2 class="h-section">A department is a system, not a stack of tasks.</h2>
+      <p class="prose">
+        Most owners do not need another channel to manage. They need the work to run. The Buildwise team and our AI system connect the parts that usually sit apart: search, pages, content, speed-to-lead, reviews, spend, and reporting.
+      </p>
+      <p class="prose">
+        The system starts with a baseline. Then we install the first live path, measure what changed, and keep the week moving from one scoreboard. The owner sees the next move without running the day-to-day.
+      </p>
+      <figure class="section-photo section-photo--diagram">
+        <!-- @r020:F2 proof: node-mesh diagram shows the connected layers that make the department run as a system -->
+        <img src="/images/node-mesh-ascending-v1.svg" alt="Isometric ascending node mesh showing connected layers wired as one operating system." width="1200" height="900" loading="lazy" decoding="async" />
+      </figure>
+    </div>
+  </section>
+
+  <section class="playbook-section">
+    <div class="container">
+      <p class="section-tag">Owner fit</p>
+      <h2 class="h-section">Built for owners who are the bottleneck.</h2>
+      <p class="prose">
+        A small business owner can be busy and still have weak marketing. Calls come in. Jobs get done. Then reviews, follow-up, attribution, and content slip because the day is already full.
+      </p>
+      <p class="prose">
+        An AI marketing department closes that gap. It gives each layer a job and keeps the work moving. It is a better fit when the owner wants marketing off their plate, not another plan to supervise after hours.
+      </p>
+    </div>
+  </section>
+
+  <section class="playbook-section elev">
+    <div class="container">
+      <p class="section-tag">How Buildwise uses it</p>
+      <h2 class="h-section">Ascend is the installed department.</h2>
+      <p class="prose">
+        The Buildwise team ships this model through <a href="/services/ascend">Ascend</a>. The system installs in 30 days and then runs every week. It stays tied to source truth, booked work, and the next operating decision.
+      </p>
+      <p class="prose">
+        <a href="/services/ascend-pilot">Ascend Pilot</a> is the proof sprint. <a href="/system">The system page</a> shows the eight layers. The <a href="/audit">Revenue Leak Map</a> shows which layer should move first.
+      </p>
+    </div>
+  </section>
+
+  <section class="playbook-faq">
+    <div class="container">
+      <p class="section-tag">FAQ</p>
+      <h2 class="h-section">Common questions.</h2>
+      <div class="faq-list">
+        {faqs.map((f) => (
+          <details class="faq-item">
+            <summary class="faq-q">{f.q}</summary>
+            <div class="faq-a">
+              <p>{f.a}</p>
+            </div>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="playbook-related elev">
+    <div class="container">
+      <p class="section-tag">Related</p>
+      <h2 class="h-section">More from the playbook.</h2>
+      <ul class="related-list">
+        <li><a href="/playbook/ai-marketing-department">AI Marketing Agency for Home Service Businesses</a> — the agency-framed version of the same operating model</li>
+        <li><a href="/playbook/in-house-marketing-alternative">In-House Marketing Alternative</a> — why one hire rarely covers the full load</li>
+        <li><a href="/playbook/poor-four">The Poor Four</a> — the gaps that break a lead system</li>
+        <li><a href="/playbook/captured-baseline">Captured Baseline</a> — why measurement starts before the first change</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="playbook-cta elev">
+    <div class="container">
+      <h2 class="h-closer">Ready to see where the system should start?</h2>
+      <p class="lede">The free Revenue Leak Map shows which layer is leaking revenue now.</p>
+      <p class="cta-row">
+        <a class="cta-primary" href="/book" data-cta-source="playbook-ai-marketing-department-small-business-cta">Get My Free Revenue Leak Map <span class="cta-arrow">→</span></a>
+        <a class="cta-ghost" href="/book" data-cta-source="playbook-ai-marketing-department-small-business-secondary">See If We're a Fit</a>
+      </p>
+    </div>
+  </section>
+
+</BaseLayout>
+
+<style>
+.playbook-hero { padding-block: clamp(80px, 12vw, 144px); }
+.playbook-hero .lede { margin-top: 24px; }
+.back-link { color: var(--ink-faint); transition: color 180ms ease; }
+.back-link:hover { color: var(--y2); }
+
+.hero-photo { margin-top: 56px; max-width: 1120px; border-radius: 4px; overflow: hidden; border: 1px solid var(--rule); }
+.hero-photo img { width: 100%; height: auto; display: block; }
+
+.playbook-section { padding-block: clamp(56px, 8vw, 96px); }
+.playbook-section .prose { font-size: 17px; line-height: 1.7; color: var(--ink-dim); max-width: 720px; }
+.playbook-section .prose + .prose { margin-top: 16px; }
+
+.section-photo { margin: 48px 0 0; max-width: 1120px; border-radius: 4px; overflow: hidden; border: 1px solid var(--rule); }
+.section-photo img { width: 100%; height: auto; display: block; }
+.section-photo--diagram { max-width: 980px; border-color: transparent; background: transparent; }
+.section-photo--diagram img { background: transparent; }
+
+.playbook-faq { padding-block: clamp(64px, 10vw, 112px); }
+.faq-list { display: flex; flex-direction: column; gap: 16px; margin-top: 32px; max-width: 880px; }
+.faq-item { border-top: 1px solid var(--rule); padding-block: 20px; }
+.faq-item[open] summary { color: var(--y2); }
+.faq-q { font-size: 17px; font-weight: 500; color: var(--ink); cursor: pointer; line-height: 1.4; list-style: none; }
+.faq-q::marker, .faq-q::-webkit-details-marker { display: none; }
+.faq-q::after { content: "+"; float: right; font-family: var(--mono); font-size: 18px; color: var(--y2); }
+.faq-item[open] .faq-q::after { content: "-"; }
+.faq-a { margin-top: 12px; }
+.faq-a p { font-size: 16px; line-height: 1.65; color: var(--ink-dim); max-width: 720px; }
+
+.playbook-related { padding-block: clamp(56px, 8vw, 96px); }
+.related-list { list-style: none; display: flex; flex-direction: column; gap: 12px; margin-top: 32px; max-width: 880px; }
+.related-list a { color: var(--ink); font-weight: 500; text-decoration: none; border-bottom: 1px solid transparent; transition: border-color 180ms ease, color 180ms ease; }
+.related-list a:hover { color: var(--y2); border-bottom-color: var(--y2); }
+
+.playbook-cta { padding-block: clamp(64px, 10vw, 112px); }
+.playbook-cta .lede { margin-top: 16px; }
+.cta-row { display: flex; flex-wrap: wrap; gap: 16px; margin-top: 32px; }
+</style>

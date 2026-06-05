@@ -29,9 +29,9 @@ const layers = canonical.products.ascend.eight_layers.map((raw: string, index: n
 });
 
 const proofStats = [
-  { label: 'install proof', value: '4 months', body: 'Same metro after the system install.' },
-  { label: 'review proof', value: '31', body: 'New qualified reviews captured for one HVAC client.' },
-  { label: 'visibility proof', value: '90+ days', body: '#1 map position held after the install.' },
+  { label: 'system install', value: '30 days', body: 'Baseline, lead path, and first operating rhythm live.' },
+  { label: 'connected layers', value: '8', body: 'Visibility, speed, reputation, source truth, and weekly strategy.' },
+  { label: 'proof rule', value: 'Day 1', body: 'The baseline is captured before any claim gets made.' },
 ];
 
 const fitSignals = [
@@ -128,7 +128,7 @@ const faqSchema = {
   <section class="industry-proof elev" aria-labelledby="proof-title">
     <div class="container proof-grid">
       <header class="section-head">
-        <p class="section-tag">HVAC proof</p>
+        <p class="section-tag">HVAC proof path</p>
         <h2 id="proof-title" class="h-section">Seasonal demand breaks when the work is not wired.</h2>
         <p class="lede">HVAC owners do not lose only because they need more leads. They lose because the company cannot see which source worked, which call got missed, which quote went cold, or which review should have been asked for.</p>
       </header>
@@ -141,7 +141,7 @@ const faqSchema = {
           </article>
         ))}
       </div>
-      <p class="proof-note">This is cited anonymously because client markets stay private. The method is the point: capture the baseline, install the layers, and measure the result in the same market over time.</p>
+      <p class="proof-note">We do not invent an HVAC-only proof stat. The system starts by capturing your baseline, then measures booked work from the same market over time.</p>
     </div>
   </section>
 
@@ -161,6 +161,10 @@ const faqSchema = {
           </article>
         ))}
       </div>
+      <figure class="article-photo layer-photo">
+        <!-- @r020:F2 proof: node-mesh visual shows the eight HVAC layers acting as one connected operating system -->
+        <img src="/images/node-mesh-ascending-v1.svg" alt="Isometric ascending node mesh showing connected layers wired as one operating system." width="1200" height="900" loading="lazy" decoding="async" />
+      </figure>
       <p class="prose">
         The layers matter most when they talk to each other. Visibility brings the buyer in. Conversion gives them a clear path. Speed-to-Lead answers while the need is hot. Sales Ops keeps quotes alive. Reputation turns finished work into proof. Paid Media gets measured against real jobs. Reporting shows what happened. Strategy sets the next move.
       </p>
@@ -312,6 +316,7 @@ const faqSchema = {
 .article-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(280px, 420px); gap: clamp(32px, 6vw, 72px); align-items: start; }
 .article-photo { margin: 0; border: 1px solid var(--rule); border-radius: 4px; overflow: hidden; }
 .article-photo img { display: block; width: 100%; height: auto; }
+.layer-photo { max-width: 760px; margin: 0 0 32px; background: transparent; }
 .fit-panel h3 { font-size: 24px; line-height: 1.25; color: var(--ink); font-weight: 500; }
 .fit-panel ul { list-style: none; display: flex; flex-direction: column; gap: 14px; margin-top: 24px; }
 .fit-panel li { color: var(--ink-dim); line-height: 1.55; padding-left: 20px; position: relative; }
