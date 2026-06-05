@@ -6,7 +6,6 @@
 // Voice: team voice — no "I", no Robert, no vendors named
 import BaseLayout from '../layouts/BaseLayout.astro';
 import ProductComparison from '../components/ProductComparison.astro';
-import FinalCta from '../components/FinalCta.astro';
 import FAQ from '../components/FAQ.astro';
 import canonical from '../data/canonical.json';
 
@@ -15,13 +14,15 @@ const ascend = canonical.products.ascend;
 const pro    = canonical.products.ascend_pro;
 const layers = canonical.products.ascend.eight_layers;
 const msa    = canonical.contract.msa_locked_clauses;
+const title = "Pricing — Commercial Marketing System for Multi-Location Service Businesses";
+const description = "Buildwise Media pricing: Ascend Pilot $15K one-time, Ascend $7K/mo, Ascend Pro $15K/mo for multi-location service businesses. Transparent pricing, true month-to-month after Day 90.";
 const pricingSignals = [
   { label: 'Entry sprint', name: pilot.name, price: pilot.price.oneshot_display, tone: 'cyan' },
   { label: 'Main system', name: ascend.name, price: ascend.price.recurring_display, tone: 'yellow' },
   { label: 'Market lock', name: pro.name, price: pro.price.recurring_display, tone: 'green' },
 ];
 const valueMath = [
-  { label: 'Typical Y1 system cost', value: '$78K', body: 'Pilot plus nine operating months after conversion.' },
+  { label: 'Year-one system cost', value: '$78K', body: 'Pilot plus nine operating months after conversion.' },
   { label: 'Pilot graduates', value: '$0', body: 'No second install fee after the $15K Pilot.' },
   { label: 'Distribution budget', value: '1:1', body: 'You pay ad platforms direct. Buildwise never touches ad dollars.' },
 ];
@@ -29,6 +30,12 @@ const roiChecks = [
   { label: 'What must be true', body: 'A few closed jobs must repay the install and operating cost. If your average job cannot support that, the diagnostic should stop us early.', tone: 'cyan' },
   { label: 'Why public pricing', body: 'Qualified owners should know the economic class before sharing company numbers. No price-discovery call required.', tone: 'green' },
   { label: 'Why it earns back', body: 'Ascend attacks leaks closest to cash first: slow response, quote follow-up, booked-job tracking, and channels already showing signal.', tone: 'orange' },
+];
+const pricingLinks = [
+  { href: '/services/ascend', label: 'Ascend system' },
+  { href: '/services/ascend-pilot', label: 'Ascend Pilot' },
+  { href: '/system', label: '8-layer system' },
+  { href: '/audit', label: 'Revenue Leak Map' },
 ];
 const ownerLayerBodies: Record<string, string> = {
   Visibility: 'Show up when buyers search, ask AI, or compare local providers.',
@@ -47,7 +54,7 @@ const pricingJsonLd = {
   '@id': 'https://buildwisemedia.com/pricing#service',
   name: 'Buildwise Media — Installed AI Growth System',
   description:
-    'Owned AI growth system for service businesses. Three commitment shapes: Ascend Pilot, Ascend, and Ascend Pro. Same 5× ROI floor.',
+    'Owned AI growth system for service businesses. Three commitment shapes: Ascend Pilot, Ascend, and Ascend Pro. Same 5x return on investment floor.',
   provider: { '@id': 'https://buildwisemedia.com/#org' },
   areaServed: {
     '@type': 'Country',
@@ -99,7 +106,7 @@ const pricingJsonLd = {
         '@type': 'Offer',
         name: pro.name,
         description:
-          'For owners building market dominance. Multi-location, outbound infrastructure, custom AI agents, RevOps, brand spine, vertical-SaaS integrations. Month-to-month after Day 90.',
+          'For multi-location service businesses building market depth. Adds custom AI agents, operating infrastructure, brand spine, and territory strategy. Month-to-month after Day 90.',
         price: String(pro.price.recurring),
         priceCurrency: 'USD',
         priceSpecification: {
@@ -141,11 +148,11 @@ const faqs = [
   },
   {
     q: 'Is there a long-term contract?',
-    a: 'No long-term lock-in. You pay the Pilot up front, then a 90-day initial operating period starts when Ascend goes live. After Day 90 the engagement is true month-to-month — no penalty, no exit fee. We earn the retainer every month or we don’t.',
+    a: 'No long-term lock-in. You pay the Pilot up front, then a 90-day initial operating period starts when Ascend goes live. After Day 90 the system is true month-to-month — no penalty, no exit fee. We earn the operating fee every month or we do not.',
   },
   {
-    q: 'What is the ROI floor, and what if the system doesn’t hit it?',
-    a: 'Every tier holds the same floor: 5× attributable ROI inside 24 months. It is written into the agreement and measured against the baseline we capture on Day 0. If you are below it at Month 24, we keep building until you reach it.',
+    q: 'What is the return floor, and what if the system does not hit it?',
+    a: 'Every tier holds the same floor: 5x attributable return on investment inside 24 months. It is written into the agreement and measured against the baseline we capture on Day 0. If you are below it at Month 24, we keep building until you reach it.',
   },
   {
     q: 'Do you mark up or manage my ad budget?',
@@ -166,8 +173,8 @@ const faqSchema = {
 ---
 
 <BaseLayout
-  title="Pricing — Buildwise Media"
-  description={`Public pricing for the owned AI growth system. Pilot $${pilot.price.oneshot.toLocaleString()} one-time · Ascend $${ascend.price.recurring.toLocaleString()}/mo + $${ascend.price.oneshot.toLocaleString()} install · Pro $${pro.price.recurring.toLocaleString()}/mo + $${pro.price.oneshot.toLocaleString()} install. Month-to-month after day 90.`}
+  title={title}
+  description={description}
   jsonLd={[pricingJsonLd, pricingBreadcrumb, faqSchema]}
 >
 
@@ -176,13 +183,14 @@ const faqSchema = {
     <div class="container pricing-hero-inner">
       <div>
         <p class="eyebrow">PRICING</p>
-        <h1 class="h-hero pricing-h1">Public pricing for the system you own.</h1>
+        <h1 class="h-hero pricing-h1">One System. Three Entry Points. All Yours.</h1>
+        <h2 class="pricing-keyword-subhead">Commercial marketing system for multi-location service businesses — three entry points.</h2>
         <p class="lede pricing-lede">
-          Three commitment shapes. Same installed AI growth system. Same 5× ROI floor. The fit question is whether your market opportunity is large enough for Ascend to be obvious.
+          Three commitment shapes. Same commercial marketing system. Same 5x return on investment floor. The fit question is whether your market opportunity is large enough for Ascend to be obvious.
         </p>
         <div class="pricing-hero-actions">
-          <a href="/book" class="cta" data-cta-source="pricing-hero">See If We're a Fit<span class="cta-arrow" aria-hidden="true">→</span></a>
-          <a href="#price-architecture" class="cta-ghost" data-cta-source="pricing-architecture">Compare offers</a>
+          <a href="/book" class="cta" data-cta-source="pricing-hero">Get My Free Revenue Leak Map<span class="cta-arrow" aria-hidden="true">→</span></a>
+          <a href="/book" class="cta-ghost" data-cta-source="pricing-fit">See If We're a Fit</a>
         </div>
         <dl class="pricing-math-strip" aria-label="Pricing value math">
           {valueMath.map((item) => (
@@ -211,6 +219,11 @@ const faqSchema = {
           ))}
         </div>
         <p class="pricing-console-note">The diagnostic checks whether your market opportunity can support the operating cost before we ask for a booking.</p>
+        <nav class="pricing-related-links" aria-label="Related pricing pages">
+          {pricingLinks.map((link) => (
+            <a href={link.href}>{link.label}</a>
+          ))}
+        </nav>
       </aside>
     </div>
   </section>
@@ -225,7 +238,7 @@ const faqSchema = {
   <section class="pricing-roi-section elev" aria-labelledby="pricing-roi-title">
     <div class="container pricing-roi-grid">
       <header>
-        <p class="section-tag">Why this is worth it</p>
+        <p class="section-tag">Why this pencils</p>
         <h2 id="pricing-roi-title" class="h-section">Premium pricing only works when the math is visible.</h2>
         <p class="lede">Ascend is not priced for hobby marketing. It is priced for service businesses where an owned, improving system can change the year.</p>
       </header>
@@ -316,8 +329,19 @@ const faqSchema = {
   <!-- FAQ — answer-engine extractable Q&A, matches FAQPage schema -->
   <FAQ faqs={faqs} />
 
-  <!-- Final CTA -->
-  <FinalCta />
+  <section class="pricing-final-cta elev" aria-labelledby="pricing-final-title">
+    <div class="container pricing-final-row">
+      <div>
+        <p class="section-tag">Start with the map</p>
+        <h2 id="pricing-final-title" class="h-closer">Know the leak before you choose the entry point.</h2>
+        <p class="lede">The free Revenue Leak Map shows whether Pilot, Ascend, or Pro has a clear first move. We build it from your business and walk it with you on the call.</p>
+      </div>
+      <div class="pricing-final-actions">
+        <a href="/book" class="cta" data-cta-source="pricing-final-primary">Get My Free Revenue Leak Map<span class="cta-arrow" aria-hidden="true">→</span></a>
+        <a href="/book" class="cta-ghost" data-cta-source="pricing-final-secondary">See If We're a Fit</a>
+      </div>
+    </div>
+  </section>
 
 </BaseLayout>
 
@@ -335,7 +359,15 @@ const faqSchema = {
 }
 .pricing-h1 {
   color: var(--ink);
-  margin-bottom: 26px;
+  margin-bottom: 14px;
+}
+.pricing-keyword-subhead {
+  max-width: 720px;
+  margin: 0 0 24px;
+  color: var(--ink);
+  font-size: clamp(22px, 3vw, 34px);
+  line-height: 1.15;
+  font-weight: 500;
 }
 .pricing-lede { max-width: 680px; }
 .pricing-hero-actions {
@@ -433,6 +465,27 @@ const faqSchema = {
   color: var(--ink-dim);
   font-size: 14px;
   line-height: 1.55;
+}
+.pricing-related-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 18px;
+}
+.pricing-related-links a {
+  border: 1px solid var(--rule);
+  color: var(--ink-dim);
+  font-family: var(--mono);
+  font-size: 9px;
+  letter-spacing: 0.13em;
+  line-height: 1.2;
+  padding: 8px 9px;
+  text-transform: uppercase;
+  transition: border-color 180ms ease, color 180ms ease;
+}
+.pricing-related-links a:hover {
+  border-color: var(--y2);
+  color: var(--ink);
 }
 
 /* ============ Comparison section ============ */
@@ -630,5 +683,33 @@ const faqSchema = {
   font-size: 11px;
   letter-spacing: 0.18em;
   color: var(--ink-faint);
+}
+.pricing-final-cta { padding-block: clamp(56px, 7vw, 88px); }
+.pricing-final-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: clamp(28px, 4vw, 52px);
+  flex-wrap: wrap;
+}
+.pricing-final-row .lede {
+  max-width: 720px;
+  margin-top: 16px;
+}
+.pricing-final-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+}
+@media (max-width: 560px) {
+  .pricing-final-actions,
+  .pricing-final-actions .cta,
+  .pricing-final-actions .cta-ghost {
+    width: 100%;
+  }
+  .pricing-final-actions .cta,
+  .pricing-final-actions .cta-ghost {
+    justify-content: center;
+  }
 }
 </style>

@@ -1,0 +1,342 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import canonical from '../../data/canonical.json';
+
+const title = "AI Marketing System for HVAC Companies — Buildwise Media";
+const description = "Buildwise Media installs and runs a full 8-layer AI marketing system for HVAC companies — visibility, speed-to-lead, reputation, attribution. Live in 30 days.";
+
+const layerBodies: Record<string, string> = {
+  Visibility: 'Show up when local buyers search, ask AI, or compare heating and cooling shops.',
+  Conversion: 'Turn visits, calls, forms, and quote paths into clear next steps.',
+  'Speed-to-Lead': 'Answer new service calls before the buyer calls the next company.',
+  'Sales Ops': 'Keep quotes, reminders, and past leads moving after the first touch.',
+  Reputation: 'Ask for reviews, reply with care, and turn good work into public proof.',
+  'Paid Media': 'Watch spend and move budget toward calls that can become booked work.',
+  Reporting: 'Show source, spend, calls, quotes, booked work, and the next move.',
+  Strategy: 'Run the week from a scoreboard, not a late-month guess.',
+};
+
+const layers = canonical.products.ascend.eight_layers.map((raw: string, index: number) => {
+  const dashIndex = raw.indexOf('—');
+  const dotIndex = raw.indexOf('·');
+  const name = dashIndex > 0 ? raw.slice(dotIndex + 1, dashIndex).trim() : raw.slice(dotIndex + 1).trim();
+  return {
+    n: String(index + 1).padStart(2, '0'),
+    name,
+    body: layerBodies[name] ?? '',
+    tone: ['cyan', 'green', 'yellow', 'orange', 'green', 'cyan', 'yellow', 'green'][index],
+  };
+});
+
+const proofStats = [
+  { label: 'system install', value: '30 days', body: 'Baseline, lead path, and first operating rhythm live.' },
+  { label: 'connected layers', value: '8', body: 'Visibility, speed, reputation, source truth, and weekly strategy.' },
+  { label: 'proof rule', value: 'Day 1', body: 'The baseline is captured before any claim gets made.' },
+];
+
+const fitSignals = [
+  'Owner-led HVAC company with real demand but no clear source truth.',
+  'Roughly $3M-$8M annual revenue for Ascend fit.',
+  'Enough service area density for visibility, reviews, and paid demand to matter.',
+  'Owner wants the system run for them, not another pile of tasks.',
+];
+
+const breadcrumb = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://buildwisemedia.com/' },
+    { '@type': 'ListItem', position: 2, name: 'Industries', item: 'https://buildwisemedia.com/industries' },
+    { '@type': 'ListItem', position: 3, name: 'HVAC', item: 'https://buildwisemedia.com/industries/hvac' },
+  ],
+};
+
+const serviceSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Service',
+  '@id': 'https://buildwisemedia.com/industries/hvac#service',
+  name: 'AI marketing system for HVAC companies',
+  serviceType: 'Installed AI marketing system for HVAC companies',
+  provider: { '@id': 'https://buildwisemedia.com/#org' },
+  areaServed: { '@type': 'Country', name: 'United States' },
+  audience: {
+    '@type': 'BusinessAudience',
+    audienceType: 'Owner-led HVAC companies',
+  },
+  description,
+  url: 'https://buildwisemedia.com/industries/hvac',
+};
+
+const faqs = [
+  {
+    q: 'What does an AI marketing system do for an HVAC company?',
+    a: 'It connects visibility, quote paths, speed-to-lead, reviews, spend, and reporting into one operating rhythm. The Buildwise team and our AI system run it each week so the owner can see what is working and where revenue is leaking.',
+  },
+  {
+    q: 'How fast can the HVAC system go live?',
+    a: 'The install path is 30 days. The first window captures the baseline, wires tracking, improves the lead path, and starts the operating cadence. The system keeps building after it goes live.',
+  },
+  {
+    q: 'Is this built for every HVAC company?',
+    a: 'No. Ascend is built for owner-led service businesses with enough demand, market density, and revenue to support a full run-for-you system. The fit check confirms that before any install starts.',
+  },
+];
+
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  '@id': 'https://buildwisemedia.com/industries/hvac#faq',
+  mainEntity: faqs.map((f) => ({
+    '@type': 'Question',
+    name: f.q,
+    acceptedAnswer: { '@type': 'Answer', text: f.a },
+  })),
+};
+---
+<BaseLayout title={title} description={description} jsonLd={[serviceSchema, breadcrumb, faqSchema]}>
+
+  <section class="industry-hero">
+    <div class="container industry-hero-grid">
+      <div>
+        <p class="eyebrow"><a href="/services/ascend" class="back-link">← Ascend</a> · HVAC</p>
+        <h1 class="h-hero">The AI Marketing System Built for HVAC Companies</h1>
+        <p class="hero-sub">
+          HVAC demand moves in spikes. A heat wave hits. A unit fails. A buyer asks for help and calls the first company that looks real and answers fast. If your visibility, follow-up system, reviews, and source tracking live in separate places, the best leads leak before you see the gap.
+        </p>
+        <div class="industry-ctas">
+          <a href="/book" class="cta" data-cta-source="hvac-hero-primary">Get My Free Revenue Leak Map<span class="cta-arrow" aria-hidden="true">→</span></a>
+          <a href="/book" class="cta-ghost" data-cta-source="hvac-hero-secondary">See If We're a Fit</a>
+        </div>
+      </div>
+      <aside class="industry-panel ops-panel" aria-label="HVAC operating proof">
+        <div class="industry-panel-head">
+          <p class="panel-label mono">HVAC revenue system</p>
+          <span class="ops-chip"><span class="dot green" aria-hidden="true"></span>baseline first</span>
+        </div>
+        <div class="hvac-loop" aria-hidden="true">
+          <span>Search</span>
+          <span>Answer</span>
+          <span>Book</span>
+          <span>Review</span>
+          <span>Prove</span>
+        </div>
+        <p class="panel-copy">The system connects the first search to the booked job, then feeds the proof back into the next buyer's choice.</p>
+      </aside>
+    </div>
+  </section>
+
+  <section class="industry-proof elev" aria-labelledby="proof-title">
+    <div class="container proof-grid">
+      <header class="section-head">
+        <p class="section-tag">HVAC proof path</p>
+        <h2 id="proof-title" class="h-section">Seasonal demand breaks when the work is not wired.</h2>
+        <p class="lede">HVAC owners do not lose only because they need more leads. They lose because the company cannot see which source worked, which call got missed, which quote went cold, or which review should have been asked for.</p>
+      </header>
+      <div class="proof-cards">
+        {proofStats.map((stat) => (
+          <article class="proof-card">
+            <p class="ops-kicker">{stat.label}</p>
+            <strong>{stat.value}</strong>
+            <p>{stat.body}</p>
+          </article>
+        ))}
+      </div>
+      <p class="proof-note">We do not invent an HVAC-only proof stat. The system starts by capturing your baseline, then measures booked work from the same market over time.</p>
+    </div>
+  </section>
+
+  <section class="industry-section">
+    <div class="container">
+      <p class="section-tag">The installed system</p>
+      <h2 class="h-section">Eight layers built around booked HVAC work.</h2>
+      <p class="prose">
+        An HVAC company needs more than a better page or a bigger budget. It needs a full revenue operating system. The Buildwise team installs the same eight Ascend layers across the business, then runs them as one weekly rhythm.
+      </p>
+      <div class="layers-grid">
+        {layers.map((layer) => (
+          <article class={`layer-card tone-${layer.tone}`}>
+            <p class="layer-num mono">{layer.n}</p>
+            <h3>{layer.name}</h3>
+            <p>{layer.body}</p>
+          </article>
+        ))}
+      </div>
+      <figure class="article-photo layer-photo">
+        <!-- @r020:F2 proof: node-mesh visual shows the eight HVAC layers acting as one connected operating system -->
+        <img src="/images/node-mesh-ascending-v1.svg" alt="Isometric ascending node mesh showing connected layers wired as one operating system." width="1200" height="900" loading="lazy" decoding="async" />
+      </figure>
+      <p class="prose">
+        The layers matter most when they talk to each other. Visibility brings the buyer in. Conversion gives them a clear path. Speed-to-Lead answers while the need is hot. Sales Ops keeps quotes alive. Reputation turns finished work into proof. Paid Media gets measured against real jobs. Reporting shows what happened. Strategy sets the next move.
+      </p>
+    </div>
+  </section>
+
+  <section class="industry-section elev">
+    <div class="container article-grid">
+      <div>
+        <p class="section-tag">Speed-to-Lead</p>
+        <h2 class="h-section">The first company to answer has the cleanest path to the job.</h2>
+        <p class="prose">
+          HVAC buyers are often under pressure. The house is too hot. The unit is down. The quote request is not casual. If no one answers quickly, the buyer keeps moving. Speed-to-Lead is the layer that closes that gap. The system routes each new call, form, and booking request into a fast next step.
+        </p>
+        <p class="prose">
+          That speed also feeds attribution. If a source sends strong leads but the answer time is slow, the source may look weak when the real leak is follow-up. We separate those two signals so the owner can make a better call.
+        </p>
+      </div>
+      <figure class="article-photo">
+        <!-- @r020:F2 proof: receipt-style image reinforces that HVAC attribution is measured from source to booked work -->
+        <img src="/images/bwm-receipts-still-life-v1.webp" alt="Printed proof packet and measurement notes on a dark desk." width="720" height="480" loading="lazy" decoding="async" />
+      </figure>
+    </div>
+  </section>
+
+  <section class="industry-section">
+    <div class="container">
+      <p class="section-tag">Search visibility</p>
+      <h2 class="h-section">Get named before the links.</h2>
+      <p class="prose">
+        HVAC search is no longer just a list of blue links. Buyers ask search engines and AI tools who to trust near them. The businesses that get named tend to have clear service pages, strong local proof, consistent data, and fresh reviews. Reputation and search visibility now work together.
+      </p>
+      <p class="prose">
+        Ascend treats each finished job as proof. Reviews get asked for. Complaints route to a human gate. Good words become proof on the site. The owner sees whether the work is making the company easier to find and easier to choose.
+      </p>
+    </div>
+  </section>
+
+  <section class="industry-section elev">
+    <div class="container article-grid">
+      <div>
+        <p class="section-tag">Attribution</p>
+        <h2 class="h-section">Know which jobs came from which dollar.</h2>
+        <p class="prose">
+          An HVAC owner should not have to guess where booked work came from. The system ties source, page, form, call, quote, and booked job into one view. That does not make every number perfect. It does make the unknowns visible.
+        </p>
+        <p class="prose">
+          Day one is about the baseline. Month 12 is about compounding. On day one, you get a clearer view of leaks and next steps. Over time, the system builds proof, improves answer speed, cleans up source tracking, and gives the owner a better weekly operating rhythm.
+        </p>
+      </div>
+      <div class="fit-panel">
+        <p class="section-tag">Fit check</p>
+        <h3>Ascend is built for HVAC operators who are ready to be run by proof.</h3>
+        <ul role="list">
+          {fitSignals.map((signal) => <li>{signal}</li>)}
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="industry-related">
+    <div class="container">
+      <p class="section-tag">Next reading</p>
+      <h2 class="h-section">See how the system connects.</h2>
+      <ul class="related-list">
+        <li><a href="/system">The System</a> — the full eight-layer operating model</li>
+        <li><a href="/services/ascend">Ascend</a> — what gets installed and run each week</li>
+        <li><a href="/problem/leaky-revenue">Leaky Revenue</a> — where leads, quotes, and reviews fall through</li>
+        <li><a href="/audit">Revenue Leak Map</a> — the diagnostic that shows the first gap</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="industry-cta elev">
+    <div class="container">
+      <h2 class="h-closer">Ready to see the HVAC leaks in your market?</h2>
+      <p class="lede">The free Revenue Leak Map shows where visibility, speed, follow-up, and attribution are holding back booked work.</p>
+      <p class="cta-row">
+        <a class="cta-primary" href="/book" data-cta-source="hvac-final-primary">Get My Free Revenue Leak Map <span class="cta-arrow">→</span></a>
+        <a class="cta-ghost" href="/book" data-cta-source="hvac-final-secondary">See If We're a Fit</a>
+      </p>
+    </div>
+  </section>
+
+  <section class="industry-faq">
+    <div class="container">
+      <p class="section-tag">FAQ</p>
+      <h2 class="h-section">Common questions.</h2>
+      <div class="faq-list">
+        {faqs.map((f) => (
+          <details class="faq-item">
+            <summary class="faq-q">{f.q}</summary>
+            <div class="faq-a">
+              <p>{f.a}</p>
+            </div>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+
+</BaseLayout>
+
+<style>
+.industry-hero { padding-block: clamp(80px, 12vw, 144px); }
+.industry-hero-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(280px, 420px); gap: clamp(32px, 6vw, 72px); align-items: center; }
+.back-link { color: var(--ink-faint); transition: color 180ms ease; }
+.back-link:hover { color: var(--y2); }
+.industry-ctas { display: flex; flex-wrap: wrap; gap: 16px; margin-top: 32px; }
+
+.industry-panel { padding: 28px; }
+.industry-panel-head { display: flex; justify-content: space-between; gap: 16px; align-items: center; }
+.hvac-loop { display: grid; grid-template-columns: repeat(5, 1fr); gap: 8px; margin-top: 32px; }
+.hvac-loop span {
+  min-height: 64px;
+  display: grid;
+  place-items: center;
+  border: 1px solid var(--rule);
+  color: var(--ink);
+  font-family: var(--mono);
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+}
+.hvac-loop span:nth-child(2), .hvac-loop span:nth-child(5) { border-color: rgba(240,255,0,0.45); color: var(--y2); }
+.panel-copy { margin-top: 24px; color: var(--ink-dim); line-height: 1.6; }
+
+.industry-proof, .industry-section, .industry-related, .industry-cta, .industry-faq { padding-block: clamp(56px, 8vw, 96px); }
+.proof-grid { display: grid; gap: 32px; }
+.proof-cards { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
+.proof-card, .fit-panel {
+  border: 1px solid var(--rule);
+  background: rgba(255,255,255,0.025);
+  padding: 24px;
+  border-radius: 4px;
+}
+.proof-card strong { display: block; margin-top: 8px; font-size: clamp(30px, 5vw, 56px); line-height: 1; color: var(--y2); font-weight: 600; }
+.proof-card p:last-child, .proof-note { color: var(--ink-dim); line-height: 1.6; }
+.proof-note { max-width: 760px; }
+
+.prose { font-size: 17px; line-height: 1.7; color: var(--ink-dim); max-width: 760px; margin-top: 24px; }
+.prose a, .related-list a { color: var(--ink); text-decoration: none; border-bottom: 1px solid rgba(240,255,0,0.45); }
+.prose a:hover, .related-list a:hover { color: var(--y2); border-bottom-color: var(--y2); }
+.layers-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 16px; margin-block: 40px; }
+.layer-card { border: 1px solid var(--rule); padding: 20px; border-radius: 4px; background: rgba(255,255,255,0.02); }
+.layer-card h3 { margin-top: 16px; font-size: 18px; color: var(--ink); }
+.layer-card p:last-child { margin-top: 12px; color: var(--ink-dim); line-height: 1.55; }
+.layer-num { color: var(--y2); }
+.article-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(280px, 420px); gap: clamp(32px, 6vw, 72px); align-items: start; }
+.article-photo { margin: 0; border: 1px solid var(--rule); border-radius: 4px; overflow: hidden; }
+.article-photo img { display: block; width: 100%; height: auto; }
+.layer-photo { max-width: 760px; margin: 0 0 32px; background: transparent; }
+.fit-panel h3 { font-size: 24px; line-height: 1.25; color: var(--ink); font-weight: 500; }
+.fit-panel ul { list-style: none; display: flex; flex-direction: column; gap: 14px; margin-top: 24px; }
+.fit-panel li { color: var(--ink-dim); line-height: 1.55; padding-left: 20px; position: relative; }
+.fit-panel li::before { content: ""; position: absolute; left: 0; top: 0.72em; width: 7px; height: 7px; border-radius: 50%; background: var(--y2); }
+.related-list { list-style: none; display: flex; flex-direction: column; gap: 12px; margin-top: 32px; max-width: 880px; }
+.cta-row { display: flex; flex-wrap: wrap; gap: 16px; margin-top: 32px; }
+.industry-faq { padding-top: 0; }
+.faq-list { display: flex; flex-direction: column; gap: 16px; margin-top: 32px; max-width: 880px; }
+.faq-item { border-top: 1px solid var(--rule); padding-block: 20px; }
+.faq-item[open] summary { color: var(--y2); }
+.faq-q { font-size: 17px; font-weight: 500; color: var(--ink); cursor: pointer; line-height: 1.4; list-style: none; }
+.faq-q::marker, .faq-q::-webkit-details-marker { display: none; }
+.faq-q::after { content: "+"; float: right; font-family: var(--mono); font-size: 18px; color: var(--y2); }
+.faq-item[open] .faq-q::after { content: "-"; }
+.faq-a { margin-top: 12px; }
+.faq-a p { font-size: 16px; line-height: 1.65; color: var(--ink-dim); max-width: 720px; }
+
+@media (max-width: 860px) {
+  .industry-hero-grid, .article-grid { grid-template-columns: 1fr; }
+  .proof-cards, .layers-grid { grid-template-columns: 1fr; }
+  .hvac-loop { grid-template-columns: 1fr; }
+}
+</style>

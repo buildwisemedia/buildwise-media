@@ -1,0 +1,563 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import canonical from '../../data/canonical.json';
+import FAQ from '../../components/FAQ.astro';
+
+const pilot = canonical.products.pilot;
+const ascend = canonical.products.ascend;
+
+const title = "Ascend Pilot — $15,000 45-Day Proof Sprint";
+const description = "Ascend Pilot is $15,000 — a 45-day proof sprint on your highest-value marketing layer. Starts with a Market Dominance Dossier. Ends with a live dashboard and a clear decision.";
+
+const pilotSpecs = [
+  { label: 'Cost', value: pilot.price.oneshot_display, body: 'One-time proof sprint. The fee covers the Ascend install scope if you graduate.', tone: 'yellow' },
+  { label: 'Window', value: '45 days', body: 'A tight sprint. We pick one layer, wire proof, and show the decision clearly.', tone: 'cyan' },
+  { label: 'Start', value: 'Dossier', body: 'Market rank, revenue leaks, proof gaps, and the first move are captured before build work starts.', tone: 'green' },
+  { label: 'End', value: 'Decision', body: `Keep going into Ascend at ${ascend.price.recurring_display}, or keep what was built and stop there.`, tone: 'orange' },
+];
+
+const timeline = [
+  {
+    n: '01',
+    range: 'Days 1-7',
+    name: 'Map the market',
+    body: 'We build the Market Dominance Dossier. It shows who appears before you, where buyers stall, what proof is missing, and which layer should move first.',
+  },
+  {
+    n: '02',
+    range: 'Days 8-30',
+    name: 'Wire the first layer',
+    body: 'We select the highest-value layer from the proven menu. Then we wire attribution, follow-up paths, and the live dashboard around that layer.',
+  },
+  {
+    n: '03',
+    range: 'Days 31-45',
+    name: 'Run the proof',
+    body: 'We watch the signals, clear the human gates, and report what changed. The final call is a decision, not a sales pitch.',
+  },
+];
+
+const included = [
+  'Market Dominance Dossier before the build starts.',
+  'One highest-value layer selected from the proven Ascend menu.',
+  'Attribution wiring so the baseline and movement are visible.',
+  'Live dashboard that shows what changed and what still needs work.',
+  'Day-45 decision: graduate into Ascend or leave with the built asset.',
+];
+
+const fitRows = [
+  { label: 'Good fit', body: 'You run a real service business, know growth matters, and want proof before a larger operating system.' },
+  { label: 'Good fit', body: 'You have one leak that is close to cash: slow follow-up, weak conversion, thin proof, or unclear tracking.' },
+  { label: 'Not a fit', body: 'You want a pile of tasks, a set of random assets, or a team to manage every day.' },
+  { label: 'Not a fit', body: 'You are not ready to share numbers, approve gates, or judge the sprint by a captured baseline.' },
+];
+
+const linkCards = [
+  { href: '/services/ascend', label: 'Ascend', body: 'See the full 8-layer system Pilot graduates enter.' },
+  { href: '/pricing', label: 'Pricing', body: 'Review the public price architecture and Day-90 terms.' },
+  { href: '/audit', label: 'Revenue Leak Map', body: 'Start with the free map before a paid sprint.' },
+  { href: '/system', label: 'The system', body: 'See how the operating layers connect.' },
+];
+
+const faqs = [
+  {
+    q: 'What is Ascend Pilot?',
+    a: `Ascend Pilot is a ${pilot.price.oneshot_display} one-time, 45-day proof sprint. We use it to prove one high-value marketing layer before you commit to the full Ascend system.`,
+  },
+  {
+    q: 'Does Ascend Pilot include the Ascend install fee?',
+    a: `Yes. The ${pilot.price.oneshot_display} Pilot fee covers the Ascend install scope. If you graduate, you begin Ascend at ${ascend.price.recurring_display} with no second install charge.`,
+  },
+  {
+    q: 'What happens at the end of 45 days?',
+    a: 'We review the dashboard, the baseline, and what changed. If the system fits, you graduate into Ascend. If it does not, you keep the built asset and stop there.',
+  },
+  {
+    q: 'Should I start with Ascend Pilot or the free Revenue Leak Map?',
+    a: 'Start with the free Revenue Leak Map. It shows whether the paid Pilot has a clear first layer to prove. If the map is weak, the Pilot should not start.',
+  },
+];
+
+const service = {
+  '@context': 'https://schema.org',
+  '@type': 'Service',
+  '@id': 'https://buildwisemedia.com/services/ascend-pilot#service',
+  name: pilot.name,
+  serviceType: '45-day proof sprint for service-business marketing systems',
+  provider: { '@id': 'https://buildwisemedia.com/#org' },
+  areaServed: { '@type': 'Country', name: 'United States' },
+  description,
+  url: 'https://buildwisemedia.com/services/ascend-pilot',
+  offers: {
+    '@type': 'Offer',
+    name: pilot.name,
+    price: String(pilot.price.oneshot),
+    priceCurrency: 'USD',
+    description: 'A 45-day proof sprint. The $15,000 Pilot fee covers the Ascend install scope for Pilot graduates.',
+    eligibleDuration: {
+      '@type': 'QuantitativeValue',
+      value: 45,
+      unitCode: 'DAY',
+    },
+  },
+};
+
+const breadcrumb = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://buildwisemedia.com/' },
+    { '@type': 'ListItem', position: 2, name: 'Services', item: 'https://buildwisemedia.com/services' },
+    { '@type': 'ListItem', position: 3, name: 'Ascend Pilot', item: 'https://buildwisemedia.com/services/ascend-pilot' },
+  ],
+};
+
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  '@id': 'https://buildwisemedia.com/services/ascend-pilot#faq',
+  mainEntity: faqs.map((f) => ({
+    '@type': 'Question',
+    name: f.q,
+    acceptedAnswer: { '@type': 'Answer', text: f.a },
+  })),
+};
+---
+
+<BaseLayout title={title} description={description} jsonLd={[service, breadcrumb, faqSchema]}>
+
+  <section class="ascend-hero pilot-hero">
+    <div class="container ascend-hero-grid">
+      <div>
+        <p class="eyebrow">Ascend Pilot · proof sprint</p>
+        <h1 class="h-hero">Ascend Pilot: A 45-Day Proof Marketing Program</h1>
+        <p class="hero-sub">
+          Ascend Pilot is a paid 45-day marketing program for owners who want the system to earn the next step. We start with a captured baseline, choose one layer close to revenue, and show the result in a live dashboard.
+        </p>
+        <div class="hero-ctas">
+          <a href="/book" class="cta" data-cta-source="ascend-pilot-hero-primary">Get My Free Revenue Leak Map<span class="cta-arrow" aria-hidden="true">→</span></a>
+          <a href="/book" class="cta-ghost" data-cta-source="ascend-pilot-hero-secondary">See If We're a Fit</a>
+        </div>
+      </div>
+
+      <aside class="ascend-panel ops-panel" aria-label="Ascend Pilot proof sprint preview">
+        <div class="ascend-panel-head">
+          <p class="panel-label mono">Pilot state</p>
+          <span class="ops-chip"><span class="dot green" aria-hidden="true"></span>45-day proof</span>
+        </div>
+        <p class="panel-number">45</p>
+        <p class="panel-copy">days to prove one layer, wire the dashboard, and make the next decision with the baseline in view.</p>
+        <div class="pilot-meter" aria-hidden="true">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+        <div class="ascend-panel-ledger">
+          <span class="mono">START</span>
+          <strong>Market Dominance Dossier</strong>
+          <span class="mono">END</span>
+          <strong>graduate or stop clean</strong>
+        </div>
+      </aside>
+    </div>
+  </section>
+
+  <section class="product-spec-section" aria-labelledby="pilot-spec-title">
+    <div class="container product-spec-grid">
+      <header class="section-head">
+        <p class="section-tag">What Pilot is</p>
+        <h2 id="pilot-spec-title" class="h-section">A paid proof sprint, not a loose monthly promise.</h2>
+        <p class="lede">
+          The sprint has one job: prove whether the highest-value layer can move inside your real business. It is narrow on purpose. A narrow sprint makes the result easier to judge.
+        </p>
+      </header>
+      <div class="spec-grid">
+        {pilotSpecs.map((spec) => (
+          <article class={`spec-card tone-${spec.tone}`}>
+            <p class="ops-kicker">{spec.label}</p>
+            <strong>{spec.value}</strong>
+            <p>{spec.body}</p>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="pilot-included-section elev" aria-labelledby="pilot-included-title">
+    <div class="container commitments-grid">
+      <header class="section-head">
+        <p class="section-tag">What is inside</p>
+        <h2 id="pilot-included-title" class="h-section">The sprint starts with the market, then moves one layer.</h2>
+        <p class="lede">
+          We do not start by guessing. The Market Dominance Dossier shows the field. Then the team selects the layer that should move closest to booked work.
+        </p>
+      </header>
+      <ul class="commitment-list" role="list">
+        {included.map((item) => (
+          <li><span class="dot live"></span><span>{item}</span></li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <section class="process-section">
+    <div class="container process-grid">
+      <header class="section-head">
+        <p class="section-tag">The timeline</p>
+        <h2 class="h-section">Days 1-7. Days 8-30. Days 31-45.</h2>
+        <p class="lede">
+          The work moves in order. First we capture the baseline. Then we wire the layer. Then we run the proof and decide what the numbers say.
+        </p>
+      </header>
+      <ol class="process-list" role="list">
+        {timeline.map((phase) => (
+          <li>
+            <span class="process-num mono">{phase.n} · {phase.range}</span>
+            <h3>{phase.name}</h3>
+            <p>{phase.body}</p>
+          </li>
+        ))}
+      </ol>
+    </div>
+  </section>
+
+  <section class="pilot-decision-section elev" aria-labelledby="pilot-decision-title">
+    <div class="container pilot-decision-grid">
+      <header class="section-head">
+        <p class="section-tag">The Day-45 decision</p>
+        <h2 id="pilot-decision-title" class="h-section">Keep going, or leave with the system piece you funded.</h2>
+        <p class="lede">
+          Pilot is built to lower the trust gap. If the proof is strong and both sides agree, the system graduates into Ascend. The Pilot fee already covered the install scope, so graduates begin Ascend at {ascend.price.recurring_display} with no second install charge.
+        </p>
+      </header>
+      <div class="decision-board ops-panel">
+        <div class="decision-row">
+          <span class="mono">Graduate</span>
+          <strong>Ascend begins at {ascend.price.recurring_display}</strong>
+          <p>The full 8-layer system runs every week. Your Pilot work carries forward.</p>
+        </div>
+        <div class="decision-row">
+          <span class="mono">Stop</span>
+          <strong>You keep the built asset</strong>
+          <p>The dashboard, wiring, and proof from the sprint stay with your business.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="layers-section">
+    <div class="container">
+      <header class="section-head">
+        <p class="section-tag">Fit profile</p>
+        <h2 class="h-section">Pilot fits owners who want proof and can judge it.</h2>
+        <p class="lede">
+          This is not for owners who want more noise. It is for owners who want the first layer of a run-for-you system tested against their own baseline.
+        </p>
+      </header>
+      <div class="layers-grid">
+        {fitRows.map((row) => (
+          <article class="layer-card">
+            <p class="layer-num mono">{row.label}</p>
+            <h3>{row.label}</h3>
+            <p>{row.body}</p>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="pricing-snapshot" id="links">
+    <div class="container">
+      <header class="section-head">
+        <p class="section-tag">Related paths</p>
+        <h2 class="h-section">Start with the map, then choose the right system path.</h2>
+      </header>
+      <div class="offer-grid">
+        {linkCards.map((item) => (
+          <a class="offer-card" href={item.href}>
+            <p class="offer-name mono">{item.label}</p>
+            <p>{item.body}</p>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <FAQ faqs={faqs} />
+
+  <section class="ascend-cta elev">
+    <div class="container ascend-cta-row">
+      <div>
+        <h2 class="h-closer">Get the free Revenue Leak Map before Pilot.</h2>
+        <p class="lede" style="margin-top: 16px;">The map tells us whether a paid proof sprint has a clear first layer. If it does not, we should not sell you one.</p>
+      </div>
+      <div class="pilot-final-actions">
+        <a href="/book" class="cta" data-cta-source="ascend-pilot-final-primary">Get My Free Revenue Leak Map<span class="cta-arrow" aria-hidden="true">→</span></a>
+        <a href="/book" class="cta-ghost" data-cta-source="ascend-pilot-final-secondary">See If We're a Fit</a>
+      </div>
+    </div>
+  </section>
+
+</BaseLayout>
+
+<style>
+.ascend-hero { padding-top: clamp(108px, 10vw, 144px); padding-bottom: clamp(48px, 6vw, 80px); }
+.pilot-hero { background: var(--bg); }
+.ascend-hero-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.1fr) minmax(280px, 0.9fr);
+  gap: clamp(32px, 5vw, 64px);
+  align-items: center;
+}
+.ascend-hero .h-hero {
+  font-size: clamp(48px, 5.2vw, 74px);
+  line-height: 0.94;
+  letter-spacing: -0.035em;
+}
+.hero-sub { margin-top: 18px; }
+.hero-ctas { display: flex; gap: 16px; flex-wrap: wrap; margin-top: 24px; }
+.ascend-panel {
+  border: 1px solid var(--rule-bright);
+  padding: clamp(24px, 3vw, 34px);
+  position: relative;
+  overflow: hidden;
+}
+.ascend-panel > * { position: relative; z-index: 1; }
+.ascend-panel-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+}
+.panel-label,
+.layer-num,
+.process-num,
+.offer-name {
+  font-size: 10px;
+  letter-spacing: 0.2em;
+  color: var(--y2);
+}
+.panel-number {
+  font-size: clamp(84px, 10vw, 140px);
+  font-weight: 800;
+  font-stretch: 75%;
+  line-height: 0.8;
+  letter-spacing: -0.07em;
+  color: var(--y2);
+  margin-block: 16px 12px;
+}
+.panel-copy {
+  color: var(--ink-dim);
+  font-size: 17px;
+  line-height: 1.55;
+}
+.pilot-meter {
+  display: grid;
+  grid-template-columns: 0.7fr 2fr 1fr;
+  gap: 6px;
+  margin-top: 24px;
+}
+.pilot-meter span {
+  height: clamp(42px, 5vw, 66px);
+  border: 1px solid var(--rule);
+  background: linear-gradient(to top, currentColor, rgba(240,255,0,0.02));
+  color: var(--y2);
+  opacity: 0.38;
+}
+.pilot-meter span:nth-child(2) { color: var(--signal-cyan); opacity: 0.5; }
+.pilot-meter span:nth-child(3) { color: var(--signal-green); opacity: 0.46; }
+.ascend-panel-ledger {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  gap: 10px 16px;
+  margin-top: 28px;
+  padding-top: 22px;
+  border-top: 1px solid var(--rule);
+}
+.ascend-panel-ledger span {
+  color: var(--ink-faint);
+  font-size: 9px;
+  letter-spacing: 0.16em;
+}
+.ascend-panel-ledger strong {
+  color: var(--ink);
+  font-size: 14px;
+  line-height: 1.3;
+}
+.section-head { max-width: 780px; margin-bottom: 36px; }
+.section-head .lede { margin-top: 20px; }
+.product-spec-section,
+.pilot-included-section,
+.layers-section,
+.process-section,
+.pilot-decision-section,
+.pricing-snapshot { padding-block: var(--section-y); }
+.product-spec-grid,
+.process-grid,
+.commitments-grid,
+.pilot-decision-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 0.82fr) minmax(0, 1.18fr);
+  gap: clamp(32px, 5vw, 64px);
+  align-items: start;
+}
+.product-spec-grid .section-head {
+  position: sticky;
+  top: 104px;
+  margin-bottom: 0;
+}
+.spec-grid,
+.process-list,
+.commitment-list,
+.layers-grid,
+.offer-grid {
+  display: grid;
+  gap: 1px;
+  background: var(--rule);
+  border: 1px solid var(--rule);
+}
+.spec-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.layers-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+.offer-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+.spec-card,
+.process-list li,
+.commitment-list li,
+.layer-card,
+.offer-card {
+  background: var(--bg-card);
+  padding: clamp(20px, 2.5vw, 30px);
+}
+.spec-card { border-top: 3px solid currentColor; }
+.spec-card strong {
+  display: block;
+  margin-block: 12px;
+  font-size: clamp(34px, 4vw, 60px);
+  line-height: 1;
+  letter-spacing: -0.055em;
+  color: var(--ink);
+}
+.spec-card p:last-child,
+.layer-card p:last-child,
+.offer-card p:last-child {
+  color: var(--ink-dim);
+  font-size: 15px;
+  line-height: 1.55;
+}
+.process-list,
+.commitment-list { list-style: none; }
+.process-list li,
+.commitment-list li {
+  padding: 22px;
+}
+.process-list h3 {
+  font-size: clamp(28px, 3.6vw, 48px);
+  line-height: 1;
+  margin-block: 12px;
+}
+.process-list p,
+.commitment-list li {
+  color: var(--ink-dim);
+  font-size: 16px;
+  line-height: 1.6;
+}
+.commitment-list li {
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+}
+.commitment-list .dot { margin-top: 9px; flex: none; }
+.decision-board {
+  display: grid;
+  gap: 1px;
+  background: var(--rule);
+  border: 1px solid var(--rule);
+  padding: 0;
+}
+.decision-row {
+  background: var(--bg-card);
+  border-left: 3px solid var(--y2);
+  padding: clamp(22px, 3vw, 34px);
+}
+.decision-row span {
+  color: var(--y2);
+  font-size: 10px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+.decision-row strong {
+  display: block;
+  margin-block: 10px;
+  color: var(--ink);
+  font-size: clamp(24px, 3vw, 42px);
+  line-height: 1;
+}
+.decision-row p {
+  color: var(--ink-dim);
+  line-height: 1.55;
+}
+.layer-card h3 {
+  font-size: clamp(20px, 2vw, 28px);
+  line-height: 1.1;
+  margin-block: 12px;
+}
+.offer-card {
+  color: inherit;
+  min-height: 180px;
+  transition: background 180ms ease, border-color 180ms ease;
+}
+.offer-card:hover { background: var(--bg-elev); }
+.ascend-cta { padding-block: 64px; }
+.ascend-cta-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 32px;
+  flex-wrap: wrap;
+}
+.pilot-final-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+}
+
+@media (max-width: 960px) {
+  .ascend-hero-grid,
+  .product-spec-grid,
+  .process-grid,
+  .commitments-grid,
+  .pilot-decision-grid { grid-template-columns: 1fr; }
+  .product-spec-grid .section-head { position: static; }
+  .layers-grid,
+  .offer-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 560px) {
+  .ascend-hero {
+    padding-top: 92px;
+    padding-bottom: 48px;
+  }
+  .ascend-hero .h-hero {
+    font-size: 34px;
+    line-height: 1.03;
+    letter-spacing: 0;
+  }
+  .ascend-hero .hero-sub {
+    font-size: 16px;
+    line-height: 1.5;
+  }
+  .hero-ctas,
+  .pilot-final-actions { margin-top: 22px; }
+  .ascend-panel { padding: 20px; }
+  .panel-number { font-size: 72px; }
+  .pilot-meter span { height: 42px; }
+  .spec-grid,
+  .layers-grid,
+  .offer-grid { grid-template-columns: 1fr; }
+  .hero-ctas .cta,
+  .hero-ctas .cta-ghost,
+  .pilot-final-actions .cta,
+  .pilot-final-actions .cta-ghost {
+    width: 100%;
+    justify-content: center;
+  }
+}
+</style>

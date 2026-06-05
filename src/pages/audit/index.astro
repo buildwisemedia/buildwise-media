@@ -1,8 +1,8 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 
-const title = "Market Leak Map - Buildwise Media";
-const description = "Use the five-minute Market Leak Map to identify the revenue leaks holding back a service business before booking a fit call.";
+const title = "Revenue Leak Map for Contractors — Buildwise Media";
+const description = "A Revenue Leak Map shows contractors exactly where their pipeline leaks revenue — which sources, which steps, which gaps. Get yours free in five minutes.";
 
 const auditFindings = [
   "Where qualified leads come from now, and which sources are worth protecting.",
@@ -11,10 +11,35 @@ const auditFindings = [
   "Which next step should move first so the owner is not stuck sorting it alone.",
 ];
 
+const leakTypes = [
+  {
+    name: 'Source leak',
+    body: 'You get calls, but no one can see which source, page, or search path created the booked job.',
+  },
+  {
+    name: 'Speed leak',
+    body: 'The lead is real, but the first reply comes too late. The buyer keeps calling until someone answers.',
+  },
+  {
+    name: 'Proof leak',
+    body: 'Finished jobs do not turn into reviews, local proof, or buyer trust fast enough.',
+  },
+  {
+    name: 'Owner leak',
+    body: 'The owner is still the routing layer for follow-up, vendor choices, and next moves.',
+  },
+];
+
+const mapReceives = [
+  'The map: a plain view of where the current lead path is leaking.',
+  'The priority gap: the first operating layer that should move.',
+  'The first move: what the Buildwise team would install or measure first.',
+];
+
 const auditSchema = {
   '@context': 'https://schema.org',
   '@type': 'Service',
-  name: 'Market Leak Map',
+  name: 'Revenue Leak Map',
   serviceType: 'Fit diagnostic',
   provider: {
     '@type': 'Organization',
@@ -36,23 +61,53 @@ const auditSchema = {
     availability: 'https://schema.org/InStock',
   },
 };
+
+const faqs = [
+  {
+    q: 'What is a Revenue Leak Map?',
+    a: 'A Revenue Leak Map is a short diagnostic that shows where a contractor is losing revenue between visibility, response speed, proof, follow-up, and source tracking. It is a map of the first leak, not a full repair plan.',
+  },
+  {
+    q: 'How long does the Revenue Leak Map take?',
+    a: 'The diagnostic takes about five minutes. It asks about your trade, service area, lead flow, follow-up, agency history, AI comfort, and source truth.',
+  },
+  {
+    q: 'What happens after I get the map?',
+    a: 'If the fit looks right, the page routes you to book a call. The call uses the map as the baseline, so the conversation starts with the leak instead of a generic pitch.',
+  },
+];
+
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  '@id': 'https://buildwisemedia.com/audit#faq',
+  mainEntity: faqs.map((f) => ({
+    '@type': 'Question',
+    name: f.q,
+    acceptedAnswer: { '@type': 'Answer', text: f.a },
+  })),
+};
 ---
 <BaseLayout
   title={title}
   description={description}
-  jsonLd={[auditSchema]}
+  jsonLd={[auditSchema, faqSchema]}
   preloadImage="/images/bwm-audit-editorial-v1.webp"
 >
   <section class="audit-hero" aria-labelledby="audit-title">
     <div class="container audit-hero-grid">
       <div class="audit-copy">
-        <p class="eyebrow">Market Leak Map</p>
-        <h1 id="audit-title" class="h-hero">Find the leak before you buy the system.</h1>
+        <p class="eyebrow">Revenue Leak Map</p>
+        <h1 id="audit-title" class="h-hero">What Is a Revenue Leak Map — and What Does It Show Contractors?</h1>
         <p class="hero-sub">
-          The diagnostic names the active Poor Four gaps, shows what should move first, and routes qualified owners into a discovery call.
+          A Revenue Leak Map is a five-minute diagnostic that shows where your lead path is leaking revenue; it is not a generic audit. It names the first gap, ties it to your current pipeline, and shows what should move first.
+        </p>
+        <p class="audit-hero-note">
+          Contractors do not need another vague score, because you need to know which source, step, or follow-up gap is costing booked work.
         </p>
       </div>
       <figure class="audit-hero-photo">
+        <!-- @r020:F2 proof: the diagnostic is shown as a concrete map artifact, not a vague audit promise -->
         <img src="/images/bwm-audit-editorial-v1.webp" alt="A top-down editorial frame: printed audit report mid-annotation, fountain pen, coffee cup. The audit as a real artifact, not vapor." width="1920" height="1080" loading="eager" decoding="async" fetchpriority="high" />
       </figure>
     </div>
@@ -61,8 +116,47 @@ const auditSchema = {
   <section class="audit-diagram" aria-hidden="true">
     <div class="container">
       <figure class="section-photo section-photo--diagram">
+        <!-- @r020:F4 curiosity: exploded map diagram invites the owner to ask which part of the path is leaking first -->
         <img src="/images/exploded-triangle-v1.svg" alt="" width="1200" height="900" loading="lazy" decoding="async" />
       </figure>
+    </div>
+  </section>
+
+  <section class="audit-explain elev" aria-labelledby="what-is-title">
+    <div class="container audit-explain-grid">
+      <div>
+        <p class="section-tag">What it is</p>
+        <h2 id="what-is-title" class="h-section">A Revenue Leak Map shows the first break in the path from lead to booked work.</h2>
+        <p class="prose">
+          A contractor can be busy and still leak revenue: calls come in, quotes go out, reviews happen sometimes, ads spend money, and referrals still help. But when each step sits in a different place, the owner has to guess what worked.
+        </p>
+        <p class="prose">
+          The Revenue Leak Map turns that guess into a simple read by checking the path from visibility to follow-up to proof to source tracking. Then it names the first gap that should move, so the owner can stop wasting time on the wrong first fix.
+        </p>
+        <p class="prose">
+          It is also not the whole system: the map shows the leak, and <a href="/system">the system</a> is what closes it, runs it, and proves the next move each week.
+        </p>
+      </div>
+      <aside class="audit-definition">
+        <p class="form-kicker mono">not a pitch deck</p>
+        <h3>It answers one owner question.</h3>
+        <p>Where is revenue leaking first: source, speed, proof, follow-up, or owner routing?</p>
+      </aside>
+    </div>
+  </section>
+
+  <section class="audit-leaks">
+    <div class="container">
+      <p class="section-tag">What it catches</p>
+      <h2 class="h-section">The four revenue leak types contractors carry without knowing it.</h2>
+      <div class="leak-type-grid">
+        {leakTypes.map((leak) => (
+          <article class="leak-type-card">
+            <h3>{leak.name}</h3>
+            <p>{leak.body}</p>
+          </article>
+        ))}
+      </div>
     </div>
   </section>
 
@@ -77,29 +171,73 @@ const auditSchema = {
           ))}
         </ul>
         <figure class="section-photo section-photo--audit-findings">
+          <!-- @r020:F2 proof: proof still-life grounds the map in measured evidence rather than sales claims -->
           <img src="/images/bwm-proof-still-life-v1.webp" alt="Macro still-life: illegible graph on aged paper beside a magnifying glass and fountain pen. Reading what the numbers actually say." width="1920" height="1080" loading="lazy" decoding="async" />
         </figure>
       </div>
 
       <aside class="audit-form">
         <p class="form-kicker mono">Diagnostic first</p>
-        <h2>Build your Market Leak Map.</h2>
+        <h2>Build your Revenue Leak Map.</h2>
         <p class="audit-panel-copy">
-          Answer a short fit diagnostic. If Ascend looks like the right instrument, the page opens the booking handoff after your leak map is built.
+          Answer a short fit diagnostic. If Ascend looks like the right instrument, the page opens the booking handoff after your map is built.
         </p>
-        <a href="/book?source=market-leak-map" class="audit-submit" data-cta-source="audit-to-book">
-          Start the diagnostic
+        <a href="/book" class="audit-submit" data-cta-source="audit-to-book">
+          Get My Free Revenue Leak Map
         </a>
+        <a href="/book" class="audit-secondary" data-cta-source="audit-fit-secondary">See If We're a Fit</a>
       </aside>
+    </div>
+  </section>
+
+  <section class="audit-receive">
+    <div class="container receive-grid">
+      <div>
+        <p class="section-tag">What you receive</p>
+        <h2 class="h-section">The map, the priority gap, and the first move.</h2>
+        <p class="prose">
+          The output is simple on purpose: the owner should not need a new dashboard just to understand the first leak. You should leave with a plain read on what is holding back booked work and what the Buildwise team would check or install first.
+        </p>
+      </div>
+      <ul class="receive-list" role="list">
+        {mapReceives.map((item) => <li>{item}</li>)}
+      </ul>
+    </div>
+    <div class="container">
+      <p class="audit-links">
+        The Revenue Leak Map connects to <a href="/problem/leaky-revenue">Leaky Revenue</a>, the <a href="/playbook/revenue-operating-system">revenue operating system</a>, <a href="/system">the system</a>, and <a href="/services/ascend">Ascend</a>.
+      </p>
     </div>
   </section>
 
   <section class="audit-trust" aria-label="Trust anchor">
     <div class="container">
       <figure class="section-photo section-photo--audit-trust">
+        <!-- @r020:F2 proof: system architecture image shows what runs after the map identifies the first gap -->
         <img src="/images/bwm-system-architecture-atmospheric-v1.webp" alt="A dark infrastructure corridor with ordered geometry and a single distant accent light. What runs in the background after the audit." width="1920" height="1080" loading="lazy" decoding="async" />
       </figure>
       <p>Start with the leak. Then decide if the system fits.</p>
+      <p class="audit-ctas">
+        <a href="/book" class="cta" data-cta-source="audit-final-primary">Get My Free Revenue Leak Map<span class="cta-arrow" aria-hidden="true">→</span></a>
+        <a href="/book" class="cta-ghost" data-cta-source="audit-final-secondary">See If We're a Fit</a>
+      </p>
+    </div>
+  </section>
+
+  <section class="audit-faq elev">
+    <div class="container">
+      <p class="section-tag">FAQ</p>
+      <h2 class="h-section">Common questions.</h2>
+      <div class="faq-list">
+        {faqs.map((f) => (
+          <details class="faq-item">
+            <summary class="faq-q">{f.q}</summary>
+            <div class="faq-a">
+              <p>{f.a}</p>
+            </div>
+          </details>
+        ))}
+      </div>
     </div>
   </section>
 </BaseLayout>
@@ -134,9 +272,11 @@ const auditSchema = {
   color: var(--ink);
 }
 
-.audit-mark {
-  border-left: 1px solid var(--rule);
-  padding-left: clamp(24px, 5vw, 56px);
+.audit-hero-note {
+  max-width: 640px;
+  color: var(--ink-dim);
+  font-size: 17px;
+  line-height: 1.65;
 }
 
 .audit-hero-photo {
@@ -184,6 +324,7 @@ const auditSchema = {
 .audit-diagram {
   padding-block: clamp(40px, 6vw, 80px);
 }
+
 .section-photo--diagram {
   aspect-ratio: 16 / 10;
   max-width: 720px;
@@ -191,21 +332,78 @@ const auditSchema = {
   margin-top: 0;
   background: #050507;
 }
+
 .section-photo--diagram img {
   object-fit: contain;
 }
 
-@media (max-width: 880px) {
-  .audit-hero-photo, .section-photo, .section-photo--audit-findings, .section-photo--audit-trust {
-    aspect-ratio: 16 / 10;
-  }
+.audit-explain,
+.audit-leaks,
+.audit-body,
+.audit-receive,
+.audit-faq {
+  padding-block: clamp(56px, 8vw, 96px);
 }
 
+.audit-explain-grid,
+.receive-grid,
 .audit-grid {
   display: grid;
   grid-template-columns: minmax(0, 1fr) minmax(320px, 420px);
   gap: clamp(40px, 7vw, 96px);
   align-items: start;
+}
+
+.prose {
+  color: var(--ink-dim);
+  font-size: 17px;
+  line-height: 1.7;
+  max-width: 760px;
+  margin-top: 22px;
+}
+
+.prose + .prose { margin-top: 16px; }
+
+.prose a,
+.audit-links a {
+  color: var(--ink);
+  text-decoration: none;
+  border-bottom: 1px solid rgba(240,255,0,0.45);
+}
+
+.prose a:hover,
+.audit-links a:hover {
+  color: var(--y2);
+  border-bottom-color: var(--y2);
+}
+
+.audit-definition,
+.leak-type-card {
+  border: 1px solid var(--rule);
+  background: rgba(255,255,255,0.025);
+  border-radius: 4px;
+  padding: 24px;
+}
+
+.audit-definition h3,
+.leak-type-card h3 {
+  font-size: 24px;
+  line-height: 1.2;
+  color: var(--ink);
+}
+
+.audit-definition p:last-child,
+.leak-type-card p {
+  margin-top: 14px;
+  color: var(--ink-dim);
+  line-height: 1.6;
+}
+
+.leak-type-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 16px;
+  margin-top: 40px;
 }
 
 .audit-findings .h-section {
@@ -250,6 +448,7 @@ const auditSchema = {
   color: var(--y2);
   font-size: 10px;
   letter-spacing: 0.18em;
+  text-transform: uppercase;
 }
 
 .audit-form h2 {
@@ -261,36 +460,6 @@ const auditSchema = {
   color: var(--ink-dim);
   line-height: 1.65;
   margin: 0;
-}
-
-.form-row {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-}
-
-.form-row label {
-  font-family: var(--mono);
-  font-size: 11px;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
-  color: var(--ink-dim);
-}
-
-.form-row input {
-  width: 100%;
-  background: var(--bg-elev);
-  border: 1px solid var(--rule);
-  border-radius: 2px;
-  color: var(--ink);
-  font-family: var(--sans);
-  font-size: 16px;
-  padding: 14px 14px;
-  outline: 0;
-}
-
-.form-row input:focus {
-  border-color: var(--y2);
 }
 
 .audit-submit {
@@ -307,36 +476,127 @@ const auditSchema = {
   font-weight: 700;
 }
 
-.audit-submit:disabled {
-  cursor: wait;
-  opacity: 0.7;
+.audit-secondary {
+  color: var(--ink);
+  text-decoration: none;
+  border-bottom: 1px solid rgba(240,255,0,0.45);
+  width: fit-content;
 }
 
-.audit-error {
-  color: var(--ink);
-  font-size: 14px;
-  line-height: 1.5;
-  margin: 0;
+.audit-secondary:hover { color: var(--y2); border-bottom-color: var(--y2); }
+
+.receive-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.receive-list li {
+  color: var(--ink-dim);
+  line-height: 1.55;
+  padding: 18px 18px 18px 38px;
+  border: 1px solid var(--rule);
+  background: rgba(255,255,255,0.025);
+  position: relative;
+}
+
+.receive-list li::before {
+  content: "";
+  position: absolute;
+  left: 18px;
+  top: 1.5em;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--y2);
+}
+
+.audit-links {
+  color: var(--ink-dim);
+  font-size: 17px;
+  line-height: 1.7;
+  max-width: 900px;
+  margin-top: 40px;
 }
 
 .audit-trust {
   padding-block: clamp(56px, 7vw, 90px);
 }
 
-.audit-trust p {
+.audit-trust p:not(.audit-ctas) {
   font-size: clamp(34px, 5vw, 72px);
   font-weight: 800;
   line-height: 1;
 }
 
+.audit-ctas {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  margin-top: 32px;
+}
+
+.audit-faq { padding-top: 0; }
+
+.faq-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-top: 32px;
+  max-width: 880px;
+}
+
+.faq-item {
+  border-top: 1px solid var(--rule);
+  padding-block: 20px;
+}
+
+.faq-item[open] summary { color: var(--y2); }
+
+.faq-q {
+  font-size: 17px;
+  font-weight: 500;
+  color: var(--ink);
+  cursor: pointer;
+  line-height: 1.4;
+  list-style: none;
+}
+
+.faq-q::marker,
+.faq-q::-webkit-details-marker { display: none; }
+
+.faq-q::after {
+  content: "+";
+  float: right;
+  font-family: var(--mono);
+  font-size: 18px;
+  color: var(--y2);
+}
+
+.faq-item[open] .faq-q::after { content: "-"; }
+.faq-a { margin-top: 12px; }
+.faq-a p { font-size: 16px; line-height: 1.65; color: var(--ink-dim); max-width: 720px; }
+
 @media (max-width: 900px) {
   .audit-hero-grid,
+  .audit-explain-grid,
+  .receive-grid,
   .audit-grid {
     grid-template-columns: 1fr;
   }
 
-  .audit-mark {
-    display: none;
+  .leak-type-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 880px) {
+  .audit-hero-photo,
+  .section-photo,
+  .section-photo--audit-findings,
+  .section-photo--audit-trust {
+    aspect-ratio: 16 / 10;
   }
 }
 

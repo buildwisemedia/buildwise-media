@@ -6,8 +6,8 @@ import EarnBackCalculator from '../components/EarnBackCalculator.astro';
 import canonical from '../data/canonical.json';
 import FAQ from '../components/FAQ.astro';
 
-const title = "The Installed AI Growth System — Buildwise Media";
-const description = "See the owned AI growth system Buildwise installs and operates for service businesses: visibility, conversion, follow-up, reputation, reporting, weekly proof, and AI upgrades.";
+const title = "Speed-to-Lead Automation for Home Services — Buildwise Media";
+const description = "Speed-to-lead automation for home services means the first reply wins the job. Buildwise wires automated follow-up on day one — so leads don't go cold while you're on another job.";
 
 const ownerLayerBodies: Record<string, string> = {
   Visibility: 'Show up when buyers search, ask AI, or compare local providers.',
@@ -34,7 +34,7 @@ const layers = canonical.products.ascend.eight_layers.map((raw: string, index: n
 
 const operatingSignals = [
   { label: 'Find', value: 'Search, AI answers, ads, referrals', tone: 'cyan' },
-  { label: 'Route', value: 'Forms, calls, booking, CRM', tone: 'green' },
+  { label: 'Route', value: 'Forms, calls, booking, follow-up system', tone: 'green' },
   { label: 'Approve', value: 'Human gates before buyer-facing work', tone: 'orange' },
   { label: 'Prove', value: 'Dashboard, baseline, booked work', tone: 'yellow' },
 ];
@@ -59,7 +59,7 @@ const serviceSchema = {
   '@type': 'Service',
   '@id': 'https://buildwisemedia.com/system#ascend-system',
   name: 'Ascend operating system',
-  serviceType: 'Installed AI growth system for service businesses',
+  serviceType: 'Installed AI growth system and Speed-to-Lead automation for home services',
   provider: { '@id': 'https://buildwisemedia.com/#org' },
   areaServed: { '@type': 'Country', name: 'United States' },
   description,
@@ -104,13 +104,13 @@ const faqSchema = {
     <div class="container system-hero-grid">
       <div>
         <p class="eyebrow">The system</p>
-        <h1 class="h-hero">See the AI growth system installed inside your business.</h1>
+        <h1 class="h-hero">Speed-to-Lead: The Home Services Layer That Wins or Loses the Job</h1>
         <p class="hero-sub">
-          Ascend connects buyer visibility, follow-up, reporting, proof, and AI routing into one owned system. Buildwise operates it every week so the business gets stronger without making the owner the router.
+          A home service lead is live for a short window. If the first reply is slow, the buyer keeps calling. Ascend wires speed-to-lead, follow-up, attribution, proof, and weekly reporting into one owned system the Buildwise team runs for you.
         </p>
         <div class="system-ctas">
-          <a href="/book" class="cta" data-cta-source="system-hero">See If We're a Fit<span class="cta-arrow" aria-hidden="true">→</span></a>
-          <a href="/pricing" class="cta-ghost" data-cta-source="system-pricing">See Pricing</a>
+          <a href="/book" class="cta" data-cta-source="system-hero-primary">Get My Free Revenue Leak Map<span class="cta-arrow" aria-hidden="true">→</span></a>
+          <a href="/book" class="cta-ghost" data-cta-source="system-hero-secondary">See If We're a Fit</a>
         </div>
       </div>
       <aside class="system-panel ops-panel">
@@ -141,6 +141,39 @@ const faqSchema = {
           <li><span>04</span> Show what booked weekly</li>
         </ol>
       </aside>
+    </div>
+  </section>
+
+  <section class="speed-section elev" aria-labelledby="speed-title">
+    <div class="container speed-grid">
+      <header class="section-head">
+        <p class="section-tag">Speed-to-Lead automation for home services</p>
+        <h2 id="speed-title" class="h-section">The first useful reply gets the cleanest path to the job.</h2>
+        <p class="lede">Speed-to-lead means a new call, form, or booking request gets a fast next touch while the buyer still wants help. The system does not wait for the owner to leave a job site, check an inbox, or remember which source sent the lead.</p>
+      </header>
+      <div class="speed-copy">
+        <p>
+          In HVAC, roofing, and plumbing, the buyer often has a real problem right now. The air is out. The roof is leaking. The drain is blocked. They are not shopping for fun. They are looking for the first company that looks real and answers clearly.
+        </p>
+        <p>
+          The speed layer fires on day one of the install. It routes new demand into a fast first touch, then connects that touch to attribution. That connection matters. A good source can look weak when the reply is slow. A weak source can look strong when one lucky job closes.
+        </p>
+        <p>
+          The Buildwise team reviews the buyer-facing moves that need judgment. Offers, public copy, budget changes, and reputation replies stay behind a human signoff gate. Routine routing, lead alerts, and first-touch follow-up can run without waiting on the owner.
+        </p>
+      </div>
+      <aside class="speed-panel">
+        <p class="ops-kicker">30-day owner view</p>
+        <ul role="list">
+          <li>Which source sent the lead.</li>
+          <li>How fast the first touch happened.</li>
+          <li>Which calls, forms, and bookings turned into real work.</li>
+          <li>Which leak should move first.</li>
+        </ul>
+      </aside>
+      <p class="speed-links">
+        Speed-to-Lead is one layer inside the full <a href="/playbook/revenue-operating-system">revenue operating system</a>. See how it connects to <a href="/problem/leaky-revenue">Leaky Revenue</a>, <a href="/services/ascend">Ascend</a>, and the free <a href="/audit">Revenue Leak Map</a>.
+      </p>
     </div>
   </section>
 
@@ -209,9 +242,12 @@ const faqSchema = {
     <div class="container final-row">
       <div>
         <h2 class="h-closer">Want to see where Ascend would install first?</h2>
-        <p class="lede">The fit diagnostic starts the Market Dominance Dossier before the call and checks whether the economics can support the system.</p>
+        <p class="lede">The free Revenue Leak Map shows which layer is leaking first and whether the economics can support the system.</p>
       </div>
-      <a href="/book" class="cta" data-cta-source="system-final">See If We're a Fit<span class="cta-arrow" aria-hidden="true">→</span></a>
+      <div class="final-ctas">
+        <a href="/book" class="cta" data-cta-source="system-final-primary">Get My Free Revenue Leak Map<span class="cta-arrow" aria-hidden="true">→</span></a>
+        <a href="/book" class="cta-ghost" data-cta-source="system-final-secondary">See If We're a Fit</a>
+      </div>
     </div>
   </section>
 
@@ -309,6 +345,62 @@ const faqSchema = {
   gap: 12px;
 }
 .system-loop li span { color: var(--signal-cyan); }
+.speed-section { padding-block: clamp(56px, 7vw, 96px); }
+.speed-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 0.84fr) minmax(260px, 0.46fr);
+  gap: clamp(28px, 5vw, 56px);
+  align-items: start;
+}
+.speed-copy {
+  display: grid;
+  gap: 16px;
+  color: var(--ink-dim);
+  font-size: 17px;
+  line-height: 1.7;
+}
+.speed-panel {
+  border: 1px solid var(--rule);
+  background: rgba(255,255,255,0.025);
+  border-radius: 4px;
+  padding: 24px;
+}
+.speed-panel ul {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 18px;
+}
+.speed-panel li {
+  color: var(--ink-dim);
+  line-height: 1.55;
+  padding-left: 20px;
+  position: relative;
+}
+.speed-panel li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.72em;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--y2);
+}
+.speed-links {
+  grid-column: 1 / -1;
+  color: var(--ink-dim);
+  font-size: 17px;
+  line-height: 1.7;
+  max-width: 900px;
+}
+.speed-links a {
+  color: var(--ink);
+  text-decoration: none;
+  border-bottom: 1px solid rgba(240,255,0,0.45);
+}
+.speed-links a:hover { color: var(--y2); border-bottom-color: var(--y2); }
 .routing-section { padding-block: clamp(56px, 7vw, 96px); }
 .routing-grid {
   display: grid;
@@ -417,9 +509,11 @@ const faqSchema = {
   flex-wrap: wrap;
 }
 .final-row .lede { margin-top: 16px; }
+.final-ctas { display: flex; flex-wrap: wrap; gap: 16px; }
 @media (max-width: 840px) {
   .system-hero-grid,
-  .routing-grid { grid-template-columns: 1fr; }
+  .routing-grid,
+  .speed-grid { grid-template-columns: 1fr; }
   .system-image-grid { grid-template-columns: 1fr; }
   .routing-grid header { position: static; }
   .routing-signal-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
@@ -455,7 +549,8 @@ const faqSchema = {
   }
   .system-ctas .cta,
   .system-ctas .cta-ghost,
-  .final-row .cta {
+  .final-row .cta,
+  .final-row .cta-ghost {
     width: 100%;
     justify-content: center;
   }

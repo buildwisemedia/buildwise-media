@@ -1,0 +1,342 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import canonical from '../../data/canonical.json';
+
+const title = "Marketing Agency for Plumbing Companies — Buildwise Media";
+const description = "Buildwise Media installs and runs a full AI marketing system for plumbing companies — visibility, follow-up, attribution, reputation. Live in 30 days across the US.";
+
+const layerBodies: Record<string, string> = {
+  Visibility: 'Show up when local buyers search, ask AI, or compare plumbers near them.',
+  Conversion: 'Turn visits, calls, forms, and booking paths into clear next steps.',
+  'Speed-to-Lead': 'Answer urgent plumbing leads before the buyer calls the next shop.',
+  'Sales Ops': 'Keep estimates, reminders, memberships, and past leads moving.',
+  Reputation: 'Ask for reviews, reply with care, and turn finished jobs into proof.',
+  'Paid Media': 'Watch spend and move budget toward calls that can become booked work.',
+  Reporting: 'Show source, spend, calls, booked jobs, and the next move.',
+  Strategy: 'Run the week from a scoreboard, not a late-month guess.',
+};
+
+const layers = canonical.products.ascend.eight_layers.map((raw: string, index: number) => {
+  const dashIndex = raw.indexOf('—');
+  const dotIndex = raw.indexOf('·');
+  const name = dashIndex > 0 ? raw.slice(dotIndex + 1, dashIndex).trim() : raw.slice(dotIndex + 1).trim();
+  return {
+    n: String(index + 1).padStart(2, '0'),
+    name,
+    body: layerBodies[name] ?? '',
+    tone: ['cyan', 'green', 'yellow', 'orange', 'green', 'cyan', 'yellow', 'green'][index],
+  };
+});
+
+const proofStats = [
+  { label: 'system install', value: '30 days', body: 'Baseline, lead path, and first operating rhythm live.' },
+  { label: 'connected layers', value: '8', body: 'Visibility, speed, reputation, source truth, and weekly strategy.' },
+  { label: 'proof rule', value: 'Day 1', body: 'The baseline is captured before any claim gets made.' },
+];
+
+const fitSignals = [
+  'Owner-led plumbing company with steady demand but unclear source truth.',
+  'Roughly $3M-$8M annual revenue for Ascend fit.',
+  'Service area with enough density for search visibility, reviews, and paid demand.',
+  'Owner wants a run-for-you system, not more work after hours.',
+];
+
+const breadcrumb = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://buildwisemedia.com/' },
+    { '@type': 'ListItem', position: 2, name: 'Industries', item: 'https://buildwisemedia.com/industries' },
+    { '@type': 'ListItem', position: 3, name: 'Plumbing', item: 'https://buildwisemedia.com/industries/plumbing' },
+  ],
+};
+
+const serviceSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Service',
+  '@id': 'https://buildwisemedia.com/industries/plumbing#service',
+  name: 'Marketing agency for plumbing companies',
+  serviceType: 'Installed AI marketing system for plumbing companies',
+  provider: { '@id': 'https://buildwisemedia.com/#org' },
+  areaServed: { '@type': 'Country', name: 'United States' },
+  audience: {
+    '@type': 'BusinessAudience',
+    audienceType: 'Owner-led plumbing companies',
+  },
+  description,
+  url: 'https://buildwisemedia.com/industries/plumbing',
+};
+
+const faqs = [
+  {
+    q: 'What does Buildwise Media install for a plumbing company?',
+    a: 'The Buildwise team installs an AI marketing system for visibility, booking paths, speed-to-lead, reviews, spend, reporting, and weekly strategy. It is built around booked plumbing work.',
+  },
+  {
+    q: 'How fast can the plumbing system go live?',
+    a: 'The install path is 30 days. The first window captures the baseline, wires the lead path, improves follow-up, and starts the weekly operating rhythm.',
+  },
+  {
+    q: 'Is this built for every plumbing company?',
+    a: 'No. Ascend is built for owner-led plumbing companies with enough demand, market density, and revenue to support a full run-for-you system. The fit check confirms that first.',
+  },
+];
+
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  '@id': 'https://buildwisemedia.com/industries/plumbing#faq',
+  mainEntity: faqs.map((f) => ({
+    '@type': 'Question',
+    name: f.q,
+    acceptedAnswer: { '@type': 'Answer', text: f.a },
+  })),
+};
+---
+<BaseLayout title={title} description={description} jsonLd={[serviceSchema, breadcrumb, faqSchema]}>
+
+  <section class="industry-hero">
+    <div class="container industry-hero-grid">
+      <div>
+        <p class="eyebrow"><a href="/services/ascend" class="back-link">← Ascend</a> · Plumbing</p>
+        <h1 class="h-hero">The Marketing Agency for Plumbing Companies — Built as a System</h1>
+        <p class="hero-sub">
+          Plumbing demand is urgent. A pipe breaks. A drain backs up. A homeowner searches, calls, and keeps moving until someone answers. If your visibility, follow-up system, reviews, and source tracking live in separate places, leads leak before the job gets booked.
+        </p>
+        <div class="industry-ctas">
+          <a href="/book" class="cta" data-cta-source="plumbing-hero-primary">Get My Free Revenue Leak Map<span class="cta-arrow" aria-hidden="true">→</span></a>
+          <a href="/book" class="cta-ghost" data-cta-source="plumbing-hero-secondary">See If We're a Fit</a>
+        </div>
+      </div>
+      <aside class="industry-panel ops-panel" aria-label="Plumbing operating system">
+        <div class="industry-panel-head">
+          <p class="panel-label mono">plumbing revenue system</p>
+          <span class="ops-chip"><span class="dot green" aria-hidden="true"></span>baseline first</span>
+        </div>
+        <div class="plumbing-loop" aria-hidden="true">
+          <span>Search</span>
+          <span>Answer</span>
+          <span>Book</span>
+          <span>Review</span>
+          <span>Prove</span>
+        </div>
+        <p class="panel-copy">The system connects the first search to the booked job, then feeds the proof back into the next buyer's choice.</p>
+      </aside>
+    </div>
+  </section>
+
+  <section class="industry-proof elev" aria-labelledby="proof-title">
+    <div class="container proof-grid">
+      <header class="section-head">
+        <p class="section-tag">Plumbing proof path</p>
+        <h2 id="proof-title" class="h-section">Referral growth stalls when the owner has to guess.</h2>
+        <p class="lede">A plumbing company can stay busy and still miss the real growth picture. The phones ring, the techs move, and the owner still does not know which source brought the best jobs, which call got missed, or which finished job should have created a review.</p>
+      </header>
+      <div class="proof-cards">
+        {proofStats.map((stat) => (
+          <article class="proof-card">
+            <p class="ops-kicker">{stat.label}</p>
+            <strong>{stat.value}</strong>
+            <p>{stat.body}</p>
+          </article>
+        ))}
+      </div>
+      <p class="proof-note">We do not invent a plumbing-only proof stat. The system starts by capturing your baseline, then measures booked work from the same market over time.</p>
+    </div>
+  </section>
+
+  <section class="industry-section">
+    <div class="container">
+      <p class="section-tag">The installed system</p>
+      <h2 class="h-section">Eight layers built around booked plumbing work.</h2>
+      <p class="prose">
+        A plumbing company does not need a pile of disconnected tactics. It needs one revenue operating system. The Buildwise team installs the same eight Ascend layers across the business, then runs them as one weekly rhythm.
+      </p>
+      <div class="layers-grid">
+        {layers.map((layer) => (
+          <article class={`layer-card tone-${layer.tone}`}>
+            <p class="layer-num mono">{layer.n}</p>
+            <h3>{layer.name}</h3>
+            <p>{layer.body}</p>
+          </article>
+        ))}
+      </div>
+      <figure class="article-photo layer-photo">
+        <!-- @r020:F2 proof: node-mesh visual shows the eight plumbing layers acting as one connected operating system -->
+        <img src="/images/node-mesh-ascending-v1.svg" alt="Isometric ascending node mesh showing connected layers wired as one operating system." width="1200" height="900" loading="lazy" decoding="async" />
+      </figure>
+      <p class="prose">
+        The layers matter most when they talk to each other. Visibility brings the buyer in. Conversion gives them a clear booking path. Speed-to-Lead answers while the need is hot. Sales Ops keeps estimates and reminders alive. Reputation turns finished work into proof. Paid Media gets judged by job quality. Reporting shows what happened. Strategy sets the next week.
+      </p>
+    </div>
+  </section>
+
+  <section class="industry-section elev">
+    <div class="container article-grid">
+      <div>
+        <p class="section-tag">Visibility and AI search</p>
+        <h2 class="h-section">Show up when the buyer asks who can help now.</h2>
+        <p class="prose">
+          Plumbing buyers often search under pressure. They ask a search engine, map result, or AI tool for the best plumber near them. The businesses that get named tend to have clear service pages, strong local proof, consistent data, and fresh reviews.
+        </p>
+        <p class="prose">
+          Ascend connects those signals. Service pages explain the work. Reviews make the proof visible. Reputation replies pass through a human gate. The owner sees whether the work is making the company easier to find and easier to choose.
+        </p>
+      </div>
+      <figure class="article-photo">
+        <!-- @r020:F2 proof: receipt-style image reinforces that plumbing attribution is measured from source to booked work -->
+        <img src="/images/bwm-receipts-still-life-v1.webp" alt="Printed proof packet and measurement notes on a dark desk." width="720" height="480" loading="lazy" decoding="async" />
+      </figure>
+    </div>
+  </section>
+
+  <section class="industry-section">
+    <div class="container">
+      <p class="section-tag">Speed-to-Lead</p>
+      <h2 class="h-section">The emergency caller is also calling three other shops.</h2>
+      <p class="prose">
+        A plumbing lead can go cold in minutes. The buyer has water on the floor or a drain that will not clear. If no one answers quickly, the buyer keeps calling. Speed-to-Lead is the layer that closes that gap. The system routes each new call, form, and booking request into a fast next step.
+      </p>
+      <p class="prose">
+        That speed also protects attribution. A strong source can look weak if the answer time is slow. A weak source can look strong if one job closes by luck. We separate those signals so the owner can make a better call.
+      </p>
+    </div>
+  </section>
+
+  <section class="industry-section elev">
+    <div class="container article-grid">
+      <div>
+        <p class="section-tag">Attribution</p>
+        <h2 class="h-section">Know which source, which call, and which booked job.</h2>
+        <p class="prose">
+          A plumbing owner should not have to guess where booked work came from. The system ties source, page, form, call, estimate, and booked job into one view. That does not make every number perfect. It makes the gaps visible.
+        </p>
+        <p class="prose">
+          After 30 days, the owner should see the baseline, the lead path, and the first proof rhythm. The next question becomes clear: which source brought booked work, which step slowed it down, and which first move deserves more time or budget.
+        </p>
+      </div>
+      <div class="fit-panel">
+        <p class="section-tag">Fit check</p>
+        <h3>Ascend is built for plumbing operators who are ready to be run by proof.</h3>
+        <ul role="list">
+          {fitSignals.map((signal) => <li>{signal}</li>)}
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="industry-related">
+    <div class="container">
+      <p class="section-tag">Next reading</p>
+      <h2 class="h-section">See how the system connects.</h2>
+      <ul class="related-list">
+        <li><a href="/system">The System</a> — the full eight-layer operating model</li>
+        <li><a href="/services/ascend">Ascend</a> — what gets installed and run each week</li>
+        <li><a href="/industries/hvac">HVAC</a> — the same operating rhythm in another urgent trade</li>
+        <li><a href="/audit">Revenue Leak Map</a> — the diagnostic that shows the first gap</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="industry-cta elev">
+    <div class="container">
+      <h2 class="h-closer">Ready to see the plumbing leaks in your market?</h2>
+      <p class="lede">The free Revenue Leak Map shows where visibility, speed, follow-up, and attribution are holding back booked work.</p>
+      <p class="cta-row">
+        <a class="cta-primary" href="/book" data-cta-source="plumbing-final-primary">Get My Free Revenue Leak Map <span class="cta-arrow">→</span></a>
+        <a class="cta-ghost" href="/book" data-cta-source="plumbing-final-secondary">See If We're a Fit</a>
+      </p>
+    </div>
+  </section>
+
+  <section class="industry-faq">
+    <div class="container">
+      <p class="section-tag">FAQ</p>
+      <h2 class="h-section">Common questions.</h2>
+      <div class="faq-list">
+        {faqs.map((f) => (
+          <details class="faq-item">
+            <summary class="faq-q">{f.q}</summary>
+            <div class="faq-a">
+              <p>{f.a}</p>
+            </div>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+
+</BaseLayout>
+
+<style>
+.industry-hero { padding-block: clamp(80px, 12vw, 144px); }
+.industry-hero-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(280px, 420px); gap: clamp(32px, 6vw, 72px); align-items: center; }
+.back-link { color: var(--ink-faint); transition: color 180ms ease; }
+.back-link:hover { color: var(--y2); }
+.industry-ctas { display: flex; flex-wrap: wrap; gap: 16px; margin-top: 32px; }
+
+.industry-panel { padding: 28px; }
+.industry-panel-head { display: flex; justify-content: space-between; gap: 16px; align-items: center; }
+.plumbing-loop { display: grid; grid-template-columns: repeat(5, 1fr); gap: 8px; margin-top: 32px; }
+.plumbing-loop span {
+  min-height: 64px;
+  display: grid;
+  place-items: center;
+  border: 1px solid var(--rule);
+  color: var(--ink);
+  font-family: var(--mono);
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+}
+.plumbing-loop span:nth-child(2), .plumbing-loop span:nth-child(5) { border-color: rgba(240,255,0,0.45); color: var(--y2); }
+.panel-copy { margin-top: 24px; color: var(--ink-dim); line-height: 1.6; }
+
+.industry-proof, .industry-section, .industry-related, .industry-cta, .industry-faq { padding-block: clamp(56px, 8vw, 96px); }
+.proof-grid { display: grid; gap: 32px; }
+.proof-cards { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
+.proof-card, .fit-panel {
+  border: 1px solid var(--rule);
+  background: rgba(255,255,255,0.025);
+  padding: 24px;
+  border-radius: 4px;
+}
+.proof-card strong { display: block; margin-top: 8px; font-size: clamp(30px, 5vw, 56px); line-height: 1; color: var(--y2); font-weight: 600; }
+.proof-card p:last-child, .proof-note { color: var(--ink-dim); line-height: 1.6; }
+.proof-note { max-width: 760px; }
+
+.prose { font-size: 17px; line-height: 1.7; color: var(--ink-dim); max-width: 760px; margin-top: 24px; }
+.prose a, .related-list a { color: var(--ink); text-decoration: none; border-bottom: 1px solid rgba(240,255,0,0.45); }
+.prose a:hover, .related-list a:hover { color: var(--y2); border-bottom-color: var(--y2); }
+.layers-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 16px; margin-block: 40px; }
+.layer-card { border: 1px solid var(--rule); padding: 20px; border-radius: 4px; background: rgba(255,255,255,0.02); }
+.layer-card h3 { margin-top: 16px; font-size: 18px; color: var(--ink); }
+.layer-card p:last-child { margin-top: 12px; color: var(--ink-dim); line-height: 1.55; }
+.layer-num { color: var(--y2); }
+.article-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(280px, 420px); gap: clamp(32px, 6vw, 72px); align-items: start; }
+.article-photo { margin: 0; border: 1px solid var(--rule); border-radius: 4px; overflow: hidden; }
+.article-photo img { display: block; width: 100%; height: auto; }
+.layer-photo { max-width: 760px; margin: 0 0 32px; background: transparent; }
+.fit-panel h3 { font-size: 24px; line-height: 1.25; color: var(--ink); font-weight: 500; }
+.fit-panel ul { list-style: none; display: flex; flex-direction: column; gap: 14px; margin-top: 24px; }
+.fit-panel li { color: var(--ink-dim); line-height: 1.55; padding-left: 20px; position: relative; }
+.fit-panel li::before { content: ""; position: absolute; left: 0; top: 0.72em; width: 7px; height: 7px; border-radius: 50%; background: var(--y2); }
+.related-list { list-style: none; display: flex; flex-direction: column; gap: 12px; margin-top: 32px; max-width: 880px; }
+.cta-row { display: flex; flex-wrap: wrap; gap: 16px; margin-top: 32px; }
+.industry-faq { padding-top: 0; }
+.faq-list { display: flex; flex-direction: column; gap: 16px; margin-top: 32px; max-width: 880px; }
+.faq-item { border-top: 1px solid var(--rule); padding-block: 20px; }
+.faq-item[open] summary { color: var(--y2); }
+.faq-q { font-size: 17px; font-weight: 500; color: var(--ink); cursor: pointer; line-height: 1.4; list-style: none; }
+.faq-q::marker, .faq-q::-webkit-details-marker { display: none; }
+.faq-q::after { content: "+"; float: right; font-family: var(--mono); font-size: 18px; color: var(--y2); }
+.faq-item[open] .faq-q::after { content: "-"; }
+.faq-a { margin-top: 12px; }
+.faq-a p { font-size: 16px; line-height: 1.65; color: var(--ink-dim); max-width: 720px; }
+
+@media (max-width: 860px) {
+  .industry-hero-grid, .article-grid { grid-template-columns: 1fr; }
+  .proof-cards, .layers-grid { grid-template-columns: 1fr; }
+  .plumbing-loop { grid-template-columns: 1fr; }
+}
+</style>
