@@ -746,7 +746,7 @@ const description = `BWM Triangulation Edition Invite-Only Membership Credential
       const claim = claimedCards.find(c => c.card_number === card.id);
 
       if (claim) {
-        showClaimed(claim.email);
+        showClaimed(claim.display_name ?? (claim.email ? claim.email.split('@')[0] : ''));
       } else {
         showUnclaimed();
       }
@@ -801,7 +801,7 @@ const description = `BWM Triangulation Edition Invite-Only Membership Credential
       .filter(c => c.card_number)
       .map(c => ({
         id: c.card_number,
-        name: c.email.split('@')[0],
+        name: c.display_name ?? (c.email ? c.email.split('@')[0] : ''),
         company: 'Member Network'
       }))
       .sort((a, b) => a.id.localeCompare(b.id));
