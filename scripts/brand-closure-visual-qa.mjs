@@ -364,6 +364,181 @@ function pageAudit() {
         stemCount: svg.querySelectorAll('.milestone-stem').length,
       }));
 
+    // --- [S]-tier deterministic adjuncts (PROJ-DESIGN-INTEL-001 P2) ---
+    // yellow-ratio: Y2/Y1-matched paint area must stay ≤10% of page area per
+    // viewport (R015 color discipline). Tolerance ±10% per HSL channel.
+    const parseRgb = (value) => {
+      const m = /rgba?\(([^)]+)\)/.exec(value || '');
+      if (!m) return null;
+      const parts = m[1].split(',').map((p) => Number.parseFloat(p));
+      return { r: parts[0], g: parts[1], b: parts[2], a: parts.length > 3 ? parts[3] : 1 };
+    };
+    const rgbToHsl = ({ r, g, b }) => {
+      const rn = r / 255;
+      const gn = g / 255;
+      const bn = b / 255;
+      const max = Math.max(rn, gn, bn);
+      const min = Math.min(rn, gn, bn);
+      const l = (max + min) / 2;
+      if (max === min) return { h: 0, s: 0, l };
+      const d = max - min;
+      const s = l > 0.5 ? d / (2 - max - min) : d / (max + min);
+      let h;
+      if (max === rn) h = (gn - bn) / d + (gn < bn ? 6 : 0);
+      else if (max === gn) h = (bn - rn) / d + 2;
+      else h = (rn - gn) / d + 4;
+      return { h: h * 60, s, l };
+    };
+    const BRAND_YELLOWS = [
+      { h: 63.5, s: 1, l: 0.5 }, // Y2 #F0FF00
+      { h: 81.6, s: 1, l: 0.614 }, // Y1 #B8FF3A
+    ];
+    const isBrandYellow = (value) => {
+      const rgb = parseRgb(value);
+      if (!rgb || rgb.a < 0.5) return false;
+      const hsl = rgbToHsl(rgb);
+      return BRAND_YELLOWS.some(
+        (y) => Math.abs(hsl.h - y.h) <= 36 && Math.abs(hsl.s - y.s) <= 0.1 && Math.abs(hsl.l - y.l) <= 0.1,
+      );
+    };
+    const countedYellowBg = new Set();
+    const hasCountedYellowAncestor = (element) => {
+      let node = element.parentElement;
+      while (node) {
+        if (countedYellowBg.has(node)) return true;
+        node = node.parentElement;
+      }
+      return false;
+    };
+    let yellowArea = 0;
+    const yellowSamples = [];
+    const directText = (element) =>
+      Array.from(element.childNodes).some((n) => n.nodeType === 3 && n.textContent.trim().length > 0);
+    document.querySelectorAll('body, body *').forEach((element) => {
+      if (!visible(element)) return;
+      const style = window.getComputedStyle(element);
+      const rect = element.getBoundingClientRect();
+      const area = rect.width * rect.height;
+      if (area < 4) return;
+      const sample = (kind, contributed) => {
+        if (yellowSamples.length < 12) {
+          yellowSamples.push({
+            kind,
+            tag: element.tagName.toLowerCase(),
+            cls: `${element.className || ''}`.slice(0, 48),
+            area: Math.round(contributed),
+          });
+        }
+      };
+      if (isBrandYellow(style.backgroundColor) && !hasCountedYellowAncestor(element)) {
+        countedYellowBg.add(element);
+        yellowArea += area;
+        sample('bg', area);
+        return;
+      }
+      if (element instanceof SVGElement && isBrandYellow(style.fill) && !hasCountedYellowAncestor(element)) {
+        countedYellowBg.add(element);
+        yellowArea += area;
+        sample('svg-fill', area);
+        return;
+      }
+      if (directText(element) && isBrandYellow(style.color)) {
+        // Text paints glyphs, not the full rect — 0.12 glyph-coverage factor.
+        yellowArea += area * 0.12;
+        sample('text', area * 0.12);
+      }
+    });
+
+    // WCAG 2.2 AA: pointer targets ≥24×24 (2.5.8; inline-text links exempt).
+    const wcagTargets = [];
+    document.querySelectorAll('a,button,input,select,textarea,[role="button"]').forEach((element) => {
+      if (wcagTargets.length >= 20) return;
+      if (!visible(element)) return;
+      if (element.closest('[aria-hidden="true"]')) return;
+      const style = window.getComputedStyle(element);
+      const rect = element.getBoundingClientRect();
+      if (rect.width >= 24 && rect.height >= 24) return;
+      const tag = element.tagName.toLowerCase();
+      if (tag === 'a' && style.display === 'inline') return; // WCAG 2.5.8 inline exception
+      const type = (element.getAttribute('type') || '').toLowerCase();
+      // Range inputs: the 3px track is the element rect but the THUMB is the
+      // pointer target — rect-based measurement under-counts. Skip.
+      if (tag === 'input' && type === 'range') return;
+      if (tag === 'input' && (type === 'radio' || type === 'checkbox')) {
+        const label = element.closest('label');
+        if (label) {
+          const lr = label.getBoundingClientRect();
+          if (lr.width >= 24 && lr.height >= 24) return;
+        }
+      }
+      wcagTargets.push({
+        tag,
+        type,
+        text: norm(element.textContent || element.getAttribute('aria-label') || '').slice(0, 48),
+        w: Math.round(rect.width),
+        h: Math.round(rect.height),
+      });
+    });
+
+    // WCAG 2.2 AA: computed contrast ≥4.5:1 body / ≥3:1 large text. Elements
+    // over images/gradients are indeterminate — left to the [S]/[J] tiers.
+    const effectiveBackground = (element) => {
+      let node = element;
+      while (node && node.nodeType === 1) {
+        const style = window.getComputedStyle(node);
+        if (style.backgroundImage && style.backgroundImage !== 'none') return null;
+        const rgb = parseRgb(style.backgroundColor);
+        if (rgb && rgb.a >= 0.95) return rgb;
+        node = node.parentElement;
+      }
+      return { r: 5, g: 5, b: 7, a: 1 }; // Triangulation canvas #050507
+    };
+    const relLum = ({ r, g, b }) => {
+      const chan = (v) => {
+        const c = v / 255;
+        return c <= 0.03928 ? c / 12.92 : Math.pow((c + 0.055) / 1.055, 2.4);
+      };
+      return 0.2126 * chan(r) + 0.7152 * chan(g) + 0.0722 * chan(b);
+    };
+    const wcagContrast = [];
+    document
+      .querySelectorAll('p,li,a,button,label,h1,h2,h3,h4,h5,h6,span,td,th,dt,dd,figcaption,blockquote,output,summary')
+      .forEach((element) => {
+        if (wcagContrast.length >= 20) return;
+        if (!visible(element)) return;
+        if (element.closest('[aria-hidden="true"]')) return;
+        if (!directText(element)) return;
+        const style = window.getComputedStyle(element);
+        const fg = parseRgb(style.color);
+        if (!fg) return;
+        const bg = effectiveBackground(element);
+        if (!bg) return;
+        const composited =
+          fg.a >= 1
+            ? fg
+            : {
+                r: fg.r * fg.a + bg.r * (1 - fg.a),
+                g: fg.g * fg.a + bg.g * (1 - fg.a),
+                b: fg.b * fg.a + bg.b * (1 - fg.a),
+              };
+        const l1 = relLum(composited);
+        const l2 = relLum(bg);
+        const ratio = (Math.max(l1, l2) + 0.05) / (Math.min(l1, l2) + 0.05);
+        const size = Number.parseFloat(style.fontSize);
+        const weight = Number.parseInt(style.fontWeight, 10) || 400;
+        const isLarge = size >= 24 || (size >= 18.66 && weight >= 700);
+        const threshold = isLarge ? 3 : 4.5;
+        if (ratio < threshold) {
+          wcagContrast.push({
+            tag: element.tagName.toLowerCase(),
+            text: norm(element.textContent).slice(0, 48),
+            ratio: Math.round(ratio * 100) / 100,
+            threshold,
+            size: Math.round(size),
+          });
+        }
+      });
+
     const html = document.documentElement;
     const body = document.body;
     const scrollWidth = Math.max(html.scrollWidth, body ? body.scrollWidth : 0);
@@ -397,8 +572,86 @@ function pageAudit() {
       cropSafety,
       sliderAffordance,
       curveMarkers,
+      desktopCtaAboveFold:
+        exactCtas.some((item) => item.rect.absTop <= window.innerHeight) ||
+        (isBook && bookActions.some((item) => item.rect.absTop <= window.innerHeight)),
+      yellowRatio: (() => {
+        const pageArea =
+          window.innerWidth * Math.max(html.scrollHeight, body ? body.scrollHeight : 0);
+        return {
+          ratio: pageArea ? yellowArea / pageArea : 0,
+          area: Math.round(yellowArea),
+          pageArea: Math.round(pageArea),
+          samples: yellowSamples,
+        };
+      })(),
+      wcag: { targets: wcagTargets, contrast: wcagContrast },
     };
   })();
+}
+
+// WCAG 2.2 AA focus-visible sweep (PROJ-DESIGN-INTEL-001 P2): dispatch real Tab
+// keys via CDP (programmatic .focus() does not trigger :focus-visible) and
+// verify every tab stop carries a visible focus indication. Runs at
+// desktop-1440x900 only — focus styling does not vary by viewport.
+async function focusSweep(cdp, maxStops = 25) {
+  await cdp.send('Runtime.evaluate', {
+    expression:
+      'window.scrollTo(0, 0); if (document.activeElement && document.activeElement.blur) document.activeElement.blur();',
+    returnByValue: true,
+  });
+  const seen = new Set();
+  const missing = [];
+  let stops = 0;
+  for (let i = 0; i < maxStops; i++) {
+    for (const type of ['rawKeyDown', 'keyUp']) {
+      await cdp.send('Input.dispatchKeyEvent', {
+        type,
+        key: 'Tab',
+        code: 'Tab',
+        windowsVirtualKeyCode: 9,
+        nativeVirtualKeyCode: 9,
+      });
+    }
+    await sleep(40);
+    const probe = await cdp.send('Runtime.evaluate', {
+      expression: `(() => {
+        const el = document.activeElement;
+        if (!el || el === document.body || el === document.documentElement) return null;
+        const id = (el.tagName || '') + '|' + (el.id || '') + '|' + ('' + (el.className || '')).slice(0, 40) + '|' + (el.textContent || '').trim().slice(0, 32);
+        const read = () => {
+          const s = window.getComputedStyle(el);
+          return {
+            outlineStyle: s.outlineStyle,
+            outlineWidth: s.outlineWidth,
+            boxShadow: s.boxShadow,
+            borderColor: s.borderColor,
+            backgroundColor: s.backgroundColor,
+            color: s.color,
+          };
+        };
+        const focused = read();
+        el.blur();
+        const blurred = read();
+        el.focus({ preventScroll: true });
+        const indicated =
+          (focused.outlineStyle !== 'none' && focused.outlineWidth !== '0px') ||
+          focused.boxShadow !== blurred.boxShadow ||
+          focused.borderColor !== blurred.borderColor ||
+          focused.backgroundColor !== blurred.backgroundColor ||
+          focused.color !== blurred.color;
+        return { id, indicated };
+      })()`,
+      returnByValue: true,
+    });
+    const value = probe.result?.value;
+    if (!value) break;
+    if (seen.has(value.id)) break; // wrapped around the tab ring
+    seen.add(value.id);
+    stops += 1;
+    if (!value.indicated) missing.push(value.id);
+  }
+  return { stops, missing: missing.slice(0, 10) };
 }
 
 function routeFailures(metrics, viewport) {
@@ -430,7 +683,33 @@ function routeFailures(metrics, viewport) {
     (item) => item.calloutNodeCount < 4 || item.stemCount < 4,
   );
   if (curveMarkerFailures.length) failures.push(`curve marker callouts ${curveMarkerFailures.length}`);
+
+  // [S]-tier deterministic adjuncts (PROJ-DESIGN-INTEL-001 P2). STRICT posture
+  // was validated by a clean flagship smoke on 2026-06-11 (zero false-block);
+  // tier contract in Brain reference/QA-Visual-Design-Gate.md.
+  if (viewport.name === 'desktop-1440x900' && !metrics.desktopCtaAboveFold) {
+    failures.push('desktop CTA not visible above the 900px fold');
+  }
+  if (metrics.yellowRatio && metrics.yellowRatio.ratio > 0.1) {
+    failures.push(`yellow-ratio ${(metrics.yellowRatio.ratio * 100).toFixed(1)}% exceeds 10% accent budget`);
+  }
+  if (metrics.wcag?.targets?.length) failures.push(`wcag target-size ${metrics.wcag.targets.length}`);
+  if (metrics.focusAudit?.missing?.length) {
+    failures.push(`focus-visible missing on ${metrics.focusAudit.missing.length} tab stops`);
+  }
   return failures;
+}
+
+// ADVISORY findings (burn-in per QA-Visual-Design-Gate.md): surfaced in the
+// summary but never set the exit code. wcag-contrast sits here because the
+// 2026-06-11 flagship smoke found pre-existing sub-threshold micro-labels
+// (8-9px faint diagram annotations ~3:1) — a design-tier [J] decision, not a
+// regression this sweep should hard-block on. Flips to routeFailures once the
+// micro-label register is resolved.
+function routeAdvisories(metrics) {
+  const advisories = [];
+  if (metrics.wcag?.contrast?.length) advisories.push(`wcag contrast ${metrics.wcag.contrast.length}`);
+  return advisories;
 }
 
 async function ensureManualAcceptanceTemplate() {
@@ -585,6 +864,13 @@ async function main() {
         const routeDir = path.join(outRoot, route.name, viewport.name);
         await fs.mkdir(routeDir, { recursive: true });
         const screenshotPath = path.join(routeDir, 'full-page.png');
+        if (viewport.name === 'desktop-1440x900') {
+          metrics.focusAudit = await focusSweep(cdp).catch((error) => ({
+            stops: 0,
+            missing: [],
+            error: error.message,
+          }));
+        }
         await fs.writeFile(path.join(routeDir, 'metrics.json'), JSON.stringify(metrics, null, 2));
         await captureFullPage(cdp, screenshotPath);
 
@@ -604,6 +890,7 @@ async function main() {
           viewport: viewport.name,
           screenshot: screenshotPath,
           failures: routeFailures(metrics, viewport),
+          advisories: routeAdvisories(metrics),
           h1s: metrics.h1s,
           overflowX: metrics.document.overflowX,
           visibleImages: metrics.images.visibleCount,
@@ -634,6 +921,7 @@ async function main() {
       viewports,
       totalCaptures: captures.length,
       failureCount: failures.length,
+      advisoryCount: captures.reduce((sum, c) => sum + (c.advisories?.length || 0), 0),
       failures,
       captures,
       manualAcceptance,
@@ -647,6 +935,7 @@ async function main() {
         `Base: ${baseUrl}`,
         `Captures: ${summary.totalCaptures}`,
         `Failures: ${summary.failureCount}`,
+        `Advisories (non-blocking): ${summary.advisoryCount}`,
         `Manual visual review: ${manualAcceptance.accepted ? 'accepted' : 'pending'} (${manualAcceptance.path})`,
         '',
         '## Captures',
@@ -667,6 +956,20 @@ async function main() {
           : ['- None']),
       ].join('\n'),
     );
+
+    // [S]-tier visual-critique (PROJ-DESIGN-INTEL-001 P2): multimodal rubric
+    // pass over THIS bundle's screenshots (scripts/visual-critique-rubric.json,
+    // scorer contract in Brain reference/QA-Visual-Design-Gate.md). ADVISORY
+    // burn-in — the report informs HITL review and never sets the exit code.
+    if (process.env.BWM_VISUAL_CRITIQUE === '1') {
+      const critique = spawn('node', [path.resolve('scripts/visual-critique.mjs'), '--bundle', outRoot], {
+        stdio: 'inherit',
+      });
+      await new Promise((resolve) => critique.once('exit', resolve));
+      console.log(`[S]-tier visual-critique report: ${path.join(outRoot, 'visual-critique-report.md')} (advisory)`);
+    } else {
+      console.log(`[S]-tier visual-critique available: node scripts/visual-critique.mjs --bundle ${outRoot}`);
+    }
 
     if (failures.length) {
       console.error(`Brand visual QA failed with ${failures.length} failing capture(s).`);

@@ -1504,18 +1504,12 @@
       font-family: 'Inter', sans-serif; font-weight: 700; font-size: 18px;
       letter-spacing: -0.005em; text-decoration: none;
       border: 0; cursor: pointer; position: relative;
-      transition: transform .25s cubic-bezier(.2,.7,.3,1), box-shadow .25s cubic-bezier(.2,.7,.3,1);
+      /* R017 System A: hover = color/border shift only. Lift/offset-frame
+         transforms remediated 2026-06-11 (PROJ-DESIGN-INTEL-001 P2). */
+      transition: background-color 180ms ease, color 180ms ease;
     }
-    .cta-primary::before {
-      content: ""; position: absolute; inset: 0;
-      border: 1px solid var(--y2); transform: translate(0, 0);
-      pointer-events: none;
-      transition: transform .25s cubic-bezier(.2,.7,.3,1);
-    }
-    .cta-primary:hover { transform: translate(-3px, -3px); }
-    .cta-primary:hover::before { transform: translate(6px, 6px); }
-    .cta-primary .arrow { display: inline-block; transition: transform .25s cubic-bezier(.2,.7,.3,1); }
-    .cta-primary:hover .arrow { transform: translateX(5px); }
+    .cta-primary:hover { background: var(--y2-bright); }
+    .cta-primary .arrow { display: inline-block; }
 
     .cta-secondary {
       display: inline-flex; align-items: center; gap: 12px;
@@ -1583,9 +1577,11 @@
       padding: 20px 32px; background: var(--y2); color: var(--bg);
       font-family: 'Inter', sans-serif; font-weight: 700; font-size: 15px;
       border: 0; cursor: pointer;
-      transition: transform .25s cubic-bezier(.2,.7,.3,1), opacity .25s ease;
+      /* Interactive-Proof hover affordance: shadow-intensity shift only,
+         no transform (R017 amendment; remediated 2026-06-11). */
+      transition: box-shadow .25s cubic-bezier(.2,.7,.3,1), opacity .25s ease;
     }
-    .q-nav-next:hover { transform: translate(-2px, -2px); box-shadow: 4px 4px 0 var(--y2); }
+    .q-nav-next:hover { box-shadow: 4px 4px 0 var(--y2); }
     .q-nav-next:disabled {
       background: var(--bg-elev); color: var(--ink-faint);
       cursor: not-allowed; box-shadow: none; transform: none;
@@ -1612,7 +1608,8 @@
     .chip-icon .hair { stroke-opacity: 0.45; }
     .chip-icon .verdict { fill: var(--y2); stroke: none; }
     .chip-icon .verdict-glow { fill: var(--y2); stroke: none; opacity: 0.2; }
-    .chip:hover .chip-icon { transform: translate(0, -2px); }
+    /* hover icon nudge removed 2026-06-11 (R017 System A — hover is color
+       shift only); .selected keeps the nudge (click = explicit gesture). */
     .chip.selected .chip-icon { transform: translate(0, -2px); }
     .chip.selected .chip-icon .verdict { filter: drop-shadow(0 0 6px var(--y2-glow)); }
     .chip-label { font-weight: 600; font-size: 17px; letter-spacing: -0.008em; }
@@ -2092,9 +2089,9 @@
     .path-cta-btn {
       padding: 14px 24px; background: var(--y2); color: var(--bg);
       font-family: 'Inter', sans-serif; font-weight: 700; font-size: 14px;
-      border: 0; cursor: pointer; transition: transform .25s ease;
+      border: 0; cursor: pointer; transition: box-shadow .25s ease;
     }
-    .path-cta-btn:hover { transform: translate(-2px, -2px); box-shadow: 4px 4px 0 var(--y2); }
+    .path-cta-btn:hover { box-shadow: 4px 4px 0 var(--y2); }
 
     footer { padding: 56px 0 72px; border-top: 1px solid var(--rule); }
     .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 48px; align-items: start; }

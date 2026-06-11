@@ -136,6 +136,37 @@ const faqSchema = {
         <p class="prose">
           It is also not the whole system: the map shows the leak, and <a href="/system">the system</a> is what closes it, runs it, and proves the next move each week.
         </p>
+        <!-- @r020:F2 proof: the Revenue Leak Map itself — lead→booked-work path with the first break flagged; shows the exact deliverable the section describes -->
+        <figure class="scene-fig">
+          <svg viewBox="0 0 520 150" role="img" aria-label="Diagram: the path from lead to booked work with five checkpoints — source, speed, proof, follow-up, routing — and the first break flagged between checkpoints.">
+            <!-- path before the break -->
+            <line class="fx-hair" x1="24" y1="70" x2="192" y2="70" />
+            <!-- the break -->
+            <circle class="fx-vertex" cx="207" cy="70" r="4" style="stroke: var(--y2);" />
+            <line class="fx-hair-y2" x1="207" y1="62" x2="207" y2="38" />
+            <text class="fx-label-y2" x="207" y="28" text-anchor="middle">FIRST BREAK</text>
+            <!-- path after the break -->
+            <line class="fx-hair" x1="222" y1="70" x2="481" y2="70" />
+            <!-- stations -->
+            <rect class="fx-vertex" x="20" y="66" width="8" height="8" />
+            <rect class="fx-vertex" x="91" y="66" width="8" height="8" />
+            <rect class="fx-vertex" x="166" y="66" width="8" height="8" />
+            <rect class="fx-vertex" x="241" y="66" width="8" height="8" />
+            <rect class="fx-vertex" x="316" y="66" width="8" height="8" />
+            <rect class="fx-vertex" x="391" y="66" width="8" height="8" />
+            <rect class="fx-vertex-filled" x="477" y="66" width="8" height="8" />
+            <!-- station labels -->
+            <text class="fx-label" x="24" y="94" text-anchor="middle">LEAD</text>
+            <text class="fx-label" x="95" y="94" text-anchor="middle">SOURCE</text>
+            <text class="fx-label" x="170" y="94" text-anchor="middle">SPEED</text>
+            <text class="fx-label" x="245" y="94" text-anchor="middle">PROOF</text>
+            <text class="fx-label" x="320" y="94" text-anchor="middle">FOLLOW-UP</text>
+            <text class="fx-label" x="395" y="94" text-anchor="middle">ROUTING</text>
+            <text class="fx-label" x="481" y="94" text-anchor="middle">BOOKED</text>
+            <!-- caption -->
+            <text class="fx-caption" x="24" y="136">THE MAP NAMES THE FIRST GAP THAT SHOULD MOVE</text>
+          </svg>
+        </figure>
       </div>
       <aside class="audit-definition">
         <p class="form-kicker mono">not a pitch deck</p>

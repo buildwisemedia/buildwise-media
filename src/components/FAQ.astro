@@ -24,6 +24,35 @@ const { faqs } = Astro.props;
           Real answers.
         </h2>
       </header>
+      <!-- @r020:F2 proof: question→running-system→verified-answer routing diagram — visually encodes the "real systems, real answers" claim beside booking-intent FAQs -->
+      <figure class="faq-scene">
+        <svg viewBox="0 0 360 232" role="img" aria-label="Diagram: each question routes through the running system and returns a verified answer.">
+          <!-- question nodes -->
+          <rect class="fx-vertex" x="16" y="36" width="8" height="8" />
+          <text class="fx-label" x="34" y="44">Q-01</text>
+          <rect class="fx-vertex" x="16" y="102" width="8" height="8" />
+          <text class="fx-label" x="34" y="110">Q-02</text>
+          <rect class="fx-vertex" x="16" y="168" width="8" height="8" />
+          <text class="fx-label" x="34" y="176">Q-03</text>
+          <!-- routing hairlines into the system block -->
+          <line class="fx-hair" x1="24" y1="40" x2="150" y2="96" />
+          <line class="fx-hair" x1="24" y1="106" x2="150" y2="116" />
+          <line class="fx-hair" x1="24" y1="172" x2="150" y2="136" />
+          <!-- running system block -->
+          <rect class="fx-block" x="150" y="76" width="112" height="80" />
+          <text class="fx-label" x="166" y="100">RUNNING</text>
+          <text class="fx-label" x="166" y="114">SYSTEM</text>
+          <circle class="fx-dot" cx="170" cy="138" r="2.5" />
+          <circle class="fx-dot" cx="184" cy="138" r="2.5" />
+          <circle class="fx-dot" cx="198" cy="138" r="2.5" />
+          <!-- verified answer out -->
+          <line class="fx-hair" x1="262" y1="116" x2="322" y2="116" />
+          <rect class="fx-vertex-filled" x="322" y="112" width="8" height="8" />
+          <text class="fx-label" x="282" y="104">ANSWER</text>
+          <!-- caption -->
+          <text class="fx-caption" x="16" y="220">EVERY ANSWER TRACES TO LIVE SYSTEM STATE</text>
+        </svg>
+      </figure>
     </div>
 
     <ul class="faq-list" role="list">
@@ -49,6 +78,9 @@ const { faqs } = Astro.props;
 .faq-head { position: sticky; top: 100px; display: flex; flex-direction: column; gap: 32px; }
 .faq-head-text { display: flex; flex-direction: column; gap: 24px; }
 .faq-aside { margin: 0; }
+
+.faq-scene { margin: 0; max-width: 360px; }
+.faq-scene svg { width: 100%; height: auto; display: block; }
 .faq-aside img {
   width: 100%;
   height: auto;

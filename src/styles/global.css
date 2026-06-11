@@ -148,6 +148,37 @@ h1, h2, h3, h4 {
   letter-spacing: -0.03em;
 }
 
+/* ---------- 3b. Scene diagrams (Show-Don't-Tell creatives) ----------
+   Shared vocabulary for inline R014b-grammar scene SVGs: hairlines,
+   hollow/filled vertices, Y2 verdict dots, JetBrains Mono micro-labels.
+   Added 2026-06-11 (PROJ-DESIGN-INTEL-001 P2 SDT remediation). */
+.scene-fig { margin: 32px 0 0; max-width: 560px; }
+.scene-fig svg { width: 100%; height: auto; display: block; }
+.fx-hair { stroke: var(--rule-bright); stroke-width: 1; }
+.fx-hair-y2 { stroke: var(--y2); stroke-width: 1; }
+.fx-block { fill: none; stroke: var(--rule-bright); stroke-width: 1; }
+.fx-vertex { fill: none; stroke: var(--ink-dim); stroke-width: 1; }
+.fx-vertex-filled { fill: var(--y2); }
+.fx-dot { fill: var(--y2); }
+.fx-label {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  fill: var(--ink-dim);
+}
+.fx-label-y2 {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  fill: var(--y2);
+}
+.fx-caption {
+  font-family: var(--mono);
+  font-size: 9px;
+  letter-spacing: 0.14em;
+  fill: var(--ink-faint);
+}
+
 /* ---------- 4. Body Type (Inter) ---------- */
 .lede {
   font-size: 22px;

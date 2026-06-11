@@ -1,0 +1,142 @@
+{
+  "schema_version": "1.0",
+  "tier": "S",
+  "contract": "Brain reference/QA-Visual-Design-Gate.md § [S]-tier protocol — items map 1:1 to [J] judgment items; an [S] verdict pre-screens the human gate and never closes a [J] item.",
+  "source_docs": [
+    "reference/qa-checklist.md",
+    "reference/QA-Visual-Design-Gate.md"
+  ],
+  "verdict_schema": {
+    "item_id": "string",
+    "verdict": "pass | fail | unsure",
+    "evidence": "one sentence citing what is visible in the screenshot"
+  },
+  "items": [
+    {
+      "id": "cta-above-fold",
+      "source": "qa-checklist.md [J] 'CTA visible above fold (hero section)'",
+      "viewports": ["desktop"],
+      "question": "Is a primary call-to-action button clearly visible in the first screen-height of the page?"
+    },
+    {
+      "id": "cta-scroll-cadence",
+      "source": "qa-checklist.md [J] 'CTA repeated every 2-3 scroll-depths'",
+      "viewports": ["desktop"],
+      "question": "Scanning the full page top to bottom, does a call-to-action reappear at least once every 2-3 screen-heights, with no long CTA-free stretch?"
+    },
+    {
+      "id": "social-proof-near-hero",
+      "source": "qa-checklist.md [J] 'Social proof within 1 scroll of hero'",
+      "viewports": ["desktop"],
+      "question": "Within roughly one screen-height below the hero, is there visible social proof (testimonial, client result, named metric, or recognizable credibility marker)?"
+    },
+    {
+      "id": "mobile-cta-thumb-reach",
+      "source": "qa-checklist.md [J] 'Mobile CTA thumb-reachable (bottom 60% of viewport)'",
+      "viewports": ["mobile"],
+      "question": "On this mobile capture, are primary CTAs positioned where a thumb can comfortably reach them (not exclusively pinned at the very top of each screen-height)?"
+    },
+    {
+      "id": "dead-end-page",
+      "source": "qa-checklist.md [J] 'No dead-end pages (every page has a clear next action)'",
+      "viewports": ["desktop", "mobile"],
+      "question": "Does the page end with a clear next action (CTA, booking module, or navigation pathway) rather than petering out into footer links only?"
+    },
+    {
+      "id": "guarantee-near-cta",
+      "source": "qa-checklist.md [J] 'Guarantee statement adjacent to CTAs'",
+      "viewports": ["desktop"],
+      "question": "Is guarantee or risk-reversal language visible adjacent to at least one primary CTA?"
+    },
+    {
+      "id": "anti-slop",
+      "source": "qa-checklist.md [J] 'Anti-slop compliance'",
+      "viewports": ["desktop"],
+      "question": "Does the page avoid generic AI-template aesthetics (stock gradient blobs, emoji bullets, uniform rounded cards, centered-everything monotony) in favor of a deliberate, specific design system?"
+    },
+    {
+      "id": "distinct-identity",
+      "source": "qa-checklist.md [J] 'Visual styling: site has its own identity'",
+      "viewports": ["desktop"],
+      "question": "Does the page read as a distinct, intentional brand identity (consistent palette, typography hierarchy, recurring geometric vocabulary) rather than an interchangeable template?"
+    },
+    {
+      "id": "single-word-lines-mobile",
+      "source": "qa-checklist.md [J] 'No single-word lines on mobile headings'",
+      "viewports": ["mobile"],
+      "question": "Are all headings free of awkward single-word orphan lines at this mobile width?"
+    },
+    {
+      "id": "nav-overlap",
+      "source": "qa-checklist.md [J] 'Sticky nav does not overlap page content at ANY scroll position'",
+      "viewports": ["desktop", "mobile"],
+      "question": "Is the navigation bar free of collisions with page content (no text or controls visually colliding with or hidden behind the nav)?"
+    },
+    {
+      "id": "hero-nav-clearance",
+      "source": "qa-checklist.md [J] 'Hero headline has sufficient clearance from nav'",
+      "viewports": ["desktop", "mobile"],
+      "question": "Does the hero headline have comfortable vertical clearance from the navigation (no cramped or colliding text on initial load)?"
+    },
+    {
+      "id": "testimonial-attribution",
+      "source": "qa-checklist.md [J] 'Testimonials have real attribution (first name + last initial minimum)'",
+      "viewports": ["desktop"],
+      "question": "If testimonials or quotes are visible, does each carry a real-looking attribution (name plus business/context), with no anonymous or generic 'Business Owner' quotes?"
+    },
+    {
+      "id": "testimonial-treatment",
+      "source": "QA-Visual-Design-Gate.md Gate 2 'Testimonials: Not plain text'",
+      "viewports": ["desktop"],
+      "question": "If testimonials are visible, do they have deliberate visual treatment (quote styling, result badges, card structure) rather than plain paragraphs?"
+    },
+    {
+      "id": "entity-clarity",
+      "source": "qa-checklist.md [J] 'Entity clarity in first 200 words'",
+      "viewports": ["desktop"],
+      "question": "From the visible top-of-page copy, is it immediately clear who this business is, what it does, and for whom?"
+    },
+    {
+      "id": "retrieval-structure",
+      "source": "qa-checklist.md [J] 'Content structured for retrieval (discrete FAQ pairs, summary blocks, clear sections)'",
+      "viewports": ["desktop"],
+      "question": "Is the page content organized into clearly delineated, scannable sections (headed blocks, FAQ pairs, summary modules) rather than undifferentiated prose?"
+    },
+    {
+      "id": "text-walls",
+      "source": "QA-Visual-Design-Gate.md Gate 2 'No text walls — no section >120 words without a visual break'",
+      "viewports": ["desktop"],
+      "question": "Is every section free of text walls — no stretch of more than roughly 120 words of continuous body text without a visual break (card, chart, image, table, callout)?"
+    },
+    {
+      "id": "section-rhythm",
+      "source": "QA-Visual-Design-Gate.md Gate 2 'Section Rhythm: no identical adjacent sections + background alternation'",
+      "viewports": ["desktop"],
+      "question": "Do adjacent sections vary in visual structure and background treatment (no two consecutive sections with identical layout that blur together)?"
+    },
+    {
+      "id": "hero-dual-composition",
+      "source": "QA-Visual-Design-Gate.md Gate 2 'Hero: right-side visual exists'",
+      "viewports": ["desktop"],
+      "question": "Does the hero combine text with a substantive visual element (diagram, data visualization, product surface, or imagery) rather than text floating alone?"
+    },
+    {
+      "id": "dollar-claims-attributed",
+      "source": "qa-checklist.md [J] 'No unverified dollar claims' (screenshot-visible attribution variant)",
+      "viewports": ["desktop"],
+      "question": "Does every specific dollar figure visible on the page carry visible attribution or source context (client result, industry average label, calculation basis)?"
+    },
+    {
+      "id": "stat-source-citation",
+      "source": "qa-checklist.md [J] 'Stats/metrics match BO proof points with source citation' (screenshot-visible variant)",
+      "viewports": ["desktop"],
+      "question": "Do displayed stats and metrics carry visible source or context cues rather than floating as bare unexplained numbers?"
+    },
+    {
+      "id": "logo-presence",
+      "source": "QA-Visual-Design-Gate.md Gate 2 'Logo: nav logo visible and appropriately sized'",
+      "viewports": ["desktop", "mobile"],
+      "question": "Is the brand mark/logo clearly visible and appropriately sized in the navigation?"
+    }
+  ]
+}

@@ -214,6 +214,33 @@ const faqSchema = {
         <p class="prose">
           Day one is about the baseline. Month 12 is about compounding. On day one, you get a clearer view of leaks and next steps. Over time, the system builds proof, improves answer speed, cleans up source tracking, and gives the owner a better weekly operating rhythm.
         </p>
+        <!-- @r020:F2 proof: dollar→source→page→call→quote→booked-job attribution chain — encodes the one-view traceability claim the prose makes -->
+        <figure class="scene-fig">
+          <svg viewBox="0 0 520 120" role="img" aria-label="Diagram: an attribution chain tying ad dollar, source, page, call, and quote to the booked job in one view.">
+            <!-- chain hairline -->
+            <line class="fx-hair" x1="34" y1="52" x2="451" y2="52" />
+            <!-- nodes -->
+            <rect class="fx-vertex" x="30" y="48" width="8" height="8" />
+            <rect class="fx-vertex" x="110" y="48" width="8" height="8" />
+            <rect class="fx-vertex" x="190" y="48" width="8" height="8" />
+            <rect class="fx-vertex" x="270" y="48" width="8" height="8" />
+            <rect class="fx-vertex" x="350" y="48" width="8" height="8" />
+            <rect class="fx-vertex-filled" x="447" y="48" width="8" height="8" />
+            <!-- node labels -->
+            <text class="fx-label" x="34" y="76" text-anchor="middle">DOLLAR</text>
+            <text class="fx-label" x="114" y="76" text-anchor="middle">SOURCE</text>
+            <text class="fx-label" x="194" y="76" text-anchor="middle">PAGE</text>
+            <text class="fx-label" x="274" y="76" text-anchor="middle">CALL</text>
+            <text class="fx-label" x="354" y="76" text-anchor="middle">QUOTE</text>
+            <text class="fx-label-y2" x="451" y="76" text-anchor="middle">BOOKED JOB</text>
+            <!-- one-view bracket -->
+            <line class="fx-hair" x1="24" y1="92" x2="496" y2="92" />
+            <line class="fx-hair" x1="24" y1="88" x2="24" y2="92" />
+            <line class="fx-hair" x1="496" y1="88" x2="496" y2="92" />
+            <!-- caption -->
+            <text class="fx-caption" x="24" y="110">ONE VIEW — EVERY BOOKED JOB TRACES TO ITS DOLLAR</text>
+          </svg>
+        </figure>
       </div>
       <div class="fit-panel">
         <p class="section-tag">Fit check</p>
@@ -232,6 +259,7 @@ const faqSchema = {
       <ul class="related-list">
         <li><a href="/system">The System</a> — the full eight-layer operating model</li>
         <li><a href="/services/ascend">Ascend</a> — what gets installed and run each week</li>
+        <li><a href="/playbook/hvac-lead-generation">HVAC Lead Generation</a> — how HVAC companies get more booked jobs without another agency</li>
         <li><a href="/problem/leaky-revenue">Leaky Revenue</a> — where leads, quotes, and reviews fall through</li>
         <li><a href="/audit">Revenue Leak Map</a> — the diagnostic that shows the first gap</li>
       </ul>
@@ -253,6 +281,22 @@ const faqSchema = {
     <div class="container">
       <p class="section-tag">FAQ</p>
       <h2 class="h-section">Common questions.</h2>
+      <!-- @r020:F2 proof: question→running-system→verified-answer routing — encodes that these answers come from the operating system, not sales copy -->
+      <figure class="scene-fig" style="margin: 24px 0 40px; max-width: 420px;">
+        <svg viewBox="0 0 420 84" role="img" aria-label="Diagram: a question routes through the running system and returns a verified answer.">
+          <rect class="fx-vertex" x="20" y="38" width="8" height="8" />
+          <text class="fx-label" x="24" y="66" text-anchor="middle">QUESTION</text>
+          <line class="fx-hair" x1="28" y1="42" x2="150" y2="42" />
+          <rect class="fx-block" x="150" y="22" width="96" height="40" />
+          <text class="fx-label" x="166" y="40">SYSTEM</text>
+          <circle class="fx-dot" cx="170" cy="52" r="2.5" />
+          <circle class="fx-dot" cx="184" cy="52" r="2.5" />
+          <circle class="fx-dot" cx="198" cy="52" r="2.5" />
+          <line class="fx-hair" x1="246" y1="42" x2="330" y2="42" />
+          <rect class="fx-vertex-filled" x="330" y="38" width="8" height="8" />
+          <text class="fx-label" x="334" y="66" text-anchor="middle">VERIFIED ANSWER</text>
+        </svg>
+      </figure>
       <div class="faq-list">
         {faqs.map((f) => (
           <details class="faq-item">

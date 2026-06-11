@@ -95,6 +95,31 @@ const faqSchema = {
 
   <section class="phases-section elev">
     <div class="container">
+      <!-- @r020:F2 proof: Day 0→5→30 install timeline — encodes the 30-day operational claim the phase list makes in prose -->
+      <figure class="scene-fig" style="max-width: 560px; margin: 0 0 56px;">
+        <svg viewBox="0 0 520 112" role="img" aria-label="Timeline: Audit runs day 0 to 5, Install runs day 5 to 30, the system is operational and running from day 30 on.">
+          <!-- track -->
+          <line class="fx-hair" x1="24" y1="64" x2="496" y2="64" />
+          <polyline class="fx-hair" points="490,60 496,64 490,68" fill="none" />
+          <!-- ticks -->
+          <line class="fx-hair" x1="24" y1="56" x2="24" y2="72" />
+          <line class="fx-hair" x1="99" y1="56" x2="99" y2="72" />
+          <line class="fx-hair" x1="446" y1="56" x2="446" y2="72" />
+          <!-- phase labels -->
+          <text class="fx-label" x="61" y="44" text-anchor="middle">01 AUDIT</text>
+          <text class="fx-label" x="272" y="44" text-anchor="middle">02 INSTALL</text>
+          <text class="fx-label" x="478" y="44" text-anchor="middle">03 RUN</text>
+          <!-- operational vertex at day 30 -->
+          <rect class="fx-vertex-filled" x="442" y="60" width="8" height="8" />
+          <text class="fx-label-y2" x="446" y="24" text-anchor="middle">OPERATIONAL</text>
+          <!-- day labels -->
+          <text class="fx-label" x="24" y="92" text-anchor="start">DAY 0</text>
+          <text class="fx-label" x="99" y="92" text-anchor="middle">DAY 5</text>
+          <text class="fx-label" x="446" y="92" text-anchor="middle">DAY 30</text>
+          <!-- caption -->
+          <text class="fx-caption" x="24" y="110">THREE PHASES. THIRTY DAYS. THEN THE SYSTEM RUNS.</text>
+        </svg>
+      </figure>
       <ol class="phases-list" role="list">
         {phases.map((p) => (
           <li class="phase-row reveal">
