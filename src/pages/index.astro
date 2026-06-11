@@ -372,11 +372,11 @@ const faqSchema = {
             <svg class="market-signal-svg" viewBox="0 0 520 320" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Ascend routes search, reviews, ads, follow-up, and attribution into one operating center.">
               <defs>
                 <linearGradient id="sig-cyan" x1="0" x2="1">
-                  <stop stop-color="var(--signal-cyan)" stop-opacity="0.9" />
+                  <stop offset="0" stop-color="var(--signal-cyan)" stop-opacity="0.9" />
                   <stop offset="1" stop-color="var(--y2)" stop-opacity="0.9" />
                 </linearGradient>
                 <linearGradient id="sig-green" x1="0" x2="1">
-                  <stop stop-color="var(--signal-green)" stop-opacity="0.9" />
+                  <stop offset="0" stop-color="var(--signal-green)" stop-opacity="0.9" />
                   <stop offset="1" stop-color="var(--y1)" stop-opacity="0.9" />
                 </linearGradient>
               </defs>
@@ -396,7 +396,7 @@ const faqSchema = {
               <g class="map-node"><circle cx="448" cy="72" r="9" fill="var(--signal-green)" /><text x="448" y="51" text-anchor="middle" font-family="var(--mono)" font-size="8" fill="var(--ink-dim)" letter-spacing="1.4">PROOF</text></g>
               <g class="map-node"><circle cx="452" cy="238" r="9" fill="var(--signal-orange)" /><text x="452" y="264" text-anchor="middle" font-family="var(--mono)" font-size="8" fill="var(--ink-dim)" letter-spacing="1.4">WEEKLY OPS</text></g>
             </svg>
-            <div class="signal-queue" aria-label="Active operating routes">
+            <div role="group" class="signal-queue" aria-label="Active operating routes">
               {signalQueue.map((item) => (
                 <div class={`signal-queue-row tone-${item.tone}`}>
                   <span class="mono">{item.label}</span>
@@ -433,7 +433,7 @@ const faqSchema = {
           ))}
         </div>
 
-        <div class="weekly-proof-rail" aria-label="Weekly operating proof rail">
+        <div role="group" class="weekly-proof-rail" aria-label="Weekly operating proof rail">
           {weeklyProofRail.map((item) => (
             <div class={`proof-rail-item tone-${item.tone}`}>
               <span class="mono">{item.label}</span>
@@ -530,7 +530,7 @@ const faqSchema = {
           We build it, install it, and run it for you. By day 30 it's live, your results show up in one place, and you're pulling ahead — with nothing added to your plate.
         </p>
       </header>
-      <div class="install-console" aria-label="30-day install progress panel">
+      <div role="group" class="install-console" aria-label="30-day install progress panel">
         <div class="install-pulse" aria-hidden="true">
           <span></span>
           <span></span>
@@ -570,7 +570,7 @@ const faqSchema = {
           We map exactly where your market is leaking revenue right now — who shows up before you, where buyers stall, and the one move that matters most. If we're not the right fit, the map is yours to keep.
         </p>
       </header>
-      <div class="dossier-preview ops-panel" aria-label="Revenue Leak Map preview">
+      <div role="group" class="dossier-preview ops-panel" aria-label="Revenue Leak Map preview">
         <div class="dossier-preview-head">
           <span class="mono">Revenue Leak Map</span>
           <strong>First move identified before the call</strong>
@@ -632,7 +632,7 @@ const faqSchema = {
           A guarantee is only useful if both sides can see what it means. These clauses are the buyer-risk reducers behind the offer.
         </p>
       </header>
-      <div class="contract-proof-board" aria-label="Agreement clauses grouped by buyer anxiety">
+      <div role="group" class="contract-proof-board" aria-label="Agreement clauses grouped by buyer anxiety">
         <div class="contract-proof-page">
           <div class="contract-proof-page-head">
             <span class="mono">Agreement layer</span>
