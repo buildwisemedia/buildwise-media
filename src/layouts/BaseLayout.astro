@@ -176,6 +176,18 @@ const graph = [...siteSchemas, ...perPageSchemas];
       window.dataLayer = window.dataLayer || [];
       function gtag(){ dataLayer.push(arguments); }
       window.gtag = window.gtag || gtag;
+      // Queue js+config at parse time, BEFORE any page event can enter the
+      // dataLayer. gtag.js replays the queue in order on load; an 'event'
+      // command queued ahead of 'config' has no destination and is dropped
+      // with no network hit — this silently ate every pre-interaction event
+      // (diagnostic_start / diagnostic_step_complete) while interaction-gated
+      // loadAnalytics() held the config back. Queueing is free; only the
+      // vendor script loading below stays lazy.
+      window.gtag('js', new Date());
+      // GTM-P5JSD86L already owns base GA4 PageView and Meta Pixel init.
+      // Direct gtag stays available for custom events, but with no automatic
+      // page_view so the container and page script do not double-count LPVs.
+      window.gtag('config', GA4, { send_page_view: false });
 
       (function () {
         var loaded = false;
@@ -193,11 +205,6 @@ const graph = [...siteSchemas, ...perPageSchemas];
           window.dataLayer.push({ 'gtm.start': new Date().getTime(), event: 'gtm.js' });
           append('https://www.googletagmanager.com/gtm.js?id=' + GTM);
           append('https://www.googletagmanager.com/gtag/js?id=' + GA4);
-          window.gtag('js', new Date());
-          // GTM-P5JSD86L already owns base GA4 PageView and Meta Pixel init.
-          // Direct gtag stays available for custom events, but with no automatic
-          // page_view so the container and page script do not double-count LPVs.
-          window.gtag('config', GA4, { send_page_view: false });
           // Meta Pixel — load inline alongside GTM so the fbevents.js loader
           // appears in page HTML source (required for cell_03/cell_14 audit checks
           // and for server-side CAPI deduplication via fbq('track') eventID).
