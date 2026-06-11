@@ -17,7 +17,7 @@
 //   node scripts/visual-critique.mjs --bundle _verification/brand-closure-visual-cdp-YYYY-MM-DD
 //        [--scorer codex|claude] [--routes home,pricing] [--strict]
 
-import { execFile } from 'node:child_process';
+import { execFile, spawn } from 'node:child_process';
 import { existsSync } from 'node:fs';
 import fs from 'node:fs/promises';
 import os from 'node:os';
@@ -115,15 +115,27 @@ function extractJsonArray(text) {
 async function scoreWithCodex(prompt, images, workDir) {
   const args = ['exec', '--skip-git-repo-check', '-C', workDir];
   for (const img of images) args.push('-i', img);
-  // `--` ends flag parsing: without it the variadic -i swallows the prompt
-  // and codex blocks on stdin until the call times out.
+  // `--` ends flag parsing (the variadic -i swallows a bare positional
+  // prompt), and stdin MUST be closed/ignored — with an open stdin pipe
+  // codex waits on "additional input" instead of running.
   args.push('--', prompt);
-  const { stdout } = await execFileAsync('codex', args, {
-    timeout: 240000,
-    maxBuffer: 16 * 1024 * 1024,
-    env: { ...process.env, BRAIN_KEY: '', BRAIN_WRITE_KEY: '', ANTHROPIC_API_KEY: '' },
+  return new Promise((resolve, reject) => {
+    const child = spawn('codex', args, {
+      stdio: ['ignore', 'pipe', 'pipe'],
+      env: { ...process.env, BRAIN_KEY: '', BRAIN_WRITE_KEY: '', ANTHROPIC_API_KEY: '' },
+    });
+    let stdout = '';
+    let stderr = '';
+    const timer = setTimeout(() => child.kill('SIGKILL'), 240000);
+    child.stdout.on('data', (d) => { stdout += d; });
+    child.stderr.on('data', (d) => { stderr += d; });
+    child.once('error', (error) => { clearTimeout(timer); reject(error); });
+    child.once('close', (code) => {
+      clearTimeout(timer);
+      if (code === 0) resolve(stdout);
+      else reject(new Error(`codex exit ${code}: ${stderr.slice(-300)}`));
+    });
   });
-  return stdout;
 }
 
 async function anthropicKey() {
