@@ -115,7 +115,9 @@ function extractJsonArray(text) {
 async function scoreWithCodex(prompt, images, workDir) {
   const args = ['exec', '--skip-git-repo-check', '-C', workDir];
   for (const img of images) args.push('-i', img);
-  args.push(prompt);
+  // `--` ends flag parsing: without it the variadic -i swallows the prompt
+  // and codex blocks on stdin until the call times out.
+  args.push('--', prompt);
   const { stdout } = await execFileAsync('codex', args, {
     timeout: 240000,
     maxBuffer: 16 * 1024 * 1024,
