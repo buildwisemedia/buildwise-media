@@ -184,10 +184,13 @@ const graph = [...siteSchemas, ...perPageSchemas];
       // loadAnalytics() held the config back. Queueing is free; only the
       // vendor script loading below stays lazy.
       window.gtag('js', new Date());
-      // GTM-P5JSD86L already owns base GA4 PageView and Meta Pixel init.
-      // Direct gtag stays available for custom events, but with no automatic
-      // page_view so the container and page script do not double-count LPVs.
-      window.gtag('config', GA4, { send_page_view: false });
+      // send_page_view true: with gtag.js initializing first (see ordering
+      // note in loadAnalytics) the GTM container's GA4 page_view merges into
+      // the already-configured destination and never sends, so the direct
+      // config must own page_view or the property records none at all
+      // (verified headless 2026-06-11, 3/3 gtag-first loads: zero GTM
+      // page_view). Single-send is asserted by the post-deploy matrix.
+      window.gtag('config', GA4, { send_page_view: true });
 
       (function () {
         var loaded = false;
@@ -202,9 +205,22 @@ const graph = [...siteSchemas, ...perPageSchemas];
         function loadAnalytics() {
           if (loaded) return;
           loaded = true;
-          window.dataLayer.push({ 'gtm.start': new Date().getTime(), event: 'gtm.js' });
-          append('https://www.googletagmanager.com/gtm.js?id=' + GTM);
-          append('https://www.googletagmanager.com/gtag/js?id=' + GA4);
+          // ORDER IS LOAD-BEARING. gtm.js and gtag.js fight over dataLayer
+          // processing; whichever initializes first wins for the page's
+          // lifetime. gtm.js-first silently drops EVERY direct gtag('event')
+          // (no network hit, no error); gtag.js-first delivers them all.
+          // Appending both async made this a 50/50 network race on every
+          // page load (verified headless 2026-06-11 — the root cause of 30
+          // days of zero conversion events in ga4_events). gtag.js loads
+          // first; gtm.js (Meta pixel + Ads tag owner) follows on its
+          // load/error.
+          var gtagScript = append('https://www.googletagmanager.com/gtag/js?id=' + GA4);
+          function loadGtm() {
+            window.dataLayer.push({ 'gtm.start': new Date().getTime(), event: 'gtm.js' });
+            append('https://www.googletagmanager.com/gtm.js?id=' + GTM);
+          }
+          gtagScript.addEventListener('load', loadGtm);
+          gtagScript.addEventListener('error', loadGtm);
           // Meta Pixel — load inline alongside GTM so the fbevents.js loader
           // appears in page HTML source (required for cell_03/cell_14 audit checks
           // and for server-side CAPI deduplication via fbq('track') eventID).
