@@ -253,7 +253,7 @@ const poorFour = [
       }
       window.dataLayer = window.dataLayer || [];
       window.dataLayer.push(Object.assign({ event: name }, payload));
-      window.gtag?.('event', name, payload);
+      window.gtag?.('event', name, Object.assign({ transport_type: 'beacon' }, payload));
     } catch (_) {}
   }
 
@@ -526,9 +526,20 @@ const poorFour = [
             },
           });
         }
+      } else if (data.classification === 'pending') {
+        // Manual-review route: the lead IS captured (the team replies by email).
+        // Previously fell into the error branch and told a captured lead
+        // "something went wrong" (found 2026-06-11).
+        form.style.display = 'none';
+        const note = document.createElement('p');
+        note.className = 'q-pending-note';
+        note.textContent = 'Thanks — your details are in. The team reviews every diagnostic by hand and will email your Revenue Leak Map and next steps within one business day.';
+        form.insertAdjacentElement('afterend', note);
       } else if (data.classification === 'disqualified') {
         const reason = encodeURIComponent(data.reason || 'fit_check');
-        window.location.href = `/thank-you-resource?reason=${reason}`;
+        // brief deferral lets gtag flush the diagnostic_submit beacon before
+        // the page unloads — instant redirect aborted the hit (2026-06-11).
+        setTimeout(() => { window.location.href = `/thank-you-resource?reason=${reason}`; }, 250);
       } else {
         throw new Error('Unexpected response');
       }

@@ -310,7 +310,11 @@ const graph = [...siteSchemas, ...perPageSchemas];
           window.dataLayer = window.dataLayer || [];
           window.dataLayer.push(Object.assign({ event: name }, payload));
           if (typeof window.gtag === 'function') {
-            try { window.gtag('event', name, payload); } catch (_) {}
+            // beacon transport: conversion events fire at navigation boundaries
+            // (disqualified redirect, booking handoff) — default XHR sends get
+            // ERR_ABORTED on unload and the event is silently lost (verified
+            // live 2026-06-11: zero form/lead events in 30d of GA4 pulls).
+            try { window.gtag('event', name, Object.assign({ transport_type: 'beacon' }, payload)); } catch (_) {}
           }
           if (opts && opts.fbqEvent && typeof window.fbq === 'function') {
             try {
