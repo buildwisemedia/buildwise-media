@@ -15,7 +15,7 @@ const pro    = canonical.products.ascend_pro;
 const layers = canonical.products.ascend.eight_layers;
 const msa    = canonical.contract.msa_locked_clauses;
 const title = "Pricing — Commercial Marketing System for Multi-Location Service Businesses";
-const description = "Buildwise Media pricing: Ascend Pilot $15K one-time, Ascend $7K/mo, Ascend Pro $15K/mo for multi-location service businesses. Transparent pricing, true month-to-month after Day 90.";
+const description = "Buildwise Media pricing: Ascend Pilot $15K one-time, Ascend $7K/mo, Ascend Pro $15K/mo for multi-location service businesses. Less than half the cost of the same stack assembled from separate vendors. Transparent pricing, true month-to-month after Day 90.";
 const pricingSignals = [
   { label: 'Entry sprint', name: pilot.name, price: pilot.price.oneshot_display, tone: 'cyan' },
   { label: 'Main system', name: ascend.name, price: ascend.price.recurring_display, tone: 'yellow' },
@@ -48,7 +48,10 @@ const ownerLayerBodies: Record<string, string> = {
   Strategy: 'Use a weekly scoreboard instead of a late-month guess.',
 };
 
-// JSON-LD: Service schema with 3-tier offer catalog (canonical-sourced)
+// JSON-LD: Service schema with 3-tier offer catalog (canonical-sourced).
+// Price descriptions carry the value-stack anchor (never-price-naked,
+// LOCKED 2026-05-25): category descriptors + aggregate dollars only —
+// source: Brain reference/BWM-Value-Stack-Anchor.md (public section).
 const pricingJsonLd = {
   '@type': 'Service',
   '@id': 'https://buildwisemedia.com/pricing#service',
@@ -68,7 +71,7 @@ const pricingJsonLd = {
         '@type': 'Offer',
         name: pilot.name,
         description:
-          'A 45-day proof sprint. The $15,000 Pilot fee covers the Ascend install scope — Pilot graduates begin Ascend at no additional install fee.',
+          'A 45-day proof sprint. The $15,000 Pilot fee covers the Ascend install scope — a fraction of what the same build costs assembled from separate vendors. Pilot graduates begin Ascend at no additional install fee.',
         price: String(pilot.price.oneshot),
         priceCurrency: 'USD',
         priceSpecification: {
@@ -99,7 +102,7 @@ const pricingJsonLd = {
             value: 1,
             unitCode: 'MON',
           },
-          description: 'Monthly recurring + $15,000 one-time install',
+          description: 'Monthly recurring + $15,000 one-time install — one integrated system versus the same scope assembled from separate vendors',
         },
       },
       {
@@ -118,7 +121,7 @@ const pricingJsonLd = {
             value: 1,
             unitCode: 'MON',
           },
-          description: 'Monthly recurring + $25,000 one-time install',
+          description: 'Monthly recurring + $25,000 one-time install — one integrated system versus the same scope assembled from separate vendors',
         },
       },
     ],
@@ -218,7 +221,7 @@ const faqSchema = {
             </article>
           ))}
         </div>
-        <p class="pricing-console-note">The diagnostic checks whether your market opportunity can support the operating cost before we ask for a booking.</p>
+        <p class="pricing-console-note">Assembled from separate vendors — fractional AI chief, build shop, RevOps, web, ads, content, data — this scope runs $25K to $50K a month. Here it is one system, and you own it.</p>
         <nav class="pricing-related-links" aria-label="Related pricing pages">
           {pricingLinks.map((link) => (
             <a href={link.href}>{link.label}</a>
