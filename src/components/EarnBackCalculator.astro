@@ -2,7 +2,7 @@
 // L6 — Earn-Back Calculator
 // Plan ref: based-on-all-nifty-karp.md §L6
 // Pricing lock flip: RATIFIED 2026-05-20 — canonical pricing publicly visible on this surface
-// R020: F3-CTA-pull primary + F2-Proof secondary | R017: user-input driven only, no ambient animation
+// R020: F3-CTA-pull primary + F2-Proof secondary | R017 Interactive-Proof register: gesture-driven feedback only (grab/focus), no entrance or ambient animation
 // Source: canonical.json → products.pilot.price.oneshot + products.ascend.price.recurring
 import canonical from '../data/canonical.json';
 
@@ -338,7 +338,7 @@ const defaultCloseRate = 22;
   transition: transform 180ms ease, box-shadow 180ms ease;
 }
 .ebc-range:hover::-webkit-slider-thumb {
-  transform: scale(1.1);
+  /* affordance = shadow-intensity shift only; transforms are gesture-only (R017 Interactive-Proof) */
   box-shadow: 0 2px 12px rgba(240, 255, 0, 0.5);
 }
 .ebc-range:active::-webkit-slider-thumb {
@@ -357,7 +357,6 @@ const defaultCloseRate = 22;
   transition: transform 180ms ease, box-shadow 180ms ease;
 }
 .ebc-range:hover::-moz-range-thumb {
-  transform: scale(1.1);
   box-shadow: 0 2px 12px rgba(240, 255, 0, 0.5);
 }
 .ebc-range:active::-moz-range-thumb {
@@ -371,44 +370,16 @@ const defaultCloseRate = 22;
   border-radius: 2px;
 }
 
-/* Pattern 4: One-time load wiggle — webkit thumb */
-@keyframes ebc-thumb-wiggle {
-  0%   { transform: translateX(0); }
-  20%  { transform: translateX(10px); }
-  50%  { transform: translateX(-6px); }
-  75%  { transform: translateX(4px); }
-  100% { transform: translateX(0); }
-}
-@media (prefers-reduced-motion: no-preference) {
-  .ebc-sliders-grid .ebc-slider-col:nth-child(1) .ebc-range::-webkit-slider-thumb {
-    animation: ebc-thumb-wiggle 700ms ease-in-out 300ms 1 forwards;
-  }
-  .ebc-sliders-grid .ebc-slider-col:nth-child(2) .ebc-range::-webkit-slider-thumb {
-    animation: ebc-thumb-wiggle 700ms ease-in-out 450ms 1 forwards;
-  }
-  .ebc-sliders-grid .ebc-slider-col:nth-child(3) .ebc-range::-webkit-slider-thumb {
-    animation: ebc-thumb-wiggle 700ms ease-in-out 600ms 1 forwards;
-  }
-  .ebc-sliders-grid .ebc-slider-col:nth-child(1) .ebc-range::-moz-range-thumb {
-    animation: ebc-thumb-wiggle 700ms ease-in-out 300ms 1 forwards;
-  }
-  .ebc-sliders-grid .ebc-slider-col:nth-child(2) .ebc-range::-moz-range-thumb {
-    animation: ebc-thumb-wiggle 700ms ease-in-out 450ms 1 forwards;
-  }
-  .ebc-sliders-grid .ebc-slider-col:nth-child(3) .ebc-range::-moz-range-thumb {
-    animation: ebc-thumb-wiggle 700ms ease-in-out 600ms 1 forwards;
-  }
-}
+/* Pattern 4 (load wiggle) removed 2026-06-11 — entrance animation, off-register per R017
+   Interactive-Proof amendment (PROJ-DESIGN-INTEL-001 P1). Gesture feedback above stays. */
 
-/* prefers-reduced-motion overrides: no animations, transitions stripped */
+/* prefers-reduced-motion overrides: transitions stripped */
 @media (prefers-reduced-motion: reduce) {
   .ebc-range::-webkit-slider-thumb {
     transition: none;
-    animation: none !important;
   }
   .ebc-range::-moz-range-thumb {
     transition: none;
-    animation: none !important;
   }
 }
 

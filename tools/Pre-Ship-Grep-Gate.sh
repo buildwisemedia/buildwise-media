@@ -6,7 +6,9 @@
 set -euo pipefail
 
 ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
-LEGACY_GATE="${HOME}/buildwise-brain/tools/Pre-Ship-Grep-Gate.sh"
+# Brain clone lives under ~/Documents (path repaired 2026-06-11, PROJ-DESIGN-INTEL-001 P1 —
+# the old ~/buildwise-brain path never existed on this machine, so the Brain gate silently skipped).
+LEGACY_GATE="${HOME}/Documents/buildwise-brain/tools/Pre-Ship-Grep-Gate.sh"
 
 cd "$ROOT"
 

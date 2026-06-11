@@ -545,42 +545,13 @@ section.elev { background: var(--bg-elev); }
 }
 .skip-link:focus { top: 16px; }
 
-/* ---------- 16. Custom Reimaging Keyframe Animations ---------- */
-@keyframes statusPulse {
-  0%, 100% { box-shadow: 0 0 0 6px rgba(240, 255, 0, 0.12), 0 0 24px rgba(240, 255, 0, 0.2); }
-  50% { box-shadow: 0 0 0 10px rgba(240, 255, 0, 0.04), 0 0 34px rgba(240, 255, 0, 0.48); }
-}
-
-@keyframes orbitDraw {
-  to { stroke-dashoffset: 0; }
-}
-
-@keyframes signalPulse {
-  0%, 100% { opacity: 0.24; transform: scale(0.96); }
-  50% { opacity: 0.64; transform: scale(1.04); }
-}
-
-@keyframes nodeRise {
-  from { opacity: 0; transform: translateY(10px) scale(0.96); }
-  to { opacity: 1; transform: translateY(0) scale(1); }
-}
-
-@keyframes drawLine {
-  to { stroke-dashoffset: 0; }
-}
-
+/* ---------- 16. Keyframe Animations ----------
+   Sanctioned names live in src/styles/motion-allowlist.json (R017 allowlist,
+   PROJ-DESIGN-INTEL-001 P1). Adding a keyframe requires a lock amendment.
+   2026-06-11: 7 unused keyframes removed (statusPulse, orbitDraw, signalPulse,
+   nodeRise, drawLine, proofGlow, branchRise). */
 @keyframes tickerMove {
   to { transform: translateX(-50%); }
-}
-
-@keyframes proofGlow {
-  0% { opacity: 0.02; }
-  100% { opacity: 0.1; }
-}
-
-@keyframes branchRise {
-  from { opacity: 0; transform: translateY(-8px); }
-  to { opacity: 1; transform: translateY(0); }
 }
 
 @media (prefers-reduced-motion: reduce) {

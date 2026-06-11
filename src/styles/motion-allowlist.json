@@ -1,0 +1,12 @@
+{
+  "$schema_note": "R017 motion allowlist — PROJ-DESIGN-INTEL-001 P1 (approved 2026-06-11). The ONLY @keyframes names permitted on this marketing surface. Sourced by scanning src/ for keyframes with live animation/animation-name usage. Enforced at write time (creative_copy_gate.py check 4) and pre-ship (Pre-Ship-Grep-Gate.sh keyframes-match-allowlist). Adding a name requires a BWM-Page-Motion-Locked.md amendment, never a silent edit.",
+  "surface": "buildwisemedia.com (System A marketing)",
+  "locked": "2026-06-11",
+  "allowed_keyframes": [
+    { "name": "tickerMove", "defined_in": "src/styles/global.css", "role": "proof ticker loop — diagram-signal register" },
+    { "name": "signalRoute", "defined_in": "src/pages/index.astro", "role": "hero system diagram signal path — diagram-signal register" },
+    { "name": "nodeBlink", "defined_in": "src/pages/index.astro", "role": "hero system diagram node liveness — diagram-signal register" },
+    { "name": "systemFlow", "defined_in": "src/pages/system.astro", "role": "system page architecture diagram flow — diagram-signal register" },
+    { "name": "sk", "defined_in": "src/pages/book.astro", "role": "booking calendar skeleton loading state — data-state register" }
+  ]
+}
