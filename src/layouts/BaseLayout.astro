@@ -242,7 +242,7 @@ const graph = [...siteSchemas, ...perPageSchemas];
     </script>
 
     <!-- Attribution capture (first-touch + last-touch + UTM, persisted to localStorage) -->
-    <script is:inline>
+    <script is:inline define:vars={{ GA4 }}>
       (function () {
         var KEY = '_bwm_attribution';
         var BOOKING_EVENT_KEY = 'bwm_booking_event_id';
@@ -308,6 +308,44 @@ const graph = [...siteSchemas, ...perPageSchemas];
           return Object.assign(payload, extra || {});
         }
 
+        // gtag('event') calls that enter the dataLayer BEFORE gtag.js loads are
+        // dropped by the queue replay — verified live 2026-06-11: with js/config
+        // queued first and correct ordering confirmed, pre-load events
+        // (diagnostic_step_complete + qa probes) still never produced a
+        // /g/collect hit, while identical events fired after the G-V5LSP69E41
+        // destination bootstrapped all delivered (GA4 Realtime-confirmed).
+        // So: buffer events until the destination exists, then send. Vendor
+        // loading stays lazy (interaction/5s) — worst case an early event
+        // flushes ~6s after page load instead of being lost forever.
+        var pendingGtag = [];
+        var flushTimer = null;
+        function gtagReady() {
+          return !!(window.google_tag_manager && window.google_tag_manager[GA4]);
+        }
+        function sendGtag(name, payload) {
+          // beacon transport: conversion events fire at navigation boundaries
+          // (disqualified redirect, booking handoff) — default XHR sends get
+          // ERR_ABORTED on unload and the event is silently lost (verified
+          // live 2026-06-11: zero form/lead events in 30d of GA4 pulls).
+          try { window.gtag('event', name, Object.assign({ transport_type: 'beacon' }, payload)); } catch (_) {}
+        }
+        function flushPendingGtag() {
+          var q = pendingGtag.splice(0);
+          q.forEach(function (e) { sendGtag(e.name, e.payload); });
+          if (flushTimer) { clearInterval(flushTimer); flushTimer = null; }
+        }
+        function queueGtag(name, payload) {
+          if (gtagReady()) { sendGtag(name, payload); return; }
+          pendingGtag.push({ name: name, payload: payload });
+          if (!flushTimer) {
+            flushTimer = setInterval(function () { if (gtagReady()) flushPendingGtag(); }, 250);
+            // after 15s give up gating and send best-effort (ad blocker /
+            // vendor never loads) — no worse than the pre-buffer behavior
+            setTimeout(function () { if (flushTimer) flushPendingGtag(); }, 15000);
+          }
+        }
+        window.addEventListener('pagehide', function () { if (pendingGtag.length) flushPendingGtag(); });
+
         function trackEvent(name, params, opts) {
           var payload = Object.assign({}, params || {});
           var eventId = (opts && opts.eventId) || payload.event_id || payload.capi_event_id || payload.booking_event_id || '';
@@ -317,11 +355,7 @@ const graph = [...siteSchemas, ...perPageSchemas];
           window.dataLayer = window.dataLayer || [];
           window.dataLayer.push(Object.assign({ event: name }, payload));
           if (typeof window.gtag === 'function') {
-            // beacon transport: conversion events fire at navigation boundaries
-            // (disqualified redirect, booking handoff) — default XHR sends get
-            // ERR_ABORTED on unload and the event is silently lost (verified
-            // live 2026-06-11: zero form/lead events in 30d of GA4 pulls).
-            try { window.gtag('event', name, Object.assign({ transport_type: 'beacon' }, payload)); } catch (_) {}
+            queueGtag(name, payload);
           }
           if (opts && opts.fbqEvent && typeof window.fbq === 'function') {
             try {
