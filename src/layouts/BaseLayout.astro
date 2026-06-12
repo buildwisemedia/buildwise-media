@@ -350,8 +350,31 @@ const graph = [...siteSchemas, ...perPageSchemas];
           q.forEach(function (e) { sendGtag(e.name, e.payload); });
           if (flushTimer) { clearInterval(flushTimer); flushTimer = null; }
         }
+        // Last-chance delivery: an event queued while the page is already
+        // hidden/unloading can never be flushed by the 250ms timer, and the
+        // gtag stub silently drops it when the destination never bootstrapped
+        // (hard tab-close within ~3s of first interaction). Hand the hit to
+        // sendBeacon directly with a minimal /g/collect payload instead of
+        // queueing it into a grave.
+        function lastChanceBeacon(name, payload) {
+          try {
+            var m = document.cookie.match(/(?:^|; )_ga=GA\d+\.\d+\.([^;]+)/);
+            var cid = m ? m[1] : Math.floor(Math.random() * 1e9) + '.' + Math.floor(Date.now() / 1000);
+            var qs = 'v=2&tid=' + GA4 + '&cid=' + encodeURIComponent(cid) + '&en=' + encodeURIComponent(name);
+            Object.keys(payload || {}).forEach(function (k) {
+              var v = payload[k];
+              if (v === null || v === undefined || typeof v === 'object') return;
+              qs += '&' + (typeof v === 'number' ? 'epn.' : 'ep.') + encodeURIComponent(k) + '=' + encodeURIComponent(String(v));
+            });
+            navigator.sendBeacon('https://www.google-analytics.com/g/collect?' + qs);
+          } catch (_) {}
+        }
         function queueGtag(name, payload) {
           if (gtagReady()) { sendGtag(name, payload); return; }
+          if (document.visibilityState === 'hidden' && typeof navigator.sendBeacon === 'function') {
+            lastChanceBeacon(name, payload);
+            return;
+          }
           pendingGtag.push({ name: name, payload: payload });
           if (!flushTimer) {
             flushTimer = setInterval(function () { if (gtagReady()) flushPendingGtag(); }, 250);
@@ -397,9 +420,29 @@ const graph = [...siteSchemas, ...perPageSchemas];
           window.__bwmAttribution = record;
         } catch (e) {}
 
+        // Experiment context (PROJ-AUTO-MVT-001 / PROJ-DESIGN-INTEL-001 P4):
+        // worker-served pages carry window.__BWM_EXP; everywhere else the
+        // JS-readable _bwm_exp_host carry cookie travels with the visitor.
+        // Empty strings when never assigned (treated as no-op downstream).
+        function getExperimentContext() {
+          var g = window.__BWM_EXP;
+          if (g && g.experiment_id && g.variant_id) {
+            return { experiment_id: g.experiment_id, experiment_variant_id: g.variant_id };
+          }
+          var m = document.cookie.match(/(?:^|; )_bwm_exp_host=([^;]*)/);
+          if (m) {
+            try {
+              var c = JSON.parse(decodeURIComponent(m[1]));
+              if (c && c.e && c.v) return { experiment_id: c.e, experiment_variant_id: c.v };
+            } catch (_) {}
+          }
+          return { experiment_id: '', experiment_variant_id: '' };
+        }
+
         window.__bwmGetAttributionPayload = getPayload;
         window.__bwmEnsureBookingEventId = ensureBookingEventId;
         window.__bwmTrackEvent = trackEvent;
+        window.__bwmGetExperimentContext = getExperimentContext;
       })();
     </script>
 
@@ -446,6 +489,44 @@ const graph = [...siteSchemas, ...perPageSchemas];
           if (window.fbq) window.fbq('track', 'InitiateCheckout');
         } catch (err) {}
       });
+    </script>
+
+    <!-- Scroll-depth telemetry (PROJ-DESIGN-INTEL-001 P4): layout-archetype
+         falsifiable predictions name scroll_depth as a target metric
+         (reference/Layout-Archetype-Vocabulary.md) — this makes those
+         predictions testable. percent_scrolled fires at 25/50/75/90 once each
+         per pageview, with experiment context so hero variants can be scored
+         on read-through. -->
+    <script is:inline>
+      (function () {
+        var marks = [25, 50, 75, 90];
+        var fired = {};
+        var ticking = false;
+        function check() {
+          ticking = false;
+          var doc = document.documentElement;
+          var scrollable = Math.max(1, doc.scrollHeight - window.innerHeight);
+          var pct = ((window.scrollY || doc.scrollTop || 0) / scrollable) * 100;
+          marks.forEach(function (mark) {
+            if (fired[mark] || pct < mark) return;
+            fired[mark] = true;
+            var payload = { percent_scrolled: mark, page_path: location.pathname };
+            if (typeof window.__bwmGetExperimentContext === 'function') {
+              payload = Object.assign(payload, window.__bwmGetExperimentContext());
+            }
+            if (typeof window.__bwmTrackEvent === 'function') {
+              window.__bwmTrackEvent('scroll_depth', payload);
+            }
+          });
+        }
+        function onScroll() {
+          if (ticking) return;
+          ticking = true;
+          (window.requestAnimationFrame || window.setTimeout)(check);
+        }
+        window.addEventListener('scroll', onScroll, { passive: true });
+        window.addEventListener('load', onScroll);
+      })();
     </script>
 
     <!-- Phone & email click telemetry — v2.10 parity with attribution.js (2026-05-07).

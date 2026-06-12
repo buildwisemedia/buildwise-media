@@ -654,6 +654,75 @@ async function focusSweep(cdp, maxStops = 25) {
   return { stops, missing: missing.slice(0, 10) };
 }
 
+// 44×44 tap-target sweep at 375px (PROJ-DESIGN-INTEL-001 P4): Gate 1 [A]
+// assertion from Brain reference/QA-Visual-Design-Gate.md § Tap Targets —
+// primary conversion controls (.cta CTAs, qualifier next/prev/submit, option
+// labels, #book-cta-fallback) must measure ≥44×44 CSS px at the 375px mobile
+// width (Apple HIG floor for conversion-path controls; stricter than the
+// WCAG 2.5.8 ≥24px sweep, which keeps covering everything else). Runs once
+// per route inside the mobile-390x844 pass under a temporary 375×667
+// override; the caller restores the viewport before screenshots.
+function tapTargetAudit() {
+  const MIN = 44;
+  const selectors = [
+    'a.cta',
+    'a.cta-primary',
+    '#book-cta-fallback',
+    '.qualifier-form [data-next]',
+    '.qualifier-form [data-prev]',
+    '.qualifier-form [data-mobile-next]',
+    '.qualifier-form button[type="submit"]',
+    '.q-options label',
+    '.q-option-card',
+  ].join(',');
+  // Step-gated qualifier controls are display:none until their step activates;
+  // their styling is what ships, so reveal for measurement and revert so the
+  // screenshots that follow capture the page as visitors see it.
+  const undo = [];
+  document.querySelectorAll('.q-step:not(.is-active)').forEach((el) => {
+    el.classList.add('is-active');
+    undo.push(() => el.classList.remove('is-active'));
+  });
+  document
+    .querySelectorAll('.qualifier-form [hidden], #cal-inline[hidden], #book-cta-fallback[hidden]')
+    .forEach((el) => {
+      el.removeAttribute('hidden');
+      undo.push(() => el.setAttribute('hidden', ''));
+    });
+  const failures = [];
+  let measured = 0;
+  document.querySelectorAll(selectors).forEach((el) => {
+    const rect = el.getBoundingClientRect();
+    if (rect.width < 1 || rect.height < 1) return;
+    if (window.getComputedStyle(el).visibility === 'hidden') return;
+    measured += 1;
+    if (rect.width < MIN || rect.height < MIN) {
+      failures.push({
+        tag: el.tagName.toLowerCase(),
+        text: (el.textContent || '').trim().replace(/\s+/g, ' ').slice(0, 48),
+        w: Math.round(rect.width),
+        h: Math.round(rect.height),
+      });
+    }
+  });
+  undo.forEach((revert) => revert());
+  return { viewport: '375x667', minPx: MIN, measured, failures: failures.slice(0, 20) };
+}
+
+async function tapTargetSweep(cdp) {
+  await cdp.send('Emulation.setDeviceMetricsOverride', {
+    width: 375,
+    height: 667,
+    deviceScaleFactor: 1,
+    mobile: true,
+  });
+  const audit = await cdp.send('Runtime.evaluate', {
+    expression: `(${tapTargetAudit.toString()})()`,
+    returnByValue: true,
+  });
+  return audit.result.value;
+}
+
 function routeFailures(metrics, viewport) {
   const failures = [];
   if (metrics.document.overflowX > 2) failures.push(`horizontal overflow ${metrics.document.overflowX}px`);
@@ -696,6 +765,10 @@ function routeFailures(metrics, viewport) {
   if (metrics.wcag?.targets?.length) failures.push(`wcag target-size ${metrics.wcag.targets.length}`);
   if (metrics.focusAudit?.missing?.length) {
     failures.push(`focus-visible missing on ${metrics.focusAudit.missing.length} tab stops`);
+  }
+  // 44×44 tap-target assertion at 375px (PROJ-DESIGN-INTEL-001 P4, Gate 1 [A]).
+  if (metrics.tapTargets?.failures?.length) {
+    failures.push(`tap-target <44x44 at 375px: ${metrics.tapTargets.failures.length}`);
   }
   return failures;
 }
@@ -870,6 +943,19 @@ async function main() {
             missing: [],
             error: error.message,
           }));
+        }
+        if (viewport.name === 'mobile-390x844') {
+          metrics.tapTargets = await tapTargetSweep(cdp).catch((error) => ({
+            error: error.message,
+            failures: [],
+          }));
+          // restore the pass's viewport before the screenshot below
+          await cdp.send('Emulation.setDeviceMetricsOverride', {
+            width: viewport.width,
+            height: viewport.height,
+            deviceScaleFactor: 1,
+            mobile: viewport.mobile,
+          });
         }
         await fs.writeFile(path.join(routeDir, 'metrics.json'), JSON.stringify(metrics, null, 2));
         await captureFullPage(cdp, screenshotPath);

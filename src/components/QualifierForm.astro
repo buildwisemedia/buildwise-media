@@ -268,7 +268,13 @@ const poorFour = [
     if (mobileNextBtn) mobileNextBtn.hidden = currentStep !== 1;
     submitBtn.hidden = currentStep !== steps.length;
     updateMapRail();
-    event('diagnostic_step_complete', { diagnostic_step: currentStep });
+    // Enriched in PROJ-DESIGN-INTEL-001 P4: same event name (GA4 funnel
+    // continuity — no form_step_view), additive params only.
+    event('diagnostic_step_complete', Object.assign({
+      diagnostic_step: currentStep,
+      form_id: 'fit-diagnostic',
+      total_steps: steps.length,
+    }, experimentContext()));
   }
 
   function activeFields() {
@@ -433,13 +439,41 @@ const poorFour = [
     map.hidden = false;
   }
 
+  // form_step_abandon (PROJ-DESIGN-INTEL-001 P4): last-reliable-moment beacon
+  // on visibilitychange-hidden / pagehide. Fires once per pageview, only after
+  // the visitor has touched the form and only while unsubmitted — a tab-switch
+  // mid-form therefore counts as a soft abandon even if the visitor later
+  // returns and submits (reconcile against the later diagnostic_submit).
+  // Delivery rides event() → __bwmTrackEvent (transport_type beacon + pagehide
+  // flush in BaseLayout), so the hit survives the unload.
+  let interacted = false;
+  let submitted = false;
+  let abandonSent = false;
+  function sendAbandon() {
+    if (abandonSent || submitted || !interacted) return;
+    abandonSent = true;
+    event('form_step_abandon', Object.assign({
+      diagnostic_step: currentStep,
+      form_id: 'fit-diagnostic',
+      total_steps: steps.length,
+    }, experimentContext()));
+  }
+  document.addEventListener('visibilitychange', () => {
+    if (document.visibilityState === 'hidden') sendAbandon();
+  });
+  window.addEventListener('pagehide', sendAbandon);
+  form.addEventListener('input', () => { interacted = true; });
+  form.addEventListener('change', () => { interacted = true; });
+
   nextBtn.addEventListener('click', () => {
     if (!validateStep()) return;
+    interacted = true;
     if (currentStep === 1) event('diagnostic_start', { form_id: 'fit-diagnostic' });
     showStep(currentStep + 1);
   });
   mobileNextBtn?.addEventListener('click', () => {
     if (!validateStep()) return;
+    interacted = true; // autofill can satisfy step 1 without input/change events
     event('diagnostic_start', { form_id: 'fit-diagnostic', entry: 'mobile_header' });
     showStep(currentStep + 1);
   });
@@ -451,6 +485,9 @@ const poorFour = [
   form.addEventListener('submit', async (e) => {
     e.preventDefault();
     if (!validateStep()) return;
+    // A completed submit attempt is not an abandon — even if the visitor
+    // leaves while the request is in flight or during the qualified redirect.
+    submitted = true;
     errorEl.hidden = true;
     submitBtn.disabled = true;
     submitBtn.querySelector('.q-submit-label').hidden = true;
@@ -545,6 +582,7 @@ const poorFour = [
       }
     } catch (err) {
       console.error('Diagnostic submit failed:', err);
+      submitted = false; // back mid-form — leaving now is an abandon again
       errorEl.textContent = 'Something went wrong. Please try again, or email hello@buildwisemedia.com.';
       errorEl.hidden = false;
       submitBtn.disabled = false;

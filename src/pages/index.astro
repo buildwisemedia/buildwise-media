@@ -336,12 +336,14 @@ const faqSchema = {
     <div class="container hero-grid">
       <div class="hero-copy">
         <p class="eyebrow">Custom AI for service businesses</p>
-        <h1 id="home-hero-title" class="h-hero">Want an unfair advantage in your market?</h1>
+        <!-- @bwm-exp-slot: hero-headline — MVT-tested H1; bandit patches (PROJ-AUTO-MVT-001) target this slot's selector -->
+        <h1 id="home-hero-title" class="h-hero" data-bwm-exp-slot="hero-headline">Want an unfair advantage in your market?</h1>
         <p class="hero-sub">
           A custom AI team, built for your business — live in 30 days, working around the clock, owned by you. Visibility, follow-up, reviews, tracking — handled.
         </p>
         <div class="hero-actions" role="group" aria-label="Primary actions">
-          <a href="/book" class="cta" data-cta-source="home-hero">Get My Free Revenue Leak Map<span class="cta-arrow" aria-hidden="true">&rarr;</span></a>
+          <!-- @bwm-exp-slot: hero-cta — primary conversion CTA (label/destination experiments) -->
+          <a href="/book" class="cta" data-cta-source="home-hero" data-bwm-exp-slot="hero-cta">Get My Free Revenue Leak Map<span class="cta-arrow" aria-hidden="true">&rarr;</span></a>
           <a href="/book" class="cta-ghost" data-cta-source="home-hero-fit">See If We're a Fit</a>
         </div>
         <ul class="hero-proof-strip" aria-label="Ascend proof points">
@@ -826,7 +828,8 @@ const faqSchema = {
   <!-- ============================================ -->
   <!-- L10 · Proof — numeric receipts                -->
   <!-- ============================================ -->
-  <section class="proof-section elev" aria-labelledby="proof-title">
+  <!-- @bwm-exp-slot: proof-module — numeric-receipts section (proof composition / placement experiments) -->
+  <section class="proof-section elev" aria-labelledby="proof-title" data-bwm-exp-slot="proof-module">
     <div class="container">
 
       <header class="proof-head">
