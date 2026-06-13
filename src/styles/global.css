@@ -193,9 +193,15 @@ h1, h2, h3, h4 {
   letter-spacing: 0.14em;
   fill: var(--ink-dim);
 }
+/* P-05 shout node: the single Y2 verdict label in a scene figure must
+   differentiate on >=2 registers (Y2 accent + 12px scale + 600 weight) — not
+   accent color alone. Resolves the SDT-P2 scene-diagram peer-divergence
+   (2026-06-13): scope of P-05 is surface-level, but within-figure emphasis
+   may not ride on color alone. Cascades to every scene figure at once. */
 .fx-label-y2 {
   font-family: var(--mono);
-  font-size: 10px;
+  font-size: 12px;
+  font-weight: 600;
   letter-spacing: 0.14em;
   fill: var(--y2);
 }

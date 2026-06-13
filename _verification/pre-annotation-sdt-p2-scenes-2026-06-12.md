@@ -1,4 +1,23 @@
-# Synthetic Pre-Annotation — SDT P2 scene diagrams (🚦 handoff, PEER-DIVERGENT)
+# Synthetic Pre-Annotation — SDT P2 scene diagrams (RESOLVED 2026-06-13)
+
+> **RESOLUTION (2026-06-13) — settled by Bob, not escalated.** Robert's call:
+> the P/V-rule *scope* questions (1–3 below) are Bob's to resolve, not his — his
+> eye remains the gate only on the final visuals going live (HITL). Both
+> divergences were settled by deriving from the ledger's own rule text:
+> - **P-05 scope = surface-level.** A body scene-figure inherits the surface's
+>   whisper register; it need not stage all three registers internally. But a
+>   within-figure *shout* node must use ≥2 levers (accent + scale/weight), not
+>   color alone. Implemented globally: `.fx-label-y2` → Y2 + 12px + 600-weight
+>   (was 10px/400, color-only) — upgrades the verdict node on all four figures.
+> - **V-011 "before copy" = spine visuals only.** Body proof figures satisfy via
+>   the SDT density gate's same-section standard; they need not precede their prose.
+> - **Consensus weak figure rebuilt:** the hvac FAQ `QUESTION → SYSTEM(3 dots) →
+>   VERIFIED ANSWER` box-flow → a grounding-check schematic that checks the
+>   question against the named operating record (BASELINE · TRACKED SOURCE ·
+>   BOOKED OUTCOME) → VERIFIED ANSWER.
+>
+> Propagated to Brain `brand/BWM-Taste-Ledger-Visual.md` (commit `95b57cf`).
+> Code staged for Robert's visual signoff (HITL) — see session handoff.
 
 First production round of the synthetic pre-annotation protocol
 (`reference/Triangulate-Imagery-Prompt-And-Propagation-Spec.md` § Synthetic
