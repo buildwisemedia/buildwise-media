@@ -343,7 +343,10 @@ section.elev { background: var(--bg-elev); }
 .gold-rule { height: 1px; background: var(--y2); border: 0; }
 
 /* ---------- 8. CTAs ---------- */
-.cta {
+/* .cta-primary is an alias of .cta (filled hero button). It was used on 20+
+   pages' final CTAs but never defined globally — so those primary buttons
+   rendered as unstyled text, misaligned next to the ghost button. */
+.cta, .cta-primary {
   display: inline-flex;
   align-items: center;
   gap: 12px;
@@ -360,12 +363,12 @@ section.elev { background: var(--bg-elev); }
   white-space: nowrap;
   max-width: 100%;
 }
-.cta:hover {
+.cta:hover, .cta-primary:hover {
   background: var(--y2-bright);
   border-color: var(--y2-bright);
   color: var(--bg);
 }
-.cta:focus-visible { outline: 2px solid var(--y2-bright); outline-offset: 3px; }
+.cta:focus-visible, .cta-primary:focus-visible { outline: 2px solid var(--y2-bright); outline-offset: 3px; }
 
 .cta-ghost {
   display: inline-flex;
