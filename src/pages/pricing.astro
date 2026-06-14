@@ -14,7 +14,7 @@ const ascend = canonical.products.ascend;
 const pro    = canonical.products.ascend_pro;
 const layers = canonical.products.ascend.eight_layers;
 const msa    = canonical.contract.msa_locked_clauses;
-const title = "Pricing — Ascend AI Marketing System for Home Services | Buildwise Media";
+const title = "Pricing — Ascend Custom AI System for Home Services | Buildwise Media";
 const description = "Buildwise Media pricing: Ascend Pilot $15K one-time, Ascend $7K/mo, Ascend Pro $15K/mo. Less than half the cost of the same stack assembled from separate vendors. Transparent pricing, true month-to-month after Day 90.";
 const pricingSignals = [
   { label: 'Entry sprint', name: pilot.name, price: pilot.price.oneshot_display, tone: 'cyan' },
@@ -22,9 +22,9 @@ const pricingSignals = [
   { label: 'Market lock', name: pro.name, price: pro.price.recurring_display, tone: 'green' },
 ];
 const valueMath = [
-  { label: 'Year-one system cost', value: '$78K', body: 'Pilot plus nine operating months after conversion.' },
-  { label: 'Pilot graduates', value: '$0', body: 'No second install fee after the $15K Pilot.' },
-  { label: 'Distribution budget', value: '1:1', body: 'You pay ad platforms direct. Buildwise never touches ad dollars.' },
+  { label: 'Year-one system cost', value: 'Year one', body: 'Pilot plus nine operating months.' },
+  { label: 'Pilot graduates', value: 'No repeat install', body: 'Pilot graduates do not pay twice.' },
+  { label: 'Distribution budget', value: 'Direct spend', body: 'You pay ad platforms direct.' },
 ];
 const roiChecks = [
   { label: 'What must be true', body: 'A few closed jobs must repay the install and operating cost. If your average job cannot support that, the diagnostic should stop us early.', tone: 'cyan' },
@@ -186,10 +186,10 @@ const faqSchema = {
     <div class="container pricing-hero-inner">
       <div>
         <p class="eyebrow">PRICING</p>
-        <h1 class="h-hero pricing-h1">One AI Marketing System. Three Entry Points. All Yours.</h1>
-        <h2 class="pricing-keyword-subhead">The Ascend marketing system for home service businesses — three entry points.</h2>
+        <h1 class="h-hero pricing-h1">One Custom AI System. Three Entry Points. All Yours.</h1>
+        <h2 class="pricing-keyword-subhead">The Ascend custom AI system for home service businesses — three entry points.</h2>
         <p class="lede pricing-lede">
-          Three commitment shapes. Same owned marketing system. Same 5x return on investment floor. The fit question is whether your market opportunity is large enough for Ascend to be obvious.
+          Same owned custom AI system at every tier. Same 5x ROI floor.
         </p>
         <div class="pricing-hero-actions">
           <a href="/book" class="cta" data-cta-source="pricing-hero">Get My Free Revenue Leak Map<span class="cta-arrow" aria-hidden="true">→</span></a>
@@ -221,7 +221,7 @@ const faqSchema = {
             </article>
           ))}
         </div>
-        <p class="pricing-console-note">Assembled from separate vendors — fractional AI chief, build shop, RevOps, web, ads, content, data — this scope runs $25K to $50K a month. Here it is one system, and you own it.</p>
+        <p class="pricing-console-note">Separate vendors can cost far more each month. Ascend is one owned system.</p>
         <nav class="pricing-related-links" aria-label="Related pricing pages">
           {pricingLinks.map((link) => (
             <a href={link.href}>{link.label}</a>
