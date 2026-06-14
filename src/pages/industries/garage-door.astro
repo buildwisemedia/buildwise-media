@@ -2,18 +2,18 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import canonical from '../../data/canonical.json';
 
-const title = "Custom AI for Plumbing Companies — Buildwise Media";
-const description = "Buildwise Media installs and runs custom AI for plumbing, drain & sewer, and water heater companies — it handles visibility, follow-up, reviews, and tracking, and you own it. Live in 30 days across the US.";
+const title = "Custom AI for Garage Door Companies — Buildwise Media";
+const description = "Custom AI for garage door companies, installed and run by Buildwise Media — same-day response, repair-or-replace follow-up, reviews, and attribution.";
 
 const layerBodies: Record<string, string> = {
-  Visibility: 'Show up when local buyers search, ask AI, or compare plumbers near them.',
-  Conversion: 'Turn visits, calls, forms, and booking paths into clear next steps.',
-  'Speed-to-Lead': 'Answer urgent plumbing leads before the buyer calls the next shop.',
-  'Sales Ops': 'Keep estimates, reminders, memberships, and past leads moving.',
-  Reputation: 'Ask for reviews, reply with care, and turn finished jobs into proof.',
-  'Paid Media': 'Watch spend and move budget toward calls that can become booked work.',
-  Reporting: 'Show source, spend, calls, booked jobs, and the next move.',
-  Strategy: 'Run the week from a scoreboard, not a late-month guess.',
+  "Visibility": "Show up when local buyers search, ask AI, or compare garage door companies.",
+  "Conversion": "Turn visits, calls, forms, and quote paths into clear next steps.",
+  "Speed-to-Lead": "Answer same-day garage door leads before the buyer calls the next company.",
+  "Sales Ops": "Keep quotes, repair-or-replace follow-up, and past leads moving.",
+  "Reputation": "Ask for reviews, reply with care, and turn finished jobs into proof.",
+  "Paid Media": "Watch spend and move budget toward calls that can become booked work.",
+  "Reporting": "Show source, spend, calls, quotes, booked jobs, and the next move.",
+  "Strategy": "Run the week from a scoreboard, not a late-month guess."
 };
 
 const layers = canonical.products.ascend.eight_layers.map((raw: string, index: number) => {
@@ -29,16 +29,28 @@ const layers = canonical.products.ascend.eight_layers.map((raw: string, index: n
 });
 
 const proofStats = [
-  { label: 'system install', value: '30 days', body: 'Baseline, lead path, and first operating rhythm live.' },
-  { label: 'connected layers', value: '8', body: 'Visibility, speed, reputation, source truth, and weekly strategy.' },
-  { label: 'proof rule', value: 'Day 1', body: 'The baseline is captured before any claim gets made.' },
+  {
+    "label": "system install",
+    "value": "30 days",
+    "body": "Baseline, lead path, and first operating rhythm live."
+  },
+  {
+    "label": "connected layers",
+    "value": "8",
+    "body": "Visibility, speed, reputation, source truth, and weekly strategy."
+  },
+  {
+    "label": "proof rule",
+    "value": "Day 1",
+    "body": "The baseline is captured before any claim gets made."
+  }
 ];
 
 const fitSignals = [
-  'Owner-led plumbing company with steady demand but unclear source truth.',
-  'Established and doing real volume — big enough that revenue leaks cost real money.',
-  'Service area with enough density for search visibility, reviews, and paid demand.',
-  'Owner wants a run-for-you system, not more work after hours.',
+  "Owner-led garage door company with urgent repair and install demand.",
+  "Enough call volume for slow response or weak quote follow-up to cost real money.",
+  "Service area with enough density for search visibility, reviews, and paid demand.",
+  "Owner wants the Buildwise team and our AI system to run the rhythm each week."
 ];
 
 const breadcrumb = {
@@ -47,49 +59,45 @@ const breadcrumb = {
   itemListElement: [
     { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://buildwisemedia.com/' },
     { '@type': 'ListItem', position: 2, name: 'Industries', item: 'https://buildwisemedia.com/industries' },
-    { '@type': 'ListItem', position: 3, name: 'Plumbing', item: 'https://buildwisemedia.com/industries/plumbing' },
+    { '@type': 'ListItem', position: 3, name: "Garage Door", item: "https://buildwisemedia.com/industries/garage-door" },
   ],
 };
 
 const serviceSchema = {
   '@context': 'https://schema.org',
   '@type': 'Service',
-  '@id': 'https://buildwisemedia.com/industries/plumbing#service',
-  name: 'Custom AI for plumbing companies',
-  serviceType: 'Custom AI system installed and run for plumbing companies',
+  '@id': "https://buildwisemedia.com/industries/garage-door#service",
+  name: "Custom AI for garage door companies",
+  serviceType: "Custom AI system installed and run for garage door companies",
   provider: { '@id': 'https://buildwisemedia.com/#org' },
   areaServed: { '@type': 'Country', name: 'United States' },
   audience: {
     '@type': 'BusinessAudience',
-    audienceType: 'Owner-led plumbing companies',
+    audienceType: "Owner-led garage door repair and install companies",
   },
   description,
-  url: 'https://buildwisemedia.com/industries/plumbing',
+  url: "https://buildwisemedia.com/industries/garage-door",
 };
 
 const faqs = [
   {
-    q: 'What does Buildwise Media install for a plumbing company?',
-    a: 'The Buildwise team installs custom AI for visibility, booking paths, speed-to-lead, reviews, spend, reporting, and weekly strategy. It is built around booked plumbing work.',
+    "q": "What does Buildwise Media install for a garage door company?",
+    "a": "The Buildwise team and our AI system install custom AI for visibility, quote paths, speed-to-lead, reviews, spend, reporting, and weekly strategy. It is built around booked garage door work."
   },
   {
-    q: 'How fast can the plumbing system go live?',
-    a: 'The install path is 30 days. The first window captures the baseline, wires the lead path, improves follow-up, and starts the weekly operating rhythm.',
+    "q": "Does this help with repair and install calls?",
+    "a": "Yes. The system supports same-day repair calls and install or replacement paths. The quote and follow-up rhythm are tuned to the job type."
   },
   {
-    q: 'Is this built for every plumbing company?',
-    a: 'No. Ascend is built for owner-led plumbing companies with enough demand, market density, and revenue to support a full run-for-you system. The fit check confirms that first.',
-  },
-  {
-    q: 'Do you work with drain and sewer or water heater specialists?',
-    a: 'Yes. The same system runs for general plumbing, drain and sewer companies, and water heater specialists. The lead path, speed-to-lead, and reporting are tuned to how each one books work.',
-  },
+    "q": "Why does speed matter for garage door companies?",
+    "a": "Many buyers call because a door is stuck, a spring broke, or a car is trapped. A fast answer helps book the job before the buyer calls another shop."
+  }
 ];
 
 const faqSchema = {
   '@context': 'https://schema.org',
   '@type': 'FAQPage',
-  '@id': 'https://buildwisemedia.com/industries/plumbing#faq',
+  '@id': "https://buildwisemedia.com/industries/garage-door#faq",
   mainEntity: faqs.map((f) => ({
     '@type': 'Question',
     name: f.q,
@@ -102,29 +110,29 @@ const faqSchema = {
   <section class="industry-hero">
     <div class="container industry-hero-grid">
       <div>
-        <p class="eyebrow"><a href="/services/ascend" class="back-link">← Ascend</a> · Plumbing</p>
-        <h1 class="h-hero">Custom AI, Built for Plumbing Companies</h1>
+        <p class="eyebrow"><a href="/services/ascend" class="back-link">← Ascend</a> · Garage Door</p>
+        <h1 class="h-hero">Custom AI, Built for Garage Door Companies</h1>
         <p class="hero-sub">
-          Plumbing demand is urgent. A pipe breaks. A drain backs up. A homeowner searches, calls, and keeps moving until someone answers. If your visibility, follow-up system, reviews, and source tracking live in separate places, leads leak before the job gets booked.
+          Garage door buyers often need help the same day. A spring breaks. A car is trapped. A door will not close. If your visibility, follow-up system, reviews, and source tracking live in separate places, repair and install calls leak before the quote is booked.
         </p>
         <div class="industry-ctas">
-          <a href="/book" class="cta" data-cta-source="plumbing-hero-primary">Get My Free Revenue Leak Map<span class="cta-arrow" aria-hidden="true">→</span></a>
-          <a href="/book" class="cta-ghost" data-cta-source="plumbing-hero-secondary">See If We're a Fit</a>
+          <a href="/book" class="cta" data-cta-source="garage-door-hero-primary">Get My Free Revenue Leak Map<span class="cta-arrow" aria-hidden="true">→</span></a>
+          <a href="/book" class="cta-ghost" data-cta-source="garage-door-hero-secondary">See If We're a Fit</a>
         </div>
       </div>
-      <aside class="industry-panel ops-panel" aria-label="Plumbing operating system">
+      <aside class="industry-panel ops-panel" aria-label="Garage Door operating system">
         <div class="industry-panel-head">
-          <p class="panel-label mono">plumbing revenue system</p>
+          <p class="panel-label mono">garage door revenue system</p>
           <span class="ops-chip"><span class="dot green" aria-hidden="true"></span>baseline first</span>
         </div>
         <div class="plumbing-loop" aria-hidden="true">
           <span>Search</span>
           <span>Answer</span>
+          <span>Quote</span>
           <span>Book</span>
-          <span>Review</span>
           <span>Prove</span>
         </div>
-        <p class="panel-copy">The system connects the first search to the booked job, then feeds the proof back into the next buyer's choice.</p>
+        <p class="panel-copy">The system connects the first search to the quote, then feeds proof back into the next same-day buyer choice.</p>
       </aside>
     </div>
   </section>
@@ -132,9 +140,9 @@ const faqSchema = {
   <section class="industry-proof elev" aria-labelledby="proof-title">
     <div class="container proof-grid">
       <header class="section-head">
-        <p class="section-tag">Plumbing proof path</p>
-        <h2 id="proof-title" class="h-section">Referral growth stalls when the owner has to guess.</h2>
-        <p class="lede">A plumbing company can stay busy and still miss the real growth picture. The phones ring, the techs move, and the owner still does not know which source brought the best jobs, which call got missed, or which finished job should have created a review.</p>
+        <p class="section-tag">Garage door proof path</p>
+        <h2 id="proof-title" class="h-section">Same-day demand breaks when the first answer is slow.</h2>
+        <p class="lede">A garage door company can stay busy and still miss the real growth picture. The owner needs to know which source brought the right call, which quote went cold, and which finished job should have created a review.</p>
       </header>
       <div class="proof-cards">
         {proofStats.map((stat) => (
@@ -145,38 +153,16 @@ const faqSchema = {
           </article>
         ))}
       </div>
-      <p class="proof-note">We do not invent a plumbing-only proof stat. The system starts by capturing your baseline, then measures booked work from the same market over time.</p>
-    </div>
-  </section>
-
-  <section class="industry-section">
-    <div class="container">
-      <p class="section-tag">Plumbing specialties</p>
-      <h2 class="h-section">Built for how your shop actually runs.</h2>
-      <p class="prose">General plumbing, drain and sewer, water heaters — the system installs the same way and tunes the lead path to each. One operating rhythm, three ways in.</p>
-      <div class="spec-grid">
-        <article class="layer-card">
-          <h3>General Plumbing</h3>
-          <p>Service, repair, and repipe demand — captured, answered fast, and traced to booked work.</p>
-        </article>
-        <article class="layer-card">
-          <h3>Drain &amp; Sewer</h3>
-          <p>Urgent backups and line jobs — the shop that answers first wins the call.</p>
-        </article>
-        <article class="layer-card">
-          <h3>Water Heater</h3>
-          <p>Repair-or-replace calls that move fast — built for a quick, proven yes.</p>
-        </article>
-      </div>
+      <p class="proof-note">We do not invent a garage door-only proof stat. The system starts by capturing your baseline, then measures booked work from the same market over time.</p>
     </div>
   </section>
 
   <section class="industry-section">
     <div class="container">
       <p class="section-tag">The installed system</p>
-      <h2 class="h-section">Eight layers built around booked plumbing work.</h2>
+      <h2 class="h-section">Eight layers built around booked garage door work.</h2>
       <p class="prose">
-        A plumbing company does not need a pile of disconnected tactics. It needs one revenue operating system. The Buildwise team installs the same eight Ascend layers across the business, then runs them as one weekly rhythm.
+        A garage door company does not need scattered tactics. It needs one revenue operating system. The Buildwise team installs the same eight Ascend layers across the business, then runs them as one weekly rhythm.
       </p>
       <div class="layers-grid">
         {layers.map((layer) => (
@@ -187,48 +173,29 @@ const faqSchema = {
           </article>
         ))}
       </div>
+      <!-- @r020:F2 proof: node-mesh visual shows the eight garage door layers acting as one connected operating system -->
       <figure class="article-photo layer-photo">
-        <!-- @r020:F2 proof: node-mesh visual shows the eight plumbing layers acting as one connected operating system -->
         <img src="/images/node-mesh-ascending-v1.svg" alt="Isometric ascending node mesh showing connected layers wired as one operating system." width="1200" height="900" loading="lazy" decoding="async" />
       </figure>
       <p class="prose">
-        The layers matter most when they talk to each other. Visibility brings the buyer in. Conversion gives them a clear booking path. Speed-to-Lead answers while the need is hot. Sales Ops keeps estimates and reminders alive. Reputation turns finished work into proof. Paid Media gets judged by job quality. Reporting shows what happened. Strategy sets the next week.
+        The layers matter most when they talk to each other. Visibility brings the buyer in. Conversion gives them a clear quote path. Speed-to-Lead answers while the need is urgent. Sales Ops keeps quotes and reminders alive. Reputation turns finished work into proof. Paid Media gets judged by job quality. Reporting shows what happened. Strategy sets the next week.
       </p>
-    </div>
-  </section>
-
-  <section class="industry-section elev">
-    <div class="container article-grid">
-      <div>
-        <p class="section-tag">Visibility and AI search</p>
-        <h2 class="h-section">Show up when the buyer asks who can help now.</h2>
-        <p class="prose">
-          Plumbing buyers often search under pressure. They ask a search engine, map result, or AI tool for the best plumber near them. The businesses that get named tend to have clear service pages, strong local proof, consistent data, and fresh reviews.
-        </p>
-        <p class="prose">
-          Ascend connects those signals. Service pages explain the work. Reviews make the proof visible. Reputation replies pass through a human gate. The owner sees whether the work is making the company easier to find and easier to choose.
-        </p>
-      </div>
-      <figure class="article-photo">
-        <!-- @r020:F2 proof: receipt-style image reinforces that plumbing attribution is measured from source to booked work -->
-        <img src="/images/bwm-receipts-still-life-v1.webp" alt="Printed proof packet and measurement notes on a dark desk." width="720" height="480" loading="lazy" decoding="async" />
-      </figure>
     </div>
   </section>
 
   <section class="industry-section">
     <div class="container">
       <p class="section-tag">Speed-to-Lead</p>
-      <h2 class="h-section">The emergency caller is also calling three other shops.</h2>
+      <h2 class="h-section">The same-day repair window closes fast.</h2>
       <p class="prose">
-        A plumbing lead can go cold in minutes. The buyer has water on the floor or a drain that will not clear. If no one answers quickly, the buyer keeps calling. Speed-to-Lead is the layer that closes that gap. The system routes each new call, form, and booking request into a fast next step.
+        A garage door lead can go cold in minutes. The buyer may have a trapped car, a broken spring, or a door that will not close. If no one answers quickly, the buyer keeps calling. Speed-to-Lead routes each new call, form, and booking request into a fast next step.
       </p>
       <p class="prose">
-        That speed also protects attribution. A strong source can look weak if the answer time is slow. A weak source can look strong if one job closes by luck. We separate those signals so the owner can make a better call.
+        That speed also protects attribution. A strong source can look weak if answer time is slow. A repair-or-replace source can look unclear if follow-up is loose. We separate those signals so the owner can make a better call.
       </p>
-      <!-- @r020:F2 proof: the response window — answer inside it and the job is yours; miss it and the lead calls the next shop — encodes the speed-to-lead claim above -->
+      <!-- @r020:F2 proof: the response window — answer inside it and the job is yours; miss it and the garage door lead calls the next shop — encodes the speed-to-lead claim above -->
       <figure class="scene-fig" style="max-width: 520px;">
-        <svg viewBox="0 0 520 120" role="img" aria-label="Diagram: a plumbing lead's response window — the system answers fast inside the first five minutes; past the window the lead calls the next shop.">
+        <svg viewBox="0 0 520 120" role="img" aria-label="Diagram: a garage door lead's response window — the system answers fast inside the first five minutes; past the window the lead calls the next shop.">
           <line class="fx-hair" x1="24" y1="60" x2="300" y2="60" />
           <rect class="fx-vertex" x="20" y="56" width="8" height="8" />
           <text class="fx-label" x="18" y="86" text-anchor="start">NEW LEAD</text>
@@ -238,7 +205,7 @@ const faqSchema = {
           <text class="fx-label" x="300" y="86" text-anchor="middle">5 MIN</text>
           <line class="fx-hair" x1="300" y1="60" x2="470" y2="60" stroke-dasharray="3 4" />
           <polyline class="fx-hair" points="464,56 470,60 464,64" fill="none" />
-          <text class="fx-caption" x="385" y="50" text-anchor="middle">LEAD CALLS THE NEXT SHOP</text>
+          <text class="fx-caption" x="385" y="50" text-anchor="middle">GARAGE LEAD CALLS NEXT SHOP</text>
           <text class="fx-caption" x="24" y="110">ANSWER INSIDE THE WINDOW — BOOK THE JOB</text>
         </svg>
       </figure>
@@ -248,17 +215,36 @@ const faqSchema = {
   <section class="industry-section elev">
     <div class="container article-grid">
       <div>
+        <p class="section-tag">Visibility and AI search</p>
+        <h2 class="h-section">Show up when the buyer asks who can fix it today.</h2>
+        <p class="prose">
+          Garage door buyers ask search, maps, and AI tools who can help near them. The companies that get named tend to have clear service pages, strong local proof, steady data, and fresh reviews.
+        </p>
+        <p class="prose">
+          Ascend connects those signals. Service pages explain the work. Reviews make the proof visible. Reputation replies pass through a human gate. The owner sees whether the work is making the company easier to find and easier to choose.
+        </p>
+      </div>
+      <!-- @r020:F2 proof: receipt-style image reinforces that garage door attribution is measured from source to booked work -->
+      <figure class="article-photo">
+        <img src="/images/bwm-receipts-still-life-v1.webp" alt="Printed proof packet and measurement notes on a dark desk." width="720" height="480" loading="lazy" decoding="async" />
+      </figure>
+    </div>
+  </section>
+
+  <section class="industry-section elev">
+    <div class="container article-grid">
+      <div>
         <p class="section-tag">Attribution</p>
-        <h2 class="h-section">Know which source, which call, and which booked job.</h2>
+        <h2 class="h-section">Know which source, call, and quote became work.</h2>
         <p class="prose">
-          A plumbing owner should not have to guess where booked work came from. The system ties source, page, form, call, estimate, and booked job into one view. That does not make every number perfect. It makes the gaps visible.
+          A garage door owner should not have to guess where booked work came from. The system ties source, page, form, call, quote, and booked job into one view. That matters when the job can swing from simple repair to replacement.
         </p>
         <p class="prose">
-          After 30 days, the owner should see the baseline, the lead path, and the first proof rhythm. The next question becomes clear: which source brought booked work, which step slowed it down, and which first move deserves more time or budget.
+          After 30 days, the owner should see the baseline, the lead path, and the first proof rhythm. The next question becomes clear: which source brought booked work, which step slowed it down, and which move deserves more time or budget.
         </p>
-        <!-- @r020:F2 proof: dollar→source→page→call→estimate→booked-job attribution chain — encodes the one-view traceability the prose claims -->
+        <!-- @r020:F2 proof: dollar→source→page→call→quote→booked-job attribution chain — encodes the one-view traceability the prose claims -->
         <figure class="scene-fig">
-          <svg viewBox="0 0 520 120" role="img" aria-label="Diagram: an attribution chain tying ad dollar, source, page, call, and estimate to the booked plumbing job in one view.">
+          <svg viewBox="0 0 520 120" role="img" aria-label="Diagram: an attribution chain tying dollar, source, page, call, and quote to the booked garage door job in one view.">
             <line class="fx-hair" x1="34" y1="52" x2="451" y2="52" />
             <rect class="fx-vertex" x="30" y="48" width="8" height="8" />
             <rect class="fx-vertex" x="110" y="48" width="8" height="8" />
@@ -270,7 +256,7 @@ const faqSchema = {
             <text class="fx-label" x="114" y="76" text-anchor="middle">SOURCE</text>
             <text class="fx-label" x="194" y="76" text-anchor="middle">PAGE</text>
             <text class="fx-label" x="274" y="76" text-anchor="middle">CALL</text>
-            <text class="fx-label" x="354" y="76" text-anchor="middle">ESTIMATE</text>
+            <text class="fx-label" x="354" y="76" text-anchor="middle">QUOTE</text>
             <text class="fx-label-y2" x="451" y="76" text-anchor="middle">BOOKED JOB</text>
             <line class="fx-hair" x1="24" y1="92" x2="496" y2="92" />
             <line class="fx-hair" x1="24" y1="88" x2="24" y2="92" />
@@ -281,7 +267,7 @@ const faqSchema = {
       </div>
       <div class="fit-panel">
         <p class="section-tag">Fit check</p>
-        <h3>Ascend is built for plumbing operators who are ready to be run by proof.</h3>
+        <h3>Ascend is built for garage door operators who are ready to be run by proof.</h3>
         <ul role="list">
           {fitSignals.map((signal) => <li>{signal}</li>)}
         </ul>
@@ -296,7 +282,9 @@ const faqSchema = {
       <ul class="related-list">
         <li><a href="/system">The System</a> — the full eight-layer operating model</li>
         <li><a href="/services/ascend">Ascend</a> — what gets installed and run each week</li>
-        <li><a href="/industries/hvac">HVAC</a> — the same operating rhythm in another urgent trade</li>
+        <li><a href="/industries/electrical">Electrical</a> — urgent home service and estimate-led work</li>
+        <li><a href="/industries/hvac">HVAC</a> — same-day service pressure and fast response paths</li>
+        <li><a href="/industries/pest">Pest Control</a> — urgent calls with quote-led booking</li>
         <li><a href="/audit">Revenue Leak Map</a> — the diagnostic that shows the first gap</li>
       </ul>
     </div>
@@ -304,11 +292,11 @@ const faqSchema = {
 
   <section class="industry-cta elev">
     <div class="container">
-      <h2 class="h-closer">Ready to see the plumbing leaks in your market?</h2>
+      <h2 class="h-closer">Ready to see the garage door leaks in your market?</h2>
       <p class="lede">The free Revenue Leak Map shows where visibility, speed, follow-up, and attribution are holding back booked work.</p>
       <p class="cta-row">
-        <a class="cta-primary" href="/book" data-cta-source="plumbing-final-primary">Get My Free Revenue Leak Map <span class="cta-arrow">→</span></a>
-        <a class="cta-ghost" href="/book" data-cta-source="plumbing-final-secondary">See If We're a Fit</a>
+        <a class="cta-primary" href="/book" data-cta-source="garage-door-final-primary">Get My Free Revenue Leak Map <span class="cta-arrow">→</span></a>
+        <a class="cta-ghost" href="/book" data-cta-source="garage-door-final-secondary">See If We're a Fit</a>
       </p>
     </div>
   </section>

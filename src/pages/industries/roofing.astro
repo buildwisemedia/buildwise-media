@@ -2,18 +2,18 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import canonical from '../../data/canonical.json';
 
-const title = "Marketing Agency for Roofing Companies — Buildwise Media";
-const description = "Buildwise Media installs and runs a full AI marketing system for roofing companies — visibility, reputation, speed-to-lead, attribution. Live in 30 days across the US.";
+const title = "Custom AI for Roofing Companies — Buildwise Media";
+const description = "Custom AI for roofing companies, installed and run by Buildwise Media — visibility, speed-to-lead, reviews, and attribution for booked roofing work.";
 
 const layerBodies: Record<string, string> = {
-  Visibility: 'Show up when local buyers search, ask AI, or compare roofers after a storm.',
-  Conversion: 'Turn visits, calls, forms, and estimate paths into clear next steps.',
-  'Speed-to-Lead': 'Answer new roof leads before the buyer calls the next shop.',
-  'Sales Ops': 'Keep estimates, reminders, and past roof leads moving after the first touch.',
-  Reputation: 'Ask for reviews, reply with care, and turn finished jobs into proof.',
-  'Paid Media': 'Watch spend and move budget toward calls that can become signed work.',
-  Reporting: 'Show source, spend, calls, estimates, booked jobs, and the next move.',
-  Strategy: 'Run the week from a scoreboard, not a late-month guess.',
+  "Visibility": "Show up when local buyers search, ask AI, or compare roofers after a storm.",
+  "Conversion": "Turn visits, calls, forms, and inspection paths into clear next steps.",
+  "Speed-to-Lead": "Answer new roof leads before the buyer calls the next shop.",
+  "Sales Ops": "Keep inspections, estimates, reminders, and past roof leads moving.",
+  "Reputation": "Ask for reviews, reply with care, and turn finished roofs into proof.",
+  "Paid Media": "Watch spend and move budget toward calls that can become booked work.",
+  "Reporting": "Show source, spend, calls, inspections, booked jobs, and the next move.",
+  "Strategy": "Run the week from a scoreboard, not a late-month guess."
 };
 
 const layers = canonical.products.ascend.eight_layers.map((raw: string, index: number) => {
@@ -29,16 +29,28 @@ const layers = canonical.products.ascend.eight_layers.map((raw: string, index: n
 });
 
 const proofStats = [
-  { label: 'system install', value: '30 days', body: 'Baseline, lead path, and first operating rhythm live.' },
-  { label: 'connected layers', value: '8', body: 'Visibility, speed, reputation, source truth, and weekly strategy.' },
-  { label: 'proof rule', value: 'Day 1', body: 'The baseline is captured before any claim gets made.' },
+  {
+    "label": "system install",
+    "value": "30 days",
+    "body": "Baseline, lead path, and first operating rhythm live."
+  },
+  {
+    "label": "connected layers",
+    "value": "8",
+    "body": "Visibility, speed, reputation, source truth, and weekly strategy."
+  },
+  {
+    "label": "proof rule",
+    "value": "Day 1",
+    "body": "The baseline is captured before any claim gets made."
+  }
 ];
 
 const fitSignals = [
-  'Owner-led roofing company with real demand and no clear source truth.',
-  'Established and doing real volume — big enough that revenue leaks cost real money.',
-  'Service area with enough density for search visibility, reviews, and paid demand.',
-  'Owner wants the system run by the Buildwise team, not another task list.',
+  "Owner-led roofing company with real demand and no clear source truth.",
+  "Established and doing real volume — big enough that revenue leaks cost real money.",
+  "Service area with enough density for search visibility, reviews, and paid demand.",
+  "Owner wants the system run by the Buildwise team, not another task list."
 ];
 
 const breadcrumb = {
@@ -47,45 +59,45 @@ const breadcrumb = {
   itemListElement: [
     { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://buildwisemedia.com/' },
     { '@type': 'ListItem', position: 2, name: 'Industries', item: 'https://buildwisemedia.com/industries' },
-    { '@type': 'ListItem', position: 3, name: 'Roofing', item: 'https://buildwisemedia.com/industries/roofing' },
+    { '@type': 'ListItem', position: 3, name: "Roofing", item: "https://buildwisemedia.com/industries/roofing" },
   ],
 };
 
 const serviceSchema = {
   '@context': 'https://schema.org',
   '@type': 'Service',
-  '@id': 'https://buildwisemedia.com/industries/roofing#service',
-  name: 'Marketing agency for roofing companies',
-  serviceType: 'Installed AI marketing system for roofing companies',
+  '@id': "https://buildwisemedia.com/industries/roofing#service",
+  name: "Custom AI for roofing companies",
+  serviceType: "Custom AI system installed and run for roofing companies",
   provider: { '@id': 'https://buildwisemedia.com/#org' },
   areaServed: { '@type': 'Country', name: 'United States' },
   audience: {
     '@type': 'BusinessAudience',
-    audienceType: 'Owner-led roofing companies',
+    audienceType: "Owner-led roofing companies",
   },
   description,
-  url: 'https://buildwisemedia.com/industries/roofing',
+  url: "https://buildwisemedia.com/industries/roofing",
 };
 
 const faqs = [
   {
-    q: 'What does Buildwise Media install for a roofing company?',
-    a: 'The Buildwise team installs an AI marketing system for visibility, estimate paths, speed-to-lead, reviews, spend, reporting, and weekly strategy. The system is built around booked roofing work, not vague activity.',
+    "q": "What does Buildwise Media install for a roofing company?",
+    "a": "The Buildwise team and our AI system install custom AI for visibility, inspection paths, speed-to-lead, reviews, spend, reporting, and weekly strategy. It is built around booked roofing work."
   },
   {
-    q: 'How fast can the roofing system go live?',
-    a: 'The install path is 30 days. The first window captures the baseline, wires the lead path, improves follow-up, and starts the weekly operating rhythm.',
+    "q": "How fast can the roofing system go live?",
+    "a": "The install path is 30 days. The first window captures the baseline, wires the lead path, improves follow-up, and starts the weekly operating rhythm."
   },
   {
-    q: 'Is this built for every roofer?',
-    a: 'No. Ascend is built for owner-led roofing companies with enough demand, market density, and revenue to support a full run-for-you system. The fit check confirms that first.',
-  },
+    "q": "Is this built for every roofer?",
+    "a": "No. Ascend is built for owner-led roofing companies with enough demand, market density, and revenue to support a full run-for-you system. The fit check confirms that first."
+  }
 ];
 
 const faqSchema = {
   '@context': 'https://schema.org',
   '@type': 'FAQPage',
-  '@id': 'https://buildwisemedia.com/industries/roofing#faq',
+  '@id': "https://buildwisemedia.com/industries/roofing#faq",
   mainEntity: faqs.map((f) => ({
     '@type': 'Question',
     name: f.q,
@@ -99,28 +111,28 @@ const faqSchema = {
     <div class="container industry-hero-grid">
       <div>
         <p class="eyebrow"><a href="/services/ascend" class="back-link">← Ascend</a> · Roofing</p>
-        <h1 class="h-hero">The Marketing Agency for Roofing Companies — Built as a System</h1>
+        <h1 class="h-hero">Custom AI, Built for Roofing Companies</h1>
         <p class="hero-sub">
-          Roofing demand moves in spikes. A storm hits. A roof starts leaking. A homeowner asks who can show up fast. If your search visibility, follow-up system, reviews, and source tracking live in separate places, the best leads leak before the estimate is even set.
+          Roofing demand moves in spikes. A storm hits. A roof starts leaking. A homeowner asks who can show up fast. If your visibility, follow-up system, reviews, and source tracking live in separate places, the best leads leak before the inspection is set.
         </p>
         <div class="industry-ctas">
           <a href="/book" class="cta" data-cta-source="roofing-hero-primary">Get My Free Revenue Leak Map<span class="cta-arrow" aria-hidden="true">→</span></a>
           <a href="/book" class="cta-ghost" data-cta-source="roofing-hero-secondary">See If We're a Fit</a>
         </div>
       </div>
-      <aside class="industry-panel ops-panel" aria-label="Roofing operating proof">
+      <aside class="industry-panel ops-panel" aria-label="Roofing operating system">
         <div class="industry-panel-head">
           <p class="panel-label mono">roofing revenue system</p>
           <span class="ops-chip"><span class="dot green" aria-hidden="true"></span>baseline first</span>
         </div>
-        <div class="roof-loop" aria-hidden="true">
+        <div class="plumbing-loop" aria-hidden="true">
           <span>Search</span>
           <span>Answer</span>
-          <span>Estimate</span>
+          <span>Inspect</span>
           <span>Review</span>
           <span>Prove</span>
         </div>
-        <p class="panel-copy">The system connects the first search to the signed estimate, then feeds the proof back into the next buyer's choice.</p>
+        <p class="panel-copy">The system connects the first search to the booked inspection, then feeds the proof back into the next buyer's choice.</p>
       </aside>
     </div>
   </section>
@@ -147,10 +159,32 @@ const faqSchema = {
 
   <section class="industry-section">
     <div class="container">
+      <p class="section-tag">Roofing specialties</p>
+      <h2 class="h-section">Built for how your shop actually runs.</h2>
+      <p class="prose">Repair, replacement, and storm damage calls move at different speeds. The system keeps one operating rhythm while tuning the path to each job type.</p>
+      <div class="spec-grid">
+        <article class="layer-card">
+          <h3>Roof Repair</h3>
+          <p>Leak and damage calls that need a fast answer, clean inspection path, and clear next step.</p>
+        </article>
+        <article class="layer-card">
+          <h3>Roof Replacement</h3>
+          <p>High-trust projects where proof, reviews, and follow-up keep the owner from guessing.</p>
+        </article>
+        <article class="layer-card">
+          <h3>Storm Damage</h3>
+          <p>Demand spikes after weather hits. The system protects response speed and source truth.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="industry-section">
+    <div class="container">
       <p class="section-tag">The installed system</p>
-      <h2 class="h-section">Eight layers built around signed roofing work.</h2>
+      <h2 class="h-section">Eight layers built around booked roofing work.</h2>
       <p class="prose">
-        A roofing company does not need another loose campaign. It needs a full revenue operating system. The Buildwise team installs the same eight Ascend layers across the business, then runs them as one weekly rhythm.
+        A roofing company does not need another loose campaign. It needs one revenue operating system. The Buildwise team installs the same eight Ascend layers across the business, then runs them as one weekly rhythm.
       </p>
       <div class="layers-grid">
         {layers.map((layer) => (
@@ -161,45 +195,61 @@ const faqSchema = {
           </article>
         ))}
       </div>
+      <!-- @r020:F2 proof: node-mesh visual shows the eight roofing layers acting as one connected operating system -->
       <figure class="article-photo layer-photo">
-        <!-- @r020:F2 proof: node-mesh visual shows the eight roofing layers acting as one connected operating system -->
         <img src="/images/node-mesh-ascending-v1.svg" alt="Isometric ascending node mesh showing connected layers wired as one operating system." width="1200" height="900" loading="lazy" decoding="async" />
       </figure>
       <p class="prose">
-        The layers matter most when they talk to each other. Visibility brings the buyer in. Conversion gives them a clean estimate path. Speed-to-Lead answers while the need is fresh. Sales Ops keeps estimates alive. Reputation turns finished roofs into proof. Paid Media gets judged by job quality. Reporting shows what happened. Strategy sets the next week.
+        The layers matter most when they talk to each other. Visibility brings the buyer in. Conversion gives them a clean inspection path. Speed-to-Lead answers while the need is fresh. Sales Ops keeps estimates alive. Reputation turns finished roofs into proof. Paid Media gets judged by job quality. Reporting shows what happened. Strategy sets the next week.
       </p>
-    </div>
-  </section>
-
-  <section class="industry-section elev">
-    <div class="container article-grid">
-      <div>
-        <p class="section-tag">Reputation and AI search</p>
-        <h2 class="h-section">Get named before the buyer makes the short list.</h2>
-        <p class="prose">
-          Roofing buyers do not always start with a form. They ask search engines, map results, neighbors, and AI tools who to trust. The businesses that get named tend to have clear service pages, strong local proof, consistent data, and fresh reviews.
-        </p>
-        <p class="prose">
-          Ascend treats finished jobs as proof. Reviews get asked for. Reputation replies pass through a human gate. Good words become proof on the site. The owner sees whether that proof is making the company easier to find and easier to choose.
-        </p>
-      </div>
-      <figure class="article-photo">
-        <!-- @r020:F2 proof: receipt-style image reinforces that roofing attribution is measured from source to signed work -->
-        <img src="/images/bwm-receipts-still-life-v1.webp" alt="Printed proof packet and measurement notes on a dark desk." width="720" height="480" loading="lazy" decoding="async" />
-      </figure>
     </div>
   </section>
 
   <section class="industry-section">
     <div class="container">
       <p class="section-tag">Speed-to-Lead</p>
-      <h2 class="h-section">The window between a search and a signed estimate is short.</h2>
+      <h2 class="h-section">After a storm, the first clear answer wins the inspection.</h2>
       <p class="prose">
-        A roof leak does not wait for a slow reply. The buyer may call three companies before lunch. If no one answers quickly, the next roofer gets the estimate. Speed-to-Lead is the layer that closes that gap. The system routes each new call, form, and booking request into a fast next step.
+        A roof leak does not wait for a slow reply. The buyer may call three companies before lunch. If no one answers quickly, the next roofer gets the inspection. Speed-to-Lead is the layer that closes that gap.
       </p>
       <p class="prose">
         That speed also protects attribution. A good source can look weak when the answer time is slow. A weak source can look strong when one lucky job closes. We separate those signals so the owner can see the real leak.
       </p>
+      <!-- @r020:F2 proof: the response window — answer inside it and the job is yours; miss it and the roofing lead calls the next shop — encodes the speed-to-lead claim above -->
+      <figure class="scene-fig" style="max-width: 520px;">
+        <svg viewBox="0 0 520 120" role="img" aria-label="Diagram: a roofing lead's response window — the system answers fast inside the first five minutes; past the window the lead calls the next shop.">
+          <line class="fx-hair" x1="24" y1="60" x2="300" y2="60" />
+          <rect class="fx-vertex" x="20" y="56" width="8" height="8" />
+          <text class="fx-label" x="18" y="86" text-anchor="start">NEW LEAD</text>
+          <rect class="fx-vertex-filled" x="126" y="56" width="8" height="8" />
+          <text class="fx-label-y2" x="130" y="44" text-anchor="middle">SYSTEM ANSWERS</text>
+          <line class="fx-hair" x1="300" y1="52" x2="300" y2="68" />
+          <text class="fx-label" x="300" y="86" text-anchor="middle">5 MIN</text>
+          <line class="fx-hair" x1="300" y1="60" x2="470" y2="60" stroke-dasharray="3 4" />
+          <polyline class="fx-hair" points="464,56 470,60 464,64" fill="none" />
+          <text class="fx-caption" x="385" y="50" text-anchor="middle">ROOFING LEAD CALLS NEXT SHOP</text>
+          <text class="fx-caption" x="24" y="110">ANSWER INSIDE THE WINDOW — BOOK THE JOB</text>
+        </svg>
+      </figure>
+    </div>
+  </section>
+
+  <section class="industry-section elev">
+    <div class="container article-grid">
+      <div>
+        <p class="section-tag">Visibility and AI search</p>
+        <h2 class="h-section">Get named before the buyer makes the short list.</h2>
+        <p class="prose">
+          Roofing buyers ask search engines, map results, neighbors, and AI tools who to trust. The companies that get named tend to have clear service pages, strong local proof, steady data, and fresh reviews.
+        </p>
+        <p class="prose">
+          Ascend treats finished jobs as proof. Reviews get asked for. Replies pass through a human gate. Good words become proof on the site. The owner sees whether that proof is making the company easier to find and easier to choose.
+        </p>
+      </div>
+      <!-- @r020:F2 proof: receipt-style image reinforces that roofing attribution is measured from source to booked work -->
+      <figure class="article-photo">
+        <img src="/images/bwm-receipts-still-life-v1.webp" alt="Printed proof packet and measurement notes on a dark desk." width="720" height="480" loading="lazy" decoding="async" />
+      </figure>
     </div>
   </section>
 
@@ -207,13 +257,35 @@ const faqSchema = {
     <div class="container article-grid">
       <div>
         <p class="section-tag">Attribution</p>
-        <h2 class="h-section">Know which jobs came from which source.</h2>
+        <h2 class="h-section">Know which storm, source, call, and inspection became work.</h2>
         <p class="prose">
-          A roofing operator should not have to guess which month felt busy. The system ties source, page, form, call, estimate, and booked job into one view. It does not make every number perfect. It makes the unknowns visible.
+          A roofing operator should not have to guess which month felt busy. The system ties source, page, form, call, inspection, and booked job into one view. It does not make every number perfect. It makes the unknowns visible.
         </p>
         <p class="prose">
-          After 30 days, the owner should see the baseline, the lead path, and the first proof rhythm. After 90 days, the useful question gets clearer: which source brought signed work, which step slowed it down, and which first move deserves more budget or time.
+          After 30 days, the owner should see the baseline, the lead path, and the first proof rhythm. The useful question gets clearer: which source brought signed work, which step slowed it down, and which move deserves more time or budget.
         </p>
+        <!-- @r020:F2 proof: dollar→source→page→call→inspection→booked-job attribution chain — encodes the one-view traceability the prose claims -->
+        <figure class="scene-fig">
+          <svg viewBox="0 0 520 120" role="img" aria-label="Diagram: an attribution chain tying dollar, source, page, call, and inspection to the booked roofing job in one view.">
+            <line class="fx-hair" x1="34" y1="52" x2="451" y2="52" />
+            <rect class="fx-vertex" x="30" y="48" width="8" height="8" />
+            <rect class="fx-vertex" x="110" y="48" width="8" height="8" />
+            <rect class="fx-vertex" x="190" y="48" width="8" height="8" />
+            <rect class="fx-vertex" x="270" y="48" width="8" height="8" />
+            <rect class="fx-vertex" x="350" y="48" width="8" height="8" />
+            <rect class="fx-vertex-filled" x="447" y="48" width="8" height="8" />
+            <text class="fx-label" x="34" y="76" text-anchor="middle">DOLLAR</text>
+            <text class="fx-label" x="114" y="76" text-anchor="middle">SOURCE</text>
+            <text class="fx-label" x="194" y="76" text-anchor="middle">PAGE</text>
+            <text class="fx-label" x="274" y="76" text-anchor="middle">CALL</text>
+            <text class="fx-label" x="354" y="76" text-anchor="middle">INSPECTION</text>
+            <text class="fx-label-y2" x="451" y="76" text-anchor="middle">BOOKED JOB</text>
+            <line class="fx-hair" x1="24" y1="92" x2="496" y2="92" />
+            <line class="fx-hair" x1="24" y1="88" x2="24" y2="92" />
+            <line class="fx-hair" x1="496" y1="88" x2="496" y2="92" />
+            <text class="fx-caption" x="24" y="110">ONE VIEW — EVERY BOOKED JOB TRACES TO ITS DOLLAR</text>
+          </svg>
+        </figure>
       </div>
       <div class="fit-panel">
         <p class="section-tag">Fit check</p>
@@ -232,7 +304,9 @@ const faqSchema = {
       <ul class="related-list">
         <li><a href="/system">The System</a> — the full eight-layer operating model</li>
         <li><a href="/services/ascend">Ascend</a> — what gets installed and run each week</li>
-        <li><a href="/industries/hvac">HVAC</a> — the same operating rhythm in another urgent trade</li>
+        <li><a href="/industries/restoration">Restoration</a> — urgent storm and claim-aware response paths</li>
+        <li><a href="/industries/foundation">Foundation Repair</a> — inspection-led work with a proof-heavy sale</li>
+        <li><a href="/industries/hvac">HVAC</a> — another urgent trade with seasonal spikes</li>
         <li><a href="/audit">Revenue Leak Map</a> — the diagnostic that shows the first gap</li>
       </ul>
     </div>
@@ -241,7 +315,7 @@ const faqSchema = {
   <section class="industry-cta elev">
     <div class="container">
       <h2 class="h-closer">Ready to see the roofing leaks in your market?</h2>
-      <p class="lede">The free Revenue Leak Map shows where visibility, speed, follow-up, and attribution are holding back signed work.</p>
+      <p class="lede">The free Revenue Leak Map shows where visibility, speed, follow-up, and attribution are holding back booked work.</p>
       <p class="cta-row">
         <a class="cta-primary" href="/book" data-cta-source="roofing-final-primary">Get My Free Revenue Leak Map <span class="cta-arrow">→</span></a>
         <a class="cta-ghost" href="/book" data-cta-source="roofing-final-secondary">See If We're a Fit</a>
@@ -253,6 +327,27 @@ const faqSchema = {
     <div class="container">
       <p class="section-tag">FAQ</p>
       <h2 class="h-section">Common questions.</h2>
+      <!-- @r020:F2 proof: question checked against the live operating record (baseline · tracked source · booked outcome) → verified answer — encodes that these answers come from the running system, not sales copy -->
+      <figure class="scene-fig" style="margin: 24px 0 40px; max-width: 460px;">
+        <svg viewBox="0 0 500 132" role="img" aria-label="Diagram: a question is checked against the live operating record — baseline, tracked source, and booked outcome — and returns a verified answer.">
+          <rect class="fx-vertex" x="40" y="54" width="8" height="8" />
+          <text class="fx-label" x="44" y="80" text-anchor="middle">QUESTION</text>
+          <line class="fx-hair" x1="48" y1="58" x2="150" y2="58" />
+          <rect class="fx-block" x="150" y="22" width="156" height="72" />
+          <text class="fx-caption" x="162" y="38">OPERATING RECORD</text>
+          <rect class="fx-vertex" x="162" y="49" width="5" height="5" />
+          <text class="fx-label" x="176" y="54">BASELINE</text>
+          <rect class="fx-vertex" x="162" y="65" width="5" height="5" />
+          <text class="fx-label" x="176" y="70">TRACKED SOURCE</text>
+          <rect class="fx-vertex" x="162" y="81" width="5" height="5" />
+          <text class="fx-label" x="176" y="86">BOOKED OUTCOME</text>
+          <line class="fx-hair" x1="306" y1="58" x2="410" y2="58" />
+          <polyline class="fx-hair" points="404,54 410,58 404,62" fill="none" />
+          <rect class="fx-vertex-filled" x="415" y="54" width="8" height="8" />
+          <text class="fx-label-y2" x="419" y="44" text-anchor="middle">VERIFIED ANSWER</text>
+          <text class="fx-caption" x="20" y="122">GROUNDED IN YOUR OPERATING RECORD — NOT SALES COPY</text>
+        </svg>
+      </figure>
       <div class="faq-list">
         {faqs.map((f) => (
           <details class="faq-item">
@@ -277,8 +372,8 @@ const faqSchema = {
 
 .industry-panel { padding: 28px; }
 .industry-panel-head { display: flex; justify-content: space-between; gap: 16px; align-items: center; }
-.roof-loop { display: grid; grid-template-columns: repeat(5, 1fr); gap: 8px; margin-top: 32px; }
-.roof-loop span {
+.plumbing-loop { display: grid; grid-template-columns: repeat(5, 1fr); gap: 8px; margin-top: 32px; }
+.plumbing-loop span {
   min-height: 64px;
   display: grid;
   place-items: center;
@@ -289,7 +384,7 @@ const faqSchema = {
   text-transform: uppercase;
   letter-spacing: 0.12em;
 }
-.roof-loop span:nth-child(2), .roof-loop span:nth-child(5) { border-color: rgba(240,255,0,0.45); color: var(--y2); }
+.plumbing-loop span:nth-child(2), .plumbing-loop span:nth-child(5) { border-color: rgba(240,255,0,0.45); color: var(--y2); }
 .panel-copy { margin-top: 24px; color: var(--ink-dim); line-height: 1.6; }
 
 .industry-proof, .industry-section, .industry-related, .industry-cta, .industry-faq { padding-block: clamp(56px, 8vw, 96px); }
@@ -309,6 +404,7 @@ const faqSchema = {
 .prose a, .related-list a { color: var(--ink); text-decoration: none; border-bottom: 1px solid rgba(240,255,0,0.45); }
 .prose a:hover, .related-list a:hover { color: var(--y2); border-bottom-color: var(--y2); }
 .layers-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 16px; margin-block: 40px; }
+.spec-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; margin-top: 32px; }
 .layer-card { border: 1px solid var(--rule); padding: 20px; border-radius: 4px; background: rgba(255,255,255,0.02); }
 .layer-card h3 { margin-top: 16px; font-size: 18px; color: var(--ink); }
 .layer-card p:last-child { margin-top: 12px; color: var(--ink-dim); line-height: 1.55; }
@@ -336,7 +432,7 @@ const faqSchema = {
 
 @media (max-width: 860px) {
   .industry-hero-grid, .article-grid { grid-template-columns: 1fr; }
-  .proof-cards, .layers-grid { grid-template-columns: 1fr; }
-  .roof-loop { grid-template-columns: 1fr; }
+  .proof-cards, .layers-grid, .spec-grid { grid-template-columns: 1fr; }
+  .plumbing-loop { grid-template-columns: 1fr; }
 }
 </style>
