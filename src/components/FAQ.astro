@@ -18,10 +18,10 @@ const { faqs } = Astro.props;
     <div class="faq-head reveal">
       <header class="faq-head-text">
         <p class="section-tag">Questions, answered</p>
-        <h2 class="h-section">
-          Real systems.<br/>
-          Real <em>numbers.</em><br/>
-          Real answers.
+        <h2 class="h-section faq-h">
+          <span class="faq-real">Real</span> systems.<br/>
+          <span class="faq-real">Real</span> numbers.<br/>
+          <span class="faq-real">Real</span> <span class="faq-accent">answers.</span>
         </h2>
       </header>
       <!-- @r020:F2 proof: question→running-system→verified-answer routing diagram — visually encodes the "real systems, real answers" claim beside booking-intent FAQs -->
@@ -78,6 +78,19 @@ const { faqs } = Astro.props;
 .faq-head { position: sticky; top: 100px; display: flex; flex-direction: column; gap: 32px; }
 .faq-head-text { display: flex; flex-direction: column; gap: 24px; }
 .faq-aside { margin: 0; }
+.faq-h {
+  font-size: clamp(30px, 3.4vw, 46px);
+  line-height: 1.12;
+  letter-spacing: -0.02em;
+  text-wrap: balance;
+}
+.faq-h .faq-real {
+  font-weight: 300;
+  font-size: 0.66em;
+  color: var(--ink-faint);
+  letter-spacing: 0.02em;
+}
+.faq-h .faq-accent { color: var(--y2); }
 
 .faq-scene { margin: 0; max-width: 360px; }
 .faq-scene svg { width: 100%; height: auto; display: block; }
