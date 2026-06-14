@@ -197,7 +197,7 @@ const collectionSchema = {
   border-radius: 4px;
   text-decoration: none;
   color: var(--ink);
-  transition: border-color 180ms ease, background 180ms ease, transform 180ms ease;
+  transition: border-color 180ms ease, background 180ms ease;
 }
 .industry-card h3 {
   font-size: 18px;
@@ -212,14 +212,12 @@ const collectionSchema = {
   color: var(--accent, var(--y2));
   font-family: var(--mono);
   opacity: 0;
-  transform: translateX(-4px);
-  transition: opacity 180ms ease, transform 180ms ease;
+  transition: opacity 180ms ease;
 }
 .industry-card:hover {
   border-color: var(--accent, var(--y2));
-  background: rgba(255,255,255,0.045);
-  transform: translateY(-2px);
+  background: rgba(255,255,255,0.06);
 }
-.industry-card:hover .industry-card-arrow { opacity: 1; transform: translateX(0); }
+.industry-card:hover .industry-card-arrow { opacity: 1; }
 .industry-card:focus-visible { outline: 2px solid var(--accent, var(--y2)); outline-offset: 3px; }
 </style>
