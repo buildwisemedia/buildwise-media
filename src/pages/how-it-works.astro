@@ -115,7 +115,6 @@ const faqSchema = {
             <rect class="fx-vertex-filled" x="244" y="62" width="8" height="8" />
             <text class="fx-label-y2" x="248" y="26" text-anchor="middle">OPERATIONAL</text>
             <text class="fx-label" x="20" y="92" text-anchor="start">DAY 0</text>
-            <text class="fx-label" x="64" y="92" text-anchor="middle">DAY 5</text>
             <text class="fx-label" x="248" y="92" text-anchor="middle">DAY 30</text>
             <text class="fx-caption" x="20" y="116">THREE PHASES. THIRTY DAYS. THEN IT RUNS.</text>
           </svg>
@@ -198,11 +197,28 @@ const faqSchema = {
 
   <section class="how-cta elev">
     <div class="container ascend-cta-row">
-      <div>
+      <div class="how-cta-copy">
         <h2 class="h-closer">Ready to <em>start?</em></h2>
         <p class="lede" style="margin-top: 16px;">Day 0 starts with the audit. No commitment to keep going.</p>
+        <!-- @r020:F2 proof: captured baseline to live system to weekly proof backs the close before the CTA -->
+        <figure class="scene-fig close-proof-fig">
+          <svg viewBox="0 0 420 108" role="img" aria-label="Captured baseline becomes a live system and weekly proof.">
+            <line class="fx-hair" x1="40" y1="48" x2="360" y2="48" />
+            <polyline class="fx-hair" points="354,44 360,48 354,52" fill="none" />
+            <rect class="fx-vertex" x="36" y="44" width="8" height="8" />
+            <rect class="fx-vertex" x="196" y="44" width="8" height="8" />
+            <rect class="fx-vertex-filled" x="356" y="44" width="8" height="8" />
+            <text class="fx-label" x="40" y="74" text-anchor="middle">BASELINE</text>
+            <text class="fx-label" x="200" y="74" text-anchor="middle">LIVE SYSTEM</text>
+            <text class="fx-label-y2" x="360" y="74" text-anchor="middle">WEEKLY PROOF</text>
+            <text class="fx-caption" x="40" y="96">CAPTURED FIRST. RUNNING BY DAY 30. PROVED EACH WEEK.</text>
+          </svg>
+        </figure>
       </div>
-      <a href="/book" class="cta" data-cta-source="how-it-works-final">See If We're a Fit<span class="cta-arrow" aria-hidden="true">→</span></a>
+      <div class="cta-row" aria-label="Book a fit call">
+        <a href="/book" class="cta" data-cta-source="how-it-works-final-primary">Get My Free Revenue Leak Map <span class="cta-arrow" aria-hidden="true">→</span></a>
+        <a href="/book" class="cta-ghost" data-cta-source="how-it-works-final-secondary">See If We're a Fit</a>
+      </div>
     </div>
   </section>
 
@@ -253,9 +269,14 @@ const faqSchema = {
 
 .how-cta { padding-block: 80px; }
 .ascend-cta-row { display: flex; align-items: center; justify-content: space-between; gap: 32px; flex-wrap: wrap; }
+.how-cta-copy { max-width: 620px; }
+.close-proof-fig { max-width: 420px; margin-top: 28px; }
+.cta-row { display: flex; flex-wrap: wrap; gap: 16px; align-items: center; justify-content: flex-end; }
 
 @media (max-width: 720px) {
   .phase-deliv-list { grid-template-columns: 1fr; }
   .diff-cols { grid-template-columns: 1fr; }
+  .ascend-cta-row { align-items: flex-start; }
+  .cta-row { width: 100%; justify-content: flex-start; }
 }
 </style>
