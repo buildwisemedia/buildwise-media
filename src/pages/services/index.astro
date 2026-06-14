@@ -52,9 +52,8 @@ const faqSchema = {
     <div class="container">
       <p class="eyebrow">Services · Single product, deeply integrated</p>
       <h1 class="h-hero">
-        We don't sell six<br/>
-        services. We install<br/>
-        <em>one</em> operating system.
+        We don't sell six services.<br class="hero-br"/>
+        We install <em>one</em> operating system.
       </h1>
       <p class="hero-sub" style="max-width: 720px;">
         Most agencies pad the menu. We pulled ours down to one offering — Ascend — because that's what the work actually is. Below is what's inside it.
@@ -78,7 +77,7 @@ const faqSchema = {
         <h2 class="card-h">Ascend — the 8-layer revenue operating system</h2>
 
         <p class="card-lede">
-          Verifiable autonomous marketing system, installed and operated. Visibility, conversion, speed-to-lead, sales ops, reputation, paid media, reporting, and strategy — all wired together, all measured against a captured baseline, all observable in one operating rhythm.
+          A custom AI system, built and run for you. It runs all 8 layers of growth: visibility, conversion, speed-to-lead, sales ops, reputation, paid media, reporting, and strategy. Each one is tracked from day one and shown in one place.
         </p>
 
         <ul class="inside-list" role="list">
@@ -131,7 +130,15 @@ const faqSchema = {
 </BaseLayout>
 
 <style>
-.services-hero { padding-top: clamp(140px, 14vw, 180px); padding-bottom: clamp(60px, 8vw, 100px); }
+.services-hero { padding-top: clamp(100px, 10vw, 132px); padding-bottom: clamp(60px, 8vw, 100px); }
+.services-hero .eyebrow { margin-bottom: 22px; }
+.services-hero .h-hero {
+  font-size: clamp(34px, 4.4vw, 58px);
+  line-height: 0.98;
+  letter-spacing: -0.03em;
+  margin-bottom: 24px;
+  text-wrap: balance;
+}
 
 .single-card-section { padding-block: var(--section-y); }
 
@@ -210,6 +217,12 @@ const faqSchema = {
 @media (max-width: 880px) {
   .section-photo, .section-photo--banner {
     aspect-ratio: 16 / 10;
+  }
+}
+
+@media (max-width: 600px) {
+  .services-hero .hero-br {
+    display: none;
   }
 }
 </style>
