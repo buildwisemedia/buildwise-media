@@ -3,7 +3,7 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 import canonical from '../../data/canonical.json';
 
 const title = "Marketing Agency for Plumbing Companies — Buildwise Media";
-const description = "Buildwise Media installs and runs a full AI marketing system for plumbing companies — visibility, follow-up, attribution, reputation. Live in 30 days across the US.";
+const description = "Buildwise Media installs and runs a full AI marketing system for plumbing, drain & sewer, and water heater companies — visibility, follow-up, attribution, reputation. Live in 30 days across the US.";
 
 const layerBodies: Record<string, string> = {
   Visibility: 'Show up when local buyers search, ask AI, or compare plumbers near them.',
@@ -80,6 +80,10 @@ const faqs = [
     q: 'Is this built for every plumbing company?',
     a: 'No. Ascend is built for owner-led plumbing companies with enough demand, market density, and revenue to support a full run-for-you system. The fit check confirms that first.',
   },
+  {
+    q: 'Do you work with drain and sewer or water heater specialists?',
+    a: 'Yes. The same system runs for general plumbing, drain and sewer companies, and water heater specialists. The lead path, speed-to-lead, and reporting are tuned to how each one books work.',
+  },
 ];
 
 const faqSchema = {
@@ -147,6 +151,28 @@ const faqSchema = {
 
   <section class="industry-section">
     <div class="container">
+      <p class="section-tag">Plumbing specialties</p>
+      <h2 class="h-section">Built for how your shop actually runs.</h2>
+      <p class="prose">General plumbing, drain and sewer, water heaters — the system installs the same way and tunes the lead path to each. One operating rhythm, three ways in.</p>
+      <div class="spec-grid">
+        <article class="layer-card">
+          <h3>General Plumbing</h3>
+          <p>Service, repair, and repipe demand — captured, answered fast, and traced to booked work.</p>
+        </article>
+        <article class="layer-card">
+          <h3>Drain &amp; Sewer</h3>
+          <p>Urgent backups and line jobs — the shop that answers first wins the call.</p>
+        </article>
+        <article class="layer-card">
+          <h3>Water Heater</h3>
+          <p>Repair-or-replace calls that move fast — built for a quick, proven yes.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="industry-section">
+    <div class="container">
       <p class="section-tag">The installed system</p>
       <h2 class="h-section">Eight layers built around booked plumbing work.</h2>
       <p class="prose">
@@ -200,6 +226,22 @@ const faqSchema = {
       <p class="prose">
         That speed also protects attribution. A strong source can look weak if the answer time is slow. A weak source can look strong if one job closes by luck. We separate those signals so the owner can make a better call.
       </p>
+      <!-- @r020:F2 proof: the response window — answer inside it and the job is yours; miss it and the lead calls the next shop — encodes the speed-to-lead claim above -->
+      <figure class="scene-fig" style="max-width: 520px;">
+        <svg viewBox="0 0 520 120" role="img" aria-label="Diagram: a plumbing lead's response window — the system answers fast inside the first five minutes; past the window the lead calls the next shop.">
+          <line class="fx-hair" x1="24" y1="60" x2="300" y2="60" />
+          <rect class="fx-vertex" x="20" y="56" width="8" height="8" />
+          <text class="fx-label" x="18" y="86" text-anchor="start">NEW LEAD</text>
+          <rect class="fx-vertex-filled" x="126" y="56" width="8" height="8" />
+          <text class="fx-label-y2" x="130" y="44" text-anchor="middle">SYSTEM ANSWERS</text>
+          <line class="fx-hair" x1="300" y1="52" x2="300" y2="68" />
+          <text class="fx-label" x="300" y="86" text-anchor="middle">5 MIN</text>
+          <line class="fx-hair" x1="300" y1="60" x2="470" y2="60" stroke-dasharray="3 4" />
+          <polyline class="fx-hair" points="464,56 470,60 464,64" fill="none" />
+          <text class="fx-caption" x="385" y="50" text-anchor="middle">LEAD CALLS THE NEXT SHOP</text>
+          <text class="fx-caption" x="24" y="110">ANSWER INSIDE THE WINDOW — BOOK THE JOB</text>
+        </svg>
+      </figure>
     </div>
   </section>
 
@@ -214,6 +256,28 @@ const faqSchema = {
         <p class="prose">
           After 30 days, the owner should see the baseline, the lead path, and the first proof rhythm. The next question becomes clear: which source brought booked work, which step slowed it down, and which first move deserves more time or budget.
         </p>
+        <!-- @r020:F2 proof: dollar→source→page→call→estimate→booked-job attribution chain — encodes the one-view traceability the prose claims -->
+        <figure class="scene-fig">
+          <svg viewBox="0 0 520 120" role="img" aria-label="Diagram: an attribution chain tying ad dollar, source, page, call, and estimate to the booked plumbing job in one view.">
+            <line class="fx-hair" x1="34" y1="52" x2="451" y2="52" />
+            <rect class="fx-vertex" x="30" y="48" width="8" height="8" />
+            <rect class="fx-vertex" x="110" y="48" width="8" height="8" />
+            <rect class="fx-vertex" x="190" y="48" width="8" height="8" />
+            <rect class="fx-vertex" x="270" y="48" width="8" height="8" />
+            <rect class="fx-vertex" x="350" y="48" width="8" height="8" />
+            <rect class="fx-vertex-filled" x="447" y="48" width="8" height="8" />
+            <text class="fx-label" x="34" y="76" text-anchor="middle">DOLLAR</text>
+            <text class="fx-label" x="114" y="76" text-anchor="middle">SOURCE</text>
+            <text class="fx-label" x="194" y="76" text-anchor="middle">PAGE</text>
+            <text class="fx-label" x="274" y="76" text-anchor="middle">CALL</text>
+            <text class="fx-label" x="354" y="76" text-anchor="middle">ESTIMATE</text>
+            <text class="fx-label-y2" x="451" y="76" text-anchor="middle">BOOKED JOB</text>
+            <line class="fx-hair" x1="24" y1="92" x2="496" y2="92" />
+            <line class="fx-hair" x1="24" y1="88" x2="24" y2="92" />
+            <line class="fx-hair" x1="496" y1="88" x2="496" y2="92" />
+            <text class="fx-caption" x="24" y="110">ONE VIEW — EVERY BOOKED JOB TRACES TO ITS DOLLAR</text>
+          </svg>
+        </figure>
       </div>
       <div class="fit-panel">
         <p class="section-tag">Fit check</p>
@@ -253,6 +317,27 @@ const faqSchema = {
     <div class="container">
       <p class="section-tag">FAQ</p>
       <h2 class="h-section">Common questions.</h2>
+      <!-- @r020:F2 proof: question checked against the live operating record (baseline · tracked source · booked outcome) → verified answer — encodes that these answers come from the running system, not sales copy -->
+      <figure class="scene-fig" style="margin: 24px 0 40px; max-width: 460px;">
+        <svg viewBox="0 0 500 132" role="img" aria-label="Diagram: a question is checked against the live operating record — baseline, tracked source, and booked outcome — and returns a verified answer.">
+          <rect class="fx-vertex" x="40" y="54" width="8" height="8" />
+          <text class="fx-label" x="44" y="80" text-anchor="middle">QUESTION</text>
+          <line class="fx-hair" x1="48" y1="58" x2="150" y2="58" />
+          <rect class="fx-block" x="150" y="22" width="156" height="72" />
+          <text class="fx-caption" x="162" y="38">OPERATING RECORD</text>
+          <rect class="fx-vertex" x="162" y="49" width="5" height="5" />
+          <text class="fx-label" x="176" y="54">BASELINE</text>
+          <rect class="fx-vertex" x="162" y="65" width="5" height="5" />
+          <text class="fx-label" x="176" y="70">TRACKED SOURCE</text>
+          <rect class="fx-vertex" x="162" y="81" width="5" height="5" />
+          <text class="fx-label" x="176" y="86">BOOKED OUTCOME</text>
+          <line class="fx-hair" x1="306" y1="58" x2="410" y2="58" />
+          <polyline class="fx-hair" points="404,54 410,58 404,62" fill="none" />
+          <rect class="fx-vertex-filled" x="415" y="54" width="8" height="8" />
+          <text class="fx-label-y2" x="419" y="44" text-anchor="middle">VERIFIED ANSWER</text>
+          <text class="fx-caption" x="20" y="122">GROUNDED IN YOUR OPERATING RECORD — NOT SALES COPY</text>
+        </svg>
+      </figure>
       <div class="faq-list">
         {faqs.map((f) => (
           <details class="faq-item">
@@ -309,6 +394,7 @@ const faqSchema = {
 .prose a, .related-list a { color: var(--ink); text-decoration: none; border-bottom: 1px solid rgba(240,255,0,0.45); }
 .prose a:hover, .related-list a:hover { color: var(--y2); border-bottom-color: var(--y2); }
 .layers-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 16px; margin-block: 40px; }
+.spec-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; margin-top: 32px; }
 .layer-card { border: 1px solid var(--rule); padding: 20px; border-radius: 4px; background: rgba(255,255,255,0.02); }
 .layer-card h3 { margin-top: 16px; font-size: 18px; color: var(--ink); }
 .layer-card p:last-child { margin-top: 12px; color: var(--ink-dim); line-height: 1.55; }
@@ -336,7 +422,7 @@ const faqSchema = {
 
 @media (max-width: 860px) {
   .industry-hero-grid, .article-grid { grid-template-columns: 1fr; }
-  .proof-cards, .layers-grid { grid-template-columns: 1fr; }
+  .proof-cards, .layers-grid, .spec-grid { grid-template-columns: 1fr; }
   .plumbing-loop { grid-template-columns: 1fr; }
 }
 </style>
