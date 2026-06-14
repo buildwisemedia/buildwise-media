@@ -256,13 +256,6 @@ const faqs = [
   },
 ];
 
-const heroLinks = [
-  { href: '/system', label: 'See the 8-layer system' },
-  { href: '/services/ascend', label: 'View Ascend' },
-  { href: '/playbook/ai-marketing-department', label: 'How the system runs your marketing' },
-  { href: '/audit', label: 'Start the Revenue Leak Map' },
-];
-
 // JSON-LD
 const serviceSchema = {
   '@context': 'https://schema.org',
@@ -339,7 +332,7 @@ const faqSchema = {
         <!-- @bwm-exp-slot: hero-headline — MVT-tested H1; bandit patches (PROJ-AUTO-MVT-001) target this slot's selector -->
         <h1 id="home-hero-title" class="h-hero" data-bwm-exp-slot="hero-headline">Want an unfair advantage in your market?</h1>
         <p class="hero-sub">
-          A custom AI team, built for your business — live in 30 days, working around the clock, owned by you. Visibility, follow-up, reviews, tracking — handled.
+          A custom AI team for your business — live in 30 days, run around the clock, owned by you.
         </p>
         <div class="hero-actions" role="group" aria-label="Primary actions">
           <!-- @bwm-exp-slot: hero-cta — primary conversion CTA (label/destination experiments) -->
@@ -351,11 +344,6 @@ const faqSchema = {
           <li><strong>Yours</strong><span>domain · data · accounts</span></li>
           <li><strong>Auto</strong><span>upgrades without rebuilds</span></li>
         </ul>
-        <nav class="hero-link-rail" aria-label="Related Buildwise Media pages">
-          {heroLinks.map((link) => (
-            <a href={link.href}>{link.label}</a>
-          ))}
-        </nav>
       </div>
       <aside class="command-center ops-panel" aria-label="Ascend installed system preview">
         <div class="command-topline">
@@ -1027,7 +1015,7 @@ const faqSchema = {
 .hero-copy {
   display: flex;
   flex-direction: column;
-  gap: 18px;
+  gap: 24px;
   min-width: 0;
 }
 
@@ -1055,28 +1043,6 @@ const faqSchema = {
   gap: 14px;
   align-items: center;
   margin-top: 2px;
-}
-
-.hero-link-rail {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-  max-width: 680px;
-}
-.hero-link-rail a {
-  border: 1px solid var(--rule);
-  color: var(--ink-dim);
-  font-family: var(--mono);
-  font-size: 10px;
-  letter-spacing: 0.12em;
-  line-height: 1.2;
-  padding: 9px 10px;
-  text-transform: uppercase;
-  transition: border-color 180ms ease, color 180ms ease;
-}
-.hero-link-rail a:hover {
-  border-color: var(--y2);
-  color: var(--ink);
 }
 
 .hero-proof-strip {
@@ -2775,7 +2741,7 @@ const faqSchema = {
 @media (max-width: 520px) {
   .home-hero { padding-top: 82px; }
   .hero-grid { gap: 28px; }
-  .hero-copy { gap: 14px; }
+  .hero-copy { gap: 18px; }
   .home-hero .eyebrow {
     max-width: 100%;
     align-items: flex-start;
@@ -2913,10 +2879,6 @@ const faqSchema = {
     white-space: normal;
     text-align: center;
     min-height: 58px;
-  }
-  .hero-link-rail a {
-    flex: 1 1 100%;
-    text-align: center;
   }
 }
 </style>
