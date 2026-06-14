@@ -1,0 +1,46 @@
+Self-hosted brand webfonts — Buildwise Media (buildwisemedia.com)
+================================================================
+
+These fonts are the LOCKED Triangulation brand typefaces (Inter display/body +
+JetBrains Mono micro). They are self-hosted (no third-party CDN) per the BWM
+no-vendor-fetch posture. Both are licensed under the SIL Open Font License 1.1,
+which permits self-hosting and webfont embedding provided this license notice
+accompanies the font files.
+
+----------------------------------------------------------------
+inter-variable-v1.woff2
+----------------------------------------------------------------
+  Family:   Inter (variable, weight axis 100–900 + optical-size axis)
+  Source:   https://github.com/rsms/inter  (rsms.me/inter)  Inter v4.x
+  Upstream: https://rsms.me/inter/font-files/InterVariable.woff2
+  License:  SIL Open Font License 1.1  (https://openfontlicense.org)
+            Copyright 2016 The Inter Project Authors
+            (https://github.com/rsms/inter)
+  Subset:   Reduced to a generous Western + symbol/arrow/math/box-drawing/
+            dingbat codepoint set (Latin, Latin Extended A/B/Additional,
+            punctuation, currency, letterlike, arrows, math operators,
+            box drawing, geometric shapes, misc symbols, dingbats).
+            Greek / Cyrillic / Vietnamese-only letterforms removed (site is
+            en-US). Variable axes preserved.
+
+----------------------------------------------------------------
+jetbrains-mono-variable-v1.woff2
+----------------------------------------------------------------
+  Family:   JetBrains Mono (variable, weight axis 100–800)
+  Source:   https://github.com/JetBrains/JetBrainsMono  v2.304
+  Upstream: fonts/variable/JetBrainsMono[wght].ttf  (compressed to woff2)
+  License:  SIL Open Font License 1.1  (https://openfontlicense.org)
+            Copyright 2020 The JetBrains Mono Project Authors
+            (https://github.com/JetBrains/JetBrainsMono)
+  Subset:   Same Western + symbol codepoint set as above (box-drawing glyphs
+            for the terminal-style rules are retained). Variable axis preserved.
+
+Regenerating these files
+------------------------
+The build pipeline that produced these subsets (fonttools Subsetter, woff2
+flavor) is documented in implementation-notes.md. To update a font, bump the
+-vN suffix (rename here, in src/styles/global.css @font-face src, and in the
+BaseLayout.astro preload links) so the immutable /fonts/* cache (public/_headers)
+serves the new bytes.
+
+Full OFL-1.1 text: https://openfontlicense.org/open-font-license-official-text/

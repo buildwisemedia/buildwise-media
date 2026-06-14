@@ -48,3 +48,29 @@ Approved Axis-1 reorder (3-model panel, memory `bwm-homepage-revenue-leak-map-ct
 **CTA lock cascade (so promote is a one-word go):**
 - `~/.claude/CLAUDE.md` CTA lock updated with the buildwisemedia.com-own-site exception: primary = "Get My Free Revenue Leak Map"; "See If We're a Fit" retained as secondary; no-paraphrase rule still governs all **client** sites.
 - Pre-Ship-Grep-Gate `banned-cta-copy` needed **no change** — verified it already passes the new CTA (denylist, not allowlist).
+
+## 2026-06-14 — Self-host LOCKED brand webfonts (dev: `feat/self-host-brand-fonts`)
+
+**Problem:** the public rendered in system fallback fonts. `global.css` referenced `'Inter'` / `'JetBrains Mono'` but there was **no `@font-face` / link / fontsource anywhere** — `document.fonts.size === 0` in the browser. It only looked right on machines with Inter + JetBrains Mono installed locally (Robert's Mac). Violates the LOCKED two-system type rule (Inter 300–900 + JetBrains Mono micro).
+
+**Fix (self-hosted, no third-party CDN — no-vendor-fetch posture):**
+- Added two variable woff2 to `public/fonts/`: `inter-variable-v1.woff2` (220 KB, wght 100–900 + opsz) and `jetbrains-mono-variable-v1.woff2` (81 KB, wght 100–800). `@font-face` (font-display: swap) in `global.css`, family names matching the `--sans`/`--mono` tokens so the declared faces **override any locally-installed copy** — every visitor (incl. Robert) renders the self-hosted file, which makes verification deterministic.
+- Preloaded both above-the-fold woff2 in `BaseLayout.astro <head>` with `crossorigin` (required — fonts fetch in CORS mode; anonymous preload is wasted + re-fetched). Placed after the `preloadImage` block so image-LCP pages keep image priority; the homepage hero is text-LCP (Inter), so Inter preload is correct.
+- `_headers`: `/fonts/* → max-age=31536000, immutable`. Files carry a `-vN` suffix; bump it (here + `global.css` src + BaseLayout preloads) to ship new bytes rather than overwrite-in-place.
+
+**Font sourcing / subsetting (pipeline, see `public/fonts/LICENSE.txt`):**
+- Inter = canonical `InterVariable.woff2` (rsms.me/inter, OFL-1.1). JetBrains Mono = official v2.304 release variable TTF (`JetBrainsMono[wght].ttf`), compressed to woff2 via fonttools.
+- Both **subset** (fonttools Subsetter) to a generous Western + symbol/arrow/math/box-drawing/dingbat codepoint set — kept Latin/Latin-Ext A/B/Additional, punctuation, currency, letterlike, arrows, math operators, box drawing, geometric shapes, misc symbols, dingbats; dropped Greek/Cyrillic/Vietnamese-only letters (site is en-US). Variable axes preserved. Saved ~35% vs full (Inter 352→220 KB, JBMono 113→81 KB).
+- **Why not the fontsource latin subset:** it omits `→`(×125) `←`(×28) `✓`(×32) `★` `№` `≈` `≥` `─`(×2047, mostly CSS comments) — a tiny subset would have left ~2.3k glyph instances falling back to system fonts inline with crisp Inter. The Western subset covers them: Inter carries everything except `─` (box-drawing → rendered by JBMono, which has it); JBMono carries everything except `★` (→ Inter). Verified each glyph renders in its actual mono/sans context (e.g. the hero CTA `→` is a mono span; JBMono covers it).
+
+**Italics:** shipped upright-only. `<em>` is restyled brand-wide to a Y2 accent (`font-style: normal`), not italic; true italic survives in ~3–4 minor spots (pull-quotes, diagnosis body) where the browser's synthesized oblique is an acceptable tradeoff vs a second ~350 KB italic face. Easy to add later if wanted.
+
+**QA gate wired-in:** `scripts/brand-closure-qa.mjs` `static-asset-link` extension regex extended to `woff2?|ttf|otf|eot` — the `/fonts/*` preloads are now **existence-verified** in dist (qa:brand FAILS if a font path is ever broken) instead of warned as unverified routes. Cleared the 592 false `static-internal-link-unverified` warnings the preloads otherwise produced (back to WARN: 0).
+
+**Verification (worktree off `origin/main`, `astro dev` + Playwright headless):**
+- `document.fonts.size` 0 → **2**; both faces `status: "loaded"`; h1 → Inter, eyebrow/console labels → JetBrains Mono. Inter metrics differ from system-sans (web font in effect, not fallback).
+- **CLS = 0** (0 layout shifts, buffered `layout-shift` entries) — preload + swap, no reflow. Inter ≈ system-sans metrics (~1.5% delta).
+- 0 font-related console errors. Desktop (1280) + mobile (390) hero screenshots render Inter/JBMono on-brand.
+- `npm run build` Complete · dist/fonts present + `@font-face`/preloads inlined · Pre-Ship Grep Gate ALL CHECKS PASSED (taste-regression-suite OK) · `qa:brand` PASS 6 / WARN 0 / FAIL 0 · `qa:guard` OK.
+
+**HITL:** client-facing visual change — staged on `feat/self-host-brand-fonts` for preview-deploy signoff; **NOT pushed to main**. Branched off `origin/main` (not the in-flight, escalated `feat/sdt-p2-faq-diagram-rebuild` lane) via a dedicated worktree so the diff is font-only and the shared checkout was undisturbed.
