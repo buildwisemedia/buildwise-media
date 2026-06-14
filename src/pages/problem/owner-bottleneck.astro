@@ -55,14 +55,45 @@ const faqSchema = {
 <BaseLayout title={title} description={description} jsonLd={[service, breadcrumb, faqSchema]}>
 
   <section class="problem-hero">
-    <div class="container">
-      <p class="eyebrow"><a href="/#problem" class="back-link">← The Poor Four</a> · 03</p>
-      <h1 class="h-hero">
-        Owner <em>bottleneck.</em>
-      </h1>
-      <p class="hero-sub">
-        You're the brand, the closer, the operator, the marketing department, and the customer service desk. If you take a week off, the pipeline stalls. If you put on a marketing push, operations break. The business can't grow past you because you ARE the business. Most owners don't realize this is what's capping their growth — they think they just need to work harder.
-      </p>
+    <div class="container problem-hero-grid">
+      <div>
+        <p class="eyebrow"><a href="/#problem" class="back-link">← The Poor Four</a> · 03</p>
+        <h1 class="h-hero">
+          Owner <em>bottleneck.</em>
+        </h1>
+        <p class="hero-sub">
+          You're the brand, the closer, the operator, the marketing department, and the customer service desk. If you take a week off, the pipeline stalls. If you put on a marketing push, operations break. The business can't grow past you because you ARE the business. Most owners don't realize this is what's capping their growth — they think they just need to work harder.
+        </p>
+        <p class="cta-row">
+          <a class="cta-primary" href="/book" data-cta-source="problem-owner-bottleneck-hero-cta">Get My Free Revenue Leak Map <span class="cta-arrow">→</span></a>
+          <a class="cta-ghost" href="/book" data-cta-source="problem-owner-bottleneck-hero-secondary">See If We're a Fit</a>
+        </p>
+      </div>
+      <aside class="problem-panel" aria-label="Single point of failure">
+        <div class="problem-panel-head">
+          <p class="panel-label mono">SINGLE POINT OF FAILURE</p>
+        </div>
+        <!-- @r020:F1 emotion: the spoke map makes the pressure of every growth function routing through the owner visible at a glance. -->
+        <figure class="scene-fig panel-fig">
+          <svg viewBox="0 0 280 220" role="img" aria-label="Diagram: owner is the center node connected to marketing, sales, follow-up, and reporting spokes.">
+            <line class="diag-accent" x1="140" y1="108" x2="70" y2="48" />
+            <line class="diag-accent" x1="140" y1="108" x2="220" y2="48" />
+            <line class="diag-accent" x1="140" y1="108" x2="70" y2="164" />
+            <line class="diag-accent" x1="140" y1="108" x2="220" y2="164" />
+            <rect class="fx-vertex-filled diag-accent-fill" x="136" y="104" width="8" height="8" />
+            <rect class="fx-vertex diag-accent-stroke" x="66" y="44" width="8" height="8" />
+            <rect class="fx-vertex diag-accent-stroke" x="216" y="44" width="8" height="8" />
+            <rect class="fx-vertex diag-accent-stroke" x="66" y="160" width="8" height="8" />
+            <rect class="fx-vertex diag-accent-stroke" x="216" y="160" width="8" height="8" />
+            <text class="fx-label diag-accent-label" x="140" y="96" text-anchor="middle">OWNER</text>
+            <text class="fx-label" x="70" y="32" text-anchor="middle">MARKETING</text>
+            <text class="fx-label" x="220" y="32" text-anchor="middle">SALES</text>
+            <text class="fx-label" x="70" y="188" text-anchor="middle">FOLLOW-UP</text>
+            <text class="fx-label" x="220" y="188" text-anchor="middle">REPORTING</text>
+            <text class="fx-caption" x="24" y="210">STEP AWAY AND EVERY SPOKE GOES DARK.</text>
+          </svg>
+        </figure>
+      </aside>
     </div>
   </section>
 
@@ -76,6 +107,25 @@ const faqSchema = {
         <li><strong>Pipeline collapses every time you step away.</strong> A vacation, an illness, a big project — any absence stalls the marketing. Leads don't get followed up. Reviews don't get requested. Ads drift. The cost of a week away is measured in weeks of recovery time afterward.</li>
         <li><strong>The scale ceiling is the owner's attention bandwidth.</strong> Revenue grows until it requires more owner attention than exists. At that point, growth stops — not because the market stopped, but because the system requires a person who's already full.</li>
       </ol>
+      <!-- @r020:F2 proof: the ceiling graph translates owner attention into the hard limit that flattens growth. -->
+      <figure class="scene-fig" style="max-width: 520px;">
+        <svg viewBox="0 0 520 160" role="img" aria-label="Diagram: a growth curve rises and then flattens against an owner attention ceiling.">
+          <line class="fx-hair" x1="42" y1="126" x2="486" y2="126" />
+          <line class="fx-hair" x1="42" y1="24" x2="42" y2="126" />
+          <text class="fx-label" x="22" y="36" transform="rotate(-90 22 36)">REVENUE</text>
+          <text class="fx-label" x="454" y="146">TIME</text>
+          <line class="fx-hair" x1="52" y1="54" x2="486" y2="54" stroke-dasharray="4 5" />
+          <text class="fx-label" x="304" y="44">OWNER ATTENTION</text>
+          <polyline class="fx-hair-y2" points="54,118 112,104 174,82 236,58" fill="none" />
+          <polyline class="diag-accent" points="236,58 304,55 372,55 460,55" fill="none" />
+          <rect class="fx-vertex" x="50" y="114" width="8" height="8" />
+          <rect class="fx-vertex-filled" x="232" y="54" width="8" height="8" />
+          <rect class="fx-vertex-filled diag-accent-fill" x="368" y="51" width="8" height="8" />
+          <rect class="fx-vertex-filled diag-accent-fill" x="456" y="51" width="8" height="8" />
+          <text class="fx-label diag-accent-label" x="402" y="82" text-anchor="middle">STALLED</text>
+          <text class="fx-caption" x="24" y="152">GROWTH STOPS AT THE OWNER'S BANDWIDTH.</text>
+        </svg>
+      </figure>
     </div>
   </section>
 
@@ -89,6 +139,32 @@ const faqSchema = {
       <p class="prose">
         The system surfaces only the decisions that genuinely need you: a strategy call, a budget approval, a new offer to test. Everything else runs. You check a dashboard when you want to — not because the system needs you to. Built in 30 days, operational before the second invoice.
       </p>
+      <!-- @r020:F3 CTA-pull: the reroute diagram shows the system absorbing the spokes while the owner receives only the decisions. -->
+      <figure class="scene-fig" style="max-width: 520px;">
+        <svg viewBox="0 0 520 200" role="img" aria-label="Diagram: marketing, sales, follow-up, and reporting connect to a system hub, which sends only needed calls to the owner.">
+          <rect class="fx-vertex" x="48" y="34" width="8" height="8" />
+          <rect class="fx-vertex" x="48" y="74" width="8" height="8" />
+          <rect class="fx-vertex" x="48" y="114" width="8" height="8" />
+          <rect class="fx-vertex" x="48" y="154" width="8" height="8" />
+          <text class="fx-label" x="68" y="42">MARKETING</text>
+          <text class="fx-label" x="68" y="82">SALES</text>
+          <text class="fx-label" x="68" y="122">FOLLOW-UP</text>
+          <text class="fx-label" x="68" y="162">REPORTING</text>
+          <line class="fx-hair-y2" x1="56" y1="38" x2="268" y2="96" />
+          <line class="fx-hair-y2" x1="56" y1="78" x2="268" y2="96" />
+          <line class="fx-hair-y2" x1="56" y1="118" x2="268" y2="96" />
+          <line class="fx-hair-y2" x1="56" y1="158" x2="268" y2="96" />
+          <rect class="fx-vertex-filled" x="268" y="92" width="8" height="8" />
+          <text class="fx-label-y2" x="272" y="82" text-anchor="middle">SYSTEM</text>
+          <line class="fx-hair" x1="276" y1="96" x2="420" y2="96" />
+          <polyline class="fx-hair" points="414,92 420,96 414,100" fill="none" />
+          <rect class="fx-vertex" x="432" y="92" width="8" height="8" />
+          <text class="fx-label" x="436" y="82" text-anchor="middle">OWNER</text>
+          <text class="fx-label" x="392" y="124" text-anchor="middle">ONLY THE CALLS</text>
+          <text class="fx-label" x="392" y="138" text-anchor="middle">THAT NEED YOU</text>
+          <text class="fx-caption" x="24" y="190">THE SYSTEM RUNS THE SPOKES — YOU GET THE DECISIONS.</text>
+        </svg>
+      </figure>
     </div>
   </section>
 
@@ -97,8 +173,8 @@ const faqSchema = {
       <h2 class="h-closer">Being the bottleneck is <em>fixable.</em></h2>
       <p class="lede">If three of the Poor Four sound familiar, the operations gap is bigger than the capacity gap. That's the conversation worth having.</p>
       <p class="cta-row">
-        <a class="cta-primary" href="/book" data-cta-source="problem-owner-bottleneck-cta">See If We're a Fit <span class="cta-arrow">→</span></a>
-        <a class="cta-ghost" href="/#problem">Back to The Poor Four</a>
+        <a class="cta-primary" href="/book" data-cta-source="problem-owner-bottleneck-cta">Get My Free Revenue Leak Map <span class="cta-arrow">→</span></a>
+        <a class="cta-ghost" href="/book" data-cta-source="problem-owner-bottleneck-secondary">See If We're a Fit</a>
       </p>
     </div>
   </section>
@@ -107,11 +183,21 @@ const faqSchema = {
 
 <style>
 .problem-hero { padding-block: clamp(80px, 12vw, 144px); }
+.problem-hero-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(280px, 420px); gap: clamp(32px, 6vw, 72px); align-items: center; }
 .back-link { color: var(--ink-faint); transition: color 180ms ease; }
 .back-link:hover { color: var(--y2); }
 .problem-hero h1 em { color: var(--y2); font-style: normal; font-weight: inherit; }
 .problem-fix h2 em, .problem-cta h2 em { color: var(--y2); font-style: normal; font-weight: inherit; }
+.problem-panel { border: 1px solid var(--rule); background: var(--bg-card); padding: 28px; border-radius: 4px; }
+.problem-panel-head { display: flex; justify-content: space-between; gap: 16px; align-items: center; }
+.panel-label { font-size: 10px; letter-spacing: 0.18em; color: var(--ink-faint); text-transform: uppercase; }
+.panel-fig { margin-top: 24px; max-width: 360px; }
+.diag-accent { stroke: var(--signal-orange); stroke-width: 1; }
+.diag-accent-fill { fill: var(--signal-orange); }
+.diag-accent-stroke { stroke: var(--signal-orange); }
+.diag-accent-label { fill: var(--signal-orange); }
 
+.problem-cost, .problem-fix, .problem-cta { padding-block: clamp(56px, 8vw, 96px); }
 .cost-list { list-style: none; counter-reset: cost; display: flex; flex-direction: column; gap: 24px; margin-top: 32px; max-width: 880px; }
 .cost-list li {
   counter-increment: cost;
@@ -137,4 +223,8 @@ const faqSchema = {
 .problem-fix .lede { margin-top: 32px; }
 
 .cta-row { display: flex; flex-wrap: wrap; gap: 16px; margin-top: 32px; }
+
+@media (max-width: 860px) {
+  .problem-hero-grid { grid-template-columns: 1fr; }
+}
 </style>

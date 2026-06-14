@@ -55,14 +55,44 @@ const faqSchema = {
 <BaseLayout title={title} description={description} jsonLd={[service, breadcrumb, faqSchema]}>
 
   <section class="problem-hero">
-    <div class="container">
-      <p class="eyebrow"><a href="/#problem" class="back-link">← The Poor Four</a> · 04</p>
-      <h1 class="h-hero">
-        Reactive <em>growth.</em>
-      </h1>
-      <p class="hero-sub">
-        Every Monday starts with a different fire. There's no weekly rhythm, no operating cadence, no clear scoreboard. By the time you spot a trend in the numbers, the quarter is over. You're making big decisions on tiny data. The whole operation is one step behind, always.
-      </p>
+    <div class="container problem-hero-grid">
+      <div>
+        <p class="eyebrow"><a href="/#problem" class="back-link">← The Poor Four</a> · 04</p>
+        <h1 class="h-hero">
+          Reactive <em>growth.</em>
+        </h1>
+        <p class="hero-sub">
+          Every Monday starts with a different fire. There's no weekly rhythm, no operating cadence, no clear scoreboard. By the time you spot a trend in the numbers, the quarter is over. You're making big decisions on tiny data. The whole operation is one step behind, always.
+        </p>
+        <p class="cta-row">
+          <a class="cta-primary" href="/book" data-cta-source="problem-reactive-growth-hero-cta">Get My Free Revenue Leak Map <span class="cta-arrow">→</span></a>
+          <a class="cta-ghost" href="/book" data-cta-source="problem-reactive-growth-hero-secondary">See If We're a Fit</a>
+        </p>
+      </div>
+      <aside class="problem-panel" aria-label="Operating cadence">
+        <div class="problem-panel-head">
+          <p class="panel-label mono">OPERATING CADENCE</p>
+        </div>
+        <!-- @r020:F4 curiosity: the two timelines make the late-read cadence visibly weaker than the weekly operating rhythm. -->
+        <figure class="scene-fig panel-fig">
+          <svg viewBox="0 0 320 200" role="img" aria-label="Diagram: a reactive timeline has one quarter-end marker while a weekly timeline has markers across the period.">
+            <text class="fx-label" x="24" y="42">REACTIVE</text>
+            <line class="fx-hair" x1="24" y1="70" x2="292" y2="70" />
+            <rect class="fx-vertex faint-node" x="280" y="66" width="8" height="8" />
+            <text class="fx-label" text-anchor="end" x="288" y="58">QUARTER END</text>
+            <text class="fx-label" x="24" y="112">WEEKLY</text>
+            <line class="diag-accent" x1="24" y1="140" x2="292" y2="140" />
+            <rect class="fx-vertex-filled diag-accent-fill" x="24" y="136" width="8" height="8" />
+            <rect class="fx-vertex-filled diag-accent-fill" x="76" y="136" width="8" height="8" />
+            <rect class="fx-vertex-filled diag-accent-fill" x="128" y="136" width="8" height="8" />
+            <rect class="fx-vertex-filled diag-accent-fill" x="180" y="136" width="8" height="8" />
+            <rect class="fx-vertex-filled diag-accent-fill" x="232" y="136" width="8" height="8" />
+            <rect class="fx-vertex-filled diag-accent-fill" x="284" y="136" width="8" height="8" />
+            <text class="fx-caption" x="20" y="178">ONE READS THE QUARTER TOO LATE.</text>
+            <text class="fx-caption" x="20" y="192">ONE READS THE WEEK.</text>
+          </svg>
+        </figure>
+      </aside>
     </div>
   </section>
 
@@ -76,6 +106,30 @@ const faqSchema = {
         <li><strong>Decisions on gut instead of data produce the same results as guessing.</strong> Most service business owners are good operators with strong intuitions. Those intuitions are right more often when they're calibrated against real numbers — and wrong more often when they're substituting for data that doesn't exist yet.</li>
         <li><strong>Slow learning compounds against fast competitors.</strong> Marketing is an optimization game. The business that tests faster, learns faster, and adjusts faster wins market share over time. Reactive operations learn on a quarterly cycle. Instrumented operations learn weekly. That gap compounds.</li>
       </ol>
+      <!-- @r020:F2 proof: the correction-tax timeline shows the full wasted span between the first signal and the late discovery. -->
+      <figure class="scene-fig" style="max-width: 520px;">
+        <svg viewBox="0 0 520 150" role="img" aria-label="Diagram: a problem starts in week two, the wasted span continues until quarter end, and discovery happens late.">
+          <line class="fx-hair" x1="38" y1="76" x2="476" y2="76" />
+          <rect class="waste-band" x="140" y="50" width="292" height="52" />
+          <line class="fx-hair" x1="154" y1="50" x2="128" y2="102" />
+          <line class="fx-hair" x1="190" y1="50" x2="164" y2="102" />
+          <line class="fx-hair" x1="226" y1="50" x2="200" y2="102" />
+          <line class="fx-hair" x1="262" y1="50" x2="236" y2="102" />
+          <line class="fx-hair" x1="298" y1="50" x2="272" y2="102" />
+          <line class="fx-hair" x1="334" y1="50" x2="308" y2="102" />
+          <line class="fx-hair" x1="370" y1="50" x2="344" y2="102" />
+          <line class="fx-hair" x1="406" y1="50" x2="380" y2="102" />
+          <rect class="fx-vertex" x="34" y="72" width="8" height="8" />
+          <rect class="fx-vertex-filled diag-accent-fill" x="136" y="72" width="8" height="8" />
+          <rect class="fx-vertex-filled diag-accent-fill" x="428" y="72" width="8" height="8" />
+          <polyline class="diag-accent" points="430,62 430,42 456,42" fill="none" />
+          <text class="fx-label" x="38" y="112" text-anchor="middle">START</text>
+          <text class="fx-label diag-accent-label" x="140" y="38" text-anchor="middle">WEEK 2</text>
+          <text class="fx-label diag-accent-label" x="432" y="38" text-anchor="middle">QUARTER END</text>
+          <text class="fx-label" x="282" y="116" text-anchor="middle">WASTED SPEND + LOST TIME</text>
+          <text class="fx-caption" x="20" y="142">FOUND LATE COSTS TWICE — ONCE FOR THE PROBLEM, ONCE FOR THE LOST TIME.</text>
+        </svg>
+      </figure>
     </div>
   </section>
 
@@ -89,6 +143,46 @@ const faqSchema = {
       <p class="prose">
         The dashboard surfaces the numbers that matter — cost per qualified lead, channel attribution, conversion rates by source — automatically, every week. You look at what's working, decide what to adjust, and move. No spreadsheet archaeology. No quarterly surprises. Built in 30 days, producing real trend data by month three.
       </p>
+      <!-- @r020:F3 CTA-pull: the visitor drags review cadence and watches yearly optimization cycles jump — the strongest pre-CTA artifact for "instrument the week". -->
+      <!-- @sdt-interactive-proof: weeks-between-reviews drives a live optimization-cycles-per-year delta (52/weeks) vs a quarterly 4-cycle baseline -->
+      <div class="cadence-widget" data-cadence-widget>
+        <div class="cadence-control">
+          <label class="cadence-label mono" for="weeks-between-reviews">WEEKS BETWEEN REVIEWS</label>
+          <div class="cadence-slider-row">
+            <input
+              id="weeks-between-reviews"
+              type="range"
+              min="1"
+              max="13"
+              value="13"
+              step="1"
+              class="cadence-range"
+              data-slider-input="weeks"
+              aria-label="Weeks between marketing reviews"
+              style="--fill-pct: 100%;"
+            />
+            <output class="cadence-slider-out mono" data-out-weeks>13</output>
+          </div>
+          <div class="cadence-range-labels mono" aria-hidden="true">
+            <span>1</span>
+            <span>13</span>
+          </div>
+        </div>
+        <div class="cadence-output-grid" aria-live="polite">
+          <article class="cadence-output-cell cadence-primary-output">
+            <p class="kpi-label mono">OPTIMIZATION CYCLES / YEAR</p>
+            <p class="cadence-kpi-num" data-out-cycles>4</p>
+          </article>
+          <article class="cadence-output-cell">
+            <p class="kpi-label mono">BASELINE</p>
+            <p class="cadence-kpi-copy">vs quarterly review (4 / year)</p>
+          </article>
+          <article class="cadence-output-cell">
+            <p class="kpi-label mono">REVIEW RATE</p>
+            <p class="cadence-kpi-num cadence-multiplier" data-out-multiplier>1x more often</p>
+          </article>
+        </div>
+      </div>
     </div>
   </section>
 
@@ -97,8 +191,8 @@ const faqSchema = {
       <h2 class="h-closer">Reactive operations are <em>fixable.</em></h2>
       <p class="lede">If three of the Poor Four sound familiar, the operations gap is bigger than the data gap. That's the conversation worth having.</p>
       <p class="cta-row">
-        <a class="cta-primary" href="/book" data-cta-source="problem-reactive-growth-cta">See If We're a Fit <span class="cta-arrow">→</span></a>
-        <a class="cta-ghost" href="/#problem">Back to The Poor Four</a>
+        <a class="cta-primary" href="/book" data-cta-source="problem-reactive-growth-cta">Get My Free Revenue Leak Map <span class="cta-arrow">→</span></a>
+        <a class="cta-ghost" href="/book" data-cta-source="problem-reactive-growth-secondary">See If We're a Fit</a>
       </p>
     </div>
   </section>
@@ -107,11 +201,22 @@ const faqSchema = {
 
 <style>
 .problem-hero { padding-block: clamp(80px, 12vw, 144px); }
+.problem-hero-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(280px, 420px); gap: clamp(32px, 6vw, 72px); align-items: center; }
 .back-link { color: var(--ink-faint); transition: color 180ms ease; }
 .back-link:hover { color: var(--y2); }
 .problem-hero h1 em { color: var(--y2); font-style: normal; font-weight: inherit; }
 .problem-fix h2 em, .problem-cta h2 em { color: var(--y2); font-style: normal; font-weight: inherit; }
+.problem-panel { border: 1px solid var(--rule); background: var(--bg-card); padding: 28px; border-radius: 4px; }
+.problem-panel-head { display: flex; justify-content: space-between; gap: 16px; align-items: center; }
+.panel-label { font-size: 10px; letter-spacing: 0.18em; color: var(--ink-faint); text-transform: uppercase; }
+.panel-fig { margin-top: 24px; max-width: 360px; }
+.diag-accent { stroke: var(--signal-green); stroke-width: 1; }
+.diag-accent-fill { fill: var(--signal-green); }
+.diag-accent-label { fill: var(--signal-green); }
+.faint-node { stroke: var(--ink-faint); }
+.waste-band { fill: var(--bg-card); stroke: var(--rule-bright); stroke-width: 1; }
 
+.problem-cost, .problem-fix, .problem-cta { padding-block: clamp(56px, 8vw, 96px); }
 .cost-list { list-style: none; counter-reset: cost; display: flex; flex-direction: column; gap: 24px; margin-top: 32px; max-width: 880px; }
 .cost-list li {
   counter-increment: cost;
@@ -137,4 +242,186 @@ const faqSchema = {
 .problem-fix .lede { margin-top: 32px; }
 
 .cta-row { display: flex; flex-wrap: wrap; gap: 16px; margin-top: 32px; }
+
+.cadence-widget {
+  margin-top: 36px;
+  max-width: 860px;
+  border: 1px solid var(--rule);
+  background: var(--bg-card);
+  border-radius: 4px;
+  padding: 30px 28px;
+}
+.cadence-control { max-width: 620px; }
+.cadence-label {
+  font-size: 10px;
+  letter-spacing: 0.18em;
+  color: var(--ink-faint);
+  display: block;
+}
+.cadence-slider-row { width: 100%; position: relative; padding-top: 42px; }
+.cadence-range {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  height: 3px;
+  background: linear-gradient(
+    to right,
+    var(--y2) 0%,
+    var(--y2) var(--fill-pct, 100%),
+    var(--rule) var(--fill-pct, 100%),
+    var(--rule) 100%
+  );
+  border-radius: 2px;
+  outline: none;
+  cursor: pointer;
+}
+.cadence-range::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 26px;
+  height: 26px;
+  background: var(--y2);
+  border-radius: 50%;
+  border: 3px solid var(--bg-elev);
+  cursor: grab;
+  box-shadow: 0 0 0 7px var(--rule);
+  transition: transform 180ms ease, box-shadow 180ms ease;
+}
+.cadence-range:hover::-webkit-slider-thumb { box-shadow: 0 0 0 8px var(--rule-bright); }
+.cadence-range:active::-webkit-slider-thumb {
+  cursor: grabbing;
+  transform: scale(0.96);
+  box-shadow: 0 0 0 5px var(--y2);
+}
+.cadence-range::-moz-range-thumb {
+  width: 26px;
+  height: 26px;
+  background: var(--y2);
+  border-radius: 50%;
+  border: 3px solid var(--bg-elev);
+  cursor: grab;
+  box-shadow: 0 0 0 7px var(--rule);
+  transition: transform 180ms ease, box-shadow 180ms ease;
+}
+.cadence-range:hover::-moz-range-thumb { box-shadow: 0 0 0 8px var(--rule-bright); }
+.cadence-range:active::-moz-range-thumb {
+  cursor: grabbing;
+  transform: scale(0.96);
+  box-shadow: 0 0 0 5px var(--y2);
+}
+.cadence-range:focus-visible {
+  outline: 2px solid var(--y2);
+  outline-offset: 4px;
+  border-radius: 2px;
+}
+.cadence-slider-out {
+  position: absolute;
+  top: 0;
+  left: var(--fill-pct, 100%);
+  transform: translateX(-50%);
+  font-family: var(--mono);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  color: var(--y2);
+  background: var(--bg);
+  border: 1px solid var(--y2);
+  border-radius: 3px;
+  padding: 4px 6px;
+  line-height: 1;
+  white-space: nowrap;
+  pointer-events: none;
+}
+.cadence-slider-out::after {
+  content: '';
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0;
+  height: 0;
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  border-top: 5px solid var(--y2);
+}
+.cadence-range-labels {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
+  color: var(--ink-faint);
+  font-size: 9px;
+  letter-spacing: 0.12em;
+}
+.cadence-output-grid { display: grid; grid-template-columns: minmax(0, 1.15fr) repeat(2, minmax(0, 0.9fr)); gap: 18px; margin-top: 32px; }
+.cadence-output-cell {
+  min-width: 0;
+  overflow: hidden;
+  background: var(--bg);
+  border: 1px solid var(--rule);
+  border-radius: 2px;
+  padding: 22px 18px;
+}
+.cadence-primary-output { border-color: var(--y2); }
+.cadence-kpi-num {
+  margin-top: 10px;
+  font-size: clamp(34px, 4vw, 58px);
+  line-height: 1;
+  letter-spacing: 0;
+  color: var(--y2);
+  font-weight: 800;
+  font-variant-numeric: tabular-nums;
+}
+.cadence-kpi-copy {
+  margin-top: 12px;
+  color: var(--ink-dim);
+  line-height: 1.45;
+  font-size: 15px;
+}
+.cadence-multiplier { font-size: clamp(26px, 3vw, 42px); }
+
+@media (prefers-reduced-motion: reduce) {
+  .cadence-range::-webkit-slider-thumb,
+  .cadence-range::-moz-range-thumb {
+    transition: none;
+  }
+}
+
+@media (max-width: 860px) {
+  .problem-hero-grid { grid-template-columns: 1fr; }
+  .cadence-output-grid { grid-template-columns: 1fr; }
+}
 </style>
+
+<script is:inline>
+  (function () {
+    const widget = document.querySelector('[data-cadence-widget]');
+    if (!widget) return;
+
+    const slider = widget.querySelector('[data-slider-input="weeks"]');
+    const outWeeks = widget.querySelector('[data-out-weeks]');
+    const outCycles = widget.querySelector('[data-out-cycles]');
+    const outMultiplier = widget.querySelector('[data-out-multiplier]');
+    const quarterlyBaseline = 4;
+
+    const updateFill = function(input) {
+      if (!input) return;
+      const pct = ((Number(input.value) - Number(input.min)) / (Number(input.max) - Number(input.min))) * 100;
+      input.style.setProperty('--fill-pct', pct + '%');
+      if (outWeeks) outWeeks.style.setProperty('--fill-pct', pct + '%');
+    };
+
+    const calculate = function() {
+      const weeks = Number(slider ? slider.value : 13);
+      const cycles = Math.round(52 / weeks);
+      const multiplier = Math.max(1, Math.round((52 / weeks) / quarterlyBaseline));
+
+      if (outWeeks) outWeeks.textContent = String(weeks);
+      if (outCycles) outCycles.textContent = String(cycles);
+      if (outMultiplier) outMultiplier.textContent = multiplier + 'x more often';
+      updateFill(slider);
+    };
+
+    if (slider) slider.addEventListener('input', calculate);
+    calculate();
+  })();
+</script>
