@@ -80,46 +80,53 @@ const faqSchema = {
 <BaseLayout title={title} description={description} jsonLd={[howTo, breadcrumb, faqSchema]}>
 
   <section class="how-hero">
-    <div class="container">
-      <p class="eyebrow">How It Works</p>
-      <h1 class="h-hero">
-        Three moves.<br/>
-        <em>30</em> days.<br/>
-        One operating system.
-      </h1>
-      <p class="hero-sub" style="max-width: 720px;">
-        Most agencies sell a project. Ascend installs an operating rhythm: baseline first, system live in 30 days, weekly proof after that.
-      </p>
+    <div class="container how-hero-grid">
+      <div class="how-hero-copy">
+        <p class="eyebrow">How It Works</p>
+        <h1 class="h-hero">
+          Three moves.<br/>
+          <em>30</em> days.<br/>
+          One operating system.
+        </h1>
+        <p class="hero-sub">
+          Most agencies sell a project. We install custom AI that runs the work: baseline first, system live in 30 days, weekly proof after that.
+        </p>
+        <div class="hero-ctas">
+          <a href="/book" class="cta" data-cta-source="how-it-works-hero-primary">Get My Free Revenue Leak Map<span class="cta-arrow" aria-hidden="true">→</span></a>
+          <a href="/book" class="cta-ghost" data-cta-source="how-it-works-hero-secondary">See If We're a Fit</a>
+        </div>
+      </div>
+      <aside class="ops-panel" aria-label="Install state">
+        <div class="ops-head">
+          <p class="panel-label mono">install state</p>
+          <span class="ops-chip"><span class="ops-dot" aria-hidden="true"></span>baseline first</span>
+        </div>
+        <!-- @r020:F2 proof: Day 0→5→30 install timeline — proves the 30-day operational claim the hero makes -->
+        <figure class="scene-fig hero-fig">
+          <svg viewBox="0 0 300 132" role="img" aria-label="Install timeline: audit day 0 to 5, install day 5 to 30, operational and running from day 30.">
+            <line class="fx-hair" x1="20" y1="66" x2="280" y2="66" />
+            <polyline class="fx-hair" points="274,62 280,66 274,70" fill="none" />
+            <line class="fx-hair" x1="20" y1="58" x2="20" y2="74" />
+            <line class="fx-hair" x1="64" y1="58" x2="64" y2="74" />
+            <line class="fx-hair" x1="248" y1="58" x2="248" y2="74" />
+            <text class="fx-label" x="20" y="46" text-anchor="start">01 AUDIT</text>
+            <text class="fx-label" x="150" y="46" text-anchor="middle">02 INSTALL</text>
+            <text class="fx-label" x="262" y="46" text-anchor="end">03 RUN</text>
+            <rect class="fx-vertex-filled" x="244" y="62" width="8" height="8" />
+            <text class="fx-label-y2" x="248" y="26" text-anchor="middle">OPERATIONAL</text>
+            <text class="fx-label" x="20" y="92" text-anchor="start">DAY 0</text>
+            <text class="fx-label" x="64" y="92" text-anchor="middle">DAY 5</text>
+            <text class="fx-label" x="248" y="92" text-anchor="middle">DAY 30</text>
+            <text class="fx-caption" x="20" y="116">THREE PHASES. THIRTY DAYS. THEN IT RUNS.</text>
+          </svg>
+        </figure>
+        <p class="panel-copy">Day 0 is the audit. Day 30 the system is operational — then weekly proof.</p>
+      </aside>
     </div>
   </section>
 
   <section class="phases-section elev">
     <div class="container">
-      <!-- @r020:F2 proof: Day 0→5→30 install timeline — encodes the 30-day operational claim the phase list makes in prose -->
-      <figure class="scene-fig" style="max-width: 560px; margin: 0 0 56px;">
-        <svg viewBox="0 0 520 112" role="img" aria-label="Timeline: Audit runs day 0 to 5, Install runs day 5 to 30, the system is operational and running from day 30 on.">
-          <!-- track -->
-          <line class="fx-hair" x1="24" y1="64" x2="496" y2="64" />
-          <polyline class="fx-hair" points="490,60 496,64 490,68" fill="none" />
-          <!-- ticks -->
-          <line class="fx-hair" x1="24" y1="56" x2="24" y2="72" />
-          <line class="fx-hair" x1="99" y1="56" x2="99" y2="72" />
-          <line class="fx-hair" x1="446" y1="56" x2="446" y2="72" />
-          <!-- phase labels -->
-          <text class="fx-label" x="61" y="44" text-anchor="middle">01 AUDIT</text>
-          <text class="fx-label" x="272" y="44" text-anchor="middle">02 INSTALL</text>
-          <text class="fx-label" x="478" y="44" text-anchor="middle">03 RUN</text>
-          <!-- operational vertex at day 30 -->
-          <rect class="fx-vertex-filled" x="442" y="60" width="8" height="8" />
-          <text class="fx-label-y2" x="446" y="24" text-anchor="middle">OPERATIONAL</text>
-          <!-- day labels -->
-          <text class="fx-label" x="24" y="92" text-anchor="start">DAY 0</text>
-          <text class="fx-label" x="99" y="92" text-anchor="middle">DAY 5</text>
-          <text class="fx-label" x="446" y="92" text-anchor="middle">DAY 30</text>
-          <!-- caption -->
-          <text class="fx-caption" x="24" y="110">THREE PHASES. THIRTY DAYS. THEN THE SYSTEM RUNS.</text>
-        </svg>
-      </figure>
       <ol class="phases-list" role="list">
         {phases.map((p) => (
           <li class="phase-row reveal">
@@ -138,6 +145,23 @@ const faqSchema = {
           </li>
         ))}
       </ol>
+      <!-- @r020:F2 proof: the weekly operating loop the install produces — search to prove, running after day 30 -->
+      <figure class="scene-fig" style="max-width: 560px; margin: 48px 0 0;">
+        <svg viewBox="0 0 520 96" role="img" aria-label="The weekly operating loop after install: search, answer, book, review, prove.">
+          <line class="fx-hair" x1="34" y1="40" x2="486" y2="40" />
+          <rect class="fx-vertex" x="30" y="36" width="8" height="8" />
+          <rect class="fx-vertex" x="140" y="36" width="8" height="8" />
+          <rect class="fx-vertex" x="250" y="36" width="8" height="8" />
+          <rect class="fx-vertex" x="360" y="36" width="8" height="8" />
+          <rect class="fx-vertex-filled" x="482" y="36" width="8" height="8" />
+          <text class="fx-label" x="34" y="64" text-anchor="middle">SEARCH</text>
+          <text class="fx-label" x="144" y="64" text-anchor="middle">ANSWER</text>
+          <text class="fx-label" x="254" y="64" text-anchor="middle">BOOK</text>
+          <text class="fx-label" x="364" y="64" text-anchor="middle">REVIEW</text>
+          <text class="fx-label-y2" x="486" y="64" text-anchor="middle">PROVE</text>
+          <text class="fx-caption" x="34" y="86">DAY 30+ — THE SYSTEM RUNS THIS LOOP EVERY WEEK</text>
+        </svg>
+      </figure>
     </div>
   </section>
 
@@ -186,6 +210,19 @@ const faqSchema = {
 
 <style>
 .how-hero { padding-top: clamp(140px, 14vw, 180px); padding-bottom: clamp(60px, 8vw, 100px); }
+.how-hero-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(300px, 400px); gap: clamp(32px, 6vw, 72px); align-items: center; }
+.how-hero-copy .eyebrow { margin-bottom: 28px; }
+.how-hero-copy .h-hero { margin-bottom: 26px; }
+.how-hero-copy .hero-sub { margin-bottom: 32px; max-width: 560px; }
+.hero-ctas { display: flex; flex-wrap: wrap; gap: 16px; }
+.ops-panel { border: 1px solid var(--rule); background: rgba(255,255,255,0.025); border-radius: 4px; padding: 24px; }
+.ops-head { display: flex; justify-content: space-between; align-items: center; gap: 12px; margin-bottom: 18px; }
+.panel-label { color: var(--ink-dim); }
+.ops-chip { font-family: var(--mono); font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink-dim); display: inline-flex; align-items: center; gap: 7px; }
+.ops-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--signal-green); }
+.hero-fig { margin: 0; max-width: 100%; }
+.panel-copy { margin-top: 16px; color: var(--ink-dim); font-size: 13px; line-height: 1.55; }
+@media (max-width: 860px) { .how-hero-grid { grid-template-columns: 1fr; } }
 
 .phases-section { padding-block: var(--section-y); }
 .phases-list { list-style: none; display: flex; flex-direction: column; gap: 0; }
