@@ -229,6 +229,13 @@ h1, h2, h3, h4 {
   max-width: 620px;
 }
 
+/* Industry-hero vertical rhythm — breathing room between eyebrow → heading →
+   subhead. The homepage hero uses its own .hero-copy gap; the industry hero
+   inherited the zero-margin reset and read cramped. Cascades to every
+   /industries/* page at once. */
+.industry-hero .eyebrow { margin-bottom: 30px; }
+.industry-hero .h-hero { margin-bottom: 28px; }
+
 .prose p {
   font-size: 19px;
   font-weight: 400;
