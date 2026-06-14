@@ -43,6 +43,33 @@
   --max-w: 1200px;
 }
 
+/* ---------- 1b. Self-hosted brand fonts (Triangulation LOCKED) ----------
+   Inter (display + body) and JetBrains Mono (micro labels) are self-hosted —
+   no third-party CDN, per the BWM no-vendor-fetch posture. Both are variable
+   woff2 (one file per family covers the full weight range the type scale uses:
+   Inter 300–900, JetBrains Mono 400/600). Subset to a generous Western +
+   symbol/arrow/math/box-drawing set; license + source in /public/fonts/LICENSE.txt.
+   font-display: swap → text paints immediately in the fallback stack, then
+   swaps to brand glyphs (no invisible-text FOIT). The hero's critical woff2 are
+   preloaded in BaseLayout <head>. Family names match the --sans/--mono tokens so
+   these faces override any locally-installed copy — every visitor renders the
+   self-hosted file, not a machine-local font.
+   Bump the -vN suffix (here + BaseLayout preloads) to bust the immutable cache. */
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url('/fonts/inter-variable-v1.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'JetBrains Mono';
+  font-style: normal;
+  font-weight: 100 800;
+  font-display: swap;
+  src: url('/fonts/jetbrains-mono-variable-v1.woff2') format('woff2');
+}
+
 /* ---------- 2. Reset & Base ---------- */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 

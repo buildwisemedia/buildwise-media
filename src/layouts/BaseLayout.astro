@@ -144,6 +144,15 @@ const graph = [...siteSchemas, ...perPageSchemas];
       />
     )}
 
+    <!-- Self-hosted brand fonts (LOCKED two-system type). Preload the two
+         above-the-fold woff2 — Inter (hero headline + body, the text LCP) and
+         JetBrains Mono (hero eyebrow/console micro-labels) — so the swap fires
+         before first paint and the hero doesn't FOUT. crossorigin is REQUIRED:
+         fonts are fetched in CORS mode, so an anonymous preload would be wasted
+         and re-fetched. @font-face declarations live in global.css (inlined). -->
+    <link rel="preload" as="font" type="font/woff2" href="/fonts/inter-variable-v1.woff2" crossorigin />
+    <link rel="preload" as="font" type="font/woff2" href="/fonts/jetbrains-mono-variable-v1.woff2" crossorigin />
+
     <!-- Theme + favicon (Triangulation V3 mark — locked 2026-04-30 against brand/BWM-Logo-System-Locked.md) -->
     <meta name="theme-color" content="#050507" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />

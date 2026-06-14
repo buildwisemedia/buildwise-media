@@ -216,7 +216,7 @@ for (const file of htmlFiles) {
     if (!href.startsWith('/') || href.startsWith('//')) continue;
     if (href.startsWith('/_') || href.startsWith('/assets/') || href.startsWith('/brand/') || href.startsWith('/images/')) continue;
     const clean = href.split('#')[0].split('?')[0].replace(/\/$/, '') || '/';
-    if (/\.(png|jpe?g|webp|svg|ico|txt|xml|pdf)$/i.test(clean)) {
+    if (/\.(png|jpe?g|webp|svg|ico|txt|xml|pdf|woff2?|ttf|otf|eot)$/i.test(clean)) {
       const assetFile = path.join(dist, clean.replace(/^\//, ''));
       if (!exists(assetFile)) fail('static-asset-link', rel(file), `${route} links to missing asset ${href}`);
       continue;
