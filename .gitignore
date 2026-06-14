@@ -38,6 +38,13 @@ site-download/
 # print business card design iterations & mockups (binaries stored on R2)
 public/assets/print/business-card/iterations/
 
+# Build-decision journal (LOCKED 2026-05-25): every build MAINTAINS implementation-notes.md
+# at repo root, but it is LOCAL-ONLY scratch — the Pre-Ship Grep Gate hard-fails on a committed
+# root/source copy ([implementation-notes-placement]). Anchored to root so the gate's exempt
+# _verification/implementation-notes.* copy stays tracked.
+/implementation-notes.md
+/implementation-notes.html
+
 # _verification/ is QA + review scratch, not source. No screenshots (PNG) or per-route raw
 # data are tracked: the visual-QA bundles regenerate every `npm run qa:brand:visual`
 # (~220MB/run), and the rest are one-off review crops/captures. All stay on disk for local
