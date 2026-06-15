@@ -1,0 +1,766 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import MoChainSection from '../../components/campaign/MoChainSection.astro';
+import FitDiagnostic from '../../components/FitDiagnostic.astro';
+
+// AGENCY-ALTERNATIVE offer-funnel arm — /go/agency-alternative
+// Angle: burned-by-agency owner wants booked jobs, not reports.
+// Register: category reframe · us-vs-them · proof-before-CTA.
+// UTM contract: utm_content=go-agency-alternative
+---
+
+<BaseLayout
+  title="Marketing Agency Alternative for Service Businesses | Buildwise Media"
+  description="If your marketing agency keeps sending reports instead of booked jobs, the free Revenue Leak Map shows where the system is leaking and what a run-for-you AI marketing system would replace."
+  ogTitle="The alternative to a marketing agency that only sends reports"
+  ogDescription="Get the free Revenue Leak Map. See where your current marketing setup leaks and what a run-for-you system would fix."
+  noindex={true}
+>
+
+  <!-- HERO ─────────────────────────────────────────────────────────────── -->
+  <section class="aa-hero" aria-labelledby="aa-hero-headline">
+    <div class="container aa-hero-grid">
+      <div class="aa-hero-text">
+        <p class="eyebrow">Buildwise Media · AI marketing run for you</p>
+
+        <!-- @bwm-exp-slot: hero-headline — paid-search agency-alternative H1; bandit patches target this selector -->
+        <h1 id="aa-hero-headline" class="aa-headline" data-bwm-exp-slot="hero-headline">
+          <span class="aa-line">If your marketing agency</span>
+          <span class="aa-line">sends reports instead of</span>
+          <span class="aa-line"><span class="aa-accent">booked jobs</span>, this is</span>
+          <span class="aa-line">the alternative.</span>
+        </h1>
+
+        <p class="aa-subhead">
+          Most agencies sell activity. You need the layer that turns search, follow-up, reviews, and tracking into work on the calendar. The free Revenue Leak Map shows where your current setup is leaking.
+        </p>
+
+        <!-- @r020:F2 proof: report-to-booked-jobs comparison makes the agency frustration visible — the owner sees the gap between activity reporting and real work booked before taking the diagnostic CTA -->
+        <figure class="aa-hero-figure">
+          <svg class="aa-hero-svg" viewBox="0 0 640 220" role="img" aria-label="A comparison from typical agency reports to an owned system that books jobs and reports what closed." xmlns="http://www.w3.org/2000/svg">
+            <text x="8" y="16" font-family="JetBrains Mono, monospace" font-size="9" fill="#62626A" letter-spacing="0.18em">WHAT YOU GET TODAY</text>
+            <rect x="8" y="32" width="210" height="126" fill="rgba(168,162,152,0.10)" stroke="rgba(168,162,152,0.22)" stroke-width="1"/>
+            <line x1="28" y1="58" x2="178" y2="58" stroke="rgba(168,162,152,0.35)" stroke-width="1.5"/>
+            <line x1="28" y1="82" x2="198" y2="82" stroke="rgba(168,162,152,0.24)" stroke-width="1.5"/>
+            <line x1="28" y1="106" x2="164" y2="106" stroke="rgba(168,162,152,0.24)" stroke-width="1.5"/>
+            <line x1="28" y1="130" x2="190" y2="130" stroke="rgba(168,162,152,0.24)" stroke-width="1.5"/>
+            <circle cx="190" cy="58" r="4" fill="none" stroke="rgba(168,162,152,0.38)" stroke-width="1"/>
+            <circle cx="210" cy="82" r="4" fill="none" stroke="rgba(168,162,152,0.28)" stroke-width="1"/>
+            <text x="8" y="182" font-family="JetBrains Mono, monospace" font-size="8" fill="#62626A" letter-spacing="0.13em">Reports · tasks · vague wins</text>
+
+            <line x1="268" y1="106" x2="304" y2="106" stroke="#F0FF00" stroke-width="1.5" opacity="0.65"/>
+            <polyline points="298,102 304,106 298,110" stroke="#F0FF00" stroke-width="1.5" fill="none" opacity="0.65"/>
+            <text x="264" y="94" font-family="JetBrains Mono, monospace" font-size="8" fill="rgba(240,255,0,0.55)" letter-spacing="0.10em">REPLACE</text>
+
+            <text x="322" y="16" font-family="JetBrains Mono, monospace" font-size="9" fill="#62626A" letter-spacing="0.18em">WHAT THE SYSTEM RUNS</text>
+            <rect x="322" y="32" width="276" height="126" fill="rgba(240,255,0,0.06)" stroke="rgba(240,255,0,0.25)" stroke-width="1"/>
+            <circle cx="354" cy="62" r="5" fill="#F0FF00"/>
+            <line x1="359" y1="62" x2="420" y2="62" stroke="rgba(240,255,0,0.45)" stroke-width="1.4"/>
+            <circle cx="432" cy="62" r="5" fill="#F0FF00"/>
+            <line x1="437" y1="62" x2="498" y2="62" stroke="rgba(240,255,0,0.45)" stroke-width="1.4"/>
+            <circle cx="510" cy="62" r="5" fill="#F0FF00"/>
+            <line x1="510" y1="67" x2="510" y2="114" stroke="rgba(240,255,0,0.32)" stroke-width="1.4"/>
+            <circle cx="510" cy="124" r="5" fill="#F0FF00"/>
+            <line x1="432" y1="124" x2="505" y2="124" stroke="rgba(240,255,0,0.32)" stroke-width="1.4"/>
+            <circle cx="420" cy="124" r="5" fill="#F0FF00"/>
+            <text x="344" y="86" font-family="JetBrains Mono, monospace" font-size="7" fill="rgba(240,255,0,0.70)" letter-spacing="0.10em">CAPTURE</text>
+            <text x="422" y="86" font-family="JetBrains Mono, monospace" font-size="7" fill="rgba(240,255,0,0.70)" letter-spacing="0.10em">REPLY</text>
+            <text x="500" y="86" font-family="JetBrains Mono, monospace" font-size="7" fill="rgba(240,255,0,0.70)" letter-spacing="0.10em">BOOK</text>
+            <text x="396" y="146" font-family="JetBrains Mono, monospace" font-size="7" fill="rgba(240,255,0,0.70)" letter-spacing="0.10em">TRACK WHAT CLOSED</text>
+            <text x="322" y="182" font-family="JetBrains Mono, monospace" font-size="8" fill="rgba(240,255,0,0.58)" letter-spacing="0.13em">Booked jobs · owned data · weekly readout</text>
+          </svg>
+          <figcaption class="aa-hero-caption mono">Agency activity vs. owned marketing system</figcaption>
+        </figure>
+
+        <!-- @bwm-exp-slot: hero-cta — primary paid-search conversion CTA -->
+        <div class="aa-ctas" data-bwm-exp-slot="hero-cta">
+          <a href="#diagnostic" class="cta" data-cta-source="f4-agency-alternative-hero">
+            Get My Free Revenue Leak Map
+            <span class="cta-arrow" aria-hidden="true">→</span>
+          </a>
+        </div>
+        <p class="aa-icp mono">For service businesses only. 5 minutes. No pitch.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- COMPARISON ───────────────────────────────────────────────────────── -->
+  <section class="aa-compare" aria-labelledby="aa-compare-heading">
+    <div class="container">
+      <p class="section-tag">01 · THE SWITCH · SYSTEM OVER AGENCY</p>
+      <h2 id="aa-compare-heading" class="h-section">The problem is not that your agency is lazy. It is that the model is built around reports.</h2>
+      <p class="lede">
+        A typical agency can buy clicks, write posts, and hold meetings. That can help. But it still leaves you managing the manager. We replace the loose parts with one owned system that runs the full path from search to booked work.
+      </p>
+
+      <!-- @r020:F2 proof: D4 comparison grid shows present vs absent capabilities using the locked filled/hollow vertex grammar — the visual proves the category reframe without naming rivals -->
+      <div class="aa-compare-grid" role="table" aria-label="Buildwise system compared with the typical marketing agency">
+        <div class="aa-compare-head aa-system-head" role="columnheader">Buildwise system</div>
+        <div class="aa-compare-head aa-agency-head" role="columnheader">Typical agency</div>
+
+        <div class="aa-compare-row aa-system" role="cell">
+          <span class="aa-dot aa-dot-fill" aria-hidden="true"></span>
+          <div>
+            <p class="aa-compare-kicker mono">OUTPUT</p>
+            <h3>Booked jobs and next actions.</h3>
+            <p>The system tracks the path from lead to booked work. The weekly readout says what happened and what changes next.</p>
+          </div>
+        </div>
+        <div class="aa-compare-row aa-agency" role="cell">
+          <span class="aa-dot aa-dot-hollow" aria-hidden="true"></span>
+          <div>
+            <p class="aa-compare-kicker mono">OUTPUT</p>
+            <h3>Reports and activity.</h3>
+            <p>You see clicks, impressions, and tasks. You still have to ask what turned into real work.</p>
+          </div>
+        </div>
+
+        <div class="aa-compare-row aa-system" role="cell">
+          <span class="aa-dot aa-dot-fill" aria-hidden="true"></span>
+          <div>
+            <p class="aa-compare-kicker mono">OWNERSHIP</p>
+            <h3>Your system. Your data.</h3>
+            <p>The assets, follow-up paths, lead records, and readouts are built to stay with you.</p>
+          </div>
+        </div>
+        <div class="aa-compare-row aa-agency" role="cell">
+          <span class="aa-dot aa-dot-hollow" aria-hidden="true"></span>
+          <div>
+            <p class="aa-compare-kicker mono">OWNERSHIP</p>
+            <h3>Scattered accounts.</h3>
+            <p>Work often lives in rented tools and disconnected reports. Leaving can feel harder than staying.</p>
+          </div>
+        </div>
+
+        <div class="aa-compare-row aa-system" role="cell">
+          <span class="aa-dot aa-dot-fill" aria-hidden="true"></span>
+          <div>
+            <p class="aa-compare-kicker mono">OPERATING LOAD</p>
+            <h3>Run-for-you.</h3>
+            <p>The team and our AI system run the loop. You review the output and make owner-level calls.</p>
+          </div>
+        </div>
+        <div class="aa-compare-row aa-agency" role="cell">
+          <span class="aa-dot aa-dot-hollow" aria-hidden="true"></span>
+          <div>
+            <p class="aa-compare-kicker mono">OPERATING LOAD</p>
+            <h3>You manage them.</h3>
+            <p>You chase updates, explain the business again, and keep stitching the pieces together.</p>
+          </div>
+        </div>
+
+        <div class="aa-compare-row aa-system" role="cell">
+          <span class="aa-dot aa-dot-fill" aria-hidden="true"></span>
+          <div>
+            <p class="aa-compare-kicker mono">CONTRACT SHAPE</p>
+            <h3>Month-to-month after day 90.</h3>
+            <p>If the system is not earning its place, you should not be trapped.</p>
+          </div>
+        </div>
+        <div class="aa-compare-row aa-agency" role="cell">
+          <span class="aa-dot aa-dot-hollow" aria-hidden="true"></span>
+          <div>
+            <p class="aa-compare-kicker mono">CONTRACT SHAPE</p>
+            <h3>Long lock-in.</h3>
+            <p>You keep paying while the agency gets another month to explain the same report.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- @r020:F2 proof: same ad spend, two destinations — the diagram makes the model difference concrete (activity report vs work booked) before the inline CTA -->
+      <figure class="aa-spend-figure">
+        <svg class="aa-spend-svg" viewBox="0 0 640 200" role="img" xmlns="http://www.w3.org/2000/svg"
+             aria-label="The same ad spend splits two ways: the typical agency turns it into an activity report; the Buildwise system turns it into a booked job.">
+          <rect x="14" y="78" width="150" height="44" rx="8" fill="none" stroke="#74748a" stroke-width="1.5"/>
+          <text x="89" y="98" text-anchor="middle" font-family="'JetBrains Mono',monospace" font-size="11" letter-spacing="1.5" fill="#b6b6c4">YOUR AD</text>
+          <text x="89" y="112" text-anchor="middle" font-family="'JetBrains Mono',monospace" font-size="11" letter-spacing="1.5" fill="#b6b6c4">SPEND</text>
+          <path d="M168 92 C 280 92, 300 44, 430 44" fill="none" stroke="#3a3a48" stroke-width="2" stroke-dasharray="5 5"/>
+          <path d="M168 108 C 280 108, 300 156, 430 156" fill="none" stroke="#B8FF3A" stroke-width="2.5"/>
+          <circle cx="430" cy="44" r="9" fill="none" stroke="#74748a" stroke-width="1.5"/>
+          <rect x="450" y="22" width="176" height="44" rx="8" fill="none" stroke="#3a3a48" stroke-width="1.5"/>
+          <text x="538" y="42" text-anchor="middle" font-family="'JetBrains Mono',monospace" font-size="11" letter-spacing="1.5" fill="#74748a">TYPICAL AGENCY</text>
+          <text x="538" y="56" text-anchor="middle" font-family="Inter,sans-serif" font-size="13" fill="#b6b6c4">An activity report</text>
+          <circle cx="430" cy="156" r="9" fill="#B8FF3A"/>
+          <rect x="450" y="134" width="176" height="44" rx="8" fill="none" stroke="#B8FF3A" stroke-width="1.5"/>
+          <text x="538" y="154" text-anchor="middle" font-family="'JetBrains Mono',monospace" font-size="11" letter-spacing="1.5" fill="#B8FF3A">BUILDWISE SYSTEM</text>
+          <text x="538" y="168" text-anchor="middle" font-family="Inter,sans-serif" font-size="13" fill="#f4f4f7">A booked job</text>
+        </svg>
+      </figure>
+
+      <div class="aa-inline-cta">
+        <a href="#diagnostic" class="cta" data-cta-source="f4-agency-alternative-inline">
+          Get My Free Revenue Leak Map
+          <span class="cta-arrow" aria-hidden="true">→</span>
+        </a>
+        <p class="aa-inline-subtext mono">See which side your current setup is actually on.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- SHARED CHAIN: Cost + Mechanism (MoChainSection carries F2 data-viz + F3 staircase) -->
+  <MoChainSection />
+
+  <!-- TWO PATHS ────────────────────────────────────────────────────────── -->
+  <section class="aa-paths" aria-labelledby="aa-paths-heading">
+    <div class="container">
+      <p class="section-tag">03 · TWO PATHS · SAME OWNER, DIFFERENT WEEK</p>
+      <h2 id="aa-paths-heading" class="h-section">A year from now, one version of you is still asking for updates. One version reads the number over coffee.</h2>
+      <p class="aa-paths-body">
+        Same market. Same service. Same owner. The split happens when marketing stops being a vendor list and starts being a system.
+      </p>
+
+      <!-- @r020:F3 cta-pull: two-paths diagram makes the future choice visible — the bright system path points toward the diagnostic CTA that names which leaks to fix first -->
+      <div class="aa-path-map">
+        <article class="aa-path aa-path-dim">
+          <p class="mono aa-path-kicker">PATH A · KEEP THE AGENCY LOOP</p>
+          <svg class="aa-path-icon" viewBox="0 0 180 72" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="20" cy="36" r="5" fill="none" stroke="rgba(168,162,152,0.45)" stroke-width="1"/>
+            <line x1="25" y1="36" x2="72" y2="36" stroke="rgba(168,162,152,0.30)" stroke-width="1.4" stroke-dasharray="4,4"/>
+            <circle cx="80" cy="36" r="5" fill="none" stroke="rgba(168,162,152,0.35)" stroke-width="1"/>
+            <line x1="85" y1="36" x2="132" y2="36" stroke="rgba(168,162,152,0.22)" stroke-width="1.4" stroke-dasharray="4,4"/>
+            <circle cx="140" cy="36" r="5" fill="none" stroke="rgba(168,162,152,0.26)" stroke-width="1"/>
+            <path d="M140 36 C158 34 164 46 152 54" stroke="rgba(168,162,152,0.26)" stroke-width="1.2" fill="none"/>
+            <text x="12" y="64" font-family="JetBrains Mono, monospace" font-size="7" fill="#62626A" letter-spacing="0.10em">meeting → report → wait → repeat</text>
+          </svg>
+          <h3>You keep managing the marketing.</h3>
+          <p>The report lands. You ask what changed. The answer sounds reasonable. The calendar still feels thin.</p>
+        </article>
+
+        <article class="aa-path aa-path-bright">
+          <p class="mono aa-path-kicker">PATH B · INSTALL THE SYSTEM</p>
+          <!-- @r020:F3 cta-pull: the bright capture→reply→book→learn loop is the path the eye should follow toward the Revenue Leak Map CTA -->
+          <svg class="aa-path-icon" viewBox="0 0 180 72" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="20" cy="36" r="5" fill="#F0FF00"/>
+            <line x1="25" y1="36" x2="72" y2="20" stroke="rgba(240,255,0,0.45)" stroke-width="1.4"/>
+            <circle cx="80" cy="18" r="5" fill="#F0FF00"/>
+            <line x1="84" y1="22" x2="126" y2="36" stroke="rgba(240,255,0,0.45)" stroke-width="1.4"/>
+            <circle cx="134" cy="38" r="5" fill="#F0FF00"/>
+            <line x1="134" y1="43" x2="134" y2="56" stroke="rgba(240,255,0,0.35)" stroke-width="1.4"/>
+            <circle cx="134" cy="61" r="3" fill="#F0FF00"/>
+            <text x="12" y="64" font-family="JetBrains Mono, monospace" font-size="7" fill="rgba(240,255,0,0.62)" letter-spacing="0.10em">capture → reply → book → learn</text>
+          </svg>
+          <h3>The system runs while you run the business.</h3>
+          <p>Leads get captured. Follow-up fires. The readout shows what closed. You stop being the project manager.</p>
+        </article>
+      </div>
+
+      <!-- @r020:identity: Triangulation V3 mark glyph anchors the choice to the BWM owned-system promise -->
+      <div class="aa-path-anchor">
+        <svg class="aa-path-mark" viewBox="0 0 40 40" aria-hidden="true">
+          <polygon points="20,4 36,32 4,32" stroke="#F0FF00" stroke-width="1.5" fill="none" />
+          <circle cx="20" cy="22" r="3" fill="#F0FF00" />
+        </svg>
+        <p class="aa-path-hook mono">
+          The Revenue Leak Map tells you which path your setup is on today.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROOF STRIP ───────────────────────────────────────────────────────── -->
+  <!-- @bwm-exp-slot: proof-module — proof composition / placement experiments -->
+  <section class="aa-proof" aria-labelledby="aa-proof-heading" data-bwm-exp-slot="proof-module">
+    <div class="container">
+      <p class="section-tag">04 · PROOF BEFORE THE ASK</p>
+      <h2 id="aa-proof-heading" class="h-section">Before we ask for a call, we show you the leak.</h2>
+      <p class="lede">
+        The diagnostic is not a quiz for our sales team. It is the first proof artifact. You see what is leaking before we talk.
+      </p>
+
+      <div class="aa-proof-grid">
+        <article class="aa-proof-card">
+          <p class="mono aa-proof-num">01</p>
+          <!-- @r020:F2 proof: leak-map funnel makes the diagnostic output tangible — the visitor sees the exact artifact they get after submitting -->
+          <svg class="aa-proof-icon" viewBox="0 0 120 64" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
+            <polygon points="10,8 110,8 84,30 36,30" fill="rgba(240,255,0,0.08)" stroke="rgba(240,255,0,0.35)" stroke-width="1.4"/>
+            <line x1="36" y1="30" x2="30" y2="54" stroke="rgba(240,255,0,0.42)" stroke-width="1.4"/>
+            <line x1="84" y1="30" x2="90" y2="54" stroke="rgba(240,255,0,0.42)" stroke-width="1.4"/>
+            <polygon points="30,54 90,54 80,62 40,62" fill="rgba(240,255,0,0.18)" stroke="#F0FF00" stroke-width="1.2"/>
+            <circle cx="60" cy="42" r="4" fill="#F0FF00"/>
+            <text x="24" y="22" font-family="JetBrains Mono, monospace" font-size="7" fill="rgba(240,255,0,0.62)" letter-spacing="0.10em">LEAK FOUND</text>
+          </svg>
+          <h3>Your leak gets named.</h3>
+          <p>Lead capture, response speed, attribution, reviews, or conversion. The map shows which one is costing you most.</p>
+        </article>
+
+        <article class="aa-proof-card">
+          <p class="mono aa-proof-num">02</p>
+          <!-- @r020:F2 proof: response timer makes the follow-up gap measurable — it turns vague "better marketing" into a concrete operating fix -->
+          <svg class="aa-proof-icon" viewBox="0 0 120 64" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="28" cy="34" r="16" fill="rgba(240,255,0,0.08)" stroke="rgba(240,255,0,0.35)" stroke-width="1.4"/>
+            <line x1="28" y1="22" x2="28" y2="34" stroke="#F0FF00" stroke-width="1.4"/>
+            <line x1="28" y1="34" x2="38" y2="34" stroke="#F0FF00" stroke-width="1.4"/>
+            <text x="56" y="30" font-family="JetBrains Mono, monospace" font-size="9" fill="#F0FF00" letter-spacing="0.10em">&lt;60 SEC</text>
+            <text x="56" y="44" font-family="JetBrains Mono, monospace" font-size="7" fill="#62626A" letter-spacing="0.10em">FIRST REPLY TARGET</text>
+          </svg>
+          <h3>The fix gets practical.</h3>
+          <p>We do not hand you theory. The map points to the next system move that would change the week.</p>
+        </article>
+
+        <article class="aa-proof-card">
+          <p class="mono aa-proof-num">03</p>
+          <!-- @r020:F2 proof: owned-readout loop shows closed-loop attribution — the owner sees how the system proves what booked -->
+          <svg class="aa-proof-icon" viewBox="0 0 120 64" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="18" cy="32" r="4" fill="#F0FF00"/>
+            <line x1="22" y1="32" x2="54" y2="18" stroke="rgba(240,255,0,0.45)" stroke-width="1.4"/>
+            <circle cx="60" cy="16" r="4" fill="rgba(240,255,0,0.72)"/>
+            <line x1="64" y1="18" x2="92" y2="32" stroke="rgba(240,255,0,0.45)" stroke-width="1.4"/>
+            <circle cx="98" cy="34" r="4" fill="rgba(240,255,0,0.72)"/>
+            <path d="M98 40 C82 58 36 56 18 38" stroke="rgba(240,255,0,0.32)" stroke-width="1.3" fill="none"/>
+            <polyline points="21,45 18,38 25,39" stroke="rgba(240,255,0,0.32)" stroke-width="1.3" fill="none"/>
+            <text x="32" y="58" font-family="JetBrains Mono, monospace" font-size="7" fill="rgba(240,255,0,0.58)" letter-spacing="0.10em">SOURCE → JOB → READOUT</text>
+          </svg>
+          <h3>You own the readout.</h3>
+          <p>Every lead should trace back to a source. The system is built around that weekly truth.</p>
+        </article>
+      </div>
+
+      <!-- @r020:F2 proof: results editorial photo grounds the proof section in documented operating evidence — printed readouts, notes, and numbers make the CTA feel earned -->
+      <figure class="aa-proof-editorial">
+        <img
+          src="/images/bwm-results-editorial-v1.webp"
+          alt="Open binder with printed weekly marketing performance numbers and notes marking what changed."
+          width="640"
+          height="426"
+          loading="lazy"
+          decoding="async"
+        />
+        <figcaption class="aa-proof-caption mono">Weekly readout · attributed · owned by you</figcaption>
+      </figure>
+
+      <div class="aa-proof-cta">
+        <a href="#diagnostic" class="cta" data-cta-source="f4-agency-alternative-final">
+          Get My Free Revenue Leak Map
+          <span class="cta-arrow" aria-hidden="true">→</span>
+        </a>
+        <p class="aa-proof-subtext mono">No email required to see the result. If there is no fit, you still keep the map.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- REVENUE LEAK MAP DIAGNOSTIC — conversion endpoint -->
+  <FitDiagnostic />
+
+</BaseLayout>
+
+<style>
+/* ─── HERO ──────────────────────────────────────────────────────────────── */
+.aa-hero {
+  padding-top: clamp(96px, 11vw, 168px);
+  padding-bottom: clamp(64px, 7vw, 112px);
+  position: relative;
+  overflow: hidden;
+  background: var(--bg);
+}
+
+.aa-hero-grid {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(40px, 5vw, 72px);
+}
+
+.aa-hero-text {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  max-width: 1240px;
+}
+
+.aa-headline {
+  font-family: var(--sans);
+  font-weight: 800;
+  font-stretch: 75%;
+  font-size: clamp(52px, 8.4vw, 130px);
+  line-height: 0.94;
+  letter-spacing: -0.04em;
+  color: var(--ink);
+  max-width: 1240px;
+  margin: 0;
+}
+
+.aa-line {
+  display: block;
+}
+
+.aa-accent {
+  color: var(--y2);
+  text-shadow: 0 0 40px rgba(240, 255, 0, 0.22);
+}
+
+.aa-subhead {
+  font-family: var(--sans);
+  font-weight: 400;
+  font-size: clamp(20px, 2.2vw, 28px);
+  line-height: 1.42;
+  color: var(--ink-dim);
+  max-width: 860px;
+  letter-spacing: -0.012em;
+  margin: 0;
+}
+
+.aa-hero-figure {
+  margin: 0;
+  max-width: 680px;
+  background: var(--bg-elev);
+  border: 1px solid var(--rule);
+  padding: 28px 28px 20px;
+}
+
+.aa-hero-svg {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.aa-hero-caption,
+.aa-icp,
+.aa-inline-subtext,
+.aa-proof-subtext,
+.aa-proof-caption {
+  font-size: 10px;
+  letter-spacing: 0.15em;
+  color: var(--ink-faint);
+  margin: 0;
+}
+
+.aa-hero-caption {
+  margin-top: 12px;
+  display: block;
+}
+
+.aa-ctas {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  align-items: center;
+  margin-top: 8px;
+}
+
+.aa-icp {
+  font-size: 11px;
+  letter-spacing: 0.18em;
+}
+
+/* ─── COMPARISON ────────────────────────────────────────────────────────── */
+.aa-compare {
+  padding-block: var(--section-y);
+  border-top: 1px solid var(--rule);
+  background: var(--bg-elev);
+}
+
+.aa-compare .h-section {
+  margin-top: 24px;
+  margin-bottom: 40px;
+}
+
+.aa-compare .lede {
+  margin-bottom: 48px;
+}
+
+.aa-compare-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1px;
+  background: var(--rule);
+  border: 1px solid var(--rule);
+  margin-bottom: 40px;
+}
+
+.aa-compare-head {
+  padding: 18px 24px;
+  background: var(--bg-card);
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+.aa-system-head {
+  color: var(--y2);
+}
+
+.aa-agency-head {
+  color: var(--ink-faint);
+}
+
+.aa-compare-row {
+  min-height: 168px;
+  padding: 28px;
+  background: var(--bg-card);
+  display: grid;
+  grid-template-columns: 18px 1fr;
+  gap: 18px;
+  align-items: start;
+}
+
+.aa-system {
+  border-left: 3px solid rgba(240, 255, 0, 0.68);
+}
+
+.aa-agency {
+  color: var(--ink-dim);
+}
+
+.aa-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  margin-top: 4px;
+  flex-shrink: 0;
+}
+
+.aa-dot-fill {
+  background: var(--y2);
+  box-shadow: 0 0 18px rgba(240, 255, 0, 0.35);
+}
+
+.aa-dot-hollow {
+  border: 1px solid rgba(240, 255, 0, 0.38);
+}
+
+.aa-compare-kicker {
+  font-size: 10px;
+  letter-spacing: 0.18em;
+  color: var(--ink-faint);
+  margin: 0 0 12px;
+}
+
+.aa-compare-row h3 {
+  font-family: var(--sans);
+  font-weight: 800;
+  font-stretch: 75%;
+  font-size: clamp(22px, 2.2vw, 28px);
+  line-height: 1.15;
+  color: var(--ink);
+  letter-spacing: -0.02em;
+  margin: 0 0 12px;
+}
+
+.aa-compare-row p:last-child {
+  font-size: 16px;
+  font-weight: 300;
+  line-height: 1.55;
+  color: var(--ink-dim);
+  margin: 0;
+}
+
+.aa-inline-cta {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 14px;
+}
+
+.aa-inline-subtext {
+  font-size: 11px;
+  letter-spacing: 0.16em;
+}
+
+/* ─── TWO PATHS ─────────────────────────────────────────────────────────── */
+.aa-paths {
+  padding-block: var(--section-y);
+  border-top: 1px solid var(--rule);
+  background: var(--bg);
+}
+
+.aa-paths .h-section {
+  margin-top: 24px;
+  margin-bottom: 40px;
+}
+
+.aa-paths-body {
+  font-family: var(--sans);
+  font-size: clamp(19px, 1.8vw, 22px);
+  font-weight: 400;
+  line-height: 1.6;
+  color: var(--ink-dim);
+  max-width: 820px;
+  letter-spacing: -0.005em;
+  margin: 0 0 48px;
+}
+
+.aa-path-map {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+  margin-bottom: 48px;
+}
+
+.aa-path {
+  padding: 32px;
+  border: 1px solid var(--rule);
+  background: var(--bg-card);
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.aa-path-bright {
+  border-left: 3px solid var(--y2);
+}
+
+.aa-path-kicker {
+  font-size: 10px;
+  letter-spacing: 0.18em;
+  color: var(--ink-faint);
+  margin: 0;
+}
+
+.aa-path-bright .aa-path-kicker {
+  color: rgba(240, 255, 0, 0.65);
+}
+
+.aa-path-icon {
+  width: 100%;
+  max-width: 220px;
+  height: auto;
+}
+
+.aa-path h3 {
+  font-family: var(--sans);
+  font-weight: 800;
+  font-stretch: 75%;
+  font-size: clamp(24px, 2.4vw, 34px);
+  line-height: 1.12;
+  color: var(--ink);
+  letter-spacing: -0.02em;
+  margin: 0;
+}
+
+.aa-path p:last-child {
+  font-size: 16px;
+  line-height: 1.6;
+  color: var(--ink-dim);
+  margin: 0;
+}
+
+.aa-path-anchor {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  padding: 28px;
+  background: var(--bg-elev);
+  border: 1px solid var(--rule);
+  border-left: 3px solid var(--y2);
+  max-width: 820px;
+}
+
+.aa-path-mark {
+  width: 32px;
+  height: 32px;
+  flex-shrink: 0;
+}
+
+.aa-path-hook {
+  font-size: 12px;
+  letter-spacing: 0.16em;
+  color: var(--ink);
+  margin: 0;
+}
+
+/* ─── PROOF STRIP ───────────────────────────────────────────────────────── */
+.aa-proof {
+  padding-block: var(--section-y);
+  border-top: 1px solid var(--rule);
+  background: var(--bg-elev);
+}
+
+.aa-proof .lede {
+  margin-top: 24px;
+  margin-bottom: 48px;
+}
+
+.aa-proof-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 24px;
+  margin-bottom: 48px;
+}
+
+.aa-proof-card {
+  padding: 32px;
+  background: var(--bg-card);
+  border: 1px solid var(--rule);
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.aa-proof-num {
+  font-size: 11px;
+  letter-spacing: 0.20em;
+  color: var(--y2);
+  margin: 0;
+}
+
+.aa-proof-icon {
+  width: 100%;
+  max-width: 120px;
+  height: auto;
+}
+
+.aa-proof-card h3 {
+  font-family: var(--sans);
+  font-weight: 800;
+  font-stretch: 75%;
+  font-size: clamp(22px, 2.2vw, 28px);
+  line-height: 1.15;
+  color: var(--ink);
+  letter-spacing: -0.02em;
+  margin: 0;
+}
+
+.aa-proof-card p:last-child {
+  font-size: 16px;
+  font-weight: 300;
+  line-height: 1.55;
+  color: var(--ink-dim);
+  margin: 0;
+}
+
+.aa-proof-editorial {
+  margin: 0 0 48px;
+  max-width: 600px;
+}
+
+.aa-proof-editorial img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border: 1px solid var(--rule);
+}
+
+.aa-proof-caption {
+  margin-top: 10px;
+}
+
+.aa-proof-cta {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 16px;
+}
+
+.aa-proof-subtext {
+  font-size: 11px;
+  letter-spacing: 0.16em;
+}
+
+/* ─── RESPONSIVE ────────────────────────────────────────────────────────── */
+@media (max-width: 900px) {
+  .aa-headline { font-size: clamp(46px, 12vw, 88px); }
+  .aa-subhead { font-size: 17px; }
+  .aa-hero-figure { max-width: 100%; }
+  .aa-compare-grid,
+  .aa-path-map,
+  .aa-proof-grid {
+    grid-template-columns: 1fr;
+  }
+  .aa-compare-head:nth-child(2) {
+    display: none;
+  }
+  .aa-compare-row {
+    min-height: auto;
+  }
+}
+</style>

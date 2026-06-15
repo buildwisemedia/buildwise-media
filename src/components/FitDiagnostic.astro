@@ -2750,6 +2750,43 @@
 (function bwmDiagnosticSubmit(){
   let submitted = false;
   let revealRendered = false;
+  let generateLeadSent = false;
+
+  function event(name, params, opts) {
+    try {
+      let trackingPayload = Object.assign({}, params || {});
+      if (typeof window.__bwmGetAttributionPayload === "function") {
+        trackingPayload = Object.assign(window.__bwmGetAttributionPayload(), trackingPayload);
+      }
+      if (typeof window.__bwmTrackEvent === "function") {
+        window.__bwmTrackEvent(name, trackingPayload, opts || {});
+        return;
+      }
+      window.dataLayer = window.dataLayer || [];
+      window.dataLayer.push(Object.assign({ event: name }, trackingPayload));
+      window.gtag?.("event", name, Object.assign({ transport_type: "beacon" }, trackingPayload));
+    } catch (_e) {}
+  }
+
+  function addIfPresent(target, key, value) {
+    if (value !== undefined && value !== null && value !== "") target[key] = value;
+  }
+
+  function fireGenerateLead(data, payload) {
+    if (generateLeadSent) return;
+    generateLeadSent = true;
+    const leadPayload = {
+      currency: "USD",
+      value: 0,
+      form_id: "fit-diagnostic",
+    };
+    addIfPresent(leadPayload, "tier_routing", data.tier_routing || payload.tier_routing);
+    addIfPresent(leadPayload, "classification", data.classification || payload.classification);
+    addIfPresent(leadPayload, "contact_id", data.contact_id || payload.contact_id);
+    addIfPresent(leadPayload, "capi_event_id", data.capi_event_id || payload.capi_event_id);
+    addIfPresent(leadPayload, "booking_event_id", data.booking_event_id || payload.booking_event_id);
+    event("generate_lead", leadPayload);
+  }
 
   function getUtms(){
     try {
@@ -2787,13 +2824,13 @@
         body: JSON.stringify(payload),
       });
       const data = await res.json();
-      handleVerdict(data, emailValue);
+      handleVerdict(data, emailValue, payload);
     } catch (err) {
       console.error("fit-diagnostic submit failed:", err);
     }
   }
 
-  function handleVerdict(data, hadEmail){
+  function handleVerdict(data, hadEmail, payload){
     const card = document.getElementById("verdict-card");
     const status = document.getElementById("verdict-status");
     const explainer = document.getElementById("verdict-explainer");
@@ -2810,6 +2847,7 @@
     const idx = typeof data.growth_index === "number" ? data.growth_index : 50;
 
     if (v === "FIT") {
+      fireGenerateLead(data, payload || {});
       card.setAttribute("data-verdict", "fit");
       status.textContent = "FIT · " + idx + "/100";
       if (explainer) explainer.textContent = "Your shop matches the install profile. The system delivers the most lift here.";
@@ -2821,6 +2859,9 @@
       if (pathCta) pathCta.innerHTML = '<a href="#cal-inline" class="cta" data-cta-source="mo-fit-verdict-cal" onclick="document.getElementById(\'cal-inline\').scrollIntoView({behavior:\'smooth\'});return false;">See If We\'re a Fit <span class="cta-arrow">→</span></a><p class="mono" style="margin-top:14px;font-size:11px;letter-spacing:.18em;color:var(--ink-faint);">For service businesses only.</p>';
       mountCalInline();
     } else if (v === "MAYBE") {
+      // MAYBE is an in-range lead the team pursues within 48h (email captured) —
+      // count it as a qualified-lead conversion alongside FIT. NOT YET is excluded.
+      fireGenerateLead(data, payload || {});
       card.setAttribute("data-verdict", "maybe");
       status.textContent = "MAYBE · " + idx + "/100";
       if (explainer) explainer.textContent = "Your shop is in range, but one or two pieces are still forming. We'll be in touch within 48 hours.";
