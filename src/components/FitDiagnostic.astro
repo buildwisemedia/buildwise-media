@@ -790,6 +790,11 @@
     }
 
     .doc-header {
+      /* Hidden: this component embeds inside BaseLayout, which already renders the
+         fixed site header. The doc-header duplicated the BWM lockup right under it
+         (a redundant second header), and its 01/07 progress is already shown by each
+         question's eyebrow (/01 · Service) + step-dot SVG. */
+      display: none;
       padding: 24px 0; border-bottom: 1px solid var(--rule);
       position: sticky; top: 0;
       background: rgba(5, 5, 7, 0.88);
@@ -823,6 +828,17 @@
     .progress-mark-label .current { color: var(--y2); }
 
     .screen { display: none; }
+
+    /* The host page's global.css applies `section { padding-block: var(--section-y) }`
+       to every <section>. This component manages its own spacing (welcome-hero,
+       .q-screen, .reveal-* all set their own padding), so the global rule stacks an
+       extra ~112px onto each un-self-padded wrapper — the outer #diagnostic section
+       and the welcome/reveal screens — producing ~310px of dead space at the top of
+       the welcome. Neutralize it only on those wrappers; the self-padded screens
+       (.q-screen, .reveal-section, etc.) keep their own padding via higher specificity. */
+    #diagnostic { padding-block: 0; }
+    .screen-welcome, .screen-reveal { padding-block: 0; }
+
     body[data-screen="welcome"] .screen-welcome,
     body[data-screen="q1"] .screen-q1,
     body[data-screen="q2"] .screen-q2,
@@ -833,7 +849,7 @@
     body[data-screen="q7"] .screen-q7,
     body[data-screen="reveal"] .screen-reveal { display: block; }
 
-    .welcome-hero { padding: 120px 0 80px; }
+    .welcome-hero { padding: clamp(56px, 6vw, 88px) 0 80px; }
     .welcome-eyebrow { display: flex; align-items: center; gap: 14px; margin-bottom: 56px; }
     .welcome-hero-grid {
       display: grid;
@@ -2315,6 +2331,13 @@
 
     const v = data.verdict || "MAYBE";
     const idx = typeof data.growth_index === "number" ? data.growth_index : 50;
+
+    // Single source of truth: the server's growth_index drives BOTH the top "Your
+    // Growth Index" readout and the verdict score. computeAndReveal() seeds the top
+    // value from a lighter client-side calc; sync it to the server number so the two
+    // figures never disagree (e.g. "67" up top vs "FIT · 74/100" below).
+    const giEl = document.getElementById("growth-index-value");
+    if (giEl) giEl.textContent = idx;
 
     if (v === "FIT") {
       fireGenerateLead(data, payload || {});
