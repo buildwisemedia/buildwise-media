@@ -2827,6 +2827,23 @@
       handleVerdict(data, emailValue, payload);
     } catch (err) {
       console.error("fit-diagnostic submit failed:", err);
+      // Graceful fallback so a paid click never hits a dead reveal state if the API
+      // call fails (network / cold start). Show a working path instead of an empty card.
+      submitted = false; // allow a retry on the next reveal
+      const card = document.getElementById("verdict-card");
+      const status = document.getElementById("verdict-status");
+      const explainer = document.getElementById("verdict-explainer");
+      const detail = document.getElementById("verdict-detail");
+      const pathCta = document.getElementById("path-cta-block");
+      if (card && status) {
+        card.setAttribute("data-verdict", "maybe");
+        status.textContent = "Your map is ready";
+        if (explainer) explainer.textContent = "We hit a snag loading your result here. Book a quick call and we'll walk you through your Revenue Leak Map live.";
+        if (detail) detail.textContent = "";
+        if (pathCta) {
+          pathCta.innerHTML = '<a class="cta" href="/book" data-cta-source="fit-diagnostic-fallback">Book your call <span aria-hidden="true">→</span></a>';
+        }
+      }
     }
   }
 
