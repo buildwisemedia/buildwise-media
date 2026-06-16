@@ -272,7 +272,7 @@ const poorFour = [
     // continuity — no form_step_view), additive params only.
     event('diagnostic_step_complete', Object.assign({
       diagnostic_step: currentStep,
-      form_id: 'fit-diagnostic',
+      form_id: 'discovery-qualifier',
       total_steps: steps.length,
     }, experimentContext()));
   }
@@ -454,7 +454,7 @@ const poorFour = [
     abandonSent = true;
     event('form_step_abandon', Object.assign({
       diagnostic_step: currentStep,
-      form_id: 'fit-diagnostic',
+      form_id: 'discovery-qualifier',
       total_steps: steps.length,
     }, experimentContext()));
   }
@@ -468,13 +468,13 @@ const poorFour = [
   nextBtn.addEventListener('click', () => {
     if (!validateStep()) return;
     interacted = true;
-    if (currentStep === 1) event('diagnostic_start', { form_id: 'fit-diagnostic' });
+    if (currentStep === 1) event('diagnostic_start', { form_id: 'discovery-qualifier' });
     showStep(currentStep + 1);
   });
   mobileNextBtn?.addEventListener('click', () => {
     if (!validateStep()) return;
     interacted = true; // autofill can satisfy step 1 without input/change events
-    event('diagnostic_start', { form_id: 'fit-diagnostic', entry: 'mobile_header' });
+    event('diagnostic_start', { form_id: 'discovery-qualifier', entry: 'mobile_header' });
     showStep(currentStep + 1);
   });
 
@@ -506,7 +506,7 @@ const poorFour = [
       const data = await res.json();
 
       event('diagnostic_submit', {
-        form_id: 'fit-diagnostic',
+        form_id: 'discovery-qualifier',
         classification: data.classification,
         selected_poor_four: payload.selected_poor_four.join(','),
         offer_interest: payload.offer_interest,
@@ -531,7 +531,7 @@ const poorFour = [
         event('generate_lead', {
           currency: 'USD',
           value: 0,
-          form_id: 'fit-diagnostic',
+          form_id: 'discovery-qualifier',
           tier_routing: data.tier_routing,
           classification: data.classification,
           selected_poor_four: payload.selected_poor_four.join(','),
