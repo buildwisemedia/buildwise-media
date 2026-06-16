@@ -415,14 +415,15 @@ Just one <span class="hl">custom AI system</span>.
   <!-- 6. AUTOMATION -->
   <section>
     <h2>6 · How it runs itself — every day</h2>
-    <p class="h2note">Built on the machinery we already own. Full-auto publish — with hard brand gates as code, so nothing off-brand can ship.</p>
+    <p class="h2note">Built on the machinery we already own. Full-auto publish — and if a post is off-brand, the system rewrites it and re-checks until it's clean. Only then does it go live.</p>
     <div class="figure">
       <!-- @r020:F2 proof: the data-flow shows every step is wired to a system we already run — it's buildable, not a wish -->
       <svg viewBox="0 0 920 300" role="img" aria-label="Daily automation and learning loop data flow">
         <g font-family="Inter,sans-serif" font-size="12.5">
           <rect x="14" y="24" width="150" height="46" rx="9" fill="#121419" stroke="#23262f"/><text x="89" y="44" text-anchor="middle" fill="#f4f5f7">Month plan</text><text x="89" y="60" text-anchor="middle" fill="#6b717c" font-size="11">(this deck)</text>
           <rect x="196" y="24" width="150" height="46" rx="9" fill="#121419" stroke="#23262f"/><text x="271" y="44" text-anchor="middle" fill="#f4f5f7">Generate post</text><text x="271" y="60" text-anchor="middle" fill="#6b717c" font-size="11">copy + creative</text>
-          <rect x="378" y="24" width="150" height="46" rx="9" fill="#1a1d10" stroke="#3a3f0f"/><text x="453" y="44" text-anchor="middle" fill="#F0FF00">Brand gates</text><text x="453" y="60" text-anchor="middle" fill="#6b717c" font-size="11">hard block</text>
+          <rect x="378" y="24" width="150" height="46" rx="9" fill="#1a1d10" stroke="#3a3f0f"/><text x="453" y="44" text-anchor="middle" fill="#F0FF00">Brand gates</text><text x="453" y="60" text-anchor="middle" fill="#6b717c" font-size="11">fix-until-pass</text>
+          <path d="M453 24 C 420 6, 304 6, 271 24" stroke="#F0FF00" stroke-width="1.5" fill="none" stroke-dasharray="4 3"/><path d="M265 15 L271 26 L277 15 Z" fill="#F0FF00"/><text x="362" y="9" text-anchor="middle" fill="#6b717c" font-size="10" font-family="JetBrains Mono,monospace">rewrite if off-brand</text>
           <rect x="560" y="24" width="150" height="46" rx="9" fill="#121419" stroke="#23262f"/><text x="635" y="44" text-anchor="middle" fill="#f4f5f7">Publish ×4</text><text x="635" y="60" text-anchor="middle" fill="#6b717c" font-size="11">full-auto</text>
           <rect x="742" y="24" width="164" height="46" rx="9" fill="#121419" stroke="#23262f"/><text x="824" y="44" text-anchor="middle" fill="#f4f5f7">Collect signals</text><text x="824" y="60" text-anchor="middle" fill="#6b717c" font-size="11">reach · saves · DMs</text>
           <path d="M164 47 L194 47" stroke="#3a3f0f" stroke-width="2"/><path d="M346 47 L376 47" stroke="#3a3f0f" stroke-width="2"/>
@@ -442,7 +443,7 @@ Just one <span class="hl">custom AI system</span>.
       <div class="figcap">Top: the daily post + learning loop. Bottom: the DM lead listener — both reuse systems we already run.</div>
     </div>
     <div class="grid g2">
-      <div class="card"><div class="lab">Every day</div><h3>Post, gate, publish</h3><p>A scheduled job reads the month's plan, generates each post (copy + creative), runs it through the hard brand gates — never-price-naked, vendor-names, reading level, and the image rules — then publishes to all four channels on schedule. No human in the loop; the gates are the guardrail.</p></div>
+      <div class="card"><div class="lab">Every day</div><h3>Post, gate, fix, publish</h3><p>A scheduled job reads the month's plan and generates each post. It runs through the brand gates — never-price-naked, vendor names, reading level, the image rules. If anything is off, the system rewrites that post and checks again, and keeps going until it passes. Only clean posts publish — nothing off-brand ships, and no slot silently goes dark.</p></div>
       <div class="card"><div class="lab">Every month</div><h3>Re-plan from the data</h3><p>A monthly job reviews what won, refreshes the channel research, and regenerates the next 30-day plan — retiring the losers, scaling the winners. The plan rewrites itself.</p></div>
     </div>
   </section>
@@ -556,7 +557,7 @@ Just one <span class="hl">custom AI system</span>.
       <div class="figcap">Five roles, two models, every asset gated — then assembled here.</div>
     </div>
     <div class="grid g2">
-      <div class="card"><div class="lab">One honest note on Antigravity</div><p>You asked for Codex computer-use to drive the Antigravity IDE. The computer-use layer only lets me <i>click</i> inside an IDE, not type into it — so I can't drive Antigravity hands-free. I routed the live, current-trend pass to Codex 5.5 x-high instead (that's the part that mattered), and Antigravity stays your interactive surface. I'll hand you ready-to-paste prompts if you want to drive it yourself.</p></div>
+      <div class="card"><div class="lab">Codex × Antigravity</div><p>The live, current-trend pass runs by copy/pasting the prompt into the Antigravity IDE — the clipboard paste sidesteps the IDE typing limit, the pattern Codex already uses. The monthly refresh runs the same way: Codex drives Antigravity for the multimodal scan, with the cited deep-research harness as the backbone.</p></div>
       <div class="card"><div class="lab">Phase B — when you say go</div><p>This deck is the direction. On your nod, we stand up the live system: the post/learn/listen loop, the four channel connections (you grant access), and the brand-gate publishing. We light up one channel at a time as each app's access clears.</p></div>
     </div>
     <div class="ask">
