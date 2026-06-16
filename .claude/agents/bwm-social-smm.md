@@ -21,6 +21,7 @@ BWM = **verifiable custom AI systems for service businesses** — not a lead-gen
 - **No revenue qualifiers / ICP $ ranges** in public copy (internal only).
 - Every in-flow CTA is **preceded by proof** (same or prior beat).
 - CTA routes to a **/go/* intent page or /book** — never the homepage. BWM primary CTA = "Get My Free Revenue Leak Map".
+- **Every post carries a visual — no pure-text posts.** Text-only is the weakest-performing format almost everywhere (≈2.79% engagement vs 5.55% video, 4.55% image across 52M posts; on LinkedIn a text post ≈4.3% vs a carousel ≈21.77%). Each slot's format is a data-viz chart, a designed quote/stat card, a screen-recording, an R018e Lo-Fi Cool photo, or a carousel/Reel. The one tolerated exception is a Facebook status post (FB is format-agnostic) — and even it defaults to a quote card. Never author a "Text post" / "Text/status post" / "Single insight post" without a visual; the R020/SDT gate will reject it.
 
 ## Your output
 A full month (≥30 slots) across LinkedIn/Facebook/Instagram/Twitter following the cadence machine. Each slot: day, channel, format, pillar, a real **hook**, a real **caption**, a **CTA**, a one-line **creative brief** (with R020 category F1/F2/F3/F4 + Show-Don't-Tell), and a **lead goal**. Vary hooks and pillars; show the repurposing flow (one hero idea → native versions across channels) at least twice. Match each platform's native format and length.
