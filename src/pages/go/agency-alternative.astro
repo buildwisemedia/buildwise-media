@@ -3,17 +3,18 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 import MoChainSection from '../../components/campaign/MoChainSection.astro';
 import FitDiagnostic from '../../components/FitDiagnostic.astro';
 
-// AGENCY-ALTERNATIVE offer-funnel arm — /go/agency-alternative
-// Angle: burned-by-agency owner wants booked jobs, not reports.
-// Register: category reframe · us-vs-them · proof-before-CTA.
+// AGENCY-DISPLACEMENT offer-funnel arm — /go/agency-alternative
+// Angle: burned-by-agency owner; reframe the destination to a CUSTOM AI SYSTEM (a
+//        different category), not a better agency. Lead outcomes = proof, not identity.
+// Register: category reframe (custom AI system over agency model) · proof-before-CTA.
 // UTM contract: utm_content=go-agency-alternative
 ---
 
 <BaseLayout
-  title="Marketing Agency Alternative for Service Businesses | Buildwise Media"
-  description="If your marketing agency keeps sending reports instead of booked jobs, the free Revenue Leak Map shows where the system is leaking and what a run-for-you AI marketing system would replace."
-  ogTitle="The alternative to a marketing agency that only sends reports"
-  ogDescription="Get the free Revenue Leak Map. See where your current marketing setup leaks and what a run-for-you system would fix."
+  title="A Custom AI System for Service Businesses | Buildwise Media"
+  description="You don't need another agency. A custom AI system runs your growth — capturing demand, following up, and tracking what closes — instead of sending you reports. The free Revenue Leak Map shows where your current setup is leaking."
+  ogTitle="A custom AI system that runs your growth — not another agency"
+  ogDescription="Get the free Revenue Leak Map. See where your current setup is leaking and what a custom AI system would run for you."
   noindex={true}
 >
 
@@ -21,23 +22,23 @@ import FitDiagnostic from '../../components/FitDiagnostic.astro';
   <section class="aa-hero" aria-labelledby="aa-hero-headline">
     <div class="container aa-hero-grid">
       <div class="aa-hero-text">
-        <p class="eyebrow">Buildwise Media · AI marketing run for you</p>
+        <p class="eyebrow">Buildwise Media · Custom AI systems, run for you</p>
 
         <!-- @bwm-exp-slot: hero-headline — paid-search agency-alternative H1; bandit patches target this selector -->
         <h1 id="aa-hero-headline" class="aa-headline" data-bwm-exp-slot="hero-headline">
-          <span class="aa-line">If your marketing agency</span>
-          <span class="aa-line">sends reports instead of</span>
-          <span class="aa-line"><span class="aa-accent">booked jobs</span>, this is</span>
-          <span class="aa-line">the alternative.</span>
+          <span class="aa-line">You don't need</span>
+          <span class="aa-line">another agency.</span>
+          <span class="aa-line">You need a <span class="aa-accent">custom AI system</span></span>
+          <span class="aa-line">that runs your growth.</span>
         </h1>
 
         <p class="aa-subhead">
-          Most agencies sell activity. You need the layer that turns search, follow-up, reviews, and tracking into work on the calendar. The free Revenue Leak Map shows where your current setup is leaking.
+          Agencies sell activity and hand you a report. A custom AI system runs the work itself — capturing demand, following up, and tracking what actually closed — so growth stops depending on you. The free Revenue Leak Map shows where your current setup is leaking.
         </p>
 
         <!-- @r020:F2 proof: report-to-booked-jobs comparison makes the agency frustration visible — the owner sees the gap between activity reporting and real work booked before taking the diagnostic CTA -->
         <figure class="aa-hero-figure">
-          <svg class="aa-hero-svg" viewBox="0 0 640 220" role="img" aria-label="A comparison from typical agency reports to an owned system that books jobs and reports what closed." xmlns="http://www.w3.org/2000/svg">
+          <svg class="aa-hero-svg" viewBox="0 0 640 220" role="img" aria-label="A comparison from typical agency reports to a custom AI system that runs the work and tracks what closed." xmlns="http://www.w3.org/2000/svg">
             <text x="8" y="16" font-family="JetBrains Mono, monospace" font-size="9" fill="#62626A" letter-spacing="0.18em">WHAT YOU GET TODAY</text>
             <rect x="8" y="32" width="210" height="126" fill="rgba(168,162,152,0.10)" stroke="rgba(168,162,152,0.22)" stroke-width="1"/>
             <line x1="28" y1="58" x2="178" y2="58" stroke="rgba(168,162,152,0.35)" stroke-width="1.5"/>
@@ -69,7 +70,7 @@ import FitDiagnostic from '../../components/FitDiagnostic.astro';
             <text x="396" y="146" font-family="JetBrains Mono, monospace" font-size="7" fill="rgba(240,255,0,0.70)" letter-spacing="0.10em">TRACK WHAT CLOSED</text>
             <text x="322" y="182" font-family="JetBrains Mono, monospace" font-size="8" fill="rgba(240,255,0,0.58)" letter-spacing="0.13em">Booked jobs · owned data · weekly readout</text>
           </svg>
-          <figcaption class="aa-hero-caption mono">Agency activity vs. owned marketing system</figcaption>
+          <figcaption class="aa-hero-caption mono">The agency model vs. a custom AI system</figcaption>
         </figure>
 
         <!-- @bwm-exp-slot: hero-cta — primary paid-search conversion CTA -->
@@ -90,12 +91,12 @@ import FitDiagnostic from '../../components/FitDiagnostic.astro';
       <p class="section-tag">01 · THE SWITCH · SYSTEM OVER AGENCY</p>
       <h2 id="aa-compare-heading" class="h-section">The problem is not that your agency is lazy. It is that the model is built around reports.</h2>
       <p class="lede">
-        A typical agency can buy clicks, write posts, and hold meetings. That can help. But it still leaves you managing the manager. We replace the loose parts with one owned system that runs the full path from search to booked work.
+        A typical agency can buy clicks, write posts, and hold meetings. That can help. But it still leaves you managing the manager. A custom AI system replaces the loose parts with one thing you own — it runs the full path from first search to tracked result, and keeps running without you.
       </p>
 
       <!-- @r020:F2 proof: D4 comparison grid shows present vs absent capabilities using the locked filled/hollow vertex grammar — the visual proves the category reframe without naming rivals -->
       <div class="aa-compare-grid" role="table" aria-label="Buildwise system compared with the typical marketing agency">
-        <div class="aa-compare-head aa-system-head" role="columnheader">Buildwise system</div>
+        <div class="aa-compare-head aa-system-head" role="columnheader">A custom AI system</div>
         <div class="aa-compare-head aa-agency-head" role="columnheader">Typical agency</div>
 
         <div class="aa-compare-row aa-system" role="cell">
