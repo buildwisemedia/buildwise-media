@@ -96,74 +96,84 @@ import FitDiagnostic from '../../components/FitDiagnostic.astro';
 
       <!-- @r020:F2 proof: D4 comparison grid shows present vs absent capabilities using the locked filled/hollow vertex grammar — the visual proves the category reframe without naming rivals -->
       <div class="aa-compare-grid" role="table" aria-label="Buildwise system compared with the typical marketing agency">
-        <div class="aa-compare-head aa-system-head" role="columnheader">A custom AI system</div>
-        <div class="aa-compare-head aa-agency-head" role="columnheader">Typical agency</div>
-
-        <div class="aa-compare-row aa-system" role="cell">
-          <span class="aa-dot aa-dot-fill" aria-hidden="true"></span>
-          <div>
-            <p class="aa-compare-kicker mono">OUTPUT</p>
-            <h3>Booked jobs and next actions.</h3>
-            <p>The system tracks the path from lead to booked work. The weekly readout says what happened and what changes next.</p>
-          </div>
-        </div>
-        <div class="aa-compare-row aa-agency" role="cell">
-          <span class="aa-dot aa-dot-hollow" aria-hidden="true"></span>
-          <div>
-            <p class="aa-compare-kicker mono">OUTPUT</p>
-            <h3>Reports and activity.</h3>
-            <p>You see clicks, impressions, and tasks. You still have to ask what turned into real work.</p>
-          </div>
+        <div role="row" style="display:contents">
+          <div class="aa-compare-head aa-system-head" role="columnheader">A custom AI system</div>
+          <div class="aa-compare-head aa-agency-head" role="columnheader">Typical agency</div>
         </div>
 
-        <div class="aa-compare-row aa-system" role="cell">
-          <span class="aa-dot aa-dot-fill" aria-hidden="true"></span>
-          <div>
-            <p class="aa-compare-kicker mono">OWNERSHIP</p>
-            <h3>Your system. Your data.</h3>
-            <p>The assets, follow-up paths, lead records, and readouts are built to stay with you.</p>
+        <div role="row" style="display:contents">
+          <div class="aa-compare-row aa-system" role="cell">
+            <span class="aa-dot aa-dot-fill" aria-hidden="true"></span>
+            <div>
+              <p class="aa-compare-kicker mono">OUTPUT</p>
+              <h3>Booked jobs and next actions.</h3>
+              <p>The system tracks the path from lead to booked work. The weekly readout says what happened and what changes next.</p>
+            </div>
           </div>
-        </div>
-        <div class="aa-compare-row aa-agency" role="cell">
-          <span class="aa-dot aa-dot-hollow" aria-hidden="true"></span>
-          <div>
-            <p class="aa-compare-kicker mono">OWNERSHIP</p>
-            <h3>Scattered accounts.</h3>
-            <p>Work often lives in rented tools and disconnected reports. Leaving can feel harder than staying.</p>
+          <div class="aa-compare-row aa-agency" role="cell">
+            <span class="aa-dot aa-dot-hollow" aria-hidden="true"></span>
+            <div>
+              <p class="aa-compare-kicker mono">OUTPUT</p>
+              <h3>Reports and activity.</h3>
+              <p>You see clicks, impressions, and tasks. You still have to ask what turned into real work.</p>
+            </div>
           </div>
         </div>
 
-        <div class="aa-compare-row aa-system" role="cell">
-          <span class="aa-dot aa-dot-fill" aria-hidden="true"></span>
-          <div>
-            <p class="aa-compare-kicker mono">OPERATING LOAD</p>
-            <h3>Run-for-you.</h3>
-            <p>The team and our AI system run the loop. You review the output and make owner-level calls.</p>
+        <div role="row" style="display:contents">
+          <div class="aa-compare-row aa-system" role="cell">
+            <span class="aa-dot aa-dot-fill" aria-hidden="true"></span>
+            <div>
+              <p class="aa-compare-kicker mono">OWNERSHIP</p>
+              <h3>Your system. Your data.</h3>
+              <p>The assets, follow-up paths, lead records, and readouts are built to stay with you.</p>
+            </div>
           </div>
-        </div>
-        <div class="aa-compare-row aa-agency" role="cell">
-          <span class="aa-dot aa-dot-hollow" aria-hidden="true"></span>
-          <div>
-            <p class="aa-compare-kicker mono">OPERATING LOAD</p>
-            <h3>You manage them.</h3>
-            <p>You chase updates, explain the business again, and keep stitching the pieces together.</p>
+          <div class="aa-compare-row aa-agency" role="cell">
+            <span class="aa-dot aa-dot-hollow" aria-hidden="true"></span>
+            <div>
+              <p class="aa-compare-kicker mono">OWNERSHIP</p>
+              <h3>Scattered accounts.</h3>
+              <p>Work often lives in rented tools and disconnected reports. Leaving can feel harder than staying.</p>
+            </div>
           </div>
         </div>
 
-        <div class="aa-compare-row aa-system" role="cell">
-          <span class="aa-dot aa-dot-fill" aria-hidden="true"></span>
-          <div>
-            <p class="aa-compare-kicker mono">CONTRACT SHAPE</p>
-            <h3>Month-to-month after day 90.</h3>
-            <p>If the system is not earning its place, you should not be trapped.</p>
+        <div role="row" style="display:contents">
+          <div class="aa-compare-row aa-system" role="cell">
+            <span class="aa-dot aa-dot-fill" aria-hidden="true"></span>
+            <div>
+              <p class="aa-compare-kicker mono">OPERATING LOAD</p>
+              <h3>Run-for-you.</h3>
+              <p>The team and our AI system run the loop. You review the output and make owner-level calls.</p>
+            </div>
+          </div>
+          <div class="aa-compare-row aa-agency" role="cell">
+            <span class="aa-dot aa-dot-hollow" aria-hidden="true"></span>
+            <div>
+              <p class="aa-compare-kicker mono">OPERATING LOAD</p>
+              <h3>You manage them.</h3>
+              <p>You chase updates, explain the business again, and keep stitching the pieces together.</p>
+            </div>
           </div>
         </div>
-        <div class="aa-compare-row aa-agency" role="cell">
-          <span class="aa-dot aa-dot-hollow" aria-hidden="true"></span>
-          <div>
-            <p class="aa-compare-kicker mono">CONTRACT SHAPE</p>
-            <h3>Long lock-in.</h3>
-            <p>You keep paying while the agency gets another month to explain the same report.</p>
+
+        <div role="row" style="display:contents">
+          <div class="aa-compare-row aa-system" role="cell">
+            <span class="aa-dot aa-dot-fill" aria-hidden="true"></span>
+            <div>
+              <p class="aa-compare-kicker mono">CONTRACT SHAPE</p>
+              <h3>Month-to-month after day 90.</h3>
+              <p>If the system is not earning its place, you should not be trapped.</p>
+            </div>
+          </div>
+          <div class="aa-compare-row aa-agency" role="cell">
+            <span class="aa-dot aa-dot-hollow" aria-hidden="true"></span>
+            <div>
+              <p class="aa-compare-kicker mono">CONTRACT SHAPE</p>
+              <h3>Long lock-in.</h3>
+              <p>You keep paying while the agency gets another month to explain the same report.</p>
+            </div>
           </div>
         </div>
       </div>
@@ -176,14 +186,14 @@ import FitDiagnostic from '../../components/FitDiagnostic.astro';
           <text x="89" y="98" text-anchor="middle" font-family="'JetBrains Mono',monospace" font-size="11" letter-spacing="1.5" fill="#b6b6c4">YOUR AD</text>
           <text x="89" y="112" text-anchor="middle" font-family="'JetBrains Mono',monospace" font-size="11" letter-spacing="1.5" fill="#b6b6c4">SPEND</text>
           <path d="M168 92 C 280 92, 300 44, 430 44" fill="none" stroke="#3a3a48" stroke-width="2" stroke-dasharray="5 5"/>
-          <path d="M168 108 C 280 108, 300 156, 430 156" fill="none" stroke="#B8FF3A" stroke-width="2.5"/>
+          <path d="M168 108 C 280 108, 300 156, 430 156" fill="none" stroke="#F0FF00" stroke-width="2.5"/>
           <circle cx="430" cy="44" r="9" fill="none" stroke="#74748a" stroke-width="1.5"/>
           <rect x="450" y="22" width="176" height="44" rx="8" fill="none" stroke="#3a3a48" stroke-width="1.5"/>
           <text x="538" y="42" text-anchor="middle" font-family="'JetBrains Mono',monospace" font-size="11" letter-spacing="1.5" fill="#74748a">TYPICAL AGENCY</text>
           <text x="538" y="56" text-anchor="middle" font-family="Inter,sans-serif" font-size="13" fill="#b6b6c4">An activity report</text>
-          <circle cx="430" cy="156" r="9" fill="#B8FF3A"/>
-          <rect x="450" y="134" width="176" height="44" rx="8" fill="none" stroke="#B8FF3A" stroke-width="1.5"/>
-          <text x="538" y="154" text-anchor="middle" font-family="'JetBrains Mono',monospace" font-size="11" letter-spacing="1.5" fill="#B8FF3A">BUILDWISE SYSTEM</text>
+          <circle cx="430" cy="156" r="9" fill="#F0FF00"/>
+          <rect x="450" y="134" width="176" height="44" rx="8" fill="none" stroke="#F0FF00" stroke-width="1.5"/>
+          <text x="538" y="154" text-anchor="middle" font-family="'JetBrains Mono',monospace" font-size="11" letter-spacing="1.5" fill="#F0FF00">BUILDWISE SYSTEM</text>
           <text x="538" y="168" text-anchor="middle" font-family="Inter,sans-serif" font-size="13" fill="#f4f4f7">A booked job</text>
         </svg>
       </figure>

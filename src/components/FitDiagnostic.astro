@@ -11,6 +11,7 @@
 ---
 
 <section id="diagnostic" class="bwm-fit-diagnostic">
+<div id="screen-announce" aria-live="polite" class="sr-only" style="position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0;"></div>
 <header class="doc-header">
     <div class="container">
       <div class="doc-header-inner">
@@ -364,27 +365,27 @@
             <div class="slider-line">
               <div class="slider-line-fill" id="revenue-fill" style="width: 0%;"></div>
             </div>
-            <div class="slider-snap" data-value="1" data-label="&lt; $10K" style="left: 0%;">
-              <div class="slider-snap-label">&lt; $10K</div>
-            </div>
-            <div class="slider-snap" data-value="2" data-label="$10–25K" style="left: 16.66%;">
-              <div class="slider-snap-label">$10–25K</div>
-            </div>
-            <div class="slider-snap" data-value="3" data-label="$25–50K" style="left: 33.33%;">
-              <div class="slider-snap-label">$25–50K</div>
-            </div>
-            <div class="slider-snap" data-value="4" data-label="$50–100K" style="left: 50%;">
-              <div class="slider-snap-label">$50–100K</div>
-            </div>
-            <div class="slider-snap" data-value="5" data-label="$100–250K" style="left: 66.66%;">
-              <div class="slider-snap-label">$100–250K</div>
-            </div>
-            <div class="slider-snap" data-value="6" data-label="$250–500K" style="left: 83.33%;">
-              <div class="slider-snap-label">$250–500K</div>
-            </div>
-            <div class="slider-snap" data-value="7" data-label="$500K+" style="left: 100%;">
-              <div class="slider-snap-label">$500K+</div>
-            </div>
+            <button type="button" class="slider-snap" data-value="1" data-label="&lt; $10K" aria-label="Revenue range < $10K" aria-pressed="false" style="left: 0%;">
+              <span class="slider-snap-label">&lt; $10K</span>
+            </button>
+            <button type="button" class="slider-snap" data-value="2" data-label="$10–25K" aria-label="Revenue range $10–25K" aria-pressed="false" style="left: 16.66%;">
+              <span class="slider-snap-label">$10–25K</span>
+            </button>
+            <button type="button" class="slider-snap" data-value="3" data-label="$25–50K" aria-label="Revenue range $25–50K" aria-pressed="false" style="left: 33.33%;">
+              <span class="slider-snap-label">$25–50K</span>
+            </button>
+            <button type="button" class="slider-snap" data-value="4" data-label="$50–100K" aria-label="Revenue range $50–100K" aria-pressed="false" style="left: 50%;">
+              <span class="slider-snap-label">$50–100K</span>
+            </button>
+            <button type="button" class="slider-snap" data-value="5" data-label="$100–250K" aria-label="Revenue range $100–250K" aria-pressed="false" style="left: 66.66%;">
+              <span class="slider-snap-label">$100–250K</span>
+            </button>
+            <button type="button" class="slider-snap" data-value="6" data-label="$250–500K" aria-label="Revenue range $250–500K" aria-pressed="false" style="left: 83.33%;">
+              <span class="slider-snap-label">$250–500K</span>
+            </button>
+            <button type="button" class="slider-snap" data-value="7" data-label="$500K+" aria-label="Revenue range $500K+" aria-pressed="false" style="left: 100%;">
+              <span class="slider-snap-label">$500K+</span>
+            </button>
           </div>
         </div>
         <div class="q-nav">
@@ -486,7 +487,7 @@
         <svg class="q-progress" viewBox="0 0 136 12" width="136" height="12" role="img" aria-label="Question 6 of 7"><circle cx="10" cy="6" r="2.5" fill="#F0FF00"/><circle cx="28" cy="6" r="2.5" fill="#F0FF00"/><circle cx="46" cy="6" r="2.5" fill="#F0FF00"/><circle cx="64" cy="6" r="2.5" fill="#F0FF00"/><circle cx="82" cy="6" r="2.5" fill="#F0FF00"/><circle cx="100" cy="6" r="4" fill="#F0FF00"/><circle cx="118" cy="6" r="2.5" fill="rgba(168,162,152,0.35)"/></svg>
         <h2 class="q-text">If we sent you <span class="y">10x leads tomorrow</span>, what couldn't handle it?</h2>
         <p class="q-help">Select all that apply. This is the inverse of the bottleneck question — we want to know which downstream systems would buckle under the load.</p>
-        <div class="multiselect-grid" data-multi="capacityGaps">
+        <div class="multiselect-grid" data-multi="capacityGaps" data-optional>
           <button class="ms-card" data-value="sales-closing">
             <div class="ms-card-checkbox"></div>
             <div class="ms-card-title">Sales / closing</div>
@@ -520,7 +521,7 @@
         </div>
         <div class="q-nav">
           <button class="q-nav-back" data-back="q5">← Back</button>
-          <button class="q-nav-next" id="next-q6" data-next="q7" disabled>Next →</button>
+          <button class="q-nav-next" id="next-q6" data-next="q7">Next →</button>
         </div>
       </div>
     </section>
@@ -539,11 +540,11 @@
         <div class="target-block">
           <p class="target-sentence">
             In 12 months, I want to be doing
-            <input type="text" class="target-input short" id="target-revenue" placeholder="$ ___">
+            <input type="text" class="target-input short" id="target-revenue" placeholder="$ ___" aria-label="Target monthly revenue">
             in monthly revenue with
-            <input type="text" class="target-input short" id="target-team" placeholder="___">
+            <input type="text" class="target-input short" id="target-team" placeholder="___" aria-label="Target team size">
             people on the team, and I want to personally spend
-            <input type="text" class="target-input short" id="target-hours" placeholder="___">
+            <input type="text" class="target-input short" id="target-hours" placeholder="___" aria-label="Target weekly hours on operations">
             hours a week on operations.
           </p>
         </div>
@@ -655,7 +656,7 @@
           <h2 class="reveal-section-title">The gap between <span class="y">today and your target</span>.</h2>
           <div class="projection-block">
             <div class="projection-chart">
-              <svg viewBox="0 0 1200 420" preserveAspectRatio="none" id="projection-svg"></svg>
+              <svg viewBox="0 0 1200 420" preserveAspectRatio="none" id="projection-svg" role="img" aria-label="12-month revenue projection: current trajectory versus the trajectory with a custom AI system installed"></svg>
             </div>
             <div class="projection-legend">
               <div class="proj-legend-item">
@@ -718,7 +719,7 @@
     .q-progress { display:block; margin: 6px 0 14px; }
   #diagnostic {
       --bg-lift: var(--bg-elev);
-      --bg-deep: #050505;
+      --bg-deep: #050507;
       --y2-glow: rgba(240, 255, 0, 0.45);
       --y2-dim: rgba(240, 255, 0, 0.62);
       --y2-shade: rgba(240, 255, 0, 0.08);
@@ -1034,6 +1035,7 @@
       background: var(--bg-elev); color: var(--ink-faint);
       cursor: not-allowed; box-shadow: none; transform: none;
     }
+    .chip:focus-visible, .ms-card:focus-visible, .bn-card:focus-visible, .split-btn:focus-visible, .slider-snap:focus-visible, .q-nav-back:focus-visible, .q-nav-next:focus-visible, .cta-primary:focus-visible, .cta-secondary:focus-visible { outline: 2px solid var(--y2); outline-offset: 3px; }
 
     .chip-grid {
       display: grid; grid-template-columns: repeat(4, 1fr);
@@ -1219,6 +1221,7 @@
       width: 14px; height: 14px; border-radius: 50%;
       background: var(--bg); border: 1px solid var(--rule-bright);
       cursor: pointer; transition: all .25s ease;
+      appearance: none; -webkit-appearance: none; padding: 0; font: inherit; color: inherit; text-align: inherit;
     }
     .slider-snap.active {
       background: var(--y2); border-color: var(--y2);
@@ -1232,6 +1235,14 @@
       color: var(--ink-faint); white-space: nowrap;
     }
     .slider-snap.active .slider-snap-label { color: var(--y2); }
+    /* On mobile the centered end-labels (< $10K / $500K+) overflow the track edges and
+       get clipped by body overflow-x:hidden. Anchor the first label left, the last
+       right, and shrink slightly so both stay on screen. */
+    @media (max-width: 640px) {
+      .slider-snap-label { font-size: 9px; letter-spacing: 0.06em; }
+      .slider-snap[data-value="1"] .slider-snap-label { left: 0; transform: none; }
+      .slider-snap[data-value="7"] .slider-snap-label { left: auto; right: 0; transform: none; }
+    }
 
     .split-block { padding: 24px 0 48px; }
     .split-readout {
@@ -1301,7 +1312,7 @@
       letter-spacing: -0.012em; transition: background .25s ease;
     }
     .target-input::placeholder { color: var(--ink-faint); font-weight: 400; }
-    .target-input:focus { outline: none; background: var(--y2-shade); }
+    .target-input:focus { outline: 2px solid var(--y2); outline-offset: 2px; background: var(--y2-shade); }
     .target-input.short { min-width: 100px; }
 
     .reveal-screen { padding-bottom: 0; }
@@ -1441,6 +1452,12 @@
       border: 1px solid var(--rule); background: var(--bg); overflow: hidden;
     }
     .projection-chart svg { width: 100%; height: 100%; }
+    /* The chart SVG uses preserveAspectRatio="none" (1200x420). On narrow screens a
+       fixed 420px box squashes the x-axis to ~30%, crushing the curve + labels. Match
+       the box to the SVG ratio on mobile so it scales uniformly and stays readable. */
+    @media (max-width: 640px) {
+      .projection-chart { height: auto; aspect-ratio: 1200 / 420; }
+    }
     .projection-legend { margin-top: 24px; display: flex; gap: 32px; flex-wrap: wrap; }
     .proj-legend-item { display: flex; align-items: center; gap: 12px; }
     .proj-legend-color { width: 24px; height: 2px; }
@@ -1651,6 +1668,7 @@
     // ============ NAVIGATION ============
     function goTo(screen) {
       document.body.dataset.screen = screen;
+      var ann = document.getElementById('screen-announce'); if (ann) ann.textContent = screen === 'reveal' ? 'Your results are ready.' : (screen === 'welcome' ? '' : 'Question ' + screen.replace('q','') + ' of 7.');
       // Keep the visitor inside the diagnostic on each step. The diagnostic is
       // embedded at the bottom of a long landing page, so scrolling the window
       // to the very top (the old behavior) teleported them up to the page hero.
@@ -1697,8 +1715,9 @@
       grid.querySelectorAll('button[data-value]').forEach(btn => {
         btn.addEventListener('click', () => {
           state[key] = btn.dataset.value;
-          grid.querySelectorAll('button[data-value]').forEach(b => b.classList.remove('selected'));
+          grid.querySelectorAll('button[data-value]').forEach(b => { b.classList.remove('selected'); b.setAttribute('aria-pressed','false'); });
           btn.classList.add('selected');
+          btn.setAttribute('aria-pressed','true');
           const screen = document.body.dataset.screen;
           const nextBtn = document.getElementById('next-' + screen);
           if (nextBtn) nextBtn.disabled = false;
@@ -1713,11 +1732,13 @@
           const arr = state[key];
           const val = btn.dataset.value;
           const idx = arr.indexOf(val);
-          if (idx >= 0) { arr.splice(idx, 1); btn.classList.remove('selected'); }
-          else { arr.push(val); btn.classList.add('selected'); }
+          if (idx >= 0) { arr.splice(idx, 1); btn.classList.remove('selected'); btn.setAttribute('aria-pressed','false'); }
+          else { arr.push(val); btn.classList.add('selected'); btn.setAttribute('aria-pressed','true'); }
           const screen = document.body.dataset.screen;
           const nextBtn = document.getElementById('next-' + screen);
-          if (nextBtn) nextBtn.disabled = arr.length === 0;
+          // Q6 (capacityGaps) is optional tailoring input — scoring handles an empty
+          // array — so a user who'd pick nothing isn't trapped with Next disabled.
+          if (nextBtn) nextBtn.disabled = grid.hasAttribute('data-optional') ? false : arr.length === 0;
           if (key === 'leadSources' && typeof renderQ2Donut === 'function') renderQ2Donut();
         });
       });
@@ -1752,14 +1773,16 @@
       };
     })();
     renderQ2Donut();
+    document.querySelectorAll('[data-single] button[data-value], [data-multi] button[data-value]').forEach(b => b.setAttribute('aria-pressed','false'));
 
     document.querySelectorAll('#revenueSlider .slider-snap').forEach(snap => {
       snap.addEventListener('click', () => {
         const value = parseInt(snap.dataset.value, 10);
         state.revenue = value;
         state.revenueLabel = snap.dataset.label;
-        document.querySelectorAll('#revenueSlider .slider-snap').forEach(s => s.classList.remove('active'));
+        document.querySelectorAll('#revenueSlider .slider-snap').forEach(s => { s.classList.remove('active'); s.setAttribute('aria-pressed','false'); });
         snap.classList.add('active');
+        snap.setAttribute('aria-pressed','true');
         const pct = ((value - 1) / 6) * 100;
         document.getElementById('revenue-fill').style.width = pct + '%';
         document.getElementById('revenue-readout').textContent = snap.dataset.label + '/mo';
@@ -1888,7 +1911,7 @@
 
       document.getElementById('snap-service').textContent = SERVICE_LABEL[state.service] || '—';
       document.getElementById('snap-revenue').textContent = state.revenueLabel || '—';
-      document.getElementById('snap-growth').textContent = (100 - state.opsRatio) + '%';
+      document.getElementById('snap-growth').textContent = (100 - (state.opsRatio || 90)) + '%';
       const channels = state.leadSources.map(s => LEAD_SOURCE_LABEL[s]).slice(0, 2).join(' + ');
       document.getElementById('snap-channels').textContent = channels || '—';
 
@@ -2182,8 +2205,14 @@
         if (state.revenue < 3) {
           fixes.push([{ strong: 'Get to $25K/mo first.' }, { text: ' Below that, foundational distribution matters more than a system.' }]);
         }
+        const fallbackFixes = [
+          [{ strong: 'Document your current sales process.' }, { text: ' Even a 1-pager. The system needs something to standardize.' }],
+          [{ strong: 'Write down who your best client is.' }, { text: ' One paragraph. It tells the system who to chase and who to filter.' }],
+          [{ strong: 'Use the same follow-up for every lead.' }, { text: ' Pick one sequence and run it every time, so we have a baseline to beat.' }]
+        ];
+        let fbi = 0;
         while (fixes.length < 3) {
-          fixes.push([{ strong: 'Document your current sales process.' }, { text: ' Even a 1-pager. The system needs something to standardize.' }]);
+          fixes.push(fallbackFixes[fbi++ % fallbackFixes.length]);
         }
         fixes.slice(0, 3).forEach((f, i) => pathList.appendChild(mkListItem(i + 1, f)));
         mkCtaBlock('Get The Playbook', 'Send me the foundation playbook.',
@@ -2310,7 +2339,7 @@
         if (explainer) explainer.textContent = "We hit a snag loading your result here. Book a quick call and we'll walk you through your Revenue Leak Map live.";
         if (detail) detail.textContent = "";
         if (pathCta) {
-          pathCta.innerHTML = '<a class="cta" href="/book" data-cta-source="fit-diagnostic-fallback">Book your call <span aria-hidden="true">→</span></a>';
+          pathCta.innerHTML = '<a class="cta" href="/book" data-cta-source="fit-diagnostic-fallback">Book The Call <span aria-hidden="true">→</span></a>';
         }
       }
     }
@@ -2346,7 +2375,7 @@
       if (explainer) explainer.textContent = "Your shop matches the install profile. The system delivers the most lift here.";
       if (detail) detail.textContent = "What we'd install for you in 30 days: lead capture, qualification, follow-up, attribution, review velocity, and the AI growth engine that runs the marketing department without you in the loop.";
       if (pathLead) pathLead.textContent = "Book a";
-      if (pathY) pathY.textContent = " 30-minute architecture call. ";
+      if (pathY) pathY.textContent = " 30-minute strategy call. ";
       if (pathTail) pathTail.textContent = "";
       if (pathBody) pathBody.textContent = "On the call we walk through your specific stack, what the system replaces, and what week one looks like.";
       if (pathCta) pathCta.innerHTML = '<a href="#cal-inline" class="cta" data-cta-source="mo-fit-verdict-cal" onclick="document.getElementById(\'cal-inline\').scrollIntoView({behavior:\'smooth\'});return false;">See If We\'re a Fit <span class="cta-arrow">→</span></a><p class="mono" style="margin-top:14px;font-size:11px;letter-spacing:.18em;color:var(--ink-faint);">For service businesses only.</p>';
@@ -2363,7 +2392,7 @@
       if (pathY) pathY.textContent = " be in touch within 48h. ";
       if (pathTail) pathTail.textContent = "";
       if (pathBody) pathBody.textContent = "Want to speed it up? Drop your email below and we'll send your full audit + a focused next step.";
-      if (pathCta && !hadEmail) pathCta.innerHTML = bwmEmailCaptureMarkup("maybe");
+      if (pathCta && !hadEmail) pathCta.innerHTML = bwmEmailCaptureMarkup();
     } else {
       // NO
       card.setAttribute("data-verdict", "not-yet");
