@@ -3,8 +3,12 @@ dist/
 # generated types
 .astro/
 
-# dependencies
-node_modules/
+# dependencies — match the directory AND a bare `node_modules` symlink. The
+# trailing-slash form (`node_modules/`) ignores directory *contents* only, so a
+# stray `node_modules` symlink slipped past it and got swept into git by
+# `git add -A` (the 2026-06-04 self-referential-symlink incident; see
+# scripts/guard-no-vendored-modules.mjs). No slash closes that loophole.
+node_modules
 
 # logs
 npm-debug.log*
