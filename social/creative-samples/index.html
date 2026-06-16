@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<!-- @internal-architecture : internal creative-sample gallery for Robert review; not a live client surface -->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>BWM Social — Sample Creative</title>
+<style>
+  :root{
+    --bg:#050507; --panel:#0d0e12; --panel2:#121419; --line:#23262f;
+    --ink:#f4f5f7; --mut:#9aa0ab; --faint:#6b717c;
+    --y2:#F0FF00; --y1:#B8FF3A; --info:#6FB7FF;
+    --mono:'JetBrains Mono',ui-monospace,SFMono-Regular,Menlo,monospace;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;font-weight:300;line-height:1.6}
+  .wrap{max-width:1100px;margin:0 auto;padding:44px 22px 90px}
+  .kick{font-family:var(--mono);font-size:11px;letter-spacing:.28em;text-transform:uppercase;color:var(--faint)}
+  h1{font-size:clamp(26px,4vw,40px);font-weight:800;letter-spacing:-.02em;margin:12px 0 6px}
+  h1 .hl{color:var(--y2)}
+  .sub{color:var(--mut);font-size:15px;max-width:680px}
+  .figure{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:20px 18px 12px;margin-top:26px}
+  .figure svg{width:100%;height:auto;display:block}
+  .figcap{font-family:var(--mono);font-size:11px;color:var(--faint);text-align:center;margin-top:8px}
+  .gallery{display:grid;grid-template-columns:1fr 1fr;gap:30px;margin-top:34px}
+  @media(max-width:880px){.gallery{grid-template-columns:1fr}}
+  .slot .lab{font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--y1);margin-bottom:4px}
+  .slot .meta{font-family:var(--mono);font-size:10.5px;color:var(--faint);margin-bottom:14px}
+  .slot .meta b{color:var(--mut)}
+  .cap{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:14px 16px;margin-top:14px;font-size:13px;color:var(--mut);line-height:1.65;white-space:pre-line}
+  .cap .cta{color:var(--y2);font-weight:600}
+  .r020{font-family:var(--mono);font-size:10px;color:var(--faint);margin-top:8px}
+
+  .post{border-radius:16px;overflow:hidden;border:1px solid var(--line);background:#fff;box-shadow:0 14px 40px rgba(0,0,0,.45)}
+  .mark{width:30px;height:30px;border-radius:8px;background:#050507;display:inline-flex;align-items:center;justify-content:center;flex:none}
+  .mark svg{display:block}
+
+  .li-cover{aspect-ratio:1/1;background:radial-gradient(120% 120% at 80% 0%,#11140a 0%,#050507 55%);position:relative;padding:34px 32px;display:flex;flex-direction:column;color:var(--ink)}
+  .li-cover .top{display:flex;align-items:center;gap:10px}
+  .li-cover .top .name{font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--mut)}
+  .li-cover .tag{font-family:var(--mono);font-size:10.5px;letter-spacing:.18em;text-transform:uppercase;color:var(--bg);background:var(--y2);font-weight:800;padding:5px 10px;border-radius:6px;align-self:flex-start;margin-top:30px}
+  .li-cover h2{font-size:32px;line-height:1.08;font-weight:800;letter-spacing:-.02em;margin:16px 0 0;max-width:92%}
+  .li-cover h2 .hl{color:var(--y2)}
+  .li-cover .swipe{margin-top:auto;display:flex;justify-content:space-between;align-items:flex-end}
+  .li-cover .swipe .num{font-family:var(--mono);font-size:11px;color:var(--faint)}
+  .li-cover .swipe .go{font-family:var(--mono);font-size:12px;color:var(--y2);font-weight:700}
+  .li-cover .grain{position:absolute;inset:0;opacity:.05;pointer-events:none;mix-blend-mode:overlay}
+
+  .ig{aspect-ratio:9/16;max-width:300px;margin:0 auto;border-radius:18px;overflow:hidden;position:relative;border:1px solid var(--line)}
+  .ig .photo{position:absolute;inset:0;background:
+      linear-gradient(180deg,rgba(5,5,7,0) 38%,rgba(5,5,7,.86) 100%),
+      linear-gradient(135deg,#28323b 0%,#161d24 42%,#0b0f14 100%)}
+  .ig .photo:after{content:"";position:absolute;inset:0;background:radial-gradient(60% 38% at 62% 30%,rgba(150,180,200,.30),transparent 70%)}
+  .ig .grain{position:absolute;inset:0;opacity:.10;mix-blend-mode:overlay;pointer-events:none}
+  .ig .chrome{position:absolute;top:0;left:0;right:0;padding:14px 14px 0;display:flex;align-items:center;gap:8px;z-index:3}
+  .ig .chrome .name{color:#fff;font-size:12px;font-weight:600;text-shadow:0 1px 3px rgba(0,0,0,.5)}
+  .ig .ov{position:absolute;left:18px;right:18px;bottom:64px;z-index:3}
+  .ig .ov h2{color:#fff;font-size:25px;line-height:1.1;font-weight:800;letter-spacing:-.01em;margin:0;text-shadow:0 2px 10px rgba(0,0,0,.55)}
+  .ig .ov p{color:var(--y2);font-size:14px;font-weight:600;margin:8px 0 0;text-shadow:0 2px 8px rgba(0,0,0,.55)}
+  .ig .bar{position:absolute;bottom:16px;left:18px;right:18px;display:flex;align-items:center;gap:8px;z-index:3;color:#fff;font-size:11px;font-family:var(--mono)}
+  .ig .bar .dot{width:5px;height:5px;border-radius:50%;background:#fff;opacity:.7}
+
+  .fb{background:#fff;color:#1c1e21}
+  .fb .hd{display:flex;align-items:center;gap:10px;padding:14px 14px 8px}
+  .fb .hd .nm{font-size:14px;font-weight:700;color:#050505}
+  .fb .hd .mt{font-size:11px;color:#65676b;font-family:var(--mono)}
+  .fb .body{padding:2px 14px 12px;font-size:14px;color:#1c1e21;line-height:1.5}
+  .fb .video{position:relative;aspect-ratio:16/9;background:radial-gradient(120% 120% at 30% 0%,#11140a,#050507 60%);display:flex;align-items:center;justify-content:center}
+  .fb .video .play{width:54px;height:54px;border-radius:50%;background:rgba(240,255,0,.92);display:flex;align-items:center;justify-content:center}
+  .fb .video .cc{position:absolute;left:16px;bottom:14px;right:16px;color:#fff;font-weight:800;font-size:18px;line-height:1.15;letter-spacing:-.01em}
+  .fb .video .cc .hl{color:var(--y2)}
+  .fb .actions{display:flex;border-top:1px solid #e4e6eb;color:#65676b;font-size:12.5px;font-weight:600}
+  .fb .actions div{flex:1;text-align:center;padding:9px 0}
+
+  .x{background:#000;color:#e7e9ea;padding:16px 16px 12px}
+  .x .hd{display:flex;align-items:center;gap:10px}
+  .x .hd .nm{font-size:14px;font-weight:700;color:#fff}
+  .x .hd .nm span{color:#71767b;font-weight:400}
+  .x .tw{font-size:16px;line-height:1.45;margin:12px 0 0;white-space:pre-line}
+  .x .tw .hl{color:var(--y2);font-weight:600}
+  .x .tw .thr{color:#1d9bf0}
+  .x .stats{display:flex;gap:26px;color:#71767b;font-size:12.5px;font-family:var(--mono);margin-top:14px}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="kick">Buildwise Media · Social Growth Engine</div>
+  <h1>Sample <span class="hl">creative</span> — one system, four native looks</h1>
+  <p class="sub">Each post is born inside the Triangulation system and the custom-AI identity: leads shown as receipts, the team voice, no founder face, no vendor names. Same machine — four channel-native formats.</p>
+
+  <div class="figure">
+    <!-- @r020:F4 curiosity: the repurposing flow shows how one idea becomes four native posts — the system's leverage, the thesis of this page -->
+    <svg viewBox="0 0 900 250" role="img" aria-label="Repurposing flow: one hero idea becomes four channel-native posts">
+      <rect x="24" y="98" width="200" height="56" rx="12" fill="#121419" stroke="#F0FF00" stroke-width="1.5"/>
+      <text x="124" y="122" text-anchor="middle" fill="#F0FF00" font-family="JetBrains Mono,monospace" font-size="11" letter-spacing="1">1 HERO IDEA</text>
+      <text x="124" y="140" text-anchor="middle" fill="#9aa0ab" font-family="Inter,sans-serif" font-size="12">the 30-day receipt</text>
+
+      <line x1="224" y1="126" x2="560" y2="44"  stroke="#3a3f0f" stroke-width="2"/>
+      <line x1="224" y1="126" x2="560" y2="98"  stroke="#3a3f0f" stroke-width="2"/>
+      <line x1="224" y1="126" x2="560" y2="152" stroke="#3a3f0f" stroke-width="2"/>
+      <line x1="224" y1="126" x2="560" y2="206" stroke="#3a3f0f" stroke-width="2"/>
+      <circle cx="224" cy="126" r="4" fill="#F0FF00"/>
+
+      <rect x="560" y="22"  width="316" height="44" rx="9" fill="#0d0e12" stroke="#23262f"/>
+      <text x="578" y="49" fill="#f4f5f7" font-family="Inter,sans-serif" font-size="13.5" font-weight="600">LinkedIn → document carousel</text>
+      <rect x="560" y="76"  width="316" height="44" rx="9" fill="#0d0e12" stroke="#23262f"/>
+      <text x="578" y="103" fill="#f4f5f7" font-family="Inter,sans-serif" font-size="13.5" font-weight="600">Instagram → Reel + carousel</text>
+      <rect x="560" y="130" width="316" height="44" rx="9" fill="#0d0e12" stroke="#23262f"/>
+      <text x="578" y="157" fill="#f4f5f7" font-family="Inter,sans-serif" font-size="13.5" font-weight="600">Facebook → native video + Groups</text>
+      <rect x="560" y="184" width="316" height="44" rx="9" fill="#0d0e12" stroke="#23262f"/>
+      <text x="578" y="211" fill="#f4f5f7" font-family="Inter,sans-serif" font-size="13.5" font-weight="600">Twitter/X → thread + reply-game</text>
+    </svg>
+    <div class="figcap">One idea, produced once, lands natively on every channel — the system's leverage.</div>
+  </div>
+
+  <div class="gallery">
+
+    <!-- LINKEDIN -->
+    <div class="slot">
+      <div class="lab">LinkedIn · document carousel (cover, 1/8)</div>
+      <div class="meta"><b>Pillar:</b> Receipts &nbsp;·&nbsp; <b>Format:</b> swipe PDF &nbsp;·&nbsp; <b>Goal:</b> saves + profile visits</div>
+      <div class="post li-cover">
+        <!-- @r020:F2 proof: the "receipt" frame is the proof engine that earns the swipe -->
+        <div class="grain"><svg width="100%" height="100%"><filter id="gA"><feTurbulence baseFrequency="0.9" numOctaves="2"/></filter><rect width="100%" height="100%" filter="url(#gA)"/></svg></div>
+        <div class="top">
+          <!-- @r020:identity: BWM 4-dot Triangulation mark — brand avatar -->
+          <span class="mark"><svg width="16" height="16" viewBox="0 0 16 16"><circle cx="8" cy="3.4" r="1.7" fill="#F0FF00"/><circle cx="3.6" cy="11" r="1.7" fill="#B8FF3A"/><circle cx="12.4" cy="11" r="1.7" fill="#F0FF00"/></svg></span>
+          <span class="name">Buildwise Media</span>
+        </div>
+        <span class="tag">Receipt · 30-day test</span>
+        <h2>We pointed our own AI system at our own <span class="hl">lead gen</span> for 30 days.</h2>
+        <div class="swipe"><span class="num">01 / 08</span><span class="go">Swipe the receipt →</span></div>
+      </div>
+      <div class="cap">Most owners we meet are the bottleneck. Every lead, every follow-up, every "I'll get to it tonight" runs through them.
+
+So we ran the test on ourselves. For 30 days our custom AI system handled the busywork that usually waits for a human.
+
+Swipe the receipt — the wins, the misses, and the one number we didn't expect.
+<span class="cta">→ Want the same map for your shop? Free Revenue Leak Map (link in comments).</span></div>
+      <div class="r020">@r020:F2 proof + F4 curiosity · link-in-comments (native reach) · "we/our team" voice</div>
+    </div>
+
+    <!-- INSTAGRAM -->
+    <div class="slot">
+      <div class="lab">Instagram · Reel cover (9:16)</div>
+      <div class="meta"><b>Pillar:</b> Owner empathy &nbsp;·&nbsp; <b>Format:</b> Reel &nbsp;·&nbsp; <b>Goal:</b> reach + sends</div>
+      <div class="post ig">
+        <!-- @r020:F1 emotion: the owner-in-their-world photo IS the hook that stops the scroll -->
+        <div class="photo"></div>
+        <div class="grain"><svg width="100%" height="100%"><filter id="gB"><feTurbulence baseFrequency="0.85" numOctaves="2"/></filter><rect width="100%" height="100%" filter="url(#gB)"/></svg></div>
+        <div class="chrome">
+          <!-- @r020:identity: BWM 4-dot Triangulation mark — brand avatar -->
+          <span class="mark"><svg width="16" height="16" viewBox="0 0 16 16"><circle cx="8" cy="3.4" r="1.7" fill="#F0FF00"/><circle cx="3.6" cy="11" r="1.7" fill="#B8FF3A"/><circle cx="12.4" cy="11" r="1.7" fill="#F0FF00"/></svg></span>
+          <span class="name">buildwise.media</span>
+        </div>
+        <div class="ov">
+          <h2>Your business still runs on you.</h2>
+          <p>What if the busywork ran itself?</p>
+        </div>
+        <div class="bar"><span>Reel</span><span class="dot"></span><span>0:18</span><span class="dot"></span><span>original audio</span></div>
+      </div>
+      <div class="cap">It's 9pm. You're still answering leads from this morning. Sound familiar?
+
+We build a custom AI system that does the chasing for you — so the lead that came in at noon already got a reply.
+<span class="cta">→ See how it works. Link in bio.</span></div>
+      <div class="r020">@r020:F1 emotion + F4 curiosity · R018e Lo-Fi Cool photo (iPhone, cool morning light, grain) · real photo slots into the frame</div>
+    </div>
+
+    <!-- FACEBOOK -->
+    <div class="slot">
+      <div class="lab">Facebook · native video post (Group + Page)</div>
+      <div class="meta"><b>Pillar:</b> Proof &nbsp;·&nbsp; <b>Format:</b> native video &nbsp;·&nbsp; <b>Goal:</b> comments + DMs</div>
+      <div class="post fb">
+        <div class="hd">
+          <!-- @r020:identity: BWM 4-dot Triangulation mark — brand avatar -->
+          <span class="mark"><svg width="16" height="16" viewBox="0 0 16 16"><circle cx="8" cy="3.4" r="1.7" fill="#F0FF00"/><circle cx="3.6" cy="11" r="1.7" fill="#B8FF3A"/><circle cx="12.4" cy="11" r="1.7" fill="#F0FF00"/></svg></span>
+          <div><div class="nm">Buildwise Media</div><div class="mt">Sponsored · service-owner community</div></div>
+        </div>
+        <div class="body">Every owner we talk to says the same thing: "I don't have a lead problem. I have a follow-up problem." So we recorded what our AI system does in the first 5 minutes after a new lead lands. No edits. 👇</div>
+        <div class="video">
+          <!-- @r020:F2 proof: the unedited 5-minute clip is the receipt that drives the comment -->
+          <div class="play"><svg width="20" height="20" viewBox="0 0 20 20"><path d="M5 3l12 7-12 7z" fill="#050507"/></svg></div>
+          <div class="cc">The first <span class="hl">5 minutes</span> after a new lead — unedited</div>
+        </div>
+        <div class="actions"><div>👍 Like</div><div>💬 Comment</div><div>↗ Share</div></div>
+      </div>
+      <div class="cap">Comment "MAP" and the team will send your free Revenue Leak Map — it shows exactly where leads slip through this week.
+<span class="cta">→ Or grab it now: the Revenue Leak Map.</span></div>
+      <div class="r020">@r020:F2 proof · DM-trigger keyword ("MAP") opens a messaging lead the listener can qualify</div>
+    </div>
+
+    <!-- TWITTER / X -->
+    <div class="slot">
+      <div class="lab">Twitter / X · thread opener (1/8)</div>
+      <div class="meta"><b>Pillar:</b> Build-in-public &nbsp;·&nbsp; <b>Format:</b> thread &nbsp;·&nbsp; <b>Goal:</b> reach + replies</div>
+      <div class="post x">
+        <div class="hd">
+          <!-- @r020:identity: BWM 4-dot Triangulation mark — brand avatar -->
+          <span class="mark"><svg width="16" height="16" viewBox="0 0 16 16"><circle cx="8" cy="3.4" r="1.7" fill="#F0FF00"/><circle cx="3.6" cy="11" r="1.7" fill="#B8FF3A"/><circle cx="12.4" cy="11" r="1.7" fill="#F0FF00"/></svg></span>
+          <div class="nm">Buildwise Media <span>@buildwisemedia · now</span></div>
+        </div>
+        <!-- @r020:F4 curiosity: the open-loop "7 things" promise is the scroll-stop; proof lands in the replies -->
+        <div class="tw">We rebuilt how a service business gets leads — no agency, no new tool to babysit.
+
+Just one <span class="hl">custom AI system</span>.
+
+7 things we learned running it for 30 days <span class="thr">🧵</span></div>
+        <div class="stats"><span>↺ 34</span><span>♡ 210</span><span>🔖 96</span></div>
+      </div>
+      <div class="cap">Thread unpacks the receipt tweet-by-tweet: the lead that almost slipped, the reply that went out at 12:01pm, the number we didn't expect.
+<span class="cta">→ Last tweet: the free Revenue Leak Map.</span></div>
+      <div class="r020">@r020:F4 curiosity + F2 proof · thread = native reach; CTA only after proof tweets</div>
+    </div>
+
+  </div>
+</div>
+</body>
+</html>
