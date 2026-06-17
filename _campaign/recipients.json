@@ -4,57 +4,196 @@
     "source": "mailing-list v3 (40 people) cross-validated live against Supabase contacts 2026-06-17",
     "scope_note": "Manifest-driven (Robert's curated list). The worker re-validates every entry against the CRM and HARD-FAILS any out-of-scope contact, so the 219 client-owned leads + synthetic contacts are structurally walled off. segment friend/lead -> must be BWM-self; client_owner/client_team -> must match the named client id.",
     "emailable_count": 39,
-    "excluded": [{ "name": "John (ASAP team)", "reason": "no email in CRM" }],
+    "excluded": [
+      {
+        "name": "John (ASAP team)",
+        "reason": "no email in CRM"
+      }
+    ],
     "open_for_robert": [
       "Joseph Sisson (D2S co-owner): gets the D2S operational block (client_owner) or general essay? Currently client_owner.",
       "Erin + Jason Wilson (Ursula & Associates owners): NO Ursula operational block has been built, so they are set to general (client_team relationship=client). Build an Ursula block, or keep general?",
       "Leads & prospects (15) + their inclusion: v3 includes them; drop the segment if this should be clients+friends only.",
-      "Tonya vs Tukker Penrod: CRM first_name=Tonya; greeting uses CRM value."
+      "Tonya vs Tukker Penrod: CRM first_name=Tonya; greeting uses CRM value.",
+      "008 Concrete (Jake) CHURNING (texted 2026-06-17) \u2014 moved to general doorway (no offers/no block); 008 owner note deleted. CRM client-state offboarding handled separately by Robert."
     ]
   },
   "recipients": [
-    { "email": "adieomccalmon@hotmail.com", "segment": "friend" },
-    { "email": "bronkar63@gmail.com", "segment": "friend" },
-    { "email": "cm@cathrynmarshall.com", "segment": "friend" },
-    { "email": "ckelleher@silvercrestgroup.com", "segment": "friend" },
-    { "email": "cyadon@saprea.org", "segment": "friend" },
-    { "email": "info@daleferdinand.com", "segment": "friend" },
-    { "email": "keyaan.williams@class-llc.com", "segment": "friend" },
-    { "email": "tpenrod@saprea.org", "segment": "friend" },
-    { "email": "ursulalentine@gmail.com", "segment": "friend" },
-
-    { "email": "jake@008-concrete.com", "segment": "client_owner", "client_slug": "008-concrete", "block_id": "008" },
-    { "email": "nray@wildliferemovalasap.com", "segment": "client_owner", "client_slug": "asap-pest-wildlife", "block_id": "asap" },
-    { "email": "barbara@homedesign2sell.com", "segment": "client_owner", "client_slug": "design2sell", "block_id": "d2s" },
-    { "email": "bjsisson1@gmail.com", "segment": "client_owner", "client_slug": "design2sell", "block_id": "d2s" },
-    { "email": "scott@rutherfordmade.com", "segment": "client_owner", "client_slug": "rutherfordmade", "block_id": "rm" },
-    { "email": "tom@townrg.com", "segment": "client_owner", "client_slug": "townsend-realty-group", "block_id": "townsend" },
-
-    { "email": "erin@callursula.com", "segment": "client_team", "client_slug": "ursula-and-associates" },
-    { "email": "jason@callursula.com", "segment": "client_team", "client_slug": "ursula-and-associates" },
-
-    { "email": "emiliya@homedesign2sell.com", "segment": "client_team", "client_slug": "design2sell" },
-    { "email": "ann@homedesign2sell.com", "segment": "client_team", "client_slug": "design2sell" },
-    { "email": "chloe@homedesign2sell.com", "segment": "client_team", "client_slug": "design2sell" },
-    { "email": "rodel@homedesign2sell.com", "segment": "client_team", "client_slug": "design2sell" },
-    { "email": "samuel@homedesign2sell.com", "segment": "client_team", "client_slug": "design2sell" },
-    { "email": "mills@removeasap.com", "segment": "client_team", "client_slug": "asap-pest-wildlife" },
-    { "email": "jane@townrg.com", "segment": "client_team", "client_slug": "townsend-realty-group" },
-
-    { "email": "ellen@tomorrowpictures.com", "segment": "lead" },
-    { "email": "jack@jackjcalhoun.com", "segment": "lead" },
-    { "email": "jmorgan@jmastudio.com", "segment": "lead" },
-    { "email": "jeremy@elementroofing.com", "segment": "lead" },
-    { "email": "jim@dnrbros.com", "segment": "lead" },
-    { "email": "khepnerams@gmail.com", "segment": "lead" },
-    { "email": "olsonmj123@gmail.com", "segment": "lead" },
-    { "email": "mike@simplemoneyacademy.com", "segment": "lead" },
-    { "email": "nick@bilottaco.com", "segment": "lead" },
-    { "email": "nickhorlock@gmail.com", "segment": "lead" },
-    { "email": "ray@mysignatureclosetsga.com", "segment": "lead" },
-    { "email": "rich.matherne@gmail.com", "segment": "lead" },
-    { "email": "smw1974@comcast.net", "segment": "lead" },
-    { "email": "steveclaudin@gmail.com", "segment": "lead" },
-    { "email": "hannahoutdoordesigns@gmail.com", "segment": "lead" }
+    {
+      "email": "adieomccalmon@hotmail.com",
+      "segment": "friend"
+    },
+    {
+      "email": "bronkar63@gmail.com",
+      "segment": "friend"
+    },
+    {
+      "email": "cm@cathrynmarshall.com",
+      "segment": "friend"
+    },
+    {
+      "email": "ckelleher@silvercrestgroup.com",
+      "segment": "friend"
+    },
+    {
+      "email": "cyadon@saprea.org",
+      "segment": "friend"
+    },
+    {
+      "email": "info@daleferdinand.com",
+      "segment": "friend"
+    },
+    {
+      "email": "keyaan.williams@class-llc.com",
+      "segment": "friend"
+    },
+    {
+      "email": "tpenrod@saprea.org",
+      "segment": "friend"
+    },
+    {
+      "email": "ursulalentine@gmail.com",
+      "segment": "friend"
+    },
+    {
+      "email": "jake@008-concrete.com",
+      "segment": "client_team",
+      "client_slug": "008-concrete"
+    },
+    {
+      "email": "nray@wildliferemovalasap.com",
+      "segment": "client_owner",
+      "client_slug": "asap-pest-wildlife",
+      "block_id": "asap"
+    },
+    {
+      "email": "barbara@homedesign2sell.com",
+      "segment": "client_owner",
+      "client_slug": "design2sell",
+      "block_id": "d2s"
+    },
+    {
+      "email": "bjsisson1@gmail.com",
+      "segment": "client_owner",
+      "client_slug": "design2sell",
+      "block_id": "d2s"
+    },
+    {
+      "email": "scott@rutherfordmade.com",
+      "segment": "client_owner",
+      "client_slug": "rutherfordmade",
+      "block_id": "rm"
+    },
+    {
+      "email": "tom@townrg.com",
+      "segment": "client_owner",
+      "client_slug": "townsend-realty-group",
+      "block_id": "townsend"
+    },
+    {
+      "email": "erin@callursula.com",
+      "segment": "client_team",
+      "client_slug": "ursula-and-associates"
+    },
+    {
+      "email": "jason@callursula.com",
+      "segment": "client_team",
+      "client_slug": "ursula-and-associates"
+    },
+    {
+      "email": "emiliya@homedesign2sell.com",
+      "segment": "client_team",
+      "client_slug": "design2sell"
+    },
+    {
+      "email": "ann@homedesign2sell.com",
+      "segment": "client_team",
+      "client_slug": "design2sell"
+    },
+    {
+      "email": "chloe@homedesign2sell.com",
+      "segment": "client_team",
+      "client_slug": "design2sell"
+    },
+    {
+      "email": "rodel@homedesign2sell.com",
+      "segment": "client_team",
+      "client_slug": "design2sell"
+    },
+    {
+      "email": "samuel@homedesign2sell.com",
+      "segment": "client_team",
+      "client_slug": "design2sell"
+    },
+    {
+      "email": "mills@removeasap.com",
+      "segment": "client_team",
+      "client_slug": "asap-pest-wildlife"
+    },
+    {
+      "email": "jane@townrg.com",
+      "segment": "client_team",
+      "client_slug": "townsend-realty-group"
+    },
+    {
+      "email": "ellen@tomorrowpictures.com",
+      "segment": "lead"
+    },
+    {
+      "email": "jack@jackjcalhoun.com",
+      "segment": "lead"
+    },
+    {
+      "email": "jmorgan@jmastudio.com",
+      "segment": "lead"
+    },
+    {
+      "email": "jeremy@elementroofing.com",
+      "segment": "lead"
+    },
+    {
+      "email": "jim@dnrbros.com",
+      "segment": "lead"
+    },
+    {
+      "email": "khepnerams@gmail.com",
+      "segment": "lead"
+    },
+    {
+      "email": "olsonmj123@gmail.com",
+      "segment": "lead"
+    },
+    {
+      "email": "mike@simplemoneyacademy.com",
+      "segment": "lead"
+    },
+    {
+      "email": "nick@bilottaco.com",
+      "segment": "lead"
+    },
+    {
+      "email": "nickhorlock@gmail.com",
+      "segment": "lead"
+    },
+    {
+      "email": "ray@mysignatureclosetsga.com",
+      "segment": "lead"
+    },
+    {
+      "email": "rich.matherne@gmail.com",
+      "segment": "lead"
+    },
+    {
+      "email": "smw1974@comcast.net",
+      "segment": "lead"
+    },
+    {
+      "email": "steveclaudin@gmail.com",
+      "segment": "lead"
+    },
+    {
+      "email": "hannahoutdoordesigns@gmail.com",
+      "segment": "lead"
+    }
   ]
 }
