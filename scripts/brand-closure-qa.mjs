@@ -85,6 +85,7 @@ function countBodyVisuals(html) {
     'install-console',
     'dossier-preview',
     'contract-proof-board',
+    'bd-proof-tile',
   ];
   return countBodyImages(html) + functionalVisualClasses
     .map((className) => countClassedElements(html, className))
