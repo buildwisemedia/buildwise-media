@@ -193,7 +193,17 @@ ul.module-list li:after{content:"";position:absolute;left:2px;top:13px;width:24p
 .offer:hover .corner-lock{opacity:1;transform:none}
 .offer h3{margin:0 0 6px;font-size:20px;font-weight:700}
 .offer .tag{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--acc);margin-bottom:12px}
-.cta{display:inline-block;margin-top:6px;font-weight:600;color:#050507;background:var(--acc);padding:11px 20px;border-radius:8px;border:0}
+.cta{display:inline-block;margin-top:6px;font-weight:700;color:#050507;background:var(--acc);padding:12px 22px;border-radius:9px;border:0;text-decoration:none}
+.cta:hover{box-shadow:0 8px 24px rgba(240,255,0,.22);transform:translateY(-1px)}
+.cta-ghost{background:transparent;color:var(--acc);border:1.5px solid var(--acc);font-weight:600}
+.cta-ghost:hover{background:rgba(240,255,0,.10);box-shadow:none}
+.cta-row{display:flex;align-items:center;gap:18px;flex-wrap:wrap;margin-top:14px}
+.reward-badge{display:inline-flex;flex-direction:column;line-height:1.05;background:rgba(184,255,58,.10);border:1px solid rgba(184,255,58,.5);border-radius:11px;padding:9px 15px;font-family:'JetBrains Mono',monospace}
+.reward-badge b{color:var(--green);font-size:21px;font-weight:800}
+.reward-badge span{font-size:10px;font-weight:500;color:#9fcf6a;letter-spacing:1.4px;text-transform:uppercase;margin-top:3px}
+.fwd-action{font-size:15.5px;color:var(--tx)}
+.fwd-action b{color:#fff;font-weight:600}
+.fwd-action a{color:var(--acc)}
 
 /* footnotes / footer */
 .fn{font-size:13.5px;color:var(--mut);line-height:1.6}
@@ -541,7 +551,7 @@ footer a{color:var(--dim)}
       <div class="tag">Offer 1 · Operations</div>
       <h3>We'll find what AI can take off your plate.</h3>
       <p style="margin-bottom:10px">AI is great at revenue — it's also great at operations. Many businesses report <strong>30–40% efficiency gains</strong> in the first year by automating routine work.<sup><a href="#fn9">9</a></sup> Since you're a valued client, the team and I will work with you one-on-one to find what can be automated or tightened up — including cybersecurity, where AI is excellent — freeing you and your team for higher-value work (or more time off) and making your business safer.</p>
-      <span class="cta">Reply to set up a call</span>
+      <a class="cta" href="mailto:replies@replies.buildwisemedia.com?subject=Operations%20audit&body=I%20want%20the%20team%20to%20find%20what%20we%20can%20automate%20first.">Find what to automate &rarr;</a>
     </div>
 
     <div class="offer weekly-offer">
@@ -549,14 +559,18 @@ footer a{color:var(--dim)}
       <div class="tag">Offer 2 · Your weekly 30</div>
       <h3>A standing 30 minutes, every week.</h3>
       <p style="margin-bottom:10px">Time is one of the most valuable things there is. Just for you, we'll set up a weekly 30-minute meeting to go over anything you need or want, so we keep tuning your system to exactly what you can imagine. The only ask: same time, same day each week.</p>
-      <span class="cta">Reply "weekly" and we'll book it</span>
+      <a class="cta cta-ghost" href="mailto:replies@replies.buildwisemedia.com?subject=My%20weekly%2030&body=I%27d%20like%20a%20standing%20weekly%2030.%20Preferred%20day%2Ftime%3A%20">Claim my weekly slot</a>
     </div>
 
     <div class="offer referral-offer" style="border-color:var(--acc-soft)">
       <span class="corner-lock" aria-hidden="true"></span>
       <div class="tag">A personal ask</div>
       <h3>Know an owner who wants to thrive, not get disrupted?</h3>
-      <p style="margin-bottom:6px">If you know a business owner who'd rather get ahead of AI than get run over by it, send them our way. When it becomes a client, we'll thank you well: <strong>$6,000 per closed-won referral.</strong></p>
+      <p style="margin-bottom:14px">If you know a business owner who'd rather get ahead of AI than get run over by it, send them our way.</p>
+      <div class="cta-row">
+        <span class="reward-badge"><b>$6,000</b><span>per closed-won referral</span></span>
+        <span class="fwd-action"><b>Forward this email to them</b> — or <a href="mailto:replies@replies.buildwisemedia.com?subject=A%20referral&body=Here%27s%20a%20business%20owner%20you%20should%20meet%3A%20">reply with a name</a>.</span>
+      </div>
     </div>
   </div>
 </section>
