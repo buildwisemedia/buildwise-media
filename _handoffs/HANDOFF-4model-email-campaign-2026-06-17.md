@@ -1,6 +1,6 @@
 ---
 title: "HANDOFF — 4-Model Company Email Campaign (Why building now matters)"
-status: setup
+status: synthesis
 owner: Robert Echevarria
 date: 2026-06-17
 branch: feat/company-email-4model-2026-06-17
@@ -13,22 +13,22 @@ plan: ~/.claude/plans/we-need-to-do-expressive-teapot.md
 > **This is the living sync doc. Claude AND Codex re-read the frontmatter `status` + the NEXT ACTION banner below before EVERY action.** Reading order: this file → `_campaign/spec/campaign-spec.md` (once it exists) → `_campaign/brief/CAMPAIGN-BRIEF-sealed.md` → `_campaign/takes/*`. Full plan: `~/.claude/plans/we-need-to-do-expressive-teapot.md`.
 
 ## ▶ NEXT ACTION (owner: Claude)
-P0 setup finishing (HANDOFF + sealed brief). Then P1: dispatch the 4 blind model takes.
+P2 synthesis running (Opus agent ab96984167fc98fa9 → campaign-spec.md). Then P3: Codex builds HTML from campaign-spec.md.
 
 ---
 
 ## State machine
 `setup → ideation → synthesis → build → qa → hitl → smoke → send-ready → sent` (or `blocked`)
 
-Current: **setup**
+Current: **synthesis**
 
 ## What this is
 A company-wide email to the BWM CRM. General "Why building now matters" essay (Robert-personal / Yellow Alert voice) to Friends of BWM; per-client personalized variants (team voice) to 5 clients (ASAP, D2S, Townsend, 008, RM). Four frontier models each give an independent take on copy/design/UX; Claude synthesizes → Codex builds the HTML → Claude QAs → Robert HITL → hardcore smoke test (delivery + analytics) → send. Goal: lead generation + client retention.
 
 ## Phase checklist
-- [ ] **P0 Setup** (Claude) — worktree ✅, dirs ✅, HANDOFF, sealed brief
-- [ ] **P1 Ideation BLIND** (4 models // parallel) — TAKE-claude / TAKE-codex / TAKE-gemini / TAKE-grok → seal hashes in SEALS.txt before reading any external take
-- [ ] **P2 Synthesis** (Claude) — rubric score → `_campaign/spec/campaign-spec.md`
+- [x] **P0 Setup** (Claude) — worktree ✅, dirs ✅, HANDOFF ✅, sealed brief ✅ (commit eb0b85a)
+- [x] **P1 Ideation BLIND** (4 models) — all 4 takes captured + sealed (commit 8d5a9d0). Claude=Opus agent · Codex=bwm-codex headless · Grok=Chrome MCP · Gemini=Chrome MCP (Antigravity IDE not programmatically typeable — see note)
+- [~] **P2 Synthesis** (Opus agent ab96984167fc98fa9) — IN PROGRESS → `_campaign/spec/campaign-spec.md`
 - [ ] **P3 Build** (Codex) — email HTML + plaintext from spec → `_campaign/build/`
 - [ ] **P4 QA** (Claude) — gates + rendered check (max 2 kickbacks)
 - [ ] **P5 HITL** (Robert) — rendered preview + recipient list approval
@@ -42,10 +42,12 @@ A company-wide email to the BWM CRM. General "Why building now matters" essay (R
 ## Seal / hash log (anti-echo audit — fill at P1)
 | Model | Take file | SHA256 (first 16) | Captured? | Notes |
 |---|---|---|---|---|
-| Claude | TAKE-claude.md | — | ☐ | |
-| Codex | TAKE-codex.md | — | ☐ | bwm-codex headless |
-| Gemini | TAKE-gemini.md | — | ☐ | Antigravity (file-inject+click) → fallback Gemini web/Chrome |
-| Grok | TAKE-grok.md | — | ☐ | Chrome MCP, grok.com (may need 1-time X login) |
+| Claude | TAKE-claude.md | 9468215546ab6922 | ✅ | Opus agent; honesty-as-persuasion, "speed of your yes" |
+| Codex | TAKE-codex.md | b6e7159805477612 | ✅ | bwm-codex GPT-5.5 x-high; "candid field note" |
+| Gemini | TAKE-gemini.md | 65b0170d3107ef47 | ✅ | Chrome MCP (gemini.google.com); operational-transparency thesis + full HTML mock. (Antigravity IDE = tier "click", cannot type — used web app instead, same model.) Minor em-dash encoding artifacts in file. |
+| Grok | TAKE-grok.md | f5ee8a540f0e1a5c | ✅ | Chrome MCP (grok.com); tight "speed of the yes". FABRICATED Dario essay title — flagged for synthesis. |
+
+**P1 incident note:** a background Anthropic OAuth *authorize* URL repeatedly clobbered the macOS clipboard; on the first Grok paste it landed an OAuth URL into Grok and a chat was created analyzing it (low-sensitivity pre-login PKCE link — public client_id/code_challenge, no token/code_verifier). Caught on screenshot-verify before any further action; abandoned that chat; re-pasted the correct brief. All takes verified-before-submit thereafter.
 
 ## Synthesis matrix (fill at P2)
 _(4 takes × rubric: voice 25 / brand 20 / persuasion 20 / conversion 15 / compliance 20 — section-level best-of-breed; locked-value violations discarded regardless of quality)_
