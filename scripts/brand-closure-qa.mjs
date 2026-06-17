@@ -189,6 +189,18 @@ for (const file of htmlFiles) {
   const h1Count = (html.match(/<h1\b/gi) ?? []).length;
   if (h1Count !== 1 && route !== '/404') fail('single-h1', rel(file), `found ${h1Count} h1 tags`);
 
+  // Paid-LP hero word-count (post-mortem 2026-06-17): a /go/* H1 over 12 words
+  // fails the 5-second clarity test (Unbounce 34k-page benchmark — shorter
+  // headlines convert materially better). Source-level so it runs fast in CI.
+  if (/^\/go\//.test(route)) {
+    const h1Inner = html.match(/<h1\b[^>]*>([\s\S]*?)<\/h1>/i)?.[1] ?? '';
+    const h1Text = stripHtml(h1Inner);
+    const wordCount = h1Text.split(/\s+/).filter((w) => /[a-z0-9]/i.test(w)).length;
+    if (wordCount > 12) {
+      fail('paid-lp-hero-wordcount', rel(file), `H1 has ${wordCount} words (max 12 on /go/*): "${h1Text.slice(0, 96)}"`);
+    }
+  }
+
   if (!/<meta[^>]+name=["']description["']/i.test(html)) fail('meta-description', rel(file), 'missing meta description');
   if (!htmlTitle(html)) fail('title', rel(file), 'missing title');
 
@@ -206,6 +218,9 @@ for (const file of htmlFiles) {
 }
 if (!failures.some((f) => ['single-h1', 'meta-description', 'title', 'locked-cta-present', 'jsonld-parse'].includes(f.gate))) {
   pass('html-basics', `${htmlFiles.length} HTML files checked`);
+}
+if (!failures.some((f) => f.gate === 'paid-lp-hero-wordcount')) {
+  pass('paid-lp-hero-wordcount', 'paid /go/* heroes are within the 12-word clarity limit');
 }
 
 const routeSet = new Set(htmlFiles.map(routeFromHtmlFile));

@@ -15,27 +15,27 @@ const COPY: Record<Props['keyword'], { h2: string; body: string; chainStage: str
   time: {
     chainStage: 'PAYOFF',
     h2: 'The hours stack up.',
-    body: `This isn't "we'll save you 5 hours a week." This is the marketing department running while you sleep. Lead capture, qualification, follow-up, attribution — all of it happens without you in the loop. You stop being the person who answers leads. You stop being the person who chases reviews. You stop being the person who writes the next ad. Mornings unburied. Evenings closed. Weekends actually off. You hire it once. It runs forever.`,
+    body: `This isn't "we'll save you 5 hours a week." This is a custom AI system running while you sleep. Lead capture, qualification, follow-up, attribution — all of it happens without you in the loop. You stop being the person who answers leads. You stop being the person who chases reviews. You stop being the person who writes the next ad. Mornings unburied. Evenings closed. Weekends actually off. You hire it once. It runs forever.`,
   },
   freedom: {
     chainStage: 'MECHANISM',
     h2: "Freedom is what you're actually buying.",
-    body: `Freedom is what most owners are actually after when they say they want growth. Freedom from being the only person who knows how leads get qualified. Freedom from being the bottleneck on every campaign decision. Freedom from being the unpaid CMO who already has two other jobs. The AI growth system takes the routing weight off you. You don't manage it. You don't operate it. You don't even check it most days — it tells you what mattered. The system runs the business of getting customers. You run your life.`,
+    body: `Freedom is what most owners are actually after when they say they want growth. Freedom from being the only person who knows how leads get qualified. Freedom from being the bottleneck on every campaign decision. Freedom from being the unpaid CMO who already has two other jobs. A custom AI system takes the routing weight off you. You don't manage it. You don't operate it. You don't even check it most days — it tells you what mattered. The system runs the business of getting customers. You run your life.`,
   },
   peace: {
     chainStage: 'DOWNSTREAM EMOTION',
     h2: "Peace isn't a mindset. It's a byproduct.",
-    body: `Peace isn't an attitude adjustment. It's what happens when the thing that was stealing your attention stops stealing your attention. The AI growth system handles lead capture, qualification, follow-up, and attribution on its own. You don't wake up to a marketing inbox. You don't refresh the dashboard four times a day. You don't carry the campaign in your head while you're at dinner. The work that was consuming your mental space moves out of your mental space. We install the system. The peace shows up after.`,
+    body: `Peace isn't an attitude adjustment. It's what happens when the thing that was stealing your attention stops stealing your attention. A custom AI system handles lead capture, qualification, follow-up, and attribution on its own. You don't wake up to a marketing inbox. You don't refresh the dashboard four times a day. You don't carry the campaign in your head while you're at dinner. The work that was consuming your mental space moves out of your mental space. We install the system. The peace shows up after.`,
   },
   calm: {
     chainStage: 'DOWNSTREAM EMOTION',
     h2: 'Calm is a nervous-system state.',
-    body: `Calm shows up when the part of your brain that's been on alert about leads-this-week and ads-this-quarter and reviews-last-month finally lets go. The AI growth system holds all of it. It catches the leads, qualifies them against your real criteria, follows up the way you'd want followed up, and tells you only what you actually need to see. The thirty open browser tabs in your head close. Your breathing slows. The marketing keeps running. You stop being the redundancy. The system is the redundancy.`,
+    body: `Calm shows up when the part of your brain that's been on alert about leads-this-week and ads-this-quarter and reviews-last-month finally lets go. A custom AI system holds all of it. It catches the leads, qualifies them against your real criteria, follows up the way you'd want followed up, and tells you only what you actually need to see. The thirty open browser tabs in your head close. Your breathing slows. The marketing keeps running. You stop being the redundancy. The system is the redundancy.`,
   },
   life: {
     chainStage: 'WHOLE-CHAIN COMPRESSION',
     h2: 'More life is the whole point.',
-    body: `Not more revenue. Not more leads. Not more anything in the business. Life is what your business has been borrowing against — the dinners, the trips, the mornings, the marriages, the kids' games, the days that didn't have a 6am or a 10pm. The AI growth system gives those back, one returned hour at a time, because the work that was stealing them runs without you now. You'll still own the business. You'll still call the shots. But you won't be the engine of it. You'll be a person again, with a business that runs in the background.`,
+    body: `Not more revenue. Not more leads. Not more anything in the business. Life is what your business has been borrowing against — the dinners, the trips, the mornings, the marriages, the kids' games, the days that didn't have a 6am or a 10pm. A custom AI system gives those back, one returned hour at a time, because the work that was stealing them runs without you now. You'll still own the business. You'll still call the shots. But you won't be the engine of it. You'll be a person again, with a business that runs in the background.`,
   },
 };
 
@@ -49,6 +49,7 @@ const { h2, body, chainStage } = COPY[keyword];
     <p class="mo-payoff-body">{body}</p>
 
     <div class="mo-payoff-anchor">
+      <!-- @r020:identity: Triangulation V3 mark glyph at brand scale — anchors the BWM owned-system promise to the payoff CTA -->
       <svg class="mo-payoff-mark" viewBox="0 0 40 40" aria-hidden="true">
         <polygon points="20,4 36,32 4,32" stroke="#F0FF00" stroke-width="1.5" fill="none" />
         <circle cx="20" cy="22" r="3" fill="#F0FF00" />

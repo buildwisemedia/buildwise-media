@@ -102,6 +102,12 @@ const faqSchema = {
         <p class="hero-sub">
           A Revenue Leak Map is a five-minute diagnostic that shows where your lead path is leaking revenue; it is not a generic audit. It names the first gap, ties it to your current pipeline, and shows what should move first.
         </p>
+        <div class="audit-hero-cta" style="display: flex; flex-wrap: wrap; gap: 16px; align-items: center;">
+          <a href="/book" class="cta" data-cta-source="audit-hero-primary">
+            Get My Free Revenue Leak Map
+            <span class="cta-arrow" aria-hidden="true">→</span>
+          </a>
+        </div>
         <p class="audit-hero-note">
           Contractors do not need another vague score, because you need to know which source, step, or follow-up gap is costing booked work.
         </p>
@@ -275,7 +281,7 @@ const faqSchema = {
 
 <style>
 .audit-hero {
-  padding-top: clamp(116px, 13vw, 180px);
+  padding-top: clamp(88px, 9vw, 120px);
   padding-bottom: clamp(64px, 8vw, 112px);
 }
 
@@ -283,7 +289,7 @@ const faqSchema = {
   display: grid;
   grid-template-columns: minmax(0, 1fr) minmax(220px, 320px);
   gap: clamp(36px, 7vw, 88px);
-  align-items: center;
+  align-items: start;
 }
 
 .audit-copy {
@@ -633,7 +639,14 @@ const faqSchema = {
 
 @media (max-width: 520px) {
   .audit-hero {
-    padding-top: 104px;
+    padding-top: 80px;
+  }
+  .audit-copy .h-hero {
+    font-size: 30px;
+    line-height: 1.08;
+  }
+  .audit-copy .hero-sub {
+    font-size: 17px;
   }
 }
 </style>

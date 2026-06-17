@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
 import { spawn } from 'node:child_process';
-import { existsSync } from 'node:fs';
+import { existsSync, readdirSync } from 'node:fs';
 import fs from 'node:fs/promises';
 import os from 'node:os';
 import path from 'node:path';
@@ -16,22 +16,95 @@ const manualAcceptancePath =
   process.env.BWM_MANUAL_VISUAL_ACCEPTANCE || path.join(outRoot, 'manual-visual-review.md');
 const requireManualAcceptance = process.env.BWM_REQUIRE_MANUAL_VISUAL_ACCEPTANCE === '1';
 
-const routes = [
-  { name: 'home', path: '/' },
-  { name: 'book', path: '/book' },
-  { name: 'system', path: '/system' },
-  { name: 'pricing', path: '/pricing' },
-  { name: 'services-ascend', path: '/services/ascend' },
-  { name: 'results', path: '/results' },
-];
+// --- Route coverage is OPT-OUT, not an allowlist (PROJ-DESIGN-INTEL-001 / paid-LP
+// post-mortem 2026-06-17). The rendered sweep used to run a hardcoded six-route
+// allowlist, so /go/* paid landing pages were never visually swept at all and
+// shipped with defects the source/text tier could not see. Every static route
+// under src/pages now auto-enters the sweep; only routes named in ROUTE_OPT_OUT
+// are skipped (each with a reason), and a meta-gate below FAILS if any /go/*
+// paid LP is missing from the run. ---
+const pagesDir = path.resolve('src/pages');
 
-const viewports = [
+// Routes deliberately excluded from the rendered sweep. Each needs a reason.
+// Dynamic param routes can't be rendered without params; legal/utility pages
+// have no hero/CTA contract. Adding a /go/* route here trips the meta-gate.
+const routeOptOut = new Map([
+  ['/m/[card]', 'dynamic param route — no canonical render without :card'],
+  ['/404', 'error route — intentionally single-purpose, no H1/CTA contract'],
+  ['/confirmation', 'post-submit utility page — no hero/CTA contract'],
+  ['/thank-you-resource', 'post-submit utility page — no hero/CTA contract'],
+]);
+
+function fileToRoute(absFile) {
+  let rel = path.relative(pagesDir, absFile).replaceAll(path.sep, '/').replace(/\.astro$/, '');
+  if (rel === 'index') return '/';
+  rel = rel.replace(/\/index$/, '');
+  return `/${rel}`;
+}
+
+function discoverRoutes() {
+  const files = [];
+  const walk = (dir) => {
+    for (const entry of readdirSync(dir, { withFileTypes: true })) {
+      const full = path.join(dir, entry.name);
+      if (entry.isDirectory()) walk(full);
+      else if (entry.name.endsWith('.astro')) files.push(full);
+    }
+  };
+  walk(pagesDir);
+  const paths = files
+    .map(fileToRoute)
+    .filter((route) => !route.includes('[')) // dynamic routes can't be swept
+    .filter((route) => !routeOptOut.has(route));
+  return [...new Set(paths)].sort();
+}
+
+const routeToName = (routePath) =>
+  routePath === '/' ? 'home' : routePath.slice(1).replace(/\//g, '-');
+
+const allRoutes = discoverRoutes().map((routePath) => ({ name: routeToName(routePath), path: routePath }));
+// Paid landing pages — the class that escaped the old allowlist. The meta-gate
+// asserts every one of these is in the swept set.
+const paidLpRoutes = allRoutes.filter((route) => /^\/(go|mo)(\/|-|$)/.test(route.path));
+
+// Pages with a STRICT above-fold-CTA contract: paid LPs + the core conversion
+// funnel. Editorial/SEO/content pages (playbook, problem, industries, about…)
+// legitimately lead with the story and place the CTA after the value, so a
+// below-fold CTA there is an advisory, not a hard fail (paid-LP post-mortem).
+const CORE_FUNNEL = new Set([
+  '/', '/book', '/pricing', '/system', '/services/ascend', '/services/ascend-pilot', '/audit', '/results',
+]);
+const isStrictCtaRoute = (pathname) => {
+  const p = (pathname || '').replace(/\/$/, '') || '/';
+  return /^\/(go|mo)(\/|-)/.test(p) || CORE_FUNNEL.has(p);
+};
+
+// BWM_QA_ROUTES scopes a run to a comma-separated subset of paths (fast targeted
+// reruns); when set, the meta-gate is skipped because the scope is explicit.
+const routeOverride = (process.env.BWM_QA_ROUTES || '')
+  .split(',')
+  .map((value) => value.trim())
+  .filter(Boolean);
+const routes = routeOverride.length
+  ? allRoutes.filter((route) => routeOverride.includes(route.path))
+  : allRoutes;
+
+const allViewports = [
   { name: 'desktop-1920x1080', width: 1920, height: 1080, mobile: false },
   { name: 'desktop-1440x900', width: 1440, height: 900, mobile: false },
   { name: 'desktop-1280x800', width: 1280, height: 800, mobile: false },
   { name: 'tablet-768x1024', width: 768, height: 1024, mobile: false },
   { name: 'mobile-390x844', width: 390, height: 844, mobile: true },
 ];
+// BWM_QA_VIEWPORTS scopes the matrix (e.g. "desktop-1440x900,mobile-390x844")
+// so the full-fleet sweep can run the two gate-critical viewports for speed.
+const viewportOverride = (process.env.BWM_QA_VIEWPORTS || '')
+  .split(',')
+  .map((value) => value.trim())
+  .filter(Boolean);
+const viewports = viewportOverride.length
+  ? allViewports.filter((viewport) => viewportOverride.includes(viewport.name))
+  : allViewports;
 
 const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
@@ -539,10 +612,225 @@ function pageAudit() {
         }
       });
 
+    // --- Paid-LP post-mortem gates (2026-06-17) ---------------------------------
+    // These are the rendered-pixel checks the old sweep lacked: a selector-agnostic
+    // primary-CTA-above-fold measure (was hardcoded to "See If We're a Fit"), an
+    // SVG text-vs-graphic collision check (caught nothing before), a bar-chart
+    // conclusion-annotation check, section prose-density, and comparison-table
+    // hierarchy. Each maps 1:1 to a defect Robert caught by eye on /go/*.
+
+    const isBook = location.pathname === '/book' || location.pathname === '/book/';
+
+    // ITEM 3 — primary CTA, selector-agnostic. Any conversion control counts:
+    // .cta / [class*=cta] anchors, [data-cta-source], plus the legacy locked-CTA
+    // and (on /book) the booking form actions already detected above.
+    const genericCtas = Array.from(
+      document.querySelectorAll('a.cta, a[class*="cta"], [data-cta-source], button.cta, a.cta-primary'),
+    )
+      .filter(visible)
+      .map((element) => rectObj(element).absTop);
+    const ctaTops = [
+      ...genericCtas,
+      ...exactCtas.map((item) => item.rect.absTop),
+      ...(isBook ? bookActions.map((item) => item.rect.absTop) : []),
+    ];
+    const ctaPrimaryTop = ctaTops.length ? Math.min(...ctaTops) : null;
+
+    // ITEM 2 — SVG text-vs-graphic collision. High-precision marks only: filled
+    // nodes (circle/ellipse — tight bbox), axis-aligned lines (thin bbox), and
+    // small stroked outline rects. Curved path/polyline bboxes are too loose for a
+    // deterministic call and are left to the [S]-tier multimodal critique.
+    // Ink marks = glyph-colliding graphics with a TIGHT bounding box: filled/stroked
+    // nodes (circle/ellipse) and near-axis-aligned lines. `rect` is excluded — a
+    // stroked rect is almost always a label/value container the text sits INSIDE by
+    // design, and a filled rect is a bar or backdrop panel; curved path/polyline
+    // bboxes are too loose. Node/line collisions are exactly what Robert caught.
+    // Effective alpha of an SVG paint = its rgba alpha × the *-opacity property.
+    const effAlpha = (colorStr, opacityProp) => {
+      const m = /rgba?\(([^)]+)\)/.exec(colorStr || '');
+      let alpha = colorStr && colorStr !== 'none' ? 1 : 0;
+      if (m) {
+        const parts = m[1].split(',').map((s) => Number.parseFloat(s));
+        alpha = parts.length > 3 ? parts[3] : 1;
+      }
+      const op = Number.parseFloat(opacityProp);
+      return alpha * (Number.isFinite(op) ? op : 1);
+    };
+    const isInkMark = (mark) => {
+      if (!visible(mark)) return false;
+      const tag = mark.tagName.toLowerCase();
+      const rect = mark.getBoundingClientRect();
+      if (rect.width < 1 && rect.height < 1) return false;
+      const style = window.getComputedStyle(mark);
+      // Only an OPAQUE mark (effective alpha >= 0.6) can actually obscure text — a
+      // faint/semi-transparent node reads THROUGH (the /go/status satellite circles
+      // are rgba(...,0.22) and do not hide their labels). And only SMALL circles:
+      // a large circle is a node container whose label legitimately sits at its edge.
+      if (tag === 'circle' || tag === 'ellipse') {
+        return effAlpha(style.fill, style.fillOpacity) >= 0.6 && Math.max(rect.width, rect.height) <= 36;
+      }
+      if (tag === 'line') return effAlpha(style.stroke, style.strokeOpacity) >= 0.6 && Math.min(rect.width, rect.height) <= 6;
+      return false;
+    };
+    const svgTextCollisions = [];
+    Array.from(document.querySelectorAll('svg'))
+      .filter(visible)
+      .forEach((svg, svgIndex) => {
+        const texts = Array.from(svg.querySelectorAll('text')).filter(visible);
+        const marks = Array.from(svg.querySelectorAll('circle, ellipse, line')).filter(isInkMark);
+        texts.forEach((text) => {
+          if (svgTextCollisions.length >= 12) return;
+          const tr = text.getBoundingClientRect();
+          if (tr.width < 1 || tr.height < 1) return;
+          const textGroup = text.closest('g');
+          for (const mark of marks) {
+            if (mark.contains(text) || text.contains(mark)) continue;
+            // Text and mark sharing the same <g> node-group → the text is that
+            // node's LABEL (node-map diagrams), not a collision with an unrelated
+            // mark. Flat-SVG collisions (text + dot both direct <svg> children)
+            // have no shared group and are still caught.
+            const markGroup = mark.closest('g');
+            if (markGroup && markGroup === textGroup) continue;
+            const mr = mark.getBoundingClientRect();
+            // text fully inside the mark's box → a label/value container, by design.
+            const textInsideMark =
+              tr.left >= mr.left - 1 && tr.right <= mr.right + 1 && tr.top >= mr.top - 1 && tr.bottom <= mr.bottom + 1;
+            if (textInsideMark) continue;
+            const overlapX = Math.min(tr.right, mr.right) - Math.max(tr.left, mr.left);
+            const overlapY = Math.min(tr.bottom, mr.bottom) - Math.max(tr.top, mr.top);
+            // Require SUBSTANTIAL coverage (>=40% of the glyph box), i.e. the text is
+            // genuinely sitting UNDER the mark — not a bounding-box graze. SVG <text>
+            // boxes carry line-height padding and circle boxes carry empty corners, so
+            // a few-px edge overlap is not an ink collision (verified against the
+            // /go/status + /go/volume node-map label grazes, 2026-06-17). A real
+            // "covered" collision (a node dropped on a word) clears 50%.
+            const textArea = tr.width * tr.height;
+            const coverage = textArea > 0 ? (Math.max(0, overlapX) * Math.max(0, overlapY)) / textArea : 0;
+            if (overlapX > 1 && overlapY > 1 && coverage >= 0.4) {
+              svgTextCollisions.push({
+                svgIndex,
+                text: norm(text.textContent).slice(0, 32),
+                mark: mark.tagName.toLowerCase(),
+                overlap: `${Math.round(overlapX)}x${Math.round(overlapY)}`,
+                coverage: `${Math.round(coverage * 100)}%`,
+              });
+              break;
+            }
+          }
+        });
+      });
+
+    // ITEM 6 — bar-chart conclusion annotation. A filled, similar-width series of
+    // ≥3 bars is a quantitative chart; it must state its conclusion in a NUMBER the
+    // sighted viewer can read (a <text> or sibling <figcaption>), not leave them to
+    // estimate from bar heights. aria-label-only numbers are accessible but invisible
+    // → advisory. No number anywhere → strict.
+    const numRe = /\d|%|×/;
+    const dataVizCharts = [];
+    Array.from(document.querySelectorAll('svg'))
+      .filter(visible)
+      .forEach((svg) => {
+        // Icon-sized SVGs are decorative glyphs (growth bars, equalizer marks),
+        // not data charts — a real bar chart is a substantial graphic.
+        if (svg.getBoundingClientRect().width < 160) return;
+        const filledBars = Array.from(svg.querySelectorAll('rect')).filter((rect) => {
+          const style = window.getComputedStyle(rect);
+          const fill = (style.fill || '').toLowerCase();
+          const stroke = (style.stroke || '').toLowerCase();
+          const hasFill = fill && fill !== 'none' && fill !== 'rgba(0, 0, 0, 0)' && fill !== 'transparent';
+          const hasStroke = stroke && stroke !== 'none' && stroke !== 'rgba(0, 0, 0, 0)';
+          const box = rect.getBoundingClientRect();
+          return hasFill && !hasStroke && box.width > 2 && box.height > 4;
+        });
+        if (filledBars.length < 4) return;
+        const widthOf = (rect) => Math.round(rect.getBoundingClientRect().width);
+        const widths = filledBars.map(widthOf).sort((a, b) => a - b);
+        const median = widths[Math.floor(widths.length / 2)];
+        const seriesBars = filledBars.filter((rect) => Math.abs(widthOf(rect) - median) <= 3);
+        if (seriesBars.length < 4) return; // a uniform-width series of <4 is a decorative motif
+        // A real bar chart encodes data in VARYING bar heights. A uniform-height
+        // series is a row of R014b vertex markers / pipeline/timeline node squares,
+        // not a chart (verified on /problem/leaky-revenue + /problem/reactive-growth).
+        const heights = seriesBars.map((rect) => Math.round(rect.getBoundingClientRect().height));
+        if (Math.max(...heights) - Math.min(...heights) < 4) return;
+        const series = seriesBars.map(widthOf);
+        const visibleText = Array.from(svg.querySelectorAll('text')).map((t) => t.textContent).join(' ');
+        const figure = svg.closest('figure');
+        const figcaption = figure ? figure.querySelector('figcaption')?.textContent || '' : '';
+        const aria = svg.getAttribute('aria-label') || '';
+        const hasVisibleNumber = numRe.test(visibleText) || numRe.test(figcaption);
+        const hasAnyNumber = hasVisibleNumber || numRe.test(aria);
+        dataVizCharts.push({
+          bars: series.length,
+          hasVisibleNumber,
+          hasAnyNumber,
+          sample: (aria || figcaption || visibleText).replace(/\s+/g, ' ').trim().slice(0, 56),
+        });
+      });
+
+    // ITEM 5 — section prose density (advisory). >120 words of body prose above a
+    // section's first visual, with no bold/emphasis skim layer, reads as a wall.
+    const proseDensity = [];
+    Array.from(document.querySelectorAll('section'))
+      .filter(visible)
+      .forEach((section) => {
+        if (proseDensity.length >= 10) return;
+        const firstVisual = Array.from(
+          section.querySelectorAll('svg, img, figure, table, canvas, picture, video'),
+        ).filter(visible)[0];
+        const visualTop = firstVisual ? rectObj(firstVisual).absTop : Number.POSITIVE_INFINITY;
+        let words = 0;
+        let hasEmphasis = false;
+        Array.from(section.querySelectorAll('p'))
+          .filter(visible)
+          .forEach((p) => {
+            if (rectObj(p).absTop >= visualTop) return;
+            // Skip prose already structured inside a component (comparison cell,
+            // card, list item, table) — that is a scan layer, not a wall of text.
+            if (p.closest('[role="cell"], [role="row"], [role="listitem"], li, table, figure, [class*="card"], [class*="grid"], [class*="compare"], [class*="step"]')) {
+              return;
+            }
+            words += norm(p.textContent).split(/\s+/).filter(Boolean).length;
+            if (p.querySelector('strong, b, em, mark')) hasEmphasis = true;
+          });
+        if (words > 120 && !hasEmphasis) {
+          proseDensity.push({ words, cls: `${section.className || ''}`.slice(0, 40) });
+        }
+      });
+
+    // ITEM 8 — comparison-table visual hierarchy. A 2-column comparison must guide
+    // the eye with per-row treatment on the winner column (accent border/background),
+    // not just a colored header, and keep rows scannable (≤60 words).
+    const comparisonTables = [];
+    Array.from(document.querySelectorAll('[role="table"], table'))
+      .filter(visible)
+      .forEach((table) => {
+        const headers = Array.from(table.querySelectorAll('[role="columnheader"], th')).filter(visible);
+        const cells = Array.from(table.querySelectorAll('[role="cell"], td')).filter(visible);
+        // Binary "us vs them" comparison only: exactly 2 column headers and a small
+        // cell count. Multi-tier pricing/feature matrices (3+ columns, dozens of
+        // cells) are a different table type and are out of scope for this check.
+        if (headers.length !== 2 || cells.length < 4 || cells.length > 16) return;
+        let treatedCells = 0;
+        let longRows = 0;
+        cells.forEach((cell) => {
+          const style = window.getComputedStyle(cell);
+          const borderLeft = Number.parseFloat(style.borderLeftWidth) || 0;
+          const borderTop = Number.parseFloat(style.borderTopWidth) || 0;
+          if (borderLeft >= 2 || borderTop >= 2) treatedCells += 1;
+          if (norm(cell.textContent).split(/\s+/).filter(Boolean).length > 60) longRows += 1;
+        });
+        comparisonTables.push({
+          cells: cells.length,
+          treatedCells,
+          longRows,
+          noPerRowTreatment: treatedCells === 0,
+        });
+      });
+
     const html = document.documentElement;
     const body = document.body;
     const scrollWidth = Math.max(html.scrollWidth, body ? body.scrollWidth : 0);
-    const isBook = location.pathname === '/book' || location.pathname === '/book/';
 
     return {
       url: location.href,
@@ -565,16 +853,18 @@ function pageAudit() {
           .filter((image) => image.naturalWidth < 1 || image.naturalHeight < 1)
           .slice(0, 10),
       },
-      mobileCtaWithin580:
-        exactCtas.some((item) => item.rect.absTop <= 580) ||
-        (isBook && bookActions.some((item) => item.rect.absTop <= 580)),
+      mobileCtaWithin580: ctaTops.some((top) => top <= 580),
+      ctaPrimaryTop,
+      ctaCount: ctaTops.length,
+      svgTextCollisions,
+      dataVizCharts,
+      proseDensity,
+      comparisonTables,
       headingQuality,
       cropSafety,
       sliderAffordance,
       curveMarkers,
-      desktopCtaAboveFold:
-        exactCtas.some((item) => item.rect.absTop <= window.innerHeight) ||
-        (isBook && bookActions.some((item) => item.rect.absTop <= window.innerHeight)),
+      desktopCtaAboveFold: ctaPrimaryTop !== null && ctaPrimaryTop <= window.innerHeight,
       yellowRatio: (() => {
         const pageArea =
           window.innerWidth * Math.max(html.scrollHeight, body ? body.scrollHeight : 0);
@@ -737,7 +1027,7 @@ function routeFailures(metrics, viewport) {
       (item.text.length > 2 || item.tag === 'button' || item.tag === 'a'),
   );
   if (clipped.length) failures.push(`clipped controls ${clipped.length}`);
-  if (viewport.mobile && !metrics.mobileCtaWithin580) {
+  if (viewport.mobile && !metrics.mobileCtaWithin580 && isStrictCtaRoute(metrics.pathname)) {
     failures.push('mobile CTA/form action not visible within first 580px');
   }
   if (metrics.headingQuality?.issues?.length) {
@@ -756,8 +1046,38 @@ function routeFailures(metrics, viewport) {
   // [S]-tier deterministic adjuncts (PROJ-DESIGN-INTEL-001 P2). STRICT posture
   // was validated by a clean flagship smoke on 2026-06-11 (zero false-block);
   // tier contract in Brain reference/QA-Visual-Design-Gate.md.
-  if (viewport.name === 'desktop-1440x900' && !metrics.desktopCtaAboveFold) {
-    failures.push('desktop CTA not visible above the 900px fold');
+  // ITEM 3 — primary CTA must clear the fold at 1440x900 (top ≤ viewportH − 80).
+  // Selector-agnostic: catches /go/* CTAs ("Get My Free Revenue Leak Map") the
+  // old "See If We're a Fit" hardcode missed. STRICT only for paid LPs + the core
+  // funnel; below-fold CTA on editorial pages is reported as an advisory.
+  if (viewport.name === 'desktop-1440x900' && isStrictCtaRoute(metrics.pathname)) {
+    if (metrics.ctaPrimaryTop === null) {
+      failures.push('no primary CTA detected on page');
+    } else if (metrics.ctaPrimaryTop > viewport.height - 80) {
+      failures.push(`primary CTA below the fold (top ${metrics.ctaPrimaryTop}px > ${viewport.height - 80}px @1440x900)`);
+    }
+  }
+  // ITEM 2 — SVG text/graphic collisions (deterministic, high-precision marks).
+  if (metrics.svgTextCollisions?.length) {
+    const sample = metrics.svgTextCollisions
+      .slice(0, 3)
+      .map((c) => `"${c.text}"×${c.mark}`)
+      .join(', ');
+    failures.push(`svg text collisions ${metrics.svgTextCollisions.length} (${sample})`);
+  }
+  // ITEM 6 — a bar chart with no conclusion number anywhere is unreadable.
+  const unannotatedCharts = (metrics.dataVizCharts || []).filter((chart) => !chart.hasAnyNumber);
+  if (unannotatedCharts.length) {
+    failures.push(`bar chart without a conclusion number ${unannotatedCharts.length}`);
+  }
+  // ITEM 8 — comparison table must guide the eye, not be a wall of text.
+  const flatTables = (metrics.comparisonTables || []).filter((t) => t.noPerRowTreatment);
+  if (flatTables.length) {
+    failures.push(`comparison table with header-only treatment (no winner-column rows) ${flatTables.length}`);
+  }
+  const wordyTables = (metrics.comparisonTables || []).filter((t) => t.longRows > 0);
+  if (wordyTables.length) {
+    failures.push(`comparison table rows over 60 words ${wordyTables.reduce((sum, t) => sum + t.longRows, 0)}`);
   }
   if (metrics.yellowRatio && metrics.yellowRatio.ratio > 0.1) {
     failures.push(`yellow-ratio ${(metrics.yellowRatio.ratio * 100).toFixed(1)}% exceeds 10% accent budget`);
@@ -779,9 +1099,32 @@ function routeFailures(metrics, viewport) {
 // (8-9px faint diagram annotations ~3:1) — a design-tier [J] decision, not a
 // regression this sweep should hard-block on. Flips to routeFailures once the
 // micro-label register is resolved.
-function routeAdvisories(metrics) {
+function routeAdvisories(metrics, viewport) {
   const advisories = [];
   if (metrics.wcag?.contrast?.length) advisories.push(`wcag contrast ${metrics.wcag.contrast.length}`);
+  // Editorial/content pages with the CTA below the fold — advisory, not a hard
+  // fail (the strict above-fold contract is paid-LP + core-funnel only).
+  if (
+    viewport?.name === 'desktop-1440x900' &&
+    !isStrictCtaRoute(metrics.pathname) &&
+    metrics.ctaPrimaryTop !== null &&
+    metrics.ctaPrimaryTop !== undefined &&
+    metrics.ctaPrimaryTop > viewport.height - 80
+  ) {
+    advisories.push(`primary CTA below the fold (top ${metrics.ctaPrimaryTop}px, editorial page)`);
+  }
+  // ITEM 5 — prose density: a wall of body text with no skim layer before its
+  // first visual. Advisory (scannability is a [J] judgment, not a hard regression).
+  if (metrics.proseDensity?.length) {
+    const worst = Math.max(...metrics.proseDensity.map((p) => p.words));
+    advisories.push(`prose density ${metrics.proseDensity.length} (worst ${worst} words)`);
+  }
+  // ITEM 6 (advisory tier) — a bar chart whose only number lives in aria-label is
+  // accessible but makes the SIGHTED viewer estimate the delta from bar heights.
+  const ariaOnlyCharts = (metrics.dataVizCharts || []).filter((c) => c.hasAnyNumber && !c.hasVisibleNumber);
+  if (ariaOnlyCharts.length) {
+    advisories.push(`bar chart number not visibly rendered (aria-only) ${ariaOnlyCharts.length}`);
+  }
   return advisories;
 }
 
@@ -976,7 +1319,7 @@ async function main() {
           viewport: viewport.name,
           screenshot: screenshotPath,
           failures: routeFailures(metrics, viewport),
-          advisories: routeAdvisories(metrics),
+          advisories: routeAdvisories(metrics, viewport),
           h1s: metrics.h1s,
           overflowX: metrics.document.overflowX,
           visibleImages: metrics.images.visibleCount,
@@ -986,6 +1329,31 @@ async function main() {
         };
         captures.push(capture);
         if (capture.failures.length) failures.push(capture);
+      }
+    }
+
+    // META-GATE (paid-LP post-mortem 2026-06-17): the sweep must actually cover
+    // every paid landing page. If a /go/* or /mo-* route exists in src/pages but
+    // is absent from the run (re-hardcoded list, stray opt-out, build drift),
+    // FAIL loudly — a silently-skipped LP is exactly how the agency-alternative
+    // page shipped unswept. Skipped only when the run is explicitly scoped.
+    if (!routeOverride.length) {
+      const sweptPaths = new Set(routes.map((route) => route.path));
+      const missingPaidLp = paidLpRoutes.filter((route) => !sweptPaths.has(route.path));
+      if (!paidLpRoutes.length) {
+        failures.push({
+          route: 'meta-gate',
+          viewport: 'all',
+          screenshot: '',
+          failures: ['no /go/* or /mo-* paid landing pages discovered — route auto-discovery is broken'],
+        });
+      } else if (missingPaidLp.length) {
+        failures.push({
+          route: 'meta-gate',
+          viewport: 'all',
+          screenshot: '',
+          failures: [`paid landing pages missing from sweep: ${missingPaidLp.map((route) => route.path).join(', ')}`],
+        });
       }
     }
 

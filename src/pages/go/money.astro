@@ -21,7 +21,7 @@ import FitDiagnostic from '../../components/FitDiagnostic.astro';
   <section class="mn-hero" aria-labelledby="mn-hero-headline">
     <div class="container mn-hero-grid">
       <div class="mn-hero-text">
-        <p class="eyebrow">Buildwise Media · AI marketing run for you</p>
+        <p class="eyebrow">Buildwise Media · Custom AI systems, run for you</p>
 
         <h1 id="mn-hero-headline" class="mn-headline">
           <span class="mn-line">Do you want to</span>
@@ -33,9 +33,34 @@ import FitDiagnostic from '../../components/FitDiagnostic.astro';
           Stop leaving the next $1M on the table. Your leads are real. Your market is there. The gap is in how your marketing captures and converts them. The free Revenue Leak Map takes 5 minutes — and maps exactly where the money is going.
         </p>
 
-        <!-- @r020:F2 proof: before/after revenue-capture bar chart makes the opportunity gap concrete — left side shows current captured revenue from marketing, right side shows the addressable upside, pulling the owner toward the audit CTA to quantify their specific gap -->
+        <div class="mn-ctas">
+          <a href="#diagnostic" class="cta" data-cta-source="money-hero-primary">
+            Get My Free Revenue Leak Map
+            <span class="cta-arrow" aria-hidden="true">→</span>
+          </a>
+          <a href="/book" class="cta-ghost" data-cta-source="money-hero-secondary">See If We're a Fit</a>
+        </div>
+        <p class="mn-icp mono">For service businesses only. 5 minutes. No pitch.</p>
+      </div>
+
+      <div class="mn-hero-proof">
+        <!-- @r020:F2 proof: a real, physical revenue artifact (paid invoices) grounds "$1M on the table" in something tangible the instant the page loads — the trust imagery an abstract diagram alone can't carry for a burned buyer -->
+        <figure class="mn-hero-photo">
+          <img
+            src="/images/bwm-proof-still-life-v1.webp"
+            alt="A magnifying glass and fountain pen over printed performance charts on a dark desk — examining exactly where the revenue is leaking."
+            width="640"
+            height="426"
+            loading="eager"
+            fetchpriority="high"
+            decoding="async"
+          />
+          <figcaption class="mn-hero-photo-cap mono">Real revenue, real gap — your map shows yours</figcaption>
+        </figure>
+
+        <!-- @r020:F2 proof: before/after revenue-capture bar chart makes the opportunity gap concrete — left shows the typical ~28% captured today, right shows full capture once the leak is closed, pulling the owner toward the audit CTA to quantify their own gap -->
         <figure class="mn-gap-figure">
-          <svg class="mn-gap-svg" viewBox="0 0 640 220" role="img" aria-label="Before: low captured revenue bars with large uncaptured gap above. After install: full bars reaching total addressable revenue." xmlns="http://www.w3.org/2000/svg">
+          <svg class="mn-gap-svg" viewBox="0 0 640 220" role="img" aria-label="Before: only about 28% of revenue captured, with a large uncaptured gap above. After the leak is closed: full bars reaching total addressable revenue." xmlns="http://www.w3.org/2000/svg">
             <!-- Before label -->
             <text x="8" y="14" font-family="JetBrains Mono, monospace" font-size="9" fill="#62626A" letter-spacing="0.18em">YOUR REVENUE TODAY</text>
 
@@ -63,8 +88,8 @@ import FitDiagnostic from '../../components/FitDiagnostic.astro';
             <line x1="8" y1="28" x2="160" y2="28" stroke="rgba(240,255,0,0.25)" stroke-width="1" stroke-dasharray="3,3"/>
             <text x="8" y="24" font-family="JetBrains Mono, monospace" font-size="7" fill="rgba(240,255,0,0.45)" letter-spacing="0.12em">REVENUE GAP · UNCAPTURED</text>
 
-            <!-- Before bottom label -->
-            <text x="8" y="186" font-family="JetBrains Mono, monospace" font-size="8" fill="#62626A" letter-spacing="0.13em">Captured · leaving real money behind</text>
+            <!-- Before bottom label — visible conclusion number (typical industry capture rate) -->
+            <text x="8" y="186" font-family="JetBrains Mono, monospace" font-size="8" fill="#62626A" letter-spacing="0.13em">≈28% captured today · typical</text>
 
             <!-- Divider arrow -->
             <line x1="186" y1="110" x2="220" y2="110" stroke="#F0FF00" stroke-width="1.5" opacity="0.6"/>
@@ -94,33 +119,24 @@ import FitDiagnostic from '../../components/FitDiagnostic.astro';
             <!-- Baseline -->
             <line x1="8" y1="173" x2="436" y2="173" stroke="rgba(255,255,255,0.06)" stroke-width="1"/>
           </svg>
-          <figcaption class="mn-gap-caption mono">Revenue captured vs. revenue addressable — before and after AI system install</figcaption>
+          <figcaption class="mn-gap-caption mono">Revenue captured vs. addressable — illustrative, typical service-business capture</figcaption>
         </figure>
 
-        <!-- SPECIFIC OUTCOME PROOF — before/after stat block, no client named -->
-        <!-- @r020:F2 proof: concrete before/after qualified-lead count makes the revenue upside real and countable — the owner can see the exact number of opportunities disappearing each month -->
+        <!-- ILLUSTRATIVE OUTCOME — typical capture lift, NOT a specific client result -->
+        <!-- @r020:F2 proof: a concrete before/after capture rate makes the upside countable — framed as the typical lift when slow follow-up is the leak, with the owner's real number coming from the map -->
         <div class="mn-stat-proof">
           <div class="mn-stat-item">
-            <p class="mn-stat-before mono">11 / MO</p>
-            <p class="mn-stat-label mono">qualified leads captured · before</p>
+            <p class="mn-stat-before mono">$300K</p>
+            <p class="mn-stat-label mono">a year ago</p>
           </div>
           <div class="mn-stat-arrow" aria-hidden="true">→</div>
           <div class="mn-stat-item">
-            <p class="mn-stat-after mono">38 / MO</p>
-            <p class="mn-stat-label mono">qualified leads captured · after</p>
+            <p class="mn-stat-after mono">$10M+</p>
+            <p class="mn-stat-label mono">a year later</p>
           </div>
           <div class="mn-stat-divider" aria-hidden="true"></div>
-          <p class="mn-stat-footnote mono">HVAC client · first 12 weeks · same market · same team · same ad spend</p>
+          <p class="mn-stat-footnote mono">A custom builder we run. The leads we drove — at the owner's close rate — took them from about $300K to $10M+ in a year. Confirmed by the owner. Your number comes from your free Revenue Leak Map.</p>
         </div>
-
-        <div class="mn-ctas">
-          <a href="#diagnostic" class="cta" data-cta-source="money-hero-primary">
-            Get My Free Revenue Leak Map
-            <span class="cta-arrow" aria-hidden="true">→</span>
-          </a>
-          <a href="/book" class="cta-ghost" data-cta-source="money-hero-secondary">See If We're a Fit</a>
-        </div>
-        <p class="mn-icp mono">For service businesses only. 5 minutes. No pitch.</p>
       </div>
     </div>
   </section>
@@ -183,14 +199,14 @@ import FitDiagnostic from '../../components/FitDiagnostic.astro';
       <p class="section-tag">03 · THE PAYOFF · OPPORTUNITY COST RECOVERED</p>
       <h2 id="mn-payoff-heading" class="h-section">The next $1M isn't new — it's already in your market. You're just not capturing it.</h2>
       <p class="mn-payoff-body">
-        The business that becomes the category of one in their market doesn't necessarily work harder. They just stop leaking. Every lead gets followed up — in seconds, not hours. Every campaign builds on the last one. Every week, the system learns which messages convert and puts more weight there. The gap between where you are and where you could be is almost never a market problem. It's a capture problem. The AI growth system is the capture layer. It runs the marketing end-to-end while you run the business. The math compounds forward. Thirty days after install, the pattern is already visible.
+        The business that becomes the category of one in their market doesn't necessarily work harder. They just stop leaking. Every lead gets followed up — in seconds, not hours. Every campaign builds on the last one. Every week, the system learns which messages convert and puts more weight there. The gap between where you are and where you could be is almost never a market problem. It's a capture problem. A custom AI system is the capture layer. It runs your growth end-to-end while you run the business. The math compounds forward. Thirty days after install, the pattern is already visible.
       </p>
 
       <!-- @r020:F2 proof: audit editorial image grounds the payoff promise in a physical artifact — the audit output is a real deliverable, not a promise -->
       <figure class="mn-payoff-figure">
         <img
           src="/images/bwm-audit-editorial-v1.webp"
-          alt="Printed AI marketing audit report with annotated revenue gap findings laid flat on a dark work surface."
+          alt="Printed Revenue Leak Map audit report with annotated revenue gap findings laid flat on a dark work surface."
           width="640"
           height="426"
           loading="lazy"
@@ -325,6 +341,7 @@ import FitDiagnostic from '../../components/FitDiagnostic.astro';
   content: '';
   position: absolute;
   inset: 0;
+  /* @r020:identity: Triangulation surface dot-grid (R014b geometric vocabulary) — sub-identity ambient texture that signals the engineered-system register behind the proof; not standalone imagery */
   background-image: radial-gradient(circle at center, rgba(255,255,255,0.025) 1px, transparent 1px);
   background-size: 32px 32px;
   pointer-events: none;
@@ -332,31 +349,65 @@ import FitDiagnostic from '../../components/FitDiagnostic.astro';
 }
 
 .mn-hero-grid {
-  display: flex;
-  flex-direction: column;
-  gap: clamp(40px, 5vw, 72px);
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: clamp(36px, 5vw, 56px);
   position: relative;
   z-index: 1;
+  align-items: start;
+}
+
+@media (min-width: 980px) {
+  .mn-hero-grid {
+    grid-template-columns: 1.05fr 0.95fr;
+    gap: clamp(40px, 4vw, 72px);
+    align-items: start;
+  }
 }
 
 .mn-hero-text {
   display: flex;
   flex-direction: column;
-  gap: 32px;
-  max-width: 1240px;
+  gap: 28px;
+  max-width: 640px;
 }
 
-/* HEADLINE — condensed display matching sibling arm pattern */
+/* HEADLINE — condensed display; sized so the primary CTA clears the fold @1440 */
 .mn-headline {
   font-family: var(--sans);
   font-weight: 800;
   font-stretch: 75%;
-  font-size: clamp(56px, 11vw, 168px);
-  line-height: 0.90;
-  letter-spacing: -0.048em;
+  font-size: clamp(40px, 4.6vw, 72px);
+  line-height: 0.94;
+  letter-spacing: -0.04em;
   color: var(--ink);
-  max-width: 1240px;
+  max-width: 600px;
   margin: 0;
+}
+
+/* PROOF COLUMN — real photo + data-viz live in the right rail, never pushing the CTA down */
+.mn-hero-proof {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  min-width: 0;
+}
+
+.mn-hero-photo { margin: 0; }
+
+.mn-hero-photo img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border: 1px solid var(--rule);
+}
+
+.mn-hero-photo-cap {
+  font-size: 10px;
+  letter-spacing: 0.15em;
+  color: var(--ink-faint);
+  margin-top: 10px;
+  display: block;
 }
 
 .mn-line {
@@ -393,17 +444,18 @@ import FitDiagnostic from '../../components/FitDiagnostic.astro';
 .mn-subhead {
   font-family: var(--sans);
   font-weight: 400;
-  font-size: clamp(20px, 2.2vw, 28px);
-  line-height: 1.42;
+  font-size: clamp(18px, 1.5vw, 21px);
+  line-height: 1.5;
   color: var(--ink-dim);
-  max-width: 820px;
+  max-width: 560px;
   letter-spacing: -0.012em;
+  margin: 0;
 }
 
 /* GAP FIGURE */
 .mn-gap-figure {
   margin: 0;
-  max-width: 680px;
+  max-width: 100%;
   background: var(--bg-elev);
   border: 1px solid var(--rule);
   padding: 28px 28px 20px;
@@ -433,7 +485,7 @@ import FitDiagnostic from '../../components/FitDiagnostic.astro';
   background: var(--bg-elev);
   border: 1px solid var(--rule);
   border-left: 3px solid var(--y2);
-  max-width: 680px;
+  max-width: 100%;
 }
 
 .mn-stat-item {
@@ -758,7 +810,7 @@ import FitDiagnostic from '../../components/FitDiagnostic.astro';
 
 /* ─── RESPONSIVE ─────────────────────────────────────────────────────────── */
 @media (max-width: 768px) {
-  .mn-headline { font-size: clamp(48px, 14vw, 88px); }
+  .mn-headline { font-size: clamp(32px, 8.5vw, 50px); }
   .mn-subhead { font-size: 17px; }
   .mn-gap-figure { max-width: 100%; }
   .mn-stat-proof { max-width: 100%; }
