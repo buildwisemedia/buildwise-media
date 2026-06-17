@@ -1,0 +1,30 @@
+{
+  "scenario": "book-conversion-path",
+  "run_at": "2026-06-17",
+  "executor": "real-browser (headless Chrome via CDP) against production",
+  "result": "PASS",
+  "evidence": {
+    "render": "prod /book/ served book-diagnostic markers ('of 07', 3x bd-proof-tile, single <h1>, business_url, no phone field).",
+    "submit_response": {
+      "ok": true,
+      "classification": "qualified",
+      "route": "calendar",
+      "reason": "qualified_icp",
+      "tier_routing": "ascend",
+      "signals": { "revenue_floor": "met", "ad_spend_signal": "ready", "decision_authority": "decision_maker", "agency_history_signal": "burned_by_agencies_positive" },
+      "contact_id": "a56cd7c3-a2e3-4714-985b-f9d5137bbb40"
+    },
+    "frontend_state": "calendar",
+    "r1_token": "continuation_token (384 chars) stamped on contact metadata + confirmation email metadata; booking_event_id present.",
+    "confirmation_email": "comms_log outbound 'Your Revenue Leak Map is being built, Dana' (status failed = fake test address bounced; mechanism + token verified).",
+    "map_kickoff": "audit_submissions row 064a1e40 created on qualified submit.",
+    "generated_map": { "audit_slug": "01kvbc4qrms18wyzdhff9ywk05", "audit_status": "delivered" },
+    "delivery_email": "comms_log 'Your Revenue Leak Map is ready' with ct= token in metadata (status bounced = fake test address).",
+    "ungate_bytes": { "no_token": 7643, "owner_token": 11906, "verdict": "owner token un-gates to the full Map; no-token returns teaser" },
+    "second_ungate_check_existing_lead": { "slug": "01kt1nfqtxrqg529zwhnpwradp", "no_token": 8305, "owner_token": 12920, "wrong_owner": 8305, "expired": 8305, "verdict": "owner-match security holds; wrong-owner/expired/no-token all teaser" },
+    "spam_gate": "deployed runSpamFilter passes the legitimate /book payload (unit-tested); an earlier automated submit was correctly filtered by the IP/dup rate-limit (repeated-testing artifact, wrote nothing).",
+    "cal_com": "schedule 4 availability: Mon(1) 14:00-16:00 + Fri(5) 10:00-11:00 ET present (Hetzner Postgres).",
+    "website_qa": "tools/bwm-website-qa.sh https://buildwisemedia.com/book -> PASS (brand-closure 0 warnings; 30 visual captures)."
+  },
+  "notes": "Test contacts dana.reyes.svc.*@gmail.com (a56cd7c3) are synthetic prod test leads created for this e2e; emails intentionally non-deliverable so the chain is proven without polluting a real inbox."
+}
