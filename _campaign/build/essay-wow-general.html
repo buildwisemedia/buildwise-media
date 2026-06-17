@@ -1,0 +1,645 @@
+<!DOCTYPE html>
+<!-- @internal-architecture -->
+<!-- @r020: F2 — the two inline SVGs are PROOF data-viz (real dated capability + build milestones); no decorative imagery. -->
+<!-- @sdt-exempt: copy-review draft of a text-forward thought-leadership essay (Robert's voice). Two proof charts already inline; per-section "wow" visuals come in the FINAL pass (GPT-5.5/Codex) once Robert locks the copy. Not a ship. -->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Building now matters — Buildwise Media</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;800;900&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#050507; --surf:#0E0E13; --surf2:#15151c; --line:#22222c;
+  --tx:#F4F4F6; --mut:#9A9AA4; --dim:#6A6A74;
+  --acc:#F0FF00;            /* BWM Triangulation — System A marketing yellow */
+  --green:#B8FF3A;
+  --acc-soft:rgba(240,255,0,.14);
+  --ease:cubic-bezier(.2,.72,.18,1);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--tx);
+  font-family:Inter,system-ui,-apple-system,sans-serif;font-weight:300;
+  font-size:19px;line-height:1.72;-webkit-font-smoothing:antialiased;}
+.wrap{max-width:760px;margin:0 auto;padding:0 26px}
+p{margin:0 0 22px}
+strong{font-weight:600;color:#fff}
+em{font-style:italic}
+a{color:var(--acc);text-decoration:none;border-bottom:1px solid var(--acc-soft)}
+sup a{border:0;font-weight:600;font-size:.62em;padding-left:1px}
+.kic{font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:3.5px;text-transform:uppercase;color:var(--mut)}
+
+/* ---- hero ---- */
+header.hero{padding:74px 0 46px;border-bottom:1px solid var(--line);
+  background:radial-gradient(1100px 460px at 50% -8%, rgba(240,255,0,.06), transparent 70%)}
+.brand{display:flex;align-items:center;gap:11px;margin-bottom:46px}
+.brand .mk{width:13px;height:13px;background:var(--acc);clip-path:polygon(50% 0,100% 100%,0 100%)}
+.brand b{font-weight:800;letter-spacing:-.01em;font-size:16px}
+.brand span{color:var(--mut);font-size:13px;font-weight:400}
+h1{font-weight:900;letter-spacing:-.035em;line-height:1.02;
+  font-size:clamp(40px,7vw,72px);margin:0 0 22px}
+h1 .y{color:var(--acc)}
+.lede{font-size:clamp(20px,2.4vw,24px);color:var(--mut);font-weight:300;max-width:600px;line-height:1.5}
+.meta{margin-top:30px;display:flex;gap:22px;align-items:center;color:var(--dim);font-size:13px;font-family:'JetBrains Mono',monospace;flex-wrap:wrap}
+header.hero>.wrap{max-width:1100px}
+.herogrid{display:grid;grid-template-columns:1.05fr 0.82fr;gap:48px;align-items:center;margin-top:18px}
+.herofig{margin:0;min-width:0}
+.herofig figcaption{margin-top:12px}
+.ai-dotgraph{position:relative;overflow:hidden;border:1px solid var(--line);border-radius:14px;background:var(--bg);isolation:isolate;box-shadow:0 26px 80px rgba(0,0,0,.34)}
+.ai-dotgraph img{width:100%;height:auto;display:block;filter:saturate(0) brightness(.66) contrast(1.08);opacity:.92}
+.ai-dotgraph .tier{--dot:var(--green);position:absolute;z-index:2;opacity:0;clip-path:inset(0 100% 0 0);background-image:radial-gradient(circle at 3.5px 3.5px,var(--dot) 0 3px,transparent 3.2px);background-size:10px 10px;filter:drop-shadow(0 0 8px color-mix(in srgb,var(--dot) 48%,transparent));transform:translateZ(0)}
+.ai-dotgraph .tier-free{--dot:var(--green)}
+.ai-dotgraph .tier-free-a{left:29.17%;top:60.98%;width:55.14%;height:.85%}
+.ai-dotgraph .tier-free-b{left:15.28%;top:62.2%;width:69.03%;height:13.05%}
+.ai-dotgraph .tier-free-c{left:15.28%;top:75.61%;width:19.03%;height:.85%}
+.ai-dotgraph .tier-paid{--dot:var(--acc);left:34.72%;top:75.61%;width:41.25%;height:.85%}
+.ai-dotgraph .tier-agent{--dot:#FF3B30;left:76.39%;top:75.61%;width:7.92%;height:.85%}
+.ai-dotgraph::after{content:"";position:absolute;z-index:3;top:15%;bottom:20%;left:0;width:34%;opacity:0;pointer-events:none;background:linear-gradient(90deg,transparent,rgba(184,255,58,.11),rgba(240,255,0,.33),transparent);filter:blur(.3px);transform:translateX(-135%) skewX(-9deg)}
+.ai-dotgraph.ready::after{animation:graphScan 2.2s var(--ease) .15s forwards}
+.ai-dotgraph.ready .tier-free{animation:graphTier 1.15s var(--ease) .42s forwards}
+.ai-dotgraph.ready .tier-paid{animation:graphTier .78s var(--ease) 1.35s forwards}
+.ai-dotgraph.ready .tier-agent{animation:graphTier .62s var(--ease) 1.72s forwards}
+
+/* ---- sections ---- */
+section{padding:50px 0;border-bottom:1px solid var(--line)}
+h2{font-weight:800;letter-spacing:-.025em;line-height:1.06;
+  font-size:clamp(27px,4vw,40px);margin:0 0 8px}
+h2 .y{color:var(--acc)}
+.eyebrow{font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:3px;text-transform:uppercase;color:var(--acc);margin-bottom:16px}
+.big{font-size:clamp(23px,3vw,30px);line-height:1.4;font-weight:300;color:#fff;letter-spacing:-.01em}
+ul.clean{list-style:none;padding:0;margin:0 0 22px}
+ul.clean li{padding:14px 0 14px 42px;border-bottom:1px solid var(--line);position:relative}
+/* @r020:identity: BWM Triangulation mark as the list bullet — brand glyph at micro scale. */
+ul.clean li:before{content:"";position:absolute;left:2px;top:13px;width:24px;height:24px;background:url(img/bwm-mark.svg) center/contain no-repeat}
+.pull{font-size:clamp(24px,3.4vw,34px);font-weight:600;letter-spacing:-.02em;line-height:1.22;color:#fff;
+  border-left:3px solid var(--acc);padding:6px 0 6px 24px;margin:30px 0}
+.note{background:var(--surf);border:1px solid var(--line);border-radius:12px;padding:20px 22px;margin:26px 0;font-size:16px;color:var(--mut)}
+.note b{color:var(--acc)}
+.flag{background:rgba(184,255,58,.08);border:1px dashed rgba(184,255,58,.34);border-radius:12px;padding:16px 20px;margin:24px 0;font-size:15px;color:var(--mut)}
+.flag b{color:var(--green)}
+
+/* left-to-right capability flow */
+.flow{display:flex;align-items:stretch;margin:32px 0;flex-wrap:nowrap}
+.flow .stage{flex:1;background:var(--surf);border:1px solid var(--line);border-radius:14px;padding:20px 18px;min-width:0}
+.flow .stage .t{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--mut);margin-bottom:11px}
+.flow .stage .b{font-size:16px;line-height:1.35;color:var(--tx);font-weight:300}
+.flow .arrow{flex:0 0 44px;display:flex;align-items:center;justify-content:center;color:var(--acc);font-size:23px;font-weight:600;line-height:1;position:relative;overflow:hidden;text-shadow:0 0 14px rgba(240,255,0,.18)}
+.flow .arrow::after{content:"";position:absolute;left:0;right:0;top:50%;height:2px;background:linear-gradient(90deg,transparent,var(--acc),transparent);opacity:0;transform:translateX(-130%)}
+.rv.in .flow .arrow::after{animation:arrowTravel 1.25s var(--ease) forwards}
+.rv.in .flow .arrow:nth-child(4)::after{animation-delay:.3s}
+.flow .s2 .t{color:#c9cf63}
+.flow .s3{border-color:var(--acc);background:linear-gradient(155deg,rgba(240,255,0,.11),var(--surf) 62%);box-shadow:0 0 26px rgba(240,255,0,.10)}
+.flow .s3 .t{color:var(--acc)}
+.flow .s3 .b{color:#fff;font-weight:600}
+.flow .live{display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--acc);margin-left:8px;vertical-align:middle;animation:livepulse 1.8s ease-in-out infinite}
+@keyframes livepulse{0%,100%{box-shadow:0 0 0 0 rgba(240,255,0,.6)}70%{box-shadow:0 0 0 10px rgba(240,255,0,0)}}
+
+/* charts */
+figure{margin:30px 0 8px}
+figure svg{width:100%;height:auto;display:block;background:var(--surf);border:1px solid var(--line);border-radius:14px}
+figcaption{font-size:13px;color:var(--dim);margin-top:10px;font-style:italic}
+.growth-chart .growth-solid{stroke-dasharray:1;stroke-dashoffset:1}
+.rv.in .growth-chart .growth-solid{animation:dashDraw 1.28s var(--ease) .12s forwards}
+.growth-chart .growth-projection{opacity:.22}
+.rv.in .growth-chart .growth-projection{animation:projectionPulse 2.4s ease-in-out 1.28s infinite}
+
+.danger-section{--danger-orange:#C7400D}
+.danger-section .eyebrow{color:var(--acc)}
+.danger-relief{position:relative;margin:4px -12px 12px;padding:0 12px 4px;isolation:isolate}
+.danger-relief::before{content:"";position:absolute;inset:0;border-radius:18px;background:radial-gradient(80% 120% at 50% 8%,rgba(21,21,28,.78),transparent 66%);opacity:0;pointer-events:none}
+.danger-section.in .danger-relief::before{animation:dangerCompress 2.1s var(--ease) .12s forwards}
+.closing-beat{position:relative;overflow:hidden;isolation:isolate;border-radius:14px;padding:16px 14px;margin-left:-12px;margin-right:-12px;background:linear-gradient(180deg,rgba(199,64,13,.07),rgba(199,64,13,0) 30%,rgba(199,64,13,0) 70%,rgba(199,64,13,.055));box-shadow:inset 0 0 0 1px rgba(199,64,13,.08)}
+.closing-beat::before,.closing-beat::after{content:"";position:absolute;width:min(42%,280px);height:3px;border-radius:999px;opacity:0;pointer-events:none;background:linear-gradient(90deg,transparent,color-mix(in srgb,var(--danger-orange) 22%,transparent) 20%,color-mix(in srgb,var(--danger-orange) 62%,transparent) 42%,color-mix(in srgb,var(--danger-orange) 58%,#fff) 50%,color-mix(in srgb,var(--danger-orange) 62%,transparent) 58%,color-mix(in srgb,var(--danger-orange) 18%,transparent) 80%,transparent);box-shadow:0 0 10px rgba(199,64,13,.36),0 0 22px rgba(199,64,13,.16);z-index:1;will-change:transform,opacity}
+.closing-beat::before{top:5px;left:12px;transform:translateX(-115%) scaleX(.72)}
+.closing-beat::after{right:12px;bottom:5px;transform:translateX(115%) scaleX(.72)}
+.danger-section.in .closing-beat::before{animation:apertureLeft 2.9s cubic-bezier(.55,0,.2,1) .18s both}
+.danger-section.in .closing-beat::after{animation:apertureRight 2.9s cubic-bezier(.55,0,.2,1) .18s both}
+.closing-word{position:relative;z-index:3}
+.beat-words{position:relative;z-index:2;text-shadow:0 1px 0 #050507,0 0 18px rgba(5,5,7,.84)}
+.danger-section.in .closing-word{animation:closingFlare 1.15s ease-out .75s both}
+.relief-copy{position:relative;z-index:2}
+.relief-route{position:relative;z-index:1;display:block;width:100%;height:56px;margin:2px 0 8px;pointer-events:none;overflow:visible}
+.relief-route path{stroke-dasharray:1;stroke-dashoffset:1}
+.danger-section.in .relief-route .route{animation:dashDraw 1.05s var(--ease) 1.32s forwards}
+.danger-section.in .relief-route .route-hold{animation:routeHold 1.8s ease-out 2.08s forwards}
+.milestones{display:flex;flex-direction:column;gap:8px;margin:8px 0 2px}
+.ms-item{position:relative;display:flex;padding:8px 0 8px 16px;opacity:0;transform:translateX(-10px)}
+.ms-item p{margin:0}
+.ms-key{color:#F0FF00;font-weight:600}
+.ms-rule{position:absolute;left:0;top:7px;bottom:7px;width:2px;border-radius:2px;background:linear-gradient(180deg,#F0FF00,#B8FF3A);transform:scaleY(0);transform-origin:top}
+.danger-section.in .ms-item{animation:msReveal .6s var(--ease) forwards}
+.danger-section.in .ms-item:nth-child(1){animation-delay:.18s}
+.danger-section.in .ms-item:nth-child(2){animation-delay:.36s}
+.danger-section.in .ms-item:nth-child(3){animation-delay:.54s}
+.danger-section.in .ms-item .ms-rule{animation:msRule .5s var(--ease) forwards}
+.danger-section.in .ms-item:nth-child(1) .ms-rule{animation-delay:.18s}
+.danger-section.in .ms-item:nth-child(2) .ms-rule{animation-delay:.36s}
+.danger-section.in .ms-item:nth-child(3) .ms-rule{animation-delay:.54s}
+@media (prefers-reduced-motion:reduce){.ms-item{opacity:1!important;transform:none!important}.ms-rule{transform:scaleY(1)!important}}
+
+.revenue-climb svg{background:linear-gradient(180deg,rgba(184,255,58,.055),var(--surf) 54%)}
+.revenue-area{opacity:0;clip-path:inset(0 100% 0 0)}
+.rv.in .revenue-area{animation:areaReveal 1.35s var(--ease) .15s forwards}
+.revenue-path{stroke-dasharray:1;stroke-dashoffset:1}
+.rv.in .revenue-path{animation:dashDraw 1.45s var(--ease) .2s forwards}
+.revenue-end{opacity:.35}
+.rv.in .revenue-end{animation:endGlow .82s ease-out 1.38s forwards}
+.revenue-count{font-variant-numeric:tabular-nums}
+
+.lead-bars .lead-bar{transform-box:fill-box;transform-origin:center bottom;transform:scaleY(.04);opacity:.38}
+.rv.in .lead-bars .lead-bar{animation:barGrow .82s var(--ease) forwards}
+.rv.in .lead-bars .bar-feb{animation-delay:.14s}
+.rv.in .lead-bars .bar-mar{animation-delay:.27s}
+.rv.in .lead-bars .bar-apr{animation-delay:.4s}
+.rv.in .lead-bars .bar-may{animation-delay:.53s}
+.lead-bars .bar-label{opacity:0;transform:translateY(6px)}
+.rv.in .lead-bars .bar-label{animation:fadeUp .45s ease forwards}
+.rv.in .lead-bars .label-feb{animation-delay:.72s}
+.rv.in .lead-bars .label-mar{animation-delay:.82s}
+.rv.in .lead-bars .label-apr{animation-delay:.92s}
+.rv.in .lead-bars .label-may{animation-delay:1.02s}
+.lead-bars .bar-mar{filter:drop-shadow(0 0 0 rgba(240,255,0,0))}
+.rv.in .lead-bars .bar-mar{filter:drop-shadow(0 0 14px rgba(240,255,0,.44))}
+
+.signal-board svg{background:linear-gradient(180deg,var(--surf),#0b0b10)}
+.signal-board .signal-path{stroke-dasharray:1;stroke-dashoffset:1;opacity:.22}
+.rv.in .signal-board .signal-path{animation:signalPath 1.25s var(--ease) forwards}
+.rv.in .signal-board .p2{animation-delay:.15s}.rv.in .signal-board .p3{animation-delay:.28s}.rv.in .signal-board .p4{animation-delay:.42s}.rv.in .signal-board .p5{animation-delay:.58s}.rv.in .signal-board .p6{animation-delay:.8s}
+.signal-board .signal-node{filter:drop-shadow(0 0 0 rgba(240,255,0,0));transition:filter .5s ease}
+.rv.in .signal-board .signal-node{filter:drop-shadow(0 0 10px rgba(240,255,0,.18))}
+.rv.in .signal-board .return-node{filter:drop-shadow(0 0 12px rgba(184,255,58,.22))}
+
+ul.module-list li:before{background:#45454f;-webkit-mask:url(img/bwm-mark.svg) center/contain no-repeat;mask:url(img/bwm-mark.svg) center/contain no-repeat}
+ul.module-list li:after{content:"";position:absolute;left:2px;top:13px;width:24px;height:24px;background:var(--green);-webkit-mask:url(img/bwm-mark.svg) center/contain no-repeat;mask:url(img/bwm-mark.svg) center/contain no-repeat;opacity:0;transform:scale(.62);filter:drop-shadow(0 0 9px rgba(184,255,58,.28))}
+.rv.in ul.module-list li:after{animation:moduleFill .46s var(--ease) forwards}
+.rv.in ul.module-list li:nth-child(1):after{animation-delay:.1s}.rv.in ul.module-list li:nth-child(2):after{animation-delay:.24s}.rv.in ul.module-list li:nth-child(3):after{animation-delay:.38s}.rv.in ul.module-list li:nth-child(4):after{animation-delay:.52s}.rv.in ul.module-list li:nth-child(5):after{animation-delay:.66s}
+
+.build-timeline .timeline-rail-live{stroke-dasharray:1;stroke-dashoffset:1}
+.rv.in .build-timeline .timeline-rail-live{animation:dashDraw 1.12s var(--ease) .18s forwards}
+.build-timeline .timeline-node{opacity:.46}
+.rv.in .build-timeline .timeline-node{animation:nodePop .48s var(--ease) forwards}
+.rv.in .build-timeline .n1{animation-delay:.42s}.rv.in .build-timeline .n2{animation-delay:.62s}.rv.in .build-timeline .n3{animation-delay:.82s}.rv.in .build-timeline .timeline-future{animation:futureBreathe 2.5s ease-in-out 1.15s infinite}
+
+.closing-orbit{position:relative;margin:30px 0}
+.closing-orbit .pull{position:relative;z-index:2;margin:0;background:linear-gradient(90deg,rgba(5,5,7,.92),rgba(5,5,7,.72),transparent)}
+.orbit-field{position:absolute;z-index:1;inset:-54px -42px -36px;pointer-events:none;overflow:visible}
+.orbit-field path{stroke-dasharray:1;stroke-dashoffset:1;opacity:0}
+.rv.in .orbit-field .orbit-a{animation:orbitTrace 1.05s var(--ease) .15s forwards}
+.rv.in .orbit-field .orbit-b{animation:orbitTrace 1.05s var(--ease) .34s forwards}
+.rv.in .orbit-field .orbit-c{animation:orbitTrace 1.05s var(--ease) .54s forwards}
+.rv.in .orbit-field .orbit-stable{animation:stableTriangle 1.2s ease-out 1.28s forwards}
+
+/* offers */
+.offer{position:relative;overflow:hidden;background:linear-gradient(180deg,var(--surf),#0b0b10);border:1px solid var(--line);border-radius:16px;padding:26px 26px 22px;margin:22px 0;transition:border-color .28s ease,transform .28s ease,box-shadow .28s ease}
+.offer::before{content:"";position:absolute;inset:0;opacity:.35;pointer-events:none;z-index:0}
+.offer::after{content:"";position:absolute;top:-24%;bottom:-24%;left:-38%;width:28%;opacity:0;background:linear-gradient(90deg,transparent,rgba(255,255,255,.18),transparent);transform:skewX(-16deg);pointer-events:none;z-index:1}
+.offer:hover{transform:translateY(-2px);border-color:rgba(240,255,0,.38);box-shadow:0 18px 44px rgba(0,0,0,.32)}
+.offer:hover::after{animation:offerSweep .75s ease-out forwards}
+.offer>*{position:relative;z-index:2}
+.ops-offer::before{background-image:linear-gradient(rgba(184,255,58,.17) 1px,transparent 1px),linear-gradient(90deg,rgba(184,255,58,.12) 1px,transparent 1px);background-size:28px 28px}
+.weekly-offer::before{background:repeating-linear-gradient(90deg,transparent 0 42px,rgba(240,255,0,.12) 42px 44px),linear-gradient(90deg,rgba(240,255,0,.08),transparent 46%)}
+.referral-offer::before{background:radial-gradient(circle at 88% 20%,rgba(240,255,0,.2),transparent 24%),linear-gradient(135deg,transparent,rgba(240,255,0,.06))}
+.corner-lock{position:absolute;right:13px;top:13px;width:46px;height:46px;opacity:0;transform:translate(6px,-6px);transition:opacity .28s ease,transform .28s ease;z-index:3;pointer-events:none}
+.corner-lock::before,.corner-lock::after{content:"";position:absolute;inset:0;border-color:var(--acc);border-style:solid}
+.corner-lock::before{border-width:1px 1px 0 0;clip-path:polygon(100% 0,100% 68%,32% 0)}
+.corner-lock::after{border-width:0 0 1px 1px;clip-path:polygon(0 100%,68% 100%,0 32%);opacity:.65}
+.offer:hover .corner-lock{opacity:1;transform:none}
+.offer h3{margin:0 0 6px;font-size:20px;font-weight:700}
+.offer .tag{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--acc);margin-bottom:12px}
+.cta{display:inline-block;margin-top:6px;font-weight:700;color:#050507;background:var(--acc);padding:12px 22px;border-radius:9px;border:0;text-decoration:none}
+.cta:hover{box-shadow:0 8px 24px rgba(240,255,0,.22);transform:translateY(-1px)}
+.cta-ghost{background:transparent;color:var(--acc);border:1.5px solid var(--acc);font-weight:600}
+.cta-ghost:hover{background:rgba(240,255,0,.10);box-shadow:none}
+.cta-row{display:flex;align-items:center;gap:18px;flex-wrap:wrap;margin-top:14px}
+.reward-badge{display:inline-flex;flex-direction:column;line-height:1.05;background:rgba(184,255,58,.10);border:1px solid rgba(184,255,58,.5);border-radius:11px;padding:9px 15px;font-family:'JetBrains Mono',monospace}
+.reward-badge b{color:var(--green);font-size:21px;font-weight:800}
+.reward-badge span{font-size:10px;font-weight:500;color:#9fcf6a;letter-spacing:1.4px;text-transform:uppercase;margin-top:3px}
+.fwd-action{font-size:15.5px;color:var(--tx)}
+.fwd-action b{color:#fff;font-weight:600}
+.fwd-action a{color:var(--acc)}
+
+/* footnotes / footer */
+.fn{font-size:13.5px;color:var(--mut);line-height:1.6}
+.fn li{margin:0 0 9px}
+footer{padding:40px 0 70px;color:var(--dim);font-size:13px;font-family:'JetBrains Mono',monospace;line-height:1.8}
+footer a{color:var(--dim)}
+
+/* scroll reveal + fancy desktop */
+.rv{opacity:0;transform:translateY(20px);transition:opacity .7s ease,transform .7s ease}
+.rv.in{opacity:1;transform:none}
+@keyframes graphScan{0%{opacity:0;transform:translateX(-135%) skewX(-9deg)}12%{opacity:1}82%{opacity:1}100%{opacity:0;transform:translateX(305%) skewX(-9deg)}}
+@keyframes graphTier{0%{opacity:0;clip-path:inset(0 100% 0 0)}18%{opacity:1}100%{opacity:1;clip-path:inset(0 0 0 0)}}
+@keyframes arrowTravel{0%{opacity:0;transform:translateX(-130%)}20%{opacity:.85}100%{opacity:0;transform:translateX(130%)}}
+@keyframes dashDraw{to{stroke-dashoffset:0}}
+@keyframes projectionPulse{0%,100%{opacity:.28;stroke-width:3}50%{opacity:.82;stroke-width:3.8}}
+@keyframes dangerCompress{0%{opacity:0}48%{opacity:1}100%{opacity:.5}}
+@keyframes apertureLeft{0%{opacity:0;transform:translateX(-115%) scaleX(.72)}8%{opacity:.96}24%{opacity:.92;transform:translateX(158%) scaleX(1)}42%{opacity:.74;transform:translateX(18%) scaleX(.78)}60%{opacity:.88;transform:translateX(130%) scaleX(.9)}78%{opacity:.7;transform:translateX(72%) scaleX(.56)}100%{opacity:.44;transform:translateX(82%) scaleX(.36)}}
+@keyframes apertureRight{0%{opacity:0;transform:translateX(115%) scaleX(.72)}8%{opacity:.96}24%{opacity:.92;transform:translateX(-158%) scaleX(1)}42%{opacity:.74;transform:translateX(-18%) scaleX(.78)}60%{opacity:.88;transform:translateX(-130%) scaleX(.9)}78%{opacity:.7;transform:translateX(-72%) scaleX(.56)}100%{opacity:.44;transform:translateX(-82%) scaleX(.36)}}
+@keyframes msReveal{to{opacity:1;transform:translateX(0)}}
+@keyframes msRule{to{transform:scaleY(1)}}
+@keyframes closingFlare{0%,100%{text-shadow:none;color:inherit}42%{color:#fff;text-shadow:0 0 4px var(--danger-orange),0 0 18px var(--danger-orange),0 0 34px var(--danger-orange)}}
+@keyframes routeHold{to{stroke-dashoffset:0;filter:drop-shadow(0 0 14px rgba(184,255,58,.36));opacity:1}}
+@keyframes areaReveal{to{opacity:1;clip-path:inset(0 0 0 0)}}
+@keyframes endGlow{to{opacity:1;filter:drop-shadow(0 0 16px rgba(184,255,58,.48))}}
+@keyframes barGrow{to{transform:scaleY(1);opacity:1}}
+@keyframes fadeUp{to{opacity:1;transform:none}}
+@keyframes signalPath{0%{stroke-dashoffset:1;opacity:.14}72%{stroke-dashoffset:0;opacity:.9}100%{stroke-dashoffset:0;opacity:.48}}
+@keyframes moduleFill{to{opacity:1;transform:scale(1)}}
+@keyframes nodePop{0%{opacity:.38;transform:scale(.78);transform-origin:center}100%{opacity:1;transform:scale(1);transform-origin:center}}
+@keyframes futureBreathe{0%,100%{opacity:.72;filter:drop-shadow(0 0 4px rgba(240,255,0,.1))}50%{opacity:1;filter:drop-shadow(0 0 14px rgba(240,255,0,.32))}}
+@keyframes orbitTrace{0%{opacity:0;stroke-dashoffset:1;transform:scale(1.08);transform-origin:center}70%{opacity:.34}100%{opacity:0;stroke-dashoffset:0;transform:scale(.98);transform-origin:center}}
+@keyframes stableTriangle{0%{opacity:0;stroke-dashoffset:1;transform:scale(1.04);transform-origin:center}100%{opacity:.34;stroke-dashoffset:0;transform:scale(1);transform-origin:center}}
+@keyframes offerSweep{0%{opacity:0;left:-38%}18%{opacity:1}100%{opacity:0;left:110%}}
+@media (max-width:860px){
+  header.hero>.wrap{max-width:760px}
+  .herogrid{grid-template-columns:1fr;gap:28px;margin-top:6px}
+  .herofig{max-width:460px}
+}
+@media (max-width:680px){
+  body{font-size:18px}
+  .flow{flex-direction:column}
+  .flow .arrow{flex-basis:auto;height:30px;transform:rotate(90deg)}
+  section{padding:38px 0}
+  header.hero{padding:46px 0 34px}
+}
+@media (max-width:680px),(prefers-reduced-motion:reduce){
+  .rv{opacity:1;transform:none;transition:none}
+  .ai-dotgraph::after{display:none}
+  .ai-dotgraph .tier{opacity:1;clip-path:none;animation:none!important}
+  .flow .arrow::after{display:none}
+  .growth-chart .growth-solid,.revenue-path,.signal-board .signal-path,.build-timeline .timeline-rail-live,.relief-route path,.orbit-field path{stroke-dashoffset:0!important;animation:none!important}
+  .growth-chart .growth-projection,.signal-board .signal-path{opacity:.62;animation:none!important}
+  .revenue-area{opacity:1;clip-path:none;animation:none}
+  .revenue-end{opacity:1;filter:drop-shadow(0 0 13px rgba(184,255,58,.34));animation:none}
+  .lead-bars .lead-bar{transform:none;opacity:1;animation:none!important}
+  .lead-bars .bar-label{opacity:1;transform:none;animation:none!important}
+  ul.module-list li:after{opacity:1;transform:none;animation:none!important}
+  .build-timeline .timeline-node{opacity:1;animation:none!important}
+  .build-timeline .timeline-future{filter:drop-shadow(0 0 10px rgba(240,255,0,.24));animation:none!important}
+  .closing-beat::before,.closing-beat::after{opacity:.38;animation:none!important}
+  .closing-beat::before{transform:translateX(82%) scaleX(.36)}
+  .closing-beat::after{transform:translateX(-82%) scaleX(.36)}
+  .closing-word{animation:none!important}
+  .danger-relief::before{opacity:.42;animation:none!important}
+  .orbit-field .orbit-a,.orbit-field .orbit-b,.orbit-field .orbit-c{display:none}
+  .orbit-field .orbit-stable{opacity:.34}
+  .offer,.offer:hover{transform:none}
+  .offer::after,.corner-lock{display:none}
+}
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="wrap">
+    <div class="brand"><span class="mk"></span><b>BUILDWISE MEDIA</b><span>— a note from Robert</span></div>
+    <div class="herogrid">
+      <div class="herocopy">
+        <h1>Building <span class="y">now</span> is the whole game.</h1>
+        <p class="lede">A straight read on where AI actually is right now — what's real, what's hype, what broke, and why the next 18 months decide who wins.</p>
+        <div class="meta"><span>JUN 2026</span><span>•</span><span>~7 MIN</span><span>•</span><span>ROBERT ECHEVARRIA</span></div>
+      </div>
+      <figure class="herofig">
+        <!-- @r020:F2 proof: AI-adoption dot graph — shows how few people have really used AI yet; proves "the window is wide open, build now" right at the top. -->
+        <div class="ai-dotgraph">
+          <img src="img/ai-adoption-dotgraph.svg" alt="Dot graph: each dot is ~3.2 million people, colored by their most advanced AI interaction; most have never used AI">
+          <span class="tier tier-free tier-free-a" aria-hidden="true"></span>
+          <span class="tier tier-free tier-free-b" aria-hidden="true"></span>
+          <span class="tier tier-free tier-free-c" aria-hidden="true"></span>
+          <span class="tier tier-paid" aria-hidden="true"></span>
+          <span class="tier tier-agent" aria-hidden="true"></span>
+        </div>
+        <figcaption>Most of the world hasn't really used AI yet. That's not a warning — it's the open window.</figcaption>
+      </figure>
+    </div>
+  </div>
+</header>
+
+<section class="rv">
+  <div class="wrap">
+    <p class="big">In the movie <em>Her</em> we get a possible future of artificial intelligence. We talk to our phone and there's an intelligence that gets us. It's smart. It's funny. And it doesn't just know how to solve our problems — it goes off and takes care of them while we sleep.</p>
+    <figure>
+      <!-- @r020:F1 emotion: the iconic Her still — the "AI that gets you" promise; pulls the reader straight into the essay's core question. -->
+      <img src="img/her.jpg" alt="A still from the film Her: a man at his desk in conversation with his AI" style="width:100%;height:auto;display:block;border-radius:14px;border:1px solid var(--line)">
+      <figcaption>The promise, the way <em>Her</em> imagined it. We're not there yet — but the gap is closing fast.</figcaption>
+    </figure>
+    <p>This is the promise of AI — but we're not there yet.</p>
+    <p>Even though AI makes fewer mistakes than humans on a lot of things, it still makes enough to be frustrating. AI doesn't work out of the box. A person has to become an AI engineer (such a new role) to build the digital brain that makes it work the way you want. And even though it moves way faster than a whole team of people, it can still feel frustratingly slow.</p>
+    <p>But the advancements are happening so fast that new AI models come out about once a month, with almost daily updates.</p>
+  </div>
+</section>
+
+<section class="rv">
+  <div class="wrap">
+    <div class="eyebrow">The curve</div>
+    <h2>From chatbots to <span class="y">autonomous</span> in three years.</h2>
+    <div class="flow">
+      <div class="stage s1"><div class="t">2023–2025</div><div class="b">We had chatbots.</div></div>
+      <div class="arrow">&rarr;</div>
+      <div class="stage s2"><div class="t">2025–2026</div><div class="b">We had AI agents.</div></div>
+      <div class="arrow">&rarr;</div>
+      <div class="stage s3"><div class="t">Now<span class="live"></span></div><div class="b">Those agents are autonomous.</div></div>
+    </div>
+    <p>As of June 2026, AI agents (think of them as digital employees) can work 3–4 hours on their own and get a task about 80% right on the first try.</p>
+    <p>At Buildwise Media we spin up about <strong>1,000 agents a day</strong> — a thousand digital employees working on our clients' behalf, 24/7/365. But they're <strong>not</strong> perfect. That's the honest part, and it's why real humans on our team still matter.</p>
+    <p>By around September of this year, OpenAI says it expects an intern-level research assistant<sup><a href="#fn6">6</a></sup> — and at a frontier AI lab, an "intern" is usually a mid-PhD computer scientist.</p>
+    <p>The most powerful consumer model yet, Anthropic's Fable 5, was live for only a few days this month before a U.S. Commerce Department order suspended access<sup><a href="#fn7">7</a></sup>. We got to build with it while it was up, and its capabilities are genuinely inspiring — we upgraded the digital brain that builds for our clients in that short window, and we're looking forward to getting access again.</p>
+
+    <figure>
+      <!-- @r020:F2 proof: METR capability-growth curve with REAL numbers — proves AI capability is accelerating; drives the reader toward the "build now" decision. -->
+      <svg class="growth-chart" viewBox="0 0 700 320" role="img" aria-label="AI task time-horizon growth, 2023 to 2027">
+        <text x="26" y="34" fill="#F4F4F6" font-family="Inter" font-weight="800" font-size="17">How much work AI can do in one go</text>
+        <text x="26" y="54" fill="#9A9AA4" font-family="JetBrains Mono" font-size="11">LENGTH OF TASK A TOP MODEL FINISHES ON ITS OWN · LOG SCALE</text>
+        <!-- gridlines -->
+        <g stroke="#22222c" stroke-width="1">
+          <line x1="70" y1="90" x2="674" y2="90"/><line x1="70" y1="150" x2="674" y2="150"/>
+          <line x1="70" y1="210" x2="674" y2="210"/><line x1="70" y1="262" x2="674" y2="262"/>
+        </g>
+        <g fill="#6A6A74" font-family="JetBrains Mono" font-size="10">
+          <text x="12" y="94">weeks</text><text x="18" y="154">1 day</text><text x="14" y="214">40 min</text><text x="20" y="266">4 min</text>
+        </g>
+        <!-- measured 2023-2025 solid; 2025->2027 projected dashed to "weeks of work" -->
+        <polyline class="growth-solid" pathLength="1" points="110,262 300,210 490,178" fill="none" stroke="#F0FF00" stroke-width="3" stroke-linecap="round"/>
+        <polyline class="growth-projection" points="490,178 640,92" fill="none" stroke="#F0FF00" stroke-width="3" stroke-dasharray="2 7" stroke-linecap="round" opacity="0.6"/>
+        <g fill="#F0FF00"><circle cx="110" cy="262" r="5"/><circle cx="300" cy="210" r="5"/><circle cx="490" cy="178" r="5"/></g>
+        <circle cx="640" cy="92" r="6" fill="#0E0E13" stroke="#F0FF00" stroke-width="2.5"/>
+        <g fill="#9A9AA4" font-family="JetBrains Mono" font-size="11">
+          <text x="92" y="285">2023</text><text x="282" y="285">2024</text><text x="472" y="285">2025</text><text x="600" y="285">2027 (est.)</text>
+        </g>
+        <text x="506" y="80" fill="#F0FF00" font-family="Inter" font-style="italic" font-size="12">~ weeks of work</text>
+      </svg>
+      <figcaption>Measured (METR): ~4 min in 2023 → ~40 min in 2024 → hours in 2025, doubling every ~4 months.<sup><a href="#fn1">1</a></sup> Anthropic projects tasks that take a person <em>weeks</em> by 2027.<sup><a href="#fn8">8</a></sup></figcaption>
+    </figure>
+  </div>
+</section>
+
+<section class="rv danger-section">
+  <div class="wrap">
+    <div class="eyebrow">The window</div>
+    <h2>Time is <span class="y">running out</span>.</h2>
+    <p>Because of this pace, Buildwise Media's clients are at a real advantage right now. For roughly the next 18 months, a business that builds with AI gets to operate at a level its competitors simply can't match yet. At Anthropic — one of the labs setting the pace — the typical engineer now merges <strong>eight times as much code per day</strong> as they did in 2024.<sup><a href="#fn2">2</a></sup> That's the shape of the edge: more built, more fixed, more shipped, in the same week.</p>
+    <div class="danger-relief">
+      <p class="closing-beat"><span class="beat-words">But it won't last. The edge is open now and it's <span class="closing-word">closing</span>.</span></p>
+      <svg class="relief-route" viewBox="0 0 760 60" aria-hidden="true">
+        <path class="route" pathLength="1" d="M20 46 L300 40 L430 48 L740 14" fill="none" stroke="#B8FF3A" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>
+        <path class="route route-hold" pathLength="1" d="M430 48 L740 14" fill="none" stroke="#B8FF3A" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round" opacity=".4"/>
+      </svg>
+      <p class="relief-copy" style="margin-bottom:8px">The signals are everywhere.</p>
+      <div class="milestones">
+        <div class="ms-item"><span class="ms-rule"></span><p>Top engineers at the leading labs say AI now writes <strong class="ms-key">~100% of their code</strong> — Anthropic puts its company-wide figure between 70% and 90%.<sup><a href="#fn3">3</a></sup></p></div>
+        <div class="ms-item"><span class="ms-rule"></span><p>AI forecasting is <strong class="ms-key">closing in on the best human predictors in the world</strong>.<sup><a href="#fn4">4</a></sup></p></div>
+        <div class="ms-item"><span class="ms-rule"></span><p>This spring, an AI made real progress on a <strong class="ms-key">math problem unsolved for ~80 years</strong>.<sup><a href="#fn5">5</a></sup></p></div>
+      </div>
+    </div>
+    <p>The labs at the very edge now say that some time in 2028, AI will be able to run much of its own research and improve itself.<sup><a href="#fn8">8</a></sup> When that happens, it starts taking over the revenue-generating parts of a business — and the companies still "getting started" will be too late.</p>
+    <p class="pull">The companies that make AI native to how they run, not bolted on, are the ones that thrive while others fold.</p>
+    <p>How can I say that so plainly? Because AI is intelligence, it's become expert-level capable, and a business that can put thousands of digital employees to work will out-run the one still trying to figure out its website. <strong>This is the advantage we make sure our clients have.</strong></p>
+  </div>
+</section>
+
+<section class="rv">
+  <div class="wrap">
+    <div class="eyebrow">No spin</div>
+    <h2>The <span class="y">unvarnished</span> truth.</h2>
+    <p>We're in the top fraction of a percent of what we do — and we're even rarer because we're focused only on revenue for service businesses. And things are still far from perfect. Here's the real state.</p>
+
+    <p>Last year, people thought AI was a giant bubble. This year, AI companies are the most valuable on the planet. Now the job is to prove the ROI for the people <em>using</em> AI. In some ways it's exceeded our expectations.</p>
+
+    <p>We took one client from just over <strong>$300,000 a year</strong> to break the <strong>$10,000,000+</strong> mark in a single year.</p>
+
+    <figure class="revenue-climb">
+      <!-- @r020:F2 proof: anchored revenue climb from the two stated values only — no invented monthly data. -->
+      <svg viewBox="0 0 700 260" role="img" aria-label="Revenue climb from ~$300K to $10M+">
+        <defs>
+          <linearGradient id="revArea" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="#B8FF3A" stop-opacity=".28"/>
+            <stop offset="100%" stop-color="#B8FF3A" stop-opacity="0"/>
+          </linearGradient>
+        </defs>
+        <g stroke="#22222c" stroke-width="1">
+          <line x1="58" y1="76" x2="650" y2="76"/><line x1="58" y1="132" x2="650" y2="132"/><line x1="58" y1="208" x2="650" y2="208"/>
+        </g>
+        <path class="revenue-area" d="M74 210 C162 207 214 188 280 160 C368 122 448 114 622 52 L622 222 L74 222 Z" fill="url(#revArea)"/>
+        <path class="revenue-path" pathLength="1" d="M74 210 C162 207 214 188 280 160 C368 122 448 114 622 52" fill="none" stroke="#B8FF3A" stroke-width="4" stroke-linecap="round"/>
+        <circle cx="74" cy="210" r="6" fill="#0E0E13" stroke="#B8FF3A" stroke-width="2"/>
+        <circle class="revenue-end" cx="622" cy="52" r="8" fill="#B8FF3A"/>
+        <text x="52" y="238" fill="#9A9AA4" font-family="JetBrains Mono" font-size="12">~$300K</text>
+        <text class="revenue-count" data-final="$10M+" x="568" y="42" fill="#F4F4F6" font-family="Inter" font-weight="900" font-size="26">$0</text>
+      </svg>
+    </figure>
+
+    <p>And for a commercial client breaking into residential, our system has logged <strong>about 150 leads since launch</strong> — leads that simply weren't coming in before.</p>
+
+    <p>Here's what each month actually looked like:</p>
+
+    <figure>
+      <!-- @r020:F2 proof: real per-month lead counts for the client — concrete receipts behind the "~150 leads" claim; drives belief in the system. -->
+      <svg class="lead-bars" viewBox="0 0 700 240" role="img" aria-label="Monthly leads since launch: Feb 16, Mar 81, Apr 35, May 17">
+        <text x="20" y="28" fill="#F4F4F6" font-family="Inter" font-weight="800" font-size="16">Leads per month since launch</text>
+        <line x1="20" y1="200" x2="680" y2="200" stroke="#22222c" stroke-width="1"/>
+        <g font-family="Inter" font-weight="800" font-size="16" fill="#F0FF00" text-anchor="middle">
+          <rect class="lead-bar bar-feb" x="70" y="172" width="92" height="28" rx="4" fill="#F0FF00" opacity="0.8"/><text class="bar-label label-feb" x="116" y="162">16</text>
+          <rect class="lead-bar bar-mar" x="232" y="60" width="92" height="140" rx="4" fill="#F0FF00"/><text class="bar-label label-mar" x="278" y="50">81</text>
+          <rect class="lead-bar bar-apr" x="394" y="140" width="92" height="60" rx="4" fill="#F0FF00" opacity="0.8"/><text class="bar-label label-apr" x="440" y="130">35</text>
+          <rect class="lead-bar bar-may" x="556" y="171" width="92" height="29" rx="4" fill="#F0FF00" opacity="0.8"/><text class="bar-label label-may" x="602" y="161">17</text>
+        </g>
+        <g font-family="JetBrains Mono" font-size="12" fill="#9A9AA4" text-anchor="middle">
+          <text x="116" y="224">FEB</text><text x="278" y="224">MAR</text><text x="440" y="224">APR</text><text x="602" y="224">MAY</text>
+        </g>
+      </svg>
+      <figcaption>Real counts from the live system — 149 in the first four months, with month two hitting its stride.</figcaption>
+    </figure>
+    <p>But AI is still evolving, and there are real challenges. We rebuilt an entire website for a well-established home-staging and interior-design firm with strong existing search rankings. When we moved their SEO to the new site we saw the expected dip in Google rankings, and our system couldn't fully erase it — though it's bouncing back faster than a normal rebuild would.</p>
+    <p>Real-estate brokerages are the hardest thing our system does. Where we're strongest is the speed and quality of what we produce:</p>
+    <ul class="clean">
+      <li>Open-house assets</li>
+      <li>Marketing for specific properties</li>
+      <li>Professional websites with top-tier SEO and AEO (getting recommended by AI)</li>
+    </ul>
+    <p>Where we're still improving is pure lead generation. Real estate is human-to-human more than almost anything else — and as AI gets as capable as the best humans, we expect to turn that corner sooner than later.</p>
+  </div>
+</section>
+
+<section class="rv">
+  <div class="wrap">
+    <div class="eyebrow">What's next</div>
+    <h2>Where we're putting our <span class="y">weight</span>.</h2>
+    <p>Both SEO (getting "free" leads from Google searches) and AEO (getting recommended by AI) take time and attention — and I've never met a business owner who didn't want more business <em>right now</em>, even when they're already drowning in it. So we're building out advertising, because it's the fastest way to bring in new, qualified leads.</p>
+    <figure class="signal-board">
+      <!-- @r020:F2 proof: advertising signal board turns the strategy into a visible operating system. -->
+      <svg viewBox="0 0 700 300" role="img" aria-label="Advertising signal board: Meta drives creative, Google drives keyword, budget fuels both, producing qualified leads">
+        <defs>
+          <marker id="signalArrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse">
+            <path d="M0 0 L10 5 L0 10 Z" fill="#F0FF00"/>
+          </marker>
+          <marker id="returnArrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse">
+            <path d="M0 0 L10 5 L0 10 Z" fill="#B8FF3A"/>
+          </marker>
+        </defs>
+        <g fill="#15151c" stroke="#30303a" stroke-width="1.5">
+          <circle class="signal-node" cx="92" cy="66" r="26"/><circle class="signal-node" cx="92" cy="140" r="26"/><circle class="signal-node" cx="92" cy="214" r="26"/>
+          <circle class="signal-node" cx="322" cy="80" r="30"/><circle class="signal-node" cx="326" cy="204" r="30"/>
+          <circle class="signal-node return-node" cx="588" cy="140" r="38"/>
+        </g>
+        <path class="signal-path p1" pathLength="1" d="M118 66 C182 64 224 72 292 80" fill="none" stroke="#F0FF00" stroke-width="2.4" marker-end="url(#signalArrow)"/>
+        <path class="signal-path p2" pathLength="1" d="M118 214 C184 214 236 208 298 204" fill="none" stroke="#F0FF00" stroke-width="2.4" marker-end="url(#signalArrow)"/>
+        <path class="signal-path p3" pathLength="1" d="M120 132 C192 116 236 100 296 88" fill="none" stroke="#F0FF00" stroke-width="1.9" marker-end="url(#signalArrow)"/>
+        <path class="signal-path p4" pathLength="1" d="M120 150 C192 166 236 182 298 196" fill="none" stroke="#F0FF00" stroke-width="1.9" marker-end="url(#signalArrow)"/>
+        <path class="signal-path p5" pathLength="1" d="M352 80 C432 78 476 104 552 130" fill="none" stroke="#B8FF3A" stroke-width="3" marker-end="url(#returnArrow)"/>
+        <path class="signal-path p6" pathLength="1" d="M356 204 C432 200 478 176 552 150" fill="none" stroke="#B8FF3A" stroke-width="3" marker-end="url(#returnArrow)"/>
+        <g font-family="JetBrains Mono" font-size="11.5" letter-spacing="1.2" fill="#F4F4F6">
+          <text x="60" y="70" text-anchor="end">META</text>
+          <text x="60" y="144" text-anchor="end">BUDGET</text>
+          <text x="60" y="218" text-anchor="end">GOOGLE</text>
+          <text x="322" y="42" text-anchor="middle">CREATIVE</text>
+          <text x="326" y="252" text-anchor="middle">KEYWORD</text>
+          <text x="588" y="198" text-anchor="middle" fill="#B8FF3A">QUALIFIED LEAD</text>
+        </g>
+      </svg>
+    </figure>
+    <p>For Meta ads (Facebook & Instagram), our system can already build the campaign, make the creative, and run the platform end to end. We're testing it on ourselves first — once it delivers a 2× return for 90 days straight, we'll pilot it with a few clients.</p>
+    <p>We're also building Google Ads, which is more straightforward because it runs on math — and math is exactly where AI shines: find the right keywords, build the campaigns, set the budget, execute. We expect the first Google Ads live by the end of this month for select clients.</p>
+    <p>The difference, if it isn't obvious: instead of handing you an expert human, we train the AI to <em>be</em> the expert — native to your business. We believe that's the only way to protect your business's future.</p>
+  </div>
+</section>
+
+<section class="rv">
+  <div class="wrap">
+    <div class="eyebrow">The receipts</div>
+    <h2>What you get <span class="y">today</span> — and tomorrow.</h2>
+    <p>Since the start of 2026 we've built custom AI we can deploy into a business within weeks:</p>
+    <ul class="clean module-list">
+      <li>25+ page websites that cost large companies <strong>$500,000–$1,000,000</strong> and 6–18 months to build</li>
+      <li>100% data coverage — 750+ data points across the customer journey, so the AI decides and responds with precision</li>
+      <li>Live lead dashboards — every lead, every status, always current</li>
+      <li>Instant lead alerts + end-to-end attribution (you know which ad and page earned the call)</li>
+      <li>An always-on follow-up engine, so leads don't go cold while you're busy</li>
+    </ul>
+
+    <figure>
+      <!-- @r020:F2 proof: dated BWM build milestones — proves we ship and beat our own estimates; builds trust right before the client offers. -->
+      <svg class="build-timeline" viewBox="0 0 700 260" role="img" aria-label="Buildwise Media build timeline">
+        <text x="26" y="32" fill="#F4F4F6" font-family="Inter" font-weight="800" font-size="17">What we've built — and what's coming</text>
+        <line x1="40" y1="150" x2="660" y2="150" stroke="#22222c" stroke-width="2"/>
+        <line class="timeline-rail-live" pathLength="1" x1="40" y1="150" x2="555" y2="150" stroke="#B8FF3A" stroke-width="2.5" stroke-linecap="round"/>
+        <g font-family="JetBrains Mono" font-size="10" fill="#F0FF00">
+          <text x="55" y="130">MAR 26</text><text x="200" y="130">APR 29</text><text x="360" y="130">JUN 4</text><text x="540" y="130">Q1 27</text>
+        </g>
+        <g><circle class="timeline-node n1" cx="70" cy="150" r="6" fill="#F0FF00"/><circle class="timeline-node n2" cx="215" cy="150" r="6" fill="#F0FF00"/><circle class="timeline-node n3" cx="375" cy="150" r="6" fill="#F0FF00"/>
+          <circle class="timeline-node timeline-future" cx="555" cy="150" r="6" fill="#0E0E13" stroke="#F0FF00" stroke-width="2.5"/></g>
+        <g font-family="Inter" font-size="12" fill="#F4F4F6">
+          <text x="46" y="178">Lead capture +</text><text x="46" y="194" fill="#9A9AA4">attribution live</text>
+          <text x="190" y="178">Overnight build,</text><text x="190" y="194" fill="#9A9AA4">zero humans</text>
+          <text x="350" y="178">Killed a paid test</text><text x="350" y="194" fill="#9A9AA4">that wasn't working</text>
+          <text x="528" y="178">Near-auto delivery</text><text x="528" y="194" fill="#9A9AA4">(humans at gates)</text>
+        </g>
+        <text x="46" y="232" fill="#6A6A74" font-family="Inter" font-style="italic" font-size="11">Build milestones are real and dated. The last one is a conservative estimate — history says sooner.</text>
+      </svg>
+      <figcaption>The dates above are real. Every time we predicted one, it came faster than we guessed.</figcaption>
+    </figure>
+  </div>
+</section>
+
+<section class="rv">
+  <div class="wrap">
+    <div class="eyebrow">Wrapping up</div>
+    <h2>Stay at the <span class="y">edge</span> — that's the deal.</h2>
+    <p>The system that turns a business AI-native pulls from all the frontier labs at once. It does its own research, finds the best solution, and builds it right into the business. Every time a model improves, that improvement rolls into your business the same day — usually within minutes.</p>
+    <p>I like to work with people I like, so most of us are pretty similar. We're ambitious, we care about our clients, and we want what we want — and we want it now. That's what I'm bringing you: keeping Buildwise Media, and therefore you, at the very edge of what AI can do at any given moment. It's not a perfect process. But as I've shown you, it's a very fast one.</p>
+    <!-- @signoff-draft: in Robert's voice; he reviews next draft -->
+    <div class="closing-orbit">
+      <svg class="orbit-field" viewBox="0 0 760 220" aria-hidden="true">
+        <path class="orbit-a" pathLength="1" d="M380 22 L690 178 L112 184 Z" fill="none" stroke="#F0FF00" stroke-width="1"/>
+        <path class="orbit-b" pathLength="1" d="M384 40 L636 170 L154 166 Z" fill="none" stroke="#B8FF3A" stroke-width="1"/>
+        <path class="orbit-c" pathLength="1" d="M380 62 L584 156 L208 156 Z" fill="none" stroke="#F0FF00" stroke-width="1"/>
+        <path class="orbit-stable" pathLength="1" d="M380 74 L548 154 L238 154 Z" fill="none" stroke="#B8FF3A" stroke-width="1.6"/>
+      </svg>
+      <p class="pull">The tools will keep moving on their own schedule. The one clock you control is how fast you decide to build. I'd start now.</p>
+    </div>
+    <p style="font-weight:600;color:#fff;font-size:21px;margin-bottom:2px">— Robert</p>
+    <p class="kic" style="margin:0">Founder, Buildwise Media</p>
+  </div>
+</section>
+
+
+
+<section class="rv">
+  <div class="wrap">
+    <div class="eyebrow">Sources</div>
+    <ol class="fn" id="fns">
+      <li id="fn1">METR — "Measuring AI Ability to Complete Long Tasks," <a href="https://metr.org/blog/2025-03-19-measuring-ai-ability-to-complete-long-tasks/">metr.org</a> (Mar 2025; updated Jan 2026). Time-horizon doubling ≈ every 4–7 months.</li>
+      <li id="fn2">Anthropic — "When AI builds itself," <a href="https://www.anthropic.com/institute/recursive-self-improvement">anthropic.com</a> (May 2026): "the typical engineer was merging 8× as much code per day as they were in 2024."</li>
+      <li id="fn3">Fortune — top engineers at Anthropic &amp; OpenAI say AI now writes ~100% of their code; Anthropic company-wide 70–90% (Jan 29 2026).</li>
+      <li id="fn4">Forecasting Research Institute — ForecastBench: AI closing the gap on superforecasters; parity projected later in 2026.</li>
+      <li id="fn5">Scientific American — AI made a major advance on an ~80-year-old Erdős problem (May 2026).</li>
+      <li id="fn6">TechCrunch — Sam Altman: OpenAI tracking to an "intern-level research assistant" by ~September 2026 (Oct 28 2025).</li>
+      <li id="fn7">Anthropic — Fable 5 access notice; U.S. Commerce Department order suspended access (~Jun 12 2026).</li>
+      <li id="fn8">Anthropic — "When AI builds itself": "In 2027, AI systems could be capable of tasks that take a person weeks." (recursive self-improvement, May 2026).</li>
+      <li id="fn9">The Hackett Group — generative AI projected ~30–40% effort reduction in back-office (SG&A) functions (2023).</li>
+    </ol>
+    <div class="note" style="font-size:13px"><b>Note:</b> every number above is dialed to what the source actually says. The trend is real; the figures are defensible. Two items still need you: the dot graph and the $10M client result.</div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    You're getting this because you're a client of Buildwise Media.<br>
+    Buildwise Media · 3724 Marlborough Dr, Tucker, GA 30084 · <a href="{{unsubscribe_url}}">Unsubscribe</a>
+  </div>
+</footer>
+
+<script>
+const reduceMotion=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+const compactMotion=window.matchMedia('(max-width: 680px)').matches;
+const staticMotion=reduceMotion||compactMotion;
+const sections=[...document.querySelectorAll('.rv')];
+const dotGraph=document.querySelector('.ai-dotgraph');
+
+function setRevenueFinal(root=document){
+  root.querySelectorAll('.revenue-count').forEach(node=>{node.textContent=node.dataset.final||'$10M+'});
+}
+
+function animateRevenue(root){
+  const node=root.querySelector('.revenue-count');
+  if(!node||node.dataset.counted)return;
+  node.dataset.counted='true';
+  const final=node.dataset.final||'$10M+';
+  const start=performance.now();
+  const duration=1250;
+  function tick(now){
+    const p=Math.min(1,(now-start)/duration);
+    const eased=1-Math.pow(1-p,3);
+    const value=Math.floor(eased*10);
+    node.textContent=p>=1?final:(value<=0?'$0':'$'+value+'M');
+    if(p<1)requestAnimationFrame(tick);
+  }
+  requestAnimationFrame(tick);
+}
+
+function activate(el){
+  el.classList.add('in');
+  if(staticMotion)setRevenueFinal(el);
+  else animateRevenue(el);
+}
+
+if(dotGraph){
+  if(staticMotion)dotGraph.classList.add('ready');
+  else requestAnimationFrame(()=>dotGraph.classList.add('ready'));
+}
+
+if(staticMotion||!('IntersectionObserver'in window)){
+  sections.forEach(activate);
+}else{
+  const obs=new IntersectionObserver((es)=>es.forEach(e=>{
+    if(e.isIntersecting){
+      activate(e.target);
+      obs.unobserve(e.target);
+    }
+  }),{threshold:.12});
+  sections.forEach(el=>obs.observe(el));
+}
+</script>
+</body>
+</html>
