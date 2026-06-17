@@ -67,6 +67,18 @@ const allRoutes = discoverRoutes().map((routePath) => ({ name: routeToName(route
 // asserts every one of these is in the swept set.
 const paidLpRoutes = allRoutes.filter((route) => /^\/(go|mo)(\/|-|$)/.test(route.path));
 
+// Pages with a STRICT above-fold-CTA contract: paid LPs + the core conversion
+// funnel. Editorial/SEO/content pages (playbook, problem, industries, about…)
+// legitimately lead with the story and place the CTA after the value, so a
+// below-fold CTA there is an advisory, not a hard fail (paid-LP post-mortem).
+const CORE_FUNNEL = new Set([
+  '/', '/book', '/pricing', '/system', '/services/ascend', '/services/ascend-pilot', '/audit', '/results',
+]);
+const isStrictCtaRoute = (pathname) => {
+  const p = (pathname || '').replace(/\/$/, '') || '/';
+  return /^\/(go|mo)(\/|-)/.test(p) || CORE_FUNNEL.has(p);
+};
+
 // BWM_QA_ROUTES scopes a run to a comma-separated subset of paths (fast targeted
 // reruns); when set, the meta-gate is skipped because the scope is explicit.
 const routeOverride = (process.env.BWM_QA_ROUTES || '')
@@ -633,21 +645,31 @@ function pageAudit() {
     // stroked rect is almost always a label/value container the text sits INSIDE by
     // design, and a filled rect is a bar or backdrop panel; curved path/polyline
     // bboxes are too loose. Node/line collisions are exactly what Robert caught.
+    // Effective alpha of an SVG paint = its rgba alpha × the *-opacity property.
+    const effAlpha = (colorStr, opacityProp) => {
+      const m = /rgba?\(([^)]+)\)/.exec(colorStr || '');
+      let alpha = colorStr && colorStr !== 'none' ? 1 : 0;
+      if (m) {
+        const parts = m[1].split(',').map((s) => Number.parseFloat(s));
+        alpha = parts.length > 3 ? parts[3] : 1;
+      }
+      const op = Number.parseFloat(opacityProp);
+      return alpha * (Number.isFinite(op) ? op : 1);
+    };
     const isInkMark = (mark) => {
       if (!visible(mark)) return false;
       const tag = mark.tagName.toLowerCase();
       const rect = mark.getBoundingClientRect();
       if (rect.width < 1 && rect.height < 1) return false;
       const style = window.getComputedStyle(mark);
-      const fill = (style.fill || '').toLowerCase();
-      const stroke = (style.stroke || '').toLowerCase();
-      const hasFill = fill && fill !== 'none' && fill !== 'rgba(0, 0, 0, 0)' && fill !== 'transparent';
-      const hasStroke = stroke && stroke !== 'none' && stroke !== 'rgba(0, 0, 0, 0)';
-      // Small nodes/dots only — a LARGE circle is a node container whose label
-      // legitimately sits inside or at its edge (node-map diagrams), not a glyph
-      // collision. The real collisions are plotted dots (r~3-7) landing on text.
-      if (tag === 'circle' || tag === 'ellipse') return (hasFill || hasStroke) && Math.max(rect.width, rect.height) <= 36;
-      if (tag === 'line') return hasStroke && Math.min(rect.width, rect.height) <= 6;
+      // Only an OPAQUE mark (effective alpha >= 0.6) can actually obscure text — a
+      // faint/semi-transparent node reads THROUGH (the /go/status satellite circles
+      // are rgba(...,0.22) and do not hide their labels). And only SMALL circles:
+      // a large circle is a node container whose label legitimately sits at its edge.
+      if (tag === 'circle' || tag === 'ellipse') {
+        return effAlpha(style.fill, style.fillOpacity) >= 0.6 && Math.max(rect.width, rect.height) <= 36;
+      }
+      if (tag === 'line') return effAlpha(style.stroke, style.strokeOpacity) >= 0.6 && Math.min(rect.width, rect.height) <= 6;
       return false;
     };
     const svgTextCollisions = [];
@@ -676,12 +698,21 @@ function pageAudit() {
             if (textInsideMark) continue;
             const overlapX = Math.min(tr.right, mr.right) - Math.max(tr.left, mr.left);
             const overlapY = Math.min(tr.bottom, mr.bottom) - Math.max(tr.top, mr.top);
-            if (overlapX > 1 && overlapY > 1) {
+            // Require SUBSTANTIAL coverage (>=40% of the glyph box), i.e. the text is
+            // genuinely sitting UNDER the mark — not a bounding-box graze. SVG <text>
+            // boxes carry line-height padding and circle boxes carry empty corners, so
+            // a few-px edge overlap is not an ink collision (verified against the
+            // /go/status + /go/volume node-map label grazes, 2026-06-17). A real
+            // "covered" collision (a node dropped on a word) clears 50%.
+            const textArea = tr.width * tr.height;
+            const coverage = textArea > 0 ? (Math.max(0, overlapX) * Math.max(0, overlapY)) / textArea : 0;
+            if (overlapX > 1 && overlapY > 1 && coverage >= 0.4) {
               svgTextCollisions.push({
                 svgIndex,
                 text: norm(text.textContent).slice(0, 32),
                 mark: mark.tagName.toLowerCase(),
                 overlap: `${Math.round(overlapX)}x${Math.round(overlapY)}`,
+                coverage: `${Math.round(coverage * 100)}%`,
               });
               break;
             }
@@ -712,10 +743,17 @@ function pageAudit() {
           return hasFill && !hasStroke && box.width > 2 && box.height > 4;
         });
         if (filledBars.length < 4) return;
-        const widths = filledBars.map((rect) => Math.round(rect.getBoundingClientRect().width)).sort((a, b) => a - b);
+        const widthOf = (rect) => Math.round(rect.getBoundingClientRect().width);
+        const widths = filledBars.map(widthOf).sort((a, b) => a - b);
         const median = widths[Math.floor(widths.length / 2)];
-        const series = widths.filter((width) => Math.abs(width - median) <= 3);
-        if (series.length < 4) return; // a uniform series of <4 bars is likely a decorative motif
+        const seriesBars = filledBars.filter((rect) => Math.abs(widthOf(rect) - median) <= 3);
+        if (seriesBars.length < 4) return; // a uniform-width series of <4 is a decorative motif
+        // A real bar chart encodes data in VARYING bar heights. A uniform-height
+        // series is a row of R014b vertex markers / pipeline/timeline node squares,
+        // not a chart (verified on /problem/leaky-revenue + /problem/reactive-growth).
+        const heights = seriesBars.map((rect) => Math.round(rect.getBoundingClientRect().height));
+        if (Math.max(...heights) - Math.min(...heights) < 4) return;
+        const series = seriesBars.map(widthOf);
         const visibleText = Array.from(svg.querySelectorAll('text')).map((t) => t.textContent).join(' ');
         const figure = svg.closest('figure');
         const figcaption = figure ? figure.querySelector('figcaption')?.textContent || '' : '';
@@ -989,7 +1027,7 @@ function routeFailures(metrics, viewport) {
       (item.text.length > 2 || item.tag === 'button' || item.tag === 'a'),
   );
   if (clipped.length) failures.push(`clipped controls ${clipped.length}`);
-  if (viewport.mobile && !metrics.mobileCtaWithin580) {
+  if (viewport.mobile && !metrics.mobileCtaWithin580 && isStrictCtaRoute(metrics.pathname)) {
     failures.push('mobile CTA/form action not visible within first 580px');
   }
   if (metrics.headingQuality?.issues?.length) {
@@ -1010,8 +1048,9 @@ function routeFailures(metrics, viewport) {
   // tier contract in Brain reference/QA-Visual-Design-Gate.md.
   // ITEM 3 — primary CTA must clear the fold at 1440x900 (top ≤ viewportH − 80).
   // Selector-agnostic: catches /go/* CTAs ("Get My Free Revenue Leak Map") the
-  // old "See If We're a Fit" hardcode missed.
-  if (viewport.name === 'desktop-1440x900') {
+  // old "See If We're a Fit" hardcode missed. STRICT only for paid LPs + the core
+  // funnel; below-fold CTA on editorial pages is reported as an advisory.
+  if (viewport.name === 'desktop-1440x900' && isStrictCtaRoute(metrics.pathname)) {
     if (metrics.ctaPrimaryTop === null) {
       failures.push('no primary CTA detected on page');
     } else if (metrics.ctaPrimaryTop > viewport.height - 80) {
@@ -1060,9 +1099,20 @@ function routeFailures(metrics, viewport) {
 // (8-9px faint diagram annotations ~3:1) — a design-tier [J] decision, not a
 // regression this sweep should hard-block on. Flips to routeFailures once the
 // micro-label register is resolved.
-function routeAdvisories(metrics) {
+function routeAdvisories(metrics, viewport) {
   const advisories = [];
   if (metrics.wcag?.contrast?.length) advisories.push(`wcag contrast ${metrics.wcag.contrast.length}`);
+  // Editorial/content pages with the CTA below the fold — advisory, not a hard
+  // fail (the strict above-fold contract is paid-LP + core-funnel only).
+  if (
+    viewport?.name === 'desktop-1440x900' &&
+    !isStrictCtaRoute(metrics.pathname) &&
+    metrics.ctaPrimaryTop !== null &&
+    metrics.ctaPrimaryTop !== undefined &&
+    metrics.ctaPrimaryTop > viewport.height - 80
+  ) {
+    advisories.push(`primary CTA below the fold (top ${metrics.ctaPrimaryTop}px, editorial page)`);
+  }
   // ITEM 5 — prose density: a wall of body text with no skim layer before its
   // first visual. Advisory (scannability is a [J] judgment, not a hard regression).
   if (metrics.proseDensity?.length) {
@@ -1269,7 +1319,7 @@ async function main() {
           viewport: viewport.name,
           screenshot: screenshotPath,
           failures: routeFailures(metrics, viewport),
-          advisories: routeAdvisories(metrics),
+          advisories: routeAdvisories(metrics, viewport),
           h1s: metrics.h1s,
           overflowX: metrics.document.overflowX,
           visibleImages: metrics.images.visibleCount,
