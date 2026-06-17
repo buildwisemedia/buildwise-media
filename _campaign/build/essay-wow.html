@@ -110,14 +110,14 @@ figcaption{font-size:13px;color:var(--dim);margin-top:10px;font-style:italic}
 .danger-relief{position:relative;margin:4px -12px 12px;padding:0 12px 4px;isolation:isolate}
 .danger-relief::before{content:"";position:absolute;inset:0;border-radius:18px;background:radial-gradient(80% 120% at 50% 8%,rgba(21,21,28,.78),transparent 66%);opacity:0;pointer-events:none}
 .danger-section.in .danger-relief::before{animation:dangerCompress 2.1s var(--ease) .12s forwards}
-.closing-beat{position:relative;overflow:hidden;border-radius:14px;padding:10px 12px;margin-left:-12px;margin-right:-12px}
-.closing-beat::before,.closing-beat::after{content:"";position:absolute;top:0;bottom:0;width:0;opacity:0;pointer-events:none;background:linear-gradient(90deg,rgba(5,5,7,.86),rgba(14,14,19,.58));box-shadow:-4px 0 8px var(--danger-orange);z-index:0}
-.closing-beat::before{left:0;border-right:1px solid color-mix(in srgb,var(--danger-orange) 68%,transparent)}
-.closing-beat::after{right:0;border-left:1px solid color-mix(in srgb,var(--danger-orange) 68%,transparent);transform:scaleX(-1)}
-.danger-section.in .closing-beat::before{animation:apertureLeft 2.35s var(--ease) .18s forwards}
-.danger-section.in .closing-beat::after{animation:apertureRight 2.35s var(--ease) .18s forwards}
+.closing-beat{position:relative;overflow:hidden;isolation:isolate;border-radius:14px;padding:16px 14px;margin-left:-12px;margin-right:-12px;background:linear-gradient(180deg,rgba(199,64,13,.07),rgba(199,64,13,0) 30%,rgba(199,64,13,0) 70%,rgba(199,64,13,.055));box-shadow:inset 0 0 0 1px rgba(199,64,13,.08)}
+.closing-beat::before,.closing-beat::after{content:"";position:absolute;width:min(42%,280px);height:3px;border-radius:999px;opacity:0;pointer-events:none;background:linear-gradient(90deg,transparent,color-mix(in srgb,var(--danger-orange) 22%,transparent) 20%,color-mix(in srgb,var(--danger-orange) 62%,transparent) 42%,color-mix(in srgb,var(--danger-orange) 58%,#fff) 50%,color-mix(in srgb,var(--danger-orange) 62%,transparent) 58%,color-mix(in srgb,var(--danger-orange) 18%,transparent) 80%,transparent);box-shadow:0 0 10px rgba(199,64,13,.36),0 0 22px rgba(199,64,13,.16);z-index:1;will-change:transform,opacity}
+.closing-beat::before{top:5px;left:12px;transform:translateX(-115%) scaleX(.72)}
+.closing-beat::after{right:12px;bottom:5px;transform:translateX(115%) scaleX(.72)}
+.danger-section.in .closing-beat::before{animation:apertureLeft 2.9s cubic-bezier(.55,0,.2,1) .18s both}
+.danger-section.in .closing-beat::after{animation:apertureRight 2.9s cubic-bezier(.55,0,.2,1) .18s both}
 .closing-word{position:relative;z-index:3}
-.beat-words{position:relative;z-index:2}
+.beat-words{position:relative;z-index:2;text-shadow:0 1px 0 #050507,0 0 18px rgba(5,5,7,.84)}
 .danger-section.in .closing-word{animation:closingFlare 1.15s ease-out .75s both}
 .relief-copy{position:relative;z-index:2}
 .relief-route{position:relative;z-index:1;display:block;width:100%;height:56px;margin:2px 0 8px;pointer-events:none;overflow:visible}
@@ -235,8 +235,8 @@ footer a{color:var(--dim)}
 @keyframes dashDraw{to{stroke-dashoffset:0}}
 @keyframes projectionPulse{0%,100%{opacity:.28;stroke-width:3}50%{opacity:.82;stroke-width:3.8}}
 @keyframes dangerCompress{0%{opacity:0}48%{opacity:1}100%{opacity:.5}}
-@keyframes apertureLeft{0%{width:0;opacity:0}48%{width:11px;opacity:1}100%{width:7px;opacity:.62}}
-@keyframes apertureRight{0%{width:0;opacity:0}48%{width:11px;opacity:1}100%{width:7px;opacity:.62}}
+@keyframes apertureLeft{0%{opacity:0;transform:translateX(-115%) scaleX(.72)}8%{opacity:.96}24%{opacity:.92;transform:translateX(158%) scaleX(1)}42%{opacity:.74;transform:translateX(18%) scaleX(.78)}60%{opacity:.88;transform:translateX(130%) scaleX(.9)}78%{opacity:.7;transform:translateX(72%) scaleX(.56)}100%{opacity:.44;transform:translateX(82%) scaleX(.36)}}
+@keyframes apertureRight{0%{opacity:0;transform:translateX(115%) scaleX(.72)}8%{opacity:.96}24%{opacity:.92;transform:translateX(-158%) scaleX(1)}42%{opacity:.74;transform:translateX(-18%) scaleX(.78)}60%{opacity:.88;transform:translateX(-130%) scaleX(.9)}78%{opacity:.7;transform:translateX(-72%) scaleX(.56)}100%{opacity:.44;transform:translateX(-82%) scaleX(.36)}}
 @keyframes msReveal{to{opacity:1;transform:translateX(0)}}
 @keyframes msRule{to{transform:scaleY(1)}}
 @keyframes closingFlare{0%,100%{text-shadow:none;color:inherit}42%{color:#fff;text-shadow:0 0 4px var(--danger-orange),0 0 18px var(--danger-orange),0 0 34px var(--danger-orange)}}
@@ -278,7 +278,9 @@ footer a{color:var(--dim)}
   ul.module-list li:after{opacity:1;transform:none;animation:none!important}
   .build-timeline .timeline-node{opacity:1;animation:none!important}
   .build-timeline .timeline-future{filter:drop-shadow(0 0 10px rgba(240,255,0,.24));animation:none!important}
-  .closing-beat::before,.closing-beat::after{width:14%;opacity:.58;animation:none!important}
+  .closing-beat::before,.closing-beat::after{opacity:.38;animation:none!important}
+  .closing-beat::before{transform:translateX(82%) scaleX(.36)}
+  .closing-beat::after{transform:translateX(-82%) scaleX(.36)}
   .closing-word{animation:none!important}
   .danger-relief::before{opacity:.42;animation:none!important}
   .orbit-field .orbit-a,.orbit-field .orbit-b,.orbit-field .orbit-c{display:none}
