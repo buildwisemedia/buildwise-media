@@ -1,0 +1,1081 @@
+---
+const questions = [
+  {
+    id: 'q-decision-maker',
+    field: 'decision_maker',
+    eyebrow: 'Signal 01 / 07',
+    title: 'Who makes the call on growth spend?',
+    help: 'Pick the role that is closest to yours today.',
+    options: [
+      { value: 'yes_i_decide', label: 'I make the call', body: 'You own the final yes.' },
+      { value: 'i_influence', label: 'I shape the call', body: 'You bring the plan to the table.' },
+      { value: 'no_someone_else', label: 'Someone else decides', body: 'We will help loop them in.' },
+    ],
+  },
+  {
+    id: 'q-revenue-range',
+    field: 'revenue_range',
+    eyebrow: 'Signal 02 / 07',
+    title: 'What is the current size of the operation?',
+    help: 'This helps us keep the map grounded. We will not repeat this back on screen.',
+    options: [
+      { value: 'under_1m', label: 'Early-stage', body: 'Still proving the base engine.' },
+      { value: '1m_3m', label: 'Growing local team', body: 'The work is real, but the system is thin.' },
+      { value: '3m_8m', label: 'Established service team', body: 'Enough signal for a serious map.' },
+      { value: '8m_15m', label: 'Expansion mode', body: 'Growth depends on better control.' },
+      { value: '15m_plus', label: 'Market leader', body: 'Scale creates a different leak pattern.' },
+    ],
+  },
+  {
+    id: 'q-ad-spend',
+    field: 'ad_spend_readiness',
+    eyebrow: 'Signal 03 / 07',
+    title: 'Could you put fuel behind a plan that proves itself?',
+    help: 'We are checking whether the system can get enough reach to matter.',
+    options: [
+      { value: 'ready_1to1', label: 'Yes, if the plan is clear', body: 'Budget can follow proof.' },
+      { value: 'need_math', label: 'Show me the math first', body: 'You need the case before spend.' },
+      { value: 'not_ready', label: 'Not ready yet', body: 'Spend is not the next move.' },
+    ],
+  },
+  {
+    id: 'q-lead-flow',
+    field: 'lead_flow_state',
+    eyebrow: 'Signal 04 / 07',
+    title: 'What does lead flow feel like right now?',
+    help: 'Pick the leak that costs the most time each week.',
+    options: [
+      { value: 'too_few', label: 'Too few good leads', body: 'The calendar needs more real demand.' },
+      { value: 'inconsistent', label: 'Busy, then quiet', body: 'Good months and slow months trade places.' },
+      { value: 'enough_but_messy', label: 'Enough, but messy', body: 'The lead volume exists, but control is weak.' },
+    ],
+  },
+  {
+    id: 'q-follow-up',
+    field: 'follow_up_state',
+    eyebrow: 'Signal 05 / 07',
+    title: 'How tight is follow-up after a lead comes in?',
+    help: 'This is often the fastest leak to fix.',
+    options: [
+      { value: 'manual', label: 'Mostly manual', body: 'Calls, texts, and reminders depend on people.' },
+      { value: 'partial', label: 'Some help, not trusted', body: 'Pieces exist, but you still babysit them.' },
+      { value: 'instrumented', label: 'Tracked and visible', body: 'You can see what happened and when.' },
+    ],
+  },
+  {
+    id: 'q-poor-four',
+    field: 'selected_poor_four',
+    eyebrow: 'Signal 06 / 07',
+    title: 'Which leak feels most expensive?',
+    help: 'Choose the one that would change the year if it improved first.',
+    options: [
+      { value: 'invisible_market', label: 'Invisible market', body: 'Buyers do not find you first.' },
+      { value: 'leaky_revenue', label: 'Leaky revenue', body: 'Leads, quotes, or past clients slip away.' },
+      { value: 'owner_bottleneck', label: 'Owner bottleneck', body: 'Growth still runs through you.' },
+      { value: 'reactive_growth', label: 'Reactive growth', body: 'The numbers arrive too late.' },
+    ],
+  },
+  {
+    id: 'q-agency-history',
+    field: 'agency_history',
+    eyebrow: 'Signal 07 / 07',
+    title: 'What have you tried before?',
+    help: 'This tells us how much trust the next move has to earn.',
+    options: [
+      { value: 'burned_before', label: 'Burned before', body: 'You need proof, not a pitch.' },
+      { value: 'mixed_results', label: 'Some wins, no system', body: 'A few pieces worked, but nothing compounded.' },
+      { value: 'mostly_internal', label: 'Mostly internal', body: 'You have handled it with the team you have.' },
+    ],
+  },
+];
+---
+
+<section id="book-diagnostic" class="book-diagnostic" data-state="questions">
+  <div id="bd-status" class="bd-sr-only" aria-live="polite"></div>
+
+  <header class="bd-top">
+    <div class="bd-mark" aria-label="Buildwise Media Revenue Leak Map diagnostic">
+      <span class="bd-mark-glyph" aria-hidden="true">
+        <svg viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="5" cy="23" r="2.2" fill="#F0FF00"></circle>
+          <circle cx="23" cy="23" r="2.2" fill="#F0FF00"></circle>
+          <circle cx="14" cy="5" r="2.2" fill="#F0FF00"></circle>
+          <line x1="6.6" y1="21.3" x2="13" y2="7" stroke="#F0FF00" stroke-width="0.8" opacity="0.58"></line>
+          <line x1="21.4" y1="21.3" x2="15" y2="7" stroke="#F0FF00" stroke-width="0.8" opacity="0.58"></line>
+          <line x1="7.5" y1="23" x2="20.5" y2="23" stroke="#F0FF00" stroke-width="0.8" opacity="0.58"></line>
+          <circle cx="14" cy="16" r="1.25" fill="#F0FF00"></circle>
+        </svg>
+      </span>
+      <span class="bd-mark-text mono">Revenue Leak Map</span>
+    </div>
+
+    <div class="bd-progress-wrap">
+      <div
+        class="bd-progress"
+        role="progressbar"
+        aria-label="Diagnostic progress"
+        aria-valuemin="0"
+        aria-valuemax="7"
+        aria-valuenow="1"
+        data-progress
+      >
+        <span class="bd-progress-bar" data-progress-bar></span>
+      </div>
+      <div class="bd-progress-meta">
+        <span class="mono" data-step-copy>QUESTION 01 / 07</span>
+        <span class="mono" data-index-copy>GROWTH INDEX BUILDING</span>
+      </div>
+    </div>
+  </header>
+
+  <form id="bd-form" class="bd-form" novalidate>
+    <input type="text" name="website" class="bd-hp" tabindex="-1" autocomplete="off" aria-hidden="true" />
+    <input type="text" name="company_url" class="bd-hp" tabindex="-1" autocomplete="off" aria-hidden="true" />
+    <input type="hidden" name="_form_mount_at" data-form-mount-at />
+    <input type="hidden" name="_form_host_page" data-form-host-page />
+
+    <div class="bd-question-shell" data-question-shell>
+      {questions.map((question, questionIndex) => (
+        <section
+          class="bd-question"
+          data-question
+          data-question-index={questionIndex}
+          data-field={question.field}
+          hidden={questionIndex !== 0}
+          aria-labelledby={`${question.id}-title`}
+        >
+          <p class="bd-eyebrow mono">{question.eyebrow}</p>
+          <h1 id={`${question.id}-title`} class="bd-question-title">{question.title}</h1>
+          <p class="bd-help">{question.help}</p>
+
+          <div
+            class="bd-option-grid"
+            role="radiogroup"
+            aria-labelledby={`${question.id}-title`}
+            data-radio-group
+            data-field={question.field}
+          >
+            {question.options.map((option, optionIndex) => (
+              <button
+                type="button"
+                class="bd-option"
+                role="radio"
+                aria-checked="false"
+                tabindex={optionIndex === 0 ? '0' : '-1'}
+                data-option
+                data-field={question.field}
+                data-value={option.value}
+              >
+                <span class="bd-option-main">
+                  <span class="bd-option-index mono">{String(optionIndex + 1).padStart(2, '0')}</span>
+                  <span class="bd-option-copy">
+                    <strong>{option.label}</strong>
+                    <em>{option.body}</em>
+                  </span>
+                </span>
+                <span class="bd-option-dot" aria-hidden="true"></span>
+              </button>
+            ))}
+          </div>
+        </section>
+      ))}
+    </div>
+
+    <section class="bd-capture" data-capture hidden aria-labelledby="bd-capture-title">
+      <p class="bd-eyebrow mono">Map ready</p>
+      <h2 id="bd-capture-title" class="bd-capture-title">Your Growth Index is ready — where should we send it?</h2>
+      <p class="bd-help">Two fields. No phone. We show your result right after this.</p>
+
+      <div class="bd-capture-grid">
+        <div class="bd-field">
+          <label class="mono" for="bd-email">Email</label>
+          <input id="bd-email" name="email" type="email" required autocomplete="email" inputmode="email" />
+        </div>
+        <div class="bd-field">
+          <label class="mono" for="bd-company">Business name</label>
+          <input id="bd-company" name="company" type="text" required autocomplete="organization" />
+        </div>
+      </div>
+
+      <button type="submit" class="bd-submit" data-submit>
+        <span data-submit-label>Send my Growth Index</span>
+        <span data-submit-loading hidden>Sending...</span>
+      </button>
+      <p id="bd-error" class="bd-error" hidden></p>
+    </section>
+  </form>
+
+  <section id="bd-result" class="bd-result" data-result hidden tabindex="-1" aria-live="polite" aria-labelledby="bd-result-title">
+    <p class="bd-eyebrow mono" data-route-label>Result ready</p>
+    <h2 id="bd-result-title" class="bd-result-title">
+      Your Growth Index: <span data-final-score>--</span><span class="bd-score-max">/100</span>
+    </h2>
+    <p class="bd-result-copy" data-result-copy></p>
+
+    <div class="bd-proof" aria-label="Diagnostic proof">
+      <!-- @r020:F2 proof: live signal tiles show the captured map before the booking calendar is offered -->
+      <div class="bd-proof-tile">
+        <span class="mono">01</span>
+        <strong>Seven signals read</strong>
+        <p>The map uses your role, scale, fuel, leaks, follow-up, and history.</p>
+      </div>
+      <div class="bd-proof-tile">
+        <span class="mono">02</span>
+        <strong>One route picked</strong>
+        <p>The next step changes based on what you tapped, not a static form.</p>
+      </div>
+      <div class="bd-proof-tile">
+        <span class="mono">03</span>
+        <strong>No dead end</strong>
+        <p>You get the map now, then the team follows through by email.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="bd-enrichment" data-enrichment hidden aria-labelledby="bd-enrich-title">
+    <div>
+      <p class="bd-eyebrow mono">Optional</p>
+      <h3 id="bd-enrich-title">Add your site to sharpen the map.</h3>
+      <p>Skip this if you are in a hurry. Your result is already saved.</p>
+    </div>
+    <form class="bd-enrich-form" data-enrich-form novalidate>
+      <div class="bd-field">
+        <label class="mono" for="bd-business-url">Business URL</label>
+        <input id="bd-business-url" name="business_url" type="url" autocomplete="url" inputmode="url" placeholder="https://yourbusiness.com" />
+      </div>
+      <button type="submit" class="bd-enrich-submit">Add site</button>
+      <button type="button" class="bd-enrich-skip" data-enrich-skip>Skip</button>
+      <p class="bd-enrich-status mono" data-enrich-status aria-live="polite"></p>
+    </form>
+  </section>
+</section>
+
+<script is:inline>
+(function () {
+  const root = document.getElementById('book-diagnostic');
+  const form = document.getElementById('bd-form');
+  const status = document.getElementById('bd-status');
+  const questions = root ? Array.from(root.querySelectorAll('[data-question]')) : [];
+  const progress = root?.querySelector('[data-progress]');
+  const progressBar = root?.querySelector('[data-progress-bar]');
+  const stepCopy = root?.querySelector('[data-step-copy]');
+  const indexCopy = root?.querySelector('[data-index-copy]');
+  const capture = root?.querySelector('[data-capture]');
+  const result = root?.querySelector('[data-result]');
+  const routeLabel = root?.querySelector('[data-route-label]');
+  const finalScore = root?.querySelector('[data-final-score]');
+  const resultCopy = root?.querySelector('[data-result-copy]');
+  const submitBtn = root?.querySelector('[data-submit]');
+  const submitLabel = root?.querySelector('[data-submit-label]');
+  const submitLoading = root?.querySelector('[data-submit-loading]');
+  const errorEl = document.getElementById('bd-error');
+  const mountInput = root?.querySelector('[data-form-mount-at]');
+  const hostInput = root?.querySelector('[data-form-host-page]');
+  const enrichment = root?.querySelector('[data-enrichment]');
+  const enrichForm = root?.querySelector('[data-enrich-form]');
+  const enrichSkip = root?.querySelector('[data-enrich-skip]');
+  const enrichStatus = root?.querySelector('[data-enrich-status]');
+  const state = {};
+  const mountAt = new Date().toISOString();
+  let currentQuestion = 0;
+  let interacted = false;
+  let submitted = false;
+  let abandonSent = false;
+  let lastPayload = null;
+  let lastResponse = null;
+
+  if (!root || !form || !questions.length || !capture || !result) return;
+
+  if (mountInput) mountInput.value = mountAt;
+  if (hostInput) hostInput.value = window.location.href;
+
+  const scoreTable = {
+    decision_maker: { yes_i_decide: 15, i_influence: 9, no_someone_else: 3 },
+    revenue_range: { under_1m: 5, '1m_3m': 11, '3m_8m': 18, '8m_15m': 20, '15m_plus': 17 },
+    ad_spend_readiness: { ready_1to1: 15, need_math: 10, not_ready: 4 },
+    lead_flow_state: { too_few: 6, inconsistent: 10, enough_but_messy: 12 },
+    follow_up_state: { manual: 5, partial: 9, instrumented: 12 },
+    selected_poor_four: { invisible_market: 9, leaky_revenue: 11, owner_bottleneck: 10, reactive_growth: 8 },
+    agency_history: { burned_before: 9, mixed_results: 11, mostly_internal: 8 },
+  };
+
+  function event(name, params, opts) {
+    try {
+      let payload = Object.assign({}, params || {});
+      if (typeof window.__bwmGetAttributionPayload === 'function') {
+        payload = Object.assign(window.__bwmGetAttributionPayload(), payload);
+      }
+      if (typeof window.__bwmTrackEvent === 'function') {
+        window.__bwmTrackEvent(name, payload, opts || {});
+        return;
+      }
+      window.dataLayer = window.dataLayer || [];
+      window.dataLayer.push(Object.assign({ event: name }, payload));
+      window.gtag?.('event', name, Object.assign({ transport_type: 'beacon' }, payload));
+    } catch (_) {}
+  }
+
+  function experimentContext() {
+    const g = window.__BWM_EXP;
+    if (g && g.experiment_id && g.variant_id) {
+      return { experiment_id: g.experiment_id, experiment_variant_id: g.variant_id };
+    }
+    const m = document.cookie.match(/(?:^|; )_bwm_exp_host=([^;]*)/);
+    if (m) {
+      try {
+        const c = JSON.parse(decodeURIComponent(m[1]));
+        if (c && c.e && c.v) return { experiment_id: c.e, experiment_variant_id: c.v };
+      } catch (_) {}
+    }
+    return { experiment_id: '', experiment_variant_id: '' };
+  }
+
+  function cookie(name) {
+    const match = document.cookie.match(new RegExp('(?:^|; )' + name.replace(/[.$?*|{}()[\]\\/+^]/g, '\\$&') + '=([^;]*)'));
+    return match ? decodeURIComponent(match[1]) : '';
+  }
+
+  function attributionPayload() {
+    if (typeof window.__bwmGetAttributionPayload === 'function') {
+      return window.__bwmGetAttributionPayload();
+    }
+    let stored = {};
+    try { stored = JSON.parse(localStorage.getItem('_bwm_attribution') || '{}'); } catch (_) {}
+    const params = new URLSearchParams(window.location.search);
+    return {
+      attribution: stored,
+      referrer: sessionStorage.getItem('bwm_referrer') || document.referrer || '',
+      original_landing_page: sessionStorage.getItem('bwm_landing_page') || window.location.href,
+      utm_source: params.get('utm_source') || '',
+      utm_medium: params.get('utm_medium') || '',
+      utm_campaign: params.get('utm_campaign') || '',
+      utm_content: params.get('utm_content') || '',
+      utm_term: params.get('utm_term') || '',
+      fbclid: params.get('fbclid') || '',
+      gclid: params.get('gclid') || '',
+      fbc: cookie('_fbc'),
+      fbp: cookie('_fbp'),
+      booking_event_id: typeof window.__bwmEnsureBookingEventId === 'function' ? window.__bwmEnsureBookingEventId() : '',
+    };
+  }
+
+  function growthIndex() {
+    const raw = Object.keys(scoreTable).reduce((sum, field) => {
+      return sum + (scoreTable[field][state[field]] || 0);
+    }, 4);
+    return Math.max(0, Math.min(100, Math.round(raw)));
+  }
+
+  function setStatus(message) {
+    if (status) status.textContent = message;
+  }
+
+  function updateProgress() {
+    const completed = Object.keys(scoreTable).filter((field) => state[field]).length;
+    const current = Math.min(questions.length, currentQuestion + 1);
+    if (progress) progress.setAttribute('aria-valuenow', String(Math.max(1, completed || current)));
+    if (progressBar) progressBar.style.width = `${Math.max(1, completed || current) / questions.length * 100}%`;
+    if (stepCopy) stepCopy.textContent = currentQuestion < questions.length
+      ? `QUESTION ${String(current).padStart(2, '0')} / 07`
+      : 'CAPTURE / REVEAL';
+    if (indexCopy) indexCopy.textContent = completed === questions.length
+      ? 'GROWTH INDEX READY'
+      : 'GROWTH INDEX BUILDING';
+  }
+
+  function showQuestion(index) {
+    currentQuestion = Math.max(0, Math.min(index, questions.length - 1));
+    questions.forEach((question, questionIndex) => {
+      question.hidden = questionIndex !== currentQuestion;
+    });
+    capture.hidden = true;
+    root.dataset.state = 'questions';
+    updateProgress();
+    const active = questions[currentQuestion];
+    const field = active?.dataset.field || '';
+    const selected = state[field];
+    const options = Array.from(active?.querySelectorAll('[data-option]') || []);
+    const focusTarget = options.find((option) => option.dataset.value === selected) || options[0];
+    window.setTimeout(() => focusTarget?.focus({ preventScroll: true }), 20);
+    setStatus(`Question ${currentQuestion + 1} of 7.`);
+  }
+
+  function showCapture() {
+    questions.forEach((question) => { question.hidden = true; });
+    capture.hidden = false;
+    root.dataset.state = 'capture';
+    updateProgress();
+    setStatus('Your Growth Index is ready. Enter email and business name.');
+    event('diagnostic_step_complete', {
+      form_id: 'discovery-qualifier',
+      diagnostic_step: 7,
+      total_steps: 7,
+      growth_index: growthIndex(),
+    });
+    window.setTimeout(() => document.getElementById('bd-email')?.focus({ preventScroll: true }), 20);
+  }
+
+  function updateGroupSelection(group, selectedButton) {
+    const options = Array.from(group.querySelectorAll('[data-option]'));
+    options.forEach((option) => {
+      const isSelected = option === selectedButton;
+      option.setAttribute('aria-checked', String(isSelected));
+      option.tabIndex = isSelected ? 0 : -1;
+      option.classList.toggle('is-selected', isSelected);
+    });
+  }
+
+  function selectOption(button) {
+    const field = button.dataset.field;
+    const value = button.dataset.value;
+    if (!field || !value) return;
+    const group = button.closest('[data-radio-group]');
+    if (group) updateGroupSelection(group, button);
+    state[field] = value;
+    interacted = true;
+    updateProgress();
+    event(currentQuestion === 0 ? 'diagnostic_start' : 'diagnostic_step_complete', {
+      form_id: 'discovery-qualifier',
+      diagnostic_step: currentQuestion + 1,
+      total_steps: 7,
+      field,
+      growth_index: growthIndex(),
+    });
+    window.setTimeout(() => {
+      if (currentQuestion >= questions.length - 1) {
+        showCapture();
+      } else {
+        showQuestion(currentQuestion + 1);
+      }
+    }, 140);
+  }
+
+  function focusOption(group, nextIndex) {
+    const options = Array.from(group.querySelectorAll('[data-option]'));
+    const bounded = Math.max(0, Math.min(nextIndex, options.length - 1));
+    options.forEach((option, optionIndex) => {
+      option.tabIndex = optionIndex === bounded ? 0 : -1;
+    });
+    options[bounded]?.focus();
+  }
+
+  root.addEventListener('click', (event) => {
+    const button = event.target.closest('[data-option]');
+    if (!button) return;
+    selectOption(button);
+  });
+
+  root.addEventListener('keydown', (event) => {
+    const option = event.target.closest('[data-option]');
+    if (!option) return;
+    const group = option.closest('[data-radio-group]');
+    if (!group) return;
+    const options = Array.from(group.querySelectorAll('[data-option]'));
+    const index = options.indexOf(option);
+    if (event.key === 'ArrowRight' || event.key === 'ArrowDown') {
+      event.preventDefault();
+      focusOption(group, (index + 1) % options.length);
+    } else if (event.key === 'ArrowLeft' || event.key === 'ArrowUp') {
+      event.preventDefault();
+      focusOption(group, (index - 1 + options.length) % options.length);
+    } else if (event.key === 'Home') {
+      event.preventDefault();
+      focusOption(group, 0);
+    } else if (event.key === 'End') {
+      event.preventDefault();
+      focusOption(group, options.length - 1);
+    } else if (event.key === ' ' || event.key === 'Enter') {
+      event.preventDefault();
+      selectOption(option);
+    }
+  });
+
+  function deriveFirstName(email, company) {
+    const local = String(email || '').split('@')[0] || '';
+    const generic = /^(info|hello|office|admin|team|contact|sales)$/i.test(local);
+    const source = generic ? String(company || '').split(/\s+/)[0] : local.split(/[._+\-\d]/).filter(Boolean)[0];
+    const fallback = String(company || '').split(/\s+/)[0] || 'there';
+    const name = (source || fallback).replace(/[^a-zA-Z']/g, '');
+    if (!name) return 'there';
+    return name.charAt(0).toUpperCase() + name.slice(1).toLowerCase();
+  }
+
+  function payloadFromState(extra) {
+    const email = String(document.getElementById('bd-email')?.value || '').trim();
+    const company = String(document.getElementById('bd-company')?.value || '').trim();
+    const businessUrl = String(document.getElementById('bd-business-url')?.value || state.business_url || '').trim();
+    const honeyWebsite = String(form.elements.website?.value || '');
+    const honeyCompanyUrl = String(form.elements.company_url?.value || '');
+    const base = Object.assign({}, attributionPayload(), experimentContext(), {
+      first_name: deriveFirstName(email, company),
+      email,
+      company,
+      decision_maker: state.decision_maker || '',
+      revenue_range: state.revenue_range || '',
+      ad_spend_readiness: state.ad_spend_readiness || '',
+      lead_flow_state: state.lead_flow_state || '',
+      follow_up_state: state.follow_up_state || '',
+      selected_poor_four: state.selected_poor_four ? [state.selected_poor_four] : [],
+      agency_history: state.agency_history || '',
+      business_url: businessUrl,
+      growth_index: growthIndex(),
+      landing_page: 'book-diagnostic',
+      _form_mount_at: mountAt,
+      _form_host_page: window.location.href,
+      website: honeyWebsite,
+      company_url: honeyCompanyUrl,
+      form_id: 'discovery-qualifier',
+    });
+    return Object.assign(base, extra || {});
+  }
+
+  function normalizeRoute(data) {
+    const route = String(data?.route || '').toLowerCase();
+    const classification = String(data?.classification || '').toLowerCase();
+    const reason = String(data?.reason || data?.filter_reason || '').toLowerCase();
+    if (route === 'human_review' || reason === 'not_decision_maker' || classification === 'pending') return 'human_review';
+    if (data?.filtered === true || route === 'free_map' || classification === 'filtered' || classification === 'disqualified') return 'free_map';
+    if (route === 'calendar' || classification === 'qualified') return 'calendar';
+    if (data?.ok === true && data?.filtered === false && !route && !classification) return 'calendar';
+    return 'free_map';
+  }
+
+  function reveal(data, payload) {
+    const route = normalizeRoute(data);
+    const score = typeof data?.growth_index === 'number' ? Math.round(data.growth_index) : growthIndex();
+    const contactId = data?.contact_id || '';
+    const capiEventId = data?.capi_event_id || '';
+    const bookingEventId = typeof window.__bwmEnsureBookingEventId === 'function'
+      ? window.__bwmEnsureBookingEventId(payload.booking_event_id || data?.booking_event_id || '')
+      : (payload.booking_event_id || data?.booking_event_id || '');
+
+    finalScore.textContent = String(Math.max(0, Math.min(100, score)));
+    result.hidden = false;
+    enrichment.hidden = false;
+    root.dataset.state = route;
+    setStatus(`Your Growth Index is ${score} out of 100.`);
+
+    if (route === 'calendar') {
+      routeLabel.textContent = 'Calendar route';
+      resultCopy.textContent = 'We have enough signal to make the call useful. Your map is built. Pick a time and we will walk through the first move with you.';
+      const prefill = Object.assign({}, payload, {
+        name: payload.first_name,
+        email: payload.email,
+        contact_id: contactId,
+        capi_event_id: capiEventId,
+        booking_event_id: bookingEventId,
+        tier_routing: data?.tier_routing || data?.route || '',
+      });
+      window.__qualifiedPrefill = prefill;
+      window.__loadBwmCalendar?.(prefill);
+      event('generate_lead', {
+        currency: 'USD',
+        value: 0,
+        form_id: 'discovery-qualifier',
+        classification: data?.classification || 'qualified',
+        route,
+        contact_id: contactId,
+        capi_event_id: capiEventId,
+        booking_event_id: bookingEventId,
+        growth_index: score,
+      });
+    } else if (route === 'human_review') {
+      routeLabel.textContent = 'Team route';
+      resultCopy.textContent = "We'll loop in the right person on your team. Your map is saved, and the team will send the next step by email.";
+    } else {
+      routeLabel.textContent = 'Inbox route';
+      resultCopy.textContent = 'Your full Revenue Leak Map is on its way to your inbox. This is not a rejection. It gives you the clean next move before you spend more time or money.';
+    }
+
+    result.focus({ preventScroll: true });
+    result.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+
+  function setSubmitting(isSubmitting) {
+    if (!submitBtn || !submitLabel || !submitLoading) return;
+    submitBtn.disabled = isSubmitting;
+    submitLabel.hidden = isSubmitting;
+    submitLoading.hidden = !isSubmitting;
+  }
+
+  form.addEventListener('submit', async (eventObject) => {
+    eventObject.preventDefault();
+    if (!form.reportValidity()) return;
+    submitted = true;
+    setSubmitting(true);
+    if (errorEl) errorEl.hidden = true;
+    const payload = payloadFromState();
+    lastPayload = payload;
+    try {
+      const response = await fetch('https://bwm-form-handler.robert-ba0.workers.dev/buildwisemedia/discovery-qualifier', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload),
+      });
+      if (!response.ok) throw new Error(`Server ${response.status}`);
+      const data = await response.json();
+      lastResponse = data;
+      event('diagnostic_submit', {
+        form_id: 'discovery-qualifier',
+        classification: data?.classification || '',
+        route: data?.route || '',
+        filtered: data?.filtered === true,
+        contact_id: data?.contact_id || '',
+        capi_event_id: data?.capi_event_id || '',
+        booking_event_id: payload.booking_event_id || '',
+        growth_index: payload.growth_index,
+      });
+      capture.hidden = true;
+      reveal(data, payload);
+    } catch (err) {
+      console.error('book diagnostic submit failed:', err);
+      submitted = false;
+      if (errorEl) {
+        errorEl.textContent = 'Something did not send. Try again, or email hello@buildwisemedia.com.';
+        errorEl.hidden = false;
+      }
+    } finally {
+      setSubmitting(false);
+    }
+  });
+
+  function sendAbandon() {
+    if (abandonSent || submitted || !interacted) return;
+    abandonSent = true;
+    event('form_step_abandon', {
+      form_id: 'discovery-qualifier',
+      diagnostic_step: currentQuestion + 1,
+      total_steps: 7,
+      growth_index: growthIndex(),
+    });
+  }
+
+  document.addEventListener('visibilitychange', () => {
+    if (document.visibilityState === 'hidden') sendAbandon();
+  });
+  window.addEventListener('pagehide', sendAbandon);
+
+  enrichForm?.addEventListener('submit', async (eventObject) => {
+    eventObject.preventDefault();
+    const input = document.getElementById('bd-business-url');
+    const value = String(input?.value || '').trim();
+    if (!value) {
+      input?.focus();
+      return;
+    }
+    state.business_url = value;
+    if (enrichStatus) enrichStatus.textContent = 'Adding...';
+    try {
+      const payload = payloadFromState({
+        enrichment: 'business_url',
+        contact_id: lastResponse?.contact_id || '',
+        classification: lastResponse?.classification || '',
+        route: lastResponse?.route || normalizeRoute(lastResponse),
+      });
+      await fetch('https://bwm-form-handler.robert-ba0.workers.dev/buildwisemedia/discovery-qualifier', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload),
+      });
+      if (enrichStatus) enrichStatus.textContent = 'Added.';
+    } catch (_) {
+      if (enrichStatus) enrichStatus.textContent = 'Saved here. The first map is already sent.';
+    }
+  });
+
+  enrichSkip?.addEventListener('click', () => {
+    enrichment.hidden = true;
+  });
+
+  showQuestion(0);
+})();
+</script>
+
+<style>
+.book-diagnostic {
+  width: 100%;
+  min-height: calc(100vh - 96px);
+  display: flex;
+  flex-direction: column;
+  gap: clamp(20px, 4vw, 36px);
+  padding: clamp(86px, 10vw, 118px) 0 clamp(52px, 8vw, 84px);
+}
+.book-diagnostic [hidden] { display: none !important; }
+.bd-sr-only,
+.bd-hp {
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  padding: 0 !important;
+  margin: -1px !important;
+  overflow: hidden !important;
+  clip: rect(0 0 0 0) !important;
+  white-space: nowrap !important;
+  border: 0 !important;
+}
+.bd-top {
+  display: grid;
+  grid-template-columns: minmax(180px, 0.32fr) minmax(0, 1fr);
+  gap: clamp(20px, 4vw, 42px);
+  align-items: end;
+}
+.bd-mark {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  min-width: 0;
+}
+.bd-mark-glyph {
+  width: 30px;
+  height: 30px;
+  flex: 0 0 auto;
+}
+.bd-mark-text,
+.bd-progress-meta,
+.bd-eyebrow,
+.bd-field label,
+.bd-option-index,
+.bd-score-max {
+  font-family: var(--mono);
+}
+.bd-mark-text {
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--ink-dim);
+}
+.bd-progress-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  min-width: 0;
+}
+.bd-progress {
+  width: 100%;
+  height: 3px;
+  background: var(--rule);
+}
+.bd-progress-bar {
+  display: block;
+  width: 14.285%;
+  height: 100%;
+  background: var(--y2);
+}
+.bd-progress-meta {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  font-size: 10px;
+  letter-spacing: 0.16em;
+  color: var(--ink-faint);
+  text-transform: uppercase;
+}
+.bd-form,
+.bd-question-shell,
+.bd-question,
+.bd-capture,
+.bd-result,
+.bd-enrichment {
+  min-width: 0;
+}
+.bd-question,
+.bd-capture,
+.bd-result,
+.bd-enrichment {
+  max-width: 980px;
+}
+.bd-question,
+.bd-capture {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+.bd-eyebrow {
+  margin: 0;
+  font-size: 11px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--y2);
+}
+.bd-question-title,
+.bd-capture-title,
+.bd-result-title {
+  margin: 0;
+  max-width: 12ch;
+  font-size: clamp(40px, 8vw, 92px);
+  line-height: 0.94;
+  letter-spacing: -0.03em;
+  text-wrap: balance;
+}
+.bd-capture-title,
+.bd-result-title {
+  max-width: 13ch;
+  font-size: clamp(36px, 6vw, 72px);
+}
+.bd-help,
+.bd-result-copy,
+.bd-enrichment p {
+  max-width: 58ch;
+  margin: 0;
+  font-size: clamp(16px, 1.7vw, 19px);
+  line-height: 1.55;
+  color: var(--ink-dim);
+}
+.bd-option-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+  margin-top: clamp(8px, 2vw, 16px);
+}
+.bd-option {
+  min-width: 0;
+  min-height: 112px;
+  display: flex;
+  align-items: stretch;
+  justify-content: space-between;
+  gap: 18px;
+  padding: 18px;
+  border: 1px solid var(--rule);
+  background: rgba(5, 5, 7, 0.62);
+  color: var(--ink-dim);
+  text-align: left;
+}
+.bd-option:hover {
+  color: var(--ink);
+  border-color: var(--rule-bright);
+}
+.bd-option:focus-visible,
+.bd-submit:focus-visible,
+.bd-enrich-submit:focus-visible,
+.bd-enrich-skip:focus-visible,
+.bd-field input:focus-visible {
+  outline: 2px solid var(--y2);
+  outline-offset: 3px;
+}
+.bd-option.is-selected,
+.bd-option[aria-checked="true"] {
+  border-color: var(--y2);
+  color: var(--ink);
+  background: rgba(240, 255, 0, 0.045);
+}
+.bd-option-main {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  min-width: 0;
+}
+.bd-option-index {
+  flex: 0 0 auto;
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  color: var(--y2);
+}
+.bd-option-copy {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.bd-option-copy strong {
+  font-size: clamp(17px, 1.8vw, 22px);
+  line-height: 1.15;
+  color: currentColor;
+}
+.bd-option-copy em {
+  font-style: normal;
+  font-size: 14px;
+  line-height: 1.42;
+  color: var(--ink-faint);
+}
+.bd-option-dot {
+  align-self: flex-start;
+  width: 10px;
+  height: 10px;
+  flex: 0 0 auto;
+  border: 1px solid currentColor;
+  margin-top: 4px;
+}
+.bd-option.is-selected .bd-option-dot,
+.bd-option[aria-checked="true"] .bd-option-dot {
+  background: var(--y2);
+  border-color: var(--y2);
+}
+.bd-capture {
+  padding-top: clamp(12px, 3vw, 30px);
+}
+.bd-capture-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+  max-width: 760px;
+}
+.bd-field {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  min-width: 0;
+}
+.bd-field label {
+  font-size: 10px;
+  letter-spacing: 0.15em;
+  color: var(--ink-dim);
+  text-transform: uppercase;
+}
+.bd-field input {
+  width: 100%;
+  min-height: 52px;
+  border: 1px solid var(--rule);
+  background: rgba(5, 5, 7, 0.78);
+  color: var(--ink);
+  font-family: var(--sans);
+  font-size: 16px;
+  padding: 13px 14px;
+}
+.bd-field input:hover {
+  border-color: var(--rule-bright);
+}
+.bd-submit,
+.bd-enrich-submit,
+.bd-enrich-skip {
+  min-height: 52px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: fit-content;
+  border: 1px solid var(--y2);
+  padding: 14px 20px;
+  font-weight: 800;
+}
+.bd-submit,
+.bd-enrich-submit {
+  background: var(--y2);
+  color: #050507;
+}
+.bd-submit:hover,
+.bd-enrich-submit:hover {
+  background: var(--y2-bright);
+  border-color: var(--y2-bright);
+}
+.bd-submit:disabled {
+  opacity: 0.68;
+  cursor: wait;
+}
+.bd-error {
+  margin: 0;
+  color: var(--signal-orange);
+  font-size: 14px;
+}
+.bd-result {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  border-top: 1px solid var(--rule);
+  padding-top: clamp(28px, 5vw, 48px);
+}
+.bd-result-title span:first-child {
+  color: var(--y2);
+}
+.bd-score-max {
+  color: var(--ink-faint);
+  font-size: 0.45em;
+  letter-spacing: 0;
+}
+.bd-proof {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 10px;
+  margin-top: 8px;
+}
+.bd-proof-tile {
+  min-width: 0;
+  min-height: 150px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 16px;
+  border: 1px solid var(--rule);
+  background: var(--bg-card);
+}
+.bd-proof-tile span {
+  color: var(--y2);
+  font-size: 10px;
+  letter-spacing: 0.18em;
+}
+.bd-proof-tile strong {
+  color: var(--ink);
+  font-size: 17px;
+  line-height: 1.2;
+}
+.bd-proof-tile p {
+  margin: 0;
+  color: var(--ink-dim);
+  font-size: 14px;
+  line-height: 1.45;
+}
+.bd-enrichment {
+  display: grid;
+  grid-template-columns: minmax(0, 0.8fr) minmax(300px, 1fr);
+  gap: 18px;
+  align-items: end;
+  border-top: 1px solid var(--rule);
+  padding-top: 24px;
+}
+.bd-enrichment h3 {
+  margin: 0 0 8px;
+  font-size: clamp(22px, 3vw, 34px);
+  line-height: 1.1;
+}
+.bd-enrich-form {
+  display: grid;
+  grid-template-columns: minmax(180px, 1fr) auto auto;
+  gap: 10px;
+  align-items: end;
+}
+.bd-enrich-skip {
+  color: var(--ink-dim);
+  border-color: var(--rule);
+}
+.bd-enrich-skip:hover {
+  color: var(--ink);
+  border-color: var(--rule-bright);
+}
+.bd-enrich-status {
+  grid-column: 1 / -1;
+  min-height: 18px;
+  margin: 0;
+  color: var(--ink-faint);
+  font-size: 10px;
+  letter-spacing: 0.16em;
+}
+@media (max-width: 820px) {
+  .book-diagnostic {
+    min-height: auto;
+    padding-top: 82px;
+  }
+  .bd-top,
+  .bd-enrichment {
+    grid-template-columns: 1fr;
+  }
+  .bd-option-grid,
+  .bd-capture-grid,
+  .bd-proof,
+  .bd-enrich-form {
+    grid-template-columns: 1fr;
+  }
+  .bd-question-title,
+  .bd-capture-title,
+  .bd-result-title {
+    max-width: 11ch;
+    font-size: clamp(38px, 13vw, 64px);
+  }
+  .bd-progress-meta {
+    flex-direction: column;
+    gap: 4px;
+  }
+  .bd-submit,
+  .bd-enrich-submit,
+  .bd-enrich-skip {
+    width: 100%;
+  }
+}
+</style>

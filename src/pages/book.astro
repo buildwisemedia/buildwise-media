@@ -1,9 +1,9 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import QualifierForm from '../components/QualifierForm.astro';
+import BookDiagnostic from '../components/BookDiagnostic.astro';
 
 const title = "Get Your Free Revenue Leak Map — Buildwise Media";
-const description = "Get your free Revenue Leak Map — where your market is leaking revenue now and the first move to fix it. We build it from your data and walk it with you on a short call.";
+const description = "Answer seven taps, get your Growth Index, and route to the right next step from the Buildwise team.";
 
 const breadcrumb = {
   '@context': 'https://schema.org',
@@ -17,51 +17,9 @@ const breadcrumb = {
 <BaseLayout title={title} description={description} jsonLd={[breadcrumb]}>
 
   <section class="book-page">
-    <div class="container book-grid">
-
-      <aside class="book-context">
-        <p class="eyebrow">Revenue Leak Map</p>
-        <h1 class="h-hero">
-          Get your free<br/>
-          Revenue Leak Map.
-        </h1>
-        <p class="hero-sub">
-          We map where your market is leaking revenue, which layer to move first, and whether Ascend has room to pay for itself. Then we walk it with you on a short call &mdash; no pitch.
-        </p>
-
-        <div class="book-image-strip" aria-label="Revenue Leak Map preview imagery">
-          <figure>
-            <!-- @r020:F2 proof: editorial audit artifact demonstrates the Dossier is concrete -->
-            <img src="/images/bwm-audit-editorial-v1.webp" alt="Printed audit report on a desk with pen annotations and focused task lighting." width="640" height="426" loading="eager" decoding="async" />
-          </figure>
-          <figure>
-            <!-- @r020:F2 proof: weekly operating method rendered as human-machine review -->
-            <img src="/images/bwm-method-editorial-v1.webp" alt="Operator hand annotating a notebook beside a blurred operating dashboard." width="640" height="426" loading="lazy" decoding="async" />
-          </figure>
-          <figure>
-            <!-- @r020:F2 proof: receipt-style artifact supports conservative proof math -->
-            <img src="/images/bwm-receipts-still-life-v1.webp" alt="Close detail of printed proof notes, paper texture, and measurement tools on a dark desk." width="640" height="426" loading="lazy" decoding="async" />
-          </figure>
-        </div>
-
-        <ul class="expect-list">
-          <li>
-            <p class="expect-label mono">What we'll cover</p>
-            <p class="expect-body">Which leaks are active, what the first proof sprint should attack, and whether the install timeline fits your current business.</p>
-          </li>
-          <li>
-            <p class="expect-label mono">How long</p>
-            <p class="expect-body">The diagnostic takes about five minutes. The call is short because the Map does the setup work first.</p>
-          </li>
-          <li>
-            <p class="expect-label mono">Useful either way</p>
-            <p class="expect-body">Whether we engage or not, you leave with a cleaner read on the revenue system your business needs next.</p>
-          </li>
-        </ul>
-      </aside>
-
+    <div class="container book-shell">
       <div class="book-embed">
-        <QualifierForm />
+        <BookDiagnostic />
 
         <div id="cal-inline" class="cal-frame" aria-label="Booking calendar" hidden>
           <div class="cal-skeleton" aria-hidden="true">
@@ -251,7 +209,7 @@ const breadcrumb = {
         capi_event_id: current.capi_event_id || '',
         contact_id: current.contact_id || '',
         tier_routing: current.tier_routing || '',
-        form_id: 'fit-diagnostic',
+        form_id: 'discovery-qualifier',
         cal_booking_uid: bookingUidFrom(data),
         utm_source: current.utm_source || '',
         utm_medium: current.utm_medium || '',
@@ -315,7 +273,7 @@ const breadcrumb = {
         capi_event_id: payload.capi_event_id || '',
         contact_id: payload.contact_id || '',
         tier_routing: payload.tier_routing || '',
-        form_id: 'fit-diagnostic',
+        form_id: 'discovery-qualifier',
         utm_source: payload.utm_source || '',
         utm_medium: payload.utm_medium || '',
         utm_campaign: payload.utm_campaign || '',
@@ -345,9 +303,8 @@ const breadcrumb = {
   });
   obs.observe(document.getElementById('cal-inline'), { childList: true, subtree: true });
 
-  // Paid-traffic fast-path: visitors already saw the ad copy upstream, so skip
-  // the explainer aside and scroll straight to the diagnostic on page load.
-  // Keeps organic / direct traffic on the full-explainer experience.
+  // Paid-traffic fast-path: visitors already saw the ad copy upstream, so keep
+  // the diagnostic at the top of the viewport once layout settles.
   (function () {
     try {
       const params = new URLSearchParams(window.location.search);
@@ -355,7 +312,7 @@ const breadcrumb = {
       if (utmSource === 'facebook' || utmSource === 'instagram' || utmSource === 'meta') {
         // Defer one tick so layout settles before scroll
         requestAnimationFrame(function () {
-          const target = document.getElementById('qualifier-form') || document.getElementById('cal-inline');
+          const target = document.getElementById('book-diagnostic') || document.getElementById('cal-inline');
           if (target) target.scrollIntoView({ behavior: 'instant', block: 'start' });
         });
       }
@@ -365,55 +322,18 @@ const breadcrumb = {
 
 <style>
 .book-page {
-  padding-top: clamp(88px, 7vw, 128px);
-  padding-bottom: clamp(64px, 8vw, 104px);
+  padding: 0 0 clamp(64px, 8vw, 104px);
 }
-
-/* Scope hero size down on /book — the global .h-hero is sized for the
-   homepage where it's the centerpiece. On /book the calendar is the
-   centerpiece, so the headline shares space. Earlier attempt at
-   clamp(36-64px) still let "Fifteen minutes." wrap on a ~458px left
-   column. Tightened to 28-48px + !important to win against any cached
-   global rule, and balance="balance" on the h1 to break naturally. */
-.book-page .h-hero {
-  font-size: clamp(28px, 3.2vw, 48px) !important;
-  line-height: 1 !important;
-  text-wrap: balance;
+.book-shell {
+  max-width: 1180px;
 }
-.book-grid {
-  display: grid;
-  grid-template-columns: minmax(260px, 0.72fr) minmax(620px, 1.5fr);
-  gap: clamp(28px, 4vw, 48px);
-  align-items: start;
-}
-.book-grid > * { min-width: 0; }
-.book-context { display: flex; flex-direction: column; gap: 20px; position: sticky; top: 100px; }
-
-.book-image-strip {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 8px;
-  margin-top: 2px;
-}
-.book-image-strip figure {
-  aspect-ratio: 4 / 3;
-  overflow: hidden;
-  border: 1px solid var(--rule);
-  background: var(--bg-card);
-}
-.book-image-strip img {
+.book-embed {
   width: 100%;
-  height: 100%;
-  display: block;
-  object-fit: cover;
+  min-height: 640px;
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
 }
-
-.expect-list { list-style: none; display: flex; flex-direction: column; gap: 18px; padding-top: 24px; border-top: 1px solid var(--rule); margin-top: 8px; }
-.expect-list li { display: flex; flex-direction: column; gap: 8px; }
-.expect-label { font-size: 10px; letter-spacing: 0.2em; color: var(--y2); }
-.expect-body { font-size: 15px; font-weight: 300; line-height: 1.6; color: var(--ink-dim); }
-
-.book-embed { width: 100%; min-height: 640px; display: flex; flex-direction: column; gap: 16px; }
 
 /* Fallback CTA — visible until iframe paints, then JS removes. Gives mobile users
    a tappable path even when the booking embed is still loading. Per EXP-002 telemetry:
@@ -434,9 +354,11 @@ const breadcrumb = {
   border: 1px solid var(--y2, #F0FF00);
   align-self: stretch;
   text-align: center;
-  transition: opacity 0.15s ease;
 }
-.book-cta:hover, .book-cta:focus-visible { opacity: 0.85; }
+.book-cta:hover, .book-cta:focus-visible {
+  background: var(--y2-bright);
+  border-color: var(--y2-bright);
+}
 .book-cta span { font-weight: 400; }
 
 .cal-frame {
@@ -460,36 +382,13 @@ const breadcrumb = {
 @media (prefers-reduced-motion: reduce) { .sk-row, .sk-grid span { animation: none; } }
 
 @media (max-width: 1100px) {
-  .book-grid {
-    grid-template-columns: 1fr;
-    /* Mobile: surface the calendar / CTA above the explainer. Paid-traffic JS
-       also auto-scrolls to the embed; this is the no-JS / organic-mobile fallback. */
-    grid-template-areas: "embed" "context";
-  }
-  .book-context { position: static; grid-area: context; }
-  .book-embed { grid-area: embed; min-height: auto; }
+  .book-embed { min-height: auto; }
   .cal-frame { min-height: 560px; }
   .book-cta { padding: 16px 24px; font-size: 15px; }
 }
 @media (max-width: 520px) {
   .book-page {
-    padding-top: 80px;
     padding-bottom: 64px;
-  }
-  .book-grid { gap: 26px; }
-
-  .book-page .h-hero {
-    font-size: 34px !important;
-    line-height: 1.03 !important;
-    letter-spacing: 0;
-  }
-
-  .book-image-strip {
-    grid-template-columns: 1fr;
-  }
-
-  .book-image-strip figure:nth-child(n+2) {
-    display: none;
   }
 }
 </style>
