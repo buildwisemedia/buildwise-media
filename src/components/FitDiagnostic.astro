@@ -356,35 +356,35 @@
         </div>
         <!-- @r020:F3 cta-pull: step-progress dots show how close the reveal is — momentum pulls completion -->
         <svg class="q-progress" viewBox="0 0 136 12" width="136" height="12" role="img" aria-label="Question 3 of 7"><circle cx="10" cy="6" r="2.5" fill="#F0FF00"/><circle cx="28" cy="6" r="2.5" fill="#F0FF00"/><circle cx="46" cy="6" r="4" fill="#F0FF00"/><circle cx="64" cy="6" r="2.5" fill="rgba(168,162,152,0.35)"/><circle cx="82" cy="6" r="2.5" fill="rgba(168,162,152,0.35)"/><circle cx="100" cy="6" r="2.5" fill="rgba(168,162,152,0.35)"/><circle cx="118" cy="6" r="2.5" fill="rgba(168,162,152,0.35)"/></svg>
-        <h2 class="q-text">What's your <span class="y">current monthly revenue</span>?</h2>
-        <p class="q-help">Pick the range you're trending in. This tells us where the system needs to plug in — you don't need to be precise.</p>
+        <h2 class="q-text">Where's your <span class="y">operation</span> right now?</h2>
+        <p class="q-help">Pick the stage that fits best. This tells us where the system needs to plug in — you don't need to be precise.</p>
         <div class="slider-block">
-          <div class="slider-readout" id="revenue-readout">Pick A Range</div>
-          <div class="slider-readout-label">Monthly Recurring Revenue</div>
+          <div class="slider-readout" id="revenue-readout">Pick A Stage</div>
+          <div class="slider-readout-label">Operation Stage</div>
           <div class="slider-track" id="revenueSlider">
             <div class="slider-line">
               <div class="slider-line-fill" id="revenue-fill" style="width: 0%;"></div>
             </div>
-            <button type="button" class="slider-snap" data-value="1" data-label="&lt; $10K" aria-label="Revenue range < $10K" aria-pressed="false" style="left: 0%;">
-              <span class="slider-snap-label">&lt; $10K</span>
+            <button type="button" class="slider-snap" data-value="1" data-label="Just starting" aria-label="Operation stage: just starting" aria-pressed="false" style="left: 0%;">
+              <span class="slider-snap-label">Starting</span>
             </button>
-            <button type="button" class="slider-snap" data-value="2" data-label="$10–25K" aria-label="Revenue range $10–25K" aria-pressed="false" style="left: 16.66%;">
-              <span class="slider-snap-label">$10–25K</span>
+            <button type="button" class="slider-snap" data-value="2" data-label="Early-stage" aria-label="Operation stage: early-stage" aria-pressed="false" style="left: 16.66%;">
+              <span class="slider-snap-label">Early</span>
             </button>
-            <button type="button" class="slider-snap" data-value="3" data-label="$25–50K" aria-label="Revenue range $25–50K" aria-pressed="false" style="left: 33.33%;">
-              <span class="slider-snap-label">$25–50K</span>
+            <button type="button" class="slider-snap" data-value="3" data-label="Growing local team" aria-label="Operation stage: growing local team" aria-pressed="false" style="left: 33.33%;">
+              <span class="slider-snap-label">Growing</span>
             </button>
-            <button type="button" class="slider-snap" data-value="4" data-label="$50–100K" aria-label="Revenue range $50–100K" aria-pressed="false" style="left: 50%;">
-              <span class="slider-snap-label">$50–100K</span>
+            <button type="button" class="slider-snap" data-value="4" data-label="Established service team" aria-label="Operation stage: established service team" aria-pressed="false" style="left: 50%;">
+              <span class="slider-snap-label">Steady</span>
             </button>
-            <button type="button" class="slider-snap" data-value="5" data-label="$100–250K" aria-label="Revenue range $100–250K" aria-pressed="false" style="left: 66.66%;">
-              <span class="slider-snap-label">$100–250K</span>
+            <button type="button" class="slider-snap" data-value="5" data-label="Scaling up" aria-label="Operation stage: scaling up" aria-pressed="false" style="left: 66.66%;">
+              <span class="slider-snap-label">Scaling</span>
             </button>
-            <button type="button" class="slider-snap" data-value="6" data-label="$250–500K" aria-label="Revenue range $250–500K" aria-pressed="false" style="left: 83.33%;">
-              <span class="slider-snap-label">$250–500K</span>
+            <button type="button" class="slider-snap" data-value="6" data-label="Expansion mode" aria-label="Operation stage: expansion mode" aria-pressed="false" style="left: 83.33%;">
+              <span class="slider-snap-label">Expansion</span>
             </button>
-            <button type="button" class="slider-snap" data-value="7" data-label="$500K+" aria-label="Revenue range $500K+" aria-pressed="false" style="left: 100%;">
-              <span class="slider-snap-label">$500K+</span>
+            <button type="button" class="slider-snap" data-value="7" data-label="Market leader" aria-label="Operation stage: market leader" aria-pressed="false" style="left: 100%;">
+              <span class="slider-snap-label">Leader</span>
             </button>
           </div>
         </div>
@@ -1785,7 +1785,7 @@
         snap.setAttribute('aria-pressed','true');
         const pct = ((value - 1) / 6) * 100;
         document.getElementById('revenue-fill').style.width = pct + '%';
-        document.getElementById('revenue-readout').textContent = snap.dataset.label + '/mo';
+        document.getElementById('revenue-readout').textContent = snap.dataset.label;
         document.getElementById('next-q3').disabled = false;
       });
     });
