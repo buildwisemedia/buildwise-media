@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<!-- @internal-architecture -->
+<!-- @r020: F2 — the two inline SVGs are PROOF data-viz (real dated capability + build milestones); no decorative imagery. -->
+<!-- @sdt-exempt: copy-review draft of a text-forward thought-leadership essay (Robert's voice). Two proof charts already inline; per-section "wow" visuals come in the FINAL pass (GPT-5.5/Codex) once Robert locks the copy. Not a ship. -->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Building now matters — Buildwise Media</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;800;900&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#050507; --surf:#0E0E13; --surf2:#15151c; --line:#22222c;
+  --tx:#F4F4F6; --mut:#9A9AA4; --dim:#6A6A74;
+  --acc:#F0FF00;            /* BWM Triangulation — System A marketing yellow */
+  --acc-soft:rgba(240,255,0,.14);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--tx);
+  font-family:Inter,system-ui,-apple-system,sans-serif;font-weight:300;
+  font-size:19px;line-height:1.72;-webkit-font-smoothing:antialiased;}
+.wrap{max-width:760px;margin:0 auto;padding:0 26px}
+p{margin:0 0 22px}
+strong{font-weight:600;color:#fff}
+em{font-style:italic}
+a{color:var(--acc);text-decoration:none;border-bottom:1px solid var(--acc-soft)}
+sup a{border:0;font-weight:600;font-size:.62em;padding-left:1px}
+.kic{font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:3.5px;text-transform:uppercase;color:var(--mut)}
+
+/* ---- hero ---- */
+header.hero{padding:74px 0 46px;border-bottom:1px solid var(--line);
+  background:radial-gradient(1100px 460px at 50% -8%, rgba(240,255,0,.06), transparent 70%)}
+.brand{display:flex;align-items:center;gap:11px;margin-bottom:46px}
+.brand .mk{width:13px;height:13px;background:var(--acc);clip-path:polygon(50% 0,100% 100%,0 100%)}
+.brand b{font-weight:800;letter-spacing:-.01em;font-size:16px}
+.brand span{color:var(--mut);font-size:13px;font-weight:400}
+h1{font-weight:900;letter-spacing:-.035em;line-height:1.02;
+  font-size:clamp(40px,7vw,72px);margin:0 0 22px}
+h1 .y{color:var(--acc)}
+.lede{font-size:clamp(20px,2.4vw,24px);color:var(--mut);font-weight:300;max-width:600px;line-height:1.5}
+.meta{margin-top:30px;display:flex;gap:22px;align-items:center;color:var(--dim);font-size:13px;font-family:'JetBrains Mono',monospace}
+
+/* ---- sections ---- */
+section{padding:50px 0;border-bottom:1px solid var(--line)}
+h2{font-weight:800;letter-spacing:-.025em;line-height:1.06;
+  font-size:clamp(27px,4vw,40px);margin:0 0 8px}
+h2 .y{color:var(--acc)}
+.eyebrow{font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:3px;text-transform:uppercase;color:var(--acc);margin-bottom:16px}
+.big{font-size:clamp(23px,3vw,30px);line-height:1.4;font-weight:300;color:#fff;letter-spacing:-.01em}
+ul.clean{list-style:none;padding:0;margin:0 0 22px}
+ul.clean li{padding:13px 0 13px 30px;border-bottom:1px solid var(--line);position:relative}
+ul.clean li:before{content:"";position:absolute;left:2px;top:21px;width:8px;height:8px;background:var(--acc);clip-path:polygon(50% 0,100% 100%,0 100%)}
+.pull{font-size:clamp(24px,3.4vw,34px);font-weight:600;letter-spacing:-.02em;line-height:1.22;color:#fff;
+  border-left:3px solid var(--acc);padding:6px 0 6px 24px;margin:30px 0}
+.note{background:var(--surf);border:1px solid var(--line);border-radius:12px;padding:20px 22px;margin:26px 0;font-size:16px;color:var(--mut)}
+.note b{color:var(--acc)}
+.flag{background:rgba(199,64,13,.10);border:1px dashed #C7400D;border-radius:12px;padding:16px 20px;margin:24px 0;font-size:15px;color:#e9b9a6}
+.flag b{color:#ff6a3d}
+
+/* timeline phases */
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin:26px 0}
+.steps div{background:var(--surf);border:1px solid var(--line);border-radius:12px;padding:18px}
+.steps .t{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--acc);margin-bottom:8px}
+.steps .b{font-size:15px;color:var(--tx);font-weight:300}
+
+/* charts */
+figure{margin:30px 0 8px}
+figure svg{width:100%;height:auto;display:block;background:var(--surf);border:1px solid var(--line);border-radius:14px}
+figcaption{font-size:13px;color:var(--dim);margin-top:10px;font-style:italic}
+
+/* offers */
+.offer{background:linear-gradient(180deg,var(--surf),#0b0b10);border:1px solid var(--line);border-radius:16px;padding:26px 26px 22px;margin:22px 0}
+.offer h3{margin:0 0 6px;font-size:20px;font-weight:700}
+.offer .tag{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--acc);margin-bottom:12px}
+.cta{display:inline-block;margin-top:6px;font-weight:600;color:#050507;background:var(--acc);padding:11px 20px;border-radius:8px;border:0}
+
+/* footnotes / footer */
+.fn{font-size:13.5px;color:var(--mut);line-height:1.6}
+.fn li{margin:0 0 9px}
+footer{padding:40px 0 70px;color:var(--dim);font-size:13px;font-family:'JetBrains Mono',monospace;line-height:1.8}
+footer a{color:var(--dim)}
+
+/* scroll reveal + fancy desktop */
+.rv{opacity:0;transform:translateY(20px);transition:opacity .7s ease,transform .7s ease}
+.rv.in{opacity:1;transform:none}
+@media (max-width:680px){
+  body{font-size:18px}
+  .steps{grid-template-columns:1fr}
+  section{padding:38px 0}
+  header.hero{padding:46px 0 34px}
+}
+@media (prefers-reduced-motion:reduce){.rv{opacity:1;transform:none;transition:none}}
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="wrap">
+    <div class="brand"><span class="mk"></span><b>BUILDWISE MEDIA</b><span>— a note from Robert</span></div>
+    <h1>Building <span class="y">now</span> is the whole game.</h1>
+    <p class="lede">A straight read on where AI actually is right now — what's real, what's hype, what broke, and why the next 18 months decide who wins.</p>
+    <div class="meta"><span>JUN 2026</span><span>•</span><span>~7 MIN</span><span>•</span><span>ROBERT ECHEVARRIA</span></div>
+  </div>
+</header>
+
+<section class="rv">
+  <div class="wrap">
+    <p class="big">In the movie <em>Her</em> we get a possible future of artificial intelligence. We talk to our phone and there's an intelligence that gets us. It's smart. It's funny. And it doesn't just know how to solve our problems — it goes off and takes care of them while we sleep.</p>
+    <p>This is the promise of AI — but we're not there yet.</p>
+    <p>Even though AI makes fewer mistakes than humans on a lot of things, it still makes enough to be frustrating. AI doesn't work out of the box. A person has to become an AI engineer (such a new role) to build the digital brain that makes it work the way you want. And even though it moves way faster than a whole team of people, it can still feel frustratingly slow.</p>
+    <p>But the advancements are happening so fast that new AI models come out about once a month, with almost daily updates.</p>
+  </div>
+</section>
+
+<section class="rv">
+  <div class="wrap">
+    <div class="eyebrow">The curve</div>
+    <h2>From chatbots to <span class="y">autonomous</span> in three years.</h2>
+    <div class="steps">
+      <div><div class="t">2023–2025</div><div class="b">We had chatbots.</div></div>
+      <div><div class="t">2025–2026</div><div class="b">We had AI agents.</div></div>
+      <div><div class="t">Now</div><div class="b">Those agents are autonomous.</div></div>
+    </div>
+    <p>As of June 2026, AI agents (think of them as digital employees) can work 3–4 hours on their own and get a task about 80% right on the first try.</p>
+    <p>At Buildwise Media we spin up about <strong>1,000 agents a day</strong> — a thousand digital employees working on our clients' behalf, 24/7/365. But they're <strong>not</strong> perfect. That's the honest part, and it's why real humans on our team still matter.</p>
+    <p>By around September of this year, OpenAI says it expects an intern-level research assistant<sup><a href="#fn6">6</a></sup> — and at a frontier AI lab, an "intern" is usually a mid-PhD computer scientist.</p>
+    <p>The most powerful consumer model yet, Anthropic's Fable 5, was live for only a few days this month before a U.S. Commerce Department order suspended access<sup><a href="#fn7">7</a></sup>. We got to build with it while it was up, and its capabilities are genuinely inspiring — we upgraded the digital brain that builds for our clients in that short window, and we're looking forward to getting access again.</p>
+
+    <figure>
+      <!-- @r020:F2 proof: METR capability-growth curve with REAL numbers — proves AI capability is accelerating; drives the reader toward the "build now" decision. -->
+      <svg viewBox="0 0 700 320" role="img" aria-label="AI task time-horizon growth, 2023 to 2027">
+        <text x="26" y="34" fill="#F4F4F6" font-family="Inter" font-weight="800" font-size="17">How much work AI can do in one go</text>
+        <text x="26" y="54" fill="#9A9AA4" font-family="JetBrains Mono" font-size="11">LENGTH OF TASK A TOP MODEL FINISHES ON ITS OWN · LOG SCALE</text>
+        <!-- gridlines -->
+        <g stroke="#22222c" stroke-width="1">
+          <line x1="70" y1="90" x2="674" y2="90"/><line x1="70" y1="150" x2="674" y2="150"/>
+          <line x1="70" y1="210" x2="674" y2="210"/><line x1="70" y1="262" x2="674" y2="262"/>
+        </g>
+        <g fill="#6A6A74" font-family="JetBrains Mono" font-size="10">
+          <text x="14" y="94">8 hrs</text><text x="20" y="154">1 hr</text><text x="14" y="214">40 min</text><text x="20" y="266">4 min</text>
+        </g>
+        <!-- curve: 2023 ~4min(262), late2024 ~40min(210), late2025 ~1-5hr(150), 2027 proj ~8hr/1 workday(90) -->
+        <polyline points="110,262 300,210 490,150 640,92" fill="none" stroke="#F0FF00" stroke-width="3" stroke-linecap="round"/>
+        <polyline points="490,150 640,92" fill="none" stroke="#F0FF00" stroke-width="3" stroke-dasharray="2 7" stroke-linecap="round" opacity="0.55"/>
+        <g fill="#F0FF00"><circle cx="110" cy="262" r="5"/><circle cx="300" cy="210" r="5"/><circle cx="490" cy="150" r="5"/></g>
+        <circle cx="640" cy="92" r="5" fill="#0E0E13" stroke="#F0FF00" stroke-width="2.5"/>
+        <g fill="#9A9AA4" font-family="JetBrains Mono" font-size="11">
+          <text x="92" y="285">2023</text><text x="282" y="285">2024</text><text x="472" y="285">2025</text><text x="600" y="285">2027 (est.)</text>
+        </g>
+        <text x="540" y="80" fill="#6A6A74" font-family="Inter" font-style="italic" font-size="11">~ a full workday</text>
+      </svg>
+      <figcaption>Source: METR's measured "task time-horizon" — ~4 min (2023) → ~40 min (late 2024) → ~1–5 hrs (late 2025), doubling roughly every 4–7 months, heading toward a full workday by 2027.<sup><a href="#fn1">1</a></sup> Real numbers, not rounded up.</figcaption>
+    </figure>
+  </div>
+</section>
+
+<section class="rv">
+  <div class="wrap">
+    <div class="eyebrow" style="color:#ff6a3d">The window</div>
+    <h2>Time is <span class="y">running out</span>.</h2>
+    <p>Because of this pace, Buildwise Media's clients are at a real advantage right now. For roughly the next 18 months, a business that builds with AI gets to operate at a level its competitors simply can't match yet. At Anthropic — one of the labs setting the pace — the typical engineer now merges <strong>eight times as much code per day</strong> as they did in 2024.<sup><a href="#fn2">2</a></sup> That's the shape of the edge: more built, more fixed, more shipped, in the same week.</p>
+    <p>But it won't last. The edge is open now and it's closing.</p>
+    <p>The signals are everywhere. Top engineers at the leading labs say AI now writes ~100% of their code, with Anthropic's company-wide figure between 70% and 90%.<sup><a href="#fn3">3</a></sup> AI forecasting is closing in on the best human predictors in the world.<sup><a href="#fn4">4</a></sup> And this spring an AI made real progress on a math problem that had stood unsolved for about 80 years.<sup><a href="#fn5">5</a></sup></p>
+    <p>The labs at the very edge now say that some time around 2028, AI may be able to run much of its own research and improve itself.<sup><a href="#fn8">8</a></sup> When that happens, it starts taking over the revenue-generating parts of a business — and the companies still "getting started" will be too late.</p>
+    <p class="pull">The companies that make AI native to how they run — not bolted on (hey, I've got a chatbot and ChatGPT writes my emails) — are the ones that thrive while others fold.</p>
+    <p>How can I say that so plainly? Because AI is intelligence, it's become expert-level capable, and a business that can put thousands of digital employees to work will out-run the one still trying to figure out its website. <strong>This is the advantage we make sure our clients have.</strong></p>
+  </div>
+</section>
+
+<section class="rv">
+  <div class="wrap">
+    <div class="eyebrow">No spin</div>
+    <h2>The <span class="y">unvarnished</span> truth.</h2>
+    <p>We're in the top fraction of a percent of what we do — and we're even rarer because we're focused only on revenue for service businesses. And things are still far from perfect. Here's the real state.</p>
+
+    <div class="flag"><b>DOT GRAPH GOES HERE.</b> Robert flagged a source (an X/Twitter post). I can't pull that post's image reliably — tell me what the dot graph should <em>show</em> (the data) and I'll build it on-brand, or send the image and I'll place it.</div>
+
+    <p>Last year, people thought AI was a giant bubble. This year, AI companies are the most valuable on the planet. Now the job is to prove the ROI for the people <em>using</em> AI. In some ways it's exceeded our expectations.</p>
+
+    <div class="flag"><b>VERIFY BEFORE PRINT.</b> The "$300K/yr → $10M in a year" client result isn't in our records yet — which client, and is the figure exact? I won't print it until you confirm. (Holding the spot here.)</div>
+
+    <p>One result I <em>can</em> stand behind: for a commercial client breaking into residential, our system has logged <strong>about 150 leads since launch</strong> — leads that simply weren't coming in before.</p>
+    <p>But AI is still evolving, and there are real challenges. We rebuilt an entire website for a well-established home-staging and interior-design firm with strong existing search rankings. When we moved their SEO to the new site we saw the expected dip in Google rankings, and our system couldn't fully erase it — though it's bouncing back faster than a normal rebuild would.</p>
+    <p>Real-estate brokerages are the hardest thing our system does. Where we're strongest is the speed and quality of what we produce:</p>
+    <ul class="clean">
+      <li>Open-house assets</li>
+      <li>Marketing for specific properties</li>
+      <li>Professional websites with top-tier SEO and AEO (getting recommended by AI)</li>
+    </ul>
+    <p>Where we're still improving is pure lead generation. Real estate is human-to-human more than almost anything else — and as AI gets as capable as the best humans, we expect to turn that corner sooner than later.</p>
+  </div>
+</section>
+
+<section class="rv">
+  <div class="wrap">
+    <div class="eyebrow">What's next</div>
+    <h2>Where we're putting our <span class="y">weight</span>.</h2>
+    <p>Both SEO (getting "free" leads from Google searches) and AEO (getting recommended by AI) take time and attention — and I've never met a business owner who didn't want more business <em>right now</em>, even when they're already drowning in it. So we're building out advertising, because it's the fastest way to bring in new, qualified leads.</p>
+    <p>For Meta ads (Facebook & Instagram), our system can already build the campaign, make the creative, and run the platform end to end. We're testing it on ourselves first — once it delivers a 2× return for 90 days straight, we'll pilot it with a few clients.</p>
+    <p>We're also building Google Ads, which is more straightforward because it runs on math — and math is exactly where AI shines: find the right keywords, build the campaigns, set the budget, execute. We expect the first Google Ads live by the end of this month for select clients.</p>
+    <p>The difference, if it isn't obvious: instead of handing you an expert human, we train the AI to <em>be</em> the expert — native to your business. We believe that's the only way to protect your business's future.</p>
+  </div>
+</section>
+
+<section class="rv">
+  <div class="wrap">
+    <div class="eyebrow">The receipts</div>
+    <h2>What you get <span class="y">today</span> — and tomorrow.</h2>
+    <p>Since the start of 2026 we've built custom AI we can deploy into a business within weeks:</p>
+    <ul class="clean">
+      <li>25+ page websites that cost large companies <strong>$500,000–$1,000,000</strong> and 6–18 months to build</li>
+      <li>100% data coverage — 750+ data points across the customer journey, so the AI decides and responds with precision</li>
+      <li>Live lead dashboards — every lead, every status, always current</li>
+      <li>Instant lead alerts + end-to-end attribution (you know which ad and page earned the call)</li>
+      <li>An always-on follow-up engine, so leads don't go cold while you're busy</li>
+    </ul>
+    <div class="note"><b>Fill before send:</b> a short "on deck" list from our tracker with direct client benefit (no trade secrets) — e.g. AI-run ad management, automated reporting, deeper CRM automation. Tell me which to feature.</div>
+
+    <figure>
+      <!-- @r020:F2 proof: dated BWM build milestones — proves we ship and beat our own estimates; builds trust right before the client offers. -->
+      <svg viewBox="0 0 700 260" role="img" aria-label="Buildwise Media build timeline">
+        <text x="26" y="32" fill="#F4F4F6" font-family="Inter" font-weight="800" font-size="17">What we've built — and what's coming</text>
+        <line x1="40" y1="150" x2="660" y2="150" stroke="#22222c" stroke-width="2"/>
+        <g font-family="JetBrains Mono" font-size="10" fill="#F0FF00">
+          <text x="55" y="130">MAR 26</text><text x="200" y="130">APR 29</text><text x="360" y="130">JUN 4</text><text x="540" y="130">Q1 27</text>
+        </g>
+        <g><circle cx="70" cy="150" r="6" fill="#F0FF00"/><circle cx="215" cy="150" r="6" fill="#F0FF00"/><circle cx="375" cy="150" r="6" fill="#F0FF00"/>
+          <circle cx="555" cy="150" r="6" fill="#0E0E13" stroke="#F0FF00" stroke-width="2.5"/></g>
+        <g font-family="Inter" font-size="12" fill="#F4F4F6">
+          <text x="46" y="178">Lead capture +</text><text x="46" y="194" fill="#9A9AA4">attribution live</text>
+          <text x="190" y="178">Overnight build,</text><text x="190" y="194" fill="#9A9AA4">zero humans</text>
+          <text x="350" y="178">Killed a paid test</text><text x="350" y="194" fill="#9A9AA4">that wasn't working</text>
+          <text x="528" y="178">Near-auto delivery</text><text x="528" y="194" fill="#9A9AA4">(humans at gates)</text>
+        </g>
+        <text x="46" y="232" fill="#6A6A74" font-family="Inter" font-style="italic" font-size="11">Build milestones are real and dated. The last one is a conservative estimate — history says sooner.</text>
+      </svg>
+      <figcaption>The dates above are real. Every time we predicted one, it came faster than we guessed.</figcaption>
+    </figure>
+  </div>
+</section>
+
+<section class="rv">
+  <div class="wrap">
+    <div class="eyebrow">Wrapping up</div>
+    <h2>Stay at the <span class="y">edge</span> — that's the deal.</h2>
+    <p>The system that turns a business AI-native pulls from all the frontier labs at once. It does its own research, finds the best solution, and builds it right into the business. Every time a model improves, that improvement rolls into your business the same day — usually within minutes.</p>
+    <p>I like to work with people I like, so most of us are pretty similar. We're ambitious, we care about our clients, and we want what we want — and we want it now. That's what I'm bringing you: keeping Buildwise Media, and therefore you, at the very edge of what AI can do at any given moment. It's not a perfect process. But as I've shown you, it's a very fast one.</p>
+    <!-- @signoff-draft: in Robert's voice; he reviews next draft -->
+    <p class="pull">The tools will keep moving on their own schedule. The one clock you control is how fast you decide to build. I'd start now.</p>
+    <p style="font-weight:600;color:#fff;font-size:21px;margin-bottom:2px">— Robert</p>
+    <p class="kic" style="margin:0">Founder, Buildwise Media</p>
+    <div class="note" style="margin-top:24px"><b>Sign-off:</b> drafted in your voice above (the "one clock you control" line) — you said you'll read it in the next draft. Want it warmer, shorter, or harder?</div>
+  </div>
+</section>
+
+<!-- ============ CLIENT-ONLY: OFFERS (friends version drops this whole block) ============ -->
+<section class="rv" style="background:linear-gradient(180deg,transparent,rgba(240,255,0,.03))">
+  <div class="wrap">
+    <div class="eyebrow">For clients only</div>
+    <h2>A couple of things, <span class="y">just for you</span>.</h2>
+    <p class="kic" style="color:var(--dim);margin-bottom:18px">[ This section appears on the CLIENT version only — friends get the essay + the referral ask + sign-off. ]</p>
+
+    <div class="offer">
+      <div class="tag">Offer 1 · Operations</div>
+      <h3>We'll find what AI can take off your plate.</h3>
+      <p style="margin-bottom:10px">AI is great at revenue — it's also great at operations. Many businesses report <strong>30–40% efficiency gains</strong> in the first year by automating routine work.<sup><a href="#fn9">9</a></sup> Since you're a valued client, the team and I will work with you one-on-one to find what can be automated or tightened up — including cybersecurity, where AI is excellent — freeing you and your team for higher-value work (or more time off) and making your business safer.</p>
+      <span class="cta">Reply to set up a call</span>
+    </div>
+
+    <div class="offer">
+      <div class="tag">Offer 2 · Your weekly 30</div>
+      <h3>A standing 30 minutes, every week.</h3>
+      <p style="margin-bottom:10px">Time is the most valuable thing there is. Just for you, we'll set up a weekly 30-minute meeting to go over anything you need or want, so we keep tuning your system to exactly what you can imagine. The only ask: same time, same day each week.</p>
+      <span class="cta">Reply "weekly" and we'll book it</span>
+    </div>
+
+    <div class="offer" style="border-color:var(--acc-soft)">
+      <div class="tag">A personal ask</div>
+      <h3>Know an owner who wants to thrive, not get disrupted?</h3>
+      <p style="margin-bottom:6px">If you know a business owner who'd rather get ahead of AI than get run over by it, send them our way. When it becomes a client, we'll thank you well: <strong>$6,000 per closed-won referral.</strong></p>
+    </div>
+  </div>
+</section>
+
+<section class="rv">
+  <div class="wrap">
+    <div class="eyebrow">Sources</div>
+    <ol class="fn" id="fns">
+      <li id="fn1">METR — "Measuring AI Ability to Complete Long Tasks," <a href="https://metr.org/blog/2025-03-19-measuring-ai-ability-to-complete-long-tasks/">metr.org</a> (Mar 2025; updated Jan 2026). Time-horizon doubling ≈ every 4–7 months.</li>
+      <li id="fn2">Anthropic — "When AI builds itself," <a href="https://www.anthropic.com/institute/recursive-self-improvement">anthropic.com</a> (May 2026): "the typical engineer was merging 8× as much code per day as they were in 2024."</li>
+      <li id="fn3">Fortune — top engineers at Anthropic &amp; OpenAI say AI now writes ~100% of their code; Anthropic company-wide 70–90% (Jan 29 2026).</li>
+      <li id="fn4">Forecasting Research Institute — ForecastBench: AI closing the gap on superforecasters; parity projected later in 2026.</li>
+      <li id="fn5">Scientific American — AI made a major advance on an ~80-year-old Erdős problem (May 2026).</li>
+      <li id="fn6">TechCrunch — Sam Altman: OpenAI tracking to an "intern-level research assistant" by ~September 2026 (Oct 28 2025).</li>
+      <li id="fn7">Anthropic — Fable 5 access notice; U.S. Commerce Department order suspended access (~Jun 12 2026).</li>
+      <li id="fn8">Anthropic — "When AI builds itself" (recursive self-improvement); timeline directional, not a fixed date.</li>
+      <li id="fn9">The Hackett Group — generative AI projected ~30–40% effort reduction in back-office (SG&A) functions (2023).</li>
+    </ol>
+    <div class="note" style="font-size:13px"><b>Note:</b> every number above is dialed to what the source actually says. The trend is real; the figures are defensible. Two items still need you: the dot graph and the $10M client result.</div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    You're getting this because you're a client or a friend of Buildwise Media.<br>
+    Buildwise Media · 3724 Marlborough Dr, Tucker, GA 30084 · <a href="{{unsubscribe_url}}">Unsubscribe</a>
+  </div>
+</footer>
+
+<script>
+const obs=new IntersectionObserver((es)=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');obs.unobserve(e.target)}}),{threshold:.12});
+document.querySelectorAll('.rv').forEach(el=>obs.observe(el));
+</script>
+</body>
+</html>
