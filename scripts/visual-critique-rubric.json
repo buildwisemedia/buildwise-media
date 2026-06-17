@@ -137,6 +137,34 @@
       "source": "QA-Visual-Design-Gate.md Gate 2 'Logo: nav logo visible and appropriately sized'",
       "viewports": ["desktop", "mobile"],
       "question": "Is the brand mark/logo clearly visible and appropriately sized in the navigation?"
+    },
+    {
+      "id": "paid-lp-hero-5sec-clarity",
+      "source": "Paid-LP QA post-mortem 2026-06-17 / hero principles P1-P2 (NN/g first-impression ~3.2s)",
+      "viewports": ["desktop"],
+      "applies_to": ["go"],
+      "question": "Looking only at the first screen-height for ~5 seconds: are BOTH the value (what you get) and the pain it solves obvious from the headline plus one visual, WITHOUT reading body copy? Fail if you must read paragraphs to understand the offer."
+    },
+    {
+      "id": "paid-lp-hero-h1-dominant",
+      "source": "Paid-LP QA post-mortem 2026-06-17 / hero principle P6 (visual hierarchy to CTA)",
+      "viewports": ["desktop"],
+      "applies_to": ["go"],
+      "question": "Is the H1 headline the single largest, highest-contrast type element on the first screen — clearly the first thing the eye lands on — rather than competing with an oversized subhead, eyebrow, or graphic?"
+    },
+    {
+      "id": "paid-lp-hero-cta-above-fold",
+      "source": "Paid-LP QA post-mortem 2026-06-17 / hero principle P3 (Baymard 57% never scroll)",
+      "viewports": ["desktop"],
+      "applies_to": ["go"],
+      "question": "Is a primary call-to-action button fully visible inside the first screen-height (not pushed below the fold by an oversized headline or hero figure)?"
+    },
+    {
+      "id": "paid-lp-hero-trust-imagery",
+      "source": "Paid-LP QA post-mortem 2026-06-17 / hero principle P5 (real photography > line-art for trust-gap buyers)",
+      "viewports": ["desktop"],
+      "applies_to": ["go"],
+      "question": "Does the hero earn credibility with concrete proof (a real photograph, a named result, or a tangible artifact) rather than relying only on abstract line-art or decorative geometry to carry the trust load?"
     }
   ]
 }

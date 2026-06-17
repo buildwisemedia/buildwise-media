@@ -73,7 +73,16 @@ async function downscale(srcPath, destDir) {
   return dest;
 }
 
+// Some rubric items only apply to a page TYPE (e.g. paid landing pages under
+// /go/*). An item with `applies_to: ["go"]` scores only routes whose slug is or
+// starts with that prefix; items without `applies_to` score every route.
+function itemApplies(item, route) {
+  if (!item.applies_to || !item.applies_to.length) return true;
+  return item.applies_to.some((prefix) => route === prefix || route.startsWith(`${prefix}-`) || route.startsWith(`${prefix}/`));
+}
+
 function buildPrompt(route, rubric, hasMobile) {
+  const items = rubric.items.filter((item) => itemApplies(item, route));
   const imageKey = hasMobile
     ? 'Image 1 is the DESKTOP (1440x900 emulation) full-page screenshot; Image 2 is the MOBILE (390x844 emulation) full-page screenshot.'
     : 'Image 1 is the DESKTOP (1440x900 emulation) full-page screenshot. No mobile capture is available — score mobile-only items as "unsure".';
@@ -87,7 +96,7 @@ function buildPrompt(route, rubric, hasMobile) {
     '[{"item_id":"...","verdict":"pass|fail|unsure","evidence":"one sentence"}]',
     '',
     'RUBRIC:',
-    JSON.stringify(rubric.items, null, 1),
+    JSON.stringify(items, null, 1),
   ].join('\n');
 }
 
