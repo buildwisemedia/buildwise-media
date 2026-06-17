@@ -26,15 +26,40 @@ import FitDiagnostic from '../../components/FitDiagnostic.astro';
 
         <!-- @bwm-exp-slot: hero-headline — paid-search agency-alternative H1; bandit patches target this selector -->
         <h1 id="aa-hero-headline" class="aa-headline" data-bwm-exp-slot="hero-headline">
-          <span class="aa-line">More booked jobs.</span>
-          <span class="aa-line">Not another report.</span>
+          <span class="aa-line">Booked jobs,</span>
+          <span class="aa-line">not another report.</span>
           <span class="aa-line">A <span class="aa-accent">custom AI system</span></span>
-          <span class="aa-line">runs your growth — no agency required.</span>
+          <span class="aa-line">runs your growth.</span>
         </h1>
 
         <p class="aa-subhead">
           Agencies sell activity and hand you a report. A custom AI system runs the work itself — capturing demand, following up, and tracking what actually closed — so growth stops depending on you. The free Revenue Leak Map shows where your current setup is leaking.
         </p>
+
+        <!-- @bwm-exp-slot: hero-cta — primary paid-search conversion CTA -->
+        <div class="aa-ctas" data-bwm-exp-slot="hero-cta">
+          <a href="#diagnostic" class="cta" data-cta-source="f4-agency-alternative-hero">
+            Get My Free Revenue Leak Map
+            <span class="cta-arrow" aria-hidden="true">→</span>
+          </a>
+        </div>
+        <p class="aa-icp mono">For service businesses only. 5 minutes. No pitch.</p>
+      </div>
+
+      <div class="aa-hero-proof">
+        <!-- @r020:F2 proof: a real photo of the system being run for the owner (hands at work on the live dashboard) is the trust imagery a burned-by-agency buyer needs — it shows "run for you" is real, not another deck -->
+        <figure class="aa-hero-photo">
+          <img
+            src="/images/bwm-method-editorial-v1.webp"
+            alt="Hands working at a laptop with a marketing dashboard open and a second screen behind — the custom AI system being run, not reported on."
+            width="640"
+            height="426"
+            loading="eager"
+            fetchpriority="high"
+            decoding="async"
+          />
+          <figcaption class="aa-hero-photo-cap mono">Run for you — the work itself, not a report</figcaption>
+        </figure>
 
         <!-- @r020:F2 proof: report-to-booked-jobs comparison makes the agency frustration visible — the owner sees the gap between activity reporting and real work booked before taking the diagnostic CTA -->
         <figure class="aa-hero-figure">
@@ -73,14 +98,6 @@ import FitDiagnostic from '../../components/FitDiagnostic.astro';
           <figcaption class="aa-hero-caption mono">The agency model vs. a custom AI system</figcaption>
         </figure>
 
-        <!-- @bwm-exp-slot: hero-cta — primary paid-search conversion CTA -->
-        <div class="aa-ctas" data-bwm-exp-slot="hero-cta">
-          <a href="#diagnostic" class="cta" data-cta-source="f4-agency-alternative-hero">
-            Get My Free Revenue Leak Map
-            <span class="cta-arrow" aria-hidden="true">→</span>
-          </a>
-        </div>
-        <p class="aa-icp mono">For service businesses only. 5 minutes. No pitch.</p>
       </div>
     </div>
   </section>
@@ -215,7 +232,7 @@ import FitDiagnostic from '../../components/FitDiagnostic.astro';
   <section class="aa-paths" aria-labelledby="aa-paths-heading">
     <div class="container">
       <p class="section-tag">03 · TWO PATHS · SAME OWNER, DIFFERENT WEEK</p>
-      <h2 id="aa-paths-heading" class="h-section">A year from now, one version of you is still asking for updates. One version reads the number over coffee.</h2>
+      <h2 id="aa-paths-heading" class="h-section">A year from now, one version of you is still asking for updates.<br/>One version reads the number over coffee.</h2>
       <p class="aa-paths-body">
         Same market. Same service. Same owner. The split happens when marketing stops being a vendor list and starts being a system.
       </p>
@@ -365,27 +382,61 @@ import FitDiagnostic from '../../components/FitDiagnostic.astro';
 }
 
 .aa-hero-grid {
-  display: flex;
-  flex-direction: column;
-  gap: clamp(40px, 5vw, 72px);
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: clamp(36px, 5vw, 56px);
+  align-items: start;
+}
+
+@media (min-width: 980px) {
+  .aa-hero-grid {
+    grid-template-columns: 1.05fr 0.95fr;
+    gap: clamp(40px, 4vw, 72px);
+    align-items: start;
+  }
 }
 
 .aa-hero-text {
   display: flex;
   flex-direction: column;
-  gap: 32px;
-  max-width: 1240px;
+  gap: 28px;
+  max-width: 640px;
+}
+
+/* PROOF COLUMN — real photo + comparison diagram in the right rail, never pushing the CTA down */
+.aa-hero-proof {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  min-width: 0;
+}
+
+.aa-hero-photo { margin: 0; }
+
+.aa-hero-photo img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border: 1px solid var(--rule);
+}
+
+.aa-hero-photo-cap {
+  font-size: 10px;
+  letter-spacing: 0.15em;
+  color: var(--ink-faint);
+  margin-top: 10px;
+  display: block;
 }
 
 .aa-headline {
   font-family: var(--sans);
   font-weight: 800;
   font-stretch: 75%;
-  font-size: clamp(52px, 8.4vw, 130px);
+  font-size: clamp(40px, 4.6vw, 72px);
   line-height: 0.94;
   letter-spacing: -0.04em;
   color: var(--ink);
-  max-width: 1240px;
+  max-width: 600px;
   margin: 0;
 }
 
@@ -401,17 +452,17 @@ import FitDiagnostic from '../../components/FitDiagnostic.astro';
 .aa-subhead {
   font-family: var(--sans);
   font-weight: 400;
-  font-size: clamp(20px, 2.2vw, 28px);
-  line-height: 1.42;
+  font-size: clamp(18px, 1.5vw, 21px);
+  line-height: 1.5;
   color: var(--ink-dim);
-  max-width: 860px;
+  max-width: 560px;
   letter-spacing: -0.012em;
   margin: 0;
 }
 
 .aa-hero-figure {
   margin: 0;
-  max-width: 680px;
+  max-width: 100%;
   background: var(--bg-elev);
   border: 1px solid var(--rule);
   padding: 28px 28px 20px;
@@ -759,7 +810,7 @@ import FitDiagnostic from '../../components/FitDiagnostic.astro';
 
 /* ─── RESPONSIVE ────────────────────────────────────────────────────────── */
 @media (max-width: 900px) {
-  .aa-headline { font-size: clamp(46px, 12vw, 88px); }
+  .aa-headline { font-size: clamp(32px, 8.5vw, 50px); }
   .aa-subhead { font-size: 17px; }
   .aa-hero-figure { max-width: 100%; }
   .aa-compare-grid,

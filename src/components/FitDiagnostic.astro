@@ -68,7 +68,7 @@
                 Ours shows you what your business could <span class="y">become</span>.
               </h2>
               <p class="welcome-subhead">
-                Answer 7 questions. We'll show you <strong>exactly where your business sits today</strong>, <strong>where the bottleneck is</strong>, and what your AI growth system would look like over the next 12 months — <strong>even if we never work together</strong>.
+                Answer 7 questions. We'll show you <strong>exactly where your business sits today</strong>, <strong>where the bottleneck is</strong>, and what your custom AI system would look like over the next 12 months — <strong>even if we never work together</strong>.
               </p>
               <div class="welcome-trust">
                 <div class="trust-item"><span class="verdict-dot-sm"></span> 7 Questions</div>
@@ -114,7 +114,7 @@
               <div class="divider-cell-num">02 · The Reveal</div>
               <h3 class="divider-cell-title">A personalized growth report.</h3>
               <p class="divider-cell-body">
-                Your inputs synthesize into a real diagnostic: where you sit, where your bottleneck is, what your custom AI growth system would look like, and a 12-month projection. Generated for you, not from a template.
+                Your inputs synthesize into a real diagnostic: where you sit, where your bottleneck is, what your custom AI system would look like, and a 12-month projection. Generated for you, not from a template.
               </p>
             </div>
             <div class="divider-cell">
@@ -562,7 +562,7 @@
             <span class="verdict-dot"></span>
             <span class="reveal-eyebrow-tag">Diagnostic Generated <span id="reveal-timestamp">—</span> · For <span class="y" id="reveal-service">Your Business</span></span>
           </div>
-          <h2 class="reveal-headline">Here's what your <span class="y">growth system</span> would look like.</h2>
+          <h2 class="reveal-headline">Here's what your <span class="y">custom AI system</span> would look like.</h2>
           <p class="reveal-subhead">Built from your 7 answers. Synthesized in seconds. Yours regardless of whether we ever work together.</p>
         </div>
       </div>
@@ -637,7 +637,7 @@
             <span class="verdict-dot-sm"></span>
             <span class="mono-eyebrow">/03 · The System</span>
           </div>
-          <h2 class="reveal-section-title">Your custom <span class="y">AI growth system</span>, mapped.</h2>
+          <h2 class="reveal-section-title">Your <span class="y">custom AI system</span>, mapped.</h2>
           <p style="font-size: 17px; line-height: 1.55; color: var(--ink-dim); margin-bottom: 32px; max-width: 760px;">Modules in <span style="color: var(--y2);">yellow</span> are tailored to your specific bottleneck. Modules in outline are standard across every BWM system.</p>
           <div class="system-grid" id="system-grid"></div>
           <div class="system-legend">
@@ -665,7 +665,7 @@
               </div>
               <div class="proj-legend-item">
                 <span class="proj-legend-color system"></span>
-                <span class="proj-legend-text">With AI Growth System Installed</span>
+                <span class="proj-legend-text">With a Custom AI System Installed</span>
               </div>
             </div>
           </div>
@@ -1888,7 +1888,7 @@
       const bottleneckLabel = BOTTLENECK_LABEL[state.bottleneck] || 'unknown';
       if (growthIndex >= 65) {
         verdict = 'fit'; verdictLabel = "You're A Fit.";
-        verdictExplainer = "You're at the stage where an AI growth system installed correctly compounds. Revenue traction is real, you've already got channel diversity, and your target is ambitious enough that hand-rolled workflows will hold you back.";
+        verdictExplainer = "You're at the stage where a custom AI system installed correctly compounds. Revenue traction is real, you've already got channel diversity, and your target is ambitious enough that hand-rolled workflows will hold you back.";
         verdictDetail = "The system pays for itself in the first 90 days at your current revenue band. Your bottleneck (" + bottleneckLabel + ") is exactly the kind we engineer around. The next move is a 30-minute call to map your install plan.";
       } else if (growthIndex >= 35) {
         verdict = 'maybe'; verdictLabel = "Close. Three Things To Lock.";
@@ -1896,8 +1896,8 @@
         verdictDetail = "Locking these takes most operators 60-90 days of focused work. We'll send you the exact playbook so you can move on it. When the gaps close, the diagnostic flips to Fit and we book the strategy call.";
       } else {
         verdict = 'not-yet'; verdictLabel = "Not Yet — But Here's The Map.";
-        verdictExplainer = "Honest read: installing a growth system at your stage would amplify whatever's already breaking, not fix it. The foundation has to come first. We'd rather hand you the playbook than sell you a system you're not ready for.";
-        verdictDetail = "Most operators in your position need 6-12 months of focused foundational work before an AI growth system is the right move. We'll send you the exact 5-step playbook tailored to your bottleneck — yours regardless of whether we ever work together.";
+        verdictExplainer = "Honest read: installing a custom AI system at your stage would amplify whatever's already breaking, not fix it. The foundation has to come first. We'd rather hand you the playbook than sell you a system you're not ready for.";
+        verdictDetail = "Most operators in your position need 6-12 months of focused foundational work before a custom AI system is the right move. We'll send you the exact 5-step playbook tailored to your bottleneck — yours regardless of whether we ever work together.";
       }
 
       // ---- Populate Reveal ----
@@ -2373,7 +2373,7 @@
       card.setAttribute("data-verdict", "fit");
       status.textContent = "FIT · " + idx + "/100";
       if (explainer) explainer.textContent = "Your shop matches the install profile. The system delivers the most lift here.";
-      if (detail) detail.textContent = "What we'd install for you in 30 days: lead capture, qualification, follow-up, attribution, review velocity, and the AI growth engine that runs the marketing department without you in the loop.";
+      if (detail) detail.textContent = "What we'd install for you in 30 days: lead capture, qualification, follow-up, attribution, review velocity, and the custom AI system that runs your growth without you in the loop.";
       if (pathLead) pathLead.textContent = "Book a";
       if (pathY) pathY.textContent = " 30-minute strategy call. ";
       if (pathTail) pathTail.textContent = "";
@@ -2397,7 +2397,7 @@
       // NO
       card.setAttribute("data-verdict", "not-yet");
       status.textContent = "NOT YET · " + idx + "/100";
-      if (explainer) explainer.textContent = "Your business isn't a fit for the AI growth system yet — and that's a deliberate read, not a brush-off.";
+      if (explainer) explainer.textContent = "Your business isn't a fit for a custom AI system yet — and that's a deliberate read, not a brush-off.";
       if (detail) detail.textContent = "The system pays back hardest at a specific stage. Below that stage, the install cost is more than the return. We'll redirect you to a free resource that fits where you are now.";
       if (pathLead) pathLead.textContent = "Get the";
       if (pathY) pathY.textContent = " free Marketing Leverage Diagnostic ";

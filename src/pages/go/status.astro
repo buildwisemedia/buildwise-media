@@ -21,7 +21,7 @@ import FitDiagnostic from '../../components/FitDiagnostic.astro';
   <section class="st-hero" aria-labelledby="st-hero-headline">
     <div class="container st-hero-grid">
       <div class="st-hero-text">
-        <p class="eyebrow">Buildwise Media · AI marketing run for you</p>
+        <p class="eyebrow">Buildwise Media · Custom AI systems, run for you</p>
 
         <h1 id="st-hero-headline" class="st-headline">
           <span class="st-line">Do you want to be</span>
@@ -33,6 +33,31 @@ import FitDiagnostic from '../../components/FitDiagnostic.astro';
         <p class="st-subhead">
           Most #1 shops aren't the best — they're the most-found. The free Revenue Leak Map shows you the exact visibility gap between where you are now and the top spot. Takes 5 minutes.
         </p>
+
+        <div class="st-ctas">
+          <a href="#diagnostic" class="cta" data-cta-source="status-hero-primary">
+            Get My Free Revenue Leak Map
+            <span class="cta-arrow" aria-hidden="true">→</span>
+          </a>
+          <a href="/book" class="cta-ghost" data-cta-source="status-hero-secondary">See If We're a Fit</a>
+        </div>
+        <p class="st-icp mono">For service businesses only. 5 minutes. No pitch.</p>
+      </div>
+
+      <div class="st-hero-proof">
+        <!-- @r020:F1 emotion: a single lit storefront on a dark main street is the "category of one" outcome made visible — the owner sees the most-found, impossible-to-miss position the system builds, which the CTA promises to map -->
+        <figure class="st-hero-photo">
+          <img
+            src="/images/bwm-urgency-cinematic-v1.webp"
+            alt="One brightly lit storefront on a dark small-town main street at dusk — the business everyone notices first."
+            width="640"
+            height="426"
+            loading="eager"
+            fetchpriority="high"
+            decoding="async"
+          />
+          <figcaption class="st-hero-photo-cap mono">The one everyone sees first — that's the #1 position</figcaption>
+        </figure>
 
         <!-- @r020:F2 proof: visibility rank comparison chart makes the hostile truth visceral — most-found wins, not best-quality; the visual contrast drives the owner toward the audit CTA to see their own ranking gap -->
         <figure class="st-rank-figure">
@@ -105,17 +130,8 @@ import FitDiagnostic from '../../components/FitDiagnostic.astro';
             <p class="st-stat-label mono">searches that find the #1 in your market</p>
           </div>
           <div class="st-stat-divider" aria-hidden="true"></div>
-          <p class="st-stat-footnote mono">HVAC client · same metro · 4 months after system install · 31 new qualified reviews · #1 map position held 90+ days</p>
+          <p class="st-stat-footnote mono">Illustrative — the visibility most owners can win by becoming the most-found, not the best-kept secret. Your exact gap comes from your free Revenue Leak Map.</p>
         </div>
-
-        <div class="st-ctas">
-          <a href="#diagnostic" class="cta" data-cta-source="status-hero-primary">
-            Get My Free Revenue Leak Map
-            <span class="cta-arrow" aria-hidden="true">→</span>
-          </a>
-          <a href="/book" class="cta-ghost" data-cta-source="status-hero-secondary">See If We're a Fit</a>
-        </div>
-        <p class="st-icp mono">For service businesses only. 5 minutes. No pitch.</p>
       </div>
     </div>
   </section>
@@ -214,7 +230,7 @@ import FitDiagnostic from '../../components/FitDiagnostic.astro';
       <p class="section-tag">03 · THE PAYOFF · DOMINANCE INSTALLED</p>
       <h2 id="st-payoff-heading" class="h-section">When you own the top spot, the market stops being a contest.</h2>
       <p class="st-payoff-body">
-        The owner who holds #1 in local search stops competing on price. They stop chasing referrals. They stop wondering if this month is going to be thin. The phone rings because their name is everywhere. Their reviews compound. Every new client adds to a moat that takes competitors years to cross. The day the system tips you into the top position — not on one keyword, but on the cluster that defines your market — the business changes from a hustle into an asset. Buyers call you because you are the obvious choice. Not because you earned it from them personally. Because the system made you impossible to miss. That's what the AI growth system builds. Not leads for next month. A market position that works for you next year, and the year after that.
+        The owner who holds #1 in local search stops competing on price. They stop chasing referrals. They stop wondering if this month is going to be thin. The phone rings because their name is everywhere. Their reviews compound. Every new client adds to a moat that takes competitors years to cross. The day the system tips you into the top position — not on one keyword, but on the cluster that defines your market — the business changes from a hustle into an asset. Buyers call you because you are the obvious choice. Not because you earned it from them personally. Because the system made you impossible to miss. That's what the custom AI system builds. Not leads for next month. A market position that works for you next year, and the year after that.
       </p>
 
       <!-- @r020:F2 proof: audit editorial photo grounds the dominance promise in real, documented evidence — the system is observable, measurable, and printed -->
@@ -329,7 +345,7 @@ import FitDiagnostic from '../../components/FitDiagnostic.astro';
           loading="lazy"
           decoding="async"
         />
-        <figcaption class="mono" style="font-size:10px; letter-spacing:0.14em; color:var(--ink-faint); margin-top:10px;">AI growth system architecture · installed in 30 days · runs every week without you</figcaption>
+        <figcaption class="mono" style="font-size:10px; letter-spacing:0.14em; color:var(--ink-faint); margin-top:10px;">custom AI system architecture · installed in 30 days · runs every week without you</figcaption>
       </figure>
 
       <div class="st-proof-cta">
@@ -359,28 +375,62 @@ import FitDiagnostic from '../../components/FitDiagnostic.astro';
 }
 
 .st-hero-grid {
-  display: flex;
-  flex-direction: column;
-  gap: clamp(40px, 5vw, 72px);
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: clamp(36px, 5vw, 56px);
+  align-items: start;
+}
+
+@media (min-width: 980px) {
+  .st-hero-grid {
+    grid-template-columns: 1.05fr 0.95fr;
+    gap: clamp(40px, 4vw, 72px);
+    align-items: start;
+  }
 }
 
 .st-hero-text {
   display: flex;
   flex-direction: column;
-  gap: 32px;
-  max-width: 1240px;
+  gap: 28px;
+  max-width: 640px;
 }
 
-/* HEADLINE — condensed display matching pain-relief arm pattern */
+/* PROOF COLUMN — real photo + data-viz in the right rail, never pushing the CTA down */
+.st-hero-proof {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  min-width: 0;
+}
+
+.st-hero-photo { margin: 0; }
+
+.st-hero-photo img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border: 1px solid var(--rule);
+}
+
+.st-hero-photo-cap {
+  font-size: 10px;
+  letter-spacing: 0.15em;
+  color: var(--ink-faint);
+  margin-top: 10px;
+  display: block;
+}
+
+/* HEADLINE — condensed display; sized so the primary CTA clears the fold @1440 */
 .st-headline {
   font-family: var(--sans);
   font-weight: 800;
   font-stretch: 75%;
-  font-size: clamp(56px, 11vw, 168px);
-  line-height: 0.90;
-  letter-spacing: -0.048em;
+  font-size: clamp(40px, 4.6vw, 72px);
+  line-height: 0.94;
+  letter-spacing: -0.04em;
   color: var(--ink);
-  max-width: 1240px;
+  max-width: 600px;
   margin: 0;
 }
 
@@ -417,17 +467,18 @@ import FitDiagnostic from '../../components/FitDiagnostic.astro';
 .st-subhead {
   font-family: var(--sans);
   font-weight: 400;
-  font-size: clamp(20px, 2.2vw, 28px);
-  line-height: 1.42;
+  font-size: clamp(18px, 1.5vw, 21px);
+  line-height: 1.5;
   color: var(--ink-dim);
-  max-width: 820px;
+  max-width: 560px;
   letter-spacing: -0.012em;
+  margin: 0;
 }
 
 /* RANK FIGURE */
 .st-rank-figure {
   margin: 0;
-  max-width: 680px;
+  max-width: 100%;
   background: var(--bg-elev);
   border: 1px solid var(--rule);
   padding: 28px 28px 20px;
@@ -457,7 +508,7 @@ import FitDiagnostic from '../../components/FitDiagnostic.astro';
   background: var(--bg-elev);
   border: 1px solid var(--rule);
   border-left: 3px solid var(--y2);
-  max-width: 680px;
+  max-width: 100%;
 }
 
 .st-stat-item {
@@ -756,7 +807,7 @@ import FitDiagnostic from '../../components/FitDiagnostic.astro';
 }
 
 @media (max-width: 768px) {
-  .st-headline { font-size: clamp(48px, 14vw, 88px); }
+  .st-headline { font-size: clamp(32px, 8.5vw, 50px); }
   .st-subhead { font-size: 17px; }
   .st-rank-figure { max-width: 100%; }
   .st-stat-proof { max-width: 100%; }

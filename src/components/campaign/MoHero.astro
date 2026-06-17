@@ -18,7 +18,7 @@ const { keyword, subhead } = Astro.props;
 <section class="mo-hero" aria-labelledby="mo-hero-headline">
   <div class="container mo-hero-grid">
     <div class="mo-hero-text">
-      <p class="eyebrow">Buildwise Media · AI marketing run for you</p>
+      <p class="eyebrow">Buildwise Media · Custom AI systems, run for you</p>
 
       <h1 id="mo-hero-headline" class="mo-headline">
         <span class="mo-line">Mo' money.</span>
@@ -37,6 +37,22 @@ const { keyword, subhead } = Astro.props;
       </div>
       <p class="mo-icp mono">For service businesses only.</p>
     </div>
+
+    <div class="mo-hero-proof">
+      <!-- @r020:F1 emotion: a calm owner's workspace at dusk shows the "mo' {keyword}" payoff made real — the settled life on the other side of the system; the visible calm is the outcome the CTA delivers -->
+      <figure class="mo-hero-photo">
+        <img
+          src="/images/bwm-hero-atmospheric-v1.webp"
+          alt="A quiet executive office at dusk with a city view — the calm, unhurried space an owner gets back when the system runs the growth."
+          width="640"
+          height="426"
+          loading="eager"
+          fetchpriority="high"
+          decoding="async"
+        />
+        <figcaption class="mo-hero-photo-cap mono">More money — and the room to actually enjoy it</figcaption>
+      </figure>
+    </div>
   </div>
 </section>
 
@@ -54,6 +70,7 @@ const { keyword, subhead } = Astro.props;
   content: '';
   position: absolute;
   inset: 0;
+  /* @r020:identity: Triangulation surface dot-grid (R014b geometric vocabulary) — sub-identity ambient texture that signals the engineered-system register; not standalone imagery */
   background-image: radial-gradient(circle at center, rgba(255,255,255,0.025) 1px, transparent 1px);
   background-size: 32px 32px;
   pointer-events: none;
@@ -62,23 +79,37 @@ const { keyword, subhead } = Astro.props;
 .mo-hero > * { position: relative; z-index: 1; }
 
 .mo-hero-grid {
-  display: flex;
-  flex-direction: column;
-  gap: clamp(40px, 5vw, 72px);
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: clamp(36px, 5vw, 56px);
+  align-items: start;
 }
 
-.mo-hero-text { display: flex; flex-direction: column; gap: 32px; max-width: 1240px; }
+@media (min-width: 980px) {
+  .mo-hero-grid {
+    grid-template-columns: 1.05fr 0.95fr;
+    gap: clamp(40px, 4vw, 72px);
+    align-items: start;
+  }
+}
+
+.mo-hero-text { display: flex; flex-direction: column; gap: 28px; max-width: 640px; }
+
+.mo-hero-proof { display: flex; flex-direction: column; gap: 24px; min-width: 0; }
+.mo-hero-photo { margin: 0; }
+.mo-hero-photo img { width: 100%; height: auto; display: block; border: 1px solid var(--rule); }
+.mo-hero-photo-cap { font-size: 10px; letter-spacing: 0.15em; color: var(--ink-faint); margin-top: 10px; display: block; }
 
 /* THE HEADLINE — port of concept.html .headline (lines 240-279) */
 .mo-headline {
   font-family: var(--sans);
   font-weight: 800;
   font-stretch: 75%;
-  font-size: clamp(56px, 11vw, 168px);
-  line-height: 0.90;
-  letter-spacing: -0.048em;
+  font-size: clamp(40px, 5.2vw, 92px);
+  line-height: 0.92;
+  letter-spacing: -0.045em;
   color: var(--ink);
-  max-width: 1240px;
+  max-width: 600px;
   margin: 0;
 }
 
@@ -115,11 +146,12 @@ const { keyword, subhead } = Astro.props;
 .mo-subhead {
   font-family: var(--sans);
   font-weight: 400;
-  font-size: clamp(20px, 2.2vw, 28px);
-  line-height: 1.42;
+  font-size: clamp(18px, 1.6vw, 22px);
+  line-height: 1.5;
   color: var(--ink-dim);
-  max-width: 820px;
+  max-width: 520px;
   letter-spacing: -0.012em;
+  margin: 0;
 }
 
 .mo-ctas {
@@ -138,7 +170,7 @@ const { keyword, subhead } = Astro.props;
 }
 
 @media (max-width: 768px) {
-  .mo-headline { font-size: clamp(48px, 14vw, 88px); }
+  .mo-headline { font-size: clamp(40px, 11vw, 74px); }
   .mo-subhead { font-size: 17px; }
 }
 </style>

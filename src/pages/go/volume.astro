@@ -21,7 +21,7 @@ import FitDiagnostic from '../../components/FitDiagnostic.astro';
   <section class="vol-hero" aria-labelledby="vol-hero-headline">
     <div class="container vol-hero-grid">
       <div class="vol-hero-text">
-        <p class="eyebrow">Buildwise Media · AI marketing run for you</p>
+        <p class="eyebrow">Buildwise Media · Custom AI systems, run for you</p>
 
         <h1 id="vol-hero-headline" class="vol-headline">
           <span class="vol-line">Do you want</span>
@@ -33,6 +33,31 @@ import FitDiagnostic from '../../components/FitDiagnostic.astro';
         <p class="vol-subhead">
           Stop running the same playbook and hoping for more leads. The free Revenue Leak Map takes 5 minutes and shows you exactly where your volume got stuck.
         </p>
+
+        <div class="vol-ctas">
+          <a href="#diagnostic" class="cta" data-cta-source="volume-hero-primary">
+            Get My Free Revenue Leak Map
+            <span class="cta-arrow" aria-hidden="true">→</span>
+          </a>
+          <a href="/book" class="cta-ghost" data-cta-source="volume-hero-secondary">See If We're a Fit</a>
+        </div>
+        <p class="vol-icp mono">For service businesses only. 5 minutes. No pitch.</p>
+      </div>
+
+      <div class="vol-hero-proof">
+        <!-- @r020:F1 emotion: the always-on system corridor makes the end of the stuck loop tangible — a built, running capacity behind steady new-client volume, the outcome the CTA maps the path to -->
+        <figure class="vol-hero-photo">
+          <img
+            src="/images/bwm-system-architecture-atmospheric-v1.webp"
+            alt="A long, dimly lit data-system corridor receding into the distance — the always-on capacity that produces steady client volume."
+            width="640"
+            height="426"
+            loading="eager"
+            fetchpriority="high"
+            decoding="async"
+          />
+          <figcaption class="vol-hero-photo-cap mono">An always-on system — not another month of hoping</figcaption>
+        </figure>
 
         <!-- @r020:F2 proof: before/after bar chart shows the stuck-loop volume pattern vs a predictable 90-day ramp — data makes the "same playbook, same thin results" pain visceral and drives the owner toward the audit CTA -->
         <figure class="vol-volume-figure">
@@ -87,7 +112,7 @@ import FitDiagnostic from '../../components/FitDiagnostic.astro';
             <!-- After bottom label -->
             <text x="316" y="196" font-family="JetBrains Mono, monospace" font-size="8" fill="rgba(240,255,0,0.55)" letter-spacing="0.13em">3–6 new clients · every month · compound</text>
           </svg>
-          <figcaption class="vol-volume-caption mono">New-client volume: the stuck-loop vs the installed AI growth system</figcaption>
+          <figcaption class="vol-volume-caption mono">New-client volume: the stuck-loop vs the installed custom AI system</figcaption>
         </figure>
 
         <!-- OUTCOME PROOF — concrete category-level metric, no client named -->
@@ -103,17 +128,8 @@ import FitDiagnostic from '../../components/FitDiagnostic.astro';
             <p class="vol-stat-label mono">qualified leads / week · after install · 60 days</p>
           </div>
           <div class="vol-stat-divider" aria-hidden="true"></div>
-          <p class="vol-stat-footnote mono">Home services client · first 60 days · 41 qualified leads · 0 from referrals</p>
+          <p class="vol-stat-footnote mono">Illustrative — the steady lift when the loop becomes a system that runs every week. Your real volume comes from your free Revenue Leak Map.</p>
         </div>
-
-        <div class="vol-ctas">
-          <a href="#diagnostic" class="cta" data-cta-source="volume-hero-primary">
-            Get My Free Revenue Leak Map
-            <span class="cta-arrow" aria-hidden="true">→</span>
-          </a>
-          <a href="/book" class="cta-ghost" data-cta-source="volume-hero-secondary">See If We're a Fit</a>
-        </div>
-        <p class="vol-icp mono">For service businesses only. 5 minutes. No pitch.</p>
       </div>
     </div>
   </section>
@@ -131,6 +147,7 @@ import FitDiagnostic from '../../components/FitDiagnostic.astro';
       <div class="vol-loop-grid">
         <article class="vol-loop-card">
           <p class="mono vol-loop-num">LOOP BREAK 01</p>
+          <!-- @r020:F4 curiosity: a loop-break diagnostic icon visualizes one broken link in the stuck lead loop — opening the "which link is broken in my loop?" question the free Revenue Leak Map answers -->
           <svg class="vol-loop-icon" viewBox="0 0 120 60" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
             <!-- Flat line with noise — "same inputs same outputs" signal -->
             <line x1="8" y1="30" x2="112" y2="30" stroke="rgba(168,162,152,0.15)" stroke-width="1"/>
@@ -146,6 +163,7 @@ import FitDiagnostic from '../../components/FitDiagnostic.astro';
 
         <article class="vol-loop-card">
           <p class="mono vol-loop-num">LOOP BREAK 02</p>
+          <!-- @r020:F4 curiosity: a loop-break diagnostic icon visualizes one broken link in the stuck lead loop — opening the "which link is broken in my loop?" question the free Revenue Leak Map answers -->
           <svg class="vol-loop-icon" viewBox="0 0 120 60" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
             <!-- Funnel with a wide gap at mid-stage — leads leaking -->
             <polygon points="14,10 106,10 82,30 38,30" stroke="rgba(168,162,152,0.45)" stroke-width="1.5" fill="rgba(168,162,152,0.08)"/>
@@ -163,6 +181,7 @@ import FitDiagnostic from '../../components/FitDiagnostic.astro';
 
         <article class="vol-loop-card">
           <p class="mono vol-loop-num">LOOP BREAK 03</p>
+          <!-- @r020:F4 curiosity: a loop-break diagnostic icon visualizes one broken link in the stuck lead loop — opening the "which link is broken in my loop?" question the free Revenue Leak Map answers -->
           <svg class="vol-loop-icon" viewBox="0 0 120 60" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
             <!-- Multiple channels with no attribution arrow connecting them back to source -->
             <circle cx="20" cy="20" r="7" stroke="rgba(168,162,152,0.35)" stroke-width="1.5" fill="none"/>
@@ -211,9 +230,9 @@ import FitDiagnostic from '../../components/FitDiagnostic.astro';
   <section class="vol-payoff" aria-labelledby="vol-payoff-heading">
     <div class="container">
       <p class="section-tag">03 · THE PAYOFF · LOOP BROKEN</p>
-      <h2 id="vol-payoff-heading" class="h-section">The number you keep quoting yourself — 3 to 6 new clients every month — that's what a real system produces.</h2>
+      <h2 id="vol-payoff-heading" class="h-section">The number you keep quoting yourself — 3 to 6 new clients every month —<br/>that's what a real system produces.</h2>
       <p class="vol-payoff-body">
-        You've known what you want. You've said the number out loud. The problem isn't ambition — it's that every tool you've used was a one-trick lever, not a compounding engine. A post is not a system. An ad is not a system. A referral program is not a system. The AI growth system runs the full marketing layer — site, search, ads, follow-up, review velocity, attribution — as one loop that learns. New leads get captured and qualified before you're awake. Follow-up fires in under 60 seconds. The system gets better every week because it tracks what closed. Inside 30 days you stop managing the marketing. You manage the calendar.
+        You've known what you want. You've said the number out loud. The problem isn't ambition — it's that every tool you've used was a one-trick lever, not a compounding engine. A post is not a system. An ad is not a system. A referral program is not a system. The custom AI system runs the full marketing layer — site, search, ads, follow-up, review velocity, attribution — as one loop that learns. New leads get captured and qualified before you're awake. Follow-up fires in under 60 seconds. The system gets better every week because it tracks what closed. Inside 30 days you stop managing the marketing. You manage the calendar.
       </p>
 
       <!-- @r020:F2 proof: method editorial photo shows the human-machine operating method — the "run-for-you" proof that the system doesn't need the owner in the loop to produce consistent volume -->
@@ -306,17 +325,17 @@ import FitDiagnostic from '../../components/FitDiagnostic.astro';
         </article>
       </div>
 
-      <!-- @r020:F2 proof: results editorial photo closes the proof section with documented real-world evidence — prints, notes, data — making the "weekly readout" promise feel owned and durable rather than theoretical -->
+      <!-- @r020:F2 proof: a still-life of printed performance charts under review closes the proof section with the tangible weekly readout the system produces — owned and durable, not theoretical -->
       <figure class="vol-proof-editorial">
         <img
-          src="/images/bwm-results-editorial-v1.webp"
-          alt="Open binder with printed weekly performance metrics and a pen marking key growth changes across a 12-week period."
+          src="/images/bwm-proof-still-life-v1.webp"
+          alt="Printed performance charts and a magnifying glass on a dark desk — the weekly readout the system produces."
           width="640"
           height="426"
           loading="lazy"
           decoding="async"
         />
-        <figcaption class="mono" style="font-size:10px; letter-spacing:0.14em; color:var(--ink-faint); margin-top:10px;">12-week read · every client · attributed · owned by you</figcaption>
+        <figcaption class="mono" style="font-size:10px; letter-spacing:0.14em; color:var(--ink-faint); margin-top:10px;">Your 12-week read · attributed · owned by you</figcaption>
       </figure>
 
       <div class="vol-proof-cta">
@@ -346,28 +365,62 @@ import FitDiagnostic from '../../components/FitDiagnostic.astro';
 }
 
 .vol-hero-grid {
-  display: flex;
-  flex-direction: column;
-  gap: clamp(40px, 5vw, 72px);
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: clamp(36px, 5vw, 56px);
+  align-items: start;
+}
+
+@media (min-width: 980px) {
+  .vol-hero-grid {
+    grid-template-columns: 1.05fr 0.95fr;
+    gap: clamp(40px, 4vw, 72px);
+    align-items: start;
+  }
 }
 
 .vol-hero-text {
   display: flex;
   flex-direction: column;
-  gap: 32px;
-  max-width: 1240px;
+  gap: 28px;
+  max-width: 640px;
 }
 
-/* HEADLINE — condensed display matching sibling page pattern */
+/* PROOF COLUMN — real photo + data-viz in the right rail, never pushing the CTA down */
+.vol-hero-proof {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  min-width: 0;
+}
+
+.vol-hero-photo { margin: 0; }
+
+.vol-hero-photo img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border: 1px solid var(--rule);
+}
+
+.vol-hero-photo-cap {
+  font-size: 10px;
+  letter-spacing: 0.15em;
+  color: var(--ink-faint);
+  margin-top: 10px;
+  display: block;
+}
+
+/* HEADLINE — condensed display; sized so the primary CTA clears the fold @1440 */
 .vol-headline {
   font-family: var(--sans);
   font-weight: 800;
   font-stretch: 75%;
-  font-size: clamp(56px, 11vw, 168px);
-  line-height: 0.90;
-  letter-spacing: -0.048em;
+  font-size: clamp(40px, 4.6vw, 72px);
+  line-height: 0.94;
+  letter-spacing: -0.04em;
   color: var(--ink);
-  max-width: 1240px;
+  max-width: 600px;
   margin: 0;
 }
 
@@ -404,17 +457,18 @@ import FitDiagnostic from '../../components/FitDiagnostic.astro';
 .vol-subhead {
   font-family: var(--sans);
   font-weight: 400;
-  font-size: clamp(20px, 2.2vw, 28px);
-  line-height: 1.42;
+  font-size: clamp(18px, 1.5vw, 21px);
+  line-height: 1.5;
   color: var(--ink-dim);
-  max-width: 820px;
+  max-width: 560px;
   letter-spacing: -0.012em;
+  margin: 0;
 }
 
 /* VOLUME FIGURE */
 .vol-volume-figure {
   margin: 0;
-  max-width: 680px;
+  max-width: 100%;
   background: var(--bg-elev);
   border: 1px solid var(--rule);
   padding: 28px 28px 20px;
@@ -444,7 +498,7 @@ import FitDiagnostic from '../../components/FitDiagnostic.astro';
   background: var(--bg-elev);
   border: 1px solid var(--rule);
   border-left: 3px solid var(--y2);
-  max-width: 680px;
+  max-width: 100%;
 }
 
 .vol-stat-item {
@@ -777,7 +831,7 @@ import FitDiagnostic from '../../components/FitDiagnostic.astro';
 
 /* ─── RESPONSIVE ─────────────────────────────────────────────────────────── */
 @media (max-width: 768px) {
-  .vol-headline { font-size: clamp(48px, 14vw, 88px); }
+  .vol-headline { font-size: clamp(32px, 8.5vw, 50px); }
   .vol-subhead { font-size: 17px; }
   .vol-volume-figure { max-width: 100%; }
   .vol-stat-proof { max-width: 100%; }
