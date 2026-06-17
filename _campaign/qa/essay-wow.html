@@ -14,7 +14,9 @@
   --bg:#050507; --surf:#0E0E13; --surf2:#15151c; --line:#22222c;
   --tx:#F4F4F6; --mut:#9A9AA4; --dim:#6A6A74;
   --acc:#F0FF00;            /* BWM Triangulation — System A marketing yellow */
+  --green:#B8FF3A;
   --acc-soft:rgba(240,255,0,.14);
+  --ease:cubic-bezier(.2,.72,.18,1);
 }
 *{box-sizing:border-box}
 html{scroll-behavior:smooth}
@@ -45,6 +47,20 @@ header.hero>.wrap{max-width:1100px}
 .herogrid{display:grid;grid-template-columns:1.05fr 0.82fr;gap:48px;align-items:center;margin-top:18px}
 .herofig{margin:0;min-width:0}
 .herofig figcaption{margin-top:12px}
+.ai-dotgraph{position:relative;overflow:hidden;border:1px solid var(--line);border-radius:14px;background:var(--bg);isolation:isolate;box-shadow:0 26px 80px rgba(0,0,0,.34)}
+.ai-dotgraph img{width:100%;height:auto;display:block;filter:saturate(0) brightness(.66) contrast(1.08);opacity:.92}
+.ai-dotgraph .tier{--dot:var(--green);position:absolute;z-index:2;opacity:0;clip-path:inset(0 100% 0 0);background-image:radial-gradient(circle at 3.5px 3.5px,var(--dot) 0 3px,transparent 3.2px);background-size:10px 10px;filter:drop-shadow(0 0 8px color-mix(in srgb,var(--dot) 48%,transparent));transform:translateZ(0)}
+.ai-dotgraph .tier-free{--dot:var(--green)}
+.ai-dotgraph .tier-free-a{left:29.17%;top:60.98%;width:55.14%;height:.85%}
+.ai-dotgraph .tier-free-b{left:15.28%;top:62.2%;width:69.03%;height:13.05%}
+.ai-dotgraph .tier-free-c{left:15.28%;top:75.61%;width:19.03%;height:.85%}
+.ai-dotgraph .tier-paid{--dot:var(--acc);left:34.72%;top:75.61%;width:41.25%;height:.85%}
+.ai-dotgraph .tier-agent{--dot:#FF3B30;left:76.39%;top:75.61%;width:7.92%;height:.85%}
+.ai-dotgraph::after{content:"";position:absolute;z-index:3;top:15%;bottom:20%;left:0;width:34%;opacity:0;pointer-events:none;background:linear-gradient(90deg,transparent,rgba(184,255,58,.11),rgba(240,255,0,.33),transparent);filter:blur(.3px);transform:translateX(-135%) skewX(-9deg)}
+.ai-dotgraph.ready::after{animation:graphScan 2.2s var(--ease) .15s forwards}
+.ai-dotgraph.ready .tier-free{animation:graphTier 1.15s var(--ease) .42s forwards}
+.ai-dotgraph.ready .tier-paid{animation:graphTier .78s var(--ease) 1.35s forwards}
+.ai-dotgraph.ready .tier-agent{animation:graphTier .62s var(--ease) 1.72s forwards}
 
 /* ---- sections ---- */
 section{padding:50px 0;border-bottom:1px solid var(--line)}
@@ -61,15 +77,18 @@ ul.clean li:before{content:"";position:absolute;left:2px;top:13px;width:24px;hei
   border-left:3px solid var(--acc);padding:6px 0 6px 24px;margin:30px 0}
 .note{background:var(--surf);border:1px solid var(--line);border-radius:12px;padding:20px 22px;margin:26px 0;font-size:16px;color:var(--mut)}
 .note b{color:var(--acc)}
-.flag{background:rgba(199,64,13,.10);border:1px dashed #C7400D;border-radius:12px;padding:16px 20px;margin:24px 0;font-size:15px;color:#e9b9a6}
-.flag b{color:#ff6a3d}
+.flag{background:rgba(184,255,58,.08);border:1px dashed rgba(184,255,58,.34);border-radius:12px;padding:16px 20px;margin:24px 0;font-size:15px;color:var(--mut)}
+.flag b{color:var(--green)}
 
 /* left-to-right capability flow */
 .flow{display:flex;align-items:stretch;margin:32px 0;flex-wrap:nowrap}
 .flow .stage{flex:1;background:var(--surf);border:1px solid var(--line);border-radius:14px;padding:20px 18px;min-width:0}
 .flow .stage .t{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--mut);margin-bottom:11px}
 .flow .stage .b{font-size:16px;line-height:1.35;color:var(--tx);font-weight:300}
-.flow .arrow{flex:0 0 44px;display:flex;align-items:center;justify-content:center;color:var(--acc);font-size:23px;font-weight:600;line-height:1}
+.flow .arrow{flex:0 0 44px;display:flex;align-items:center;justify-content:center;color:var(--acc);font-size:23px;font-weight:600;line-height:1;position:relative;overflow:hidden;text-shadow:0 0 14px rgba(240,255,0,.18)}
+.flow .arrow::after{content:"";position:absolute;left:0;right:0;top:50%;height:2px;background:linear-gradient(90deg,transparent,var(--acc),transparent);opacity:0;transform:translateX(-130%)}
+.rv.in .flow .arrow::after{animation:arrowTravel 1.25s var(--ease) forwards}
+.rv.in .flow .arrow:nth-child(4)::after{animation-delay:.3s}
 .flow .s2 .t{color:#c9cf63}
 .flow .s3{border-color:var(--acc);background:linear-gradient(155deg,rgba(240,255,0,.11),var(--surf) 62%);box-shadow:0 0 26px rgba(240,255,0,.10)}
 .flow .s3 .t{color:var(--acc)}
@@ -81,9 +100,97 @@ ul.clean li:before{content:"";position:absolute;left:2px;top:13px;width:24px;hei
 figure{margin:30px 0 8px}
 figure svg{width:100%;height:auto;display:block;background:var(--surf);border:1px solid var(--line);border-radius:14px}
 figcaption{font-size:13px;color:var(--dim);margin-top:10px;font-style:italic}
+.growth-chart .growth-solid{stroke-dasharray:1;stroke-dashoffset:1}
+.rv.in .growth-chart .growth-solid{animation:dashDraw 1.28s var(--ease) .12s forwards}
+.growth-chart .growth-projection{opacity:.22}
+.rv.in .growth-chart .growth-projection{animation:projectionPulse 2.4s ease-in-out 1.28s infinite}
+
+.danger-section{--danger-orange:#C7400D}
+.danger-section .eyebrow{color:var(--acc)}
+.danger-relief{position:relative;margin:4px -12px 12px;padding:0 12px 4px;isolation:isolate}
+.danger-relief::before{content:"";position:absolute;inset:0;border-radius:18px;background:radial-gradient(80% 120% at 50% 8%,rgba(21,21,28,.78),transparent 66%);opacity:0;pointer-events:none}
+.danger-section.in .danger-relief::before{animation:dangerCompress 2.1s var(--ease) .12s forwards}
+.closing-beat{position:relative;overflow:hidden;border-radius:14px;padding:10px 12px;margin-left:-12px;margin-right:-12px}
+.closing-beat::before,.closing-beat::after{content:"";position:absolute;top:0;bottom:0;width:0;opacity:0;pointer-events:none;background:linear-gradient(90deg,rgba(5,5,7,.86),rgba(14,14,19,.58));box-shadow:0 0 22px var(--danger-orange);z-index:0}
+.closing-beat::before{left:0;border-right:1px solid color-mix(in srgb,var(--danger-orange) 68%,transparent)}
+.closing-beat::after{right:0;border-left:1px solid color-mix(in srgb,var(--danger-orange) 68%,transparent);transform:scaleX(-1)}
+.danger-section.in .closing-beat::before{animation:apertureLeft 2.35s var(--ease) .18s forwards}
+.danger-section.in .closing-beat::after{animation:apertureRight 2.35s var(--ease) .18s forwards}
+.closing-word{position:relative;z-index:3}
+.danger-section.in .closing-word{animation:closingFlare 1.15s ease-out .75s both}
+.relief-copy{position:relative;z-index:2}
+.relief-route{position:absolute;z-index:1;left:-14px;right:-14px;top:5px;width:calc(100% + 28px);height:165px;pointer-events:none;overflow:visible}
+.relief-route path{stroke-dasharray:1;stroke-dashoffset:1}
+.danger-section.in .relief-route .route{animation:dashDraw 1.05s var(--ease) 1.32s forwards}
+.danger-section.in .relief-route .route-hold{animation:routeHold 1.8s ease-out 2.08s forwards}
+
+.revenue-climb svg{background:linear-gradient(180deg,rgba(184,255,58,.055),var(--surf) 54%)}
+.revenue-area{opacity:0;clip-path:inset(0 100% 0 0)}
+.rv.in .revenue-area{animation:areaReveal 1.35s var(--ease) .15s forwards}
+.revenue-path{stroke-dasharray:1;stroke-dashoffset:1}
+.rv.in .revenue-path{animation:dashDraw 1.45s var(--ease) .2s forwards}
+.revenue-end{opacity:.35}
+.rv.in .revenue-end{animation:endGlow .82s ease-out 1.38s forwards}
+.revenue-count{font-variant-numeric:tabular-nums}
+
+.lead-bars .lead-bar{transform-box:fill-box;transform-origin:center bottom;transform:scaleY(.04);opacity:.38}
+.rv.in .lead-bars .lead-bar{animation:barGrow .82s var(--ease) forwards}
+.rv.in .lead-bars .bar-feb{animation-delay:.14s}
+.rv.in .lead-bars .bar-mar{animation-delay:.27s}
+.rv.in .lead-bars .bar-apr{animation-delay:.4s}
+.rv.in .lead-bars .bar-may{animation-delay:.53s}
+.lead-bars .bar-label{opacity:0;transform:translateY(6px)}
+.rv.in .lead-bars .bar-label{animation:fadeUp .45s ease forwards}
+.rv.in .lead-bars .label-feb{animation-delay:.72s}
+.rv.in .lead-bars .label-mar{animation-delay:.82s}
+.rv.in .lead-bars .label-apr{animation-delay:.92s}
+.rv.in .lead-bars .label-may{animation-delay:1.02s}
+.lead-bars .bar-mar{filter:drop-shadow(0 0 0 rgba(240,255,0,0))}
+.rv.in .lead-bars .bar-mar{filter:drop-shadow(0 0 14px rgba(240,255,0,.44))}
+
+.signal-board svg{background:linear-gradient(180deg,var(--surf),#0b0b10)}
+.signal-board .signal-path{stroke-dasharray:1;stroke-dashoffset:1;opacity:.22}
+.rv.in .signal-board .signal-path{animation:signalPath 1.25s var(--ease) forwards}
+.rv.in .signal-board .p2{animation-delay:.15s}.rv.in .signal-board .p3{animation-delay:.28s}.rv.in .signal-board .p4{animation-delay:.42s}.rv.in .signal-board .p5{animation-delay:.58s}.rv.in .signal-board .p6{animation-delay:.8s}
+.signal-board .signal-node{filter:drop-shadow(0 0 0 rgba(240,255,0,0));transition:filter .5s ease}
+.rv.in .signal-board .signal-node{filter:drop-shadow(0 0 10px rgba(240,255,0,.18))}
+.rv.in .signal-board .return-node{filter:drop-shadow(0 0 12px rgba(184,255,58,.22))}
+
+ul.module-list li:before{background:#45454f;-webkit-mask:url(img/bwm-mark.svg) center/contain no-repeat;mask:url(img/bwm-mark.svg) center/contain no-repeat}
+ul.module-list li:after{content:"";position:absolute;left:2px;top:13px;width:24px;height:24px;background:var(--green);-webkit-mask:url(img/bwm-mark.svg) center/contain no-repeat;mask:url(img/bwm-mark.svg) center/contain no-repeat;opacity:0;transform:scale(.62);filter:drop-shadow(0 0 9px rgba(184,255,58,.28))}
+.rv.in ul.module-list li:after{animation:moduleFill .46s var(--ease) forwards}
+.rv.in ul.module-list li:nth-child(1):after{animation-delay:.1s}.rv.in ul.module-list li:nth-child(2):after{animation-delay:.24s}.rv.in ul.module-list li:nth-child(3):after{animation-delay:.38s}.rv.in ul.module-list li:nth-child(4):after{animation-delay:.52s}.rv.in ul.module-list li:nth-child(5):after{animation-delay:.66s}
+
+.build-timeline .timeline-rail-live{stroke-dasharray:1;stroke-dashoffset:1}
+.rv.in .build-timeline .timeline-rail-live{animation:dashDraw 1.12s var(--ease) .18s forwards}
+.build-timeline .timeline-node{opacity:.46}
+.rv.in .build-timeline .timeline-node{animation:nodePop .48s var(--ease) forwards}
+.rv.in .build-timeline .n1{animation-delay:.42s}.rv.in .build-timeline .n2{animation-delay:.62s}.rv.in .build-timeline .n3{animation-delay:.82s}.rv.in .build-timeline .timeline-future{animation:futureBreathe 2.5s ease-in-out 1.15s infinite}
+
+.closing-orbit{position:relative;margin:30px 0}
+.closing-orbit .pull{position:relative;z-index:2;margin:0;background:linear-gradient(90deg,rgba(5,5,7,.92),rgba(5,5,7,.72),transparent)}
+.orbit-field{position:absolute;z-index:1;inset:-54px -42px -36px;pointer-events:none;overflow:visible}
+.orbit-field path{stroke-dasharray:1;stroke-dashoffset:1;opacity:0}
+.rv.in .orbit-field .orbit-a{animation:orbitTrace 1.05s var(--ease) .15s forwards}
+.rv.in .orbit-field .orbit-b{animation:orbitTrace 1.05s var(--ease) .34s forwards}
+.rv.in .orbit-field .orbit-c{animation:orbitTrace 1.05s var(--ease) .54s forwards}
+.rv.in .orbit-field .orbit-stable{animation:stableTriangle 1.2s ease-out 1.28s forwards}
 
 /* offers */
-.offer{background:linear-gradient(180deg,var(--surf),#0b0b10);border:1px solid var(--line);border-radius:16px;padding:26px 26px 22px;margin:22px 0}
+.offer{position:relative;overflow:hidden;background:linear-gradient(180deg,var(--surf),#0b0b10);border:1px solid var(--line);border-radius:16px;padding:26px 26px 22px;margin:22px 0;transition:border-color .28s ease,transform .28s ease,box-shadow .28s ease}
+.offer::before{content:"";position:absolute;inset:0;opacity:.35;pointer-events:none;z-index:0}
+.offer::after{content:"";position:absolute;top:-24%;bottom:-24%;left:-38%;width:28%;opacity:0;background:linear-gradient(90deg,transparent,rgba(255,255,255,.18),transparent);transform:skewX(-16deg);pointer-events:none;z-index:1}
+.offer:hover{transform:translateY(-2px);border-color:rgba(240,255,0,.38);box-shadow:0 18px 44px rgba(0,0,0,.32)}
+.offer:hover::after{animation:offerSweep .75s ease-out forwards}
+.offer>*{position:relative;z-index:2}
+.ops-offer::before{background-image:linear-gradient(rgba(184,255,58,.17) 1px,transparent 1px),linear-gradient(90deg,rgba(184,255,58,.12) 1px,transparent 1px);background-size:28px 28px}
+.weekly-offer::before{background:repeating-linear-gradient(90deg,transparent 0 42px,rgba(240,255,0,.12) 42px 44px),linear-gradient(90deg,rgba(240,255,0,.08),transparent 46%)}
+.referral-offer::before{background:radial-gradient(circle at 88% 20%,rgba(240,255,0,.2),transparent 24%),linear-gradient(135deg,transparent,rgba(240,255,0,.06))}
+.corner-lock{position:absolute;right:13px;top:13px;width:46px;height:46px;opacity:0;transform:translate(6px,-6px);transition:opacity .28s ease,transform .28s ease;z-index:3;pointer-events:none}
+.corner-lock::before,.corner-lock::after{content:"";position:absolute;inset:0;border-color:var(--acc);border-style:solid}
+.corner-lock::before{border-width:1px 1px 0 0;clip-path:polygon(100% 0,100% 68%,32% 0)}
+.corner-lock::after{border-width:0 0 1px 1px;clip-path:polygon(0 100%,68% 100%,0 32%);opacity:.65}
+.offer:hover .corner-lock{opacity:1;transform:none}
 .offer h3{margin:0 0 6px;font-size:20px;font-weight:700}
 .offer .tag{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--acc);margin-bottom:12px}
 .cta{display:inline-block;margin-top:6px;font-weight:600;color:#050507;background:var(--acc);padding:11px 20px;border-radius:8px;border:0}
@@ -97,6 +204,27 @@ footer a{color:var(--dim)}
 /* scroll reveal + fancy desktop */
 .rv{opacity:0;transform:translateY(20px);transition:opacity .7s ease,transform .7s ease}
 .rv.in{opacity:1;transform:none}
+@keyframes graphScan{0%{opacity:0;transform:translateX(-135%) skewX(-9deg)}12%{opacity:1}82%{opacity:1}100%{opacity:0;transform:translateX(305%) skewX(-9deg)}}
+@keyframes graphTier{0%{opacity:0;clip-path:inset(0 100% 0 0)}18%{opacity:1}100%{opacity:1;clip-path:inset(0 0 0 0)}}
+@keyframes arrowTravel{0%{opacity:0;transform:translateX(-130%)}20%{opacity:.85}100%{opacity:0;transform:translateX(130%)}}
+@keyframes dashDraw{to{stroke-dashoffset:0}}
+@keyframes projectionPulse{0%,100%{opacity:.28;stroke-width:3}50%{opacity:.82;stroke-width:3.8}}
+@keyframes dangerCompress{0%{opacity:0}48%{opacity:1}100%{opacity:.5}}
+@keyframes apertureLeft{0%{width:0;opacity:0}48%{width:46%;opacity:1}100%{width:14%;opacity:.72}}
+@keyframes apertureRight{0%{width:0;opacity:0}48%{width:46%;opacity:1}100%{width:14%;opacity:.72}}
+@keyframes closingFlare{0%,100%{text-shadow:none;color:inherit}42%{color:#fff;text-shadow:0 0 4px var(--danger-orange),0 0 18px var(--danger-orange),0 0 34px var(--danger-orange)}}
+@keyframes routeHold{to{stroke-dashoffset:0;filter:drop-shadow(0 0 14px rgba(184,255,58,.36));opacity:1}}
+@keyframes areaReveal{to{opacity:1;clip-path:inset(0 0 0 0)}}
+@keyframes endGlow{to{opacity:1;filter:drop-shadow(0 0 16px rgba(184,255,58,.48))}}
+@keyframes barGrow{to{transform:scaleY(1);opacity:1}}
+@keyframes fadeUp{to{opacity:1;transform:none}}
+@keyframes signalPath{0%{stroke-dashoffset:1;opacity:.14}72%{stroke-dashoffset:0;opacity:.9}100%{stroke-dashoffset:0;opacity:.48}}
+@keyframes moduleFill{to{opacity:1;transform:scale(1)}}
+@keyframes nodePop{0%{opacity:.38;transform:scale(.78);transform-origin:center}100%{opacity:1;transform:scale(1);transform-origin:center}}
+@keyframes futureBreathe{0%,100%{opacity:.72;filter:drop-shadow(0 0 4px rgba(240,255,0,.1))}50%{opacity:1;filter:drop-shadow(0 0 14px rgba(240,255,0,.32))}}
+@keyframes orbitTrace{0%{opacity:0;stroke-dashoffset:1;transform:scale(1.08);transform-origin:center}70%{opacity:.34}100%{opacity:0;stroke-dashoffset:0;transform:scale(.98);transform-origin:center}}
+@keyframes stableTriangle{0%{opacity:0;stroke-dashoffset:1;transform:scale(1.04);transform-origin:center}100%{opacity:.34;stroke-dashoffset:0;transform:scale(1);transform-origin:center}}
+@keyframes offerSweep{0%{opacity:0;left:-38%}18%{opacity:1}100%{opacity:0;left:110%}}
 @media (max-width:860px){
   header.hero>.wrap{max-width:760px}
   .herogrid{grid-template-columns:1fr;gap:28px;margin-top:6px}
@@ -109,7 +237,28 @@ footer a{color:var(--dim)}
   section{padding:38px 0}
   header.hero{padding:46px 0 34px}
 }
-@media (prefers-reduced-motion:reduce){.rv{opacity:1;transform:none;transition:none}}
+@media (max-width:680px),(prefers-reduced-motion:reduce){
+  .rv{opacity:1;transform:none;transition:none}
+  .ai-dotgraph::after{display:none}
+  .ai-dotgraph .tier{opacity:1;clip-path:none;animation:none!important}
+  .flow .arrow::after{display:none}
+  .growth-chart .growth-solid,.revenue-path,.signal-board .signal-path,.build-timeline .timeline-rail-live,.relief-route path,.orbit-field path{stroke-dashoffset:0!important;animation:none!important}
+  .growth-chart .growth-projection,.signal-board .signal-path{opacity:.62;animation:none!important}
+  .revenue-area{opacity:1;clip-path:none;animation:none}
+  .revenue-end{opacity:1;filter:drop-shadow(0 0 13px rgba(184,255,58,.34));animation:none}
+  .lead-bars .lead-bar{transform:none;opacity:1;animation:none!important}
+  .lead-bars .bar-label{opacity:1;transform:none;animation:none!important}
+  ul.module-list li:after{opacity:1;transform:none;animation:none!important}
+  .build-timeline .timeline-node{opacity:1;animation:none!important}
+  .build-timeline .timeline-future{filter:drop-shadow(0 0 10px rgba(240,255,0,.24));animation:none!important}
+  .closing-beat::before,.closing-beat::after{width:14%;opacity:.58;animation:none!important}
+  .closing-word{animation:none!important}
+  .danger-relief::before{opacity:.42;animation:none!important}
+  .orbit-field .orbit-a,.orbit-field .orbit-b,.orbit-field .orbit-c{display:none}
+  .orbit-field .orbit-stable{opacity:.34}
+  .offer,.offer:hover{transform:none}
+  .offer::after,.corner-lock{display:none}
+}
 </style>
 </head>
 <body>
@@ -125,7 +274,14 @@ footer a{color:var(--dim)}
       </div>
       <figure class="herofig">
         <!-- @r020:F2 proof: AI-adoption dot graph — shows how few people have really used AI yet; proves "the window is wide open, build now" right at the top. -->
-        <img src="img/ai-adoption-dotgraph.svg" alt="Dot graph: each dot is ~3.2 million people, colored by their most advanced AI interaction; most have never used AI" style="width:100%;height:auto;display:block">
+        <div class="ai-dotgraph">
+          <img src="img/ai-adoption-dotgraph.svg" alt="Dot graph: each dot is ~3.2 million people, colored by their most advanced AI interaction; most have never used AI">
+          <span class="tier tier-free tier-free-a" aria-hidden="true"></span>
+          <span class="tier tier-free tier-free-b" aria-hidden="true"></span>
+          <span class="tier tier-free tier-free-c" aria-hidden="true"></span>
+          <span class="tier tier-paid" aria-hidden="true"></span>
+          <span class="tier tier-agent" aria-hidden="true"></span>
+        </div>
         <figcaption>Most of the world hasn't really used AI yet. That's not a warning — it's the open window.</figcaption>
       </figure>
     </div>
@@ -164,7 +320,7 @@ footer a{color:var(--dim)}
 
     <figure>
       <!-- @r020:F2 proof: METR capability-growth curve with REAL numbers — proves AI capability is accelerating; drives the reader toward the "build now" decision. -->
-      <svg viewBox="0 0 700 320" role="img" aria-label="AI task time-horizon growth, 2023 to 2027">
+      <svg class="growth-chart" viewBox="0 0 700 320" role="img" aria-label="AI task time-horizon growth, 2023 to 2027">
         <text x="26" y="34" fill="#F4F4F6" font-family="Inter" font-weight="800" font-size="17">How much work AI can do in one go</text>
         <text x="26" y="54" fill="#9A9AA4" font-family="JetBrains Mono" font-size="11">LENGTH OF TASK A TOP MODEL FINISHES ON ITS OWN · LOG SCALE</text>
         <!-- gridlines -->
@@ -176,8 +332,8 @@ footer a{color:var(--dim)}
           <text x="12" y="94">weeks</text><text x="18" y="154">1 day</text><text x="14" y="214">40 min</text><text x="20" y="266">4 min</text>
         </g>
         <!-- measured 2023-2025 solid; 2025->2027 projected dashed to "weeks of work" -->
-        <polyline points="110,262 300,210 490,178" fill="none" stroke="#F0FF00" stroke-width="3" stroke-linecap="round"/>
-        <polyline points="490,178 640,92" fill="none" stroke="#F0FF00" stroke-width="3" stroke-dasharray="2 7" stroke-linecap="round" opacity="0.6"/>
+        <polyline class="growth-solid" pathLength="1" points="110,262 300,210 490,178" fill="none" stroke="#F0FF00" stroke-width="3" stroke-linecap="round"/>
+        <polyline class="growth-projection" points="490,178 640,92" fill="none" stroke="#F0FF00" stroke-width="3" stroke-dasharray="2 7" stroke-linecap="round" opacity="0.6"/>
         <g fill="#F0FF00"><circle cx="110" cy="262" r="5"/><circle cx="300" cy="210" r="5"/><circle cx="490" cy="178" r="5"/></g>
         <circle cx="640" cy="92" r="6" fill="#0E0E13" stroke="#F0FF00" stroke-width="2.5"/>
         <g fill="#9A9AA4" font-family="JetBrains Mono" font-size="11">
@@ -190,13 +346,19 @@ footer a{color:var(--dim)}
   </div>
 </section>
 
-<section class="rv">
+<section class="rv danger-section">
   <div class="wrap">
-    <div class="eyebrow" style="color:#ff6a3d">The window</div>
+    <div class="eyebrow">The window</div>
     <h2>Time is <span class="y">running out</span>.</h2>
     <p>Because of this pace, Buildwise Media's clients are at a real advantage right now. For roughly the next 18 months, a business that builds with AI gets to operate at a level its competitors simply can't match yet. At Anthropic — one of the labs setting the pace — the typical engineer now merges <strong>eight times as much code per day</strong> as they did in 2024.<sup><a href="#fn2">2</a></sup> That's the shape of the edge: more built, more fixed, more shipped, in the same week.</p>
-    <p>But it won't last. The edge is open now and it's closing.</p>
-    <p>The signals are everywhere. Top engineers at the leading labs say AI now writes ~100% of their code, with Anthropic's company-wide figure between 70% and 90%.<sup><a href="#fn3">3</a></sup> AI forecasting is closing in on the best human predictors in the world.<sup><a href="#fn4">4</a></sup> And this spring an AI made real progress on a math problem that had stood unsolved for about 80 years.<sup><a href="#fn5">5</a></sup></p>
+    <div class="danger-relief">
+      <p class="closing-beat">But it won't last. The edge is open now and it's <span class="closing-word">closing</span>.</p>
+      <svg class="relief-route" viewBox="0 0 760 170" aria-hidden="true">
+        <path class="route" pathLength="1" d="M44 118 L318 42 L402 104 L716 22" fill="none" stroke="#B8FF3A" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
+        <path class="route route-hold" pathLength="1" d="M318 42 L402 104 L716 22" fill="none" stroke="#B8FF3A" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" opacity=".42"/>
+      </svg>
+      <p class="relief-copy">The signals are everywhere. Top engineers at the leading labs say AI now writes ~100% of their code, with Anthropic's company-wide figure between 70% and 90%.<sup><a href="#fn3">3</a></sup> AI forecasting is closing in on the best human predictors in the world.<sup><a href="#fn4">4</a></sup> And this spring an AI made real progress on a math problem that had stood unsolved for about 80 years.<sup><a href="#fn5">5</a></sup></p>
+    </div>
     <p>The labs at the very edge now say that some time around 2028, AI may be able to run much of its own research and improve itself.<sup><a href="#fn8">8</a></sup> When that happens, it starts taking over the revenue-generating parts of a business — and the companies still "getting started" will be too late.</p>
     <p class="pull">The companies that make AI native to how they run — not bolted on … — are the ones that thrive while others fold.</p>
     <p>How can I say that so plainly? Because AI is intelligence, it's become expert-level capable, and a business that can put thousands of digital employees to work will out-run the one still trying to figure out its website. <strong>This is the advantage we make sure our clients have.</strong></p>
@@ -213,18 +375,39 @@ footer a{color:var(--dim)}
 
     <p>We took one client from just over <strong>$300,000 a year</strong> to break the <strong>$10,000,000+</strong> mark in a single year.</p>
 
+    <figure class="revenue-climb">
+      <!-- @r020:F2 proof: anchored revenue climb from the two stated values only — no invented monthly data. -->
+      <svg viewBox="0 0 700 260" role="img" aria-label="Revenue climb from ~$300K to $10M+">
+        <defs>
+          <linearGradient id="revArea" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="#B8FF3A" stop-opacity=".28"/>
+            <stop offset="100%" stop-color="#B8FF3A" stop-opacity="0"/>
+          </linearGradient>
+        </defs>
+        <g stroke="#22222c" stroke-width="1">
+          <line x1="58" y1="76" x2="650" y2="76"/><line x1="58" y1="132" x2="650" y2="132"/><line x1="58" y1="208" x2="650" y2="208"/>
+        </g>
+        <path class="revenue-area" d="M74 210 C162 207 214 188 280 160 C368 122 448 114 622 52 L622 222 L74 222 Z" fill="url(#revArea)"/>
+        <path class="revenue-path" pathLength="1" d="M74 210 C162 207 214 188 280 160 C368 122 448 114 622 52" fill="none" stroke="#B8FF3A" stroke-width="4" stroke-linecap="round"/>
+        <circle cx="74" cy="210" r="6" fill="#0E0E13" stroke="#B8FF3A" stroke-width="2"/>
+        <circle class="revenue-end" cx="622" cy="52" r="8" fill="#B8FF3A"/>
+        <text x="52" y="238" fill="#9A9AA4" font-family="JetBrains Mono" font-size="12">~$300K</text>
+        <text class="revenue-count" data-final="$10M+" x="568" y="42" fill="#F4F4F6" font-family="Inter" font-weight="900" font-size="26">$0</text>
+      </svg>
+    </figure>
+
     <p>And for a commercial client breaking into residential, our system has logged <strong>about 150 leads since launch</strong> — leads that simply weren't coming in before. Here's what each month actually looked like:</p>
 
     <figure>
       <!-- @r020:F2 proof: real per-month lead counts for the client — concrete receipts behind the "~150 leads" claim; drives belief in the system. -->
-      <svg viewBox="0 0 700 240" role="img" aria-label="Monthly leads since launch: Feb 16, Mar 81, Apr 35, May 17">
+      <svg class="lead-bars" viewBox="0 0 700 240" role="img" aria-label="Monthly leads since launch: Feb 16, Mar 81, Apr 35, May 17">
         <text x="20" y="28" fill="#F4F4F6" font-family="Inter" font-weight="800" font-size="16">Leads per month since launch</text>
         <line x1="20" y1="200" x2="680" y2="200" stroke="#22222c" stroke-width="1"/>
         <g font-family="Inter" font-weight="800" font-size="16" fill="#F0FF00" text-anchor="middle">
-          <rect x="70" y="172" width="92" height="28" rx="4" fill="#F0FF00" opacity="0.8"/><text x="116" y="162">16</text>
-          <rect x="232" y="60" width="92" height="140" rx="4" fill="#F0FF00"/><text x="278" y="50">81</text>
-          <rect x="394" y="140" width="92" height="60" rx="4" fill="#F0FF00" opacity="0.8"/><text x="440" y="130">35</text>
-          <rect x="556" y="171" width="92" height="29" rx="4" fill="#F0FF00" opacity="0.8"/><text x="602" y="161">17</text>
+          <rect class="lead-bar bar-feb" x="70" y="172" width="92" height="28" rx="4" fill="#F0FF00" opacity="0.8"/><text class="bar-label label-feb" x="116" y="162">16</text>
+          <rect class="lead-bar bar-mar" x="232" y="60" width="92" height="140" rx="4" fill="#F0FF00"/><text class="bar-label label-mar" x="278" y="50">81</text>
+          <rect class="lead-bar bar-apr" x="394" y="140" width="92" height="60" rx="4" fill="#F0FF00" opacity="0.8"/><text class="bar-label label-apr" x="440" y="130">35</text>
+          <rect class="lead-bar bar-may" x="556" y="171" width="92" height="29" rx="4" fill="#F0FF00" opacity="0.8"/><text class="bar-label label-may" x="602" y="161">17</text>
         </g>
         <g font-family="JetBrains Mono" font-size="12" fill="#9A9AA4" text-anchor="middle">
           <text x="116" y="224">FEB</text><text x="278" y="224">MAR</text><text x="440" y="224">APR</text><text x="602" y="224">MAY</text>
@@ -248,6 +431,35 @@ footer a{color:var(--dim)}
     <div class="eyebrow">What's next</div>
     <h2>Where we're putting our <span class="y">weight</span>.</h2>
     <p>Both SEO (getting "free" leads from Google searches) and AEO (getting recommended by AI) take time and attention — and I've never met a business owner who didn't want more business <em>right now</em>, even when they're already drowning in it. So we're building out advertising, because it's the fastest way to bring in new, qualified leads.</p>
+    <figure class="signal-board">
+      <!-- @r020:F2 proof: advertising signal board turns the strategy into a visible operating system. -->
+      <svg viewBox="0 0 700 300" role="img" aria-label="Advertising signal board from Meta, Google, budget, creative, and keyword into qualified lead">
+        <defs>
+          <marker id="signalArrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse">
+            <path d="M0 0 L10 5 L0 10 Z" fill="#F0FF00"/>
+          </marker>
+          <marker id="returnArrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse">
+            <path d="M0 0 L10 5 L0 10 Z" fill="#B8FF3A"/>
+          </marker>
+        </defs>
+        <g fill="#F4F4F6" font-family="JetBrains Mono" font-size="12" letter-spacing="1.4">
+          <text x="64" y="86">META</text><text x="60" y="158">GOOGLE</text><text x="74" y="230">BUDGET</text>
+          <text x="280" y="98">CREATIVE</text><text x="286" y="218">KEYWORD</text>
+          <text x="532" y="156">QUALIFIED LEAD</text>
+        </g>
+        <g fill="#15151c" stroke="#30303a" stroke-width="1.5">
+          <circle class="signal-node" cx="92" cy="70" r="26"/><circle class="signal-node" cx="92" cy="142" r="26"/><circle class="signal-node" cx="104" cy="214" r="26"/>
+          <circle class="signal-node" cx="322" cy="82" r="30"/><circle class="signal-node" cx="326" cy="202" r="30"/>
+          <circle class="signal-node return-node" cx="588" cy="140" r="38"/>
+        </g>
+        <path class="signal-path p1" pathLength="1" d="M118 70 C178 66 214 72 292 82" fill="none" stroke="#F0FF00" stroke-width="2.4" marker-end="url(#signalArrow)"/>
+        <path class="signal-path p2" pathLength="1" d="M118 142 C184 142 232 126 296 96" fill="none" stroke="#F0FF00" stroke-width="2.4" marker-end="url(#signalArrow)"/>
+        <path class="signal-path p3" pathLength="1" d="M130 214 C182 208 226 204 296 202" fill="none" stroke="#F0FF00" stroke-width="2.4" marker-end="url(#signalArrow)"/>
+        <path class="signal-path p4" pathLength="1" d="M352 82 C432 80 474 103 552 128" fill="none" stroke="#B8FF3A" stroke-width="3" marker-end="url(#returnArrow)"/>
+        <path class="signal-path p5" pathLength="1" d="M356 202 C432 198 476 172 552 150" fill="none" stroke="#B8FF3A" stroke-width="3" marker-end="url(#returnArrow)"/>
+        <path class="signal-path p6" pathLength="1" d="M190 242 C310 270 486 244 588 178" fill="none" stroke="#B8FF3A" stroke-width="1.8" stroke-dasharray="3 8"/>
+      </svg>
+    </figure>
     <p>For Meta ads (Facebook & Instagram), our system can already build the campaign, make the creative, and run the platform end to end. We're testing it on ourselves first — once it delivers a 2× return for 90 days straight, we'll pilot it with a few clients.</p>
     <p>We're also building Google Ads, which is more straightforward because it runs on math — and math is exactly where AI shines: find the right keywords, build the campaigns, set the budget, execute. We expect the first Google Ads live by the end of this month for select clients.</p>
     <p>The difference, if it isn't obvious: instead of handing you an expert human, we train the AI to <em>be</em> the expert — native to your business. We believe that's the only way to protect your business's future.</p>
@@ -259,7 +471,7 @@ footer a{color:var(--dim)}
     <div class="eyebrow">The receipts</div>
     <h2>What you get <span class="y">today</span> — and tomorrow.</h2>
     <p>Since the start of 2026 we've built custom AI we can deploy into a business within weeks:</p>
-    <ul class="clean">
+    <ul class="clean module-list">
       <li>25+ page websites that cost large companies <strong>$500,000–$1,000,000</strong> and 6–18 months to build</li>
       <li>100% data coverage — 750+ data points across the customer journey, so the AI decides and responds with precision</li>
       <li>Live lead dashboards — every lead, every status, always current</li>
@@ -270,14 +482,15 @@ footer a{color:var(--dim)}
 
     <figure>
       <!-- @r020:F2 proof: dated BWM build milestones — proves we ship and beat our own estimates; builds trust right before the client offers. -->
-      <svg viewBox="0 0 700 260" role="img" aria-label="Buildwise Media build timeline">
+      <svg class="build-timeline" viewBox="0 0 700 260" role="img" aria-label="Buildwise Media build timeline">
         <text x="26" y="32" fill="#F4F4F6" font-family="Inter" font-weight="800" font-size="17">What we've built — and what's coming</text>
         <line x1="40" y1="150" x2="660" y2="150" stroke="#22222c" stroke-width="2"/>
+        <line class="timeline-rail-live" pathLength="1" x1="40" y1="150" x2="555" y2="150" stroke="#B8FF3A" stroke-width="2.5" stroke-linecap="round"/>
         <g font-family="JetBrains Mono" font-size="10" fill="#F0FF00">
           <text x="55" y="130">MAR 26</text><text x="200" y="130">APR 29</text><text x="360" y="130">JUN 4</text><text x="540" y="130">Q1 27</text>
         </g>
-        <g><circle cx="70" cy="150" r="6" fill="#F0FF00"/><circle cx="215" cy="150" r="6" fill="#F0FF00"/><circle cx="375" cy="150" r="6" fill="#F0FF00"/>
-          <circle cx="555" cy="150" r="6" fill="#0E0E13" stroke="#F0FF00" stroke-width="2.5"/></g>
+        <g><circle class="timeline-node n1" cx="70" cy="150" r="6" fill="#F0FF00"/><circle class="timeline-node n2" cx="215" cy="150" r="6" fill="#F0FF00"/><circle class="timeline-node n3" cx="375" cy="150" r="6" fill="#F0FF00"/>
+          <circle class="timeline-node timeline-future" cx="555" cy="150" r="6" fill="#0E0E13" stroke="#F0FF00" stroke-width="2.5"/></g>
         <g font-family="Inter" font-size="12" fill="#F4F4F6">
           <text x="46" y="178">Lead capture +</text><text x="46" y="194" fill="#9A9AA4">attribution live</text>
           <text x="190" y="178">Overnight build,</text><text x="190" y="194" fill="#9A9AA4">zero humans</text>
@@ -298,7 +511,15 @@ footer a{color:var(--dim)}
     <p>The system that turns a business AI-native pulls from all the frontier labs at once. It does its own research, finds the best solution, and builds it right into the business. Every time a model improves, that improvement rolls into your business the same day — usually within minutes.</p>
     <p>I like to work with people I like, so most of us are pretty similar. We're ambitious, we care about our clients, and we want what we want — and we want it now. That's what I'm bringing you: keeping Buildwise Media, and therefore you, at the very edge of what AI can do at any given moment. It's not a perfect process. But as I've shown you, it's a very fast one.</p>
     <!-- @signoff-draft: in Robert's voice; he reviews next draft -->
-    <p class="pull">The tools will keep moving on their own schedule. The one clock you control is how fast you decide to build. I'd start now.</p>
+    <div class="closing-orbit">
+      <svg class="orbit-field" viewBox="0 0 760 220" aria-hidden="true">
+        <path class="orbit-a" pathLength="1" d="M380 22 L690 178 L112 184 Z" fill="none" stroke="#F0FF00" stroke-width="1"/>
+        <path class="orbit-b" pathLength="1" d="M384 40 L636 170 L154 166 Z" fill="none" stroke="#B8FF3A" stroke-width="1"/>
+        <path class="orbit-c" pathLength="1" d="M380 62 L584 156 L208 156 Z" fill="none" stroke="#F0FF00" stroke-width="1"/>
+        <path class="orbit-stable" pathLength="1" d="M380 74 L548 154 L238 154 Z" fill="none" stroke="#B8FF3A" stroke-width="1.6"/>
+      </svg>
+      <p class="pull">The tools will keep moving on their own schedule. The one clock you control is how fast you decide to build. I'd start now.</p>
+    </div>
     <p style="font-weight:600;color:#fff;font-size:21px;margin-bottom:2px">— Robert</p>
     <p class="kic" style="margin:0">Founder, Buildwise Media</p>
     <div class="note" style="margin-top:24px"><b>Sign-off:</b> drafted in your voice above (the "one clock you control" line) — you said you'll read it in the next draft. Want it warmer, shorter, or harder?</div>
@@ -312,21 +533,24 @@ footer a{color:var(--dim)}
     <h2>A couple of things, <span class="y">just for you</span>.</h2>
     <p class="kic" style="color:var(--dim);margin-bottom:18px">[ This section appears on the CLIENT version only — friends get the essay + the referral ask + sign-off. ]</p>
 
-    <div class="offer">
+    <div class="offer ops-offer">
+      <span class="corner-lock" aria-hidden="true"></span>
       <div class="tag">Offer 1 · Operations</div>
       <h3>We'll find what AI can take off your plate.</h3>
       <p style="margin-bottom:10px">AI is great at revenue — it's also great at operations. Many businesses report <strong>30–40% efficiency gains</strong> in the first year by automating routine work.<sup><a href="#fn9">9</a></sup> Since you're a valued client, the team and I will work with you one-on-one to find what can be automated or tightened up — including cybersecurity, where AI is excellent — freeing you and your team for higher-value work (or more time off) and making your business safer.</p>
       <span class="cta">Reply to set up a call</span>
     </div>
 
-    <div class="offer">
+    <div class="offer weekly-offer">
+      <span class="corner-lock" aria-hidden="true"></span>
       <div class="tag">Offer 2 · Your weekly 30</div>
       <h3>A standing 30 minutes, every week.</h3>
       <p style="margin-bottom:10px">Time is the most valuable thing there is. Just for you, we'll set up a weekly 30-minute meeting to go over anything you need or want, so we keep tuning your system to exactly what you can imagine. The only ask: same time, same day each week.</p>
       <span class="cta">Reply "weekly" and we'll book it</span>
     </div>
 
-    <div class="offer" style="border-color:var(--acc-soft)">
+    <div class="offer referral-offer" style="border-color:var(--acc-soft)">
+      <span class="corner-lock" aria-hidden="true"></span>
       <div class="tag">A personal ask</div>
       <h3>Know an owner who wants to thrive, not get disrupted?</h3>
       <p style="margin-bottom:6px">If you know a business owner who'd rather get ahead of AI than get run over by it, send them our way. When it becomes a client, we'll thank you well: <strong>$6,000 per closed-won referral.</strong></p>
@@ -354,15 +578,61 @@ footer a{color:var(--dim)}
 
 <footer>
   <div class="wrap">
-    <!-- per-segment footer: CLIENT version = "a client"; FRIEND version = "a friend"; send-time {{relationship}} token fills it -->
     You're getting this because you're a client of Buildwise Media.<br>
     Buildwise Media · 3724 Marlborough Dr, Tucker, GA 30084 · <a href="{{unsubscribe_url}}">Unsubscribe</a>
   </div>
 </footer>
 
 <script>
-const obs=new IntersectionObserver((es)=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');obs.unobserve(e.target)}}),{threshold:.12});
-document.querySelectorAll('.rv').forEach(el=>obs.observe(el));
+const reduceMotion=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+const compactMotion=window.matchMedia('(max-width: 680px)').matches;
+const staticMotion=reduceMotion||compactMotion;
+const sections=[...document.querySelectorAll('.rv')];
+const dotGraph=document.querySelector('.ai-dotgraph');
+
+function setRevenueFinal(root=document){
+  root.querySelectorAll('.revenue-count').forEach(node=>{node.textContent=node.dataset.final||'$10M+'});
+}
+
+function animateRevenue(root){
+  const node=root.querySelector('.revenue-count');
+  if(!node||node.dataset.counted)return;
+  node.dataset.counted='true';
+  const final=node.dataset.final||'$10M+';
+  const start=performance.now();
+  const duration=1250;
+  function tick(now){
+    const p=Math.min(1,(now-start)/duration);
+    const eased=1-Math.pow(1-p,3);
+    const value=Math.floor(eased*10);
+    node.textContent=p>=1?final:(value<=0?'$0':'$'+value+'M');
+    if(p<1)requestAnimationFrame(tick);
+  }
+  requestAnimationFrame(tick);
+}
+
+function activate(el){
+  el.classList.add('in');
+  if(staticMotion)setRevenueFinal(el);
+  else animateRevenue(el);
+}
+
+if(dotGraph){
+  if(staticMotion)dotGraph.classList.add('ready');
+  else requestAnimationFrame(()=>dotGraph.classList.add('ready'));
+}
+
+if(staticMotion||!('IntersectionObserver'in window)){
+  sections.forEach(activate);
+}else{
+  const obs=new IntersectionObserver((es)=>es.forEach(e=>{
+    if(e.isIntersecting){
+      activate(e.target);
+      obs.unobserve(e.target);
+    }
+  }),{threshold:.12});
+  sections.forEach(el=>obs.observe(el));
+}
 </script>
 </body>
 </html>

@@ -1,3 +1,91 @@
+Reading additional input from stdin...
+OpenAI Codex v0.140.0
+--------
+workdir: /Users/robertechevarria/email-campaign-render
+model: gpt-5.5
+provider: openai
+approval: never
+sandbox: danger-full-access
+reasoning effort: xhigh
+reasoning summaries: none
+session id: 019ed5b8-1b2a-7a91-b255-d4d334daad7b
+--------
+user
+READ the file /Users/robertechevarria/email-campaign-render/essay-review.html first (it's a BWM thought-leadership essay on AI, dark "Triangulation" brand). Then PROPOSE a "wow" visual + motion design treatment for EACH major section so each section blows the reader away ON ITS OWN. Do NOT modify any file — output IDEAS ONLY as a markdown punch list.
+
+Brief / constraints:
+- Brand colors (use VARIETY, not just monochrome yellow): canvas #050507, marketing yellow #F0FF00, product green #B8FF3A, dark tiers #0E0E13/#15151c, muted #9A9AA4. Warning orange #C7400D exists but is brand-reserved for errors — if you use it for a "danger" beat, flag that.
+- MOTION GRAPHICS welcome, but DESKTOP-FIRST: rich on desktop, lightweight/static on mobile (don't hurt mobile load). Respect prefers-reduced-motion.
+- Pure CSS / inline SVG / vanilla JS only. NO heavy libraries (no GSAP/three.js/lottie). Scroll-triggered via IntersectionObserver is fine.
+- Each section must wow standalone, but the set must feel cohesive.
+
+Sections (in order): (1) Hero with the AI-adoption dot graph; (2) "The curve" — chatbots→agents→autonomous flow + the capability growth chart; (3) "Time is running out" — INCLUDING the line "But it won't last. The edge is open now and it's closing." which MUST feel DANGEROUS — an oh-shit moment, the window is closing — then resolve into RELIEF because the reader has Buildwise Media; (4) "The unvarnished truth" — monthly-leads bar chart + the $10M+ result; (5) "Where we're putting our weight" — advertising; (6) "What you get today" — receipts list (BWM brand-mark bullets) + build timeline; (7) Wrapping up + the closing pull-quote; (8) the client-only offer cards.
+
+For EACH section give: the wow concept (1-2 sentences), the specific mechanic (what animates / what colors / what shape), and a build note (how to implement in CSS/SVG/JS). Keep it concrete and buildable. Put the "danger→relief" section (#3) front and center with your best idea.
+
+Print the punch list to stdout. Do not write any files.
+warning: Under-development features enabled: chronicle. Under-development features are incomplete and may behave unpredictably. To suppress this warning, set `suppress_unstable_features_warning = true` in /Users/robertechevarria/.codex/config.toml.
+codex
+I’ll use the BWM website-builder skill because this is BWM HTML/page work, then I’ll read the essay file and keep this to ideas only.
+exec
+/bin/zsh -lc "sed -n '1,240p' /Users/robertechevarria/.bwm-agents/skills/bwm-website-builder/SKILL.md && sed -n '1,260p' /Users/robertechevarria/email-campaign-render/essay-review.html" in /Users/robertechevarria/email-campaign-render
+ succeeded in 0ms:
+---
+name: bwm-website-builder
+description: BWM website build contract — preflight gate, canonical site files, brand two-system rule, ship gates.
+metadata:
+  short-description: The binding contract for any BWM website/page work
+  project: PROJ-MULTI-AI-PARITY-001
+---
+
+# BWM Website Builder (port of the Claude Code skill)
+
+## The preflight gate (HARD)
+
+No scaffold / BaseLayout / canonical-file work happens before
+`.bwm-preflight-passed` exists at the repo root. The marker is written by the
+orchestrator's website-builder skill after brief validation. If you (Codex/
+Gemini) are handed web-file work in a repo without the marker: STOP and return
+the task to the orchestrator (PROJ-ECL-BUILD-001 burn — this rule exists
+because routing scaffold work around the gate produced a brand-incoherent
+build).
+
+## Canonical site files (every BWM site)
+
+- `robots.txt` allowing all 6 AI bots: GPTBot, ClaudeBot, PerplexityBot,
+  Google-Extended, ChatGPT-User, anthropic-ai.
+- `llms.txt`: text/plain, ≥500 bytes, `# {Business}` + `> {tagline}` +
+  `## About/Services/Contact`.
+- Legal pages via the legal-page-generator skill before deploy.
+- `implementation-notes.md` at repo root (build decision journal).
+
+## Brand rules
+
+- Two-system rule: client visual identity dominates; BWM contributes structure.
+  Never default-BWM colors (`#F0FF00`/`#B8FF3A`) on a client site; the NDB
+  names the client's accent equivalent. BWM's own canvas is `#050507` — never
+  `#000`/`#07070c`.
+- R020: every image must drive action (emotion/proof/CTA-pull/curiosity);
+  annotate image-bearing elements with `@r020:<category>` within 5 lines.
+- Show-Don't-Tell: ≥1 functional creative per major section.
+- CTA on client sites = "See If We're a Fit" (verbatim). Booking: `/book`.
+- FK grade 5-7 on all copy. No vendor names outside privacy/terms.
+
+## Ship gates (run, don't skip)
+
+1. `bwm-website-qa.sh` against staging (67+ checks).
+2. `bwm-preship-gate <dir>` (Pre-Ship Grep Gate) — exit 0 required; banned hex
+   / vendor names / CTA paraphrase block the tag.
+3. Conventional ship tag `v{N}-<kind>-<desc>-{date}`; Cloudflare Pages deploys
+   from push.
+4. Emit your ship event (`build-shipped-codex` is wrapper-automatic with
+   `--task-id`; Gemini emits `build-shipped-gemini` manually).
+
+## Division of labor
+
+Codex: page assembly, multi-file edits, content fills INSIDE an existing
+scaffold with the marker present. Orchestrator: briefs, scaffold, design
+judgment, QA sign-off, deploy decisions.
 <!DOCTYPE html>
 <!-- @internal-architecture -->
 <!-- @r020: F2 — the two inline SVGs are PROOF data-viz (real dated capability + build milestones); no decorative imagery. -->
@@ -258,6 +346,12 @@ footer a{color:var(--dim)}
   <div class="wrap">
     <div class="eyebrow">The receipts</div>
     <h2>What you get <span class="y">today</span> — and tomorrow.</h2>
+
+codex
+I’ve got the top half. The file is already a text-forward review draft with inline proof charts, so I’m reading the rest before proposing section-specific treatments that fit the existing structure.
+exec
+/bin/zsh -lc "sed -n '261,620p' /Users/robertechevarria/email-campaign-render/essay-review.html" in /Users/robertechevarria/email-campaign-render
+ succeeded in 0ms:
     <p>Since the start of 2026 we've built custom AI we can deploy into a business within weeks:</p>
     <ul class="clean">
       <li>25+ page websites that cost large companies <strong>$500,000–$1,000,000</strong> and 6–18 months to build</li>
@@ -354,8 +448,7 @@ footer a{color:var(--dim)}
 
 <footer>
   <div class="wrap">
-    <!-- per-segment footer: CLIENT version = "a client"; FRIEND version = "a friend"; send-time {{relationship}} token fills it -->
-    You're getting this because you're a client of Buildwise Media.<br>
+    You're getting this because you're a client or a friend of Buildwise Media.<br>
     Buildwise Media · 3724 Marlborough Dr, Tucker, GA 30084 · <a href="{{unsubscribe_url}}">Unsubscribe</a>
   </div>
 </footer>
@@ -366,3 +459,85 @@ document.querySelectorAll('.rv').forEach(el=>obs.observe(el));
 </script>
 </body>
 </html>
+
+codex
+- **3. Time Is Running Out: Closing Aperture, Then BWM Relief**
+  - **Wow concept:** Make this the essay’s “oh shit” cinematic beat: the open AI advantage visibly narrows around the reader as the line lands, then Buildwise Media punches a stable path back open.
+  - **Specific mechanic:** On “But it won’t last. The edge is open now and it’s closing,” a large SVG aperture/window contracts from both sides over the copy, gridlines tilt inward, yellow shifts toward a brief warning-orange edge glow, and the page feels compressed. Then the next paragraph/pull quote triggers a product-green triangular route line that cuts through the closing window and restores breathing room. Use `#C7400D` only here, flagged as danger/warning, not as a general accent.
+  - **Build note:** Pure inline SVG overlay with CSS `clip-path`, `stroke-dashoffset`, and IntersectionObserver state classes. Mobile gets a static “closing window” divider and the green relief line; `prefers-reduced-motion` jumps directly to final states.
+
+- **1. Hero With AI-Adoption Dot Graph**
+  - **Wow concept:** Turn the dot graph into a dark intelligence map: most dots asleep, a small activated minority glowing, and BWM positioned as the triangular marker that sees the opening before the market does.
+  - **Specific mechanic:** Dots load in muted gray first, then a scanline passes through and selectively activates yellow, green, and dim tiers. The BWM triangle sits at the edge of the open opportunity, with a subtle “window open” bracket around the inactive majority.
+  - **Build note:** Convert or layer the graph as inline SVG so dots can animate via CSS delays. Use one vanilla JS observer to add `.in`; mobile renders the final activated graph only.
+
+- **2. The Curve: Chatbots → Agents → Autonomous**
+  - **Wow concept:** Make the section feel like AI crossing a threshold from tool to workforce.
+  - **Specific mechanic:** The three flow cards become a moving pipeline: chatbot text particles enter left, consolidate into agent nodes, then fan out into many tiny autonomous worker triangles on the right. The capability chart line draws itself upward, then the projected dashed segment keeps pulsing faintly.
+  - **Build note:** Inline SVG path animation using `stroke-dasharray`; CSS keyframes for node drift. On mobile, keep the stacked flow cards and draw only the chart line once.
+
+- **4. The Unvarnished Truth**
+  - **Wow concept:** Treat this as the proof room: less hype, more hard evidence.
+  - **Specific mechanic:** The monthly-leads chart animates like a terminal audit becoming a boardroom result: bars rise in green/yellow, then the `$10M+` result appears as a giant quiet watermark behind the paragraph, not a loud badge. The March bar gets a precise glow because it is the breakout month.
+  - **Build note:** SVG bars animate height from baseline with CSS transforms. Add a section pseudo-element or absolutely positioned text watermark using `mix-blend-mode:screen` at low opacity on desktop only.
+
+- **5. Where We’re Putting Our Weight: Advertising**
+  - **Wow concept:** Show ad systems as controlled force, not noisy marketing.
+  - **Specific mechanic:** A split signal board shows Meta, Google, budget, creative, keyword, and lead nodes feeding into one clean “qualified lead” output line. Yellow represents acquisition energy; green represents validated return; muted gray represents testing.
+  - **Build note:** Inline SVG network with animated pulse paths. Use CSS custom properties for path colors and IntersectionObserver to stagger the pulses; mobile gets a compact static schematic.
+
+- **6. What You Get Today: Receipts + Build Timeline**
+  - **Wow concept:** Make the receipts feel like a live deployment manifest.
+  - **Specific mechanic:** Each BWM-mark bullet checks on like a shipped module, with the triangle mark filling from muted gray to product green. The timeline becomes a launch rail: milestones lock in with small yellow sparks, while the future Q1 27 node stays outlined and breathing.
+  - **Build note:** Use existing list markup plus CSS masks/backgrounds for the BWM mark state. Animate timeline circles and labels with CSS delays; no new library needed.
+
+- **7. Wrapping Up + Closing Pull Quote**
+  - **Wow concept:** Resolve the essay into calm control after the intensity: the edge is moving, but the reader is on the rail.
+  - **Specific mechanic:** A subtle triangular orbit system sits behind the closing quote: yellow/green lines converge on one stable BWM triangle, then stop moving when the quote finishes revealing. The quote should feel settled, not flashy.
+  - **Build note:** CSS-only background using inline SVG data URI or actual inline SVG behind `.pull`; animate stroke draw and opacity on desktop. Static low-opacity version on mobile/reduced motion.
+
+- **8. Client-Only Offer Cards**
+  - **Wow concept:** Make the offers feel like private access cards, not generic CTAs.
+  - **Specific mechanic:** Each card gets a different system identity: Operations = green efficiency grid, Weekly 30 = yellow calendar rail, Referral = muted dark card with a restrained yellow value marker. Hover reveals a thin triangular corner lock and a short light sweep.
+  - **Build note:** CSS pseudo-elements for corner locks, borders, and hover sweeps. Keep cards lightweight with no JS required beyond existing reveal observer.
+tokens used
+33,925
+- **3. Time Is Running Out: Closing Aperture, Then BWM Relief**
+  - **Wow concept:** Make this the essay’s “oh shit” cinematic beat: the open AI advantage visibly narrows around the reader as the line lands, then Buildwise Media punches a stable path back open.
+  - **Specific mechanic:** On “But it won’t last. The edge is open now and it’s closing,” a large SVG aperture/window contracts from both sides over the copy, gridlines tilt inward, yellow shifts toward a brief warning-orange edge glow, and the page feels compressed. Then the next paragraph/pull quote triggers a product-green triangular route line that cuts through the closing window and restores breathing room. Use `#C7400D` only here, flagged as danger/warning, not as a general accent.
+  - **Build note:** Pure inline SVG overlay with CSS `clip-path`, `stroke-dashoffset`, and IntersectionObserver state classes. Mobile gets a static “closing window” divider and the green relief line; `prefers-reduced-motion` jumps directly to final states.
+
+- **1. Hero With AI-Adoption Dot Graph**
+  - **Wow concept:** Turn the dot graph into a dark intelligence map: most dots asleep, a small activated minority glowing, and BWM positioned as the triangular marker that sees the opening before the market does.
+  - **Specific mechanic:** Dots load in muted gray first, then a scanline passes through and selectively activates yellow, green, and dim tiers. The BWM triangle sits at the edge of the open opportunity, with a subtle “window open” bracket around the inactive majority.
+  - **Build note:** Convert or layer the graph as inline SVG so dots can animate via CSS delays. Use one vanilla JS observer to add `.in`; mobile renders the final activated graph only.
+
+- **2. The Curve: Chatbots → Agents → Autonomous**
+  - **Wow concept:** Make the section feel like AI crossing a threshold from tool to workforce.
+  - **Specific mechanic:** The three flow cards become a moving pipeline: chatbot text particles enter left, consolidate into agent nodes, then fan out into many tiny autonomous worker triangles on the right. The capability chart line draws itself upward, then the projected dashed segment keeps pulsing faintly.
+  - **Build note:** Inline SVG path animation using `stroke-dasharray`; CSS keyframes for node drift. On mobile, keep the stacked flow cards and draw only the chart line once.
+
+- **4. The Unvarnished Truth**
+  - **Wow concept:** Treat this as the proof room: less hype, more hard evidence.
+  - **Specific mechanic:** The monthly-leads chart animates like a terminal audit becoming a boardroom result: bars rise in green/yellow, then the `$10M+` result appears as a giant quiet watermark behind the paragraph, not a loud badge. The March bar gets a precise glow because it is the breakout month.
+  - **Build note:** SVG bars animate height from baseline with CSS transforms. Add a section pseudo-element or absolutely positioned text watermark using `mix-blend-mode:screen` at low opacity on desktop only.
+
+- **5. Where We’re Putting Our Weight: Advertising**
+  - **Wow concept:** Show ad systems as controlled force, not noisy marketing.
+  - **Specific mechanic:** A split signal board shows Meta, Google, budget, creative, keyword, and lead nodes feeding into one clean “qualified lead” output line. Yellow represents acquisition energy; green represents validated return; muted gray represents testing.
+  - **Build note:** Inline SVG network with animated pulse paths. Use CSS custom properties for path colors and IntersectionObserver to stagger the pulses; mobile gets a compact static schematic.
+
+- **6. What You Get Today: Receipts + Build Timeline**
+  - **Wow concept:** Make the receipts feel like a live deployment manifest.
+  - **Specific mechanic:** Each BWM-mark bullet checks on like a shipped module, with the triangle mark filling from muted gray to product green. The timeline becomes a launch rail: milestones lock in with small yellow sparks, while the future Q1 27 node stays outlined and breathing.
+  - **Build note:** Use existing list markup plus CSS masks/backgrounds for the BWM mark state. Animate timeline circles and labels with CSS delays; no new library needed.
+
+- **7. Wrapping Up + Closing Pull Quote**
+  - **Wow concept:** Resolve the essay into calm control after the intensity: the edge is moving, but the reader is on the rail.
+  - **Specific mechanic:** A subtle triangular orbit system sits behind the closing quote: yellow/green lines converge on one stable BWM triangle, then stop moving when the quote finishes revealing. The quote should feel settled, not flashy.
+  - **Build note:** CSS-only background using inline SVG data URI or actual inline SVG behind `.pull`; animate stroke draw and opacity on desktop. Static low-opacity version on mobile/reduced motion.
+
+- **8. Client-Only Offer Cards**
+  - **Wow concept:** Make the offers feel like private access cards, not generic CTAs.
+  - **Specific mechanic:** Each card gets a different system identity: Operations = green efficiency grid, Weekly 30 = yellow calendar rail, Referral = muted dark card with a restrained yellow value marker. Hover reveals a thin triangular corner lock and a short light sweep.
+  - **Build note:** CSS pseudo-elements for corner locks, borders, and hover sweeps. Keep cards lightweight with no JS required beyond existing reveal observer.
