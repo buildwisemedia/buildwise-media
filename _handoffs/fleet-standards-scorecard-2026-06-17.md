@@ -67,6 +67,33 @@ unless a given page is repurposed as a conversion destination.
 - **Heading composition — 3 routes:** `/about`, `/go/agency-alternative`, `/go/volume`
   (long unbroken H2s; consistent with the Part-4 hero/scannability rework).
 
+## [S]-tier multimodal advisory layer (independent codex/GPT scorer, items 7+9)
+
+Ran the wired [S]-tier critique on `go-agency-alternative` + `go-money` with the new hero
+rubric and an **independent GPT scorer** (author≠scorer lock satisfied). ADVISORY — pre-screens
+the human gate. Highlights:
+
+- **Hero rubric:** both LPs PASS 5-second clarity + H1-dominant; **both FAIL `paid-lp-hero-
+  trust-imagery`** — "abstract graphics, no real photograph / named result / tangible proof."
+  An independent model **independently reproduced Robert's Part-4 "real photography" finding.**
+- **`go-money` nav-overlap claim — REFUTED on inspection.** Codex reported the sticky nav
+  cutting across the hero H1; cropping the rendered hero top shows a clean eyebrow + headline
+  with **no nav overlap** at initial load (the LP suppresses nav, as paid LPs should). A model
+  artifact from the 10,000px downscaled capture — do not action. (Example of why every
+  multimodal finding is verified before it counts.)
+- **CONFIRMED in the same crop:** the `go-money` eyebrow reads **"AI MARKETING RUN FOR YOU"** —
+  the stale positioning copy the cascade (`task_2426e21e`) must fix to "custom AI system."
+- **Unattributed claims on `go-money`** — `$1M+`, `78%`, `11→38 leads` shown without a visible
+  source/result. Brushes the never-price-naked / no-unverified-claims rules — review.
+- **Single-word mobile orphan lines** on both heroes; **social proof missing near the hero**
+  (agency-alternative); nav logo very small.
+- **Reconciliation note:** codex *eyeballed* the CTA as above-fold, but the deterministic gate
+  *measured* it below (top 1085px > 820px). On a 10,000px downscaled capture a model can't
+  resolve 820 vs 1085 — **trust the deterministic measurement for precise position; trust the
+  multimodal layer for qualitative judgment (imagery, attribution, scannability).** The layers
+  are complementary by design. Full run available: `node scripts/visual-critique.mjs --bundle
+  _verification/fleet-sweep-2026-06-17 --scorer codex` (all paid LPs).
+
 ## Recommended remediation order (highest leverage first)
 
 1. **Paid-LP hero rework** (one pattern → 10 LPs + `/audit`): shorten the headline so the
