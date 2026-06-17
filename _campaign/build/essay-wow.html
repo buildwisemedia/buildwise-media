@@ -111,7 +111,7 @@ figcaption{font-size:13px;color:var(--dim);margin-top:10px;font-style:italic}
 .danger-relief::before{content:"";position:absolute;inset:0;border-radius:18px;background:radial-gradient(80% 120% at 50% 8%,rgba(21,21,28,.78),transparent 66%);opacity:0;pointer-events:none}
 .danger-section.in .danger-relief::before{animation:dangerCompress 2.1s var(--ease) .12s forwards}
 .closing-beat{position:relative;overflow:hidden;border-radius:14px;padding:10px 12px;margin-left:-12px;margin-right:-12px}
-.closing-beat::before,.closing-beat::after{content:"";position:absolute;top:0;bottom:0;width:0;opacity:0;pointer-events:none;background:linear-gradient(90deg,rgba(5,5,7,.86),rgba(14,14,19,.58));box-shadow:0 0 12px var(--danger-orange);z-index:0}
+.closing-beat::before,.closing-beat::after{content:"";position:absolute;top:0;bottom:0;width:0;opacity:0;pointer-events:none;background:linear-gradient(90deg,rgba(5,5,7,.86),rgba(14,14,19,.58));box-shadow:-4px 0 8px var(--danger-orange);z-index:0}
 .closing-beat::before{left:0;border-right:1px solid color-mix(in srgb,var(--danger-orange) 68%,transparent)}
 .closing-beat::after{right:0;border-left:1px solid color-mix(in srgb,var(--danger-orange) 68%,transparent);transform:scaleX(-1)}
 .danger-section.in .closing-beat::before{animation:apertureLeft 2.35s var(--ease) .18s forwards}
@@ -124,6 +124,20 @@ figcaption{font-size:13px;color:var(--dim);margin-top:10px;font-style:italic}
 .relief-route path{stroke-dasharray:1;stroke-dashoffset:1}
 .danger-section.in .relief-route .route{animation:dashDraw 1.05s var(--ease) 1.32s forwards}
 .danger-section.in .relief-route .route-hold{animation:routeHold 1.8s ease-out 2.08s forwards}
+.milestones{display:flex;flex-direction:column;gap:8px;margin:8px 0 2px}
+.ms-item{position:relative;display:flex;padding:8px 0 8px 16px;opacity:0;transform:translateX(-10px)}
+.ms-item p{margin:0}
+.ms-key{color:#F0FF00;font-weight:600}
+.ms-rule{position:absolute;left:0;top:7px;bottom:7px;width:2px;border-radius:2px;background:linear-gradient(180deg,#F0FF00,#B8FF3A);transform:scaleY(0);transform-origin:top}
+.danger-section.in .ms-item{animation:msReveal .6s var(--ease) forwards}
+.danger-section.in .ms-item:nth-child(1){animation-delay:.18s}
+.danger-section.in .ms-item:nth-child(2){animation-delay:.36s}
+.danger-section.in .ms-item:nth-child(3){animation-delay:.54s}
+.danger-section.in .ms-item .ms-rule{animation:msRule .5s var(--ease) forwards}
+.danger-section.in .ms-item:nth-child(1) .ms-rule{animation-delay:.18s}
+.danger-section.in .ms-item:nth-child(2) .ms-rule{animation-delay:.36s}
+.danger-section.in .ms-item:nth-child(3) .ms-rule{animation-delay:.54s}
+@media (prefers-reduced-motion:reduce){.ms-item{opacity:1!important;transform:none!important}.ms-rule{transform:scaleY(1)!important}}
 
 .revenue-climb svg{background:linear-gradient(180deg,rgba(184,255,58,.055),var(--surf) 54%)}
 .revenue-area{opacity:0;clip-path:inset(0 100% 0 0)}
@@ -221,8 +235,10 @@ footer a{color:var(--dim)}
 @keyframes dashDraw{to{stroke-dashoffset:0}}
 @keyframes projectionPulse{0%,100%{opacity:.28;stroke-width:3}50%{opacity:.82;stroke-width:3.8}}
 @keyframes dangerCompress{0%{opacity:0}48%{opacity:1}100%{opacity:.5}}
-@keyframes apertureLeft{0%{width:0;opacity:0}48%{width:22%;opacity:1}100%{width:6%;opacity:.55}}
-@keyframes apertureRight{0%{width:0;opacity:0}48%{width:22%;opacity:1}100%{width:6%;opacity:.55}}
+@keyframes apertureLeft{0%{width:0;opacity:0}48%{width:11px;opacity:1}100%{width:7px;opacity:.62}}
+@keyframes apertureRight{0%{width:0;opacity:0}48%{width:11px;opacity:1}100%{width:7px;opacity:.62}}
+@keyframes msReveal{to{opacity:1;transform:translateX(0)}}
+@keyframes msRule{to{transform:scaleY(1)}}
 @keyframes closingFlare{0%,100%{text-shadow:none;color:inherit}42%{color:#fff;text-shadow:0 0 4px var(--danger-orange),0 0 18px var(--danger-orange),0 0 34px var(--danger-orange)}}
 @keyframes routeHold{to{stroke-dashoffset:0;filter:drop-shadow(0 0 14px rgba(184,255,58,.36));opacity:1}}
 @keyframes areaReveal{to{opacity:1;clip-path:inset(0 0 0 0)}}
@@ -368,10 +384,15 @@ footer a{color:var(--dim)}
         <path class="route" pathLength="1" d="M20 46 L300 40 L430 48 L740 14" fill="none" stroke="#B8FF3A" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>
         <path class="route route-hold" pathLength="1" d="M430 48 L740 14" fill="none" stroke="#B8FF3A" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round" opacity=".4"/>
       </svg>
-      <p class="relief-copy">The signals are everywhere. Top engineers at the leading labs say AI now writes ~100% of their code, with Anthropic's company-wide figure between 70% and 90%.<sup><a href="#fn3">3</a></sup> AI forecasting is closing in on the best human predictors in the world.<sup><a href="#fn4">4</a></sup> And this spring an AI made real progress on a math problem that had stood unsolved for about 80 years.<sup><a href="#fn5">5</a></sup></p>
+      <p class="relief-copy" style="margin-bottom:8px">The signals are everywhere.</p>
+      <div class="milestones">
+        <div class="ms-item"><span class="ms-rule"></span><p>Top engineers at the leading labs say AI now writes <strong class="ms-key">~100% of their code</strong> — Anthropic puts its company-wide figure between 70% and 90%.<sup><a href="#fn3">3</a></sup></p></div>
+        <div class="ms-item"><span class="ms-rule"></span><p>AI forecasting is <strong class="ms-key">closing in on the best human predictors in the world</strong>.<sup><a href="#fn4">4</a></sup></p></div>
+        <div class="ms-item"><span class="ms-rule"></span><p>This spring, an AI made real progress on a <strong class="ms-key">math problem unsolved for ~80 years</strong>.<sup><a href="#fn5">5</a></sup></p></div>
+      </div>
     </div>
-    <p>The labs at the very edge now say that some time around 2028, AI may be able to run much of its own research and improve itself.<sup><a href="#fn8">8</a></sup> When that happens, it starts taking over the revenue-generating parts of a business — and the companies still "getting started" will be too late.</p>
-    <p class="pull">The companies that make AI native to how they run — not bolted on … — are the ones that thrive while others fold.</p>
+    <p>The labs at the very edge now say that some time in 2028, AI will be able to run much of its own research and improve itself.<sup><a href="#fn8">8</a></sup> When that happens, it starts taking over the revenue-generating parts of a business — and the companies still "getting started" will be too late.</p>
+    <p class="pull">The companies that make AI native to how they run, not bolted on, are the ones that thrive while others fold.</p>
     <p>How can I say that so plainly? Because AI is intelligence, it's become expert-level capable, and a business that can put thousands of digital employees to work will out-run the one still trying to figure out its website. <strong>This is the advantage we make sure our clients have.</strong></p>
   </div>
 </section>
@@ -407,7 +428,9 @@ footer a{color:var(--dim)}
       </svg>
     </figure>
 
-    <p>And for a commercial client breaking into residential, our system has logged <strong>about 150 leads since launch</strong> — leads that simply weren't coming in before. Here's what each month actually looked like:</p>
+    <p>And for a commercial client breaking into residential, our system has logged <strong>about 150 leads since launch</strong> — leads that simply weren't coming in before.</p>
+
+    <p>Here's what each month actually looked like:</p>
 
     <figure>
       <!-- @r020:F2 proof: real per-month lead counts for the client — concrete receipts behind the "~150 leads" claim; drives belief in the system. -->
@@ -444,7 +467,7 @@ footer a{color:var(--dim)}
     <p>Both SEO (getting "free" leads from Google searches) and AEO (getting recommended by AI) take time and attention — and I've never met a business owner who didn't want more business <em>right now</em>, even when they're already drowning in it. So we're building out advertising, because it's the fastest way to bring in new, qualified leads.</p>
     <figure class="signal-board">
       <!-- @r020:F2 proof: advertising signal board turns the strategy into a visible operating system. -->
-      <svg viewBox="0 0 700 300" role="img" aria-label="Advertising signal board from Meta, Google, budget, creative, and keyword into qualified lead">
+      <svg viewBox="0 0 700 300" role="img" aria-label="Advertising signal board: Meta drives creative, Google drives keyword, budget fuels both, producing qualified leads">
         <defs>
           <marker id="signalArrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse">
             <path d="M0 0 L10 5 L0 10 Z" fill="#F0FF00"/>
@@ -454,21 +477,22 @@ footer a{color:var(--dim)}
           </marker>
         </defs>
         <g fill="#15151c" stroke="#30303a" stroke-width="1.5">
-          <circle class="signal-node" cx="92" cy="70" r="26"/><circle class="signal-node" cx="92" cy="142" r="26"/><circle class="signal-node" cx="104" cy="214" r="26"/>
-          <circle class="signal-node" cx="322" cy="82" r="30"/><circle class="signal-node" cx="326" cy="202" r="30"/>
+          <circle class="signal-node" cx="92" cy="66" r="26"/><circle class="signal-node" cx="92" cy="140" r="26"/><circle class="signal-node" cx="92" cy="214" r="26"/>
+          <circle class="signal-node" cx="322" cy="80" r="30"/><circle class="signal-node" cx="326" cy="204" r="30"/>
           <circle class="signal-node return-node" cx="588" cy="140" r="38"/>
         </g>
-        <path class="signal-path p1" pathLength="1" d="M118 70 C178 66 214 72 292 82" fill="none" stroke="#F0FF00" stroke-width="2.4" marker-end="url(#signalArrow)"/>
-        <path class="signal-path p2" pathLength="1" d="M118 142 C184 142 232 126 296 96" fill="none" stroke="#F0FF00" stroke-width="2.4" marker-end="url(#signalArrow)"/>
-        <path class="signal-path p3" pathLength="1" d="M130 214 C182 208 226 204 296 202" fill="none" stroke="#F0FF00" stroke-width="2.4" marker-end="url(#signalArrow)"/>
-        <path class="signal-path p4" pathLength="1" d="M352 82 C432 80 474 103 552 128" fill="none" stroke="#B8FF3A" stroke-width="3" marker-end="url(#returnArrow)"/>
-        <path class="signal-path p5" pathLength="1" d="M356 202 C432 198 476 172 552 150" fill="none" stroke="#B8FF3A" stroke-width="3" marker-end="url(#returnArrow)"/>
+        <path class="signal-path p1" pathLength="1" d="M118 66 C182 64 224 72 292 80" fill="none" stroke="#F0FF00" stroke-width="2.4" marker-end="url(#signalArrow)"/>
+        <path class="signal-path p2" pathLength="1" d="M118 214 C184 214 236 208 298 204" fill="none" stroke="#F0FF00" stroke-width="2.4" marker-end="url(#signalArrow)"/>
+        <path class="signal-path p3" pathLength="1" d="M120 132 C192 116 236 100 296 88" fill="none" stroke="#F0FF00" stroke-width="1.9" marker-end="url(#signalArrow)"/>
+        <path class="signal-path p4" pathLength="1" d="M120 150 C192 166 236 182 298 196" fill="none" stroke="#F0FF00" stroke-width="1.9" marker-end="url(#signalArrow)"/>
+        <path class="signal-path p5" pathLength="1" d="M352 80 C432 78 476 104 552 130" fill="none" stroke="#B8FF3A" stroke-width="3" marker-end="url(#returnArrow)"/>
+        <path class="signal-path p6" pathLength="1" d="M356 204 C432 200 478 176 552 150" fill="none" stroke="#B8FF3A" stroke-width="3" marker-end="url(#returnArrow)"/>
         <g font-family="JetBrains Mono" font-size="11.5" letter-spacing="1.2" fill="#F4F4F6">
-          <text x="60" y="74" text-anchor="end">META</text>
-          <text x="60" y="146" text-anchor="end">GOOGLE</text>
-          <text x="72" y="218" text-anchor="end">BUDGET</text>
-          <text x="322" y="44" text-anchor="middle">CREATIVE</text>
-          <text x="326" y="250" text-anchor="middle">KEYWORD</text>
+          <text x="60" y="70" text-anchor="end">META</text>
+          <text x="60" y="144" text-anchor="end">BUDGET</text>
+          <text x="60" y="218" text-anchor="end">GOOGLE</text>
+          <text x="322" y="42" text-anchor="middle">CREATIVE</text>
+          <text x="326" y="252" text-anchor="middle">KEYWORD</text>
           <text x="588" y="198" text-anchor="middle" fill="#B8FF3A">QUALIFIED LEAD</text>
         </g>
       </svg>
@@ -491,7 +515,6 @@ footer a{color:var(--dim)}
       <li>Instant lead alerts + end-to-end attribution (you know which ad and page earned the call)</li>
       <li>An always-on follow-up engine, so leads don't go cold while you're busy</li>
     </ul>
-    <div class="note"><b>Fill before send:</b> a short "on deck" list from our tracker with direct client benefit (no trade secrets) — e.g. AI-run ad management, automated reporting, deeper CRM automation. Tell me which to feature.</div>
 
     <figure>
       <!-- @r020:F2 proof: dated BWM build milestones — proves we ship and beat our own estimates; builds trust right before the client offers. -->
@@ -535,7 +558,6 @@ footer a{color:var(--dim)}
     </div>
     <p style="font-weight:600;color:#fff;font-size:21px;margin-bottom:2px">— Robert</p>
     <p class="kic" style="margin:0">Founder, Buildwise Media</p>
-    <div class="note" style="margin-top:24px"><b>Sign-off:</b> drafted in your voice above (the "one clock you control" line) — you said you'll read it in the next draft. Want it warmer, shorter, or harder?</div>
   </div>
 </section>
 
