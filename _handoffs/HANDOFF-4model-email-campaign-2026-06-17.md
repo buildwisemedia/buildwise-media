@@ -12,8 +12,13 @@ plan: ~/.claude/plans/we-need-to-do-expressive-teapot.md
 
 > **This is the living sync doc. Claude AND Codex re-read the frontmatter `status` + the NEXT ACTION banner below before EVERY action.** Reading order: this file → `_campaign/spec/campaign-spec.md` (once it exists) → `_campaign/brief/CAMPAIGN-BRIEF-sealed.md` → `_campaign/takes/*`. Full plan: `~/.claude/plans/we-need-to-do-expressive-teapot.md`.
 
-## ▶ NEXT ACTION (owner: Robert — HITL)
-P3 + P4 DONE (session 2). 6 previews built (`~/email-campaign-render/preview/`, durable mirror `_campaign/build/`) + QA-clean: deterministic gates + Creative Copy Gate native pass + rendered desktop/mobile + 4-lens adversarial pass (zero send-blocking). **Awaiting Robert:** approve renders + recipient roster, supply physical mailing address, resolve open items. One-click review artifact: `~/email-campaign-render/hitl-review.html` (open in browser). After sign-off → P6: build the guarded send system (`bwm-email-worker`, gated on HITL).
+## ▶ NEXT ACTION (owner: Robert — writing his own copy draft)
+HITL review 2026-06-17 → Robert is **rewriting the copy himself** (rejected the essay voice: "sounds like social media," not 1:1 to the reader, not direct enough; our voice reference is insufficient). Build/QA infra (assembler, gates, send-spec, recipient resolution) STANDS; only the copy + skin change. **On Robert's draft, the rework is:**
+1. **Capture his voice** from the draft → update the voice reference (close the standing "we don't have his voice down" gap). [[feedback_robert_voice_direct_1to1]]
+2. **Rebrand Yellow Alert → BWM Triangulation** ("BWM missive = BWM branded"). Confirm: Triangulation visual system (NOT Robert-personal yellow) + 1:1 direct voice.
+3. **Larger fonts** (body + headings up) + explicit **mobile legibility test for an older reader**.
+4. **Keep** the 3 source links. **Fix Fable 5**: gov shut it down — drop "the demo making the rounds right now," keep the link, past/neutral framing.
+**Still needed from Robert:** the copy draft · physical mailing address · recipient prune calls (categories surfaced in chat + `recipients-dryrun.md`).
 
 ---
 
