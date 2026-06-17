@@ -1,0 +1,83 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 820" role="img" aria-labelledby="chart-title chart-desc">
+  <title id="chart-title">Each dot is ~3.2 million people</title>
+  <desc id="chart-desc">A 50 by 50 dot grid showing June 2026 estimated global AI adoption by most advanced interaction: 6.10 billion never used AI, 1.98 billion free chatbot users, 98 million paid AI users, and 20 million coding agent users.</desc>
+  <metadata>
+    June 2026 rounded estimate. Total canvas: 8.2B humans across 2,500 dots, 3.28M people per dot.
+    Dot allocation: never 1,860; free chatbot 604; paid AI 30; coding agent 6.
+  </metadata>
+  <defs>
+    <pattern id="dot-never" x="0" y="0" width="10" height="10" patternUnits="userSpaceOnUse">
+      <rect width="7" height="7" rx="2.2" fill="#24242b"/>
+    </pattern>
+    <pattern id="dot-free" x="0" y="0" width="10" height="10" patternUnits="userSpaceOnUse">
+      <rect width="7" height="7" rx="2.2" fill="#B8FF3A"/>
+    </pattern>
+    <pattern id="dot-paid" x="0" y="0" width="10" height="10" patternUnits="userSpaceOnUse">
+      <rect width="7" height="7" rx="2.2" fill="#F0FF00"/>
+    </pattern>
+    <pattern id="dot-agent" x="0" y="0" width="10" height="10" patternUnits="userSpaceOnUse">
+      <rect width="7" height="7" rx="2.2" fill="#C7400D"/>
+    </pattern>
+    <style>
+      text {
+        font-family: Inter, system-ui, sans-serif;
+        letter-spacing: 0;
+      }
+      .title {
+        fill: #F4F4F6;
+        font-size: 31px;
+        font-weight: 760;
+      }
+      .subtitle {
+        fill: #9A9AA4;
+        font-size: 15px;
+        font-weight: 450;
+      }
+      .legend-label {
+        fill: #F4F4F6;
+        font-size: 12px;
+        font-weight: 690;
+      }
+      .legend-value {
+        fill: #9A9AA4;
+        font-size: 12px;
+        font-weight: 500;
+      }
+    </style>
+  </defs>
+
+  <rect width="720" height="820" fill="#050507"/>
+
+  <text x="48" y="62" class="title">Each dot is ~3.2 million people</text>
+  <text x="48" y="91" class="subtitle">2,500 dots ≈ 8.2 billion humans · most advanced AI interaction · June 2026</text>
+
+  <g aria-label="50 by 50 adoption dot grid">
+    <rect x="110" y="130" width="497" height="497" fill="url(#dot-never)"/>
+    <rect x="210" y="500" width="397" height="7" fill="url(#dot-free)"/>
+    <rect x="110" y="510" width="497" height="107" fill="url(#dot-free)"/>
+    <rect x="110" y="620" width="137" height="7" fill="url(#dot-free)"/>
+    <rect x="250" y="620" width="297" height="7" fill="url(#dot-paid)"/>
+    <rect x="550" y="620" width="57" height="7" fill="url(#dot-agent)"/>
+  </g>
+
+  <g transform="translate(48 697)">
+    <rect x="0" y="-11" width="12" height="12" rx="3" fill="#24242b"/>
+    <text x="19" y="0" class="legend-label">Never used AI</text>
+    <text x="19" y="18" class="legend-value">~6.10B · 74.4%</text>
+  </g>
+  <g transform="translate(228 697)">
+    <rect x="0" y="-11" width="12" height="12" rx="3" fill="#B8FF3A"/>
+    <text x="19" y="0" class="legend-label">Free chatbot</text>
+    <text x="19" y="18" class="legend-value">~1.98B · 24.2%</text>
+  </g>
+  <g transform="translate(408 697)">
+    <rect x="0" y="-11" width="12" height="12" rx="3" fill="#F0FF00"/>
+    <text x="19" y="0" class="legend-label">Pays ~$20/mo</text>
+    <text x="19" y="18" class="legend-value">~98M · 1.2%</text>
+  </g>
+  <g transform="translate(580 697)">
+    <rect x="0" y="-11" width="12" height="12" rx="3" fill="#C7400D"/>
+    <text x="19" y="0" class="legend-label">Coding agent</text>
+    <text x="19" y="18" class="legend-value">~20M · 0.2%</text>
+  </g>
+</svg>

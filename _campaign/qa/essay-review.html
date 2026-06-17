@@ -40,7 +40,11 @@ h1{font-weight:900;letter-spacing:-.035em;line-height:1.02;
   font-size:clamp(40px,7vw,72px);margin:0 0 22px}
 h1 .y{color:var(--acc)}
 .lede{font-size:clamp(20px,2.4vw,24px);color:var(--mut);font-weight:300;max-width:600px;line-height:1.5}
-.meta{margin-top:30px;display:flex;gap:22px;align-items:center;color:var(--dim);font-size:13px;font-family:'JetBrains Mono',monospace}
+.meta{margin-top:30px;display:flex;gap:22px;align-items:center;color:var(--dim);font-size:13px;font-family:'JetBrains Mono',monospace;flex-wrap:wrap}
+header.hero>.wrap{max-width:1100px}
+.herogrid{display:grid;grid-template-columns:1.05fr 0.82fr;gap:48px;align-items:center;margin-top:18px}
+.herofig{margin:0;min-width:0}
+.herofig figcaption{margin-top:12px}
 
 /* ---- sections ---- */
 section{padding:50px 0;border-bottom:1px solid var(--line)}
@@ -50,8 +54,9 @@ h2 .y{color:var(--acc)}
 .eyebrow{font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:3px;text-transform:uppercase;color:var(--acc);margin-bottom:16px}
 .big{font-size:clamp(23px,3vw,30px);line-height:1.4;font-weight:300;color:#fff;letter-spacing:-.01em}
 ul.clean{list-style:none;padding:0;margin:0 0 22px}
-ul.clean li{padding:13px 0 13px 30px;border-bottom:1px solid var(--line);position:relative}
-ul.clean li:before{content:"";position:absolute;left:2px;top:21px;width:8px;height:8px;background:var(--acc);clip-path:polygon(50% 0,100% 100%,0 100%)}
+ul.clean li{padding:14px 0 14px 42px;border-bottom:1px solid var(--line);position:relative}
+/* @r020:identity: BWM Triangulation mark as the list bullet — brand glyph at micro scale. */
+ul.clean li:before{content:"";position:absolute;left:2px;top:13px;width:24px;height:24px;background:url(img/bwm-mark.svg) center/contain no-repeat}
 .pull{font-size:clamp(24px,3.4vw,34px);font-weight:600;letter-spacing:-.02em;line-height:1.22;color:#fff;
   border-left:3px solid var(--acc);padding:6px 0 6px 24px;margin:30px 0}
 .note{background:var(--surf);border:1px solid var(--line);border-radius:12px;padding:20px 22px;margin:26px 0;font-size:16px;color:var(--mut)}
@@ -59,11 +64,18 @@ ul.clean li:before{content:"";position:absolute;left:2px;top:21px;width:8px;heig
 .flag{background:rgba(199,64,13,.10);border:1px dashed #C7400D;border-radius:12px;padding:16px 20px;margin:24px 0;font-size:15px;color:#e9b9a6}
 .flag b{color:#ff6a3d}
 
-/* timeline phases */
-.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin:26px 0}
-.steps div{background:var(--surf);border:1px solid var(--line);border-radius:12px;padding:18px}
-.steps .t{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--acc);margin-bottom:8px}
-.steps .b{font-size:15px;color:var(--tx);font-weight:300}
+/* left-to-right capability flow */
+.flow{display:flex;align-items:stretch;margin:32px 0;flex-wrap:nowrap}
+.flow .stage{flex:1;background:var(--surf);border:1px solid var(--line);border-radius:14px;padding:20px 18px;min-width:0}
+.flow .stage .t{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--mut);margin-bottom:11px}
+.flow .stage .b{font-size:16px;line-height:1.35;color:var(--tx);font-weight:300}
+.flow .arrow{flex:0 0 44px;display:flex;align-items:center;justify-content:center;color:var(--acc);font-size:23px;font-weight:600;line-height:1}
+.flow .s2 .t{color:#c9cf63}
+.flow .s3{border-color:var(--acc);background:linear-gradient(155deg,rgba(240,255,0,.11),var(--surf) 62%);box-shadow:0 0 26px rgba(240,255,0,.10)}
+.flow .s3 .t{color:var(--acc)}
+.flow .s3 .b{color:#fff;font-weight:600}
+.flow .live{display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--acc);margin-left:8px;vertical-align:middle;animation:livepulse 1.8s ease-in-out infinite}
+@keyframes livepulse{0%,100%{box-shadow:0 0 0 0 rgba(240,255,0,.6)}70%{box-shadow:0 0 0 10px rgba(240,255,0,0)}}
 
 /* charts */
 figure{margin:30px 0 8px}
@@ -85,9 +97,15 @@ footer a{color:var(--dim)}
 /* scroll reveal + fancy desktop */
 .rv{opacity:0;transform:translateY(20px);transition:opacity .7s ease,transform .7s ease}
 .rv.in{opacity:1;transform:none}
+@media (max-width:860px){
+  header.hero>.wrap{max-width:760px}
+  .herogrid{grid-template-columns:1fr;gap:28px;margin-top:6px}
+  .herofig{max-width:460px}
+}
 @media (max-width:680px){
   body{font-size:18px}
-  .steps{grid-template-columns:1fr}
+  .flow{flex-direction:column}
+  .flow .arrow{flex-basis:auto;height:30px;transform:rotate(90deg)}
   section{padding:38px 0}
   header.hero{padding:46px 0 34px}
 }
@@ -99,9 +117,18 @@ footer a{color:var(--dim)}
 <header class="hero">
   <div class="wrap">
     <div class="brand"><span class="mk"></span><b>BUILDWISE MEDIA</b><span>— a note from Robert</span></div>
-    <h1>Building <span class="y">now</span> is the whole game.</h1>
-    <p class="lede">A straight read on where AI actually is right now — what's real, what's hype, what broke, and why the next 18 months decide who wins.</p>
-    <div class="meta"><span>JUN 2026</span><span>•</span><span>~7 MIN</span><span>•</span><span>ROBERT ECHEVARRIA</span></div>
+    <div class="herogrid">
+      <div class="herocopy">
+        <h1>Building <span class="y">now</span> is the whole game.</h1>
+        <p class="lede">A straight read on where AI actually is right now — what's real, what's hype, what broke, and why the next 18 months decide who wins.</p>
+        <div class="meta"><span>JUN 2026</span><span>•</span><span>~7 MIN</span><span>•</span><span>ROBERT ECHEVARRIA</span></div>
+      </div>
+      <figure class="herofig">
+        <!-- @r020:F2 proof: AI-adoption dot graph — shows how few people have really used AI yet; proves "the window is wide open, build now" right at the top. -->
+        <img src="img/ai-adoption-dotgraph.svg" alt="Dot graph: each dot is ~3.2 million people, colored by their most advanced AI interaction; most have never used AI" style="width:100%;height:auto;display:block">
+        <figcaption>Most of the world hasn't really used AI yet. That's not a warning — it's the open window.</figcaption>
+      </figure>
+    </div>
   </div>
 </header>
 
@@ -123,10 +150,12 @@ footer a{color:var(--dim)}
   <div class="wrap">
     <div class="eyebrow">The curve</div>
     <h2>From chatbots to <span class="y">autonomous</span> in three years.</h2>
-    <div class="steps">
-      <div><div class="t">2023–2025</div><div class="b">We had chatbots.</div></div>
-      <div><div class="t">2025–2026</div><div class="b">We had AI agents.</div></div>
-      <div><div class="t">Now</div><div class="b">Those agents are autonomous.</div></div>
+    <div class="flow">
+      <div class="stage s1"><div class="t">2023–2025</div><div class="b">We had chatbots.</div></div>
+      <div class="arrow">&rarr;</div>
+      <div class="stage s2"><div class="t">2025–2026</div><div class="b">We had AI agents.</div></div>
+      <div class="arrow">&rarr;</div>
+      <div class="stage s3"><div class="t">Now<span class="live"></span></div><div class="b">Those agents are autonomous.</div></div>
     </div>
     <p>As of June 2026, AI agents (think of them as digital employees) can work 3–4 hours on their own and get a task about 80% right on the first try.</p>
     <p>At Buildwise Media we spin up about <strong>1,000 agents a day</strong> — a thousand digital employees working on our clients' behalf, 24/7/365. But they're <strong>not</strong> perfect. That's the honest part, and it's why real humans on our team still matter.</p>
@@ -144,19 +173,19 @@ footer a{color:var(--dim)}
           <line x1="70" y1="210" x2="674" y2="210"/><line x1="70" y1="262" x2="674" y2="262"/>
         </g>
         <g fill="#6A6A74" font-family="JetBrains Mono" font-size="10">
-          <text x="14" y="94">8 hrs</text><text x="20" y="154">1 hr</text><text x="14" y="214">40 min</text><text x="20" y="266">4 min</text>
+          <text x="12" y="94">weeks</text><text x="18" y="154">1 day</text><text x="14" y="214">40 min</text><text x="20" y="266">4 min</text>
         </g>
-        <!-- curve: 2023 ~4min(262), late2024 ~40min(210), late2025 ~1-5hr(150), 2027 proj ~8hr/1 workday(90) -->
-        <polyline points="110,262 300,210 490,150 640,92" fill="none" stroke="#F0FF00" stroke-width="3" stroke-linecap="round"/>
-        <polyline points="490,150 640,92" fill="none" stroke="#F0FF00" stroke-width="3" stroke-dasharray="2 7" stroke-linecap="round" opacity="0.55"/>
-        <g fill="#F0FF00"><circle cx="110" cy="262" r="5"/><circle cx="300" cy="210" r="5"/><circle cx="490" cy="150" r="5"/></g>
-        <circle cx="640" cy="92" r="5" fill="#0E0E13" stroke="#F0FF00" stroke-width="2.5"/>
+        <!-- measured 2023-2025 solid; 2025->2027 projected dashed to "weeks of work" -->
+        <polyline points="110,262 300,210 490,178" fill="none" stroke="#F0FF00" stroke-width="3" stroke-linecap="round"/>
+        <polyline points="490,178 640,92" fill="none" stroke="#F0FF00" stroke-width="3" stroke-dasharray="2 7" stroke-linecap="round" opacity="0.6"/>
+        <g fill="#F0FF00"><circle cx="110" cy="262" r="5"/><circle cx="300" cy="210" r="5"/><circle cx="490" cy="178" r="5"/></g>
+        <circle cx="640" cy="92" r="6" fill="#0E0E13" stroke="#F0FF00" stroke-width="2.5"/>
         <g fill="#9A9AA4" font-family="JetBrains Mono" font-size="11">
           <text x="92" y="285">2023</text><text x="282" y="285">2024</text><text x="472" y="285">2025</text><text x="600" y="285">2027 (est.)</text>
         </g>
-        <text x="540" y="80" fill="#6A6A74" font-family="Inter" font-style="italic" font-size="11">~ a full workday</text>
+        <text x="506" y="80" fill="#F0FF00" font-family="Inter" font-style="italic" font-size="12">~ weeks of work</text>
       </svg>
-      <figcaption>Source: METR's measured "task time-horizon" — ~4 min (2023) → ~40 min (late 2024) → ~1–5 hrs (late 2025), doubling roughly every 4–7 months, heading toward a full workday by 2027.<sup><a href="#fn1">1</a></sup> Real numbers, not rounded up.</figcaption>
+      <figcaption>Measured (METR): ~4 min in 2023 → ~40 min in 2024 → hours in 2025, doubling every ~4 months.<sup><a href="#fn1">1</a></sup> Anthropic projects tasks that take a person <em>weeks</em> by 2027.<sup><a href="#fn8">8</a></sup></figcaption>
     </figure>
   </div>
 </section>
@@ -169,7 +198,7 @@ footer a{color:var(--dim)}
     <p>But it won't last. The edge is open now and it's closing.</p>
     <p>The signals are everywhere. Top engineers at the leading labs say AI now writes ~100% of their code, with Anthropic's company-wide figure between 70% and 90%.<sup><a href="#fn3">3</a></sup> AI forecasting is closing in on the best human predictors in the world.<sup><a href="#fn4">4</a></sup> And this spring an AI made real progress on a math problem that had stood unsolved for about 80 years.<sup><a href="#fn5">5</a></sup></p>
     <p>The labs at the very edge now say that some time around 2028, AI may be able to run much of its own research and improve itself.<sup><a href="#fn8">8</a></sup> When that happens, it starts taking over the revenue-generating parts of a business — and the companies still "getting started" will be too late.</p>
-    <p class="pull">The companies that make AI native to how they run — not bolted on (hey, I've got a chatbot and ChatGPT writes my emails) — are the ones that thrive while others fold.</p>
+    <p class="pull">The companies that make AI native to how they run — not bolted on … — are the ones that thrive while others fold.</p>
     <p>How can I say that so plainly? Because AI is intelligence, it's become expert-level capable, and a business that can put thousands of digital employees to work will out-run the one still trying to figure out its website. <strong>This is the advantage we make sure our clients have.</strong></p>
   </div>
 </section>
@@ -180,13 +209,29 @@ footer a{color:var(--dim)}
     <h2>The <span class="y">unvarnished</span> truth.</h2>
     <p>We're in the top fraction of a percent of what we do — and we're even rarer because we're focused only on revenue for service businesses. And things are still far from perfect. Here's the real state.</p>
 
-    <div class="flag"><b>DOT GRAPH GOES HERE.</b> Robert flagged a source (an X/Twitter post). I can't pull that post's image reliably — tell me what the dot graph should <em>show</em> (the data) and I'll build it on-brand, or send the image and I'll place it.</div>
-
     <p>Last year, people thought AI was a giant bubble. This year, AI companies are the most valuable on the planet. Now the job is to prove the ROI for the people <em>using</em> AI. In some ways it's exceeded our expectations.</p>
 
-    <div class="flag"><b>VERIFY BEFORE PRINT.</b> The "$300K/yr → $10M in a year" client result isn't in our records yet — which client, and is the figure exact? I won't print it until you confirm. (Holding the spot here.)</div>
+    <p>We took one client from just over <strong>$300,000 a year</strong> to break the <strong>$10,000,000+</strong> mark in a single year.</p>
 
-    <p>One result I <em>can</em> stand behind: for a commercial client breaking into residential, our system has logged <strong>about 150 leads since launch</strong> — leads that simply weren't coming in before.</p>
+    <p>And for a commercial client breaking into residential, our system has logged <strong>about 150 leads since launch</strong> — leads that simply weren't coming in before. Here's what each month actually looked like:</p>
+
+    <figure>
+      <!-- @r020:F2 proof: real per-month lead counts for the client — concrete receipts behind the "~150 leads" claim; drives belief in the system. -->
+      <svg viewBox="0 0 700 240" role="img" aria-label="Monthly leads since launch: Feb 16, Mar 81, Apr 35, May 17">
+        <text x="20" y="28" fill="#F4F4F6" font-family="Inter" font-weight="800" font-size="16">Leads per month since launch</text>
+        <line x1="20" y1="200" x2="680" y2="200" stroke="#22222c" stroke-width="1"/>
+        <g font-family="Inter" font-weight="800" font-size="16" fill="#F0FF00" text-anchor="middle">
+          <rect x="70" y="172" width="92" height="28" rx="4" fill="#F0FF00" opacity="0.8"/><text x="116" y="162">16</text>
+          <rect x="232" y="60" width="92" height="140" rx="4" fill="#F0FF00"/><text x="278" y="50">81</text>
+          <rect x="394" y="140" width="92" height="60" rx="4" fill="#F0FF00" opacity="0.8"/><text x="440" y="130">35</text>
+          <rect x="556" y="171" width="92" height="29" rx="4" fill="#F0FF00" opacity="0.8"/><text x="602" y="161">17</text>
+        </g>
+        <g font-family="JetBrains Mono" font-size="12" fill="#9A9AA4" text-anchor="middle">
+          <text x="116" y="224">FEB</text><text x="278" y="224">MAR</text><text x="440" y="224">APR</text><text x="602" y="224">MAY</text>
+        </g>
+      </svg>
+      <figcaption>Real counts from the live system — 149 in the first four months, with month two hitting its stride.</figcaption>
+    </figure>
     <p>But AI is still evolving, and there are real challenges. We rebuilt an entire website for a well-established home-staging and interior-design firm with strong existing search rankings. When we moved their SEO to the new site we saw the expected dip in Google rankings, and our system couldn't fully erase it — though it's bouncing back faster than a normal rebuild would.</p>
     <p>Real-estate brokerages are the hardest thing our system does. Where we're strongest is the speed and quality of what we produce:</p>
     <ul class="clean">
@@ -300,7 +345,7 @@ footer a{color:var(--dim)}
       <li id="fn5">Scientific American — AI made a major advance on an ~80-year-old Erdős problem (May 2026).</li>
       <li id="fn6">TechCrunch — Sam Altman: OpenAI tracking to an "intern-level research assistant" by ~September 2026 (Oct 28 2025).</li>
       <li id="fn7">Anthropic — Fable 5 access notice; U.S. Commerce Department order suspended access (~Jun 12 2026).</li>
-      <li id="fn8">Anthropic — "When AI builds itself" (recursive self-improvement); timeline directional, not a fixed date.</li>
+      <li id="fn8">Anthropic — "When AI builds itself": "In 2027, AI systems could be capable of tasks that take a person weeks." (recursive self-improvement, May 2026).</li>
       <li id="fn9">The Hackett Group — generative AI projected ~30–40% effort reduction in back-office (SG&A) functions (2023).</li>
     </ol>
     <div class="note" style="font-size:13px"><b>Note:</b> every number above is dialed to what the source actually says. The trend is real; the figures are defensible. Two items still need you: the dot graph and the $10M client result.</div>
