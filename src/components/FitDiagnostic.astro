@@ -54,7 +54,7 @@
 
   
 
-    <section class="screen screen-welcome">
+    <section class="screen screen-welcome" aria-hidden="false">
       <div class="welcome-hero">
         <div class="container">
           <div class="welcome-eyebrow">
@@ -129,7 +129,7 @@
       </div>
     </section>
 
-    <section class="screen screen-q1 q-screen">
+    <section class="screen screen-q1 q-screen" aria-hidden="true" inert>
       <div class="container">
         <div class="q-eyebrow">
           <span class="q-eyebrow-num">/01</span>
@@ -236,7 +236,7 @@
       </div>
     </section>
 
-    <section class="screen screen-q2 q-screen">
+    <section class="screen screen-q2 q-screen" aria-hidden="true" inert>
       <div class="container">
         <div class="q-eyebrow">
           <span class="q-eyebrow-num">/02</span>
@@ -347,7 +347,7 @@
       </div>
     </section>
 
-    <section class="screen screen-q3 q-screen">
+    <section class="screen screen-q3 q-screen" aria-hidden="true" inert>
       <div class="container">
         <div class="q-eyebrow">
           <span class="q-eyebrow-num">/03</span>
@@ -395,7 +395,7 @@
       </div>
     </section>
 
-    <section class="screen screen-q4 q-screen">
+    <section class="screen screen-q4 q-screen" aria-hidden="true" inert>
       <div class="container">
         <div class="q-eyebrow">
           <span class="q-eyebrow-num">/04</span>
@@ -431,7 +431,7 @@
       </div>
     </section>
 
-    <section class="screen screen-q5 q-screen">
+    <section class="screen screen-q5 q-screen" aria-hidden="true" inert>
       <div class="container">
         <div class="q-eyebrow">
           <span class="q-eyebrow-num">/05</span>
@@ -476,7 +476,7 @@
       </div>
     </section>
 
-    <section class="screen screen-q6 q-screen">
+    <section class="screen screen-q6 q-screen" aria-hidden="true" inert>
       <div class="container">
         <div class="q-eyebrow">
           <span class="q-eyebrow-num">/06</span>
@@ -526,7 +526,7 @@
       </div>
     </section>
 
-    <section class="screen screen-q7 q-screen">
+    <section class="screen screen-q7 q-screen" aria-hidden="true" inert>
       <div class="container">
         <div class="q-eyebrow">
           <span class="q-eyebrow-num">/07</span>
@@ -555,7 +555,7 @@
       </div>
     </section>
 
-    <section class="screen screen-reveal reveal-screen">
+    <section class="screen screen-reveal reveal-screen" aria-hidden="true" inert>
       <div class="reveal-hero">
         <div class="container">
           <div class="reveal-eyebrow">
@@ -1677,8 +1677,31 @@
     };
 
     // ============ NAVIGATION ============
+    function syncScreenA11y(screen) {
+      document.querySelectorAll('#diagnostic .screen').forEach(section => {
+        const isActive = section.classList.contains('screen-' + screen);
+        section.setAttribute('aria-hidden', isActive ? 'false' : 'true');
+        if (isActive) section.removeAttribute('inert');
+        else section.setAttribute('inert', '');
+      });
+    }
+
+    function focusScreenHeading(screen) {
+      const activeScreen = document.querySelector('#diagnostic .screen-' + screen);
+      if (!activeScreen) return;
+      const target = activeScreen.querySelector('h1, h2, .welcome-headline, .reveal-headline');
+      if (!target) return;
+      if (!target.hasAttribute('tabindex')) target.setAttribute('tabindex', '-1');
+      try {
+        target.focus({ preventScroll: true });
+      } catch (_e) {
+        target.focus();
+      }
+    }
+
     function goTo(screen) {
       document.body.dataset.screen = screen;
+      syncScreenA11y(screen);
       var ann = document.getElementById('screen-announce'); if (ann) ann.textContent = screen === 'reveal' ? 'Your results are ready.' : (screen === 'welcome' ? '' : 'Question ' + screen.replace('q','') + ' of 7.');
       // Keep the visitor inside the diagnostic on each step. The diagnostic is
       // embedded at the bottom of a long landing page, so scrolling the window
@@ -1693,6 +1716,9 @@
         window.scrollTo({ top: 0, behavior: 'instant' });
       }
       updateProgress(screen);
+      focusScreenHeading(screen);
+      requestAnimationFrame(() => focusScreenHeading(screen));
+      setTimeout(() => focusScreenHeading(screen), 0);
     }
 
     const SCREEN_CATEGORIES = {
@@ -1846,6 +1872,7 @@
       document.body.dataset.screen = 'welcome';
       updateProgress('welcome');
     }
+    syncScreenA11y(document.body.dataset.screen || 'welcome');
 
     // ============ DOM HELPERS (no innerHTML) ============
     function el(tag, attrs, children) {
@@ -2389,7 +2416,7 @@
       if (pathY) pathY.textContent = " 30-minute strategy call. ";
       if (pathTail) pathTail.textContent = "";
       if (pathBody) pathBody.textContent = "On the call we walk through your specific stack, what the system replaces, and what week one looks like.";
-      if (pathCta) pathCta.innerHTML = '<a href="#cal-inline" class="cta" data-cta-source="mo-fit-verdict-cal" onclick="document.getElementById(\'cal-inline\').scrollIntoView({behavior:\'smooth\'});return false;">See If We\'re a Fit <span class="cta-arrow">→</span></a><p class="mono" style="margin-top:14px;font-size:11px;letter-spacing:.18em;color:var(--ink-faint);">For service businesses only.</p>';
+      if (pathCta) pathCta.innerHTML = '<a href="#cal-inline" class="cta" data-cta-source="mo-fit-verdict-cal" onclick="document.getElementById(\'cal-inline\').scrollIntoView({behavior:\'smooth\'});return false;">See If We\'re a Fit <span class="cta-arrow" aria-hidden="true">→</span></a><p class="mono" style="margin-top:14px;font-size:11px;letter-spacing:.18em;color:var(--ink-faint);">For service businesses only.</p>';
       mountCalInline();
     } else if (v === "MAYBE") {
       // MAYBE is an in-range lead the team pursues within 48h (email captured) —
@@ -2414,7 +2441,7 @@
       if (pathY) pathY.textContent = " free Marketing Leverage Diagnostic ";
       if (pathTail) pathTail.textContent = "instead.";
       if (pathBody) pathBody.textContent = "We send it whether you become a client or not. It's the framework we use; you can run it yourself.";
-      if (pathCta) pathCta.innerHTML = '<a href="/thank-you-resource?reason=fit_check" class="cta" data-cta-source="mo-fit-verdict-resource">Get the diagnostic <span class="cta-arrow">→</span></a>';
+      if (pathCta) pathCta.innerHTML = '<a href="/thank-you-resource?reason=fit_check" class="cta" data-cta-source="mo-fit-verdict-resource">Get the diagnostic <span class="cta-arrow" aria-hidden="true">→</span></a>';
     }
   }
 
@@ -2423,7 +2450,7 @@
       '<form id="bwm-fit-email-form" class="bwm-fit-email-form">',
       '  <label class="mono" for="bwm-fit-email" style="font-size:11px;letter-spacing:.18em;color:var(--ink-dim);">Email me my audit</label>',
       '  <input type="email" id="bwm-fit-email" name="email" required placeholder="you@yourbusiness.com" autocomplete="email" />',
-      '  <button type="submit" class="cta">Send my audit <span class="cta-arrow">→</span></button>',
+      '  <button type="submit" class="cta">Send my audit <span class="cta-arrow" aria-hidden="true">→</span></button>',
       '  <p id="bwm-fit-email-status" class="mono" style="font-size:10px;letter-spacing:.18em;color:var(--ink-faint);margin-top:8px;"></p>',
       '</form>',
     ].join("");
