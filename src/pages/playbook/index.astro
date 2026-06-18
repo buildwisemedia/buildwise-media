@@ -3,6 +3,228 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 
 const title = "Playbook — Buildwise Media";
 const description = "How a service business becomes the category of one in its market — the terms, mechanisms, and measurement discipline that make it work.";
+const siteUrl = 'https://buildwisemedia.com';
+
+const clusters = [
+  {
+    id: '01',
+    title: 'What it is',
+    label: '01 · What it is',
+    chip: '01 What it is',
+    framing: 'Different names for one thing: a custom AI system that runs your growth — on your domain, owned by you.',
+    accent: 'var(--y2)',
+  },
+  {
+    id: '02',
+    title: 'Where it hurts',
+    label: '02 · Where it hurts',
+    chip: '02 Where it hurts',
+    framing: 'The gaps that stall most service businesses — and the honest floor we measure from.',
+    accent: 'var(--signal-orange)',
+  },
+  {
+    id: '03',
+    title: 'What gets installed',
+    label: '03 · What gets installed',
+    chip: '03 What gets installed',
+    framing: "The working parts. Each one takes a job off the owner's plate.",
+    accent: 'var(--signal-cyan)',
+  },
+  {
+    id: '04',
+    title: 'What you become',
+    label: '04 · What you become',
+    chip: '04 What you become',
+    framing: 'Why the system pulls further ahead the longer it runs.',
+    accent: 'var(--signal-green)',
+  },
+  {
+    id: '05',
+    title: 'Versus your options',
+    label: '05 · Versus your options',
+    chip: '05 Versus your options',
+    framing: 'An agency, a hire, a fractional CMO, or doing it yourself — and where a custom AI system fits.',
+    accent: 'var(--y2)',
+  },
+];
+
+const terms = [
+  {
+    slug: 'custom-ai-solutions',
+    name: 'Custom AI System',
+    cluster: '01',
+    pillar: true,
+    gloss: 'The run-for-you growth system built around your business, on your domain, owned by you. The category in plain words — and the hub for everything below.',
+  },
+  {
+    slug: 'ai-marketing-department',
+    name: 'AI Marketing Department',
+    cluster: '01',
+    gloss: 'Marketing that is run for you by AI plus real operators. It takes the place of a marketing hire.',
+  },
+  {
+    slug: 'ai-marketing-department-small-business',
+    name: 'AI Marketing Department for Small Business',
+    cluster: '01',
+    gloss: 'The same model in plain words. For owners who need marketing off their plate.',
+  },
+  {
+    slug: 'revenue-operating-system',
+    name: 'Revenue Operating System',
+    cluster: '01',
+    gloss: 'Eight connected layers that turn marketing from projects into weekly operations.',
+  },
+  {
+    slug: 'poor-four',
+    name: 'The Poor Four',
+    cluster: '02',
+    gloss: 'The four gaps that stall most service businesses. They are Invisible Market, Leaky Revenue, Owner Bottleneck, and Reactive Growth.',
+  },
+  {
+    slug: 'captured-baseline',
+    name: 'Captured Baseline',
+    cluster: '02',
+    gloss: 'The starting number we lock before changes run, so wins and leaks are measured honestly.',
+  },
+  {
+    slug: 'build-your-own-ai',
+    name: 'Build vs Buy AI',
+    cluster: '02',
+    gloss: 'Building your own AI system costs more than the tools — it costs your nights. The real owner-time math.',
+  },
+  {
+    slug: 'ai-for-business-operations',
+    name: 'AI for Business Operations',
+    cluster: '03',
+    gloss: 'Where AI belongs inside the business: intake, follow-up, scheduling, and reporting — so the week stops running you.',
+  },
+  {
+    slug: 'ai-answering-service-service-business',
+    name: 'After-Hours Call Capture',
+    cluster: '03',
+    gloss: 'Catch, qualify, and route the calls you miss. The first handoff in a system that turns calls into booked jobs.',
+  },
+  {
+    slug: 'ai-website-for-business',
+    name: 'AI Website',
+    cluster: '03',
+    gloss: 'A site that does work: it qualifies, proves trust, routes the next step, and feeds follow-up. Not just a new look.',
+  },
+  {
+    slug: 'show-up-in-ai-recommendations',
+    name: 'AI Search Visibility',
+    cluster: '03',
+    gloss: 'When buyers ask AI who to hire, the clearest proof wins. How to be the answer.',
+  },
+  {
+    slug: 'hyper-personalized-seo',
+    name: 'Hyper-Personalized SEO',
+    cluster: '03',
+    gloss: 'Search content built from your niche, market, buyers, proof, and real local rivals.',
+  },
+  {
+    slug: 'category-of-one-marketing',
+    name: 'Category-of-One Marketing',
+    cluster: '04',
+    gloss: "When buyers in your area already know why you're the clear choice before they call.",
+  },
+  {
+    slug: 'capability-inheritance',
+    name: 'Capability Inheritance',
+    cluster: '04',
+    gloss: 'Why the Ascend system gets each new AI gain with no rebuild.',
+  },
+  {
+    slug: 'capability-overhang',
+    name: 'Capability Overhang',
+    cluster: '04',
+    gloss: 'Why deep context on your business pulls more useful work from the same AI models.',
+  },
+  {
+    slug: 'hvac-lead-generation',
+    name: 'HVAC Lead Generation',
+    cluster: '04',
+    gloss: 'How HVAC companies get more booked jobs without hiring another agency.',
+  },
+  {
+    slug: 'fractional-cmo-alternative',
+    name: 'Fractional CMO Alternative',
+    cluster: '05',
+    gloss: 'Strategy versus execution. When a fractional CMO is the right call, and when an AI marketing department is.',
+  },
+  {
+    slug: 'agency-alternative',
+    name: 'AI-Agency Alternative',
+    cluster: '05',
+    gloss: 'Thinking of hiring an AI agency? Own the custom AI system instead of renting a retainer. Ownership compounds.',
+  },
+  {
+    slug: 'in-house-marketing-alternative',
+    name: 'In-House Marketing Alternative',
+    cluster: '05',
+    gloss: 'The whole marketing function installed in 30 days. No need to hire and manage a six-person team.',
+  },
+  {
+    slug: 'diy-marketing-alternative',
+    name: 'DIY Marketing Alternative',
+    cluster: '05',
+    gloss: "Marketing comes off the owner's plate. For when you have become the bottleneck of your own growth.",
+  },
+];
+
+const hrefFor = (slug: string) => `/playbook/${slug}`;
+const urlFor = (slug: string) => `${siteUrl}${hrefFor(slug)}`;
+const termBySlug = new Map(terms.map((term) => [term.slug, term]));
+const termHref = (slug: string) => urlFor(termBySlug.get(slug)?.slug ?? slug);
+
+const termsWithMeta = terms.map((term, index) => {
+  const cluster = clusters.find((item) => item.id === term.cluster);
+  if (!cluster) throw new Error(`Missing cluster for ${term.slug}`);
+
+  return {
+    ...term,
+    href: hrefFor(term.slug),
+    url: urlFor(term.slug),
+    index: index + 1,
+    clusterMeta: cluster,
+  };
+});
+
+const clustersWithTerms = clusters.map((cluster) => ({
+  ...cluster,
+  terms: termsWithMeta.filter((term) => term.cluster === cluster.id),
+}));
+
+const mapNodes = [
+  { cluster: clustersWithTerms[0], x: 92, y: 86 },
+  { cluster: clustersWithTerms[1], x: 704, y: 86 },
+  { cluster: clustersWithTerms[2], x: 704, y: 262 },
+  { cluster: clustersWithTerms[3], x: 92, y: 262 },
+  { cluster: clustersWithTerms[4], x: 398, y: 420 },
+];
+
+const faqItems = [
+  {
+    question: 'What is a custom AI system?',
+    answerHtml: `It is the run-for-you growth system we install around your business. It can answer, route, follow up, prove trust, and show the team what to fix next. <a href="${termHref('custom-ai-solutions')}">Read Custom AI System.</a>`,
+  },
+  {
+    question: 'How is this different from hiring an agency?',
+    answerHtml: `An agency often sells tasks and reports. We install one owned system the team runs with you, so the work, data, and code stay yours. <a href="${termHref('agency-alternative')}">Read AI-Agency Alternative.</a>`,
+  },
+  {
+    question: 'What is the Poor Four?',
+    answerHtml: `The Poor Four are the four gaps we check first: buyers cannot find you, leads leak, the owner is the bottleneck, and growth stays reactive. <a href="${termHref('poor-four')}">Read The Poor Four.</a>`,
+  },
+  {
+    question: 'How fast does it go live?',
+    answerHtml: `The install is built for 30 days. We map the leaks, set the first baseline, then put the first working path live with human signoff. <a href="${termHref('revenue-operating-system')}">Read Revenue Operating System.</a>`,
+  },
+  {
+    question: 'Do I own it?',
+    answerHtml: `Yes. The client owns the system, data, and code. We run it with our AI system, but it is built to live on your domain. <a href="${termHref('custom-ai-solutions')}">Read Custom AI System.</a>`,
+  },
+];
 
 const breadcrumb = {
   '@context': 'https://schema.org',
@@ -19,203 +241,1003 @@ const definedTermSet = {
   '@id': 'https://buildwisemedia.com/playbook/',
   name: 'Buildwise Media Playbook',
   description: 'The terms, mechanisms, and measurement discipline behind how Buildwise Media installs a custom AI system for service businesses.',
-  hasDefinedTerm: [
-    { '@type': 'DefinedTerm', '@id': 'https://buildwisemedia.com/playbook/custom-ai-solutions#term', name: 'Custom AI System', url: 'https://buildwisemedia.com/playbook/custom-ai-solutions' },
-    { '@type': 'DefinedTerm', '@id': 'https://buildwisemedia.com/playbook/ai-for-business-operations#term', name: 'AI for Business Operations', url: 'https://buildwisemedia.com/playbook/ai-for-business-operations' },
-    { '@type': 'DefinedTerm', '@id': 'https://buildwisemedia.com/playbook/ai-answering-service-service-business#term', name: 'After-Hours Call Capture', url: 'https://buildwisemedia.com/playbook/ai-answering-service-service-business' },
-    { '@type': 'DefinedTerm', '@id': 'https://buildwisemedia.com/playbook/ai-website-for-business#term', name: 'AI Website', url: 'https://buildwisemedia.com/playbook/ai-website-for-business' },
-    { '@type': 'DefinedTerm', '@id': 'https://buildwisemedia.com/playbook/show-up-in-ai-recommendations#term', name: 'AI Search Visibility', url: 'https://buildwisemedia.com/playbook/show-up-in-ai-recommendations' },
-    { '@type': 'DefinedTerm', '@id': 'https://buildwisemedia.com/playbook/build-your-own-ai#term', name: 'Build vs Buy AI', url: 'https://buildwisemedia.com/playbook/build-your-own-ai' },
-    { '@type': 'DefinedTerm', '@id': 'https://buildwisemedia.com/playbook/category-of-one-marketing#term', name: 'Category-of-One Marketing', url: 'https://buildwisemedia.com/playbook/category-of-one-marketing' },
-    { '@type': 'DefinedTerm', '@id': 'https://buildwisemedia.com/playbook/ai-marketing-department#term', name: 'AI Marketing Department', url: 'https://buildwisemedia.com/playbook/ai-marketing-department' },
-    { '@type': 'DefinedTerm', '@id': 'https://buildwisemedia.com/playbook/ai-marketing-department-small-business#term', name: 'AI Marketing Department for Small Business', url: 'https://buildwisemedia.com/playbook/ai-marketing-department-small-business' },
-    { '@type': 'DefinedTerm', '@id': 'https://buildwisemedia.com/playbook/captured-baseline#term', name: 'Captured Baseline', url: 'https://buildwisemedia.com/playbook/captured-baseline' },
-    { '@type': 'DefinedTerm', '@id': 'https://buildwisemedia.com/playbook/poor-four#term', name: 'The Poor Four', url: 'https://buildwisemedia.com/playbook/poor-four' },
-    { '@type': 'DefinedTerm', '@id': 'https://buildwisemedia.com/playbook/fractional-cmo-alternative#term', name: 'Fractional CMO Alternative', url: 'https://buildwisemedia.com/playbook/fractional-cmo-alternative' },
-    { '@type': 'DefinedTerm', '@id': 'https://buildwisemedia.com/playbook/agency-alternative#term', name: 'AI-Agency Alternative', url: 'https://buildwisemedia.com/playbook/agency-alternative' },
-    { '@type': 'DefinedTerm', '@id': 'https://buildwisemedia.com/playbook/in-house-marketing-alternative#term', name: 'In-House Marketing Alternative', url: 'https://buildwisemedia.com/playbook/in-house-marketing-alternative' },
-    { '@type': 'DefinedTerm', '@id': 'https://buildwisemedia.com/playbook/diy-marketing-alternative#term', name: 'DIY Marketing Alternative', url: 'https://buildwisemedia.com/playbook/diy-marketing-alternative' },
-    { '@type': 'DefinedTerm', '@id': 'https://buildwisemedia.com/playbook/capability-inheritance#term', name: 'Capability Inheritance', url: 'https://buildwisemedia.com/playbook/capability-inheritance' },
-    { '@type': 'DefinedTerm', '@id': 'https://buildwisemedia.com/playbook/hyper-personalized-seo#term', name: 'Hyper-Personalized SEO', url: 'https://buildwisemedia.com/playbook/hyper-personalized-seo' },
-    { '@type': 'DefinedTerm', '@id': 'https://buildwisemedia.com/playbook/capability-overhang#term', name: 'Capability Overhang', url: 'https://buildwisemedia.com/playbook/capability-overhang' },
-    { '@type': 'DefinedTerm', '@id': 'https://buildwisemedia.com/playbook/revenue-operating-system#term', name: 'Revenue Operating System', url: 'https://buildwisemedia.com/playbook/revenue-operating-system' },
-    { '@type': 'DefinedTerm', '@id': 'https://buildwisemedia.com/playbook/hvac-lead-generation#term', name: 'HVAC Lead Generation', url: 'https://buildwisemedia.com/playbook/hvac-lead-generation' },
-  ],
+  hasDefinedTerm: termsWithMeta.map((term) => ({
+    '@type': 'DefinedTerm',
+    '@id': `${term.url}#term`,
+    name: term.name,
+    url: term.url,
+    description: term.gloss,
+  })),
+};
+
+const itemList = {
+  '@context': 'https://schema.org',
+  '@type': 'ItemList',
+  '@id': 'https://buildwisemedia.com/playbook/#itemlist',
+  name: 'Buildwise Media Playbook Terms',
+  itemListOrder: 'https://schema.org/ItemListOrderAscending',
+  numberOfItems: termsWithMeta.length,
+  itemListElement: termsWithMeta.map((term) => ({
+    '@type': 'ListItem',
+    position: term.index,
+    name: term.name,
+    url: term.url,
+    item: term.url,
+  })),
+};
+
+const faqPage = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  '@id': 'https://buildwisemedia.com/playbook/#faq',
+  mainEntity: faqItems.map((item) => ({
+    '@type': 'Question',
+    name: item.question,
+    acceptedAnswer: {
+      '@type': 'Answer',
+      text: item.answerHtml,
+    },
+  })),
+};
+
+const collectionPage = {
+  '@context': 'https://schema.org',
+  '@type': ['WebPage', 'CollectionPage'],
+  '@id': 'https://buildwisemedia.com/playbook/#collection',
+  url: 'https://buildwisemedia.com/playbook/',
+  name: title,
+  description,
+  isPartOf: { '@id': 'https://buildwisemedia.com/#website' },
+  mainEntity: { '@id': 'https://buildwisemedia.com/playbook/' },
 };
 ---
-<BaseLayout title={title} description={description} jsonLd={[definedTermSet, breadcrumb]}>
+<BaseLayout title={title} description={description} jsonLd={[definedTermSet, breadcrumb, itemList, faqPage, collectionPage]}>
+  <main class="playbook-hub" data-playbook-hub>
+    <section class="playbook-hero">
+      <div class="container">
+        <p class="eyebrow">PLAYBOOK · 20 TERMS · ONE SYSTEM</p>
+        <h1 class="playbook-title">The terms <em>behind the system.</em></h1>
+        <p class="lede playbook-lede">
+          Twenty plain-English terms for how a service business becomes the obvious choice in its market — what we install, why it keeps paying off, and how we prove it. Tap any part of the map to jump in.
+        </p>
 
-  <section class="playbook-hero">
-    <div class="container">
-      <p class="eyebrow">Playbook · 20 terms</p>
-      <h1 class="h-hero">The terms <em>behind the system.</em></h1>
-      <p class="lede">
-        How a service business becomes the category of one in its market. These are the terms we work by. Each names a moving part of the system, how we measure it, or a failure mode we watch for.
-      </p>
-      <figure class="hero-photo">
-        <!-- @r020:F4 curiosity: command-center atmosphere opens the "terms behind the system" exploration the page invites -->
-        <img src="/images/bwm-system-architecture-atmospheric-v1.webp" alt="Wide-angle atmospheric shot of a dark command center — three monitors casting cool blue light across a matte desk surface, a single accent metric glowing on the rightmost screen." width="1920" height="1080" loading="eager" decoding="async" />
-      </figure>
-    </div>
-  </section>
+        <div class="system-map-shell">
+          <!-- @sdt-interactive-proof: visual system map of the 20 terms -->
+          <!-- @r020:F4 curiosity -->
+          <div class="system-map-graph" data-system-map>
+            <svg class="system-map" viewBox="0 0 1120 620" role="img" aria-labelledby="playbook-map-title playbook-map-desc">
+              <title id="playbook-map-title">Playbook system map</title>
+              <desc id="playbook-map-desc">A central Custom AI System node connects to five clusters of playbook terms.</desc>
+              <g class="map-lines" aria-hidden="true">
+                {mapNodes.map((node) => (
+                  <path
+                    class={`map-line map-line--${node.cluster.id}`}
+                    d={`M560 300 L${node.x + 160} ${node.y + 54}`}
+                    pathLength="1"
+                  />
+                ))}
+              </g>
 
-  <section class="playbook-index elev">
-    <!-- @sdt-exempt: playbook term index — a navigation list of term links, not a narrative section; the hero section carries the page visual -->
-    <div class="container">
-      <ul class="term-list">
-        <li>
-          <a href="/playbook/custom-ai-solutions">
-            <span class="term-name">Custom AI System</span>
-            <span class="term-gloss">The run-for-you growth system built around your business, on your domain, owned by you. The category in plain words — and the hub for everything below.</span>
-          </a>
-        </li>
-        <li>
-          <a href="/playbook/ai-for-business-operations">
-            <span class="term-name">AI for Business Operations</span>
-            <span class="term-gloss">Where AI belongs inside the business: intake, follow-up, scheduling, and reporting — so the week stops running you.</span>
-          </a>
-        </li>
-        <li>
-          <a href="/playbook/ai-answering-service-service-business">
-            <span class="term-name">After-Hours Call Capture</span>
-            <span class="term-gloss">Catch, qualify, and route the calls you miss. The first handoff in a system that turns calls into booked jobs.</span>
-          </a>
-        </li>
-        <li>
-          <a href="/playbook/ai-website-for-business">
-            <span class="term-name">AI Website</span>
-            <span class="term-gloss">A site that does work: it qualifies, proves trust, routes the next step, and feeds follow-up. Not just a new look.</span>
-          </a>
-        </li>
-        <li>
-          <a href="/playbook/show-up-in-ai-recommendations">
-            <span class="term-name">AI Search Visibility</span>
-            <span class="term-gloss">When buyers ask AI who to hire, the clearest proof wins. How to be the answer.</span>
-          </a>
-        </li>
-        <li>
-          <a href="/playbook/build-your-own-ai">
-            <span class="term-name">Build vs Buy AI</span>
-            <span class="term-gloss">Building your own AI system costs more than the tools — it costs your nights. The real owner-time math.</span>
-          </a>
-        </li>
-        <li>
-          <a href="/playbook/category-of-one-marketing">
-            <span class="term-name">Category-of-One Marketing</span>
-            <span class="term-gloss">Being the clear first choice in your service area. It comes from signal volume, not branding exercises.</span>
-          </a>
-        </li>
-        <li>
-          <a href="/playbook/ai-marketing-department">
-            <span class="term-name">AI Marketing Department</span>
-            <span class="term-gloss">Marketing that is run for you by AI plus real operators. It takes the place of a marketing hire.</span>
-          </a>
-        </li>
-        <li>
-          <a href="/playbook/ai-marketing-department-small-business">
-            <span class="term-name">AI Marketing Department for Small Business</span>
-            <span class="term-gloss">The same model in plain words. For owners who need marketing off their plate.</span>
-          </a>
-        </li>
-        <li>
-          <a href="/playbook/captured-baseline">
-            <span class="term-name">Captured Baseline</span>
-            <span class="term-gloss">A snapshot of your lead flow, taken before any change runs. It is the only honest floor to measure from.</span>
-          </a>
-        </li>
-        <li>
-          <a href="/playbook/poor-four">
-            <span class="term-name">The Poor Four</span>
-            <span class="term-gloss">The four gaps that stall most service businesses. They are Invisible Market, Leaky Revenue, Owner Bottleneck, and Reactive Growth.</span>
-          </a>
-        </li>
-        <li>
-          <a href="/playbook/capability-inheritance">
-            <span class="term-name">Capability Inheritance</span>
-            <span class="term-gloss">Why the Ascend system gets each new AI gain with no rebuild.</span>
-          </a>
-        </li>
-        <li>
-          <a href="/playbook/hyper-personalized-seo">
-            <span class="term-name">Hyper-Personalized SEO</span>
-            <span class="term-gloss">How the system studies your business, your niche, your area, your buyers, and your real rivals.</span>
-          </a>
-        </li>
-        <li>
-          <a href="/playbook/capability-overhang">
-            <span class="term-name">Capability Overhang</span>
-            <span class="term-gloss">Why deep context on your business pulls more useful work from the same AI models.</span>
-          </a>
-        </li>
-        <li>
-          <a href="/playbook/fractional-cmo-alternative">
-            <span class="term-name">Fractional CMO Alternative</span>
-            <span class="term-gloss">Strategy versus execution. When a fractional CMO is the right call, and when an AI marketing department is.</span>
-          </a>
-        </li>
-        <li>
-          <a href="/playbook/agency-alternative">
-            <span class="term-name">AI-Agency Alternative</span>
-            <span class="term-gloss">Thinking of hiring an AI agency? Own the custom AI system instead of renting a retainer. Ownership compounds.</span>
-          </a>
-        </li>
-        <li>
-          <a href="/playbook/in-house-marketing-alternative">
-            <span class="term-name">In-House Marketing Alternative</span>
-            <span class="term-gloss">The whole marketing function installed in 30 days. No need to hire and manage a six-person team.</span>
-          </a>
-        </li>
-        <li>
-          <a href="/playbook/diy-marketing-alternative">
-            <span class="term-name">DIY Marketing Alternative</span>
-            <span class="term-gloss">Marketing comes off the owner's plate. For when you have become the bottleneck of your own growth.</span>
-          </a>
-        </li>
-        <li>
-          <a href="/playbook/revenue-operating-system">
-            <span class="term-name">Revenue Operating System</span>
-            <span class="term-gloss">Marketing run as operations, not projects — eight layers wired into one owned system.</span>
-          </a>
-        </li>
-        <li>
-          <a href="/playbook/hvac-lead-generation">
-            <span class="term-name">HVAC Lead Generation</span>
-            <span class="term-gloss">How HVAC companies get more booked jobs without hiring another agency.</span>
-          </a>
-        </li>
-      </ul>
-    </div>
-  </section>
+              {mapNodes.map((node) => (
+                <a
+                  href={`#cluster-${node.cluster.id}`}
+                  class="map-node map-node--cluster"
+                  data-scroll-target={`cluster-${node.cluster.id}`}
+                  data-cluster-node={node.cluster.id}
+                  aria-label={`Jump to ${node.cluster.label}`}
+                >
+                  <g transform={`translate(${node.x} ${node.y})`}>
+                    <rect class="map-node-box" width="320" height="108" rx="6" />
+                    <text class="map-node-title" x="24" y="42">{node.cluster.label}</text>
+                    <text class="map-node-count" x="24" y="72">{node.cluster.terms.length} terms</text>
+                  </g>
+                </a>
+              ))}
 
-  <section class="playbook-cta elev">
-    <div class="container">
-      <h2 class="h-closer">See the system <em>in motion.</em></h2>
-      <p class="lede">If the Poor Four sound familiar, let's talk. Often the real gap is in operations, not in leads.</p>
-      <p class="cta-row">
-        <a class="cta-primary" href="/book" data-cta-source="playbook-hub-cta-primary">Get My Free Revenue Leak Map <span class="cta-arrow">→</span></a>
-        <a class="cta-ghost" href="/services/ascend" data-cta-source="playbook-hub-cta-secondary">See the System</a>
-      </p>
-    </div>
-  </section>
+              <a
+                href="#cluster-01"
+                class="map-node map-node--core"
+                data-scroll-target="cluster-01"
+                aria-label="Jump to Custom AI System"
+              >
+                <g transform="translate(414 236)">
+                  <rect class="map-core-box" width="292" height="128" rx="8" />
+                  <text class="map-core-kicker" x="146" y="42" text-anchor="middle">CORE</text>
+                  <text class="map-core-title" x="146" y="78" text-anchor="middle">Custom AI System</text>
+                  <text class="map-core-sub" x="146" y="104" text-anchor="middle">owned growth layer</text>
+                </g>
+              </a>
+            </svg>
+          </div>
 
+          <ul class="system-map-legend" aria-label="Playbook clusters">
+            {clustersWithTerms.map((cluster) => (
+              <li>
+                <a
+                  href={`#cluster-${cluster.id}`}
+                  data-scroll-target={`cluster-${cluster.id}`}
+                  style={`--cluster-accent: ${cluster.accent};`}
+                >
+                  <span class="legend-label">{cluster.label}</span>
+                  <span class="legend-count">{cluster.terms.length} terms</span>
+                </a>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="playbook-controls-wrap" aria-label="Playbook filters">
+      <div class="container">
+        <div class="playbook-controls">
+          <div class="filter-chip-group" role="group" aria-label="Filter terms by cluster">
+            <button class="filter-chip is-active" type="button" aria-pressed="true" data-cluster-filter="all">All</button>
+            {clustersWithTerms.map((cluster) => (
+              <button class="filter-chip" type="button" aria-pressed="false" data-cluster-filter={cluster.id}>{cluster.chip}</button>
+            ))}
+          </div>
+
+          <label class="term-search" for="playbook-term-search">
+            <span class="term-search-label">Find a term</span>
+            <input id="playbook-term-search" type="search" name="q" placeholder="Find a term" autocomplete="off" data-term-search />
+          </label>
+
+          <p class="filter-results" aria-live="polite" data-results-count>{termsWithMeta.length} terms shown</p>
+        </div>
+        <p class="filter-empty" data-empty-state hidden>No matching terms. Clear the search or pick All.</p>
+      </div>
+    </section>
+
+    {clustersWithTerms.map((cluster) => (
+      <section
+        class="playbook-cluster"
+        id={`cluster-${cluster.id}`}
+        data-cluster-section={cluster.id}
+        style={`--cluster-accent: ${cluster.accent};`}
+      >
+        <!-- @sdt-exempt: playbook term cluster index — static navigation cards, not a narrative prose section; the hero map carries the page creative -->
+        <div class="cluster-ghost" aria-hidden="true">{cluster.id}</div>
+        <div class="container">
+          <div class="cluster-heading">
+            <h2 class="cluster-title">
+              <span class="cluster-number">{cluster.id}</span>
+              <span>{cluster.title}</span>
+              <span class="cluster-count">{cluster.terms.length} terms</span>
+            </h2>
+            <p>{cluster.framing}</p>
+          </div>
+
+          <div class="term-grid">
+            {cluster.terms.map((term, index) => (
+              <a
+                href={term.href}
+                class:list={['term-card', term.pillar ? 'term-card--pillar' : '']}
+                data-term-card
+                data-cluster={term.cluster}
+                data-name={term.name.toLowerCase()}
+                data-gloss={term.gloss.toLowerCase()}
+                style={`--cluster-accent: ${term.clusterMeta.accent}; --reveal-index: ${index};`}
+              >
+                <span class="term-card-rule" aria-hidden="true"></span>
+                <span class="term-topline">
+                  <span class="term-index">{String(term.index).padStart(2, '0')}</span>
+                  {term.pillar && <span class="pillar-tag">START HERE</span>}
+                </span>
+                <h3>{term.name}</h3>
+                <p>{term.gloss}</p>
+                <span class="term-affordance">Read term <span aria-hidden="true">→</span></span>
+              </a>
+            ))}
+          </div>
+        </div>
+      </section>
+    ))}
+
+    <section class="playbook-faq elev" id="common-questions">
+      <!-- @sdt-exempt: FAQ accordion answers search intent directly; it is structured answer UI, not a narrative prose section -->
+      <div class="container">
+        <div class="faq-heading">
+          <p class="section-tag">FAQ</p>
+          <h2 class="section-title">Common questions</h2>
+        </div>
+        <div class="faq-list">
+          {faqItems.map((item) => (
+            <details class="faq-item">
+              <summary>{item.question}</summary>
+              <p><Fragment set:html={item.answerHtml} /></p>
+            </details>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <section class="playbook-cta elev">
+      <div class="container">
+        <h2 class="cta-title">See the system <em>on your business.</em></h2>
+        <p class="lede">You just read how it works. Let's map where the leaks are for you.</p>
+        <p class="cta-row">
+          <a class="cta-primary" href="/book" data-cta-source="playbook-hub-cta-primary">Get My Free Revenue Leak Map <span class="cta-arrow">→</span></a>
+          <a class="cta-ghost" href="/services/ascend" data-cta-source="playbook-hub-cta-secondary">See the System</a>
+        </p>
+      </div>
+    </section>
+  </main>
 </BaseLayout>
 
 <style>
-.playbook-hero { padding-block: clamp(80px, 12vw, 144px); }
-.playbook-hero h1 em { color: var(--y2); font-style: normal; font-weight: inherit; }
-.playbook-hero .lede { margin-top: 24px; max-width: 720px; }
+.playbook-hub {
+  background: var(--bg);
+}
 
-.hero-photo { margin-top: 56px; max-width: 1120px; border-radius: 4px; overflow: hidden; border: 1px solid var(--rule); }
-.hero-photo img { width: 100%; height: auto; display: block; }
+.playbook-hero {
+  padding-block: 128px 72px;
+}
 
-.playbook-index { padding-block: clamp(64px, 10vw, 112px); }
-.term-list { list-style: none; display: flex; flex-direction: column; gap: 24px; max-width: 880px; }
-.term-list a { display: block; padding: 24px 28px; border: 1px solid var(--rule); border-radius: 6px; text-decoration: none; transition: border-color 180ms ease; }
-.term-list a:hover { border-color: var(--y2); }
-.term-name { display: block; font-size: 22px; font-weight: 600; color: var(--ink); margin-bottom: 8px; }
-.term-gloss { display: block; font-size: 16px; line-height: 1.6; color: var(--ink-dim); }
+.playbook-title,
+.section-title,
+.cluster-title,
+.cta-title,
+.term-card h3 {
+  letter-spacing: 0;
+}
 
-.playbook-cta { padding-block: clamp(64px, 10vw, 112px); }
-.playbook-cta h2 em { color: var(--y2); font-style: normal; font-weight: inherit; }
-.cta-row { display: flex; flex-wrap: wrap; gap: 16px; margin-top: 32px; }
+.playbook-title {
+  max-width: 860px;
+  margin-top: 28px;
+  font-size: 76px;
+  line-height: 0.95;
+  font-weight: 800;
+  color: var(--ink);
+}
+
+.playbook-title em,
+.cta-title em {
+  color: var(--y2);
+  font-style: normal;
+  font-weight: inherit;
+}
+
+.playbook-lede {
+  margin-top: 26px;
+  max-width: 800px;
+}
+
+.system-map-shell {
+  margin-top: 56px;
+}
+
+.system-map-graph {
+  border: 1px solid var(--rule);
+  border-radius: 8px;
+  background:
+    linear-gradient(90deg, color-mix(in srgb, var(--rule) 38%, transparent) 1px, transparent 1px),
+    linear-gradient(180deg, color-mix(in srgb, var(--rule) 38%, transparent) 1px, transparent 1px),
+    var(--bg-elev);
+  background-size: 48px 48px;
+  overflow: hidden;
+}
+
+.system-map {
+  width: 100%;
+  min-height: 420px;
+}
+
+.map-line {
+  fill: none;
+  stroke: var(--rule-bright);
+  stroke-width: 1.5;
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+  animation: signalRoute 900ms ease forwards;
+}
+
+.map-line--02 { animation-delay: 80ms; }
+.map-line--03 { animation-delay: 160ms; }
+.map-line--04 { animation-delay: 240ms; }
+.map-line--05 { animation-delay: 320ms; }
+
+.map-node {
+  cursor: pointer;
+  outline: none;
+}
+
+.map-node-box,
+.map-core-box {
+  fill: var(--bg-card);
+  stroke: var(--rule-bright);
+  stroke-width: 1;
+  transition: stroke 180ms ease, fill 180ms ease, transform 180ms ease;
+}
+
+.map-core-box {
+  fill: color-mix(in srgb, var(--bg-card) 82%, var(--y2));
+  stroke: var(--y2);
+}
+
+.map-node-title,
+.map-node-count,
+.map-core-kicker,
+.map-core-title,
+.map-core-sub {
+  font-family: var(--mono);
+  letter-spacing: 0;
+  pointer-events: none;
+}
+
+.map-node-title {
+  fill: var(--ink);
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.map-node-count,
+.map-core-sub {
+  fill: var(--ink-dim);
+  font-size: 14px;
+}
+
+.map-core-kicker {
+  fill: var(--y2);
+  font-size: 12px;
+}
+
+.map-core-title {
+  fill: var(--ink);
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.map-node:hover .map-node-box,
+.map-node:focus-visible .map-node-box,
+.system-map-graph[data-active-cluster="01"] .map-node[data-cluster-node="01"] .map-node-box,
+.system-map-graph[data-active-cluster="02"] .map-node[data-cluster-node="02"] .map-node-box,
+.system-map-graph[data-active-cluster="03"] .map-node[data-cluster-node="03"] .map-node-box,
+.system-map-graph[data-active-cluster="04"] .map-node[data-cluster-node="04"] .map-node-box,
+.system-map-graph[data-active-cluster="05"] .map-node[data-cluster-node="05"] .map-node-box {
+  stroke: var(--y2);
+  fill: color-mix(in srgb, var(--bg-card) 92%, var(--y2));
+}
+
+.system-map-graph[data-active-cluster="01"] .map-line--01,
+.system-map-graph[data-active-cluster="02"] .map-line--02,
+.system-map-graph[data-active-cluster="03"] .map-line--03,
+.system-map-graph[data-active-cluster="04"] .map-line--04,
+.system-map-graph[data-active-cluster="05"] .map-line--05 {
+  stroke: var(--y2);
+}
+
+.system-map-legend {
+  display: none;
+  list-style: none;
+  gap: 12px;
+}
+
+.system-map-legend a {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+  padding: 18px 20px;
+  border: 1px solid var(--rule);
+  border-top: 2px solid var(--cluster-accent);
+  border-radius: 6px;
+  background: var(--bg-card);
+}
+
+.legend-label,
+.legend-count,
+.filter-chip,
+.term-search-label,
+.filter-results,
+.filter-empty,
+.cluster-number,
+.cluster-count,
+.term-index,
+.pillar-tag,
+.term-affordance {
+  font-family: var(--mono);
+  letter-spacing: 0;
+}
+
+.legend-label {
+  color: var(--ink);
+  font-size: 14px;
+}
+
+.legend-count {
+  color: var(--ink-dim);
+  font-size: 12px;
+  white-space: nowrap;
+}
+
+.playbook-controls-wrap {
+  position: sticky;
+  top: 0;
+  z-index: 80;
+  padding-block: 12px;
+  background: color-mix(in srgb, var(--bg-elev) 94%, transparent);
+  border-block: 1px solid var(--rule);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+}
+
+.playbook-controls {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(220px, 320px) auto;
+  gap: 18px;
+  align-items: center;
+}
+
+.filter-chip-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.filter-chip {
+  min-height: 40px;
+  padding: 9px 13px;
+  border: 1px solid var(--rule);
+  border-radius: 999px;
+  color: var(--ink-dim);
+  background: var(--bg-card);
+  font-size: 12px;
+  transition: color 160ms ease, border-color 160ms ease, background 160ms ease;
+}
+
+.filter-chip:hover,
+.filter-chip:focus-visible,
+.filter-chip[aria-pressed="true"] {
+  color: var(--bg);
+  border-color: var(--y2);
+  background: var(--y2);
+}
+
+.filter-chip:focus-visible,
+.term-search input:focus-visible,
+.term-card:focus-visible,
+.faq-item summary:focus-visible {
+  outline: 2px solid var(--y2);
+  outline-offset: 3px;
+}
+
+.term-search {
+  display: grid;
+  gap: 6px;
+}
+
+.term-search-label,
+.filter-results,
+.filter-empty {
+  color: var(--ink-dim);
+  font-size: 12px;
+}
+
+.term-search input {
+  width: 100%;
+  min-height: 44px;
+  padding: 10px 14px;
+  border: 1px solid var(--rule-bright);
+  border-radius: 4px;
+  color: var(--ink);
+  background: var(--bg);
+  font: inherit;
+  font-size: 16px;
+}
+
+.term-search input::placeholder {
+  color: var(--ink-faint);
+}
+
+.filter-results {
+  justify-self: end;
+  white-space: nowrap;
+}
+
+.filter-empty {
+  margin-top: 10px;
+}
+
+.playbook-cluster {
+  overflow: hidden;
+  scroll-margin-top: 128px;
+  padding-block: 96px;
+}
+
+.playbook-cluster:nth-of-type(odd) {
+  background: var(--bg-elev);
+}
+
+.cluster-ghost {
+  position: absolute;
+  right: max(var(--container-x), 4vw);
+  top: 28px;
+  z-index: 0;
+  font-size: 180px;
+  line-height: 1;
+  font-weight: 800;
+  color: var(--cluster-accent);
+  opacity: 0.07;
+  pointer-events: none;
+}
+
+.cluster-heading {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  gap: 18px;
+  max-width: 860px;
+  margin-bottom: 34px;
+}
+
+.cluster-title {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 14px;
+  font-size: 44px;
+  line-height: 1.08;
+}
+
+.cluster-number,
+.cluster-count {
+  color: var(--cluster-accent);
+  font-size: 13px;
+  font-weight: 500;
+}
+
+.cluster-count {
+  color: var(--ink-dim);
+}
+
+.cluster-heading p {
+  max-width: 760px;
+  color: var(--ink-dim);
+  font-size: 19px;
+  line-height: 1.55;
+}
+
+.term-grid {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+}
+
+.term-card {
+  position: relative;
+  display: grid;
+  align-content: start;
+  min-height: 260px;
+  padding: 30px;
+  border: 1px solid var(--rule);
+  border-radius: 8px;
+  background: var(--bg-card);
+  overflow: hidden;
+  transition: border-color 180ms ease, transform 180ms ease, background 180ms ease;
+}
+
+.term-card--pillar {
+  grid-column: 1 / -1;
+  min-height: 300px;
+  padding: 38px;
+  background:
+    linear-gradient(135deg, color-mix(in srgb, var(--y2) 9%, transparent), transparent 52%),
+    var(--bg-card);
+}
+
+.term-card-rule {
+  position: absolute;
+  inset: 0 0 auto;
+  height: 2px;
+  background: var(--cluster-accent);
+  opacity: 0.78;
+}
+
+.term-topline {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  align-items: center;
+  min-height: 24px;
+  margin-bottom: 24px;
+}
+
+.term-index,
+.pillar-tag {
+  color: var(--ink-faint);
+  font-size: 12px;
+}
+
+.pillar-tag {
+  color: var(--bg);
+  background: var(--y2);
+  padding: 3px 7px;
+  border-radius: 2px;
+}
+
+.term-card h3 {
+  font-size: 26px;
+  line-height: 1.16;
+  margin-bottom: 12px;
+}
+
+.term-card--pillar h3 {
+  font-size: 36px;
+}
+
+.term-card p {
+  max-width: 660px;
+  color: var(--ink-dim);
+  font-size: 16px;
+  line-height: 1.55;
+  transition: color 180ms ease;
+}
+
+.term-affordance {
+  align-self: end;
+  margin-top: 28px;
+  color: var(--y2);
+  font-size: 12px;
+}
+
+.term-affordance span {
+  display: inline-block;
+  transition: transform 180ms ease;
+}
+
+.term-card:hover,
+.term-card:focus-visible {
+  border-color: var(--y2);
+  transform: translateY(-2px);
+  background: color-mix(in srgb, var(--bg-card) 94%, var(--y2));
+}
+
+.term-card:hover p,
+.term-card:focus-visible p {
+  color: var(--ink);
+}
+
+.term-card:hover .term-affordance span,
+.term-card:focus-visible .term-affordance span {
+  transform: translateX(2px);
+}
+
+.playbook-reveal-ready .term-card {
+  opacity: 0;
+  transform: translateY(18px);
+  transition:
+    opacity 420ms ease,
+    transform 420ms ease,
+    border-color 180ms ease,
+    background 180ms ease;
+  transition-delay: calc(var(--reveal-index) * 55ms);
+}
+
+.playbook-reveal-ready .playbook-cluster.is-visible .term-card:not([hidden]) {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.playbook-faq {
+  padding-block: 96px;
+}
+
+.faq-heading {
+  display: grid;
+  gap: 18px;
+  margin-bottom: 30px;
+}
+
+.section-title {
+  font-size: 48px;
+  line-height: 1.05;
+}
+
+.faq-list {
+  display: grid;
+  gap: 12px;
+  max-width: 880px;
+}
+
+.faq-item {
+  border: 1px solid var(--rule);
+  border-radius: 8px;
+  background: var(--bg-card);
+}
+
+.faq-item summary {
+  list-style: none;
+  cursor: pointer;
+  padding: 22px 24px;
+  color: var(--ink);
+  font-weight: 700;
+}
+
+.faq-item summary::-webkit-details-marker {
+  display: none;
+}
+
+.faq-item summary::after {
+  content: "+";
+  float: right;
+  color: var(--y2);
+  font-family: var(--mono);
+}
+
+.faq-item[open] summary::after {
+  content: "-";
+}
+
+.faq-item p {
+  padding: 0 24px 24px;
+  color: var(--ink-dim);
+  font-size: 17px;
+  line-height: 1.6;
+}
+
+.faq-item a {
+  color: var(--y2);
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
+}
+
+.playbook-cta {
+  padding-block: 96px 112px;
+}
+
+.cta-title {
+  max-width: 820px;
+  font-size: 64px;
+  line-height: 1.02;
+}
+
+.playbook-cta .lede {
+  margin-top: 22px;
+  max-width: 650px;
+}
+
+.cta-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  margin-top: 32px;
+}
+
+@keyframes signalRoute {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+@media (max-width: 920px) {
+  .playbook-controls {
+    grid-template-columns: 1fr;
+  }
+
+  .filter-results {
+    justify-self: start;
+  }
+}
+
+@media (max-width: 720px) {
+  .playbook-hero {
+    padding-block: 104px 56px;
+  }
+
+  .playbook-title {
+    font-size: 48px;
+  }
+
+  .playbook-lede {
+    font-size: 18px;
+  }
+
+  .system-map-graph {
+    display: none;
+  }
+
+  .system-map-legend {
+    display: grid;
+  }
+
+  .playbook-controls-wrap {
+    position: static;
+  }
+
+  .filter-chip-group {
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    padding-bottom: 4px;
+  }
+
+  .filter-chip {
+    flex: 0 0 auto;
+  }
+
+  .playbook-cluster {
+    padding-block: 72px;
+  }
+
+  .cluster-ghost {
+    font-size: 116px;
+    top: 22px;
+  }
+
+  .cluster-title {
+    font-size: 34px;
+  }
+
+  .term-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .term-card,
+  .term-card--pillar {
+    min-height: 0;
+    padding: 24px;
+  }
+
+  .term-card--pillar h3 {
+    font-size: 30px;
+  }
+
+  .section-title,
+  .cta-title {
+    font-size: 42px;
+  }
+
+  .cta-primary,
+  .cta-ghost {
+    width: 100%;
+    justify-content: center;
+    white-space: normal;
+    text-align: center;
+  }
+}
+
+@media (max-width: 430px) {
+  .playbook-title {
+    font-size: 40px;
+  }
+
+  .cluster-title {
+    font-size: 30px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .map-line {
+    animation: none;
+    stroke-dashoffset: 0;
+  }
+
+  .playbook-reveal-ready .term-card {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+
+  .term-card:hover,
+  .term-card:focus-visible {
+    transform: none;
+  }
+}
 </style>
+
+<script>
+  const playbookHub = document.querySelector('[data-playbook-hub]');
+
+  if (playbookHub) {
+    const cards = Array.from(playbookHub.querySelectorAll('[data-term-card]'));
+    const chips = Array.from(playbookHub.querySelectorAll('[data-cluster-filter]'));
+    const search = playbookHub.querySelector('[data-term-search]');
+    const count = playbookHub.querySelector('[data-results-count]');
+    const empty = playbookHub.querySelector('[data-empty-state]');
+    const sections = Array.from(playbookHub.querySelectorAll('[data-cluster-section]'));
+    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    let activeCluster = 'all';
+
+    const normalize = (value) => String(value || '').toLowerCase().trim();
+
+    const updateFilters = () => {
+      const query = normalize(search ? search.value : '');
+      let visibleCount = 0;
+
+      sections.forEach((section) => {
+        const sectionCards = cards.filter((card) => card.dataset.cluster === section.dataset.clusterSection);
+        let sectionVisibleCount = 0;
+
+        sectionCards.forEach((card) => {
+          const clusterMatch = activeCluster === 'all' || card.dataset.cluster === activeCluster;
+          const searchText = `${card.dataset.name || ''} ${card.dataset.gloss || ''}`;
+          const searchMatch = !query || searchText.includes(query);
+          const visible = clusterMatch && searchMatch;
+
+          card.hidden = !visible;
+          if (visible) {
+            visibleCount += 1;
+            sectionVisibleCount += 1;
+          }
+        });
+
+        section.hidden = sectionVisibleCount === 0;
+      });
+
+      chips.forEach((chip) => {
+        const pressed = chip.dataset.clusterFilter === activeCluster;
+        chip.classList.toggle('is-active', pressed);
+        chip.setAttribute('aria-pressed', String(pressed));
+      });
+
+      if (count) {
+        count.textContent = `${visibleCount} ${visibleCount === 1 ? 'term' : 'terms'} shown`;
+      }
+
+      if (empty) {
+        empty.hidden = visibleCount !== 0;
+      }
+    };
+
+    chips.forEach((chip) => {
+      chip.addEventListener('click', () => {
+        activeCluster = chip.dataset.clusterFilter || 'all';
+        updateFilters();
+      });
+    });
+
+    if (search) {
+      search.addEventListener('input', updateFilters);
+    }
+
+    playbookHub.querySelectorAll('[data-scroll-target]').forEach((link) => {
+      link.addEventListener('click', (event) => {
+        const id = link.getAttribute('data-scroll-target');
+        const target = id ? document.getElementById(id) : null;
+
+        if (!target) return;
+
+        event.preventDefault();
+        target.scrollIntoView({ behavior: reduceMotion ? 'auto' : 'smooth', block: 'start' });
+        history.pushState(null, '', `#${id}`);
+      });
+    });
+
+    const map = playbookHub.querySelector('[data-system-map]');
+    playbookHub.querySelectorAll('[data-cluster-node]').forEach((node) => {
+      const cluster = node.getAttribute('data-cluster-node');
+      const setActive = () => {
+        if (map && cluster) map.setAttribute('data-active-cluster', cluster);
+      };
+      const clearActive = () => {
+        if (map) map.removeAttribute('data-active-cluster');
+      };
+
+      node.addEventListener('mouseenter', setActive);
+      node.addEventListener('focus', setActive);
+      node.addEventListener('mouseleave', clearActive);
+      node.addEventListener('blur', clearActive);
+    });
+
+    playbookHub.classList.add('playbook-reveal-ready');
+
+    if (reduceMotion || !('IntersectionObserver' in window)) {
+      sections.forEach((section) => section.classList.add('is-visible'));
+    } else {
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting) return;
+          entry.target.classList.add('is-visible');
+          observer.unobserve(entry.target);
+        });
+      }, { threshold: 0.18, rootMargin: '0px 0px -10% 0px' });
+
+      sections.forEach((section) => observer.observe(section));
+    }
+
+    updateFilters();
+  }
+</script>
