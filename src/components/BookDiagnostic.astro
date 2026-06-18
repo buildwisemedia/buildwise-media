@@ -696,11 +696,11 @@ const questions = [
 <style>
 .book-diagnostic {
   width: 100%;
-  min-height: calc(100vh - 96px);
+  min-height: auto;
   display: flex;
   flex-direction: column;
-  gap: clamp(20px, 4vw, 36px);
-  padding: clamp(86px, 10vw, 118px) 0 clamp(52px, 8vw, 84px);
+  gap: clamp(14px, 2vw, 24px);
+  padding: clamp(36px, 4.5vw, 60px) 0 clamp(36px, 5vw, 56px);
 }
 .book-diagnostic [hidden] { display: none !important; }
 .bd-sr-only,
@@ -790,6 +790,11 @@ const questions = [
 .bd-capture {
   display: flex;
   flex-direction: column;
+}
+.bd-question {
+  gap: 12px;
+}
+.bd-capture {
   gap: 18px;
 }
 .bd-eyebrow {
@@ -803,40 +808,49 @@ const questions = [
 .bd-capture-title,
 .bd-result-title {
   margin: 0;
-  max-width: 12ch;
-  font-size: clamp(40px, 8vw, 92px);
-  line-height: 0.94;
   letter-spacing: -0.03em;
   text-wrap: balance;
+}
+.bd-question-title {
+  max-width: 18ch;
+  font-size: clamp(34px, 5vw, 58px);
+  line-height: 1;
 }
 .bd-capture-title,
 .bd-result-title {
   max-width: 13ch;
   font-size: clamp(36px, 6vw, 72px);
+  line-height: 0.94;
 }
 .bd-help,
 .bd-result-copy,
 .bd-enrichment p {
   max-width: 58ch;
   margin: 0;
-  font-size: clamp(16px, 1.7vw, 19px);
   line-height: 1.55;
   color: var(--ink-dim);
+}
+.bd-help {
+  font-size: clamp(16px, 1.4vw, 18px);
+}
+.bd-result-copy,
+.bd-enrichment p {
+  font-size: clamp(16px, 1.7vw, 19px);
 }
 .bd-option-grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 10px;
-  margin-top: clamp(8px, 2vw, 16px);
+  gap: 8px;
+  margin-top: 0;
 }
 .bd-option {
   min-width: 0;
-  min-height: 112px;
+  min-height: 92px;
   display: flex;
   align-items: stretch;
   justify-content: space-between;
   gap: 18px;
-  padding: 18px;
+  padding: 16px;
   border: 1px solid var(--rule);
   background: rgba(5, 5, 7, 0.62);
   color: var(--ink-dim);
@@ -879,13 +893,13 @@ const questions = [
   gap: 8px;
 }
 .bd-option-copy strong {
-  font-size: clamp(17px, 1.8vw, 22px);
+  font-size: clamp(16px, 1.4vw, 19px);
   line-height: 1.15;
   color: currentColor;
 }
 .bd-option-copy em {
   font-style: normal;
-  font-size: 14px;
+  font-size: 16px;
   line-height: 1.42;
   color: var(--ink-faint);
 }
@@ -1052,7 +1066,10 @@ const questions = [
 @media (max-width: 820px) {
   .book-diagnostic {
     min-height: auto;
-    padding-top: 82px;
+    padding-top: 32px;
+  }
+  .bd-question {
+    gap: 10px;
   }
   .bd-top,
   .bd-enrichment {
@@ -1064,11 +1081,21 @@ const questions = [
   .bd-enrich-form {
     grid-template-columns: 1fr;
   }
-  .bd-question-title,
+  .bd-question-title {
+    max-width: 16ch;
+    font-size: clamp(30px, 8.5vw, 42px);
+  }
   .bd-capture-title,
   .bd-result-title {
     max-width: 11ch;
     font-size: clamp(38px, 13vw, 64px);
+  }
+  .bd-help {
+    font-size: 16px;
+  }
+  .bd-option {
+    min-height: 80px;
+    padding: 14px;
   }
   .bd-progress-meta {
     flex-direction: column;
