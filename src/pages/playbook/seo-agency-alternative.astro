@@ -1,0 +1,259 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+const title = "SEO Agency Alternative for Service Businesses";
+const description = "See why service businesses may need an owned growth system, not another SEO agency chasing rankings alone.";
+
+const definedTerm = {
+  '@context': 'https://schema.org',
+  '@type': 'DefinedTerm',
+  '@id': 'https://buildwisemedia.com/playbook/seo-agency-alternative#term',
+  name: 'SEO Agency Alternative',
+  description: 'An SEO agency alternative is an owned growth system for service businesses that need booked work, not only higher rankings. It connects useful search pages, clear offers, fast follow-up, and simple reporting so the owner can see which work came from the system.',
+  inDefinedTermSet: {
+    '@type': 'DefinedTermSet',
+    '@id': 'https://buildwisemedia.com/playbook/',
+    name: 'Buildwise Media Playbook',
+  },
+};
+
+const breadcrumb = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://buildwisemedia.com/' },
+    { '@type': 'ListItem', position: 2, name: 'Playbook', item: 'https://buildwisemedia.com/playbook/' },
+    { '@type': 'ListItem', position: 3, name: 'SEO Agency Alternative', item: 'https://buildwisemedia.com/playbook/seo-agency-alternative' },
+  ],
+};
+
+const faqs = [
+  {
+    q: 'How is this different from hiring an SEO agency?',
+    a: 'An SEO agency often focuses on rankings, reports, and monthly tasks. Buildwise Media installs an owned system that connects search pages to booked work. The Buildwise team runs it, but the pages, lead paths, data, and follow-up stay inside your business.',
+  },
+  {
+    q: 'Do rankings still matter?',
+    a: 'Yes. Rankings matter when they bring the right people to the right page. They are not the whole job. The system also has to turn those visits into calls, quote requests, and booked work you can trace.',
+  },
+  {
+    q: 'Is this only for businesses that already get search traffic?',
+    a: 'No. It can help if you have traffic that does not turn into work, or if your site is too thin to earn the right traffic. The first step is finding the gap between what buyers search for and what your current site can prove.',
+  },
+  {
+    q: 'Will I own the SEO pages and data?',
+    a: 'Yes. The work is built on your domain and around your offers. You keep the pages, the lead records, the account history, and the system map whether the engagement continues or not.',
+  },
+  {
+    q: 'When is a regular SEO agency still a better fit?',
+    a: 'A regular SEO agency can fit if you only want help with rankings and do not need the lead path rebuilt. If you need search demand to become booked work, an owned system is the better question to explore.',
+  },
+];
+
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  '@id': 'https://buildwisemedia.com/playbook/seo-agency-alternative#faq',
+  mainEntity: faqs.map((f) => ({
+    '@type': 'Question',
+    name: f.q,
+    acceptedAnswer: { '@type': 'Answer', text: f.a },
+  })),
+};
+---
+<BaseLayout title={title} description={description} jsonLd={[definedTerm, breadcrumb, faqSchema]}>
+
+  <section class="playbook-hero">
+    <div class="container">
+      <p class="eyebrow"><a href="/playbook" class="back-link">← Playbook</a></p>
+      <h1 class="h-hero">An SEO agency alternative for service businesses that need <em>booked work</em></h1>
+      <p class="lede">
+        If you searched for an SEO agency alternative, you may already know the problem. More rankings do not always mean more jobs. More reports do not clear your missed calls, weak pages, slow follow-up, or the leads that never turn into booked work.
+      </p>
+      <p class="lede">
+        Buildwise Media is not an SEO agency. We build and run an owned growth system for service businesses. Search pages bring the right people in. Clear paths move them to the next step. Follow-up keeps them from slipping away. You own the system, the data, and the work.
+      </p>
+      <figure class="hero-photo">
+        <!-- @r020:F4 curiosity: atmospheric workspace frames the owner problem behind search demand, not a generic ranking report -->
+        <img src="/images/bwm-services-atmospheric-v1.webp" alt="Dark workspace with a glowing laptop and open notebook, set up for the system that keeps working after the owner steps away." width="1920" height="1080" loading="eager" decoding="async" />
+      </figure>
+    </div>
+  </section>
+
+  <section class="playbook-section elev">
+    <div class="container">
+      <p class="section-tag">The real problem</p>
+      <h2 class="h-section">Rankings are only useful when they turn into work.</h2>
+      <p class="prose">
+        Search traffic can look healthy while the business still feels slow. The phone rings at the wrong time. The quote form asks the wrong questions. The service page sounds like every other company in town. Then the monthly report says more people are seeing your site, but your calendar does not feel it.
+      </p>
+      <p class="prose">
+        That is why rankings alone are a weak goal for an owner-led service business. You do not need a prettier chart. You need the right buyer to land on the right page, trust you faster, and take the next step while they still care.
+      </p>
+      <p class="prose">
+        The job is not just to get found. The job is to get chosen and booked.
+      </p>
+    </div>
+  </section>
+
+  <section class="playbook-section">
+    <div class="container">
+      <p class="section-tag">The owned system</p>
+      <h2 class="h-section">What replaces the monthly agency bill.</h2>
+      <p class="prose">
+        A normal retainer rents activity: more pages, more updates, more check-ins. The owned system gives you something different. It maps the services buyers search for and builds pages that answer real questions. Each page connects to a clear next step. You can see which work came from the system.
+      </p>
+      <p class="prose">
+        This is closer to an <a href="/playbook/agency-alternative">agency alternative</a> than a search package. The Buildwise team runs the system week to week. The work lives on your domain and in your accounts. It does not disappear when the engagement ends.
+      </p>
+      <figure class="section-photo section-photo--diagram">
+        <!-- @r020:F2 proof: stacked system diagram shows search, offer, follow-up, and proof as connected owned layers -->
+        <img src="/images/stacked-planes-v1.svg" alt="Layered system diagram showing connected parts of an owned growth system instead of a rented SEO task list." width="1200" height="675" loading="lazy" decoding="async" />
+      </figure>
+    </div>
+  </section>
+
+  <section class="playbook-section elev">
+    <div class="container">
+      <p class="section-tag">Better search pages</p>
+      <h2 class="h-section">Pages should answer the buyer you actually want.</h2>
+      <p class="prose">
+        Most service pages are too broad. They say you are trusted, local, and experienced. But they do not help a serious buyer decide. A strong search page does not chase every search phrase. It helps one type of buyer understand the job, the risk, and the next step. It also shows why your business is a safer choice.
+      </p>
+      <p class="prose">
+        That is where <a href="/playbook/hyper-personalized-seo">hyper-personalized SEO</a> matters. The page should fit the service, location, problem, and intent behind the search. A homeowner with an urgent repair needs a different path than a property manager planning a larger job.
+      </p>
+      <p class="prose">
+        Better pages reduce the load on you because the buyer arrives with fewer doubts and a clearer reason to act.
+      </p>
+    </div>
+  </section>
+
+  <section class="playbook-section">
+    <div class="container">
+      <p class="section-tag">Lead path</p>
+      <h2 class="h-section">Traffic leaks when follow-up is slow or unclear.</h2>
+      <p class="prose">
+        Search can bring a buyer to the door, but the lead path decides what happens next. If the form is buried, the buyer moves on. If the call button is vague or the reply comes too late, they move on too. That failure often gets blamed on SEO when the real leak is after the click.
+      </p>
+      <p class="prose">
+        A <a href="/playbook/lead-generation-company-alternative">lead generation company alternative</a> fixes the full path, not just the traffic source. It connects the page, the offer, and the first reply. It also gives you the proof you need to know what is working.
+      </p>
+      <figure class="section-photo section-photo--diagram">
+        <!-- @r020:F2 proof: funnel diagram makes the post-click leak visible so the owner can see where booked work is lost -->
+        <img src="/images/funnel-3-layer-v1.svg" alt="Three-layer funnel diagram showing the path from search traffic to booked work." width="1200" height="675" loading="lazy" decoding="async" />
+      </figure>
+      <blockquote class="pull-quote">
+        <p>You do not need more anonymous traffic if the best leads still fall through the cracks.</p>
+      </blockquote>
+    </div>
+  </section>
+
+  <section class="playbook-section elev">
+    <div class="container">
+      <p class="section-tag">How Buildwise Media uses it</p>
+      <h2 class="h-section">The system is built to make the owner less trapped.</h2>
+      <p class="prose">
+        The owner is usually the bottleneck. You approve the work, answer the calls, chase the missed leads, and try to read the report after hours. A better system should remove weight from your week, not add another meeting where someone explains why results need more time.
+      </p>
+      <p class="prose">
+        Buildwise Media installs the <a href="/system">system</a>, runs it, and keeps the work tied to booked outcomes. Search is one part of that system. The goal is not to sell you SEO tasks. The goal is to build a channel you own, understand, and can keep using.
+      </p>
+      <p class="prose">
+        That is the difference between renting motion and owning a growth channel.
+      </p>
+    </div>
+  </section>
+
+  <!-- @sdt-exempt: FAQ is question-and-answer text; imagery here would be decorative (R020) -->
+  <section class="playbook-faq">
+    <div class="container">
+      <p class="section-tag">FAQ</p>
+      <h2 class="h-section">Common questions.</h2>
+      <div class="faq-list">
+        {faqs.map((f) => (
+          <details class="faq-item">
+            <summary class="faq-q">{f.q}</summary>
+            <div class="faq-a">
+              <p>{f.a}</p>
+            </div>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="playbook-related elev">
+    <div class="container">
+      <p class="section-tag">Related</p>
+      <h2 class="h-section">More from the playbook.</h2>
+      <ul class="related-list">
+        <li><a href="/playbook/hyper-personalized-seo">Hyper-Personalized SEO</a> — search pages matched to the buyer, service, location, and problem</li>
+        <li><a href="/playbook/agency-alternative">Agency Alternative</a> — why owned systems compound better than rented activity</li>
+        <li><a href="/playbook/lead-generation-company-alternative">Lead Generation Company Alternative</a> — fixing the path from interest to booked work</li>
+        <li><a href="/system">The Buildwise System</a> — how the pieces fit together inside the business</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="playbook-cta elev">
+    <div class="container">
+      <h2 class="h-closer">Ready to see if we're a fit?</h2>
+      <p class="lede">If rankings are not turning into booked work, the next step is seeing where the system is leaking.</p>
+      <!-- approved-proof: 008 de-id concrete contractor, organic-playbook use approved by Robert 2026-06-18 -->
+      <blockquote class="pull-quote">
+        <p>A concrete contractor we run went from almost no inbound calls to about 150 leads since launch.</p>
+      </blockquote>
+      <p class="cta-row">
+        <a class="cta-primary" href="/book" data-cta-source="playbook-seo-agency-alternative-cta-primary">See If We're a Fit <span class="cta-arrow">→</span></a>
+        <a class="cta-ghost" href="/system" data-cta-source="playbook-seo-agency-alternative-cta-secondary">See the System</a>
+      </p>
+    </div>
+  </section>
+
+</BaseLayout>
+
+<style>
+.playbook-hero { padding-block: clamp(80px, 12vw, 144px); }
+.playbook-hero .lede { margin-top: 24px; }
+.back-link { color: var(--ink-faint); transition: color 180ms ease; }
+.back-link:hover { color: var(--y2); }
+
+.h-hero em { color: var(--y2); font-style: normal; font-weight: inherit; }
+.h-section em { color: var(--y2); font-style: normal; font-weight: inherit; }
+
+.hero-photo { margin-top: 56px; max-width: 1120px; border-radius: 4px; overflow: hidden; border: 1px solid var(--rule); }
+.hero-photo img { width: 100%; height: auto; display: block; }
+
+.playbook-section { padding-block: clamp(56px, 8vw, 96px); }
+.playbook-section .prose { font-size: 17px; line-height: 1.7; color: var(--ink-dim); max-width: 720px; }
+.playbook-section .prose + .prose { margin-top: 16px; }
+
+.section-photo { margin: 48px 0 0; max-width: 1120px; border-radius: 4px; overflow: hidden; border: 1px solid var(--rule); }
+.section-photo img { width: 100%; height: auto; display: block; }
+.section-photo--diagram { max-width: 980px; border-color: transparent; background: transparent; }
+.section-photo--diagram img { background: transparent; }
+
+.pull-quote { margin: 56px 0; padding: 32px 0; border-block: 1px solid var(--rule); max-width: 880px; }
+.pull-quote p { font-size: 24px; line-height: 1.35; color: var(--ink); font-weight: 500; font-style: italic; }
+
+.playbook-faq { padding-block: clamp(64px, 10vw, 112px); }
+.faq-list { display: flex; flex-direction: column; gap: 16px; margin-top: 32px; max-width: 880px; }
+.faq-item { border-top: 1px solid var(--rule); padding-block: 20px; }
+.faq-item[open] summary { color: var(--y2); }
+.faq-q { font-size: 17px; font-weight: 500; color: var(--ink); cursor: pointer; line-height: 1.4; list-style: none; }
+.faq-q::marker, .faq-q::-webkit-details-marker { display: none; }
+.faq-q::after { content: "+"; float: right; font-family: var(--mono); font-size: 18px; color: var(--y2); }
+.faq-item[open] .faq-q::after { content: "−"; }
+.faq-a { margin-top: 12px; }
+.faq-a p { font-size: 16px; line-height: 1.65; color: var(--ink-dim); max-width: 720px; }
+
+.playbook-related { padding-block: clamp(56px, 8vw, 96px); }
+.related-list { list-style: none; display: flex; flex-direction: column; gap: 12px; margin-top: 32px; max-width: 880px; }
+.related-list a { color: var(--ink); font-weight: 500; text-decoration: none; border-bottom: 1px solid transparent; transition: border-color 180ms ease, color 180ms ease; }
+.related-list a:hover { color: var(--y2); border-bottom-color: var(--y2); }
+
+.playbook-cta { padding-block: clamp(64px, 10vw, 112px); }
+.playbook-cta .lede { margin-top: 16px; }
+.cta-row { display: flex; flex-wrap: wrap; gap: 16px; margin-top: 32px; }
+</style>

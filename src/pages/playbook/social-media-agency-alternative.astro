@@ -1,0 +1,266 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+const title = "Social Media Agency Alternative | Buildwise";
+const description = "Posting more is not a growth system. Compare social media agencies with an owned path to demand.";
+
+const definedTerm = {
+  '@context': 'https://schema.org',
+  '@type': 'DefinedTerm',
+  '@id': 'https://buildwisemedia.com/playbook/social-media-agency-alternative#term',
+  name: 'Social Media Agency Alternative',
+  description: 'A social media agency alternative replaces rented posting activity with a lead system your business owns. Instead of chasing more content for its own sake, the business owns the pages, paths, follow-up, and proof. Those parts turn attention into real sales conversations.',
+  inDefinedTermSet: {
+    '@type': 'DefinedTermSet',
+    '@id': 'https://buildwisemedia.com/playbook/',
+    name: 'Buildwise Media Playbook',
+  },
+};
+
+const breadcrumb = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://buildwisemedia.com/' },
+    { '@type': 'ListItem', position: 2, name: 'Playbook', item: 'https://buildwisemedia.com/playbook/' },
+    { '@type': 'ListItem', position: 3, name: 'Social Media Agency Alternative', item: 'https://buildwisemedia.com/playbook/social-media-agency-alternative' },
+  ],
+};
+
+const faqs = [
+  {
+    q: 'What is a social media agency alternative?',
+    a: 'It is a different way to grow demand. Instead of paying for more posts, you build a system you own. It captures proof, answers buyer questions, turns attention into leads, and keeps improving inside your business.',
+  },
+  {
+    q: 'Does this mean social media does not matter?',
+    a: 'No. Social media can help people notice you. The problem is treating posts as the whole growth plan. Attention needs a clear next step, a strong offer, and follow-up that does not depend on you remembering every lead.',
+  },
+  {
+    q: 'Why do social media monthly contracts often feel hard to measure?',
+    a: 'Many monthly contracts report activity: posts, views, likes, and reach. Those numbers can be useful, but they do not prove the work is bringing in buyers who are ready to book. Owners need a path from attention to booked conversations.',
+  },
+  {
+    q: 'How is Buildwise Media different from a social media agency?',
+    a: 'Buildwise Media is not a social media agency. The Buildwise team builds and runs a lead system your business owns: pages, lead paths, follow-up, reporting, and useful proof. You own the asset and the data.',
+  },
+  {
+    q: 'When is a social media agency still the right fit?',
+    a: 'A social media agency can fit when you need short-term posting help, event coverage, or creative support for a clear window. If you need a system that turns demand into booked work, you need more than a feed.',
+  },
+];
+
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  '@id': 'https://buildwisemedia.com/playbook/social-media-agency-alternative#faq',
+  mainEntity: faqs.map((f) => ({
+    '@type': 'Question',
+    name: f.q,
+    acceptedAnswer: { '@type': 'Answer', text: f.a },
+  })),
+};
+---
+<BaseLayout title={title} description={description} jsonLd={[definedTerm, breadcrumb, faqSchema]}>
+
+  <section class="playbook-hero">
+    <div class="container">
+      <p class="eyebrow"><a href="/playbook" class="back-link">← Playbook</a></p>
+      <h1 class="h-hero">A social media agency alternative for <em>service businesses</em></h1>
+      <p class="lede">
+        You can post every week and still wonder where the real demand is. More content does not fix a weak offer or a thin website. It also does not fix slow follow-up or proof that only lives in scattered messages and screenshots.
+      </p>
+      <p class="lede">
+        A social media agency alternative starts with a harder question: what happens after someone notices you? The owned path turns attention into clear pages, useful proof, better lead capture, and follow-up your business can keep. Social media can feed the system, but it is not the system.
+      </p>
+      <figure class="hero-photo">
+        <!-- @r020:F4 curiosity: atmospheric workspace frames the gap between visible posting and the system behind demand -->
+        <img src="/images/bwm-services-atmospheric-v1.webp" alt="Atmospheric dusk workspace with a glowing laptop and open notebook, suggesting the demand system working behind the visible feed." width="1920" height="1080" loading="eager" decoding="async" />
+      </figure>
+    </div>
+  </section>
+
+  <section class="playbook-section elev">
+    <div class="container">
+      <p class="section-tag">The real problem</p>
+      <h2 class="h-section">Posting is not the same as <em>demand.</em></h2>
+      <p class="prose">
+        A busy feed can make the business look active. That does not mean it is creating buyers. Owners feel this gap fast. The posts go out, and the report looks full. The phone still depends on referrals, repeat work, or you personally chasing every lead.
+      </p>
+      <p class="prose">
+        The issue is not that social media is useless. The issue is that it often gets asked to do the whole job. It has to create trust, explain the offer, prove the result, catch the lead, and move the buyer forward. That is too much for a feed.
+      </p>
+      <p class="prose">
+        A better path gives each job a home. Social media earns attention. Your owned system turns that attention into action.
+      </p>
+      <figure class="section-photo section-photo--diagram">
+        <!-- @r020:F2 proof: simple funnel diagram makes the missing path between social attention and booked leads visible -->
+        <img src="/images/funnel-3-layer-v1.svg" alt="Three-layer funnel diagram showing attention moving through a clear path toward booked sales conversations." width="1200" height="675" loading="lazy" decoding="async" />
+      </figure>
+    </div>
+  </section>
+
+  <section class="playbook-section">
+    <div class="container">
+      <p class="section-tag">What changes</p>
+      <h2 class="h-section">The asset lives where you <em>own it.</em></h2>
+      <p class="prose">
+        The owned path does not start with a posting calendar. It starts with the buyer journey. What does a good prospect need to believe before they book? What proof do they need? What page should answer their next question? What follow-up should happen if they do not book today?
+      </p>
+      <p class="prose">
+        Those pieces should live on your domain, in your accounts, and inside your business. That is the core difference between a rented content plan and a growth system your business owns.
+      </p>
+      <p class="prose">
+        If you want the broad comparison, start with the main <a href="/playbook/agency-alternative">agency alternative</a> guide. If you are comparing a wider monthly marketing contract, read the <a href="/playbook/digital-marketing-agency-alternative">digital marketing agency alternative</a> page next.
+      </p>
+      <figure class="section-photo section-photo--diagram">
+        <!-- @r020:F2 proof: layered diagram shows social attention feeding an owned system instead of staying trapped in a feed -->
+        <img src="/images/stacked-planes-v1.svg" alt="Layered system diagram showing attention, pages, follow-up, and reporting connected inside an owned business system." width="1200" height="675" loading="lazy" decoding="async" />
+      </figure>
+    </div>
+  </section>
+
+  <section class="playbook-section elev">
+    <div class="container">
+      <p class="section-tag">How the system works</p>
+      <h2 class="h-section">Use the feed to start the path, not finish it.</h2>
+      <p class="prose">
+        A strong system turns small moments of attention into the next clear step. A homeowner sees a project post and lands on a page that explains the work. A business owner reads a short point and finds proof that matches their problem. A past client sees a reminder and sends a referral to a page that makes the next move easy.
+      </p>
+      <p class="prose">
+        That only works when the parts connect. Your pages need to answer real objections. Your lead path needs to be simple. Your follow-up needs to be fast. Your reporting needs to show which messages and offers create real conversations.
+      </p>
+      <blockquote class="pull-quote">
+        <p>The feed earns attention. The owned system has to turn it into demand.</p>
+      </blockquote>
+      <figure class="section-photo section-photo--diagram">
+        <!-- @r020:F2 proof: ascending node mesh shows separate lead-path parts connecting into one working system -->
+        <img src="/images/node-mesh-ascending-v1.svg" alt="Ascending node mesh diagram showing pages, proof, follow-up, and reporting connected into one lead system." width="1200" height="675" loading="lazy" decoding="async" />
+      </figure>
+    </div>
+  </section>
+
+  <section class="playbook-section">
+    <div class="container">
+      <p class="section-tag">How Buildwise Media uses it</p>
+      <h2 class="h-section">Buildwise Media installs the demand path.</h2>
+      <p class="prose">
+        Buildwise Media is the alternative to an agency model. The Buildwise team builds and runs the pages, lead paths, proof, follow-up, and reporting that make attention useful. Social media can support that work, but it is not treated as the main event.
+      </p>
+      <p class="prose">
+        The work connects into the broader <a href="/system">Buildwise Media system</a>. It includes a better website, clearer offers, lead capture, follow-up, and a steady view of what is working. If you want the service shape, the <a href="/services">services</a> page shows how the team runs it.
+      </p>
+      <p class="prose">
+        The point is simple. You should not need to rent endless content just to feel visible. You should own a path that helps the right buyer move.
+      </p>
+    </div>
+  </section>
+
+  <section class="playbook-section elev">
+    <div class="container">
+      <p class="section-tag">When to choose each path</p>
+      <h2 class="h-section">Choose posting help for noise. Choose a system for growth.</h2>
+      <p class="prose">
+        A social media agency can be useful when you need hands on the feed. That can mean event posts, short campaigns, photo drops, or steady brand presence. If that is the job, keep the job narrow and measure it honestly.
+      </p>
+      <p class="prose">
+        Choose the owned path when you need more than visibility. If leads are slow, more posts will not solve the root problem. The same is true when follow-up is uneven, proof is scattered, or your website does not help buyers decide.
+      </p>
+      <p class="prose">
+        The question is not whether social media matters. The question is whether your business has somewhere useful to send the attention.
+      </p>
+    </div>
+  </section>
+
+  <!-- @sdt-exempt: FAQ is question-and-answer text; imagery here would be decorative (R020) -->
+  <section class="playbook-faq">
+    <div class="container">
+      <p class="section-tag">FAQ</p>
+      <h2 class="h-section">Common questions.</h2>
+      <div class="faq-list">
+        {faqs.map((f) => (
+          <details class="faq-item">
+            <summary class="faq-q">{f.q}</summary>
+            <div class="faq-a">
+              <p>{f.a}</p>
+            </div>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="playbook-related elev">
+    <div class="container">
+      <p class="section-tag">Related</p>
+      <h2 class="h-section">More from the playbook.</h2>
+      <ul class="related-list">
+        <li><a href="/playbook/agency-alternative">Agency Alternative</a> — the broader rent-vs-own choice for service businesses</li>
+        <li><a href="/playbook/digital-marketing-agency-alternative">Digital Marketing Agency Alternative</a> — when the monthly-fee agency model is the wrong shape</li>
+        <li><a href="/system">The Buildwise Media System</a> — how the lead system fits together</li>
+        <li><a href="/services">Services</a> — the run-for-you options behind the system</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="playbook-cta elev">
+    <div class="container">
+      <h2 class="h-closer">Ready to see if we're a fit?</h2>
+      <p class="lede">If you would rather own the demand path than rent more posting, that is the conversation worth having.</p>
+      <!-- approved-proof: 008 de-id concrete contractor, organic-playbook use approved by Robert 2026-06-18 -->
+      <blockquote class="pull-quote">
+        <p>A concrete contractor we run went from almost no inbound calls to about 150 leads since launch.</p>
+      </blockquote>
+      <p class="cta-row">
+        <a class="cta-primary" href="/book" data-cta-source="playbook-social-media-agency-alternative-cta-primary">See If We're a Fit <span class="cta-arrow">→</span></a>
+        <a class="cta-ghost" href="/system" data-cta-source="playbook-social-media-agency-alternative-cta-secondary">See the System</a>
+      </p>
+    </div>
+  </section>
+
+</BaseLayout>
+
+<style>
+.playbook-hero { padding-block: clamp(80px, 12vw, 144px); }
+.playbook-hero .lede { margin-top: 24px; }
+.back-link { color: var(--ink-faint); transition: color 180ms ease; }
+.back-link:hover { color: var(--y2); }
+
+.h-hero em { color: var(--y2); font-style: normal; font-weight: inherit; }
+.h-section em { color: var(--y2); font-style: normal; font-weight: inherit; }
+
+.hero-photo { margin-top: 56px; max-width: 1120px; border-radius: 4px; overflow: hidden; border: 1px solid var(--rule); }
+.hero-photo img { width: 100%; height: auto; display: block; }
+
+.playbook-section { padding-block: clamp(56px, 8vw, 96px); }
+.playbook-section .prose { font-size: 17px; line-height: 1.7; color: var(--ink-dim); max-width: 720px; }
+.playbook-section .prose + .prose { margin-top: 16px; }
+
+.section-photo { margin: 48px 0 0; max-width: 1120px; border-radius: 4px; overflow: hidden; border: 1px solid var(--rule); }
+.section-photo img { width: 100%; height: auto; display: block; }
+.section-photo--diagram { max-width: 980px; border-color: transparent; background: transparent; }
+.section-photo--diagram img { background: transparent; }
+
+.pull-quote { margin: 56px 0; padding: 32px 0; border-block: 1px solid var(--rule); max-width: 880px; }
+.pull-quote p { font-size: 24px; line-height: 1.35; color: var(--ink); font-weight: 500; font-style: italic; }
+
+.playbook-faq { padding-block: clamp(64px, 10vw, 112px); }
+.faq-list { display: flex; flex-direction: column; gap: 16px; margin-top: 32px; max-width: 880px; }
+.faq-item { border-top: 1px solid var(--rule); padding-block: 20px; }
+.faq-item[open] summary { color: var(--y2); }
+.faq-q { font-size: 17px; font-weight: 500; color: var(--ink); cursor: pointer; line-height: 1.4; list-style: none; }
+.faq-q::marker, .faq-q::-webkit-details-marker { display: none; }
+.faq-q::after { content: "+"; float: right; font-family: var(--mono); font-size: 18px; color: var(--y2); }
+.faq-item[open] .faq-q::after { content: "-"; }
+.faq-a { margin-top: 12px; }
+.faq-a p { font-size: 16px; line-height: 1.65; color: var(--ink-dim); max-width: 720px; }
+
+.playbook-related { padding-block: clamp(56px, 8vw, 96px); }
+.related-list { list-style: none; display: flex; flex-direction: column; gap: 12px; margin-top: 32px; max-width: 880px; }
+.related-list a { color: var(--ink); font-weight: 500; text-decoration: none; border-bottom: 1px solid transparent; transition: border-color 180ms ease, color 180ms ease; }
+.related-list a:hover { color: var(--y2); border-bottom-color: var(--y2); }
+
+.playbook-cta { padding-block: clamp(64px, 10vw, 112px); }
+.playbook-cta .lede { margin-top: 16px; }
+.cta-row { display: flex; flex-wrap: wrap; gap: 16px; margin-top: 32px; }
+</style>

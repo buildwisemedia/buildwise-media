@@ -1,0 +1,243 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+const title = "PPC Agency Alternative for Service Businesses";
+const description = "Paid ads work better when the system behind them is yours. See why an owned growth system beats a PPC agency.";
+
+const definedTerm = {
+  '@context': 'https://schema.org',
+  '@type': 'DefinedTerm',
+  '@id': 'https://buildwisemedia.com/playbook/ppc-agency-alternative#term',
+  name: 'PPC Agency Alternative',
+  description: 'A PPC agency alternative is an owned growth system for service business owners who need more than ad spend. Instead of renting ad activity from a vendor, the business owns the pages, lead paths, follow-up, reporting, and account history that turn paid clicks into booked work.',
+  inDefinedTermSet: {
+    '@type': 'DefinedTermSet',
+    '@id': 'https://buildwisemedia.com/playbook/',
+    name: 'Buildwise Media Playbook',
+  },
+};
+
+const breadcrumb = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://buildwisemedia.com/' },
+    { '@type': 'ListItem', position: 2, name: 'Playbook', item: 'https://buildwisemedia.com/playbook/' },
+    { '@type': 'ListItem', position: 3, name: 'PPC Agency Alternative', item: 'https://buildwisemedia.com/playbook/ppc-agency-alternative' },
+  ],
+};
+
+const faqs = [
+  {
+    q: 'What is a PPC agency alternative?',
+    a: 'A PPC agency alternative is a way to make paid ads part of an owned growth system. The ads still matter, but the pages, lead paths, follow-up, and reports are built for your business and stay in your hands.',
+  },
+  {
+    q: 'Is Buildwise Media a paid ads agency?',
+    a: 'No. We are the alternative to that model. We build and run the system around paid ads so you own the asset, not just a month of ad management.',
+  },
+  {
+    q: 'Why do paid ads fail for service businesses?',
+    a: 'Paid ads often fail because the system behind the click is weak. The page is vague, follow-up is slow, the offer is unclear, or no one can see which leads became real jobs.',
+  },
+  {
+    q: 'Can this replace my current paid ads vendor?',
+    a: 'It can if the real problem is not just ad setup. If you need the full path from click to booked job tightened, an owned system is a stronger fit than another vendor handoff.',
+  },
+  {
+    q: 'Do I need a large ad budget first?',
+    a: 'No. A stronger system should come before bigger spend. It is better to fix the path a lead takes before paying for more people to enter it.',
+  },
+];
+
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  '@id': 'https://buildwisemedia.com/playbook/ppc-agency-alternative#faq',
+  mainEntity: faqs.map((f) => ({
+    '@type': 'Question',
+    name: f.q,
+    acceptedAnswer: { '@type': 'Answer', text: f.a },
+  })),
+};
+---
+<BaseLayout title={title} description={description} jsonLd={[definedTerm, breadcrumb, faqSchema]}>
+
+  <section class="playbook-hero">
+    <div class="container">
+      <p class="eyebrow"><a href="/playbook" class="back-link">← Playbook</a></p>
+      <h1 class="h-hero">A pay-per-click (PPC) agency alternative for owners who need <em>more than ad spend</em></h1>
+      <p class="lede">
+        Paid ads get blamed when the real problem sits after the click. You can raise the budget and test new headlines. Good leads still slip away when the page is weak, follow-up is late, or nobody can see which calls became booked work.
+      </p>
+      <p class="lede">
+        Buildwise Media is not a PPC agency. We build and run the system around paid traffic. It connects the pages, lead paths, follow-up, and reporting that turn attention into real sales chances. A <a href="/playbook/agency-alternative">PPC agency alternative</a> should make your spend sharper, not just busier.
+      </p>
+      <figure class="hero-photo">
+        <!-- @r020:F4 curiosity: quiet operating desk frames the question of whether ad spend is being supported by a real system -->
+        <img src="/images/bwm-services-atmospheric-v1.webp" alt="Dark workspace with a glowing laptop, notes, and an empty chair — a paid growth system still operating after the room clears." width="1920" height="1080" loading="eager" decoding="async" />
+      </figure>
+    </div>
+  </section>
+
+  <section class="playbook-section elev">
+    <div class="container">
+      <p class="section-tag">The spend problem</p>
+      <h2 class="h-section">More spend does not fix a weak path.</h2>
+      <p class="prose">
+        A PPC vendor can send more people to your site. That does not mean more of the right people call, book, or buy. If the page sounds like every competitor, good leads do not stay focused. If follow-up lands hours later, the ad budget exposes a broken path.
+      </p>
+      <p class="prose">
+        This is why many owners feel stuck. The report says the campaign is active. The bill keeps moving. The phone does not ring enough. When you ask what changed, the answer is often another test, another month, or more spend.
+      </p>
+      <p class="prose">
+        The better question is not "who can manage the ads?" It is "what system turns the next click into a booked job?"
+      </p>
+    </div>
+  </section>
+
+  <section class="playbook-section">
+    <div class="container">
+      <p class="section-tag">What changes</p>
+      <h2 class="h-section">The system around the click matters most.</h2>
+      <p class="prose">
+        Paid traffic is one part of the machine. The full path matters. What the person sees matters. So does what they are asked to do, how fast you respond, and whether revenue is clear. If those pieces are loose, ads get more expensive than they should.
+      </p>
+      <p class="prose">
+        Our <a href="/services">services</a> focus on the full path. We help shape the offer, build the page, tighten the lead handoff, and show what is happening after the form or call. That is different from renting a campaign manager and hoping the rest of the business keeps up.
+      </p>
+      <figure class="section-photo section-photo--diagram">
+        <!-- @r020:F2 proof: layered-planes diagram shows paid traffic working inside a larger owned system -->
+        <img src="/images/stacked-planes-v1.svg" alt="Layered system diagram showing traffic, page, lead handoff, follow-up, and reporting connected in one owned growth system." width="1200" height="675" loading="lazy" decoding="async" />
+      </figure>
+    </div>
+  </section>
+
+  <section class="playbook-section elev">
+    <div class="container">
+      <p class="section-tag">Ownership</p>
+      <h2 class="h-section">You should own the asset ads are feeding.</h2>
+      <p class="prose">
+        A common PPC setup leaves you with activity but little control. The work happens in someone else's process. The reporting is hard to read. The learning lives with the vendor. If you leave, the useful parts are often hard to carry with you.
+      </p>
+      <blockquote class="pull-quote">
+        <p>Ad spend should build your system, not just rent someone else's activity.</p>
+      </blockquote>
+      <p class="prose">
+        An owned growth system changes that. The pages, accounts, data, and lead history are built around your business. The Buildwise team can run it with you, but the asset stays yours. That is the same principle behind our <a href="/book">Revenue Leak Map</a>. It finds where money leaks before asking you to buy more traffic.
+      </p>
+      <figure class="section-photo">
+        <!-- @r020:F2 proof: still-life proof image reinforces that ad spend should leave the owner with usable business evidence -->
+        <img src="/images/bwm-proof-still-life-v1.webp" alt="Dark desk with printed notes and proof materials arranged beside a lit screen, showing paid growth evidence an owner can keep." width="1920" height="1080" loading="lazy" decoding="async" />
+      </figure>
+    </div>
+  </section>
+
+  <section class="playbook-section">
+    <div class="container">
+      <p class="section-tag">When it fits</p>
+      <h2 class="h-section">This fits when the bottleneck is bigger than ads.</h2>
+      <p class="prose">
+        A narrow PPC vendor can help when your offer is proven and your page is strong. It can also help when follow-up is fast and you only need someone to manage spend. If that is true, the vendor model may be enough.
+      </p>
+      <p class="prose">
+        If you are still fixing the offer, page, lead follow-up, handoff, and sales path, you need a wider answer. That is where an owned system beats another vendor handoff. It gives you one path to improve the parts that paid traffic depends on.
+      </p>
+      <p class="prose">
+        If your real issue is lead quality instead of clicks, compare this with our <a href="/playbook/lead-generation-company-alternative">lead generation company alternative</a>. The same rule applies: do not rent more activity until the path can handle it.
+      </p>
+    </div>
+  </section>
+
+  <!-- @sdt-exempt: FAQ is question-and-answer text; imagery here would be decorative (R020) -->
+  <section class="playbook-faq">
+    <div class="container">
+      <p class="section-tag">FAQ</p>
+      <h2 class="h-section">Common questions.</h2>
+      <div class="faq-list">
+        {faqs.map((f) => (
+          <details class="faq-item">
+            <summary class="faq-q">{f.q}</summary>
+            <div class="faq-a">
+              <p>{f.a}</p>
+            </div>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="playbook-related elev">
+    <div class="container">
+      <p class="section-tag">Related</p>
+      <h2 class="h-section">More from the playbook.</h2>
+      <ul class="related-list">
+        <li><a href="/playbook/agency-alternative">Agency Alternative</a> — the main rent-versus-own guide for service business owners</li>
+        <li><a href="/playbook/lead-generation-company-alternative">Lead Generation Company Alternative</a> — what to use when lead quality, not just volume, is the issue</li>
+        <li><a href="/services">Services</a> — how the Buildwise team builds and runs the owned growth system</li>
+        <li><a href="/book">Revenue Leak Map</a> — find the leaks before adding more traffic</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="playbook-cta elev">
+    <div class="container">
+      <h2 class="h-closer">Ready to see if we're a fit?</h2>
+      <p class="lede">If you would rather own the system behind the spend, that is the conversation worth having.</p>
+      <!-- approved-proof: 008 de-id concrete contractor, organic-playbook use approved by Robert 2026-06-18 -->
+      <blockquote class="pull-quote">
+        <p>A concrete contractor we run went from almost no inbound calls to about 150 leads since launch.</p>
+      </blockquote>
+      <p class="cta-row">
+        <a class="cta-primary" href="/book" data-cta-source="playbook-ppc-agency-alternative-cta-primary">See If We're a Fit <span class="cta-arrow">→</span></a>
+        <a class="cta-ghost" href="/system" data-cta-source="playbook-ppc-agency-alternative-cta-secondary">See the System</a>
+      </p>
+    </div>
+  </section>
+
+</BaseLayout>
+
+<style>
+.playbook-hero { padding-block: clamp(80px, 12vw, 144px); }
+.playbook-hero .lede { margin-top: 24px; }
+.back-link { color: var(--ink-faint); transition: color 180ms ease; }
+.back-link:hover { color: var(--y2); }
+
+.h-hero em { color: var(--y2); font-style: normal; font-weight: inherit; }
+.h-section em { color: var(--y2); font-style: normal; font-weight: inherit; }
+
+.hero-photo { margin-top: 56px; max-width: 1120px; border-radius: 4px; overflow: hidden; border: 1px solid var(--rule); }
+.hero-photo img { width: 100%; height: auto; display: block; }
+
+.playbook-section { padding-block: clamp(56px, 8vw, 96px); }
+.playbook-section .prose { font-size: 17px; line-height: 1.7; color: var(--ink-dim); max-width: 720px; }
+.playbook-section .prose + .prose { margin-top: 16px; }
+
+.section-photo { margin: 48px 0 0; max-width: 1120px; border-radius: 4px; overflow: hidden; border: 1px solid var(--rule); }
+.section-photo img { width: 100%; height: auto; display: block; }
+.section-photo--diagram { max-width: 980px; border-color: transparent; background: transparent; }
+.section-photo--diagram img { background: transparent; }
+
+.pull-quote { margin: 56px 0; padding: 32px 0; border-block: 1px solid var(--rule); max-width: 880px; }
+.pull-quote p { font-size: 24px; line-height: 1.35; color: var(--ink); font-weight: 500; font-style: italic; }
+
+.playbook-faq { padding-block: clamp(64px, 10vw, 112px); }
+.faq-list { display: flex; flex-direction: column; gap: 16px; margin-top: 32px; max-width: 880px; }
+.faq-item { border-top: 1px solid var(--rule); padding-block: 20px; }
+.faq-item[open] summary { color: var(--y2); }
+.faq-q { font-size: 17px; font-weight: 500; color: var(--ink); cursor: pointer; line-height: 1.4; list-style: none; }
+.faq-q::marker, .faq-q::-webkit-details-marker { display: none; }
+.faq-q::after { content: "+"; float: right; font-family: var(--mono); font-size: 18px; color: var(--y2); }
+.faq-item[open] .faq-q::after { content: "−"; }
+.faq-a { margin-top: 12px; }
+.faq-a p { font-size: 16px; line-height: 1.65; color: var(--ink-dim); max-width: 720px; }
+
+.playbook-related { padding-block: clamp(56px, 8vw, 96px); }
+.related-list { list-style: none; display: flex; flex-direction: column; gap: 12px; margin-top: 32px; max-width: 880px; }
+.related-list a { color: var(--ink); font-weight: 500; text-decoration: none; border-bottom: 1px solid transparent; transition: border-color 180ms ease, color 180ms ease; }
+.related-list a:hover { color: var(--y2); border-bottom-color: var(--y2); }
+
+.playbook-cta { padding-block: clamp(64px, 10vw, 112px); }
+.playbook-cta .lede { margin-top: 16px; }
+.cta-row { display: flex; flex-wrap: wrap; gap: 16px; margin-top: 32px; }
+</style>
