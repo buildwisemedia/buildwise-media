@@ -1,0 +1,265 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+const title = "AI Marketing Agency Alternative | Buildwise";
+const description = "An AI marketing agency alternative for owners who want a run-for-you system, not another tool or vendor.";
+
+const definedTerm = {
+  '@context': 'https://schema.org',
+  '@type': 'DefinedTerm',
+  '@id': 'https://buildwisemedia.com/playbook/ai-marketing-agency-alternative#term',
+  name: 'AI Marketing Agency Alternative',
+  description: 'An AI marketing agency alternative is a run-for-you owned system for service business owners who want the work, data, and operating rhythm to stay inside their business instead of renting another outside agency model.',
+  inDefinedTermSet: {
+    '@type': 'DefinedTermSet',
+    '@id': 'https://buildwisemedia.com/playbook/',
+    name: 'Buildwise Media Playbook',
+  },
+};
+
+const breadcrumb = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://buildwisemedia.com/' },
+    { '@type': 'ListItem', position: 2, name: 'Playbook', item: 'https://buildwisemedia.com/playbook/' },
+    { '@type': 'ListItem', position: 3, name: 'AI Marketing Agency Alternative', item: 'https://buildwisemedia.com/playbook/ai-marketing-agency-alternative' },
+  ],
+};
+
+const faqs = [
+  {
+    q: 'What is an AI marketing agency alternative?',
+    a: 'It is a run-for-you marketing system that is built around your business, your accounts, and your customer path. The Buildwise team operates it. The system is meant to stay with you instead of living inside an outside agency model.',
+  },
+  {
+    q: 'Is Buildwise Media an AI marketing agency?',
+    a: 'No. Buildwise Media is the alternative to that model. We do not rent you a stack of activity and keep the working parts outside your business. We build and operate an owned system that keeps the data, code, pages, and follow-up paths in your hands.',
+  },
+  {
+    q: 'How is this different from buying another AI tool?',
+    a: 'A tool still leaves the work on your plate. You have to choose it, set it up, connect it, manage it, and decide what to do when it breaks. A run-for-you system gives you the operating help without turning you into the person who has to manage every moving part.',
+  },
+  {
+    q: 'Do I need an internal marketing team first?',
+    a: 'No. This is built for owners who need the function before they can build the department. If you already have a small team, the system can give them better paths and cleaner work. If you do not, it gives you a working marketing function without hiring around every gap.',
+  },
+  {
+    q: 'When is a regular agency still the better fit?',
+    a: 'A regular agency can fit when you only need a short project, a one-off campaign, or a rented channel for a season. If you want a system that compounds and stays inside your business, the owned model is the better question to explore.',
+  },
+];
+
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  '@id': 'https://buildwisemedia.com/playbook/ai-marketing-agency-alternative#faq',
+  mainEntity: faqs.map((f) => ({
+    '@type': 'Question',
+    name: f.q,
+    acceptedAnswer: { '@type': 'Answer', text: f.a },
+  })),
+};
+---
+<BaseLayout title={title} description={description} jsonLd={[definedTerm, breadcrumb, faqSchema]}>
+
+  <section class="playbook-hero">
+    <div class="container">
+      <p class="eyebrow"><a href="/playbook" class="back-link">← Playbook</a></p>
+      <h1 class="h-hero">An AI marketing agency alternative built around <em>ownership</em></h1>
+      <p class="lede">
+        If you are looking for an AI marketing agency alternative, you are probably not trying to buy more tools. You are trying to get the work off your plate. You still need control of the customer path, the data, and the system that brings new work in.
+      </p>
+      <p class="lede">
+        That is the real split. A typical agency model rents you activity. A tool gives you another thing to manage. Buildwise Media builds and runs the system inside your business. You get the operating help without handing the asset away.
+      </p>
+      <figure class="hero-photo">
+        <!-- @r020:F4 curiosity: quiet operating room image frames the question of who owns the system after the work is done -->
+        <img src="/images/bwm-services-atmospheric-v1.webp" alt="Dark workspace with a laptop, notes, and a running system on screen after the room has gone quiet." width="1920" height="1080" loading="eager" decoding="async" />
+      </figure>
+    </div>
+  </section>
+
+  <section class="playbook-section elev">
+    <div class="container">
+      <p class="section-tag">The old tradeoff</p>
+      <h2 class="h-section">The old choice puts you in a bad seat.</h2>
+      <p class="prose">
+        Most owners get offered two choices. Hire an agency and hope the work turns into real revenue, or buy a new AI tool and become the person who has to run it. Neither choice is wrong on its own. The problem is what happens when you are already the bottleneck.
+      </p>
+      <p class="prose">
+        You do not need another dashboard to check. You do not need another vendor asking for direction every week. You need a system that can catch demand, qualify it, follow up, and show what is working while you keep running the business.
+      </p>
+      <p class="prose">
+        That is why this page is not about hiring an AI marketing agency. It is about replacing that pattern with an owned operating system.
+      </p>
+    </div>
+  </section>
+
+  <section class="playbook-section">
+    <div class="container">
+      <p class="section-tag">What changes</p>
+      <h2 class="h-section">Ownership changes the whole relationship.</h2>
+      <p class="prose">
+        In an agency setup, the work often sits outside your walls. The strategy lives in calls. The process lives in someone else's account. The report arrives after the fact. If you leave, too much of what you paid for leaves with the relationship.
+      </p>
+      <p class="prose">
+        An owned system is different. Your pages, lead paths, follow-up, proof, and reporting are built around your business and kept in your hands. The Buildwise team runs the system, but the working parts are meant to become part of your company, not ours.
+      </p>
+      <blockquote class="pull-quote">
+        <p>The point is not to rent smarter activity. The point is to own a system that keeps getting better.</p>
+      </blockquote>
+      <figure class="section-photo section-photo--diagram">
+        <!-- @r020:F2 proof: layered system diagram makes ownership visible as connected parts the client keeps -->
+        <img src="/images/stacked-planes-v1.svg" alt="Layered system diagram showing connected parts of an owned marketing system." width="1200" height="675" loading="lazy" decoding="async" />
+      </figure>
+    </div>
+  </section>
+
+  <section class="playbook-section elev">
+    <div class="container">
+      <p class="section-tag">How it runs</p>
+      <h2 class="h-section">Run-for-you does not mean rented-from-you.</h2>
+      <p class="prose">
+        The useful middle is simple. You should not have to become a full-time system manager just because the market has better tools now. But you also should not lose the asset because an outside team is doing the work.
+      </p>
+      <p class="prose">
+        Buildwise Media installs the working parts, operates them, and keeps improving the paths that turn attention into booked conversations. That can sit beside an <a href="/playbook/ai-marketing-department">AI marketing department</a>. It can support an <a href="/playbook/ai-marketing-department-small-business">AI marketing department for a small business</a>, or serve as the bridge before you build one.
+      </p>
+      <p class="prose">
+        You get the help. You keep the system. That is the difference.
+      </p>
+    </div>
+  </section>
+
+  <section class="playbook-section">
+    <div class="container">
+      <p class="section-tag">What the system includes</p>
+      <h2 class="h-section">The work connects around the customer path.</h2>
+      <p class="prose">
+        A useful marketing system is not one page, one campaign, or one clever trick. It is the path from first visit to qualified conversation. The page has to say the right thing. The form has to ask the right questions. The follow-up has to happen fast. The reporting has to tell you what to fix next.
+      </p>
+      <p class="prose">
+        That is why the system view matters. The public site, the intake path, the follow-up, and the review rhythm all need to work together. You can see the broader model on <a href="/system">the system page</a>.
+      </p>
+      <p class="prose">
+        The owner should not be the glue holding every piece together. The system should do more of that work.
+      </p>
+      <figure class="section-photo section-photo--diagram">
+        <!-- @r020:F2 proof: funnel diagram shows the owner how each step works together instead of sitting in separate tasks -->
+        <img src="/images/funnel-5-layer-v1.svg" alt="Five-layer funnel diagram showing the customer path from first visit to qualified conversation." width="1200" height="675" loading="lazy" decoding="async" />
+      </figure>
+    </div>
+  </section>
+
+  <section class="playbook-section elev">
+    <div class="container">
+      <p class="section-tag">When this fits</p>
+      <h2 class="h-section">This fits when you want the asset, not the theater.</h2>
+      <p class="prose">
+        A regular agency can make sense when the job is narrow and temporary. Maybe you need a short campaign, a project, or extra hands for one channel. In that case, renting the work can be fine.
+      </p>
+      <p class="prose">
+        This fits when you are tired of renting motion and still being left with the same core problem. You want the system to keep learning from your market. You want the data to stay with you. You want the work to compound instead of resetting every time you change providers.
+      </p>
+      <p class="prose">
+        If that is the question, the broader <a href="/playbook/agency-alternative">agency alternative</a> model is the place to start.
+      </p>
+      <figure class="section-photo">
+        <!-- @r020:F1 emotion: outcome-focused workspace image helps the owner feel the relief of a system that keeps working after setup -->
+        <img src="/images/bwm-outcomes-environmental-cinematic-v1.webp" alt="Dark workspace arranged around visible outcome notes and a working screen after the system is in motion." width="1920" height="1080" loading="lazy" decoding="async" />
+      </figure>
+    </div>
+  </section>
+
+  <!-- @sdt-exempt: FAQ is question-and-answer text; imagery here would be decorative (R020) -->
+  <section class="playbook-faq">
+    <div class="container">
+      <p class="section-tag">FAQ</p>
+      <h2 class="h-section">Common questions.</h2>
+      <div class="faq-list">
+        {faqs.map((f) => (
+          <details class="faq-item">
+            <summary class="faq-q">{f.q}</summary>
+            <div class="faq-a">
+              <p>{f.a}</p>
+            </div>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="playbook-related elev">
+    <div class="container">
+      <p class="section-tag">Related</p>
+      <h2 class="h-section">More from the playbook.</h2>
+      <ul class="related-list">
+        <li><a href="/playbook/ai-marketing-department">AI Marketing Department</a> — the owned function this model can grow into</li>
+        <li><a href="/playbook/ai-marketing-department-small-business">AI Marketing Department for Small Business</a> — how the model fits before you have a full team</li>
+        <li><a href="/system">The System</a> — how the parts connect around revenue</li>
+        <li><a href="/playbook/agency-alternative">Agency Alternative</a> — the larger rent-versus-own frame</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="playbook-cta elev">
+    <div class="container">
+      <h2 class="h-closer">Ready to see if we're a fit?</h2>
+      <p class="lede">If you want the work run for you and the system owned by you, that is the conversation worth having.</p>
+      <blockquote class="pull-quote">
+        <p>A concrete contractor we run went from almost no inbound calls to roughly 150 leads since launch.</p>
+      </blockquote>
+      <p class="cta-row">
+        <a class="cta-primary" href="/book" data-cta-source="playbook-ai-marketing-agency-alternative-cta-primary">See If We're a Fit <span class="cta-arrow">→</span></a>
+        <a class="cta-ghost" href="/system" data-cta-source="playbook-ai-marketing-agency-alternative-cta-secondary">See the System</a>
+      </p>
+    </div>
+  </section>
+
+</BaseLayout>
+
+<style>
+.playbook-hero { padding-block: clamp(80px, 12vw, 144px); }
+.playbook-hero .lede { margin-top: 24px; }
+.back-link { color: var(--ink-faint); transition: color 180ms ease; }
+.back-link:hover { color: var(--y2); }
+
+.h-hero em { color: var(--y2); font-style: normal; font-weight: inherit; }
+.h-section em { color: var(--y2); font-style: normal; font-weight: inherit; }
+
+.hero-photo { margin-top: 56px; max-width: 1120px; border-radius: 4px; overflow: hidden; border: 1px solid var(--rule); }
+.hero-photo img { width: 100%; height: auto; display: block; }
+
+.playbook-section { padding-block: clamp(56px, 8vw, 96px); }
+.playbook-section .prose { font-size: 17px; line-height: 1.7; color: var(--ink-dim); max-width: 720px; }
+.playbook-section .prose + .prose { margin-top: 16px; }
+
+.section-photo { margin: 48px 0 0; max-width: 1120px; border-radius: 4px; overflow: hidden; border: 1px solid var(--rule); }
+.section-photo img { width: 100%; height: auto; display: block; }
+.section-photo--diagram { max-width: 980px; border-color: transparent; background: transparent; }
+.section-photo--diagram img { background: transparent; }
+
+.pull-quote { margin: 56px 0; padding: 32px 0; border-block: 1px solid var(--rule); max-width: 880px; }
+.pull-quote p { font-size: 24px; line-height: 1.35; color: var(--ink); font-weight: 500; font-style: italic; }
+
+.playbook-faq { padding-block: clamp(64px, 10vw, 112px); }
+.faq-list { display: flex; flex-direction: column; gap: 16px; margin-top: 32px; max-width: 880px; }
+.faq-item { border-top: 1px solid var(--rule); padding-block: 20px; }
+.faq-item[open] summary { color: var(--y2); }
+.faq-q { font-size: 17px; font-weight: 500; color: var(--ink); cursor: pointer; line-height: 1.4; list-style: none; }
+.faq-q::marker, .faq-q::-webkit-details-marker { display: none; }
+.faq-q::after { content: "+"; float: right; font-family: var(--mono); font-size: 18px; color: var(--y2); }
+.faq-item[open] .faq-q::after { content: "−"; }
+.faq-a { margin-top: 12px; }
+.faq-a p { font-size: 16px; line-height: 1.65; color: var(--ink-dim); max-width: 720px; }
+
+.playbook-related { padding-block: clamp(56px, 8vw, 96px); }
+.related-list { list-style: none; display: flex; flex-direction: column; gap: 12px; margin-top: 32px; max-width: 880px; }
+.related-list a { color: var(--ink); font-weight: 500; text-decoration: none; border-bottom: 1px solid transparent; transition: border-color 180ms ease, color 180ms ease; }
+.related-list a:hover { color: var(--y2); border-bottom-color: var(--y2); }
+
+.playbook-cta { padding-block: clamp(64px, 10vw, 112px); }
+.playbook-cta .lede { margin-top: 16px; }
+.cta-row { display: flex; flex-wrap: wrap; gap: 16px; margin-top: 32px; }
+</style>

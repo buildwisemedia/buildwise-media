@@ -1,0 +1,261 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+const title = "Owned Lead System for Contractors | Buildwise";
+const description = "For contractors tired of shared leads, see a better path built around your proof, service area, and best-fit jobs.";
+
+const definedTerm = {
+  '@context': 'https://schema.org',
+  '@type': 'DefinedTerm',
+  '@id': 'https://buildwisemedia.com/playbook/contractor-lead-generation-company-alternative#term',
+  name: 'Contractor Lead Generation Company Alternative',
+  description: 'A contractor lead generation company alternative is a lead system built around the contractor, not a rented list of shared names. Instead of buying the same names as other crews, the business builds its own website, proof, and follow-up.',
+  inDefinedTermSet: {
+    '@type': 'DefinedTermSet',
+    '@id': 'https://buildwisemedia.com/playbook/',
+    name: 'Buildwise Media Playbook',
+  },
+};
+
+const breadcrumb = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://buildwisemedia.com/' },
+    { '@type': 'ListItem', position: 2, name: 'Playbook', item: 'https://buildwisemedia.com/playbook/' },
+    { '@type': 'ListItem', position: 3, name: 'Contractor Lead Generation Company Alternative', item: 'https://buildwisemedia.com/playbook/contractor-lead-generation-company-alternative' },
+  ],
+};
+
+const faqs = [
+  {
+    q: 'What is the problem with shared contractor leads?',
+    a: 'Shared leads make you compete after the owner has already asked for help. You may be one of several crews calling the same person. That creates price pressure, slow replies, and more wasted time for your office.',
+  },
+  {
+    q: 'How is this different from a lead generation company?',
+    a: 'A lead generation company often sells you access to leads it controls. This alternative builds around your name, your proof, your service area, and your follow-up. That makes future jobs easier to earn.',
+  },
+  {
+    q: 'Is this only for one trade?',
+    a: 'No. The same model can fit many home service and trade businesses. The offer, proof, and lead paths change by trade. The goal stays the same: create better-fit leads that come to you.',
+  },
+  {
+    q: 'Does this replace every paid lead source right away?',
+    a: 'Not always. If a paid lead source is working, you do not need to shut it off on day one. The point is to stop depending on rented leads as your main growth path.',
+  },
+  {
+    q: 'How do I know if my contractor business is ready?',
+    a: 'You are likely ready if you have real proof and clear service areas. It also fits when the owner is tired of chasing bad-fit leads. If you still need basic lead flow, a simpler channel may be enough for now.',
+  },
+];
+
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  '@id': 'https://buildwisemedia.com/playbook/contractor-lead-generation-company-alternative#faq',
+  mainEntity: faqs.map((f) => ({
+    '@type': 'Question',
+    name: f.q,
+    acceptedAnswer: { '@type': 'Answer', text: f.a },
+  })),
+};
+---
+<BaseLayout title={title} description={description} jsonLd={[definedTerm, breadcrumb, faqSchema]}>
+
+  <section class="playbook-hero">
+    <div class="container">
+      <p class="eyebrow"><a href="/playbook" class="back-link">← Playbook</a></p>
+      <h1 class="h-hero">A contractor lead generation alternative that builds <em>leads that come to you</em></h1>
+      <p class="lede">
+        If you run a contracting business, you have probably paid for old, shared leads. Some were wrong for the job you actually want. The phone rings. Then your team spends the day sorting tire-kickers, bargain hunters, and people who already heard from three other crews.
+      </p>
+      <p class="lede">
+        That is the trap in most lead generation for contractors. You rent access to leads someone else controls. The Buildwise team builds a different path: a system around your name, your proof, your service area, and your best jobs.
+      </p>
+      <figure class="hero-photo">
+        <!-- @r020:F4 curiosity: quiet operating-room image frames the shift from rented leads to an owned system that keeps working -->
+        <img src="/images/bwm-services-atmospheric-v1.webp" alt="Dark workspace with a laptop, notebook, and empty chair — the owned system still running after the day ends." width="1920" height="1080" loading="eager" decoding="async" />
+      </figure>
+    </div>
+  </section>
+
+  <section class="playbook-section elev">
+    <div class="container">
+      <p class="section-tag">The lead trap</p>
+      <h2 class="h-section">Shared leads make you chase <em>the wrong work.</em></h2>
+      <p class="prose">
+        Most contractor lead sellers are built around volume. They promise more names, more calls, and more quote requests. But more is not the same as better. If the same person is sent to several contractors, the job turns into a race to answer first and bid lowest.
+      </p>
+      <p class="prose">
+        That puts the owner back in the bottleneck. You check every call, clean up the bad fits, and hope your good crew is not being pulled toward weak jobs. The system may look active, but the business is still renting attention from someone else.
+      </p>
+      <p class="prose">
+        A better path starts before the form fill. It shapes the work around the jobs you want to win, not every job that exists.
+      </p>
+    </div>
+  </section>
+
+  <section class="playbook-section">
+    <div class="container">
+      <p class="section-tag">What you build instead</p>
+      <h2 class="h-section">The alternative is a system <em>you own.</em></h2>
+      <p class="prose">
+        An owned system does not start with a list of leads. It starts with your market, your proof, your offer, and the questions buyers ask before they trust a contractor. Then it turns those pieces into pages, lead paths, follow-up, and records that live with your business.
+      </p>
+      <p class="prose">
+        That is why this is not a new version of a <a href="/playbook/lead-generation-company-alternative">lead generation company</a>. It is a local lead system that gets stronger over time. Every strong project photo, review, service-area page, and quote path makes the next job easier to earn.
+      </p>
+      <p class="prose">
+        The goal is simple: fewer bad-fit calls, more serious buyers, and a system your next outside team cannot take away.
+      </p>
+      <figure class="section-photo section-photo--diagram">
+        <!-- @r020:F2 proof: stacked system diagram shows pages, proof, follow-up, and records working as one system -->
+        <img src="/images/stacked-planes-v1.svg" alt="Layered system diagram showing pages, proof, follow-up, and records connected as one system." width="1200" height="675" loading="lazy" decoding="async" />
+      </figure>
+    </div>
+  </section>
+
+  <section class="playbook-section elev">
+    <div class="container">
+      <p class="section-tag">Contractor fit</p>
+      <h2 class="h-section">Contractors need proof before <em>pressure.</em></h2>
+      <p class="prose">
+        A homeowner does not choose a contractor like they choose a small online order. They worry about trust, timing, mess, cost, and whether the crew will do what it said. If your marketing skips those fears, you get weaker leads and harder sales calls.
+      </p>
+      <p class="prose">
+        That is why the contractor version of an owned system is proof-heavy. It shows the kind of jobs you want, the areas you serve, and the problems you solve. It also shows the signs that you are the steady choice. See the broader <a href="/industries">industries</a> view for how this changes by market. You can also read the trade-specific <a href="/playbook/hvac-lead-generation">HVAC lead generation</a> page.
+      </p>
+      <blockquote class="pull-quote">
+        <p>The best lead is not the fastest name you can buy. It is the buyer who already believes you are the right crew.</p>
+      </blockquote>
+    </div>
+  </section>
+
+  <section class="playbook-section">
+    <div class="container">
+      <p class="section-tag">Buildwise approach</p>
+      <h2 class="h-section">Buildwise is the alternative to <em>agency dependency.</em></h2>
+      <p class="prose">
+        The Buildwise team is not a contractor lead broker, and we are not an agency dressed up with new language. We build and run a lead system for the owner. It stays inside the business.
+      </p>
+      <p class="prose">
+        The same idea sits behind our <a href="/playbook/agency-alternative">agency alternative</a>: stop renting activity and start building something you keep. For contractors, that means your website, proof, service-area pages, and follow-up work together. Your lead records stay tied to the jobs you actually want.
+      </p>
+      <p class="prose">
+        We still operate the system with you. The difference is what happens over time. Your local learnings, proof, and lead paths become stronger instead of resetting when you switch teams.
+      </p>
+      <figure class="section-photo">
+        <!-- @r020:F2 proof: records still-life grounds the ownership claim in lead history, job notes, and proof the contractor keeps -->
+        <img src="/images/bwm-receipts-still-life-v1.webp" alt="Close still-life of records and notes on a dark desk — the lead history and proof that stay with the business." width="1920" height="1080" loading="lazy" decoding="async" />
+      </figure>
+    </div>
+  </section>
+
+  <section class="playbook-section elev">
+    <div class="container">
+      <p class="section-tag">When to use it</p>
+      <h2 class="h-section">Use rented leads as a bridge, not <em>the business.</em></h2>
+      <p class="prose">
+        Paid lead sources can help when you need leads fast or want to test a new service area. They are not evil. The risk is letting them become the whole plan. When that happens, your growth depends on a source you do not control.
+      </p>
+      <p class="prose">
+        This path is for the contractor who wants better-fit leads. Those leads should come from the brand, proof, and follow-up the business controls. It does not need to replace every source on day one. It does need to become the center.
+      </p>
+      <p class="prose">
+        If you are tired of paying for the same names your competitors see, the next move is not another lead package. It is building the reason better buyers come to you first.
+      </p>
+    </div>
+  </section>
+
+  <!-- @sdt-exempt: FAQ is question-and-answer text; imagery here would be decorative (R020) -->
+  <section class="playbook-faq">
+    <div class="container">
+      <p class="section-tag">FAQ</p>
+      <h2 class="h-section">Common questions.</h2>
+      <div class="faq-list">
+        {faqs.map((f) => (
+          <details class="faq-item">
+            <summary class="faq-q">{f.q}</summary>
+            <div class="faq-a">
+              <p>{f.a}</p>
+            </div>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="playbook-related elev">
+    <div class="container">
+      <p class="section-tag">Related</p>
+      <h2 class="h-section">More from the playbook.</h2>
+      <ul class="related-list">
+        <li><a href="/playbook/lead-generation-company-alternative">Lead Generation Company Alternative</a> — the broader case for leads you own instead of rented leads</li>
+        <li><a href="/playbook/hvac-lead-generation">HVAC Lead Generation</a> — how the owned system adapts to one high-value trade</li>
+        <li><a href="/playbook/agency-alternative">Agency Alternative</a> — why ownership beats another outside team relationship</li>
+        <li><a href="/industries">Industries</a> — where the Buildwise system fits across owner-led service businesses</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="playbook-cta elev">
+    <div class="container">
+      <h2 class="h-closer">Ready to see if we're a fit?</h2>
+      <p class="lede">If you would rather build leads that come to you than keep buying shared names, that is the conversation worth having.</p>
+      <blockquote class="pull-quote">
+        <p>A concrete contractor we run went from almost no inbound calls to roughly 150 leads since launch.</p>
+      </blockquote>
+      <p class="cta-row">
+        <a class="cta-primary" href="/book" data-cta-source="playbook-contractor-lead-generation-company-alternative-cta-primary">See If We're a Fit</a>
+        <a class="cta-ghost" href="/system" data-cta-source="playbook-contractor-lead-generation-company-alternative-cta-secondary">See the System</a>
+      </p>
+    </div>
+  </section>
+
+</BaseLayout>
+
+<style>
+.playbook-hero { padding-block: clamp(80px, 12vw, 144px); }
+.playbook-hero .lede { margin-top: 24px; }
+.back-link { color: var(--ink-faint); transition: color 180ms ease; }
+.back-link:hover { color: var(--y2); }
+
+.h-hero em { color: var(--y2); font-style: normal; font-weight: inherit; }
+.h-section em { color: var(--y2); font-style: normal; font-weight: inherit; }
+
+.hero-photo { margin-top: 56px; max-width: 1120px; border-radius: 4px; overflow: hidden; border: 1px solid var(--rule); }
+.hero-photo img { width: 100%; height: auto; display: block; }
+
+.playbook-section { padding-block: clamp(56px, 8vw, 96px); }
+.playbook-section .prose { font-size: 17px; line-height: 1.7; color: var(--ink-dim); max-width: 720px; }
+.playbook-section .prose + .prose { margin-top: 16px; }
+
+.section-photo { margin: 48px 0 0; max-width: 1120px; border-radius: 4px; overflow: hidden; border: 1px solid var(--rule); }
+.section-photo img { width: 100%; height: auto; display: block; }
+.section-photo--diagram { max-width: 980px; border-color: transparent; background: transparent; }
+.section-photo--diagram img { background: transparent; }
+
+.pull-quote { margin: 56px 0; padding: 32px 0; border-block: 1px solid var(--rule); max-width: 880px; }
+.pull-quote p { font-size: 24px; line-height: 1.35; color: var(--ink); font-weight: 500; font-style: italic; }
+
+.playbook-faq { padding-block: clamp(64px, 10vw, 112px); }
+.faq-list { display: flex; flex-direction: column; gap: 16px; margin-top: 32px; max-width: 880px; }
+.faq-item { border-top: 1px solid var(--rule); padding-block: 20px; }
+.faq-item[open] summary { color: var(--y2); }
+.faq-q { font-size: 17px; font-weight: 500; color: var(--ink); cursor: pointer; line-height: 1.4; list-style: none; }
+.faq-q::marker, .faq-q::-webkit-details-marker { display: none; }
+.faq-q::after { content: "+"; float: right; font-family: var(--mono); font-size: 18px; color: var(--y2); }
+.faq-item[open] .faq-q::after { content: "−"; }
+.faq-a { margin-top: 12px; }
+.faq-a p { font-size: 16px; line-height: 1.65; color: var(--ink-dim); max-width: 720px; }
+
+.playbook-related { padding-block: clamp(56px, 8vw, 96px); }
+.related-list { list-style: none; display: flex; flex-direction: column; gap: 12px; margin-top: 32px; max-width: 880px; }
+.related-list a { color: var(--ink); font-weight: 500; text-decoration: none; border-bottom: 1px solid transparent; transition: border-color 180ms ease, color 180ms ease; }
+.related-list a:hover { color: var(--y2); border-bottom-color: var(--y2); }
+
+.playbook-cta { padding-block: clamp(64px, 10vw, 112px); }
+.playbook-cta .lede { margin-top: 16px; }
+.cta-row { display: flex; flex-wrap: wrap; gap: 16px; margin-top: 32px; }
+</style>

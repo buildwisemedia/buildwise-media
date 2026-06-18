@@ -1,0 +1,247 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+const title = "Lead Generation Company Alternative | Buildwise";
+const description = "Compare buying leads with owning the system that creates, captures, and follows up with better-fit demand.";
+
+const definedTerm = {
+  '@context': 'https://schema.org',
+  '@type': 'DefinedTerm',
+  '@id': 'https://buildwisemedia.com/playbook/lead-generation-company-alternative#term',
+  name: 'Lead Generation Company Alternative',
+  description: 'A lead generation company alternative helps service business owners stop renting lead lists and start owning the system that creates, captures, and follows up with better-fit demand. Buildwise Media installs the owned system on your domain and in your accounts so the work compounds instead of resetting with each vendor.',
+  inDefinedTermSet: {
+    '@type': 'DefinedTermSet',
+    '@id': 'https://buildwisemedia.com/playbook/',
+    name: 'Buildwise Media Playbook',
+  },
+};
+
+const breadcrumb = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://buildwisemedia.com/' },
+    { '@type': 'ListItem', position: 2, name: 'Playbook', item: 'https://buildwisemedia.com/playbook/' },
+    { '@type': 'ListItem', position: 3, name: 'Lead Generation Company Alternative', item: 'https://buildwisemedia.com/playbook/lead-generation-company-alternative' },
+  ],
+};
+
+const faqs = [
+  {
+    q: 'What is a lead generation company alternative?',
+    a: 'It is a different way to get better-fit demand. Instead of buying leads from another company, you own the system that attracts, captures, follows up with, and measures your leads. The Buildwise team runs it for you, but the asset stays yours.',
+  },
+  {
+    q: 'Why not just buy more leads?',
+    a: 'Buying leads can help when you need fast volume, but it often resets each month. You pay again, chase the same names, and learn very little about what made the right buyer raise a hand. An owned system builds that knowledge into your business.',
+  },
+  {
+    q: 'Is this only for contractors?',
+    a: 'No. This page is for owner-led service businesses. If you are a contractor, the contractor-specific version gives more trade examples and is linked from this page.',
+  },
+  {
+    q: 'Do I need to manage the system myself?',
+    a: 'No. We build it, run it, and improve it with you. You do not need to become the marketing person. The point is to remove you from the daily lead chase while keeping the system in your hands.',
+  },
+  {
+    q: 'How do we know if the new system is working?',
+    a: 'We measure against a captured baseline before the system turns on. That gives you a clear before-and-after view instead of a loose promise that things feel better.',
+  },
+];
+
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  '@id': 'https://buildwisemedia.com/playbook/lead-generation-company-alternative#faq',
+  mainEntity: faqs.map((f) => ({
+    '@type': 'Question',
+    name: f.q,
+    acceptedAnswer: { '@type': 'Answer', text: f.a },
+  })),
+};
+---
+<BaseLayout title={title} description={description} jsonLd={[definedTerm, breadcrumb, faqSchema]}>
+
+  <section class="playbook-hero">
+    <div class="container">
+      <p class="eyebrow"><a href="/playbook" class="back-link">← Playbook</a></p>
+      <h1 class="h-hero">A lead generation company alternative for <em>service businesses</em></h1>
+      <p class="lede">
+        If you are looking at a lead generation company, you probably need more of the right people asking for help. That is a real need. The risk is buying names instead of fixing the system that should create demand for you in the first place.
+      </p>
+      <p class="lede">
+        Buildwise Media is the alternative to that model. We build and run an owned lead system on your domain, in your accounts, and around the way your business sells. You still get help. The difference is that you keep the system, the data, and the learning it creates.
+      </p>
+      <figure class="hero-photo">
+        <!-- @r020:F4 curiosity: atmospheric workspace frames the shift from rented names to an owned system that keeps running -->
+        <img src="/images/bwm-services-atmospheric-v1.webp" alt="Atmospheric dusk workspace with a lit laptop, notebook, and open chair — the owned lead system still running after the day ends." width="1920" height="1080" loading="eager" decoding="async" />
+      </figure>
+    </div>
+  </section>
+
+  <section class="playbook-section elev">
+    <div class="container">
+      <p class="section-tag">The old model</p>
+      <h2 class="h-section">Buying leads can look simple.</h2>
+      <p class="prose">
+        A lead seller gives you a list, a form fill, or a shared request. You call fast, hope the person is real, and try to beat other companies to the same job. When it works, it feels useful. When it does not, your team spends the day chasing people who were never a fit.
+      </p>
+      <p class="prose">
+        The harder part is that the learning stays thin. You may know how many names came in. You may not know why the best buyer chose you, which page helped them trust you, or which follow-up brought them back. Next month starts over.
+      </p>
+      <p class="prose">
+        That is the core problem with many lead generation company offers. They sell access to leads. They do not give you the system that makes better leads easier to earn.
+      </p>
+      <figure class="section-photo section-photo--diagram">
+        <!-- @r020:F2 proof: funnel diagram shows why rented lead flow breaks when each layer is not owned -->
+        <img src="/images/funnel-3-layer-v1.svg" alt="Three-layer funnel diagram showing lead flow that needs connected ownership." width="1200" height="675" loading="lazy" decoding="async" />
+      </figure>
+    </div>
+  </section>
+
+  <section class="playbook-section">
+    <div class="container">
+      <p class="section-tag">The owned path</p>
+      <h2 class="h-section">Own the system, not just the names.</h2>
+      <p class="prose">
+        An owned lead system starts before the form. It shapes the offer, the page, the proof, the call path, and the follow-up so better-fit buyers know what to do next. The system should answer the questions your best customer already has, then help them take the next step while interest is fresh.
+      </p>
+      <p class="prose">
+        That is why Buildwise Media points owners toward an owned <a href="/system">system</a>, not another rented channel. The page, the message, the follow-up, and the lead history live with you. The Buildwise team runs the work, but the asset belongs to your business.
+      </p>
+      <figure class="section-photo section-photo--diagram">
+        <!-- @r020:F2 proof: stacked system diagram shows lead capture, follow-up, and measurement as connected owned layers -->
+        <img src="/images/stacked-planes-v1.svg" alt="Isometric stacked-planes diagram showing connected layers of an owned lead system." width="1200" height="675" loading="lazy" decoding="async" />
+      </figure>
+    </div>
+  </section>
+
+  <section class="playbook-section elev">
+    <div class="container">
+      <p class="section-tag">Quality</p>
+      <h2 class="h-section">Better-fit leads beat raw lead volume.</h2>
+      <p class="prose">
+        More leads can still leave you stuck if the wrong people are raising their hands. You get more calls, more quote requests, more price shoppers, and more work for the same owner who is already stretched thin.
+      </p>
+      <blockquote class="pull-quote">
+        <p>The goal is not more names. The goal is more of the right people ready for the next step.</p>
+      </blockquote>
+      <p class="prose">
+        A strong system narrows the gap. It speaks to the buyer you want, makes the next step clear, and follows up before the lead goes cold. You do not need a bigger pile of names if the pile is making the wrong day worse.
+      </p>
+    </div>
+  </section>
+
+  <section class="playbook-section">
+    <div class="container">
+      <p class="section-tag">Proof</p>
+      <h2 class="h-section">Start with a measured baseline.</h2>
+      <p class="prose">
+        Lead work gets messy when nobody agrees on the starting point. Before you judge a new system, you need to know what was already happening. You need to know where leads came from, how many became real sales talks, and how fast follow-up happened.
+      </p>
+      <p class="prose">
+        That is why we use a <a href="/playbook/captured-baseline">captured baseline</a> before the system turns on. It gives you a clean before-and-after view. You are not left guessing whether the new work helped. You can see what changed.
+      </p>
+      <p class="prose">
+        This also keeps the conversation honest. A lead generation company alternative should be measured against better fit, cleaner follow-up, and owned learning. It should not be judged by a larger count at the top of a report.
+      </p>
+    </div>
+  </section>
+
+  <section class="playbook-section elev">
+    <div class="container">
+      <p class="section-tag">Fit</p>
+      <h2 class="h-section">When this is the right move.</h2>
+      <p class="prose">
+        Buying leads can be useful when you need a short burst. It can also work when a team is ready to call fast, and you accept that the source may not stay yours. That can be a fair trade for some owners.
+      </p>
+      <p class="prose">
+        The owned route is different. It fits when you want leads that come to you and keep improving. It also fits when follow-up needs to stop depending on memory. The next provider or team member should inherit a working system, not a pile of invoices.
+      </p>
+      <p class="prose">
+        If you are comparing this with a broad <a href="/playbook/agency-alternative">agency alternative</a>, the same rule applies: rent help when the job is short. Own the system when the work needs to keep paying you back.
+      </p>
+      <p class="prose">
+        If you run a trade business, read the <a href="/playbook/contractor-lead-generation-company-alternative">contractor lead generation company alternative</a>. The same idea gets sharper there. Speed, job type, service area, and fit all matter before your team picks up the phone.
+      </p>
+      <figure class="section-photo section-photo--diagram">
+        <!-- @r020:F4 curiosity: ascending node mesh makes the owned path feel like a system that gets clearer over time -->
+        <img src="/images/node-mesh-ascending-v1.svg" alt="Ascending node mesh diagram showing an owned lead system getting clearer over time." width="1200" height="675" loading="lazy" decoding="async" />
+      </figure>
+    </div>
+  </section>
+
+  <!-- @sdt-exempt: FAQ is question-and-answer text; imagery here would be decorative (R020) -->
+  <section class="playbook-faq">
+    <div class="container">
+      <p class="section-tag">FAQ</p>
+      <h2 class="h-section">Common questions.</h2>
+      <div class="faq-list">
+        {faqs.map((f) => (
+          <details class="faq-item">
+            <summary class="faq-q">{f.q}</summary>
+            <div class="faq-a">
+              <p>{f.a}</p>
+            </div>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="playbook-cta elev">
+    <div class="container">
+      <h2 class="h-closer">Ready to stop renting the lead chase?</h2>
+      <p class="lede">If you would rather own the system that creates better-fit leads, that is the conversation worth having.</p>
+      <blockquote class="pull-quote">
+        <p>A concrete contractor we run went from almost no inbound calls to roughly 150 leads since launch.</p>
+      </blockquote>
+      <p class="cta-row">
+        <a class="cta-primary" href="/book" data-cta-source="playbook-lead-generation-company-alternative-cta-primary">See If We're a Fit <span class="cta-arrow">→</span></a>
+        <a class="cta-ghost" href="/system" data-cta-source="playbook-lead-generation-company-alternative-cta-secondary">See the System</a>
+      </p>
+    </div>
+  </section>
+
+</BaseLayout>
+
+<style>
+.playbook-hero { padding-block: clamp(80px, 12vw, 144px); }
+.playbook-hero .lede { margin-top: 24px; }
+.back-link { color: var(--ink-faint); transition: color 180ms ease; }
+.back-link:hover { color: var(--y2); }
+
+.h-hero em { color: var(--y2); font-style: normal; font-weight: inherit; }
+.h-section em { color: var(--y2); font-style: normal; font-weight: inherit; }
+
+.hero-photo { margin-top: 56px; max-width: 1120px; border-radius: 4px; overflow: hidden; border: 1px solid var(--rule); }
+.hero-photo img { width: 100%; height: auto; display: block; }
+
+.playbook-section { padding-block: clamp(56px, 8vw, 96px); }
+.playbook-section .prose { font-size: 17px; line-height: 1.7; color: var(--ink-dim); max-width: 720px; }
+.playbook-section .prose + .prose { margin-top: 16px; }
+
+.section-photo { margin: 48px 0 0; max-width: 1120px; border-radius: 4px; overflow: hidden; border: 1px solid var(--rule); }
+.section-photo img { width: 100%; height: auto; display: block; }
+.section-photo--diagram { max-width: 980px; border-color: transparent; background: transparent; }
+.section-photo--diagram img { background: transparent; }
+
+.pull-quote { margin: 56px 0; padding: 32px 0; border-block: 1px solid var(--rule); max-width: 880px; }
+.pull-quote p { font-size: 24px; line-height: 1.35; color: var(--ink); font-weight: 500; font-style: italic; }
+
+.playbook-faq { padding-block: clamp(64px, 10vw, 112px); }
+.faq-list { display: flex; flex-direction: column; gap: 16px; margin-top: 32px; max-width: 880px; }
+.faq-item { border-top: 1px solid var(--rule); padding-block: 20px; }
+.faq-item[open] summary { color: var(--y2); }
+.faq-q { font-size: 17px; font-weight: 500; color: var(--ink); cursor: pointer; line-height: 1.4; list-style: none; }
+.faq-q::marker, .faq-q::-webkit-details-marker { display: none; }
+.faq-q::after { content: "+"; float: right; font-family: var(--mono); font-size: 18px; color: var(--y2); }
+.faq-item[open] .faq-q::after { content: "−"; }
+.faq-a { margin-top: 12px; }
+.faq-a p { font-size: 16px; line-height: 1.65; color: var(--ink-dim); max-width: 720px; }
+
+.playbook-cta { padding-block: clamp(64px, 10vw, 112px); }
+.playbook-cta .lede { margin-top: 16px; }
+.cta-row { display: flex; flex-wrap: wrap; gap: 16px; margin-top: 32px; }
+</style>

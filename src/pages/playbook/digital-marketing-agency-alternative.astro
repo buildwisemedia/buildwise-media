@@ -1,0 +1,255 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+const title = "Digital Marketing Agency Alternative | Buildwise";
+const description = "Most agencies leave you with reports. Buildwise builds and runs an owned growth system for your service business, and you keep it.";
+
+const definedTerm = {
+  '@context': 'https://schema.org',
+  '@type': 'DefinedTerm',
+  '@id': 'https://buildwisemedia.com/playbook/digital-marketing-agency-alternative#term',
+  name: 'Digital Marketing Agency Alternative',
+  description: 'A digital marketing agency alternative replaces rented marketing activity with an owned AI growth system. The Buildwise team builds and runs the system for the owner, while the business keeps the site, data, lead paths, follow-up, and operating history.',
+  inDefinedTermSet: {
+    '@type': 'DefinedTermSet',
+    '@id': 'https://buildwisemedia.com/playbook/',
+    name: 'Buildwise Media Playbook',
+  },
+};
+
+const breadcrumb = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://buildwisemedia.com/' },
+    { '@type': 'ListItem', position: 2, name: 'Playbook', item: 'https://buildwisemedia.com/playbook/' },
+    { '@type': 'ListItem', position: 3, name: 'Digital Marketing Agency Alternative', item: 'https://buildwisemedia.com/playbook/digital-marketing-agency-alternative' },
+  ],
+};
+
+const faqs = [
+  {
+    q: 'What is a digital marketing agency alternative?',
+    a: 'It is a different way to get growth work done. Instead of renting a team and reports each month, you get an owned system built inside your business. The Buildwise team runs it, but the asset stays with you.',
+  },
+  {
+    q: 'Is Buildwise Media a digital marketing agency?',
+    a: 'No. Buildwise Media is the alternative to a digital marketing agency. We build and run an owned AI growth system for your service business, so you keep the system, the data, and the work history.',
+  },
+  {
+    q: 'What do I keep if I stop working with Buildwise?',
+    a: 'You keep the site, lead paths, follow-up flows, tracking, content, data history, and accounts built for your business. The goal is to leave you with a working asset, not a folder of reports.',
+  },
+  {
+    q: 'When is a regular agency still the better fit?',
+    a: 'A regular agency can fit when you only need one short project or one rented skill. If you want a full system that keeps compounding in your business, the owned system is the better model.',
+  },
+  {
+    q: 'Does the system replace my team?',
+    a: 'No. It gives you the structure your team can work inside. You still approve the key moves. The Buildwise team handles the build, weekly operation, and cleanup so growth is not stuck on your desk.',
+  },
+];
+
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  '@id': 'https://buildwisemedia.com/playbook/digital-marketing-agency-alternative#faq',
+  mainEntity: faqs.map((f) => ({
+    '@type': 'Question',
+    name: f.q,
+    acceptedAnswer: { '@type': 'Answer', text: f.a },
+  })),
+};
+---
+<BaseLayout title={title} description={description} jsonLd={[definedTerm, breadcrumb, faqSchema]}>
+
+  <section class="playbook-hero">
+    <div class="container">
+      <p class="eyebrow"><a href="/playbook" class="back-link">← Playbook</a></p>
+      <h1 class="h-hero">A digital marketing agency alternative that leaves the system <em>with you</em></h1>
+      <p class="lede">
+        If you are looking for a digital marketing agency alternative, you may already know the problem. The old model gives you calls, reports, tasks, and a bill. But the system often lives somewhere else. When the work stops, new leads can slow down with it.
+      </p>
+      <p class="lede">
+        Buildwise Media is not a digital marketing agency. We build and run an owned AI growth system for your service business. Your site, lead paths, follow-up, tracking, and data stay in your business. The team runs the work, but you keep the asset.
+      </p>
+      <figure class="hero-photo">
+        <!-- @r020:F4 curiosity: quiet workspace shows the owner stepping out while the owned system keeps working -->
+        <img src="/images/bwm-services-atmospheric-v1.webp" alt="Dark workspace with a laptop, notebook, and open chair, showing a system that keeps working after the owner steps away." width="1920" height="1080" loading="eager" decoding="async" />
+      </figure>
+    </div>
+  </section>
+
+  <section class="playbook-section elev">
+    <div class="container">
+      <p class="section-tag">The old model</p>
+      <h2 class="h-section">Most agencies sell activity.</h2>
+      <p class="prose">
+        A normal agency sells effort. Ads get changed. Pages get edited. Posts get made. A report lands at the end of the month. Some of that work can help. But it is easy to pay for motion while the core system stays weak.
+      </p>
+      <p class="prose">
+        The harder part is what happens between the work. Who owns the lead path? Who sees where good leads fall off? Who fixes the slow reply, the weak offer, the missing proof, and the unclear handoff? In many agency setups, no one owns the whole thing.
+      </p>
+      <p class="prose">
+        That is why our <a href="/playbook/agency-alternative">agency alternative</a> model starts with ownership. You should not have to rent the parts of growth forever.
+      </p>
+    </div>
+  </section>
+
+  <section class="playbook-section">
+    <div class="container">
+      <p class="section-tag">The better model</p>
+      <h2 class="h-section">An owned system changes the job.</h2>
+      <p class="prose">
+        An owned system is built around how your service business really sells. It connects your offer, site, lead capture, follow-up, proof, and reporting into one working loop. The point is not to make more tasks for you. The point is to make the right work happen without everything waiting on your desk.
+      </p>
+      <p class="prose">
+        This is why we call it a <a href="/playbook/revenue-operating-system">revenue operating system</a>. It is not a campaign sitting outside the business. It keeps learning from your leads, your jobs, and your sales process.
+      </p>
+      <figure class="section-photo section-photo--diagram">
+        <!-- @r020:F2 proof: layered system diagram shows connected parts the owner keeps instead of rented activity -->
+        <img src="/images/stacked-planes-v1.svg" alt="Layered system diagram showing connected growth parts that stay inside the business." width="1200" height="675" loading="lazy" decoding="async" />
+      </figure>
+    </div>
+  </section>
+
+  <section class="playbook-section elev">
+    <div class="container">
+      <p class="section-tag">What you keep</p>
+      <h2 class="h-section">The asset stays in your business.</h2>
+      <p class="prose">
+        The Buildwise team builds the growth system in your world, not ours. Your site stays your site. Your leads stay yours. Your data history stays yours. Your follow-up paths, content, tracking, and sales notes keep building value over time.
+      </p>
+      <blockquote class="pull-quote">
+        <p>You should not have to start over every time you change who helps you grow.</p>
+      </blockquote>
+      <p class="prose">
+        That is the real gap in the agency model. You can spend years buying work and still leave with very little you can use. Our <a href="/system">system</a> approach is built so each month adds to the same owned base.
+      </p>
+      <figure class="section-photo">
+        <!-- @r020:F2 proof: ownership still life makes the kept assets feel concrete instead of abstract -->
+        <img src="/images/bwm-proof-still-life-v1.webp" alt="Notebook, screens, and proof materials arranged as working assets that stay with the owner." width="1920" height="1080" loading="lazy" decoding="async" />
+      </figure>
+    </div>
+  </section>
+
+  <section class="playbook-section">
+    <div class="container">
+      <p class="section-tag">How Buildwise runs it</p>
+      <h2 class="h-section">You get a run-for-you growth function.</h2>
+      <p class="prose">
+        This is not a handoff of tools. The Buildwise team builds the system, runs the weekly work, and watches the lead flow. We clean up the parts that slow growth down. You stay in the key decisions, but you are not asked to manage another outside team.
+      </p>
+      <p class="prose">
+        The <a href="/services">services</a> are shaped around one job. We help an owner-led service business get better leads, follow up faster, and see what is working. The work is run for you, but the system is still yours.
+      </p>
+      <p class="prose">
+        That is the difference. A digital marketing agency rents you activity. Buildwise installs and runs a growth system you can keep.
+      </p>
+    </div>
+  </section>
+
+  <section class="playbook-section elev">
+    <div class="container">
+      <p class="section-tag">Fit</p>
+      <h2 class="h-section">When this is the right move.</h2>
+      <p class="prose">
+        This model fits when you are tired of being the traffic cop for growth. You do not need another loose set of tasks. You need one system that turns interest into booked calls. It follows up, learns from the result, and makes the next month smarter.
+      </p>
+      <p class="prose">
+        A regular agency can still fit for a short project or a narrow need. But if you want the growth system to belong to your business, the owned system is the better path.
+      </p>
+    </div>
+  </section>
+
+  <!-- @sdt-exempt: FAQ is question-and-answer text; imagery here would be decorative (R020) -->
+  <section class="playbook-faq">
+    <div class="container">
+      <p class="section-tag">FAQ</p>
+      <h2 class="h-section">Common questions.</h2>
+      <div class="faq-list">
+        {faqs.map((f) => (
+          <details class="faq-item">
+            <summary class="faq-q">{f.q}</summary>
+            <div class="faq-a">
+              <p>{f.a}</p>
+            </div>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="playbook-related elev">
+    <div class="container">
+      <p class="section-tag">Related</p>
+      <h2 class="h-section">More from the playbook.</h2>
+      <ul class="related-list">
+        <li><a href="/playbook/agency-alternative">Agency Alternative</a> - the broader case for owning the system instead of renting activity</li>
+        <li><a href="/playbook/revenue-operating-system">Revenue Operating System</a> - how the connected growth loop works inside the business</li>
+        <li><a href="/system">The System</a> - the Buildwise operating model at a glance</li>
+        <li><a href="/services">Services</a> - how the Buildwise team builds and runs the system for you</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="playbook-cta elev">
+    <div class="container">
+      <h2 class="h-closer">Ready to see if we're a fit?</h2>
+      <p class="lede">If you would rather own the system than rent the activity, that is the conversation worth having.</p>
+      <blockquote class="pull-quote">
+        <p>A concrete contractor we run went from almost no inbound calls to roughly 150 leads since launch.</p>
+      </blockquote>
+      <p class="cta-row">
+        <a class="cta-primary" href="/book" data-cta-source="playbook-digital-marketing-agency-alternative-cta-primary">See If We're a Fit <span class="cta-arrow">→</span></a>
+        <a class="cta-ghost" href="/system" data-cta-source="playbook-digital-marketing-agency-alternative-cta-secondary">See the System</a>
+      </p>
+    </div>
+  </section>
+
+</BaseLayout>
+
+<style>
+.playbook-hero { padding-block: clamp(80px, 12vw, 144px); }
+.playbook-hero .lede { margin-top: 24px; }
+.back-link { color: var(--ink-faint); transition: color 180ms ease; }
+.back-link:hover { color: var(--y2); }
+
+.h-hero em { color: var(--y2); font-style: normal; font-weight: inherit; }
+.h-section em { color: var(--y2); font-style: normal; font-weight: inherit; }
+
+.hero-photo { margin-top: 56px; max-width: 1120px; border-radius: 4px; overflow: hidden; border: 1px solid var(--rule); }
+.hero-photo img { width: 100%; height: auto; display: block; }
+
+.playbook-section { padding-block: clamp(56px, 8vw, 96px); }
+.playbook-section .prose { font-size: 17px; line-height: 1.7; color: var(--ink-dim); max-width: 720px; }
+.playbook-section .prose + .prose { margin-top: 16px; }
+
+.section-photo { margin: 48px 0 0; max-width: 1120px; border-radius: 4px; overflow: hidden; border: 1px solid var(--rule); }
+.section-photo img { width: 100%; height: auto; display: block; }
+.section-photo--diagram { max-width: 980px; border-color: transparent; background: transparent; }
+.section-photo--diagram img { background: transparent; }
+
+.pull-quote { margin: 56px 0; padding: 32px 0; border-block: 1px solid var(--rule); max-width: 880px; }
+.pull-quote p { font-size: 24px; line-height: 1.35; color: var(--ink); font-weight: 500; font-style: italic; }
+
+.playbook-faq { padding-block: clamp(64px, 10vw, 112px); }
+.faq-list { display: flex; flex-direction: column; gap: 16px; margin-top: 32px; max-width: 880px; }
+.faq-item { border-top: 1px solid var(--rule); padding-block: 20px; }
+.faq-item[open] summary { color: var(--y2); }
+.faq-q { font-size: 17px; font-weight: 500; color: var(--ink); cursor: pointer; line-height: 1.4; list-style: none; }
+.faq-q::marker, .faq-q::-webkit-details-marker { display: none; }
+.faq-q::after { content: "+"; float: right; font-family: var(--mono); font-size: 18px; color: var(--y2); }
+.faq-item[open] .faq-q::after { content: "−"; }
+.faq-a { margin-top: 12px; }
+.faq-a p { font-size: 16px; line-height: 1.65; color: var(--ink-dim); max-width: 720px; }
+
+.playbook-related { padding-block: clamp(56px, 8vw, 96px); }
+.related-list { list-style: none; display: flex; flex-direction: column; gap: 12px; margin-top: 32px; max-width: 880px; }
+.related-list a { color: var(--ink); font-weight: 500; text-decoration: none; border-bottom: 1px solid transparent; transition: border-color 180ms ease, color 180ms ease; }
+.related-list a:hover { color: var(--y2); border-bottom-color: var(--y2); }
+
+.playbook-cta { padding-block: clamp(64px, 10vw, 112px); }
+.playbook-cta .lede { margin-top: 16px; }
+.cta-row { display: flex; flex-wrap: wrap; gap: 16px; margin-top: 32px; }
+</style>

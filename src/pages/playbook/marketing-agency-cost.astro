@@ -1,0 +1,265 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+const title = "What Does a Marketing Agency Cost? | Buildwise Media";
+const description = "Agency retainers add up fast once you count tools, freelancers, and management. See the run-for-you alternative you own.";
+
+const definedTerm = {
+  '@context': 'https://schema.org',
+  '@type': 'DefinedTerm',
+  '@id': 'https://buildwisemedia.com/playbook/marketing-agency-cost#term',
+  name: 'Marketing Agency Cost',
+  description: 'Marketing agency cost is not only the monthly retainer. The real cost includes search tools, ad management, design, writing, reporting, and the owner time needed to manage the whole stack. The owned-system alternative replaces the assembled vendor pile with one run-for-you growth system the business owns.',
+  inDefinedTermSet: {
+    '@type': 'DefinedTermSet',
+    '@id': 'https://buildwisemedia.com/playbook/',
+    name: 'Buildwise Media Playbook',
+  },
+};
+
+const breadcrumb = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://buildwisemedia.com/' },
+    { '@type': 'ListItem', position: 2, name: 'Playbook', item: 'https://buildwisemedia.com/playbook/' },
+    { '@type': 'ListItem', position: 3, name: 'Marketing Agency Cost', item: 'https://buildwisemedia.com/playbook/marketing-agency-cost' },
+  ],
+};
+
+const faqs = [
+  {
+    q: 'How much does a marketing agency cost once everything is counted?',
+    a: 'The retainer is only the first line. You also have tools, ad management, design, writing, reporting, and the time you spend keeping everyone aligned. That full stack is the number that matters.',
+  },
+  {
+    q: 'Why do agency costs grow after the contract starts?',
+    a: 'Most retainers cover a slice of the work. When the plan needs more support, more vendors get added around the agency. That also adds more owner time.',
+  },
+  {
+    q: 'Is Buildwise Media a cheaper marketing agency?',
+    a: 'No. Buildwise Media is the alternative to an agency. The Buildwise team installs and runs one owned system instead of asking you to assemble and manage a vendor pile.',
+  },
+  {
+    q: 'What do I own in the Buildwise model?',
+    a: 'You own the site, the lead paths, the accounts, the data, and the operating system built around your business. The Buildwise team runs it, but the asset stays yours.',
+  },
+  {
+    q: 'When is a normal agency still the right call?',
+    a: 'A normal agency can fit when you need one narrow service for a short season. If you want the full revenue system to keep growing in your business, the owned-system model is the cleaner path.',
+  },
+];
+
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  '@id': 'https://buildwisemedia.com/playbook/marketing-agency-cost#faq',
+  mainEntity: faqs.map((f) => ({
+    '@type': 'Question',
+    name: f.q,
+    acceptedAnswer: { '@type': 'Answer', text: f.a },
+  })),
+};
+---
+<BaseLayout title={title} description={description} jsonLd={[definedTerm, breadcrumb, faqSchema]}>
+
+  <section class="playbook-hero">
+    <div class="container">
+      <p class="eyebrow"><a href="/playbook" class="back-link">← Playbook</a></p>
+      <h1 class="h-hero">What a marketing agency really costs — and <em>the alternative</em></h1>
+      <p class="lede">
+        If you searched for <a href="/playbook/agency-alternative">how much does a marketing agency cost</a>, the retainer is only part of the answer. The real bill is the work around it: search tools, ad management, design, writing, reporting, and your time spent making it work.
+      </p>
+      <p class="lede">
+        That is why the cheapest-looking agency can still feel expensive. You are not just paying for marketing. You are paying to assemble a system from pieces, then manage the gaps yourself. Buildwise Media is the alternative: one run-for-you system, built around your business, owned by you.
+      </p>
+      <figure class="hero-photo">
+        <!-- @r020:F4 curiosity: quiet workspace frames the hidden cost question before the page breaks down the full stack -->
+        <img src="/images/bwm-services-atmospheric-v1.webp" alt="Dark workspace with a glowing laptop, notes, and an empty chair — the hidden work behind a marketing retainer." width="1920" height="1080" loading="eager" decoding="async" />
+      </figure>
+    </div>
+  </section>
+
+  <section class="playbook-section elev">
+    <div class="container">
+      <p class="section-tag">The real bill</p>
+      <h2 class="h-section">The retainer is not the full cost.</h2>
+      <p class="prose">
+        A retainer sounds simple because it puts one clean line on the proposal. But most service businesses still need the rest of the machine around it. Someone has to plan the campaigns, write the pages, design the assets, and manage the ads. Someone also has to watch the leads, clean up reports, and turn the numbers into decisions.
+      </p>
+      <p class="prose">
+        If the agency only covers part of that work, the missing pieces land on you. You add a designer here, a writer there, a reporting tool, a part-time operator, and another weekly meeting. The <a href="/playbook/digital-marketing-agency-alternative">digital marketing agency alternative</a> starts with a different question. Why are you assembling all of this at all?
+      </p>
+      <p class="prose">
+        The point is not to hunt for the lowest retainer. The point is to stop paying for a pile of parts that still needs you to hold it together.
+      </p>
+      <figure class="section-photo section-photo--diagram">
+        <!-- @r020:F2 proof: layered funnel diagram shows why the retainer is only one part of the full cost -->
+        <img src="/images/funnel-5-layer-v1.svg" alt="Five-layer funnel diagram showing how marketing cost builds beyond the retainer." width="1200" height="675" loading="lazy" decoding="async" />
+      </figure>
+    </div>
+  </section>
+
+  <section class="playbook-section">
+    <div class="container">
+      <p class="section-tag">Cost of assembly</p>
+      <h2 class="h-section">What gets added around the agency.</h2>
+      <p class="prose">
+        The real marketing agency cost is the cost of assembly. Search tools help you see buyer interest. Ad management turns spend into tests. Design makes the offer feel real. Writing turns the offer into pages and emails. Reporting shows what is working. Management time keeps the whole thing from drifting.
+      </p>
+      <blockquote class="pull-quote">
+        <p>The hidden cost is not one bad line item. It is all the pieces you have to manage after the retainer starts.</p>
+      </blockquote>
+      <p class="prose">
+        That is the trap for an owner-led business. You hire help so marketing stops living on your desk. But the system still needs you to make decisions, chase updates, and connect the handoffs. You bought relief and got a second job.
+      </p>
+      <figure class="section-photo section-photo--diagram">
+        <!-- @r020:F2 proof: stacked layers make the assembled vendor pile visible before contrasting it with one owned system -->
+        <img src="/images/stacked-planes-v1.svg" alt="Layered system diagram showing separate marketing pieces stacked into one operating model." width="1200" height="675" loading="lazy" decoding="async" />
+      </figure>
+    </div>
+  </section>
+
+  <section class="playbook-section elev">
+    <div class="container">
+      <p class="section-tag">Owned system</p>
+      <h2 class="h-section">One system beats a managed pile.</h2>
+      <p class="prose">
+        Buildwise Media does not sell itself as another agency. We build the operating layer the agency model usually leaves you to assemble. It includes the site, lead paths, follow-up, reporting, and weekly operating rhythm. The Buildwise team runs it for you, but the asset stays in your business.
+      </p>
+      <p class="prose">
+        That is the difference between renting activity and owning a system. A retainer can buy motion. An owned system gives you a cleaner path from interest to booked conversations. You manage fewer vendors, and leads have fewer places to leak.
+      </p>
+      <p class="prose">
+        The <a href="/system">system</a> is built to make the work visible, measurable, and easier to run. You are not buying another set of disconnected tasks. You are buying a way for marketing to stop depending on you as the glue.
+      </p>
+      <figure class="section-photo">
+        <!-- @r020:F2 proof: system architecture image makes the owned operating layer concrete instead of abstract -->
+        <img src="/images/bwm-system-architecture-atmospheric-v1.webp" alt="Dark system architecture workspace showing connected marketing parts in one operating layer." width="1920" height="1080" loading="lazy" decoding="async" />
+      </figure>
+    </div>
+  </section>
+
+  <section class="playbook-section">
+    <div class="container">
+      <p class="section-tag">Pricing lens</p>
+      <h2 class="h-section">Compare the whole stack, not the first line.</h2>
+      <p class="prose">
+        If you compare only the retainer, you will miss the real decision. Compare the whole stack: the tools, the creative help, the ad work, and the reporting. Then count the follow-up gaps and the hours you spend managing all of it.
+      </p>
+      <p class="prose">
+        Then compare that to one owned system with one team accountable for making it run. That is why our <a href="/pricing">pricing</a> is framed around the installed system, not a menu of tasks. The work is not finished when a deliverable ships. It is finished when the system is operating and the owner has fewer loose ends to chase.
+      </p>
+      <p class="prose">
+        The better question is not, "Which option looks cheaper on paper?" It is, "Which option leaves you with one owned system instead of another monthly pile to manage?"
+      </p>
+    </div>
+  </section>
+
+  <section class="playbook-section elev">
+    <div class="container">
+      <p class="section-tag">Decision rule</p>
+      <h2 class="h-section">Choose the model that matches the job.</h2>
+      <p class="prose">
+        A normal agency can be right when the job is narrow. If you need one campaign, one channel, or one short-term push, renting that help may be enough. The simpler the need, the more sense a narrow provider can make.
+      </p>
+      <p class="prose">
+        If leads, pages, follow-up, and reporting are scattered across too many hands, the agency model may be the wrong shape. You do not need another vendor to manage. You need one system that carries the load.
+      </p>
+      <p class="prose">
+        That is the agency alternative: not cheaper parts, but fewer parts to manage and more of the work owned by your business.
+      </p>
+    </div>
+  </section>
+
+  <!-- @sdt-exempt: FAQ is question-and-answer text; imagery here would be decorative (R020) -->
+  <section class="playbook-faq">
+    <div class="container">
+      <p class="section-tag">FAQ</p>
+      <h2 class="h-section">Common questions.</h2>
+      <div class="faq-list">
+        {faqs.map((f) => (
+          <details class="faq-item">
+            <summary class="faq-q">{f.q}</summary>
+            <div class="faq-a">
+              <p>{f.a}</p>
+            </div>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="playbook-related elev">
+    <div class="container">
+      <p class="section-tag">Related</p>
+      <h2 class="h-section">More from the playbook.</h2>
+      <ul class="related-list">
+        <li><a href="/playbook/agency-alternative">Agency Alternative</a> — the rent-versus-own frame behind the Buildwise model</li>
+        <li><a href="/playbook/digital-marketing-agency-alternative">Digital Marketing Agency Alternative</a> — why scattered channel work keeps landing back on the owner</li>
+        <li><a href="/system">The System</a> — how the owned operating layer replaces disconnected marketing tasks</li>
+        <li><a href="/pricing">Pricing</a> — the engagement shape behind the installed system</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="playbook-cta elev">
+    <div class="container">
+      <h2 class="h-closer">Ready to see if we're a fit?</h2>
+      <p class="lede">If you would rather own one system than manage another stack of vendors, that is the conversation worth having.</p>
+      <blockquote class="pull-quote">
+        <p>A concrete contractor we run went from almost no inbound calls to roughly 150 leads since launch.</p>
+      </blockquote>
+      <p class="cta-row">
+        <a class="cta-primary" href="/book" data-cta-source="playbook-marketing-agency-cost-cta-primary">See If We're a Fit <span class="cta-arrow">→</span></a>
+        <a class="cta-ghost" href="/system" data-cta-source="playbook-marketing-agency-cost-cta-secondary">See the System</a>
+      </p>
+    </div>
+  </section>
+
+</BaseLayout>
+
+<style>
+.playbook-hero { padding-block: clamp(80px, 12vw, 144px); }
+.playbook-hero .lede { margin-top: 24px; }
+.back-link { color: var(--ink-faint); transition: color 180ms ease; }
+.back-link:hover { color: var(--y2); }
+
+.h-hero em { color: var(--y2); font-style: normal; font-weight: inherit; }
+.h-section em { color: var(--y2); font-style: normal; font-weight: inherit; }
+
+.hero-photo { margin-top: 56px; max-width: 1120px; border-radius: 4px; overflow: hidden; border: 1px solid var(--rule); }
+.hero-photo img { width: 100%; height: auto; display: block; }
+
+.playbook-section { padding-block: clamp(56px, 8vw, 96px); }
+.playbook-section .prose { font-size: 17px; line-height: 1.7; color: var(--ink-dim); max-width: 720px; }
+.playbook-section .prose + .prose { margin-top: 16px; }
+
+.section-photo { margin: 48px 0 0; max-width: 1120px; border-radius: 4px; overflow: hidden; border: 1px solid var(--rule); }
+.section-photo img { width: 100%; height: auto; display: block; }
+.section-photo--diagram { max-width: 980px; border-color: transparent; background: transparent; }
+.section-photo--diagram img { background: transparent; }
+
+.pull-quote { margin: 56px 0; padding: 32px 0; border-block: 1px solid var(--rule); max-width: 880px; }
+.pull-quote p { font-size: 24px; line-height: 1.35; color: var(--ink); font-weight: 500; font-style: italic; }
+
+.playbook-faq { padding-block: clamp(64px, 10vw, 112px); }
+.faq-list { display: flex; flex-direction: column; gap: 16px; margin-top: 32px; max-width: 880px; }
+.faq-item { border-top: 1px solid var(--rule); padding-block: 20px; }
+.faq-item[open] summary { color: var(--y2); }
+.faq-q { font-size: 17px; font-weight: 500; color: var(--ink); cursor: pointer; line-height: 1.4; list-style: none; }
+.faq-q::marker, .faq-q::-webkit-details-marker { display: none; }
+.faq-q::after { content: "+"; float: right; font-family: var(--mono); font-size: 18px; color: var(--y2); }
+.faq-item[open] .faq-q::after { content: "−"; }
+.faq-a { margin-top: 12px; }
+.faq-a p { font-size: 16px; line-height: 1.65; color: var(--ink-dim); max-width: 720px; }
+
+.playbook-related { padding-block: clamp(56px, 8vw, 96px); }
+.related-list { list-style: none; display: flex; flex-direction: column; gap: 12px; margin-top: 32px; max-width: 880px; }
+.related-list a { color: var(--ink); font-weight: 500; text-decoration: none; border-bottom: 1px solid transparent; transition: border-color 180ms ease, color 180ms ease; }
+.related-list a:hover { color: var(--y2); border-bottom-color: var(--y2); }
+
+.playbook-cta { padding-block: clamp(64px, 10vw, 112px); }
+.playbook-cta .lede { margin-top: 16px; }
+.cta-row { display: flex; flex-wrap: wrap; gap: 16px; margin-top: 32px; }
+</style>
