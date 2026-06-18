@@ -1,0 +1,318 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+const title = "Pest Control Lead Generation, Run For You | Buildwise";
+const description = "Stop renting shared pest control leads. See the owned-system way to get found and book better recurring pest jobs.";
+
+const leakTypes = [
+  {
+    n: '01',
+    name: 'Shared lead leak',
+    body: 'You pay for the same buyer that other pest companies also receive.',
+  },
+  {
+    n: '02',
+    name: 'Local trust leak',
+    body: 'The buyer searches for help, but your proof, reviews, and service pages do not make you the clear choice.',
+  },
+  {
+    n: '03',
+    name: 'Speed leak',
+    body: 'The request is real, but the first answer comes after the buyer has already booked someone else.',
+  },
+  {
+    n: '04',
+    name: 'Recurring-job leak',
+    body: 'One-time calls do not turn into termite checks, seasonal plans, or steady route work often enough.',
+  },
+];
+
+const systemCovers = [
+  'Service and town pages built around how local owners search for pest help.',
+  'Fast routing for calls, forms, and booking requests before the buyer moves on.',
+  'Review and proof rhythm, so finished jobs build trust instead of disappearing.',
+  'Lead-source tracking that shows which work turned into booked pest jobs.',
+  'A weekly operating rhythm run by the Buildwise team, with the business owning the system and data.',
+];
+
+const faqs = [
+  {
+    q: 'What is pest control lead generation?',
+    a: 'Pest control lead generation is the work that helps local buyers find you, trust you, contact you, and book pest work. The stronger version is built around your site, proof, follow-up, and booking path, not rented shared leads.',
+  },
+  {
+    q: 'How is this different from buying shared pest control leads?',
+    a: 'Shared leads are often sold to more than one company. An owned system builds the path around your business, your proof, your service area, and your follow-up, so each month is not reset by another lead bill.',
+  },
+  {
+    q: 'Is Buildwise a pest control agency?',
+    a: 'No. Buildwise is the run-for-you alternative to another agency or lead seller. The team installs the system, operates the weekly rhythm, and keeps the owner focused on booked work instead of marketing chores.',
+  },
+  {
+    q: 'Can this help with recurring pest jobs?',
+    a: 'Yes. The system is built to make better use of termite inspections, seasonal plans, mosquito work, and follow-up paths that can turn one-time requests into steadier route work.',
+  },
+  {
+    q: 'How fast should an owner see what is leaking?',
+    a: 'The first 30 days should show the baseline: where buyers find you, how fast they hear back, which sources create real calls, and where booked work is being missed.',
+  },
+];
+
+const definedTerm = {
+  '@context': 'https://schema.org',
+  '@type': 'DefinedTerm',
+  '@id': 'https://buildwisemedia.com/playbook/pest-control-lead-generation#term',
+  name: 'pest control lead generation',
+  description,
+  inDefinedTermSet: {
+    '@type': 'DefinedTermSet',
+    '@id': 'https://buildwisemedia.com/playbook/#terms',
+    name: 'Buildwise Media Playbook',
+  },
+};
+
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  '@id': 'https://buildwisemedia.com/playbook/pest-control-lead-generation#faq',
+  mainEntity: faqs.map((f) => ({
+    '@type': 'Question',
+    name: f.q,
+    acceptedAnswer: { '@type': 'Answer', text: f.a },
+  })),
+};
+
+const articleSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Article',
+  '@id': 'https://buildwisemedia.com/playbook/pest-control-lead-generation#article',
+  headline: title,
+  description,
+  author: { '@id': 'https://buildwisemedia.com/#org' },
+  publisher: { '@id': 'https://buildwisemedia.com/#org' },
+  mainEntityOfPage: 'https://buildwisemedia.com/playbook/pest-control-lead-generation',
+};
+
+const breadcrumb = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://buildwisemedia.com/' },
+    { '@type': 'ListItem', position: 2, name: 'Playbook', item: 'https://buildwisemedia.com/playbook/' },
+    { '@type': 'ListItem', position: 3, name: 'Pest Control Lead Generation', item: 'https://buildwisemedia.com/playbook/pest-control-lead-generation' },
+  ],
+};
+---
+<BaseLayout title={title} description={description} jsonLd={[definedTerm, articleSchema, breadcrumb, faqSchema]}>
+
+  <section class="playbook-hero">
+    <div class="container playbook-hero-grid">
+      <div>
+        <p class="eyebrow"><a href="/playbook" class="back-link">← Playbook</a> · Pest control lead generation</p>
+        <h1 class="h-hero">Pest control lead generation, built around owned demand</h1>
+        <p class="lede">
+          Stop renting the same pest control lead as three other companies. A stronger system helps local buyers find you, trust you, reach you fast, and book the kind of recurring pest jobs that make the route stronger.
+        </p>
+        <!-- approved-proof: 008 de-id concrete contractor, organic-playbook use approved by Robert 2026-06-18 -->
+        <blockquote class="pull-quote"><p>A concrete contractor we run went from almost no inbound calls to about 150 leads since launch.</p></blockquote>
+        <p class="cta-row">
+          <a class="cta-primary" href="/book" data-cta-source="pest-control-lead-gen-hero-primary">See If We're a Fit <span class="cta-arrow">→</span></a>
+          <a class="cta-ghost" href="/system" data-cta-source="pest-control-lead-gen-hero-secondary">See the System</a>
+        </p>
+      </div>
+      <aside class="proof-panel ops-panel" aria-label="Pest control lead path">
+        <p class="panel-label mono">Pest lead path</p>
+        <strong>4</strong>
+        <p>Findability, trust, speed, and recurring follow-up connect before the owner judges what worked.</p>
+      </aside>
+    </div>
+    <div class="container">
+      <figure class="hero-photo">
+        <!-- @r020:F1 emotion: early operations image mirrors the pest owner sorting urgent calls before the route starts -->
+        <img src="/images/bwm-services-atmospheric-v1.webp" alt="Dark service-business work surface with a laptop, notes, and route-planning materials." width="1920" height="1080" loading="eager" decoding="async" />
+      </figure>
+    </div>
+  </section>
+
+  <section class="playbook-section elev">
+    <div class="container article-grid">
+      <div>
+        <p class="section-tag">Owner bottleneck</p>
+        <h2 class="h-section">Most pest control lead advice still leaves you holding the work.</h2>
+        <p class="prose">
+          The usual playbook says to buy more leads, post more, ask for more reviews, make more pages, answer faster, and check every source. Some of that helps, but it turns into another job for the owner.
+        </p>
+        <p class="prose">
+          You are already managing techs, routes, callbacks, estimates, and the problem of the day. Pest control lead generation cannot depend on your spare time. It needs a system that gets found, proves trust, routes new requests, and shows which work booked.
+        </p>
+        <p class="prose">
+          That is why the Buildwise team installs and runs the path around <a href="/industries/pest">pest control companies</a>. The business owns the site, the data, and the system. The owner gets a cleaner read on what is working.
+        </p>
+      </div>
+      <figure class="section-photo">
+        <!-- @r020:F2 proof: system architecture image makes the owner-view operating path visible -->
+        <img src="/images/bwm-system-architecture-atmospheric-v1.webp" alt="Layered operating-system diagram glowing on a dark desk." width="1920" height="1080" loading="lazy" decoding="async" />
+      </figure>
+    </div>
+  </section>
+
+  <section class="playbook-section">
+    <div class="container">
+      <p class="section-tag">Where leads leak</p>
+      <h2 class="h-section">Four places pest control leads leak before they become booked work.</h2>
+      <div class="leak-grid">
+        {leakTypes.map((leak) => (
+          <article class="leak-card">
+            <p class="leak-num mono">{leak.n}</p>
+            <h3>{leak.name}</h3>
+            <p>{leak.body}</p>
+          </article>
+        ))}
+      </div>
+      <p class="prose">
+        Shared leads hide the real problem. A pest company needs local trust, fast contact, clear proof, and a path from first call to recurring work. Miss one layer and the owner keeps guessing.
+      </p>
+    </div>
+  </section>
+
+  <section class="playbook-section elev">
+    <div class="container article-grid">
+      <div>
+        <p class="section-tag">Run-for-you system</p>
+        <h2 class="h-section">What the system covers instead of another monthly agency bill.</h2>
+        <p class="prose">
+          A task list gives you more things to remember. A run-for-you system gives each layer a job, then connects the layers. Better service pages matter. So do reviews, fast replies, proof, booking paths, and a clear read on what turned into work.
+        </p>
+        <ul class="system-list" role="list">
+          {systemCovers.map((item) => <li>{item}</li>)}
+        </ul>
+        <p class="prose">
+          This is the same reason many owners look for a <a href="/playbook/contractor-lead-generation-company-alternative">contractor lead generation company alternative</a> or a broader <a href="/playbook/lead-generation-company-alternative">lead generation company alternative</a>. They do not need another seller of leads. They need the lead path handled.
+        </p>
+      </div>
+      <figure class="section-photo">
+        <!-- @r020:F3 CTA-pull: funnel diagram shows why a connected path beats rented lead lists -->
+        <img src="/images/funnel-5-layer-v1.svg" alt="Five-layer funnel diagram showing a connected path from visibility to booked work." width="1200" height="900" loading="lazy" decoding="async" />
+      </figure>
+    </div>
+  </section>
+
+  <section class="playbook-section">
+    <div class="container article-grid">
+      <div>
+        <p class="section-tag">Recurring jobs</p>
+        <h2 class="h-section">The goal is not just more calls. It is better pest jobs.</h2>
+        <p class="prose">
+          A one-time ant call helps. A termite inspection, seasonal plan, mosquito program, or commercial route can help more. The lead system should make those better jobs easier to find, easier to trust, and easier to book.
+        </p>
+        <p class="prose">
+          That starts with plain service pages, local proof, and reviews that answer the buyer's real worry: will this company show up, solve the problem, and be safe around my home or business? Then the system protects the next step with fast follow-up.
+        </p>
+        <p class="prose">
+          Buildwise is the <a href="/playbook/agency-alternative">agency alternative</a> for owners who want the function run for them without turning marketing into another management job. You should see the path, the leaks, and the booked-work signal.
+        </p>
+      </div>
+      <figure class="section-photo">
+        <!-- @r020:F2 proof: proof still-life makes reviews, calls, and booked jobs feel concrete -->
+        <img src="/images/bwm-proof-still-life-v1.webp" alt="Proof-focused desktop scene with notes, reports, and a dark monitor." width="1920" height="1080" loading="lazy" decoding="async" />
+      </figure>
+    </div>
+  </section>
+
+  <section class="playbook-section elev">
+    <div class="container">
+      <p class="section-tag">30-day baseline</p>
+      <h2 class="h-section">After 30 days, you should know where the lead path is leaking.</h2>
+      <p class="prose">
+        The first month should not bury you in reports. It should show the baseline: where buyers found you, how fast they heard back, which calls looked serious, which requests booked, and which proof gaps made the next buyer harder to win.
+      </p>
+      <p class="prose">
+        From there, the weekly rhythm gets simpler. Fix the visible leak. Keep the path moving. Turn finished jobs into trust. Give the owner a clear read before another month gets spent on leads that the business does not own.
+      </p>
+    </div>
+  </section>
+
+  <section class="playbook-cta elev">
+    <div class="container">
+      <h2 class="h-closer">Ready to see where pest control leads are leaking?</h2>
+      <p class="lede">The Revenue Leak Map shows the first gap in your visibility, speed, proof, or booked-work path.</p>
+      <!-- approved-proof: 008 de-id concrete contractor, organic-playbook use approved by Robert 2026-06-18 -->
+      <blockquote class="pull-quote"><p>A concrete contractor we run went from almost no inbound calls to about 150 leads since launch.</p></blockquote>
+      <p class="cta-row">
+        <a class="cta-primary" href="/book" data-cta-source="pest-control-lead-gen-final-primary">See If We're a Fit <span class="cta-arrow">→</span></a>
+        <a class="cta-ghost" href="/system" data-cta-source="pest-control-lead-gen-final-secondary">See the System</a>
+      </p>
+    </div>
+  </section>
+
+  <section class="playbook-faq">
+    <div class="container">
+      <p class="section-tag">FAQ</p>
+      <h2 class="h-section">Common questions.</h2>
+      <div class="faq-list">
+        {faqs.map((f) => (
+          <details class="faq-item">
+            <summary class="faq-q">{f.q}</summary>
+            <div class="faq-a">
+              <p>{f.a}</p>
+            </div>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+
+</BaseLayout>
+
+<style>
+.playbook-hero { padding-block: clamp(80px, 12vw, 144px); }
+.playbook-hero-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(260px, 360px); gap: clamp(32px, 6vw, 72px); align-items: center; }
+.playbook-hero .lede { margin-top: 24px; }
+.back-link { color: var(--ink-faint); transition: color 180ms ease; }
+.back-link:hover { color: var(--y2); }
+.proof-panel { padding: 28px; }
+.proof-panel strong { display: block; margin-top: 18px; font-size: clamp(54px, 8vw, 92px); line-height: 0.9; color: var(--y2); font-weight: 600; }
+.proof-panel p:last-child { margin-top: 18px; color: var(--ink-dim); line-height: 1.6; }
+
+.hero-photo { margin-top: 56px; max-width: 1120px; border-radius: 4px; overflow: hidden; border: 1px solid var(--rule); }
+.hero-photo img { width: 100%; height: auto; display: block; }
+
+.playbook-section, .playbook-related, .playbook-cta, .playbook-faq { padding-block: clamp(56px, 8vw, 96px); }
+.prose { font-size: 17px; line-height: 1.7; color: var(--ink-dim); max-width: 760px; margin-top: 24px; }
+.prose + .prose { margin-top: 16px; }
+.prose a, .related-list a { color: var(--ink); text-decoration: none; border-bottom: 1px solid rgba(240,255,0,0.45); }
+.prose a:hover, .related-list a:hover { color: var(--y2); border-bottom-color: var(--y2); }
+.pull-quote { margin-top: 28px; max-width: 760px; border-left: 2px solid var(--y2); padding-left: 18px; color: var(--ink); }
+.pull-quote p { font-size: 18px; line-height: 1.55; }
+
+.leak-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 16px; margin-block: 40px; }
+.leak-card { border: 1px solid var(--rule); background: rgba(255,255,255,0.025); padding: 24px; border-radius: 4px; }
+.leak-num { color: var(--y2); font-size: 10px; letter-spacing: 0.18em; }
+.leak-card h3 { margin-top: 18px; font-size: 22px; line-height: 1.15; color: var(--ink); }
+.leak-card p:last-child { margin-top: 12px; color: var(--ink-dim); line-height: 1.55; }
+
+.article-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(280px, 420px); gap: clamp(32px, 6vw, 72px); align-items: start; }
+.section-photo { margin: 0; border-radius: 4px; overflow: hidden; border: 1px solid var(--rule); }
+.section-photo img { width: 100%; height: auto; display: block; }
+.system-list { list-style: none; display: flex; flex-direction: column; gap: 14px; margin-top: 28px; max-width: 760px; }
+.system-list li { color: var(--ink-dim); line-height: 1.55; padding-left: 20px; position: relative; }
+.system-list li::before { content: ""; position: absolute; left: 0; top: 0.72em; width: 7px; height: 7px; border-radius: 50%; background: var(--y2); }
+
+.related-list { list-style: none; display: flex; flex-direction: column; gap: 12px; margin-top: 32px; max-width: 880px; }
+.cta-row { display: flex; flex-wrap: wrap; gap: 16px; margin-top: 32px; }
+.playbook-faq { padding-top: 0; }
+.faq-list { display: flex; flex-direction: column; gap: 16px; margin-top: 32px; max-width: 880px; }
+.faq-item { border-top: 1px solid var(--rule); padding-block: 20px; }
+.faq-item[open] summary { color: var(--y2); }
+.faq-q { font-size: 17px; font-weight: 500; color: var(--ink); cursor: pointer; line-height: 1.4; list-style: none; }
+.faq-q::marker, .faq-q::-webkit-details-marker { display: none; }
+.faq-q::after { content: "+"; float: right; font-family: var(--mono); font-size: 18px; color: var(--y2); }
+.faq-item[open] .faq-q::after { content: "-"; }
+.faq-a { margin-top: 12px; }
+.faq-a p { font-size: 16px; line-height: 1.65; color: var(--ink-dim); max-width: 720px; }
+
+@media (max-width: 900px) {
+  .playbook-hero-grid, .article-grid { grid-template-columns: 1fr; }
+  .leak-grid { grid-template-columns: 1fr; }
+}
+</style>

@@ -1,0 +1,229 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+const title = "Content Marketing Agency Alternative | Buildwise";
+const description = "More content is not a growth system. See the owned-system alternative that turns proof and pages into booked work.";
+
+const definedTerm = {
+  '@context': 'https://schema.org',
+  '@type': 'DefinedTerm',
+  '@id': 'https://buildwisemedia.com/playbook/content-marketing-agency-alternative#term',
+  name: 'Content Marketing Agency Alternative',
+  description: 'A content marketing agency alternative is an owned system that turns proof, useful pages, and follow-up into booked work for a service business. Instead of buying more posts and reports, the owner gets a clear path from real work to trusted pages, then from those pages to booked calls.',
+  inDefinedTermSet: {
+    '@type': 'DefinedTermSet',
+    '@id': 'https://buildwisemedia.com/playbook/',
+    name: 'Buildwise Media Playbook',
+  },
+};
+
+const breadcrumb = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://buildwisemedia.com/' },
+    { '@type': 'ListItem', position: 2, name: 'Playbook', item: 'https://buildwisemedia.com/playbook/' },
+    { '@type': 'ListItem', position: 3, name: 'Content Marketing Agency Alternative', item: 'https://buildwisemedia.com/playbook/content-marketing-agency-alternative' },
+  ],
+};
+
+const faqs = [
+  {
+    q: 'What is a content marketing agency alternative?',
+    a: 'It is a system you own that turns your proof, service pages, and follow-up into booked work. A content shop usually gives you more articles. The owned-system path gives you useful pages, clear next steps, and a way to see what is helping real buyers move.',
+  },
+  {
+    q: 'Is Buildwise Media a content marketing agency?',
+    a: 'No. Buildwise Media is the alternative to hiring a content agency. The Buildwise team builds and runs the system, but the pages, lead paths, data, and accounts stay in your hands.',
+  },
+  {
+    q: 'Why does more content fail for service businesses?',
+    a: 'More content fails when it is not tied to proof, local trust, service intent, and follow-up. Owners do not need a bigger pile of posts. They need pages that answer buyer doubts and turn the right visits into calls.',
+  },
+  {
+    q: 'How does this connect with SEO?',
+    a: 'SEO is one part of the system. The page has to earn trust, show real proof, and move the visitor toward a call. That is why the content plan connects with the lead path instead of sitting off to the side.',
+  },
+  {
+    q: 'When should I still hire a content agency?',
+    a: 'A content agency can fit if you only need a short run of writing or a one-time batch of posts. If you want the system, the proof library, the pages, and the lead path to compound inside your business, the owned-system path is the better match.',
+  },
+];
+
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  '@id': 'https://buildwisemedia.com/playbook/content-marketing-agency-alternative#faq',
+  mainEntity: faqs.map((f) => ({
+    '@type': 'Question',
+    name: f.q,
+    acceptedAnswer: { '@type': 'Answer', text: f.a },
+  })),
+};
+---
+<BaseLayout title={title} description={description} jsonLd={[definedTerm, breadcrumb, faqSchema]}>
+
+  <section class="playbook-hero">
+    <div class="container">
+      <p class="eyebrow"><a href="/playbook" class="back-link">← Playbook</a></p>
+      <h1 class="h-hero">A content marketing agency alternative for service businesses</h1>
+      <p class="lede">
+        If you searched for a content marketing agency alternative, you are likely tired of buying more articles that do not turn into real calls. The problem is not that your business needs endless content. The problem is that your best proof is not being turned into pages buyers can trust.
+      </p>
+      <p class="lede">
+        Buildwise Media is not a content agency. We build the owned system around your proof, service pages, and follow-up, so the work you already do can help the next buyer choose you.
+      </p>
+      <figure class="hero-photo">
+        <!-- @r020:F4 curiosity: editorial workspace frames content as a system to inspect, not a pile of posts -->
+        <img src="/images/bwm-method-editorial-v1.webp" alt="Editorial workspace with notes, screens, and marked-up pages arranged into a clear service-business growth system." width="1920" height="1080" loading="eager" decoding="async" />
+      </figure>
+    </div>
+  </section>
+
+  <section class="playbook-section elev">
+    <div class="container">
+      <p class="section-tag">The real problem</p>
+      <h2 class="h-section">More content is not a plan.</h2>
+      <p class="prose">
+        A content agency often starts with a calendar. Four posts this month. Four more next month. A few service pages. A report that says traffic moved. That may look busy, but it can still leave you with the same problem: the phone is quiet, and you are not sure what the work did.
+      </p>
+      <p class="prose">
+        Service buyers do not choose you because you published more. They choose you when the page proves you understand their problem, shows you have solved it before, and gives them a clear next step. That is why the content has to connect with the system that books work.
+      </p>
+      <p class="prose">
+        The owned-system path starts with proof and buyer questions, then builds pages around the jobs you actually want. It pairs well with the <a href="/playbook/seo-agency-alternative">SEO agency alternative</a>, because search only helps when the page can earn trust and move the right person forward.
+      </p>
+      <figure class="section-photo section-photo--diagram">
+        <!-- @r020:F2 proof: five-layer funnel shows how proof, pages, and follow-up connect into one path -->
+        <img src="/images/funnel-5-layer-v1.svg" alt="Five-layer funnel diagram showing proof, pages, trust, follow-up, and booked work connected in one system." width="1200" height="675" loading="lazy" decoding="async" />
+      </figure>
+    </div>
+  </section>
+
+  <section class="playbook-section">
+    <div class="container">
+      <p class="section-tag">What changes</p>
+      <h2 class="h-section">Your proof becomes the source.</h2>
+      <p class="prose">
+        Most service businesses already have better material than a writer can invent. You have before-and-after work, hard client questions, job photos, estimates, notes from the field, and the small details that make a buyer trust you. A content shop may miss that because it is paid to make pages, not to build the system around your proof.
+      </p>
+      <p class="prose">
+        The Buildwise team turns that raw proof into pages that answer what buyers ask before they call. Then the system keeps learning which pages, offers, and follow-up steps help people book. You are not renting a stream of content. You are building a proof library that can keep working.
+      </p>
+      <p class="prose">
+        This is also why the <a href="/playbook/hyper-personalized-seo">hyper-personalized SEO</a> approach matters. The page should speak to the real job, the real service area, and the real objection in front of the buyer.
+      </p>
+      <figure class="section-photo">
+        <!-- @r020:F2 proof: proof still-life makes the abstract proof library feel concrete and owned -->
+        <img src="/images/bwm-proof-still-life-v1.webp" alt="Dark desk with proof notes, marked records, and planning materials arranged for turning real work into trusted pages." width="1920" height="1080" loading="lazy" decoding="async" />
+      </figure>
+    </div>
+  </section>
+
+  <section class="playbook-section elev">
+    <div class="container">
+      <p class="section-tag">The Buildwise alternative</p>
+      <h2 class="h-section">The page is only one layer.</h2>
+      <p class="prose">
+        A page can educate a buyer, but it cannot fix the whole growth path by itself. The visitor still needs the right next step. The lead still needs follow-up. You still need to know which pages help real buyers and which ones only add noise.
+      </p>
+      <p class="prose">
+        That is why Buildwise Media builds the content layer into the full <a href="/system">owned system</a>. The page, proof, call path, follow-up, and reporting work together. The team runs it for you, but the system sits on your domain and in your accounts.
+      </p>
+      <p class="prose">
+        This is the same core idea behind the broader <a href="/playbook/agency-alternative">agency alternative</a>: you should not pay a monthly agency contract for work that vanishes when the vendor leaves.
+      </p>
+      <figure class="section-photo section-photo--diagram">
+        <!-- @r020:F3 CTA-pull: ascending node mesh points from content pages toward the owned system -->
+        <img src="/images/node-mesh-ascending-v1.svg" alt="Ascending node mesh diagram showing service pages, proof, and follow-up connected into an owned growth system." width="1200" height="675" loading="lazy" decoding="async" />
+      </figure>
+    </div>
+  </section>
+
+  <section class="playbook-section">
+    <div class="container">
+      <p class="section-tag">When it fits</p>
+      <h2 class="h-section">Use this path when content should book work.</h2>
+      <p class="prose">
+        A content agency can be the right call when you need writing support for a short window. Maybe you need a batch of posts, a few edits, or a one-time push around a launch. That is a service, and it can be useful.
+      </p>
+      <p class="prose">
+        The owned-system path is for a different need. It fits when you want your best jobs, proof, service pages, and follow-up to work together over time. You want the system to get clearer each month, not reset each time a vendor changes.
+      </p>
+      <p class="prose">
+        If you are trying to choose between another agency contract and an owned system, start with the question that matters: do you want more content, or do you want more of the right buyers booking?
+      </p>
+    </div>
+  </section>
+
+  <section class="playbook-faq">
+    <div class="container">
+      <p class="section-tag">FAQ</p>
+      <h2 class="h-section">Common questions.</h2>
+      <div class="faq-list">
+        {faqs.map((f) => (
+          <details class="faq-item">
+            <summary class="faq-q">{f.q}</summary>
+            <div class="faq-a">
+              <p>{f.a}</p>
+            </div>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="playbook-cta elev">
+    <div class="container">
+      <h2 class="h-closer">Ready to see the owned-system alternative?</h2>
+      <p class="lede">If you want proof, pages, and follow-up to turn into booked work, that is the system worth seeing.</p>
+      <!-- approved-proof: 008 de-id concrete contractor, organic-playbook use approved by Robert 2026-06-18 -->
+      <blockquote class="pull-quote"><p>A concrete contractor we run went from almost no inbound calls to about 150 leads since launch.</p></blockquote>
+      <p class="cta-row">
+        <a class="cta-primary" href="/book" data-cta-source="playbook-content-marketing-agency-alternative-cta-primary">See If We're a Fit <span class="cta-arrow">→</span></a>
+        <a class="cta-ghost" href="/system" data-cta-source="playbook-content-marketing-agency-alternative-cta-secondary">See the System</a>
+      </p>
+    </div>
+  </section>
+
+</BaseLayout>
+
+<style>
+.playbook-hero { padding-block: clamp(80px, 12vw, 144px); }
+.playbook-hero .lede { margin-top: 24px; }
+.back-link { color: var(--ink-faint); transition: color 180ms ease; }
+.back-link:hover { color: var(--y2); }
+
+.h-hero em { color: var(--y2); font-style: normal; font-weight: inherit; }
+.h-section em { color: var(--y2); font-style: normal; font-weight: inherit; }
+
+.hero-photo { margin-top: 56px; max-width: 1120px; border-radius: 4px; overflow: hidden; border: 1px solid var(--rule); }
+.hero-photo img { width: 100%; height: auto; display: block; }
+
+.playbook-section { padding-block: clamp(56px, 8vw, 96px); }
+.playbook-section .prose { font-size: 17px; line-height: 1.7; color: var(--ink-dim); max-width: 720px; }
+.playbook-section .prose + .prose { margin-top: 16px; }
+
+.section-photo { margin: 48px 0 0; max-width: 1120px; border-radius: 4px; overflow: hidden; border: 1px solid var(--rule); }
+.section-photo img { width: 100%; height: auto; display: block; }
+.section-photo--diagram { max-width: 980px; border-color: transparent; background: transparent; }
+.section-photo--diagram img { background: transparent; }
+
+.pull-quote { margin: 56px 0; padding: 32px 0; border-block: 1px solid var(--rule); max-width: 880px; }
+.pull-quote p { font-size: 24px; line-height: 1.35; color: var(--ink); font-weight: 500; font-style: italic; }
+
+.playbook-faq { padding-block: clamp(64px, 10vw, 112px); }
+.faq-list { display: flex; flex-direction: column; gap: 16px; margin-top: 32px; max-width: 880px; }
+.faq-item { border-top: 1px solid var(--rule); padding-block: 20px; }
+.faq-item[open] summary { color: var(--y2); }
+.faq-q { font-size: 17px; font-weight: 500; color: var(--ink); cursor: pointer; line-height: 1.4; list-style: none; }
+.faq-q::marker, .faq-q::-webkit-details-marker { display: none; }
+.faq-q::after { content: "+"; float: right; font-family: var(--mono); font-size: 18px; color: var(--y2); }
+.faq-item[open] .faq-q::after { content: "−"; }
+.faq-a { margin-top: 12px; }
+.faq-a p { font-size: 16px; line-height: 1.65; color: var(--ink-dim); max-width: 720px; }
+
+.playbook-cta { padding-block: clamp(64px, 10vw, 112px); }
+.playbook-cta .lede { margin-top: 16px; }
+.cta-row { display: flex; flex-wrap: wrap; gap: 16px; margin-top: 32px; }
+</style>

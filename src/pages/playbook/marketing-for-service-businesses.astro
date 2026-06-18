@@ -1,0 +1,236 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+const title = "Marketing for Service Businesses, Run For You | Buildwise";
+const description = "Marketing for service businesses that books work, not busywork. One owned system the Buildwise team builds and runs for you.";
+
+const definedTerm = {
+  '@context': 'https://schema.org',
+  '@type': 'DefinedTerm',
+  '@id': 'https://buildwisemedia.com/playbook/marketing-for-service-businesses#term',
+  name: 'Marketing for Service Businesses',
+  description: 'Marketing for service businesses should book real work, not create more busywork for the owner. Buildwise is the agency alternative: one owned system the Buildwise team builds and runs for you, with your website, lead paths, follow-up, and tracking what works connected around the jobs you want more of.',
+  inDefinedTermSet: {
+    '@type': 'DefinedTermSet',
+    '@id': 'https://buildwisemedia.com/playbook/',
+    name: 'Buildwise Media Playbook',
+  },
+};
+
+const breadcrumb = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://buildwisemedia.com/' },
+    { '@type': 'ListItem', position: 2, name: 'Playbook', item: 'https://buildwisemedia.com/playbook/' },
+    { '@type': 'ListItem', position: 3, name: 'Marketing for Service Businesses', item: 'https://buildwisemedia.com/playbook/marketing-for-service-businesses' },
+  ],
+};
+
+const faqs = [
+  {
+    q: 'What does marketing for service businesses include?',
+    a: 'It includes the parts that help you get booked: a clear website, local proof, lead paths, fast follow-up, and simple reporting that shows what is working. The point is not more tasks for you. The point is a system that brings better calls into the business.',
+  },
+  {
+    q: 'Is Buildwise a marketing agency?',
+    a: 'No. Buildwise is the alternative to hiring another agency or lead vendor. The Buildwise team builds and runs one owned system for you, inside your business, so the work does not live in a vendor account.',
+  },
+  {
+    q: 'Do you work with one trade or many service businesses?',
+    a: 'The system is built for owner-led service businesses. The message, proof, service areas, and lead paths change by trade, but the core job is the same: help the right local customers choose you faster.',
+  },
+  {
+    q: 'Will I have to manage the marketing week to week?',
+    a: 'No. The Buildwise team runs the system for you. You still make the key calls about your offer, service area, and capacity, but you are not being handed another list of marketing chores.',
+  },
+  {
+    q: 'How do I know if this is better than buying leads?',
+    a: 'Buying leads can help for a short stretch, but you are still renting attention from someone else. An owned system keeps building around your name, your proof, and your local service area.',
+  },
+];
+
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  '@id': 'https://buildwisemedia.com/playbook/marketing-for-service-businesses#faq',
+  mainEntity: faqs.map((f) => ({
+    '@type': 'Question',
+    name: f.q,
+    acceptedAnswer: { '@type': 'Answer', text: f.a },
+  })),
+};
+---
+<BaseLayout title={title} description={description} jsonLd={[definedTerm, breadcrumb, faqSchema]}>
+
+  <section class="playbook-hero">
+    <div class="container">
+      <p class="eyebrow"><a href="/playbook" class="back-link">← Playbook</a></p>
+      <h1 class="h-hero">Marketing for service businesses, run for you</h1>
+      <p class="lede">
+        If you own a service business, marketing should make the phone ring with the right work. It should not turn into another job you have to manage after the trucks are out, the crew needs answers, and the schedule is already full.
+      </p>
+      <p class="lede">
+        Buildwise builds and runs one owned system around your business. Your site, proof, lead paths, follow-up, and simple reporting work together, so marketing for service businesses becomes a working asset instead of a pile of tasks.
+      </p>
+      <figure class="hero-photo">
+        <!-- @r020:F1 emotion: cinematic service-business scene frames the owner's relief when the system keeps working without more busywork -->
+        <img src="/images/bwm-outcomes-environmental-cinematic-v1.webp" alt="Cinematic dark workspace with field notes, service records, and a lit screen showing the business still moving after hours." width="1920" height="1080" loading="eager" decoding="async" />
+      </figure>
+    </div>
+  </section>
+
+  <section class="playbook-section elev">
+    <div class="container">
+      <p class="section-tag">The real job</p>
+      <h2 class="h-section">Book work, not busywork.</h2>
+      <p class="prose">
+        Most service-business marketing asks the owner to do more. Approve more posts. Review more reports. Chase more forms. Sit through more calls about why the last batch of leads was not quite right. That is not a system. That is another weekly job.
+      </p>
+      <p class="prose">
+        The work should be simpler than that. A homeowner or business buyer has a problem. They need to trust you, see proof that you handle this kind of work, and take the next step without friction. Your marketing should make that path clear, then follow up fast when they raise their hand.
+      </p>
+      <p class="prose">
+        That is the bar: more qualified calls, cleaner handoff, less owner drag.
+      </p>
+      <figure class="section-photo section-photo--diagram">
+        <!-- @r020:F2 proof: three-layer funnel shows how the page, proof, and follow-up connect into one booking path -->
+        <img src="/images/funnel-3-layer-v1.svg" alt="Three-layer funnel diagram showing visitors moving through proof and follow-up into booked service conversations." width="1200" height="675" loading="lazy" decoding="async" />
+      </figure>
+    </div>
+  </section>
+
+  <section class="playbook-section">
+    <div class="container">
+      <p class="section-tag">Run for you</p>
+      <h2 class="h-section">The Buildwise team runs the system.</h2>
+      <p class="prose">
+        You do not need another vendor handing you tasks. You need the work handled. The Buildwise team builds the system, runs it week to week, watches what is bringing in real calls, and keeps improving the parts that help buyers choose you.
+      </p>
+      <p class="prose">
+        The system lives around your business: your services, your service area, your proof, your customer list, and your follow-up process. We are not trying to make you look like every other company in the trade. We are trying to make it easier for the right customer to see why you are the clear choice.
+      </p>
+      <p class="prose">
+        That is why the next step is not another agency pitch. It is seeing <a href="/system">the system</a>.
+      </p>
+      <figure class="section-photo">
+        <!-- @r020:F3 CTA-pull: method editorial image makes the run-for-you operating cadence feel concrete before the system link -->
+        <img src="/images/bwm-method-editorial-v1.webp" alt="Editorial workspace with service notes, connected screens, and a clear operating cadence for running the marketing system." width="1920" height="1080" loading="lazy" decoding="async" />
+      </figure>
+    </div>
+  </section>
+
+  <section class="playbook-section elev">
+    <div class="container">
+      <p class="section-tag">Owned system</p>
+      <h2 class="h-section">Own the asset instead of renting activity.</h2>
+      <p class="prose">
+        A normal monthly agency bill can leave you with reports, meetings, and scattered work you cannot carry with you. A lead vendor can sell you names, but the trust still belongs to them. Neither one builds much around your business if the work resets when the vendor changes.
+      </p>
+      <p class="prose">
+        Buildwise is the alternative. We build the website paths, proof, follow-up, and tracking what works around your name. The point is not to rent attention for a month. The point is to build a system that keeps making your business easier to choose.
+      </p>
+      <p class="prose">
+        If you are comparing options, start with the difference between an <a href="/playbook/agency-alternative">agency alternative</a> and a <a href="/playbook/lead-generation-company-alternative">lead-generation company alternative</a>.
+      </p>
+      <figure class="section-photo section-photo--diagram">
+        <!-- @r020:F4 curiosity: node mesh makes the owned system visible as connected parts the business keeps -->
+        <img src="/images/node-mesh-ascending-v1.svg" alt="Ascending node-mesh diagram showing the website, proof, follow-up, and reporting connected into one owned system." width="1200" height="675" loading="lazy" decoding="async" />
+      </figure>
+    </div>
+  </section>
+
+  <section class="playbook-section">
+    <div class="container">
+      <p class="section-tag">Trade spokes</p>
+      <h2 class="h-section">Start with the trade, then build the system.</h2>
+      <p class="prose">
+        A plumber, HVAC company, concrete contractor, roofer, and home-service team do not sell the same job. The proof, seasonality, service area, and buyer worry all change by trade. The system should adapt to that, not force every business into the same pitch.
+      </p>
+      <p class="prose">
+        Use this pillar to understand the model, then move into the trade page closest to your market.
+      </p>
+      <ul class="related-list">
+        <li><a href="/playbook/hvac-lead-generation">HVAC Lead Generation</a> — how a trade-specific system turns service-area trust into booked calls</li>
+        <li><a href="/system">See the System</a> — the full Buildwise operating model behind the trade pages</li>
+        <li><a href="/playbook/agency-alternative">Agency Alternative</a> — why ownership matters when you are done renting activity</li>
+        <li><a href="/playbook/lead-generation-company-alternative">Lead-Generation Company Alternative</a> — how to stop depending on rented lists</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="playbook-faq">
+    <div class="container">
+      <p class="section-tag">FAQ</p>
+      <h2 class="h-section">Common questions.</h2>
+      <div class="faq-list">
+        {faqs.map((f) => (
+          <details class="faq-item">
+            <summary class="faq-q">{f.q}</summary>
+            <div class="faq-a">
+              <p>{f.a}</p>
+            </div>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="playbook-cta elev">
+    <div class="container">
+      <h2 class="h-closer">Ready to see if this fits your service business?</h2>
+      <p class="lede">If you want marketing that brings in work without turning you into the marketing manager, this is the conversation worth having.</p>
+      <!-- approved-proof: 008 de-id concrete contractor, organic-playbook use approved by Robert 2026-06-18 -->
+      <blockquote class="pull-quote"><p>A concrete contractor we run went from almost no inbound calls to about 150 leads since launch.</p></blockquote>
+      <p class="cta-row">
+        <a class="cta-primary" href="/book" data-cta-source="playbook-marketing-for-service-businesses-cta-primary">See If We're a Fit <span class="cta-arrow">→</span></a>
+        <a class="cta-ghost" href="/system" data-cta-source="playbook-marketing-for-service-businesses-cta-secondary">See the System</a>
+      </p>
+    </div>
+  </section>
+
+</BaseLayout>
+
+<style>
+.playbook-hero { padding-block: clamp(80px, 12vw, 144px); }
+.playbook-hero .lede { margin-top: 24px; }
+.back-link { color: var(--ink-faint); transition: color 180ms ease; }
+.back-link:hover { color: var(--y2); }
+
+.h-hero em { color: var(--y2); font-style: normal; font-weight: inherit; }
+.h-section em { color: var(--y2); font-style: normal; font-weight: inherit; }
+
+.hero-photo { margin-top: 56px; max-width: 1120px; border-radius: 4px; overflow: hidden; border: 1px solid var(--rule); }
+.hero-photo img { width: 100%; height: auto; display: block; }
+
+.playbook-section { padding-block: clamp(56px, 8vw, 96px); }
+.playbook-section .prose { font-size: 17px; line-height: 1.7; color: var(--ink-dim); max-width: 720px; }
+.playbook-section .prose + .prose { margin-top: 16px; }
+
+.section-photo { margin: 48px 0 0; max-width: 1120px; border-radius: 4px; overflow: hidden; border: 1px solid var(--rule); }
+.section-photo img { width: 100%; height: auto; display: block; }
+.section-photo--diagram { max-width: 980px; border-color: transparent; background: transparent; }
+.section-photo--diagram img { background: transparent; }
+
+.pull-quote { margin: 56px 0; padding: 32px 0; border-block: 1px solid var(--rule); max-width: 880px; }
+.pull-quote p { font-size: 24px; line-height: 1.35; color: var(--ink); font-weight: 500; font-style: italic; }
+
+.playbook-faq { padding-block: clamp(64px, 10vw, 112px); }
+.faq-list { display: flex; flex-direction: column; gap: 16px; margin-top: 32px; max-width: 880px; }
+.faq-item { border-top: 1px solid var(--rule); padding-block: 20px; }
+.faq-item[open] summary { color: var(--y2); }
+.faq-q { font-size: 17px; font-weight: 500; color: var(--ink); cursor: pointer; line-height: 1.4; list-style: none; }
+.faq-q::marker, .faq-q::-webkit-details-marker { display: none; }
+.faq-q::after { content: "+"; float: right; font-family: var(--mono); font-size: 18px; color: var(--y2); }
+.faq-item[open] .faq-q::after { content: "−"; }
+.faq-a { margin-top: 12px; }
+.faq-a p { font-size: 16px; line-height: 1.65; color: var(--ink-dim); max-width: 720px; }
+
+.related-list { list-style: none; display: flex; flex-direction: column; gap: 12px; margin-top: 32px; max-width: 880px; }
+.related-list a { color: var(--ink); font-weight: 500; text-decoration: none; border-bottom: 1px solid transparent; transition: border-color 180ms ease, color 180ms ease; }
+.related-list a:hover { color: var(--y2); border-bottom-color: var(--y2); }
+
+.playbook-cta { padding-block: clamp(64px, 10vw, 112px); }
+.playbook-cta .lede { margin-top: 16px; }
+.cta-row { display: flex; flex-wrap: wrap; gap: 16px; margin-top: 32px; }
+</style>
