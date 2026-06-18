@@ -1,0 +1,512 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import canonical from '../../data/canonical.json';
+
+const title = 'After-Hours Call Capture for Service Businesses | Buildwise Media';
+const description = "An answering service catches the call. Growth needs the whole path: answer, qualify, route, follow up, and prove the source. Here's the difference.";
+
+const categoryClaim = canonical.company.category_claim;
+const categoryClaimSentence = `${categoryClaim.charAt(0).toLowerCase()}${categoryClaim.slice(1)}`;
+const systemLabel = canonical.product_labels.system;
+
+const faqs = [
+  {
+    q: 'Is an AI answering service enough by itself?',
+    a: "Not if the lead path breaks after the call. It can catch the first handoff, but the system still has to qualify, route, follow up, and show where the lead came from.",
+  },
+  {
+    q: 'What should after-hours call capture do?',
+    a: "It should answer, ask the right basics, send a clean summary, route the next step, and keep the source tied to the lead. If it only takes a message, it's too thin.",
+  },
+  {
+    q: 'Is this only for contractors?',
+    a: 'No. Contractors feel the pain fast because calls come in during jobs, drives, and nights, but any service business with missed calls and slow handoffs can use the same layer.',
+  },
+  {
+    q: 'When is a simple missed-call text-back enough?',
+    a: "It's enough when you already have a person who owns the next step and you only need a fast reply. If the next step still gets lost, you need the full path.",
+  },
+  {
+    q: 'How does this connect to the rest of the system?',
+    a: 'The call layer feeds the site, source tracking, follow-up, reporting, and weekly decisions. It works best as one layer in a run-for-you system, not as another tool to watch.',
+  },
+];
+
+const definedTerm = {
+  '@context': 'https://schema.org',
+  '@type': 'DefinedTerm',
+  '@id': 'https://buildwisemedia.com/playbook/ai-answering-service-service-business#term',
+  name: 'After-Hours Call Capture',
+  description: 'After-hours call capture is a service-business intake layer that answers, qualifies, routes, follows up, and preserves source context when calls arrive outside the normal workday.',
+  inDefinedTermSet: {
+    '@type': 'DefinedTermSet',
+    '@id': 'https://buildwisemedia.com/playbook/',
+    name: 'Buildwise Media Playbook',
+  },
+};
+
+const breadcrumb = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://buildwisemedia.com/' },
+    { '@type': 'ListItem', position: 2, name: 'Playbook', item: 'https://buildwisemedia.com/playbook/' },
+    { '@type': 'ListItem', position: 3, name: 'After-Hours Call Capture', item: 'https://buildwisemedia.com/playbook/ai-answering-service-service-business' },
+  ],
+};
+
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  '@id': 'https://buildwisemedia.com/playbook/ai-answering-service-service-business#faq',
+  mainEntity: faqs.map((f) => ({
+    '@type': 'Question',
+    name: f.q,
+    acceptedAnswer: { '@type': 'Answer', text: f.a },
+  })),
+};
+---
+<BaseLayout title={title} description={description} jsonLd={[definedTerm, breadcrumb, faqSchema]}>
+
+  <section class="playbook-hero">
+    <div class="container">
+      <p class="eyebrow"><a href="/playbook" class="back-link">&larr; Playbook</a></p>
+      <h1 class="h-hero">An AI answering service is only the first handoff</h1>
+      <p class="lede">
+        After-hours call capture matters because the best lead can show up when you're on a job, at dinner, or finally off the clock. Answering the call is useful. Growth comes from what happens next.
+      </p>
+      <p class="lede lede-tight">
+        What most people call an AI answering service is one layer of the system. It should answer, qualify, route, follow up, and prove the source so the owner isn't stuck rebuilding the story in the morning.
+      </p>
+      <figure class="hero-diagram" aria-label="After-hours call capture handoff diagram">
+        <!-- @r020:F4 curiosity: hero diagram shows the first answered call becoming a routed system handoff -->
+        <svg viewBox="0 0 920 440" role="img" aria-labelledby="heroTitle">
+          <title id="heroTitle">An after-hours call moves from answer to qualify, route, follow-up, and source proof.</title>
+          <rect x="28" y="28" width="864" height="384" rx="4" class="panel" />
+          <text x="74" y="88" class="kicker">AFTER-HOURS CALL CAPTURE</text>
+          <circle cx="130" cy="212" r="54" class="island" />
+          <text x="130" y="205" class="node-text" text-anchor="middle">call</text>
+          <text x="130" y="232" class="node-sub" text-anchor="middle">after hours</text>
+          <path d="M236 160h126l48 52-48 52H236l48-52z" class="node node-a" />
+          <path d="M410 160h126l48 52-48 52H410l48-52z" class="node node-b" />
+          <path d="M584 160h126l48 52-48 52H584l48-52z" class="node node-c" />
+          <text x="323" y="205" class="node-text" text-anchor="middle">answer</text>
+          <text x="323" y="232" class="node-sub" text-anchor="middle">and qualify</text>
+          <text x="497" y="205" class="node-text" text-anchor="middle">route</text>
+          <text x="497" y="232" class="node-sub" text-anchor="middle">next step</text>
+          <text x="671" y="205" class="node-text" text-anchor="middle">prove</text>
+          <text x="671" y="232" class="node-sub" text-anchor="middle">the source</text>
+          <line x1="184" y1="212" x2="236" y2="212" class="rail" />
+          <line x1="410" y1="212" x2="410" y2="212" class="rail" />
+          <line x1="584" y1="212" x2="584" y2="212" class="rail" />
+          <line x1="758" y1="212" x2="826" y2="212" class="rail" />
+          <circle cx="826" cy="212" r="9" class="dot hot" />
+          <text x="460" y="334" class="caption" text-anchor="middle">the call is the start, not the whole revenue path</text>
+        </svg>
+      </figure>
+    </div>
+  </section>
+
+  <section class="playbook-section elev">
+    <div class="container definition-grid">
+      <div>
+        <p class="section-tag">Plain answer</p>
+        <h2 class="h-section">After-hours capture is a handoff layer, not a phone product.</h2>
+        <p class="prose">
+          AI phone answering for contractors can catch demand when the office can't. It can ask what happened, where the job is, how urgent it is, and how the buyer wants to be reached.
+        </p>
+        <p class="prose">
+          That is useful, but it isn't the full answer. The point is {categoryClaimSentence}: a connected path that turns a call into a clean next step, then shows what happened. If the morning still starts with you sorting notes, the layer isn't finished.
+        </p>
+      </div>
+      <figure class="definition-visual" aria-label="Call capture layer diagram">
+        <!-- @r020:F2 proof: definition diagram makes the one-layer positioning concrete -->
+        <svg viewBox="0 0 680 430" role="img" aria-labelledby="definitionTitle">
+          <title id="definitionTitle">After-hours call capture sits inside the broader service-business system.</title>
+          <rect x="24" y="24" width="632" height="382" rx="4" class="panel" />
+          <text x="64" y="78" class="kicker">ONE LAYER</text>
+          <rect x="90" y="132" width="500" height="62" rx="4" class="fit-good" />
+          <rect x="90" y="214" width="500" height="62" rx="4" class="island" />
+          <rect x="90" y="296" width="500" height="62" rx="4" class="island" />
+          <text x="340" y="170" class="node-text" text-anchor="middle">after-hours call capture</text>
+          <text x="340" y="252" class="node-text" text-anchor="middle">follow-up and source tracking</text>
+          <text x="340" y="334" class="node-text" text-anchor="middle">weekly revenue decisions</text>
+          <circle cx="590" cy="163" r="7" class="dot hot" />
+          <text x="340" y="386" class="caption" text-anchor="middle">the first layer has to feed the rest of the path</text>
+        </svg>
+      </figure>
+    </div>
+  </section>
+
+  <section class="playbook-section">
+    <div class="container compare-grid">
+      <div>
+        <p class="section-tag">The real problem</p>
+        <h2 class="h-section">The leak isn't just missed calls.</h2>
+        <p class="prose">
+          A missed call is easy to see. The quieter leak is what happens after someone answers. The buyer may be weakly qualified, the source may be lost, and no clear next step may reach the person who can move it.
+        </p>
+        <p class="prose">
+          That is why a missed-call text-back helps but doesn't fix <a href="/problem/leaky-revenue">leaky revenue</a> by itself. It buys time. It doesn't prove which source worked or keep the quote path moving. Where do calls go stale in your week?
+        </p>
+      </div>
+      <figure class="compare-visual" aria-label="Four call leaks diagram">
+        <!-- @r020:F1 emotion: leak board reflects the owner waking up to scattered call problems -->
+        <svg viewBox="0 0 640 430" role="img" aria-labelledby="leakTitle">
+          <title id="leakTitle">Missed calls, weak qualification, lost source, and no next step create leaks.</title>
+          <rect x="24" y="24" width="592" height="382" rx="4" class="panel" />
+          <text x="70" y="78" class="kicker">WHERE CALLS LEAK</text>
+          <rect x="70" y="124" width="210" height="72" rx="4" class="fit-bad" />
+          <rect x="360" y="124" width="210" height="72" rx="4" class="fit-bad" />
+          <rect x="70" y="238" width="210" height="72" rx="4" class="fit-bad" />
+          <rect x="360" y="238" width="210" height="72" rx="4" class="fit-bad" />
+          <text x="175" y="166" class="node-text" text-anchor="middle">missed call</text>
+          <text x="465" y="166" class="node-text" text-anchor="middle">thin details</text>
+          <text x="175" y="280" class="node-text" text-anchor="middle">lost source</text>
+          <text x="465" y="280" class="node-text" text-anchor="middle">no next step</text>
+          <line x1="148" y1="350" x2="492" y2="350" class="rail" />
+          <circle cx="148" cy="350" r="7" class="dot" />
+          <circle cx="492" cy="350" r="7" class="dot hot" />
+          <text x="320" y="384" class="caption" text-anchor="middle">answering is useful only if the path keeps moving</text>
+        </svg>
+      </figure>
+    </div>
+  </section>
+
+  <section class="playbook-section elev">
+    <div class="container fit-grid">
+      <div>
+        <p class="section-tag">What answering does well</p>
+        <h2 class="h-section">Answering does the first job well when the rules are clear.</h2>
+        <p class="prose">
+          A good answering layer can pick up fast, ask the same clean questions each time, and send the summary to the right place. It can help a buyer feel heard before a human follow-up is ready.
+        </p>
+        <p class="prose">
+          It is strongest when the business already knows what a good lead sounds like. Emergency, service area, job type, timeline, and contact details should be captured the same way every time. What would you ask if you only had two minutes?
+        </p>
+      </div>
+      <figure class="fit-board" aria-label="What answering does well diagram">
+        <!-- @r020:F2 proof: strengths board shows the concrete jobs answering can own without overclaiming -->
+        <svg viewBox="0 0 620 420" role="img" aria-labelledby="strengthTitle">
+          <title id="strengthTitle">Answering can catch, ask, and send a clean handoff.</title>
+          <rect x="24" y="24" width="572" height="372" rx="4" class="panel" />
+          <text x="70" y="78" class="kicker">WHAT IT CAN OWN</text>
+          <path d="M78 132h120l42 48-42 48H78l42-48z" class="node node-a" />
+          <path d="M248 132h120l42 48-42 48H248l42-48z" class="node node-b" />
+          <path d="M418 132h120l42 48-42 48H418l42-48z" class="node node-c" />
+          <text x="159" y="173" class="node-text" text-anchor="middle">catch</text>
+          <text x="159" y="199" class="node-sub" text-anchor="middle">the call</text>
+          <text x="329" y="173" class="node-text" text-anchor="middle">ask</text>
+          <text x="329" y="199" class="node-sub" text-anchor="middle">the basics</text>
+          <text x="499" y="173" class="node-text" text-anchor="middle">send</text>
+          <text x="499" y="199" class="node-sub" text-anchor="middle">the handoff</text>
+          <line x1="104" y1="306" x2="516" y2="306" class="rail" />
+          <circle cx="104" cy="306" r="7" class="dot" />
+          <circle cx="310" cy="306" r="7" class="dot" />
+          <circle cx="516" cy="306" r="7" class="dot hot" />
+          <text x="310" y="350" class="caption" text-anchor="middle">fast, steady, and useful when the next step is known</text>
+        </svg>
+      </figure>
+    </div>
+  </section>
+
+  <section class="playbook-section">
+    <div class="container compare-grid">
+      <div>
+        <p class="section-tag">What it can't fix alone</p>
+        <h2 class="h-section">It can't fix a broken path after the call.</h2>
+        <p class="prose">
+          An answering layer can't decide your service area, clean a messy offer, repair a slow quote process, or make a weak website feel trustworthy. It also can't tell you what to do next if the source data never reaches the report.
+        </p>
+        <p class="prose">
+          That is where <a href="/problem/owner-bottleneck">the owner bottleneck</a> returns. The call got answered, but the owner still has to chase the context, assign the next move, and guess what worked. What part still lands back on your desk?
+        </p>
+      </div>
+      <figure class="compare-visual" aria-label="Disconnected call tool diagram">
+        <!-- @r020:F1 emotion: disconnected diagram shows why a thin answering tool still sends work back to the owner -->
+        <svg viewBox="0 0 640 430" role="img" aria-labelledby="brokenTitle">
+          <title id="brokenTitle">A call tool can't fix disconnected follow-up, source proof, and decisions.</title>
+          <rect x="24" y="24" width="592" height="382" rx="4" class="panel" />
+          <text x="70" y="78" class="kicker">WHAT STAYS BROKEN</text>
+          <circle cx="168" cy="178" r="46" class="island" />
+          <circle cx="320" cy="178" r="46" class="island" />
+          <circle cx="472" cy="178" r="46" class="island" />
+          <text x="168" y="184" class="node-text" text-anchor="middle">offer</text>
+          <text x="320" y="184" class="node-text" text-anchor="middle">quote</text>
+          <text x="472" y="184" class="node-text" text-anchor="middle">source</text>
+          <path d="M168 264c54 48 250 48 304 0" class="rail" fill="none" />
+          <circle cx="320" cy="306" r="8" class="dot hot" />
+          <text x="320" y="354" class="caption" text-anchor="middle">the owner still has to connect the story</text>
+        </svg>
+      </figure>
+    </div>
+  </section>
+
+  <section class="playbook-section elev">
+    <div class="container">
+      <p class="section-tag">The intake path</p>
+      <h2 class="h-section">The path should answer, qualify, route, follow up, and prove the source.</h2>
+      <p class="prose">
+        The better path is simple. The call gets answered. The lead is qualified. The right next step is routed. Follow-up starts before the trail cools. Source proof stays attached so the next report can say what worked.
+      </p>
+      <p class="prose">
+        This is why after-hours call capture belongs inside the <a href="/system">{systemLabel}</a>. It should feed the same loop that runs your website, follow-up, reporting, and weekly growth decisions. Which handoff would help your week the fastest?
+      </p>
+      <figure class="path-visual" aria-label="Intake path diagram">
+        <!-- @r020:F3 CTA-pull: intake path diagram makes the system sequence feel ready to inspect on the system page -->
+        <svg viewBox="0 0 980 420" role="img" aria-labelledby="pathTitle">
+          <title id="pathTitle">The intake path answers, qualifies, routes, follows up, and proves the source.</title>
+          <rect x="24" y="24" width="932" height="372" rx="4" class="panel" />
+          <text x="72" y="78" class="kicker">INTAKE PATH</text>
+          <path d="M76 156h118l40 46-40 46H76l40-46z" class="node node-a" />
+          <path d="M246 156h118l40 46-40 46H246l40-46z" class="node node-a" />
+          <path d="M416 156h118l40 46-40 46H416l40-46z" class="node node-b" />
+          <path d="M586 156h118l40 46-40 46H586l40-46z" class="node node-b" />
+          <path d="M756 156h118l40 46-40 46H756l40-46z" class="node node-c" />
+          <text x="155" y="195" class="node-text" text-anchor="middle">answer</text>
+          <text x="155" y="220" class="node-sub" text-anchor="middle">fast</text>
+          <text x="325" y="195" class="node-text" text-anchor="middle">qualify</text>
+          <text x="325" y="220" class="node-sub" text-anchor="middle">cleanly</text>
+          <text x="495" y="195" class="node-text" text-anchor="middle">route</text>
+          <text x="495" y="220" class="node-sub" text-anchor="middle">next step</text>
+          <text x="665" y="195" class="node-text" text-anchor="middle">follow up</text>
+          <text x="665" y="220" class="node-sub" text-anchor="middle">before stale</text>
+          <text x="835" y="195" class="node-text" text-anchor="middle">prove</text>
+          <text x="835" y="220" class="node-sub" text-anchor="middle">source</text>
+          <line x1="138" y1="312" x2="842" y2="312" class="rail" />
+          <circle cx="138" cy="312" r="7" class="dot" />
+          <circle cx="314" cy="312" r="7" class="dot" />
+          <circle cx="490" cy="312" r="7" class="dot" />
+          <circle cx="666" cy="312" r="7" class="dot" />
+          <circle cx="842" cy="312" r="7" class="dot hot" />
+          <text x="490" y="354" class="caption" text-anchor="middle">each step makes the next one easier to trust</text>
+        </svg>
+      </figure>
+    </div>
+  </section>
+
+  <section class="playbook-section">
+    <div class="container compare-grid">
+      <div>
+        <p class="section-tag">Simple tool or full system</p>
+        <h2 class="h-section">Sometimes a simple tool is enough. Sometimes it isn't.</h2>
+        <p class="prose">
+          A simple answering layer is enough when call volume is low, the next step is obvious, and someone already checks the handoff every day. It should make the first reply faster without creating another inbox to watch.
+        </p>
+        <p class="prose">
+          You need the fuller system when the call has to connect to the site, source proof, quote follow-up, review requests, and weekly decisions. Start with the <a href="/playbook/custom-ai-solutions">custom AI system guide</a>, then compare the wider loop in the <a href="/playbook/revenue-operating-system">revenue system guide</a> and the weekly work in <a href="/playbook/ai-marketing-department-small-business">AI marketing for owners</a>.
+        </p>
+      </div>
+      <figure class="compare-visual" aria-label="Simple tool versus full system diagram">
+        <!-- @r020:F4 curiosity: comparison board helps owners choose the right scope without overbuying -->
+        <svg viewBox="0 0 640 430" role="img" aria-labelledby="scopeTitle">
+          <title id="scopeTitle">A simple tool covers fast reply while a full system connects the whole path.</title>
+          <rect x="24" y="24" width="592" height="382" rx="4" class="panel" />
+          <text x="74" y="78" class="kicker">SCOPE TEST</text>
+          <text x="164" y="122" class="kicker">SIMPLE</text>
+          <text x="434" y="122" class="kicker">FULL PATH</text>
+          <rect x="72" y="152" width="214" height="76" rx="4" class="fit-good" />
+          <rect x="72" y="252" width="214" height="76" rx="4" class="fit-good" />
+          <rect x="354" y="152" width="214" height="76" rx="4" class="node-c" />
+          <rect x="354" y="252" width="214" height="76" rx="4" class="node-c" />
+          <text x="179" y="196" class="node-text" text-anchor="middle">fast reply</text>
+          <text x="179" y="296" class="node-text" text-anchor="middle">clear next step</text>
+          <text x="461" y="196" class="node-text" text-anchor="middle">source proof</text>
+          <text x="461" y="296" class="node-text" text-anchor="middle">follow-up loop</text>
+          <text x="320" y="372" class="caption" text-anchor="middle">choose the layer by the work it removes</text>
+        </svg>
+      </figure>
+    </div>
+  </section>
+
+  <section class="playbook-section elev">
+    <div class="container proof-grid">
+      <div>
+        <p class="section-tag">Proof before next step</p>
+        <h2 class="h-section">The work has to prove the path, not just answer the phone.</h2>
+        <p class="prose">
+          We don't ask owners to trust a neat demo. A custom home builder we work with grew from $300K to $10M+. A concrete contractor we launched has booked about 150 leads since launch. The receipts live on <a href="/results">our results</a>.
+        </p>
+        <p class="prose">
+          The free Revenue Leak Map starts with the path you already have. It shows where calls, forms, follow-up, and source proof are leaking now, then points to the first move worth making.
+        </p>
+        <p class="cta-row">
+          <a class="cta-primary" href="/book" data-cta-source="ai-answering-service-proof-primary">Get My Free Revenue Leak Map <span class="cta-arrow">&rarr;</span></a>
+          <a class="cta-ghost" href="/system" data-cta-source="ai-answering-service-proof-secondary">See the System</a>
+        </p>
+      </div>
+      <figure class="proof-visual" aria-label="Proof path diagram">
+        <!-- @r020:F3 CTA-pull: proof diagram connects the leak map action to the measured call path -->
+        <svg viewBox="0 0 620 420" role="img" aria-labelledby="proofTitle">
+          <title id="proofTitle">Proof ties the call source to follow-up and the next action.</title>
+          <rect x="24" y="24" width="572" height="372" rx="4" class="panel" />
+          <text x="70" y="78" class="kicker">PROOF PATH</text>
+          <line x1="92" y1="166" x2="528" y2="166" class="rail" />
+          <line x1="92" y1="252" x2="528" y2="252" class="rail" />
+          <circle cx="92" cy="166" r="9" class="dot" />
+          <circle cx="250" cy="166" r="9" class="dot" />
+          <circle cx="408" cy="166" r="9" class="dot" />
+          <circle cx="528" cy="166" r="9" class="dot hot" />
+          <circle cx="92" cy="252" r="9" class="dot" />
+          <circle cx="250" cy="252" r="9" class="dot" />
+          <circle cx="408" cy="252" r="9" class="dot" />
+          <circle cx="528" cy="252" r="9" class="dot hot" />
+          <text x="310" y="332" class="caption" text-anchor="middle">call, source, follow-up, and next move stay tied together</text>
+        </svg>
+      </figure>
+    </div>
+  </section>
+
+  <section class="playbook-faq">
+    <div class="container faq-grid">
+      <div>
+        <p class="section-tag">Common questions</p>
+        <h2 class="h-section">Before you add another answering tool.</h2>
+        <div class="faq-list">
+          {faqs.map((f) => (
+            <details class="faq-item">
+              <summary class="faq-q">{f.q}</summary>
+              <div class="faq-a">
+                <p>{f.a}</p>
+              </div>
+            </details>
+          ))}
+        </div>
+      </div>
+      <figure class="faq-visual" aria-label="Answering service decision path">
+        <!-- @r020:F4 curiosity: FAQ visual turns buying questions into a tight scope decision -->
+        <svg viewBox="0 0 520 430" role="img" aria-labelledby="faqTitle">
+          <title id="faqTitle">Common questions move from first handoff to full system fit.</title>
+          <rect x="24" y="24" width="472" height="382" rx="4" class="panel" />
+          <text x="70" y="78" class="kicker">DECISION PATH</text>
+          <path d="M104 126h240" class="rail" />
+          <path d="M168 190h240" class="rail" />
+          <path d="M104 254h240" class="rail" />
+          <path d="M168 318h240" class="rail" />
+          <circle cx="104" cy="126" r="9" class="dot" />
+          <circle cx="344" cy="126" r="9" class="dot" />
+          <circle cx="168" cy="190" r="9" class="dot" />
+          <circle cx="408" cy="190" r="9" class="dot" />
+          <circle cx="104" cy="254" r="9" class="dot" />
+          <circle cx="344" cy="254" r="9" class="dot" />
+          <circle cx="168" cy="318" r="9" class="dot" />
+          <circle cx="408" cy="318" r="9" class="dot hot" />
+          <text x="260" y="370" class="caption" text-anchor="middle">first handoff, full path, right scope</text>
+        </svg>
+      </figure>
+    </div>
+  </section>
+
+</BaseLayout>
+
+<style>
+.playbook-hero { padding-block: clamp(80px, 12vw, 144px); }
+.playbook-hero .lede { margin-top: 24px; }
+.playbook-hero .lede-tight { margin-top: 16px; max-width: 780px; }
+.back-link { color: var(--ink-faint); transition: color 180ms ease; }
+.back-link:hover { color: var(--y2); }
+
+.hero-diagram {
+  margin-top: 56px;
+  max-width: 1120px;
+  border-radius: 4px;
+  overflow: hidden;
+  border: 1px solid var(--rule);
+  background: rgba(255,255,255,0.02);
+}
+
+.hero-diagram svg,
+.definition-visual svg,
+.compare-visual svg,
+.fit-board svg,
+.path-visual svg,
+.proof-visual svg,
+.faq-visual svg {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.playbook-section { padding-block: clamp(56px, 8vw, 96px); }
+.playbook-section .prose { font-size: 17px; line-height: 1.7; color: var(--ink-dim); max-width: 760px; }
+.playbook-section .prose + .prose { margin-top: 16px; }
+.playbook-section .prose a { color: var(--ink); text-decoration: none; border-bottom: 1px solid rgba(240,255,0,0.45); }
+.playbook-section .prose a:hover { color: var(--y2); border-bottom-color: var(--y2); }
+.playbook-section strong { color: var(--ink); font-weight: 600; }
+
+.definition-grid,
+.compare-grid,
+.proof-grid,
+.fit-grid,
+.faq-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(300px, 520px);
+  gap: clamp(32px, 6vw, 72px);
+  align-items: start;
+}
+
+.definition-visual,
+.compare-visual,
+.fit-board,
+.path-visual,
+.proof-visual,
+.faq-visual {
+  margin: 0;
+  border: 1px solid var(--rule);
+  border-radius: 4px;
+  overflow: hidden;
+  background: rgba(255,255,255,0.02);
+}
+
+.path-visual {
+  margin-top: 48px;
+  max-width: 1120px;
+}
+
+.panel { fill: rgba(5,5,7,0.72); stroke: rgba(255,255,255,0.08); }
+.kicker { fill: var(--y2); font: 600 13px var(--mono); }
+.caption { fill: var(--ink-faint); font: 500 15px var(--sans); }
+.node { stroke: rgba(240,255,0,0.38); stroke-width: 1.5; }
+.node-a { fill: rgba(255,255,255,0.035); }
+.node-b { fill: rgba(184,255,58,0.08); }
+.node-c { fill: rgba(240,255,0,0.11); stroke: rgba(240,255,0,0.38); stroke-width: 1.5; }
+.node-text { fill: var(--ink); font: 700 18px var(--sans); }
+.node-sub { fill: var(--ink-dim); font: 500 14px var(--sans); }
+.rail { stroke: rgba(255,255,255,0.18); stroke-width: 2; }
+.dot { fill: var(--ink-faint); }
+.dot.hot { fill: var(--y2); }
+.island { fill: rgba(255,255,255,0.045); stroke: rgba(255,255,255,0.13); stroke-width: 1.5; }
+.fit-good { fill: rgba(184,255,58,0.08); stroke: rgba(184,255,58,0.32); }
+.fit-bad { fill: rgba(255,255,255,0.035); stroke: rgba(255,255,255,0.12); }
+
+.cta-row { display: flex; flex-wrap: wrap; gap: 16px; margin-top: 32px; }
+
+.playbook-faq { padding-block: clamp(64px, 10vw, 112px); }
+.faq-list { display: flex; flex-direction: column; gap: 16px; margin-top: 32px; max-width: 880px; }
+.faq-item { border-top: 1px solid var(--rule); padding-block: 20px; }
+.faq-item[open] summary { color: var(--y2); }
+.faq-q { font-size: 17px; font-weight: 500; color: var(--ink); cursor: pointer; line-height: 1.4; list-style: none; }
+.faq-q::marker, .faq-q::-webkit-details-marker { display: none; }
+.faq-q::after { content: "+"; float: right; font-family: var(--mono); font-size: 18px; color: var(--y2); }
+.faq-item[open] .faq-q::after { content: "-"; }
+.faq-a { margin-top: 12px; }
+.faq-a p { font-size: 16px; line-height: 1.65; color: var(--ink-dim); max-width: 720px; }
+
+@media (max-width: 980px) {
+  .definition-grid,
+  .compare-grid,
+  .proof-grid,
+  .fit-grid,
+  .faq-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .proof-visual { margin-top: 24px; }
+}
+
+@media (max-width: 620px) {
+  .node-text { font-size: 15px; }
+  .node-sub,
+  .caption { font-size: 12px; }
+}
+</style>

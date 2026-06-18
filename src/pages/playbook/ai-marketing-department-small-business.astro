@@ -2,7 +2,7 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 
 const title = "AI Marketing Department for Small Business — Buildwise Media";
-const description = "An AI marketing department for small business owners runs visibility, content, follow-up, attribution, and reporting without making the owner manage another vendor.";
+const description = "AI marketing for contractors and home-service owners: a run-for-you department that handles visibility, content, follow-up, and reporting so you don't manage another vendor.";
 
 const definedTerm = {
   '@context': 'https://schema.org',
@@ -112,6 +112,32 @@ const faqSchema = {
     </div>
   </section>
 
+  <section class="playbook-section">
+    <div class="container">
+      <p class="section-tag">What it does, Monday to Friday</p>
+      <h2 class="h-section">What the system actually does each week.</h2>
+      <p class="prose">
+        Most "AI marketing" pitches stay vague. Here's the plain version. The same loop runs every week, in order, whether you're on a roof or on the road:
+      </p>
+      <ol class="loop-list">
+        <li><strong>Trigger</strong> — the week's plan kicks off from your live numbers, not a guess.</li>
+        <li><strong>Build</strong> — pages, posts, and offers get made around what your market is actually searching.</li>
+        <li><strong>Publish</strong> — the work goes live across your site and your profiles.</li>
+        <li><strong>Inbound</strong> — calls and forms come in, get caught, qualified, and tagged by source.</li>
+        <li><strong>Follow-up</strong> — every lead gets a fast, steady follow-up until it books or says no.</li>
+        <li><strong>Report</strong> — one scoreboard shows source, calls, booked work, and the next move.</li>
+        <li><strong>Repeat</strong> — next week starts from what just worked.</li>
+      </ol>
+      <p class="prose">
+        That loop is the product. The marketing results it produces — more booked jobs, cleaner follow-up, reviews that stack up — are proof it's working, not the thing you buy. You buy the system that runs the loop. What would change if that ran without you?
+      </p>
+      <figure class="section-photo">
+        <!-- @r020:F2 proof: results editorial grounds the weekly loop in the booked work it produces -->
+        <img src="/images/bwm-results-editorial-v1.webp" alt="Editorial desk with a marked-up weekly scoreboard, booked-job notes, and a pen under warm light." width="1920" height="1080" loading="lazy" decoding="async" />
+      </figure>
+    </div>
+  </section>
+
   <section class="playbook-faq">
     <div class="container">
       <p class="section-tag">FAQ</p>
@@ -167,6 +193,9 @@ const faqSchema = {
 .playbook-section { padding-block: clamp(56px, 8vw, 96px); }
 .playbook-section .prose { font-size: 17px; line-height: 1.7; color: var(--ink-dim); max-width: 720px; }
 .playbook-section .prose + .prose { margin-top: 16px; }
+.loop-list { margin: 28px 0 8px; padding-left: 22px; max-width: 720px; display: flex; flex-direction: column; gap: 12px; }
+.loop-list li { font-size: 17px; line-height: 1.6; color: var(--ink-dim); }
+.loop-list strong { color: var(--ink); font-weight: 600; }
 
 .section-photo { margin: 48px 0 0; max-width: 1120px; border-radius: 4px; overflow: hidden; border: 1px solid var(--rule); }
 .section-photo img { width: 100%; height: auto; display: block; }

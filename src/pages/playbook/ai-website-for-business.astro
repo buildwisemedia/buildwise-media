@@ -1,0 +1,575 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import canonical from '../../data/canonical.json';
+
+const title = 'What an AI Website Should Actually Do | Buildwise Media';
+const description = "An AI website should qualify leads, prove trust, route action, and feed a system you don't manage - not just look current. Here's the test.";
+
+const categoryClaim = canonical.company.category_claim;
+const categoryClaimSentence = `${categoryClaim.charAt(0).toLowerCase()}${categoryClaim.slice(1)}`;
+const ascendName = canonical.products.ascend.name;
+const pilotName = canonical.products.pilot.name;
+
+const relatedLinks = [
+  {
+    href: '/playbook/custom-ai-solutions',
+    label: 'Custom AI System',
+    body: 'See how the site fits into the full run-for-you system.',
+  },
+  {
+    href: '/playbook/ai-marketing-department-small-business',
+    label: 'AI Marketing for Small Business',
+    body: 'Move the weekly growth work off your desk.',
+  },
+  {
+    href: '/playbook/revenue-operating-system',
+    label: 'Revenue Operating System',
+    body: 'Tie source, follow-up, proof, and decisions into one loop.',
+  },
+];
+
+const jobs = [
+  'Show trust fast',
+  'Match the problem',
+  'Route the next action',
+  'Capture clean source data',
+  'Feed follow-up',
+];
+
+const faqs = [
+  {
+    q: 'What is an AI website for a service business?',
+    a: 'It is a working lead path, not just a design refresh. It should prove trust, answer the buyer question, route the next step, and feed the follow-up system without making the owner manage every handoff.',
+  },
+  {
+    q: 'How is an AI website different from a normal website?',
+    a: 'A normal site often stops at looking current. An AI website keeps the path moving. It helps the right buyer know what to do, then shows where the lead came from and what should happen next.',
+  },
+  {
+    q: 'Does the site replace the owner or sales judgment?',
+    a: "No. It should remove repeat work, not hide judgment. The owner still decides the big moves, while the system handles the steps that shouldn't wait on a busy morning.",
+  },
+  {
+    q: 'What should an AI website connect to?',
+    a: 'It should connect to the intake path, your booking page, follow-up, proof, reporting, and the weekly decision loop. The point is to stop losing context after the form or call.',
+  },
+  {
+    q: 'Where should we start if our site is leaking leads?',
+    a: 'Start with the Revenue Leak Map. It shows where the path breaks first, then points to the smallest useful fix before a bigger rebuild.',
+  },
+];
+
+const definedTerm = {
+  '@context': 'https://schema.org',
+  '@type': 'DefinedTerm',
+  '@id': 'https://buildwisemedia.com/playbook/ai-website-for-business#term',
+  name: 'AI Website',
+  description: "An AI website for a service business is a working lead path that qualifies demand, proves trust, routes action, captures source data, and feeds follow-up.",
+  inDefinedTermSet: {
+    '@type': 'DefinedTermSet',
+    '@id': 'https://buildwisemedia.com/playbook/',
+    name: 'Buildwise Media Playbook',
+  },
+};
+
+const breadcrumb = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://buildwisemedia.com/' },
+    { '@type': 'ListItem', position: 2, name: 'Playbook', item: 'https://buildwisemedia.com/playbook/' },
+    { '@type': 'ListItem', position: 3, name: 'AI Website', item: 'https://buildwisemedia.com/playbook/ai-website-for-business' },
+  ],
+};
+
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  '@id': 'https://buildwisemedia.com/playbook/ai-website-for-business#faq',
+  mainEntity: faqs.map((f) => ({
+    '@type': 'Question',
+    name: f.q,
+    acceptedAnswer: { '@type': 'Answer', text: f.a },
+  })),
+};
+---
+<BaseLayout title={title} description={description} jsonLd={[definedTerm, breadcrumb, faqSchema]}>
+
+  <section class="playbook-hero">
+    <div class="container">
+      <p class="eyebrow"><a href="/playbook" class="back-link">&larr; Playbook</a></p>
+      <h1 class="h-hero">An AI website should be a working lead path, not just a new look</h1>
+      <p class="lede">
+        An AI website for a service business should do work. It should help the right buyer trust you, choose the next step, and keep the lead path moving when you're already pulled into the day.
+      </p>
+      <p class="lede lede-tight">
+        It's not a prettier brochure. If your phone rings, a form comes in, or a buyer asks for proof, the site should show what happened next. If it can't, the new look isn't enough.
+      </p>
+      <figure class="hero-visual" aria-label="AI website lead path diagram">
+        <!-- @r020:F4 curiosity: hero diagram turns the page idea into a visible lead path before the copy gets tactical -->
+        <svg viewBox="0 0 920 470" role="img" aria-labelledby="heroTitle">
+          <title id="heroTitle">An AI website carries a buyer from trust to action to follow-up.</title>
+          <rect x="28" y="28" width="864" height="414" rx="4" class="panel" />
+          <text x="74" y="86" class="kicker">WORKING LEAD PATH</text>
+          <path d="M96 178h170l52 58-52 58H96l52-58z" class="node node-a" />
+          <path d="M358 178h170l52 58-52 58H358l52-58z" class="node node-b" />
+          <path d="M620 178h170l52 58-52 58H620l52-58z" class="node node-c" />
+          <text x="194" y="226" class="node-text" text-anchor="middle">trust</text>
+          <text x="194" y="252" class="node-sub" text-anchor="middle">fast proof</text>
+          <text x="456" y="226" class="node-text" text-anchor="middle">action</text>
+          <text x="456" y="252" class="node-sub" text-anchor="middle">clear route</text>
+          <text x="718" y="226" class="node-text" text-anchor="middle">follow-up</text>
+          <text x="718" y="252" class="node-sub" text-anchor="middle">next step</text>
+          <line x1="130" y1="354" x2="790" y2="354" class="rail" />
+          <circle cx="130" cy="354" r="8" class="dot" />
+          <circle cx="456" cy="354" r="8" class="dot" />
+          <circle cx="790" cy="354" r="8" class="dot hot" />
+          <text x="460" y="392" class="caption" text-anchor="middle">a site should carry the handoff, not hand it back to the owner</text>
+        </svg>
+      </figure>
+    </div>
+  </section>
+
+  <section class="playbook-section elev">
+    <div class="container definition-grid">
+      <div>
+        <p class="section-tag">Plain answer</p>
+        <h2 class="h-section">The plain answer: a site should do work.</h2>
+        <p class="prose">
+          If you searched for an AI website or AI for web work, start here: the site should not just look modern. It should qualify demand, show proof, route action, and keep the next step from landing back on your desk.
+        </p>
+        <p class="prose">
+          The category behind it is <strong>{categoryClaimSentence}</strong>. The website is the front door, but it only matters if the door opens into a system that keeps moving. What should your site handle before you even see the lead?
+        </p>
+      </div>
+      <figure class="definition-visual" aria-label="Static site versus working site diagram">
+        <!-- @r020:F2 proof: diagram shows the difference between a static page and a working lead path -->
+        <svg viewBox="0 0 680 430" role="img" aria-labelledby="definitionTitle">
+          <title id="definitionTitle">A working site carries proof, action, and follow-up.</title>
+          <rect x="24" y="24" width="632" height="382" rx="4" class="panel" />
+          <text x="64" y="78" class="kicker">NEW LOOK ISN'T ENOUGH</text>
+          <circle cx="156" cy="204" r="58" class="island" />
+          <text x="156" y="198" class="node-text" text-anchor="middle">looks</text>
+          <text x="156" y="224" class="node-sub" text-anchor="middle">current</text>
+          <line x1="250" y1="204" x2="430" y2="204" class="rail broken" />
+          <path d="M430 146h128l46 58-46 58H430l46-58z" class="node node-c" />
+          <text x="512" y="198" class="node-text" text-anchor="middle">does</text>
+          <text x="512" y="224" class="node-sub" text-anchor="middle">the work</text>
+          <line x1="110" y1="330" x2="570" y2="330" class="rail" />
+          <circle cx="110" cy="330" r="7" class="dot" />
+          <circle cx="340" cy="330" r="7" class="dot" />
+          <circle cx="570" cy="330" r="7" class="dot hot" />
+          <text x="340" y="366" class="caption" text-anchor="middle">proof and next steps have to survive the first click</text>
+        </svg>
+      </figure>
+    </div>
+  </section>
+
+  <section class="playbook-section">
+    <div class="container">
+      <p class="section-tag">Five jobs</p>
+      <h2 class="h-section">The five jobs your website has to run.</h2>
+      <p class="prose">
+        A strong AI website for contractors and other service businesses has five jobs. It shows trust fast, matches the buyer's problem, routes the next action, captures where the lead came from, and feeds follow-up.
+      </p>
+      <p class="prose">
+        That sounds simple because it should be. The hard part is making those jobs happen on a Tuesday morning when you're already in the truck, on the job, or putting out a fire. Which job breaks first today?
+      </p>
+      <div class="job-grid" aria-label="Five website jobs">
+        {jobs.map((job, index) => (
+          <div class="job-card">
+            <span class="mono">0{index + 1}</span>
+            <strong>{job}</strong>
+          </div>
+        ))}
+      </div>
+      <figure class="section-visual" aria-label="Five website jobs flow diagram">
+        <!-- @r020:F3 CTA-pull: five-job flow makes the later audit offer feel like a practical path check -->
+        <svg viewBox="0 0 860 360" role="img" aria-labelledby="jobsTitle">
+          <title id="jobsTitle">The five jobs move from trust to follow-up.</title>
+          <rect x="24" y="24" width="812" height="312" rx="4" class="panel" />
+          <text x="66" y="78" class="kicker">FIVE JOBS</text>
+          <path d="M76 154h110l34 44-34 44H76l34-44z" class="node node-a" />
+          <path d="M226 154h110l34 44-34 44H226l34-44z" class="node node-a" />
+          <path d="M376 154h110l34 44-34 44H376l34-44z" class="node node-b" />
+          <path d="M526 154h110l34 44-34 44H526l34-44z" class="node node-b" />
+          <path d="M676 154h110l34 44-34 44H676l34-44z" class="node node-c" />
+          <text x="131" y="193" class="node-small" text-anchor="middle">trust</text>
+          <text x="281" y="193" class="node-small" text-anchor="middle">problem</text>
+          <text x="431" y="193" class="node-small" text-anchor="middle">action</text>
+          <text x="581" y="193" class="node-small" text-anchor="middle">source</text>
+          <text x="731" y="193" class="node-small" text-anchor="middle">follow-up</text>
+          <line x1="96" y1="284" x2="764" y2="284" class="rail" />
+          <circle cx="96" cy="284" r="7" class="dot" />
+          <circle cx="431" cy="284" r="7" class="dot" />
+          <circle cx="764" cy="284" r="7" class="dot hot" />
+        </svg>
+      </figure>
+    </div>
+  </section>
+
+  <section class="playbook-section elev">
+    <div class="container compare-grid">
+      <div>
+        <p class="section-tag">What goes wrong</p>
+        <h2 class="h-section">What most AI websites get wrong.</h2>
+        <p class="prose">
+          Most bad builds chase the demo. They add a chat box, a moving graphic, or a clever headline, then leave the owner with the same manual work after the form comes in.
+        </p>
+        <p class="prose">
+          The buyer doesn't care that the site feels new. They care if they can trust you, see the right proof, and take the next step without friction. If that next step disappears into a shared inbox, the site is still leaking revenue. Where does the lead go after the click?
+        </p>
+      </div>
+      <figure class="compare-visual" aria-label="Disconnected website problem diagram">
+        <!-- @r020:F1 emotion: broken-path diagram shows the owner burden that a shiny page can still leave behind -->
+        <svg viewBox="0 0 640 430" role="img" aria-labelledby="wrongTitle">
+          <title id="wrongTitle">A shiny page can still drop the lead after the click.</title>
+          <rect x="24" y="24" width="592" height="382" rx="4" class="panel" />
+          <text x="70" y="78" class="kicker">WHERE IT BREAKS</text>
+          <circle cx="146" cy="178" r="46" class="island" />
+          <text x="146" y="172" class="node-text" text-anchor="middle">new</text>
+          <text x="146" y="198" class="node-sub" text-anchor="middle">look</text>
+          <line x1="210" y1="178" x2="318" y2="178" class="rail" />
+          <circle cx="338" cy="178" r="9" class="dot bad" />
+          <line x1="358" y1="178" x2="480" y2="252" class="rail broken" />
+          <circle cx="494" cy="260" r="46" class="island island-faint" />
+          <text x="494" y="254" class="node-text" text-anchor="middle">owner</text>
+          <text x="494" y="280" class="node-sub" text-anchor="middle">chases</text>
+          <line x1="108" y1="336" x2="532" y2="336" class="rail" />
+          <circle cx="108" cy="336" r="7" class="dot" />
+          <circle cx="338" cy="336" r="7" class="dot bad" />
+          <circle cx="532" cy="336" r="7" class="dot" />
+          <text x="320" y="372" class="caption" text-anchor="middle">a lead path has to keep context after the click</text>
+        </svg>
+      </figure>
+    </div>
+  </section>
+
+  <section class="playbook-section">
+    <div class="container owner-grid">
+      <div>
+        <p class="section-tag">Owner test</p>
+        <h2 class="h-section">The owner test: did the site reduce work?</h2>
+        <p class="prose">
+          Use three simple questions. Did the phone ring or the form land with the right context? Can you see what happened next? Did it reduce work for you this week?
+        </p>
+        <p class="prose">
+          If the answer is no, the page may be pretty, but it isn't a working lead path yet. This is the same root issue behind the <a href="/problem/owner-bottleneck">owner bottleneck</a> and <a href="/problem/leaky-revenue">leaky revenue</a>. What would make the next lead easier to handle?
+        </p>
+      </div>
+      <div class="fit-board" aria-label="Owner test checklist">
+        <!-- @r020:F2 proof: test board gives the owner a clear pass-fail screen for whether the site did useful work -->
+        <svg viewBox="0 0 620 420" role="img" aria-labelledby="ownerTitle">
+          <title id="ownerTitle">Three owner test questions for an AI website.</title>
+          <rect x="24" y="24" width="572" height="372" rx="4" class="panel" />
+          <text x="70" y="78" class="kicker">OWNER TEST</text>
+          <rect x="76" y="118" width="468" height="58" rx="4" class="fit-good" />
+          <rect x="76" y="202" width="468" height="58" rx="4" class="fit-good" />
+          <rect x="76" y="286" width="468" height="58" rx="4" class="fit-good" />
+          <circle cx="112" cy="147" r="7" class="dot hot" />
+          <circle cx="112" cy="231" r="7" class="dot hot" />
+          <circle cx="112" cy="315" r="7" class="dot hot" />
+          <text x="142" y="153" class="node-text">Did the lead arrive with context?</text>
+          <text x="142" y="237" class="node-text">Can you see what happened next?</text>
+          <text x="142" y="321" class="node-text">Did it reduce owner work?</text>
+        </svg>
+      </div>
+    </div>
+  </section>
+
+  <section class="playbook-section elev">
+    <div class="container">
+      <p class="section-tag">System connection</p>
+      <h2 class="h-section">How the website connects to the system.</h2>
+      <p class="prose">
+        The website is one part of the full system. It feeds intake, your booking page, follow-up, proof requests, reporting, and the weekly decision loop. If the site is ready but the rest is loose, the handoff still breaks.
+      </p>
+      <p class="prose">
+        That is why the Buildwise team and our AI system install the path as part of <a href="/playbook/custom-ai-solutions">a custom AI system</a>. Some owners start with <a href="/services/ascend-pilot">{pilotName}</a>. Others are ready for <a href="/services/ascend">{ascendName}</a>. The question is how much of the lead path needs to come off your plate now.
+      </p>
+      <div class="hub-grid">
+        {relatedLinks.map((item) => (
+          <a class="hub-card" href={item.href}>
+            <span class="mono">PLAYBOOK</span>
+            <strong>{item.label}</strong>
+            <span>{item.body}</span>
+          </a>
+        ))}
+      </div>
+      <figure class="section-visual" aria-label="Website connected to system loop">
+        <!-- @r020:F3 CTA-pull: system loop shows why the next step is a path review, not another design opinion -->
+        <svg viewBox="0 0 860 420" role="img" aria-labelledby="systemTitle">
+          <title id="systemTitle">The website feeds the larger lead system.</title>
+          <rect x="24" y="24" width="812" height="372" rx="4" class="panel" />
+          <text x="66" y="78" class="kicker">CONNECTED SYSTEM</text>
+          <path d="M128 180c0-86 72-136 164-136h276c92 0 164 50 164 136s-72 136-164 136H292c-92 0-164-50-164-136z" class="loop" />
+          <circle cx="226" cy="180" r="48" class="island" />
+          <circle cx="430" cy="118" r="48" class="island" />
+          <circle cx="634" cy="180" r="48" class="island" />
+          <circle cx="430" cy="260" r="48" class="island hot-island" />
+          <text x="226" y="174" class="node-text" text-anchor="middle">site</text>
+          <text x="226" y="200" class="node-sub" text-anchor="middle">front door</text>
+          <text x="430" y="112" class="node-text" text-anchor="middle">intake</text>
+          <text x="430" y="138" class="node-sub" text-anchor="middle">context</text>
+          <text x="634" y="174" class="node-text" text-anchor="middle">follow</text>
+          <text x="634" y="200" class="node-sub" text-anchor="middle">through</text>
+          <text x="430" y="254" class="node-text" text-anchor="middle">decide</text>
+          <text x="430" y="280" class="node-sub" text-anchor="middle">next move</text>
+          <text x="430" y="354" class="caption" text-anchor="middle">the site matters because it feeds the next move</text>
+        </svg>
+      </figure>
+    </div>
+  </section>
+
+  <section class="playbook-section">
+    <div class="container proof-grid">
+      <div>
+        <p class="section-tag">Proof first</p>
+        <h2 class="h-section">Proof comes before the next step.</h2>
+        <p class="prose">
+          We don't ask you to trust a page claim without proof. One custom-home builder we work with grew from $300K to $10M+. A concrete contractor we launched has booked about 150 leads since going live. The receipts live on <a href="/results">our results</a>.
+        </p>
+        <p class="prose">
+          The free Revenue Leak Map starts with your current path. It shows where the site, source, or follow-up is leaking now, then points to the first fix worth making.
+        </p>
+        <p class="cta-row">
+          <a class="cta-primary" href="/book" data-cta-source="ai-website-proof-primary">Get My Free Revenue Leak Map <span class="cta-arrow">&rarr;</span></a>
+          <a class="cta-ghost" href="/system" data-cta-source="ai-website-proof-secondary">See the System</a>
+        </p>
+      </div>
+      <figure class="proof-visual" aria-label="Revenue leak proof diagram">
+        <!-- @r020:F2 proof: proof board places client wins before the audit action -->
+        <svg viewBox="0 0 600 430" role="img" aria-labelledby="proofTitle">
+          <title id="proofTitle">Client proof and the next leak map step.</title>
+          <rect x="24" y="24" width="552" height="382" rx="4" class="panel" />
+          <text x="70" y="78" class="kicker">PROOF FIRST</text>
+          <rect x="72" y="118" width="456" height="76" rx="4" class="fit-good" />
+          <rect x="72" y="220" width="456" height="76" rx="4" class="fit-good" />
+          <text x="104" y="150" class="node-text">$300K to $10M+</text>
+          <text x="104" y="174" class="node-sub">custom-home builder</text>
+          <text x="104" y="252" class="node-text">about 150 leads</text>
+          <text x="104" y="276" class="node-sub">concrete contractor</text>
+          <line x1="104" y1="344" x2="496" y2="344" class="rail" />
+          <circle cx="104" cy="344" r="7" class="dot" />
+          <circle cx="300" cy="344" r="7" class="dot" />
+          <circle cx="496" cy="344" r="7" class="dot hot" />
+        </svg>
+      </figure>
+    </div>
+  </section>
+
+  <section class="playbook-faq elev">
+    <div class="container faq-grid">
+      <div>
+        <p class="section-tag">FAQ</p>
+        <h2 class="h-section">Common questions.</h2>
+        <div class="faq-list">
+          {faqs.map((f) => (
+            <details class="faq-item">
+              <summary class="faq-q">{f.q}</summary>
+              <div class="faq-a">
+                <p>{f.a}</p>
+              </div>
+            </details>
+          ))}
+        </div>
+      </div>
+      <figure class="faq-visual" aria-label="FAQ decision path">
+        <!-- @r020:F4 curiosity: FAQ map turns common questions into a short decision path -->
+        <svg viewBox="0 0 520 430" role="img" aria-labelledby="faqTitle">
+          <title id="faqTitle">Common AI website questions move from definition to first fix.</title>
+          <rect x="24" y="24" width="472" height="382" rx="4" class="panel" />
+          <text x="70" y="78" class="kicker">DECISION PATH</text>
+          <path d="M104 126h240" class="rail" />
+          <path d="M168 190h240" class="rail" />
+          <path d="M104 254h240" class="rail" />
+          <path d="M168 318h240" class="rail" />
+          <circle cx="104" cy="126" r="9" class="dot" />
+          <circle cx="344" cy="126" r="9" class="dot" />
+          <circle cx="168" cy="190" r="9" class="dot" />
+          <circle cx="408" cy="190" r="9" class="dot" />
+          <circle cx="104" cy="254" r="9" class="dot" />
+          <circle cx="344" cy="254" r="9" class="dot" />
+          <circle cx="168" cy="318" r="9" class="dot" />
+          <circle cx="408" cy="318" r="9" class="dot hot" />
+          <text x="260" y="370" class="caption" text-anchor="middle">define it, test it, map the first leak</text>
+        </svg>
+      </figure>
+    </div>
+  </section>
+
+</BaseLayout>
+
+<style>
+.playbook-hero { padding-block: clamp(80px, 12vw, 144px); }
+.playbook-hero .lede { margin-top: 24px; }
+.playbook-hero .lede-tight { margin-top: 16px; max-width: 780px; }
+.back-link { color: var(--ink-faint); transition: color 180ms ease; }
+.back-link:hover { color: var(--y2); }
+
+.hero-visual {
+  margin-top: 56px;
+  max-width: 1120px;
+  border-radius: 4px;
+  overflow: hidden;
+  border: 1px solid var(--rule);
+  background: rgba(255,255,255,0.02);
+}
+
+.hero-visual svg { display: block; width: 100%; height: auto; }
+
+.playbook-section { padding-block: clamp(56px, 8vw, 96px); }
+.playbook-section .prose { font-size: 17px; line-height: 1.7; color: var(--ink-dim); max-width: 760px; }
+.playbook-section .prose + .prose { margin-top: 16px; }
+.playbook-section .prose a { color: var(--ink); text-decoration: none; border-bottom: 1px solid rgba(240,255,0,0.45); }
+.playbook-section .prose a:hover { color: var(--y2); border-bottom-color: var(--y2); }
+.playbook-section strong { color: var(--ink); font-weight: 600; }
+
+.definition-grid,
+.compare-grid,
+.owner-grid,
+.proof-grid,
+.faq-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(300px, 520px);
+  gap: clamp(32px, 6vw, 72px);
+  align-items: start;
+}
+
+.definition-visual,
+.compare-visual,
+.fit-board,
+.proof-visual,
+.faq-visual,
+.section-visual {
+  margin: 0;
+  border: 1px solid var(--rule);
+  border-radius: 4px;
+  overflow: hidden;
+  background: rgba(255,255,255,0.02);
+}
+
+.section-visual { margin-top: 48px; max-width: 1120px; }
+
+.definition-visual svg,
+.compare-visual svg,
+.fit-board svg,
+.proof-visual svg,
+.faq-visual svg,
+.section-visual svg {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.panel { fill: rgba(5,5,7,0.72); stroke: rgba(255,255,255,0.08); }
+.kicker { fill: var(--y2); font: 600 13px var(--mono); }
+.caption { fill: var(--ink-faint); font: 500 15px var(--sans); }
+.node { stroke: rgba(240,255,0,0.38); stroke-width: 1.5; }
+.node-a { fill: rgba(255,255,255,0.035); }
+.node-b { fill: rgba(184,255,58,0.08); }
+.node-c { fill: rgba(240,255,0,0.11); }
+.node-text { fill: var(--ink); font: 700 18px var(--sans); }
+.node-small { fill: var(--ink); font: 700 16px var(--sans); }
+.node-sub { fill: var(--ink-dim); font: 500 14px var(--sans); }
+.rail { stroke: rgba(255,255,255,0.18); stroke-width: 2; }
+.rail.broken { stroke-dasharray: 8 10; }
+.dot { fill: var(--ink-faint); }
+.dot.hot { fill: var(--y2); }
+.dot.bad { fill: rgba(255,255,255,0.28); }
+.island { fill: rgba(255,255,255,0.045); stroke: rgba(255,255,255,0.13); stroke-width: 1.5; }
+.island-faint { fill: rgba(255,255,255,0.025); }
+.hot-island { fill: rgba(240,255,0,0.09); stroke: rgba(240,255,0,0.34); }
+.loop { fill: none; stroke: rgba(240,255,0,0.18); stroke-width: 2; stroke-dasharray: 10 12; }
+.fit-good { fill: rgba(184,255,58,0.08); stroke: rgba(184,255,58,0.32); }
+.fit-bad { fill: rgba(255,255,255,0.035); stroke: rgba(255,255,255,0.12); }
+
+.job-grid {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 12px;
+  margin-top: 34px;
+}
+
+.job-card {
+  min-height: 128px;
+  padding: 18px;
+  border: 1px solid var(--rule);
+  border-radius: 4px;
+  background: rgba(255,255,255,0.025);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 18px;
+}
+
+.job-card .mono { color: var(--y2); font-size: 12px; }
+.job-card strong { color: var(--ink); font-size: 17px; line-height: 1.25; }
+
+.hub-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 14px;
+  margin-top: 36px;
+}
+
+.hub-card {
+  display: flex;
+  min-height: 160px;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 20px;
+  border: 1px solid var(--rule);
+  border-radius: 4px;
+  background: rgba(255,255,255,0.025);
+  color: var(--ink-dim);
+  text-decoration: none;
+  transition: border-color 180ms ease, background 180ms ease;
+}
+
+.hub-card:hover {
+  border-color: rgba(240,255,0,0.55);
+  background: rgba(240,255,0,0.045);
+}
+
+.hub-card .mono { color: var(--y2); font-size: 12px; }
+.hub-card strong { color: var(--ink); font-size: 18px; line-height: 1.25; }
+.hub-card span:last-child { line-height: 1.55; }
+
+.cta-row { display: flex; flex-wrap: wrap; gap: 16px; margin-top: 32px; }
+
+.playbook-faq { padding-block: clamp(64px, 10vw, 112px); }
+.faq-list { display: flex; flex-direction: column; gap: 16px; margin-top: 32px; max-width: 880px; }
+.faq-item { border-top: 1px solid var(--rule); padding-block: 20px; }
+.faq-item[open] summary { color: var(--y2); }
+.faq-q { font-size: 17px; font-weight: 500; color: var(--ink); cursor: pointer; line-height: 1.4; list-style: none; }
+.faq-q::marker, .faq-q::-webkit-details-marker { display: none; }
+.faq-q::after { content: "+"; float: right; font-family: var(--mono); font-size: 18px; color: var(--y2); }
+.faq-item[open] .faq-q::after { content: "-"; }
+.faq-a { margin-top: 12px; }
+.faq-a p { font-size: 16px; line-height: 1.65; color: var(--ink-dim); max-width: 720px; }
+
+@media (max-width: 980px) {
+  .definition-grid,
+  .compare-grid,
+  .owner-grid,
+  .proof-grid,
+  .faq-grid,
+  .hub-grid,
+  .job-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .proof-visual { margin-top: 24px; }
+}
+
+@media (max-width: 620px) {
+  .hub-card,
+  .job-card { min-height: 0; }
+  .node-text { font-size: 15px; }
+  .node-small,
+  .node-sub,
+  .caption { font-size: 12px; }
+}
+</style>

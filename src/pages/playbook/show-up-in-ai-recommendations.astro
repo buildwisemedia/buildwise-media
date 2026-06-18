@@ -1,0 +1,580 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import canonical from '../../data/canonical.json';
+
+const title = 'How to Show Up When Buyers Ask AI Who to Hire | Buildwise Media';
+const description = "When buyers ask AI who to hire, the clearest proof wins. Here's what an owner needs to be the answer - without tricks.";
+
+const categoryClaim = canonical.company.category_claim;
+const categoryClaimSentence = `${categoryClaim.charAt(0).toLowerCase()}${categoryClaim.slice(1)}`;
+const systemLabel = canonical.product_labels.system_short;
+const ascendName = canonical.products.ascend.name;
+const pilotName = canonical.products.pilot.name;
+
+const proofNeeds = [
+  {
+    label: 'Who you help',
+    body: 'Make the buyer, service, and job type plain.',
+  },
+  {
+    label: 'Where you work',
+    body: 'Keep towns, service areas, and nearby proof clear.',
+  },
+  {
+    label: 'What you solve',
+    body: 'Name the painful jobs buyers ask about.',
+  },
+  {
+    label: 'Why trust you',
+    body: 'Show finished work, reviews, and clear outcomes.',
+  },
+];
+
+const approachSteps = [
+  {
+    n: '01',
+    label: 'Build the proof base',
+    body: 'Turn real jobs, reviews, photos, and service details into pages a buyer can understand.',
+  },
+  {
+    n: '02',
+    label: 'Connect the pages',
+    body: 'Help each page point to the next useful answer, not a dead end.',
+  },
+  {
+    n: '03',
+    label: 'Keep facts consistent',
+    body: 'Make names, service areas, hours, offers, and next steps match across the places buyers check.',
+  },
+  {
+    n: '04',
+    label: 'Measure the path',
+    body: 'Track whether better answers turn into calls, forms, and booked conversations.',
+  },
+];
+
+const faqs = [
+  {
+    q: 'How do I show up when buyers ask AI who to hire?',
+    a: 'Start with clear proof. Your business has to be easy to understand online: who you serve, where you work, what problems you solve, and why a buyer should trust you.',
+  },
+  {
+    q: 'Can a local business get recommended by AI?',
+    a: "Yes, but it isn't a trick. AI answers need clear, consistent facts and real proof. Thin pages and vague claims make the business harder to choose.",
+  },
+  {
+    q: 'What should I fix before chasing AI search?',
+    a: "Fix the lead path first. If the answer sends a buyer to a weak page, slow response, or unclear next step, the visibility won't help much.",
+  },
+  {
+    q: 'What proof matters most?',
+    a: 'Finished work, clear service pages, strong reviews, service-area details, useful answers, and a simple way to take the next step all matter.',
+  },
+  {
+    q: 'How does Buildwise help with this?',
+    a: `The Buildwise team and our AI system build and run the online proof layer inside a ${systemLabel}. It's part of a run-for-you system, not another task for the owner to manage.`,
+  },
+];
+
+const definedTerm = {
+  '@context': 'https://schema.org',
+  '@type': 'DefinedTerm',
+  '@id': 'https://buildwisemedia.com/playbook/show-up-in-ai-recommendations#term',
+  name: 'AI Search Visibility',
+  description: 'AI search visibility is how clearly a service business shows up when a buyer asks an AI assistant who to hire. It depends on clear facts, real proof, consistent pages, and a lead path that is easy to follow.',
+  inDefinedTermSet: {
+    '@type': 'DefinedTermSet',
+    '@id': 'https://buildwisemedia.com/playbook/',
+    name: 'Buildwise Media Playbook',
+  },
+};
+
+const breadcrumb = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://buildwisemedia.com/' },
+    { '@type': 'ListItem', position: 2, name: 'Playbook', item: 'https://buildwisemedia.com/playbook/' },
+    { '@type': 'ListItem', position: 3, name: 'AI Search Visibility', item: 'https://buildwisemedia.com/playbook/show-up-in-ai-recommendations' },
+  ],
+};
+
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  '@id': 'https://buildwisemedia.com/playbook/show-up-in-ai-recommendations#faq',
+  mainEntity: faqs.map((f) => ({
+    '@type': 'Question',
+    name: f.q,
+    acceptedAnswer: { '@type': 'Answer', text: f.a },
+  })),
+};
+---
+<BaseLayout title={title} description={description} jsonLd={[definedTerm, breadcrumb, faqSchema]}>
+
+  <section class="playbook-hero">
+    <div class="container">
+      <p class="eyebrow"><a href="/playbook" class="back-link">&larr; Playbook</a></p>
+      <h1 class="h-hero">When a buyer asks AI who to hire, does your name come up?</h1>
+      <p class="lede">
+        AI search changes the shortlist. A buyer can ask one question and get a few names back, so your business has to look clear, trustworthy, and easy to choose before the phone rings.
+      </p>
+      <p class="lede lede-tight">
+        The plain answer: AI answers need simple facts and real proof. Who do you serve? Where do you work? What problem do you solve? Why should a buyer believe you? If that isn't clear online, the answer may skip you.
+      </p>
+      <figure class="hero-visual" aria-label="Buyer question moving into a shortlist">
+        <!-- @r020:F4 curiosity: the shortlist diagram makes the invisible buyer question feel concrete -->
+        <svg viewBox="0 0 920 470" role="img" aria-labelledby="heroTitle">
+          <title id="heroTitle">A buyer question turns into a shortlist when clear proof is easy to read.</title>
+          <rect x="24" y="24" width="872" height="422" rx="4" class="panel" />
+          <text x="70" y="84" class="kicker">BUYER QUESTION</text>
+          <path d="M94 150h220l58 72-58 72H94l58-72z" class="node node-a" />
+          <text x="204" y="214" class="node-text" text-anchor="middle">who should I hire?</text>
+          <text x="204" y="242" class="node-sub" text-anchor="middle">urgent job, little time</text>
+          <line x1="392" y1="222" x2="522" y2="222" class="rail" />
+          <circle cx="392" cy="222" r="8" class="dot" />
+          <circle cx="522" cy="222" r="8" class="dot" />
+          <path d="M546 132h230l70 90-70 90H546l70-90z" class="node node-c" />
+          <text x="661" y="204" class="node-text" text-anchor="middle">clear proof</text>
+          <text x="661" y="232" class="node-sub" text-anchor="middle">name, place, service, trust</text>
+          <line x1="192" y1="356" x2="728" y2="356" class="rail" />
+          <circle cx="192" cy="356" r="8" class="dot" />
+          <circle cx="460" cy="356" r="8" class="dot" />
+          <circle cx="728" cy="356" r="8" class="dot hot" />
+          <text x="460" y="394" class="caption" text-anchor="middle">the clearest business becomes easier to recommend</text>
+        </svg>
+      </figure>
+    </div>
+  </section>
+
+  <section class="playbook-section elev">
+    <div class="container definition-grid">
+      <div>
+        <p class="section-tag">The shortlist</p>
+        <h2 class="h-section">How AI changes the shortlist.</h2>
+        <p class="prose">
+          Buyers already ask friends, neighbors, and the web who to call. Now they also ask AI answers to narrow the list. That means your business is being judged before a buyer lands on your site.
+        </p>
+        <p class="prose">
+          This isn't about tricks. It's about making your online presence match the real business. If your best work, best service areas, and clearest next step are hard to find, an AI assistant has less reason to name you.
+        </p>
+      </div>
+      <figure class="definition-visual" aria-label="AI shortlist path diagram">
+        <!-- @r020:F1 emotion: shortlist path shows the owner why a quiet online surface costs chances before a call -->
+        <svg viewBox="0 0 680 430" role="img" aria-labelledby="shortlistTitle">
+          <title id="shortlistTitle">AI answers shrink a broad market into a short list of clear options.</title>
+          <rect x="24" y="24" width="632" height="382" rx="4" class="panel" />
+          <text x="64" y="78" class="kicker">SHORTLIST SHIFT</text>
+          <circle cx="126" cy="176" r="48" class="island" />
+          <circle cx="234" cy="176" r="48" class="island" />
+          <circle cx="180" cy="282" r="48" class="island" />
+          <text x="180" y="356" class="caption" text-anchor="middle">too many choices</text>
+          <path d="M372 146h140l52 66-52 66H372l52-66z" class="node node-b" />
+          <text x="442" y="204" class="node-text" text-anchor="middle">3 names</text>
+          <text x="442" y="232" class="node-sub" text-anchor="middle">clear enough to compare</text>
+          <line x1="300" y1="212" x2="372" y2="212" class="rail" />
+          <circle cx="300" cy="212" r="7" class="dot" />
+          <circle cx="564" cy="212" r="7" class="dot hot" />
+          <text x="442" y="356" class="caption" text-anchor="middle">the answer favors the clearest proof</text>
+        </svg>
+      </figure>
+    </div>
+  </section>
+
+  <section class="playbook-section">
+    <div class="container">
+      <p class="section-tag">What it needs</p>
+      <h2 class="h-section">What AI needs to understand about your business.</h2>
+      <p class="prose">
+        AI answers need plain signals. They need to understand who you help, where you work, what problems you solve, and why a buyer should trust you. That's the base of AI search visibility.
+      </p>
+      <p class="prose">
+        The hard part isn't writing more words. The hard part is making the facts match across your site, service pages, proof pages, and lead path. That's where a <a href="/playbook/custom-ai-solutions">custom AI system</a> should help: the system keeps proof connected instead of making you manage one more checklist.
+      </p>
+      <div class="signal-grid">
+        {proofNeeds.map((item) => (
+          <article class="signal-card">
+            <span class="mono">SIGNAL</span>
+            <strong>{item.label}</strong>
+            <span>{item.body}</span>
+          </article>
+        ))}
+      </div>
+      <figure class="section-visual" aria-label="Four signals AI answers need">
+        <!-- @r020:F2 proof: signal map turns vague AI visibility into specific owner-controlled facts -->
+        <svg viewBox="0 0 920 430" role="img" aria-labelledby="signalsTitle">
+          <title id="signalsTitle">Four plain signals help AI answers understand the business.</title>
+          <rect x="24" y="24" width="872" height="382" rx="4" class="panel" />
+          <text x="70" y="78" class="kicker">CLEAR FACTS</text>
+          <rect x="82" y="126" width="160" height="92" rx="4" class="node node-a" />
+          <rect x="282" y="126" width="160" height="92" rx="4" class="node node-a" />
+          <rect x="482" y="126" width="160" height="92" rx="4" class="node node-b" />
+          <rect x="682" y="126" width="160" height="92" rx="4" class="node node-c" />
+          <text x="162" y="164" class="node-text" text-anchor="middle">who</text>
+          <text x="162" y="190" class="node-sub" text-anchor="middle">buyer fit</text>
+          <text x="362" y="164" class="node-text" text-anchor="middle">where</text>
+          <text x="362" y="190" class="node-sub" text-anchor="middle">service area</text>
+          <text x="562" y="164" class="node-text" text-anchor="middle">what</text>
+          <text x="562" y="190" class="node-sub" text-anchor="middle">pain solved</text>
+          <text x="762" y="164" class="node-text" text-anchor="middle">why</text>
+          <text x="762" y="190" class="node-sub" text-anchor="middle">proof</text>
+          <line x1="160" y1="302" x2="760" y2="302" class="rail" />
+          <circle cx="160" cy="302" r="8" class="dot" />
+          <circle cx="360" cy="302" r="8" class="dot" />
+          <circle cx="560" cy="302" r="8" class="dot" />
+          <circle cx="760" cy="302" r="8" class="dot hot" />
+          <text x="460" y="346" class="caption" text-anchor="middle">clear facts make your business easier to pick</text>
+        </svg>
+      </figure>
+    </div>
+  </section>
+
+  <section class="playbook-section elev">
+    <div class="container compare-grid">
+      <div>
+        <p class="section-tag">Thin content loses</p>
+        <h2 class="h-section">Why thin content loses.</h2>
+        <p class="prose">
+          A thin page says the business does the work. A useful page shows the problem, the area, the proof, and the next step. That difference matters when a buyer asks for help and wants a short answer.
+        </p>
+        <p class="prose">
+          Thin content also makes the owner do more work later. The buyer calls with basic questions, the team repeats the same answer, and the report still doesn't show what changed. The <a href="/problem/invisible-market">invisible market</a> stays invisible because the business didn't give buyers enough to trust.
+        </p>
+      </div>
+      <figure class="compare-visual" aria-label="Thin content compared with useful proof">
+        <!-- @r020:F1 emotion: comparison shows why vague pages create more owner follow-up instead of better buyer trust -->
+        <svg viewBox="0 0 640 430" role="img" aria-labelledby="thinTitle">
+          <title id="thinTitle">Thin content creates gaps while useful proof connects the buyer path.</title>
+          <rect x="24" y="24" width="592" height="382" rx="4" class="panel" />
+          <text x="78" y="78" class="kicker">THIN</text>
+          <text x="384" y="78" class="kicker">USEFUL</text>
+          <rect x="78" y="128" width="190" height="54" rx="4" class="fit-bad" />
+          <rect x="78" y="210" width="190" height="54" rx="4" class="fit-bad" />
+          <text x="173" y="161" class="node-text" text-anchor="middle">we do this</text>
+          <text x="173" y="243" class="node-text" text-anchor="middle">call us</text>
+          <path d="M360 120h132l48 56-48 56H360l48-56z" class="node node-b" />
+          <path d="M360 242h132l48 56-48 56H360l48-56z" class="node node-c" />
+          <text x="426" y="170" class="node-text" text-anchor="middle">problem</text>
+          <text x="426" y="198" class="node-sub" text-anchor="middle">plus proof</text>
+          <text x="426" y="292" class="node-text" text-anchor="middle">next step</text>
+          <text x="426" y="320" class="node-sub" text-anchor="middle">plus source</text>
+          <line x1="96" y1="344" x2="540" y2="344" class="rail" />
+          <circle cx="96" cy="344" r="7" class="dot" />
+          <circle cx="270" cy="344" r="7" class="dot" />
+          <circle cx="540" cy="344" r="7" class="dot hot" />
+          <text x="318" y="380" class="caption" text-anchor="middle">buyers choose the path that answers more</text>
+        </svg>
+      </figure>
+    </div>
+  </section>
+
+  <section class="playbook-section">
+    <div class="container">
+      <p class="section-tag">The approach</p>
+      <h2 class="h-section">The approach: proof base, connected pages, clean facts, measured path.</h2>
+      <p class="prose">
+        Getting found when buyers ask AI is part of {categoryClaimSentence}. The work starts with proof, then turns that proof into a connected lead path. It isn't a one-time copy pass.
+      </p>
+      <p class="prose">
+        The same logic shows up in <a href="/playbook/revenue-operating-system">the revenue operating system</a>: source, response, proof, and reporting have to connect. The weekly run path is close to <a href="/playbook/ai-marketing-department-small-business">AI marketing for small-business owners</a>, but the proof has to come first. If one part breaks, the owner ends up back in the middle.
+      </p>
+      <div class="approach-grid">
+        {approachSteps.map((step) => (
+          <article class="approach-card">
+            <span class="mono">{step.n}</span>
+            <strong>{step.label}</strong>
+            <span>{step.body}</span>
+          </article>
+        ))}
+      </div>
+      <figure class="section-visual" aria-label="Four-step proof approach">
+        <!-- @r020:F3 CTA-pull: operating loop shows that visibility is useful only when it feeds a measured lead path -->
+        <svg viewBox="0 0 920 430" role="img" aria-labelledby="approachTitle">
+          <title id="approachTitle">A proof base connects pages, facts, and measurement into one path.</title>
+          <rect x="24" y="24" width="872" height="382" rx="4" class="panel" />
+          <text x="70" y="78" class="kicker">RUN THE PATH</text>
+          <path d="M86 146h138l48 62-48 62H86l48-62z" class="node node-a" />
+          <path d="M292 146h138l48 62-48 62H292l48-62z" class="node node-b" />
+          <path d="M498 146h138l48 62-48 62H498l48-62z" class="node node-b" />
+          <path d="M704 146h96l48 62-48 62H704l48-62z" class="node node-c" />
+          <text x="155" y="199" class="node-text" text-anchor="middle">proof</text>
+          <text x="155" y="225" class="node-sub" text-anchor="middle">base</text>
+          <text x="361" y="199" class="node-text" text-anchor="middle">pages</text>
+          <text x="361" y="225" class="node-sub" text-anchor="middle">connect</text>
+          <text x="567" y="199" class="node-text" text-anchor="middle">facts</text>
+          <text x="567" y="225" class="node-sub" text-anchor="middle">match</text>
+          <text x="752" y="199" class="node-text" text-anchor="middle">measure</text>
+          <text x="752" y="225" class="node-sub" text-anchor="middle">calls</text>
+          <line x1="150" y1="326" x2="768" y2="326" class="rail" />
+          <circle cx="150" cy="326" r="8" class="dot" />
+          <circle cx="356" cy="326" r="8" class="dot" />
+          <circle cx="562" cy="326" r="8" class="dot" />
+          <circle cx="768" cy="326" r="8" class="dot hot" />
+          <text x="460" y="366" class="caption" text-anchor="middle">visibility should feed a lead path you can see</text>
+        </svg>
+      </figure>
+    </div>
+  </section>
+
+  <section class="playbook-section elev">
+    <div class="container fit-grid">
+      <div>
+        <p class="section-tag">Before chasing it</p>
+        <h2 class="h-section">What to do before chasing AI recommendations.</h2>
+        <p class="prose">
+          Make sure the path is worth sending a buyer into. If the page is unclear, the form is weak, the booking step is hidden, or follow-up is slow, more attention just exposes the leak faster.
+        </p>
+        <p class="prose">
+          Start with the business problem. If the owner is still the handoff, read <a href="/problem/owner-bottleneck">owner bottleneck</a>. If the work keeps happening after the buyer forgets, read <a href="/problem/reactive-growth">reactive growth</a>. If you need the run-for-you layer, compare <a href="/services/ascend-pilot">{pilotName}</a> and <a href="/services/ascend">{ascendName}</a>.
+        </p>
+      </div>
+      <div class="fit-board" aria-label="Ready and not ready checklist">
+        <!-- @r020:F2 proof: readiness board keeps the owner focused on the lead path before chasing attention -->
+        <svg viewBox="0 0 620 420" role="img" aria-labelledby="readyTitle">
+          <title id="readyTitle">AI recommendation work fits after the lead path is clear enough to receive buyers.</title>
+          <rect x="24" y="24" width="572" height="372" rx="4" class="panel" />
+          <text x="70" y="78" class="kicker">READY</text>
+          <text x="360" y="78" class="kicker">FIX FIRST</text>
+          <rect x="66" y="116" width="216" height="64" rx="4" class="fit-good" />
+          <rect x="66" y="204" width="216" height="64" rx="4" class="fit-good" />
+          <rect x="338" y="116" width="216" height="64" rx="4" class="fit-bad" />
+          <rect x="338" y="204" width="216" height="64" rx="4" class="fit-bad" />
+          <text x="174" y="153" class="node-text" text-anchor="middle">clear proof</text>
+          <text x="174" y="241" class="node-text" text-anchor="middle">fast next step</text>
+          <text x="446" y="153" class="node-text" text-anchor="middle">weak page</text>
+          <text x="446" y="241" class="node-text" text-anchor="middle">slow follow-up</text>
+          <line x1="106" y1="324" x2="514" y2="324" class="rail" />
+          <circle cx="514" cy="324" r="7" class="dot hot" />
+          <text x="310" y="358" class="caption" text-anchor="middle">attention helps only when the path can carry it</text>
+        </svg>
+      </div>
+    </div>
+  </section>
+
+  <section class="playbook-section">
+    <div class="container proof-grid">
+      <div>
+        <p class="section-tag">Proof before CTA</p>
+        <h2 class="h-section">The clearest proof should show up before the pitch.</h2>
+        <p class="prose">
+          Buyers don't need bigger claims. They need proof they can trust. One custom-home builder we work with grew from $300K to $10M+. A concrete contractor we launched has booked about 150 leads since going live. The receipts live on <a href="/results">our results</a>.
+        </p>
+        <p class="prose">
+          The free Revenue Leak Map starts with your path. It shows where buyers may be dropping off now, then points to the first move worth making.
+        </p>
+        <p class="cta-row">
+          <a class="cta-primary" href="/book" data-cta-source="ai-recommendations-proof-primary">Get My Free Revenue Leak Map <span class="cta-arrow">&rarr;</span></a>
+          <a class="cta-ghost" href="/system" data-cta-source="ai-recommendations-proof-secondary">See the System</a>
+        </p>
+      </div>
+      <figure class="proof-visual" aria-label="Proof before next step diagram">
+        <!-- @r020:F3 CTA-pull: proof-to-map diagram connects trust evidence to the audit next step -->
+        <svg viewBox="0 0 560 430" role="img" aria-labelledby="proofTitle">
+          <title id="proofTitle">Proof leads to a Revenue Leak Map before the next growth move.</title>
+          <rect x="24" y="24" width="512" height="382" rx="4" class="panel" />
+          <text x="70" y="78" class="kicker">PROOF PATH</text>
+          <path d="M88 130h126l44 56-44 56H88l44-56z" class="node node-a" />
+          <path d="M302 130h126l44 56-44 56H302l44-56z" class="node node-c" />
+          <text x="151" y="178" class="node-text" text-anchor="middle">receipts</text>
+          <text x="151" y="204" class="node-sub" text-anchor="middle">before claims</text>
+          <text x="365" y="178" class="node-text" text-anchor="middle">leak map</text>
+          <text x="365" y="204" class="node-sub" text-anchor="middle">first move</text>
+          <line x1="150" y1="304" x2="410" y2="304" class="rail" />
+          <circle cx="150" cy="304" r="8" class="dot" />
+          <circle cx="280" cy="304" r="8" class="dot" />
+          <circle cx="410" cy="304" r="8" class="dot hot" />
+          <text x="280" y="350" class="caption" text-anchor="middle">clear proof earns the next click</text>
+        </svg>
+      </figure>
+    </div>
+  </section>
+
+  <section class="playbook-faq">
+    <div class="container faq-grid">
+      <div>
+        <p class="section-tag">FAQ</p>
+        <h2 class="h-section">Common questions.</h2>
+        <div class="faq-list">
+          {faqs.map((f) => (
+            <details class="faq-item">
+              <summary class="faq-q">{f.q}</summary>
+              <div class="faq-a">
+                <p>{f.a}</p>
+              </div>
+            </details>
+          ))}
+        </div>
+      </div>
+      <figure class="faq-visual" aria-label="FAQ signal map">
+        <!-- @r020:F4 curiosity: FAQ signal map turns common questions into a short owner decision path -->
+        <svg viewBox="0 0 520 430" role="img" aria-labelledby="faqTitle">
+          <title id="faqTitle">Common questions move from visibility to fit.</title>
+          <rect x="24" y="24" width="472" height="382" rx="4" class="panel" />
+          <text x="70" y="78" class="kicker">DECISION PATH</text>
+          <path d="M104 126h240" class="rail" />
+          <path d="M168 190h240" class="rail" />
+          <path d="M104 254h240" class="rail" />
+          <path d="M168 318h240" class="rail" />
+          <circle cx="104" cy="126" r="9" class="dot" />
+          <circle cx="344" cy="126" r="9" class="dot" />
+          <circle cx="168" cy="190" r="9" class="dot" />
+          <circle cx="408" cy="190" r="9" class="dot" />
+          <circle cx="104" cy="254" r="9" class="dot" />
+          <circle cx="344" cy="254" r="9" class="dot" />
+          <circle cx="168" cy="318" r="9" class="dot" />
+          <circle cx="408" cy="318" r="9" class="dot hot" />
+          <text x="260" y="370" class="caption" text-anchor="middle">clear the facts, prove the trust, test the path</text>
+        </svg>
+      </figure>
+    </div>
+  </section>
+
+</BaseLayout>
+
+<style>
+.playbook-hero { padding-block: clamp(80px, 12vw, 144px); }
+.playbook-hero .lede { margin-top: 24px; }
+.playbook-hero .lede-tight { margin-top: 16px; max-width: 780px; }
+.back-link { color: var(--ink-faint); transition: color 180ms ease; }
+.back-link:hover { color: var(--y2); }
+
+.hero-visual {
+  margin-top: 56px;
+  max-width: 1120px;
+  border-radius: 4px;
+  overflow: hidden;
+  border: 1px solid var(--rule);
+  background: rgba(255,255,255,0.02);
+}
+
+.hero-visual svg {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.playbook-section { padding-block: clamp(56px, 8vw, 96px); }
+.playbook-section .prose { font-size: 17px; line-height: 1.7; color: var(--ink-dim); max-width: 760px; }
+.playbook-section .prose + .prose { margin-top: 16px; }
+.playbook-section .prose a { color: var(--ink); text-decoration: none; border-bottom: 1px solid rgba(240,255,0,0.45); }
+.playbook-section .prose a:hover { color: var(--y2); border-bottom-color: var(--y2); }
+.playbook-section strong { color: var(--ink); font-weight: 600; }
+
+.definition-grid,
+.compare-grid,
+.proof-grid,
+.fit-grid,
+.faq-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(300px, 520px);
+  gap: clamp(32px, 6vw, 72px);
+  align-items: start;
+}
+
+.definition-visual,
+.compare-visual,
+.section-visual,
+.proof-visual,
+.fit-board,
+.faq-visual {
+  margin: 0;
+  border: 1px solid var(--rule);
+  border-radius: 4px;
+  overflow: hidden;
+  background: rgba(255,255,255,0.02);
+}
+
+.definition-visual svg,
+.compare-visual svg,
+.section-visual svg,
+.proof-visual svg,
+.fit-board svg,
+.faq-visual svg {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.section-visual {
+  margin-top: 48px;
+  max-width: 1120px;
+}
+
+.panel { fill: rgba(5,5,7,0.72); stroke: rgba(255,255,255,0.08); }
+.kicker { fill: var(--y2); font: 600 13px var(--mono); }
+.caption { fill: var(--ink-faint); font: 500 15px var(--sans); }
+.node { stroke: rgba(240,255,0,0.38); stroke-width: 1.5; }
+.node-a { fill: rgba(255,255,255,0.035); }
+.node-b { fill: rgba(184,255,58,0.08); }
+.node-c { fill: rgba(240,255,0,0.11); }
+.node-text { fill: var(--ink); font: 700 18px var(--sans); }
+.node-sub { fill: var(--ink-dim); font: 500 14px var(--sans); }
+.rail { stroke: rgba(255,255,255,0.18); stroke-width: 2; }
+.dot { fill: var(--ink-faint); }
+.dot.hot { fill: var(--y2); }
+.island { fill: rgba(255,255,255,0.045); stroke: rgba(255,255,255,0.13); stroke-width: 1.5; }
+.fit-good { fill: rgba(184,255,58,0.08); stroke: rgba(184,255,58,0.32); }
+.fit-bad { fill: rgba(255,255,255,0.035); stroke: rgba(255,255,255,0.12); }
+
+.signal-grid,
+.approach-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 14px;
+  margin-top: 36px;
+}
+
+.signal-card,
+.approach-card {
+  display: flex;
+  min-height: 150px;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 20px;
+  border: 1px solid var(--rule);
+  border-radius: 4px;
+  background: rgba(255,255,255,0.025);
+  color: var(--ink-dim);
+}
+
+.signal-card .mono,
+.approach-card .mono { color: var(--y2); font-size: 12px; }
+.signal-card strong,
+.approach-card strong { color: var(--ink); font-size: 18px; line-height: 1.25; }
+.signal-card span:last-child,
+.approach-card span:last-child { line-height: 1.55; }
+
+.cta-row { display: flex; flex-wrap: wrap; gap: 16px; margin-top: 32px; }
+
+.playbook-faq { padding-block: clamp(64px, 10vw, 112px); }
+.faq-list { display: flex; flex-direction: column; gap: 16px; margin-top: 32px; max-width: 880px; }
+.faq-item { border-top: 1px solid var(--rule); padding-block: 20px; }
+.faq-item[open] summary { color: var(--y2); }
+.faq-q { font-size: 17px; font-weight: 500; color: var(--ink); cursor: pointer; line-height: 1.4; list-style: none; }
+.faq-q::marker, .faq-q::-webkit-details-marker { display: none; }
+.faq-q::after { content: "+"; float: right; font-family: var(--mono); font-size: 18px; color: var(--y2); }
+.faq-item[open] .faq-q::after { content: "-"; }
+.faq-a { margin-top: 12px; }
+.faq-a p { font-size: 16px; line-height: 1.65; color: var(--ink-dim); max-width: 720px; }
+
+@media (max-width: 980px) {
+  .definition-grid,
+  .compare-grid,
+  .proof-grid,
+  .fit-grid,
+  .faq-grid,
+  .signal-grid,
+  .approach-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 620px) {
+  .signal-card,
+  .approach-card { min-height: 0; }
+  .node-text { font-size: 15px; }
+  .node-sub,
+  .caption { font-size: 12px; }
+}
+</style>

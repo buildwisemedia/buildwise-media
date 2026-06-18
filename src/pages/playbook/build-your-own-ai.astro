@@ -1,0 +1,578 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import canonical from '../../data/canonical.json';
+
+const title = 'Build Your Own AI System? Count the Owner Time First | Buildwise Media';
+const description = "Building your own AI system costs more than the tools - it costs your nights and weekends. Here's the real build-vs-buy math for an owner.";
+
+const categoryClaim = canonical.company.category_claim;
+const categoryClaimSentence = `${categoryClaim.charAt(0).toLowerCase()}${categoryClaim.slice(1)}`;
+const ascendName = canonical.products.ascend.name;
+const pilotName = canonical.products.pilot.name;
+
+const systemParts = [
+  {
+    label: 'Site path',
+    body: 'The page must match the job, prove trust, and ask for a clear next step.',
+  },
+  {
+    label: 'Intake',
+    body: 'Forms and calls need clean source data, not notes you fix later.',
+  },
+  {
+    label: 'Response',
+    body: 'A good lead needs a fast reply, a route, and a clear owner.',
+  },
+  {
+    label: 'Follow-up',
+    body: 'Quotes, estimates, and open loops need nudges without you chasing them.',
+  },
+  {
+    label: 'Proof',
+    body: 'Reviews, photos, jobs, and wins need to turn into trust buyers can see.',
+  },
+  {
+    label: 'Reports',
+    body: 'The system should say what changed and what to do next.',
+  },
+];
+
+const faqs = [
+  {
+    q: 'Can I build my own AI system for my business?',
+    a: 'Yes, you can build useful parts. The hard part is turning those parts into one system that catches leads, moves handoffs, follows up, and shows the next move without you checking it each night.',
+  },
+  {
+    q: 'Is DIY AI cheaper than a run-for-you system?',
+    a: "It can look cheaper at first because the tool bill is small. The real cost is owner time: setup, fixes, testing, broken handoffs, and the work you didn't sell while building it.",
+  },
+  {
+    q: 'What should a service-business AI system include?',
+    a: 'It should include the lead path, intake, fast response, follow-up, proof, reporting, and a weekly decision loop. If one piece breaks, the owner gets pulled back in.',
+  },
+  {
+    q: 'When is DIY AI the right call?',
+    a: "DIY is fine for a small task, a private test, or an owner who likes building and has time to maintain it. It's risky when the lead path or sales follow-up depends on it.",
+  },
+  {
+    q: "How do I keep ownership if I don't build it myself?",
+    a: 'You keep ownership by making sure the core assets, data, and accounts stay with the business. The Buildwise team and our AI system can run the work without putting your growth system out of your hands.',
+  },
+];
+
+const definedTerm = {
+  '@context': 'https://schema.org',
+  '@type': 'DefinedTerm',
+  '@id': 'https://buildwisemedia.com/playbook/build-your-own-ai#term',
+  name: 'Build vs Buy AI',
+  description: 'Build vs buy AI is the owner decision between building AI workflows by hand and installing a run-for-you custom AI system that the business owns.',
+  inDefinedTermSet: {
+    '@type': 'DefinedTermSet',
+    '@id': 'https://buildwisemedia.com/playbook/',
+    name: 'Buildwise Media Playbook',
+  },
+};
+
+const breadcrumb = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://buildwisemedia.com/' },
+    { '@type': 'ListItem', position: 2, name: 'Playbook', item: 'https://buildwisemedia.com/playbook/' },
+    { '@type': 'ListItem', position: 3, name: 'Build Your Own AI', item: 'https://buildwisemedia.com/playbook/build-your-own-ai' },
+  ],
+};
+
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  '@id': 'https://buildwisemedia.com/playbook/build-your-own-ai#faq',
+  mainEntity: faqs.map((f) => ({
+    '@type': 'Question',
+    name: f.q,
+    acceptedAnswer: { '@type': 'Answer', text: f.a },
+  })),
+};
+---
+<BaseLayout title={title} description={description} jsonLd={[definedTerm, breadcrumb, faqSchema]}>
+
+  <section class="playbook-hero">
+    <div class="container">
+      <p class="eyebrow"><a href="/playbook" class="back-link">&larr; Playbook</a></p>
+      <h1 class="h-hero">Building your own AI system costs more than the tools &mdash; here's the real math</h1>
+      <p class="lede">
+        The buy vs build AI for small business choice isn't really about tool cost. It's about whether the owner has the nights, weekends, and follow-through to keep the system working after the first demo looks good.
+      </p>
+      <p class="lede lede-tight">
+        You can build parts yourself. A service-business AI system is harder because it has to catch demand, move the handoff, follow up, and show what changed without making you the full-time manager.
+      </p>
+      <figure class="hero-diagram" aria-label="Owner time cost diagram">
+        <!-- @r020:F1 emotion: the visual makes the hidden owner-time cost visible before the build-vs-buy choice -->
+        <svg viewBox="0 0 900 480" role="img" aria-labelledby="heroTitle">
+          <title id="heroTitle">Tool cost is smaller than owner time when building an AI system.</title>
+          <rect x="28" y="28" width="844" height="424" rx="4" class="panel" />
+          <text x="82" y="88" class="kicker">THE REAL COST</text>
+          <line x1="130" y1="342" x2="770" y2="342" class="rail" />
+          <rect x="158" y="232" width="116" height="110" rx="4" class="island" />
+          <rect x="322" y="178" width="116" height="164" rx="4" class="island" />
+          <rect x="486" y="126" width="116" height="216" rx="4" class="island" />
+          <rect x="650" y="86" width="116" height="256" rx="4" class="island hot-island" />
+          <text x="216" y="382" class="caption" text-anchor="middle">tools</text>
+          <text x="380" y="382" class="caption" text-anchor="middle">setup</text>
+          <text x="544" y="382" class="caption" text-anchor="middle">fixes</text>
+          <text x="708" y="382" class="caption" text-anchor="middle">owner nights</text>
+          <circle cx="708" cy="86" r="8" class="dot hot" />
+          <text x="450" y="430" class="caption" text-anchor="middle">the demo isn't the same as a system that runs all week</text>
+        </svg>
+      </figure>
+    </div>
+  </section>
+
+  <section class="playbook-section elev">
+    <div class="container definition-grid">
+      <div>
+        <p class="section-tag">Plain answer</p>
+        <h2 class="h-section">You can build parts. The system is harder than the demo.</h2>
+        <p class="prose">
+          If you searched build your own AI or make your own AI, the honest answer is yes: you can build a useful piece. You can write a helper, draft replies, sort leads, or build a simple handoff.
+        </p>
+        <p class="prose">
+          The hard part is making those pieces work together every day. A real system doesn't stop at a neat test. It keeps the lead path moving when you're on a job site, in a truck, or trying to finish payroll. That's where <a href="/playbook/custom-ai-solutions">{categoryClaimSentence}</a> matters.
+        </p>
+      </div>
+      <figure class="definition-visual" aria-label="Demo versus system diagram">
+        <!-- @r020:F4 curiosity: the split diagram shows why the first demo can hide the real weekly work -->
+        <svg viewBox="0 0 680 430" role="img" aria-labelledby="definitionTitle">
+          <title id="definitionTitle">A demo is one task while a system keeps the whole path moving.</title>
+          <rect x="24" y="24" width="632" height="382" rx="4" class="panel" />
+          <text x="72" y="78" class="kicker">DEMO</text>
+          <text x="418" y="78" class="kicker">SYSTEM</text>
+          <circle cx="172" cy="216" r="70" class="island" />
+          <text x="172" y="209" class="node-text" text-anchor="middle">one task</text>
+          <text x="172" y="234" class="node-sub" text-anchor="middle">looks right</text>
+          <path d="M372 150h150l46 64-46 64H372l46-64z" class="node node-b" />
+          <line x1="326" y1="214" x2="372" y2="214" class="rail" />
+          <line x1="568" y1="214" x2="610" y2="214" class="rail" />
+          <circle cx="326" cy="214" r="7" class="dot" />
+          <circle cx="610" cy="214" r="7" class="dot hot" />
+          <text x="448" y="207" class="node-text" text-anchor="middle">all week</text>
+          <text x="448" y="232" class="node-sub" text-anchor="middle">keeps moving</text>
+          <text x="340" y="356" class="caption" text-anchor="middle">a system has to survive the busy week</text>
+        </svg>
+      </figure>
+    </div>
+  </section>
+
+  <section class="playbook-section">
+    <div class="container">
+      <p class="section-tag">What it must include</p>
+      <h2 class="h-section">A service-business AI system needs more than a smart helper.</h2>
+      <p class="prose">
+        An AI system for contractors and other service businesses has to do the boring parts well. It has to collect clean lead data, route the next step, keep follow-up alive, and show which work changed revenue.
+      </p>
+      <p class="prose">
+        That's why an <a href="/playbook/revenue-operating-system">AI revenue system</a> is different from a single tool. It needs the path, the handoffs, and the weekly decision loop. Which part breaks first when you get busy?
+      </p>
+      <div class="hub-grid">
+        {systemParts.map((item) => (
+          <article class="hub-card">
+            <span class="mono">SYSTEM PART</span>
+            <strong>{item.label}</strong>
+            <span>{item.body}</span>
+          </article>
+        ))}
+      </div>
+      <figure class="section-visual" aria-label="Service-business AI system parts">
+        <!-- @r020:F2 proof: the system map makes the required handoffs concrete before the owner compares options -->
+        <svg viewBox="0 0 900 360" role="img" aria-labelledby="partsTitle">
+          <title id="partsTitle">A service-business AI system connects lead path, response, proof, and decisions.</title>
+          <rect x="28" y="28" width="844" height="304" rx="4" class="panel" />
+          <text x="80" y="78" class="kicker">WHAT MUST CONNECT</text>
+          <path d="M86 142h116l38 48-38 48H86l38-48z" class="node node-a" />
+          <path d="M238 142h116l38 48-38 48H238l38-48z" class="node node-a" />
+          <path d="M390 142h116l38 48-38 48H390l38-48z" class="node node-b" />
+          <path d="M542 142h116l38 48-38 48H542l38-48z" class="node node-b" />
+          <path d="M694 142h116l38 48-38 48H694l38-48z" class="node node-c" />
+          <text x="148" y="184" class="node-text" text-anchor="middle">lead</text>
+          <text x="148" y="207" class="node-sub" text-anchor="middle">path</text>
+          <text x="300" y="184" class="node-text" text-anchor="middle">intake</text>
+          <text x="300" y="207" class="node-sub" text-anchor="middle">clean</text>
+          <text x="452" y="184" class="node-text" text-anchor="middle">reply</text>
+          <text x="452" y="207" class="node-sub" text-anchor="middle">fast</text>
+          <text x="604" y="184" class="node-text" text-anchor="middle">proof</text>
+          <text x="604" y="207" class="node-sub" text-anchor="middle">visible</text>
+          <text x="756" y="184" class="node-text" text-anchor="middle">next</text>
+          <text x="756" y="207" class="node-sub" text-anchor="middle">move</text>
+          <line x1="160" y1="282" x2="740" y2="282" class="rail" />
+          <circle cx="160" cy="282" r="7" class="dot" />
+          <circle cx="450" cy="282" r="7" class="dot" />
+          <circle cx="740" cy="282" r="7" class="dot hot" />
+        </svg>
+      </figure>
+    </div>
+  </section>
+
+  <section class="playbook-section elev">
+    <div class="container compare-grid">
+      <div>
+        <p class="section-tag">Owner time</p>
+        <h2 class="h-section">The hidden cost is the owner time you don't get back.</h2>
+        <p class="prose">
+          DIY AI for business usually starts with a small bill and a late night. Then comes the real work: setup, testing, broken fields, messy lead notes, new rules, and the Friday fix you thought would take ten minutes.
+        </p>
+        <p class="prose">
+          The cost isn't only time spent building. It's the calls you didn't return, the quote you didn't push, and the job you didn't inspect because the system still needed you. Is that the best use of the owner seat?
+        </p>
+      </div>
+      <figure class="compare-visual" aria-label="Owner-time cost stack">
+        <!-- @r020:F1 emotion: the stack turns late-night maintenance into the true cost the owner feels -->
+        <svg viewBox="0 0 640 430" role="img" aria-labelledby="costTitle">
+          <title id="costTitle">The owner time stack grows after the first AI demo.</title>
+          <rect x="24" y="24" width="592" height="382" rx="4" class="panel" />
+          <text x="72" y="78" class="kicker">HIDDEN COST STACK</text>
+          <rect x="112" y="282" width="416" height="54" rx="4" class="fit-good" />
+          <rect x="112" y="218" width="416" height="54" rx="4" class="island" />
+          <rect x="112" y="154" width="416" height="54" rx="4" class="island" />
+          <rect x="112" y="90" width="416" height="54" rx="4" class="fit-bad" />
+          <text x="320" y="316" class="node-text" text-anchor="middle">tool bill</text>
+          <text x="320" y="252" class="node-text" text-anchor="middle">setup</text>
+          <text x="320" y="188" class="node-text" text-anchor="middle">fixes</text>
+          <text x="320" y="124" class="node-text" text-anchor="middle">nights and weekends</text>
+          <line x1="152" y1="366" x2="488" y2="366" class="rail" />
+          <circle cx="488" cy="366" r="7" class="dot hot" />
+          <text x="320" y="394" class="caption" text-anchor="middle">the owner becomes the operator</text>
+        </svg>
+      </figure>
+    </div>
+  </section>
+
+  <section class="playbook-section">
+    <div class="container fit-grid">
+      <div>
+        <p class="section-tag">When DIY is right</p>
+        <h2 class="h-section">DIY is right when the risk is small and the owner likes the build.</h2>
+        <p class="prose">
+          Build it yourself when the task is small, private, and easy to unwind. A draft helper, a simple sorting rule, or a back-office test can be worth it if you enjoy the work and can maintain it.
+        </p>
+        <p class="prose">
+          DIY is also fine when the system doesn't touch your lead path. If it breaks, you lose an experiment, not a buyer. That keeps the learning useful and the risk low.
+        </p>
+      </div>
+      <div class="fit-board" aria-label="When DIY AI is right">
+        <!-- @r020:F2 proof: the fit board gives the owner a practical risk test for DIY AI -->
+        <svg viewBox="0 0 620 420" role="img" aria-labelledby="diyTitle">
+          <title id="diyTitle">DIY AI is right when the work is small, private, and easy to unwind.</title>
+          <rect x="24" y="24" width="572" height="372" rx="4" class="panel" />
+          <text x="70" y="78" class="kicker">DIY FIT</text>
+          <rect x="72" y="116" width="206" height="64" rx="4" class="fit-good" />
+          <rect x="72" y="204" width="206" height="64" rx="4" class="fit-good" />
+          <rect x="342" y="116" width="206" height="64" rx="4" class="fit-bad" />
+          <rect x="342" y="204" width="206" height="64" rx="4" class="fit-bad" />
+          <text x="175" y="153" class="node-text" text-anchor="middle">small task</text>
+          <text x="175" y="241" class="node-text" text-anchor="middle">private test</text>
+          <text x="445" y="153" class="node-text" text-anchor="middle">lead path</text>
+          <text x="445" y="241" class="node-text" text-anchor="middle">sales follow-up</text>
+          <line x1="108" y1="326" x2="512" y2="326" class="rail" />
+          <circle cx="108" cy="326" r="7" class="dot" />
+          <circle cx="512" cy="326" r="7" class="dot hot" />
+          <text x="310" y="360" class="caption" text-anchor="middle">keep critical buyer paths out of experiments</text>
+        </svg>
+      </div>
+    </div>
+  </section>
+
+  <section class="playbook-section elev">
+    <div class="container definition-grid">
+      <div>
+        <p class="section-tag">When run-for-you is right</p>
+        <h2 class="h-section">Run-for-you is right when the system has to carry revenue work.</h2>
+        <p class="prose">
+          Run-for-you is the better fit when demand already exists, but too much of the next step waits on you. That's the <a href="/problem/owner-bottleneck">owner bottleneck</a>, and it often turns into <a href="/problem/leaky-revenue">leaky revenue</a> by the end of the week.
+        </p>
+        <p class="prose">
+          Start with <a href="/services/ascend-pilot">{pilotName}</a> if you need a focused proof sprint. Use <a href="/services/ascend">{ascendName}</a> when the full weekly growth loop needs to come off your plate. What would you stop checking first?
+        </p>
+      </div>
+      <figure class="definition-visual" aria-label="Run-for-you AI system decision path">
+        <!-- @r020:F3 CTA-pull: the path shows how run-for-you work removes the owner from recurring handoffs -->
+        <svg viewBox="0 0 680 430" role="img" aria-labelledby="runTitle">
+          <title id="runTitle">Run-for-you is right when recurring revenue work should move without the owner.</title>
+          <rect x="24" y="24" width="632" height="382" rx="4" class="panel" />
+          <text x="70" y="78" class="kicker">RUN-FOR-YOU FIT</text>
+          <path d="M86 154h134l42 56-42 56H86l42-56z" class="node node-a" />
+          <path d="M274 154h134l42 56-42 56H274l42-56z" class="node node-b" />
+          <path d="M462 154h134l42 56-42 56H462l42-56z" class="node node-c" />
+          <text x="153" y="202" class="node-text" text-anchor="middle">demand</text>
+          <text x="153" y="226" class="node-sub" text-anchor="middle">exists</text>
+          <text x="341" y="202" class="node-text" text-anchor="middle">handoffs</text>
+          <text x="341" y="226" class="node-sub" text-anchor="middle">repeat</text>
+          <text x="529" y="202" class="node-text" text-anchor="middle">owner</text>
+          <text x="529" y="226" class="node-sub" text-anchor="middle">steps out</text>
+          <line x1="120" y1="326" x2="560" y2="326" class="rail" />
+          <circle cx="120" cy="326" r="7" class="dot" />
+          <circle cx="340" cy="326" r="7" class="dot" />
+          <circle cx="560" cy="326" r="7" class="dot hot" />
+          <text x="340" y="362" class="caption" text-anchor="middle">the system carries the recurring work</text>
+        </svg>
+      </figure>
+    </div>
+  </section>
+
+  <section class="playbook-section">
+    <div class="container compare-grid">
+      <div>
+        <p class="section-tag">Ownership</p>
+        <h2 class="h-section">You shouldn't have to build it yourself to own it.</h2>
+        <p class="prose">
+          The wrong trade is renting a system you don't control or building one you don't have time to run. The better trade is simple: the core assets, data, and accounts stay with your business while the Buildwise team and our AI system run the weekly work.
+        </p>
+        <p class="prose">
+          That's the ownership line behind the <a href="/playbook/agency-alternative">own-versus-rent test</a>. You get the run-for-you path without turning every fix, handoff, rule, and report into your second shift.
+        </p>
+      </div>
+      <figure class="compare-visual" aria-label="Ownership without DIY diagram">
+        <!-- @r020:F2 proof: the diagram separates ownership from forcing the owner to build every part -->
+        <svg viewBox="0 0 640 430" role="img" aria-labelledby="ownershipTitle">
+          <title id="ownershipTitle">The business owns the system while the weekly work is run for the owner.</title>
+          <rect x="24" y="24" width="592" height="382" rx="4" class="panel" />
+          <text x="72" y="78" class="kicker">OWNED, NOT OWNER-RUN</text>
+          <rect x="92" y="128" width="180" height="140" rx="4" class="fit-good" />
+          <rect x="368" y="128" width="180" height="140" rx="4" class="node node-b" />
+          <text x="182" y="184" class="node-text" text-anchor="middle">owned</text>
+          <text x="182" y="210" class="node-sub" text-anchor="middle">assets + data</text>
+          <text x="458" y="184" class="node-text" text-anchor="middle">run</text>
+          <text x="458" y="210" class="node-sub" text-anchor="middle">weekly work</text>
+          <line x1="272" y1="198" x2="368" y2="198" class="rail" />
+          <circle cx="272" cy="198" r="7" class="dot" />
+          <circle cx="368" cy="198" r="7" class="dot hot" />
+          <text x="320" y="338" class="caption" text-anchor="middle">ownership shouldn't create another job</text>
+        </svg>
+      </figure>
+    </div>
+  </section>
+
+  <section class="playbook-section elev">
+    <div class="container proof-grid">
+      <div>
+        <p class="section-tag">Proof before CTA</p>
+        <h2 class="h-section">Before you build, find the leak worth fixing.</h2>
+        <p class="prose">
+          We don't ask you to trust a claim without receipts. One custom-home builder we work with grew from $300K to $10M+. A concrete contractor we launched has booked about 150 leads since going live. More receipts live on <a href="/results">our results</a>.
+        </p>
+        <p class="prose">
+          The free Revenue Leak Map starts with the first real gap in your lead path. It shows where demand is slipping, then points to the first move worth making.
+        </p>
+        <p class="cta-row">
+          <a class="cta-primary" href="/audit" data-cta-source="build-your-own-ai-proof-primary">Get My Free Revenue Leak Map <span class="cta-arrow">&rarr;</span></a>
+          <a class="cta-ghost" href="/system" data-cta-source="build-your-own-ai-proof-secondary">See the System</a>
+        </p>
+      </div>
+      <figure class="proof-visual" aria-label="Revenue leak map before build decision">
+        <!-- @r020:F3 CTA-pull: the leak-map visual ties proof to the next diagnostic action -->
+        <svg viewBox="0 0 620 430" role="img" aria-labelledby="proofTitle">
+          <title id="proofTitle">A Revenue Leak Map finds the first leak before the owner builds a system.</title>
+          <rect x="24" y="24" width="572" height="382" rx="4" class="panel" />
+          <text x="70" y="78" class="kicker">MAP THE LEAK FIRST</text>
+          <path d="M96 156h116l42 50-42 50H96l42-50z" class="node node-a" />
+          <path d="M254 156h116l42 50-42 50H254l42-50z" class="node node-b" />
+          <path d="M412 156h116l42 50-42 50H412l42-50z" class="node node-c" />
+          <text x="154" y="199" class="node-text" text-anchor="middle">lead</text>
+          <text x="154" y="222" class="node-sub" text-anchor="middle">source</text>
+          <text x="312" y="199" class="node-text" text-anchor="middle">handoff</text>
+          <text x="312" y="222" class="node-sub" text-anchor="middle">gap</text>
+          <text x="470" y="199" class="node-text" text-anchor="middle">first</text>
+          <text x="470" y="222" class="node-sub" text-anchor="middle">move</text>
+          <line x1="120" y1="326" x2="500" y2="326" class="rail" />
+          <circle cx="120" cy="326" r="7" class="dot" />
+          <circle cx="312" cy="326" r="7" class="dot hot" />
+          <circle cx="500" cy="326" r="7" class="dot" />
+          <text x="310" y="364" class="caption" text-anchor="middle">fix the highest-leak handoff first</text>
+        </svg>
+      </figure>
+    </div>
+  </section>
+
+  <section class="playbook-faq">
+    <div class="container faq-grid">
+      <div>
+        <p class="section-tag">FAQ</p>
+        <h2 class="h-section">Common questions.</h2>
+        <div class="faq-list">
+          {faqs.map((f) => (
+            <details class="faq-item">
+              <summary class="faq-q">{f.q}</summary>
+              <div class="faq-a">
+                <p>{f.a}</p>
+              </div>
+            </details>
+          ))}
+        </div>
+      </div>
+      <figure class="faq-visual" aria-label="Build versus buy FAQ path">
+        <!-- @r020:F4 curiosity: the FAQ path turns the build-vs-buy questions into a simple owner decision flow -->
+        <svg viewBox="0 0 520 430" role="img" aria-labelledby="faqTitle">
+          <title id="faqTitle">Build versus buy AI questions move from tool cost to owner time and ownership.</title>
+          <rect x="24" y="24" width="472" height="382" rx="4" class="panel" />
+          <text x="70" y="78" class="kicker">DECISION PATH</text>
+          <path d="M104 126h240" class="rail" />
+          <path d="M168 190h240" class="rail" />
+          <path d="M104 254h240" class="rail" />
+          <path d="M168 318h240" class="rail" />
+          <circle cx="104" cy="126" r="9" class="dot" />
+          <circle cx="344" cy="126" r="9" class="dot" />
+          <circle cx="168" cy="190" r="9" class="dot" />
+          <circle cx="408" cy="190" r="9" class="dot" />
+          <circle cx="104" cy="254" r="9" class="dot" />
+          <circle cx="344" cy="254" r="9" class="dot" />
+          <circle cx="168" cy="318" r="9" class="dot" />
+          <circle cx="408" cy="318" r="9" class="dot hot" />
+          <text x="260" y="370" class="caption" text-anchor="middle">can you own it without owning the busywork?</text>
+        </svg>
+      </figure>
+    </div>
+  </section>
+
+</BaseLayout>
+
+<style>
+.playbook-hero { padding-block: clamp(80px, 12vw, 144px); }
+.playbook-hero .lede { margin-top: 24px; }
+.playbook-hero .lede-tight { margin-top: 16px; max-width: 780px; }
+.back-link { color: var(--ink-faint); transition: color 180ms ease; }
+.back-link:hover { color: var(--y2); }
+
+.hero-diagram {
+  margin-top: 56px;
+  max-width: 1120px;
+  border-radius: 4px;
+  overflow: hidden;
+  border: 1px solid var(--rule);
+  background: rgba(255,255,255,0.02);
+}
+
+.hero-diagram svg { width: 100%; height: auto; display: block; }
+
+.playbook-section { padding-block: clamp(56px, 8vw, 96px); }
+.playbook-section .prose { font-size: 17px; line-height: 1.7; color: var(--ink-dim); max-width: 760px; }
+.playbook-section .prose + .prose { margin-top: 16px; }
+.playbook-section .prose a { color: var(--ink); text-decoration: none; border-bottom: 1px solid rgba(240,255,0,0.45); }
+.playbook-section .prose a:hover { color: var(--y2); border-bottom-color: var(--y2); }
+.playbook-section strong { color: var(--ink); font-weight: 600; }
+
+.definition-grid,
+.compare-grid,
+.proof-grid,
+.fit-grid,
+.faq-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(300px, 520px);
+  gap: clamp(32px, 6vw, 72px);
+  align-items: start;
+}
+
+.definition-visual,
+.compare-visual,
+.fit-board,
+.proof-visual,
+.faq-visual {
+  margin: 0;
+  border: 1px solid var(--rule);
+  border-radius: 4px;
+  overflow: hidden;
+  background: rgba(255,255,255,0.02);
+}
+
+.definition-visual svg,
+.compare-visual svg,
+.fit-board svg,
+.proof-visual svg,
+.faq-visual svg {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.section-visual {
+  margin: 48px 0 0;
+  max-width: 1120px;
+  border-radius: 4px;
+  overflow: hidden;
+  border: 1px solid var(--rule);
+  background: rgba(255,255,255,0.02);
+}
+
+.section-visual svg { width: 100%; height: auto; display: block; }
+
+.panel { fill: rgba(5,5,7,0.72); stroke: rgba(255,255,255,0.08); }
+.kicker { fill: var(--y2); font: 600 13px var(--mono); }
+.caption { fill: var(--ink-faint); font: 500 15px var(--sans); }
+.node { stroke: rgba(240,255,0,0.38); stroke-width: 1.5; }
+.node-a { fill: rgba(255,255,255,0.035); }
+.node-b { fill: rgba(184,255,58,0.08); }
+.node-c { fill: rgba(240,255,0,0.11); }
+.node-text { fill: var(--ink); font: 700 18px var(--sans); }
+.node-sub { fill: var(--ink-dim); font: 500 14px var(--sans); }
+.rail { stroke: rgba(255,255,255,0.18); stroke-width: 2; }
+.dot { fill: var(--ink-faint); }
+.dot.hot { fill: var(--y2); }
+.island { fill: rgba(255,255,255,0.045); stroke: rgba(255,255,255,0.13); stroke-width: 1.5; }
+.hot-island { fill: rgba(240,255,0,0.12); stroke: rgba(240,255,0,0.34); }
+.fit-good { fill: rgba(184,255,58,0.08); stroke: rgba(184,255,58,0.32); }
+.fit-bad { fill: rgba(255,255,255,0.035); stroke: rgba(255,255,255,0.12); }
+
+.hub-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 14px;
+  margin-top: 36px;
+}
+
+.hub-card {
+  display: flex;
+  min-height: 160px;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 20px;
+  border: 1px solid var(--rule);
+  border-radius: 4px;
+  background: rgba(255,255,255,0.025);
+  color: var(--ink-dim);
+  text-decoration: none;
+}
+
+.hub-card .mono { color: var(--y2); font-size: 12px; }
+.hub-card strong { color: var(--ink); font-size: 18px; line-height: 1.25; }
+.hub-card span:last-child { line-height: 1.55; }
+
+.cta-row { display: flex; flex-wrap: wrap; gap: 16px; margin-top: 32px; }
+
+.playbook-faq { padding-block: clamp(64px, 10vw, 112px); }
+.faq-list { display: flex; flex-direction: column; gap: 16px; margin-top: 32px; max-width: 880px; }
+.faq-item { border-top: 1px solid var(--rule); padding-block: 20px; }
+.faq-item[open] summary { color: var(--y2); }
+.faq-q { font-size: 17px; font-weight: 500; color: var(--ink); cursor: pointer; line-height: 1.4; list-style: none; }
+.faq-q::marker, .faq-q::-webkit-details-marker { display: none; }
+.faq-q::after { content: "+"; float: right; font-family: var(--mono); font-size: 18px; color: var(--y2); }
+.faq-item[open] .faq-q::after { content: "-"; }
+.faq-a { margin-top: 12px; }
+.faq-a p { font-size: 16px; line-height: 1.65; color: var(--ink-dim); max-width: 720px; }
+
+@media (max-width: 980px) {
+  .definition-grid,
+  .compare-grid,
+  .proof-grid,
+  .fit-grid,
+  .faq-grid,
+  .hub-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 620px) {
+  .hub-card { min-height: 0; }
+  .node-text { font-size: 15px; }
+  .node-sub,
+  .caption { font-size: 12px; }
+}
+</style>

@@ -18,15 +18,21 @@ const definedTermSet = {
   '@type': 'DefinedTermSet',
   '@id': 'https://buildwisemedia.com/playbook/',
   name: 'Buildwise Media Playbook',
-  description: 'The terms, mechanisms, and measurement discipline behind how Buildwise Media installs an AI marketing department for service businesses.',
+  description: 'The terms, mechanisms, and measurement discipline behind how Buildwise Media installs a custom AI system for service businesses.',
   hasDefinedTerm: [
+    { '@type': 'DefinedTerm', '@id': 'https://buildwisemedia.com/playbook/custom-ai-solutions#term', name: 'Custom AI System', url: 'https://buildwisemedia.com/playbook/custom-ai-solutions' },
+    { '@type': 'DefinedTerm', '@id': 'https://buildwisemedia.com/playbook/ai-for-business-operations#term', name: 'AI for Business Operations', url: 'https://buildwisemedia.com/playbook/ai-for-business-operations' },
+    { '@type': 'DefinedTerm', '@id': 'https://buildwisemedia.com/playbook/ai-answering-service-service-business#term', name: 'After-Hours Call Capture', url: 'https://buildwisemedia.com/playbook/ai-answering-service-service-business' },
+    { '@type': 'DefinedTerm', '@id': 'https://buildwisemedia.com/playbook/ai-website-for-business#term', name: 'AI Website', url: 'https://buildwisemedia.com/playbook/ai-website-for-business' },
+    { '@type': 'DefinedTerm', '@id': 'https://buildwisemedia.com/playbook/show-up-in-ai-recommendations#term', name: 'AI Search Visibility', url: 'https://buildwisemedia.com/playbook/show-up-in-ai-recommendations' },
+    { '@type': 'DefinedTerm', '@id': 'https://buildwisemedia.com/playbook/build-your-own-ai#term', name: 'Build vs Buy AI', url: 'https://buildwisemedia.com/playbook/build-your-own-ai' },
     { '@type': 'DefinedTerm', '@id': 'https://buildwisemedia.com/playbook/category-of-one-marketing#term', name: 'Category-of-One Marketing', url: 'https://buildwisemedia.com/playbook/category-of-one-marketing' },
     { '@type': 'DefinedTerm', '@id': 'https://buildwisemedia.com/playbook/ai-marketing-department#term', name: 'AI Marketing Department', url: 'https://buildwisemedia.com/playbook/ai-marketing-department' },
     { '@type': 'DefinedTerm', '@id': 'https://buildwisemedia.com/playbook/ai-marketing-department-small-business#term', name: 'AI Marketing Department for Small Business', url: 'https://buildwisemedia.com/playbook/ai-marketing-department-small-business' },
     { '@type': 'DefinedTerm', '@id': 'https://buildwisemedia.com/playbook/captured-baseline#term', name: 'Captured Baseline', url: 'https://buildwisemedia.com/playbook/captured-baseline' },
     { '@type': 'DefinedTerm', '@id': 'https://buildwisemedia.com/playbook/poor-four#term', name: 'The Poor Four', url: 'https://buildwisemedia.com/playbook/poor-four' },
     { '@type': 'DefinedTerm', '@id': 'https://buildwisemedia.com/playbook/fractional-cmo-alternative#term', name: 'Fractional CMO Alternative', url: 'https://buildwisemedia.com/playbook/fractional-cmo-alternative' },
-    { '@type': 'DefinedTerm', '@id': 'https://buildwisemedia.com/playbook/agency-alternative#term', name: 'Agency Alternative', url: 'https://buildwisemedia.com/playbook/agency-alternative' },
+    { '@type': 'DefinedTerm', '@id': 'https://buildwisemedia.com/playbook/agency-alternative#term', name: 'AI-Agency Alternative', url: 'https://buildwisemedia.com/playbook/agency-alternative' },
     { '@type': 'DefinedTerm', '@id': 'https://buildwisemedia.com/playbook/in-house-marketing-alternative#term', name: 'In-House Marketing Alternative', url: 'https://buildwisemedia.com/playbook/in-house-marketing-alternative' },
     { '@type': 'DefinedTerm', '@id': 'https://buildwisemedia.com/playbook/diy-marketing-alternative#term', name: 'DIY Marketing Alternative', url: 'https://buildwisemedia.com/playbook/diy-marketing-alternative' },
     { '@type': 'DefinedTerm', '@id': 'https://buildwisemedia.com/playbook/capability-inheritance#term', name: 'Capability Inheritance', url: 'https://buildwisemedia.com/playbook/capability-inheritance' },
@@ -41,7 +47,7 @@ const definedTermSet = {
 
   <section class="playbook-hero">
     <div class="container">
-      <p class="eyebrow">Playbook · 14 terms</p>
+      <p class="eyebrow">Playbook · 20 terms</p>
       <h1 class="h-hero">The terms <em>behind the system.</em></h1>
       <p class="lede">
         How a service business becomes the category of one in its market. These are the terms we work by. Each names a moving part of the system, how we measure it, or a failure mode we watch for.
@@ -54,8 +60,45 @@ const definedTermSet = {
   </section>
 
   <section class="playbook-index elev">
+    <!-- @sdt-exempt: playbook term index — a navigation list of term links, not a narrative section; the hero section carries the page visual -->
     <div class="container">
       <ul class="term-list">
+        <li>
+          <a href="/playbook/custom-ai-solutions">
+            <span class="term-name">Custom AI System</span>
+            <span class="term-gloss">The run-for-you growth system built around your business, on your domain, owned by you. The category in plain words — and the hub for everything below.</span>
+          </a>
+        </li>
+        <li>
+          <a href="/playbook/ai-for-business-operations">
+            <span class="term-name">AI for Business Operations</span>
+            <span class="term-gloss">Where AI belongs inside the business: intake, follow-up, scheduling, and reporting — so the week stops running you.</span>
+          </a>
+        </li>
+        <li>
+          <a href="/playbook/ai-answering-service-service-business">
+            <span class="term-name">After-Hours Call Capture</span>
+            <span class="term-gloss">Catch, qualify, and route the calls you miss. The first handoff in a system that turns calls into booked jobs.</span>
+          </a>
+        </li>
+        <li>
+          <a href="/playbook/ai-website-for-business">
+            <span class="term-name">AI Website</span>
+            <span class="term-gloss">A site that does work: it qualifies, proves trust, routes the next step, and feeds follow-up. Not just a new look.</span>
+          </a>
+        </li>
+        <li>
+          <a href="/playbook/show-up-in-ai-recommendations">
+            <span class="term-name">AI Search Visibility</span>
+            <span class="term-gloss">When buyers ask AI who to hire, the clearest proof wins. How to be the answer.</span>
+          </a>
+        </li>
+        <li>
+          <a href="/playbook/build-your-own-ai">
+            <span class="term-name">Build vs Buy AI</span>
+            <span class="term-gloss">Building your own AI system costs more than the tools — it costs your nights. The real owner-time math.</span>
+          </a>
+        </li>
         <li>
           <a href="/playbook/category-of-one-marketing">
             <span class="term-name">Category-of-One Marketing</span>
@@ -112,8 +155,8 @@ const definedTermSet = {
         </li>
         <li>
           <a href="/playbook/agency-alternative">
-            <span class="term-name">Agency Alternative</span>
-            <span class="term-gloss">Own the system instead of renting an agency retainer. Ownership compounds.</span>
+            <span class="term-name">AI-Agency Alternative</span>
+            <span class="term-gloss">Thinking of hiring an AI agency? Own the custom AI system instead of renting a retainer. Ownership compounds.</span>
           </a>
         </li>
         <li>
