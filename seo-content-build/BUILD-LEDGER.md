@@ -53,7 +53,7 @@ Page #10 (ai-tools-vs-system) HELD per plan — not in this build.
 9. **Schema:** DefinedTerm + BreadcrumbList + FAQPage on every page.
 10. **Show-Don't-Tell:** ≥1 qualifying visual per major section (data-viz / photo / scene illo / interactive proof widget). Each image needs an `@r020:F1|F2|F3|F4` annotation within 5 lines above it. Reuse existing /images assets where they fit; else an inline SVG diagram.
 11. **Real internal links only** — correct paths. Note: problem pages are `/problem/<x>` NOT `/playbook/<x>`. New spokes link to the pillar (#1) and back; pillar links to all spokes.
-12. **CTAs:** primary "Get My Free Revenue Leak Map" → `/audit`. Secondary "See If We're a Fit" → `/book`, "See the System" → `/system`.
+12. **CTAs:** primary action "Get My Free Revenue Leak Map" → **`/book`** (site convention — 55 live instances; NOT /audit). `/audit` is the RLM *explainer* page — link it only as an informational "see what a Revenue Leak Map shows" reference, never as the action CTA. Secondary "See the System" → `/system`, "See If We're a Fit" → `/book`.
 13. **Gates before STAGED:** `astro build` compiles · Pre-Ship Grep Gate green · Creative Copy Gate green · no homepage title collision.
 
 ---
@@ -153,3 +153,12 @@ Page #10 (ai-tools-vs-system) HELD per plan — not in this build.
 
 ## LOG (append-only)
 - 2026-06-18 — Ledger created. Worktree + lease up. Starting Tier 1.
+- 2026-06-18 — ALL 9 PAGES + HUB COMPLETE & QA-PASS:
+  - #1 custom-ai-solutions (NEW pillar) — Codex authored; Claude QA fixed proof copy (no "approved proof points"/"de-identified"), contractions, CTA→/book. 9 visuals R020-annotated, 3 schemas.
+  - #3 ai-for-business-operations, #4 ai-answering-service-service-business, #6 ai-website-for-business, #7 show-up-in-ai-recommendations, #8 build-your-own-ai (NEW spokes) — Codex authored in parallel; Claude QA: titles OK, 3 schemas each, image/R020 parity, proper contractions, no vendor/agency/ICP leaks, RLM CTA fixed /audit→/book, pillar backlinks present, no broken links.
+  - #2 agency-alternative (ENHANCE) — Claude: retitled to AI-Agency Alternative, reframed hero to AI-agency angle + category claim, fixed pre-pivot "marketing system" language, DefinedTerm updated.
+  - #5 ai-marketing-department-small-business (ENHANCE) — Claude: trades-specific meta, added Monday-to-Friday runtime-loop section (the net-new differentiator), marketing-as-proof framing.
+  - #9 revenue-operating-system (ENHANCE) — Claude: added "AI system vs AI tool" diagnostic (captures "ai system for small business"), meta wove AI-system angle.
+  - index.astro — 6 new DefinedTerm refs + 6 visible term cards (pillar first), count 14→20, set-description de-pivoted, agency card renamed, @sdt-exempt on the term-index nav list.
+  - GATES: `astro build` Complete (no errors) · Pre-Ship Grep Gate "ALL CHECKS PASSED" (revenue-qualifiers/vendor/taste all OK; cta-naked advisories are fleet-wide, non-blocking).
+  - NEXT: render-verify dist → preview deploy → Robert HITL visual signoff → merge to main → production → tag.

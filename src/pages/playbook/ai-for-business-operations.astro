@@ -1,0 +1,574 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import canonical from '../../data/canonical.json';
+
+const title = "AI for Business Operations: An Owner's Guide | Buildwise Media";
+const description = "AI for business operations should clear the owner's week - connect lead flow, tighten follow-up, and make the next move obvious. Here's where it belongs.";
+
+const categoryClaim = canonical.company.category_claim;
+const categoryClaimSentence = `${categoryClaim.charAt(0).toLowerCase()}${categoryClaim.slice(1)}`;
+const ascendName = canonical.products.ascend.name;
+const pilotName = canonical.products.pilot.name;
+
+const fitLinks = [
+  {
+    href: '/playbook/custom-ai-solutions',
+    label: 'Custom AI System',
+    body: 'See the larger run-for-you system that ties the work together.',
+  },
+  {
+    href: '/playbook/revenue-operating-system',
+    label: 'Revenue Operating System',
+    body: 'Turn source, follow-up, reporting, and weekly decisions into one loop.',
+  },
+  {
+    href: '/playbook/ai-marketing-department-small-business',
+    label: 'AI Marketing Department',
+    body: 'Move the weekly marketing work off the owner plate.',
+  },
+  {
+    href: '/playbook/agency-alternative',
+    label: 'Ownership Check',
+    body: 'Make sure the work lives in your hands, not someone else\'s account.',
+  },
+];
+
+const faqs = [
+  {
+    q: 'What does AI for business operations mean?',
+    a: 'It means using an AI system to keep intake, follow-up, scheduling handoffs, review requests, reporting, and next moves from sitting on the owner all week.',
+  },
+  {
+    q: 'Where should an owner start?',
+    a: 'Start with the part of the week that slips first. If new leads wait, start with intake. If quotes go quiet, start with follow-up. If the report is unclear, start with the weekly decision loop.',
+  },
+  {
+    q: 'Can AI replace the owner\'s judgment?',
+    a: 'No. The system should protect judgment by showing the facts faster. The owner still decides the hard calls, but the system should make those calls clearer.',
+  },
+  {
+    q: 'Is this just scheduling software?',
+    a: 'No. Scheduling is one handoff. AI scheduling for service businesses only works when intake, source, follow-up, and reporting stay connected around it.',
+  },
+  {
+    q: 'How does this connect to Buildwise Media?',
+    a: `Buildwise Media installs ${categoryClaimSentence}. The Buildwise team and our AI system run the operating loop so the owner isn't stuck managing another inbox.`,
+  },
+];
+
+const definedTerm = {
+  '@context': 'https://schema.org',
+  '@type': 'DefinedTerm',
+  '@id': 'https://buildwisemedia.com/playbook/ai-for-business-operations#term',
+  name: 'AI for Business Operations',
+  description: 'AI for business operations is the use of a run-for-you AI system to connect intake, follow-up, scheduling handoffs, review requests, reporting, and weekly decisions for an owner-led service business.',
+  inDefinedTermSet: {
+    '@type': 'DefinedTermSet',
+    '@id': 'https://buildwisemedia.com/playbook/',
+    name: 'Buildwise Media Playbook',
+  },
+};
+
+const breadcrumb = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://buildwisemedia.com/' },
+    { '@type': 'ListItem', position: 2, name: 'Playbook', item: 'https://buildwisemedia.com/playbook/' },
+    { '@type': 'ListItem', position: 3, name: 'AI for Business Operations', item: 'https://buildwisemedia.com/playbook/ai-for-business-operations' },
+  ],
+};
+
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  '@id': 'https://buildwisemedia.com/playbook/ai-for-business-operations#faq',
+  mainEntity: faqs.map((f) => ({
+    '@type': 'Question',
+    name: f.q,
+    acceptedAnswer: { '@type': 'Answer', text: f.a },
+  })),
+};
+---
+<BaseLayout title={title} description={description} jsonLd={[definedTerm, breadcrumb, faqSchema]}>
+
+  <section class="playbook-hero">
+    <div class="container">
+      <p class="eyebrow"><a href="/playbook" class="back-link">&larr; Playbook</a></p>
+      <h1 class="h-hero">AI for business operations should clear the owner's week</h1>
+      <p class="lede">
+        AI for business operations should make a service business easier to run. It should catch the lead, move the handoff, remind the right person, show what changed, and make the next move obvious.
+      </p>
+      <p class="lede lede-tight">
+        It shouldn't be another inbox, another dashboard, or another thing you check after dinner. If your morning is gone by 9am, the system needs to remove work from your week before it adds new ideas.
+      </p>
+      <figure class="hero-visual" aria-label="AI operations owner week map">
+        <!-- @r020:F1 emotion: owner-week diagram makes the early-morning bottleneck visible before proposing the system -->
+        <svg viewBox="0 0 980 520" role="img" aria-labelledby="heroTitle">
+          <title id="heroTitle">AI for business operations clears the owner's week by moving the work out of the morning bottleneck.</title>
+          <rect x="28" y="28" width="924" height="464" rx="4" class="panel" />
+          <text x="76" y="86" class="kicker">OWNER WEEK</text>
+          <text x="76" y="135" class="time-label">5:30am</text>
+          <text x="430" y="135" class="time-label">9:00am</text>
+          <text x="780" y="135" class="time-label">next move</text>
+          <line x1="92" y1="190" x2="878" y2="190" class="rail" />
+          <circle cx="92" cy="190" r="10" class="dot" />
+          <circle cx="430" cy="190" r="10" class="dot" />
+          <circle cx="878" cy="190" r="10" class="dot hot" />
+          <path d="M102 258h184l56 70-56 70H102l56-70z" class="node node-a" />
+          <path d="M398 258h184l56 70-56 70H398l56-70z" class="node node-b" />
+          <path d="M694 258h184l56 70-56 70H694l56-70z" class="node node-c" />
+          <text x="222" y="318" class="node-text" text-anchor="middle">leads</text>
+          <text x="222" y="345" class="node-sub" text-anchor="middle">wait for owner</text>
+          <text x="518" y="318" class="node-text" text-anchor="middle">handoffs</text>
+          <text x="518" y="345" class="node-sub" text-anchor="middle">get routed</text>
+          <text x="814" y="318" class="node-text" text-anchor="middle">decision</text>
+          <text x="814" y="345" class="node-sub" text-anchor="middle">is clear</text>
+          <text x="490" y="445" class="caption" text-anchor="middle">the system works before the day gets away</text>
+        </svg>
+      </figure>
+    </div>
+  </section>
+
+  <section class="playbook-section elev">
+    <div class="container definition-grid">
+      <div>
+        <p class="section-tag">Start here</p>
+        <h2 class="h-section">Start with the owner's week.</h2>
+        <p class="prose">
+          The problem starts before the first meeting. You open the day at 5:30am, answer one message, check one missed call, look at one quote, and suddenly the morning is gone. By 9am, the business is running through you again.
+        </p>
+        <p class="prose">
+          Good AI operations don't start with a shiny tool. They start with the parts of the week that keep stealing the owner back: intake, quote follow-up, scheduling handoffs, reporting, and the next decision. Which handoff pulls you in first?
+        </p>
+      </div>
+      <figure class="definition-visual" aria-label="Owner week leak diagram">
+        <!-- @r020:F1 emotion: clock-to-leak diagram shows how small handoffs consume the owner's morning -->
+        <svg viewBox="0 0 680 430" role="img" aria-labelledby="weekTitle">
+          <title id="weekTitle">Small operating handoffs pull the owner into the center of the morning.</title>
+          <rect x="24" y="24" width="632" height="382" rx="4" class="panel" />
+          <text x="64" y="78" class="kicker">MORNING LOAD</text>
+          <circle cx="340" cy="216" r="76" class="island owner-core" />
+          <text x="340" y="207" class="node-text" text-anchor="middle">owner</text>
+          <text x="340" y="234" class="node-sub" text-anchor="middle">in the middle</text>
+          <circle cx="142" cy="138" r="48" class="island" />
+          <circle cx="538" cy="138" r="48" class="island" />
+          <circle cx="154" cy="304" r="48" class="island" />
+          <circle cx="526" cy="304" r="48" class="island" />
+          <path d="M186 156L274 190" class="rail" />
+          <path d="M494 156L406 190" class="rail" />
+          <path d="M198 286L274 242" class="rail" />
+          <path d="M482 286L406 242" class="rail" />
+          <text x="142" y="134" class="mini-label" text-anchor="middle">missed</text>
+          <text x="142" y="155" class="mini-label" text-anchor="middle">call</text>
+          <text x="538" y="134" class="mini-label" text-anchor="middle">new</text>
+          <text x="538" y="155" class="mini-label" text-anchor="middle">form</text>
+          <text x="154" y="300" class="mini-label" text-anchor="middle">quote</text>
+          <text x="154" y="321" class="mini-label" text-anchor="middle">nudge</text>
+          <text x="526" y="300" class="mini-label" text-anchor="middle">unclear</text>
+          <text x="526" y="321" class="mini-label" text-anchor="middle">report</text>
+          <circle cx="340" cy="344" r="8" class="dot hot" />
+          <text x="340" y="376" class="caption" text-anchor="middle">the first fix is removing owner load</text>
+        </svg>
+      </figure>
+    </div>
+  </section>
+
+  <section class="playbook-section">
+    <div class="container fit-grid">
+      <div>
+        <p class="section-tag">Where it belongs</p>
+        <h2 class="h-section">AI belongs where the handoff is clear.</h2>
+        <p class="prose">
+          The best use is specific. AI belongs in the repeatable points where a lead, job, quote, review, or report needs to move. Intake should be captured cleanly. Follow-up should happen while the buyer still cares. Scheduling should route without a pileup.
+        </p>
+        <p class="prose">
+          If you're comparing AI scheduling for service businesses, AI dispatch for contractors, or AI quote follow-up, use the same test: does it reduce the owner's work and keep the next step tied to the source? If it doesn't, it's just a task with a new label.
+        </p>
+      </div>
+      <div class="fit-board" aria-label="Where AI belongs in business operations">
+        <!-- @r020:F2 proof: fit board maps AI to concrete owner-facing operating jobs instead of vague automation claims -->
+        <svg viewBox="0 0 620 420" role="img" aria-labelledby="belongsTitle">
+          <title id="belongsTitle">AI belongs in intake, follow-up, scheduling, review requests, and reporting.</title>
+          <rect x="24" y="24" width="572" height="372" rx="4" class="panel" />
+          <text x="70" y="78" class="kicker">BELONGS HERE</text>
+          <rect x="66" y="116" width="216" height="64" rx="4" class="fit-good" />
+          <rect x="66" y="204" width="216" height="64" rx="4" class="fit-good" />
+          <rect x="338" y="116" width="216" height="64" rx="4" class="fit-good" />
+          <rect x="338" y="204" width="216" height="64" rx="4" class="fit-good" />
+          <text x="174" y="153" class="node-text" text-anchor="middle">intake</text>
+          <text x="174" y="241" class="node-text" text-anchor="middle">follow-up</text>
+          <text x="446" y="153" class="node-text" text-anchor="middle">scheduling</text>
+          <text x="446" y="241" class="node-text" text-anchor="middle">reporting</text>
+          <line x1="104" y1="324" x2="516" y2="324" class="rail" />
+          <circle cx="104" cy="324" r="7" class="dot" />
+          <circle cx="310" cy="324" r="7" class="dot" />
+          <circle cx="516" cy="324" r="7" class="dot hot" />
+          <text x="310" y="358" class="caption" text-anchor="middle">clear handoff, clear next step</text>
+        </svg>
+      </div>
+    </div>
+  </section>
+
+  <section class="playbook-section elev">
+    <div class="container compare-grid">
+      <div>
+        <p class="section-tag">Where it doesn't belong</p>
+        <h2 class="h-section">AI doesn't belong where judgment is the product.</h2>
+        <p class="prose">
+          AI shouldn't replace the owner's judgment. It shouldn't hide a messy process. It shouldn't become another inbox that needs a daily babysitter. Those aren't operations gains. They're new chores.
+        </p>
+        <p class="prose">
+          A run-for-you system should surface the facts, protect the handoff, and leave the hard call to a human when the call matters. That is how AI helps without making the business feel less accountable.
+        </p>
+      </div>
+      <figure class="compare-visual" aria-label="AI operations boundaries">
+        <!-- @r020:F4 curiosity: boundary diagram shows owners where not to automate before they install more tools -->
+        <svg viewBox="0 0 640 430" role="img" aria-labelledby="boundaryTitle">
+          <title id="boundaryTitle">AI operations should support judgment without hiding problems or creating another inbox.</title>
+          <rect x="24" y="24" width="592" height="382" rx="4" class="panel" />
+          <text x="74" y="78" class="kicker">BOUNDARY</text>
+          <rect x="66" y="124" width="214" height="70" rx="4" class="fit-bad" />
+          <rect x="66" y="224" width="214" height="70" rx="4" class="fit-bad" />
+          <rect x="360" y="124" width="214" height="70" rx="4" class="fit-good" />
+          <rect x="360" y="224" width="214" height="70" rx="4" class="fit-good" />
+          <text x="173" y="154" class="node-text" text-anchor="middle">replace</text>
+          <text x="173" y="178" class="node-sub" text-anchor="middle">judgment</text>
+          <text x="173" y="254" class="node-text" text-anchor="middle">hide</text>
+          <text x="173" y="278" class="node-sub" text-anchor="middle">messy work</text>
+          <text x="467" y="154" class="node-text" text-anchor="middle">surface</text>
+          <text x="467" y="178" class="node-sub" text-anchor="middle">facts</text>
+          <text x="467" y="254" class="node-text" text-anchor="middle">route</text>
+          <text x="467" y="278" class="node-sub" text-anchor="middle">handoffs</text>
+          <line x1="108" y1="344" x2="532" y2="344" class="rail" />
+          <circle cx="108" cy="344" r="7" class="dot" />
+          <circle cx="532" cy="344" r="7" class="dot hot" />
+          <text x="320" y="378" class="caption" text-anchor="middle">support judgment, don't bury it</text>
+        </svg>
+      </figure>
+    </div>
+  </section>
+
+  <section class="playbook-section">
+    <div class="container operating-grid">
+      <div>
+        <p class="section-tag">Operating loop</p>
+        <h2 class="h-section">The loop is capture, route, follow up, measure, decide.</h2>
+        <p class="prose">
+          The loop is simple on purpose. Capture the lead or job signal. Route it to the right next step. Follow up before it goes cold. Measure what happened. Decide what should change next week.
+        </p>
+        <p class="prose">
+          That loop is why operations work connects to <a href="/problem/owner-bottleneck">the owner bottleneck</a>, <a href="/problem/leaky-revenue">leaky revenue</a>, and <a href="/problem/reactive-growth">reactive growth</a>. The same loop also connects to <a href="/system">the system</a> and to <a href="/services/ascend">{ascendName}</a> when the business is ready for a full run-for-you layer.
+        </p>
+      </div>
+      <figure class="operating-visual" aria-label="AI operations loop">
+        <!-- @r020:F2 proof: loop diagram turns AI operations into the measurable sequence an owner can audit -->
+        <svg viewBox="0 0 680 460" role="img" aria-labelledby="loopTitle">
+          <title id="loopTitle">The AI operations loop captures, routes, follows up, measures, and decides.</title>
+          <rect x="24" y="24" width="632" height="412" rx="4" class="panel" />
+          <text x="64" y="78" class="kicker">OPERATING LOOP</text>
+          <path d="M110 142h126l38 54-38 54H110l38-54z" class="node node-a" />
+          <path d="M278 142h126l38 54-38 54H278l38-54z" class="node node-b" />
+          <path d="M446 142h126l38 54-38 54H446l38-54z" class="node node-c" />
+          <path d="M194 292h126l38 54-38 54H194l38-54z" class="node node-a" />
+          <path d="M362 292h126l38 54-38 54H362l38-54z" class="node node-c" />
+          <text x="178" y="204" class="node-text" text-anchor="middle">capture</text>
+          <text x="346" y="204" class="node-text" text-anchor="middle">route</text>
+          <text x="514" y="204" class="node-text" text-anchor="middle">follow up</text>
+          <text x="262" y="354" class="node-text" text-anchor="middle">measure</text>
+          <text x="430" y="354" class="node-text" text-anchor="middle">decide</text>
+          <line x1="246" y1="196" x2="282" y2="196" class="rail" />
+          <line x1="414" y1="196" x2="450" y2="196" class="rail" />
+          <line x1="514" y1="250" x2="430" y2="292" class="rail" />
+          <line x1="362" y1="346" x2="322" y2="346" class="rail" />
+          <line x1="238" y1="292" x2="178" y2="250" class="rail" />
+          <circle cx="178" cy="196" r="7" class="dot" />
+          <circle cx="346" cy="196" r="7" class="dot" />
+          <circle cx="514" cy="196" r="7" class="dot" />
+          <circle cx="262" cy="346" r="7" class="dot" />
+          <circle cx="430" cy="346" r="7" class="dot hot" />
+        </svg>
+      </figure>
+    </div>
+  </section>
+
+  <section class="playbook-section elev">
+    <div class="container">
+      <p class="section-tag">Related system work</p>
+      <h2 class="h-section">Operations work is one part of the larger system.</h2>
+      <p class="prose">
+        The category is <strong>{categoryClaimSentence}</strong>. Operations is where the owner first feels the relief, but it works best when the site, proof, follow-up, and reporting all feed the same loop.
+      </p>
+      <p class="prose">
+        If you need the first proof sprint, start with <a href="/services/ascend-pilot">{pilotName}</a>. If the business is ready for the full operating layer, see <a href="/services/ascend">{ascendName}</a>. These related pages show how the parts connect.
+      </p>
+      <div class="hub-grid">
+        {fitLinks.map((item) => (
+          <a class="hub-card" href={item.href}>
+            <span class="mono">PLAYBOOK</span>
+            <strong>{item.label}</strong>
+            <span>{item.body}</span>
+          </a>
+        ))}
+      </div>
+      <figure class="system-visual" aria-label="Operations within the larger system">
+        <!-- @r020:F3 CTA-pull: system map makes operations feel like an installed layer, not a standalone tool -->
+        <svg viewBox="0 0 980 360" role="img" aria-labelledby="systemTitle">
+          <title id="systemTitle">Operations connects the website, proof, follow-up, and reporting inside the system.</title>
+          <rect x="28" y="28" width="924" height="304" rx="4" class="panel" />
+          <text x="76" y="86" class="kicker">SYSTEM FIT</text>
+          <path d="M92 146h152l42 54-42 54H92l42-54z" class="node node-a" />
+          <path d="M300 146h152l42 54-42 54H300l42-54z" class="node node-b" />
+          <path d="M508 146h152l42 54-42 54H508l42-54z" class="node node-c" />
+          <path d="M716 146h152l42 54-42 54H716l42-54z" class="node node-a" />
+          <text x="189" y="192" class="node-text" text-anchor="middle">site</text>
+          <text x="189" y="218" class="node-sub" text-anchor="middle">captures</text>
+          <text x="397" y="192" class="node-text" text-anchor="middle">ops</text>
+          <text x="397" y="218" class="node-sub" text-anchor="middle">routes</text>
+          <text x="605" y="192" class="node-text" text-anchor="middle">proof</text>
+          <text x="605" y="218" class="node-sub" text-anchor="middle">builds trust</text>
+          <text x="813" y="192" class="node-text" text-anchor="middle">report</text>
+          <text x="813" y="218" class="node-sub" text-anchor="middle">decides</text>
+          <line x1="256" y1="200" x2="306" y2="200" class="rail" />
+          <line x1="464" y1="200" x2="514" y2="200" class="rail" />
+          <line x1="672" y1="200" x2="722" y2="200" class="rail" />
+          <circle cx="397" cy="286" r="8" class="dot hot" />
+          <text x="490" y="292" class="caption" text-anchor="middle">operations keeps the handoffs moving</text>
+        </svg>
+      </figure>
+    </div>
+  </section>
+
+  <section class="playbook-section">
+    <div class="container proof-grid">
+      <div>
+        <p class="section-tag">Receipts</p>
+        <h2 class="h-section">Proof comes before the next step.</h2>
+        <p class="prose">
+          We keep the claim tied to real outcomes. A custom-home builder we work with grew from $300K to $10M+. A concrete contractor has booked about 150 leads since launch. The point isn't a louder promise; it's a system that makes the next move visible.
+        </p>
+        <p class="prose">
+          The free Revenue Leak Map shows where your lead path is leaking now, then points to the first operating move worth fixing.
+        </p>
+        <p class="cta-row">
+          <a class="cta-primary" href="/book" data-cta-source="ai-operations-proof-primary">Get My Free Revenue Leak Map <span class="cta-arrow">&rarr;</span></a>
+          <a class="cta-ghost" href="/system" data-cta-source="ai-operations-proof-secondary">See the System</a>
+        </p>
+      </div>
+      <figure class="proof-visual" aria-label="Proof path map">
+        <!-- @r020:F3 CTA-pull: proof map connects real outcomes to the Revenue Leak Map action -->
+        <svg viewBox="0 0 620 430" role="img" aria-labelledby="proofTitle">
+          <title id="proofTitle">Proof leads into the Revenue Leak Map next step.</title>
+          <rect x="24" y="24" width="572" height="382" rx="4" class="panel" />
+          <text x="70" y="78" class="kicker">PROOF PATH</text>
+          <rect x="70" y="124" width="210" height="76" rx="4" class="fit-good" />
+          <rect x="340" y="124" width="210" height="76" rx="4" class="fit-good" />
+          <text x="175" y="156" class="proof-metric" text-anchor="middle">$300K to $10M+</text>
+          <text x="175" y="181" class="node-sub" text-anchor="middle">builder outcome</text>
+          <text x="445" y="156" class="proof-metric" text-anchor="middle">about 150 leads</text>
+          <text x="445" y="181" class="node-sub" text-anchor="middle">contractor launch</text>
+          <line x1="112" y1="282" x2="508" y2="282" class="rail" />
+          <circle cx="112" cy="282" r="8" class="dot" />
+          <circle cx="310" cy="282" r="8" class="dot" />
+          <circle cx="508" cy="282" r="8" class="dot hot" />
+          <text x="310" y="326" class="caption" text-anchor="middle">map the leak before changing the week</text>
+        </svg>
+      </figure>
+    </div>
+  </section>
+
+  <section class="playbook-faq">
+    <div class="container faq-grid">
+      <div>
+        <p class="section-tag">FAQ</p>
+        <h2 class="h-section">Common questions.</h2>
+        <div class="faq-list">
+          {faqs.map((f) => (
+            <details class="faq-item">
+              <summary class="faq-q">{f.q}</summary>
+              <div class="faq-a">
+                <p>{f.a}</p>
+              </div>
+            </details>
+          ))}
+        </div>
+      </div>
+      <figure class="faq-visual" aria-label="AI operations FAQ decision path">
+        <!-- @r020:F4 curiosity: FAQ signal path turns common objections into a short owner decision map -->
+        <svg viewBox="0 0 520 430" role="img" aria-labelledby="faqTitle">
+          <title id="faqTitle">Common AI operations questions move from scope to fit.</title>
+          <rect x="24" y="24" width="472" height="382" rx="4" class="panel" />
+          <text x="70" y="78" class="kicker">DECISION PATH</text>
+          <path d="M104 126h240" class="rail" />
+          <path d="M168 190h240" class="rail" />
+          <path d="M104 254h240" class="rail" />
+          <path d="M168 318h240" class="rail" />
+          <circle cx="104" cy="126" r="9" class="dot" />
+          <circle cx="344" cy="126" r="9" class="dot" />
+          <circle cx="168" cy="190" r="9" class="dot" />
+          <circle cx="408" cy="190" r="9" class="dot" />
+          <circle cx="104" cy="254" r="9" class="dot" />
+          <circle cx="344" cy="254" r="9" class="dot" />
+          <circle cx="168" cy="318" r="9" class="dot" />
+          <circle cx="408" cy="318" r="9" class="dot hot" />
+          <text x="260" y="370" class="caption" text-anchor="middle">scope it, connect it, map the leak</text>
+        </svg>
+      </figure>
+    </div>
+  </section>
+
+</BaseLayout>
+
+<style>
+.playbook-hero { padding-block: clamp(80px, 12vw, 144px); }
+.playbook-hero .lede { margin-top: 24px; }
+.playbook-hero .lede-tight { margin-top: 16px; max-width: 780px; }
+.back-link { color: var(--ink-faint); transition: color 180ms ease; }
+.back-link:hover { color: var(--y2); }
+
+.hero-visual {
+  margin-top: 56px;
+  max-width: 1120px;
+  border-radius: 4px;
+  overflow: hidden;
+  border: 1px solid var(--rule);
+  background: rgba(255,255,255,0.02);
+}
+
+.hero-visual svg { display: block; width: 100%; height: auto; }
+
+.playbook-section { padding-block: clamp(56px, 8vw, 96px); }
+.playbook-section .prose { font-size: 17px; line-height: 1.7; color: var(--ink-dim); max-width: 760px; }
+.playbook-section .prose + .prose { margin-top: 16px; }
+.playbook-section .prose a { color: var(--ink); text-decoration: none; border-bottom: 1px solid rgba(240,255,0,0.45); }
+.playbook-section .prose a:hover { color: var(--y2); border-bottom-color: var(--y2); }
+.playbook-section strong { color: var(--ink); font-weight: 600; }
+
+.definition-grid,
+.compare-grid,
+.proof-grid,
+.fit-grid,
+.faq-grid,
+.operating-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(300px, 520px);
+  gap: clamp(32px, 6vw, 72px);
+  align-items: start;
+}
+
+.definition-visual,
+.compare-visual,
+.fit-board,
+.faq-visual,
+.operating-visual,
+.system-visual,
+.proof-visual {
+  margin: 0;
+  border: 1px solid var(--rule);
+  border-radius: 4px;
+  overflow: hidden;
+  background: rgba(255,255,255,0.02);
+}
+
+.system-visual {
+  margin-top: 48px;
+  max-width: 1120px;
+}
+
+.definition-visual svg,
+.compare-visual svg,
+.fit-board svg,
+.faq-visual svg,
+.operating-visual svg,
+.system-visual svg,
+.proof-visual svg {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.panel { fill: rgba(5,5,7,0.72); stroke: rgba(255,255,255,0.08); }
+.kicker { fill: var(--y2); font: 600 13px var(--mono); }
+.caption { fill: var(--ink-faint); font: 500 15px var(--sans); }
+.node { stroke: rgba(240,255,0,0.38); stroke-width: 1.5; }
+.node-a { fill: rgba(255,255,255,0.035); }
+.node-b { fill: rgba(184,255,58,0.08); }
+.node-c { fill: rgba(240,255,0,0.11); }
+.node-text { fill: var(--ink); font: 700 18px var(--sans); }
+.node-sub { fill: var(--ink-dim); font: 500 14px var(--sans); }
+.rail { stroke: rgba(255,255,255,0.18); stroke-width: 2; fill: none; }
+.dot { fill: var(--ink-faint); }
+.dot.hot { fill: var(--y2); }
+.island { fill: rgba(255,255,255,0.045); stroke: rgba(255,255,255,0.13); stroke-width: 1.5; }
+.fit-good { fill: rgba(184,255,58,0.08); stroke: rgba(184,255,58,0.32); }
+.fit-bad { fill: rgba(255,255,255,0.035); stroke: rgba(255,255,255,0.12); }
+.time-label { fill: var(--ink); font: 700 22px var(--sans); }
+.mini-label { fill: var(--ink); font: 700 15px var(--sans); }
+.owner-core { stroke: rgba(240,255,0,0.42); }
+.proof-metric { fill: var(--ink); font: 800 19px var(--sans); }
+
+.hub-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 14px;
+  margin-top: 36px;
+}
+
+.hub-card {
+  display: flex;
+  min-height: 160px;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 20px;
+  border: 1px solid var(--rule);
+  border-radius: 4px;
+  background: rgba(255,255,255,0.025);
+  color: var(--ink-dim);
+  text-decoration: none;
+  transition: border-color 180ms ease, background 180ms ease;
+}
+
+.hub-card:hover {
+  border-color: rgba(240,255,0,0.55);
+  background: rgba(240,255,0,0.045);
+}
+
+.hub-card .mono { color: var(--y2); font-size: 12px; }
+.hub-card strong { color: var(--ink); font-size: 18px; line-height: 1.25; }
+.hub-card span:last-child { line-height: 1.55; }
+
+.cta-row { display: flex; flex-wrap: wrap; gap: 16px; margin-top: 32px; }
+
+.playbook-faq { padding-block: clamp(64px, 10vw, 112px); }
+.faq-list { display: flex; flex-direction: column; gap: 16px; margin-top: 32px; max-width: 880px; }
+.faq-item { border-top: 1px solid var(--rule); padding-block: 20px; }
+.faq-item[open] summary { color: var(--y2); }
+.faq-q { font-size: 17px; font-weight: 500; color: var(--ink); cursor: pointer; line-height: 1.4; list-style: none; }
+.faq-q::marker, .faq-q::-webkit-details-marker { display: none; }
+.faq-q::after { content: "+"; float: right; font-family: var(--mono); font-size: 18px; color: var(--y2); }
+.faq-item[open] .faq-q::after { content: "-"; }
+.faq-a { margin-top: 12px; }
+.faq-a p { font-size: 16px; line-height: 1.65; color: var(--ink-dim); max-width: 720px; }
+
+@media (max-width: 980px) {
+  .definition-grid,
+  .compare-grid,
+  .proof-grid,
+  .fit-grid,
+  .faq-grid,
+  .operating-grid,
+  .hub-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 620px) {
+  .hub-card { min-height: 0; }
+  .node-text { font-size: 15px; }
+  .node-sub,
+  .caption { font-size: 12px; }
+  .time-label { font-size: 17px; }
+  .proof-metric { font-size: 15px; }
+}
+</style>
