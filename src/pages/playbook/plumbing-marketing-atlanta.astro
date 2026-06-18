@@ -1,0 +1,316 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+const title = "Plumbing Marketing in Atlanta, Run For You | Buildwise";
+const description = "For Atlanta plumbing owners: get found when nearby homeowners search, answer fast, and book better jobs from an owned system.";
+
+const leakTypes = [
+  {
+    n: '01',
+    name: 'Map-results leak',
+    body: 'Nearby homeowners search in a rush, but your Google listing and local proof do not make you the clear choice.',
+  },
+  {
+    n: '02',
+    name: 'Service-page leak',
+    body: 'Drain, water heater, sewer, and emergency pages do not match the Atlanta jobs you want more of.',
+  },
+  {
+    n: '03',
+    name: 'Speed leak',
+    body: 'A call or form waits too long, so the homeowner books the plumber who answered first.',
+  },
+  {
+    n: '04',
+    name: 'Proof leak',
+    body: 'Good work gets finished, but reviews, photos, and job proof do not become the next reason to call.',
+  },
+];
+
+const systemCovers = [
+  'Atlanta plumbing pages for the services and neighborhoods you want.',
+  'A faster first step for calls, forms, and booking requests.',
+  'Review and proof capture after finished jobs, with a real person reviewing what matters.',
+  'A clear view of which calls and forms became booked jobs.',
+  'A weekly rhythm, so you see what changed and what to fix next.',
+];
+
+const faqs = [
+  {
+    q: 'What is plumbing marketing in Atlanta?',
+    a: 'Plumbing marketing in Atlanta is the work that helps nearby homeowners find you, trust you, contact you, and book a job. The owned-system version uses your site, local proof, reviews, and follow-up path instead of rented leads.',
+  },
+  {
+    q: 'Why does local plumbing search feel so hard?',
+    a: 'Atlanta homeowners often search when the problem is urgent. If your listing, service pages, proof, and response path are weak, the job goes to the company that looks safer and answers faster.',
+  },
+  {
+    q: 'Is Buildwise Media a plumbing marketing agency?',
+    a: 'No. Buildwise Media is the alternative to another agency or lead seller. The team installs and runs the lead system, while your company owns the assets, data, and proof.',
+  },
+  {
+    q: 'What should an Atlanta plumbing company fix first?',
+    a: 'Start with the path from nearby search to booked work. Check your local pages, your Google listing, response speed, reviews, and whether you can see which calls and forms became booked jobs.',
+  },
+  {
+    q: 'How long should the first install take?',
+    a: 'The first install is built around a 30-day window. That gives the team time to set the baseline, fix the first leaks, and show you what is working.',
+  },
+];
+
+const definedTerm = {
+  '@context': 'https://schema.org',
+  '@type': 'DefinedTerm',
+  '@id': 'https://buildwisemedia.com/playbook/plumbing-marketing-atlanta#term',
+  name: 'Plumbing marketing atlanta',
+  description,
+  inDefinedTermSet: {
+    '@type': 'DefinedTermSet',
+    '@id': 'https://buildwisemedia.com/playbook/#terms',
+    name: 'Buildwise Media Playbook',
+  },
+};
+
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  '@id': 'https://buildwisemedia.com/playbook/plumbing-marketing-atlanta#faq',
+  mainEntity: faqs.map((f) => ({
+    '@type': 'Question',
+    name: f.q,
+    acceptedAnswer: { '@type': 'Answer', text: f.a },
+  })),
+};
+
+const articleSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Article',
+  '@id': 'https://buildwisemedia.com/playbook/plumbing-marketing-atlanta#article',
+  headline: title,
+  description,
+  author: { '@id': 'https://buildwisemedia.com/#org' },
+  publisher: { '@id': 'https://buildwisemedia.com/#org' },
+  mainEntityOfPage: 'https://buildwisemedia.com/playbook/plumbing-marketing-atlanta',
+};
+
+const breadcrumb = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://buildwisemedia.com/' },
+    { '@type': 'ListItem', position: 2, name: 'Playbook', item: 'https://buildwisemedia.com/playbook/' },
+    { '@type': 'ListItem', position: 3, name: 'Plumbing Marketing Atlanta', item: 'https://buildwisemedia.com/playbook/plumbing-marketing-atlanta' },
+  ],
+};
+---
+<BaseLayout title={title} description={description} jsonLd={[articleSchema, breadcrumb, definedTerm, faqSchema]}>
+
+  <section class="playbook-hero">
+    <div class="container playbook-hero-grid">
+      <div>
+        <p class="eyebrow"><a href="/playbook" class="back-link">← Playbook</a> · plumbing marketing atlanta</p>
+        <h1 class="h-hero">Plumbing marketing in Atlanta, built around getting found nearby</h1>
+        <p class="lede">
+          Atlanta plumbing work starts close to the problem. A run-for-you system helps nearby homeowners find you, trust you, and book the right job through assets your company owns.
+        </p>
+        <p class="cta-row">
+          <a class="cta-primary" href="/book" data-cta-source="plumbing-marketing-atlanta-hero-primary">See If We're a Fit <span class="cta-arrow">→</span></a>
+          <a class="cta-ghost" href="/system" data-cta-source="plumbing-marketing-atlanta-hero-secondary">See the System</a>
+        </p>
+      </div>
+      <aside class="proof-panel ops-panel" aria-label="Atlanta plumbing lead path">
+        <p class="panel-label mono">Nearby lead path</p>
+        <strong>4</strong>
+        <p>Map results, service pages, response speed, and job proof connected before the next call.</p>
+      </aside>
+    </div>
+    <div class="container">
+      <figure class="hero-photo">
+        <!-- @r020:F1 emotion: field-service atmosphere shows the pressure of urgent local plumbing calls -->
+        <img src="/images/bwm-services-atmospheric-v1.webp" alt="Dark service-business workspace with tools, notes, and an active screen." width="1920" height="1080" loading="eager" decoding="async" />
+      </figure>
+    </div>
+  </section>
+
+  <section class="playbook-section elev">
+    <div class="container article-grid">
+      <div>
+        <p class="section-tag">Atlanta search problem</p>
+        <h2 class="h-section">Nearby homeowners choose the plumber who feels safest fastest.</h2>
+        <p class="prose">
+          Atlanta plumbing searches are often urgent. A leak, clog, water heater issue, or sewer problem does not give you much time to build trust. If your company is hard to find or hard to believe, the job goes somewhere else.
+        </p>
+        <p class="prose">
+          That is why plumbing marketing in Atlanta needs more than a few ads or a fresh homepage. You need local pages, proof from finished jobs, a strong Google listing, and a fast path from first search to booked work.
+        </p>
+        <p class="prose">
+          Buildwise Media installs and runs that system for <a href="/industries/plumbing">plumbing companies</a>. The goal is not to add more tasks to your week. The goal is to make your company easier to find and easier to choose.
+        </p>
+      </div>
+      <figure class="section-photo">
+        <!-- @r020:F2 proof: layered diagram makes the local search-to-booking path visible -->
+        <img src="/images/funnel-5-layer-v1.svg" alt="Layered diagram showing connected search, trust, and booking steps." width="1200" height="900" loading="lazy" decoding="async" />
+      </figure>
+    </div>
+  </section>
+
+  <section class="playbook-section">
+    <div class="container">
+      <p class="section-tag">Where calls leak</p>
+      <h2 class="h-section">Four places Atlanta plumbing calls leak before they book.</h2>
+      <div class="leak-grid">
+        {leakTypes.map((leak) => (
+          <article class="leak-card">
+            <p class="leak-num mono">{leak.n}</p>
+            <h3>{leak.name}</h3>
+            <p>{leak.body}</p>
+          </article>
+        ))}
+      </div>
+      <p class="prose">
+        Better plumbing calls come from a connected path. Homeowners need to find you nearby, see proof that fits their problem, get a fast next step, and leave a trail you can read later.
+      </p>
+    </div>
+  </section>
+
+  <section class="playbook-section elev">
+    <div class="container article-grid">
+      <div>
+        <p class="section-tag">Run-for-you system</p>
+        <h2 class="h-section">What the system covers instead of another agency contract.</h2>
+        <p class="prose">
+          A list of tactics still leaves you in the middle. A run-for-you system gives every layer a job. Local pages help homeowners understand what you fix. Proof helps them believe you. Fast routing protects urgent calls. A clear view shows which calls and forms became booked jobs.
+        </p>
+        <ul class="system-list" role="list">
+          {systemCovers.map((item) => <li>{item}</li>)}
+        </ul>
+        <p class="prose">
+          That is the same operating idea behind our <a href="/playbook/atlanta-home-services-marketing">Atlanta home services marketing</a> playbook. We install the path, run the rhythm, and keep the work tied to jobs you want more of.
+        </p>
+      </div>
+      <figure class="section-photo">
+        <!-- @r020:F3 CTA-pull: architecture diagram points toward the owned system page -->
+        <img src="/images/funnel-3-layer-v1.svg" alt="Three-layer system diagram showing visibility, trust, and booked work." width="1200" height="900" loading="lazy" decoding="async" />
+      </figure>
+    </div>
+  </section>
+
+  <section class="playbook-section">
+    <div class="container article-grid">
+      <div>
+        <p class="section-tag">Better plumbing jobs</p>
+        <h2 class="h-section">Owned local marketing helps you choose better work.</h2>
+        <p class="prose">
+          Not every plumbing call is worth chasing. Emergency work, drain cleaning, water heaters, repipes, and sewer calls each bring a different need. If every call looks the same, you cannot tell whether the work is getting better.
+        </p>
+        <p class="prose">
+          The owned-system path helps sort the work. Pages can match the jobs you want. Proof can show the repairs you do well. Follow-up can move faster when the need is urgent. Weekly review can show which gaps still cost you.
+        </p>
+        <p class="prose">
+          For a deeper plumbing-specific view, read the <a href="/playbook/plumbing-lead-generation">plumbing lead generation</a> playbook. Then see how the full <a href="/system">system</a> connects search, proof, speed, and booked jobs.
+        </p>
+      </div>
+      <figure class="section-photo">
+        <!-- @r020:F2 proof: proof still life shows how finished work can become local trust assets -->
+        <img src="/images/bwm-proof-still-life-v1.webp" alt="Documents, notes, and job proof arranged on a dark operations desk." width="1920" height="1080" loading="lazy" decoding="async" />
+      </figure>
+    </div>
+  </section>
+
+  <section class="playbook-related">
+    <div class="container">
+      <p class="section-tag">Related</p>
+      <h2 class="h-section">Keep reading.</h2>
+      <ul class="related-list">
+        <li><a href="/playbook/atlanta-home-services-marketing">Atlanta Home Services Marketing</a> — how nearby search works across home-service teams</li>
+        <li><a href="/playbook/plumbing-lead-generation">Plumbing Lead Generation</a> — how plumbing calls become booked jobs</li>
+        <li><a href="/industries/plumbing">Plumbing Companies</a> — how the system fits owner-led plumbing teams</li>
+        <li><a href="/system">The Buildwise System</a> — how the owned path gets installed and run</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="playbook-cta elev">
+    <div class="container">
+      <h2 class="h-closer">Ready to see where Atlanta plumbing calls are leaking?</h2>
+      <p class="lede">The first step is a clear look at the path from nearby search to trust to booked work.</p>
+      <!-- approved-proof: 008 de-id concrete contractor, organic-playbook use, internal-signoff 2026-06-18 -->
+      <blockquote class="pull-quote"><p>A concrete contractor we run went from almost no inbound calls to about 150 leads since launch.</p></blockquote>
+      <p class="cta-row">
+        <a class="cta-primary" href="/book" data-cta-source="plumbing-marketing-atlanta-final-primary">See If We're a Fit <span class="cta-arrow">→</span></a>
+        <a class="cta-ghost" href="/system" data-cta-source="plumbing-marketing-atlanta-final-secondary">See the System</a>
+      </p>
+    </div>
+  </section>
+
+  <section class="playbook-faq">
+    <div class="container">
+      <p class="section-tag">FAQ</p>
+      <h2 class="h-section">Common questions.</h2>
+      <div class="faq-list">
+        {faqs.map((f) => (
+          <details class="faq-item">
+            <summary class="faq-q">{f.q}</summary>
+            <div class="faq-a">
+              <p>{f.a}</p>
+            </div>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+
+</BaseLayout>
+
+<style>
+.playbook-hero { padding-block: clamp(80px, 12vw, 144px); }
+.playbook-hero-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(260px, 360px); gap: clamp(32px, 6vw, 72px); align-items: center; }
+.playbook-hero .lede { margin-top: 24px; }
+.back-link { color: var(--ink-faint); transition: color 180ms ease; }
+.back-link:hover { color: var(--y2); }
+.proof-panel { padding: 28px; }
+.proof-panel strong { display: block; margin-top: 18px; font-size: clamp(54px, 8vw, 92px); line-height: 0.9; color: var(--y2); font-weight: 600; }
+.proof-panel p:last-child { margin-top: 18px; color: var(--ink-dim); line-height: 1.6; }
+
+.hero-photo { margin-top: 56px; max-width: 1120px; border-radius: 4px; overflow: hidden; border: 1px solid var(--rule); }
+.hero-photo img { width: 100%; height: auto; display: block; }
+
+.playbook-section, .playbook-related, .playbook-cta, .playbook-faq { padding-block: clamp(56px, 8vw, 96px); }
+.prose { font-size: 17px; line-height: 1.7; color: var(--ink-dim); max-width: 760px; margin-top: 24px; }
+.prose + .prose { margin-top: 16px; }
+.prose a, .related-list a { color: var(--ink); text-decoration: none; border-bottom: 1px solid rgba(240,255,0,0.45); }
+.prose a:hover, .related-list a:hover { color: var(--y2); border-bottom-color: var(--y2); }
+
+.leak-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 16px; margin-block: 40px; }
+.leak-card { border: 1px solid var(--rule); background: rgba(255,255,255,0.025); padding: 24px; border-radius: 4px; }
+.leak-num { color: var(--y2); font-size: 10px; letter-spacing: 0.18em; }
+.leak-card h3 { margin-top: 18px; font-size: 22px; line-height: 1.15; color: var(--ink); }
+.leak-card p:last-child { margin-top: 12px; color: var(--ink-dim); line-height: 1.55; }
+
+.article-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(280px, 420px); gap: clamp(32px, 6vw, 72px); align-items: start; }
+.section-photo { margin: 0; border-radius: 4px; overflow: hidden; border: 1px solid var(--rule); }
+.section-photo img { width: 100%; height: auto; display: block; }
+.system-list { list-style: none; display: flex; flex-direction: column; gap: 14px; margin-top: 28px; max-width: 760px; }
+.system-list li { color: var(--ink-dim); line-height: 1.55; padding-left: 20px; position: relative; }
+.system-list li::before { content: ""; position: absolute; left: 0; top: 0.72em; width: 7px; height: 7px; border-radius: 50%; background: var(--y2); }
+
+.related-list { list-style: none; display: flex; flex-direction: column; gap: 12px; margin-top: 32px; max-width: 880px; }
+.pull-quote { margin-top: 32px; max-width: 820px; border-left: 3px solid var(--y2); padding: 18px 0 18px 24px; color: var(--ink); background: rgba(255,255,255,0.025); }
+.pull-quote p { font-size: clamp(22px, 3vw, 34px); line-height: 1.25; }
+.cta-row { display: flex; flex-wrap: wrap; gap: 16px; margin-top: 32px; }
+.playbook-faq { padding-top: 0; }
+.faq-list { display: flex; flex-direction: column; gap: 16px; margin-top: 32px; max-width: 880px; }
+.faq-item { border-top: 1px solid var(--rule); padding-block: 20px; }
+.faq-item[open] summary { color: var(--y2); }
+.faq-q { font-size: 17px; font-weight: 500; color: var(--ink); cursor: pointer; line-height: 1.4; list-style: none; }
+.faq-q::marker, .faq-q::-webkit-details-marker { display: none; }
+.faq-q::after { content: "+"; float: right; font-family: var(--mono); font-size: 18px; color: var(--y2); }
+.faq-item[open] .faq-q::after { content: "-"; }
+.faq-a { margin-top: 12px; }
+.faq-a p { font-size: 16px; line-height: 1.65; color: var(--ink-dim); max-width: 720px; }
+
+@media (max-width: 900px) {
+  .playbook-hero-grid, .article-grid { grid-template-columns: 1fr; }
+  .leak-grid { grid-template-columns: 1fr; }
+}
+</style>

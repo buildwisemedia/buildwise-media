@@ -1,0 +1,238 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+const title = "Get Found on Google for Your Service Business | Buildwise";
+const description = "When someone nearby searches for your service, you want to be the one they find first. See the owned system that makes that happen.";
+
+const definedTerm = {
+  '@context': 'https://schema.org',
+  '@type': 'DefinedTerm',
+  '@id': 'https://buildwisemedia.com/playbook/get-found-on-google-service-business#term',
+  name: 'Get Found on Google for Your Service Business',
+  description: 'Get found on google service business means building a local search system for nearby buyers. It helps them find your pages, trust your proof, and contact you while they still need help.',
+  inDefinedTermSet: {
+    '@type': 'DefinedTermSet',
+    '@id': 'https://buildwisemedia.com/playbook/',
+    name: 'Buildwise Media Playbook',
+  },
+};
+
+const breadcrumb = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://buildwisemedia.com/' },
+    { '@type': 'ListItem', position: 2, name: 'Playbook', item: 'https://buildwisemedia.com/playbook/' },
+    { '@type': 'ListItem', position: 3, name: 'Get Found on Google for Your Service Business', item: 'https://buildwisemedia.com/playbook/get-found-on-google-service-business' },
+  ],
+};
+
+const faqs = [
+  {
+    q: 'What does it mean to get found on Google for a service business?',
+    a: 'It means your pages and map result match what nearby buyers search. Then each page helps them contact you. The goal is not traffic alone. The goal is calls and forms from people who need your service now.',
+  },
+  {
+    q: 'Do I need both local SEO pages and my Google listing?',
+    a: 'Yes. Your Google listing helps buyers see you in the map results. Local service pages give them proof, answers, and a clear next step once they click through.',
+  },
+  {
+    q: 'How fast can this start working?',
+    a: 'It depends on your market, your current site, and how much trust your pages already show. The right first step is finding the gap between searches, pages, calls, and booked jobs.',
+  },
+  {
+    q: 'Is Buildwise Media an SEO agency?',
+    a: 'No. Buildwise Media is the alternative to an SEO agency or lead vendor. We build and run a system you own. It includes search pages, proof, follow-up, and a clear view of which calls or forms became booked jobs.',
+  },
+  {
+    q: 'What should I fix first?',
+    a: 'Start where the buyer is closest to booking. Fix your main service page, your map path, and your contact step. Then add proof that makes a stranger trust you fast.',
+  },
+];
+
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  '@id': 'https://buildwisemedia.com/playbook/get-found-on-google-service-business#faq',
+  mainEntity: faqs.map((f) => ({
+    '@type': 'Question',
+    name: f.q,
+    acceptedAnswer: { '@type': 'Answer', text: f.a },
+  })),
+};
+---
+<BaseLayout title={title} description={description} jsonLd={[definedTerm, breadcrumb, faqSchema]}>
+
+  <section class="playbook-hero">
+    <div class="container">
+      <p class="eyebrow"><a href="/playbook" class="back-link">← Playbook</a></p>
+      <h1 class="h-hero">How to get found on Google when buyers search nearby</h1>
+      <p class="lede">
+        If you searched "get found on google service business," you are not asking for theory. You want nearby buyers to find you first, trust you fast, and take the next step.
+      </p>
+      <p class="lede">
+        That takes more than a page stuffed with city names. Buildwise Media is the alternative to a search agency or lead vendor. We build the pages, proof, and follow-up paths you own.
+      </p>
+      <figure class="hero-photo">
+        <!-- @r020:F4 curiosity: connected search paths make the local discovery problem visible before the reader sees the system -->
+        <img src="/images/node-mesh-ascending-v1.svg" alt="Connected points rising toward a highlighted result." width="1200" height="675" loading="eager" decoding="async" />
+      </figure>
+    </div>
+  </section>
+
+  <section class="playbook-section elev">
+    <div class="container">
+      <p class="section-tag">The search moment</p>
+      <h2 class="h-section">Nearby buyers choose from what they can see.</h2>
+      <p class="prose">
+        When someone searches nearby, they are usually trying to solve a real problem soon. They scan the map results, your listing, and the page they land on. If the path feels thin or unclear, they move on before you ever know they were there.
+      </p>
+      <p class="prose">
+        Getting found is not only about showing up. You also need to look like the safer choice in that short moment. Your page should answer the job, the area, the risk, and the next step. The buyer should not have to dig.
+      </p>
+      <figure class="section-photo section-photo--diagram">
+        <!-- @r020:F2 proof: layered system view shows search, trust, and contact steps as one connected path -->
+        <img src="/images/stacked-planes-v1.svg" alt="Layered page system showing search pages, proof, and contact steps." width="1200" height="675" loading="lazy" decoding="async" />
+      </figure>
+    </div>
+  </section>
+
+  <section class="playbook-section">
+    <div class="container">
+      <p class="section-tag">Local foundation</p>
+      <h2 class="h-section">Your map path and site pages have to agree.</h2>
+      <p class="prose">
+        Your Google listing may bring the first glance, but your site has to carry the decision. The service name, location, photos, reviews, and contact step should all point to the same promise. When those pieces feel mismatched, trust drops fast.
+      </p>
+      <p class="prose">
+        This is the base of <a href="/playbook/local-seo-for-service-businesses">local SEO for service businesses</a>. It helps buyers see you handle their job. It also shows you serve their area and are easy to contact.
+      </p>
+      <figure class="section-photo section-photo--diagram">
+        <!-- @r020:F3 CTA-pull: connected steps show why the reader needs one clean path from map result to booked job -->
+        <img src="/images/funnel-5-layer-v1.svg" alt="Five connected steps from nearby search to booked job." width="1200" height="675" loading="lazy" decoding="async" />
+      </figure>
+    </div>
+  </section>
+
+  <section class="playbook-section elev">
+    <div class="container">
+      <p class="section-tag">Service pages</p>
+      <h2 class="h-section">Build pages around the jobs buyers already want.</h2>
+      <p class="prose">
+        A broad service page makes every job sound the same. A stronger page speaks to one service, one area, and one problem at a time. It shows what you fix, who you help, and what the buyer should expect next.
+      </p>
+      <p class="prose">
+        That is where <a href="/playbook/hyper-personalized-seo">hyper-personalized SEO</a> helps. The page can match the search without sounding fake. It can also give each buyer the proof and next step that fit their situation.
+      </p>
+      <figure class="section-photo section-photo--diagram">
+        <!-- @r020:F1 emotion: separated parts show how a vague page becomes a clearer choice for a real buyer -->
+        <img src="/images/exploded-triangle-v1.svg" alt="Separated triangle parts showing how page, offer, and follow-up work together." width="1200" height="675" loading="lazy" decoding="async" />
+      </figure>
+    </div>
+  </section>
+
+  <section class="playbook-section">
+    <div class="container">
+      <p class="section-tag">Owned system</p>
+      <h2 class="h-section">Search should connect to work you can see.</h2>
+      <p class="prose">
+        Getting found is the start. The system still has to capture the call and reply fast. It must show which calls or forms became booked jobs. Without that, you are guessing which search work matters.
+      </p>
+      <p class="prose">
+        Buildwise Media is an <a href="/playbook/seo-agency-alternative">SEO agency alternative</a> because we do not sell activity alone. We install <a href="/system">the system</a> that connects search, proof, contact, and follow-up inside your business.
+      </p>
+    </div>
+  </section>
+
+  <!-- @sdt-exempt: FAQ is question-and-answer text; imagery here would be decorative (R020) -->
+  <section class="playbook-faq">
+    <div class="container">
+      <p class="section-tag">FAQ</p>
+      <h2 class="h-section">Common questions.</h2>
+      <div class="faq-list">
+        {faqs.map((f) => (
+          <details class="faq-item">
+            <summary class="faq-q">{f.q}</summary>
+            <div class="faq-a">
+              <p>{f.a}</p>
+            </div>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="playbook-related elev">
+    <div class="container">
+      <p class="section-tag">Related</p>
+      <h2 class="h-section">More from the playbook.</h2>
+      <ul class="related-list">
+        <li><a href="/playbook/local-seo-for-service-businesses">Local SEO for Service Businesses</a> — the search base for nearby buyers.</li>
+        <li><a href="/playbook/hyper-personalized-seo">Hyper-Personalized SEO</a> — pages matched to the service, place, and problem.</li>
+        <li><a href="/playbook/seo-agency-alternative">SEO Agency Alternative</a> — why a system you own beats rented activity.</li>
+        <li><a href="/system">The Buildwise System</a> — how search connects to booked work.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="playbook-cta elev">
+    <div class="container">
+      <h2 class="h-closer">Ready to see if we're a fit?</h2>
+      <p class="lede">If nearby buyers can find you but still do not book, something is leaking. The next step is seeing where the path breaks.</p>
+      <!-- approved-proof: 008 de-id concrete contractor, organic-playbook use, internal-signoff 2026-06-18 -->
+      <blockquote class="pull-quote">
+        <p>A concrete contractor we run went from almost no inbound calls to about 150 leads since launch.</p>
+      </blockquote>
+      <p class="cta-row">
+        <a class="cta-primary" href="/book" data-cta-source="playbook-get-found-on-google-service-business-cta-primary">See If We're a Fit <span class="cta-arrow">→</span></a>
+        <a class="cta-ghost" href="/system" data-cta-source="playbook-get-found-on-google-service-business-cta-secondary">See the System</a>
+      </p>
+    </div>
+  </section>
+
+</BaseLayout>
+
+<style>
+.playbook-hero { padding-block: clamp(80px, 12vw, 144px); }
+.playbook-hero .lede { margin-top: 24px; }
+.back-link { color: var(--ink-faint); transition: color 180ms ease; }
+.back-link:hover { color: var(--y2); }
+
+.h-hero em { color: var(--y2); font-style: normal; font-weight: inherit; }
+.h-section em { color: var(--y2); font-style: normal; font-weight: inherit; }
+
+.hero-photo { margin-top: 56px; max-width: 1120px; border-radius: 4px; overflow: hidden; border: 1px solid var(--rule); }
+.hero-photo img { width: 100%; height: auto; display: block; }
+
+.playbook-section { padding-block: clamp(56px, 8vw, 96px); }
+.playbook-section .prose { font-size: 17px; line-height: 1.7; color: var(--ink-dim); max-width: 720px; }
+.playbook-section .prose + .prose { margin-top: 16px; }
+
+.section-photo { margin: 48px 0 0; max-width: 1120px; border-radius: 4px; overflow: hidden; border: 1px solid var(--rule); }
+.section-photo img { width: 100%; height: auto; display: block; }
+.section-photo--diagram { max-width: 980px; border-color: transparent; background: transparent; }
+.section-photo--diagram img { background: transparent; }
+
+.pull-quote { margin: 56px 0; padding: 32px 0; border-block: 1px solid var(--rule); max-width: 880px; }
+.pull-quote p { font-size: 24px; line-height: 1.35; color: var(--ink); font-weight: 500; font-style: italic; }
+
+.playbook-faq { padding-block: clamp(64px, 10vw, 112px); }
+.faq-list { display: flex; flex-direction: column; gap: 16px; margin-top: 32px; max-width: 880px; }
+.faq-item { border-top: 1px solid var(--rule); padding-block: 20px; }
+.faq-item[open] summary { color: var(--y2); }
+.faq-q { font-size: 17px; font-weight: 500; color: var(--ink); cursor: pointer; line-height: 1.4; list-style: none; }
+.faq-q::marker, .faq-q::-webkit-details-marker { display: none; }
+.faq-q::after { content: "+"; float: right; font-family: var(--mono); font-size: 18px; color: var(--y2); }
+.faq-item[open] .faq-q::after { content: "−"; }
+.faq-a { margin-top: 12px; }
+.faq-a p { font-size: 16px; line-height: 1.65; color: var(--ink-dim); max-width: 720px; }
+
+.playbook-related { padding-block: clamp(56px, 8vw, 96px); }
+.related-list { list-style: none; display: flex; flex-direction: column; gap: 12px; margin-top: 32px; max-width: 880px; }
+.related-list a { color: var(--ink); font-weight: 500; text-decoration: none; border-bottom: 1px solid transparent; transition: border-color 180ms ease, color 180ms ease; }
+.related-list a:hover { color: var(--y2); border-bottom-color: var(--y2); }
+
+.playbook-cta { padding-block: clamp(64px, 10vw, 112px); }
+.playbook-cta .lede { margin-top: 16px; }
+.cta-row { display: flex; flex-wrap: wrap; gap: 16px; margin-top: 32px; }
+</style>
