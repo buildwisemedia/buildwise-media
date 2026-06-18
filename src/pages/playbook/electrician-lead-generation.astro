@@ -1,0 +1,297 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+const title = "Electrician Lead Generation, Run For You | Buildwise";
+const description = "Stop buying shared electrical leads. See the owned-system way to get found, build trust, and book better electrical jobs.";
+
+const leakTypes = [
+  {
+    n: '01',
+    name: 'Search leak',
+    body: 'Homeowners and property managers need an electrician, but better-known shops show up before you do.',
+  },
+  {
+    n: '02',
+    name: 'Shared-lead leak',
+    body: 'You pay for the same request as other contractors, then race on price instead of trust.',
+  },
+  {
+    n: '03',
+    name: 'Trust leak',
+    body: 'Good jobs finish, but the proof does not become reviews, photos, service pages, or local trust.',
+  },
+  {
+    n: '04',
+    name: 'Follow-up leak',
+    body: 'The request is real, but the reply is late or you cannot see which source booked work.',
+  },
+];
+
+const systemCovers = [
+  'Local service pages for the electrical jobs and towns that already fit your crew.',
+  'Clear proof from finished work, reviews, permits, safety language, and job photos.',
+  'Fast routing for calls, forms, and booking requests so urgent work does not wait.',
+  'Weekly reporting that shows calls, forms, booked jobs, and what source created them.',
+  'Human signoff on sensitive replies, offers, and changes before anything goes live.',
+];
+
+const faqs = [
+  {
+    q: 'What is electrician lead generation?',
+    a: 'Electrician lead generation is the system that helps the right local buyer find you, trust you, and book a job. The strong version is owned by your company instead of rented from a shared-lead seller.',
+  },
+  {
+    q: 'How is this different from buying shared electrical leads?',
+    a: 'Shared leads often send the same request to several shops. An owned system helps buyers find you first, shows your proof, speeds up replies, and tracks what became a booked job, so you are not stuck racing other electricians on price.',
+  },
+  {
+    q: 'Is Buildwise an agency for electricians?',
+    a: 'No. Buildwise is the run-for-you alternative to another agency or lead vendor. The team installs and runs the system around assets your company owns.',
+  },
+  {
+    q: 'What should an electrical contractor measure first?',
+    a: 'Start with calls, forms, response speed, booked jobs, reviews, and the source that created the job. Those numbers show whether the system is creating better work, not just more noise.',
+  },
+  {
+    q: 'Can this work for residential and commercial electrical companies?',
+    a: 'Yes, if the offer, proof, and service pages match the jobs you want. Residential repair, panel work, lighting, generators, and commercial service each need a clear path from search to booked work.',
+  },
+];
+
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  '@id': 'https://buildwisemedia.com/playbook/electrician-lead-generation#faq',
+  mainEntity: faqs.map((f) => ({
+    '@type': 'Question',
+    name: f.q,
+    acceptedAnswer: { '@type': 'Answer', text: f.a },
+  })),
+};
+
+const articleSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Article',
+  '@id': 'https://buildwisemedia.com/playbook/electrician-lead-generation#article',
+  headline: title,
+  description,
+  author: { '@id': 'https://buildwisemedia.com/#org' },
+  publisher: { '@id': 'https://buildwisemedia.com/#org' },
+  mainEntityOfPage: 'https://buildwisemedia.com/playbook/electrician-lead-generation',
+};
+
+const definedTerm = {
+  '@context': 'https://schema.org',
+  '@type': 'DefinedTerm',
+  '@id': 'https://buildwisemedia.com/playbook/electrician-lead-generation#term',
+  name: 'electrician lead generation',
+  description: 'A run-for-you system that helps electrical contractors get found, build trust, and book better local electrical jobs.',
+  inDefinedTermSet: {
+    '@type': 'DefinedTermSet',
+    '@id': 'https://buildwisemedia.com/playbook#terms',
+    name: 'Buildwise Media Playbook',
+  },
+};
+
+const breadcrumb = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://buildwisemedia.com/' },
+    { '@type': 'ListItem', position: 2, name: 'Playbook', item: 'https://buildwisemedia.com/playbook/' },
+    { '@type': 'ListItem', position: 3, name: 'Electrician Lead Generation', item: 'https://buildwisemedia.com/playbook/electrician-lead-generation' },
+  ],
+};
+---
+<BaseLayout title={title} description={description} jsonLd={[articleSchema, definedTerm, breadcrumb, faqSchema]}>
+
+  <section class="playbook-hero">
+    <div class="container playbook-hero-grid">
+      <div>
+        <p class="eyebrow"><a href="/playbook" class="back-link">← Playbook</a> · electrician lead generation</p>
+        <h1 class="h-hero">Electrician lead generation, built on a system your company owns</h1>
+        <p class="lede">
+          Shared electrical leads put you in the same race as every other shop. A better system helps buyers find your company first, trust your work, and book the right job without making you manage one more marketing vendor.
+        </p>
+        <p class="cta-row">
+          <a class="cta-primary" href="/book" data-cta-source="electrician-lead-gen-hero-primary">See If We're a Fit <span class="cta-arrow">→</span></a>
+          <a class="cta-ghost" href="/system" data-cta-source="electrician-lead-gen-hero-secondary">See the System</a>
+        </p>
+      </div>
+      <aside class="proof-panel ops-panel" aria-label="Electrical lead path">
+        <p class="panel-label mono">Electrical lead path</p>
+        <strong>4</strong>
+        <p>Search, trust, speed, and a clear report — all connect before you decide what is working.</p>
+      </aside>
+    </div>
+    <div class="container">
+      <figure class="hero-photo">
+        <!-- @r020:F1 emotion: dark operations image mirrors the owner trying to turn daily electrical work into steady booked calls -->
+        <img src="/images/bwm-services-atmospheric-v1.webp" alt="Dark service operations room with work notes, screens, and a focused planning desk." width="1920" height="1080" loading="eager" decoding="async" />
+      </figure>
+    </div>
+  </section>
+
+  <section class="playbook-section elev">
+    <div class="container article-grid">
+      <div>
+        <p class="section-tag">Shared-lead problem</p>
+        <h2 class="h-section">Most lead sellers make electricians fight for the same job.</h2>
+        <p class="prose">
+          Electrical work is trust work. The buyer wants someone safe, licensed, clear, and fast. But shared-lead sellers often turn that trust moment into a race. You pay for the request, other contractors get it too, and the buyer starts comparing speed and price before they understand your work.
+        </p>
+        <p class="prose">
+          That is why <a href="/industries/electrical">electrical contractors</a> need a system they own. The goal is not more names in a spreadsheet. The goal is better local buyers finding your company, seeing proof, and taking the next step while the job still matters.
+        </p>
+      </div>
+      <figure class="section-photo">
+        <!-- @r020:F2 proof: architecture diagram makes the owned lead path visible before the owner commits to replacing shared leads -->
+        <img src="/images/funnel-5-layer-v1.svg" alt="Five connected stages from search to booked job for electrical contractors." width="1200" height="900" loading="lazy" decoding="async" />
+      </figure>
+    </div>
+  </section>
+
+  <section class="playbook-section">
+    <div class="container">
+      <p class="section-tag">Where leads leak</p>
+      <h2 class="h-section">Four places electrical leads leak before they become booked work.</h2>
+      <div class="leak-grid">
+        {leakTypes.map((leak) => (
+          <article class="leak-card">
+            <p class="leak-num mono">{leak.n}</p>
+            <h3>{leak.name}</h3>
+            <p>{leak.body}</p>
+          </article>
+        ))}
+      </div>
+      <p class="prose">
+        Good electrician lead generation connects all four. Search creates the chance to be chosen, proof makes the buyer safer saying yes, fast follow-up protects urgent work, and reporting shows which source turned into a real booked job.
+      </p>
+    </div>
+  </section>
+
+  <section class="playbook-section elev">
+    <div class="container article-grid">
+      <div>
+        <p class="section-tag">Run-for-you system</p>
+        <h2 class="h-section">What the system runs instead of another monthly agency contract.</h2>
+        <p class="prose">
+          A list of tactics still leaves you in charge of making them happen. A run-for-you system gives each part of the lead path a job, then keeps the parts connected. Better pages do not help enough if calls wait. More calls do not help enough if no one can see which source booked the work.
+        </p>
+        <ul class="system-list" role="list">
+          {systemCovers.map((item) => <li>{item}</li>)}
+        </ul>
+        <p class="prose">
+          This is why Buildwise is the <a href="/playbook/agency-alternative">alternative to another agency</a>, not another vendor to manage. The company owns the system and the data while the Buildwise team runs the weekly rhythm.
+        </p>
+      </div>
+      <figure class="section-photo">
+        <!-- @r020:F2 proof: results view turns weekly calls, forms, and booked-job reporting into something the owner can inspect -->
+        <img src="/images/bwm-results-editorial-v1.webp" alt="Operator reviewing a dark dashboard with measured service-business results." width="1920" height="1080" loading="lazy" decoding="async" />
+      </figure>
+    </div>
+  </section>
+
+  <section class="playbook-section">
+    <div class="container article-grid">
+      <div>
+        <p class="section-tag">Better alternative</p>
+        <h2 class="h-section">The owner should not have to manage lead generation by hand.</h2>
+        <p class="prose">
+          Many contractors add one more service, one more dashboard, or one more vendor call. That keeps the calendar full of meetings. It does not make the phone ring from better-fit buyers. And it keeps you stuck as the person who has to notice every leak.
+        </p>
+        <p class="prose">
+          The better path is one system. It replaces the weak parts of a <a href="/playbook/lead-generation-company-alternative">lead generation company</a> and the task pile of a <a href="/playbook/contractor-lead-generation-company-alternative">contractor lead generation company alternative</a>. Search, proof, speed, and reporting should work together before you spend more time or money on another outside promise.
+        </p>
+      </div>
+      <figure class="section-photo">
+        <!-- @r020:F3 CTA-pull: stacked system planes show the path from scattered vendor work to one operated system -->
+        <img src="/images/stacked-planes-v1.svg" alt="Stacked system planes showing connected operating layers." width="1200" height="900" loading="lazy" decoding="async" />
+      </figure>
+    </div>
+  </section>
+
+  <section class="playbook-cta elev">
+    <div class="container">
+      <h2 class="h-closer">Ready to stop renting the same electrical leads?</h2>
+      <p class="lede">See where your local search, proof, follow-up, or reporting path is leaking before you buy another shared lead.</p>
+      <!-- approved-proof: 008 de-id concrete contractor, organic-playbook use, internal-signoff 2026-06-18 -->
+      <blockquote class="pull-quote"><p>A concrete contractor we run went from almost no inbound calls to about 150 leads since launch.</p></blockquote>
+      <p class="cta-row">
+        <a class="cta-primary" href="/book" data-cta-source="electrician-lead-gen-final-primary">See If We're a Fit <span class="cta-arrow">→</span></a>
+        <a class="cta-ghost" href="/system" data-cta-source="electrician-lead-gen-final-secondary">See the System</a>
+      </p>
+    </div>
+  </section>
+
+  <section class="playbook-faq">
+    <div class="container">
+      <p class="section-tag">FAQ</p>
+      <h2 class="h-section">Common questions.</h2>
+      <div class="faq-list">
+        {faqs.map((f) => (
+          <details class="faq-item">
+            <summary class="faq-q">{f.q}</summary>
+            <div class="faq-a">
+              <p>{f.a}</p>
+            </div>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+
+</BaseLayout>
+
+<style>
+.playbook-hero { padding-block: clamp(80px, 12vw, 144px); }
+.playbook-hero-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(260px, 360px); gap: clamp(32px, 6vw, 72px); align-items: center; }
+.playbook-hero .lede { margin-top: 24px; }
+.back-link { color: var(--ink-faint); transition: color 180ms ease; }
+.back-link:hover { color: var(--y2); }
+.proof-panel { padding: 28px; }
+.proof-panel strong { display: block; margin-top: 18px; font-size: clamp(54px, 8vw, 92px); line-height: 0.9; color: var(--y2); font-weight: 600; }
+.proof-panel p:last-child { margin-top: 18px; color: var(--ink-dim); line-height: 1.6; }
+
+.hero-photo { margin-top: 56px; max-width: 1120px; border-radius: 4px; overflow: hidden; border: 1px solid var(--rule); }
+.hero-photo img { width: 100%; height: auto; display: block; }
+
+.playbook-section, .playbook-related, .playbook-cta, .playbook-faq { padding-block: clamp(56px, 8vw, 96px); }
+.prose { font-size: 17px; line-height: 1.7; color: var(--ink-dim); max-width: 760px; margin-top: 24px; }
+.prose + .prose { margin-top: 16px; }
+.prose a, .related-list a { color: var(--ink); text-decoration: none; border-bottom: 1px solid rgba(240,255,0,0.45); }
+.prose a:hover, .related-list a:hover { color: var(--y2); border-bottom-color: var(--y2); }
+
+.leak-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 16px; margin-block: 40px; }
+.leak-card { border: 1px solid var(--rule); background: rgba(255,255,255,0.025); padding: 24px; border-radius: 4px; }
+.leak-num { color: var(--y2); font-size: 10px; letter-spacing: 0.18em; }
+.leak-card h3 { margin-top: 18px; font-size: 22px; line-height: 1.15; color: var(--ink); }
+.leak-card p:last-child { margin-top: 12px; color: var(--ink-dim); line-height: 1.55; }
+
+.article-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(280px, 420px); gap: clamp(32px, 6vw, 72px); align-items: start; }
+.section-photo { margin: 0; border-radius: 4px; overflow: hidden; border: 1px solid var(--rule); }
+.section-photo img { width: 100%; height: auto; display: block; }
+.system-list { list-style: none; display: flex; flex-direction: column; gap: 14px; margin-top: 28px; max-width: 760px; }
+.system-list li { color: var(--ink-dim); line-height: 1.55; padding-left: 20px; position: relative; }
+.system-list li::before { content: ""; position: absolute; left: 0; top: 0.72em; width: 7px; height: 7px; border-radius: 50%; background: var(--y2); }
+
+.related-list { list-style: none; display: flex; flex-direction: column; gap: 12px; margin-top: 32px; max-width: 880px; }
+.pull-quote { max-width: 820px; margin: 32px 0 0; padding: 22px 24px; border-left: 3px solid var(--y2); background: rgba(255,255,255,0.025); }
+.pull-quote p { color: var(--ink); font-size: clamp(20px, 3vw, 30px); line-height: 1.25; }
+.cta-row { display: flex; flex-wrap: wrap; gap: 16px; margin-top: 32px; }
+.playbook-faq { padding-top: 0; }
+.faq-list { display: flex; flex-direction: column; gap: 16px; margin-top: 32px; max-width: 880px; }
+.faq-item { border-top: 1px solid var(--rule); padding-block: 20px; }
+.faq-item[open] summary { color: var(--y2); }
+.faq-q { font-size: 17px; font-weight: 500; color: var(--ink); cursor: pointer; line-height: 1.4; list-style: none; }
+.faq-q::marker, .faq-q::-webkit-details-marker { display: none; }
+.faq-q::after { content: "+"; float: right; font-family: var(--mono); font-size: 18px; color: var(--y2); }
+.faq-item[open] .faq-q::after { content: "-"; }
+.faq-a { margin-top: 12px; }
+.faq-a p { font-size: 16px; line-height: 1.65; color: var(--ink-dim); max-width: 720px; }
+
+@media (max-width: 900px) {
+  .playbook-hero-grid, .article-grid { grid-template-columns: 1fr; }
+  .leak-grid { grid-template-columns: 1fr; }
+}
+</style>
