@@ -1,0 +1,234 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+const title = "Local SEO for Service Businesses, Run For You | Buildwise";
+const description = 'Win the "near me" searches that fill your calendar. See the owned-system way to show up locally and book more of the right jobs.';
+
+const definedTerm = {
+  '@context': 'https://schema.org',
+  '@type': 'DefinedTerm',
+  '@id': 'https://buildwisemedia.com/playbook/local-seo-for-service-businesses#term',
+  name: 'Local SEO for Service Businesses',
+  description: 'Local SEO for service businesses should help nearby buyers find and trust you. Buildwise is the agency alternative: one owned system the Buildwise team builds and runs for you. Your Google listing, service-area pages, proof, follow-up, and tracking what works stay connected around your market.',
+  inDefinedTermSet: {
+    '@type': 'DefinedTermSet',
+    '@id': 'https://buildwisemedia.com/playbook/',
+    name: 'Buildwise Media Playbook',
+  },
+};
+
+const breadcrumb = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://buildwisemedia.com/' },
+    { '@type': 'ListItem', position: 2, name: 'Playbook', item: 'https://buildwisemedia.com/playbook/' },
+    { '@type': 'ListItem', position: 3, name: 'Local SEO for Service Businesses', item: 'https://buildwisemedia.com/playbook/local-seo-for-service-businesses' },
+  ],
+};
+
+const faqs = [
+  {
+    q: 'What is local SEO for service businesses?',
+    a: 'It is the work that helps nearby buyers find, trust, and contact you when they need service. It should connect your Google listing, service-area pages, proof, forms, calls, and follow-up into one local system.',
+  },
+  {
+    q: 'Is local SEO only about the map results?',
+    a: 'No. The map results matter, but they are one part. Your site, service pages, reviews, proof, and follow-up all need to support the same local choice.',
+  },
+  {
+    q: 'Can this help with near me searches?',
+    a: 'Yes. The point is to make your business easier to trust where nearby buyers already look. That includes map results, local pages, and clear next steps.',
+  },
+  {
+    q: 'How is Buildwise different from a local SEO agency?',
+    a: 'An agency keeps the work in their accounts. Buildwise builds and runs one owned local system around your business — your pages, proof, and follow-up stay tied to your name, not theirs.',
+  },
+  {
+    q: 'What happens after someone calls or fills out a form?',
+    a: 'The system moves fast. The right inquiry gets followed up and tied to the booked job. That helps improve what local buyers see next.',
+  },
+];
+
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  '@id': 'https://buildwisemedia.com/playbook/local-seo-for-service-businesses#faq',
+  mainEntity: faqs.map((f) => ({
+    '@type': 'Question',
+    name: f.q,
+    acceptedAnswer: { '@type': 'Answer', text: f.a },
+  })),
+};
+---
+<BaseLayout title={title} description={description} jsonLd={[definedTerm, breadcrumb, faqSchema]}>
+
+  <section class="playbook-hero">
+    <div class="container">
+      <p class="eyebrow"><a href="/playbook" class="back-link">← Playbook</a></p>
+      <h1 class="h-hero">Local SEO for service businesses, run for you</h1>
+      <p class="lede">
+        When someone searches for help nearby, they are often ready to book. Local SEO for service businesses should put your name where that buyer is already looking.
+      </p>
+      <p class="lede">
+        Buildwise builds and runs that local system for you. Your Google listing, service-area pages, website, follow-up, and tracking what works move as one. You get leads that come to you, without the overhead of an agency.
+      </p>
+      <figure class="hero-photo">
+        <!-- @r020:F1 emotion: local service scene shows the relief of nearby buyers finding a clear next step fast -->
+        <img src="/images/bwm-outcomes-environmental-cinematic-v1.webp" alt="Dark workspace with service notes, local job records, and a screen showing new calls coming in." width="1920" height="1080" loading="eager" decoding="async" />
+      </figure>
+    </div>
+  </section>
+
+  <section class="playbook-section elev">
+    <div class="container">
+      <p class="section-tag">Local intent</p>
+      <h2 class="h-section">Win the searches that start with urgency.</h2>
+      <p class="prose">
+        Most local search work starts too small. Someone tweaks a page, posts a few updates, and calls it progress. But the buyer is not looking for activity — they need trust quickly.
+      </p>
+      <p class="prose">
+        They want to know if you serve their area, handle their job, and respond fast. Your local system should answer those questions before they compare three more companies.
+      </p>
+      <p class="prose">
+        That is why local SEO has to connect the map results, service pages, proof, and follow-up. If those pieces do not line up, the buyer stalls. If they do, the next right step feels obvious.
+      </p>
+      <figure class="section-photo section-photo--diagram">
+        <!-- @r020:F2 proof: layered diagram makes the local path visible from nearby search to booked job -->
+        <img src="/images/funnel-5-layer-v1.svg" alt="Layered local search path showing map results, service pages, proof, follow-up, and booked jobs connected." width="1200" height="675" loading="lazy" decoding="async" />
+      </figure>
+    </div>
+  </section>
+
+  <section class="playbook-section">
+    <div class="container">
+      <p class="section-tag">Run for you</p>
+      <h2 class="h-section">Local search should not become your second job.</h2>
+      <p class="prose">
+        You should not have to manage local search after a full day of work. The system should be run for you, with clear decisions when your input matters.
+      </p>
+      <p class="prose">
+        The Buildwise team keeps the parts moving. We tune service-area pages and fix the ones that are not converting. We watch which calls and forms became booked jobs. Then we adjust what buyers see next.
+      </p>
+      <p class="prose">
+        No vendor account should own the trust you built. The system should sit around your name, your proof, and your service area. When you want the full model, see <a href="/system">the system</a> behind the work.
+      </p>
+      <figure class="section-photo">
+        <!-- @r020:F3 CTA-pull: connected system image makes the run-for-you local operating model concrete before the system link -->
+        <img src="/images/bwm-system-architecture-atmospheric-v1.webp" alt="Dark workspace showing connected service notes, local pages, and follow-up steps on one screen." width="1920" height="1080" loading="lazy" decoding="async" />
+      </figure>
+    </div>
+  </section>
+
+  <section class="playbook-section elev">
+    <div class="container">
+      <p class="section-tag">Owned system</p>
+      <h2 class="h-section">Build around the proof you already earned.</h2>
+      <p class="prose">
+        Renting local attention is fragile. An agency can keep you busy with meetings. A lead vendor can send names you do not control. Neither one builds enough around your local trust.
+      </p>
+      <p class="prose">
+        Buildwise is the <a href="/playbook/agency-alternative">alternative to an agency</a> because the work is built around what you own. Your pages, proof, follow-up, and reporting stay tied to your business.
+      </p>
+      <p class="prose">
+        This matters most in local search, where buyers compare nearby companies fast. If your proof is clearer and your next step is easier, you win the call.
+      </p>
+      <figure class="section-photo section-photo--diagram">
+        <!-- @r020:F4 curiosity: node mesh shows local proof, pages, and follow-up compounding around the business -->
+        <img src="/images/node-mesh-ascending-v1.svg" alt="Connected local proof, pages, follow-up, and booked jobs rising together." width="1200" height="675" loading="lazy" decoding="async" />
+      </figure>
+    </div>
+  </section>
+
+  <section class="playbook-section">
+    <div class="container">
+      <p class="section-tag">Cluster map</p>
+      <h2 class="h-section">Start here, then go deeper by search and service area.</h2>
+      <p class="prose">
+        Start here for the local search model. Then use the near-me and Atlanta pages for each search and service area.
+      </p>
+      <ul class="related-list">
+        <li><a href="/playbook/get-found-on-google-service-business">Get Found on Google for a Service Business</a> — the near-me page for map results and local trust</li>
+        <li><a href="/playbook/marketing-for-service-businesses">Marketing for Service Businesses</a> — the broader playbook for service businesses</li>
+        <li><a href="/playbook/agency-alternative">Agency Alternative</a> — why ownership matters when local trust is at stake</li>
+        <li><a href="/playbook/atlanta-home-services-marketing">Home Services Marketing in Atlanta</a> — the Atlanta-specific local page</li>
+        <li><a href="/system">See the System</a> — the full Buildwise operating model behind the local pages</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="playbook-faq">
+    <div class="container">
+      <p class="section-tag">FAQ</p>
+      <h2 class="h-section">Common questions.</h2>
+      <div class="faq-list">
+        {faqs.map((f) => (
+          <details class="faq-item">
+            <summary class="faq-q">{f.q}</summary>
+            <div class="faq-a">
+              <p>{f.a}</p>
+            </div>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="playbook-cta elev">
+    <div class="container">
+      <h2 class="h-closer">Ready to make local search work without managing it?</h2>
+      <p class="lede">If you want nearby buyers to find and trust you faster, this is the right conversation.</p>
+      <!-- approved-proof: 008 de-id concrete contractor, organic-playbook use, internal-signoff 2026-06-18 -->
+      <blockquote class="pull-quote"><p>A concrete contractor we run went from almost no inbound calls to about 150 leads since launch.</p></blockquote>
+      <p class="cta-row">
+        <a class="cta-primary" href="/book" data-cta-source="playbook-local-seo-for-service-businesses-cta-primary">See If We're a Fit <span class="cta-arrow">→</span></a>
+        <a class="cta-ghost" href="/system" data-cta-source="playbook-local-seo-for-service-businesses-cta-secondary">See the System</a>
+      </p>
+    </div>
+  </section>
+
+</BaseLayout>
+
+<style>
+  .playbook-hero { padding-block: clamp(80px, 12vw, 144px); }
+  .playbook-hero .lede { margin-top: 24px; }
+  .back-link { color: var(--ink-faint); transition: color 180ms ease; }
+  .back-link:hover { color: var(--y2); }
+
+  .h-hero em { color: var(--y2); font-style: normal; font-weight: inherit; }
+  .h-section em { color: var(--y2); font-style: normal; font-weight: inherit; }
+
+  .hero-photo { margin-top: 56px; max-width: 1120px; border-radius: 4px; overflow: hidden; border: 1px solid var(--rule); }
+  .hero-photo img { width: 100%; height: auto; display: block; }
+
+  .playbook-section { padding-block: clamp(56px, 8vw, 96px); }
+  .playbook-section .prose { font-size: 17px; line-height: 1.7; color: var(--ink-dim); max-width: 720px; }
+  .playbook-section .prose + .prose { margin-top: 16px; }
+
+  .section-photo { margin: 48px 0 0; max-width: 1120px; border-radius: 4px; overflow: hidden; border: 1px solid var(--rule); }
+  .section-photo img { width: 100%; height: auto; display: block; }
+  .section-photo--diagram { max-width: 980px; border-color: transparent; background: transparent; }
+  .section-photo--diagram img { background: transparent; }
+
+  .pull-quote { margin: 56px 0; padding: 32px 0; border-block: 1px solid var(--rule); max-width: 880px; }
+  .pull-quote p { font-size: 24px; line-height: 1.35; color: var(--ink); font-weight: 500; font-style: italic; }
+
+  .playbook-faq { padding-block: clamp(64px, 10vw, 112px); }
+  .faq-list { display: flex; flex-direction: column; gap: 16px; margin-top: 32px; max-width: 880px; }
+  .faq-item { border-top: 1px solid var(--rule); padding-block: 20px; }
+  .faq-item[open] summary { color: var(--y2); }
+  .faq-q { font-size: 17px; font-weight: 500; color: var(--ink); cursor: pointer; line-height: 1.4; list-style: none; }
+  .faq-q::marker, .faq-q::-webkit-details-marker { display: none; }
+  .faq-q::after { content: "+"; float: right; font-family: var(--mono); font-size: 18px; color: var(--y2); }
+  .faq-item[open] .faq-q::after { content: "−"; }
+  .faq-a { margin-top: 12px; }
+  .faq-a p { font-size: 16px; line-height: 1.65; color: var(--ink-dim); max-width: 720px; }
+
+  .related-list { list-style: none; display: flex; flex-direction: column; gap: 12px; margin-top: 32px; max-width: 880px; }
+  .related-list a { color: var(--ink); font-weight: 500; text-decoration: none; border-bottom: 1px solid transparent; transition: border-color 180ms ease, color 180ms ease; }
+  .related-list a:hover { color: var(--y2); border-bottom-color: var(--y2); }
+
+  .playbook-cta { padding-block: clamp(64px, 10vw, 112px); }
+  .playbook-cta .lede { margin-top: 16px; }
+  .cta-row { display: flex; flex-wrap: wrap; gap: 16px; margin-top: 32px; }
+</style>

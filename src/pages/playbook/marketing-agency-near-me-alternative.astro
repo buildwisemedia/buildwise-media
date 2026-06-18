@@ -1,0 +1,239 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+const title = 'The "Marketing Agency Near Me" Alternative | Buildwise';
+const description = 'Hiring a nearby agency is not the only option. See the owned local growth system built and run for your service business.';
+
+const definedTerm = {
+  '@context': 'https://schema.org',
+  '@type': 'DefinedTerm',
+  '@id': 'https://buildwisemedia.com/playbook/marketing-agency-near-me-alternative#term',
+  name: 'Marketing Agency Near Me Alternative',
+  description: 'A marketing agency near me alternative gives your service business a local growth system you own. Instead of renting a nearby agency, Buildwise builds the page and lead path. We run the follow-up and reporting in your accounts. You keep the system and a clear view of which calls or forms became booked jobs.',
+  inDefinedTermSet: {
+    '@type': 'DefinedTermSet',
+    '@id': 'https://buildwisemedia.com/playbook/',
+    name: 'Buildwise Media Playbook',
+  },
+};
+
+const breadcrumb = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://buildwisemedia.com/' },
+    { '@type': 'ListItem', position: 2, name: 'Playbook', item: 'https://buildwisemedia.com/playbook/' },
+    { '@type': 'ListItem', position: 3, name: 'Marketing Agency Near Me Alternative', item: 'https://buildwisemedia.com/playbook/marketing-agency-near-me-alternative' },
+  ],
+};
+
+const faqs = [
+  {
+    q: 'What is a marketing agency near me alternative?',
+    a: 'It is a local growth system built around your service area. It gives you pages, follow-up, reporting, and a clear view of which calls or forms became booked jobs. Buildwise runs it, but you own it.',
+  },
+  {
+    q: 'Is Buildwise a marketing agency?',
+    a: 'No. Buildwise is the alternative to the usual agency path. We build and run a system you own. A standard agency usually sells services that stop when the monthly contract stops.',
+  },
+  {
+    q: 'Do I need someone in my city?',
+    a: 'Not usually. You need the system to understand your service area, proof, and job types. Local knowledge matters. It should live in the work, not just in an office address.',
+  },
+  {
+    q: 'Does this replace local search work?',
+    a: 'No. It connects local search work to calls, forms, and follow-up. The search work matters more when it feeds a path built to book real jobs.',
+  },
+  {
+    q: 'How should I compare this with agency cost?',
+    a: 'Compare what you keep. A monthly agency bill can buy activity. An owned system gives you pages, lead paths, and records that stay with your business.',
+  },
+];
+
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  '@id': 'https://buildwisemedia.com/playbook/marketing-agency-near-me-alternative#faq',
+  mainEntity: faqs.map((f) => ({
+    '@type': 'Question',
+    name: f.q,
+    acceptedAnswer: { '@type': 'Answer', text: f.a },
+  })),
+};
+---
+<BaseLayout title={title} description={description} jsonLd={[definedTerm, breadcrumb, faqSchema]}>
+
+  <section class="playbook-hero">
+    <div class="container">
+      <p class="eyebrow"><a href="/playbook" class="back-link">&larr; Playbook</a></p>
+      <h1 class="h-hero">Searching "marketing agency near me"? There is a better path</h1>
+      <p class="lede">
+        If you searched that phrase, you are trying to pick someone close. You want calls, booked jobs, and less guessing.
+      </p>
+      <p class="lede">
+        A nearby agency can feel safe. You can meet them. They know the city. But location does not fix a weak system.
+      </p>
+      <p class="lede">
+        The better question is simple. Who builds the thing you keep?
+      </p>
+      <figure class="hero-photo">
+        <!-- @r020:F4 curiosity: quiet service-area planning image opens the local-vs-owned question -->
+        <img src="/images/bwm-system-architecture-atmospheric-v1.webp" alt="Dark desk with a laptop, local job notes, and a live service-area plan." width="1920" height="1080" loading="eager" decoding="async" />
+      </figure>
+    </div>
+  </section>
+
+  <section class="playbook-section elev">
+    <div class="container">
+      <p class="section-tag">Local fit</p>
+      <h2 class="h-section">Local help is not the same as local ownership.</h2>
+      <p class="prose">
+        The usual agency path sells you meetings, posts, ads, and reports — but most of it lives outside your business.
+      </p>
+      <p class="prose">
+        That is why our broader <a href="/playbook/agency-alternative">agency alternative</a> starts with ownership. Your site, forms, call paths, follow-up, and reporting stay in your hands.
+      </p>
+      <p class="prose">
+        A local search needs a local system, not just a nearby firm: your pages should match the jobs you want, your proof should match your market, and your follow-up needs to move fast.
+      </p>
+      <figure class="section-photo section-photo--diagram">
+        <!-- @r020:F2 proof: stacked layers show the parts you keep inside your business -->
+        <img src="/images/stacked-planes-v1.svg" alt="Layered system parts stacked inside one business." width="1200" height="675" loading="lazy" decoding="async" />
+      </figure>
+    </div>
+  </section>
+
+  <section class="playbook-section">
+    <div class="container">
+      <p class="section-tag">System shape</p>
+      <h2 class="h-section">What the owned local system includes.</h2>
+      <p class="prose">
+        Your local pages should answer real service questions. Your map listing should match the jobs you want. Your forms and calls need fast follow-up.
+      </p>
+      <p class="prose">
+        This is where <a href="/playbook/local-seo-for-service-businesses">local search for service businesses</a> becomes useful. Search alone is not enough. The path after the click matters.
+      </p>
+      <p class="prose">
+        The full <a href="/system">Buildwise system</a> ties the parts together. It connects search, proof, forms, calls, follow-up, and reporting. You see which calls or forms became booked jobs.
+      </p>
+      <figure class="section-photo section-photo--diagram">
+        <!-- @r020:F3 CTA-pull: connected nodes make the owned local system feel tangible -->
+        <img src="/images/node-mesh-ascending-v1.svg" alt="Connected local growth steps rising into one clear path." width="1200" height="675" loading="lazy" decoding="async" />
+      </figure>
+    </div>
+  </section>
+
+  <section class="playbook-section elev">
+    <div class="container">
+      <p class="section-tag">Cost of renting</p>
+      <h2 class="h-section">Why nearby agencies still break.</h2>
+      <p class="prose">
+        The cost is not just the monthly agency bill. It is the reset when you switch. The next agency starts over, and your old work often stays scattered.
+      </p>
+      <p class="prose">
+        That is the gap behind most <a href="/playbook/marketing-agency-cost">marketing agency cost</a> comparisons. You are not only buying activity. You are deciding what your business owns after the bill is paid.
+      </p>
+      <p class="prose">
+        When the system is yours, each month can build on the last. Your pages improve. Your proof gets clearer. Your records stay with you.
+      </p>
+      <figure class="section-photo">
+        <!-- @r020:F2 proof: measured records make ownership feel concrete, not abstract -->
+        <img src="/images/bwm-proof-still-life-v1.webp" alt="Measured records and service notes kept in one place." width="1920" height="1080" loading="lazy" decoding="async" />
+      </figure>
+    </div>
+  </section>
+
+  <section class="playbook-section">
+    <div class="container">
+      <p class="section-tag">When it fits</p>
+      <h2 class="h-section">When the Buildwise alternative fits.</h2>
+      <p class="prose">
+        If you only need a local creative project, a nearby shop can be fine. If you need buyers ready to book, the system matters more than the office address.
+      </p>
+      <p class="prose">
+        Use the pages below to compare the choice. The right path is the one that gives you calls, records, and a system you keep.
+      </p>
+      <ul class="related-list">
+        <li><a href="/playbook/agency-alternative">Agency Alternative</a> - the broader rent-versus-own comparison</li>
+        <li><a href="/playbook/local-seo-for-service-businesses">Local search for service businesses</a> - how local search fits the lead path</li>
+        <li><a href="/playbook/marketing-agency-cost">Marketing Agency Cost</a> - what to compare before you sign</li>
+        <li><a href="/system">The Buildwise System</a> - the owned system built and run for you</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="playbook-faq">
+    <div class="container">
+      <p class="section-tag">FAQ</p>
+      <h2 class="h-section">Common questions.</h2>
+      <div class="faq-list">
+        {faqs.map((f) => (
+          <details class="faq-item">
+            <summary class="faq-q">{f.q}</summary>
+            <div class="faq-a">
+              <p>{f.a}</p>
+            </div>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="playbook-cta elev">
+    <div class="container">
+      <h2 class="h-closer">Ready to choose what you keep?</h2>
+      <p class="lede">If you want more than a nearby agency, start with the system your business can own.</p>
+      <!-- approved-proof: 008 de-id concrete contractor, organic-playbook use, internal-signoff 2026-06-18 -->
+      <blockquote class="pull-quote"><p>A concrete contractor we run went from almost no inbound calls to about 150 leads since launch.</p></blockquote>
+      <p class="cta-row">
+        <a class="cta-primary" href="/book" data-cta-source="playbook-marketing-agency-near-me-alternative-cta-primary">See If We're a Fit</a>
+        <a class="cta-ghost" href="/system" data-cta-source="playbook-marketing-agency-near-me-alternative-cta-secondary">See the System</a>
+      </p>
+    </div>
+  </section>
+
+</BaseLayout>
+
+<style>
+.playbook-hero { padding-block: clamp(80px, 12vw, 144px); }
+.playbook-hero .lede { margin-top: 24px; }
+.back-link { color: var(--ink-faint); transition: color 180ms ease; }
+.back-link:hover { color: var(--y2); }
+
+.h-hero em { color: var(--y2); font-style: normal; font-weight: inherit; }
+.h-section em { color: var(--y2); font-style: normal; font-weight: inherit; }
+
+.hero-photo { margin-top: 56px; max-width: 1120px; border-radius: 4px; overflow: hidden; border: 1px solid var(--rule); }
+.hero-photo img { width: 100%; height: auto; display: block; }
+
+.playbook-section { padding-block: clamp(56px, 8vw, 96px); }
+.playbook-section .prose { font-size: 17px; line-height: 1.7; color: var(--ink-dim); max-width: 720px; }
+.playbook-section .prose + .prose { margin-top: 16px; }
+
+.section-photo { margin: 48px 0 0; max-width: 1120px; border-radius: 4px; overflow: hidden; border: 1px solid var(--rule); }
+.section-photo img { width: 100%; height: auto; display: block; }
+.section-photo--diagram { max-width: 980px; border-color: transparent; background: transparent; }
+.section-photo--diagram img { background: transparent; }
+
+.pull-quote { margin: 32px 0; padding: 32px 0; border-block: 1px solid var(--rule); max-width: 880px; }
+.pull-quote p { font-size: 24px; line-height: 1.35; color: var(--ink); font-weight: 500; font-style: italic; }
+
+.playbook-faq { padding-block: clamp(64px, 10vw, 112px); }
+.faq-list { display: flex; flex-direction: column; gap: 16px; margin-top: 32px; max-width: 880px; }
+.faq-item { border-top: 1px solid var(--rule); padding-block: 20px; }
+.faq-item[open] summary { color: var(--y2); }
+.faq-q { font-size: 17px; font-weight: 500; color: var(--ink); cursor: pointer; line-height: 1.4; list-style: none; }
+.faq-q::marker, .faq-q::-webkit-details-marker { display: none; }
+.faq-q::after { content: "+"; float: right; font-family: var(--mono); font-size: 18px; color: var(--y2); }
+.faq-item[open] .faq-q::after { content: "-"; }
+.faq-a { margin-top: 12px; }
+.faq-a p { font-size: 16px; line-height: 1.65; color: var(--ink-dim); max-width: 720px; }
+
+.related-list { list-style: none; display: flex; flex-direction: column; gap: 12px; margin-top: 32px; max-width: 880px; }
+.related-list a { color: var(--ink); font-weight: 500; text-decoration: none; border-bottom: 1px solid transparent; transition: border-color 180ms ease, color 180ms ease; }
+.related-list a:hover { color: var(--y2); border-bottom-color: var(--y2); }
+
+.playbook-cta { padding-block: clamp(64px, 10vw, 112px); }
+.playbook-cta .lede { margin-top: 16px; }
+.cta-row { display: flex; flex-wrap: wrap; gap: 16px; margin-top: 32px; }
+</style>

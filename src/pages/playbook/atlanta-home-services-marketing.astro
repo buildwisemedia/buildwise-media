@@ -1,0 +1,236 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+const title = "Atlanta Home Services Marketing, Run For You | Buildwise";
+const description = "For Atlanta home-service owners: an owned growth system that gets you found nearby and books more of the right jobs.";
+
+const definedTerm = {
+  '@context': 'https://schema.org',
+  '@type': 'DefinedTerm',
+  '@id': 'https://buildwisemedia.com/playbook/atlanta-home-services-marketing#term',
+  name: 'Atlanta Home Services Marketing',
+  description: 'Atlanta home services marketing should help nearby customers find you, trust you, and book the right work. Buildwise is the agency alternative: one system you own, built and run for you, with your website, local proof, lead paths, follow-up, and a clear view of which calls and forms became booked jobs connected around the Atlanta work you want more of.',
+  inDefinedTermSet: {
+    '@type': 'DefinedTermSet',
+    '@id': 'https://buildwisemedia.com/playbook/',
+    name: 'Buildwise Media Playbook',
+  },
+};
+
+const breadcrumb = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://buildwisemedia.com/' },
+    { '@type': 'ListItem', position: 2, name: 'Playbook', item: 'https://buildwisemedia.com/playbook/' },
+    { '@type': 'ListItem', position: 3, name: 'Atlanta Home Services Marketing', item: 'https://buildwisemedia.com/playbook/atlanta-home-services-marketing' },
+  ],
+};
+
+const faqs = [
+  {
+    q: 'What is Atlanta home services marketing?',
+    a: 'It is the work that helps nearby customers find you, trust you, and book the right job. For Atlanta, that means local pages, service-area proof, clear booking steps, follow-up, and reporting tied to real work.',
+  },
+  {
+    q: 'How is this different from buying leads?',
+    a: 'Buying leads rents attention from someone else. This builds around your name, service area, proof, and customer path, so more of the value stays with your business.',
+  },
+  {
+    q: 'Do you only work with HVAC and plumbing companies?',
+    a: 'No. HVAC and plumbing are two trades we cover in Atlanta because the need is clear. The same system can fit other home-service trades when the offer, proof, and service area are strong.',
+  },
+  {
+    q: 'Does this replace local search work?',
+    a: 'It includes local search work, but it does not stop there. The page, proof, booking path, follow-up, and job reporting all have to connect.',
+  },
+  {
+    q: 'What happens on the first call?',
+    a: 'The Buildwise team looks at your service area, current lead flow, proof, and capacity. Then we decide if a run-for-you system is the right fit.',
+  },
+];
+
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  '@id': 'https://buildwisemedia.com/playbook/atlanta-home-services-marketing#faq',
+  mainEntity: faqs.map((f) => ({
+    '@type': 'Question',
+    name: f.q,
+    acceptedAnswer: { '@type': 'Answer', text: f.a },
+  })),
+};
+---
+<BaseLayout title={title} description={description} jsonLd={[definedTerm, breadcrumb, faqSchema]}>
+
+  <section class="playbook-hero">
+    <div class="container">
+      <p class="eyebrow"><a href="/playbook" class="back-link">← Playbook</a></p>
+      <h1 class="h-hero">Marketing for Atlanta home-service companies, run for you</h1>
+      <p class="lede">
+        If you run a home-service company in Atlanta, nearby customers need to find you fast. Your marketing should help them trust you and book without adding another job to your day.
+      </p>
+      <p class="lede">
+        Buildwise builds and runs one system you own around your Atlanta service area. Your website, local proof, follow-up, and simple reporting work together. More of the right jobs come from your name.
+      </p>
+      <figure class="hero-photo">
+        <!-- @r020:F1 emotion: Atlanta service-area framing shows relief when nearby customers can find and book without more owner busywork -->
+        <img src="/images/bwm-services-atmospheric-v1.webp" alt="Dark service-business workspace with maps, work notes, and a screen ready for customer calls." width="1920" height="1080" loading="eager" decoding="async" />
+      </figure>
+    </div>
+  </section>
+
+  <section class="playbook-section elev">
+    <div class="container">
+      <p class="section-tag">Atlanta intent</p>
+      <h2 class="h-section">Local work is won close to home.</h2>
+      <p class="prose">
+        Atlanta is not one simple market. Buckhead, Decatur, Marietta, Sandy Springs, and East Atlanta all create different search habits and different trust signals. If your page treats every area the same, the right customer can miss why you are the nearby choice.
+      </p>
+      <p class="prose">
+        Good <a href="/playbook/local-seo-for-service-businesses">local search for service businesses</a> starts with the buyer's real moment. They need a repair, install, estimate, or project help. They want proof that you handle that work near them. Then they need a simple path to book.
+      </p>
+      <p class="prose">
+        That is the point of Atlanta home services marketing: make the local path clear before a competitor gets the call.
+      </p>
+      <figure class="section-photo section-photo--diagram">
+        <!-- @r020:F2 proof: layered diagram makes the local search, proof, and booking path visible as one connected system -->
+        <img src="/images/funnel-5-layer-v1.svg" alt="Layered diagram showing local search, proof, follow-up, and booking steps connected." width="1200" height="675" loading="lazy" decoding="async" />
+      </figure>
+    </div>
+  </section>
+
+  <section class="playbook-section">
+    <div class="container">
+      <p class="section-tag">Run for you</p>
+      <h2 class="h-section">The system connects search to booked jobs.</h2>
+      <p class="prose">
+        A local page alone will not fix a broken booking path. A better listing alone will not fix slow follow-up. A prettier site alone will not show which calls and forms became booked jobs. The pieces need to work together.
+      </p>
+      <p class="prose">
+        Buildwise connects your service pages, local proof, contact steps, follow-up, and reporting into one system you own. A real person reviews what matters, and the team keeps improving the parts that help buyers choose you.
+      </p>
+      <p class="prose">
+        If you want to see how the pieces fit, start with <a href="/system">the system</a>.
+      </p>
+      <figure class="section-photo">
+        <!-- @r020:F3 CTA-pull: architecture image makes the run-for-you system concrete before the system link -->
+        <img src="/images/bwm-system-architecture-atmospheric-v1.webp" alt="Dark workspace showing connected screens, service notes, and a clear operating plan." width="1920" height="1080" loading="lazy" decoding="async" />
+      </figure>
+    </div>
+  </section>
+
+  <section class="playbook-section elev">
+    <div class="container">
+      <p class="section-tag">Trade pages</p>
+      <h2 class="h-section">HVAC and plumbing need sharper local pages.</h2>
+      <p class="prose">
+        This page covers the Atlanta market broadly, and each trade has its own page because each buyer has a different worry. HVAC customers often care about speed, season, comfort, and whether the system will hold up. Plumbing customers often care about trust, clean work, and quick answers when water is already a problem.
+      </p>
+      <p class="prose">
+        That is why <a href="/playbook/hvac-marketing-atlanta">HVAC marketing in Atlanta</a> and <a href="/playbook/plumbing-marketing-atlanta">plumbing marketing in Atlanta</a> need their own pages. The proof, photos, service-area copy, and booking path should match the job the customer needs done.
+      </p>
+      <p class="prose">
+        The broad page brings them in. The trade page earns the call.
+      </p>
+      <figure class="section-photo section-photo--diagram">
+        <!-- @r020:F4 curiosity: node mesh shows Atlanta trade pages connected to one local growth system -->
+        <img src="/images/node-mesh-ascending-v1.svg" alt="Connected diagram showing trade pages, local proof, and booked jobs rising together." width="1200" height="675" loading="lazy" decoding="async" />
+      </figure>
+    </div>
+  </section>
+
+  <section class="playbook-section">
+    <div class="container">
+      <p class="section-tag">Agency alternative</p>
+      <h2 class="h-section">Own the system instead of renting activity.</h2>
+      <p class="prose">
+        You should not have to manage another vendor's task list. Buildwise is the alternative to an agency or lead vendor. The team builds and runs the system around your service area, proof, booking path, and follow-up.
+      </p>
+      <p class="prose">
+        Use these pages to move from the Atlanta overview into the trade or system view.
+      </p>
+      <ul class="related-list">
+        <li><a href="/playbook/local-seo-for-service-businesses">Local search for service businesses</a> — how nearby buyers find and trust you</li>
+        <li><a href="/playbook/hvac-marketing-atlanta">HVAC Marketing Atlanta</a> — the HVAC page for Atlanta</li>
+        <li><a href="/playbook/plumbing-marketing-atlanta">Plumbing Marketing Atlanta</a> — the plumbing page for Atlanta</li>
+        <li><a href="/system">See the System</a> — the full Buildwise operating model</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="playbook-faq">
+    <div class="container">
+      <p class="section-tag">FAQ</p>
+      <h2 class="h-section">Common questions.</h2>
+      <div class="faq-list">
+        {faqs.map((f) => (
+          <details class="faq-item">
+            <summary class="faq-q">{f.q}</summary>
+            <div class="faq-a">
+              <p>{f.a}</p>
+            </div>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="playbook-cta elev">
+    <div class="container">
+      <h2 class="h-closer">Ready to make Atlanta marketing easier to own?</h2>
+      <p class="lede">If you want the right Atlanta jobs to come from a system you own, start with the fit call.</p>
+      <!-- approved-proof: 008 de-id concrete contractor, organic-playbook use, internal-signoff 2026-06-18 -->
+      <blockquote class="pull-quote"><p>A concrete contractor we run went from almost no inbound calls to about 150 leads since launch.</p></blockquote>
+      <p class="cta-row">
+        <a class="cta-primary" href="/book" data-cta-source="playbook-atlanta-home-services-marketing-cta-primary">See If We're a Fit <span class="cta-arrow">→</span></a>
+        <a class="cta-ghost" href="/system" data-cta-source="playbook-atlanta-home-services-marketing-cta-secondary">See the System</a>
+      </p>
+    </div>
+  </section>
+
+</BaseLayout>
+
+<style>
+.playbook-hero { padding-block: clamp(80px, 12vw, 144px); }
+.playbook-hero .lede { margin-top: 24px; }
+.back-link { color: var(--ink-faint); transition: color 180ms ease; }
+.back-link:hover { color: var(--y2); }
+
+.h-hero em { color: var(--y2); font-style: normal; font-weight: inherit; }
+.h-section em { color: var(--y2); font-style: normal; font-weight: inherit; }
+
+.hero-photo { margin-top: 56px; max-width: 1120px; border-radius: 4px; overflow: hidden; border: 1px solid var(--rule); }
+.hero-photo img { width: 100%; height: auto; display: block; }
+
+.playbook-section { padding-block: clamp(56px, 8vw, 96px); }
+.playbook-section .prose { font-size: 17px; line-height: 1.7; color: var(--ink-dim); max-width: 720px; }
+.playbook-section .prose + .prose { margin-top: 16px; }
+
+.section-photo { margin: 48px 0 0; max-width: 1120px; border-radius: 4px; overflow: hidden; border: 1px solid var(--rule); }
+.section-photo img { width: 100%; height: auto; display: block; }
+.section-photo--diagram { max-width: 980px; border-color: transparent; background: transparent; }
+.section-photo--diagram img { background: transparent; }
+
+.pull-quote { margin: 56px 0; padding: 32px 0; border-block: 1px solid var(--rule); max-width: 880px; }
+.pull-quote p { font-size: 24px; line-height: 1.35; color: var(--ink); font-weight: 500; font-style: italic; }
+
+.playbook-faq { padding-block: clamp(64px, 10vw, 112px); }
+.faq-list { display: flex; flex-direction: column; gap: 16px; margin-top: 32px; max-width: 880px; }
+.faq-item { border-top: 1px solid var(--rule); padding-block: 20px; }
+.faq-item[open] summary { color: var(--y2); }
+.faq-q { font-size: 17px; font-weight: 500; color: var(--ink); cursor: pointer; line-height: 1.4; list-style: none; }
+.faq-q::marker, .faq-q::-webkit-details-marker { display: none; }
+.faq-q::after { content: "+"; float: right; font-family: var(--mono); font-size: 18px; color: var(--y2); }
+.faq-item[open] .faq-q::after { content: "−"; }
+.faq-a { margin-top: 12px; }
+.faq-a p { font-size: 16px; line-height: 1.65; color: var(--ink-dim); max-width: 720px; }
+
+.related-list { list-style: none; display: flex; flex-direction: column; gap: 12px; margin-top: 32px; max-width: 880px; }
+.related-list a { color: var(--ink); font-weight: 500; text-decoration: none; border-bottom: 1px solid transparent; transition: border-color 180ms ease, color 180ms ease; }
+.related-list a:hover { color: var(--y2); border-bottom-color: var(--y2); }
+
+.playbook-cta { padding-block: clamp(64px, 10vw, 112px); }
+.playbook-cta .lede { margin-top: 16px; }
+.cta-row { display: flex; flex-wrap: wrap; gap: 16px; margin-top: 32px; }
+</style>

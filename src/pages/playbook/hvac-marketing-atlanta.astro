@@ -1,0 +1,293 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+const title = "HVAC Marketing in Atlanta, Run For You | Buildwise";
+const description = "For Atlanta HVAC owners: get found when nearby homeowners search, build trust fast, and book better jobs from an owned system.";
+
+const localLeaks = [
+  {
+    n: '01',
+    name: 'Map leak',
+    body: 'Nearby homeowners search for help, but your company is not clear enough in the map results.',
+  },
+  {
+    n: '02',
+    name: 'Trust leak',
+    body: 'The buyer sees your name, then keeps looking because reviews, photos, and service proof feel thin.',
+  },
+  {
+    n: '03',
+    name: 'Speed leak',
+    body: 'The call or form is real, but the first reply comes after another shop already booked it.',
+  },
+  {
+    n: '04',
+    name: 'Booked-job leak',
+    body: 'You get activity, but you do not get a clear view of which calls and forms became booked jobs.',
+  },
+];
+
+const systemCovers = [
+  'Service pages for the neighborhoods and repair types you want more of.',
+  'A stronger local listing story, with reviews, photos, and service proof kept fresh.',
+  'Fast next steps for calls, forms, and booking requests.',
+  'A clear view of which calls and forms became booked jobs.',
+  'Weekly fixes, so the system keeps improving without becoming your second job.',
+];
+
+const faqs = [
+  {
+    q: 'What makes HVAC marketing in Atlanta different?',
+    a: 'Atlanta search is local and urgent. Homeowners often compare map results, reviews, service pages, and response speed before they book.',
+  },
+  {
+    q: 'Is Buildwise another marketing agency?',
+    a: 'No. Buildwise is the alternative to another agency or lead vendor. We install and run a system you own.',
+  },
+  {
+    q: 'What should an Atlanta HVAC company improve first?',
+    a: 'Start with local visibility, trust proof, and speed. Those three gaps decide whether nearby homeowners choose you.',
+  },
+  {
+    q: 'Do I need more ads to make this work?',
+    a: 'Not first. You need the local system to show where calls come from, which ones book, and what should improve next.',
+  },
+  {
+    q: 'How fast can the first version be installed?',
+    a: 'The first version is built around a 30-day install. A real person reviews what matters before it goes live.',
+  },
+];
+
+const definedTerm = {
+  '@context': 'https://schema.org',
+  '@type': 'DefinedTerm',
+  '@id': 'https://buildwisemedia.com/playbook/hvac-marketing-atlanta#term',
+  name: 'HVAC marketing Atlanta',
+  description,
+  inDefinedTermSet: {
+    '@type': 'DefinedTermSet',
+    '@id': 'https://buildwisemedia.com/playbook#term-set',
+    name: 'Buildwise Media Playbook',
+    url: 'https://buildwisemedia.com/playbook/',
+  },
+  url: 'https://buildwisemedia.com/playbook/hvac-marketing-atlanta',
+};
+
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  '@id': 'https://buildwisemedia.com/playbook/hvac-marketing-atlanta#faq',
+  mainEntity: faqs.map((f) => ({
+    '@type': 'Question',
+    name: f.q,
+    acceptedAnswer: { '@type': 'Answer', text: f.a },
+  })),
+};
+
+const breadcrumb = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://buildwisemedia.com/' },
+    { '@type': 'ListItem', position: 2, name: 'Playbook', item: 'https://buildwisemedia.com/playbook/' },
+    { '@type': 'ListItem', position: 3, name: 'HVAC Marketing Atlanta', item: 'https://buildwisemedia.com/playbook/hvac-marketing-atlanta' },
+  ],
+};
+---
+<BaseLayout title={title} description={description} jsonLd={[definedTerm, breadcrumb, faqSchema]}>
+
+  <section class="playbook-hero">
+    <div class="container playbook-hero-grid">
+      <div>
+        <p class="eyebrow"><a href="/playbook" class="back-link">← Playbook</a> · Atlanta HVAC marketing</p>
+        <h1 class="h-hero">HVAC marketing in Atlanta, built around getting found nearby</h1>
+        <p class="lede">
+          Most HVAC marketing Atlanta advice treats your city like a label. That misses the real fight. You need nearby homeowners to find you, trust you, and book before the next company answers.
+        </p>
+        <p class="cta-row">
+          <a class="cta-primary" href="/book" data-cta-source="hvac-atlanta-hero-primary">See If We're a Fit <span class="cta-arrow">→</span></a>
+          <a class="cta-ghost" href="/system" data-cta-source="hvac-atlanta-hero-secondary">See the System</a>
+        </p>
+      </div>
+      <aside class="proof-panel ops-panel" aria-label="Atlanta HVAC marketing path">
+        <p class="panel-label mono">Local lead path</p>
+        <strong>4</strong>
+        <p>Map results, trust proof, fast replies, and booked-job truth all have to connect.</p>
+      </aside>
+    </div>
+  </section>
+
+  <section class="playbook-section elev">
+    <div class="container article-grid">
+      <div>
+        <p class="section-tag">Local search</p>
+        <h2 class="h-section">Atlanta homeowners do not search like a national buyer.</h2>
+        <p class="prose">
+          A homeowner in Buckhead with a dead unit is not reading a long brand story. They search nearby, scan the map results, compare reviews, and call the company that feels safest.
+        </p>
+        <p class="prose">
+          That means your Atlanta HVAC marketing has to prove location, service fit, and trust fast. A general site is not enough. Your pages should show where you work, what you fix, and why someone should call now.
+        </p>
+        <p class="prose">
+          This is why <a href="/playbook/atlanta-home-services-marketing">Atlanta home services marketing</a> should start with local buying intent. The system has to match how people search when the house is too hot.
+        </p>
+      </div>
+      <figure class="section-photo">
+        <!-- @r020:F1 emotion: local operations image mirrors urgent service work before the day starts -->
+        <img src="/images/bwm-services-atmospheric-v1.webp" alt="A dark service desk with job notes and a lit screen." width="1920" height="1080" loading="lazy" decoding="async" />
+      </figure>
+    </div>
+  </section>
+
+  <section class="playbook-section">
+    <div class="container article-grid">
+      <div>
+        <p class="section-tag">Where leads leak</p>
+        <h2 class="h-section">Four local gaps can cost you the service call.</h2>
+        <div class="leak-grid">
+          {localLeaks.map((leak) => (
+            <article class="leak-card">
+              <p class="leak-num mono">{leak.n}</p>
+              <h3>{leak.name}</h3>
+              <p>{leak.body}</p>
+            </article>
+          ))}
+        </div>
+        <p class="prose">
+          These leaks rarely show up alone. A weak map result hurts trust. Slow replies waste good demand. Thin proof makes the buyer keep clicking. A clear view of booked jobs shows which gap deserves the next fix.
+        </p>
+      </div>
+      <figure class="section-photo">
+        <!-- @r020:F2 proof: layered system diagram makes the local leak path visible before the reader chooses a fix -->
+        <img src="/images/funnel-5-layer-v1.svg" alt="Five connected layers showing how local leads move toward booked jobs." width="1200" height="900" loading="lazy" decoding="async" />
+      </figure>
+    </div>
+  </section>
+
+  <section class="playbook-section elev">
+    <div class="container article-grid">
+      <div>
+        <p class="section-tag">Run for you</p>
+        <h2 class="h-section">The fix is a system you own, not another pile of tasks.</h2>
+        <p class="prose">
+          Many plans tell you to post more, ask for reviews, build pages, watch calls, and chase every form. That may help, but it still puts the work on you.
+        </p>
+        <p class="prose">
+          Buildwise is the alternative to another agency or lead vendor. We install the local system, run the weekly rhythm, and keep the parts tied to booked jobs. You own the system, data, and code.
+        </p>
+        <ul class="system-list" role="list">
+          {systemCovers.map((item) => <li>{item}</li>)}
+        </ul>
+        <p class="prose">
+          For trade-specific context, see how this works for <a href="/industries/hvac">HVAC companies</a>. The broader <a href="/system">Buildwise system</a> shows how the parts connect.
+        </p>
+      </div>
+      <figure class="section-photo">
+        <!-- @r020:F3 CTA-pull: system architecture image previews the owned operating layer behind the next click -->
+        <img src="/images/bwm-system-architecture-atmospheric-v1.webp" alt="A dark operations screen showing connected service work." width="1920" height="1080" loading="lazy" decoding="async" />
+      </figure>
+    </div>
+  </section>
+
+  <section class="playbook-section">
+    <div class="container article-grid">
+      <div>
+        <p class="section-tag">Better jobs</p>
+        <h2 class="h-section">Better local marketing should make the next month clearer.</h2>
+        <p class="prose">
+          You should not finish the month guessing why the phone rang. The system should show which calls, forms, and booking requests became real jobs.
+        </p>
+        <p class="prose">
+          That view changes the work. You can see which service pages need proof. You can also spot which reply steps slow buyers down. Then the next fix is based on real jobs, not noise.
+        </p>
+        <p class="prose">
+          If you want the trade-wide version, read the <a href="/playbook/hvac-lead-generation">HVAC lead generation playbook</a>. This Atlanta page is the local version. Get found nearby, build trust fast, and book better jobs from an owned system.
+        </p>
+      </div>
+      <figure class="section-photo">
+        <!-- @r020:F2 proof: proof still life gives the reader a concrete view of job evidence and review rhythm -->
+        <img src="/images/bwm-proof-still-life-v1.webp" alt="A desk with service notes, proof cards, and a dim screen." width="1920" height="1080" loading="lazy" decoding="async" />
+      </figure>
+    </div>
+  </section>
+
+  <section class="playbook-cta elev">
+    <div class="container">
+      <h2 class="h-closer">Want the Atlanta HVAC lead path checked?</h2>
+      <p class="lede">We will look for the first leak in how nearby homeowners find, trust, and book you.</p>
+      <!-- approved-proof: 008 de-id concrete contractor, organic-playbook use, internal-signoff 2026-06-18 -->
+      <blockquote class="pull-quote"><p>A concrete contractor we run went from almost no inbound calls to about 150 leads since launch.</p></blockquote>
+      <p class="cta-row">
+        <a class="cta-primary" href="/book" data-cta-source="hvac-atlanta-final-primary">See If We're a Fit <span class="cta-arrow">→</span></a>
+        <a class="cta-ghost" href="/system" data-cta-source="hvac-atlanta-final-secondary">See the System</a>
+      </p>
+    </div>
+  </section>
+
+  <section class="playbook-faq">
+    <div class="container">
+      <p class="section-tag">FAQ</p>
+      <h2 class="h-section">Common questions.</h2>
+      <div class="faq-list">
+        {faqs.map((f) => (
+          <details class="faq-item">
+            <summary class="faq-q">{f.q}</summary>
+            <div class="faq-a">
+              <p>{f.a}</p>
+            </div>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+
+</BaseLayout>
+
+<style>
+.playbook-hero { padding-block: clamp(80px, 12vw, 144px); }
+.playbook-hero-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(260px, 360px); gap: clamp(32px, 6vw, 72px); align-items: center; }
+.playbook-hero .lede { margin-top: 24px; }
+.back-link { color: var(--ink-faint); transition: color 180ms ease; }
+.back-link:hover { color: var(--y2); }
+.proof-panel { padding: 28px; }
+.proof-panel strong { display: block; margin-top: 18px; font-size: clamp(54px, 8vw, 92px); line-height: 0.9; color: var(--y2); font-weight: 600; }
+.proof-panel p:last-child { margin-top: 18px; color: var(--ink-dim); line-height: 1.6; }
+
+.playbook-section, .playbook-cta, .playbook-faq { padding-block: clamp(56px, 8vw, 96px); }
+.prose { font-size: 17px; line-height: 1.7; color: var(--ink-dim); max-width: 760px; margin-top: 24px; }
+.prose + .prose { margin-top: 16px; }
+.prose a { color: var(--ink); text-decoration: none; border-bottom: 1px solid rgba(240,255,0,0.45); }
+.prose a:hover { color: var(--y2); border-bottom-color: var(--y2); }
+
+.leak-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 16px; margin-block: 40px; }
+.leak-card { border: 1px solid var(--rule); background: rgba(255,255,255,0.025); padding: 24px; border-radius: 4px; }
+.leak-num { color: var(--y2); font-size: 10px; letter-spacing: 0.18em; }
+.leak-card h3 { margin-top: 18px; font-size: 22px; line-height: 1.15; color: var(--ink); }
+.leak-card p:last-child { margin-top: 12px; color: var(--ink-dim); line-height: 1.55; }
+
+.article-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(280px, 420px); gap: clamp(32px, 6vw, 72px); align-items: start; }
+.section-photo { margin: 0; border-radius: 4px; overflow: hidden; border: 1px solid var(--rule); }
+.section-photo img { width: 100%; height: auto; display: block; }
+.system-list { list-style: none; display: flex; flex-direction: column; gap: 14px; margin-top: 28px; max-width: 760px; }
+.system-list li { color: var(--ink-dim); line-height: 1.55; padding-left: 20px; position: relative; }
+.system-list li::before { content: ""; position: absolute; left: 0; top: 0.72em; width: 7px; height: 7px; border-radius: 50%; background: var(--y2); }
+
+.pull-quote { max-width: 760px; margin: 28px 0 0; padding: 22px 24px; border-left: 2px solid var(--y2); background: rgba(255,255,255,0.03); }
+.pull-quote p { margin: 0; color: var(--ink); font-size: 20px; line-height: 1.45; }
+.cta-row { display: flex; flex-wrap: wrap; gap: 16px; margin-top: 32px; }
+.playbook-faq { padding-top: 0; }
+.faq-list { display: flex; flex-direction: column; gap: 16px; margin-top: 32px; max-width: 880px; }
+.faq-item { border-top: 1px solid var(--rule); padding-block: 20px; }
+.faq-item[open] summary { color: var(--y2); }
+.faq-q { font-size: 17px; font-weight: 500; color: var(--ink); cursor: pointer; line-height: 1.4; list-style: none; }
+.faq-q::marker, .faq-q::-webkit-details-marker { display: none; }
+.faq-q::after { content: "+"; float: right; font-family: var(--mono); font-size: 18px; color: var(--y2); }
+.faq-item[open] .faq-q::after { content: "-"; }
+.faq-a { margin-top: 12px; }
+.faq-a p { font-size: 16px; line-height: 1.65; color: var(--ink-dim); max-width: 720px; }
+
+@media (max-width: 900px) {
+  .playbook-hero-grid, .article-grid { grid-template-columns: 1fr; }
+  .leak-grid { grid-template-columns: 1fr; }
+}
+</style>
