@@ -185,6 +185,14 @@ const graph = [...siteSchemas, ...perPageSchemas];
       window.dataLayer = window.dataLayer || [];
       function gtag(){ dataLayer.push(arguments); }
       window.gtag = window.gtag || gtag;
+      // bwm-ga-gate: suppress GA4 on CF Pages preview deploys (<branch>.<project>.pages.dev)
+      // and local dev. ga-disable is read by both gtag.js AND the GTM-fired GA4 tag, so this
+      // kills collection for this property on non-production surfaces without touching the
+      // load-bearing gtm/gtag order below. Production (custom domain + canonical project.pages.dev) tracks.
+      (function(){ var h = location.hostname, p = h.split('.');
+        if ((/\.pages\.dev$/.test(h) && p.length > 3) || h==='localhost' || h==='127.0.0.1' || h==='0.0.0.0' || h==='') {
+          window['ga-disable-' + GA4] = true;
+        } })();
       // Queue js+config at parse time, BEFORE any page event can enter the
       // dataLayer. gtag.js replays the queue in order on load; an 'event'
       // command queued ahead of 'config' has no destination and is dropped
