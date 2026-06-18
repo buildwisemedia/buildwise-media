@@ -11,7 +11,7 @@
 ## Page checklist
 | # | Page | File | Type | Status |
 |---|---|---|---|---|
-| 1 | Custom AI system (PILLAR) | `src/pages/playbook/custom-ai-solutions.astro` | NEW | [ ] |
+| 1 | Custom AI system (PILLAR) | `src/pages/playbook/custom-ai-solutions.astro` | NEW | [x] QA-PASS (Codex authored, Claude QA: title OK, 3 schemas, 9 imgs R020-annotated, proof-copy + contractions fixed, compiles) |
 | 2 | AI-agency alternative | `src/pages/playbook/agency-alternative.astro` | ENHANCE | [ ] |
 | 3 | AI for business operations | `src/pages/playbook/ai-for-business-operations.astro` | NEW | [ ] |
 | 4 | After-hours call capture | `src/pages/playbook/ai-answering-service-service-business.astro` | NEW | [ ] |
@@ -48,7 +48,7 @@ Page #10 (ai-tools-vs-system) HELD per plan — not in this build.
 4. **No vendor names** — no software brands AND no AI-tool brands (chatbot names, maps brands, model names). Say "an AI assistant," "your booking page," "your online presence."
 5. **No revenue figures describing the ICP on-page** (the band is internal). Describe the situation, not the number. (Client win proofs in rule 2 are allowed.)
 6. **Never price naked** — price only next to the stack it replaces; most pages don't price.
-7. **Plain English, Flesch-Kincaid grade 5–7.** Short declarative sentences. Conclusion first. End sections with a question. No marketing verbs (leverage/empower/unlock/transform/synergy).
+7. **Plain English, Flesch-Kincaid grade 5–7.** Short declarative sentences. Conclusion first. End sections with a question. No marketing verbs (leverage/empower/unlock/transform/synergy). **Use natural contractions** (don't / isn't / you're / it's / we're) — formal "do not / is not / you are" reads stiff and off-voice. NEVER write internal/meta language in client copy ("approved proof points," "de-identified," "ICP," "per the spec").
 8. **Persona:** overworked owner who is the bottleneck. Frame the week before results. "Run-for-you," never "powerful platform." Never blame their team.
 9. **Schema:** DefinedTerm + BreadcrumbList + FAQPage on every page.
 10. **Show-Don't-Tell:** ≥1 qualifying visual per major section (data-viz / photo / scene illo / interactive proof widget). Each image needs an `@r020:F1|F2|F3|F4` annotation within 5 lines above it. Reuse existing /images assets where they fit; else an inline SVG diagram.
