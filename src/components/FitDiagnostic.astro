@@ -570,12 +570,12 @@
       <div class="container">
         <div class="growth-index">
           <div class="growth-index-label">
-            <span class="mono-eyebrow">Your Growth Index</span>
+            <span class="mono-eyebrow">Your Revenue Score</span>
             <span class="growth-index-value" id="growth-index-value">—</span>
             <span class="growth-index-suffix">Out Of 100</span>
           </div>
           <div class="growth-index-explainer">
-            <p>Your Growth Index combines revenue stage, channel maturity, time-on-growth, and target ambition into a single readout. <strong>Above 65 = system-ready.</strong> Below 30 = foundations need work first. Between = close, with specific gaps to lock.</p>
+            <p>Your Revenue Score combines revenue stage, channel maturity, time-on-growth, and target ambition into a single readout. <strong>Above 65 = system-ready.</strong> Below 30 = foundations need work first. Between = close, with specific gaps to lock.</p>
           </div>
         </div>
       </div>
@@ -1676,6 +1676,23 @@
       'paid-ads': 'Paid Ads', social: 'Social', 'cold-outreach': 'Cold Outreach', unsure: 'Untracked'
     };
 
+    // Free / personal inboxes are rejected — the Revenue Leak Map is for businesses.
+    const FREE_EMAIL_DOMAINS = new Set([
+      'gmail.com','googlemail.com','yahoo.com','yahoo.co.uk','yahoo.ca','yahoo.com.au',
+      'ymail.com','rocketmail.com','hotmail.com','hotmail.co.uk','outlook.com','live.com',
+      'msn.com','icloud.com','me.com','mac.com','aol.com','aim.com','protonmail.com',
+      'proton.me','pm.me','gmx.com','gmx.net','mail.com','yandex.com','yandex.ru',
+      'zoho.com','hey.com','fastmail.com','tutanota.com','hushmail.com','inbox.com',
+      'mailinator.com','guerrillamail.com','10minutemail.com','trashmail.com','dispostable.com'
+    ]);
+    function isBusinessEmail(email) {
+      const at = String(email || '').trim().toLowerCase();
+      const parts = at.split('@');
+      if (parts.length !== 2 || !parts[0] || !parts[1]) return false;
+      if (!parts[1].includes('.')) return false;
+      return !FREE_EMAIL_DOMAINS.has(parts[1]);
+    }
+
     // ============ NAVIGATION ============
     function syncScreenA11y(screen) {
       document.querySelectorAll('#diagnostic .screen').forEach(section => {
@@ -1892,7 +1909,7 @@
 
     // ============ COMPUTE + REVEAL ============
     function computeAndReveal() {
-      // ---- Growth Index ----
+      // ---- Revenue Score ----
       let revScore = 0;
       if (state.revenue >= 2) revScore = 1;
       if (state.revenue >= 4) revScore = 2;
@@ -2399,8 +2416,8 @@
     const v = data.verdict || "MAYBE";
     const idx = typeof data.growth_index === "number" ? data.growth_index : 50;
 
-    // Single source of truth: the server's growth_index drives BOTH the top "Your
-    // Growth Index" readout and the verdict score. computeAndReveal() seeds the top
+    // Single source of truth: the server's growth_index drives BOTH the top Revenue
+    // Score readout and the verdict score. computeAndReveal() seeds the top
     // value from a lighter client-side calc; sync it to the server number so the two
     // figures never disagree (e.g. "67" up top vs "FIT · 74/100" below).
     const giEl = document.getElementById("growth-index-value");
@@ -2429,7 +2446,7 @@
       if (pathLead) pathLead.textContent = "We'll";
       if (pathY) pathY.textContent = " be in touch within 48h. ";
       if (pathTail) pathTail.textContent = "";
-      if (pathBody) pathBody.textContent = "Want to speed it up? Drop your email below and we'll send your full audit + a focused next step.";
+      if (pathBody) pathBody.textContent = "Want to speed it up? Drop your email below and we'll send your full Revenue Leak Map + a focused next step.";
       if (pathCta && !hadEmail) pathCta.innerHTML = bwmEmailCaptureMarkup();
     } else {
       // NO
@@ -2448,9 +2465,9 @@
   function bwmEmailCaptureMarkup(){
     return [
       '<form id="bwm-fit-email-form" class="bwm-fit-email-form">',
-      '  <label class="mono" for="bwm-fit-email" style="font-size:11px;letter-spacing:.18em;color:var(--ink-dim);">Email me my audit</label>',
+      '  <label class="mono" for="bwm-fit-email" style="font-size:11px;letter-spacing:.18em;color:var(--ink-dim);">Business Email</label>',
       '  <input type="email" id="bwm-fit-email" name="email" required placeholder="you@yourbusiness.com" autocomplete="email" />',
-      '  <button type="submit" class="cta">Send my audit <span class="cta-arrow" aria-hidden="true">→</span></button>',
+      '  <button type="submit" class="cta">Send my Revenue Leak Map <span class="cta-arrow" aria-hidden="true">→</span></button>',
       '  <p id="bwm-fit-email-status" class="mono" style="font-size:10px;letter-spacing:.18em;color:var(--ink-faint);margin-top:8px;"></p>',
       '</form>',
     ].join("");
@@ -2510,6 +2527,10 @@
       const statusEl = document.getElementById("bwm-fit-email-status");
       const email = input ? input.value.trim() : "";
       if (!email) return;
+      if (!isBusinessEmail(email)) {
+        if (statusEl) statusEl.textContent = "Please use your business email — free inboxes (Gmail, Yahoo, Outlook, etc.) aren’t accepted.";
+        return;
+      }
       submitted = false;  // allow re-submission with email
       if (statusEl) statusEl.textContent = "Sending...";
       submitDiagnostic(email).then(function(){
