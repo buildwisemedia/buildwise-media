@@ -109,7 +109,7 @@ const questions = [
       </div>
       <div class="bd-progress-meta">
         <span class="mono" data-step-copy>QUESTION 01 / 07</span>
-        <span class="mono" data-index-copy>GROWTH INDEX BUILDING</span>
+        <span class="mono" data-index-copy>REVENUE LEAK MAP BUILDING</span>
       </div>
     </div>
   </header>
@@ -169,13 +169,13 @@ const questions = [
 
     <section class="bd-capture" data-capture hidden aria-labelledby="bd-capture-title">
       <p class="bd-eyebrow mono">Map ready</p>
-      <h2 id="bd-capture-title" class="bd-capture-title">Your Growth Index is ready — where should we send it?</h2>
+      <h2 id="bd-capture-title" class="bd-capture-title">Your Revenue Leak Map is ready — where should we send it?</h2>
       <p class="bd-help">Two fields. No phone. We show your result right after this.</p>
 
       <div class="bd-capture-grid">
         <div class="bd-field">
-          <label class="mono" for="bd-email">Email</label>
-          <input id="bd-email" name="email" type="email" required autocomplete="email" inputmode="email" />
+          <label class="mono" for="bd-email">Business Email</label>
+          <input id="bd-email" name="email" type="email" required autocomplete="email" inputmode="email" placeholder="you@yourbusiness.com" />
         </div>
         <div class="bd-field">
           <label class="mono" for="bd-company">Business name</label>
@@ -184,7 +184,7 @@ const questions = [
       </div>
 
       <button type="submit" class="bd-submit" data-submit>
-        <span data-submit-label>Send my Growth Index</span>
+        <span data-submit-label>Send my Revenue Leak Map</span>
         <span data-submit-loading hidden>Sending...</span>
       </button>
       <p id="bd-error" class="bd-error" hidden></p>
@@ -194,7 +194,7 @@ const questions = [
   <section id="bd-result" class="bd-result" data-result hidden tabindex="-1" aria-live="polite" aria-labelledby="bd-result-title">
     <p class="bd-eyebrow mono" data-route-label>Result ready</p>
     <h2 id="bd-result-title" class="bd-result-title">
-      Your Growth Index: <span data-final-score>--</span><span class="bd-score-max">/100</span>
+      Your Revenue Score: <span data-final-score>--</span><span class="bd-score-max">/100</span>
     </h2>
     <p class="bd-result-copy" data-result-copy></p>
 
@@ -261,6 +261,23 @@ const questions = [
   const enrichForm = root?.querySelector('[data-enrich-form]');
   const enrichSkip = root?.querySelector('[data-enrich-skip]');
   const enrichStatus = root?.querySelector('[data-enrich-status]');
+  // Free / personal email providers are rejected — Revenue Leak Map is for businesses.
+  const FREE_EMAIL_DOMAINS = new Set([
+    'gmail.com','googlemail.com','yahoo.com','yahoo.co.uk','yahoo.ca','yahoo.com.au',
+    'ymail.com','rocketmail.com','hotmail.com','hotmail.co.uk','outlook.com','live.com',
+    'msn.com','icloud.com','me.com','mac.com','aol.com','aim.com','protonmail.com',
+    'proton.me','pm.me','gmx.com','gmx.net','mail.com','yandex.com','yandex.ru',
+    'zoho.com','hey.com','fastmail.com','tutanota.com','hushmail.com','inbox.com',
+    'mailinator.com','guerrillamail.com','10minutemail.com','trashmail.com','dispostable.com'
+  ]);
+  function isBusinessEmail(email) {
+    const at = String(email || '').trim().toLowerCase();
+    const parts = at.split('@');
+    if (parts.length !== 2 || !parts[0] || !parts[1]) return false;
+    const domain = parts[1];
+    if (!domain.includes('.')) return false;
+    return !FREE_EMAIL_DOMAINS.has(domain);
+  }
   const state = {};
   const mountAt = new Date().toISOString();
   let currentQuestion = 0;
@@ -271,6 +288,10 @@ const questions = [
   let lastResponse = null;
 
   if (!root || !form || !questions.length || !capture || !result) return;
+
+  document.getElementById('bd-email')?.addEventListener('input', () => {
+    if (errorEl) errorEl.hidden = true;
+  });
 
   if (mountInput) mountInput.value = mountAt;
   if (hostInput) hostInput.value = window.location.href;
@@ -365,8 +386,8 @@ const questions = [
       ? `QUESTION ${String(current).padStart(2, '0')} / 07`
       : 'CAPTURE / REVEAL';
     if (indexCopy) indexCopy.textContent = completed === questions.length
-      ? 'GROWTH INDEX READY'
-      : 'GROWTH INDEX BUILDING';
+      ? 'REVENUE LEAK MAP READY'
+      : 'REVENUE LEAK MAP BUILDING';
   }
 
   function showQuestion(index) {
@@ -391,7 +412,7 @@ const questions = [
     capture.hidden = false;
     root.dataset.state = 'capture';
     updateProgress();
-    setStatus('Your Growth Index is ready. Enter email and business name.');
+    setStatus('Your Revenue Leak Map is ready. Enter email and business name.');
     event('diagnostic_step_complete', {
       form_id: 'discovery-qualifier',
       diagnostic_step: 7,
@@ -539,7 +560,7 @@ const questions = [
     result.hidden = false;
     enrichment.hidden = false;
     root.dataset.state = route;
-    setStatus(`Your Growth Index is ${score} out of 100.`);
+    setStatus(`Your Revenue Score is ${score} out of 100.`);
 
     if (route === 'calendar') {
       routeLabel.textContent = 'Calendar route';
@@ -587,6 +608,15 @@ const questions = [
   form.addEventListener('submit', async (eventObject) => {
     eventObject.preventDefault();
     if (!form.reportValidity()) return;
+    const emailEl = document.getElementById('bd-email');
+    if (!isBusinessEmail(emailEl?.value)) {
+      if (errorEl) {
+        errorEl.textContent = 'Please use your business email — free inboxes (Gmail, Yahoo, Outlook, etc.) aren’t accepted.';
+        errorEl.hidden = false;
+      }
+      emailEl?.focus();
+      return;
+    }
     submitted = true;
     setSubmitting(true);
     if (errorEl) errorEl.hidden = true;
