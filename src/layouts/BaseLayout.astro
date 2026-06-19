@@ -46,10 +46,12 @@ const perPageSchemas = Array.isArray(jsonLd) ? jsonLd : jsonLd ? [jsonLd] : [];
 
 // Verified owned profiles for entity reconciliation (sameAs). Only confirmed-live,
 // unambiguously-BWM URLs belong here — a wrong or 404 sameAs HURTS entity trust.
-// LinkedIn is 200-confirmed and tied to this company (not the unrelated "buildwise-ai").
-// Confirmable adds: Yelp (buildwise-media-alpharetta) + Google Business Profile URL.
 const socialProfiles = [
   'https://www.linkedin.com/company/buildwise-media',
+  'https://www.facebook.com/buildwisemedia/',
+  'https://www.instagram.com/buildwisemedia/',
+  'https://www.youtube.com/@BuildwiseMedia',
+  'https://github.com/buildwisemedia',
 ];
 
 // Site-wide schemas — emitted on every page so AI engines have a stable
@@ -57,7 +59,7 @@ const socialProfiles = [
 // author = "the Buildwise team + our AI system" (no sole-prop framing).
 const siteSchemas: Record<string, unknown>[] = [
   {
-    '@type': 'Organization',
+    '@type': ['Organization', 'MarketingAgency'],
     '@id': `${siteUrl}/#org`,
     name: 'Buildwise Media',
     legalName: 'Buildwise Media LLC',
@@ -87,7 +89,7 @@ const siteSchemas: Record<string, unknown>[] = [
     inLanguage: 'en-US',
   },
   {
-    '@type': 'LocalBusiness',
+    '@type': ['LocalBusiness', 'MarketingAgency'],
     '@id': `${siteUrl}/#localbusiness`,
     name: 'Buildwise Media',
     url: siteUrl,

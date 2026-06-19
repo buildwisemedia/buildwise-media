@@ -3,6 +3,10 @@
 Decisions made outside the approved brief, deviations, and tradeoffs with rationale.
 Per the Build Decision Journal lock (2026-05-25). Newest first.
 
+## 2026-06-19 — GBP schema sameAs check
+
+**YouTube sameAs verification:** `https://www.youtube.com/@BuildwiseMedia` returns HTTP 200 with canonical base `/@BuildwiseMedia`, page type `WEB_PAGE_TYPE_CHANNEL`, title `Buildwise Media`, and browse ID `UCc-_0mvECxCWOTTR0L2jNTg`. Kept it in `sameAs`.
+
 ## 2026-06-11 — SEO/AEO/copy audit patch (organic-capture pass)
 
 **Context:** Robert asked for a homepage copywriting + SEO + AEO audit with fixes, verifying organic capture is wired correctly while Google Ads gets figured out.

@@ -297,6 +297,19 @@ const serviceSchema = {
   },
 };
 
+const doneForYouSystemServiceSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Service',
+  '@id': 'https://buildwisemedia.com/#service-done-for-you-system',
+  name: 'Done-for-you custom AI revenue system',
+  serviceType: 'Custom AI system installation and weekly operation',
+  provider: { '@id': 'https://buildwisemedia.com/#org' },
+  areaServed: { '@type': 'Country', name: 'United States' },
+  description:
+    'Buildwise installs and operates the client-owned system for visibility, follow-up, reviews, reporting, and weekly improvement with human signoff before buyer-facing changes go live.',
+  url: 'https://buildwisemedia.com/system',
+};
+
 const breadcrumb = {
   '@context': 'https://schema.org',
   '@type': 'BreadcrumbList',
@@ -319,7 +332,7 @@ const faqSchema = {
 <BaseLayout
   title={title}
   description={description}
-  jsonLd={[serviceSchema, breadcrumb, faqSchema]}
+  jsonLd={[serviceSchema, doneForYouSystemServiceSchema, breadcrumb, faqSchema]}
 >
 
   <!-- ============================================ -->
