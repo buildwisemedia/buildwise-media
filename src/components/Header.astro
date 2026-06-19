@@ -10,6 +10,7 @@ const navLinks = [
   { label: 'Pricing', href: '/pricing' },
   { label: 'Playbook', href: '/playbook' },
   { label: 'Results', href: '/results' },
+  { label: 'Contact', href: '/contact' },
 ];
 ---
 <a href="#main" class="skip-link">Skip to content</a>
@@ -62,7 +63,7 @@ const navLinks = [
 }
 
 .primary-nav { margin-left: auto; }
-.nav-list { display: flex; gap: 32px; list-style: none; }
+.nav-list { display: flex; gap: clamp(18px, 2vw, 28px); list-style: none; }
 .nav-link {
   font-family: var(--mono);
   font-size: 11px;
@@ -76,7 +77,7 @@ const navLinks = [
 .nav-link:hover { color: var(--y2); }
 
 .cta--header {
-  padding: 12px 22px;
+  padding: 12px 18px;
   font-size: 14px;
 }
 
@@ -120,7 +121,7 @@ const navLinks = [
 }
 .cta--mobile { display: inline-flex; margin-top: 16px; }
 
-@media (max-width: 880px) {
+@media (max-width: 1120px) {
   .primary-nav, .cta--header { display: none; }
   .nav-toggle { display: flex; }
   .mobile-nav.is-open { display: block; }
