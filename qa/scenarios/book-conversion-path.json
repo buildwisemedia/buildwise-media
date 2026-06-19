@@ -1,13 +1,14 @@
 {
   "id": "book-conversion-path",
-  "title": "Revenue Leak Map /book diagnostic-first conversion path (qualified -> calendar)",
+  "title": "Revenue Leak Map diagnostic-first conversion path (qualified -> calendar)",
   "owner": "buildwise-system",
-  "surface": "https://buildwisemedia.com/book",
+  "surface": "https://buildwisemedia.com/revenue-leak-map",
+  "legacy_surface": "https://buildwisemedia.com/book",
   "kind": "user-impact-test",
-  "description": "End-to-end user-impact test of the warm /book funnel: a real-browser visitor taps through the 7-signal diagnostic, is captured with email + business only (no phone), is classified against the ICP floor, and — when qualified — is routed to the booking calendar with a continuation token that opens the full Map and the prefilled booking.",
+  "description": "End-to-end user-impact test of the warm Revenue Leak Map funnel on /revenue-leak-map and the legacy /book URL: a real-browser visitor taps through the 7-signal diagnostic, is captured with email + business only (no phone), is classified against the ICP floor, and — when qualified — is routed to the booking calendar with a continuation token that opens the full Map and the prefilled booking.",
   "persona": "Owner-led service business, decision-maker, $3M-$8M, ad-spend ready, burned by an agency (ICP-qualifying).",
   "steps": [
-    { "step": "render", "expect": "diagnostic-first /book renders (book-diagnostic, 'of 07', single h1, 3 proof tiles); NOT the legacy 16-field QualifierForm." },
+    { "step": "render", "expect": "diagnostic-first /revenue-leak-map and /book both render the same flow (book-diagnostic, 'of 07', single h1, 3 proof tiles); NOT the legacy 16-field QualifierForm." },
     { "step": "tap_through_7_signals", "inputs": { "decision_maker": "yes_i_decide", "revenue_range": "3m_8m", "ad_spend_readiness": "ready_1to1", "lead_flow_state": "too_few", "follow_up_state": "manual", "selected_poor_four": "leaky_revenue", "agency_history": "burned_before" }, "expect": "each tap advances; Growth Index builds." },
     { "step": "capture", "expect": "capture asks email + business name ONLY (no phone field); honeypots website/company_url present + empty." },
     { "step": "submit", "expect": "handler returns { ok:true, classification:'qualified', route:'calendar', reason:'qualified_icp', tier_routing:'ascend', signals:{ revenue_floor:'met', ad_spend_signal:'ready', decision_authority:'decision_maker', agency_history_signal:'burned_by_agencies_positive' } }; frontend routes STATE=calendar." },
@@ -16,7 +17,7 @@
     { "step": "ungate", "expect": "delivered ?ct= owner token opens the FULL Map; no-token / wrong-owner / expired token -> teaser (no cross-lead leak)." }
   ],
   "pass_criteria": [
-    "classification == 'qualified' && route == 'calendar' on the deployed handler",
+    "classification == 'qualified' && route == 'calendar' on the deployed handler from /revenue-leak-map and /book",
     "capture collects email + business only, no phone",
     "continuation token present on contact + delivery email",
     "owner-token Map response strictly larger than the teaser (un-gated)",

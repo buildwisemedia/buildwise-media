@@ -10,6 +10,7 @@ const modules = import.meta.glob('./**/*.astro');
 // Pages excluded from sitemap (per robots.txt + canonical-site-files contract).
 const EXCLUDE = new Set([
   '/404',
+  '/book',
   '/confirmation',
   '/thank-you-resource',
   // noindex campaign landing pages — keep them out of the sitemap so we don't
@@ -25,7 +26,7 @@ const EXCLUDE = new Set([
 const PRIORITY_OVERRIDES: Record<string, { priority: string; changefreq: string }> = {
   '/': { priority: '1.0', changefreq: 'weekly' },
   '/audit': { priority: '0.9', changefreq: 'weekly' },
-  '/book': { priority: '0.9', changefreq: 'monthly' },
+  '/revenue-leak-map': { priority: '0.9', changefreq: 'monthly' },
   '/services/ascend': { priority: '0.9', changefreq: 'monthly' },
   '/results': { priority: '0.8', changefreq: 'weekly' },
   '/services': { priority: '0.8', changefreq: 'monthly' },

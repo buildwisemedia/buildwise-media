@@ -499,7 +499,7 @@ const graph = [...siteSchemas, ...perPageSchemas];
     <!-- CTA click telemetry -->
     <script is:inline>
       document.addEventListener('click', function (e) {
-        var a = e.target.closest && e.target.closest('a[href^="/book"]');
+        var a = e.target.closest && e.target.closest('a[href^="/book"], a[href^="/revenue-leak-map"]');
         if (!a) return;
         var src = a.getAttribute('data-cta-source') || 'unspecified';
         try {

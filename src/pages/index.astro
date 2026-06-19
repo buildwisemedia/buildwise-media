@@ -20,7 +20,7 @@ import CostOfAssembly from '../components/CostOfAssembly.astro';
 import FAQ from '../components/FAQ.astro';
 
 const title = "Custom AI Solutions for Service Businesses | Buildwise Media";
-const description = "We build your custom AI system in 30 days and run it every week — visibility, follow-up, reviews, tracking. You own it. Start with a free Revenue Leak Map.";
+const description = "Buildwise Media builds and runs a custom AI system for service businesses — installed in 30 days, owned by you. Start with a free Revenue Leak Map.";
 
 // L8 — Category-of-one mechanism set
 // Geo-personalization gate: Astro.locals.metro.known === true → metro-specific copy;
@@ -343,14 +343,14 @@ const faqSchema = {
       <div class="hero-copy">
         <p class="eyebrow">Custom AI for service businesses</p>
         <!-- @bwm-exp-slot: hero-headline — MVT-tested H1; bandit patches (PROJ-AUTO-MVT-001) target this slot's selector -->
-        <h1 id="home-hero-title" class="h-hero" data-bwm-exp-slot="hero-headline">Want an unfair advantage in your market?</h1>
+        <h1 id="home-hero-title" class="h-hero" data-bwm-exp-slot="hero-headline">You run the business. Your AI runs the rest.</h1>
         <p class="hero-sub">
           A custom AI team for your business — live in 30 days, run around the clock, owned by you.
         </p>
         <div class="hero-actions" role="group" aria-label="Primary actions">
           <!-- @bwm-exp-slot: hero-cta — primary conversion CTA (label/destination experiments) -->
-          <a href="/book" class="cta" data-cta-source="home-hero" data-bwm-exp-slot="hero-cta">Get My Free Revenue Leak Map<span class="cta-arrow" aria-hidden="true">&rarr;</span></a>
-          <a href="/book" class="cta-ghost" data-cta-source="home-hero-fit">See If We're a Fit</a>
+          <a href="/revenue-leak-map" class="cta" data-cta-source="home-hero" data-bwm-exp-slot="hero-cta">Get My Free Revenue Leak Map<span class="cta-arrow" aria-hidden="true">&rarr;</span></a>
+          <a href="/system" class="cta-ghost" data-cta-source="home-hero-system">See the System</a>
         </div>
         <ul class="hero-proof-strip" aria-label="Ascend proof points">
           <li><strong>30 days</strong><span>installed</span></li>
@@ -616,7 +616,7 @@ const faqSchema = {
           </ul>
         </div>
         <div class="dossier-cta-action">
-          <a href="/book" class="cta" data-cta-source="home-dossier">Get My Free Revenue Leak Map<span class="cta-arrow" aria-hidden="true">&rarr;</span></a>
+          <a href="/revenue-leak-map" class="cta" data-cta-source="home-dossier">Get My Free Revenue Leak Map<span class="cta-arrow" aria-hidden="true">&rarr;</span></a>
           <p class="dossier-cta-risk">Free. Built on your business. Yours to keep — even if we never work together.</p>
         </div>
       </div>
@@ -869,7 +869,7 @@ const faqSchema = {
           </li>
         </ul>
         <div class="proof-cta-row">
-          <a href="/book" class="cta" data-cta-source="proof-cta">Get My Free Revenue Leak Map<span class="cta-arrow" aria-hidden="true">&rarr;</span></a>
+          <a href="/revenue-leak-map" class="cta" data-cta-source="proof-cta">Get My Free Revenue Leak Map<span class="cta-arrow" aria-hidden="true">&rarr;</span></a>
           <a href="/results" class="cta-ghost" data-cta-source="proof-results">See more receipts</a>
         </div>
       </article>
@@ -959,8 +959,8 @@ const faqSchema = {
           <p class="lede">Your free Revenue Leak Map shows where the market is beating you, names the highest-value first move, and proves whether we can hit your 5x guarantee. We build it from your data and walk it with you on a short call &mdash; no pitch.</p>
       </div>
         <div class="final-actions" style="display:flex;flex-direction:column;gap:12px;align-items:center">
-          <a href="/book" class="cta" data-cta-source="home-final">Get My Free Revenue Leak Map<span class="cta-arrow" aria-hidden="true">&rarr;</span></a>
-          <a href="/book" class="cta-ghost" data-cta-source="home-final-fit">See If We're a Fit</a>
+          <a href="/revenue-leak-map" class="cta" data-cta-source="home-final">Get My Free Revenue Leak Map<span class="cta-arrow" aria-hidden="true">&rarr;</span></a>
+          <a href="/system" class="cta-ghost" data-cta-source="home-final-system">See the System</a>
         </div>
       </div>
       <!-- @r020:F2 proof: SVG timeline graphic showing the 30-day install milestones to system-live -->

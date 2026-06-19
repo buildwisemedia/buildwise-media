@@ -1,0 +1,380 @@
+---
+import BookDiagnostic from './BookDiagnostic.astro';
+---
+
+
+  <section class="book-page">
+    <div class="container book-shell">
+      <div class="book-embed">
+        <BookDiagnostic />
+
+        <div id="cal-inline" class="cal-frame" aria-label="Booking calendar" hidden>
+          <div class="cal-skeleton" aria-hidden="true">
+            <div class="sk-row"></div>
+            <div class="sk-row"></div>
+            <div class="sk-grid">
+              <span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+              <span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+              <span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+            </div>
+            <p class="sk-foot mono">Loading calendar…</p>
+          </div>
+          <a id="book-cta-fallback" class="book-cta" href="https://book.buildwisemedia.com/bwm/discovery-call" rel="noopener" target="_blank">
+            Open booking calendar <span aria-hidden="true">→</span>
+          </a>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+
+<script is:inline>
+  (function () {
+    const origin = "https://book.buildwisemedia.com";
+    const embedSrc = `${origin}/embed/embed.js`;
+    const calBrandTokens = {
+      "cal-brand": "#F0FF00",
+      "cal-brand-emphasis": "#050507",
+      "cal-brand-foreground": "#050507",
+      "cal-text-brand": "#050507",
+      "cal-bg-brand": "#F0FF00",
+      "cal-brand-text": "#050507",
+    };
+    const metadataKeys = [
+      'booking_event_id',
+      'contact_id',
+      'capi_event_id',
+      'tier_routing',
+      'utm_source',
+      'utm_medium',
+      'utm_campaign',
+      'utm_content',
+      'utm_term',
+      'fbclid',
+      'gclid',
+      'fbc',
+      'fbp',
+      'referrer',
+      'landing_page',
+    ];
+    let bookingCompleteFired = false;
+
+    function installCalStub(C, A, L) {
+      if (C.Cal && C.Cal.loaded) return;
+      const p = function (a, ar) { a.q.push(ar); };
+      const d = C.document;
+      C.Cal = C.Cal || function () {
+        const cal = C.Cal;
+        const ar = arguments;
+        if (!cal.loaded) {
+          cal.ns = {};
+          cal.q = cal.q || [];
+          d.head.appendChild(d.createElement("script")).src = A;
+          cal.loaded = true;
+        }
+        if (ar[0] === L) {
+          const api = function () { p(api, arguments); };
+          const namespace = ar[1];
+          api.q = api.q || [];
+          if (typeof namespace === "string") {
+            cal.ns[namespace] = cal.ns[namespace] || api;
+            p(cal.ns[namespace], ar);
+            p(cal, ["initNamespace", namespace]);
+          } else {
+            p(cal, ar);
+          }
+          return;
+        }
+        p(cal, ar);
+      };
+    }
+
+    function getAttribution(extra) {
+      const base = typeof window.__bwmGetAttributionPayload === 'function'
+        ? window.__bwmGetAttributionPayload()
+        : {};
+      return Object.assign({}, base, extra || {});
+    }
+
+    function ensureBookingEventId(value) {
+      if (typeof window.__bwmEnsureBookingEventId === 'function') {
+        return window.__bwmEnsureBookingEventId(value);
+      }
+      return value || '';
+    }
+
+    // MVT (PROJ-AUTO-MVT-001): the homepage hero experiment converts on /book, which
+    // the edge worker does not serve — the assigned arm arrives via the _bwm_exp_host
+    // carry cookie set on the homepage. Empty for direct-to-/book visitors (correctly
+    // not enrolled). variant_id -> experiment_variant_id to match the handler field.
+    function experimentContext() {
+      const g = window.__BWM_EXP;
+      if (g && g.experiment_id && g.variant_id) {
+        return { experiment_id: g.experiment_id, experiment_variant_id: g.variant_id };
+      }
+      const m = document.cookie.match(/(?:^|; )_bwm_exp_host=([^;]*)/);
+      if (m) {
+        try {
+          const c = JSON.parse(decodeURIComponent(m[1]));
+          if (c && c.e && c.v) return { experiment_id: c.e, experiment_variant_id: c.v };
+        } catch (_) {}
+      }
+      return { experiment_id: '', experiment_variant_id: '' };
+    }
+
+    function compact(object) {
+      const out = {};
+      Object.keys(object || {}).forEach((key) => {
+        const value = object[key];
+        if (value !== undefined && value !== null && String(value) !== '') out[key] = value;
+      });
+      return out;
+    }
+
+    function metadataFrom(payload) {
+      const metadata = {};
+      metadataKeys.forEach((key) => {
+        if (payload[key] !== undefined && payload[key] !== null && String(payload[key]) !== '') {
+          metadata[key] = payload[key];
+        }
+      });
+      return metadata;
+    }
+
+    function bookingPayload(prefill) {
+      const payload = getAttribution(prefill);
+      payload.booking_event_id = ensureBookingEventId(payload.booking_event_id);
+      return payload;
+    }
+
+    function calConfigFrom(payload) {
+      const utms = compact({
+        utm_source: payload.utm_source,
+        utm_medium: payload.utm_medium,
+        utm_campaign: payload.utm_campaign,
+        utm_content: payload.utm_content,
+        utm_term: payload.utm_term,
+      });
+      return Object.assign({
+        layout: "month_view",
+        theme: "dark",
+        name: payload.name || '',
+        email: payload.email || '',
+        metadata: metadataFrom(payload),
+      }, utms);
+    }
+
+    function track(name, payload, opts) {
+      if (typeof window.__bwmTrackEvent === 'function') {
+        window.__bwmTrackEvent(name, payload, opts || {});
+        return;
+      }
+      window.dataLayer = window.dataLayer || [];
+      window.dataLayer.push(Object.assign({ event: name }, payload || {}));
+      if (typeof window.gtag === 'function') {
+        try { window.gtag('event', name, payload || {}); } catch (_) {}
+      }
+    }
+
+    function eventData(event) {
+      return event?.detail?.data || event?.detail || event?.data?.data || event?.data || {};
+    }
+
+    function bookingUidFrom(data) {
+      return data?.booking?.uid || data?.bookingUid || data?.booking_uid || data?.uid || data?.id || '';
+    }
+
+    function fireBookingComplete(event) {
+      if (bookingCompleteFired) return;
+      bookingCompleteFired = true;
+      const current = window.__bwmCurrentBookingPayload || bookingPayload(window.__qualifiedPrefill || {});
+      const data = eventData(event);
+      track('booking_complete', {
+        booking_event_id: current.booking_event_id,
+        capi_event_id: current.capi_event_id || '',
+        contact_id: current.contact_id || '',
+        tier_routing: current.tier_routing || '',
+        form_id: 'discovery-qualifier',
+        cal_booking_uid: bookingUidFrom(data),
+        utm_source: current.utm_source || '',
+        utm_medium: current.utm_medium || '',
+        utm_campaign: current.utm_campaign || '',
+        utm_content: current.utm_content || '',
+      }, { fbqEvent: 'Schedule', eventId: current.booking_event_id });
+
+      // MVT (PROJ-AUTO-MVT-001 connector 1c): record the booked call as the truest
+      // conversion for the hero experiment. Fire-and-forget; no-op without an arm.
+      try {
+        const exp = experimentContext();
+        if (exp.experiment_id && navigator.sendBeacon) {
+          navigator.sendBeacon(
+            'https://bwm-form-handler.robert-ba0.workers.dev/buildwisemedia/booking-outcome',
+            JSON.stringify({
+              experiment_id: exp.experiment_id,
+              experiment_variant_id: exp.experiment_variant_id,
+              booking_event_id: current.booking_event_id || '',
+              contact_id: current.contact_id || '',
+              landing_page: current.landing_page || location.href,
+            }),
+          );
+        }
+      } catch (_) {}
+    }
+
+    function bindCalSuccess() {
+      try {
+        if (Cal?.ns?.["discovery-call"]) {
+          Cal.ns["discovery-call"]("on", {
+            action: "bookingSuccessful",
+            callback: fireBookingComplete,
+          });
+        }
+      } catch (_) {}
+    }
+
+    window.__loadBwmCalendar = function loadBwmCalendar(prefill) {
+      const target = document.getElementById('cal-inline');
+      if (!target) return;
+      target.removeAttribute('hidden');
+      const payload = bookingPayload(prefill || {});
+      window.__bwmCurrentBookingPayload = payload;
+      installCalStub(window, embedSrc, "init");
+      Cal("init", "discovery-call", { origin });
+      Cal.ns["discovery-call"]("inline", {
+        elementOrSelector: "#cal-inline",
+        config: calConfigFrom(payload),
+        calLink: "bwm/discovery-call",
+      });
+      Cal.ns["discovery-call"]("ui", {
+        theme: "dark",
+        styles: { branding: { brandColor: "#F0FF00" } },
+        cssVarsPerTheme: { light: calBrandTokens, dark: calBrandTokens },
+        hideEventTypeDetails: false,
+        layout: "month_view",
+      });
+      bindCalSuccess();
+      track('booking_calendar_shown', {
+        booking_event_id: payload.booking_event_id,
+        capi_event_id: payload.capi_event_id || '',
+        contact_id: payload.contact_id || '',
+        tier_routing: payload.tier_routing || '',
+        form_id: 'discovery-qualifier',
+        utm_source: payload.utm_source || '',
+        utm_medium: payload.utm_medium || '',
+        utm_campaign: payload.utm_campaign || '',
+        utm_content: payload.utm_content || '',
+      });
+    };
+
+    window.addEventListener('message', function (event) {
+      const data = event?.data || {};
+      const action = data?.type || data?.action || data?.event || data?.data?.action || '';
+      if (String(action).toLowerCase().includes('bookingsuccessful')) {
+        fireBookingComplete(event);
+      }
+    });
+  })();
+
+  // Hide skeleton + fallback CTA when iframe paints
+  const obs = new MutationObserver(() => {
+    const el = document.getElementById('cal-inline');
+    if (el && el.querySelector('iframe')) {
+      const sk = el.querySelector('.cal-skeleton');
+      if (sk) sk.remove();
+      const cta = document.getElementById('book-cta-fallback');
+      if (cta) cta.remove();
+      obs.disconnect();
+    }
+  });
+  obs.observe(document.getElementById('cal-inline'), { childList: true, subtree: true });
+
+  // Paid-traffic fast-path: visitors already saw the ad copy upstream, so keep
+  // the diagnostic at the top of the viewport once layout settles.
+  (function () {
+    try {
+      const params = new URLSearchParams(window.location.search);
+      const utmSource = (params.get('utm_source') || '').toLowerCase();
+      if (utmSource === 'facebook' || utmSource === 'instagram' || utmSource === 'meta') {
+        // Defer one tick so layout settles before scroll
+        requestAnimationFrame(function () {
+          const target = document.getElementById('book-diagnostic') || document.getElementById('cal-inline');
+          if (target) target.scrollIntoView({ behavior: 'instant', block: 'start' });
+        });
+      }
+    } catch (_e) { /* no-op */ }
+  })();
+</script>
+
+<style>
+.book-page {
+  padding: 0 0 clamp(64px, 8vw, 104px);
+}
+.book-shell {
+  max-width: 1180px;
+}
+.book-embed {
+  width: 100%;
+  min-height: 640px;
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+}
+
+/* Fallback CTA — visible until iframe paints, then JS removes. Gives mobile users
+   a tappable path even when the booking embed is still loading. Per EXP-002 telemetry:
+   50% of ad clickers were dropping before LPV; primary suspect = embed cold-start. */
+.book-cta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  padding: 18px 28px;
+  background: var(--y2, #F0FF00);
+  color: #050507;
+  text-decoration: none;
+  font-family: 'Inter', sans-serif;
+  font-weight: 700;
+  font-size: 16px;
+  letter-spacing: -0.01em;
+  border: 1px solid var(--y2, #F0FF00);
+  align-self: stretch;
+  text-align: center;
+}
+.book-cta:hover, .book-cta:focus-visible {
+  background: var(--y2-bright);
+  border-color: var(--y2-bright);
+}
+.book-cta span { font-weight: 400; }
+
+.cal-frame {
+  width: 100%;
+  min-height: 720px;
+  background: var(--bg-elev);
+  border: 1px solid var(--rule);
+  position: relative;
+  overflow: hidden;
+}
+.cal-frame iframe { background: var(--bg-elev) !important; }
+
+.cal-skeleton { padding: 32px; display: flex; flex-direction: column; gap: 16px; height: 100%; }
+.sk-row { height: 16px; background: linear-gradient(90deg, var(--rule), var(--rule-bright), var(--rule)); background-size: 200% 100%; animation: sk 1.4s ease-in-out infinite; border-radius: 1px; }
+.sk-row:nth-child(1) { width: 70%; }
+.sk-row:nth-child(2) { width: 40%; margin-bottom: 16px; }
+.sk-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 8px; flex: 1; }
+.sk-grid span { background: linear-gradient(90deg, var(--rule), var(--rule-bright), var(--rule)); background-size: 200% 100%; animation: sk 1.4s ease-in-out infinite; border-radius: 1px; }
+.sk-foot { margin-top: 16px; color: var(--ink-faint); font-size: 10px; letter-spacing: 0.2em; text-align: center; }
+@keyframes sk { 0% { background-position: 0% 0; } 100% { background-position: -200% 0; } }
+@media (prefers-reduced-motion: reduce) { .sk-row, .sk-grid span { animation: none; } }
+
+@media (max-width: 1100px) {
+  .book-embed { min-height: auto; }
+  .cal-frame { min-height: 560px; }
+  .book-cta { padding: 16px 24px; font-size: 15px; }
+}
+@media (max-width: 520px) {
+  .book-page {
+    padding-bottom: 64px;
+  }
+}
+</style>
