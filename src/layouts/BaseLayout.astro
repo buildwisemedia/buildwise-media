@@ -53,6 +53,13 @@ const socialProfiles = [
   'https://www.youtube.com/@BuildwiseMedia',
   'https://github.com/buildwisemedia',
 ];
+const aggregateRating = {
+  '@type': 'AggregateRating',
+  ratingValue: '5.0',
+  reviewCount: 7,
+  bestRating: '5',
+  worstRating: '1',
+};
 
 // Site-wide schemas — emitted on every page so AI engines have a stable
 // WebSite/Organization @id graph to traverse. Per LOCKED Triangulation voice:
@@ -76,6 +83,7 @@ const siteSchemas: Record<string, unknown>[] = [
         addressCountry: 'US',
       },
     },
+    aggregateRating,
     sameAs: socialProfiles,
   },
   {
@@ -106,6 +114,7 @@ const siteSchemas: Record<string, unknown>[] = [
       name: 'United States',
     },
     parentOrganization: { '@id': `${siteUrl}/#org` },
+    aggregateRating,
     sameAs: socialProfiles,
   },
   {
