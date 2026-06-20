@@ -1880,6 +1880,21 @@
     document.querySelector('[data-action="start"]').addEventListener('click', () => goTo('q1'));
     document.querySelector('[data-action="reveal"]').addEventListener('click', computeAndReveal);
 
+    // In-page CTAs ("Get My Free Revenue Leak Map") point at #diagnostic. On their own
+    // they just scroll the visitor to the welcome screen's start button — a CTA that
+    // lands on another CTA. Intercept them so the click STARTS the diagnostic: jump to
+    // question 1 (goTo already scrolls #diagnostic into view just below the header).
+    // Visitors who scroll to the section organically still see the welcome screen.
+    document.addEventListener('click', (e) => {
+      const link = e.target.closest('a[href$="#diagnostic"]');
+      if (!link) return;
+      e.preventDefault();
+      const current = document.body.dataset.screen;
+      // Only auto-advance from the welcome screen; if a quiz is already in progress
+      // (or results are shown), just bring the diagnostic back into view, don't reset.
+      goTo(!current || current === 'welcome' ? 'q1' : current);
+    });
+
     // Initialize the diagnostic to its welcome screen on load. Without this the
     // <body> has no data-screen, every .screen stays display:none, and the
     // diagnostic renders as a blank section (only the sticky header) — the start
