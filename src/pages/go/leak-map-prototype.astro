@@ -303,7 +303,7 @@ export const prerender = true;
                 <div class="question-head">
                   <p class="mono step-eyebrow">05 · LEAK</p>
                   <h2>When you try to grow, what breaks first?</h2>
-                  <p>Pick the one that bites before the others.</p>
+                  <p>Pick your hunch. The reveal will test it.</p>
                 </div>
 
                 <div class="leak-options" role="radiogroup" aria-label="Growth leak">
@@ -315,7 +315,7 @@ export const prerender = true;
                     data-value="leads"
                     data-node="demand"
                     data-score="60"
-                    data-label="Demand leak"
+                    data-label="Demand"
                     data-insight="Calendar gaps are a symptom. The real test is whether you can create demand on purpose."
                   >
                     <svg class="option-icon" viewBox="0 0 44 44" aria-hidden="true">
@@ -343,7 +343,7 @@ export const prerender = true;
                     data-value="quality"
                     data-node="fit"
                     data-score="66"
-                    data-label="Fit leak"
+                    data-label="Fit"
                     data-insight="Bad-fit leads do not just waste quotes. They steal the week from good buyers."
                   >
                     <svg class="option-icon" viewBox="0 0 44 44" aria-hidden="true">
@@ -369,7 +369,7 @@ export const prerender = true;
                     data-value="capacity"
                     data-node="capacity"
                     data-score="70"
-                    data-label="Capacity leak"
+                    data-label="Capacity"
                     data-insight="Capacity is the honest ceiling. More demand only helps if the week can hold it."
                   >
                     <svg class="option-icon" viewBox="0 0 44 44" aria-hidden="true">
@@ -395,7 +395,7 @@ export const prerender = true;
                     data-value="speed"
                     data-node="speed"
                     data-score="72"
-                    data-label="Speed leak"
+                    data-label="Speed"
                     data-insight="Fast reply wins trust before the other shop even calls back."
                   >
                     <svg class="option-icon" viewBox="0 0 44 44" aria-hidden="true">
@@ -421,7 +421,7 @@ export const prerender = true;
                     data-value="conversion"
                     data-node="close"
                     data-score="68"
-                    data-label="Close leak"
+                    data-label="Close"
                     data-insight="Close gaps often hide after the estimate, when warm buyers go quiet."
                   >
                     <svg class="option-icon" viewBox="0 0 44 44" aria-hidden="true">
@@ -440,12 +440,12 @@ export const prerender = true;
                   </button>
                 </div>
 
-                <p class="mono micro-insight" data-q5-insight>Pick a leak to light the map.</p>
+                <p class="mono micro-insight" data-q5-insight>Pick your hunch to light the map.</p>
 
                 <div class="step-actions">
                   <button class="ghost-action" type="button" data-prev-step="q4">Back</button>
                   <button class="next-action" type="button" data-next-step="q6" disabled>
-                    <span>Stress-test capacity</span><span aria-hidden="true">→</span>
+                    <span>Test the hunch</span><span aria-hidden="true">→</span>
                   </button>
                 </div>
               </article>
@@ -510,16 +510,16 @@ export const prerender = true;
                 <div class="question-head">
                   <p class="mono step-eyebrow">07 · TARGET</p>
                   <h2>Where do you want to be in 12 months?</h2>
-                  <p>Set the target. The map shows the gap.</p>
+                  <p>These are goals, not where you are today.</p>
                 </div>
 
                 <div class="target-dials">
                   <div class="dial-card" data-dial="revenue">
                     <div class="dial-top">
-                      <span class="mono">TARGET.REVENUE</span>
-                      <strong>Monthly revenue</strong>
+                      <span class="mono">12-MONTH GOAL</span>
+                      <strong>The revenue you want</strong>
                     </div>
-                    <div class="preset-row" role="group" aria-label="Monthly revenue presets">
+                    <div class="preset-row" role="group" aria-label="12-month revenue goal presets">
                       <button type="button" data-preset="$50K">$50K</button>
                       <button type="button" data-preset="$100K">$100K</button>
                       <button type="button" data-preset="$250K">$250K</button>
@@ -533,10 +533,10 @@ export const prerender = true;
 
                   <div class="dial-card" data-dial="team">
                     <div class="dial-top">
-                      <span class="mono">TARGET.TEAM</span>
-                      <strong>Team size</strong>
+                      <span class="mono">12-MONTH GOAL</span>
+                      <strong>The crew you want</strong>
                     </div>
-                    <div class="preset-row" role="group" aria-label="Team size presets">
+                    <div class="preset-row" role="group" aria-label="12-month crew goal presets">
                       <button type="button" data-preset="5">5</button>
                       <button type="button" data-preset="10">10</button>
                       <button type="button" data-preset="25">25</button>
@@ -550,10 +550,11 @@ export const prerender = true;
 
                   <div class="dial-card" data-dial="hours">
                     <div class="dial-top">
-                      <span class="mono">TARGET.HOURS</span>
-                      <strong>Owner hours/week on ops</strong>
+                      <span class="mono">12-MONTH GOAL</span>
+                      <strong>Your time-back goal</strong>
                     </div>
-                    <div class="preset-row" role="group" aria-label="Owner hours presets">
+                    <p class="dial-note">hours/week you want on the day-to-day - lower is better</p>
+                    <div class="preset-row" role="group" aria-label="12-month owner time-back goal presets">
                       <button type="button" data-preset="30">30</button>
                       <button type="button" data-preset="20">20</button>
                       <button type="button" data-preset="10">10</button>
@@ -624,16 +625,16 @@ export const prerender = true;
                 </div>
 
                 <div class="leak-badge" data-leak-badge hidden>
-                  <span class="mono">LEAK</span>
+                  <span class="mono">HUNCH</span>
                   <strong data-leak-badge-text>Demand</strong>
                 </div>
               </div>
 
               <div class="diagnostic-readouts">
                 <div class="readout-card">
-                  <span class="mono muted">CURRENT LEAK</span>
+                  <span class="mono muted">YOUR HUNCH</span>
                   <strong data-current-leak>Pick one break</strong>
-                  <small data-current-leak-copy>The map will flag the first loss point.</small>
+                  <small data-current-leak-copy>The map will test it against the rest.</small>
                 </div>
                 <div class="readout-card">
                   <span class="mono muted">TODAY → TARGET</span>
@@ -677,6 +678,27 @@ export const prerender = true;
                 <p data-reveal-score-read>Pick a leak to see the read.</p>
               </div>
             </header>
+
+            <section class="install-panel" aria-labelledby="install-title">
+              <div class="install-head">
+                <p class="mono panel-kicker">FIRST INSTALL</p>
+                <h3 id="install-title">What we'd install first</h3>
+              </div>
+              <div class="install-list" data-install-list></div>
+            </section>
+
+            <section class="reveal-cta" aria-label="Book the next step">
+              <p class="mono panel-kicker">NEXT STEP</p>
+              <h3>Close the first leak in 30 days.</h3>
+              <p class="cta-bridge" data-cta-bridge>We build and run the system that closes this leak in 30 days.</p>
+              <!-- @cta-proof: K to M+ -->
+              <p class="cta-proof" data-cta-proof data-proof-win="K to M+">An owner we work with went from $300K to $10M+ with a custom-built system for this same leak.</p>
+              <a class="primary-action" href="/book">See If We're a Fit</a>
+              <label class="email-capture">
+                <span class="mono">SEND THE FULL MAP TO MY BUSINESS EMAIL</span>
+                <input type="email" inputmode="email" autocomplete="email" placeholder="you@company.com" />
+              </label>
+            </section>
 
             <section class="map-panel reveal-map-panel" aria-label="Completed Revenue Leak Map">
               <div class="map-head reveal-map-head">
@@ -725,14 +747,6 @@ export const prerender = true;
                 <p data-reveal-leak-copy>Calendar gaps show up before the work does.</p>
               </div>
             </section>
-
-            <section class="install-panel" aria-labelledby="install-title">
-              <div class="install-head">
-                <p class="mono panel-kicker">FIRST INSTALL</p>
-                <h3 id="install-title">What we'd install first</h3>
-              </div>
-              <div class="install-list" data-install-list></div>
-            </section>
           </div>
 
           <aside class="reveal-side" aria-label="Target gap and next step">
@@ -756,16 +770,6 @@ export const prerender = true;
               </div>
             </section>
 
-            <section class="reveal-cta" aria-label="Book the next step">
-              <p class="mono panel-kicker">NEXT STEP</p>
-              <h3>Turn this into a 30-day install plan.</h3>
-              <p>You now have the leak, the path, and the target gap. The next step is to see if we should build it with you.</p>
-              <a class="primary-action" href="/book">See If We're a Fit</a>
-              <label class="email-capture">
-                <span class="mono">SEND THE FULL MAP TO MY BUSINESS EMAIL</span>
-                <input type="email" inputmode="email" autocomplete="email" placeholder="you@company.com" />
-              </label>
-            </section>
           </aside>
         </div>
       </section>
@@ -1632,6 +1636,13 @@ export const prerender = true;
         margin-bottom: 10px;
       }
 
+      .dial-note {
+        margin: -2px 0 8px;
+        color: var(--text-soft);
+        font-size: 0.82rem;
+        line-height: 1.3;
+      }
+
       .dial-top span,
       .dial-card label span {
         color: var(--muted);
@@ -1737,10 +1748,10 @@ export const prerender = true;
         width: min(1500px, 100%);
         min-height: 100svh;
         margin: 0 auto;
-        padding: clamp(14px, 2vw, 24px);
+        padding: clamp(12px, 1.45vw, 18px);
         display: grid;
-        grid-template-columns: minmax(0, 1fr) minmax(340px, 0.34fr);
-        gap: 14px;
+        grid-template-columns: minmax(0, 1fr) minmax(300px, 0.28fr);
+        gap: 12px;
         align-items: start;
       }
 
@@ -1751,7 +1762,7 @@ export const prerender = true;
 
       .reveal-main {
         display: grid;
-        gap: 14px;
+        gap: 12px;
       }
 
       .reveal-back {
@@ -1761,11 +1772,11 @@ export const prerender = true;
       .reveal-header {
         display: grid;
         grid-template-columns: minmax(0, 1fr) minmax(210px, 0.3fr);
-        gap: 18px;
+        gap: 14px;
         align-items: end;
         border: 1px solid rgba(255, 255, 255, 0.08);
         border-radius: 8px;
-        padding: clamp(18px, 2.4vw, 32px);
+        padding: clamp(16px, 1.75vw, 24px);
         background:
           linear-gradient(180deg, rgba(255, 255, 255, 0.055), rgba(255, 255, 255, 0.018)),
           var(--panel-1);
@@ -1776,9 +1787,9 @@ export const prerender = true;
 
       .reveal-copy h2 {
         max-width: 820px;
-        margin: 10px 0 0;
-        font-size: 4.35rem;
-        line-height: 0.92;
+        margin: 8px 0 0;
+        font-size: clamp(2.5rem, 3.55vw, 3.8rem);
+        line-height: 0.95;
         font-weight: 860;
         letter-spacing: 0;
       }
@@ -1807,7 +1818,7 @@ export const prerender = true;
         margin-top: 6px;
         color: var(--yellow);
         font-family: "JetBrains Mono", monospace;
-        font-size: 5rem;
+        font-size: clamp(3rem, 4vw, 4.1rem);
         line-height: 0.85;
         font-weight: 700;
       }
@@ -1863,7 +1874,7 @@ export const prerender = true;
       }
 
       .reveal-map-canvas {
-        min-height: 315px;
+        min-height: 250px;
       }
 
       .reveal-map-canvas .active-pipe {
@@ -1919,26 +1930,26 @@ export const prerender = true;
       }
 
       .install-panel {
-        padding: 18px;
+        padding: 15px;
       }
 
       .install-head {
         display: grid;
         gap: 7px;
-        margin-bottom: 14px;
+        margin-bottom: 11px;
       }
 
       .install-list {
         display: grid;
         grid-template-columns: repeat(3, minmax(0, 1fr));
-        gap: 10px;
+        gap: 8px;
       }
 
       .install-move {
-        min-height: 116px;
+        min-height: 82px;
         border: 1px solid rgba(255, 255, 255, 0.07);
         border-radius: 8px;
-        padding: 14px;
+        padding: 11px;
         background: rgba(255, 255, 255, 0.035);
       }
 
@@ -1957,8 +1968,10 @@ export const prerender = true;
 
       .install-move strong {
         display: block;
-        margin-top: 11px;
+        margin-top: 8px;
         color: var(--text);
+        font-size: 0.94rem;
+        line-height: 1.2;
       }
 
       .install-move p {
@@ -1970,12 +1983,12 @@ export const prerender = true;
 
       .reveal-side {
         display: grid;
-        gap: 14px;
+        gap: 12px;
       }
 
       .gap-panel,
       .reveal-cta {
-        padding: 18px;
+        padding: 15px;
       }
 
       .target-stack {
@@ -2004,9 +2017,28 @@ export const prerender = true;
           0 18px 60px rgba(240, 255, 0, 0.08);
       }
 
+      .cta-bridge {
+        margin-top: 10px;
+        color: var(--text-soft);
+        font-size: 0.95rem;
+        line-height: 1.35;
+      }
+
+      .cta-proof {
+        margin: 10px 0 0;
+        border: 1px solid rgba(240, 255, 0, 0.18);
+        border-radius: 8px;
+        padding: 10px 11px;
+        background: rgba(240, 255, 0, 0.045);
+        color: var(--text);
+        font-size: 0.93rem;
+        font-weight: 720;
+        line-height: 1.3;
+      }
+
       .reveal-cta .primary-action {
         width: 100%;
-        margin-top: 16px;
+        margin-top: 10px;
         text-decoration: none;
       }
 
@@ -2115,11 +2147,6 @@ export const prerender = true;
           align-self: start;
         }
 
-        .reveal-cta {
-          position: sticky;
-          bottom: 14px;
-        }
-
         .question-pane {
           overflow-x: hidden;
           overflow-y: auto;
@@ -2134,15 +2161,7 @@ export const prerender = true;
         }
 
         .reveal-shell {
-          grid-template-columns: minmax(0, 1fr) minmax(310px, 0.36fr);
-        }
-
-        .reveal-copy h2 {
-          font-size: 3.5rem;
-        }
-
-        .reveal-score-card strong {
-          font-size: 4.1rem;
+          grid-template-columns: minmax(0, 1fr) minmax(280px, 0.32fr);
         }
 
         .install-list {
@@ -2189,7 +2208,7 @@ export const prerender = true;
 
         .reveal-shell {
           display: block;
-          padding: 12px 12px 96px;
+          padding: 10px 10px 72px;
         }
 
         .reveal-main,
@@ -2202,19 +2221,25 @@ export const prerender = true;
           margin-top: 12px;
         }
 
+        .reveal-back {
+          min-height: 38px;
+          padding-inline: 13px;
+        }
+
         .reveal-header {
           grid-template-columns: 1fr;
           align-items: start;
-          padding: 18px;
+          gap: 10px;
+          padding: 13px;
         }
 
         .reveal-copy h2 {
-          font-size: 2.9rem;
-          line-height: 0.95;
+          font-size: clamp(1.55rem, 7.2vw, 2.08rem);
+          line-height: 1;
         }
 
-        .reveal-score-card strong {
-          font-size: 3.5rem;
+        .reveal-score-card {
+          display: none;
         }
 
         .reveal-map-head {
@@ -2228,7 +2253,7 @@ export const prerender = true;
         }
 
         .reveal-map-canvas {
-          min-height: 360px;
+          min-height: 230px;
         }
 
         .install-head {
@@ -2237,6 +2262,63 @@ export const prerender = true;
 
         .install-list {
           grid-template-columns: 1fr;
+          gap: 6px;
+        }
+
+        .install-panel,
+        .reveal-cta {
+          padding: 11px;
+        }
+
+        .install-head {
+          margin-bottom: 8px;
+        }
+
+        .install-head h3,
+        .reveal-cta h3 {
+          font-size: 1rem;
+          line-height: 1.08;
+        }
+
+        .install-move {
+          min-height: 46px;
+          display: grid;
+          grid-template-columns: 28px minmax(0, 1fr);
+          gap: 8px;
+          align-items: center;
+          padding: 8px;
+        }
+
+        .install-move span {
+          width: 24px;
+          height: 24px;
+          font-size: 0.64rem;
+        }
+
+        .install-move strong {
+          margin-top: 0;
+          font-size: 0.78rem;
+          line-height: 1.16;
+        }
+
+        .cta-bridge,
+        .cta-proof {
+          font-size: 0.78rem;
+          line-height: 1.24;
+        }
+
+        .cta-bridge,
+        .cta-proof,
+        .reveal-cta .primary-action {
+          margin-top: 8px;
+        }
+
+        .reveal-cta .primary-action {
+          min-height: 42px;
+        }
+
+        .email-capture {
+          margin-top: 10px;
         }
 
         .progress-rail {
@@ -2725,6 +2807,16 @@ export const prerender = true;
         const revealTargetRevenue = document.querySelector("[data-reveal-target-revenue]");
         const revealTargetTeam = document.querySelector("[data-reveal-target-team]");
         const revealTargetHours = document.querySelector("[data-reveal-target-hours]");
+        const ctaBridge = document.querySelector("[data-cta-bridge]");
+        const ctaProof = document.querySelector("[data-cta-proof]");
+        const ctaProofComment = (() => {
+          let node = ctaProof && ctaProof.previousSibling;
+          while (node) {
+            if (node.nodeType === Node.COMMENT_NODE && node.nodeValue.includes("@cta-proof")) return node;
+            node = node.previousSibling;
+          }
+          return null;
+        })();
         const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
         const STEP_ORDER = ["q1", "q2", "q3", "q4", "q5", "q6", "q7"];
@@ -2789,6 +2881,50 @@ export const prerender = true;
           hiring: "hiring",
           tech: "systems",
           cash: "cash timing",
+        };
+        const CTA_PROOF_BY_LEAK = {
+          ownerCapacity: {
+            win: "K to M+",
+            text: "An owner we work with went from $300K to $10M+ with a custom-built system for this same leak.",
+          },
+          capacity: {
+            win: "K to M+",
+            text: "An owner we work with went from $300K to $10M+ with a custom-built system for this same leak.",
+          },
+          demand: {
+            win: "K to M+",
+            text: "An owner we work with went from $300K to $10M+ with a custom-built system for this same leak.",
+          },
+          visibility: {
+            win: "~150 leads since launch",
+            text: "A concrete contractor we work with has seen ~150 leads since launch from a system built to catch this leak.",
+          },
+          fit: {
+            win: "~150 leads since launch",
+            text: "A concrete contractor we work with has seen ~150 leads since launch from a system built to catch this leak.",
+          },
+          speed: {
+            win: "~150 leads since launch",
+            text: "A concrete contractor we work with has seen ~150 leads since launch from a system built to catch this leak.",
+          },
+          close: {
+            win: "~150 leads since launch",
+            text: "A concrete contractor we work with has seen ~150 leads since launch from a system built to catch this leak.",
+          },
+          followup: {
+            win: "~150 leads since launch",
+            text: "A concrete contractor we work with has seen ~150 leads since launch from a system built to catch this leak.",
+          },
+        };
+        const CTA_BRIDGE_BY_LEAK = {
+          ownerCapacity: "time leak",
+          capacity: "delivery leak",
+          demand: "demand leak",
+          visibility: "tracking leak",
+          fit: "lead-fit leak",
+          speed: "speed leak",
+          close: "follow-up leak",
+          followup: "follow-up leak",
         };
 
         const state = {
@@ -3380,10 +3516,11 @@ window.__leakDiagnose = diagnose;
           if (state.bottleneck) leakBadgeText.textContent = cleanLeakLabel(state.leakLabel);
 
           if (state.bottleneck) {
-            currentLeak.textContent = state.leakLabel;
-            currentLeakCopy.textContent = "First break picked. The reveal will test it against the rest of the map.";
-            mapTitle.textContent = `${state.leakLabel} found`;
-            miniLeak.textContent = state.leakLabel;
+            const hunchLabel = cleanLeakLabel(state.leakLabel);
+            currentLeak.textContent = hunchLabel;
+            currentLeakCopy.textContent = "Hunch locked - we'll test it against your time, your channels, and your target.";
+            mapTitle.textContent = `Your hunch: ${hunchLabel}`;
+            miniLeak.textContent = `Hunch: ${hunchLabel}`;
           } else if (state.leadSources.length) {
             currentLeak.textContent = "Demand mapped";
             currentLeakCopy.textContent = getSourceInsight(state.leadSources);
@@ -3397,7 +3534,7 @@ window.__leakDiagnose = diagnose;
             miniLeak.textContent = "Service mapped";
           } else {
             currentLeak.textContent = "Pick one break";
-            currentLeakCopy.textContent = "The map will flag the first loss point.";
+            currentLeakCopy.textContent = "The map will start with your hunch.";
             mapTitle.textContent = "Your map is waking up";
             miniLeak.textContent = "Pick the first break";
           }
@@ -3470,7 +3607,7 @@ window.__leakDiagnose = diagnose;
 
           setRadioSelection(leakOptions, button);
           pulseTrace();
-          q5Insight.textContent = button.dataset.insight;
+          q5Insight.textContent = "Hunch locked - we'll test it against your time, your channels, and your target.";
           updateScoreFromAnswers();
           updateTargetGap();
           updateLiveMap();
@@ -3572,6 +3709,19 @@ window.__leakDiagnose = diagnose;
           });
         }
 
+        function renderCtaProof(derived) {
+          const proof = CTA_PROOF_BY_LEAK[derived] || CTA_PROOF_BY_LEAK.demand;
+          const bridgeLabel = CTA_BRIDGE_BY_LEAK[derived] || "first leak";
+          if (ctaBridge) {
+            ctaBridge.textContent = `We do not hand you a to-do list - we build and run the system that closes this ${bridgeLabel} in 30 days.`;
+          }
+          if (ctaProof) {
+            ctaProof.textContent = proof.text;
+            ctaProof.dataset.proofWin = proof.win;
+          }
+          if (ctaProofComment) ctaProofComment.nodeValue = ` @cta-proof: ${proof.win} `;
+        }
+
         function runRevealJargonGate() {
           const text = ` ${(reveal.innerText || reveal.textContent || "").toLowerCase().replace(/\s+/g, " ")} `;
           const banned = [
@@ -3617,6 +3767,7 @@ window.__leakDiagnose = diagnose;
           });
 
           renderInstallMoves(ins.install_outcomes);
+          renderCtaProof(ins.derived_constraint);
 
           revealGapTitle.textContent = revenueTarget ? `Today → ${revenueTarget}` : "Today → target not set";
           revealGapCopy.textContent = revenueTarget
@@ -3649,10 +3800,11 @@ window.__leakDiagnose = diagnose;
 
         finishButton.addEventListener("click", () => {
           mapTitle.textContent = "Leak Map ready";
-          q7Insight.textContent = "Map ready. Your first leak and target gap are set.";
+          q7Insight.textContent = "Map ready. Your hunch and target gap are set.";
           miniLeak.textContent = "Leak Map ready";
           renderReveal();
           showPanel("reveal");
+          window.scrollTo({ top: 0, behavior: reducedMotion ? "auto" : "smooth" });
           reveal.scrollTo({ top: 0, behavior: reducedMotion ? "auto" : "smooth" });
         });
 
