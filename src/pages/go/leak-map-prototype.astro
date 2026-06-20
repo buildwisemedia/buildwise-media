@@ -692,7 +692,7 @@ export const prerender = true;
             <section class="reveal-cta" aria-label="Book the next step" data-bwm-exp-slot="hero-cta">
               <p class="mono panel-kicker">NEXT STEP</p>
               <h3>Close the first leak in 30 days.</h3>
-              <p class="cta-bridge" data-cta-bridge>We build and run the system that closes this leak in 30 days.</p>
+              <p class="cta-bridge" data-cta-bridge>We build and run the system that closes this gap in 30 days.</p>
               <!-- @bwm-exp-slot: proof-module - proof composition -->
               <!-- @cta-proof: K to M+ -->
               <p class="cta-proof" data-cta-proof data-proof-win="K to M+" data-bwm-exp-slot="proof-module">An owner we work with went from $300K to $10M+ with a custom-built system for this same leak.</p>
@@ -2399,6 +2399,7 @@ export const prerender = true;
 
         .question-card {
           min-height: auto;
+          padding-bottom: calc(90px + env(safe-area-inset-bottom));
         }
 
         .question-head h2 {
@@ -2408,6 +2409,7 @@ export const prerender = true;
         .leak-option {
           grid-template-columns: 46px minmax(0, 1fr);
           min-height: 92px;
+          scroll-margin-bottom: calc(96px + env(safe-area-inset-bottom));
         }
 
         .chip-options {
@@ -2878,6 +2880,10 @@ export const prerender = true;
         const FORM_ID = "leak-map-prototype";
         const TOTAL_STEPS = 7;
         const SUBMIT_ENDPOINT = "/buildwisemedia/fit-diagnostic";
+        const canPostLeadBeacon = () => {
+          const hostname = window.location.hostname.toLowerCase();
+          return hostname === "buildwisemedia.com" || hostname.endsWith(".buildwisemedia.com");
+        };
         const STEP_ORDER = ["q1", "q2", "q3", "q4", "q5", "q6", "q7"];
         const RAIL_BY_STEP = {
           q1: "service",
@@ -2976,14 +2982,14 @@ export const prerender = true;
           },
         };
         const CTA_BRIDGE_BY_LEAK = {
-          ownerCapacity: "time leak",
-          capacity: "delivery leak",
-          demand: "demand leak",
-          visibility: "tracking leak",
-          fit: "lead-fit leak",
-          speed: "speed leak",
-          close: "follow-up leak",
-          followup: "follow-up leak",
+          ownerCapacity: "time drain",
+          capacity: "delivery gap",
+          demand: "demand gap",
+          visibility: "tracking gap",
+          fit: "fit gap",
+          speed: "speed gap",
+          close: "follow-up gap",
+          followup: "follow-up gap",
         };
         const FREE_EMAIL_DOMAINS = new Set([
           "gmail.com",
@@ -3357,6 +3363,8 @@ window.__leakDiagnose = diagnose;
         }
 
         function sendLeakBeacon(payload) {
+          if (!canPostLeadBeacon()) return Promise.resolve(false);
+
           const body = JSON.stringify(payload);
           if (navigator.sendBeacon) {
             const sent = navigator.sendBeacon(SUBMIT_ENDPOINT, new Blob([body], { type: "application/json" }));
@@ -3996,9 +4004,9 @@ window.__leakDiagnose = diagnose;
 
         function renderCtaProof(derived) {
           const proof = CTA_PROOF_BY_LEAK[derived] || CTA_PROOF_BY_LEAK.demand;
-          const bridgeLabel = CTA_BRIDGE_BY_LEAK[derived] || "first leak";
+          const bridgeLabel = CTA_BRIDGE_BY_LEAK[derived] || "growth gap";
           if (ctaBridge) {
-            ctaBridge.textContent = `We do not hand you a to-do list - we build and run the system that closes this ${bridgeLabel} in 30 days.`;
+            ctaBridge.textContent = `We build and run the system that closes this ${bridgeLabel} in 30 days.`;
           }
           if (ctaProof) {
             ctaProof.textContent = proof.text;
