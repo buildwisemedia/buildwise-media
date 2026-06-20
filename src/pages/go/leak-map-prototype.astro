@@ -409,6 +409,118 @@ export const prerender = true;
         </div>
       </section>
 
+      <section class="reveal-screen" data-panel="reveal" aria-hidden="true" aria-labelledby="reveal-title">
+        <div class="reveal-shell">
+          <div class="reveal-main">
+            <button class="ghost-action reveal-back" type="button" data-back-reveal>
+              <span aria-hidden="true">←</span>
+              <span>Back</span>
+            </button>
+
+            <header class="reveal-header">
+              <div class="reveal-copy">
+                <p class="mono eyebrow">YOUR REVENUE LEAK MAP</p>
+                <h2 id="reveal-title">Here's where your growth is leaking.</h2>
+              </div>
+              <div class="reveal-score-card" aria-live="polite">
+                <span class="mono">LIVE SCORE</span>
+                <strong><span data-reveal-score>00</span><em>/100</em></strong>
+                <p data-reveal-score-read>Pick a leak to see the read.</p>
+              </div>
+            </header>
+
+            <section class="map-panel reveal-map-panel" aria-label="Completed Revenue Leak Map">
+              <div class="map-head reveal-map-head">
+                <div>
+                  <p class="mono panel-kicker">COMPLETED MAP</p>
+                  <h3 data-reveal-map-title>Primary leak found</h3>
+                </div>
+                <div class="reveal-leak-tag">
+                  <span class="mono">BIGGEST LEAK</span>
+                  <strong data-reveal-leak-label>Demand</strong>
+                </div>
+              </div>
+
+              <div class="map-canvas reveal-map-canvas">
+                <svg class="pipe-svg" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
+                  <polyline class="base-pipe" points="8,22 22,22 22,51 39,51 39,78 56,78 56,51 73,51 73,22 91,22" />
+                  <polyline class="active-pipe" points="8,22 22,22 22,51 39,51 39,78 56,78 56,51 73,51 73,22 91,22" />
+                </svg>
+
+                <div class="map-node is-unlocked" data-reveal-node="service" style="--x: 8; --y: 22">
+                  <span class="node-ring"></span><span>Service</span>
+                </div>
+                <div class="map-node is-unlocked" data-reveal-node="demand" style="--x: 22; --y: 22">
+                  <span class="node-ring"></span><span>Demand</span>
+                </div>
+                <div class="map-node is-unlocked" data-reveal-node="fit" style="--x: 22; --y: 51">
+                  <span class="node-ring"></span><span>Fit</span>
+                </div>
+                <div class="map-node is-unlocked" data-reveal-node="capacity" style="--x: 39; --y: 51">
+                  <span class="node-ring"></span><span>Capacity</span>
+                </div>
+                <div class="map-node is-unlocked" data-reveal-node="speed" style="--x: 39; --y: 78">
+                  <span class="node-ring"></span><span>Speed</span>
+                </div>
+                <div class="map-node is-unlocked" data-reveal-node="close" style="--x: 56; --y: 78">
+                  <span class="node-ring"></span><span>Close</span>
+                </div>
+                <div class="map-node is-unlocked is-target" data-reveal-node="target" style="--x: 91; --y: 22">
+                  <span class="node-ring"></span><span>Target</span>
+                </div>
+              </div>
+
+              <div class="reveal-diagnosis">
+                <span class="mono muted">DIAGNOSIS</span>
+                <strong>Your biggest leak: <span data-reveal-leak-name>Demand</span></strong>
+                <p data-reveal-leak-copy>Calendar gaps show up before the work does.</p>
+              </div>
+            </section>
+
+            <section class="install-panel" aria-labelledby="install-title">
+              <div class="install-head">
+                <p class="mono panel-kicker">FIRST INSTALL</p>
+                <h3 id="install-title">What we'd install first</h3>
+              </div>
+              <div class="install-list" data-install-list></div>
+            </section>
+          </div>
+
+          <aside class="reveal-side" aria-label="Target gap and next step">
+            <section class="gap-panel">
+              <p class="mono panel-kicker">TODAY → TARGET GAP</p>
+              <h3 data-reveal-gap-title>Today → target not set</h3>
+              <p data-reveal-gap-copy>Set the target, team, and owner hours to size the gap.</p>
+              <div class="target-stack">
+                <div>
+                  <span class="mono muted">REVENUE TARGET</span>
+                  <strong data-reveal-target-revenue>Not set</strong>
+                </div>
+                <div>
+                  <span class="mono muted">TEAM TARGET</span>
+                  <strong data-reveal-target-team>Not set</strong>
+                </div>
+                <div>
+                  <span class="mono muted">OWNER OPS</span>
+                  <strong data-reveal-target-hours>Not set</strong>
+                </div>
+              </div>
+            </section>
+
+            <section class="reveal-cta" aria-label="Book the next step">
+              <p class="mono panel-kicker">NEXT STEP</p>
+              <h3>Turn this into a 30-day install plan.</h3>
+              <p>You now have the leak, the path, and the target gap. The next step is to see if we should build it with you.</p>
+              <a class="primary-action" href="/book">See If We're a Fit</a>
+              <label class="email-capture">
+                <span class="mono">SEND THE FULL MAP TO MY BUSINESS EMAIL</span>
+                <input type="email" inputmode="email" autocomplete="email" placeholder="you@company.com" />
+              </label>
+            </section>
+          </aside>
+        </div>
+      </section>
+
       <div class="mini-readout" aria-live="polite">
         <span class="mono">LEAK MAP</span>
         <strong data-mini-score>00</strong>
@@ -501,13 +613,15 @@ export const prerender = true;
       }
 
       .welcome-screen,
-      .cockpit {
+      .cockpit,
+      .reveal-screen {
         min-height: 100svh;
         display: none;
       }
 
       .welcome-screen.is-active,
-      .cockpit.is-active {
+      .cockpit.is-active,
+      .reveal-screen.is-active {
         display: block;
       }
 
@@ -1272,6 +1386,321 @@ export const prerender = true;
         margin-bottom: 12px;
       }
 
+      .reveal-screen {
+        background:
+          linear-gradient(125deg, rgba(240, 255, 0, 0.055), transparent 28%),
+          linear-gradient(180deg, var(--canvas), var(--panel-1) 60%, var(--canvas));
+      }
+
+      .reveal-shell {
+        width: min(1500px, 100%);
+        min-height: 100svh;
+        margin: 0 auto;
+        padding: clamp(14px, 2vw, 24px);
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) minmax(340px, 0.34fr);
+        gap: 14px;
+        align-items: start;
+      }
+
+      .reveal-main,
+      .reveal-side {
+        min-width: 0;
+      }
+
+      .reveal-main {
+        display: grid;
+        gap: 14px;
+      }
+
+      .reveal-back {
+        width: max-content;
+      }
+
+      .reveal-header {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) minmax(210px, 0.3fr);
+        gap: 18px;
+        align-items: end;
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        border-radius: 8px;
+        padding: clamp(18px, 2.4vw, 32px);
+        background:
+          linear-gradient(180deg, rgba(255, 255, 255, 0.055), rgba(255, 255, 255, 0.018)),
+          var(--panel-1);
+        box-shadow:
+          inset 0 1px 0 rgba(255, 255, 255, 0.08),
+          0 22px 70px rgba(5, 5, 7, 0.5);
+      }
+
+      .reveal-copy h2 {
+        max-width: 820px;
+        margin: 10px 0 0;
+        font-size: 4.35rem;
+        line-height: 0.92;
+        font-weight: 860;
+        letter-spacing: 0;
+      }
+
+      .reveal-score-card {
+        border: 1px solid rgba(240, 255, 0, 0.18);
+        border-radius: 8px;
+        padding: 16px;
+        background: rgba(240, 255, 0, 0.045);
+        box-shadow:
+          inset 0 1px 0 rgba(240, 255, 0, 0.14),
+          0 18px 50px rgba(240, 255, 0, 0.08);
+      }
+
+      .reveal-score-card > span {
+        display: block;
+        color: var(--muted);
+        font-size: 0.66rem;
+        font-weight: 700;
+      }
+
+      .reveal-score-card strong {
+        display: flex;
+        align-items: baseline;
+        gap: 6px;
+        margin-top: 6px;
+        color: var(--yellow);
+        font-family: "JetBrains Mono", monospace;
+        font-size: 5rem;
+        line-height: 0.85;
+        font-weight: 700;
+      }
+
+      .reveal-score-card em {
+        color: rgba(245, 245, 245, 0.66);
+        font-size: 1.2rem;
+        font-style: normal;
+      }
+
+      .reveal-score-card p,
+      .gap-panel p,
+      .reveal-cta p,
+      .reveal-diagnosis p {
+        margin: 10px 0 0;
+        color: var(--text-soft);
+        line-height: 1.4;
+      }
+
+      .reveal-map-panel {
+        overflow: hidden;
+      }
+
+      .reveal-map-head h3,
+      .install-head h3,
+      .gap-panel h3,
+      .reveal-cta h3 {
+        margin: 7px 0 0;
+        font-size: 1.55rem;
+        line-height: 1.05;
+      }
+
+      .reveal-leak-tag {
+        min-width: 180px;
+        border: 1px solid rgba(240, 255, 0, 0.16);
+        border-radius: 8px;
+        padding: 11px 13px;
+        background: rgba(240, 255, 0, 0.04);
+        text-align: right;
+      }
+
+      .reveal-leak-tag span {
+        display: block;
+        color: var(--muted);
+        font-size: 0.62rem;
+        font-weight: 700;
+      }
+
+      .reveal-leak-tag strong {
+        display: block;
+        margin-top: 4px;
+        color: var(--yellow);
+      }
+
+      .reveal-map-canvas {
+        min-height: 315px;
+      }
+
+      .reveal-map-canvas .active-pipe {
+        opacity: 1;
+      }
+
+      .reveal-map-canvas .map-node {
+        color: var(--text-soft);
+      }
+
+      .reveal-map-canvas .map-node .node-ring {
+        border-color: rgba(240, 255, 0, 0.42);
+        background: rgba(240, 255, 0, 0.075);
+        box-shadow:
+          inset 0 0 0 7px rgba(240, 255, 0, 0.045),
+          0 0 18px rgba(240, 255, 0, 0.14);
+      }
+
+      .reveal-map-canvas .map-node.is-leak .node-ring {
+        border-color: var(--yellow);
+        background: rgba(240, 255, 0, 0.2);
+        animation: revealLeakPulse 1400ms var(--ease) infinite;
+      }
+
+      .reveal-diagnosis {
+        margin: 0 18px 18px;
+        border: 1px solid rgba(240, 255, 0, 0.16);
+        border-radius: 8px;
+        padding: 15px;
+        background: rgba(240, 255, 0, 0.035);
+      }
+
+      .reveal-diagnosis strong {
+        display: block;
+        margin-top: 6px;
+        color: var(--text);
+        font-size: 1.02rem;
+      }
+
+      .reveal-diagnosis strong span {
+        color: var(--yellow);
+      }
+
+      .install-panel,
+      .gap-panel,
+      .reveal-cta {
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        border-radius: 8px;
+        background:
+          linear-gradient(180deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.018)),
+          var(--panel-1);
+        box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.07);
+      }
+
+      .install-panel {
+        padding: 18px;
+      }
+
+      .install-head {
+        display: grid;
+        gap: 7px;
+        margin-bottom: 14px;
+      }
+
+      .install-list {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 10px;
+      }
+
+      .install-move {
+        min-height: 116px;
+        border: 1px solid rgba(255, 255, 255, 0.07);
+        border-radius: 8px;
+        padding: 14px;
+        background: rgba(255, 255, 255, 0.035);
+      }
+
+      .install-move span {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 26px;
+        height: 26px;
+        border: 1px solid rgba(240, 255, 0, 0.22);
+        border-radius: 50%;
+        color: var(--yellow);
+        font-family: "JetBrains Mono", monospace;
+        font-size: 0.72rem;
+      }
+
+      .install-move strong {
+        display: block;
+        margin-top: 11px;
+        color: var(--text);
+      }
+
+      .install-move p {
+        margin: 7px 0 0;
+        color: var(--text-soft);
+        font-size: 0.92rem;
+        line-height: 1.35;
+      }
+
+      .reveal-side {
+        display: grid;
+        gap: 14px;
+      }
+
+      .gap-panel,
+      .reveal-cta {
+        padding: 18px;
+      }
+
+      .target-stack {
+        display: grid;
+        gap: 10px;
+        margin-top: 16px;
+      }
+
+      .target-stack > div {
+        border: 1px solid rgba(255, 255, 255, 0.07);
+        border-radius: 8px;
+        padding: 12px;
+        background: rgba(255, 255, 255, 0.035);
+      }
+
+      .target-stack strong {
+        display: block;
+        margin-top: 5px;
+        color: var(--text);
+      }
+
+      .reveal-cta {
+        border-color: rgba(240, 255, 0, 0.2);
+        box-shadow:
+          inset 0 1px 0 rgba(240, 255, 0, 0.12),
+          0 18px 60px rgba(240, 255, 0, 0.08);
+      }
+
+      .reveal-cta .primary-action {
+        width: 100%;
+        margin-top: 16px;
+        text-decoration: none;
+      }
+
+      .email-capture {
+        display: grid;
+        gap: 7px;
+        margin-top: 14px;
+      }
+
+      .email-capture span {
+        color: var(--muted);
+        font-size: 0.62rem;
+        font-weight: 700;
+      }
+
+      .email-capture input {
+        min-height: 42px;
+        width: 100%;
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        border-radius: 8px;
+        background: rgba(5, 5, 7, 0.62);
+        color: var(--text);
+        outline: none;
+        padding: 0 12px;
+      }
+
+      .email-capture input:focus {
+        border-color: rgba(240, 255, 0, 0.5);
+        box-shadow: 0 0 0 3px rgba(240, 255, 0, 0.08);
+      }
+
+      .prototype[data-screen="reveal"] .mini-readout {
+        display: none;
+      }
+
       .mini-readout {
         display: none;
       }
@@ -1300,20 +1729,54 @@ export const prerender = true;
         }
       }
 
+      @keyframes revealLeakPulse {
+        0%,
+        100% {
+          box-shadow:
+            inset 0 0 0 8px rgba(240, 255, 0, 0.08),
+            0 0 0 7px rgba(240, 255, 0, 0.08),
+            0 0 26px rgba(240, 255, 0, 0.32);
+        }
+        50% {
+          box-shadow:
+            inset 0 0 0 8px rgba(240, 255, 0, 0.1),
+            0 0 0 15px rgba(240, 255, 0, 0),
+            0 0 38px rgba(240, 255, 0, 0.48);
+        }
+      }
+
       @media (min-width: 960px) {
         body {
           overflow: hidden;
         }
 
         .welcome-screen,
-        .cockpit {
+        .cockpit,
+        .reveal-screen {
           height: 100svh;
           overflow: hidden;
+        }
+
+        .reveal-screen {
+          overflow-y: auto;
+          overscroll-behavior: contain;
         }
 
         .cockpit-shell {
           min-height: 0;
           height: 100svh;
+        }
+
+        .reveal-side {
+          position: sticky;
+          top: 14px;
+          max-height: calc(100svh - 28px);
+          align-self: start;
+        }
+
+        .reveal-cta {
+          position: sticky;
+          bottom: 14px;
         }
 
         .question-pane {
@@ -1327,6 +1790,22 @@ export const prerender = true;
       @media (max-width: 1120px) {
         .cockpit-grid {
           grid-template-columns: minmax(350px, 0.47fr) minmax(460px, 0.53fr);
+        }
+
+        .reveal-shell {
+          grid-template-columns: minmax(0, 1fr) minmax(310px, 0.36fr);
+        }
+
+        .reveal-copy h2 {
+          font-size: 3.5rem;
+        }
+
+        .reveal-score-card strong {
+          font-size: 4.1rem;
+        }
+
+        .install-list {
+          grid-template-columns: 1fr;
         }
 
         .diagnostic-readouts {
@@ -1365,6 +1844,58 @@ export const prerender = true;
         .cockpit-shell {
           padding: 12px 12px 96px;
           display: block;
+        }
+
+        .reveal-shell {
+          display: block;
+          padding: 12px 12px 96px;
+        }
+
+        .reveal-main,
+        .reveal-side {
+          display: grid;
+          gap: 12px;
+        }
+
+        .reveal-side {
+          margin-top: 12px;
+        }
+
+        .reveal-header {
+          grid-template-columns: 1fr;
+          align-items: start;
+          padding: 18px;
+        }
+
+        .reveal-copy h2 {
+          font-size: 2.9rem;
+          line-height: 0.95;
+        }
+
+        .reveal-score-card strong {
+          font-size: 3.5rem;
+        }
+
+        .reveal-map-head {
+          display: grid;
+          min-height: auto;
+        }
+
+        .reveal-leak-tag {
+          width: 100%;
+          text-align: left;
+        }
+
+        .reveal-map-canvas {
+          min-height: 360px;
+        }
+
+        .install-head {
+          display: block;
+        }
+
+        .install-list {
+          grid-template-columns: 1fr;
         }
 
         .progress-rail {
@@ -1599,6 +2130,67 @@ export const prerender = true;
         .target-step .ghost-action {
           min-height: 40px;
         }
+
+        .reveal-shell {
+          padding: 12px;
+          gap: 10px;
+        }
+
+        .reveal-main,
+        .reveal-side {
+          gap: 10px;
+        }
+
+        .reveal-header {
+          padding: 16px 18px;
+        }
+
+        .reveal-copy h2 {
+          font-size: 3rem;
+        }
+
+        .reveal-score-card {
+          padding: 13px;
+        }
+
+        .reveal-score-card strong {
+          font-size: 3.5rem;
+        }
+
+        .reveal-map-canvas {
+          min-height: 260px;
+        }
+
+        .reveal-diagnosis,
+        .install-panel,
+        .gap-panel,
+        .reveal-cta {
+          padding: 13px;
+        }
+
+        .reveal-diagnosis {
+          margin: 0 18px 14px;
+        }
+
+        .install-move {
+          min-height: 94px;
+          padding: 12px;
+        }
+
+        .install-move p,
+        .gap-panel p,
+        .reveal-cta p {
+          font-size: 0.86rem;
+        }
+
+        .target-stack {
+          gap: 7px;
+          margin-top: 12px;
+        }
+
+        .target-stack > div {
+          padding: 9px 10px;
+        }
       }
 
       @media (prefers-reduced-motion: reduce) {
@@ -1617,8 +2209,10 @@ export const prerender = true;
         const app = document.querySelector("[data-app]");
         const welcome = document.querySelector('[data-panel="welcome"]');
         const cockpit = document.querySelector('[data-panel="cockpit"]');
+        const reveal = document.querySelector('[data-panel="reveal"]');
         const startButton = document.querySelector("[data-start]");
         const backWelcomeButton = document.querySelector("[data-back-welcome]");
+        const backRevealButton = document.querySelector("[data-back-reveal]");
         const nextTargetButton = document.querySelector("[data-next-target]");
         const prevLeakButton = document.querySelector("[data-prev-leak]");
         const finishButton = document.querySelector("[data-finish]");
@@ -1643,6 +2237,19 @@ export const prerender = true;
         const gapLabel = document.querySelector("[data-gap-label]");
         const gapPercent = document.querySelector("[data-gap-percent]");
         const targetInputs = Array.from(document.querySelectorAll("[data-target-input]"));
+        const revealScore = document.querySelector("[data-reveal-score]");
+        const revealScoreRead = document.querySelector("[data-reveal-score-read]");
+        const revealMapTitle = document.querySelector("[data-reveal-map-title]");
+        const revealLeakLabel = document.querySelector("[data-reveal-leak-label]");
+        const revealLeakName = document.querySelector("[data-reveal-leak-name]");
+        const revealLeakCopy = document.querySelector("[data-reveal-leak-copy]");
+        const revealNodes = Array.from(document.querySelectorAll("[data-reveal-node]"));
+        const installList = document.querySelector("[data-install-list]");
+        const revealGapTitle = document.querySelector("[data-reveal-gap-title]");
+        const revealGapCopy = document.querySelector("[data-reveal-gap-copy]");
+        const revealTargetRevenue = document.querySelector("[data-reveal-target-revenue]");
+        const revealTargetTeam = document.querySelector("[data-reveal-target-team]");
+        const revealTargetHours = document.querySelector("[data-reveal-target-hours]");
         const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
         const state = {
@@ -1665,11 +2272,45 @@ export const prerender = true;
           close: "The money is in the sales gap.",
         };
 
+        const installByNode = {
+          demand: [
+            ["Demand floor", "Add a steady lead path so the calendar does not run dry."],
+            ["Proof route", "Show the right proof before the owner has to explain it."],
+            ["Booking path", "Move good leads from interest to a booked next step."],
+          ],
+          fit: [
+            ["Fit gate", "Sort good-fit owners from price shoppers before the quote."],
+            ["Value proof", "Show why the work is worth the spend before the call."],
+            ["Follow-up path", "Keep the right leads warm without adding desk work."],
+          ],
+          capacity: [
+            ["Dispatch rules", "Route new work by crew, area, and true open slots."],
+            ["Calendar guard", "Stop demand from breaking the schedule first."],
+            ["Capacity signal", "Show when to push leads and when to slow the flow."],
+          ],
+          speed: [
+            ["Instant response", "Reach each good lead before the first call is lost."],
+            ["Missed-call save", "Pull missed calls back into a booked next step."],
+            ["Handoff path", "Send the right details to the team before they reply."],
+          ],
+          close: [
+            ["Quote follow-up", "Keep the next step clear after every estimate."],
+            ["Decision proof", "Give buyers the proof they need to say yes."],
+            ["Close alerts", "Flag stalled deals before they go cold."],
+          ],
+        };
+
         function showPanel(name) {
           const isWelcome = name === "welcome";
+          const isCockpit = name === "cockpit";
+          const isReveal = name === "reveal";
+
           welcome.classList.toggle("is-active", isWelcome);
-          cockpit.classList.toggle("is-active", !isWelcome);
-          cockpit.setAttribute("aria-hidden", String(isWelcome));
+          cockpit.classList.toggle("is-active", isCockpit);
+          reveal.classList.toggle("is-active", isReveal);
+          welcome.setAttribute("aria-hidden", String(!isWelcome));
+          cockpit.setAttribute("aria-hidden", String(!isCockpit));
+          reveal.setAttribute("aria-hidden", String(!isReveal));
           app.dataset.screen = name;
         }
 
@@ -1817,6 +2458,81 @@ export const prerender = true;
           }
         }
 
+        function cleanLeakLabel(label) {
+          return label.replace(" leak", "");
+        }
+
+        function getScoreRead(score) {
+          if (score >= 65) return "system-ready";
+          if (score >= 35) return "close — a few gaps to lock";
+          return "foundations first";
+        }
+
+        function formatRevenueTarget(value) {
+          if (!value) return "";
+          return /\/mo|month/i.test(value) ? value : `${value}/mo`;
+        }
+
+        function formatTeamTarget(value) {
+          return value ? `${value} people` : "Not set";
+        }
+
+        function formatHoursTarget(value) {
+          return value ? `${value} hrs/wk` : "Not set";
+        }
+
+        function renderInstallMoves(node) {
+          const moves = installByNode[node] || installByNode.demand;
+          installList.replaceChildren();
+
+          moves.forEach(([title, body], index) => {
+            const card = document.createElement("article");
+            card.className = "install-move";
+
+            const number = document.createElement("span");
+            number.textContent = String(index + 1).padStart(2, "0");
+
+            const heading = document.createElement("strong");
+            heading.textContent = title;
+
+            const copy = document.createElement("p");
+            copy.textContent = body;
+
+            card.append(number, heading, copy);
+            installList.append(card);
+          });
+        }
+
+        function renderReveal() {
+          const leakNode = state.leakNode || "demand";
+          const leakLabel = state.leakLabel || "Demand leak";
+          const leakName = cleanLeakLabel(leakLabel);
+          const score = Number(state.score) || 0;
+          const revenueTarget = formatRevenueTarget(state.target.revenue);
+
+          revealScore.textContent = String(score).padStart(2, "0");
+          revealScoreRead.textContent = getScoreRead(score);
+          revealMapTitle.textContent = `${leakName} is the first fix`;
+          revealLeakLabel.textContent = leakName;
+          revealLeakName.textContent = leakName;
+          revealLeakCopy.textContent = copyByNode[leakNode] || copyByNode.demand;
+
+          revealNodes.forEach((node) => {
+            const isLeak = node.dataset.revealNode === leakNode;
+            node.classList.toggle("is-leak", isLeak);
+          });
+
+          renderInstallMoves(leakNode);
+
+          revealGapTitle.textContent = revenueTarget ? `Today → ${revenueTarget}` : "Today → target not set";
+          revealGapCopy.textContent = revenueTarget
+            ? `From where you are today toward ${revenueTarget}. This is the gap the system closes.`
+            : "Set the revenue target, team, and owner hours to size the gap.";
+          revealTargetRevenue.textContent = revenueTarget || "Not set";
+          revealTargetTeam.textContent = formatTeamTarget(state.target.team);
+          revealTargetHours.textContent = formatHoursTarget(state.target.hours);
+        }
+
         startButton.addEventListener("click", () => {
           showPanel("cockpit");
           showStep("q5");
@@ -1835,11 +2551,17 @@ export const prerender = true;
         });
 
         finishButton.addEventListener("click", () => {
-          const finalScore = Math.max(state.score, 72);
           mapTitle.textContent = "Leak Map ready";
           q7Insight.textContent = "Map ready. Your first leak and target gap are set.";
           miniLeak.textContent = "Leak Map ready";
-          animateScore(finalScore);
+          renderReveal();
+          showPanel("reveal");
+          reveal.scrollTo({ top: 0, behavior: reducedMotion ? "auto" : "smooth" });
+        });
+
+        backRevealButton.addEventListener("click", () => {
+          showPanel("cockpit");
+          showStep("q7");
         });
 
         leakOptions.forEach((button) => {
