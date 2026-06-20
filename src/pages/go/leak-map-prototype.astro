@@ -1,0 +1,1767 @@
+---
+export const prerender = true;
+---
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="robots" content="noindex" />
+    <title>Live Revenue Leak Map Prototype | Buildwise Media</title>
+    <meta
+      name="description"
+      content="A high-fidelity prototype of the Buildwise Media Revenue Leak Map funnel experience."
+    />
+  </head>
+  <body>
+    <main class="prototype" data-app>
+      <section class="welcome-screen is-active" data-panel="welcome" aria-labelledby="welcome-title">
+        <div class="welcome-grid">
+          <div class="welcome-copy">
+            <p class="mono eyebrow">FOR SERVICE BUSINESSES · ~2 MINUTES · NO EMAIL TO SEE YOUR RESULT</p>
+            <h1 id="welcome-title">
+              Find the leak that's keeping <span>growth on your desk.</span>
+            </h1>
+            <p class="welcome-sub">
+              Build your map as you answer. See where growth gets stuck before you book.
+            </p>
+            <button class="primary-action" type="button" data-start>
+              <span>Start my Leak Map</span>
+              <span aria-hidden="true">→</span>
+            </button>
+          </div>
+
+          <aside class="map-panel teaser-map" aria-label="Empty Revenue Leak Map preview">
+            <div class="map-head">
+              <div>
+                <p class="mono panel-kicker">LIVE REVENUE LEAK MAP</p>
+                <h2>Empty map</h2>
+              </div>
+              <div class="score-card">
+                <span class="mono">SCORE</span>
+                <strong>00</strong>
+              </div>
+            </div>
+            <div class="map-canvas teaser-canvas">
+              <svg class="pipe-svg" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
+                <polyline class="base-pipe" points="8,22 22,22 22,51 39,51 39,78 56,78 56,51 73,51 73,22 91,22" />
+              </svg>
+              <div class="map-node node-service is-locked" style="--x: 8; --y: 22">
+                <span class="node-ring"></span><span>Service</span>
+              </div>
+              <div class="map-node node-demand is-locked" style="--x: 22; --y: 22">
+                <span class="node-ring"></span><span>Demand</span>
+              </div>
+              <div class="map-node node-fit is-locked" style="--x: 22; --y: 51">
+                <span class="node-ring"></span><span>Fit</span>
+              </div>
+              <div class="map-node node-capacity is-locked" style="--x: 39; --y: 51">
+                <span class="node-ring"></span><span>Capacity</span>
+              </div>
+              <div class="map-node node-speed is-locked" style="--x: 39; --y: 78">
+                <span class="node-ring"></span><span>Speed</span>
+              </div>
+              <div class="map-node node-close is-locked" style="--x: 56; --y: 78">
+                <span class="node-ring"></span><span>Close</span>
+              </div>
+              <div class="map-node node-target is-locked" style="--x: 91; --y: 22">
+                <span class="node-ring"></span><span>Target</span>
+              </div>
+            </div>
+            <div class="map-foot">
+              <div>
+                <span class="mono muted">CURRENT LEAK</span>
+                <strong>Not mapped yet</strong>
+              </div>
+              <div>
+                <span class="mono muted">NEXT</span>
+                <strong>Pick the first break</strong>
+              </div>
+            </div>
+          </aside>
+        </div>
+      </section>
+
+      <section class="cockpit" data-panel="cockpit" aria-hidden="true">
+        <div class="cockpit-shell">
+          <nav class="progress-rail" aria-label="Revenue Leak Map steps">
+            <span class="rail-step is-done" data-rail="service">
+              <span class="rail-dot"></span><span>Service</span>
+            </span>
+            <span class="rail-step is-done" data-rail="demand">
+              <span class="rail-dot"></span><span>Demand</span>
+            </span>
+            <span class="rail-step is-done" data-rail="stage">
+              <span class="rail-dot"></span><span>Stage</span>
+            </span>
+            <span class="rail-step is-done" data-rail="owner-time">
+              <span class="rail-dot"></span><span>Owner-Time</span>
+            </span>
+            <span class="rail-step is-active" data-rail="leak">
+              <span class="rail-dot"></span><span>Leak</span>
+            </span>
+            <span class="rail-step" data-rail="stress-test">
+              <span class="rail-dot"></span><span>Stress-Test</span>
+            </span>
+            <span class="rail-step" data-rail="target">
+              <span class="rail-dot"></span><span>Target</span>
+            </span>
+          </nav>
+
+          <div class="cockpit-grid">
+            <section class="question-pane" aria-live="polite">
+              <article class="question-card is-active" data-step="q5">
+                <div class="question-head">
+                  <p class="mono step-eyebrow">05 · LEAK</p>
+                  <h2>When you try to grow, what breaks first?</h2>
+                  <p>Pick the one that bites before the others.</p>
+                </div>
+
+                <div class="leak-options" role="radiogroup" aria-label="Growth leak">
+                  <button
+                    class="leak-option"
+                    type="button"
+                    role="radio"
+                    aria-checked="false"
+                    data-value="leads"
+                    data-node="demand"
+                    data-score="38"
+                    data-label="Demand leak"
+                    data-insight="Single-channel risk flagged."
+                  >
+                    <svg class="option-icon" viewBox="0 0 44 44" aria-hidden="true">
+                      <circle cx="8" cy="22" r="3" />
+                      <line x1="11" y1="22" x2="25" y2="22" />
+                      <line x1="25" y1="22" x2="34" y2="13" />
+                      <line x1="25" y1="22" x2="34" y2="22" />
+                      <line x1="25" y1="22" x2="34" y2="31" />
+                      <circle cx="37" cy="13" r="3" />
+                      <circle cx="37" cy="22" r="3" />
+                      <circle cx="37" cy="31" r="3" />
+                    </svg>
+                    <span class="option-copy">
+                      <strong>Demand <span>Lead volume</span></strong>
+                      <em>Not enough qualified people raising a hand.</em>
+                      <small>Calendar gaps.</small>
+                    </span>
+                  </button>
+
+                  <button
+                    class="leak-option"
+                    type="button"
+                    role="radio"
+                    aria-checked="false"
+                    data-value="quality"
+                    data-node="fit"
+                    data-score="44"
+                    data-label="Fit leak"
+                    data-insight="Price-shopper drag flagged."
+                  >
+                    <svg class="option-icon" viewBox="0 0 44 44" aria-hidden="true">
+                      <line x1="7" y1="22" x2="37" y2="22" />
+                      <circle cx="12" cy="22" r="3" />
+                      <circle cx="22" cy="22" r="3" />
+                      <circle cx="32" cy="22" r="3" />
+                      <line x1="22" y1="19" x2="22" y2="10" />
+                      <circle cx="22" cy="7" r="3" />
+                    </svg>
+                    <span class="option-copy">
+                      <strong>Fit <span>Lead quality</span></strong>
+                      <em>Plenty of leads, mostly price-shoppers.</em>
+                      <small>Wasted quotes.</small>
+                    </span>
+                  </button>
+
+                  <button
+                    class="leak-option"
+                    type="button"
+                    role="radio"
+                    aria-checked="false"
+                    data-value="capacity"
+                    data-node="capacity"
+                    data-score="49"
+                    data-label="Capacity leak"
+                    data-insight="Delivery ceiling flagged."
+                  >
+                    <svg class="option-icon" viewBox="0 0 44 44" aria-hidden="true">
+                      <line x1="9" y1="13" x2="35" y2="13" />
+                      <line x1="9" y1="22" x2="30" y2="22" />
+                      <line x1="9" y1="31" x2="24" y2="31" />
+                      <circle cx="36" cy="13" r="3" />
+                      <circle cx="31" cy="22" r="3" />
+                      <circle cx="25" cy="31" r="3" />
+                    </svg>
+                    <span class="option-copy">
+                      <strong>Capacity <span>Delivery</span></strong>
+                      <em>Crew or schedule can't absorb more without slipping.</em>
+                      <small>Turned-away work.</small>
+                    </span>
+                  </button>
+
+                  <button
+                    class="leak-option"
+                    type="button"
+                    role="radio"
+                    aria-checked="false"
+                    data-value="speed"
+                    data-node="speed"
+                    data-score="53"
+                    data-label="Speed leak"
+                    data-insight="Response-time loss flagged."
+                  >
+                    <svg class="option-icon" viewBox="0 0 44 44" aria-hidden="true">
+                      <line x1="7" y1="22" x2="34" y2="22" />
+                      <line x1="26" y1="14" x2="34" y2="22" />
+                      <line x1="26" y1="30" x2="34" y2="22" />
+                      <circle cx="9" cy="22" r="3" />
+                      <line x1="7" y1="14" x2="18" y2="14" />
+                      <line x1="7" y1="30" x2="15" y2="30" />
+                    </svg>
+                    <span class="option-copy">
+                      <strong>Speed <span>Response</span></strong>
+                      <em>Leads go cold before you reach them.</em>
+                      <small>Lost to whoever called first.</small>
+                    </span>
+                  </button>
+
+                  <button
+                    class="leak-option"
+                    type="button"
+                    role="radio"
+                    aria-checked="false"
+                    data-value="conversion"
+                    data-node="close"
+                    data-score="46"
+                    data-label="Close leak"
+                    data-insight="Close-rate gap flagged."
+                  >
+                    <svg class="option-icon" viewBox="0 0 44 44" aria-hidden="true">
+                      <line x1="7" y1="13" x2="23" y2="22" />
+                      <line x1="7" y1="31" x2="23" y2="22" />
+                      <line x1="23" y1="22" x2="36" y2="22" />
+                      <circle cx="7" cy="13" r="3" />
+                      <circle cx="7" cy="31" r="3" />
+                      <circle cx="37" cy="22" r="3" />
+                    </svg>
+                    <span class="option-copy">
+                      <strong>Close <span>Conversion</span></strong>
+                      <em>You talk to plenty but close too few.</em>
+                      <small>Margin left on the table.</small>
+                    </span>
+                  </button>
+                </div>
+
+                <p class="mono micro-insight" data-q5-insight>Pick a leak to light the map.</p>
+
+                <div class="step-actions">
+                  <button class="ghost-action" type="button" data-back-welcome>Back</button>
+                  <button class="next-action" type="button" data-next-target disabled>
+                    <span>Set target</span><span aria-hidden="true">→</span>
+                  </button>
+                </div>
+              </article>
+
+              <article class="question-card target-step" data-step="q7" hidden>
+                <div class="question-head">
+                  <p class="mono step-eyebrow">07 · TARGET</p>
+                  <h2>Where do you want to be in 12 months?</h2>
+                  <p>Set the target. The map shows the gap.</p>
+                </div>
+
+                <div class="target-dials">
+                  <div class="dial-card" data-dial="revenue">
+                    <div class="dial-top">
+                      <span class="mono">TARGET.REVENUE</span>
+                      <strong>Monthly revenue</strong>
+                    </div>
+                    <div class="preset-row" role="group" aria-label="Monthly revenue presets">
+                      <button type="button" data-preset="$50K">$50K</button>
+                      <button type="button" data-preset="$100K">$100K</button>
+                      <button type="button" data-preset="$250K">$250K</button>
+                      <button type="button" data-preset="$500K+">$500K+</button>
+                    </div>
+                    <label>
+                      <span class="mono">OVERRIDE</span>
+                      <input data-target-input="revenue" name="target.revenue" inputmode="text" placeholder="Type target" />
+                    </label>
+                  </div>
+
+                  <div class="dial-card" data-dial="team">
+                    <div class="dial-top">
+                      <span class="mono">TARGET.TEAM</span>
+                      <strong>Team size</strong>
+                    </div>
+                    <div class="preset-row" role="group" aria-label="Team size presets">
+                      <button type="button" data-preset="5">5</button>
+                      <button type="button" data-preset="10">10</button>
+                      <button type="button" data-preset="25">25</button>
+                      <button type="button" data-preset="50+">50+</button>
+                    </div>
+                    <label>
+                      <span class="mono">OVERRIDE</span>
+                      <input data-target-input="team" name="target.team" inputmode="numeric" placeholder="Type team" />
+                    </label>
+                  </div>
+
+                  <div class="dial-card" data-dial="hours">
+                    <div class="dial-top">
+                      <span class="mono">TARGET.HOURS</span>
+                      <strong>Owner hours/week on ops</strong>
+                    </div>
+                    <div class="preset-row" role="group" aria-label="Owner hours presets">
+                      <button type="button" data-preset="30">30</button>
+                      <button type="button" data-preset="20">20</button>
+                      <button type="button" data-preset="10">10</button>
+                      <button type="button" data-preset="&lt;5">&lt;5</button>
+                    </div>
+                    <label>
+                      <span class="mono">OVERRIDE</span>
+                      <input data-target-input="hours" name="target.hours" inputmode="numeric" placeholder="Type hours" />
+                    </label>
+                  </div>
+                </div>
+
+                <p class="mono micro-insight" data-q7-insight>Each target tightens the gap.</p>
+
+                <div class="step-actions">
+                  <button class="ghost-action" type="button" data-prev-leak>Back</button>
+                  <button class="primary-action compact" type="button" data-finish>
+                    <span>See My Leak Map</span>
+                    <span aria-hidden="true">→</span>
+                  </button>
+                </div>
+              </article>
+            </section>
+
+            <aside class="map-panel live-map" aria-label="Live Revenue Leak Map">
+              <div class="map-head">
+                <div>
+                  <p class="mono panel-kicker">LIVE REVENUE LEAK MAP</p>
+                  <h2 data-map-title>Your map is waking up</h2>
+                </div>
+                <div class="score-card is-live">
+                  <span class="mono">SCORE</span>
+                  <strong data-score-output>00</strong>
+                </div>
+              </div>
+
+              <div class="map-canvas live-canvas" data-live-canvas>
+                <svg class="pipe-svg" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
+                  <polyline class="base-pipe" points="8,22 22,22 22,51 39,51 39,78 56,78 56,51 73,51 73,22 91,22" />
+                  <polyline class="active-pipe" data-active-pipe points="8,22 22,22 22,51 39,51 39,78 56,78 56,51 73,51 73,22 91,22" />
+                  <polyline class="target-pipe" data-target-pipe points="73,22 91,22" />
+                </svg>
+
+                <div class="map-node node-service is-unlocked" data-map-node="service" style="--x: 8; --y: 22">
+                  <span class="node-ring"></span><span>Service</span>
+                </div>
+                <div class="map-node node-demand" data-map-node="demand" style="--x: 22; --y: 22">
+                  <span class="node-ring"></span><span>Demand</span>
+                </div>
+                <div class="map-node node-fit" data-map-node="fit" style="--x: 22; --y: 51">
+                  <span class="node-ring"></span><span>Fit</span>
+                </div>
+                <div class="map-node node-capacity" data-map-node="capacity" style="--x: 39; --y: 51">
+                  <span class="node-ring"></span><span>Capacity</span>
+                </div>
+                <div class="map-node node-speed" data-map-node="speed" style="--x: 39; --y: 78">
+                  <span class="node-ring"></span><span>Speed</span>
+                </div>
+                <div class="map-node node-close" data-map-node="close" style="--x: 56; --y: 78">
+                  <span class="node-ring"></span><span>Close</span>
+                </div>
+                <div class="map-node node-target" data-map-node="target" style="--x: 91; --y: 22">
+                  <span class="node-ring"></span><span>Target</span>
+                </div>
+
+                <div class="leak-badge" data-leak-badge hidden>
+                  <span class="mono">LEAK</span>
+                  <strong data-leak-badge-text>Demand</strong>
+                </div>
+              </div>
+
+              <div class="diagnostic-readouts">
+                <div class="readout-card">
+                  <span class="mono muted">CURRENT LEAK</span>
+                  <strong data-current-leak>Pick one break</strong>
+                  <small data-current-leak-copy>The map will flag the first loss point.</small>
+                </div>
+                <div class="readout-card">
+                  <span class="mono muted">TODAY → TARGET</span>
+                  <strong data-gap-label>No target set</strong>
+                  <div class="gap-meter" aria-hidden="true">
+                    <span data-gap-bar></span>
+                  </div>
+                </div>
+                <div class="readout-card arc-card">
+                  <span class="mono muted">GAP FEEL</span>
+                  <svg class="gap-arc" viewBox="0 0 72 72" aria-hidden="true">
+                    <circle class="arc-track" cx="36" cy="36" r="28" />
+                    <circle class="arc-fill" data-gap-arc cx="36" cy="36" r="28" />
+                  </svg>
+                  <strong data-gap-percent>0%</strong>
+                </div>
+              </div>
+            </aside>
+          </div>
+        </div>
+      </section>
+
+      <div class="mini-readout" aria-live="polite">
+        <span class="mono">LEAK MAP</span>
+        <strong data-mini-score>00</strong>
+        <em data-mini-leak>Pick the first break</em>
+      </div>
+    </main>
+
+    <style is:global>
+      @font-face {
+        font-family: "Inter";
+        src: url("/fonts/inter-variable-v1.woff2") format("woff2");
+        font-weight: 300 900;
+        font-display: swap;
+      }
+
+      @font-face {
+        font-family: "JetBrains Mono";
+        src: url("/fonts/jetbrains-mono-variable-v1.woff2") format("woff2");
+        font-weight: 300 700;
+        font-display: swap;
+      }
+
+      :root {
+        color-scheme: dark;
+        --canvas: #050507;
+        --yellow: #F0FF00;
+        --panel-1: #0b0b0f;
+        --panel-2: #121217;
+        --panel-3: #18181d;
+        --line: rgba(255, 255, 255, 0.08);
+        --line-y: rgba(240, 255, 0, 0.1);
+        --text: #f5f5f5;
+        --text-soft: #d7d7dc;
+        --muted: #8d8d94;
+        --dim: #56565d;
+        --ease: cubic-bezier(0.2, 0.8, 0.2, 1);
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      html,
+      body {
+        min-height: 100%;
+        margin: 0;
+        background: var(--canvas);
+        color: var(--text);
+        font-family: "Inter", Arial, sans-serif;
+      }
+
+      body {
+        overflow-x: hidden;
+      }
+
+      button,
+      input {
+        font: inherit;
+      }
+
+      button {
+        cursor: pointer;
+      }
+
+      .prototype {
+        min-height: 100svh;
+        position: relative;
+        isolation: isolate;
+        background:
+          linear-gradient(115deg, rgba(255, 255, 255, 0.03), transparent 38%),
+          linear-gradient(180deg, var(--canvas), #0b0b0f 58%, var(--canvas));
+      }
+
+      .prototype::before {
+        content: "";
+        position: fixed;
+        inset: 0;
+        z-index: -1;
+        pointer-events: none;
+        background:
+          linear-gradient(rgba(255, 255, 255, 0.025) 1px, transparent 1px),
+          linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+        background-size: 64px 64px;
+        mask-image: linear-gradient(180deg, rgba(255, 255, 255, 0.4), transparent 70%);
+      }
+
+      .mono {
+        font-family: "JetBrains Mono", monospace;
+        text-transform: uppercase;
+      }
+
+      .welcome-screen,
+      .cockpit {
+        min-height: 100svh;
+        display: none;
+      }
+
+      .welcome-screen.is-active,
+      .cockpit.is-active {
+        display: block;
+      }
+
+      .welcome-grid {
+        width: min(1480px, 100%);
+        min-height: 100svh;
+        margin: 0 auto;
+        padding: clamp(24px, 4vw, 52px);
+        display: grid;
+        grid-template-columns: minmax(0, 0.82fr) minmax(500px, 1.18fr);
+        gap: clamp(24px, 4vw, 64px);
+        align-items: center;
+      }
+
+      .welcome-copy {
+        max-width: 650px;
+      }
+
+      .eyebrow,
+      .step-eyebrow,
+      .panel-kicker,
+      .muted {
+        margin: 0;
+        color: var(--muted);
+        font-size: 0.72rem;
+        font-weight: 650;
+      }
+
+      .welcome-copy h1 {
+        margin: 22px 0 18px;
+        font-size: clamp(3.2rem, 6.3vw, 7.8rem);
+        line-height: 0.88;
+        font-weight: 850;
+        letter-spacing: 0;
+      }
+
+      .welcome-copy h1 span {
+        color: var(--yellow);
+        text-shadow: 0 0 30px rgba(240, 255, 0, 0.2);
+      }
+
+      .welcome-sub {
+        max-width: 560px;
+        margin: 0 0 32px;
+        color: var(--text-soft);
+        font-size: clamp(1.02rem, 1.25vw, 1.2rem);
+        line-height: 1.55;
+      }
+
+      .primary-action,
+      .next-action,
+      .ghost-action {
+        min-height: 48px;
+        border: 1px solid transparent;
+        border-radius: 8px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 12px;
+        padding: 0 20px;
+        font-weight: 800;
+        transition:
+          transform 180ms var(--ease),
+          border-color 180ms var(--ease),
+          background 180ms var(--ease),
+          opacity 180ms var(--ease);
+      }
+
+      .primary-action,
+      .next-action {
+        background: var(--yellow);
+        color: var(--canvas);
+        box-shadow:
+          0 0 0 1px rgba(240, 255, 0, 0.18),
+          0 18px 44px rgba(240, 255, 0, 0.14);
+      }
+
+      .primary-action:hover,
+      .next-action:hover {
+        transform: translateY(-1px);
+      }
+
+      .primary-action.compact {
+        min-height: 44px;
+      }
+
+      .ghost-action {
+        background: rgba(255, 255, 255, 0.04);
+        color: var(--text-soft);
+        border-color: rgba(255, 255, 255, 0.08);
+      }
+
+      .next-action:disabled {
+        opacity: 0.4;
+        cursor: not-allowed;
+        transform: none;
+      }
+
+      .map-panel {
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        background:
+          linear-gradient(180deg, rgba(255, 255, 255, 0.05), transparent 19%),
+          var(--panel-1);
+        box-shadow:
+          inset 0 1px 0 rgba(255, 255, 255, 0.08),
+          0 22px 70px rgba(5, 5, 7, 0.62);
+        overflow: hidden;
+      }
+
+      .map-head {
+        min-height: 90px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 18px;
+        padding: 20px 22px 16px;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+      }
+
+      .map-head h2 {
+        margin: 7px 0 0;
+        font-size: clamp(1.2rem, 1.55vw, 1.65rem);
+        line-height: 1;
+      }
+
+      .score-card {
+        min-width: 92px;
+        border: 1px solid rgba(240, 255, 0, 0.12);
+        border-radius: 8px;
+        padding: 10px 12px;
+        text-align: right;
+        background: rgba(240, 255, 0, 0.035);
+      }
+
+      .score-card span {
+        display: block;
+        color: var(--muted);
+        font-size: 0.64rem;
+      }
+
+      .score-card strong {
+        display: block;
+        color: var(--yellow);
+        font-family: "JetBrains Mono", monospace;
+        font-size: 2rem;
+        line-height: 0.96;
+        font-weight: 700;
+      }
+
+      .map-canvas {
+        position: relative;
+        margin: 18px;
+        min-height: 460px;
+        border: 1px solid rgba(255, 255, 255, 0.06);
+        border-radius: 8px;
+        background:
+          radial-gradient(circle, rgba(255, 255, 255, 0.08) 1px, transparent 1px),
+          linear-gradient(180deg, rgba(255, 255, 255, 0.03), rgba(255, 255, 255, 0.01)),
+          var(--panel-2);
+        background-size: 18px 18px, 100% 100%, 100% 100%;
+        box-shadow:
+          inset 0 1px 0 rgba(255, 255, 255, 0.08),
+          inset 0 -24px 60px rgba(5, 5, 7, 0.5);
+        overflow: hidden;
+      }
+
+      .pipe-svg {
+        position: absolute;
+        inset: 5%;
+        width: 90%;
+        height: 90%;
+        overflow: visible;
+      }
+
+      .base-pipe,
+      .active-pipe,
+      .target-pipe {
+        fill: none;
+        vector-effect: non-scaling-stroke;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+      }
+
+      .base-pipe {
+        stroke: rgba(255, 255, 255, 0.14);
+        stroke-width: 2;
+      }
+
+      .active-pipe {
+        stroke: var(--yellow);
+        stroke-width: 2.4;
+        stroke-dasharray: 340;
+        stroke-dashoffset: 340;
+        opacity: 0;
+        filter: drop-shadow(0 0 10px rgba(240, 255, 0, 0.34));
+      }
+
+      .target-pipe {
+        stroke: var(--yellow);
+        stroke-width: 3.1;
+        stroke-dasharray: 90;
+        stroke-dashoffset: 90;
+        opacity: 0;
+      }
+
+      .live-canvas.has-trace .active-pipe {
+        animation: tracePipe 700ms var(--ease) forwards;
+      }
+
+      .live-canvas.has-target .target-pipe {
+        animation: tracePipe 550ms var(--ease) forwards;
+      }
+
+      .map-node {
+        --node-size: 58px;
+        position: absolute;
+        left: calc(var(--x) * 1%);
+        top: calc(var(--y) * 1%);
+        width: var(--node-size);
+        min-height: 72px;
+        transform: translate(-50%, -50%);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: flex-start;
+        gap: 8px;
+        color: var(--muted);
+        text-align: center;
+        font-family: "JetBrains Mono", monospace;
+        font-size: 0.68rem;
+        font-weight: 650;
+        text-transform: uppercase;
+        transition:
+          color 180ms var(--ease),
+          opacity 180ms var(--ease),
+          transform 220ms var(--ease);
+      }
+
+      .node-ring {
+        width: 34px;
+        height: 34px;
+        border-radius: 50%;
+        border: 1px solid rgba(255, 255, 255, 0.18);
+        background: rgba(5, 5, 7, 0.62);
+        box-shadow:
+          inset 0 0 0 7px rgba(255, 255, 255, 0.03),
+          0 0 0 4px rgba(255, 255, 255, 0.02);
+        transition:
+          border-color 180ms var(--ease),
+          background 180ms var(--ease),
+          box-shadow 180ms var(--ease);
+      }
+
+      .map-node.is-unlocked {
+        color: var(--text-soft);
+      }
+
+      .map-node.is-unlocked .node-ring {
+        border-color: rgba(255, 255, 255, 0.38);
+        background: rgba(255, 255, 255, 0.06);
+      }
+
+      .map-node.is-dim {
+        opacity: 0.36;
+      }
+
+      .map-node.is-leak {
+        color: var(--yellow);
+        transform: translate(-50%, -50%) scale(1.03);
+      }
+
+      .map-node.is-leak .node-ring {
+        border-color: var(--yellow);
+        background: rgba(240, 255, 0, 0.18);
+        box-shadow:
+          inset 0 0 0 8px rgba(240, 255, 0, 0.08),
+          0 0 0 9px rgba(240, 255, 0, 0.07),
+          0 0 28px rgba(240, 255, 0, 0.38);
+        animation: leakPulse 720ms var(--ease);
+      }
+
+      .map-node.is-target {
+        color: var(--yellow);
+      }
+
+      .map-node.is-target .node-ring {
+        border-color: rgba(240, 255, 0, 0.8);
+        box-shadow:
+          inset 0 0 0 7px rgba(240, 255, 0, 0.07),
+          0 0 28px rgba(240, 255, 0, 0.22);
+      }
+
+      .leak-badge {
+        position: absolute;
+        right: 18px;
+        bottom: 18px;
+        min-width: 170px;
+        border: 1px solid rgba(240, 255, 0, 0.18);
+        border-radius: 8px;
+        padding: 12px 14px;
+        background: rgba(5, 5, 7, 0.76);
+        box-shadow: 0 0 32px rgba(240, 255, 0, 0.1);
+      }
+
+      .leak-badge span {
+        display: block;
+        color: var(--muted);
+        font-size: 0.64rem;
+      }
+
+      .leak-badge strong {
+        display: block;
+        margin-top: 4px;
+        color: var(--yellow);
+      }
+
+      .map-foot,
+      .diagnostic-readouts {
+        display: grid;
+        gap: 12px;
+        padding: 0 18px 18px;
+      }
+
+      .map-foot {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .map-foot > div,
+      .readout-card {
+        border: 1px solid rgba(255, 255, 255, 0.07);
+        border-radius: 8px;
+        padding: 14px;
+        background: rgba(255, 255, 255, 0.035);
+      }
+
+      .map-foot strong,
+      .readout-card strong {
+        display: block;
+        margin-top: 7px;
+        color: var(--text);
+        font-size: 0.96rem;
+      }
+
+      .readout-card small {
+        display: block;
+        margin-top: 8px;
+        color: var(--muted);
+        line-height: 1.35;
+      }
+
+      .diagnostic-readouts {
+        grid-template-columns: 1.05fr 1.05fr 0.75fr;
+      }
+
+      .gap-meter {
+        height: 8px;
+        margin-top: 12px;
+        border-radius: 999px;
+        background: rgba(255, 255, 255, 0.08);
+        overflow: hidden;
+      }
+
+      .gap-meter span {
+        display: block;
+        width: 0%;
+        height: 100%;
+        border-radius: inherit;
+        background: var(--yellow);
+        box-shadow: 0 0 20px rgba(240, 255, 0, 0.32);
+        transition: width 260ms var(--ease);
+      }
+
+      .arc-card {
+        position: relative;
+        min-height: 116px;
+      }
+
+      .gap-arc {
+        width: 66px;
+        height: 66px;
+        margin-top: 9px;
+        transform: rotate(-90deg);
+      }
+
+      .arc-track,
+      .arc-fill {
+        fill: none;
+        stroke-width: 7;
+      }
+
+      .arc-track {
+        stroke: rgba(255, 255, 255, 0.08);
+      }
+
+      .arc-fill {
+        stroke: var(--yellow);
+        stroke-linecap: round;
+        stroke-dasharray: 176;
+        stroke-dashoffset: 176;
+        filter: drop-shadow(0 0 8px rgba(240, 255, 0, 0.36));
+        transition: stroke-dashoffset 260ms var(--ease);
+      }
+
+      .arc-card strong[data-gap-percent] {
+        position: absolute;
+        right: 14px;
+        bottom: 15px;
+        color: var(--yellow);
+        font-family: "JetBrains Mono", monospace;
+      }
+
+      .cockpit-shell {
+        width: min(1500px, 100%);
+        margin: 0 auto;
+        min-height: 100svh;
+        padding: clamp(14px, 2vw, 24px);
+        display: grid;
+        grid-template-rows: auto minmax(0, 1fr);
+        gap: 14px;
+      }
+
+      .progress-rail {
+        min-height: 52px;
+        display: grid;
+        grid-template-columns: repeat(7, minmax(0, 1fr));
+        border: 1px solid rgba(255, 255, 255, 0.07);
+        border-radius: 8px;
+        overflow: hidden;
+        background: rgba(255, 255, 255, 0.035);
+        box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.06);
+      }
+
+      .rail-step {
+        min-width: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        padding: 0 9px;
+        color: var(--dim);
+        font-family: "JetBrains Mono", monospace;
+        font-size: clamp(0.58rem, 0.74vw, 0.72rem);
+        font-weight: 650;
+        text-transform: uppercase;
+        border-right: 1px solid rgba(255, 255, 255, 0.055);
+      }
+
+      .rail-step:last-child {
+        border-right: 0;
+      }
+
+      .rail-dot {
+        width: 8px;
+        height: 8px;
+        flex: 0 0 auto;
+        border-radius: 50%;
+        border: 1px solid currentColor;
+        box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.02);
+      }
+
+      .rail-step.is-done {
+        color: var(--muted);
+      }
+
+      .rail-step.is-active {
+        color: var(--yellow);
+        background: rgba(240, 255, 0, 0.045);
+      }
+
+      .rail-step.is-active .rail-dot {
+        background: var(--yellow);
+        box-shadow: 0 0 18px rgba(240, 255, 0, 0.55);
+      }
+
+      .cockpit-grid {
+        min-height: 0;
+        display: grid;
+        grid-template-columns: minmax(380px, 0.42fr) minmax(520px, 0.58fr);
+        gap: 14px;
+      }
+
+      .question-pane {
+        min-height: 0;
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        border-radius: 8px;
+        background:
+          linear-gradient(180deg, rgba(255, 255, 255, 0.05), transparent 22%),
+          var(--panel-1);
+        box-shadow:
+          inset 0 1px 0 rgba(255, 255, 255, 0.08),
+          0 22px 70px rgba(5, 5, 7, 0.5);
+      }
+
+      .question-card {
+        height: 100%;
+        min-height: 0;
+        padding: clamp(18px, 2.35vh, 28px);
+        display: flex;
+        flex-direction: column;
+        gap: clamp(12px, 1.6vh, 18px);
+      }
+
+      .question-card[hidden] {
+        display: none;
+      }
+
+      .question-head h2 {
+        max-width: 680px;
+        margin: 8px 0 9px;
+        font-size: clamp(2rem, 3.4vw, 4.25rem);
+        line-height: 0.96;
+        font-weight: 850;
+        letter-spacing: 0;
+      }
+
+      .question-head p:not(.step-eyebrow) {
+        margin: 0;
+        color: var(--text-soft);
+        font-size: clamp(0.95rem, 1vw, 1.06rem);
+        line-height: 1.4;
+      }
+
+      .leak-options {
+        min-height: 0;
+        display: grid;
+        gap: clamp(8px, 1vh, 12px);
+      }
+
+      .leak-option {
+        min-height: clamp(66px, 9.2vh, 88px);
+        width: 100%;
+        display: grid;
+        grid-template-columns: 52px minmax(0, 1fr);
+        gap: 12px;
+        align-items: center;
+        padding: 10px 12px;
+        border: 1px solid rgba(255, 255, 255, 0.075);
+        border-radius: 8px;
+        background:
+          linear-gradient(180deg, rgba(255, 255, 255, 0.045), rgba(255, 255, 255, 0.018)),
+          var(--panel-2);
+        color: var(--text);
+        text-align: left;
+        transition:
+          transform 180ms var(--ease),
+          border-color 180ms var(--ease),
+          background 180ms var(--ease),
+          opacity 180ms var(--ease);
+      }
+
+      .leak-option:hover {
+        transform: translateY(-1px);
+        border-color: rgba(240, 255, 0, 0.2);
+      }
+
+      .leak-option.is-selected {
+        border-color: rgba(240, 255, 0, 0.55);
+        background:
+          linear-gradient(180deg, rgba(240, 255, 0, 0.08), rgba(240, 255, 0, 0.025)),
+          var(--panel-2);
+        box-shadow:
+          inset 0 1px 0 rgba(240, 255, 0, 0.16),
+          0 0 28px rgba(240, 255, 0, 0.08);
+      }
+
+      .leak-option.is-muted {
+        opacity: 0.58;
+      }
+
+      .option-icon {
+        width: 44px;
+        height: 44px;
+        color: var(--muted);
+      }
+
+      .option-icon line,
+      .option-icon circle,
+      .option-icon polyline {
+        fill: none;
+        stroke: currentColor;
+        stroke-width: 1.7;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+      }
+
+      .leak-option.is-selected .option-icon {
+        color: var(--yellow);
+        filter: drop-shadow(0 0 10px rgba(240, 255, 0, 0.4));
+      }
+
+      .option-copy {
+        min-width: 0;
+        display: grid;
+        gap: 3px;
+      }
+
+      .option-copy strong {
+        display: flex;
+        align-items: baseline;
+        justify-content: space-between;
+        gap: 12px;
+        font-size: clamp(0.95rem, 1vw, 1.08rem);
+      }
+
+      .option-copy strong span {
+        color: var(--muted);
+        font-family: "JetBrains Mono", monospace;
+        font-size: 0.68rem;
+        font-weight: 600;
+        text-transform: uppercase;
+      }
+
+      .option-copy em {
+        color: var(--text-soft);
+        font-style: normal;
+        font-size: 0.88rem;
+        line-height: 1.25;
+      }
+
+      .option-copy small {
+        color: var(--muted);
+        font-family: "JetBrains Mono", monospace;
+        font-size: 0.68rem;
+        text-transform: uppercase;
+      }
+
+      .micro-insight {
+        min-height: 22px;
+        margin: auto 0 0;
+        color: rgba(240, 255, 0, 0.78);
+        font-size: 0.72rem;
+      }
+
+      .step-actions {
+        display: flex;
+        justify-content: space-between;
+        gap: 12px;
+        padding-top: 2px;
+      }
+
+      .target-dials {
+        min-height: 0;
+        display: grid;
+        gap: clamp(10px, 1.25vh, 14px);
+      }
+
+      .dial-card {
+        border: 1px solid rgba(255, 255, 255, 0.075);
+        border-radius: 8px;
+        padding: clamp(12px, 1.45vh, 16px);
+        background:
+          linear-gradient(180deg, rgba(255, 255, 255, 0.045), rgba(255, 255, 255, 0.018)),
+          var(--panel-2);
+      }
+
+      .dial-top {
+        display: flex;
+        align-items: baseline;
+        justify-content: space-between;
+        gap: 14px;
+        margin-bottom: 10px;
+      }
+
+      .dial-top span,
+      .dial-card label span {
+        color: var(--muted);
+        font-size: 0.64rem;
+        font-weight: 650;
+      }
+
+      .dial-top strong {
+        font-size: 1.02rem;
+      }
+
+      .preset-row {
+        display: grid;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: 8px;
+        margin-bottom: 10px;
+      }
+
+      .preset-row button {
+        min-height: 36px;
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        border-radius: 8px;
+        background: rgba(255, 255, 255, 0.035);
+        color: var(--text-soft);
+        font-family: "JetBrains Mono", monospace;
+        font-size: 0.76rem;
+        font-weight: 700;
+        transition:
+          border-color 160ms var(--ease),
+          background 160ms var(--ease),
+          color 160ms var(--ease);
+      }
+
+      .preset-row button:hover,
+      .preset-row button.is-selected {
+        border-color: rgba(240, 255, 0, 0.5);
+        background: rgba(240, 255, 0, 0.09);
+        color: var(--yellow);
+      }
+
+      .dial-card label {
+        display: grid;
+        gap: 6px;
+      }
+
+      .dial-card input {
+        width: 100%;
+        min-height: 38px;
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        border-radius: 8px;
+        background: rgba(5, 5, 7, 0.55);
+        color: var(--text);
+        outline: none;
+        padding: 0 11px;
+      }
+
+      .dial-card input:focus {
+        border-color: rgba(240, 255, 0, 0.48);
+        box-shadow: 0 0 0 3px rgba(240, 255, 0, 0.08);
+      }
+
+      .live-map {
+        min-height: 0;
+        display: grid;
+        grid-template-rows: auto minmax(0, 1fr) auto;
+      }
+
+      .live-map .map-canvas {
+        min-height: 0;
+        height: 100%;
+        margin-bottom: 12px;
+      }
+
+      .mini-readout {
+        display: none;
+      }
+
+      @keyframes tracePipe {
+        from {
+          opacity: 0;
+          stroke-dashoffset: 340;
+        }
+        to {
+          opacity: 1;
+          stroke-dashoffset: 0;
+        }
+      }
+
+      @keyframes leakPulse {
+        0% {
+          box-shadow:
+            inset 0 0 0 8px rgba(240, 255, 0, 0.06),
+            0 0 0 0 rgba(240, 255, 0, 0.22),
+            0 0 18px rgba(240, 255, 0, 0.22);
+        }
+        100% {
+          box-shadow:
+            inset 0 0 0 8px rgba(240, 255, 0, 0.08),
+            0 0 0 14px rgba(240, 255, 0, 0),
+            0 0 28px rgba(240, 255, 0, 0.38);
+        }
+      }
+
+      @media (min-width: 960px) {
+        body {
+          overflow: hidden;
+        }
+
+        .welcome-screen,
+        .cockpit {
+          height: 100svh;
+          overflow: hidden;
+        }
+      }
+
+      @media (max-width: 1120px) {
+        .cockpit-grid {
+          grid-template-columns: minmax(350px, 0.47fr) minmax(460px, 0.53fr);
+        }
+
+        .diagnostic-readouts {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+
+        .arc-card {
+          display: none;
+        }
+      }
+
+      @media (max-width: 959px) {
+        body {
+          overflow: auto;
+        }
+
+        .welcome-grid {
+          grid-template-columns: 1fr;
+          gap: 20px;
+          align-items: start;
+          padding: 22px 16px 96px;
+        }
+
+        .welcome-copy h1 {
+          font-size: clamp(3rem, 16vw, 5.2rem);
+        }
+
+        .teaser-map {
+          min-height: 520px;
+        }
+
+        .map-canvas {
+          min-height: 360px;
+        }
+
+        .cockpit-shell {
+          padding: 12px 12px 96px;
+          display: block;
+        }
+
+        .progress-rail {
+          grid-template-columns: repeat(7, 44px);
+          overflow-x: auto;
+          justify-content: start;
+          margin-bottom: 12px;
+        }
+
+        .rail-step {
+          min-height: 48px;
+        }
+
+        .rail-step span:last-child {
+          display: none;
+        }
+
+        .cockpit-grid {
+          display: block;
+        }
+
+        .question-pane {
+          min-height: auto;
+        }
+
+        .question-card {
+          min-height: auto;
+        }
+
+        .question-head h2 {
+          font-size: clamp(2.35rem, 12vw, 4rem);
+        }
+
+        .leak-option {
+          grid-template-columns: 46px minmax(0, 1fr);
+          min-height: 92px;
+        }
+
+        .option-copy strong {
+          display: grid;
+          gap: 2px;
+        }
+
+        .live-map {
+          display: none;
+        }
+
+        .target-dials {
+          gap: 12px;
+        }
+
+        .target-step .question-head h2 {
+          font-size: clamp(2.2rem, 10.2vw, 3.25rem);
+        }
+
+        .target-step .target-dials {
+          gap: 8px;
+        }
+
+        .target-step .dial-card {
+          padding: 10px 12px;
+        }
+
+        .target-step .dial-top {
+          margin-bottom: 8px;
+        }
+
+        .target-step .dial-top strong {
+          font-size: 0.94rem;
+        }
+
+        .target-step .preset-row {
+          grid-template-columns: repeat(4, minmax(0, 1fr));
+          gap: 6px;
+          margin-bottom: 8px;
+        }
+
+        .target-step .preset-row button {
+          min-height: 32px;
+          font-size: 0.66rem;
+        }
+
+        .target-step .dial-card input {
+          min-height: 34px;
+        }
+
+        .target-step .micro-insight {
+          display: none;
+        }
+
+        .target-step .step-actions {
+          padding-top: 4px;
+        }
+
+        .target-step .primary-action.compact,
+        .target-step .ghost-action {
+          min-height: 38px;
+          padding-inline: 14px;
+        }
+
+        .step-actions {
+          padding-top: 8px;
+        }
+
+        .mini-readout {
+          position: fixed;
+          left: 10px;
+          right: 10px;
+          bottom: 10px;
+          z-index: 5;
+          min-height: 56px;
+          display: grid;
+          grid-template-columns: auto auto minmax(0, 1fr);
+          gap: 12px;
+          align-items: center;
+          border: 1px solid rgba(240, 255, 0, 0.16);
+          border-radius: 8px;
+          padding: 10px 12px;
+          background: rgba(5, 5, 7, 0.94);
+          box-shadow:
+            inset 0 1px 0 rgba(255, 255, 255, 0.08),
+            0 18px 50px rgba(5, 5, 7, 0.65);
+        }
+
+        .mini-readout span {
+          color: var(--muted);
+          font-size: 0.62rem;
+          font-weight: 700;
+        }
+
+        .mini-readout strong {
+          color: var(--yellow);
+          font-family: "JetBrains Mono", monospace;
+          font-size: 1.45rem;
+        }
+
+        .mini-readout em {
+          min-width: 0;
+          color: var(--text-soft);
+          font-style: normal;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          white-space: nowrap;
+        }
+      }
+
+      @media (max-height: 760px) and (min-width: 960px) {
+        .question-card {
+          padding: 16px;
+          gap: 10px;
+        }
+
+        .question-head h2 {
+          font-size: clamp(1.72rem, 3vw, 3.2rem);
+          margin-bottom: 7px;
+        }
+
+        .leak-option {
+          min-height: 62px;
+          padding: 8px 10px;
+        }
+
+        .option-icon {
+          width: 38px;
+          height: 38px;
+        }
+
+        .map-head {
+          min-height: 76px;
+          padding: 15px 18px 12px;
+        }
+
+        .diagnostic-readouts {
+          padding-bottom: 12px;
+        }
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        *,
+        *::before,
+        *::after {
+          animation: none !important;
+          transition: none !important;
+          scroll-behavior: auto !important;
+        }
+      }
+    </style>
+
+    <script is:inline>
+      (() => {
+        const app = document.querySelector("[data-app]");
+        const welcome = document.querySelector('[data-panel="welcome"]');
+        const cockpit = document.querySelector('[data-panel="cockpit"]');
+        const startButton = document.querySelector("[data-start]");
+        const backWelcomeButton = document.querySelector("[data-back-welcome]");
+        const nextTargetButton = document.querySelector("[data-next-target]");
+        const prevLeakButton = document.querySelector("[data-prev-leak]");
+        const finishButton = document.querySelector("[data-finish]");
+        const leakOptions = Array.from(document.querySelectorAll(".leak-option"));
+        const railSteps = Array.from(document.querySelectorAll(".rail-step"));
+        const q5Step = document.querySelector('[data-step="q5"]');
+        const q7Step = document.querySelector('[data-step="q7"]');
+        const q5Insight = document.querySelector("[data-q5-insight]");
+        const q7Insight = document.querySelector("[data-q7-insight]");
+        const liveCanvas = document.querySelector("[data-live-canvas]");
+        const scoreOutput = document.querySelector("[data-score-output]");
+        const miniScore = document.querySelector("[data-mini-score]");
+        const miniLeak = document.querySelector("[data-mini-leak]");
+        const currentLeak = document.querySelector("[data-current-leak]");
+        const currentLeakCopy = document.querySelector("[data-current-leak-copy]");
+        const mapTitle = document.querySelector("[data-map-title]");
+        const leakBadge = document.querySelector("[data-leak-badge]");
+        const leakBadgeText = document.querySelector("[data-leak-badge-text]");
+        const mapNodes = Array.from(document.querySelectorAll("[data-map-node]"));
+        const gapBar = document.querySelector("[data-gap-bar]");
+        const gapArc = document.querySelector("[data-gap-arc]");
+        const gapLabel = document.querySelector("[data-gap-label]");
+        const gapPercent = document.querySelector("[data-gap-percent]");
+        const targetInputs = Array.from(document.querySelectorAll("[data-target-input]"));
+        const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+        const state = {
+          leak: null,
+          leakNode: null,
+          leakLabel: "Pick the first break",
+          score: 0,
+          target: {
+            revenue: "",
+            team: "",
+            hours: "",
+          },
+        };
+
+        const copyByNode = {
+          demand: "Calendar gaps show up before the work does.",
+          fit: "Bad-fit leads waste quotes and drain time.",
+          capacity: "The schedule is the ceiling before demand is.",
+          speed: "Fast competitors win while the lead waits.",
+          close: "The money is in the sales gap.",
+        };
+
+        function showPanel(name) {
+          const isWelcome = name === "welcome";
+          welcome.classList.toggle("is-active", isWelcome);
+          cockpit.classList.toggle("is-active", !isWelcome);
+          cockpit.setAttribute("aria-hidden", String(isWelcome));
+          app.dataset.screen = name;
+        }
+
+        function showStep(step) {
+          const showTarget = step === "q7";
+          q5Step.hidden = showTarget;
+          q7Step.hidden = !showTarget;
+          q5Step.classList.toggle("is-active", !showTarget);
+          q7Step.classList.toggle("is-active", showTarget);
+          updateRail(showTarget ? "target" : "leak");
+          liveCanvas.classList.toggle("has-target", showTarget);
+          mapNodes
+            .filter((node) => node.dataset.mapNode === "target")
+            .forEach((node) => node.classList.toggle("is-target", showTarget));
+        }
+
+        function updateRail(activeKey) {
+          railSteps.forEach((step) => {
+            const key = step.dataset.rail;
+            const isActive = key === activeKey;
+            step.classList.toggle("is-active", isActive);
+            if (activeKey === "target") {
+              step.classList.toggle("is-done", key !== "target");
+            } else {
+              step.classList.toggle(
+                "is-done",
+                ["service", "demand", "stage", "owner-time"].includes(key),
+              );
+            }
+          });
+        }
+
+        function animateScore(to) {
+          const from = state.score;
+          const next = Number(to) || 0;
+          state.score = next;
+
+          if (reducedMotion) {
+            writeScore(next);
+            return;
+          }
+
+          const start = performance.now();
+          const duration = 420;
+
+          function frame(now) {
+            const pct = Math.min(1, (now - start) / duration);
+            const eased = 1 - Math.pow(1 - pct, 3);
+            const value = Math.round(from + (next - from) * eased);
+            writeScore(value);
+            if (pct < 1) requestAnimationFrame(frame);
+          }
+
+          requestAnimationFrame(frame);
+        }
+
+        function writeScore(value) {
+          const padded = String(value).padStart(2, "0");
+          scoreOutput.textContent = padded;
+          miniScore.textContent = padded;
+        }
+
+        function selectLeak(button) {
+          const value = button.dataset.value;
+          const node = button.dataset.node;
+          const label = button.dataset.label;
+          const score = Number(button.dataset.score);
+
+          state.leak = value;
+          state.leakNode = node;
+          state.leakLabel = label;
+
+          leakOptions.forEach((option) => {
+            const selected = option === button;
+            option.classList.toggle("is-selected", selected);
+            option.classList.toggle("is-muted", !selected);
+            option.setAttribute("aria-checked", String(selected));
+          });
+
+          mapNodes.forEach((mapNode) => {
+            const key = mapNode.dataset.mapNode;
+            const isLeak = key === node;
+            const unlocked = isLeak || key === "service";
+            mapNode.classList.toggle("is-leak", isLeak);
+            mapNode.classList.toggle("is-unlocked", unlocked);
+            mapNode.classList.toggle("is-dim", !unlocked && key !== "target");
+          });
+
+          liveCanvas.classList.remove("has-trace");
+          void liveCanvas.offsetWidth;
+          liveCanvas.classList.add("has-trace");
+
+          leakBadge.hidden = false;
+          leakBadgeText.textContent = label.replace(" leak", "");
+          currentLeak.textContent = label;
+          currentLeakCopy.textContent = copyByNode[node];
+          mapTitle.textContent = `${label} found`;
+          miniLeak.textContent = label;
+          q5Insight.textContent = button.dataset.insight;
+          nextTargetButton.disabled = false;
+          animateScore(score);
+          updateTargetGap();
+        }
+
+        function setPreset(button) {
+          const card = button.closest("[data-dial]");
+          const key = card.dataset.dial;
+          const input = card.querySelector("[data-target-input]");
+          const value = button.dataset.preset;
+
+          card.querySelectorAll("[data-preset]").forEach((preset) => {
+            preset.classList.toggle("is-selected", preset === button);
+          });
+
+          input.value = value;
+          state.target[key] = value;
+          updateTargetGap();
+        }
+
+        function updateTargetGap() {
+          const filled = Object.values(state.target).filter(Boolean).length;
+          const pct = Math.round((filled / 3) * 100);
+          const arcOffset = 176 - 176 * (pct / 100);
+          const scoreLift = state.leak ? filled * 10 : 0;
+
+          gapBar.style.width = `${pct}%`;
+          gapArc.style.strokeDashoffset = String(arcOffset);
+          gapPercent.textContent = `${pct}%`;
+          gapLabel.textContent = filled ? `${filled} of 3 targets set` : "No target set";
+
+          if (filled > 0) {
+            q7Insight.textContent = "Target gap is now visible.";
+            liveCanvas.classList.add("has-target");
+            mapNodes
+              .filter((node) => node.dataset.mapNode === "target")
+              .forEach((node) => node.classList.add("is-target", "is-unlocked"));
+          } else {
+            q7Insight.textContent = "Each target tightens the gap.";
+          }
+
+          if (state.leak) {
+            const selected = leakOptions.find((option) => option.dataset.value === state.leak);
+            const baseScore = selected ? Number(selected.dataset.score) : state.score;
+            animateScore(Math.min(88, baseScore + scoreLift));
+          }
+        }
+
+        startButton.addEventListener("click", () => {
+          showPanel("cockpit");
+          showStep("q5");
+        });
+
+        backWelcomeButton.addEventListener("click", () => {
+          showPanel("welcome");
+        });
+
+        nextTargetButton.addEventListener("click", () => {
+          showStep("q7");
+        });
+
+        prevLeakButton.addEventListener("click", () => {
+          showStep("q5");
+        });
+
+        finishButton.addEventListener("click", () => {
+          const finalScore = Math.max(state.score, 72);
+          mapTitle.textContent = "Leak Map ready";
+          q7Insight.textContent = "Map ready. Your first leak and target gap are set.";
+          miniLeak.textContent = "Leak Map ready";
+          animateScore(finalScore);
+        });
+
+        leakOptions.forEach((button) => {
+          button.addEventListener("click", () => selectLeak(button));
+        });
+
+        document.querySelectorAll("[data-preset]").forEach((button) => {
+          button.addEventListener("click", () => setPreset(button));
+        });
+
+        targetInputs.forEach((input) => {
+          input.addEventListener("input", () => {
+            const key = input.dataset.targetInput;
+            state.target[key] = input.value.trim();
+            const card = input.closest("[data-dial]");
+            card.querySelectorAll("[data-preset]").forEach((preset) => preset.classList.remove("is-selected"));
+            updateTargetGap();
+          });
+        });
+      })();
+    </script>
+  </body>
+</html>
