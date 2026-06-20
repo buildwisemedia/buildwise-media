@@ -19,13 +19,14 @@ export const prerender = true;
         <div class="welcome-grid">
           <div class="welcome-copy">
             <p class="mono eyebrow">FOR SERVICE BUSINESSES · ~2 MINUTES · NO EMAIL TO SEE YOUR RESULT</p>
-            <h1 id="welcome-title">
+            <!-- @bwm-exp-slot: hero-headline - promise framing -->
+            <h1 id="welcome-title" data-bwm-exp-slot="hero-headline">
               Find the leak that's keeping <span>growth on your desk.</span>
             </h1>
             <p class="welcome-sub">
               Build your map as you answer. See where growth gets stuck before you book.
             </p>
-            <button class="primary-action" type="button" data-start>
+            <button class="primary-action" type="button" data-start data-cta-source="leakmap-hero">
               <span>Start my Leak Map</span>
               <span aria-hidden="true">→</span>
             </button>
@@ -571,7 +572,7 @@ export const prerender = true;
 
                 <div class="step-actions">
                   <button class="ghost-action" type="button" data-prev-step="q6">Back</button>
-                  <button class="primary-action compact" type="button" data-finish>
+                  <button class="primary-action compact" type="button" data-finish data-cta-source="leakmap-finish">
                     <span>See My Leak Map</span>
                     <span aria-hidden="true">→</span>
                   </button>
@@ -687,17 +688,23 @@ export const prerender = true;
               <div class="install-list" data-install-list></div>
             </section>
 
-            <section class="reveal-cta" aria-label="Book the next step">
+            <!-- @bwm-exp-slot: hero-cta - label/position/destination -->
+            <section class="reveal-cta" aria-label="Book the next step" data-bwm-exp-slot="hero-cta">
               <p class="mono panel-kicker">NEXT STEP</p>
               <h3>Close the first leak in 30 days.</h3>
               <p class="cta-bridge" data-cta-bridge>We build and run the system that closes this leak in 30 days.</p>
+              <!-- @bwm-exp-slot: proof-module - proof composition -->
               <!-- @cta-proof: K to M+ -->
-              <p class="cta-proof" data-cta-proof data-proof-win="K to M+">An owner we work with went from $300K to $10M+ with a custom-built system for this same leak.</p>
-              <a class="primary-action" href="/book">See If We're a Fit</a>
-              <label class="email-capture">
-                <span class="mono">SEND THE FULL MAP TO MY BUSINESS EMAIL</span>
-                <input type="email" inputmode="email" autocomplete="email" placeholder="you@company.com" />
-              </label>
+              <p class="cta-proof" data-cta-proof data-proof-win="K to M+" data-bwm-exp-slot="proof-module">An owner we work with went from $300K to $10M+ with a custom-built system for this same leak.</p>
+              <a class="primary-action" href="/book" data-book-cta data-cta-source="leakmap-reveal-final">See If We're a Fit</a>
+              <form class="email-capture" data-email-capture novalidate>
+                <label for="leakmap-email" class="mono">Email me the full map</label>
+                <div class="email-row">
+                  <input id="leakmap-email" name="email" type="email" inputmode="email" autocomplete="email" placeholder="you@company.com" aria-describedby="leakmap-email-status" />
+                  <button type="submit">Send</button>
+                </div>
+                <p id="leakmap-email-status" class="email-status" data-email-status aria-live="polite"></p>
+              </form>
             </section>
 
             <section class="map-panel reveal-map-panel" aria-label="Completed Revenue Leak Map">
@@ -2048,10 +2055,17 @@ export const prerender = true;
         margin-top: 14px;
       }
 
-      .email-capture span {
+      .email-capture label {
         color: var(--muted);
         font-size: 0.62rem;
         font-weight: 700;
+      }
+
+      .email-row {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) auto;
+        gap: 8px;
+        align-items: stretch;
       }
 
       .email-capture input {
@@ -2068,6 +2082,42 @@ export const prerender = true;
       .email-capture input:focus {
         border-color: rgba(240, 255, 0, 0.5);
         box-shadow: 0 0 0 3px rgba(240, 255, 0, 0.08);
+      }
+
+      .email-capture button {
+        min-height: 42px;
+        border: 1px solid rgba(240, 255, 0, 0.35);
+        border-radius: 8px;
+        background: rgba(240, 255, 0, 0.08);
+        color: var(--yellow);
+        cursor: pointer;
+        font: 800 0.72rem/1 "JetBrains Mono", monospace;
+        letter-spacing: 0;
+        padding: 0 14px;
+        text-transform: uppercase;
+      }
+
+      .email-capture button:disabled {
+        cursor: not-allowed;
+        opacity: 0.58;
+      }
+
+      .email-status {
+        min-height: 18px;
+        margin: 0;
+        color: var(--text-soft);
+        font-size: 0.78rem;
+        line-height: 1.25;
+      }
+
+      .email-capture.has-error input {
+        border-color: rgba(240, 255, 0, 0.68);
+      }
+
+      @media (max-width: 420px) {
+        .email-row {
+          grid-template-columns: 1fr;
+        }
       }
 
       .prototype[data-screen="reveal"] .mini-readout {
@@ -2809,6 +2859,11 @@ export const prerender = true;
         const revealTargetHours = document.querySelector("[data-reveal-target-hours]");
         const ctaBridge = document.querySelector("[data-cta-bridge]");
         const ctaProof = document.querySelector("[data-cta-proof]");
+        const bookCtas = Array.from(document.querySelectorAll('a[href^="/book"]'));
+        const emailCaptureForm = document.querySelector("[data-email-capture]");
+        const emailInput = document.querySelector("#leakmap-email");
+        const emailStatus = document.querySelector("[data-email-status]");
+        const emailSubmitButton = emailCaptureForm ? emailCaptureForm.querySelector('button[type="submit"]') : null;
         const ctaProofComment = (() => {
           let node = ctaProof && ctaProof.previousSibling;
           while (node) {
@@ -2818,7 +2873,11 @@ export const prerender = true;
           return null;
         })();
         const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+        window.dataLayer = window.dataLayer || [];
 
+        const FORM_ID = "leak-map-prototype";
+        const TOTAL_STEPS = 7;
+        const SUBMIT_ENDPOINT = "/buildwisemedia/fit-diagnostic";
         const STEP_ORDER = ["q1", "q2", "q3", "q4", "q5", "q6", "q7"];
         const RAIL_BY_STEP = {
           q1: "service",
@@ -2926,6 +2985,45 @@ export const prerender = true;
           close: "follow-up leak",
           followup: "follow-up leak",
         };
+        const FREE_EMAIL_DOMAINS = new Set([
+          "gmail.com",
+          "googlemail.com",
+          "yahoo.com",
+          "yahoo.co.uk",
+          "yahoo.ca",
+          "yahoo.com.au",
+          "ymail.com",
+          "rocketmail.com",
+          "hotmail.com",
+          "hotmail.co.uk",
+          "outlook.com",
+          "live.com",
+          "msn.com",
+          "icloud.com",
+          "me.com",
+          "mac.com",
+          "aol.com",
+          "aim.com",
+          "protonmail.com",
+          "proton.me",
+          "pm.me",
+          "gmx.com",
+          "gmx.net",
+          "mail.com",
+          "yandex.com",
+          "yandex.ru",
+          "zoho.com",
+          "hey.com",
+          "fastmail.com",
+          "tutanota.com",
+          "hushmail.com",
+          "inbox.com",
+          "mailinator.com",
+          "guerrillamail.com",
+          "10minutemail.com",
+          "trashmail.com",
+          "dispostable.com",
+        ]);
 
         const state = {
           service: "",
@@ -3242,6 +3340,193 @@ function diagnose(state) {
 window.__leakDiagnose = diagnose;
 
         let currentStep = "q1";
+        let currentStatePayload = null;
+        let diagnosticSubmitted = false;
+        let abandonSent = false;
+        const scrollDepthSent = new Set();
+
+        function trackLeakEvent(name, payload = {}) {
+          const eventPayload = Object.assign({ event: name }, payload);
+          window.dataLayer.push(eventPayload);
+          try {
+            if (typeof window.gtag === "function") {
+              window.gtag("event", name, Object.assign({ transport_type: "beacon" }, payload));
+            }
+          } catch (_error) {}
+          console.log("[LEAKEVT]", name, JSON.stringify(payload));
+        }
+
+        function sendLeakBeacon(payload) {
+          const body = JSON.stringify(payload);
+          if (navigator.sendBeacon) {
+            const sent = navigator.sendBeacon(SUBMIT_ENDPOINT, new Blob([body], { type: "application/json" }));
+            if (sent) return Promise.resolve(true);
+          }
+
+          return fetch(SUBMIT_ENDPOINT, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body,
+            keepalive: true,
+            credentials: "same-origin",
+          })
+            .then(() => true)
+            .catch((error) => {
+              console.warn("[LEAKEVT] beacon fallback failed", error);
+              return false;
+            });
+        }
+
+        function getStepNumber(step = currentStep) {
+          const index = STEP_ORDER.indexOf(step);
+          return index >= 0 ? index + 1 : 1;
+        }
+
+        function getEmailDomain(email) {
+          return String(email || "").trim().toLowerCase().split("@")[1] || "";
+        }
+
+        function isBusinessEmail(email) {
+          const value = String(email || "").trim().toLowerCase();
+          const parts = value.split("@");
+          if (parts.length !== 2 || !parts[0] || !parts[1]) return false;
+          if (!parts[1].includes(".")) return false;
+          return !FREE_EMAIL_DOMAINS.has(parts[1]);
+        }
+
+        function buildStatePayload(ins = {}) {
+          return {
+            service: state.service,
+            leadSources: Array.from(state.leadSources),
+            revenue: state.revenue,
+            revenueLabel: state.revenueLabel,
+            opsRatio: state.opsRatio,
+            bottleneck: state.bottleneck,
+            capacityGaps: Array.from(state.capacityGaps),
+            target: Object.assign({}, state.target),
+            derived_constraint: ins.derived_constraint || "",
+            derived_tag: ins.derived_tag || "",
+            score: Number(state.score) || 0,
+          };
+        }
+
+        function persistStatePayload(payload) {
+          try {
+            sessionStorage.setItem("leakmap_state", JSON.stringify(payload));
+          } catch (_error) {}
+        }
+
+        function updateBookCtas(payload) {
+          const params = new URLSearchParams();
+          params.set("leak", payload.derived_constraint || "");
+          params.set("score", String(payload.score || 0));
+          params.set("service", payload.service || "");
+          params.set("rev", String(payload.revenue || ""));
+          params.set("ops", String(payload.opsRatio || ""));
+          params.set("tag", payload.derived_tag || "");
+          params.set("bottleneck", payload.bottleneck || "");
+          bookCtas.forEach((cta) => {
+            cta.setAttribute("href", `/book?${params.toString()}`);
+          });
+        }
+
+        function submitRevealState(ins) {
+          const payload = buildStatePayload(ins);
+          currentStatePayload = payload;
+          diagnosticSubmitted = true;
+          persistStatePayload(payload);
+          updateBookCtas(payload);
+          trackLeakEvent("diagnostic_submit", Object.assign({
+            form_id: FORM_ID,
+            event_class: "generate_lead",
+          }, payload));
+          sendLeakBeacon(Object.assign({
+            source: FORM_ID,
+            event: "diagnostic_submit",
+            email: "",
+          }, payload));
+        }
+
+        function fireStepComplete(step) {
+          trackLeakEvent("diagnostic_step_complete", {
+            diagnostic_step: getStepNumber(step),
+            total_steps: TOTAL_STEPS,
+            form_id: FORM_ID,
+          });
+        }
+
+        function setEmailStatus(message, mode) {
+          if (!emailStatus || !emailCaptureForm) return;
+          emailStatus.textContent = message;
+          emailCaptureForm.classList.toggle("has-error", mode === "error");
+        }
+
+        function submitEmailCapture(event) {
+          event.preventDefault();
+          const email = emailInput ? emailInput.value.trim() : "";
+          if (!isBusinessEmail(email)) {
+            setEmailStatus("Use a business email, not a free or personal inbox.", "error");
+            return;
+          }
+
+          const payload = currentStatePayload || buildStatePayload();
+          if (emailSubmitButton) emailSubmitButton.disabled = true;
+          setEmailStatus("Sending...", "pending");
+          diagnosticSubmitted = true;
+          sendLeakBeacon(Object.assign({
+            source: FORM_ID,
+            email,
+          }, payload)).then(() => {
+            trackLeakEvent("generate_lead", Object.assign({
+              form_id: FORM_ID,
+              capture_path: "email_full_map",
+              email_domain: getEmailDomain(email),
+            }, payload));
+            setEmailStatus("Sent — check your inbox for the full map.", "success");
+          });
+        }
+
+        function fireAbandon() {
+          if (abandonSent || diagnosticSubmitted) return;
+          abandonSent = true;
+          const payload = {
+            diagnostic_step: getStepNumber(currentStep),
+            total_steps: TOTAL_STEPS,
+            form_id: FORM_ID,
+          };
+          trackLeakEvent("form_step_abandon", payload);
+          sendLeakBeacon(Object.assign({
+            source: FORM_ID,
+            event: "form_step_abandon",
+          }, payload, buildStatePayload()));
+        }
+
+        function getScrollDepth() {
+          const scrolling = document.scrollingElement || document.documentElement;
+          const docMax = Math.max(0, scrolling.scrollHeight - window.innerHeight);
+          const docDepth = docMax ? ((window.scrollY || scrolling.scrollTop) / docMax) * 100 : 0;
+          const activePanel = reveal.classList.contains("is-active")
+            ? reveal
+            : cockpit.classList.contains("is-active")
+              ? cockpit
+              : null;
+          const panelMax = activePanel ? Math.max(0, activePanel.scrollHeight - activePanel.clientHeight) : 0;
+          const panelDepth = panelMax ? (activePanel.scrollTop / panelMax) * 100 : 0;
+          return Math.max(docDepth, panelDepth);
+        }
+
+        function checkScrollDepth() {
+          const depth = getScrollDepth();
+          [25, 50, 75, 90].forEach((mark) => {
+            if (depth >= mark && !scrollDepthSent.has(mark)) {
+              scrollDepthSent.add(mark);
+              trackLeakEvent("scroll_depth", {
+                scroll_depth: mark,
+                form_id: FORM_ID,
+              });
+            }
+          });
+        }
 
         function showPanel(name) {
           const isWelcome = name === "welcome";
@@ -3776,10 +4061,14 @@ window.__leakDiagnose = diagnose;
           revealTargetRevenue.textContent = revenueTarget || "Not set";
           revealTargetTeam.textContent = formatTeamTarget(state.target.team);
           revealTargetHours.textContent = formatHoursTarget(state.target.hours);
+          submitRevealState(ins);
           runRevealJargonGate();
         }
 
         startButton.addEventListener("click", () => {
+          trackLeakEvent("diagnostic_start", {
+            form_id: FORM_ID,
+          });
           showPanel("cockpit");
           showStep("q1");
         });
@@ -3790,7 +4079,11 @@ window.__leakDiagnose = diagnose;
 
         nextButtons.forEach((button) => {
           button.addEventListener("click", () => {
-            if (!button.disabled) showStep(button.dataset.nextStep);
+            if (!button.disabled) {
+              const card = button.closest("[data-step]");
+              if (card) fireStepComplete(card.dataset.step);
+              showStep(button.dataset.nextStep);
+            }
           });
         });
 
@@ -3799,6 +4092,7 @@ window.__leakDiagnose = diagnose;
         });
 
         finishButton.addEventListener("click", () => {
+          fireStepComplete("q7");
           mapTitle.textContent = "Leak Map ready";
           q7Insight.textContent = "Map ready. Your hunch and target gap are set.";
           miniLeak.textContent = "Leak Map ready";
@@ -3812,6 +4106,27 @@ window.__leakDiagnose = diagnose;
           showPanel("cockpit");
           showStep("q7");
         });
+
+        bookCtas.forEach((cta) => {
+          cta.addEventListener("click", () => {
+            trackLeakEvent("cta_click", {
+              cta_source: cta.dataset.ctaSource || "unknown",
+              form_id: FORM_ID,
+            });
+          });
+        });
+
+        if (emailCaptureForm) {
+          emailCaptureForm.addEventListener("submit", submitEmailCapture);
+        }
+
+        window.addEventListener("scroll", checkScrollDepth, { passive: true });
+        cockpit.addEventListener("scroll", checkScrollDepth, { passive: true });
+        reveal.addEventListener("scroll", checkScrollDepth, { passive: true });
+        document.addEventListener("visibilitychange", () => {
+          if (document.visibilityState === "hidden") fireAbandon();
+        });
+        window.addEventListener("pagehide", fireAbandon);
 
         serviceButtons.forEach((button) => {
           button.addEventListener("click", () => selectService(button));
