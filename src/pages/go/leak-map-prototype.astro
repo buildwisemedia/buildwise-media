@@ -110,7 +110,196 @@ export const prerender = true;
 
           <div class="cockpit-grid">
             <section class="question-pane" aria-live="polite">
-              <article class="question-card is-active" data-step="q5">
+              <article class="question-card is-active" data-step="q1">
+                <div class="question-head">
+                  <p class="mono step-eyebrow">01 · SERVICE</p>
+                  <h2>What kind of work do you sell?</h2>
+                  <p>Pick the closest fit. This sets the map context.</p>
+                </div>
+
+                <div class="leak-options chip-options" role="radiogroup" aria-label="Service type">
+                  <button class="leak-option text-option" type="button" role="radio" aria-checked="false" data-service-value="hvac" data-label="HVAC" data-insight="Service mapped: HVAC.">
+                    <span class="option-copy">
+                      <strong>HVAC</strong>
+                      <em>Repair, replacement, maintenance, or comfort work.</em>
+                    </span>
+                  </button>
+                  <button class="leak-option text-option" type="button" role="radio" aria-checked="false" data-service-value="roofing" data-label="Roofing" data-insight="Service mapped: roofing.">
+                    <span class="option-copy">
+                      <strong>Roofing</strong>
+                      <em>Repair, replacement, storm, or exterior work.</em>
+                    </span>
+                  </button>
+                  <button class="leak-option text-option" type="button" role="radio" aria-checked="false" data-service-value="plumbing" data-label="Plumbing" data-insight="Service mapped: plumbing.">
+                    <span class="option-copy">
+                      <strong>Plumbing</strong>
+                      <em>Service calls, installs, emergency, or project work.</em>
+                    </span>
+                  </button>
+                  <button class="leak-option text-option" type="button" role="radio" aria-checked="false" data-service-value="pest" data-label="Pest Control" data-insight="Service mapped: pest control.">
+                    <span class="option-copy">
+                      <strong>Pest Control</strong>
+                      <em>One-time jobs, plans, inspections, or prevention.</em>
+                    </span>
+                  </button>
+                  <button class="leak-option text-option" type="button" role="radio" aria-checked="false" data-service-value="realtor" data-label="Real Estate" data-insight="Service mapped: real estate.">
+                    <span class="option-copy">
+                      <strong>Real Estate</strong>
+                      <em>Listings, buyers, sellers, or local market work.</em>
+                    </span>
+                  </button>
+                  <button class="leak-option text-option" type="button" role="radio" aria-checked="false" data-service-value="concrete" data-label="Concrete" data-insight="Service mapped: concrete.">
+                    <span class="option-copy">
+                      <strong>Concrete</strong>
+                      <em>Flatwork, repair, patios, drives, or crews.</em>
+                    </span>
+                  </button>
+                  <button class="leak-option text-option" type="button" role="radio" aria-checked="false" data-service-value="cleaning" data-label="Cleaning" data-insight="Service mapped: cleaning.">
+                    <span class="option-copy">
+                      <strong>Cleaning</strong>
+                      <em>Homes, offices, turns, deep cleans, or recurring work.</em>
+                    </span>
+                  </button>
+                  <button class="leak-option text-option" type="button" role="radio" aria-checked="false" data-service-value="other" data-label="Other" data-insight="Service mapped: other.">
+                    <span class="option-copy">
+                      <strong>Other</strong>
+                      <em>Use this if the closest fit is not listed.</em>
+                    </span>
+                  </button>
+                </div>
+
+                <p class="mono micro-insight" data-step-insight="q1">Pick a service to light the first node.</p>
+
+                <div class="step-actions">
+                  <button class="ghost-action" type="button" data-back-welcome>Back</button>
+                  <button class="next-action" type="button" data-next-step="q2" disabled>
+                    <span>Map demand</span><span aria-hidden="true">→</span>
+                  </button>
+                </div>
+              </article>
+
+              <article class="question-card" data-step="q2" hidden>
+                <div class="question-head">
+                  <p class="mono step-eyebrow">02 · CHANNELS</p>
+                  <h2>Where do most leads come from today?</h2>
+                  <p>Pick all that matter. The map needs the mix, not a perfect answer.</p>
+                </div>
+
+                <div class="leak-options chip-options multi-options" role="group" aria-label="Lead sources">
+                  <button class="leak-option text-option" type="button" aria-pressed="false" data-source-value="referrals" data-label="Referrals" data-insight="Demand source added: referrals.">
+                    <span class="option-copy">
+                      <strong>Referrals</strong>
+                      <em>Past clients, partners, neighbors, or local names.</em>
+                    </span>
+                  </button>
+                  <button class="leak-option text-option" type="button" aria-pressed="false" data-source-value="google-organic" data-label="Local Search" data-insight="Demand source added: local search.">
+                    <span class="option-copy">
+                      <strong>Local Search</strong>
+                      <em>People find you when they search nearby.</em>
+                    </span>
+                  </button>
+                  <button class="leak-option text-option" type="button" aria-pressed="false" data-source-value="paid-ads" data-label="Paid Ads" data-insight="Demand source added: paid ads.">
+                    <span class="option-copy">
+                      <strong>Paid Ads</strong>
+                      <em>You buy traffic or calls from search or social.</em>
+                    </span>
+                  </button>
+                  <button class="leak-option text-option" type="button" aria-pressed="false" data-source-value="social" data-label="Social" data-insight="Demand source added: social.">
+                    <span class="option-copy">
+                      <strong>Social</strong>
+                      <em>Posts, groups, messages, or local shares.</em>
+                    </span>
+                  </button>
+                  <button class="leak-option text-option" type="button" aria-pressed="false" data-source-value="cold-outreach" data-label="Cold Outreach" data-insight="Demand source added: cold outreach.">
+                    <span class="option-copy">
+                      <strong>Cold Outreach</strong>
+                      <em>Direct calls, mail, email, or door knocking.</em>
+                    </span>
+                  </button>
+                  <button class="leak-option text-option" type="button" aria-pressed="false" data-source-value="unsure" data-label="Not sure / word of mouth" data-insight="Demand source added: word of mouth.">
+                    <span class="option-copy">
+                      <strong>Not sure / word of mouth</strong>
+                      <em>You get work, but the source is fuzzy.</em>
+                    </span>
+                  </button>
+                </div>
+
+                <p class="mono micro-insight" data-step-insight="q2">Pick at least one source to light demand.</p>
+
+                <div class="step-actions">
+                  <button class="ghost-action" type="button" data-prev-step="q1">Back</button>
+                  <button class="next-action" type="button" data-next-step="q3" disabled>
+                    <span>Set stage</span><span aria-hidden="true">→</span>
+                  </button>
+                </div>
+              </article>
+
+              <article class="question-card stage-step" data-step="q3" hidden>
+                <div class="question-head">
+                  <p class="mono step-eyebrow">03 · STAGE</p>
+                  <h2>What stage is the business in right now?</h2>
+                  <p>Use the closest snap point. This sets how hard the target jump is.</p>
+                </div>
+
+                <div class="dial-card stage-card">
+                  <div class="dial-top">
+                    <span class="mono">CURRENT.STAGE</span>
+                    <strong data-stage-readout>Pick one</strong>
+                  </div>
+                  <div class="preset-row stage-row" role="radiogroup" aria-label="Business stage">
+                    <button type="button" role="radio" aria-checked="false" data-revenue-value="1" data-revenue-label="Just starting">1 Just starting</button>
+                    <button type="button" role="radio" aria-checked="false" data-revenue-value="2" data-revenue-label="Early-stage">2 Early-stage</button>
+                    <button type="button" role="radio" aria-checked="false" data-revenue-value="3" data-revenue-label="Growing local team">3 Growing local team</button>
+                    <button type="button" role="radio" aria-checked="false" data-revenue-value="4" data-revenue-label="Established service team">4 Established service team</button>
+                    <button type="button" role="radio" aria-checked="false" data-revenue-value="5" data-revenue-label="Scaling up">5 Scaling up</button>
+                    <button type="button" role="radio" aria-checked="false" data-revenue-value="6" data-revenue-label="Expansion mode">6 Expansion mode</button>
+                    <button type="button" role="radio" aria-checked="false" data-revenue-value="7" data-revenue-label="Market leader">7 Market leader</button>
+                  </div>
+                </div>
+
+                <p class="mono micro-insight" data-step-insight="q3">Pick a stage to mark the rail.</p>
+
+                <div class="step-actions">
+                  <button class="ghost-action" type="button" data-prev-step="q2">Back</button>
+                  <button class="next-action" type="button" data-next-step="q4" disabled>
+                    <span>Map owner time</span><span aria-hidden="true">→</span>
+                  </button>
+                </div>
+              </article>
+
+              <article class="question-card owner-step" data-step="q4" hidden>
+                <div class="question-head">
+                  <p class="mono step-eyebrow">04 · OWNER-TIME</p>
+                  <h2>What share of YOUR week goes to running the day-to-day vs growing the business?</h2>
+                  <p>Pick the split that feels most true this month.</p>
+                </div>
+
+                <div class="dial-card stage-card">
+                  <div class="dial-top">
+                    <span class="mono">OWNER.WEEK</span>
+                    <strong data-ops-readout>Pick one</strong>
+                  </div>
+                  <div class="preset-row ops-row" role="radiogroup" aria-label="Owner week split">
+                    <button type="button" role="radio" aria-checked="false" data-ops-ratio="90" data-ops-label="90% / 10%">90% / 10%</button>
+                    <button type="button" role="radio" aria-checked="false" data-ops-ratio="80" data-ops-label="80% / 20%">80% / 20%</button>
+                    <button type="button" role="radio" aria-checked="false" data-ops-ratio="70" data-ops-label="70% / 30%">70% / 30%</button>
+                    <button type="button" role="radio" aria-checked="false" data-ops-ratio="60" data-ops-label="60% / 40%">60% / 40%</button>
+                    <button type="button" role="radio" aria-checked="false" data-ops-ratio="50" data-ops-label="50% / 50%">50% / 50%</button>
+                    <button type="button" role="radio" aria-checked="false" data-ops-ratio="40" data-ops-label="40% / 60%">40% / 60%</button>
+                  </div>
+                </div>
+
+                <p class="mono micro-insight" data-step-insight="q4">Pick the owner-time split to mark the rail.</p>
+
+                <div class="step-actions">
+                  <button class="ghost-action" type="button" data-prev-step="q3">Back</button>
+                  <button class="next-action" type="button" data-next-step="q5" disabled>
+                    <span>Pick the leak</span><span aria-hidden="true">→</span>
+                  </button>
+                </div>
+              </article>
+
+              <article class="question-card" data-step="q5" hidden>
                 <div class="question-head">
                   <p class="mono step-eyebrow">05 · LEAK</p>
                   <h2>When you try to grow, what breaks first?</h2>
@@ -254,8 +443,64 @@ export const prerender = true;
                 <p class="mono micro-insight" data-q5-insight>Pick a leak to light the map.</p>
 
                 <div class="step-actions">
-                  <button class="ghost-action" type="button" data-back-welcome>Back</button>
-                  <button class="next-action" type="button" data-next-target disabled>
+                  <button class="ghost-action" type="button" data-prev-step="q4">Back</button>
+                  <button class="next-action" type="button" data-next-step="q6" disabled>
+                    <span>Stress-test capacity</span><span aria-hidden="true">→</span>
+                  </button>
+                </div>
+              </article>
+
+              <article class="question-card" data-step="q6" hidden>
+                <div class="question-head">
+                  <p class="mono step-eyebrow">06 · STRESS-TEST</p>
+                  <h2>If we sent you 10x leads tomorrow, what would break first?</h2>
+                  <p>Optional. Pick every pressure point that would show up fast.</p>
+                </div>
+
+                <div class="leak-options chip-options multi-options" role="group" aria-label="Capacity gaps">
+                  <button class="leak-option text-option" type="button" aria-pressed="false" data-capacity-value="sales-closing" data-label="Sales / closing" data-insight="Stress point added: sales.">
+                    <span class="option-copy">
+                      <strong>Sales / closing</strong>
+                      <em>More calls, quotes, or estimates would stall.</em>
+                    </span>
+                  </button>
+                  <button class="leak-option text-option" type="button" aria-pressed="false" data-capacity-value="ops-dispatch" data-label="Ops / dispatch" data-insight="Stress point added: dispatch.">
+                    <span class="option-copy">
+                      <strong>Ops / dispatch</strong>
+                      <em>The schedule would get hard to route or assign.</em>
+                    </span>
+                  </button>
+                  <button class="leak-option text-option" type="button" aria-pressed="false" data-capacity-value="quality" data-label="Delivery quality" data-insight="Stress point added: delivery quality.">
+                    <span class="option-copy">
+                      <strong>Delivery quality</strong>
+                      <em>Standards would slip if volume jumped fast.</em>
+                    </span>
+                  </button>
+                  <button class="leak-option text-option" type="button" aria-pressed="false" data-capacity-value="hiring" data-label="Hiring / training" data-insight="Stress point added: hiring.">
+                    <span class="option-copy">
+                      <strong>Hiring / training</strong>
+                      <em>You would need people ready sooner than they are.</em>
+                    </span>
+                  </button>
+                  <button class="leak-option text-option" type="button" aria-pressed="false" data-capacity-value="tech" data-label="Tech / systems" data-insight="Stress point added: systems.">
+                    <span class="option-copy">
+                      <strong>Tech / systems</strong>
+                      <em>Tools, handoffs, or records would get messy.</em>
+                    </span>
+                  </button>
+                  <button class="leak-option text-option" type="button" aria-pressed="false" data-capacity-value="cash" data-label="Cash flow" data-insight="Stress point added: cash flow.">
+                    <span class="option-copy">
+                      <strong>Cash flow</strong>
+                      <em>Cash timing would get tight before work caught up.</em>
+                    </span>
+                  </button>
+                </div>
+
+                <p class="mono micro-insight" data-step-insight="q6">Optional stress-test. You can skip this or pick more than one.</p>
+
+                <div class="step-actions">
+                  <button class="ghost-action" type="button" data-prev-step="q5">Back</button>
+                  <button class="next-action" type="button" data-next-step="q7">
                     <span>Set target</span><span aria-hidden="true">→</span>
                   </button>
                 </div>
@@ -324,7 +569,7 @@ export const prerender = true;
                 <p class="mono micro-insight" data-q7-insight>Each target tightens the gap.</p>
 
                 <div class="step-actions">
-                  <button class="ghost-action" type="button" data-prev-leak>Back</button>
+                  <button class="ghost-action" type="button" data-prev-step="q6">Back</button>
                   <button class="primary-action compact" type="button" data-finish>
                     <span>See My Leak Map</span>
                     <span aria-hidden="true">→</span>
@@ -420,7 +665,7 @@ export const prerender = true;
             <header class="reveal-header">
               <div class="reveal-copy">
                 <p class="mono eyebrow">YOUR REVENUE LEAK MAP</p>
-                <h2 id="reveal-title">Here's where your growth is leaking.</h2>
+                <h2 id="reveal-title" data-reveal-headline>Here's where your growth is leaking.</h2>
               </div>
               <div class="reveal-score-card" aria-live="polite">
                 <span class="mono">LIVE SCORE</span>
@@ -472,7 +717,7 @@ export const prerender = true;
 
               <div class="reveal-diagnosis">
                 <span class="mono muted">DIAGNOSIS</span>
-                <strong>Your biggest leak: <span data-reveal-leak-name>Demand</span></strong>
+                <strong data-reveal-diagnosis-title>Your biggest leak: Demand</strong>
                 <p data-reveal-leak-copy>Calendar gaps show up before the work does.</p>
               </div>
             </section>
@@ -526,6 +771,8 @@ export const prerender = true;
         <strong data-mini-score>00</strong>
         <em data-mini-leak>Pick the first break</em>
       </div>
+
+      <div class="sr-only" data-live-announcer aria-live="polite" aria-atomic="true"></div>
     </main>
 
     <style is:global>
@@ -610,6 +857,18 @@ export const prerender = true;
       .mono {
         font-family: "JetBrains Mono", monospace;
         text-transform: uppercase;
+      }
+
+      .sr-only {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        margin: -1px;
+        padding: 0;
+        overflow: hidden;
+        clip: rect(0, 0, 0, 0);
+        white-space: nowrap;
+        border: 0;
       }
 
       .welcome-screen,
@@ -1172,6 +1431,10 @@ export const prerender = true;
         gap: clamp(8px, 1vh, 12px);
       }
 
+      .chip-options {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
       .leak-option {
         min-height: clamp(66px, 9.2vh, 88px);
         width: 100%;
@@ -1211,6 +1474,19 @@ export const prerender = true;
 
       .leak-option.is-muted {
         opacity: 0.58;
+      }
+
+      .leak-option.text-option {
+        grid-template-columns: minmax(0, 1fr);
+        min-height: clamp(68px, 8.4vh, 84px);
+      }
+
+      .leak-option.text-option .option-copy strong {
+        display: block;
+      }
+
+      .leak-option.text-option .option-copy em {
+        font-size: 0.84rem;
       }
 
       .option-icon {
@@ -1296,6 +1572,40 @@ export const prerender = true;
         gap: clamp(10px, 1.25vh, 14px);
       }
 
+      .target-step {
+        gap: clamp(8px, 1.15vh, 14px);
+      }
+
+      .target-step .question-head h2 {
+        font-size: clamp(1.9rem, 2.8vw, 3.4rem);
+        margin: 6px 0 6px;
+      }
+
+      .target-step .target-dials {
+        gap: 9px;
+      }
+
+      .target-step .dial-card {
+        padding: 11px 12px;
+      }
+
+      .target-step .dial-top {
+        margin-bottom: 8px;
+      }
+
+      .target-step .preset-row {
+        margin-bottom: 8px;
+      }
+
+      .target-step .dial-card input {
+        min-height: 34px;
+      }
+
+      .stage-card {
+        margin-top: auto;
+        margin-bottom: auto;
+      }
+
       .dial-card {
         border: 1px solid rgba(255, 255, 255, 0.075);
         border-radius: 8px;
@@ -1351,6 +1661,28 @@ export const prerender = true;
         border-color: rgba(240, 255, 0, 0.5);
         background: rgba(240, 255, 0, 0.09);
         color: var(--yellow);
+      }
+
+      .stage-row,
+      .ops-row {
+        margin-bottom: 0;
+      }
+
+      .stage-row {
+        grid-template-columns: 1fr;
+      }
+
+      .ops-row {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .stage-row button,
+      .ops-row button {
+        min-height: 42px;
+        padding: 6px 10px;
+        line-height: 1.12;
+        white-space: normal;
+        text-transform: none;
       }
 
       .dial-card label {
@@ -1935,6 +2267,14 @@ export const prerender = true;
           min-height: 92px;
         }
 
+        .chip-options {
+          grid-template-columns: 1fr;
+        }
+
+        .leak-option.text-option {
+          min-height: 78px;
+        }
+
         .option-copy strong {
           display: grid;
           gap: 2px;
@@ -1946,6 +2286,19 @@ export const prerender = true;
 
         .target-dials {
           gap: 12px;
+        }
+
+        .stage-row {
+          grid-template-columns: 1fr;
+        }
+
+        .ops-row {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+
+        .stage-step .question-head h2,
+        .owner-step .question-head h2 {
+          font-size: clamp(2.15rem, 10.5vw, 3.4rem);
         }
 
         .target-step .question-head h2 {
@@ -2059,6 +2412,25 @@ export const prerender = true;
         .leak-option {
           min-height: 62px;
           padding: 8px 10px;
+        }
+
+        .leak-option.text-option {
+          min-height: 56px;
+        }
+
+        .chip-options {
+          gap: 7px;
+        }
+
+        .stage-row button,
+        .ops-row button {
+          min-height: 34px;
+          font-size: 0.68rem;
+        }
+
+        .stage-step .question-head h2,
+        .owner-step .question-head h2 {
+          font-size: clamp(1.62rem, 2.55vw, 2.85rem);
         }
 
         .option-icon {
@@ -2213,15 +2585,22 @@ export const prerender = true;
         const startButton = document.querySelector("[data-start]");
         const backWelcomeButton = document.querySelector("[data-back-welcome]");
         const backRevealButton = document.querySelector("[data-back-reveal]");
-        const nextTargetButton = document.querySelector("[data-next-target]");
-        const prevLeakButton = document.querySelector("[data-prev-leak]");
         const finishButton = document.querySelector("[data-finish]");
-        const leakOptions = Array.from(document.querySelectorAll(".leak-option"));
+        const serviceButtons = Array.from(document.querySelectorAll("[data-service-value]"));
+        const sourceButtons = Array.from(document.querySelectorAll("[data-source-value]"));
+        const stageButtons = Array.from(document.querySelectorAll("[data-revenue-value]"));
+        const opsButtons = Array.from(document.querySelectorAll("[data-ops-ratio]"));
+        const capacityButtons = Array.from(document.querySelectorAll("[data-capacity-value]"));
+        const leakOptions = Array.from(document.querySelectorAll("[data-step='q5'] .leak-option"));
+        const nextButtons = Array.from(document.querySelectorAll("[data-next-step]"));
+        const prevButtons = Array.from(document.querySelectorAll("[data-prev-step]"));
         const railSteps = Array.from(document.querySelectorAll(".rail-step"));
-        const q5Step = document.querySelector('[data-step="q5"]');
-        const q7Step = document.querySelector('[data-step="q7"]');
+        const questionCards = Array.from(document.querySelectorAll(".question-card[data-step]"));
         const q5Insight = document.querySelector("[data-q5-insight]");
         const q7Insight = document.querySelector("[data-q7-insight]");
+        const stageReadout = document.querySelector("[data-stage-readout]");
+        const opsReadout = document.querySelector("[data-ops-readout]");
+        const liveAnnouncer = document.querySelector("[data-live-announcer]");
         const liveCanvas = document.querySelector("[data-live-canvas]");
         const scoreOutput = document.querySelector("[data-score-output]");
         const miniScore = document.querySelector("[data-mini-score]");
@@ -2237,11 +2616,12 @@ export const prerender = true;
         const gapLabel = document.querySelector("[data-gap-label]");
         const gapPercent = document.querySelector("[data-gap-percent]");
         const targetInputs = Array.from(document.querySelectorAll("[data-target-input]"));
+        const revealHeadline = document.querySelector("[data-reveal-headline]");
         const revealScore = document.querySelector("[data-reveal-score]");
         const revealScoreRead = document.querySelector("[data-reveal-score-read]");
         const revealMapTitle = document.querySelector("[data-reveal-map-title]");
         const revealLeakLabel = document.querySelector("[data-reveal-leak-label]");
-        const revealLeakName = document.querySelector("[data-reveal-leak-name]");
+        const revealDiagnosisTitle = document.querySelector("[data-reveal-diagnosis-title]");
         const revealLeakCopy = document.querySelector("[data-reveal-leak-copy]");
         const revealNodes = Array.from(document.querySelectorAll("[data-reveal-node]"));
         const installList = document.querySelector("[data-install-list]");
@@ -2252,8 +2632,44 @@ export const prerender = true;
         const revealTargetHours = document.querySelector("[data-reveal-target-hours]");
         const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
+        const STEP_ORDER = ["q1", "q2", "q3", "q4", "q5", "q6", "q7"];
+        const RAIL_BY_STEP = {
+          q1: "service",
+          q2: "demand",
+          q3: "stage",
+          q4: "owner-time",
+          q5: "leak",
+          q6: "stress-test",
+          q7: "target",
+        };
+        const STEP_LABEL = {
+          q1: "Service",
+          q2: "Channels",
+          q3: "Stage",
+          q4: "Owner-Time",
+          q5: "Leak",
+          q6: "Stress-Test",
+          q7: "Target",
+        };
+        const DERIVED_NODE = {
+          ownerCapacity: "capacity",
+          capacity: "capacity",
+          visibility: "service",
+          demand: "demand",
+          fit: "fit",
+          speed: "speed",
+          close: "close",
+          followup: "close",
+        };
+
         const state = {
-          leak: null,
+          service: "",
+          leadSources: [],
+          revenue: 0,
+          revenueLabel: "",
+          opsRatio: 0,
+          bottleneck: null,
+          capacityGaps: [],
           leakNode: null,
           leakLabel: "Pick the first break",
           score: 0,
@@ -2264,41 +2680,303 @@ export const prerender = true;
           },
         };
 
-        const copyByNode = {
-          demand: "Calendar gaps show up before the work does.",
-          fit: "Bad-fit leads waste quotes and drain time.",
-          capacity: "The schedule is the ceiling before demand is.",
-          speed: "Fast competitors win while the lead waits.",
-          close: "The money is in the sales gap.",
-        };
+// diagnose.mjs — Live Revenue Leak Map diagnostic engine (pure, client-side-ready).
+// Consumes the SAME state keys as FitDiagnostic.astro (data contract preserved):
+//   { service, leadSources[], revenue(1-7), revenueLabel, opsRatio(40-90),
+//     bottleneck, capacityGaps[], target:{revenue,team,hours} }
+// Returns an insight-contract object. NO jargon. Plain owner language. FK <= 7.
+//
+// DESIGN (RCA 2026-06-20 + value red-team wf_3782e437):
+//  1. Do NOT echo the picked bottleneck. Read the OTHER answers, cite >=2 of them.
+//  2. Do NOT tell the owner their pick was WRONG (overreach => offends a well-run shop).
+//     VALIDATE the pick, then surface the hidden constraint as the thing to SEQUENCE first,
+//     framed as a CONDITIONAL fork the owner self-selects ("if that's already tight... / if
+//     you've got headroom..."). The owner knows their shop; we name the fork, not the verdict.
+//  3. Treat capacityGaps (the "what breaks at 10x leads?" answer) as a forward-looking
+//     STRESS-TEST, never as a confession that ops is broken today.
+//  4. Treat high ops% as ambiguous: "you doing it" vs "you overseeing a team by choice".
 
-        const installByNode = {
-          demand: [
-            ["Demand floor", "Add a steady lead path so the calendar does not run dry."],
-            ["Proof route", "Show the right proof before the owner has to explain it."],
-            ["Booking path", "Move good leads from interest to a booked next step."],
-          ],
-          fit: [
-            ["Fit gate", "Sort good-fit owners from price shoppers before the quote."],
-            ["Value proof", "Show why the work is worth the spend before the call."],
-            ["Follow-up path", "Keep the right leads warm without adding desk work."],
-          ],
-          capacity: [
-            ["Dispatch rules", "Route new work by crew, area, and true open slots."],
-            ["Calendar guard", "Stop demand from breaking the schedule first."],
-            ["Capacity signal", "Show when to push leads and when to slow the flow."],
-          ],
-          speed: [
-            ["Instant response", "Reach each good lead before the first call is lost."],
-            ["Missed-call save", "Pull missed calls back into a booked next step."],
-            ["Handoff path", "Send the right details to the team before they reply."],
-          ],
-          close: [
-            ["Quote follow-up", "Keep the next step clear after every estimate."],
-            ["Decision proof", "Give buyers the proof they need to say yes."],
-            ["Close alerts", "Flag stalled deals before they go cold."],
-          ],
-        };
+const LEAK_REV_MID = [0, 5000, 17500, 37500, 75000, 175000, 375000, 750000];
+
+const LEAK_PICK = {
+  leads:      { short: 'not enough leads',       feel: 'you need more leads' },
+  quality:    { short: 'too many bad-fit leads', feel: 'your leads are low quality' },
+  capacity:   { short: 'not enough capacity',    feel: 'you cannot deliver more' },
+  speed:      { short: 'slow response',          feel: 'you reach leads too slowly' },
+  conversion: { short: 'a low close rate',       feel: 'you do not close enough' },
+};
+
+const LEAK_SOURCE_LABEL = {
+  referrals: 'referrals', 'google-organic': 'local search', 'paid-ads': 'paid ads',
+  social: 'social', 'cold-outreach': 'cold outreach', unsure: 'word of mouth',
+};
+
+// Owner-outcome install moves, keyed to the DERIVED first move (never raw pick, never
+// internal module names). Each is a win the owner's life gains. No spend assumptions.
+const LEAK_OUTCOMES = {
+  visibility: [
+    'Know which referral or ad actually sends you work',
+    'Tie every lost deal back to where it came from',
+    'Find the one source worth doubling down on',
+  ],
+  ownerCapacity: [
+    'Get the day-to-day running without you in every job',
+    'Free up your week so you can work on growth, not in it',
+    'Hand off the routine without dropping the ball',
+  ],
+  capacity: [
+    'Win more work without the schedule slipping',
+    'Assign tomorrow\'s jobs without you making three calls tonight',
+    'Stop turning away good work you just cannot fit in',
+  ],
+  demand: [
+    'Turn referrals on when you need them, not just when they show up',
+    'Keep the calendar full without chasing it',
+    'Add one channel you control, so a slow month is a choice',
+  ],
+  fit: [
+    'Stop quoting jobs you never wanted',
+    'Spend your day on buyers who can actually pay',
+    'Screen out price-shoppers before they reach your calendar',
+  ],
+  speed: [
+    'Catch every lead the second it comes in',
+    'Never lose a job to a missed call again',
+    'Book the next step on autopilot, free or not',
+  ],
+  close: [
+    'Bring serious buyers back without anyone chasing them',
+    'Cover the days-2-to-7 window where deals quietly die',
+    'Give good buyers an easy yes',
+  ],
+  followup: [
+    'Follow up on every estimate before it goes cold',
+    'Close the gap between "interested" and "booked"',
+    'Win more of the leads you already get — no new spend',
+  ],
+};
+
+// short plain label for the "biggest leak" tag (derived first move, not the raw pick)
+const LEAK_DERIVED_TAG = {
+  ownerCapacity: 'Your time', capacity: 'Delivery', visibility: 'Tracking',
+  demand: 'Demand', fit: 'Lead fit', speed: 'Speed', close: 'Follow-up', followup: 'Follow-up',
+};
+
+// ---- formatting helpers ----
+function leakParseMoney(v) {
+  if (!v) return 0;
+  const s = String(v).toLowerCase().replace(/[, $]/g, '');
+  const m = s.match(/([0-9]+(?:\.[0-9]+)?)\s*(k|m)?/);
+  if (!m) return 0;
+  let n = parseFloat(m[1]);
+  if (m[2] === 'k') n *= 1000;
+  if (m[2] === 'm') n *= 1000000;
+  return Math.round(n);
+}
+function leakFmtMoney(v) {
+  const n = leakParseMoney(v);
+  if (!n) return '';
+  if (n >= 1000000) return '$' + (n / 1000000).toFixed(n % 1000000 ? 1 : 0) + 'M';
+  if (n >= 1000) return '$' + Math.round(n / 1000) + 'K';
+  return '$' + n;
+}
+function leakParseHours(v) {
+  if (!v) return 0;
+  const m = String(v).match(/[0-9]+/);
+  return m ? parseInt(m[0], 10) : 0;
+}
+
+// ---- the engine ----
+function diagnose(state) {
+  const s = state || {};
+  const pick = s.bottleneck && LEAK_PICK[s.bottleneck] ? s.bottleneck : 'leads';
+  const pickShort = LEAK_PICK[pick].short;
+
+  const ops = Number(s.opsRatio) || 0;            // % of owner week on day-to-day
+  const buried = ops >= 80;
+  const hasOps = ops > 0;
+
+  const src = Array.isArray(s.leadSources) ? s.leadSources : [];
+  const untracked = src.indexOf('unsure') >= 0;
+  const realSrc = src.filter(x => x !== 'unsure');
+  const referralLean = src.indexOf('referrals') >= 0 && realSrc.length <= 1;
+  const broadTop = src.indexOf('paid-ads') >= 0 || src.indexOf('social') >= 0;
+  const namedSrc = realSrc.map(x => LEAK_SOURCE_LABEL[x]).filter(Boolean);
+  const channelCount = realSrc.length;
+
+  const gaps = Array.isArray(s.capacityGaps) ? s.capacityGaps : [];
+  const capFlag = ['ops-dispatch', 'hiring', 'quality'].some(g => gaps.indexOf(g) >= 0);
+  const salesFlag = gaps.indexOf('sales-closing') >= 0;
+
+  const targetRev = leakParseMoney(s.target && s.target.revenue);
+  const targetHours = leakParseHours(s.target && s.target.hours);
+
+  // plain phrase builders
+  const opsPhrase = hasOps ? ops + '% of your week on the day-to-day' : 'most of your week on the day-to-day';
+  const targetPhrase = targetRev ? leakFmtMoney(s.target.revenue) + '/mo' : '';
+  const hoursPhrase = targetHours ? targetHours + ' hours a week' : '';
+  const gapNames = gaps.map(g => ({
+    'sales-closing': 'closing', 'ops-dispatch': 'scheduling', quality: 'delivery quality',
+    hiring: 'hiring', tech: 'your systems', cash: 'cash flow',
+  })[g]).filter(Boolean);
+  const gapPhrase = gapNames.slice(0, 2).join(' and ');
+  const srcPhrase = namedSrc.length ? namedSrc.join(' and ') : 'referrals and word of mouth';
+
+  let derived, headline, why, refs, reframe;
+
+  // ===================== LEAK_PICK = LEADS =====================
+  if (pick === 'leads') {
+    if (buried && capFlag) {
+      derived = 'ownerCapacity'; reframe = true;
+      headline = 'More leads is the right instinct — lock one thing first so they don\'t slip away.';
+      why = 'You\'re spending ' + opsPhrase + ', and you flagged ' + gapPhrase + ' as what would buckle if leads doubled. ' +
+            'Here\'s the fork: if that\'s already tight, more leads turn into slow callbacks and jobs that slip — and a missed callback costs you the next referral. ' +
+            'If you\'ve got real headroom, go get them. If you\'re not sure, the first move is getting the work to run without you in the middle of every job — so every new lead becomes booked work, not one more thing to chase.';
+      refs = ['opsRatio', 'capacityGaps'];
+    } else if (capFlag) {
+      derived = 'capacity'; reframe = true;
+      headline = 'More leads is the right call — just build the catch first.';
+      why = 'You told us ' + gapPhrase + ' is what would buckle if we sent you 10x leads tomorrow. That\'s an honest read — most owners haven\'t pressure-tested it. ' +
+            'So before you floor the gas: if that part has headroom today, go. If it\'s already tight, a week of extra leads becomes slow callbacks and slipping jobs. ' +
+            'The first move is making sure the work can absorb the volume — then more leads fill a calendar that can actually hold them.';
+      refs = ['capacityGaps', 'bottleneck'];
+    } else if (untracked && referralLean) {
+      derived = 'visibility'; reframe = true;
+      headline = 'Before more leads — can you name which source sends you the good jobs?';
+      why = 'Your leads come mostly from ' + srcPhrase + '. If you can already name the one or two people who send you your best work, great — you know exactly where to push, and more leads is the right call. ' +
+            'If you can\'t tie each job back to a source yet, that\'s the gap to close first: a simple "how did you hear about us?" on every call. ' +
+            'In 30 days you\'ll know whether word of mouth is one person or ten — and which source is worth doubling.';
+      refs = ['leadSources', 'bottleneck'];
+    } else if (buried) {
+      derived = 'ownerCapacity'; reframe = true;
+      headline = 'At ' + ops + '% in the work, more leads have nowhere to land.';
+      why = 'You\'re spending ' + opsPhrase + '. More leads sounds like the goal — but at that load they pile onto a week with no room, and become slow callbacks instead of booked jobs. ' +
+            'The first move that actually unlocks growth is getting a few hours back: take the routine work off your plate first, then every new lead turns into work, not stress. ' +
+            'If you\'ve already got people running the day-to-day, skip ahead — adding one channel you control is your move.';
+      refs = ['opsRatio', 'bottleneck'];
+    } else if (referralLean) {
+      derived = 'demand'; reframe = true;
+      headline = 'More leads is fair — the real question is whether you can turn them on when you need them.';
+      why = 'You lean on referrals' + (targetPhrase ? ', and you\'re aiming for ' + targetPhrase : '') + '. When they\'re flowing, life is good. ' +
+            'The gut-check: on a slow month, can you make them show up? If your pipeline feels feast-or-famine, the first move isn\'t working harder for referrals — it\'s adding one channel you control, so a quiet week is a choice, not a surprise. ' +
+            'If referrals already pour in faster than you can quote them, ignore the channel talk — your real ceiling is throughput, and that\'s the fix.';
+      refs = ['leadSources', targetPhrase ? 'target' : 'bottleneck'];
+    } else {
+      derived = 'followup'; reframe = false;
+      headline = 'You\'ve got the channels — the gap most owners miss is the 48 hours after a lead comes in.';
+      why = 'You\'re running ' + (channelCount || 'a few') + ' channels' + (targetPhrase ? ' toward ' + targetPhrase : '') + ', so this isn\'t about adding more sources. ' +
+            'The leak that hides at your size is the window: an estimate request that goes cold before anyone follows up. ' +
+            'The one move that compounds on the traffic you already have is an automatic follow-up that closes that window — no new spend, no chasing.';
+      refs = ['leadSources', targetPhrase ? 'target' : 'opsRatio'];
+    }
+  }
+
+  // ===================== LEAK_PICK = QUALITY (fit) =====================
+  else if (pick === 'quality') {
+    if (salesFlag || buried) {
+      derived = 'fit'; reframe = false;
+      headline = 'Your read is right — it\'s a fit problem, not a volume one. The fix buys back time too.';
+      why = 'Bad-fit leads don\'t just lower quality — they eat the hours of whoever does your quoting. ' +
+            (salesFlag ? 'You flagged closing as a soft spot, which is the tell: when volume picks up, the wrong leads will drag your close rate down with it. ' : '') +
+            'The first move before more leads is a simple step that screens out non-buyers before they ever get a quote — so the leads that reach you are already half-sold.';
+      refs = [salesFlag ? 'capacityGaps' : 'opsRatio', 'bottleneck'];
+    } else if (broadTop) {
+      derived = 'fit'; reframe = false;
+      headline = 'Your read is right — it\'s a fit problem. Here\'s where it starts.';
+      why = 'You\'re running ' + namedSrc.slice(0, 2).join(' and ') + ', which reaches a wide crowd. If there\'s already a step that screens people before your team quotes them, the leak is more likely your offer or who the ads target. ' +
+            'If there isn\'t, that\'s the first fix: a front-door filter that sorts serious buyers from price-shoppers before they eat your quoting time. Either way, more leads on top just brings more of the wrong ones — the win is upstream of the quote.';
+      refs = ['leadSources', 'bottleneck'];
+    } else {
+      derived = 'fit'; reframe = false;
+      headline = 'Your read is right — it\'s quality, not volume. The fix is upstream of the quote.';
+      why = 'Plenty of leads reach you; the wrong ones eat the calendar' + (targetPhrase ? ' while you push toward ' + targetPhrase : '') + '. ' +
+            'Bad-fit usually clusters in one segment — a job type or customer that bleeds quote time. The first move is filtering by fit before the call, so the quotes you give go to people ready to buy.';
+      refs = ['bottleneck', targetPhrase ? 'target' : 'leadSources'];
+    }
+  }
+
+  // ===================== LEAK_PICK = CAPACITY =====================
+  else if (pick === 'capacity') {
+    derived = buried ? 'ownerCapacity' : 'capacity'; reframe = false;
+    if (targetPhrase || hoursPhrase) {
+      headline = 'You picked capacity — and your goal makes the case for you.';
+      why = 'You want ' + (targetPhrase || 'to grow') + (hoursPhrase ? ' while dropping to ' + hoursPhrase : '') +
+            ', and you\'re at ' + opsPhrase + (gapPhrase ? ' with ' + gapPhrase + ' under strain' : '') + '. ' +
+            'Here\'s the fork that sets your first move: if that time is you personally doing the work, more hours isn\'t an option — the path is the work running without you. ' +
+            'If it\'s you overseeing a team by choice, the ceiling is crew or equipment — and the move is adding that, not stepping back. Either way, capacity comes before volume — leads added first just turn wins into losses.';
+      refs = ['target', 'opsRatio'];
+    } else {
+      headline = 'You picked capacity. The first lever depends on one thing.';
+      why = 'You\'re at ' + opsPhrase + (gapPhrase ? ', and ' + gapPhrase + ' is the pressure point' : '') + '. ' +
+            'The question that sets your first move: is the ceiling your hours, your crew, or your equipment? ' +
+            'If it\'s you in every job, the lever is a system that assigns tomorrow\'s work without you making three calls tonight. If you\'ve got a foreman, it\'s more crew or another truck — not delegation. Either way, that\'s the thing to lock before adding a single new job.';
+      refs = ['opsRatio', gapPhrase ? 'capacityGaps' : 'bottleneck'];
+    }
+  }
+
+  // ===================== LEAK_PICK = SPEED =====================
+  else if (pick === 'speed') {
+    if (capFlag) {
+      derived = 'capacity'; reframe = true;
+      headline = 'Speed wins the booking — just make sure the booking can hold.';
+      why = 'You flagged ' + gapPhrase + ' as what would buckle under more volume. If your ops are solid today, faster response is exactly the right lever — go. ' +
+            'If that part\'s already tight, answering faster just books work the team can\'t deliver on time. The move is to build the catch first, so speed fills a calendar that can actually hold it.';
+      refs = ['capacityGaps', 'bottleneck'];
+    } else if (buried) {
+      derived = 'speed'; reframe = false;
+      headline = 'Speed is the right lever — the gap is the first five minutes.';
+      why = 'You\'re at ' + opsPhrase + '. If you\'re mostly solo, a lead that calls while you\'re on a job waits till tonight — or never. ' +
+            'If you\'ve got a team, the first five minutes after a call may still slip before someone picks it up. Either way it\'s not a "you\'re slow" problem — it\'s that nothing catches the lead the second it comes in. The first move is an instant first reply that books the next step on its own.';
+      refs = ['opsRatio', 'bottleneck'];
+    } else {
+      derived = 'speed'; reframe = false;
+      headline = 'Response speed is the cheapest win you\'ve got.';
+      why = 'Leads come in and cool off before the first callback' + (targetPhrase ? ', and you\'re pushing toward ' + targetPhrase : '') + '. ' +
+            'Speed is the highest-leverage fix in your funnel — but only if the fast reply routes to a real next step, not just a faster you. The first move is an instant first-touch that books the call on its own.';
+      refs = ['bottleneck', targetPhrase ? 'target' : 'opsRatio'];
+    }
+  }
+
+  // ===================== LEAK_PICK = CONVERSION (close) =====================
+  else {
+    if (untracked) {
+      derived = 'visibility'; reframe = true;
+      headline = 'Your pick might be right — here\'s the one data point that confirms it.';
+      why = 'Your leads come mostly from ' + srcPhrase + '. If you can tie each lost deal back to who sent it, you\'ll probably see "low close rate" is really one or two sources sending weak-fit buyers. ' +
+            'If you can\'t see close rate by source yet, that\'s the first thing to set — then you fix the real leak, not the whole thing.';
+      refs = ['leadSources', 'bottleneck'];
+    } else {
+      derived = 'close'; reframe = false;
+      headline = 'Most deals don\'t die on the call — they die in the days after.';
+      why = (salesFlag ? 'You flagged closing as a soft spot. ' : '') +
+            'You picked close rate' + (targetPhrase ? ', and you\'re aiming for ' + targetPhrase : '') +
+            ' — but the lift usually hides in days 2 through 7, where a "no for now" gets treated like a "no forever." ' +
+            'If you\'ve already got steady follow-up after every call, then it really is the call itself to work on. If it\'s manual or thin, that silent week is where the money leaks — and the fastest gain is a system that brings serious buyers back without anyone chasing.';
+      refs = [salesFlag ? 'capacityGaps' : 'bottleneck', targetPhrase ? 'target' : 'opsRatio'];
+    }
+  }
+
+  // de-dup refs, guarantee >= 2 distinct
+  refs = Array.from(new Set(refs)).filter(Boolean);
+  if (refs.length < 2) refs.push('bottleneck');
+  refs = Array.from(new Set(refs));
+
+  return {
+    selected_pain: pick,
+    selected_pain_label: pickShort,
+    derived_constraint: derived,
+    derived_tag: LEAK_DERIVED_TAG[derived],
+    is_reframe: reframe,        // true = first move differs from the pick (sequenced, NOT "you're wrong")
+    headline,
+    why_it_matters: why,
+    first_owner_outcome: LEAK_OUTCOMES[derived][0],
+    install_outcomes: LEAK_OUTCOMES[derived],
+    input_refs: refs,
+  };
+}
+window.__leakDiagnose = diagnose;
+
+        let currentStep = "q1";
 
         function showPanel(name) {
           const isWelcome = name === "welcome";
@@ -2311,36 +2989,68 @@ export const prerender = true;
           welcome.setAttribute("aria-hidden", String(!isWelcome));
           cockpit.setAttribute("aria-hidden", String(!isCockpit));
           reveal.setAttribute("aria-hidden", String(!isReveal));
+          welcome.inert = !isWelcome;
+          cockpit.inert = !isCockpit;
+          reveal.inert = !isReveal;
           app.dataset.screen = name;
         }
 
         function showStep(step) {
-          const showTarget = step === "q7";
-          q5Step.hidden = showTarget;
-          q7Step.hidden = !showTarget;
-          q5Step.classList.toggle("is-active", !showTarget);
-          q7Step.classList.toggle("is-active", showTarget);
-          updateRail(showTarget ? "target" : "leak");
-          liveCanvas.classList.toggle("has-target", showTarget);
-          mapNodes
-            .filter((node) => node.dataset.mapNode === "target")
-            .forEach((node) => node.classList.toggle("is-target", showTarget));
+          currentStep = step;
+          questionCards.forEach((card) => {
+            const isActive = card.dataset.step === step;
+            card.hidden = !isActive;
+            card.classList.toggle("is-active", isActive);
+            card.setAttribute("aria-hidden", String(!isActive));
+            card.inert = !isActive;
+          });
+          updateRail();
+          updateNextStates();
+          updateLiveMap();
+          announce(`${STEP_LABEL[step]} step`);
+
+          const activeCard = questionCards.find((card) => card.dataset.step === step);
+          const heading = activeCard && activeCard.querySelector("h2");
+          if (heading) {
+            heading.tabIndex = -1;
+            requestAnimationFrame(() => heading.focus({ preventScroll: true }));
+          }
         }
 
-        function updateRail(activeKey) {
+        function updateRail() {
+          const activeRail = RAIL_BY_STEP[currentStep];
+          const activeIndex = STEP_ORDER.indexOf(currentStep);
           railSteps.forEach((step) => {
             const key = step.dataset.rail;
-            const isActive = key === activeKey;
-            step.classList.toggle("is-active", isActive);
-            if (activeKey === "target") {
-              step.classList.toggle("is-done", key !== "target");
-            } else {
-              step.classList.toggle(
-                "is-done",
-                ["service", "demand", "stage", "owner-time"].includes(key),
-              );
-            }
+            const railStep = STEP_ORDER.find((item) => RAIL_BY_STEP[item] === key);
+            const index = STEP_ORDER.indexOf(railStep);
+            step.classList.toggle("is-active", key === activeRail);
+            step.classList.toggle("is-done", index >= 0 && index < activeIndex && isStepComplete(railStep));
           });
+        }
+
+        function isStepComplete(step) {
+          if (step === "q1") return Boolean(state.service);
+          if (step === "q2") return state.leadSources.length > 0;
+          if (step === "q3") return Boolean(state.revenue);
+          if (step === "q4") return Boolean(state.opsRatio);
+          if (step === "q5") return Boolean(state.bottleneck);
+          if (step === "q6") return true;
+          if (step === "q7") return true;
+          return false;
+        }
+
+        function updateNextStates() {
+          nextButtons.forEach((button) => {
+            const card = button.closest("[data-step]");
+            const step = card && card.dataset.step;
+            button.disabled = step === "q6" ? false : !isStepComplete(step);
+          });
+        }
+
+        function announce(message) {
+          if (!liveAnnouncer) return;
+          liveAnnouncer.textContent = message;
         }
 
         function animateScore(to) {
@@ -2373,46 +3083,166 @@ export const prerender = true;
           miniScore.textContent = padded;
         }
 
+        function setRadioSelection(buttons, selectedButton) {
+          buttons.forEach((button) => {
+            const selected = button === selectedButton;
+            button.classList.toggle("is-selected", selected);
+            button.classList.toggle("is-muted", !selected);
+            button.setAttribute("aria-checked", String(selected));
+          });
+        }
+
+        function toggleMultiSelection(button, key, buttons) {
+          const value = button.dataset[key];
+          const selected = !button.classList.contains("is-selected");
+          button.classList.toggle("is-selected", selected);
+          button.classList.toggle("is-muted", false);
+          button.setAttribute("aria-pressed", String(selected));
+
+          const selectedValues = buttons
+            .filter((item) => item.classList.contains("is-selected"))
+            .map((item) => item.dataset[key]);
+
+          buttons.forEach((item) => {
+            item.classList.toggle("is-muted", selectedValues.length > 0 && !item.classList.contains("is-selected"));
+          });
+
+          return selectedValues.filter(Boolean);
+        }
+
+        function setStepInsight(step, text) {
+          const insight = document.querySelector(`[data-step-insight="${step}"]`);
+          if (insight) insight.textContent = text;
+        }
+
+        function pulseTrace() {
+          liveCanvas.classList.remove("has-trace");
+          void liveCanvas.offsetWidth;
+          liveCanvas.classList.add("has-trace");
+        }
+
+        function updateLiveMap() {
+          const targetFilled = Object.values(state.target).some(Boolean);
+          const unlocked = new Set();
+          if (state.service) unlocked.add("service");
+          if (state.leadSources.length) unlocked.add("demand");
+          if (state.bottleneck && state.leakNode) unlocked.add(state.leakNode);
+          if (targetFilled || currentStep === "q7") unlocked.add("target");
+
+          mapNodes.forEach((mapNode) => {
+            const key = mapNode.dataset.mapNode;
+            const isLeak = state.bottleneck && key === state.leakNode;
+            const isTarget = key === "target" && (targetFilled || currentStep === "q7");
+            const isUnlocked = unlocked.has(key);
+            mapNode.classList.toggle("is-leak", Boolean(isLeak));
+            mapNode.classList.toggle("is-target", Boolean(isTarget));
+            mapNode.classList.toggle("is-unlocked", Boolean(isUnlocked));
+            mapNode.classList.toggle("is-dim", !isUnlocked && key !== "target");
+          });
+
+          liveCanvas.classList.toggle("has-target", targetFilled || currentStep === "q7");
+          leakBadge.hidden = !state.bottleneck;
+          if (state.bottleneck) leakBadgeText.textContent = cleanLeakLabel(state.leakLabel);
+
+          if (state.bottleneck) {
+            currentLeak.textContent = state.leakLabel;
+            currentLeakCopy.textContent = "First break picked. The reveal will test it against the rest of the map.";
+            mapTitle.textContent = `${state.leakLabel} found`;
+            miniLeak.textContent = state.leakLabel;
+          } else if (state.leadSources.length) {
+            currentLeak.textContent = "Demand mapped";
+            currentLeakCopy.textContent = `${state.leadSources.length} source${state.leadSources.length === 1 ? "" : "s"} selected.`;
+            mapTitle.textContent = "Demand source mapped";
+            miniLeak.textContent = "Demand mapped";
+          } else if (state.service) {
+            currentLeak.textContent = "Service mapped";
+            currentLeakCopy.textContent = `${getSelectedLabel(serviceButtons) || "Service"} context set.`;
+            mapTitle.textContent = "Service context set";
+            miniLeak.textContent = "Service mapped";
+          } else {
+            currentLeak.textContent = "Pick one break";
+            currentLeakCopy.textContent = "The map will flag the first loss point.";
+            mapTitle.textContent = "Your map is waking up";
+            miniLeak.textContent = "Pick the first break";
+          }
+        }
+
+        function getSelectedLabel(buttons) {
+          const selected = buttons.find((button) => button.classList.contains("is-selected"));
+          return selected ? selected.dataset.label : "";
+        }
+
+        function selectService(button) {
+          state.service = button.dataset.serviceValue;
+          setRadioSelection(serviceButtons, button);
+          setStepInsight("q1", button.dataset.insight);
+          pulseTrace();
+          updateLiveMap();
+          updateRail();
+          updateNextStates();
+          announce(`Service set to ${button.dataset.label}`);
+        }
+
+        function selectSource(button) {
+          state.leadSources = toggleMultiSelection(button, "sourceValue", sourceButtons);
+          const count = state.leadSources.length;
+          setStepInsight("q2", count ? `${count} source${count === 1 ? "" : "s"} mapped.` : "Pick at least one source to light demand.");
+          if (count) pulseTrace();
+          updateLiveMap();
+          updateRail();
+          updateNextStates();
+          announce(count ? `${count} lead source${count === 1 ? "" : "s"} selected` : "Lead sources cleared");
+        }
+
+        function selectStage(button) {
+          state.revenue = Number(button.dataset.revenueValue);
+          state.revenueLabel = button.dataset.revenueLabel;
+          setRadioSelection(stageButtons, button);
+          stageReadout.textContent = `${state.revenue} ${state.revenueLabel}`;
+          setStepInsight("q3", `Stage set: ${state.revenueLabel}.`);
+          updateRail();
+          updateNextStates();
+          announce(`Stage set to ${state.revenueLabel}`);
+        }
+
+        function selectOps(button) {
+          state.opsRatio = Number(button.dataset.opsRatio);
+          setRadioSelection(opsButtons, button);
+          opsReadout.textContent = button.dataset.opsLabel;
+          setStepInsight("q4", `Owner-time split set: ${button.dataset.opsLabel}.`);
+          updateRail();
+          updateNextStates();
+          announce(`Owner time set to ${button.dataset.opsLabel}`);
+        }
+
         function selectLeak(button) {
           const value = button.dataset.value;
           const node = button.dataset.node;
           const label = button.dataset.label;
           const score = Number(button.dataset.score);
 
-          state.leak = value;
+          state.bottleneck = value;
           state.leakNode = node;
           state.leakLabel = label;
 
-          leakOptions.forEach((option) => {
-            const selected = option === button;
-            option.classList.toggle("is-selected", selected);
-            option.classList.toggle("is-muted", !selected);
-            option.setAttribute("aria-checked", String(selected));
-          });
-
-          mapNodes.forEach((mapNode) => {
-            const key = mapNode.dataset.mapNode;
-            const isLeak = key === node;
-            const unlocked = isLeak || key === "service";
-            mapNode.classList.toggle("is-leak", isLeak);
-            mapNode.classList.toggle("is-unlocked", unlocked);
-            mapNode.classList.toggle("is-dim", !unlocked && key !== "target");
-          });
-
-          liveCanvas.classList.remove("has-trace");
-          void liveCanvas.offsetWidth;
-          liveCanvas.classList.add("has-trace");
-
-          leakBadge.hidden = false;
-          leakBadgeText.textContent = label.replace(" leak", "");
-          currentLeak.textContent = label;
-          currentLeakCopy.textContent = copyByNode[node];
-          mapTitle.textContent = `${label} found`;
-          miniLeak.textContent = label;
+          setRadioSelection(leakOptions, button);
+          pulseTrace();
           q5Insight.textContent = button.dataset.insight;
-          nextTargetButton.disabled = false;
           animateScore(score);
           updateTargetGap();
+          updateLiveMap();
+          updateRail();
+          updateNextStates();
+          announce(`${label} selected`);
+        }
+
+        function selectCapacity(button) {
+          state.capacityGaps = toggleMultiSelection(button, "capacityValue", capacityButtons);
+          const count = state.capacityGaps.length;
+          setStepInsight("q6", count ? `${count} stress point${count === 1 ? "" : "s"} selected.` : "Optional stress-test. You can skip this or pick more than one.");
+          updateRail();
+          updateNextStates();
+          announce(count ? `${count} stress point${count === 1 ? "" : "s"} selected` : "Stress-test cleared");
         }
 
         function setPreset(button) {
@@ -2428,13 +3258,15 @@ export const prerender = true;
           input.value = value;
           state.target[key] = value;
           updateTargetGap();
+          updateLiveMap();
+          updateRail();
         }
 
         function updateTargetGap() {
           const filled = Object.values(state.target).filter(Boolean).length;
           const pct = Math.round((filled / 3) * 100);
           const arcOffset = 176 - 176 * (pct / 100);
-          const scoreLift = state.leak ? filled * 10 : 0;
+          const scoreLift = state.bottleneck ? filled * 10 : 0;
 
           gapBar.style.width = `${pct}%`;
           gapArc.style.strokeDashoffset = String(arcOffset);
@@ -2451,8 +3283,8 @@ export const prerender = true;
             q7Insight.textContent = "Each target tightens the gap.";
           }
 
-          if (state.leak) {
-            const selected = leakOptions.find((option) => option.dataset.value === state.leak);
+          if (state.bottleneck) {
+            const selected = leakOptions.find((option) => option.dataset.value === state.bottleneck);
             const baseScore = selected ? Number(selected.dataset.score) : state.score;
             animateScore(Math.min(88, baseScore + scoreLift));
           }
@@ -2481,11 +3313,10 @@ export const prerender = true;
           return value ? `${value} hrs/wk` : "Not set";
         }
 
-        function renderInstallMoves(node) {
-          const moves = installByNode[node] || installByNode.demand;
+        function renderInstallMoves(outcomes) {
           installList.replaceChildren();
 
-          moves.forEach(([title, body], index) => {
+          outcomes.forEach((title, index) => {
             const card = document.createElement("article");
             card.className = "install-move";
 
@@ -2495,34 +3326,56 @@ export const prerender = true;
             const heading = document.createElement("strong");
             heading.textContent = title;
 
-            const copy = document.createElement("p");
-            copy.textContent = body;
-
-            card.append(number, heading, copy);
+            card.append(number, heading);
             installList.append(card);
           });
         }
 
+        function runRevealJargonGate() {
+          const text = ` ${(reveal.innerText || reveal.textContent || "").toLowerCase().replace(/\s+/g, " ")} `;
+          const banned = [
+            "fit gate",
+            "value proof",
+            "follow-up path",
+            "demand floor",
+            "capacity signal",
+            "dispatch rules",
+            "opsratio",
+            "ops ratio",
+            "growth index",
+            "bottleneck",
+            "module",
+            " utm ",
+            " crm ",
+            "attribution",
+            "qualifier",
+          ];
+          const hits = banned.filter((term) => text.includes(term));
+          if (hits.length) console.warn("[LEAKQA] jargon gate warning", hits);
+        }
+
         function renderReveal() {
-          const leakNode = state.leakNode || "demand";
-          const leakLabel = state.leakLabel || "Demand leak";
-          const leakName = cleanLeakLabel(leakLabel);
+          const ins = diagnose(state);
+          console.log('[LEAKQA]', JSON.stringify({selected_pain:ins.selected_pain, derived_constraint:ins.derived_constraint, is_reframe:ins.is_reframe, input_refs:ins.input_refs, headline:ins.headline}));
+          if (ins.input_refs.length < 2) console.warn("[LEAKQA] echo gate warning", ins.input_refs);
+          const leakNode = DERIVED_NODE[ins.derived_constraint] || "demand";
           const score = Number(state.score) || 0;
           const revenueTarget = formatRevenueTarget(state.target.revenue);
 
+          revealHeadline.textContent = ins.headline;
           revealScore.textContent = String(score).padStart(2, "0");
           revealScoreRead.textContent = getScoreRead(score);
-          revealMapTitle.textContent = `${leakName} is the first fix`;
-          revealLeakLabel.textContent = leakName;
-          revealLeakName.textContent = leakName;
-          revealLeakCopy.textContent = copyByNode[leakNode] || copyByNode.demand;
+          revealMapTitle.textContent = `${ins.derived_tag} is the first fix`;
+          revealLeakLabel.textContent = ins.derived_tag;
+          revealDiagnosisTitle.textContent = ins.headline;
+          revealLeakCopy.textContent = ins.why_it_matters;
 
           revealNodes.forEach((node) => {
             const isLeak = node.dataset.revealNode === leakNode;
             node.classList.toggle("is-leak", isLeak);
           });
 
-          renderInstallMoves(leakNode);
+          renderInstallMoves(ins.install_outcomes);
 
           revealGapTitle.textContent = revenueTarget ? `Today → ${revenueTarget}` : "Today → target not set";
           revealGapCopy.textContent = revenueTarget
@@ -2531,23 +3384,26 @@ export const prerender = true;
           revealTargetRevenue.textContent = revenueTarget || "Not set";
           revealTargetTeam.textContent = formatTeamTarget(state.target.team);
           revealTargetHours.textContent = formatHoursTarget(state.target.hours);
+          runRevealJargonGate();
         }
 
         startButton.addEventListener("click", () => {
           showPanel("cockpit");
-          showStep("q5");
+          showStep("q1");
         });
 
         backWelcomeButton.addEventListener("click", () => {
           showPanel("welcome");
         });
 
-        nextTargetButton.addEventListener("click", () => {
-          showStep("q7");
+        nextButtons.forEach((button) => {
+          button.addEventListener("click", () => {
+            if (!button.disabled) showStep(button.dataset.nextStep);
+          });
         });
 
-        prevLeakButton.addEventListener("click", () => {
-          showStep("q5");
+        prevButtons.forEach((button) => {
+          button.addEventListener("click", () => showStep(button.dataset.prevStep));
         });
 
         finishButton.addEventListener("click", () => {
@@ -2564,11 +3420,31 @@ export const prerender = true;
           showStep("q7");
         });
 
+        serviceButtons.forEach((button) => {
+          button.addEventListener("click", () => selectService(button));
+        });
+
+        sourceButtons.forEach((button) => {
+          button.addEventListener("click", () => selectSource(button));
+        });
+
+        stageButtons.forEach((button) => {
+          button.addEventListener("click", () => selectStage(button));
+        });
+
+        opsButtons.forEach((button) => {
+          button.addEventListener("click", () => selectOps(button));
+        });
+
         leakOptions.forEach((button) => {
           button.addEventListener("click", () => selectLeak(button));
         });
 
-        document.querySelectorAll("[data-preset]").forEach((button) => {
+        capacityButtons.forEach((button) => {
+          button.addEventListener("click", () => selectCapacity(button));
+        });
+
+        document.querySelectorAll("[data-dial] [data-preset]").forEach((button) => {
           button.addEventListener("click", () => setPreset(button));
         });
 
@@ -2579,8 +3455,12 @@ export const prerender = true;
             const card = input.closest("[data-dial]");
             card.querySelectorAll("[data-preset]").forEach((preset) => preset.classList.remove("is-selected"));
             updateTargetGap();
+            updateLiveMap();
           });
         });
+
+        showPanel("welcome");
+        showStep("q1");
       })();
     </script>
   </body>
