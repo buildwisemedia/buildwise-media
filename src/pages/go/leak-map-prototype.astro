@@ -395,11 +395,13 @@ export const prerender = true;
                 </div>
                 <div class="readout-card arc-card">
                   <span class="mono muted">GAP FEEL</span>
-                  <svg class="gap-arc" viewBox="0 0 72 72" aria-hidden="true">
-                    <circle class="arc-track" cx="36" cy="36" r="28" />
-                    <circle class="arc-fill" data-gap-arc cx="36" cy="36" r="28" />
-                  </svg>
-                  <strong data-gap-percent>0%</strong>
+                  <div class="gap-feel-row">
+                    <svg class="gap-arc" viewBox="0 0 72 72" aria-hidden="true">
+                      <circle class="arc-track" cx="36" cy="36" r="28" />
+                      <circle class="arc-fill" data-gap-arc cx="36" cy="36" r="28" />
+                    </svg>
+                    <strong data-gap-percent>0%</strong>
+                  </div>
                 </div>
               </div>
             </aside>
@@ -894,15 +896,21 @@ export const prerender = true;
       }
 
       .arc-card {
-        position: relative;
         min-height: 116px;
         overflow: hidden;
       }
 
+      .gap-feel-row {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        margin-top: 10px;
+      }
+
       .gap-arc {
-        width: 56px;
-        height: 56px;
-        margin-top: 7px;
+        width: 38px;
+        height: 38px;
+        flex: 0 0 38px;
         transform: rotate(-90deg);
       }
 
@@ -926,11 +934,10 @@ export const prerender = true;
       }
 
       .arc-card strong[data-gap-percent] {
-        position: absolute;
-        right: 14px;
-        bottom: 15px;
+        margin-top: 0;
         color: var(--yellow);
         font-family: "JetBrains Mono", monospace;
+        line-height: 1;
       }
 
       .cockpit-shell {
