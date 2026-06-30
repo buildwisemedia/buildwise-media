@@ -1,9 +1,10 @@
 ---
+// @creative-exempt: legal/privacy page — GDPR/CCPA sub-processor disclosure requires naming vendors, and legal prose is dense by nature; privacy/terms are vendor-exempt per CLAUDE.md (gate only auto-exempts the compiled .html, not this .astro source)
 import BaseLayout from '../layouts/BaseLayout.astro';
 
 const title = "Privacy Policy — Buildwise Media";
 const description = "How Buildwise Media collects, uses, and protects information about visitors and clients.";
-const lastUpdated = "May 17, 2026";
+const lastUpdated = "June 30, 2026";
 
 // JSON-LD: BreadcrumbList — Home › Privacy (leaf matches the trailing-slash canonical)
 const breadcrumb = {
@@ -34,7 +35,7 @@ const breadcrumb = {
         <ul class="legal-list">
           <li><strong>Usage data</strong> — pages visited, referrer, device type, approximate location (city/region from IP), interaction events. Collected via Google Analytics 4, Google Tag Manager, and Microsoft Clarity.</li>
           <li><strong>Advertising data</strong> — when you click an ad, basic conversion signals are collected via Meta Pixel and Meta Conversions API to measure campaign effectiveness.</li>
-          <li><strong>Form data</strong> — when you book a discovery call, we collect the information you provide (name, email, business details). Booking is processed by Cal.com, our scheduling sub-processor.</li>
+          <li><strong>Form data</strong> — when you book a discovery call or send us a message through our contact form, we collect the information you provide (name, email, mobile phone number, and business details). Booking is processed by Cal.com, our scheduling sub-processor.</li>
           <li><strong>Cookies</strong> — first-party cookies for attribution (`_bwm_attribution`) and third-party cookies set by the analytics tools above.</li>
         </ul>
 

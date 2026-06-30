@@ -51,6 +51,11 @@ const contactPage = {
         </div>
 
         <div class="contact-field">
+          <label class="mono" for="contact-phone">Mobile number</label>
+          <input id="contact-phone" name="phone" type="tel" required autocomplete="tel" inputmode="tel" minlength="10" placeholder="(555) 123-4567" />
+        </div>
+
+        <div class="contact-field">
           <label class="mono" for="contact-message">Message</label>
           <textarea id="contact-message" name="message" required rows="6"></textarea>
         </div>
@@ -103,12 +108,19 @@ const contactPage = {
       const payload = {
         name: value('name'),
         email: value('email'),
+        phone: value('phone'),
         message: value('message'),
         intent: 'contact',
       };
 
-      if (!payload.name || !payload.email || !payload.message || !form.reportValidity()) {
-        setStatus('Add your name, email, and message.', 'error');
+      if (!payload.name || !payload.email || !payload.phone || !payload.message || !form.reportValidity()) {
+        setStatus('Add your name, email, mobile number, and message.', 'error');
+        return;
+      }
+
+      const phoneDigits = payload.phone.replace(/\D/g, '');
+      if (phoneDigits.length < 10 || phoneDigits.length > 15) {
+        setStatus('Add a valid mobile number we can reach you on.', 'error');
         return;
       }
 
