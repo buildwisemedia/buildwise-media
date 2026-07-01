@@ -111,6 +111,7 @@ const questions = [
         <span class="mono" data-step-copy>QUESTION 01 / 07</span>
         <span class="mono" data-index-copy>REVENUE LEAK MAP BUILDING</span>
       </div>
+      <button type="button" class="bd-back mono" data-back aria-label="Go back to the previous question" hidden>← Back</button>
     </div>
   </header>
 
@@ -196,6 +197,7 @@ const questions = [
     <h2 id="bd-result-title" class="bd-result-title">
       Your Revenue Score: <span data-final-score>--</span><span class="bd-score-max">/100</span>
     </h2>
+    <p class="bd-score-meaning" data-score-meaning></p>
     <p class="bd-result-copy" data-result-copy></p>
 
     <div class="bd-proof" aria-label="Diagnostic proof">
@@ -246,10 +248,12 @@ const questions = [
   const progressBar = root?.querySelector('[data-progress-bar]');
   const stepCopy = root?.querySelector('[data-step-copy]');
   const indexCopy = root?.querySelector('[data-index-copy]');
+  const backBtn = root?.querySelector('[data-back]');
   const capture = root?.querySelector('[data-capture]');
   const result = root?.querySelector('[data-result]');
   const routeLabel = root?.querySelector('[data-route-label]');
   const finalScore = root?.querySelector('[data-final-score]');
+  const scoreMeaning = root?.querySelector('[data-score-meaning]');
   const resultCopy = root?.querySelector('[data-result-copy]');
   const submitBtn = root?.querySelector('[data-submit]');
   const submitLabel = root?.querySelector('[data-submit-label]');
@@ -261,7 +265,7 @@ const questions = [
   const enrichForm = root?.querySelector('[data-enrich-form]');
   const enrichSkip = root?.querySelector('[data-enrich-skip]');
   const enrichStatus = root?.querySelector('[data-enrich-status]');
-  // Free / personal email providers are rejected — Revenue Leak Map is for businesses.
+  // Free / personal email providers are flagged so follow-up can route correctly.
   const FREE_EMAIL_DOMAINS = new Set([
     'gmail.com','googlemail.com','yahoo.com','yahoo.co.uk','yahoo.ca','yahoo.com.au',
     'ymail.com','rocketmail.com','hotmail.com','hotmail.co.uk','outlook.com','live.com',
@@ -270,13 +274,13 @@ const questions = [
     'zoho.com','hey.com','fastmail.com','tutanota.com','hushmail.com','inbox.com',
     'mailinator.com','guerrillamail.com','10minutemail.com','trashmail.com','dispostable.com'
   ]);
-  function isBusinessEmail(email) {
+  function isWellFormedEmail(email) {
     const at = String(email || '').trim().toLowerCase();
-    const parts = at.split('@');
-    if (parts.length !== 2 || !parts[0] || !parts[1]) return false;
-    const domain = parts[1];
-    if (!domain.includes('.')) return false;
-    return !FREE_EMAIL_DOMAINS.has(domain);
+    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(at);
+  }
+  function isFreeEmail(email) {
+    const domain = String(email || '').trim().toLowerCase().split('@')[1] || '';
+    return FREE_EMAIL_DOMAINS.has(domain);
   }
   const state = {};
   const mountAt = new Date().toISOString();
@@ -377,6 +381,14 @@ const questions = [
     if (status) status.textContent = message;
   }
 
+  function updateBackButton() {
+    if (!backBtn) return;
+    const canGoBack = root.dataset.state === 'capture'
+      || (root.dataset.state === 'questions' && currentQuestion > 0);
+    backBtn.hidden = !canGoBack;
+    backBtn.disabled = !canGoBack;
+  }
+
   function updateProgress() {
     const completed = Object.keys(scoreTable).filter((field) => state[field]).length;
     const current = Math.min(questions.length, currentQuestion + 1);
@@ -388,6 +400,7 @@ const questions = [
     if (indexCopy) indexCopy.textContent = completed === questions.length
       ? 'REVENUE LEAK MAP READY'
       : 'REVENUE LEAK MAP BUILDING';
+    updateBackButton();
   }
 
   function showQuestion(index) {
@@ -422,6 +435,20 @@ const questions = [
     window.setTimeout(() => document.getElementById('bd-email')?.focus({ preventScroll: true }), 20);
   }
 
+  function returnToLastQuestion() {
+    showQuestion(questions.length - 1);
+  }
+
+  function goBack() {
+    if (root.dataset.state === 'capture') {
+      returnToLastQuestion();
+      return;
+    }
+    if (root.dataset.state === 'questions' && currentQuestion > 0) {
+      showQuestion(currentQuestion - 1);
+    }
+  }
+
   function updateGroupSelection(group, selectedButton) {
     const options = Array.from(group.querySelectorAll('[data-option]'));
     options.forEach((option) => {
@@ -448,7 +475,9 @@ const questions = [
       field,
       growth_index: growthIndex(),
     });
+    const selectedQuestion = currentQuestion;
     window.setTimeout(() => {
+      if (currentQuestion !== selectedQuestion) return;
       if (currentQuestion >= questions.length - 1) {
         showCapture();
       } else {
@@ -471,6 +500,8 @@ const questions = [
     if (!button) return;
     selectOption(button);
   });
+
+  backBtn?.addEventListener('click', goBack);
 
   root.addEventListener('keydown', (event) => {
     const option = event.target.closest('[data-option]');
@@ -517,6 +548,7 @@ const questions = [
       first_name: deriveFirstName(email, company),
       email,
       company,
+      free_email: isFreeEmail(email),
       decision_maker: state.decision_maker || '',
       revenue_range: state.revenue_range || '',
       ad_spend_readiness: state.ad_spend_readiness || '',
@@ -547,6 +579,19 @@ const questions = [
     return 'free_map';
   }
 
+  function scoreMeaningCopy(score) {
+    if (score >= 80) {
+      return 'Strong base. Most parts are working; the map shows the one or two leaks left to seal. Next move: we check the biggest leak and lock the fix first.';
+    }
+    if (score >= 60) {
+      return 'Solid base with real upside. The map shows where growth slips and which fix moves first. Next move: we seal the fastest leak before adding more demand.';
+    }
+    if (score >= 40) {
+      return 'Real leaks are costing you. The map shows where you lose the most and the first move that pays back fastest. Next move: we fix the leak closest to booked work.';
+    }
+    return 'Big opportunity. Growth is leaking in several places, and the map puts the fixes in order. Next move: we start with the leak that can return value soonest.';
+  }
+
   function reveal(data, payload) {
     const route = normalizeRoute(data);
     const score = typeof data?.growth_index === 'number' ? Math.round(data.growth_index) : growthIndex();
@@ -557,9 +602,11 @@ const questions = [
       : (payload.booking_event_id || data?.booking_event_id || '');
 
     finalScore.textContent = String(Math.max(0, Math.min(100, score)));
+    if (scoreMeaning) scoreMeaning.textContent = scoreMeaningCopy(score);
     result.hidden = false;
     enrichment.hidden = false;
     root.dataset.state = route;
+    updateBackButton();
     setStatus(`Your Revenue Score is ${score} out of 100.`);
 
     if (route === 'calendar') {
@@ -609,9 +656,9 @@ const questions = [
     eventObject.preventDefault();
     if (!form.reportValidity()) return;
     const emailEl = document.getElementById('bd-email');
-    if (!isBusinessEmail(emailEl?.value)) {
+    if (!isWellFormedEmail(emailEl?.value)) {
       if (errorEl) {
-        errorEl.textContent = 'Please use your business email — free inboxes (Gmail, Yahoo, Outlook, etc.) aren’t accepted.';
+        errorEl.textContent = 'Please enter a valid email address.';
         errorEl.hidden = false;
       }
       emailEl?.focus();
@@ -737,6 +784,7 @@ const questions = [
 .bd-eyebrow,
 .bd-field label,
 .bd-option-index,
+.bd-back,
 .bd-score-max {
   font-family: var(--mono);
 }
@@ -766,6 +814,28 @@ const questions = [
   letter-spacing: 0.16em;
   color: var(--ink-faint);
   text-transform: uppercase;
+}
+.bd-back {
+  width: fit-content;
+  min-height: 34px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--rule);
+  background: rgba(5, 5, 7, 0.42);
+  color: var(--ink-dim);
+  padding: 8px 11px;
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+.bd-back:hover {
+  color: var(--ink);
+  border-color: var(--rule-bright);
+}
+.bd-back:disabled {
+  opacity: 0.5;
+  cursor: default;
 }
 .bd-form,
 .bd-question-shell,
@@ -818,6 +888,7 @@ const questions = [
   line-height: 0.94;
 }
 .bd-help,
+.bd-score-meaning,
 .bd-result-copy,
 .bd-enrichment p {
   max-width: 58ch;
@@ -831,6 +902,9 @@ const questions = [
 .bd-result-copy,
 .bd-enrichment p {
   font-size: clamp(16px, 1.7vw, 19px);
+}
+.bd-score-meaning {
+  font-size: clamp(15px, 1.4vw, 18px);
 }
 .bd-option-grid {
   display: grid;
@@ -856,6 +930,7 @@ const questions = [
   border-color: var(--rule-bright);
 }
 .bd-option:focus-visible,
+.bd-back:focus-visible,
 .bd-submit:focus-visible,
 .bd-enrich-submit:focus-visible,
 .bd-enrich-skip:focus-visible,
