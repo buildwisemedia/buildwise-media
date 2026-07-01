@@ -171,7 +171,7 @@ const questions = [
     <section class="bd-capture" data-capture hidden aria-labelledby="bd-capture-title">
       <p class="bd-eyebrow mono">Map ready</p>
       <h2 id="bd-capture-title" class="bd-capture-title">Your Revenue Leak Map is ready — where should we send it?</h2>
-      <p class="bd-help">Two fields. No phone. We show your result right after this.</p>
+      <p class="bd-help">A few quick details so we can pull your real numbers. No phone — we show your result right after this.</p>
 
       <div class="bd-capture-grid">
         <div class="bd-field">
@@ -181,6 +181,18 @@ const questions = [
         <div class="bd-field">
           <label class="mono" for="bd-company">Business name</label>
           <input id="bd-company" name="company" type="text" required autocomplete="organization" />
+        </div>
+        <div class="bd-field">
+          <label class="mono" for="bd-trade">Your trade</label>
+          <input id="bd-trade" name="trade" type="text" required placeholder="e.g. HVAC, roofing, plumbing" />
+        </div>
+        <div class="bd-field">
+          <label class="mono" for="bd-service-area">City or area you serve</label>
+          <input id="bd-service-area" name="service_area" type="text" required placeholder="e.g. Atlanta, GA" />
+        </div>
+        <div class="bd-field bd-field-wide">
+          <label class="mono" for="bd-website">Your website</label>
+          <input id="bd-website" name="business_url" type="url" required autocomplete="url" inputmode="url" placeholder="https://yourbusiness.com" />
         </div>
       </div>
 
@@ -220,22 +232,6 @@ const questions = [
     </div>
   </section>
 
-  <section class="bd-enrichment" data-enrichment hidden aria-labelledby="bd-enrich-title">
-    <div>
-      <p class="bd-eyebrow mono">Optional</p>
-      <h3 id="bd-enrich-title">Add your site to sharpen the map.</h3>
-      <p>Skip this if you are in a hurry. Your result is already saved.</p>
-    </div>
-    <form class="bd-enrich-form" data-enrich-form novalidate>
-      <div class="bd-field">
-        <label class="mono" for="bd-business-url">Business URL</label>
-        <input id="bd-business-url" name="business_url" type="url" autocomplete="url" inputmode="url" placeholder="https://yourbusiness.com" />
-      </div>
-      <button type="submit" class="bd-enrich-submit">Add site</button>
-      <button type="button" class="bd-enrich-skip" data-enrich-skip>Skip</button>
-      <p class="bd-enrich-status mono" data-enrich-status aria-live="polite"></p>
-    </form>
-  </section>
 </section>
 
 <script is:inline>
@@ -261,10 +257,6 @@ const questions = [
   const errorEl = document.getElementById('bd-error');
   const mountInput = root?.querySelector('[data-form-mount-at]');
   const hostInput = root?.querySelector('[data-form-host-page]');
-  const enrichment = root?.querySelector('[data-enrichment]');
-  const enrichForm = root?.querySelector('[data-enrich-form]');
-  const enrichSkip = root?.querySelector('[data-enrich-skip]');
-  const enrichStatus = root?.querySelector('[data-enrich-status]');
   // Free / personal email providers are flagged so follow-up can route correctly.
   const FREE_EMAIL_DOMAINS = new Set([
     'gmail.com','googlemail.com','yahoo.com','yahoo.co.uk','yahoo.ca','yahoo.com.au',
@@ -288,8 +280,6 @@ const questions = [
   let interacted = false;
   let submitted = false;
   let abandonSent = false;
-  let lastPayload = null;
-  let lastResponse = null;
 
   if (!root || !form || !questions.length || !capture || !result) return;
 
@@ -425,7 +415,7 @@ const questions = [
     capture.hidden = false;
     root.dataset.state = 'capture';
     updateProgress();
-    setStatus('Your Revenue Leak Map is ready. Enter email and business name.');
+    setStatus('Your Revenue Leak Map is ready. Enter your details.');
     event('diagnostic_step_complete', {
       form_id: 'discovery-qualifier',
       diagnostic_step: 7,
@@ -541,7 +531,9 @@ const questions = [
   function payloadFromState(extra) {
     const email = String(document.getElementById('bd-email')?.value || '').trim();
     const company = String(document.getElementById('bd-company')?.value || '').trim();
-    const businessUrl = String(document.getElementById('bd-business-url')?.value || state.business_url || '').trim();
+    const trade = String(document.getElementById('bd-trade')?.value || '').trim();
+    const serviceArea = String(document.getElementById('bd-service-area')?.value || '').trim();
+    const businessUrl = String(document.getElementById('bd-website')?.value || '').trim();
     const honeyWebsite = String(form.elements.website?.value || '');
     const honeyCompanyUrl = String(form.elements.company_url?.value || '');
     const base = Object.assign({}, attributionPayload(), experimentContext(), {
@@ -549,6 +541,8 @@ const questions = [
       email,
       company,
       free_email: isFreeEmail(email),
+      trade,
+      service_area: serviceArea,
       decision_maker: state.decision_maker || '',
       revenue_range: state.revenue_range || '',
       ad_spend_readiness: state.ad_spend_readiness || '',
@@ -604,7 +598,6 @@ const questions = [
     finalScore.textContent = String(Math.max(0, Math.min(100, score)));
     if (scoreMeaning) scoreMeaning.textContent = scoreMeaningCopy(score);
     result.hidden = false;
-    enrichment.hidden = false;
     root.dataset.state = route;
     updateBackButton();
     setStatus(`Your Revenue Score is ${score} out of 100.`);
@@ -654,7 +647,21 @@ const questions = [
 
   form.addEventListener('submit', async (eventObject) => {
     eventObject.preventDefault();
+    const websiteEl = document.getElementById('bd-website');
+    if (websiteEl) {
+      websiteEl.setCustomValidity('');
+      const rawWebsite = String(websiteEl.value || '').trim();
+      if (rawWebsite && !/^[a-z][a-z\d+.-]*:\/\//i.test(rawWebsite)) {
+        websiteEl.value = `https://${rawWebsite}`;
+      }
+    }
     if (!form.reportValidity()) return;
+    if (websiteEl && !String(websiteEl.value || '').includes('.')) {
+      websiteEl.setCustomValidity('Please enter your website URL.');
+      form.reportValidity();
+      websiteEl.focus();
+      return;
+    }
     const emailEl = document.getElementById('bd-email');
     if (!isWellFormedEmail(emailEl?.value)) {
       if (errorEl) {
@@ -668,7 +675,6 @@ const questions = [
     setSubmitting(true);
     if (errorEl) errorEl.hidden = true;
     const payload = payloadFromState();
-    lastPayload = payload;
     try {
       const response = await fetch('https://bwm-form-handler.robert-ba0.workers.dev/buildwisemedia/discovery-qualifier', {
         method: 'POST',
@@ -677,7 +683,6 @@ const questions = [
       });
       if (!response.ok) throw new Error(`Server ${response.status}`);
       const data = await response.json();
-      lastResponse = data;
       event('diagnostic_submit', {
         form_id: 'discovery-qualifier',
         classification: data?.classification || '',
@@ -717,38 +722,6 @@ const questions = [
     if (document.visibilityState === 'hidden') sendAbandon();
   });
   window.addEventListener('pagehide', sendAbandon);
-
-  enrichForm?.addEventListener('submit', async (eventObject) => {
-    eventObject.preventDefault();
-    const input = document.getElementById('bd-business-url');
-    const value = String(input?.value || '').trim();
-    if (!value) {
-      input?.focus();
-      return;
-    }
-    state.business_url = value;
-    if (enrichStatus) enrichStatus.textContent = 'Adding...';
-    try {
-      const payload = payloadFromState({
-        enrichment: 'business_url',
-        contact_id: lastResponse?.contact_id || '',
-        classification: lastResponse?.classification || '',
-        route: lastResponse?.route || normalizeRoute(lastResponse),
-      });
-      await fetch('https://bwm-form-handler.robert-ba0.workers.dev/buildwisemedia/discovery-qualifier', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(payload),
-      });
-      if (enrichStatus) enrichStatus.textContent = 'Added.';
-    } catch (_) {
-      if (enrichStatus) enrichStatus.textContent = 'Saved here. The first map is already sent.';
-    }
-  });
-
-  enrichSkip?.addEventListener('click', () => {
-    enrichment.hidden = true;
-  });
 
   showQuestion(0);
 })();
@@ -841,14 +814,12 @@ const questions = [
 .bd-question-shell,
 .bd-question,
 .bd-capture,
-.bd-result,
-.bd-enrichment {
+.bd-result {
   min-width: 0;
 }
 .bd-question,
 .bd-capture,
-.bd-result,
-.bd-enrichment {
+.bd-result {
   max-width: 980px;
 }
 .bd-question,
@@ -889,8 +860,7 @@ const questions = [
 }
 .bd-help,
 .bd-score-meaning,
-.bd-result-copy,
-.bd-enrichment p {
+.bd-result-copy {
   max-width: 58ch;
   margin: 0;
   line-height: 1.55;
@@ -899,8 +869,7 @@ const questions = [
 .bd-help {
   font-size: clamp(16px, 1.4vw, 18px);
 }
-.bd-result-copy,
-.bd-enrichment p {
+.bd-result-copy {
   font-size: clamp(16px, 1.7vw, 19px);
 }
 .bd-score-meaning {
@@ -932,8 +901,6 @@ const questions = [
 .bd-option:focus-visible,
 .bd-back:focus-visible,
 .bd-submit:focus-visible,
-.bd-enrich-submit:focus-visible,
-.bd-enrich-skip:focus-visible,
 .bd-field input:focus-visible {
   outline: 2px solid var(--y2);
   outline-offset: 3px;
@@ -995,6 +962,9 @@ const questions = [
   gap: 12px;
   max-width: 760px;
 }
+.bd-field-wide {
+  grid-column: 1 / -1;
+}
 .bd-field {
   display: flex;
   flex-direction: column;
@@ -1020,9 +990,7 @@ const questions = [
 .bd-field input:hover {
   border-color: var(--rule-bright);
 }
-.bd-submit,
-.bd-enrich-submit,
-.bd-enrich-skip {
+.bd-submit {
   min-height: 52px;
   display: inline-flex;
   align-items: center;
@@ -1032,13 +1000,11 @@ const questions = [
   padding: 14px 20px;
   font-weight: 800;
 }
-.bd-submit,
-.bd-enrich-submit {
+.bd-submit {
   background: var(--y2);
   color: #050507;
 }
-.bd-submit:hover,
-.bd-enrich-submit:hover {
+.bd-submit:hover {
   background: var(--y2-bright);
   border-color: var(--y2-bright);
 }
@@ -1098,41 +1064,6 @@ const questions = [
   font-size: 14px;
   line-height: 1.45;
 }
-.bd-enrichment {
-  display: grid;
-  grid-template-columns: minmax(0, 0.8fr) minmax(300px, 1fr);
-  gap: 18px;
-  align-items: end;
-  border-top: 1px solid var(--rule);
-  padding-top: 24px;
-}
-.bd-enrichment h3 {
-  margin: 0 0 8px;
-  font-size: clamp(22px, 3vw, 34px);
-  line-height: 1.1;
-}
-.bd-enrich-form {
-  display: grid;
-  grid-template-columns: minmax(180px, 1fr) auto auto;
-  gap: 10px;
-  align-items: end;
-}
-.bd-enrich-skip {
-  color: var(--ink-dim);
-  border-color: var(--rule);
-}
-.bd-enrich-skip:hover {
-  color: var(--ink);
-  border-color: var(--rule-bright);
-}
-.bd-enrich-status {
-  grid-column: 1 / -1;
-  min-height: 18px;
-  margin: 0;
-  color: var(--ink-faint);
-  font-size: 10px;
-  letter-spacing: 0.16em;
-}
 @media (max-width: 820px) {
   .book-diagnostic {
     min-height: auto;
@@ -1141,13 +1072,9 @@ const questions = [
   .bd-question {
     gap: 10px;
   }
-  .bd-enrichment {
-    grid-template-columns: 1fr;
-  }
   .bd-option-grid,
   .bd-capture-grid,
-  .bd-proof,
-  .bd-enrich-form {
+  .bd-proof {
     grid-template-columns: 1fr;
   }
   .bd-question-title {
@@ -1170,9 +1097,7 @@ const questions = [
     flex-direction: column;
     gap: 4px;
   }
-  .bd-submit,
-  .bd-enrich-submit,
-  .bd-enrich-skip {
+  .bd-submit {
     width: 100%;
   }
 }
