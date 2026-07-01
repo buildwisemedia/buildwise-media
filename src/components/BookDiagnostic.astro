@@ -279,6 +279,7 @@ const questions = [
   let currentQuestion = 0;
   let interacted = false;
   let submitted = false;
+  let submitting = false;
   let abandonSent = false;
 
   if (!root || !form || !questions.length || !capture || !result) return;
@@ -376,7 +377,7 @@ const questions = [
     const canGoBack = root.dataset.state === 'capture'
       || (root.dataset.state === 'questions' && currentQuestion > 0);
     backBtn.hidden = !canGoBack;
-    backBtn.disabled = !canGoBack;
+    backBtn.disabled = !canGoBack || submitting;
   }
 
   function updateProgress() {
@@ -430,6 +431,7 @@ const questions = [
   }
 
   function goBack() {
+    if (submitting) return;
     if (root.dataset.state === 'capture') {
       returnToLastQuestion();
       return;
@@ -638,11 +640,35 @@ const questions = [
     result.scrollIntoView({ behavior: 'smooth', block: 'start' });
   }
 
+  function isAlreadyInMotion(data) {
+    const reason = String(data?.reason || '').toLowerCase();
+    return data?.filtered === true && (reason === 'rate_limited' || reason === 'duplicate_24h');
+  }
+
+  function revealAlreadyInMotion(data) {
+    const score = typeof data?.growth_index === 'number' ? Math.round(data.growth_index) : growthIndex();
+
+    finalScore.textContent = String(Math.max(0, Math.min(100, score)));
+    if (scoreMeaning) scoreMeaning.textContent = scoreMeaningCopy(score);
+    result.hidden = false;
+    root.dataset.state = 'already_in_motion';
+    updateBackButton();
+    setStatus(`Your Revenue Score is ${score} out of 100.`);
+    routeLabel.textContent = 'Already in motion';
+    resultCopy.textContent = 'We already have a recent map request for this email or device. Check your inbox, including spam. If it is not there in a few minutes, email hello@buildwisemedia.com and the team will send it again.';
+    result.focus({ preventScroll: true });
+    result.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+
   function setSubmitting(isSubmitting) {
-    if (!submitBtn || !submitLabel || !submitLoading) return;
-    submitBtn.disabled = isSubmitting;
-    submitLabel.hidden = isSubmitting;
-    submitLoading.hidden = !isSubmitting;
+    submitting = isSubmitting;
+    if (backBtn) backBtn.disabled = isSubmitting;
+    if (submitBtn && submitLabel && submitLoading) {
+      submitBtn.disabled = isSubmitting;
+      submitLabel.hidden = isSubmitting;
+      submitLoading.hidden = !isSubmitting;
+    }
+    updateBackButton();
   }
 
   form.addEventListener('submit', async (eventObject) => {
@@ -693,7 +719,12 @@ const questions = [
         booking_event_id: payload.booking_event_id || '',
         growth_index: payload.growth_index,
       });
+      if (root.dataset.state !== 'capture') return;
       capture.hidden = true;
+      if (isAlreadyInMotion(data)) {
+        revealAlreadyInMotion(data);
+        return;
+      }
       reveal(data, payload);
     } catch (err) {
       console.error('book diagnostic submit failed:', err);
