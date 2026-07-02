@@ -20,7 +20,20 @@ const subhead = `Time is the only thing your business can't make more of. A cust
   ogDescription="Stop being the person who answers leads. Your custom AI system runs while you sleep."
   noindex={true}
 >
+  <!-- @bwm-exp-slot: hero-headline -->
+  <!-- @bwm-exp-slot: hero-cta -->
   <MoHero keyword="time" subhead={subhead} />
+  <script is:inline>
+    (() => {
+      const headline = document.getElementById('mo-hero-headline');
+      headline?.before(document.createComment('@bwm-exp-slot: ' + 'hero-headline'));
+      headline?.setAttribute('data-bwm-exp-slot', 'hero-headline');
+
+      const cta = document.querySelector('.mo-ctas .cta');
+      cta?.before(document.createComment('@bwm-exp-slot: ' + 'hero-cta'));
+      cta?.setAttribute('data-bwm-exp-slot', 'hero-cta');
+    })();
+  </script>
   <MoChainSection />
   <MoPayoffSection keyword="time" />
   <FitDiagnostic />

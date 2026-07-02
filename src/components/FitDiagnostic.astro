@@ -19,10 +19,10 @@
           <div class="doc-mark-glyph">
             <svg viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
               <defs>
-                <linearGradient id="markGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-                  <stop offset="0%" stop-color="#F0FF00"/>
-                  <stop offset="100%" stop-color="#B8FF3A" stop-opacity="0.85"/>
-                </linearGradient>
+	                <linearGradient id="markGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+	                  <stop offset="0%" stop-color="#F0FF00"/>
+	                  <stop offset="100%" stop-color="#F0FF00" stop-opacity="0.65"/>
+	                </linearGradient>
               </defs>
               <circle cx="5" cy="23" r="2.4" fill="url(#markGrad)"/>
               <circle cx="23" cy="23" r="2.4" fill="url(#markGrad)"/>
@@ -77,7 +77,7 @@
                 <div class="trust-item"><span class="verdict-dot-sm"></span> Tailored To You</div>
               </div>
               <div class="welcome-cta-wrap">
-                <button class="cta-primary" data-action="start">
+	                <button class="cta-primary" data-action="start" data-cta-source="mo-fit-welcome-start">
                   Get My Free Revenue Leak Map
                   <span class="arrow">→</span>
                 </button>
@@ -121,7 +121,7 @@
               <div class="divider-cell-num">03 · The Verdict</div>
               <h3 class="divider-cell-title">Three honest paths.</h3>
               <p class="divider-cell-body">
-                If you're a Fit, we'll book the strategy call. If you're close, we'll show you the 3 things to lock in first. If you're not ready yet, we'll hand you the exact playbook to fix the gaps. We don't waste your time.
+                If you're a Fit, we'll book the strategy call. If you're close, we'll show you the 3 things to lock in first. If you're not ready yet, we'll build your Revenue Leak Map. We don't waste your time.
               </p>
             </div>
           </div>
@@ -486,7 +486,7 @@
         <!-- @r020:F3 cta-pull: step-progress dots show how close the reveal is — momentum pulls completion -->
         <svg class="q-progress" viewBox="0 0 136 12" width="136" height="12" role="img" aria-label="Question 6 of 7"><circle cx="10" cy="6" r="2.5" fill="#F0FF00"/><circle cx="28" cy="6" r="2.5" fill="#F0FF00"/><circle cx="46" cy="6" r="2.5" fill="#F0FF00"/><circle cx="64" cy="6" r="2.5" fill="#F0FF00"/><circle cx="82" cy="6" r="2.5" fill="#F0FF00"/><circle cx="100" cy="6" r="4" fill="#F0FF00"/><circle cx="118" cy="6" r="2.5" fill="rgba(168,162,152,0.35)"/></svg>
         <h2 class="q-text">If we sent you <span class="y">10x leads tomorrow</span>, what couldn't handle it?</h2>
-        <p class="q-help">Select all that apply. This is the inverse of the bottleneck question — we want to know which downstream systems would buckle under the load.</p>
+        <p class="q-help">Select all that apply. This is the flip side of the earlier question — we want to know which parts of the business would buckle under the load.</p>
         <div class="multiselect-grid" data-multi="capacityGaps" data-optional>
           <button class="ms-card" data-value="sales-closing">
             <div class="ms-card-checkbox"></div>
@@ -567,60 +567,15 @@
         </div>
       </div>
 
-      <div class="container">
-        <div class="growth-index">
-          <div class="growth-index-label">
-            <span class="mono-eyebrow">Your Revenue Score</span>
-            <span class="growth-index-value" id="growth-index-value">—</span>
-            <span class="growth-index-suffix">Out Of 100</span>
-          </div>
-          <div class="growth-index-explainer">
-            <p>Your Revenue Score combines revenue stage, channel maturity, time-on-growth, and target ambition into a single readout. <strong>Above 65 = system-ready.</strong> Below 30 = foundations need work first. Between = close, with specific gaps to lock.</p>
-          </div>
-        </div>
-      </div>
-
-      <section class="reveal-section">
-        <div class="container">
-          <div class="reveal-section-eyebrow">
-            <span class="verdict-dot-sm"></span>
-            <span class="mono-eyebrow">/01 · Snapshot</span>
-          </div>
-          <h2 class="reveal-section-title">What you told us. <span class="y">Synthesized.</span></h2>
-          <div class="snapshot-grid">
-            <div class="snap-cell">
-              <div class="snap-cell-label">Service Category</div>
-              <div class="snap-cell-value text" id="snap-service">—</div>
-              <div class="snap-cell-detail">Your primary line of business</div>
-            </div>
-            <div class="snap-cell">
-              <div class="snap-cell-label">Revenue Band</div>
-              <div class="snap-cell-value" id="snap-revenue">—</div>
-              <div class="snap-cell-detail">Monthly recurring</div>
-            </div>
-            <div class="snap-cell">
-              <div class="snap-cell-label">Time on Growth</div>
-              <div class="snap-cell-value" id="snap-growth">—</div>
-              <div class="snap-cell-detail">Of your weekly hours</div>
-            </div>
-            <div class="snap-cell">
-              <div class="snap-cell-label">Acquisition Mix</div>
-              <div class="snap-cell-value text" id="snap-channels">—</div>
-              <div class="snap-cell-detail">Today's primary channels</div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section class="reveal-section">
-        <div class="container">
-          <div class="reveal-section-eyebrow">
-            <span class="verdict-dot-sm"></span>
-            <span class="mono-eyebrow">/02 · Diagnosis</span>
-          </div>
-          <h2 class="reveal-section-title">Here's where your <span class="y">bottleneck</span> is.</h2>
-          <div class="diagnosis-block">
-            <div class="diagnosis-eyebrow">Primary Constraint</div>
+	      <section class="reveal-section">
+	        <div class="container">
+	          <div class="reveal-section-eyebrow">
+	            <span class="verdict-dot-sm"></span>
+	            <span class="mono-eyebrow">/01 · Diagnosis</span>
+	          </div>
+	          <h2 class="reveal-section-title">Here's what we <span class="y">actually see</span>.</h2>
+	          <div class="diagnosis-block">
+            <div class="diagnosis-eyebrow">The Real First Move</div>
             <h3 class="diagnosis-title">
               <span id="diagnosis-title-lead">—</span>
               <span class="y" id="diagnosis-title-bottleneck">—</span>
@@ -631,27 +586,101 @@
         </div>
       </section>
 
-      <section class="reveal-section">
-        <div class="container">
-          <div class="reveal-section-eyebrow">
-            <span class="verdict-dot-sm"></span>
-            <span class="mono-eyebrow">/03 · The System</span>
-          </div>
-          <h2 class="reveal-section-title">Your <span class="y">custom AI system</span>, mapped.</h2>
-          <p style="font-size: 17px; line-height: 1.55; color: var(--ink-dim); margin-bottom: 32px; max-width: 760px;">Modules in <span style="color: var(--y2);">yellow</span> are tailored to your specific bottleneck. Modules in outline are standard across every BWM system.</p>
-          <div class="system-grid" id="system-grid"></div>
-          <div class="system-legend">
-            <span class="legend-dot"><span class="legend-dot-tailored"></span> Tailored To Your Bottleneck</span>
-            <span class="legend-dot"><span class="legend-dot-standard"></span> Standard Module</span>
-          </div>
-        </div>
-      </section>
+	      <section class="reveal-section">
+	        <div class="container">
+	          <div class="reveal-section-eyebrow">
+	            <span class="verdict-dot-sm"></span>
+	            <span class="mono-eyebrow">/02 · First Moves</span>
+	          </div>
+	          <h2 class="reveal-section-title">Where <span class="y">we'd start</span>.</h2>
+	          <p style="font-size: 17px; line-height: 1.55; color: var(--ink-dim); margin-bottom: 32px; max-width: 760px;">Start here before adding more traffic or more tools. These are the moves that make new work land cleanly.</p>
+	          <div class="system-grid" id="system-grid"></div>
+	        </div>
+	      </section>
 
-      <section class="reveal-section">
-        <div class="container">
-          <div class="reveal-section-eyebrow">
-            <span class="verdict-dot-sm"></span>
-            <span class="mono-eyebrow">/04 · 12-Month Projection</span>
+	      <section class="reveal-section reveal-capture-section" id="fit-capture">
+	        <div class="container">
+	          <div class="fit-capture-shell">
+	            <!-- @cta-proof: de-identified approved wins -->
+	            <div class="fit-proof-line">
+	              <div class="fit-proof-label mono">PROOF</div>
+	              <p class="fit-proof-copy" id="fit-proof-copy">—</p>
+	            </div>
+	            <form id="bwm-fit-email-form" class="bwm-fit-email-form" data-bwm-exp-slot="proof-module">
+	              <p class="bwm-fit-email-intro">We'll build your full Revenue Leak Map from your answers and your site — and email it to you.</p>
+	              <div class="bwm-fit-field">
+	                <label class="mono" for="bwm-fit-email" style="font-size:11px;letter-spacing:.18em;color:var(--ink-dim);">Business email</label>
+	                <input type="email" id="bwm-fit-email" name="email" required placeholder="you@yourbusiness.com" autocomplete="email" />
+	              </div>
+	              <div class="bwm-fit-field">
+	                <label class="mono" for="bwm-fit-company" style="font-size:11px;letter-spacing:.18em;color:var(--ink-dim);">Business name</label>
+	                <input type="text" id="bwm-fit-company" name="company" required autocomplete="organization" />
+	              </div>
+	              <div class="bwm-fit-field">
+	                <label class="mono" for="bwm-fit-website" style="font-size:11px;letter-spacing:.18em;color:var(--ink-dim);">Website</label>
+	                <input type="text" id="bwm-fit-website" name="business_url" required placeholder="yourbusiness.com" inputmode="url" autocomplete="url" />
+	              </div>
+	              <div class="bwm-fit-field">
+	                <label class="mono" for="bwm-fit-area" style="font-size:11px;letter-spacing:.18em;color:var(--ink-dim);">City / area you serve</label>
+	                <input type="text" id="bwm-fit-area" name="service_area" required placeholder="e.g. Marietta, GA" autocomplete="address-level2" />
+	              </div>
+	              <button type="submit" class="cta">Send my Revenue Leak Map <span class="cta-arrow" aria-hidden="true">→</span></button>
+	              <p id="bwm-fit-email-status" class="bwm-fit-email-status mono" aria-live="polite" style="font-size:10px;letter-spacing:.18em;color:var(--ink-faint);margin-top:8px;"></p>
+	            </form>
+	          </div>
+	        </div>
+	      </section>
+
+	      <div class="container">
+	        <div class="growth-index">
+	          <div class="growth-index-label">
+	            <span class="mono-eyebrow">Your Revenue Score</span>
+	            <span class="growth-index-value" id="growth-index-value">—</span>
+	            <span class="growth-index-suffix">Out Of 100</span>
+	          </div>
+	          <div class="growth-index-explainer">
+	            <p>Your Revenue Score combines revenue stage, channel maturity, time-on-growth, and target ambition into a single readout. <strong>Above 65 = system-ready.</strong> Below 30 = foundations need work first. Between = close, with specific gaps to lock.</p>
+	          </div>
+	        </div>
+	      </div>
+
+	      <section class="reveal-section">
+	        <div class="container">
+	          <div class="reveal-section-eyebrow">
+	            <span class="verdict-dot-sm"></span>
+	            <span class="mono-eyebrow">/03 · Snapshot</span>
+	          </div>
+	          <h2 class="reveal-section-title">What you told us. <span class="y">Synthesized.</span></h2>
+	          <div class="snapshot-grid">
+	            <div class="snap-cell">
+	              <div class="snap-cell-label">Service Category</div>
+	              <div class="snap-cell-value text" id="snap-service">—</div>
+	              <div class="snap-cell-detail">Your primary line of business</div>
+	            </div>
+	            <div class="snap-cell">
+	              <div class="snap-cell-label">Revenue Band</div>
+	              <div class="snap-cell-value" id="snap-revenue">—</div>
+	              <div class="snap-cell-detail">Monthly recurring</div>
+	            </div>
+	            <div class="snap-cell">
+	              <div class="snap-cell-label">Time on Growth</div>
+	              <div class="snap-cell-value" id="snap-growth">—</div>
+	              <div class="snap-cell-detail">Of your weekly hours</div>
+	            </div>
+	            <div class="snap-cell">
+	              <div class="snap-cell-label">Acquisition Mix</div>
+	              <div class="snap-cell-value text" id="snap-channels">—</div>
+	              <div class="snap-cell-detail">Today's primary channels</div>
+	            </div>
+	          </div>
+	        </div>
+	      </section>
+
+	      <section class="reveal-section">
+	        <div class="container">
+	          <div class="reveal-section-eyebrow">
+	            <span class="verdict-dot-sm"></span>
+	            <span class="mono-eyebrow">/04 · Projection</span>
           </div>
           <h2 class="reveal-section-title">The gap between <span class="y">today and your target</span>.</h2>
           <div class="projection-block">
@@ -1431,22 +1460,50 @@
       font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase;
       color: var(--y2);
     }
-    .system-legend {
-      margin-top: 24px; display: flex; align-items: center; gap: 24px;
-      font-family: 'JetBrains Mono', monospace; font-size: 11px;
-      letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-dim);
-    }
+	    .system-legend {
+	      margin-top: 24px; display: flex; align-items: center; gap: 24px;
+	      font-family: 'JetBrains Mono', monospace; font-size: 11px;
+	      letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-dim);
+	    }
     .legend-dot { display: inline-flex; align-items: center; gap: 8px; }
     .legend-dot-tailored {
       width: 10px; height: 10px;
       background: var(--y2); box-shadow: 0 0 8px var(--y2-glow);
     }
-    .legend-dot-standard {
-      width: 10px; height: 10px;
-      background: transparent; border: 1px solid var(--y2);
-    }
+	    .legend-dot-standard {
+	      width: 10px; height: 10px;
+	      background: transparent; border: 1px solid var(--y2);
+	    }
 
-    .projection-block { padding: 48px 0 24px; }
+	    .reveal-capture-section { background: var(--bg-deep); }
+	    .fit-capture-shell {
+	      max-width: 900px;
+	      padding: 36px;
+	      background: var(--bg-lift);
+	      border: 1px solid var(--rule-bright);
+	    }
+	    .fit-proof-line {
+	      display: flex;
+	      align-items: flex-start;
+	      gap: 16px;
+	      padding-bottom: 18px;
+	      margin-bottom: 18px;
+	      border-bottom: 1px solid var(--rule);
+	    }
+	    .fit-proof-label {
+	      flex: 0 0 auto;
+	      font-size: 10px;
+	      letter-spacing: .18em;
+	      color: var(--y2);
+	    }
+	    .fit-proof-copy {
+	      margin: 0;
+	      color: var(--ink-dim);
+	      font-size: 14px;
+	      line-height: 1.55;
+	    }
+
+	    .projection-block { padding: 48px 0 24px; }
     .projection-chart {
       width: 100%; height: 420px; position: relative;
       border: 1px solid var(--rule); background: var(--bg); overflow: hidden;
@@ -1543,7 +1600,8 @@
       color: var(--ink); margin-bottom: 16px;
     }
     .path-cta-body { font-size: 14px; line-height: 1.55; color: var(--ink-dim); margin-bottom: 32px; }
-    .path-cta-form { display: flex; gap: 8px; flex-wrap: wrap; }
+    .path-cta-form { display: grid; gap: 8px; }
+    .path-cta-form-row { display: flex; gap: 8px; flex-wrap: wrap; }
     .path-cta-input {
       flex: 1; min-width: 200px; padding: 14px 16px;
       background: var(--bg); border: 1px solid var(--rule-bright);
@@ -1557,6 +1615,12 @@
       border: 0; cursor: pointer; transition: box-shadow .25s ease;
     }
     .path-cta-btn:hover { box-shadow: 4px 4px 0 var(--y2); }
+    .path-cta-btn:disabled { cursor: not-allowed; opacity: .72; box-shadow: none; }
+    .path-cta-status {
+      margin: 4px 0 0; min-height: 1.4em;
+      font-size: 10px; line-height: 1.4; letter-spacing: .16em;
+      color: var(--ink-faint);
+    }
 
     footer { padding: 56px 0 72px; border-top: 1px solid var(--rule); }
     .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 48px; align-items: start; }
@@ -1615,10 +1679,12 @@
       .slider-readout { font-size: clamp(34px, 10vw, 48px); }
       .slider-readout-label { margin-bottom: 24px; }
       .system-grid { grid-template-columns: 1fr; }
-      .snapshot-grid { grid-template-columns: 1fr; }
-      .diagnosis-block, .verdict-card, .path-cta-block { padding: 32px 24px; }
-      .reveal-hero { padding: 48px 0 32px; }
-    }
+	      .snapshot-grid { grid-template-columns: 1fr; }
+	      .diagnosis-block, .verdict-card, .path-cta-block { padding: 32px 24px; }
+	      .fit-capture-shell { padding: 28px 20px; }
+	      .fit-proof-line { display: grid; gap: 8px; }
+	      .reveal-hero { padding: 48px 0 32px; }
+	    }
 
 /* BWM scoping overrides — keep the diagnostic styling self-contained */
 .bwm-fit-diagnostic {
@@ -1626,12 +1692,28 @@
   position: relative;
 }
 .bwm-fit-email-form {
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 12px;
   margin-top: 16px;
 }
-.bwm-fit-email-form input[type="email"] {
+.bwm-fit-email-intro,
+.bwm-fit-email-form button,
+.bwm-fit-email-status {
+  grid-column: 1 / -1;
+}
+.bwm-fit-email-intro {
+  margin: 0 0 2px;
+  color: var(--ink-dim);
+  font-size: 14px;
+  line-height: 1.5;
+}
+.bwm-fit-field {
+  display: grid;
+  gap: 8px;
+}
+.bwm-fit-email-form input[type="email"],
+.bwm-fit-email-form input[type="text"] {
   background: transparent;
   border: 1px solid var(--rule);
   color: var(--ink);
@@ -1641,11 +1723,27 @@
   outline: none;
   transition: border-color .15s ease;
 }
-.bwm-fit-email-form input[type="email"]:focus {
+.bwm-fit-email-form input[type="email"]:focus,
+.bwm-fit-email-form input[type="text"]:focus {
   border-color: var(--y2);
 }
 .bwm-fit-email-form button {
   align-self: flex-start;
+}
+.bwm-fit-email-form button:disabled {
+  cursor: not-allowed;
+  opacity: .72;
+}
+.bwm-fit-email-status {
+  min-height: 1.4em;
+}
+@media (max-width: 640px) {
+  .bwm-fit-email-form {
+    grid-template-columns: 1fr;
+  }
+  .path-cta-form-row {
+    display: grid;
+  }
 }
 </style>
 
@@ -1676,21 +1774,301 @@
       'paid-ads': 'Paid Ads', social: 'Social', 'cold-outreach': 'Cold Outreach', unsure: 'Untracked'
     };
 
-    // Free / personal inboxes are rejected — the Revenue Leak Map is for businesses.
-    const FREE_EMAIL_DOMAINS = new Set([
-      'gmail.com','googlemail.com','yahoo.com','yahoo.co.uk','yahoo.ca','yahoo.com.au',
-      'ymail.com','rocketmail.com','hotmail.com','hotmail.co.uk','outlook.com','live.com',
-      'msn.com','icloud.com','me.com','mac.com','aol.com','aim.com','protonmail.com',
-      'proton.me','pm.me','gmx.com','gmx.net','mail.com','yandex.com','yandex.ru',
-      'zoho.com','hey.com','fastmail.com','tutanota.com','hushmail.com','inbox.com',
-      'mailinator.com','guerrillamail.com','10minutemail.com','trashmail.com','dispostable.com'
-    ]);
-    function isBusinessEmail(email) {
-      const at = String(email || '').trim().toLowerCase();
-      const parts = at.split('@');
-      if (parts.length !== 2 || !parts[0] || !parts[1]) return false;
-      if (!parts[1].includes('.')) return false;
-      return !FREE_EMAIL_DOMAINS.has(parts[1]);
+const LEAK_REV_MID = [0, 5000, 17500, 37500, 75000, 175000, 375000, 750000];
+
+const LEAK_PICK = {
+  leads:      { short: 'not enough leads',       feel: 'you need more leads' },
+  quality:    { short: 'too many bad-fit leads', feel: 'your leads are low quality' },
+  capacity:   { short: 'not enough capacity',    feel: 'you cannot deliver more' },
+  speed:      { short: 'slow response',          feel: 'you reach leads too slowly' },
+  conversion: { short: 'a low close rate',       feel: 'you do not close enough' },
+};
+
+const LEAK_SOURCE_LABEL = {
+  referrals: 'referrals', 'google-organic': 'local search', 'paid-ads': 'paid ads',
+  social: 'social', 'cold-outreach': 'cold outreach', unsure: 'word of mouth',
+};
+
+// Owner-outcome install moves, keyed to the DERIVED first move (never raw pick, never
+// internal module names). Each is a win the owner's life gains. No spend assumptions.
+const LEAK_OUTCOMES = {
+  visibility: [
+    'Know which referral or ad actually sends you work',
+    'Tie every lost deal back to where it came from',
+    'Find the one source worth doubling down on',
+  ],
+  ownerCapacity: [
+    'Get the day-to-day running without you in every job',
+    'Free up your week so you can work on growth, not in it',
+    'Hand off the routine without dropping the ball',
+  ],
+  capacity: [
+    'Win more work without the schedule slipping',
+    'Assign tomorrow\'s jobs without you making three calls tonight',
+    'Stop turning away good work you just cannot fit in',
+  ],
+  demand: [
+    'Turn referrals on when you need them, not just when they show up',
+    'Keep the calendar full without chasing it',
+    'Add one channel you control, so a slow month is a choice',
+  ],
+  fit: [
+    'Stop quoting jobs you never wanted',
+    'Spend your day on buyers who can actually pay',
+    'Screen out price-shoppers before they reach your calendar',
+  ],
+  speed: [
+    'Catch every lead the second it comes in',
+    'Never lose a job to a missed call again',
+    'Book the next step on autopilot, free or not',
+  ],
+  close: [
+    'Bring serious buyers back without anyone chasing them',
+    'Cover the days-2-to-7 window where deals quietly die',
+    'Give good buyers an easy yes',
+  ],
+  followup: [
+    'Follow up on every estimate before it goes cold',
+    'Close the gap between "interested" and "booked"',
+    'Win more of the leads you already get — no new spend',
+  ],
+};
+
+// short plain label for the "biggest leak" tag (derived first move, not the raw pick)
+const LEAK_DERIVED_TAG = {
+  ownerCapacity: 'Your time', capacity: 'Delivery', visibility: 'Tracking',
+  demand: 'Demand', fit: 'Lead fit', speed: 'Speed', close: 'Follow-up', followup: 'Follow-up',
+};
+
+// ---- formatting helpers ----
+function leakParseMoney(v) {
+  if (!v) return 0;
+  const s = String(v).toLowerCase().replace(/[, $]/g, '');
+  const m = s.match(/([0-9]+(?:\.[0-9]+)?)\s*(k|m)?/);
+  if (!m) return 0;
+  let n = parseFloat(m[1]);
+  if (m[2] === 'k') n *= 1000;
+  if (m[2] === 'm') n *= 1000000;
+  return Math.round(n);
+}
+function leakFmtMoney(v) {
+  const n = leakParseMoney(v);
+  if (!n) return '';
+  if (n >= 1000000) return '$' + (n / 1000000).toFixed(n % 1000000 ? 1 : 0) + 'M';
+  if (n >= 1000) return '$' + Math.round(n / 1000) + 'K';
+  return '$' + n;
+}
+function leakParseHours(v) {
+  if (!v) return 0;
+  const m = String(v).match(/[0-9]+/);
+  return m ? parseInt(m[0], 10) : 0;
+}
+
+// ---- the engine ----
+function diagnose(state) {
+  const s = state || {};
+  const pick = s.bottleneck && LEAK_PICK[s.bottleneck] ? s.bottleneck : 'leads';
+  const pickShort = LEAK_PICK[pick].short;
+
+  const ops = Number(s.opsRatio) || 0;            // % of owner week on day-to-day
+  const buried = ops >= 80;
+  const hasOps = ops > 0;
+
+  const src = Array.isArray(s.leadSources) ? s.leadSources : [];
+  const untracked = src.indexOf('unsure') >= 0;
+  const realSrc = src.filter(x => x !== 'unsure');
+  const referralLean = src.indexOf('referrals') >= 0 && realSrc.length <= 1;
+  const broadTop = src.indexOf('paid-ads') >= 0 || src.indexOf('social') >= 0;
+  const namedSrc = realSrc.map(x => LEAK_SOURCE_LABEL[x]).filter(Boolean);
+  const channelCount = realSrc.length;
+
+  const gaps = Array.isArray(s.capacityGaps) ? s.capacityGaps : [];
+  const capFlag = ['ops-dispatch', 'hiring', 'quality'].some(g => gaps.indexOf(g) >= 0);
+  const salesFlag = gaps.indexOf('sales-closing') >= 0;
+
+  const targetRev = leakParseMoney(s.target && s.target.revenue);
+  const targetHours = leakParseHours(s.target && s.target.hours);
+
+  // plain phrase builders
+  const opsPhrase = hasOps ? ops + '% of your week on the day-to-day' : 'most of your week on the day-to-day';
+  const targetPhrase = targetRev ? leakFmtMoney(s.target.revenue) + '/mo' : '';
+  const hoursPhrase = targetHours ? targetHours + ' hours a week' : '';
+  const gapNames = gaps.map(g => ({
+    'sales-closing': 'closing', 'ops-dispatch': 'scheduling', quality: 'delivery quality',
+    hiring: 'hiring', tech: 'your systems', cash: 'cash flow',
+  })[g]).filter(Boolean);
+  const gapPhrase = gapNames.slice(0, 2).join(' and ');
+  const srcPhrase = namedSrc.length ? namedSrc.join(' and ') : 'referrals and word of mouth';
+
+  let derived, headline, why, refs, reframe;
+
+  // ===================== LEAK_PICK = LEADS =====================
+  if (pick === 'leads') {
+    if (buried && capFlag) {
+      derived = 'ownerCapacity'; reframe = true;
+      headline = 'More leads is the right instinct — lock one thing first so they don\'t slip away.';
+      why = 'You\'re spending ' + opsPhrase + ', and you flagged ' + gapPhrase + ' as what would buckle if leads doubled. ' +
+            'Here\'s the fork: if that\'s already tight, more leads turn into slow callbacks and jobs that slip — and a missed callback costs you the next referral. ' +
+            'If you\'ve got real headroom, go get them. If you\'re not sure, the first move is getting the work to run without you in the middle of every job — so every new lead becomes booked work, not one more thing to chase.';
+      refs = ['opsRatio', 'capacityGaps'];
+    } else if (capFlag) {
+      derived = 'capacity'; reframe = true;
+      headline = 'More leads is the right call — just build the catch first.';
+      why = 'You told us ' + gapPhrase + ' is what would buckle if we sent you 10x leads tomorrow. That\'s an honest read — most owners haven\'t pressure-tested it. ' +
+            'So before you floor the gas: if that part has headroom today, go. If it\'s already tight, a week of extra leads becomes slow callbacks and slipping jobs. ' +
+            'The first move is making sure the work can absorb the volume — then more leads fill a calendar that can actually hold them.';
+      refs = ['capacityGaps', 'bottleneck'];
+    } else if (untracked && referralLean) {
+      derived = 'visibility'; reframe = true;
+      headline = 'Before more leads — can you name which source sends you the good jobs?';
+      why = 'Your leads come mostly from ' + srcPhrase + '. If you can already name the one or two people who send you your best work, great — you know exactly where to push, and more leads is the right call. ' +
+            'If you can\'t tie each job back to a source yet, that\'s the gap to close first: a simple "how did you hear about us?" on every call. ' +
+            'In 30 days you\'ll know whether word of mouth is one person or ten — and which source is worth doubling.';
+      refs = ['leadSources', 'bottleneck'];
+    } else if (buried) {
+      derived = 'ownerCapacity'; reframe = true;
+      headline = 'At ' + ops + '% in the work, more leads have nowhere to land.';
+      why = 'You\'re spending ' + opsPhrase + '. More leads sounds like the goal — but at that load they pile onto a week with no room, and become slow callbacks instead of booked jobs. ' +
+            'The first move that actually unlocks growth is getting a few hours back: take the routine work off your plate first, then every new lead turns into work, not stress. ' +
+            'If you\'ve already got people running the day-to-day, skip ahead — adding one channel you control is your move.';
+      refs = ['opsRatio', 'bottleneck'];
+    } else if (referralLean) {
+      derived = 'demand'; reframe = true;
+      headline = 'More leads is fair — the real question is whether you can turn them on when you need them.';
+      why = 'You lean on referrals' + (targetPhrase ? ', and you\'re aiming for ' + targetPhrase : '') + '. When they\'re flowing, life is good. ' +
+            'The gut-check: on a slow month, can you make them show up? If your pipeline feels feast-or-famine, the first move isn\'t working harder for referrals — it\'s adding one channel you control, so a quiet week is a choice, not a surprise. ' +
+            'If referrals already pour in faster than you can quote them, ignore the channel talk — your real ceiling is throughput, and that\'s the fix.';
+      refs = ['leadSources', targetPhrase ? 'target' : 'bottleneck'];
+    } else {
+      derived = 'followup'; reframe = false;
+      headline = 'You\'ve got the channels — the gap most owners miss is the 48 hours after a lead comes in.';
+      why = 'You\'re running ' + (channelCount || 'a few') + ' channels' + (targetPhrase ? ' toward ' + targetPhrase : '') + ', so this isn\'t about adding more sources. ' +
+            'The leak that hides at your size is the window: an estimate request that goes cold before anyone follows up. ' +
+            'The one move that compounds on the traffic you already have is an automatic follow-up that closes that window — no new spend, no chasing.';
+      refs = ['leadSources', targetPhrase ? 'target' : 'opsRatio'];
+    }
+  }
+
+  // ===================== LEAK_PICK = QUALITY (fit) =====================
+  else if (pick === 'quality') {
+    if (salesFlag || buried) {
+      derived = 'fit'; reframe = false;
+      headline = 'Your read is right — it\'s a fit problem, not a volume one. The fix buys back time too.';
+      why = 'Bad-fit leads don\'t just lower quality — they eat the hours of whoever does your quoting. ' +
+            (salesFlag ? 'You flagged closing as a soft spot, which is the tell: when volume picks up, the wrong leads will drag your close rate down with it. ' : '') +
+            'The first move before more leads is a simple step that screens out non-buyers before they ever get a quote — so the leads that reach you are already half-sold.';
+      refs = [salesFlag ? 'capacityGaps' : 'opsRatio', 'bottleneck'];
+    } else if (broadTop) {
+      derived = 'fit'; reframe = false;
+      headline = 'Your read is right — it\'s a fit problem. Here\'s where it starts.';
+      why = 'You\'re running ' + namedSrc.slice(0, 2).join(' and ') + ', which reaches a wide crowd. If there\'s already a step that screens people before your team quotes them, the leak is more likely your offer or who the ads target. ' +
+            'If there isn\'t, that\'s the first fix: a front-door filter that sorts serious buyers from price-shoppers before they eat your quoting time. Either way, more leads on top just brings more of the wrong ones — the win is upstream of the quote.';
+      refs = ['leadSources', 'bottleneck'];
+    } else {
+      derived = 'fit'; reframe = false;
+      headline = 'Your read is right — it\'s quality, not volume. The fix is upstream of the quote.';
+      why = 'Plenty of leads reach you; the wrong ones eat the calendar' + (targetPhrase ? ' while you push toward ' + targetPhrase : '') + '. ' +
+            'Bad-fit usually clusters in one segment — a job type or customer that bleeds quote time. The first move is filtering by fit before the call, so the quotes you give go to people ready to buy.';
+      refs = ['bottleneck', targetPhrase ? 'target' : 'leadSources'];
+    }
+  }
+
+  // ===================== LEAK_PICK = CAPACITY =====================
+  else if (pick === 'capacity') {
+    derived = buried ? 'ownerCapacity' : 'capacity'; reframe = false;
+    if (targetPhrase || hoursPhrase) {
+      headline = 'You picked capacity — and your goal makes the case for you.';
+      why = 'You want ' + (targetPhrase || 'to grow') + (hoursPhrase ? ' while dropping to ' + hoursPhrase : '') +
+            ', and you\'re at ' + opsPhrase + (gapPhrase ? ' with ' + gapPhrase + ' under strain' : '') + '. ' +
+            'Here\'s the fork that sets your first move: if that time is you personally doing the work, more hours isn\'t an option — the path is the work running without you. ' +
+            'If it\'s you overseeing a team by choice, the ceiling is crew or equipment — and the move is adding that, not stepping back. Either way, capacity comes before volume — leads added first just turn wins into losses.';
+      refs = ['target', 'opsRatio'];
+    } else {
+      headline = 'You picked capacity. The first lever depends on one thing.';
+      why = 'You\'re at ' + opsPhrase + (gapPhrase ? ', and ' + gapPhrase + ' is the pressure point' : '') + '. ' +
+            'The question that sets your first move: is the ceiling your hours, your crew, or your equipment? ' +
+            'If it\'s you in every job, the lever is a system that assigns tomorrow\'s work without you making three calls tonight. If you\'ve got a foreman, it\'s more crew or another truck — not delegation. Either way, that\'s the thing to lock before adding a single new job.';
+      refs = ['opsRatio', gapPhrase ? 'capacityGaps' : 'bottleneck'];
+    }
+  }
+
+  // ===================== LEAK_PICK = SPEED =====================
+  else if (pick === 'speed') {
+    if (capFlag) {
+      derived = 'capacity'; reframe = true;
+      headline = 'Speed wins the booking — just make sure the booking can hold.';
+      why = 'You flagged ' + gapPhrase + ' as what would buckle under more volume. If your ops are solid today, faster response is exactly the right lever — go. ' +
+            'If that part\'s already tight, answering faster just books work the team can\'t deliver on time. The move is to build the catch first, so speed fills a calendar that can actually hold it.';
+      refs = ['capacityGaps', 'bottleneck'];
+    } else if (buried) {
+      derived = 'speed'; reframe = false;
+      headline = 'Speed is the right lever — the gap is the first five minutes.';
+      why = 'You\'re at ' + opsPhrase + '. If you\'re mostly solo, a lead that calls while you\'re on a job waits till tonight — or never. ' +
+            'If you\'ve got a team, the first five minutes after a call may still slip before someone picks it up. Either way it\'s not a "you\'re slow" problem — it\'s that nothing catches the lead the second it comes in. The first move is an instant first reply that books the next step on its own.';
+      refs = ['opsRatio', 'bottleneck'];
+    } else {
+      derived = 'speed'; reframe = false;
+      headline = 'Response speed is the cheapest win you\'ve got.';
+      why = 'Leads come in and cool off before the first callback' + (targetPhrase ? ', and you\'re pushing toward ' + targetPhrase : '') + '. ' +
+            'Speed is the highest-leverage fix in your funnel — but only if the fast reply routes to a real next step, not just a faster you. The first move is an instant first-touch that books the call on its own.';
+      refs = ['bottleneck', targetPhrase ? 'target' : 'opsRatio'];
+    }
+  }
+
+  // ===================== LEAK_PICK = CONVERSION (close) =====================
+  else {
+    if (untracked) {
+      derived = 'visibility'; reframe = true;
+      headline = 'Your pick might be right — here\'s the one data point that confirms it.';
+      why = 'Your leads come mostly from ' + srcPhrase + '. If you can tie each lost deal back to who sent it, you\'ll probably see "low close rate" is really one or two sources sending weak-fit buyers. ' +
+            'If you can\'t see close rate by source yet, that\'s the first thing to set — then you fix the real leak, not the whole thing.';
+      refs = ['leadSources', 'bottleneck'];
+    } else {
+      derived = 'close'; reframe = false;
+      headline = 'Most deals don\'t die on the call — they die in the days after.';
+      why = (salesFlag ? 'You flagged closing as a soft spot. ' : '') +
+            'You picked close rate' + (targetPhrase ? ', and you\'re aiming for ' + targetPhrase : '') +
+            ' — but the lift usually hides in days 2 through 7, where a "no for now" gets treated like a "no forever." ' +
+            'If you\'ve already got steady follow-up after every call, then it really is the call itself to work on. If it\'s manual or thin, that silent week is where the money leaks — and the fastest gain is a system that brings serious buyers back without anyone chasing.';
+      refs = [salesFlag ? 'capacityGaps' : 'bottleneck', targetPhrase ? 'target' : 'opsRatio'];
+    }
+  }
+
+  // de-dup refs, guarantee >= 2 distinct
+  refs = Array.from(new Set(refs)).filter(Boolean);
+  if (refs.length < 2) refs.push('bottleneck');
+  refs = Array.from(new Set(refs));
+
+  return {
+    selected_pain: pick,
+    selected_pain_label: pickShort,
+    derived_constraint: derived,
+    derived_tag: LEAK_DERIVED_TAG[derived],
+    is_reframe: reframe,        // true = first move differs from the pick (sequenced, NOT "you're wrong")
+    headline,
+    why_it_matters: why,
+    first_owner_outcome: LEAK_OUTCOMES[derived][0],
+    install_outcomes: LEAK_OUTCOMES[derived],
+    input_refs: refs,
+  };
+}
+window.__leakDiagnose = diagnose;
+
+    function deriveFirstName(email, company) {
+      const local = String(email || '').split('@')[0] || '';
+      const generic = /^(info|hello|office|admin|team|contact|sales)$/i.test(local);
+      const source = generic ? String(company || '').split(/\s+/)[0] : local.split(/[._+\-\d]/).filter(Boolean)[0];
+      const fallback = String(company || '').split(/\s+/)[0] || 'there';
+      const name = (source || fallback).replace(/[^a-zA-Z']/g, '');
+      if (!name) return 'there';
+      return name.charAt(0).toUpperCase() + name.slice(1).toLowerCase();
+    }
+
+    function normalizeBusinessUrl(value) {
+      const raw = String(value || '').trim();
+      if (!raw) return '';
+      if (/^[a-z][a-z0-9+.-]*:\/\//i.test(raw)) return raw;
+      return 'https://' + raw;
     }
 
     // ============ NAVIGATION ============
@@ -1719,7 +2097,7 @@
     function goTo(screen) {
       document.body.dataset.screen = screen;
       syncScreenA11y(screen);
-      var ann = document.getElementById('screen-announce'); if (ann) ann.textContent = screen === 'reveal' ? 'Your results are ready.' : (screen === 'welcome' ? '' : 'Question ' + screen.replace('q','') + ' of 7.');
+	      var ann = document.getElementById('screen-announce'); if (ann) ann.textContent = screen === 'reveal' ? 'Your map is ready.' : (screen === 'welcome' ? '' : 'Question ' + screen.replace('q','') + ' of 7.');
       // Keep the visitor inside the diagnostic on each step. The diagnostic is
       // embedded at the bottom of a long landing page, so scrolling the window
       // to the very top (the old behavior) teleported them up to the page hero.
@@ -1871,13 +2249,13 @@
     });
 
     // ============ BUTTON BINDINGS ============
-    document.querySelectorAll('[data-back]').forEach(btn => {
-      btn.addEventListener('click', () => goTo(btn.dataset.back));
-    });
-    document.querySelectorAll('[data-next]').forEach(btn => {
-      btn.addEventListener('click', () => goTo(btn.dataset.next));
-    });
-    document.querySelector('[data-action="start"]').addEventListener('click', () => goTo('q1'));
+	    document.querySelectorAll('[data-back]').forEach(btn => {
+	      btn.addEventListener('click', () => window.goTo(btn.dataset.back));
+	    });
+	    document.querySelectorAll('[data-next]').forEach(btn => {
+	      btn.addEventListener('click', () => window.goTo(btn.dataset.next));
+	    });
+	    document.querySelector('[data-action="start"]').addEventListener('click', () => window.goTo('q1'));
     document.querySelector('[data-action="reveal"]').addEventListener('click', computeAndReveal);
 
     // In-page CTAs ("Get My Free Revenue Leak Map") point at #diagnostic. On their own
@@ -1892,8 +2270,8 @@
       const current = document.body.dataset.screen;
       // Only auto-advance from the welcome screen; if a quiz is already in progress
       // (or results are shown), just bring the diagnostic back into view, don't reset.
-      goTo(!current || current === 'welcome' ? 'q1' : current);
-    });
+	      window.goTo(!current || current === 'welcome' ? 'q1' : current);
+	    });
 
     // Initialize the diagnostic to its welcome screen on load. Without this the
     // <body> has no data-screen, every .screen stays display:none, and the
@@ -1923,7 +2301,13 @@
     }
 
     // ============ COMPUTE + REVEAL ============
-    function computeAndReveal() {
+	    function proofForDerivedConstraint(derived) {
+	      return ['ownerCapacity', 'capacity', 'demand'].indexOf(derived) >= 0
+	        ? 'Owner-led custom builder we work with: $300K → $10M+ after the system took over the follow-through.'
+	        : 'Concrete contractor we work with: ~150 leads since launch — without the owner chasing a single one.';
+	    }
+
+	    function computeAndReveal() {
       // ---- Revenue Score ----
       let revScore = 0;
       if (state.revenue >= 2) revScore = 1;
@@ -1956,19 +2340,25 @@
       // ---- Verdict ----
       let verdict, verdictLabel, verdictExplainer, verdictDetail;
       const bottleneckLabel = BOTTLENECK_LABEL[state.bottleneck] || 'unknown';
-      if (growthIndex >= 65) {
-        verdict = 'fit'; verdictLabel = "You're A Fit.";
-        verdictExplainer = "You're at the stage where a custom AI system installed correctly compounds. Revenue traction is real, you've already got channel diversity, and your target is ambitious enough that hand-rolled workflows will hold you back.";
-        verdictDetail = "The system pays for itself in the first 90 days at your current revenue band. Your bottleneck (" + bottleneckLabel + ") is exactly the kind we engineer around. The next move is a 30-minute call to map your install plan.";
+	      if (growthIndex >= 65) {
+	        verdict = 'fit'; verdictLabel = "You're A Fit.";
+	        verdictExplainer = "You're at the stage where a custom AI system pays off fast. Real revenue, more than one lead channel, and a target big enough that doing it all by hand will hold you back.";
+	        verdictDetail = "The system should pay back fast at your current revenue band. That first move is exactly the kind of work we engineer around. The next move is a 30-minute call to map your 30-day install plan.";
       } else if (growthIndex >= 35) {
         verdict = 'maybe'; verdictLabel = "Close. Three Things To Lock.";
         verdictExplainer = "You're not far. The diagnostic shows you've got real revenue traction, but one or two foundational pieces aren't dialed in yet. Lock those first, then come back — the system installs cleaner when these are in place.";
-        verdictDetail = "Locking these takes most operators 60-90 days of focused work. We'll send you the exact playbook so you can move on it. When the gaps close, the diagnostic flips to Fit and we book the strategy call.";
-      } else {
-        verdict = 'not-yet'; verdictLabel = "Not Yet — But Here's The Map.";
-        verdictExplainer = "Honest read: installing a custom AI system at your stage would amplify whatever's already breaking, not fix it. The foundation has to come first. We'd rather hand you the playbook than sell you a system you're not ready for.";
-        verdictDetail = "Most operators in your position need 6-12 months of focused foundational work before a custom AI system is the right move. We'll send you the exact 5-step playbook tailored to your bottleneck — yours regardless of whether we ever work together.";
-      }
+        verdictDetail = "Locking these takes most operators 60-90 days of focused work. We'll build your full Revenue Leak Map — where the money is leaking and the exact first moves, tailored to your situation.";
+	      } else {
+	        verdict = 'not-yet'; verdictLabel = "Not Yet — But Here's The Map.";
+	        verdictExplainer = "Honest read: installing a custom AI system at your stage would amplify whatever's already breaking, not fix it. The foundation has to come first. We'd rather build your map than sell you a system you're not ready for.";
+	        verdictDetail = "Most owners in your spot need 6-12 months of groundwork before a custom AI system is the right buy. We'll build your full Revenue Leak Map — where the money is leaking and the exact first moves, tailored to your situation.";
+	      }
+
+	      const ins = diagnose(state);
+	      const proofCopy = document.getElementById('fit-proof-copy');
+	      if (proofCopy) proofCopy.textContent = proofForDerivedConstraint(ins.derived_constraint);
+	      console.log('[LEAKQA]', JSON.stringify({selected_pain:ins.selected_pain, derived_constraint:ins.derived_constraint, is_reframe:ins.is_reframe, input_refs:ins.input_refs, headline:ins.headline}));
+      if (ins.input_refs.length < 2) console.warn('[LEAKQA] echo-gate: <2 input refs');
 
       // ---- Populate Reveal ----
       const now = new Date();
@@ -1985,80 +2375,29 @@
       const channels = state.leadSources.map(s => LEAD_SOURCE_LABEL[s]).slice(0, 2).join(' + ');
       document.getElementById('snap-channels').textContent = channels || '—';
 
-      // Diagnosis — populate three span slots + body text
-      const DIAGNOSIS = {
-        leads: {
-          lead: 'Your bottleneck is ',
-          y: 'lead volume',
-          tail: ' — and your acquisition mix tells us why.',
-          body: 'You have ' + state.leadSources.length + ' active channels but ' + (isUntracked ? 'no attribution layer' : 'no compounding asset that fills the calendar on autopilot') + '. Referrals are great when they show up — but they don\'t scale at will. Without a system that creates leads predictably (paid, organic, or both), every growth attempt feels like starting over. The fix isn\'t more activity — it\'s building the lead-generation engine that runs without you starting it each morning.'
-        },
-        quality: {
-          lead: 'Your bottleneck is ',
-          y: 'lead quality',
-          tail: ' — the funnel is leaking before the call.',
-          body: 'You\'re getting leads, but the ones reaching you aren\'t pre-qualified. This is a positioning + filtering problem, not a volume problem. Most service businesses solve this by adding more leads on top, which makes the problem worse. The right move is an upstream qualifier (positioning, pricing display, ICP-tight ad targeting) that filters out the wrong people before they consume your calendar.'
-        },
-        capacity: {
-          lead: 'Your bottleneck is ',
-          y: 'delivery capacity',
-          tail: ' — growth would amplify a structural ceiling.',
-          body: 'You\'re already at or near the ceiling of what your crew/schedule can absorb. Adding leads without expanding capacity just turns leads into lost-revenue rage. The system has to solve delivery alongside acquisition — productized scope, dispatch automation, and crew-augmentation patterns. Otherwise the diagnostic becomes the disease.'
-        },
-        speed: {
-          lead: 'Your bottleneck is ',
-          y: 'response speed',
-          tail: ' — and that\'s the most fixable one.',
-          body: 'Leads come in, they go cold before you reach them. Studies show response in under 5 minutes converts at 4-9x the rate of response after 30 minutes. This is the highest-leverage fix in your funnel — automated triage, instant-callback workflows, and AI-first-touch can lift your close-rate without changing anything upstream. Often the cheapest win in the whole system.'
-        },
-        conversion: {
-          lead: 'Your bottleneck is ',
-          y: 'conversion',
-          tail: ' — the lead reaches you, then doesn\'t close.',
-          body: 'You\'ve got volume + speed dialed, but close-rate is below where it should be for your service category. This is usually a sales-system problem, not a sales-skill problem. Standardized discovery, structured proposals, follow-up sequences, and objection-handling automations close the gap. The good news: every percentage point of close-rate compounds on existing traffic. No new leads needed.'
-        }
-      };
-      const diag = DIAGNOSIS[state.bottleneck] || DIAGNOSIS.leads;
-      document.getElementById('diagnosis-title-lead').textContent = diag.lead;
-      document.getElementById('diagnosis-title-bottleneck').textContent = diag.y;
-      document.getElementById('diagnosis-title-tail').textContent = diag.tail;
-      document.getElementById('diagnosis-body').textContent = diag.body;
+      // Diagnosis — use the reasoning engine so the reveal does not echo the pick
+      document.getElementById('diagnosis-title-lead').textContent = ins.headline;
+      document.getElementById('diagnosis-title-bottleneck').textContent = '';
+      document.getElementById('diagnosis-title-tail').textContent = '';
+      document.getElementById('diagnosis-body').textContent = ins.why_it_matters;
 
-      // System modules
-      const tailored = state.bottleneck;
-      const cap = state.capacityGaps;
-      const modules = [
-        { title: 'Lead Generation Engine', body: 'Multi-channel intake — paid + organic + referral — funnel-tagged with UTM attribution to every channel.', tailored: tailored === 'leads' },
-        { title: 'Lead Qualifier (Diagnostic)', body: 'Front-door qualifier that filters out price-shoppers and routes by ICP fit before consuming your calendar.', tailored: tailored === 'quality' },
-        { title: 'Instant-Response Workflow', body: 'AI-first-touch + escalation. New leads get a meaningful reply in under 60 seconds — even on weekends.', tailored: tailored === 'speed' },
-        { title: 'Sales Conversion Stack', body: 'Standardized discovery, structured proposals, automated follow-up sequences. Close-rate compounds on existing traffic.', tailored: tailored === 'conversion' },
-        { title: 'Delivery Capacity Layer', body: 'Productized scope + dispatch automation + crew assignment. Volume scales without quality drift.', tailored: tailored === 'capacity' || cap.indexOf('ops-dispatch') >= 0 || cap.indexOf('quality') >= 0 },
-        { title: 'Attribution + Dashboards', body: 'Every lead, every dollar, every channel — traced back to source with weekly reporting you actually read.', tailored: state.leadSources.indexOf('unsure') >= 0 }
-      ];
+      // System grid — owner-outcome moves from the engine
       const systemGrid = document.getElementById('system-grid');
       clearChildren(systemGrid);
-      modules.forEach((m, i) => {
+      ins.install_outcomes.slice(0, 3).forEach((outcome, i) => {
         const card = document.createElement('div');
-        card.className = 'system-module' + (m.tailored ? ' tailored' : '');
+        card.className = 'system-module tailored';
         const num = document.createElement('div');
         num.className = 'system-module-num';
         const dot = document.createElement('span');
-        dot.className = m.tailored ? 'verdict-dot-sm' : 'verdict-dot-hollow';
+        dot.className = 'verdict-dot-sm';
         num.appendChild(dot);
-        num.appendChild(document.createTextNode(' Module ' + pad(i + 1)));
+        num.appendChild(document.createTextNode('Move ' + pad(i + 1)));
         const title = document.createElement('div');
         title.className = 'system-module-title';
-        title.textContent = m.title;
-        const body = document.createElement('div');
-        body.className = 'system-module-body';
-        body.textContent = m.body;
-        const tag = document.createElement('div');
-        tag.className = 'system-module-tag';
-        tag.textContent = m.tailored ? 'Tailored' : 'Standard';
+        title.textContent = outcome;
         card.appendChild(num);
         card.appendChild(title);
-        card.appendChild(body);
-        card.appendChild(tag);
         systemGrid.appendChild(card);
       });
 
@@ -2074,8 +2413,8 @@
       // Path
       renderPath(verdict, state);
 
-      goTo('reveal');
-    }
+	      window.goTo('reveal');
+	    }
 
     function drawProjection(state) {
       const NS = 'http://www.w3.org/2000/svg';
@@ -2207,16 +2546,32 @@
       const mkCtaForm = (placeholder, btnText) => {
         const form = document.createElement('form');
         form.className = 'path-cta-form';
-        form.addEventListener('submit', e => e.preventDefault());
+        form.setAttribute('data-fit-mini-capture', 'true');
+        const row = document.createElement('div');
+        row.className = 'path-cta-form-row';
         const input = document.createElement('input');
         input.type = 'email';
+        input.name = 'email';
+        input.required = true;
+        input.autocomplete = 'email';
         input.className = 'path-cta-input';
         input.placeholder = placeholder;
         const btn = document.createElement('button');
+        btn.type = 'submit';
         btn.className = 'path-cta-btn';
-        btn.textContent = btnText;
-        form.appendChild(input);
-        form.appendChild(btn);
+        btn.appendChild(document.createTextNode(btnText + ' '));
+        const arrow = document.createElement('span');
+        arrow.className = 'cta-arrow';
+        arrow.setAttribute('aria-hidden', 'true');
+        arrow.textContent = '→';
+        btn.appendChild(arrow);
+        const status = document.createElement('p');
+        status.className = 'path-cta-status mono';
+        status.setAttribute('aria-live', 'polite');
+        row.appendChild(input);
+        row.appendChild(btn);
+        form.appendChild(row);
+        form.appendChild(status);
         return form;
       };
 
@@ -2240,9 +2595,9 @@
         pathTitleLead.textContent = 'Let\'s ';
         pathTitleY.textContent = 'build your install plan';
         pathTitleTail.textContent = '.';
-        pathBody.textContent = 'Book a 30-minute strategy call. We\'ll walk through your diagnostic, map the exact modules to your business, and put a 90-day install timeline on the table.';
+        pathBody.textContent = 'Book a 30-minute strategy call. We\'ll walk through your diagnostic, map the exact modules to your business, and put a 30-day install timeline on the table.';
         pathList.appendChild(mkListItem(1, [{ strong: '30 minutes' }, { text: ' — walk through your diagnostic together' }]));
-        pathList.appendChild(mkListItem(2, [{ strong: 'Tailored install plan' }, { text: ' — modules, sequence, 90-day milestones' }]));
+        pathList.appendChild(mkListItem(2, [{ strong: 'Tailored install plan' }, { text: ' — modules, sequence, and first 30 days' }]));
         pathList.appendChild(mkListItem(3, [{ strong: 'Honest go/no-go' }, { text: " — if it's not the right fit on the call, we'll tell you" }]));
         const link = document.createElement('a');
         link.href = '/book';
@@ -2250,7 +2605,8 @@
         link.style.display = 'inline-flex';
         link.style.padding = '18px 28px';
         link.style.fontSize = '15px';
-        link.appendChild(document.createTextNode('Book The Call '));
+        link.setAttribute('data-cta-source', 'fit-diagnostic-book');
+        link.appendChild(document.createTextNode('See If We\'re a Fit '));
         const arrow = document.createElement('span');
         arrow.className = 'arrow';
         arrow.textContent = '→';
@@ -2285,14 +2641,14 @@
           fixes.push(fallbackFixes[fbi++ % fallbackFixes.length]);
         }
         fixes.slice(0, 3).forEach((f, i) => pathList.appendChild(mkListItem(i + 1, f)));
-        mkCtaBlock('Get The Playbook', 'Send me the foundation playbook.',
-          '90-day playbook tailored to your gaps. We\'ll check in at day 90 to re-diagnose.',
-          mkCtaForm('your@email.com', 'Send It →'));
+        mkCtaBlock('Get The Map', 'Send my Revenue Leak Map.',
+          'Your full Revenue Leak Map — the leaks, what they cost, and your first moves. No follow-up sales.',
+          mkCtaForm('your@email.com', 'Send my Revenue Leak Map'));
       } else {
         pathTitleLead.textContent = 'Here\'s the ';
-        pathTitleY.textContent = 'exact playbook';
+        pathTitleY.textContent = 'Revenue Leak Map';
         pathTitleTail.textContent = ' to get ready.';
-        pathBody.textContent = "You're not ready for a system installation — yet. Below is the 5-step sequence that gets you there. Most operators take 6-12 months. We'll send the playbook, you do the work, we re-diagnose when you're ready.";
+        pathBody.textContent = "You're not ready for a system installation — yet. Below is the sequence that gets you there. Most operators take 6-12 months. We'll build your map, you do the work, we re-diagnose when you're ready.";
         const steps = [
           [{ strong: 'Distribution before automation.' }, { text: ' Get to consistent $15-25K/mo via referrals + 1 channel.' }],
           [{ strong: 'One pricing model, one offer.' }, { text: ' Stop bidding ad-hoc. Productize one core service.' }],
@@ -2301,9 +2657,9 @@
           [{ strong: 'Come back when 1–4 are done.' }, { text: " The diagnostic flips. We'll install then." }]
         ];
         steps.forEach((s, i) => pathList.appendChild(mkListItem(i + 1, s)));
-        mkCtaBlock('Yours Regardless', 'Send me the playbook.',
-          'Tailored 5-step playbook for your service category + bottleneck. No follow-up sales. We\'ll check in at month 6.',
-          mkCtaForm('your@email.com', 'Send It →'));
+        mkCtaBlock('Yours Regardless', 'Send my Revenue Leak Map.',
+          'Your full Revenue Leak Map — the leaks, what they cost, and your first moves. No follow-up sales.',
+          mkCtaForm('your@email.com', 'Send my Revenue Leak Map'));
       }
     }
 
@@ -2319,6 +2675,10 @@
   let submitted = false;
   let revealRendered = false;
   let generateLeadSent = false;
+  let diagnosticStarted = false;
+  let diagnosticAbandoned = false;
+  let revealReached = false;
+  const TOTAL_DIAGNOSTIC_STEPS = 7;
 
   function event(name, params, opts) {
     try {
@@ -2340,6 +2700,51 @@
     if (value !== undefined && value !== null && value !== "") target[key] = value;
   }
 
+  // BWM telemetry contract: diagnostic_start / diagnostic_step_complete / form_step_abandon.
+  function diagnosticPayload(step) {
+    const payload = {
+      form_id: "fit-diagnostic",
+      total_steps: TOTAL_DIAGNOSTIC_STEPS,
+    };
+    if (step) payload.diagnostic_step = step;
+    return payload;
+  }
+
+  function stepFromScreen(screen) {
+    const match = String(screen || "").match(/^q([1-7])$/);
+    return match ? parseInt(match[1], 10) : null;
+  }
+
+  function trackScreenTransition(nextScreen) {
+    const currentScreen = document.body.dataset.screen || "welcome";
+    const currentStep = stepFromScreen(currentScreen);
+    const nextStep = stepFromScreen(nextScreen);
+
+    if (nextScreen === "q1" && !diagnosticStarted) {
+      diagnosticStarted = true;
+      event("diagnostic_start", diagnosticPayload());
+    }
+
+    if (currentStep && ((nextStep && nextStep === currentStep + 1) || (currentStep === TOTAL_DIAGNOSTIC_STEPS && nextScreen === "reveal"))) {
+      event("diagnostic_step_complete", diagnosticPayload(currentStep));
+    }
+
+    if (nextScreen === "reveal") {
+      revealReached = true;
+    }
+  }
+
+  function trackAbandon() {
+    if (!diagnosticStarted || revealReached || diagnosticAbandoned) return;
+    diagnosticAbandoned = true;
+    event("form_step_abandon", diagnosticPayload(stepFromScreen(document.body.dataset.screen) || 1));
+  }
+
+  document.addEventListener("visibilitychange", function () {
+    if (document.visibilityState === "hidden") trackAbandon();
+  });
+  window.addEventListener("pagehide", trackAbandon);
+
   function fireGenerateLead(data, payload) {
     if (generateLeadSent) return;
     generateLeadSent = true;
@@ -2351,6 +2756,8 @@
     addIfPresent(leadPayload, "tier_routing", data.tier_routing || payload.tier_routing);
     addIfPresent(leadPayload, "classification", data.classification || payload.classification);
     addIfPresent(leadPayload, "contact_id", data.contact_id || payload.contact_id);
+    addIfPresent(leadPayload, "map_kicked_off", data.map_kicked_off);
+    addIfPresent(leadPayload, "growth_index", data.growth_index);
     addIfPresent(leadPayload, "capi_event_id", data.capi_event_id || payload.capi_event_id);
     addIfPresent(leadPayload, "booking_event_id", data.booking_event_id || payload.booking_event_id);
     event("generate_lead", leadPayload);
@@ -2371,46 +2778,108 @@
     } catch (_e) { return {}; }
   }
 
-  async function submitDiagnostic(emailValue){
+  function getCookie(name) {
+    try {
+      const prefix = encodeURIComponent(name) + "=";
+      const parts = String(document.cookie || "").split("; ");
+      for (let i = 0; i < parts.length; i++) {
+        if (parts[i].indexOf(prefix) === 0) return decodeURIComponent(parts[i].slice(prefix.length));
+      }
+    } catch (_e) {}
+    return null;
+  }
+
+  function getFirstTouchUtms() {
+    try {
+      const attr = (window.__bwmAttribution && window.__bwmAttribution.first_touch && window.__bwmAttribution.first_touch.utm) || {};
+      return {
+        first_touch_utm_source: attr.utm_source || null,
+        first_touch_utm_medium: attr.utm_medium || null,
+        first_touch_utm_campaign: attr.utm_campaign || null,
+      };
+    } catch (_e) {
+      return {
+        first_touch_utm_source: null,
+        first_touch_utm_medium: null,
+        first_touch_utm_campaign: null,
+      };
+    }
+  }
+
+  function getOriginalLandingPage() {
+    try {
+      const attr = window.__bwmAttribution;
+      return (attr && attr.first_touch && attr.first_touch.landing_page) || sessionStorage.getItem("bwm_landing_page") || location.href;
+    } catch (_e) {
+      return location.href;
+    }
+  }
+
+  function getBookingEventId() {
+    try {
+      if (typeof window.__bwmEnsureBookingEventId === "function") return window.__bwmEnsureBookingEventId("");
+    } catch (_e) {}
+    return undefined;
+  }
+
+  async function submitDiagnostic(emailValue, captureFields = {}){
     if (submitted && !emailValue) return;
     submitted = true;
     const utms = getUtms();
+    const firstTouchUtms = getFirstTouchUtms();
     const exp = window.__BWM_EXP || {};
-    const payload = Object.assign({}, state, utms, {
-      email: emailValue || "",
+    const email = String(emailValue || "").trim();
+    const company = String(captureFields.company || "").trim();
+    const businessUrl = normalizeBusinessUrl(captureFields.business_url || "");
+    const serviceArea = String(captureFields.service_area || "").trim();
+    const payload = Object.assign({}, state, utms, firstTouchUtms, {
+      email: email,
+      company: company,
+      business_url: businessUrl,
+      service_area: serviceArea,
+      first_name: email ? deriveFirstName(email, company) : "",
+      fbc: getCookie("_fbc"),
+      fbp: getCookie("_fbp"),
       landing_page: location.pathname,
+      page_url: location.href,
+      original_landing_page: getOriginalLandingPage(),
       referrer: document.referrer || "",
       // MVT (PROJ-AUTO-MVT-001): experiment context injected by the edge worker.
       // Distinct names — variant_id is already used for utm_content semantics.
       experiment_id: exp.experiment_id || "",
       experiment_variant_id: exp.variant_id || "",
     });
+    addIfPresent(payload, "booking_event_id", getBookingEventId());
     try {
       const res = await fetch("https://bwm-form-handler.robert-ba0.workers.dev/buildwisemedia/fit-diagnostic", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(payload),
       });
+      if (!res.ok) throw new Error("fit diagnostic submit failed: " + res.status);
       const data = await res.json();
-      handleVerdict(data, emailValue, payload);
+      handleVerdict(data, email, payload);
+      return data;
     } catch (err) {
       console.error("fit-diagnostic submit failed:", err);
-      // Graceful fallback so a paid click never hits a dead reveal state if the API
-      // call fails (network / cold start). Show a working path instead of an empty card.
-      submitted = false; // allow a retry on the next reveal
-      const card = document.getElementById("verdict-card");
-      const status = document.getElementById("verdict-status");
-      const explainer = document.getElementById("verdict-explainer");
-      const detail = document.getElementById("verdict-detail");
-      const pathCta = document.getElementById("path-cta-block");
-      if (card && status) {
-        card.setAttribute("data-verdict", "maybe");
-        status.textContent = "Your map is ready";
-        if (explainer) explainer.textContent = "We hit a snag loading your result here. Book a quick call and we'll walk you through your Revenue Leak Map live.";
-        if (detail) detail.textContent = "";
-        if (pathCta) {
-          pathCta.innerHTML = '<a class="cta" href="/book" data-cta-source="fit-diagnostic-fallback">Book The Call <span aria-hidden="true">→</span></a>';
-        }
+      throw err;
+    }
+  }
+
+  function renderSubmitFallback() {
+    submitted = false;
+    const card = document.getElementById("verdict-card");
+    const status = document.getElementById("verdict-status");
+    const explainer = document.getElementById("verdict-explainer");
+    const detail = document.getElementById("verdict-detail");
+    const pathCta = document.getElementById("path-cta-block");
+    if (card && status) {
+      card.setAttribute("data-verdict", "maybe");
+      status.textContent = "We hit a snag";
+      if (explainer) explainer.textContent = "We hit a snag loading your result here. Book a quick call and we'll walk through your Revenue Leak Map live.";
+      if (detail) detail.textContent = "";
+      if (pathCta) {
+        pathCta.innerHTML = '<a class="cta" href="/book" data-cta-source="fit-diagnostic-fallback">See If We\'re a Fit <span aria-hidden="true">→</span></a>';
       }
     }
   }
@@ -2437,9 +2906,9 @@
     // figures never disagree (e.g. "67" up top vs "FIT · 74/100" below).
     const giEl = document.getElementById("growth-index-value");
     if (giEl) giEl.textContent = idx;
+    if (hadEmail) fireGenerateLead(data, payload || {});
 
     if (v === "FIT") {
-      fireGenerateLead(data, payload || {});
       card.setAttribute("data-verdict", "fit");
       status.textContent = "FIT · " + idx + "/100";
       if (explainer) explainer.textContent = "Your shop matches the install profile. The system delivers the most lift here.";
@@ -2448,12 +2917,10 @@
       if (pathY) pathY.textContent = " 30-minute strategy call. ";
       if (pathTail) pathTail.textContent = "";
       if (pathBody) pathBody.textContent = "On the call we walk through your specific stack, what the system replaces, and what week one looks like.";
-      if (pathCta) pathCta.innerHTML = '<a href="#cal-inline" class="cta" data-cta-source="mo-fit-verdict-cal" onclick="document.getElementById(\'cal-inline\').scrollIntoView({behavior:\'smooth\'});return false;">See If We\'re a Fit <span class="cta-arrow" aria-hidden="true">→</span></a><p class="mono" style="margin-top:14px;font-size:11px;letter-spacing:.18em;color:var(--ink-faint);">For service businesses only.</p>';
-      mountCalInline();
+      if (pathCta) pathCta.innerHTML = '<a href="/book" class="cta" data-cta-source="mo-fit-verdict-book">See If We\'re a Fit <span class="cta-arrow" aria-hidden="true">→</span></a><p class="mono" style="margin-top:14px;font-size:11px;letter-spacing:.18em;color:var(--ink-faint);">For service businesses only.</p>';
     } else if (v === "MAYBE") {
       // MAYBE is an in-range lead the team pursues within 48h (email captured) —
       // count it as a qualified-lead conversion alongside FIT. NOT YET is excluded.
-      fireGenerateLead(data, payload || {});
       card.setAttribute("data-verdict", "maybe");
       status.textContent = "MAYBE · " + idx + "/100";
       if (explainer) explainer.textContent = "Your shop is in range, but one or two pieces are still forming. We'll be in touch within 48 hours.";
@@ -2462,7 +2929,7 @@
       if (pathY) pathY.textContent = " be in touch within 48h. ";
       if (pathTail) pathTail.textContent = "";
       if (pathBody) pathBody.textContent = "Want to speed it up? Drop your email below and we'll send your full Revenue Leak Map + a focused next step.";
-      if (pathCta && !hadEmail) pathCta.innerHTML = bwmEmailCaptureMarkup();
+      if (pathCta && !hadEmail) pathCta.innerHTML = '<a href="#fit-capture" class="cta" data-cta-source="mo-fit-verdict-map">Send my Revenue Leak Map <span class="cta-arrow" aria-hidden="true">→</span></a>';
     } else {
       // NO
       card.setAttribute("data-verdict", "not-yet");
@@ -2479,90 +2946,85 @@
 
   function bwmEmailCaptureMarkup(){
     return [
-      '<form id="bwm-fit-email-form" class="bwm-fit-email-form">',
-      '  <label class="mono" for="bwm-fit-email" style="font-size:11px;letter-spacing:.18em;color:var(--ink-dim);">Business Email</label>',
-      '  <input type="email" id="bwm-fit-email" name="email" required placeholder="you@yourbusiness.com" autocomplete="email" />',
+      '<!-- @bwm-exp-slot: proof-module -->',
+      '<form id="bwm-fit-email-form" class="bwm-fit-email-form" data-bwm-exp-slot="proof-module">',
+      '  <p class="bwm-fit-email-intro">We\'ll build your full Revenue Leak Map from your answers and your site — and email it to you.</p>',
+      '  <div class="bwm-fit-field">',
+      '    <label class="mono" for="bwm-fit-email" style="font-size:11px;letter-spacing:.18em;color:var(--ink-dim);">Business email</label>',
+      '    <input type="email" id="bwm-fit-email" name="email" required placeholder="you@yourbusiness.com" autocomplete="email" />',
+      '  </div>',
+      '  <div class="bwm-fit-field">',
+      '    <label class="mono" for="bwm-fit-company" style="font-size:11px;letter-spacing:.18em;color:var(--ink-dim);">Business name</label>',
+      '    <input type="text" id="bwm-fit-company" name="company" required autocomplete="organization" />',
+      '  </div>',
+      '  <div class="bwm-fit-field">',
+      '    <label class="mono" for="bwm-fit-website" style="font-size:11px;letter-spacing:.18em;color:var(--ink-dim);">Website</label>',
+      '    <input type="text" id="bwm-fit-website" name="business_url" required placeholder="yourbusiness.com" inputmode="url" autocomplete="url" />',
+      '  </div>',
+      '  <div class="bwm-fit-field">',
+      '    <label class="mono" for="bwm-fit-area" style="font-size:11px;letter-spacing:.18em;color:var(--ink-dim);">City / area you serve</label>',
+      '    <input type="text" id="bwm-fit-area" name="service_area" required placeholder="e.g. Marietta, GA" autocomplete="address-level2" />',
+      '  </div>',
       '  <button type="submit" class="cta">Send my Revenue Leak Map <span class="cta-arrow" aria-hidden="true">→</span></button>',
-      '  <p id="bwm-fit-email-status" class="mono" style="font-size:10px;letter-spacing:.18em;color:var(--ink-faint);margin-top:8px;"></p>',
+      '  <p id="bwm-fit-email-status" class="bwm-fit-email-status mono" aria-live="polite" style="font-size:10px;letter-spacing:.18em;color:var(--ink-faint);margin-top:8px;"></p>',
       '</form>',
     ].join("");
   }
 
-  function mountCalInline(){
-    if (document.getElementById("cal-inline")) return;
-    const section = document.querySelector("#diagnostic") || document.body;
-    const wrap = document.createElement("div");
-    wrap.id = "cal-inline";
-    wrap.className = "bwm-cal-inline";
-    wrap.style.cssText = "max-width:1200px;margin:48px auto 0;min-height:720px;background:var(--bg-elev);border:1px solid var(--rule);";
-    section.appendChild(wrap);
-    // Booking-calendar loader (matches /book.astro pattern)
-    (function (C, A, L) {
-      let p = function (a, ar) { a.q.push(ar); };
-      let d = C.document;
-      C.Cal = C.Cal || function () {
-        let cal = C.Cal; let ar = arguments;
-        if (!cal.loaded) {
-          cal.ns = {}; cal.q = cal.q || [];
-          d.head.appendChild(d.createElement("script")).src = A;
-          cal.loaded = true;
-        }
-        if (ar[0] === L) {
-          const api = function () { p(api, arguments); };
-          const namespace = ar[1];
-          api.q = api.q || [];
-          if (typeof namespace === "string") {
-            cal.ns[namespace] = cal.ns[namespace] || api;
-            p(cal.ns[namespace], ar); p(cal, ["initNamespace", namespace]);
-          } else { p(cal, ar); }
-          return;
-        }
-        p(cal, ar);
-      };
-    })(window, "https://book.buildwisemedia.com/embed/embed.js", "init");
-    window.Cal("init", "discovery-call", { origin: "https://book.buildwisemedia.com" });
-    window.Cal.ns["discovery-call"]("inline", {
-      elementOrSelector: "#cal-inline",
-      config: { layout: "month_view" },
-      calLink: "bwm/discovery-call",
-    });
-    window.Cal.ns["discovery-call"]("ui", {
-      theme: "dark",
-      styles: { branding: { brandColor: "#F0FF00" } },
-      hideEventTypeDetails: false,
-      layout: "month_view",
-    });
+  function getMainCaptureFields(form) {
+    const websiteInput = form.querySelector("#bwm-fit-website");
+    const normalizedUrl = normalizeBusinessUrl(websiteInput ? websiteInput.value : "");
+    if (websiteInput) websiteInput.value = normalizedUrl;
+    return {
+      company: String(form.querySelector("#bwm-fit-company")?.value || "").trim(),
+      business_url: normalizedUrl,
+      service_area: String(form.querySelector("#bwm-fit-area")?.value || "").trim(),
+    };
+  }
+
+  function handleCaptureSubmit(form, captureFields) {
+    const input = form.querySelector('input[type="email"]');
+    const statusEl = form.querySelector("#bwm-fit-email-status, .path-cta-status");
+    const btn = form.querySelector("button");
+    if (typeof form.reportValidity === "function" && !form.reportValidity()) return;
+    const email = input ? input.value.trim() : "";
+    if (!email) return;
+    submitted = false;  // allow re-submission with email after the anonymous reveal submit
+    if (statusEl) statusEl.textContent = "Sending...";
+    if (btn) btn.disabled = true;
+    submitDiagnostic(email, captureFields || {})
+      .then(function(){
+        if (statusEl) statusEl.textContent = "Done — your Revenue Leak Map is being built from your answers. It usually lands in your inbox within 15 minutes.";
+      })
+      .catch(function(){
+        if (statusEl) statusEl.textContent = "Something did not send. Try again, or email hello@buildwisemedia.com.";
+        if (btn) btn.disabled = false;
+        submitted = false;
+      });
   }
 
   // Wire MAYBE email capture (delegated)
   document.addEventListener("submit", function (e) {
-    if (e.target && e.target.id === "bwm-fit-email-form") {
+    const form = e.target;
+    if (form && form.id === "bwm-fit-email-form") {
       e.preventDefault();
-      const input = document.getElementById("bwm-fit-email");
-      const statusEl = document.getElementById("bwm-fit-email-status");
-      const email = input ? input.value.trim() : "";
-      if (!email) return;
-      if (!isBusinessEmail(email)) {
-        if (statusEl) statusEl.textContent = "Please use your business email — free inboxes (Gmail, Yahoo, Outlook, etc.) aren’t accepted.";
-        return;
-      }
-      submitted = false;  // allow re-submission with email
-      if (statusEl) statusEl.textContent = "Sending...";
-      submitDiagnostic(email).then(function(){
-        if (statusEl) statusEl.textContent = "Done. Check your inbox in the next 48 hours.";
-        const btn = e.target.querySelector("button");
-        if (btn) btn.disabled = true;
-      });
+      handleCaptureSubmit(form, getMainCaptureFields(form));
+    } else if (form && form.matches(".path-cta-form")) {
+      e.preventDefault();
+      handleCaptureSubmit(form, { company: "", business_url: "", service_area: "" });
     }
   });
 
   // Hook into goTo: when we land on reveal, fire submit (anonymous)
   const _origGoTo = window.goTo || goTo;
   window.goTo = function (screen) {
+    trackScreenTransition(screen);
     _origGoTo(screen);
     if (screen === "reveal" && !revealRendered) {
       revealRendered = true;
-      submitDiagnostic("");
+      submitDiagnostic("").catch(function(){
+        renderSubmitFallback();
+      });
     }
   };
 })();

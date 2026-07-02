@@ -23,7 +23,8 @@ import FitDiagnostic from '../../components/FitDiagnostic.astro';
       <div class="vol-hero-text">
         <p class="eyebrow">Buildwise Media · Custom AI systems, run for you</p>
 
-        <h1 id="vol-hero-headline" class="vol-headline">
+        <!-- @bwm-exp-slot: hero-headline -->
+        <h1 id="vol-hero-headline" class="vol-headline" data-bwm-exp-slot="hero-headline">
           <span class="vol-line">Do you want</span>
           <span class="vol-line">3–6 new clients</span>
           <span class="vol-line"><span class="vol-strike">every month</span>?</span>
@@ -35,7 +36,8 @@ import FitDiagnostic from '../../components/FitDiagnostic.astro';
         </p>
 
         <div class="vol-ctas">
-          <a href="#diagnostic" class="cta" data-cta-source="volume-hero-primary">
+          <!-- @bwm-exp-slot: hero-cta -->
+          <a href="#diagnostic" class="cta" data-cta-source="volume-hero-primary" data-bwm-exp-slot="hero-cta">
             Get My Free Revenue Leak Map
             <span class="cta-arrow" aria-hidden="true">→</span>
           </a>
@@ -59,7 +61,7 @@ import FitDiagnostic from '../../components/FitDiagnostic.astro';
           <figcaption class="vol-hero-photo-cap mono">An always-on system — not another month of hoping</figcaption>
         </figure>
 
-        <!-- @r020:F2 proof: before/after bar chart shows the stuck-loop volume pattern vs a predictable 90-day ramp — data makes the "same playbook, same thin results" pain visceral and drives the owner toward the audit CTA -->
+        <!-- @r020:F2 proof: before/after bar chart shows the stuck-loop volume pattern vs a predictable lead-volume ramp — data makes the "same playbook, same thin results" pain visceral and drives the owner toward the audit CTA -->
         <figure class="vol-volume-figure">
           <svg class="vol-volume-svg" viewBox="0 0 640 200" role="img" aria-label="Before: flat erratic volume bars cycling the same thin range week after week. After install: consistent upward-stepping new-client volume every month." xmlns="http://www.w3.org/2000/svg">
             <!-- Before label -->

@@ -20,7 +20,20 @@ const subhead = `The constant low-grade alert your nervous system has been runni
   ogDescription="Stop being the only redundancy in your marketing system."
   noindex={true}
 >
+  <!-- @bwm-exp-slot: hero-headline -->
+  <!-- @bwm-exp-slot: hero-cta -->
   <MoHero keyword="calm" subhead={subhead} />
+  <script is:inline>
+    (() => {
+      const headline = document.getElementById('mo-hero-headline');
+      headline?.before(document.createComment('@bwm-exp-slot: ' + 'hero-headline'));
+      headline?.setAttribute('data-bwm-exp-slot', 'hero-headline');
+
+      const cta = document.querySelector('.mo-ctas .cta');
+      cta?.before(document.createComment('@bwm-exp-slot: ' + 'hero-cta'));
+      cta?.setAttribute('data-bwm-exp-slot', 'hero-cta');
+    })();
+  </script>
   <MoChainSection />
   <MoPayoffSection keyword="calm" />
   <FitDiagnostic />
