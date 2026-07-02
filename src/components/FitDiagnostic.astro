@@ -19,10 +19,10 @@
           <div class="doc-mark-glyph">
             <svg viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
               <defs>
-                <linearGradient id="markGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-                  <stop offset="0%" stop-color="#F0FF00"/>
-                  <stop offset="100%" stop-color="#B8FF3A" stop-opacity="0.85"/>
-                </linearGradient>
+	                <linearGradient id="markGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+	                  <stop offset="0%" stop-color="#F0FF00"/>
+	                  <stop offset="100%" stop-color="#F0FF00" stop-opacity="0.65"/>
+	                </linearGradient>
               </defs>
               <circle cx="5" cy="23" r="2.4" fill="url(#markGrad)"/>
               <circle cx="23" cy="23" r="2.4" fill="url(#markGrad)"/>
@@ -77,7 +77,7 @@
                 <div class="trust-item"><span class="verdict-dot-sm"></span> Tailored To You</div>
               </div>
               <div class="welcome-cta-wrap">
-                <button class="cta-primary" data-action="start">
+	                <button class="cta-primary" data-action="start" data-cta-source="mo-fit-welcome-start">
                   Get My Free Revenue Leak Map
                   <span class="arrow">→</span>
                 </button>
@@ -121,7 +121,7 @@
               <div class="divider-cell-num">03 · The Verdict</div>
               <h3 class="divider-cell-title">Three honest paths.</h3>
               <p class="divider-cell-body">
-                If you're a Fit, we'll book the strategy call. If you're close, we'll show you the 3 things to lock in first. If you're not ready yet, we'll hand you the exact playbook to fix the gaps. We don't waste your time.
+                If you're a Fit, we'll book the strategy call. If you're close, we'll show you the 3 things to lock in first. If you're not ready yet, we'll build your Revenue Leak Map. We don't waste your time.
               </p>
             </div>
           </div>
@@ -567,59 +567,14 @@
         </div>
       </div>
 
-      <div class="container">
-        <div class="growth-index">
-          <div class="growth-index-label">
-            <span class="mono-eyebrow">Your Revenue Score</span>
-            <span class="growth-index-value" id="growth-index-value">—</span>
-            <span class="growth-index-suffix">Out Of 100</span>
-          </div>
-          <div class="growth-index-explainer">
-            <p>Your Revenue Score combines revenue stage, channel maturity, time-on-growth, and target ambition into a single readout. <strong>Above 65 = system-ready.</strong> Below 30 = foundations need work first. Between = close, with specific gaps to lock.</p>
-          </div>
-        </div>
-      </div>
-
-      <section class="reveal-section">
-        <div class="container">
-          <div class="reveal-section-eyebrow">
-            <span class="verdict-dot-sm"></span>
-            <span class="mono-eyebrow">/01 · Snapshot</span>
-          </div>
-          <h2 class="reveal-section-title">What you told us. <span class="y">Synthesized.</span></h2>
-          <div class="snapshot-grid">
-            <div class="snap-cell">
-              <div class="snap-cell-label">Service Category</div>
-              <div class="snap-cell-value text" id="snap-service">—</div>
-              <div class="snap-cell-detail">Your primary line of business</div>
-            </div>
-            <div class="snap-cell">
-              <div class="snap-cell-label">Revenue Band</div>
-              <div class="snap-cell-value" id="snap-revenue">—</div>
-              <div class="snap-cell-detail">Monthly recurring</div>
-            </div>
-            <div class="snap-cell">
-              <div class="snap-cell-label">Time on Growth</div>
-              <div class="snap-cell-value" id="snap-growth">—</div>
-              <div class="snap-cell-detail">Of your weekly hours</div>
-            </div>
-            <div class="snap-cell">
-              <div class="snap-cell-label">Acquisition Mix</div>
-              <div class="snap-cell-value text" id="snap-channels">—</div>
-              <div class="snap-cell-detail">Today's primary channels</div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section class="reveal-section">
-        <div class="container">
-          <div class="reveal-section-eyebrow">
-            <span class="verdict-dot-sm"></span>
-            <span class="mono-eyebrow">/02 · Diagnosis</span>
-          </div>
-          <h2 class="reveal-section-title">Here's what we <span class="y">actually see</span>.</h2>
-          <div class="diagnosis-block">
+	      <section class="reveal-section">
+	        <div class="container">
+	          <div class="reveal-section-eyebrow">
+	            <span class="verdict-dot-sm"></span>
+	            <span class="mono-eyebrow">/01 · Diagnosis</span>
+	          </div>
+	          <h2 class="reveal-section-title">Here's what we <span class="y">actually see</span>.</h2>
+	          <div class="diagnosis-block">
             <div class="diagnosis-eyebrow">The Real First Move</div>
             <h3 class="diagnosis-title">
               <span id="diagnosis-title-lead">—</span>
@@ -631,23 +586,101 @@
         </div>
       </section>
 
-      <section class="reveal-section">
-        <div class="container">
-          <div class="reveal-section-eyebrow">
-            <span class="verdict-dot-sm"></span>
-            <span class="mono-eyebrow">/03 · The System</span>
-          </div>
-          <h2 class="reveal-section-title">Your <span class="y">first moves</span>.</h2>
-          <p style="font-size: 17px; line-height: 1.55; color: var(--ink-dim); margin-bottom: 32px; max-width: 760px;">Start here before adding more traffic or more tools. These are the moves that make new work land cleanly.</p>
-          <div class="system-grid" id="system-grid"></div>
-        </div>
-      </section>
+	      <section class="reveal-section">
+	        <div class="container">
+	          <div class="reveal-section-eyebrow">
+	            <span class="verdict-dot-sm"></span>
+	            <span class="mono-eyebrow">/02 · First Moves</span>
+	          </div>
+	          <h2 class="reveal-section-title">Where <span class="y">we'd start</span>.</h2>
+	          <p style="font-size: 17px; line-height: 1.55; color: var(--ink-dim); margin-bottom: 32px; max-width: 760px;">Start here before adding more traffic or more tools. These are the moves that make new work land cleanly.</p>
+	          <div class="system-grid" id="system-grid"></div>
+	        </div>
+	      </section>
 
-      <section class="reveal-section">
-        <div class="container">
-          <div class="reveal-section-eyebrow">
-            <span class="verdict-dot-sm"></span>
-            <span class="mono-eyebrow">/04 · 12-Month Projection</span>
+	      <section class="reveal-section reveal-capture-section" id="fit-capture">
+	        <div class="container">
+	          <div class="fit-capture-shell">
+	            <!-- @cta-proof: de-identified approved wins -->
+	            <div class="fit-proof-line">
+	              <div class="fit-proof-label mono">PROOF</div>
+	              <p class="fit-proof-copy" id="fit-proof-copy">—</p>
+	            </div>
+	            <form id="bwm-fit-email-form" class="bwm-fit-email-form" data-bwm-exp-slot="proof-module">
+	              <p class="bwm-fit-email-intro">We'll build your full Revenue Leak Map from your answers and your site — and email it to you.</p>
+	              <div class="bwm-fit-field">
+	                <label class="mono" for="bwm-fit-email" style="font-size:11px;letter-spacing:.18em;color:var(--ink-dim);">Business email</label>
+	                <input type="email" id="bwm-fit-email" name="email" required placeholder="you@yourbusiness.com" autocomplete="email" />
+	              </div>
+	              <div class="bwm-fit-field">
+	                <label class="mono" for="bwm-fit-company" style="font-size:11px;letter-spacing:.18em;color:var(--ink-dim);">Business name</label>
+	                <input type="text" id="bwm-fit-company" name="company" required autocomplete="organization" />
+	              </div>
+	              <div class="bwm-fit-field">
+	                <label class="mono" for="bwm-fit-website" style="font-size:11px;letter-spacing:.18em;color:var(--ink-dim);">Website</label>
+	                <input type="text" id="bwm-fit-website" name="business_url" required placeholder="yourbusiness.com" inputmode="url" autocomplete="url" />
+	              </div>
+	              <div class="bwm-fit-field">
+	                <label class="mono" for="bwm-fit-area" style="font-size:11px;letter-spacing:.18em;color:var(--ink-dim);">City / area you serve</label>
+	                <input type="text" id="bwm-fit-area" name="service_area" required placeholder="e.g. Marietta, GA" autocomplete="address-level2" />
+	              </div>
+	              <button type="submit" class="cta">Send my Revenue Leak Map <span class="cta-arrow" aria-hidden="true">→</span></button>
+	              <p id="bwm-fit-email-status" class="bwm-fit-email-status mono" aria-live="polite" style="font-size:10px;letter-spacing:.18em;color:var(--ink-faint);margin-top:8px;"></p>
+	            </form>
+	          </div>
+	        </div>
+	      </section>
+
+	      <div class="container">
+	        <div class="growth-index">
+	          <div class="growth-index-label">
+	            <span class="mono-eyebrow">Your Revenue Score</span>
+	            <span class="growth-index-value" id="growth-index-value">—</span>
+	            <span class="growth-index-suffix">Out Of 100</span>
+	          </div>
+	          <div class="growth-index-explainer">
+	            <p>Your Revenue Score combines revenue stage, channel maturity, time-on-growth, and target ambition into a single readout. <strong>Above 65 = system-ready.</strong> Below 30 = foundations need work first. Between = close, with specific gaps to lock.</p>
+	          </div>
+	        </div>
+	      </div>
+
+	      <section class="reveal-section">
+	        <div class="container">
+	          <div class="reveal-section-eyebrow">
+	            <span class="verdict-dot-sm"></span>
+	            <span class="mono-eyebrow">/03 · Snapshot</span>
+	          </div>
+	          <h2 class="reveal-section-title">What you told us. <span class="y">Synthesized.</span></h2>
+	          <div class="snapshot-grid">
+	            <div class="snap-cell">
+	              <div class="snap-cell-label">Service Category</div>
+	              <div class="snap-cell-value text" id="snap-service">—</div>
+	              <div class="snap-cell-detail">Your primary line of business</div>
+	            </div>
+	            <div class="snap-cell">
+	              <div class="snap-cell-label">Revenue Band</div>
+	              <div class="snap-cell-value" id="snap-revenue">—</div>
+	              <div class="snap-cell-detail">Monthly recurring</div>
+	            </div>
+	            <div class="snap-cell">
+	              <div class="snap-cell-label">Time on Growth</div>
+	              <div class="snap-cell-value" id="snap-growth">—</div>
+	              <div class="snap-cell-detail">Of your weekly hours</div>
+	            </div>
+	            <div class="snap-cell">
+	              <div class="snap-cell-label">Acquisition Mix</div>
+	              <div class="snap-cell-value text" id="snap-channels">—</div>
+	              <div class="snap-cell-detail">Today's primary channels</div>
+	            </div>
+	          </div>
+	        </div>
+	      </section>
+
+	      <section class="reveal-section">
+	        <div class="container">
+	          <div class="reveal-section-eyebrow">
+	            <span class="verdict-dot-sm"></span>
+	            <span class="mono-eyebrow">/04 · Projection</span>
           </div>
           <h2 class="reveal-section-title">The gap between <span class="y">today and your target</span>.</h2>
           <div class="projection-block">
@@ -1427,22 +1460,50 @@
       font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase;
       color: var(--y2);
     }
-    .system-legend {
-      margin-top: 24px; display: flex; align-items: center; gap: 24px;
-      font-family: 'JetBrains Mono', monospace; font-size: 11px;
-      letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-dim);
-    }
+	    .system-legend {
+	      margin-top: 24px; display: flex; align-items: center; gap: 24px;
+	      font-family: 'JetBrains Mono', monospace; font-size: 11px;
+	      letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-dim);
+	    }
     .legend-dot { display: inline-flex; align-items: center; gap: 8px; }
     .legend-dot-tailored {
       width: 10px; height: 10px;
       background: var(--y2); box-shadow: 0 0 8px var(--y2-glow);
     }
-    .legend-dot-standard {
-      width: 10px; height: 10px;
-      background: transparent; border: 1px solid var(--y2);
-    }
+	    .legend-dot-standard {
+	      width: 10px; height: 10px;
+	      background: transparent; border: 1px solid var(--y2);
+	    }
 
-    .projection-block { padding: 48px 0 24px; }
+	    .reveal-capture-section { background: var(--bg-deep); }
+	    .fit-capture-shell {
+	      max-width: 900px;
+	      padding: 36px;
+	      background: var(--bg-lift);
+	      border: 1px solid var(--rule-bright);
+	    }
+	    .fit-proof-line {
+	      display: flex;
+	      align-items: flex-start;
+	      gap: 16px;
+	      padding-bottom: 18px;
+	      margin-bottom: 18px;
+	      border-bottom: 1px solid var(--rule);
+	    }
+	    .fit-proof-label {
+	      flex: 0 0 auto;
+	      font-size: 10px;
+	      letter-spacing: .18em;
+	      color: var(--y2);
+	    }
+	    .fit-proof-copy {
+	      margin: 0;
+	      color: var(--ink-dim);
+	      font-size: 14px;
+	      line-height: 1.55;
+	    }
+
+	    .projection-block { padding: 48px 0 24px; }
     .projection-chart {
       width: 100%; height: 420px; position: relative;
       border: 1px solid var(--rule); background: var(--bg); overflow: hidden;
@@ -1539,7 +1600,8 @@
       color: var(--ink); margin-bottom: 16px;
     }
     .path-cta-body { font-size: 14px; line-height: 1.55; color: var(--ink-dim); margin-bottom: 32px; }
-    .path-cta-form { display: flex; gap: 8px; flex-wrap: wrap; }
+    .path-cta-form { display: grid; gap: 8px; }
+    .path-cta-form-row { display: flex; gap: 8px; flex-wrap: wrap; }
     .path-cta-input {
       flex: 1; min-width: 200px; padding: 14px 16px;
       background: var(--bg); border: 1px solid var(--rule-bright);
@@ -1553,6 +1615,12 @@
       border: 0; cursor: pointer; transition: box-shadow .25s ease;
     }
     .path-cta-btn:hover { box-shadow: 4px 4px 0 var(--y2); }
+    .path-cta-btn:disabled { cursor: not-allowed; opacity: .72; box-shadow: none; }
+    .path-cta-status {
+      margin: 4px 0 0; min-height: 1.4em;
+      font-size: 10px; line-height: 1.4; letter-spacing: .16em;
+      color: var(--ink-faint);
+    }
 
     footer { padding: 56px 0 72px; border-top: 1px solid var(--rule); }
     .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 48px; align-items: start; }
@@ -1611,10 +1679,12 @@
       .slider-readout { font-size: clamp(34px, 10vw, 48px); }
       .slider-readout-label { margin-bottom: 24px; }
       .system-grid { grid-template-columns: 1fr; }
-      .snapshot-grid { grid-template-columns: 1fr; }
-      .diagnosis-block, .verdict-card, .path-cta-block { padding: 32px 24px; }
-      .reveal-hero { padding: 48px 0 32px; }
-    }
+	      .snapshot-grid { grid-template-columns: 1fr; }
+	      .diagnosis-block, .verdict-card, .path-cta-block { padding: 32px 24px; }
+	      .fit-capture-shell { padding: 28px 20px; }
+	      .fit-proof-line { display: grid; gap: 8px; }
+	      .reveal-hero { padding: 48px 0 32px; }
+	    }
 
 /* BWM scoping overrides — keep the diagnostic styling self-contained */
 .bwm-fit-diagnostic {
@@ -1622,12 +1692,28 @@
   position: relative;
 }
 .bwm-fit-email-form {
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 12px;
   margin-top: 16px;
 }
-.bwm-fit-email-form input[type="email"] {
+.bwm-fit-email-intro,
+.bwm-fit-email-form button,
+.bwm-fit-email-status {
+  grid-column: 1 / -1;
+}
+.bwm-fit-email-intro {
+  margin: 0 0 2px;
+  color: var(--ink-dim);
+  font-size: 14px;
+  line-height: 1.5;
+}
+.bwm-fit-field {
+  display: grid;
+  gap: 8px;
+}
+.bwm-fit-email-form input[type="email"],
+.bwm-fit-email-form input[type="text"] {
   background: transparent;
   border: 1px solid var(--rule);
   color: var(--ink);
@@ -1637,11 +1723,27 @@
   outline: none;
   transition: border-color .15s ease;
 }
-.bwm-fit-email-form input[type="email"]:focus {
+.bwm-fit-email-form input[type="email"]:focus,
+.bwm-fit-email-form input[type="text"]:focus {
   border-color: var(--y2);
 }
 .bwm-fit-email-form button {
   align-self: flex-start;
+}
+.bwm-fit-email-form button:disabled {
+  cursor: not-allowed;
+  opacity: .72;
+}
+.bwm-fit-email-status {
+  min-height: 1.4em;
+}
+@media (max-width: 640px) {
+  .bwm-fit-email-form {
+    grid-template-columns: 1fr;
+  }
+  .path-cta-form-row {
+    display: grid;
+  }
 }
 </style>
 
@@ -1952,22 +2054,21 @@ function diagnose(state) {
 }
 window.__leakDiagnose = diagnose;
 
+    function deriveFirstName(email, company) {
+      const local = String(email || '').split('@')[0] || '';
+      const generic = /^(info|hello|office|admin|team|contact|sales)$/i.test(local);
+      const source = generic ? String(company || '').split(/\s+/)[0] : local.split(/[._+\-\d]/).filter(Boolean)[0];
+      const fallback = String(company || '').split(/\s+/)[0] || 'there';
+      const name = (source || fallback).replace(/[^a-zA-Z']/g, '');
+      if (!name) return 'there';
+      return name.charAt(0).toUpperCase() + name.slice(1).toLowerCase();
+    }
 
-    // Free / personal inboxes are rejected — the Revenue Leak Map is for businesses.
-    const FREE_EMAIL_DOMAINS = new Set([
-      'gmail.com','googlemail.com','yahoo.com','yahoo.co.uk','yahoo.ca','yahoo.com.au',
-      'ymail.com','rocketmail.com','hotmail.com','hotmail.co.uk','outlook.com','live.com',
-      'msn.com','icloud.com','me.com','mac.com','aol.com','aim.com','protonmail.com',
-      'proton.me','pm.me','gmx.com','gmx.net','mail.com','yandex.com','yandex.ru',
-      'zoho.com','hey.com','fastmail.com','tutanota.com','hushmail.com','inbox.com',
-      'mailinator.com','guerrillamail.com','10minutemail.com','trashmail.com','dispostable.com'
-    ]);
-    function isBusinessEmail(email) {
-      const at = String(email || '').trim().toLowerCase();
-      const parts = at.split('@');
-      if (parts.length !== 2 || !parts[0] || !parts[1]) return false;
-      if (!parts[1].includes('.')) return false;
-      return !FREE_EMAIL_DOMAINS.has(parts[1]);
+    function normalizeBusinessUrl(value) {
+      const raw = String(value || '').trim();
+      if (!raw) return '';
+      if (/^[a-z][a-z0-9+.-]*:\/\//i.test(raw)) return raw;
+      return 'https://' + raw;
     }
 
     // ============ NAVIGATION ============
@@ -1996,7 +2097,7 @@ window.__leakDiagnose = diagnose;
     function goTo(screen) {
       document.body.dataset.screen = screen;
       syncScreenA11y(screen);
-      var ann = document.getElementById('screen-announce'); if (ann) ann.textContent = screen === 'reveal' ? 'Your results are ready.' : (screen === 'welcome' ? '' : 'Question ' + screen.replace('q','') + ' of 7.');
+	      var ann = document.getElementById('screen-announce'); if (ann) ann.textContent = screen === 'reveal' ? 'Your map is ready.' : (screen === 'welcome' ? '' : 'Question ' + screen.replace('q','') + ' of 7.');
       // Keep the visitor inside the diagnostic on each step. The diagnostic is
       // embedded at the bottom of a long landing page, so scrolling the window
       // to the very top (the old behavior) teleported them up to the page hero.
@@ -2148,13 +2249,13 @@ window.__leakDiagnose = diagnose;
     });
 
     // ============ BUTTON BINDINGS ============
-    document.querySelectorAll('[data-back]').forEach(btn => {
-      btn.addEventListener('click', () => goTo(btn.dataset.back));
-    });
-    document.querySelectorAll('[data-next]').forEach(btn => {
-      btn.addEventListener('click', () => goTo(btn.dataset.next));
-    });
-    document.querySelector('[data-action="start"]').addEventListener('click', () => goTo('q1'));
+	    document.querySelectorAll('[data-back]').forEach(btn => {
+	      btn.addEventListener('click', () => window.goTo(btn.dataset.back));
+	    });
+	    document.querySelectorAll('[data-next]').forEach(btn => {
+	      btn.addEventListener('click', () => window.goTo(btn.dataset.next));
+	    });
+	    document.querySelector('[data-action="start"]').addEventListener('click', () => window.goTo('q1'));
     document.querySelector('[data-action="reveal"]').addEventListener('click', computeAndReveal);
 
     // In-page CTAs ("Get My Free Revenue Leak Map") point at #diagnostic. On their own
@@ -2169,8 +2270,8 @@ window.__leakDiagnose = diagnose;
       const current = document.body.dataset.screen;
       // Only auto-advance from the welcome screen; if a quiz is already in progress
       // (or results are shown), just bring the diagnostic back into view, don't reset.
-      goTo(!current || current === 'welcome' ? 'q1' : current);
-    });
+	      window.goTo(!current || current === 'welcome' ? 'q1' : current);
+	    });
 
     // Initialize the diagnostic to its welcome screen on load. Without this the
     // <body> has no data-screen, every .screen stays display:none, and the
@@ -2200,7 +2301,13 @@ window.__leakDiagnose = diagnose;
     }
 
     // ============ COMPUTE + REVEAL ============
-    function computeAndReveal() {
+	    function proofForDerivedConstraint(derived) {
+	      return ['ownerCapacity', 'capacity', 'demand'].indexOf(derived) >= 0
+	        ? 'Owner-led custom builder we work with: $300K → $10M+ after the system took over the follow-through.'
+	        : 'Concrete contractor we work with: ~150 leads since launch — without the owner chasing a single one.';
+	    }
+
+	    function computeAndReveal() {
       // ---- Revenue Score ----
       let revScore = 0;
       if (state.revenue >= 2) revScore = 1;
@@ -2233,22 +2340,24 @@ window.__leakDiagnose = diagnose;
       // ---- Verdict ----
       let verdict, verdictLabel, verdictExplainer, verdictDetail;
       const bottleneckLabel = BOTTLENECK_LABEL[state.bottleneck] || 'unknown';
-      if (growthIndex >= 65) {
-        verdict = 'fit'; verdictLabel = "You're A Fit.";
-        verdictExplainer = "You're at the stage where a custom AI system installed correctly compounds. Revenue traction is real, you've already got channel diversity, and your target is ambitious enough that hand-rolled workflows will hold you back.";
-        verdictDetail = "The system pays for itself in the first 90 days at your current revenue band. That first move is exactly the kind of work we engineer around. The next move is a 30-minute call to map your install plan.";
+	      if (growthIndex >= 65) {
+	        verdict = 'fit'; verdictLabel = "You're A Fit.";
+	        verdictExplainer = "You're at the stage where a custom AI system pays off fast. Real revenue, more than one lead channel, and a target big enough that doing it all by hand will hold you back.";
+	        verdictDetail = "The system should pay back fast at your current revenue band. That first move is exactly the kind of work we engineer around. The next move is a 30-minute call to map your 30-day install plan.";
       } else if (growthIndex >= 35) {
         verdict = 'maybe'; verdictLabel = "Close. Three Things To Lock.";
         verdictExplainer = "You're not far. The diagnostic shows you've got real revenue traction, but one or two foundational pieces aren't dialed in yet. Lock those first, then come back — the system installs cleaner when these are in place.";
-        verdictDetail = "Locking these takes most operators 60-90 days of focused work. We'll send you the exact playbook so you can move on it. When the gaps close, the diagnostic flips to Fit and we book the strategy call.";
-      } else {
-        verdict = 'not-yet'; verdictLabel = "Not Yet — But Here's The Map.";
-        verdictExplainer = "Honest read: installing a custom AI system at your stage would amplify whatever's already breaking, not fix it. The foundation has to come first. We'd rather hand you the playbook than sell you a system you're not ready for.";
-        verdictDetail = "Most operators in your position need 6-12 months of focused foundational work before a custom AI system is the right move. We'll send you the exact 5-step playbook tailored to your situation — yours regardless of whether we ever work together.";
-      }
+        verdictDetail = "Locking these takes most operators 60-90 days of focused work. We'll build your full Revenue Leak Map — where the money is leaking and the exact first moves, tailored to your situation.";
+	      } else {
+	        verdict = 'not-yet'; verdictLabel = "Not Yet — But Here's The Map.";
+	        verdictExplainer = "Honest read: installing a custom AI system at your stage would amplify whatever's already breaking, not fix it. The foundation has to come first. We'd rather build your map than sell you a system you're not ready for.";
+	        verdictDetail = "Most owners in your spot need 6-12 months of groundwork before a custom AI system is the right buy. We'll build your full Revenue Leak Map — where the money is leaking and the exact first moves, tailored to your situation.";
+	      }
 
-      const ins = diagnose(state);
-      console.log('[LEAKQA]', JSON.stringify({selected_pain:ins.selected_pain, derived_constraint:ins.derived_constraint, is_reframe:ins.is_reframe, input_refs:ins.input_refs, headline:ins.headline}));
+	      const ins = diagnose(state);
+	      const proofCopy = document.getElementById('fit-proof-copy');
+	      if (proofCopy) proofCopy.textContent = proofForDerivedConstraint(ins.derived_constraint);
+	      console.log('[LEAKQA]', JSON.stringify({selected_pain:ins.selected_pain, derived_constraint:ins.derived_constraint, is_reframe:ins.is_reframe, input_refs:ins.input_refs, headline:ins.headline}));
       if (ins.input_refs.length < 2) console.warn('[LEAKQA] echo-gate: <2 input refs');
 
       // ---- Populate Reveal ----
@@ -2304,8 +2413,8 @@ window.__leakDiagnose = diagnose;
       // Path
       renderPath(verdict, state);
 
-      goTo('reveal');
-    }
+	      window.goTo('reveal');
+	    }
 
     function drawProjection(state) {
       const NS = 'http://www.w3.org/2000/svg';
@@ -2437,16 +2546,32 @@ window.__leakDiagnose = diagnose;
       const mkCtaForm = (placeholder, btnText) => {
         const form = document.createElement('form');
         form.className = 'path-cta-form';
-        form.addEventListener('submit', e => e.preventDefault());
+        form.setAttribute('data-fit-mini-capture', 'true');
+        const row = document.createElement('div');
+        row.className = 'path-cta-form-row';
         const input = document.createElement('input');
         input.type = 'email';
+        input.name = 'email';
+        input.required = true;
+        input.autocomplete = 'email';
         input.className = 'path-cta-input';
         input.placeholder = placeholder;
         const btn = document.createElement('button');
+        btn.type = 'submit';
         btn.className = 'path-cta-btn';
-        btn.textContent = btnText;
-        form.appendChild(input);
-        form.appendChild(btn);
+        btn.appendChild(document.createTextNode(btnText + ' '));
+        const arrow = document.createElement('span');
+        arrow.className = 'cta-arrow';
+        arrow.setAttribute('aria-hidden', 'true');
+        arrow.textContent = '→';
+        btn.appendChild(arrow);
+        const status = document.createElement('p');
+        status.className = 'path-cta-status mono';
+        status.setAttribute('aria-live', 'polite');
+        row.appendChild(input);
+        row.appendChild(btn);
+        form.appendChild(row);
+        form.appendChild(status);
         return form;
       };
 
@@ -2470,9 +2595,9 @@ window.__leakDiagnose = diagnose;
         pathTitleLead.textContent = 'Let\'s ';
         pathTitleY.textContent = 'build your install plan';
         pathTitleTail.textContent = '.';
-        pathBody.textContent = 'Book a 30-minute strategy call. We\'ll walk through your diagnostic, map the exact modules to your business, and put a 90-day install timeline on the table.';
+        pathBody.textContent = 'Book a 30-minute strategy call. We\'ll walk through your diagnostic, map the exact modules to your business, and put a 30-day install timeline on the table.';
         pathList.appendChild(mkListItem(1, [{ strong: '30 minutes' }, { text: ' — walk through your diagnostic together' }]));
-        pathList.appendChild(mkListItem(2, [{ strong: 'Tailored install plan' }, { text: ' — modules, sequence, 90-day milestones' }]));
+        pathList.appendChild(mkListItem(2, [{ strong: 'Tailored install plan' }, { text: ' — modules, sequence, and first 30 days' }]));
         pathList.appendChild(mkListItem(3, [{ strong: 'Honest go/no-go' }, { text: " — if it's not the right fit on the call, we'll tell you" }]));
         const link = document.createElement('a');
         link.href = '/book';
@@ -2480,7 +2605,8 @@ window.__leakDiagnose = diagnose;
         link.style.display = 'inline-flex';
         link.style.padding = '18px 28px';
         link.style.fontSize = '15px';
-        link.appendChild(document.createTextNode('Book The Call '));
+        link.setAttribute('data-cta-source', 'fit-diagnostic-book');
+        link.appendChild(document.createTextNode('See If We\'re a Fit '));
         const arrow = document.createElement('span');
         arrow.className = 'arrow';
         arrow.textContent = '→';
@@ -2515,14 +2641,14 @@ window.__leakDiagnose = diagnose;
           fixes.push(fallbackFixes[fbi++ % fallbackFixes.length]);
         }
         fixes.slice(0, 3).forEach((f, i) => pathList.appendChild(mkListItem(i + 1, f)));
-        mkCtaBlock('Get The Playbook', 'Send me the foundation playbook.',
-          '90-day playbook tailored to your gaps. We\'ll check in at day 90 to re-diagnose.',
-          mkCtaForm('your@email.com', 'Send It →'));
+        mkCtaBlock('Get The Map', 'Send my Revenue Leak Map.',
+          'Your full Revenue Leak Map — the leaks, what they cost, and your first moves. No follow-up sales.',
+          mkCtaForm('your@email.com', 'Send my Revenue Leak Map'));
       } else {
         pathTitleLead.textContent = 'Here\'s the ';
-        pathTitleY.textContent = 'exact playbook';
+        pathTitleY.textContent = 'Revenue Leak Map';
         pathTitleTail.textContent = ' to get ready.';
-        pathBody.textContent = "You're not ready for a system installation — yet. Below is the 5-step sequence that gets you there. Most operators take 6-12 months. We'll send the playbook, you do the work, we re-diagnose when you're ready.";
+        pathBody.textContent = "You're not ready for a system installation — yet. Below is the sequence that gets you there. Most operators take 6-12 months. We'll build your map, you do the work, we re-diagnose when you're ready.";
         const steps = [
           [{ strong: 'Distribution before automation.' }, { text: ' Get to consistent $15-25K/mo via referrals + 1 channel.' }],
           [{ strong: 'One pricing model, one offer.' }, { text: ' Stop bidding ad-hoc. Productize one core service.' }],
@@ -2531,9 +2657,9 @@ window.__leakDiagnose = diagnose;
           [{ strong: 'Come back when 1–4 are done.' }, { text: " The diagnostic flips. We'll install then." }]
         ];
         steps.forEach((s, i) => pathList.appendChild(mkListItem(i + 1, s)));
-        mkCtaBlock('Yours Regardless', 'Send me the playbook.',
-          'Tailored 5-step playbook for your service category and your situation. No follow-up sales. We\'ll check in at month 6.',
-          mkCtaForm('your@email.com', 'Send It →'));
+        mkCtaBlock('Yours Regardless', 'Send my Revenue Leak Map.',
+          'Your full Revenue Leak Map — the leaks, what they cost, and your first moves. No follow-up sales.',
+          mkCtaForm('your@email.com', 'Send my Revenue Leak Map'));
       }
     }
 
@@ -2549,6 +2675,10 @@ window.__leakDiagnose = diagnose;
   let submitted = false;
   let revealRendered = false;
   let generateLeadSent = false;
+  let diagnosticStarted = false;
+  let diagnosticAbandoned = false;
+  let revealReached = false;
+  const TOTAL_DIAGNOSTIC_STEPS = 7;
 
   function event(name, params, opts) {
     try {
@@ -2570,6 +2700,51 @@ window.__leakDiagnose = diagnose;
     if (value !== undefined && value !== null && value !== "") target[key] = value;
   }
 
+  // BWM telemetry contract: diagnostic_start / diagnostic_step_complete / form_step_abandon.
+  function diagnosticPayload(step) {
+    const payload = {
+      form_id: "fit-diagnostic",
+      total_steps: TOTAL_DIAGNOSTIC_STEPS,
+    };
+    if (step) payload.diagnostic_step = step;
+    return payload;
+  }
+
+  function stepFromScreen(screen) {
+    const match = String(screen || "").match(/^q([1-7])$/);
+    return match ? parseInt(match[1], 10) : null;
+  }
+
+  function trackScreenTransition(nextScreen) {
+    const currentScreen = document.body.dataset.screen || "welcome";
+    const currentStep = stepFromScreen(currentScreen);
+    const nextStep = stepFromScreen(nextScreen);
+
+    if (nextScreen === "q1" && !diagnosticStarted) {
+      diagnosticStarted = true;
+      event("diagnostic_start", diagnosticPayload());
+    }
+
+    if (currentStep && ((nextStep && nextStep === currentStep + 1) || (currentStep === TOTAL_DIAGNOSTIC_STEPS && nextScreen === "reveal"))) {
+      event("diagnostic_step_complete", diagnosticPayload(currentStep));
+    }
+
+    if (nextScreen === "reveal") {
+      revealReached = true;
+    }
+  }
+
+  function trackAbandon() {
+    if (!diagnosticStarted || revealReached || diagnosticAbandoned) return;
+    diagnosticAbandoned = true;
+    event("form_step_abandon", diagnosticPayload(stepFromScreen(document.body.dataset.screen) || 1));
+  }
+
+  document.addEventListener("visibilitychange", function () {
+    if (document.visibilityState === "hidden") trackAbandon();
+  });
+  window.addEventListener("pagehide", trackAbandon);
+
   function fireGenerateLead(data, payload) {
     if (generateLeadSent) return;
     generateLeadSent = true;
@@ -2581,6 +2756,8 @@ window.__leakDiagnose = diagnose;
     addIfPresent(leadPayload, "tier_routing", data.tier_routing || payload.tier_routing);
     addIfPresent(leadPayload, "classification", data.classification || payload.classification);
     addIfPresent(leadPayload, "contact_id", data.contact_id || payload.contact_id);
+    addIfPresent(leadPayload, "map_kicked_off", data.map_kicked_off);
+    addIfPresent(leadPayload, "growth_index", data.growth_index);
     addIfPresent(leadPayload, "capi_event_id", data.capi_event_id || payload.capi_event_id);
     addIfPresent(leadPayload, "booking_event_id", data.booking_event_id || payload.booking_event_id);
     event("generate_lead", leadPayload);
@@ -2601,46 +2778,108 @@ window.__leakDiagnose = diagnose;
     } catch (_e) { return {}; }
   }
 
-  async function submitDiagnostic(emailValue){
+  function getCookie(name) {
+    try {
+      const prefix = encodeURIComponent(name) + "=";
+      const parts = String(document.cookie || "").split("; ");
+      for (let i = 0; i < parts.length; i++) {
+        if (parts[i].indexOf(prefix) === 0) return decodeURIComponent(parts[i].slice(prefix.length));
+      }
+    } catch (_e) {}
+    return null;
+  }
+
+  function getFirstTouchUtms() {
+    try {
+      const attr = (window.__bwmAttribution && window.__bwmAttribution.first_touch && window.__bwmAttribution.first_touch.utm) || {};
+      return {
+        first_touch_utm_source: attr.utm_source || null,
+        first_touch_utm_medium: attr.utm_medium || null,
+        first_touch_utm_campaign: attr.utm_campaign || null,
+      };
+    } catch (_e) {
+      return {
+        first_touch_utm_source: null,
+        first_touch_utm_medium: null,
+        first_touch_utm_campaign: null,
+      };
+    }
+  }
+
+  function getOriginalLandingPage() {
+    try {
+      const attr = window.__bwmAttribution;
+      return (attr && attr.first_touch && attr.first_touch.landing_page) || sessionStorage.getItem("bwm_landing_page") || location.href;
+    } catch (_e) {
+      return location.href;
+    }
+  }
+
+  function getBookingEventId() {
+    try {
+      if (typeof window.__bwmEnsureBookingEventId === "function") return window.__bwmEnsureBookingEventId("");
+    } catch (_e) {}
+    return undefined;
+  }
+
+  async function submitDiagnostic(emailValue, captureFields = {}){
     if (submitted && !emailValue) return;
     submitted = true;
     const utms = getUtms();
+    const firstTouchUtms = getFirstTouchUtms();
     const exp = window.__BWM_EXP || {};
-    const payload = Object.assign({}, state, utms, {
-      email: emailValue || "",
+    const email = String(emailValue || "").trim();
+    const company = String(captureFields.company || "").trim();
+    const businessUrl = normalizeBusinessUrl(captureFields.business_url || "");
+    const serviceArea = String(captureFields.service_area || "").trim();
+    const payload = Object.assign({}, state, utms, firstTouchUtms, {
+      email: email,
+      company: company,
+      business_url: businessUrl,
+      service_area: serviceArea,
+      first_name: email ? deriveFirstName(email, company) : "",
+      fbc: getCookie("_fbc"),
+      fbp: getCookie("_fbp"),
       landing_page: location.pathname,
+      page_url: location.href,
+      original_landing_page: getOriginalLandingPage(),
       referrer: document.referrer || "",
       // MVT (PROJ-AUTO-MVT-001): experiment context injected by the edge worker.
       // Distinct names — variant_id is already used for utm_content semantics.
       experiment_id: exp.experiment_id || "",
       experiment_variant_id: exp.variant_id || "",
     });
+    addIfPresent(payload, "booking_event_id", getBookingEventId());
     try {
       const res = await fetch("https://bwm-form-handler.robert-ba0.workers.dev/buildwisemedia/fit-diagnostic", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(payload),
       });
+      if (!res.ok) throw new Error("fit diagnostic submit failed: " + res.status);
       const data = await res.json();
-      handleVerdict(data, emailValue, payload);
+      handleVerdict(data, email, payload);
+      return data;
     } catch (err) {
       console.error("fit-diagnostic submit failed:", err);
-      // Graceful fallback so a paid click never hits a dead reveal state if the API
-      // call fails (network / cold start). Show a working path instead of an empty card.
-      submitted = false; // allow a retry on the next reveal
-      const card = document.getElementById("verdict-card");
-      const status = document.getElementById("verdict-status");
-      const explainer = document.getElementById("verdict-explainer");
-      const detail = document.getElementById("verdict-detail");
-      const pathCta = document.getElementById("path-cta-block");
-      if (card && status) {
-        card.setAttribute("data-verdict", "maybe");
-        status.textContent = "Your map is ready";
-        if (explainer) explainer.textContent = "We hit a snag loading your result here. Book a quick call and we'll walk you through your Revenue Leak Map live.";
-        if (detail) detail.textContent = "";
-        if (pathCta) {
-          pathCta.innerHTML = '<a class="cta" href="/book" data-cta-source="fit-diagnostic-fallback">Book The Call <span aria-hidden="true">→</span></a>';
-        }
+      throw err;
+    }
+  }
+
+  function renderSubmitFallback() {
+    submitted = false;
+    const card = document.getElementById("verdict-card");
+    const status = document.getElementById("verdict-status");
+    const explainer = document.getElementById("verdict-explainer");
+    const detail = document.getElementById("verdict-detail");
+    const pathCta = document.getElementById("path-cta-block");
+    if (card && status) {
+      card.setAttribute("data-verdict", "maybe");
+      status.textContent = "We hit a snag";
+      if (explainer) explainer.textContent = "We hit a snag loading your result here. Book a quick call and we'll walk through your Revenue Leak Map live.";
+      if (detail) detail.textContent = "";
+      if (pathCta) {
+        pathCta.innerHTML = '<a class="cta" href="/book" data-cta-source="fit-diagnostic-fallback">See If We\'re a Fit <span aria-hidden="true">→</span></a>';
       }
     }
   }
@@ -2667,9 +2906,9 @@ window.__leakDiagnose = diagnose;
     // figures never disagree (e.g. "67" up top vs "FIT · 74/100" below).
     const giEl = document.getElementById("growth-index-value");
     if (giEl) giEl.textContent = idx;
+    if (hadEmail) fireGenerateLead(data, payload || {});
 
     if (v === "FIT") {
-      fireGenerateLead(data, payload || {});
       card.setAttribute("data-verdict", "fit");
       status.textContent = "FIT · " + idx + "/100";
       if (explainer) explainer.textContent = "Your shop matches the install profile. The system delivers the most lift here.";
@@ -2678,12 +2917,10 @@ window.__leakDiagnose = diagnose;
       if (pathY) pathY.textContent = " 30-minute strategy call. ";
       if (pathTail) pathTail.textContent = "";
       if (pathBody) pathBody.textContent = "On the call we walk through your specific stack, what the system replaces, and what week one looks like.";
-      if (pathCta) pathCta.innerHTML = '<a href="#cal-inline" class="cta" data-cta-source="mo-fit-verdict-cal" onclick="document.getElementById(\'cal-inline\').scrollIntoView({behavior:\'smooth\'});return false;">See If We\'re a Fit <span class="cta-arrow" aria-hidden="true">→</span></a><p class="mono" style="margin-top:14px;font-size:11px;letter-spacing:.18em;color:var(--ink-faint);">For service businesses only.</p>';
-      mountCalInline();
+      if (pathCta) pathCta.innerHTML = '<a href="/book" class="cta" data-cta-source="mo-fit-verdict-book">See If We\'re a Fit <span class="cta-arrow" aria-hidden="true">→</span></a><p class="mono" style="margin-top:14px;font-size:11px;letter-spacing:.18em;color:var(--ink-faint);">For service businesses only.</p>';
     } else if (v === "MAYBE") {
       // MAYBE is an in-range lead the team pursues within 48h (email captured) —
       // count it as a qualified-lead conversion alongside FIT. NOT YET is excluded.
-      fireGenerateLead(data, payload || {});
       card.setAttribute("data-verdict", "maybe");
       status.textContent = "MAYBE · " + idx + "/100";
       if (explainer) explainer.textContent = "Your shop is in range, but one or two pieces are still forming. We'll be in touch within 48 hours.";
@@ -2692,7 +2929,7 @@ window.__leakDiagnose = diagnose;
       if (pathY) pathY.textContent = " be in touch within 48h. ";
       if (pathTail) pathTail.textContent = "";
       if (pathBody) pathBody.textContent = "Want to speed it up? Drop your email below and we'll send your full Revenue Leak Map + a focused next step.";
-      if (pathCta && !hadEmail) pathCta.innerHTML = bwmEmailCaptureMarkup();
+      if (pathCta && !hadEmail) pathCta.innerHTML = '<a href="#fit-capture" class="cta" data-cta-source="mo-fit-verdict-map">Send my Revenue Leak Map <span class="cta-arrow" aria-hidden="true">→</span></a>';
     } else {
       // NO
       card.setAttribute("data-verdict", "not-yet");
@@ -2709,90 +2946,85 @@ window.__leakDiagnose = diagnose;
 
   function bwmEmailCaptureMarkup(){
     return [
-      '<form id="bwm-fit-email-form" class="bwm-fit-email-form">',
-      '  <label class="mono" for="bwm-fit-email" style="font-size:11px;letter-spacing:.18em;color:var(--ink-dim);">Business Email</label>',
-      '  <input type="email" id="bwm-fit-email" name="email" required placeholder="you@yourbusiness.com" autocomplete="email" />',
+      '<!-- @bwm-exp-slot: proof-module -->',
+      '<form id="bwm-fit-email-form" class="bwm-fit-email-form" data-bwm-exp-slot="proof-module">',
+      '  <p class="bwm-fit-email-intro">We\'ll build your full Revenue Leak Map from your answers and your site — and email it to you.</p>',
+      '  <div class="bwm-fit-field">',
+      '    <label class="mono" for="bwm-fit-email" style="font-size:11px;letter-spacing:.18em;color:var(--ink-dim);">Business email</label>',
+      '    <input type="email" id="bwm-fit-email" name="email" required placeholder="you@yourbusiness.com" autocomplete="email" />',
+      '  </div>',
+      '  <div class="bwm-fit-field">',
+      '    <label class="mono" for="bwm-fit-company" style="font-size:11px;letter-spacing:.18em;color:var(--ink-dim);">Business name</label>',
+      '    <input type="text" id="bwm-fit-company" name="company" required autocomplete="organization" />',
+      '  </div>',
+      '  <div class="bwm-fit-field">',
+      '    <label class="mono" for="bwm-fit-website" style="font-size:11px;letter-spacing:.18em;color:var(--ink-dim);">Website</label>',
+      '    <input type="text" id="bwm-fit-website" name="business_url" required placeholder="yourbusiness.com" inputmode="url" autocomplete="url" />',
+      '  </div>',
+      '  <div class="bwm-fit-field">',
+      '    <label class="mono" for="bwm-fit-area" style="font-size:11px;letter-spacing:.18em;color:var(--ink-dim);">City / area you serve</label>',
+      '    <input type="text" id="bwm-fit-area" name="service_area" required placeholder="e.g. Marietta, GA" autocomplete="address-level2" />',
+      '  </div>',
       '  <button type="submit" class="cta">Send my Revenue Leak Map <span class="cta-arrow" aria-hidden="true">→</span></button>',
-      '  <p id="bwm-fit-email-status" class="mono" style="font-size:10px;letter-spacing:.18em;color:var(--ink-faint);margin-top:8px;"></p>',
+      '  <p id="bwm-fit-email-status" class="bwm-fit-email-status mono" aria-live="polite" style="font-size:10px;letter-spacing:.18em;color:var(--ink-faint);margin-top:8px;"></p>',
       '</form>',
     ].join("");
   }
 
-  function mountCalInline(){
-    if (document.getElementById("cal-inline")) return;
-    const section = document.querySelector("#diagnostic") || document.body;
-    const wrap = document.createElement("div");
-    wrap.id = "cal-inline";
-    wrap.className = "bwm-cal-inline";
-    wrap.style.cssText = "max-width:1200px;margin:48px auto 0;min-height:720px;background:var(--bg-elev);border:1px solid var(--rule);";
-    section.appendChild(wrap);
-    // Booking-calendar loader (matches /book.astro pattern)
-    (function (C, A, L) {
-      let p = function (a, ar) { a.q.push(ar); };
-      let d = C.document;
-      C.Cal = C.Cal || function () {
-        let cal = C.Cal; let ar = arguments;
-        if (!cal.loaded) {
-          cal.ns = {}; cal.q = cal.q || [];
-          d.head.appendChild(d.createElement("script")).src = A;
-          cal.loaded = true;
-        }
-        if (ar[0] === L) {
-          const api = function () { p(api, arguments); };
-          const namespace = ar[1];
-          api.q = api.q || [];
-          if (typeof namespace === "string") {
-            cal.ns[namespace] = cal.ns[namespace] || api;
-            p(cal.ns[namespace], ar); p(cal, ["initNamespace", namespace]);
-          } else { p(cal, ar); }
-          return;
-        }
-        p(cal, ar);
-      };
-    })(window, "https://book.buildwisemedia.com/embed/embed.js", "init");
-    window.Cal("init", "discovery-call", { origin: "https://book.buildwisemedia.com" });
-    window.Cal.ns["discovery-call"]("inline", {
-      elementOrSelector: "#cal-inline",
-      config: { layout: "month_view" },
-      calLink: "bwm/discovery-call",
-    });
-    window.Cal.ns["discovery-call"]("ui", {
-      theme: "dark",
-      styles: { branding: { brandColor: "#F0FF00" } },
-      hideEventTypeDetails: false,
-      layout: "month_view",
-    });
+  function getMainCaptureFields(form) {
+    const websiteInput = form.querySelector("#bwm-fit-website");
+    const normalizedUrl = normalizeBusinessUrl(websiteInput ? websiteInput.value : "");
+    if (websiteInput) websiteInput.value = normalizedUrl;
+    return {
+      company: String(form.querySelector("#bwm-fit-company")?.value || "").trim(),
+      business_url: normalizedUrl,
+      service_area: String(form.querySelector("#bwm-fit-area")?.value || "").trim(),
+    };
+  }
+
+  function handleCaptureSubmit(form, captureFields) {
+    const input = form.querySelector('input[type="email"]');
+    const statusEl = form.querySelector("#bwm-fit-email-status, .path-cta-status");
+    const btn = form.querySelector("button");
+    if (typeof form.reportValidity === "function" && !form.reportValidity()) return;
+    const email = input ? input.value.trim() : "";
+    if (!email) return;
+    submitted = false;  // allow re-submission with email after the anonymous reveal submit
+    if (statusEl) statusEl.textContent = "Sending...";
+    if (btn) btn.disabled = true;
+    submitDiagnostic(email, captureFields || {})
+      .then(function(){
+        if (statusEl) statusEl.textContent = "Done — your Revenue Leak Map is being built from your answers. It usually lands in your inbox within 15 minutes.";
+      })
+      .catch(function(){
+        if (statusEl) statusEl.textContent = "Something did not send. Try again, or email hello@buildwisemedia.com.";
+        if (btn) btn.disabled = false;
+        submitted = false;
+      });
   }
 
   // Wire MAYBE email capture (delegated)
   document.addEventListener("submit", function (e) {
-    if (e.target && e.target.id === "bwm-fit-email-form") {
+    const form = e.target;
+    if (form && form.id === "bwm-fit-email-form") {
       e.preventDefault();
-      const input = document.getElementById("bwm-fit-email");
-      const statusEl = document.getElementById("bwm-fit-email-status");
-      const email = input ? input.value.trim() : "";
-      if (!email) return;
-      if (!isBusinessEmail(email)) {
-        if (statusEl) statusEl.textContent = "Please use your business email — free inboxes (Gmail, Yahoo, Outlook, etc.) aren’t accepted.";
-        return;
-      }
-      submitted = false;  // allow re-submission with email
-      if (statusEl) statusEl.textContent = "Sending...";
-      submitDiagnostic(email).then(function(){
-        if (statusEl) statusEl.textContent = "Done. Check your inbox in the next 48 hours.";
-        const btn = e.target.querySelector("button");
-        if (btn) btn.disabled = true;
-      });
+      handleCaptureSubmit(form, getMainCaptureFields(form));
+    } else if (form && form.matches(".path-cta-form")) {
+      e.preventDefault();
+      handleCaptureSubmit(form, { company: "", business_url: "", service_area: "" });
     }
   });
 
   // Hook into goTo: when we land on reveal, fire submit (anonymous)
   const _origGoTo = window.goTo || goTo;
   window.goTo = function (screen) {
+    trackScreenTransition(screen);
     _origGoTo(screen);
     if (screen === "reveal" && !revealRendered) {
       revealRendered = true;
-      submitDiagnostic("");
+      submitDiagnostic("").catch(function(){
+        renderSubmitFallback();
+      });
     }
   };
 })();
