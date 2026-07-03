@@ -1,0 +1,281 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+const title = "What Do Plumbing Leads Cost? | Buildwise Media";
+const description = "The real cost of plumbing leads is more than the lead price. Count shared-lead waste, owner time, and what your business keeps after the call.";
+
+const faqs = [
+  {
+    q: 'What do plumbing leads cost?',
+    a: 'Most shared plumbing leads are priced per name, but the real cost is the booked job. Count the names that never answer, the time spent chasing them, the price pressure, and the jobs that turn into real work.',
+  },
+  {
+    q: 'Why do shared plumbing leads cost more than they look?',
+    a: 'Shared leads can go to several plumbers at once. You pay to enter the race, then spend time calling fast, quoting fast, and fighting for credit when the lead is weak.',
+  },
+  {
+    q: 'Is buying plumbing leads worth it?',
+    a: 'It can help in a slow season, but it is risky as the main plan. If the lead is rented, the proof, pages, reviews, and follow-up path do not keep growing inside your company.',
+  },
+  {
+    q: 'What is the alternative to buying plumbing leads?',
+    a: 'The alternative is an owned lead system. Your company builds pages, proof, reviews, follow-up, and a clear view of booked jobs, so each month improves the asset instead of renting another batch of names.',
+  },
+  {
+    q: 'How fast can an owned plumbing lead system start working?',
+    a: 'The first install is built around a 30-day window. Some fixes can help sooner, but the goal is a durable path that keeps improving as more local proof and booked-job data come in.',
+  },
+];
+
+const definedTerm = {
+  '@context': 'https://schema.org',
+  '@type': 'DefinedTerm',
+  '@id': 'https://buildwisemedia.com/playbook/plumbing-leads-cost#term',
+  name: 'Plumbing leads cost',
+  description: 'Plumbing leads from shared-lead marketplaces are priced per name. The real cost is per booked job. The same lead is sold to several plumbers. You pay for the race, not the work. You also pay for the hours you spend chasing it. An owned lead system flips that: you pay to build an asset that keeps bringing jobs.',
+  inDefinedTermSet: {
+    '@type': 'DefinedTermSet',
+    '@id': 'https://buildwisemedia.com/playbook/#terms',
+    name: 'Buildwise Media Playbook',
+  },
+};
+
+const breadcrumb = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://buildwisemedia.com/' },
+    { '@type': 'ListItem', position: 2, name: 'Playbook', item: 'https://buildwisemedia.com/playbook/' },
+    { '@type': 'ListItem', position: 3, name: 'Plumbing Leads Cost', item: 'https://buildwisemedia.com/playbook/plumbing-leads-cost' },
+  ],
+};
+
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  '@id': 'https://buildwisemedia.com/playbook/plumbing-leads-cost#faq',
+  mainEntity: faqs.map((f) => ({
+    '@type': 'Question',
+    name: f.q,
+    acceptedAnswer: { '@type': 'Answer', text: f.a },
+  })),
+};
+
+const articleSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Article',
+  '@id': 'https://buildwisemedia.com/playbook/plumbing-leads-cost#article',
+  headline: title,
+  description,
+  author: { '@id': 'https://buildwisemedia.com/#org' },
+  publisher: { '@id': 'https://buildwisemedia.com/#org' },
+  mainEntityOfPage: 'https://buildwisemedia.com/playbook/plumbing-leads-cost',
+};
+---
+<BaseLayout title={title} description={description} jsonLd={[definedTerm, breadcrumb, faqSchema, articleSchema]}>
+
+  <section class="playbook-hero">
+    <div class="container">
+      <p class="eyebrow"><a href="/playbook" class="back-link">← Playbook</a></p>
+      <h1 class="h-hero">What plumbing leads really cost <em>after the call</em></h1>
+      <p class="lede">
+        Cost per booked job beats cost per name. Plumbing leads from shared-lead marketplaces are priced per name. The real cost is per booked job. The same lead is sold to several plumbers. You pay for the race, not the work. You also pay for the hours you spend chasing it. A full <a href="/playbook/plumbing-lead-generation">plumbing lead generation</a> path shows why the math must include the call, the follow-up, the booked job, and your time.
+      </p>
+      <p class="lede">
+        An owned lead system flips that: you pay to build an asset that keeps bringing jobs. The <a href="/system">Buildwise system</a> is the run-for-you option when you want the path built around your company, not rented one name at a time.
+      </p>
+      <figure class="hero-photo">
+        <!-- @r020:F1 emotion: urgent service scene shows the pressure of racing to answer before trust is built -->
+        <img src="/images/bwm-urgency-cinematic-v1.webp" alt="Urgent service call scene with a phone, plumbing tools, and late-night work notes." width="1920" height="1080" loading="eager" decoding="async" />
+      </figure>
+    </div>
+  </section>
+
+  <section class="playbook-section">
+    <div class="container">
+      <p class="section-tag">Sticker price</p>
+      <h2 class="h-section">The sticker price is not the cost</h2>
+      <p class="prose">
+        A lead invoice can look clean. You see a name, a phone number, and a fee for the chance to call. That is only the first line.
+      </p>
+      <p class="prose">
+        The real cost starts after the name arrives. You spend time calling, texting, checking the job fit, quoting, and trying to book before another plumber gets there first.
+      </p>
+      <p class="prose">
+        If the person never answers, shops only on price, or already hired someone else, the cost did not stop at the lead. It landed on your calendar, your dispatcher, and your margin.
+      </p>
+      <figure class="section-photo section-photo--diagram">
+        <!-- @r020:F2 proof: cost layers show how the lead invoice hides work after the first name arrives -->
+        <img src="/images/funnel-5-layer-v1.svg" alt="Layered funnel diagram showing the hidden cost steps after a plumbing lead arrives." width="1200" height="675" loading="lazy" decoding="async" />
+      </figure>
+    </div>
+  </section>
+
+  <section class="playbook-section elev">
+    <div class="container">
+      <p class="section-tag">Shared-lead math</p>
+      <h2 class="h-section">What shared leads really charge you</h2>
+      <p class="prose">
+        Shared plumbing leads often go to several companies at once. That means you are not buying the job. You are buying a race to answer first.
+      </p>
+      <p class="prose">
+        That race changes the sale. The homeowner hears from more than one plumber, so trust gets thin and price becomes the easy way to compare. You may end up cutting the job before you ever see the problem.
+      </p>
+      <blockquote class="pull-quote">
+        <p>The cheap lead is not cheap if it teaches the homeowner to shop you like a commodity.</p>
+      </blockquote>
+      <p class="prose">
+        Then come the credit fights. Was the lead real? Was the number right? Did someone else already book it? None of that proof carries forward into your site, reviews, or future local trust.
+      </p>
+      <figure class="section-photo">
+        <!-- @r020:F4 curiosity: the still life turns the unitemized lead bill into a question the owner wants answered -->
+        <img src="/images/bwm-receipts-still-life-v1.webp" alt="Receipts, notes, and a phone on a dark work surface showing the hidden cost of bought leads." width="1920" height="1080" loading="lazy" decoding="async" />
+      </figure>
+    </div>
+  </section>
+
+  <section class="playbook-section">
+    <div class="container">
+      <p class="section-tag">Rent or own</p>
+      <h2 class="h-section">Priced per lead vs. priced per asset</h2>
+      <p class="prose">
+        When you buy leads, you rent attention for the month. When the month ends, the names stop. The seller still owns the place where the demand was created.
+      </p>
+      <p class="prose">
+        An owned system works the other way. Your pages, local proof, reviews, follow-up, and booked-job view get better as the work runs. The asset stays with your company.
+      </p>
+      <p class="prose">
+        This is the same choice behind <a href="/playbook/buy-plumbing-leads-alternative">buying plumbing leads and the owned alternative</a>. One path rents names again and again. The other builds a path that can keep paying you back.
+      </p>
+      <figure class="section-photo section-photo--diagram">
+        <!-- @r020:F2 proof: stacked planes show the difference between loose lead pieces and one assembled owned system -->
+        <img src="/images/stacked-planes-v1.svg" alt="Stacked system planes showing pages, proof, reviews, and follow-up built into one asset." width="1200" height="675" loading="lazy" decoding="async" />
+      </figure>
+    </div>
+  </section>
+
+  <section class="playbook-section elev">
+    <div class="container">
+      <p class="section-tag">Owned path</p>
+      <h2 class="h-section">What changes with an owned system</h2>
+      <p class="prose">
+        The best plumbing lead is often urgent. A homeowner has water on the floor, no hot water, or a drain that will not clear. They need help they can trust fast.
+      </p>
+      <p class="prose">
+        An owned system helps you get found for the work you want, then builds trust before price takes over. Service pages, photos, reviews, and simple next steps make the call feel safer.
+      </p>
+      <p class="prose">
+        It also makes the month easier to read. Calls and forms get caught, booked jobs are easier to see, and you know which part of the system needs work next.
+      </p>
+    </div>
+  </section>
+
+  <section class="playbook-section">
+    <div class="container">
+      <p class="section-tag">Decision frame</p>
+      <h2 class="h-section">Compare the whole month, not one lead</h2>
+      <p class="prose">
+        Do not compare one lead price against one job. Compare the whole month. Count the names you chased, the weak calls, the price shoppers, the lost time, and the jobs that actually booked.
+      </p>
+      <p class="prose">
+        Then count what stayed in your business. Did you gain better pages? More proof? Stronger reviews? A cleaner follow-up path? A clearer view of what booked?
+      </p>
+      <p class="prose">
+        That is why <a href="/pricing">Buildwise pricing</a> is framed around an installed system, not a bag of names. The question is not which lead is cheaper. It is which month leaves you with more of the machine owned by your company.
+      </p>
+    </div>
+  </section>
+
+  <!-- @sdt-exempt: FAQ is question-and-answer text; imagery here would be decorative (R020) -->
+  <section class="playbook-faq">
+    <div class="container">
+      <p class="section-tag">FAQ</p>
+      <h2 class="h-section">Common questions.</h2>
+      <div class="faq-list">
+        {faqs.map((f) => (
+          <details class="faq-item">
+            <summary class="faq-q">{f.q}</summary>
+            <div class="faq-a">
+              <p>{f.a}</p>
+            </div>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="playbook-related elev">
+    <div class="container">
+      <p class="section-tag">Related</p>
+      <h2 class="h-section">Keep reading.</h2>
+      <ul class="related-list">
+        <li><a href="/playbook/plumbing-lead-generation">Plumbing Lead Generation</a> — the broader owned-system view for plumbing companies</li>
+        <li><a href="/playbook/buy-plumbing-leads-alternative">Buy Plumbing Leads Alternative</a> — the rent-or-own choice behind lead flow</li>
+        <li><a href="/playbook/lead-generation-company-alternative">Lead Generation Company Alternative</a> — why owners need a system, not another lead seller</li>
+        <li><a href="/playbook/how-to-get-plumbing-leads">How to Get Plumbing Leads</a> — practical ways to build better plumbing demand</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="playbook-cta elev">
+    <div class="container">
+      <h2 class="h-closer">Want the plumbing lead path built for you?</h2>
+      <p class="lede">If you would rather own the system than keep renting names, the right next step is a clear look at where your current month is leaking.</p>
+      <!-- approved-proof: 008 de-id concrete contractor, organic-playbook use, internal-signoff 2026-06-18 -->
+      <blockquote class="pull-quote">
+        <p>A concrete contractor we run went from almost no inbound calls to about 150 leads since launch.</p>
+      </blockquote>
+      <p class="cta-row">
+        <a class="cta-primary" href="/book" data-cta-source="playbook-plumbing-leads-cost-cta-primary">See If We're a Fit <span class="cta-arrow">→</span></a>
+        <a class="cta-ghost" href="/system" data-cta-source="playbook-plumbing-leads-cost-cta-secondary">See the System</a>
+      </p>
+    </div>
+  </section>
+
+</BaseLayout>
+
+<style>
+.playbook-hero { padding-block: clamp(80px, 12vw, 144px); }
+.playbook-hero .lede { margin-top: 24px; }
+.back-link { color: var(--ink-faint); transition: color 180ms ease; }
+.back-link:hover { color: var(--y2); }
+
+.h-hero em { color: var(--y2); font-style: normal; font-weight: inherit; }
+.h-section em { color: var(--y2); font-style: normal; font-weight: inherit; }
+
+.hero-photo { margin-top: 56px; max-width: 1120px; border-radius: 4px; overflow: hidden; border: 1px solid var(--rule); }
+.hero-photo img { width: 100%; height: auto; display: block; }
+
+.playbook-section { padding-block: clamp(56px, 8vw, 96px); }
+.playbook-section .prose { font-size: 17px; line-height: 1.7; color: var(--ink-dim); max-width: 720px; }
+.playbook-section .prose + .prose { margin-top: 16px; }
+.playbook-section .prose a, .related-list a { color: var(--ink); text-decoration: none; border-bottom: 1px solid rgba(240,255,0,0.45); }
+.playbook-section .prose a:hover, .related-list a:hover { color: var(--y2); border-bottom-color: var(--y2); }
+
+.section-photo { margin: 48px 0 0; max-width: 1120px; border-radius: 4px; overflow: hidden; border: 1px solid var(--rule); }
+.section-photo img { width: 100%; height: auto; display: block; }
+.section-photo--diagram { max-width: 980px; border-color: transparent; background: transparent; }
+.section-photo--diagram img { background: transparent; }
+
+.pull-quote { margin: 56px 0; padding: 32px 0; border-block: 1px solid var(--rule); max-width: 880px; }
+.pull-quote p { font-size: 24px; line-height: 1.35; color: var(--ink); font-weight: 500; font-style: italic; }
+
+.playbook-faq { padding-block: clamp(64px, 10vw, 112px); }
+.faq-list { display: flex; flex-direction: column; gap: 16px; margin-top: 32px; max-width: 880px; }
+.faq-item { border-top: 1px solid var(--rule); padding-block: 20px; }
+.faq-item[open] summary { color: var(--y2); }
+.faq-q { font-size: 17px; font-weight: 500; color: var(--ink); cursor: pointer; line-height: 1.4; list-style: none; }
+.faq-q::marker, .faq-q::-webkit-details-marker { display: none; }
+.faq-q::after { content: "+"; float: right; font-family: var(--mono); font-size: 18px; color: var(--y2); }
+.faq-item[open] .faq-q::after { content: "−"; }
+.faq-a { margin-top: 12px; }
+.faq-a p { font-size: 16px; line-height: 1.65; color: var(--ink-dim); max-width: 720px; }
+
+.playbook-related { padding-block: clamp(56px, 8vw, 96px); }
+.related-list { list-style: none; display: flex; flex-direction: column; gap: 12px; margin-top: 32px; max-width: 880px; }
+.related-list a { font-weight: 500; }
+
+.playbook-cta { padding-block: clamp(64px, 10vw, 112px); }
+.playbook-cta .lede { margin-top: 16px; }
+.cta-row { display: flex; flex-wrap: wrap; gap: 16px; margin-top: 32px; }
+</style>
