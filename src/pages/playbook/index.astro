@@ -543,7 +543,7 @@ const collectionPage = {
                 data-cluster={term.cluster}
                 data-name={term.name.toLowerCase()}
                 data-gloss={term.gloss.toLowerCase()}
-                style={`--cluster-accent: ${term.clusterMeta.accent}; --reveal-index: ${index};`}
+                style={`--cluster-accent: ${term.clusterMeta.accent};`}
               >
                 <span class="term-card-rule" aria-hidden="true"></span>
                 <span class="term-topline">
@@ -1031,22 +1031,6 @@ const collectionPage = {
   transform: translateX(2px);
 }
 
-.playbook-reveal-ready .term-card {
-  opacity: 0;
-  transform: translateY(18px);
-  transition:
-    opacity 420ms ease,
-    transform 420ms ease,
-    border-color 180ms ease,
-    background 180ms ease;
-  transition-delay: calc(var(--reveal-index) * 55ms);
-}
-
-.playbook-reveal-ready .playbook-cluster.is-visible .term-card:not([hidden]) {
-  opacity: 1;
-  transform: translateY(0);
-}
-
 .playbook-faq {
   padding-block: 96px;
 }
@@ -1241,12 +1225,6 @@ const collectionPage = {
     stroke-dashoffset: 0;
   }
 
-  .playbook-reveal-ready .term-card {
-    opacity: 1;
-    transform: none;
-    transition: none;
-  }
-
   .term-card:hover,
   .term-card:focus-visible {
     transform: none;
@@ -1347,22 +1325,6 @@ const collectionPage = {
       node.addEventListener('mouseleave', clearActive);
       node.addEventListener('blur', clearActive);
     });
-
-    playbookHub.classList.add('playbook-reveal-ready');
-
-    if (reduceMotion || !('IntersectionObserver' in window)) {
-      sections.forEach((section) => section.classList.add('is-visible'));
-    } else {
-      const observer = new IntersectionObserver((entries) => {
-        entries.forEach((entry) => {
-          if (!entry.isIntersecting) return;
-          entry.target.classList.add('is-visible');
-          observer.unobserve(entry.target);
-        });
-      }, { threshold: 0.18, rootMargin: '0px 0px -10% 0px' });
-
-      sections.forEach((section) => observer.observe(section));
-    }
 
     updateFilters();
   }
