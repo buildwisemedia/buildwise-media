@@ -1,0 +1,287 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+const title = "Emergency Plumbing Leads | Buildwise";
+const description = "Emergency plumbing leads need fast trust, not just a fast ping. See the owned-system path for urgent calls and better booked jobs.";
+
+const termDescription = "Emergency plumbing leads are urgent requests: burst pipes, failed water heaters, and sewer backups where the homeowner picks whoever looks clearest, fastest, and safest in the moment. Winning them takes speed plus trust: emergency service pages, local proof, a phone-first next step, after-hours call capture, and same-day follow-up.";
+
+const faqs = [
+  {
+    q: 'What are emergency plumbing leads?',
+    a: 'Emergency plumbing leads are urgent requests from homeowners with active plumbing problems, such as burst pipes, failed water heaters, sewer backups, or leaks that need help fast.',
+  },
+  {
+    q: 'Why are emergency plumbing leads different?',
+    a: 'The buyer is under stress. They need speed, clear proof, and a simple next step. If the path feels slow or vague, they keep looking.',
+  },
+  {
+    q: 'Are shared emergency plumbing leads risky?',
+    a: 'Yes. Shared emergency leads can put several plumbers in the same race. That can push the choice toward speed and price before trust is built.',
+  },
+  {
+    q: 'What should an emergency plumbing lead path include?',
+    a: 'It should include emergency service pages, local proof, a phone-first next step, after-hours call capture, and same-day follow-up.',
+  },
+  {
+    q: 'How can plumbers turn urgent calls into better booked work?',
+    a: 'Answer fast, show proof before the call, keep notes from the job, ask for a review, and use that proof to make the next urgent call easier to win.',
+  },
+];
+
+const definedTerm = {
+  '@context': 'https://schema.org',
+  '@type': 'DefinedTerm',
+  '@id': 'https://buildwisemedia.com/playbook/emergency-plumbing-leads#term',
+  name: 'Emergency plumbing leads',
+  description: termDescription,
+  inDefinedTermSet: {
+    '@type': 'DefinedTermSet',
+    '@id': 'https://buildwisemedia.com/playbook/#terms',
+    name: 'Buildwise Media Playbook',
+  },
+};
+
+const breadcrumb = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://buildwisemedia.com/' },
+    { '@type': 'ListItem', position: 2, name: 'Playbook', item: 'https://buildwisemedia.com/playbook/' },
+    { '@type': 'ListItem', position: 3, name: 'Emergency Plumbing Leads', item: 'https://buildwisemedia.com/playbook/emergency-plumbing-leads' },
+  ],
+};
+
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  '@id': 'https://buildwisemedia.com/playbook/emergency-plumbing-leads#faq',
+  mainEntity: faqs.map((f) => ({
+    '@type': 'Question',
+    name: f.q,
+    acceptedAnswer: { '@type': 'Answer', text: f.a },
+  })),
+};
+
+const articleSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Article',
+  '@id': 'https://buildwisemedia.com/playbook/emergency-plumbing-leads#article',
+  headline: title,
+  description,
+  author: { '@id': 'https://buildwisemedia.com/#org' },
+  publisher: { '@id': 'https://buildwisemedia.com/#org' },
+  mainEntityOfPage: 'https://buildwisemedia.com/playbook/emergency-plumbing-leads',
+};
+---
+<BaseLayout title={title} description={description} jsonLd={[definedTerm, breadcrumb, faqSchema, articleSchema]}>
+
+  <section class="playbook-hero">
+    <div class="container">
+      <p class="eyebrow"><a href="/playbook" class="back-link">← Playbook</a></p>
+      <h1 class="h-hero">Emergency plumbing leads need <em>speed and trust</em></h1>
+      <p class="lede">
+        Emergency plumbing leads are urgent requests inside <a href="/playbook/plumbing-lead-generation">plumbing lead generation</a>. Think burst pipes, failed water heaters, and sewer backups. In that moment, the homeowner picks whoever looks clearest, fastest, and safest. Winning them takes speed plus trust.
+      </p>
+      <p class="lede">
+        The owned answer is not a shared race. It is the <a href="/system">system</a> path your business owns: emergency service pages, local proof, a phone-first next step, after-hours call capture, and same-day follow-up — so nothing depends on you catching every call.
+      </p>
+      <figure class="hero-photo">
+        <!-- @r020:F1 urgency: emergency scene makes the stressed buyer moment visible before the page explains the call path -->
+        <img src="/images/bwm-urgency-cinematic-v1.webp" alt="Urgent service scene with a phone, work notes, and plumbing tools ready for an emergency call." width="1920" height="1080" loading="eager" decoding="async" />
+      </figure>
+    </div>
+  </section>
+
+  <section class="playbook-section elev">
+    <div class="container">
+      <p class="section-tag">Stressed buyer</p>
+      <h2 class="h-section">Emergency buyers decide under pressure</h2>
+      <p class="prose">
+        A homeowner with water on the floor is not shopping like normal. They are trying to protect the house, calm the family, and pick a plumber without making the damage worse.
+      </p>
+      <p class="prose">
+        That stress changes what they notice. A clear emergency page, real local proof, and a simple phone step can beat a vague page that asks them to think.
+      </p>
+      <p class="prose">
+        You do not need a clever pitch in that moment. You need the path to say, fast and plainly, that help is real and safe to call.
+      </p>
+    </div>
+  </section>
+
+  <section class="playbook-section">
+    <div class="container">
+      <p class="section-tag">Shared race</p>
+      <h2 class="h-section">Shared emergency leads create a race</h2>
+      <p class="prose">
+        Shared emergency leads often reach several plumbers at once. The homeowner may be calling and texting more than one company. The problem keeps getting worse while they compare.
+      </p>
+      <p class="prose">
+        That turns the lead into a speed contest before trust has time to form. If your only edge is being first to reply, the job can still go to the company that feels clearer and safer.
+      </p>
+      <p class="prose">
+        If you use shared lists, treat them as borrowed chances, not the base of the business. The stronger base is a path your company owns, where the homeowner meets your proof before the phone rings.
+      </p>
+    </div>
+  </section>
+
+  <section class="playbook-section elev">
+    <div class="container">
+      <p class="section-tag">Speed gap</p>
+      <h2 class="h-section">Speed without trust still leaks calls</h2>
+      <p class="prose">
+        A fast alert helps, but speed alone does not close the gap. The caller still has to believe you are the safe choice for the house.
+      </p>
+      <blockquote class="pull-quote">
+        <p>Fast is only half the promise. The caller still has to believe the safest choice is you.</p>
+      </blockquote>
+      <p class="prose">
+        If the page is thin, the number is hard to tap, or the reviews feel hidden, the homeowner keeps moving. A quick ping cannot fix a path that feels unclear.
+      </p>
+      <p class="prose">
+        That is why proof has to show up before the call. Clear towns, clear emergency work, and recent saves lower the risk in the caller's mind.
+      </p>
+    </div>
+  </section>
+
+  <section class="playbook-section">
+    <div class="container article-grid">
+      <div>
+        <p class="section-tag">Urgent path</p>
+        <h2 class="h-section">What the urgent-call path should include</h2>
+        <p class="prose">
+          A useful urgent-call path is simple enough to say in one breath. It needs emergency service pages, local proof, a phone-first next step, after-hours call capture, and same-day follow-up.
+        </p>
+        <p class="prose">
+          The page should match the problem the homeowner feels: sewer backup, burst pipe, no hot water, or a leaking fixture. It should make the phone call the easy move, not hide it behind form choices.
+        </p>
+        <p class="prose">
+          When the call comes after hours, the path still needs to catch it. An <a href="/playbook/ai-answering-service-service-business">AI answering service for a service business</a> can help route the request, then same-day follow-up keeps urgent work from going cold.
+        </p>
+      </div>
+      <figure class="section-photo section-photo--diagram">
+        <!-- @r020:F2 urgent path: the three-layer diagram shows how emergency intent moves from search to proof to call -->
+        <img src="/images/funnel-3-layer-v1.svg" alt="Three-layer urgent-call path showing search, proof, and the phone-first next step." width="1200" height="675" loading="lazy" decoding="async" />
+      </figure>
+    </div>
+  </section>
+
+  <section class="playbook-section elev">
+    <div class="container article-grid">
+      <div>
+        <p class="section-tag">Proof loop</p>
+        <h2 class="h-section">How emergency proof improves the next call</h2>
+        <p class="prose">
+          Every urgent save can make the next urgent call easier to win. The best proof is specific: the town, the problem, the fast fix, and the calm result.
+        </p>
+        <p class="prose">
+          After the job, ask for a review while the relief is fresh. Save photos and notes that show the work without making the homeowner's problem feel exposed.
+        </p>
+        <p class="prose">
+          Over time, that proof carries into <a href="/playbook/how-to-get-plumbing-leads">how you get plumbing leads</a>. An <a href="/playbook/ai-for-business-operations">AI business operations</a> layer can help keep the notes, reviews, and follow-up from living only in your head.
+        </p>
+      </div>
+      <figure class="section-photo">
+        <!-- @r020:F2 proof: receipts and notes show how one finished emergency job becomes proof for the next caller -->
+        <img src="/images/bwm-receipts-still-life-v1.webp" alt="Receipts, notes, and job proof arranged after urgent service work." width="1920" height="1080" loading="lazy" decoding="async" />
+      </figure>
+    </div>
+  </section>
+
+  <!-- @sdt-exempt: FAQ is question-and-answer text; imagery here would be decorative (R020) -->
+  <section class="playbook-faq">
+    <div class="container">
+      <p class="section-tag">FAQ</p>
+      <h2 class="h-section">Common questions.</h2>
+      <div class="faq-list">
+        {faqs.map((f) => (
+          <details class="faq-item">
+            <summary class="faq-q">{f.q}</summary>
+            <div class="faq-a">
+              <p>{f.a}</p>
+            </div>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="playbook-related elev">
+    <div class="container">
+      <p class="section-tag">Related</p>
+      <h2 class="h-section">Keep reading.</h2>
+      <ul class="related-list">
+        <li><a href="/playbook/plumbing-lead-generation">Plumbing Lead Generation</a> — the broader owned path for better plumbing jobs</li>
+        <li><a href="/playbook/ai-answering-service-service-business">AI Answering Service for Service Business</a> — how after-hours requests can still get a clear first step</li>
+        <li><a href="/playbook/ai-for-business-operations">AI for Business Operations</a> — how the follow-up work stays organized</li>
+        <li><a href="/playbook/how-to-get-plumbing-leads">How to Get Plumbing Leads</a> — a wider guide to getting found and trusted</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="playbook-cta elev">
+    <div class="container">
+      <h2 class="h-closer">Ready to catch urgent plumbing calls with more trust?</h2>
+      <p class="lede">If your urgent path depends on you noticing every call, the system is too thin. Start with a clear look at where calls leak and what proof the next buyer needs to see.</p>
+      <!-- approved-proof: 008 de-id concrete contractor, organic-playbook use, internal-signoff 2026-06-18 -->
+      <blockquote class="pull-quote">
+        <p>A concrete contractor we run went from almost no inbound calls to about 150 leads since launch.</p>
+      </blockquote>
+      <p class="cta-row">
+        <a class="cta-primary" href="/book" data-cta-source="playbook-emergency-plumbing-leads-cta-primary">See If We're a Fit <span class="cta-arrow">→</span></a>
+        <a class="cta-ghost" href="/system" data-cta-source="playbook-emergency-plumbing-leads-cta-secondary">See the System</a>
+      </p>
+    </div>
+  </section>
+
+</BaseLayout>
+
+<style>
+.playbook-hero { padding-block: clamp(80px, 12vw, 144px); }
+.playbook-hero .lede { margin-top: 24px; }
+.back-link { color: var(--ink-faint); transition: color 180ms ease; }
+.back-link:hover { color: var(--y2); }
+
+.h-hero em { color: var(--y2); font-style: normal; font-weight: inherit; }
+.h-section em { color: var(--y2); font-style: normal; font-weight: inherit; }
+
+.hero-photo { margin-top: 56px; max-width: 1120px; border-radius: 4px; overflow: hidden; border: 1px solid var(--rule); }
+.hero-photo img { width: 100%; height: auto; display: block; }
+
+.playbook-section, .playbook-related, .playbook-cta, .playbook-faq { padding-block: clamp(56px, 8vw, 96px); }
+.prose { font-size: 17px; line-height: 1.7; color: var(--ink-dim); max-width: 760px; margin-top: 24px; }
+.prose + .prose { margin-top: 16px; }
+.prose a, .related-list a { color: var(--ink); text-decoration: none; border-bottom: 1px solid rgba(240,255,0,0.45); }
+.prose a:hover, .related-list a:hover { color: var(--y2); border-bottom-color: var(--y2); }
+
+.article-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(280px, 420px); gap: clamp(32px, 6vw, 72px); align-items: start; }
+.section-photo { margin: 0; border-radius: 4px; overflow: hidden; border: 1px solid var(--rule); }
+.section-photo img { width: 100%; height: auto; display: block; }
+.section-photo--diagram { border-color: transparent; background: transparent; }
+.section-photo--diagram img { background: transparent; }
+
+.pull-quote { margin: 32px 0; max-width: 820px; border-left: 3px solid var(--y2); padding: 18px 0 18px 24px; color: var(--ink); background: rgba(255,255,255,0.025); }
+.pull-quote p { font-size: clamp(22px, 3vw, 34px); line-height: 1.25; }
+
+.playbook-faq { padding-top: 0; }
+.faq-list { display: flex; flex-direction: column; gap: 16px; margin-top: 32px; max-width: 880px; }
+.faq-item { border-top: 1px solid var(--rule); padding-block: 20px; }
+.faq-item[open] summary { color: var(--y2); }
+.faq-q { font-size: 17px; font-weight: 500; color: var(--ink); cursor: pointer; line-height: 1.4; list-style: none; }
+.faq-q::marker, .faq-q::-webkit-details-marker { display: none; }
+.faq-q::after { content: "+"; float: right; font-family: var(--mono); font-size: 18px; color: var(--y2); }
+.faq-item[open] .faq-q::after { content: "-"; }
+.faq-a { margin-top: 12px; }
+.faq-a p { font-size: 16px; line-height: 1.65; color: var(--ink-dim); max-width: 720px; }
+
+.related-list { list-style: none; display: flex; flex-direction: column; gap: 12px; margin-top: 32px; max-width: 880px; }
+.related-list a:hover { color: var(--y2); border-bottom-color: var(--y2); }
+
+.playbook-cta { padding-block: clamp(64px, 10vw, 112px); }
+.playbook-cta .lede { margin-top: 16px; }
+.cta-row { display: flex; flex-wrap: wrap; gap: 16px; margin-top: 32px; }
+
+@media (max-width: 900px) {
+  .article-grid { grid-template-columns: 1fr; }
+}
+</style>

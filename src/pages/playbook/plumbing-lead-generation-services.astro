@@ -1,0 +1,300 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+const title = "Plumbing Lead Generation Services | Buildwise";
+const description = "Compare plumbing lead generation services with an owned system that helps you get found, build trust, and book better plumbing jobs.";
+
+const faqs = [
+  {
+    q: 'What are plumbing lead generation services?',
+    a: 'Plumbing lead generation services help plumbers get more job requests through lead sellers, page work, paid campaigns, follow-up, or local trust work. The best help does more than pass you names. It builds a path your company can keep.',
+  },
+  {
+    q: 'Are plumbing lead services the same as buying leads?',
+    a: 'Not always. Buying leads often means paying for names sent to more than one company. A stronger service helps you get found, prove trust, answer fast, and see what booked.',
+  },
+  {
+    q: 'What should a plumbing lead generation service include?',
+    a: 'It should include service and town pages, proof capture, fast intake, same-day follow-up, and a simple owner view of what turned into booked work.',
+  },
+  {
+    q: 'Is Buildwise Media a plumbing lead generation agency?',
+    a: 'No. Buildwise Media is the alternative to that model. The Buildwise team installs and runs a custom AI growth system your business owns, so the pages, proof, lead paths, and data stay with you.',
+  },
+  {
+    q: 'What should I compare before hiring help?',
+    a: 'Compare what you keep, whether lead flow is shared, how proof is gathered, how fast intake runs, how follow-up happens, and whether you can see which work became booked jobs.',
+  },
+];
+
+const ownedSystemIncludes = [
+  'Service and town pages for the jobs you want most.',
+  'Proof capture from finished plumbing work.',
+  'Fast intake for calls, forms, and booking requests.',
+  'Same-day follow-up when a good job is not booked yet.',
+  'An owner view of what became booked work.',
+];
+
+const definedTerm = {
+  '@context': 'https://schema.org',
+  '@type': 'DefinedTerm',
+  '@id': 'https://buildwisemedia.com/playbook/plumbing-lead-generation-services#term',
+  name: 'Plumbing Lead Generation Services',
+  description: 'Most plumbing lead generation services sell activity: names, calls, or tasks. What your company should be buying is an owned path: pages, proof, intake, and follow-up that keep working for your business. The right question is not who can send more leads; it is what you keep after the work starts.',
+  inDefinedTermSet: {
+    '@type': 'DefinedTermSet',
+    '@id': 'https://buildwisemedia.com/playbook/#terms',
+    name: 'Buildwise Media Playbook',
+  },
+};
+
+const breadcrumb = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://buildwisemedia.com/' },
+    { '@type': 'ListItem', position: 2, name: 'Playbook', item: 'https://buildwisemedia.com/playbook/' },
+    { '@type': 'ListItem', position: 3, name: 'Plumbing Lead Generation Services', item: 'https://buildwisemedia.com/playbook/plumbing-lead-generation-services' },
+  ],
+};
+
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  '@id': 'https://buildwisemedia.com/playbook/plumbing-lead-generation-services#faq',
+  mainEntity: faqs.map((f) => ({
+    '@type': 'Question',
+    name: f.q,
+    acceptedAnswer: { '@type': 'Answer', text: f.a },
+  })),
+};
+
+const articleSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Article',
+  '@id': 'https://buildwisemedia.com/playbook/plumbing-lead-generation-services#article',
+  headline: title,
+  description,
+  author: { '@id': 'https://buildwisemedia.com/#org' },
+  publisher: { '@id': 'https://buildwisemedia.com/#org' },
+  mainEntityOfPage: 'https://buildwisemedia.com/playbook/plumbing-lead-generation-services',
+};
+---
+<BaseLayout title={title} description={description} jsonLd={[articleSchema, breadcrumb, definedTerm, faqSchema]}>
+
+  <section class="playbook-hero">
+    <div class="container">
+      <p class="eyebrow"><a href="/playbook" class="back-link">← Playbook</a></p>
+      <h1 class="h-hero">Plumbing lead generation services should build <em>an owned path</em></h1>
+      <p class="lede">
+        Most <a href="/playbook/plumbing-lead-generation">plumbing lead generation</a> services sell activity: names, calls, or tasks. What your company should be buying is an owned path: pages, proof, intake, and follow-up that keep working for your business. The right question is not who can send more leads; it is what you keep after the work starts.
+      </p>
+      <p class="lede">
+        If you are comparing services, agencies, or lead sellers, start with the <a href="/playbook/buy-plumbing-leads-alternative">buying leads alternative</a>: a path your company owns, improves, and can keep using after the work starts.
+      </p>
+      <figure class="hero-photo">
+        <!-- @r020:F4 curiosity: service atmosphere prompts the question of what help actually delivers after the first lead arrives -->
+        <img src="/images/bwm-services-atmospheric-v1.webp" alt="Dark service-business workspace with tools, notes, and a glowing work screen." width="1920" height="1080" loading="eager" decoding="async" />
+      </figure>
+    </div>
+  </section>
+
+  <section class="playbook-section elev">
+    <div class="container article-grid">
+      <div>
+        <p class="section-tag">Service mix</p>
+        <h2 class="h-section">What plumbing lead generation services usually sell</h2>
+        <p class="prose">
+          Lead sellers usually sell names, calls, or job requests. Some of that flow is shared. You may end up chasing the same homeowner as other plumbers before trust has been built.
+        </p>
+        <p class="prose">
+          Agencies often sell a list of tasks: pages, ads, reports, and meetings. Task vendors sell one slice of the work. Each slice can help, but you still have to connect the parts.
+        </p>
+        <p class="prose">
+          The simple test is what you keep. If the service leaves you with only rented activity, it is not building a plumbing lead path your company owns.
+        </p>
+      </div>
+      <figure class="section-photo section-photo--diagram">
+        <!-- @r020:F2 proof: connected mesh shows the owned system path against scattered vendor activity -->
+        <img src="/images/node-mesh-ascending-v1.svg" alt="Connected system mesh showing plumbing lead work joined into one owned path." width="1200" height="675" loading="lazy" decoding="async" />
+      </figure>
+    </div>
+  </section>
+
+  <section class="playbook-section">
+    <div class="container">
+      <p class="section-tag">Ownership</p>
+      <h2 class="h-section">What your plumbing business should keep</h2>
+      <p class="prose">
+        You should keep the pages that help homeowners find the right service in the right town. Those pages should live on your site and get better as your work grows.
+      </p>
+      <p class="prose">
+        You should keep the proof: reviews, job photos, service notes, and real answers to buyer fears. That proof should not sit in a vendor report. It should help the next homeowner choose you.
+      </p>
+      <p class="prose">
+        You should also keep the view of what booked. The <a href="/system">system</a> should make it clear which calls, forms, and follow-ups became real plumbing work.
+      </p>
+    </div>
+  </section>
+
+  <section class="playbook-section elev">
+    <div class="container">
+      <p class="section-tag">Trust gap</p>
+      <h2 class="h-section">Why shared lead flow breaks trust</h2>
+      <p class="prose">
+        A homeowner with a leak, clog, or failed water heater is already stressed. If the same request goes to several companies, the next step feels like a scramble.
+      </p>
+      <p class="prose">
+        That pushes the job toward speed and price before the homeowner sees your proof. It also makes your company look like one more option in a pile, not the clear local choice.
+      </p>
+      <blockquote class="pull-quote">
+        <p>A lead you do not own can turn a trust job into a race.</p>
+      </blockquote>
+      <p class="prose">
+        An owned path works the other way. The homeowner finds your page, sees proof that fits the job, and gets a fast next step from your business.
+      </p>
+    </div>
+  </section>
+
+  <section class="playbook-section">
+    <div class="container article-grid">
+      <div>
+        <p class="section-tag">Owned system</p>
+        <h2 class="h-section">What an owned plumbing lead system includes</h2>
+        <p class="prose">
+          An owned system is not one page or one campaign. It connects how a homeowner finds you, trusts you, reaches you, and hears back before the job slips away.
+        </p>
+        <ul class="system-list" role="list">
+          {ownedSystemIncludes.map((item) => <li>{item}</li>)}
+        </ul>
+        <p class="prose">
+          Each piece should live in your business. That way the work keeps compounding through your site, your proof, your intake, and your follow-up.
+        </p>
+        <p class="prose">
+          That is the difference between renting lead flow and using a <a href="/playbook/contractor-lead-generation-company-alternative">contractor lead generation company alternative</a> built around ownership.
+        </p>
+      </div>
+      <figure class="section-photo">
+        <!-- @r020:F2 proof: editorial team scene shows the operating work behind a run-for-you lead path -->
+        <img src="/images/bwm-method-editorial-v1.webp" alt="Dark editorial work surface showing notes, screens, and proof being organized into a working path." width="1920" height="1080" loading="lazy" decoding="async" />
+      </figure>
+    </div>
+  </section>
+
+  <section class="playbook-section elev">
+    <div class="container">
+      <p class="section-tag">Compare well</p>
+      <h2 class="h-section">How to compare services without chasing volume</h2>
+      <p class="prose">
+        Ask what your company keeps after the work starts. Do you keep the pages, proof, lead paths, intake rules, and clear view of booked work?
+      </p>
+      <p class="prose">
+        Ask if the lead flow is shared. Ask what happens after the first reply. Ask how same-day follow-up works when a good job is not booked yet.
+      </p>
+      <p class="prose">
+        Then compare the answer to a broader <a href="/playbook/lead-generation-company-alternative">lead generation company alternative</a>. Better help should make your company easier to find, easier to trust, faster to answer, and easier to read.
+      </p>
+    </div>
+  </section>
+
+  <!-- @sdt-exempt: FAQ is question-and-answer text; imagery here would be decorative (R020) -->
+  <section class="playbook-faq">
+    <div class="container">
+      <p class="section-tag">FAQ</p>
+      <h2 class="h-section">Common questions.</h2>
+      <div class="faq-list">
+        {faqs.map((f) => (
+          <details class="faq-item">
+            <summary class="faq-q">{f.q}</summary>
+            <div class="faq-a">
+              <p>{f.a}</p>
+            </div>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="playbook-related elev">
+    <div class="container">
+      <p class="section-tag">Related</p>
+      <h2 class="h-section">Keep comparing.</h2>
+      <ul class="related-list">
+        <li><a href="/playbook/plumbing-lead-generation">Plumbing Lead Generation</a> — the owned path for plumbing companies</li>
+        <li><a href="/playbook/buy-plumbing-leads-alternative">Buy Plumbing Leads Alternative</a> — why rented lead flow keeps pressure on the owner</li>
+        <li><a href="/playbook/contractor-lead-generation-company-alternative">Contractor Lead Generation Company Alternative</a> — the contractor version of the ownership frame</li>
+        <li><a href="/playbook/lead-generation-company-alternative">Lead Generation Company Alternative</a> — the broader run-for-you model for service businesses</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="playbook-cta elev">
+    <div class="container">
+      <h2 class="h-closer">Ready to compare lead help by what you keep?</h2>
+      <p class="lede">If you want pages, proof, intake, and follow-up working as one owned path, the next step is a fit call.</p>
+      <!-- approved-proof: 008 de-id concrete contractor, organic-playbook use, internal-signoff 2026-06-18 -->
+      <blockquote class="pull-quote">
+        <p>A concrete contractor we run went from almost no inbound calls to about 150 leads since launch.</p>
+      </blockquote>
+      <p class="cta-row">
+        <a class="cta-primary" href="/book" data-cta-source="playbook-plumbing-lead-generation-services-cta-primary">See If We're a Fit <span class="cta-arrow">→</span></a>
+        <a class="cta-ghost" href="/system" data-cta-source="playbook-plumbing-lead-generation-services-cta-secondary">See the System</a>
+      </p>
+    </div>
+  </section>
+
+</BaseLayout>
+
+<style>
+.playbook-hero { padding-block: clamp(80px, 12vw, 144px); }
+.playbook-hero .lede { margin-top: 24px; }
+.back-link { color: var(--ink-faint); transition: color 180ms ease; }
+.back-link:hover { color: var(--y2); }
+
+.h-hero em { color: var(--y2); font-style: normal; font-weight: inherit; }
+.h-section em { color: var(--y2); font-style: normal; font-weight: inherit; }
+
+.hero-photo { margin-top: 56px; max-width: 1120px; border-radius: 4px; overflow: hidden; border: 1px solid var(--rule); }
+.hero-photo img { width: 100%; height: auto; display: block; }
+
+.playbook-section, .playbook-related, .playbook-cta, .playbook-faq { padding-block: clamp(56px, 8vw, 96px); }
+.prose { font-size: 17px; line-height: 1.7; color: var(--ink-dim); max-width: 760px; margin-top: 24px; }
+.prose + .prose { margin-top: 16px; }
+.prose a, .related-list a { color: var(--ink); text-decoration: none; border-bottom: 1px solid rgba(240,255,0,0.45); }
+.prose a:hover, .related-list a:hover { color: var(--y2); border-bottom-color: var(--y2); }
+
+.article-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(280px, 420px); gap: clamp(32px, 6vw, 72px); align-items: start; }
+.section-photo { margin: 0; border-radius: 4px; overflow: hidden; border: 1px solid var(--rule); }
+.section-photo img { width: 100%; height: auto; display: block; }
+.section-photo--diagram { border-color: transparent; background: transparent; }
+.section-photo--diagram img { background: transparent; }
+
+.system-list { list-style: none; display: flex; flex-direction: column; gap: 14px; margin-top: 28px; max-width: 760px; }
+.system-list li { color: var(--ink-dim); line-height: 1.55; padding-left: 20px; position: relative; }
+.system-list li::before { content: ""; position: absolute; left: 0; top: 0.72em; width: 7px; height: 7px; border-radius: 50%; background: var(--y2); }
+
+.pull-quote { margin: 56px 0; padding: 32px 0; border-block: 1px solid var(--rule); max-width: 880px; }
+.pull-quote p { font-size: 24px; line-height: 1.35; color: var(--ink); font-weight: 500; font-style: italic; }
+
+.playbook-faq { padding-block: clamp(64px, 10vw, 112px); }
+.faq-list { display: flex; flex-direction: column; gap: 16px; margin-top: 32px; max-width: 880px; }
+.faq-item { border-top: 1px solid var(--rule); padding-block: 20px; }
+.faq-item[open] summary { color: var(--y2); }
+.faq-q { font-size: 17px; font-weight: 500; color: var(--ink); cursor: pointer; line-height: 1.4; list-style: none; }
+.faq-q::marker, .faq-q::-webkit-details-marker { display: none; }
+.faq-q::after { content: "+"; float: right; font-family: var(--mono); font-size: 18px; color: var(--y2); }
+.faq-item[open] .faq-q::after { content: "-"; }
+.faq-a { margin-top: 12px; }
+.faq-a p { font-size: 16px; line-height: 1.65; color: var(--ink-dim); max-width: 720px; }
+
+.related-list { list-style: none; display: flex; flex-direction: column; gap: 12px; margin-top: 32px; max-width: 880px; }
+.related-list a { font-weight: 500; }
+
+.playbook-cta { padding-block: clamp(64px, 10vw, 112px); }
+.playbook-cta .lede { margin-top: 16px; }
+.cta-row { display: flex; flex-wrap: wrap; gap: 16px; margin-top: 32px; }
+
+@media (max-width: 900px) {
+  .article-grid { grid-template-columns: 1fr; }
+}
+</style>

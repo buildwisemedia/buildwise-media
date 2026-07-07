@@ -1,0 +1,345 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+const title = "Buy Plumbing Leads? Compare the Alternative | Buildwise";
+const description = "Before you buy plumbing leads, compare shared leads with an owned path that turns search, proof, and fast follow-up into booked jobs.";
+
+const comparisonRows = [
+  {
+    point: 'Speed to start',
+    bought: 'Fast. You can buy names and start calling soon.',
+    owned: 'Slower at first, but each page and proof asset keeps working.',
+  },
+  {
+    point: 'Cost shape',
+    bought: 'You pay to stay in the flow. Stop paying, and the flow stops.',
+    owned: 'You invest in assets that stay with your company.',
+  },
+  {
+    point: 'Who the homeowner trusts',
+    bought: 'The seller gets the first trust. You enter as one of many calls.',
+    owned: 'Your company, reviews, photos, and local pages build the trust.',
+  },
+  {
+    point: 'What you keep',
+    bought: 'A name, a rush to call, and maybe a job.',
+    owned: 'Pages, proof, call paths, follow-up, and a clearer view of what works.',
+  },
+  {
+    point: 'When you stop paying',
+    bought: 'The names stop coming.',
+    owned: 'The owned path can keep helping better calls find you.',
+  },
+];
+
+const faqs = [
+  {
+    q: 'Should plumbers buy leads?',
+    a: 'Plumbers can buy leads to cover a short gap, but it should not be the whole growth plan. Bought leads are often rented names. An owned path builds pages, proof, and follow-up your company keeps.',
+  },
+  {
+    q: 'What is the risk of buying plumbing leads?',
+    a: 'The main risk is that you pay for a name that several plumbers may also be calling. That can turn the job into a speed and price race before trust is built.',
+  },
+  {
+    q: 'Are plumbing leads for sale usually shared?',
+    a: 'Many plumbing leads for sale are shared. That means the homeowner may hear from more than one company, and your team has to win attention after the seller already shaped the first step.',
+  },
+  {
+    q: 'When can bought leads make sense?',
+    a: 'Bought leads can make sense during a short season, when you open a new town, or when a slow week needs a bridge. They work best when they support an owned path, not replace it.',
+  },
+  {
+    q: 'What should I build instead of only buying leads?',
+    a: 'Build local service pages, proof from real jobs, fast next steps, review capture, and follow-up your company owns. That path makes better plumbing calls come to you first.',
+  },
+];
+
+const definedTerm = {
+  '@context': 'https://schema.org',
+  '@type': 'DefinedTerm',
+  '@id': 'https://buildwisemedia.com/playbook/buy-plumbing-leads-alternative#term',
+  name: 'Buy plumbing leads alternative',
+  description: 'Buying plumbing leads rents a name that several plumbers may also be calling. It can fill a slow week, but it builds nothing you keep. The owned path uses pages, proof, fast next steps, and follow-up your company owns so better calls come to you first.',
+  inDefinedTermSet: {
+    '@type': 'DefinedTermSet',
+    '@id': 'https://buildwisemedia.com/playbook/#terms',
+    name: 'Buildwise Media Playbook',
+  },
+};
+
+const breadcrumb = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://buildwisemedia.com/' },
+    { '@type': 'ListItem', position: 2, name: 'Playbook', item: 'https://buildwisemedia.com/playbook/' },
+    { '@type': 'ListItem', position: 3, name: 'Buy Plumbing Leads Alternative', item: 'https://buildwisemedia.com/playbook/buy-plumbing-leads-alternative' },
+  ],
+};
+
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  '@id': 'https://buildwisemedia.com/playbook/buy-plumbing-leads-alternative#faq',
+  mainEntity: faqs.map((f) => ({
+    '@type': 'Question',
+    name: f.q,
+    acceptedAnswer: { '@type': 'Answer', text: f.a },
+  })),
+};
+
+const articleSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Article',
+  '@id': 'https://buildwisemedia.com/playbook/buy-plumbing-leads-alternative#article',
+  headline: title,
+  description,
+  author: { '@id': 'https://buildwisemedia.com/#org' },
+  publisher: { '@id': 'https://buildwisemedia.com/#org' },
+  mainEntityOfPage: 'https://buildwisemedia.com/playbook/buy-plumbing-leads-alternative',
+};
+---
+<BaseLayout title={title} description={description} jsonLd={[definedTerm, breadcrumb, faqSchema, articleSchema]}>
+
+  <section class="playbook-hero">
+    <div class="container">
+      <p class="eyebrow"><a href="/playbook" class="back-link">← Playbook</a></p>
+      <h1 class="h-hero">Before you buy plumbing leads, compare <em>the owned path</em></h1>
+      <p class="lede">
+        Buying plumbing leads rents a name that several plumbers may also be calling. It can fill a slow week, but it builds nothing you keep. The owned path — <a href="/playbook/plumbing-lead-generation">pages, proof, fast next steps, and follow-up your company owns</a> — is what makes better calls come to you first.
+      </p>
+      <p class="lede">
+        This page is for the moment before you spend more on shared plumbing leads. Use it to compare a short-term bridge with <a href="/system">a run-for-you system</a> your company owns.
+      </p>
+      <figure class="hero-photo">
+        <!-- @r020:F1 emotion: gap-week pressure makes the urge to buy names feel real before the owned path appears -->
+        <img src="/images/bwm-urgency-cinematic-v1.webp" alt="Urgent service-business workspace with a glowing screen, notes, and pressure to fill the next week." width="1920" height="1080" loading="eager" decoding="async" />
+      </figure>
+    </div>
+  </section>
+
+  <section class="playbook-section elev">
+    <div class="container">
+      <p class="section-tag">Short-term bridge</p>
+      <h2 class="h-section">Buying plumbing leads can fill a gap</h2>
+      <p class="prose">
+        Buying plumbing leads can help when the calendar gets thin. A slow week, a new truck, or a new town can make fast names feel useful. Sometimes that bridge is better than waiting.
+      </p>
+      <p class="prose">
+        The issue is what you expect it to do. A bought lead can create a chance to call. It does not build your local pages, your reviews, your proof, or your own follow-up path.
+      </p>
+      <p class="prose">
+        Treat bought leads like a short tool, not the whole plan. If every slow week sends you back to the same seller, the seller owns the first move. Your company should own more than the call list.
+      </p>
+    </div>
+  </section>
+
+  <section class="playbook-section">
+    <div class="container article-grid">
+      <div>
+        <p class="section-tag">Rented names</p>
+        <h2 class="h-section">What you lose when the lead is rented</h2>
+        <p class="prose">
+          A rented plumbing lead often starts with someone else. The homeowner asks for help, and the seller passes that name along. By the time you call, you may be one of several plumbers trying to win the same job.
+        </p>
+        <blockquote class="pull-quote">
+          <p>A bought lead can give you a chance to call. It does not give you the trust that makes the homeowner call you first.</p>
+        </blockquote>
+        <p class="prose">
+          That changes the sale. You compete on speed before trust. Then you compete on price before the homeowner understands why your company is the better choice.
+        </p>
+        <p class="prose">
+          The worst part is what is missing after the rush. You may win a job, but the path that made the homeowner act still belongs to someone else.
+        </p>
+      </div>
+      <figure class="section-photo section-photo--diagram">
+        <!-- @r020:F2 proof: stacked pieces show the difference between rented lead fragments and one owned path -->
+        <img src="/images/stacked-planes-v1.svg" alt="Stacked system planes showing rented pieces beside one owned lead path." width="1200" height="675" loading="lazy" decoding="async" />
+      </figure>
+    </div>
+  </section>
+
+  <section class="playbook-section elev">
+    <!-- @sdt-exempt: the comparison table IS this section's visual artifact; the scanner cannot detect plain HTML tables -->
+    <div class="container">
+      <p class="section-tag">Side by side</p>
+      <h2 class="h-section">Shared leads vs. an owned plumbing lead path</h2>
+      <p class="prose">
+        The cleanest way to compare the two paths is to ask what you get now, what you keep later, and who the homeowner trusts first. Bought leads can move fast. Owned lead paths build a stronger base.
+      </p>
+      <div class="comparison-table" role="region" aria-label="Shared plumbing leads compared with an owned plumbing lead path">
+        <table>
+          <thead>
+            <tr>
+              <th scope="col">Decision point</th>
+              <th scope="col">Shared plumbing leads</th>
+              <th scope="col">Owned plumbing lead path</th>
+            </tr>
+          </thead>
+          <tbody>
+            {comparisonRows.map((row) => (
+              <tr>
+                <th scope="row">{row.point}</th>
+                <td>{row.bought}</td>
+                <td>{row.owned}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+      <p class="prose">
+        This is why the better question is not only "where can I get plumbing leads?" Ask what happens after the money is spent. If the answer is "buy more names," you are still renting the front door.
+      </p>
+      <p class="prose">
+        An owned path gives your company more chances to be chosen before the race starts. It helps homeowners find you, trust you, and take the next step with you.
+      </p>
+    </div>
+  </section>
+
+  <section class="playbook-section">
+    <div class="container">
+      <p class="section-tag">Bridge use</p>
+      <h2 class="h-section">When bought leads make sense as a bridge</h2>
+      <p class="prose">
+        Bought leads can make sense during a short season. If calls dip for a week, a small bridge can protect the schedule while the owned path keeps building. That is a practical use.
+      </p>
+      <p class="prose">
+        They can also help when you test a new town. You may want to see which calls come in, what jobs show up, and how your team handles the route before you build deeper pages and proof.
+      </p>
+      <p class="prose">
+        The line is simple. Use bought leads to cover a gap. Do not let them become the reason your company never builds the assets that bring better calls in first.
+      </p>
+    </div>
+  </section>
+
+  <section class="playbook-section elev">
+    <div class="container article-grid">
+      <div>
+        <p class="section-tag">Owned path</p>
+        <h2 class="h-section">What to build so better calls come to you</h2>
+        <p class="prose">
+          Start with the services and towns you want more of. Build clear plumbing pages for those jobs. Add real proof from finished work, so the homeowner can see why your company fits the problem.
+        </p>
+        <p class="prose">
+          Then make the next step fast. Calls, forms, booking requests, reviews, and follow-up should work together. The owner view should show what turned into booked jobs, not just noise.
+        </p>
+        <p class="prose">
+          That is the Buildwise alternative to only buying leads. The Buildwise team installs and runs the path for you, while your company owns the pages, proof, data, and follow-up.
+        </p>
+      </div>
+      <figure class="section-photo section-photo--diagram">
+        <!-- @r020:F2 proof: three layers show the owned path homeowners follow from search to trust to action -->
+        <img src="/images/funnel-3-layer-v1.svg" alt="Three-layer funnel showing search, proof, and fast next steps in an owned plumbing lead path." width="1200" height="675" loading="lazy" decoding="async" />
+      </figure>
+    </div>
+  </section>
+
+  <!-- @sdt-exempt: FAQ is question-and-answer text; imagery here would be decorative (R020) -->
+  <section class="playbook-faq">
+    <div class="container">
+      <p class="section-tag">FAQ</p>
+      <h2 class="h-section">Common questions.</h2>
+      <div class="faq-list">
+        {faqs.map((f) => (
+          <details class="faq-item">
+            <summary class="faq-q">{f.q}</summary>
+            <div class="faq-a">
+              <p>{f.a}</p>
+            </div>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="playbook-related elev">
+    <div class="container">
+      <p class="section-tag">Related</p>
+      <h2 class="h-section">More from the playbook.</h2>
+      <ul class="related-list">
+        <li><a href="/playbook/plumbing-lead-generation">Plumbing Lead Generation</a> — the owned lead path for plumbing companies</li>
+        <li><a href="/playbook/plumbing-leads-cost">Plumbing Leads Cost</a> — how to judge the real cost of rented names</li>
+        <li><a href="/playbook/lead-generation-company-alternative">Lead Generation Company Alternative</a> — the broader rented-versus-owned model</li>
+        <li><a href="/playbook/contractor-lead-generation-company-alternative">Contractor Lead Generation Company Alternative</a> — the contractor version of the owned path</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="playbook-cta elev">
+    <div class="container">
+      <h2 class="h-closer">Ready to stop renting the first call?</h2>
+      <p class="lede">If bought leads are only filling gaps, the next move is a path your company owns and the Buildwise team runs for you.</p>
+      <!-- approved-proof: 008 de-id concrete contractor, organic-playbook use, internal-signoff 2026-06-18 -->
+      <blockquote class="pull-quote">
+        <p>A concrete contractor we run went from almost no inbound calls to about 150 leads since launch.</p>
+      </blockquote>
+      <p class="cta-row">
+        <a class="cta-primary" href="/book" data-cta-source="playbook-buy-plumbing-leads-alternative-cta-primary">See If We're a Fit <span class="cta-arrow">→</span></a>
+        <a class="cta-ghost" href="/system" data-cta-source="playbook-buy-plumbing-leads-alternative-cta-secondary">See the System</a>
+      </p>
+    </div>
+  </section>
+
+</BaseLayout>
+
+<style>
+.playbook-hero { padding-block: clamp(80px, 12vw, 144px); }
+.playbook-hero .lede { margin-top: 24px; }
+.back-link { color: var(--ink-faint); transition: color 180ms ease; }
+.back-link:hover { color: var(--y2); }
+
+.h-hero em { color: var(--y2); font-style: normal; font-weight: inherit; }
+.h-section em { color: var(--y2); font-style: normal; font-weight: inherit; }
+
+.hero-photo { margin-top: 56px; max-width: 1120px; border-radius: 4px; overflow: hidden; border: 1px solid var(--rule); }
+.hero-photo img { width: 100%; height: auto; display: block; }
+
+.playbook-section { padding-block: clamp(56px, 8vw, 96px); }
+.playbook-section .prose { font-size: 17px; line-height: 1.7; color: var(--ink-dim); max-width: 720px; }
+.playbook-section .prose + .prose { margin-top: 16px; }
+.prose a, .related-list a { color: var(--ink); text-decoration: none; border-bottom: 1px solid rgba(240,255,0,0.45); }
+.prose a:hover, .related-list a:hover { color: var(--y2); border-bottom-color: var(--y2); }
+
+.article-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(280px, 420px); gap: clamp(32px, 6vw, 72px); align-items: start; }
+.section-photo { margin: 48px 0 0; max-width: 1120px; border-radius: 4px; overflow: hidden; border: 1px solid var(--rule); }
+.article-grid .section-photo { margin: 0; }
+.section-photo img { width: 100%; height: auto; display: block; }
+.section-photo--diagram { max-width: 980px; border-color: transparent; background: transparent; }
+.section-photo--diagram img { background: transparent; }
+
+.comparison-table { margin: 40px 0; overflow-x: auto; border: 1px solid var(--rule); border-radius: 4px; background: rgba(255,255,255,0.025); }
+.comparison-table table { width: 100%; min-width: 720px; border-collapse: collapse; }
+.comparison-table th, .comparison-table td { padding: 18px; text-align: left; vertical-align: top; border-bottom: 1px solid var(--rule); font-size: 15px; line-height: 1.55; color: var(--ink-dim); }
+.comparison-table thead th { color: var(--ink); font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; font-weight: 600; }
+.comparison-table tbody th { color: var(--ink); font-weight: 600; width: 22%; }
+.comparison-table tr:last-child th, .comparison-table tr:last-child td { border-bottom: 0; }
+
+.pull-quote { margin: 56px 0; padding: 32px 0; border-block: 1px solid var(--rule); max-width: 880px; }
+.pull-quote p { font-size: 24px; line-height: 1.35; color: var(--ink); font-weight: 500; font-style: italic; }
+
+.playbook-faq { padding-block: clamp(64px, 10vw, 112px); }
+.faq-list { display: flex; flex-direction: column; gap: 16px; margin-top: 32px; max-width: 880px; }
+.faq-item { border-top: 1px solid var(--rule); padding-block: 20px; }
+.faq-item[open] summary { color: var(--y2); }
+.faq-q { font-size: 17px; font-weight: 500; color: var(--ink); cursor: pointer; line-height: 1.4; list-style: none; }
+.faq-q::marker, .faq-q::-webkit-details-marker { display: none; }
+.faq-q::after { content: "+"; float: right; font-family: var(--mono); font-size: 18px; color: var(--y2); }
+.faq-item[open] .faq-q::after { content: "-"; }
+.faq-a { margin-top: 12px; }
+.faq-a p { font-size: 16px; line-height: 1.65; color: var(--ink-dim); max-width: 720px; }
+
+.playbook-related { padding-block: clamp(56px, 8vw, 96px); }
+.related-list { list-style: none; display: flex; flex-direction: column; gap: 12px; margin-top: 32px; max-width: 880px; }
+.related-list a { color: var(--ink); font-weight: 500; text-decoration: none; border-bottom: 1px solid transparent; transition: border-color 180ms ease, color 180ms ease; }
+.related-list a:hover { color: var(--y2); border-bottom-color: var(--y2); }
+
+.playbook-cta { padding-block: clamp(64px, 10vw, 112px); }
+.playbook-cta .lede { margin-top: 16px; }
+.cta-row { display: flex; flex-wrap: wrap; gap: 16px; margin-top: 32px; }
+
+@media (max-width: 900px) {
+  .article-grid { grid-template-columns: 1fr; }
+  .comparison-table table { min-width: 640px; }
+}
+</style>

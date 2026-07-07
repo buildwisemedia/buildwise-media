@@ -30,9 +30,16 @@ const leakTypes = [
 const systemCovers = [
   'Local plumbing pages for the services and towns you actually want.',
   'A faster first step for calls, forms, and booking requests.',
-  'Review and proof capture after finished work, with human signoff where needed.',
+  'Review and proof capture after finished work, with a person checking the words before they go out.',
   'A clear view of which calls and forms turned into booked jobs.',
   'A weekly operating rhythm, so the owner sees what changed and what to fix next.',
+];
+
+const plainAnswer = [
+  'Plumbing lead generation is the path that helps a homeowner find you, trust you, and ask for help.',
+  'A plumbing lead is a call, form, or booking request from someone who may need plumbing work.',
+  'An owned system beats rented lead flow.',
+  'Your pages, proof, intake, follow-up, and owner view improve over time inside your business.',
 ];
 
 const faqs = [
@@ -50,11 +57,29 @@ const faqs = [
   },
   {
     q: 'What should a plumbing owner measure first?',
-    a: 'Start with source, response speed, calls, forms, booked jobs, reviews, and the leaks between each step. Those numbers show whether the system is creating better work or just more noise.',
+    a: 'Start with where calls came from, response speed, calls, forms, booked jobs, reviews, and the leaks between each step. Those numbers show whether the system is creating better work or just more noise.',
   },
   {
     q: 'How long should the first install take?',
     a: 'The first install is built around a 30-day window. That gives the team enough time to set the baseline, fix the first leaks, and show the owner what is working.',
+  },
+  {
+    q: 'What do plumbing leads cost?',
+    a: 'Use the plumbing leads cost guide for the deeper breakdown. The short answer is that cost depends on lead quality, exclusivity, speed, and whether your lead path is rented or owned.',
+    linkHref: '/playbook/plumbing-leads-cost',
+    linkText: 'plumbing leads cost guide',
+  },
+  {
+    q: 'Should I buy plumbing leads?',
+    a: 'Buying leads can help as a short bridge when your schedule needs work now. Use the buy plumbing leads alternative guide to see when it helps and why it should not be the whole plan.',
+    linkHref: '/playbook/buy-plumbing-leads-alternative',
+    linkText: 'buy plumbing leads alternative guide',
+  },
+  {
+    q: 'How do I win emergency plumbing calls?',
+    a: 'Win emergency plumbing calls with speed and trust. Use the emergency plumbing leads guide to tighten the page, proof, phone path, and follow-up before the homeowner keeps searching.',
+    linkHref: '/playbook/emergency-plumbing-leads',
+    linkText: 'emergency plumbing leads guide',
   },
 ];
 
@@ -63,7 +88,7 @@ const definedTerm = {
   '@type': 'DefinedTerm',
   '@id': 'https://buildwisemedia.com/playbook/plumbing-lead-generation#term',
   name: 'Plumbing lead generation',
-  description,
+  description: plainAnswer.join(' '),
   inDefinedTermSet: {
     '@type': 'DefinedTermSet',
     '@id': 'https://buildwisemedia.com/playbook/#terms',
@@ -109,9 +134,12 @@ const breadcrumb = {
     <div class="container playbook-hero-grid">
       <div>
         <p class="eyebrow"><a href="/playbook" class="back-link">← Playbook</a> · plumbing lead generation</p>
-        <h1 class="h-hero">Plumbing lead generation, built on a system your company owns</h1>
+        <h1 class="h-hero">Plumbing lead generation, built on a system <em>your company owns</em></h1>
         <p class="lede">
-          Shared plumbing leads put your company in the same pile as everyone else. A run-for-you system helps the right homeowners find you first, trust you sooner, and book better plumbing jobs through assets your business owns.
+          Plumbing lead generation should help homeowners find you, trust you, and ask for help without putting you in a shared pile. If you are weighing <a href="/playbook/buy-plumbing-leads-alternative">buying plumbing leads</a>, start with whether the path builds an asset you own.
+        </p>
+        <p class="lede">
+          A run-for-you system connects pages, proof, intake, follow-up, and a simple owner view. See how that works inside <a href="/system">the Buildwise system</a> before you add another lead seller.
         </p>
         <p class="cta-row">
           <a class="cta-primary" href="/book" data-cta-source="plumbing-lead-gen-hero-primary">See If We're a Fit <span class="cta-arrow">→</span></a>
@@ -129,6 +157,15 @@ const breadcrumb = {
         <!-- @r020:F1 emotion: field-service atmosphere shows the pressure of urgent owner-led lead flow -->
         <img src="/images/bwm-services-atmospheric-v1.webp" alt="Dark service-business operations space with tools, notes, and a glowing work screen." width="1920" height="1080" loading="eager" decoding="async" />
       </figure>
+    </div>
+  </section>
+
+  <section class="playbook-answer elev">
+    <div class="container">
+      <div class="plain-answer-panel">
+        <p class="section-tag">Plain answer</p>
+        {plainAnswer.map((sentence) => <p class="prose">{sentence}</p>)}
+      </div>
     </div>
   </section>
 
@@ -170,6 +207,9 @@ const breadcrumb = {
       <p class="prose">
         Better plumbing leads rarely come from one trick. They come from a connected path. Homeowners need to find the right service page, see proof that feels local, get a fast next step, and leave a trail the owner can read later. If one part breaks, the company pays for activity without knowing what turned into booked work.
       </p>
+      <blockquote class="pull-quote">
+        <p>Rented leads can fill a gap. Owned lead flow teaches your business what to improve next.</p>
+      </blockquote>
     </div>
   </section>
 
@@ -190,7 +230,7 @@ const breadcrumb = {
       </div>
       <figure class="section-photo">
         <!-- @r020:F3 CTA-pull: architecture diagram points toward the owned system page instead of a vendor marketplace -->
-        <img src="/images/funnel-3-layer-v1.svg" alt="Three-layer system diagram showing connected visibility, proof, and booked work." width="1200" height="900" loading="lazy" decoding="async" />
+        <img src="/images/funnel-3-layer-v1.svg" alt="Three-layer system diagram showing connected visibility, proof, and booked work." width="1200" height="675" loading="lazy" decoding="async" />
       </figure>
     </div>
   </section>
@@ -217,11 +257,48 @@ const breadcrumb = {
     </div>
   </section>
 
+  <section class="playbook-section elev">
+    <div class="container">
+      <p class="section-tag">System parts</p>
+      <h2 class="h-section">What is a plumbing lead generation system?</h2>
+      <p class="prose">
+        A plumbing lead generation system is the set of parts that helps someone move from a problem to a booked call. The <a href="/playbook/how-to-get-plumbing-leads">how to get plumbing leads</a> guide gives you the field list.
+      </p>
+      <p class="prose">
+        The pages answer what you fix and where. Proof shows real work. Intake makes the next step easy. Follow-up keeps the request from going cold.
+      </p>
+      <p class="prose">
+        The point is not a bigger task list. It is a system you can see and improve, which is why it should connect to the wider <a href="/system">system</a> you own.
+      </p>
+    </div>
+  </section>
+
+  <section class="playbook-section">
+    <div class="container">
+      <p class="section-tag">Rented leads</p>
+      <h2 class="h-section">When does buying plumbing leads make sense?</h2>
+      <p class="prose">
+        Buying plumbing leads can make sense as a bridge when your calendar has holes and you need calls now. It is not a plan to own.
+      </p>
+      <p class="prose">
+        The risk is that rented leads can train you to chase the same jobs as several other companies. That can push price and speed ahead of trust.
+      </p>
+      <p class="prose">
+        Use it with a cap and a plan to replace it. The deeper <a href="/playbook/buy-plumbing-leads-alternative">buy plumbing leads alternative</a> guide explains the bridge, and the <a href="/playbook/plumbing-leads-cost">plumbing leads cost</a> guide shows what to weigh before you keep paying.
+      </p>
+    </div>
+  </section>
+
   <section class="playbook-related">
     <div class="container">
       <p class="section-tag">Related</p>
       <h2 class="h-section">Keep reading.</h2>
       <ul class="related-list">
+        <li><a href="/playbook/plumbing-leads-cost">Plumbing Leads Cost</a> — what to weigh before you keep paying for rented calls</li>
+        <li><a href="/playbook/buy-plumbing-leads-alternative">Buy Plumbing Leads Alternative</a> — when buying leads can help and where it breaks down</li>
+        <li><a href="/playbook/plumbing-lead-generation-services">Plumbing Lead Generation Services</a> — how service help differs from an owned system</li>
+        <li><a href="/playbook/how-to-get-plumbing-leads">How To Get Plumbing Leads</a> — the practical steps behind better plumbing calls</li>
+        <li><a href="/playbook/emergency-plumbing-leads">Emergency Plumbing Leads</a> — speed and trust for urgent plumbing calls</li>
         <li><a href="/industries/plumbing">Plumbing Companies</a> — how the system fits owner-led plumbing teams</li>
         <li><a href="/playbook/contractor-lead-generation-company-alternative">Contractor Lead Generation Company Alternative</a> — what changes when the business owns the path</li>
         <li><a href="/playbook/lead-generation-company-alternative">Lead Generation Company Alternative</a> — the broader owner-led service playbook</li>
@@ -243,6 +320,7 @@ const breadcrumb = {
     </div>
   </section>
 
+  <!-- @sdt-exempt: FAQ is question-and-answer text; imagery here would be decorative (R020) -->
   <section class="playbook-faq">
     <div class="container">
       <p class="section-tag">FAQ</p>
@@ -252,7 +330,13 @@ const breadcrumb = {
           <details class="faq-item">
             <summary class="faq-q">{f.q}</summary>
             <div class="faq-a">
-              <p>{f.a}</p>
+              {f.linkHref && f.linkText ? (
+                <p>
+                  {f.a.split(f.linkText)[0]}<a href={f.linkHref}>{f.linkText}</a>{f.a.split(f.linkText)[1]}
+                </p>
+              ) : (
+                <p>{f.a}</p>
+              )}
             </div>
           </details>
         ))}
@@ -268,6 +352,7 @@ const breadcrumb = {
 .playbook-hero .lede { margin-top: 24px; }
 .back-link { color: var(--ink-faint); transition: color 180ms ease; }
 .back-link:hover { color: var(--y2); }
+.h-hero em { color: var(--y2); font-style: normal; font-weight: inherit; }
 .proof-panel { padding: 28px; }
 .proof-panel strong { display: block; margin-top: 18px; font-size: clamp(54px, 8vw, 92px); line-height: 0.9; color: var(--y2); font-weight: 600; }
 .proof-panel p:last-child { margin-top: 18px; color: var(--ink-dim); line-height: 1.6; }
@@ -275,11 +360,15 @@ const breadcrumb = {
 .hero-photo { margin-top: 56px; max-width: 1120px; border-radius: 4px; overflow: hidden; border: 1px solid var(--rule); }
 .hero-photo img { width: 100%; height: auto; display: block; }
 
+.playbook-answer { padding-block: clamp(32px, 5vw, 56px); }
+.plain-answer-panel { border: 1px solid var(--rule); border-radius: 4px; background: rgba(255,255,255,0.025); padding: clamp(24px, 4vw, 40px); max-width: 980px; }
+.plain-answer-panel .prose { margin-top: 12px; }
+
 .playbook-section, .playbook-related, .playbook-cta, .playbook-faq { padding-block: clamp(56px, 8vw, 96px); }
 .prose { font-size: 17px; line-height: 1.7; color: var(--ink-dim); max-width: 760px; margin-top: 24px; }
 .prose + .prose { margin-top: 16px; }
-.prose a, .related-list a { color: var(--ink); text-decoration: none; border-bottom: 1px solid rgba(240,255,0,0.45); }
-.prose a:hover, .related-list a:hover { color: var(--y2); border-bottom-color: var(--y2); }
+.prose a, .related-list a, .faq-a a { color: var(--ink); text-decoration: none; border-bottom: 1px solid rgba(240,255,0,0.45); }
+.prose a:hover, .related-list a:hover, .faq-a a:hover { color: var(--y2); border-bottom-color: var(--y2); }
 
 .leak-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 16px; margin-block: 40px; }
 .leak-card { border: 1px solid var(--rule); background: rgba(255,255,255,0.025); padding: 24px; border-radius: 4px; }

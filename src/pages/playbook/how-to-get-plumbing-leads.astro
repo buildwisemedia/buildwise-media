@@ -1,0 +1,304 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+const title = "How to Get Plumbing Leads | Buildwise";
+const description = "A plain guide to getting plumbing leads without living inside lead sellers: search, proof, speed, follow-up, and better job fit.";
+
+const answer = 'Getting plumbing leads comes down to five steps: show up where homeowners search for your services and towns, prove you do the work well, make the next step fast, follow up the same day, and review which calls became booked jobs. Do those five in order and lead flow stops depending on bought lists.';
+
+const faqs = [
+  {
+    q: 'How do plumbers get more leads?',
+    a: 'Plumbers get more leads by showing up for the services and towns they want, proving the work with reviews and photos, making calls and forms easy, following up the same day, and checking which calls became booked jobs.',
+  },
+  {
+    q: 'What is the first thing to fix before buying leads?',
+    a: 'Fix the path you already own first. Make sure your main service pages are clear, your phone number is easy to use, your reviews are visible, and every new request gets a fast reply.',
+  },
+  {
+    q: 'How does local search help plumbing lead flow?',
+    a: 'Local search helps homeowners find you when they need a plumber in their town. Strong service pages, clear proof, and fresh reviews make it easier for them to choose you before they ask several companies.',
+  },
+  {
+    q: 'Why does proof matter for plumbing leads?',
+    a: 'Proof helps a homeowner feel safer before they call. Reviews, finished-job photos, and plain service details show that you have solved the same kind of problem before.',
+  },
+  {
+    q: 'How do I know which plumbing leads are worth more?',
+    a: 'Look past the first call. Review which requests became booked jobs, which services they were for, which towns they came from, and which ones matched the work you want more often.',
+  },
+];
+
+const definedTerm = {
+  '@context': 'https://schema.org',
+  '@type': 'DefinedTerm',
+  '@id': 'https://buildwisemedia.com/playbook/how-to-get-plumbing-leads#term',
+  name: 'How to get plumbing leads',
+  description: answer,
+  inDefinedTermSet: {
+    '@type': 'DefinedTermSet',
+    '@id': 'https://buildwisemedia.com/playbook/#terms',
+    name: 'Buildwise Media Playbook',
+  },
+};
+
+const breadcrumb = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://buildwisemedia.com/' },
+    { '@type': 'ListItem', position: 2, name: 'Playbook', item: 'https://buildwisemedia.com/playbook/' },
+    { '@type': 'ListItem', position: 3, name: 'How to Get Plumbing Leads', item: 'https://buildwisemedia.com/playbook/how-to-get-plumbing-leads' },
+  ],
+};
+
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  '@id': 'https://buildwisemedia.com/playbook/how-to-get-plumbing-leads#faq',
+  mainEntity: faqs.map((f) => ({
+    '@type': 'Question',
+    name: f.q,
+    acceptedAnswer: { '@type': 'Answer', text: f.a },
+  })),
+};
+
+const articleSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Article',
+  '@id': 'https://buildwisemedia.com/playbook/how-to-get-plumbing-leads#article',
+  headline: title,
+  description,
+  author: { '@id': 'https://buildwisemedia.com/#org' },
+  publisher: { '@id': 'https://buildwisemedia.com/#org' },
+  mainEntityOfPage: 'https://buildwisemedia.com/playbook/how-to-get-plumbing-leads',
+};
+---
+<BaseLayout title={title} description={description} jsonLd={[definedTerm, breadcrumb, faqSchema, articleSchema]}>
+
+  <section class="playbook-hero">
+    <div class="container">
+      <p class="eyebrow"><a href="/playbook" class="back-link">← Playbook</a></p>
+      <h1 class="h-hero">How to get plumbing leads — <em>without buying them</em></h1>
+      <p class="lede">
+        Getting plumbing leads comes down to five steps: show up where homeowners search for your services and towns, prove you do the work well, make the next step fast, follow up the same day, and review which calls became booked jobs. Do those five in order and lead flow stops depending on bought lists. That is the cleaner path behind <a href="/playbook/plumbing-lead-generation">plumbing lead generation</a>.
+      </p>
+      <p class="lede">
+        This guide gives you the steps in order, so your week is not run by cold lists, missed calls, and vague reports. If you want that path installed and run for you, the <a href="/system">owned system</a> is the next step.
+      </p>
+      <figure class="hero-photo">
+        <!-- @r020:F4 curiosity: the quiet owner-week image previews the time these steps give back -->
+        <img src="/images/bwm-hero-atmospheric-v1.webp" alt="Dark owner-led workspace with a laptop, notes, and a focused weekly plan." width="1920" height="1080" loading="eager" decoding="async" />
+      </figure>
+    </div>
+  </section>
+
+  <section class="playbook-section elev">
+    <div class="container article-grid">
+      <div>
+        <p class="section-tag">The lead path</p>
+        <h2 class="h-section">Where do plumbing leads come from now?</h2>
+        <p class="prose">
+          Plumbing leads come from homeowners who feel pressure, scan proof fast, and pick the company that feels safest to call. Most of them are not shopping for a clever brand; they need the leak, clog, heater, or pipe problem handled.
+        </p>
+        <p class="prose">
+          That means the lead path starts before the phone rings. You need to show up where the homeowner searches, answer the plain question they have, and make the next step clear.
+        </p>
+        <p class="prose">
+          Trust does the heavy lift. Strong pages, recent reviews, clear photos, and fast response make your company feel like the low-stress choice before anyone talks price.
+        </p>
+      </div>
+      <figure class="section-photo section-photo--diagram">
+        <!-- @r020:F2 proof: the path from search to booked job makes the owner-side lead flow visible -->
+        <img src="/images/funnel-3-layer-v1.svg" alt="Three-layer path showing search, trust, and booked plumbing work." width="1200" height="675" loading="lazy" decoding="async" />
+      </figure>
+    </div>
+  </section>
+
+  <section class="playbook-section">
+    <div class="container">
+      <p class="section-tag">Step 1</p>
+      <h2 class="h-section">Step 1 — Show up for the jobs and towns you want</h2>
+      <p class="prose">
+        Start with the services and towns you actually want more of. A page about drain cleaning in your best town is clearer than one broad page that tries to cover every job at once.
+      </p>
+      <p class="prose">
+        Write the way a homeowner thinks. Name the problem, the town, the signs they should notice, and what happens after they call. The goal is not fancy wording. The goal is to make the right job feel easy to start.
+      </p>
+      <p class="prose">
+        This is the same base used in <a href="/playbook/get-found-on-google-service-business">getting found in local search as a service business</a> and <a href="/playbook/local-seo-for-service-businesses">local search for service businesses</a>. Clear service-and-town pages help your best work get found without buying every request.
+      </p>
+    </div>
+  </section>
+
+  <section class="playbook-section elev">
+    <div class="container article-grid">
+      <div>
+        <p class="section-tag">Step 2</p>
+        <h2 class="h-section">Step 2 — Turn finished work into trust</h2>
+        <p class="prose">
+          Proof turns a finished job into the next job. Reviews, job photos, service notes, and plain before-and-after details help a homeowner believe you can handle the same problem for them.
+        </p>
+        <p class="prose">
+          Do not wait for proof to happen by luck. Ask for reviews after clean wins. Save photos when the work is worth showing. Add short notes that say what the issue was and how your team fixed it.
+        </p>
+        <p class="prose">
+          Proof works best when it feels local and real. A homeowner with a backed-up line wants to see that you have solved real plumbing problems nearby, not just read a promise that sounds like every other company.
+        </p>
+      </div>
+      <figure class="section-photo">
+        <!-- @r020:F2 proof: finished-work evidence shows how trust assets are gathered and reused -->
+        <img src="/images/bwm-proof-still-life-v1.webp" alt="Proof materials, job notes, and review prompts arranged on a dark work desk." width="1920" height="1080" loading="lazy" decoding="async" />
+      </figure>
+    </div>
+  </section>
+
+  <section class="playbook-section">
+    <div class="container">
+      <p class="section-tag">Step 3</p>
+      <h2 class="h-section">Step 3 — Make urgent next steps fast</h2>
+      <p class="prose">
+        Urgent plumbing leads cool fast. If the phone is hard to find, the form is long, or the booking path feels unclear, the homeowner keeps moving.
+      </p>
+      <p class="prose">
+        Make the call button obvious. Keep forms short. Ask only what you need to help now: name, town, phone, service need, and how urgent it is.
+      </p>
+      <p class="prose">
+        If your team misses calls during busy hours, use a clear answering path so the request still gets captured. An <a href="/playbook/ai-answering-service-service-business">answering service for service businesses</a> can protect the first step without adding more work to your day.
+      </p>
+      <blockquote class="pull-quote">
+        <p>The best plumbing lead path is not the loudest one. It is the one a stressed homeowner can use in seconds.</p>
+      </blockquote>
+    </div>
+  </section>
+
+  <section class="playbook-section elev">
+    <div class="container">
+      <p class="section-tag">Step 4</p>
+      <h2 class="h-section">Step 4 — Follow up before the lead cools</h2>
+      <p class="prose">
+        Same-day follow-up keeps a real request from turning into a lost job. A homeowner who asked for help today should not wonder whether anyone saw the message.
+      </p>
+      <p class="prose">
+        Set a simple rule. Every new call, form, or missed call gets a reply the same day. If the job is urgent, reply faster and give the person a clear next step.
+      </p>
+      <p class="prose">
+        The message can be short. Confirm the issue, confirm the town, ask for the best time, and tell them what happens next. Speed plus clarity wins more often than a long sales pitch.
+      </p>
+    </div>
+  </section>
+
+  <section class="playbook-section">
+    <div class="container">
+      <p class="section-tag">Step 5</p>
+      <h2 class="h-section">Step 5 — Review what became booked work</h2>
+      <p class="prose">
+        Better leads are the ones that turn into booked work you want more of. Review the full path, not just the first ring or form.
+      </p>
+      <p class="prose">
+        Each week, look at which services booked, which towns showed up, which requests stalled, and which proof helped the call feel easier. Repeat what brings the right jobs. Fix the spots where people drop out.
+      </p>
+      <p class="prose">
+        This is how you stop living inside lead sellers. The <a href="/playbook/buy-plumbing-leads-alternative">alternative to buying plumbing leads</a> is a path you own, review, and improve from real booked work.
+      </p>
+    </div>
+  </section>
+
+  <!-- @sdt-exempt: FAQ is question-and-answer text; imagery here would be decorative (R020) -->
+  <section class="playbook-faq">
+    <div class="container">
+      <p class="section-tag">FAQ</p>
+      <h2 class="h-section">Common questions.</h2>
+      <div class="faq-list">
+        {faqs.map((f) => (
+          <details class="faq-item">
+            <summary class="faq-q">{f.q}</summary>
+            <div class="faq-a">
+              <p>{f.a}</p>
+            </div>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="playbook-related elev">
+    <div class="container">
+      <p class="section-tag">Related</p>
+      <h2 class="h-section">More from the playbook.</h2>
+      <ul class="related-list">
+        <li><a href="/playbook/plumbing-lead-generation">Plumbing Lead Generation</a> — the owned-system frame for plumbing companies</li>
+        <li><a href="/playbook/get-found-on-google-service-business">Get Found in Local Search</a> — the plain local search base for service businesses</li>
+        <li><a href="/playbook/local-seo-for-service-businesses">Local Search for Service Businesses</a> — how town and service pages build trust</li>
+        <li><a href="/playbook/buy-plumbing-leads-alternative">Buy Plumbing Leads Alternative</a> — how to stop depending on shared lists</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="playbook-cta elev">
+    <div class="container">
+      <h2 class="h-closer">Do it yourself, or have it run for you?</h2>
+      <p class="lede">You can work the five steps yourself, one week at a time. If you want the path installed, run, and improved around your real jobs, Buildwise Media installs the custom AI growth system your business owns.</p>
+      <!-- approved-proof: 008 de-id concrete contractor, organic-playbook use, internal-signoff 2026-06-18 -->
+      <blockquote class="pull-quote">
+        <p>A concrete contractor we run went from almost no inbound calls to about 150 leads since launch.</p>
+      </blockquote>
+      <p class="cta-row">
+        <a class="cta-primary" href="/book" data-cta-source="playbook-how-to-get-plumbing-leads-cta-primary">See If We're a Fit <span class="cta-arrow">→</span></a>
+        <a class="cta-ghost" href="/system" data-cta-source="playbook-how-to-get-plumbing-leads-cta-secondary">See the System</a>
+      </p>
+    </div>
+  </section>
+
+</BaseLayout>
+
+<style>
+.playbook-hero { padding-block: clamp(80px, 12vw, 144px); }
+.playbook-hero .lede { margin-top: 24px; }
+.back-link { color: var(--ink-faint); transition: color 180ms ease; }
+.back-link:hover { color: var(--y2); }
+
+.h-hero em { color: var(--y2); font-style: normal; font-weight: inherit; }
+.h-section em { color: var(--y2); font-style: normal; font-weight: inherit; }
+
+.hero-photo { margin-top: 56px; max-width: 1120px; border-radius: 4px; overflow: hidden; border: 1px solid var(--rule); }
+.hero-photo img { width: 100%; height: auto; display: block; }
+
+.playbook-section, .playbook-related, .playbook-cta, .playbook-faq { padding-block: clamp(56px, 8vw, 96px); }
+.prose { font-size: 17px; line-height: 1.7; color: var(--ink-dim); max-width: 760px; margin-top: 24px; }
+.prose + .prose { margin-top: 16px; }
+.prose a, .related-list a { color: var(--ink); text-decoration: none; border-bottom: 1px solid rgba(240,255,0,0.45); }
+.prose a:hover, .related-list a:hover { color: var(--y2); border-bottom-color: var(--y2); }
+
+.article-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(280px, 420px); gap: clamp(32px, 6vw, 72px); align-items: start; }
+.section-photo { margin: 0; border-radius: 4px; overflow: hidden; border: 1px solid var(--rule); }
+.section-photo img { width: 100%; height: auto; display: block; }
+.section-photo--diagram { border-color: transparent; background: transparent; }
+.section-photo--diagram img { background: transparent; }
+
+.pull-quote { margin-top: 32px; max-width: 820px; border-left: 3px solid var(--y2); padding: 18px 0 18px 24px; color: var(--ink); background: rgba(255,255,255,0.025); }
+.pull-quote p { font-size: clamp(22px, 3vw, 34px); line-height: 1.25; }
+
+.playbook-faq { padding-top: 0; }
+.faq-list { display: flex; flex-direction: column; gap: 16px; margin-top: 32px; max-width: 880px; }
+.faq-item { border-top: 1px solid var(--rule); padding-block: 20px; }
+.faq-item[open] summary { color: var(--y2); }
+.faq-q { font-size: 17px; font-weight: 500; color: var(--ink); cursor: pointer; line-height: 1.4; list-style: none; }
+.faq-q::marker, .faq-q::-webkit-details-marker { display: none; }
+.faq-q::after { content: "+"; float: right; font-family: var(--mono); font-size: 18px; color: var(--y2); }
+.faq-item[open] .faq-q::after { content: "-"; }
+.faq-a { margin-top: 12px; }
+.faq-a p { font-size: 16px; line-height: 1.65; color: var(--ink-dim); max-width: 720px; }
+
+.related-list { list-style: none; display: flex; flex-direction: column; gap: 12px; margin-top: 32px; max-width: 880px; }
+.related-list a { color: var(--ink); font-weight: 500; text-decoration: none; border-bottom: 1px solid transparent; transition: border-color 180ms ease, color 180ms ease; }
+.related-list a:hover { color: var(--y2); border-bottom-color: var(--y2); }
+
+.playbook-cta { padding-block: clamp(64px, 10vw, 112px); }
+.playbook-cta .lede { margin-top: 16px; }
+.cta-row { display: flex; flex-wrap: wrap; gap: 16px; margin-top: 32px; }
+
+@media (max-width: 900px) {
+  .article-grid { grid-template-columns: 1fr; }
+}
+</style>
