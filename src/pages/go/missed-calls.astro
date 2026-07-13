@@ -234,6 +234,9 @@ import FitDiagnostic from '../../components/FitDiagnostic.astro';
 
 /* ─── STORY / PROSE ────────────────────────────────────────────────────── */
 .mc-story, .mc-resolve { padding: clamp(40px, 5vw, 72px) 0; }
+/* flow diagrams stay legible on small screens: min-width + horizontal scroll */
+.bwm-kit { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+.bwm-kit svg { min-width: 560px; display: block; }
 .mc-prose { max-width: 680px; }
 .mc-prose p { margin: 0 0 20px; font-size: clamp(16px, 1.8vw, 18px); line-height: 1.65; color: var(--ink); }
 .mc-lead { font-size: clamp(18px, 2.2vw, 22px) !important; }
