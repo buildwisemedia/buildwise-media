@@ -2,6 +2,10 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import MoChainSection from '../../components/campaign/MoChainSection.astro';
 import FitDiagnostic from '../../components/FitDiagnostic.astro';
+import canonical from '../../data/canonical.json';
+
+const ascendInstall: string = canonical.products.ascend.price.oneshot_display;   // $15,000
+const ascendMonthly: string = canonical.products.ascend.price.recurring_display; // $7,000/mo
 
 // AGENCY-DISPLACEMENT offer-funnel arm — /go/agency-alternative
 // Angle: burned-by-agency owner; reframe the destination to a CUSTOM AI SYSTEM (a
@@ -229,6 +233,24 @@ import FitDiagnostic from '../../components/FitDiagnostic.astro';
   <!-- SHARED CHAIN: Cost + Mechanism (MoChainSection carries F2 data-viz + F3 staircase) -->
   <MoChainSection />
 
+  <!-- PRICE ANCHOR (approved 2026-07-13, FB brief ca542aab) — never-price-naked:
+       the figure appears only against the cost of assembling the stack yourself -->
+  <section class="aa-anchor" aria-labelledby="aa-anchor-heading">
+    <!-- @sdt-exempt: single anchored-pricing statement — a price line with its required
+         cost-of-assembly context; the adjacent MoChainSection carries this block's data-viz -->
+    <div class="container">
+      <p class="section-tag">WHAT IT COSTS · AGAINST WHAT IT REPLACES</p>
+      <h2 id="aa-anchor-heading" class="h-section">One system. One team. One number.</h2>
+      <p class="aa-anchor-body">
+        Assembling this yourself means agency retainers on every channel, several tool
+        subscriptions, and setup fees — for many businesses that stack runs well past
+        $10,000 a month before anyone coordinates it. The Ascend install is
+        <strong>{ascendInstall} once</strong>, then <strong>{ascendMonthly}</strong> —
+        one system, one team, run for you. 90 days to prove it, then month to month.
+      </p>
+    </div>
+  </section>
+
   <!-- TWO PATHS ────────────────────────────────────────────────────────── -->
   <section class="aa-paths" aria-labelledby="aa-paths-heading">
     <div class="container">
@@ -374,6 +396,20 @@ import FitDiagnostic from '../../components/FitDiagnostic.astro';
 </BaseLayout>
 
 <style>
+/* ─── PRICE ANCHOR ──────────────────────────────────────────────────────── */
+.aa-anchor {
+  padding: clamp(48px, 6vw, 88px) 0;
+  border-top: 1px solid var(--rule);
+}
+.aa-anchor-body {
+  margin-top: 18px;
+  max-width: 680px;
+  font-size: clamp(16px, 1.9vw, 19px);
+  line-height: 1.65;
+  color: var(--ink);
+}
+.aa-anchor-body strong { color: var(--y2); font-weight: 700; }
+
 /* ─── HERO ──────────────────────────────────────────────────────────────── */
 .aa-hero {
   padding-top: clamp(96px, 11vw, 168px);
