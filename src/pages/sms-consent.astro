@@ -27,6 +27,7 @@ const breadcrumb = {
 
       <section class="prose">
         <h2 class="h-sub">What you are signing up for</h2>
+        <!-- @sdt-exempt: carrier-mandated A2P/TCR compliance disclosure — legal fine print, no visual story -->
         <p>Buildwise Media sends recurring text messages to people who opt in: appointment reminders and follow-ups about work you asked us about. That is it — no spam, no unrelated offers.</p>
         <ul class="legal-list">
           <li><strong>Consent is not a condition of purchase.</strong> You can work with us without opting in.</li>
@@ -36,8 +37,9 @@ const breadcrumb = {
         </ul>
         <p>How we handle your information is covered in our <a href="/privacy">Privacy Policy</a>. Questions: <a href="mailto:hello@buildwisemedia.com">hello@buildwisemedia.com</a>.</p>
 
-        <h2 class="h-sub">Opt in</h2>
-        <p>Enter your details and check the box to consent.</p>
+        <h2 class="h-sub">Opt in (optional)</h2>
+        <!-- @sdt-exempt: carrier-mandated A2P/TCR consent mechanics — legal fine print, no visual story -->
+        <p>Leave your details below. The consent box is optional — check it only if you want texts. Skip the box and we still help you the same; you just will not get texts.</p>
       </section>
 
       <form id="sms-consent-form" class="consent-form" novalidate>
@@ -59,15 +61,18 @@ const breadcrumb = {
         <div class="consent-field">
           <label class="mono" for="sms-phone">Mobile number</label>
           <input id="sms-phone" name="phone" type="tel" required autocomplete="tel" inputmode="tel" minlength="10" placeholder="(555) 123-4567" />
+          <span class="fieldnote">We use this to call or email you back about your request. We never text you unless you check the box below.</span>
         </div>
 
+        <p class="consent-optional mono">Optional — you can submit this form without checking the box. No box, no texts, and you can still work with us.</p>
+
         <label class="consent-check">
-          <input id="sms-agree" name="sms_agree" type="checkbox" required />
+          <input id="sms-agree" name="sms_agree" type="checkbox" />
           <span>I agree to receive recurring SMS text messages from Buildwise Media (appointment reminders, lead follow-ups). Consent is not a condition of purchase. Message frequency varies. Msg &amp; data rates may apply. Reply STOP to opt out, HELP for help.</span>
         </label>
 
         <button type="submit" class="cta consent-submit">
-          <span data-submit-label>Opt in</span>
+          <span data-submit-label>Submit</span>
           <span data-submit-loading hidden>Sending...</span>
         </button>
 
@@ -113,17 +118,16 @@ const breadcrumb = {
         return;
       }
 
-      if (!form.elements['sms_agree']?.checked) {
-        setStatus('Check the consent box to opt in.', 'error');
-        return;
-      }
+      const wantsSms = !!form.elements['sms_agree']?.checked;
 
       const payload = {
         name: value('name'),
         email: value('email'),
         phone: value('phone'),
-        message: 'SMS consent opt-in via buildwisemedia.com/sms-consent — agreed to receive recurring SMS (appointment reminders, lead follow-ups). Checkbox confirmed.',
-        intent: 'sms-consent',
+        message: wantsSms
+          ? 'SMS consent opt-in via buildwisemedia.com/sms-consent — voluntarily checked the optional consent box; agreed to receive recurring SMS (appointment reminders, lead follow-ups).'
+          : 'Contact via buildwisemedia.com/sms-consent — optional SMS consent box left unchecked. NO SMS consent — do not text this number; email or call only.',
+        intent: wantsSms ? 'sms-consent' : 'contact',
       };
 
       if (!payload.name || !payload.email || !payload.phone || !form.reportValidity()) {
@@ -146,7 +150,9 @@ const breadcrumb = {
         });
         if (!response.ok) throw new Error(`Server ${response.status}`);
         form.reset();
-        setStatus('You are opted in. Reply STOP to any message to opt out.', 'success');
+        setStatus(wantsSms
+          ? 'You are opted in. Reply STOP to any message to opt out.'
+          : 'Got it — we will follow up by email or phone call. You are not signed up for texts.', 'success');
       } catch (_) {
         setStatus('That did not go through. Try again or email hello@buildwisemedia.com.', 'error');
       } finally {
@@ -212,6 +218,9 @@ const breadcrumb = {
   padding: 12px 14px;
 }
 .consent-field input:focus { outline: 1px solid var(--y2); outline-offset: 0; }
+.fieldnote { font-family: var(--sans); font-weight: 300; font-size: 13px; line-height: 1.5; color: var(--ink-faint); }
+
+.consent-optional { font-size: 12px; letter-spacing: 0.08em; color: var(--ink-faint); margin: 0; }
 
 .consent-check {
   display: flex;
