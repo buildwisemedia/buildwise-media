@@ -1,0 +1,60 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import FitDiagnostic from '../../components/FitDiagnostic.astro';
+// UTM contract: utm_content=go-wave
+---
+
+<BaseLayout title="The AI Wave Is Already Here | Buildwise Media" description="A plain guide to what the AI wave changes for a service business, and how to build an engine you own." noindex={true}>
+  <main>
+    <article class="hero" aria-labelledby="wave-title">
+      <div class="container hero-grid">
+        <div>
+          <p class="eyebrow">The Wave · An owner’s field guide</p>
+          <!-- @bwm-exp-slot: hero-headline -->
+          <h1 id="wave-title" data-bwm-exp-slot="hero-headline">You have lived through this test before.</h1>
+          <p class="deck">The owner is still the router between tools, people, information, and action. Each week starts with a plan. Then calls, quotes, staff questions, and loose ends take over.</p>
+          <div class="hero-ctas">
+            <!-- @bwm-exp-slot: hero-cta -->
+            <a href="#diagnostic" class="cta" data-cta-source="wave-hero-primary" data-bwm-exp-slot="hero-cta">Get My Free Revenue Leak Map <span aria-hidden="true">→</span></a>
+            <a href="/book" class="cta-ghost" data-cta-source="wave-hero-secondary">See If We're a Fit</a>
+          </div>
+          <p class="qual mono">For established service businesses with real revenue. Owners looking for a savior bounce off — and that is the right outcome.</p>
+        </div>
+        <!-- @r020:F1 emotion: the quiet owner workspace reflects the lived week and gives the editorial opening a human center -->
+        <figure class="photo"><img src="/images/bwm-urgency-cinematic-v1.webp" alt="A service business owner working at a desk in low light" width="640" height="426" loading="eager" decoding="async" /><figcaption class="mono">The week keeps moving, even when the owner is the router.</figcaption></figure>
+      </div>
+    </article>
+
+    <section class="story"><div class="container prose">
+      <p class="section-tag">01 · A PATTERN YOU REMEMBER</p>
+      <h2>First came the website. Then search. Then mobile.</h2>
+      <p>Each wave looked optional at first. Owners waited because the old way still worked. Then customers changed their habits. The firms that moved early built skill, data, and trust while the rest caught up.</p>
+      <p>The cost of waiting was not one lost sale. It was the gap that grew each week. Whether takeoff lands in '27 or '29, the engine compounds either way — the only losing move is waiting.</p>
+      <p>This is not a forecast with a date on it. It is a lesson from your own memory. New habits start small. Then they become the normal way buyers choose.</p>
+    </div></section>
+
+    <section class="panel"><div class="container prose">
+      <p class="section-tag">02 · WHAT ACTUALLY CHANGED</p>
+      <h2>Search gave everyone information. AI acts on it.</h2>
+      <p>Information used to be the edge. Now the edge is turning what you know into the next useful step. The application of knowledge is power.</p>
+      <p><span class="label">Available now</span> An AI system can answer a new lead, follow up, schedule a call, and prepare a clear report. A human still gates high-stakes choices.</p>
+      <!-- @r020:F2 proof: an action flow turns the editorial claim into a simple sequence owners can inspect -->
+      <figure class="diagram"><svg viewBox="0 0 720 170" role="img" aria-label="Information moves through an AI engine into useful action"><text x="24" y="28">INFORMATION</text><text x="294" y="28">THE ENGINE</text><text x="584" y="28">ACTION</text><rect x="24" y="58" width="150" height="68" rx="3"/><rect x="284" y="58" width="150" height="68" rx="3" class="hot"/><rect x="544" y="58" width="150" height="68" rx="3"/><path d="M174 92H284M434 92H544"/><path d="m274 86 10 6-10 6m260-12 10 6-10 6"/><text x="48" y="97">Calls · forms · notes</text><text x="310" y="97">Learn · route · help</text><text x="568" y="97">Reply · book · report</text></svg><figcaption class="mono">Knowledge becomes useful when the next step happens.</figcaption></figure>
+    </div></section>
+
+    <section class="story"><div class="container prose">
+      <p class="section-tag">03 · THE RESOLUTION</p>
+      <h2>We build the engine with you, then run it with you.</h2>
+      <p>This is weekly work, not a tool handoff. We find the next revenue leak, build the fix, test it, and improve it. The system learns from the work your team already does.</p>
+      <p><span class="label">Available now</span> Lead response, follow-up, scheduling, and reporting can work today and compound tomorrow. You own the engine, its code, and its business data.</p>
+      <div class="proof"><div><strong>4 HRS → 47 SEC</strong><span>Lead response result already in print</span></div><div><strong>5× FLOOR</strong><span>Attributable ROI inside 24 months</span></div><div><strong>WEEKLY</strong><span>Built, tested, and improved with our team</span></div></div>
+      <h2 class="close">The next move is small.</h2>
+      <p>Map the leaks first. If there is no sound first build, we will say so. If there is, you will see where the engine can start.</p>
+    </div></section>
+    <FitDiagnostic />
+  </main>
+</BaseLayout>
+
+<style>
+  .hero{padding:clamp(96px,11vw,160px) 0 72px}.hero-grid{display:grid;gap:48px;align-items:center}.hero h1{font-size:clamp(42px,7vw,78px);line-height:1;letter-spacing:-.045em;max-width:850px}.deck{font-size:clamp(18px,2vw,22px);line-height:1.55;color:var(--ink-dim);max-width:700px;margin:24px 0}.hero-ctas{display:flex;flex-wrap:wrap;gap:12px}.qual{font-size:11px;line-height:1.6;color:var(--ink-faint);max-width:650px;margin-top:18px}.photo img{width:100%;display:block;filter:saturate(.75)}figcaption{font-size:10px;color:var(--ink-faint);margin-top:10px}.story,.panel{padding:clamp(64px,8vw,112px) 0;border-top:1px solid var(--rule)}.panel{background:var(--bg-elev)}.prose{max-width:850px}.prose h2{font-size:clamp(30px,4.5vw,52px);line-height:1.08;letter-spacing:-.03em;margin:22px 0}.prose>p:not(.section-tag){font-size:clamp(17px,1.8vw,20px);line-height:1.7;color:var(--ink-dim);max-width:760px}.label{font:700 10px/1 'JetBrains Mono',monospace;letter-spacing:.12em;color:#050507;background:#F0FF00;padding:5px 7px;margin-right:7px}.diagram{margin:42px 0}.diagram svg{width:100%;min-width:620px}.diagram{overflow:auto}.diagram rect{fill:none;stroke:#62626A}.diagram .hot{stroke:#F0FF00}.diagram path{fill:none;stroke:#F0FF00}.diagram text{fill:#EDEDF0;font:11px 'JetBrains Mono',monospace}.proof{display:grid;gap:1px;background:var(--rule);margin-top:42px}.proof div{background:var(--bg);padding:26px}.proof strong{display:block;color:#F0FF00;font:700 22px 'JetBrains Mono',monospace}.proof span{display:block;color:var(--ink-dim);margin-top:8px}.close{margin-top:64px!important}@media(min-width:900px){.hero-grid{grid-template-columns:1.25fr .75fr}.proof{grid-template-columns:repeat(3,1fr)}}
+</style>
