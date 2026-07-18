@@ -66,7 +66,7 @@ const aggregateRating = {
 // author = "the Buildwise team + our AI system" (no sole-prop framing).
 const siteSchemas: Record<string, unknown>[] = [
   {
-    '@type': ['Organization', 'MarketingAgency'],
+    '@type': 'Organization',
     '@id': `${siteUrl}/#org`,
     name: 'Buildwise Media',
     legalName: 'Buildwise Media LLC',
@@ -97,7 +97,7 @@ const siteSchemas: Record<string, unknown>[] = [
     inLanguage: 'en-US',
   },
   {
-    '@type': ['LocalBusiness', 'MarketingAgency'],
+    '@type': ['LocalBusiness', 'ProfessionalService'],
     '@id': `${siteUrl}/#localbusiness`,
     name: 'Buildwise Media',
     url: siteUrl,
