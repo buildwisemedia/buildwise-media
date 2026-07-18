@@ -1,9 +1,9 @@
 ---
 // /pricing — Pricing route
 // Plan ref: based-on-all-nifty-karp.md §3.8 + §L5 + §6 Phase 3
-// Pricing-public lock: RATIFIED 2026-05-20
+// Pricing-public lock: RATIFIED
 // JSON-LD: Service schema with hasOfferCatalog (3 Offer items sourced from canonical)
-// Voice: team voice — no "I", no Robert, no vendors named
+// Voice: team voice — no "I" and no named vendors
 import BaseLayout from '../layouts/BaseLayout.astro';
 import ProductComparison from '../components/ProductComparison.astro';
 import FAQ from '../components/FAQ.astro';
@@ -14,12 +14,12 @@ const ascend = canonical.products.ascend;
 const pro    = canonical.products.ascend_pro;
 const layers = canonical.products.ascend.eight_layers;
 const msa    = canonical.contract.msa_locked_clauses;
-const title = "Pricing — Ascend Custom AI System for Home Services | Buildwise Media";
-const description = "Buildwise Media pricing: Ascend Pilot $15K one-time, Ascend $7K/mo, Ascend Pro $15K/mo. Less than half the cost of the same stack assembled from separate vendors. Transparent pricing, true month-to-month after Day 90.";
+const title = "One AI Engine, Three Chapters — Buildwise Media";
+const description = "Pilot proves one problem. Ascend builds the engine weekly. Pro builds the territory fortress. Each costs less than half the assembled stack.";
 const pricingSignals = [
-  { label: 'Entry sprint', name: pilot.name, price: pilot.price.oneshot_display, tone: 'cyan' },
-  { label: 'Main system', name: ascend.name, price: ascend.price.recurring_display, tone: 'yellow' },
-  { label: 'Market lock', name: pro.name, price: pro.price.recurring_display, tone: 'green' },
+  { label: 'Chapter 1 · One problem proven', name: pilot.name, price: pilot.price.oneshot_display, anchor: 'Less than half the assembled stack.', tone: 'cyan' },
+  { label: 'Chapter 2 · Engine built weekly', name: ascend.name, price: `${ascend.price.recurring_display} + ${ascend.price.oneshot_display} install`, anchor: 'Less than half the assembled stack.', tone: 'yellow' },
+  { label: 'Chapter 3 · Territory fortress', name: pro.name, price: `${pro.price.recurring_display} + ${pro.price.oneshot_display} install`, anchor: 'Less than half the assembled stack.', tone: 'green' },
 ];
 const valueMath = [
   { label: 'Year-one system cost', value: 'Year one', body: 'Pilot plus nine operating months.' },
@@ -50,7 +50,7 @@ const ownerLayerBodies: Record<string, string> = {
 
 // JSON-LD: Service schema with 3-tier offer catalog (canonical-sourced).
 // Price descriptions carry the value-stack anchor (never-price-naked,
-// LOCKED 2026-05-25): category descriptors + aggregate dollars only —
+// LOCKED: category descriptors + aggregate dollars only —
 // source: Brain reference/BWM-Value-Stack-Anchor.md (public section).
 const pricingJsonLd = {
   '@type': 'Service',
@@ -186,10 +186,10 @@ const faqSchema = {
     <div class="container pricing-hero-inner">
       <div>
         <p class="eyebrow">PRICING</p>
-        <h1 class="h-hero pricing-h1">One Custom AI System. Three Entry Points. All Yours.</h1>
-        <h2 class="pricing-keyword-subhead">The Ascend custom AI system for home service businesses — three entry points.</h2>
+        <h1 class="h-hero pricing-h1">Three chapters. One owned engine.</h1>
+        <h2 class="pricing-keyword-subhead">Prove one problem. Build every week. Defend the territory.</h2>
         <p class="lede pricing-lede">
-          Same owned custom AI system at every tier. Same 5x ROI floor.
+          Pilot is the proof. Ascend is the weekly build. Pro is the fortress. Every chapter is priced beside the assembled stack it replaces: less than half its cost.
         </p>
         <div class="pricing-hero-actions">
           <a href="/revenue-leak-map" class="cta" data-cta-source="pricing-hero">Get My Free Revenue Leak Map<span class="cta-arrow" aria-hidden="true">→</span></a>
@@ -218,10 +218,11 @@ const faqSchema = {
               <span class="mono">{item.label}</span>
               <strong>{item.price}</strong>
               <em>{item.name}</em>
+              <small>{item.anchor}</small>
             </article>
           ))}
         </div>
-        <p class="pricing-console-note">Separate vendors can cost far more each month. Ascend is one owned system.</p>
+        <p class="pricing-console-note">Each price stays anchored to the full assembled stack it replaces. One owned system costs less than half that stack.</p>
         <nav class="pricing-related-links" aria-label="Related pricing pages">
           {pricingLinks.map((link) => (
             <a href={link.href}>{link.label}</a>
@@ -241,9 +242,9 @@ const faqSchema = {
   <section class="pricing-roi-section elev" aria-labelledby="pricing-roi-title">
     <div class="container pricing-roi-grid">
       <header>
-        <p class="section-tag">Why this pencils</p>
-        <h2 id="pricing-roi-title" class="h-section">Premium pricing only works when the math is visible.</h2>
-        <p class="lede">Ascend is not priced for hobby marketing. It is priced for service businesses where an owned, improving system can change the year.</p>
+        <p class="section-tag">Trust belongs in the story</p>
+        <h2 id="pricing-roi-title" class="h-section">The promise travels through every chapter.</h2>
+        <p class="lede">5× attributable ROI inside 24 months — contractual floor. Then true month-to-month after day 90. We must keep earning the next month.</p>
       </header>
       <div class="roi-check-grid">
         {roiChecks.map((item) => (
@@ -263,10 +264,10 @@ const faqSchema = {
       <header class="pricing-layers-header">
         <p class="section-tag">WHAT YOU GET</p>
         <h2 class="h-section pricing-layers-h2">
-          The 8 layers that run your growth.
+          Chapter two builds the engine week by week.
         </h2>
         <p class="lede">
-          Every tier runs on the same operating system. The layers connect so improving one helps the rest.
+          We find the next revenue leak, build the fix, test it, and improve it. Humans gate high-stakes choices. <span class="label">Available now</span>
         </p>
       </header>
 
@@ -331,6 +332,8 @@ const faqSchema = {
 
   <!-- FAQ — answer-engine extractable Q&A, matches FAQPage schema -->
   <FAQ faqs={faqs} />
+
+  <div class="container"><p class="qual mono">For established service businesses with real revenue. Owners looking for a savior bounce off — and that is the right outcome.</p></div>
 
   <section class="pricing-final-cta elev" aria-labelledby="pricing-final-title">
     <div class="container pricing-final-row">

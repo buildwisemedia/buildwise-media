@@ -1,0 +1,37 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+const title = "Digital Employees for Service Businesses — Buildwise";
+const description = "Digital employees handle repeat work at payroll-pennies while people keep care, judgment, and high-stakes decisions.";
+
+const definedTerm = {
+  '@context': 'https://schema.org', '@type': 'DefinedTerm',
+  '@id': 'https://buildwisemedia.com/playbook/digital-employees#term', name: 'Digital Employees', description,
+  inDefinedTermSet: { '@type': 'DefinedTermSet', '@id': 'https://buildwisemedia.com/playbook/', name: 'Buildwise Media Playbook' },
+};
+---
+<BaseLayout title={title} description={description} jsonLd={[definedTerm]}>
+  <section class="playbook-hero"><div class="container">
+    <p class="eyebrow"><a href="/playbook" class="back-link">← Playbook</a></p>
+    <h1 class="h-hero"><em>Digital</em> employees.</h1>
+    <p class="lede">The owner is still the router for tools, people, facts, and action. Digital employees take the repeat work the owner hates at payroll-pennies, while the humans stay human.</p>
+  </div></section>
+  <section class="playbook-section elev"><div class="container">
+    <p class="section-tag">What they do</p>
+    <h2 class="h-section">Work inside the engine, with people in charge.</h2>
+    <p class="prose"><span class="label">Available now</span> A digital employee can sort intake, draft follow-up, route a lead, gather proof, and prepare a report. It is never sick, never late, never has a bad day. Humans gate high-stakes decisions.</p>
+    <p class="prose">“Payroll-pennies” prices the intelligence compared with payroll. It does not price our fee. Our fee pays for the engineering that builds, maintains, and protects the client-owned engine.</p>
+    <p class="prose">Read <a href="/playbook/what-is-a-digital-employee">the plain answer</a>, compare <a href="/playbook/digital-employees-vs-hiring">digital employees vs hiring</a>, or see the owned <a href="/system">system</a> and <a href="/fortress">fortress</a>.</p>
+    <p class="prose qual mono">For established service businesses with real revenue. Owners looking for a savior bounce off — and that is the right outcome.</p>
+  </div></section>
+  <section class="playbook-cta"><div class="container"><h2 class="h-closer">Give the repeat work a home.</h2><p class="cta-row"><a class="cta-primary" href="/revenue-leak-map" data-cta-source="playbook-digital-employees-cta-primary">Get My Free Revenue Leak Map <span class="cta-arrow">→</span></a><a class="cta-ghost" href="/book" data-cta-source="playbook-digital-employees-cta-secondary">See If We're a Fit</a></p></div></section>
+</BaseLayout>
+<style>
+.playbook-hero { padding-block: clamp(96px, 13vw, 168px) clamp(64px, 8vw, 100px); }
+.back-link { color: var(--ink-faint); } .back-link:hover { color: var(--y2); }
+.h-hero em { color: var(--y2); font-style: normal; }
+.playbook-section,.playbook-cta { padding-block: var(--section-y); }
+.playbook-section .prose { color: var(--ink-dim); font-size: 18px; line-height: 1.7; max-width: 760px; }
+.playbook-section .prose + .prose { margin-top: 18px; }
+.cta-row { display: flex; flex-wrap: wrap; gap: 16px; margin-top: 32px; }
+</style>

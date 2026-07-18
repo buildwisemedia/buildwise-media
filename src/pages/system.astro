@@ -6,8 +6,8 @@ import EarnBackCalculator from '../components/EarnBackCalculator.astro';
 import canonical from '../data/canonical.json';
 import FAQ from '../components/FAQ.astro';
 
-const title = "The 8-Layer AI Growth System for Home Services — Buildwise Media";
-const description = "See the AI growth system Buildwise installs inside home service businesses — visibility, conversion, speed-to-lead, sales ops, reputation, paid media, reporting, strategy. One owned system.";
+const title = "The Weekly AI Engine — Buildwise Media";
+const description = "Not a chatbot. We build a client-owned AI engine into your business each week, one revenue problem at a time.";
 
 const ownerLayerBodies: Record<string, string> = {
   Visibility: 'Show up when buyers search, ask AI, or compare local providers.',
@@ -59,7 +59,7 @@ const serviceSchema = {
   '@type': 'Service',
   '@id': 'https://buildwisemedia.com/system#ascend-system',
   name: 'Ascend operating system',
-  serviceType: 'Installed AI growth system and Speed-to-Lead automation for home services',
+  serviceType: 'Client-owned AI operating infrastructure for service businesses',
   provider: { '@id': 'https://buildwisemedia.com/#org' },
   areaServed: { '@type': 'Country', name: 'United States' },
   description,
@@ -83,7 +83,7 @@ const faqs = [
   },
   {
     q: 'Does the system keep up as AI changes?',
-    a: 'Yes. Ascend folds in new AI as it ships and adjusts every week toward what is working, so you do not reset your marketing every time the tools change.',
+    a: 'Yes. Each weekly build finds the next revenue leak, builds a fix, tests it, and improves it. The engine grows with the business instead of forcing a reset.',
   },
 ];
 
@@ -103,10 +103,10 @@ const faqSchema = {
   <section class="system-hero">
     <div class="container system-hero-grid">
       <div>
-        <p class="eyebrow">The system</p>
-        <h1 class="h-hero">See the AI growth system installed inside your business.</h1>
+        <p class="eyebrow">The engine · <span class="label">Available now</span></p>
+        <h1 class="h-hero">The weekly build is the product.</h1>
         <p class="hero-sub">
-          Eight layers — visibility, conversion, speed-to-lead, sales ops, reputation, paid media, reporting, strategy — wired into one owned system the Buildwise team runs for you. A lead is live for a short window; this is how none of them slip.
+          This is not a chatbot. Week after week, we build a custom AI engine into your business. We solve one real problem, then the next. Revenue is the first use case. The engine is the lasting asset.
         </p>
         <div class="system-ctas">
           <a href="/revenue-leak-map" class="cta" data-cta-source="system-hero-primary">Get My Free Revenue Leak Map<span class="cta-arrow" aria-hidden="true">→</span></a>
@@ -115,7 +115,7 @@ const faqSchema = {
       </div>
       <aside class="system-panel ops-panel">
         <div class="system-panel-head">
-          <p class="panel-label mono">Installed layer</p>
+          <p class="panel-label mono">Weekly build</p>
           <span class="ops-chip"><span class="dot green" aria-hidden="true"></span>operational</span>
         </div>
         <div class="system-orbit" aria-hidden="true">
@@ -135,10 +135,10 @@ const faqSchema = {
           </svg>
         </div>
         <ol class="system-loop">
-          <li><span>01</span> Capture baseline</li>
-          <li><span>02</span> Install owned layers</li>
-          <li><span>03</span> Clear human signoff gates</li>
-          <li><span>04</span> Show what booked weekly</li>
+          <li><span>01</span> Find the next revenue leak</li>
+          <li><span>02</span> Build the fix</li>
+          <li><span>03</span> Test with human gates</li>
+          <li><span>04</span> Improve the engine</li>
         </ol>
       </aside>
     </div>
@@ -147,9 +147,9 @@ const faqSchema = {
   <section class="speed-section elev" aria-labelledby="speed-title">
     <div class="container speed-grid">
       <header class="section-head">
-        <p class="section-tag">Speed-to-Lead automation for home services</p>
-        <h2 id="speed-title" class="h-section">The first useful reply gets the cleanest path to the job.</h2>
-        <p class="lede">Speed-to-lead means a new call, form, or booking request gets a fast next touch while the buyer still wants help. The system does not wait for the owner to leave a job site, check an inbox, or remember which source sent the lead.</p>
+        <p class="section-tag">One problem becomes one build · <span class="label">Available now</span></p>
+        <h2 id="speed-title" class="h-section">We start near cash, then keep building.</h2>
+        <p class="lede">A slow reply may be the first leak. We build the fix, test it, and learn. Next week, we move to the next leak. That loop is Ascend.</p>
       </header>
       <div class="speed-copy">
         <p>
@@ -159,7 +159,7 @@ const faqSchema = {
           The speed layer fires on day one of the install. It routes new demand into a fast first touch, then connects that touch to attribution. That connection matters. A good source can look weak when the reply is slow. A weak source can look strong when one lucky job closes.
         </p>
         <p>
-          The Buildwise team reviews the buyer-facing moves that need judgment. Offers, public copy, budget changes, and reputation replies stay behind a human signoff gate. Routine routing, lead alerts, and first-touch follow-up can run without waiting on the owner.
+          Humans gate every high-stakes choice. Offers, public copy, budget changes, and reputation replies need signoff. Routine routing, alerts, and follow-up can keep moving.
         </p>
       </div>
       <aside class="speed-panel">
@@ -197,9 +197,9 @@ const faqSchema = {
   <section class="routing-section elev" aria-labelledby="routing-title">
     <div class="container routing-grid">
       <header>
-        <p class="section-tag">Owner view</p>
-        <h2 id="routing-title" class="h-section">The work routes through the system before it routes through you.</h2>
-        <p class="lede">Ascend works because visibility, conversion, follow-up, reputation, spend, AI upgrades, and reporting stop living in separate tools and separate people's heads.</p>
+        <p class="section-tag">A team with a duty · <span class="label">Available now</span></p>
+        <h2 id="routing-title" class="h-section">You own the engine. We are responsible for the work.</h2>
+        <p class="lede">We are the dedicated engineering team that builds, maintains, and secures an engine the client owns. Security is engineered, tested, and monitored. Humans still approve high-stakes moves.</p>
       </header>
       <div class="routing-board">
         <div class="routing-layer-grid">
@@ -237,6 +237,8 @@ const faqSchema = {
 
   <!-- FAQ — answer-engine extractable Q&A, matches FAQPage schema -->
   <FAQ faqs={faqs} />
+
+  <div class="container"><p class="qual mono">For established service businesses with real revenue. Owners looking for a savior bounce off — and that is the right outcome.</p></div>
 
   <section class="system-final elev">
     <div class="container final-row">

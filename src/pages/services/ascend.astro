@@ -3,8 +3,8 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 import canonical from '../../data/canonical.json';
 import FAQ from '../../components/FAQ.astro';
 
-const title = "Ascend — The Installed AI Growth System Buildwise Runs";
-const description = "Ascend is the owned AI growth system Buildwise installs and operates for service businesses: follow-up, visibility, reputation, reporting, weekly proof, and frontier AI upgrades.";
+const title = "Ascend — The Weekly AI Engine Build";
+const description = "Ascend is a client-owned AI engine built every week for $7K/mo + $15K install, under half an assembled stack.";
 
 const ascend = canonical.products.ascend;
 const pro = canonical.products.ascend_pro;
@@ -30,9 +30,9 @@ const layers = canonical.products.ascend.eight_layers.map((raw: string, i: numbe
 });
 
 const productSpecs = [
-  { label: 'Install', value: '30 days', body: 'Dashboard, tracking, CRM routes, reports, and first operating cadence live.', tone: 'cyan' },
+  { label: 'Install', value: '$15K', body: 'The first engine parts, proof paths, and operating rhythm are assembled.', tone: 'cyan' },
   { label: 'Run', value: 'weekly', body: 'Buildwise operates the system, clears gates, and adjusts what underperforms.', tone: 'green' },
-  { label: 'Prove', value: 'Day 1', body: 'Spend, leads, booked work, and next moves live in the same proof rhythm.', tone: 'yellow' },
+  { label: 'Price', value: '$7K/mo', body: 'Less than half the assembled stack it replaces. The fee pays for engineering.', tone: 'yellow' },
   { label: 'Own', value: '100%', body: 'Code, data, accounts, customer list, and built assets stay in your business.', tone: 'orange' },
 ];
 
@@ -117,7 +117,7 @@ const faqs = [
   },
   {
     q: 'How do I start with Ascend?',
-    a: `There are three ways in. Ascend Pilot is ${pilot.price.oneshot_display} one-time — a 45-day proof sprint that covers your install. Ascend is ${ascend.price.recurring_display} plus install, waived for Pilot graduates. Ascend Pro is ${pro.price.recurring_display} for multi-location operators. The fit diagnostic shows which one matches your market.`,
+    a: `Pilot is the only door in. It is ${pilot.price.oneshot_display} to prove one problem in 45 days and covers the ${ascend.price.oneshot_display} Ascend install. Graduates enter Ascend at ${ascend.price.recurring_display}. Each price is less than half the assembled stack it replaces.`,
   },
 ];
 
@@ -137,10 +137,10 @@ const faqSchema = {
   <section class="ascend-hero">
     <div class="container ascend-hero-grid">
       <div>
-        <p class="eyebrow">Ascend · the operating system</p>
-        <h1 class="h-hero">The installed AI growth system Buildwise runs for you.</h1>
+        <p class="eyebrow">Ascend · the weekly engine build</p>
+        <h1 class="h-hero">The weekly build is the product.</h1>
         <p class="hero-sub">
-          Ascend is installed on your domain, run by Buildwise, and owned by your business. It handles the revenue work that usually falls back on the owner, then keeps absorbing useful AI upgrades as the technology improves.
+          The owner is still the router between tools, people, facts, and action. For $7K/mo + $15K install, our dedicated engineering team builds, maintains, and secures an engine you own. It costs less than half the assembled stack it replaces.
         </p>
         <div class="hero-ctas">
           <a href="/book" class="cta" data-cta-source="ascend-hero">See If We're a Fit<span class="cta-arrow" aria-hidden="true">→</span></a>
@@ -154,7 +154,7 @@ const faqSchema = {
           <span class="ops-chip"><span class="dot green" aria-hidden="true"></span>run for you</span>
         </div>
         <p class="panel-number">8</p>
-        <p class="panel-copy">layers installed, measured, upgraded, and adjusted as one operating rhythm.</p>
+        <p class="panel-copy"><strong>Available now:</strong> layers built, measured, and improved as one weekly engine. Humans gate high-stakes decisions.</p>
         <div class="panel-bars" aria-hidden="true">
           {layers.map((layer) => <span class={`tone-${layer.tone}`} title={layer.name}></span>)}
         </div>
@@ -197,8 +197,8 @@ const faqSchema = {
     <div class="container product-spec-grid">
       <header class="section-head">
         <p class="section-tag">Product specification</p>
-        <h2 id="product-spec-title" class="h-section">Ascend is what runs every week.</h2>
-        <p class="lede">The workflows, CRM routes, attribution, AI routing, and weekly decision cadence are one installed system. Buildwise operates it; your business owns it.</p>
+        <h2 id="product-spec-title" class="h-section">Week after week, the engine gains a new part.</h2>
+        <p class="lede"><span class="label">Available now</span> We build the next useful workflow, test it, and join it to what is already running. Humans approve high-stakes choices. Your business owns the whole engine.</p>
       </header>
       <div class="spec-grid">
         {productSpecs.map((spec) => (
@@ -236,7 +236,7 @@ const faqSchema = {
       <header class="section-head">
         <p class="section-tag">How it runs</p>
         <h2 class="h-section">Audit. Install. Run.</h2>
-        <p class="lede">The install is the start. The weekly operating rhythm is what creates the gap.</p>
+        <p class="lede">The install is the start. The weekly build is the product. Each solved problem makes the next one easier.</p>
       </header>
       <ol class="process-list" role="list">
         {phases.map((phase) => (
@@ -255,7 +255,7 @@ const faqSchema = {
       <header class="section-head">
         <p class="section-tag">Risk reversal</p>
         <h2 class="h-section">The asset stays in your hands.</h2>
-        <p class="lede">Ascend is not a black box. The system is yours, the reporting is visible from Day 1, and the engagement earns its place every month.</p>
+        <p class="lede">Ascend is not a black box. You own it. The 5× attributable ROI inside 24 months is a contractual floor. The work is true month-to-month after day 90.</p>
       </header>
       <ul class="commitment-list" role="list">
         {commitments.map((item) => (
@@ -269,7 +269,7 @@ const faqSchema = {
     <div class="container">
       <header class="section-head">
         <p class="section-tag">Pricing snapshot</p>
-        <h2 class="h-section">Three ways to enter Ascend.</h2>
+        <h2 class="h-section">One ladder, priced against the stack.</h2>
       </header>
       <div class="offer-grid">
         {offers.map((offer) => (
@@ -280,6 +280,7 @@ const faqSchema = {
           </article>
         ))}
       </div>
+      <p class="lede">Pilot proves one problem. Ascend builds the engine weekly. Pro builds the territory fortress. Every price is less than half the assembled stack it replaces.</p>
       <p class="pricing-link"><a href="/pricing" class="cta-ghost" data-cta-source="ascend-pricing">See full pricing<span class="cta-arrow" aria-hidden="true">→</span></a></p>
     </div>
   </section>
@@ -291,7 +292,7 @@ const faqSchema = {
     <div class="container ascend-cta-row">
       <div>
         <h2 class="h-closer">Find the leak before you buy the system.</h2>
-        <p class="lede" style="margin-top: 16px;">The fit diagnostic starts the Market Dominance Dossier we use on the discovery call.</p>
+        <p class="qual mono" style="margin-top: 16px;">For established service businesses with real revenue. Owners looking for a savior bounce off — and that is the right outcome.</p>
       </div>
       <a href="/book" class="cta" data-cta-source="ascend-final">See If We're a Fit<span class="cta-arrow" aria-hidden="true">→</span></a>
     </div>

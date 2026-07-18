@@ -2,8 +2,8 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import FAQ from '../components/FAQ.astro';
 
-const title = "How It Works — Buildwise Media";
-const description = "Ascend installs in 30 days. Audit, Install, Run — three phases, one 8-layer revenue operating system.";
+const title = "How the Weekly AI Build Works — Buildwise Media";
+const description = "Each week we find the next revenue leak, build a fix, test it, and improve your client-owned AI engine.";
 
 const breadcrumb = {
   '@context': 'https://schema.org',
@@ -17,31 +17,31 @@ const breadcrumb = {
 const howTo = {
   '@context': 'https://schema.org',
   '@type': 'HowTo',
-  name: 'How Ascend installs',
-  description: 'Three-phase install of the 8-layer revenue operating system.',
+  name: 'How the weekly Ascend build works',
+  description: 'Find the next revenue leak, build and test the fix, then improve the owned engine.',
   totalTime: 'P30D',
   step: [
-    { '@type': 'HowToStep', name: 'Audit', text: 'Map current pipeline, channels, integrations, and conversion path against a captured baseline.' },
-    { '@type': 'HowToStep', name: 'Install', text: 'Website, conversion paths, follow-up, attribution, reporting, and weekly operating rhythm installed in parallel.' },
-    { '@type': 'HowToStep', name: 'Operate', text: 'Weekly connector audit, monthly creative refresh, quarterly system review. Receipts every Monday.' },
+    { '@type': 'HowToStep', name: 'Find', text: 'Find the next revenue leak against a captured baseline.' },
+    { '@type': 'HowToStep', name: 'Build and test', text: 'Build the fix, connect it to the owned engine, and test it behind human gates.' },
+    { '@type': 'HowToStep', name: 'Improve', text: 'Read the result, improve the engine, and choose the next leak.' },
   ],
 };
 
 const phases = [
   {
-    n: '01', name: 'Audit', when: 'Day 0 → Day 5',
-    body: 'Before we build anything, we map what already exists. The current pipeline, every active channel, every integration, every conversion path. Each finding goes against a <a href="/playbook/captured-baseline">captured baseline</a> — the starting-point number we\'ll compute the delta against. The audit ships as a written document. You keep it whether you engage or not.',
-    deliverables: ['Pipeline map (current state)', 'Channel + spend audit', 'Integration health report', 'Captured baseline document'],
+    n: '01', name: 'Find', when: 'Start with the leak',
+    body: 'We map the path from demand to cash. Then we compare it with a <a href="/playbook/captured-baseline">captured baseline</a>. The next build starts with the leak closest to revenue, not the loudest idea in the room.',
+    deliverables: ['Current pipeline map', 'Revenue leak ranked', 'Baseline captured', 'Next build chosen'],
   },
   {
-    n: '02', name: 'Install', when: 'Day 5 → Day 30',
-    body: 'Website, conversion paths, follow-up, attribution, reporting, and weekly operating rhythm are installed in parallel, not in sequence. The system is operational on Day 30.',
-    deliverables: ['Multi-page website built for human + AI discovery', 'Conversion paths + tracking infrastructure', 'Lead attribution pipeline', 'Weekly operating dashboard'],
+    n: '02', name: 'Build + Test', when: 'Ship one useful fix',
+    body: 'We build the fix into your owned engine. We test it against the baseline. Humans gate high-stakes decisions before anything buyer-facing goes live.',
+    deliverables: ['Working fix installed', 'Tracking connected', 'Human approval gate', 'Result measured'],
   },
   {
-    n: '03', name: 'Operate', when: 'Day 30 → ongoing',
-    body: 'Weekly connector audit, monthly creative refresh, quarterly system review. Every Monday morning a performance digest lands — what spent, what closed, what\'s next. The system runs whether you watch it or not. The relationship is month-to-month from the first day.',
-    deliverables: ['Weekly performance report', 'Connector audit (Mon 4am ET)', 'Monthly creative drop', 'Quarterly system review'],
+    n: '03', name: 'Improve', when: 'Repeat each week',
+    body: 'We read what happened, improve the fix, and choose the next leak. The engine gains another working part. That weekly build is the product.',
+    deliverables: ['Result reviewed', 'Fix improved', 'Engine maintained', 'Next leak queued'],
   },
 ];
 
@@ -49,20 +49,20 @@ const phases = [
 // alongside the rendered <FAQ> section so answer engines see matching content.
 const faqs = [
   {
-    q: 'How long does it take to get the system live?',
-    a: 'Thirty days. The work runs in three phases — Audit (Day 0 to 5), Install (Day 5 to 30), and Operate (Day 30 onward). The system is operational on Day 30.',
+    q: 'What happens in each weekly build?',
+    a: 'We find the next revenue leak, build and test the fix, then improve the owned engine. Humans approve high-stakes moves.',
   },
   {
-    q: 'What happens in the first 30 days?',
-    a: 'First we audit: we map your current pipeline, channels, and conversion paths against a captured baseline, delivered as a written document you keep either way. Then we install the website, conversion paths, follow-up, attribution, and reporting in parallel, so the system is live by Day 30.',
+    q: 'Where does the first build start?',
+    a: 'It starts with a captured baseline and the revenue leak closest to cash. That gives the first fix a clear job and a number to beat.',
   },
   {
-    q: 'Is there a long discovery or strategy phase first?',
-    a: 'No. There is no 30-day discovery phase that ends in a deck. Day 0 starts with the audit, strategy lives inside the running system, and every claim audits against the baseline.',
+    q: 'Is this a chatbot or a strategy project?',
+    a: 'No. It is client-owned AI operating infrastructure. Strategy lives in the weekly build, and each claim is checked against the baseline.',
   },
   {
-    q: 'What does the weekly rhythm look like after launch?',
-    a: 'Every Monday a performance digest lands — what spent, what closed, what is next. Underneath, a weekly connector audit, monthly creative refresh, and quarterly system review keep it improving. It runs whether you watch it or not, month-to-month from the first day.',
+    q: 'How do Pilot, Ascend, and Pro connect?',
+    a: 'Pilot proves one problem. Ascend builds the engine each week. Pro builds the territory fortress. Ascend and Pro are true month-to-month after day 90.',
   },
 ];
 
@@ -84,12 +84,12 @@ const faqSchema = {
       <div class="how-hero-copy">
         <p class="eyebrow">How It Works</p>
         <h1 class="h-hero">
-          Three moves.<br/>
-          <em>30</em> days.<br/>
-          One operating system.
+          One engine.<br/>
+          <em>Built</em> every week.<br/>
+          Problem by problem.
         </h1>
         <p class="hero-sub">
-          Most agencies sell a project. We install custom AI that runs the work: baseline first, system live in 30 days, weekly proof after that.
+          The weekly build is the product. We find the next revenue leak, build the fix, test it, and improve what runs. This is client-owned AI operating infrastructure, with revenue as the first use case.
         </p>
         <div class="hero-ctas">
           <a href="/revenue-leak-map" class="cta" data-cta-source="how-it-works-hero-primary">Get My Free Revenue Leak Map<span class="cta-arrow" aria-hidden="true">→</span></a>
@@ -166,8 +166,8 @@ const faqSchema = {
 
   <section class="diff-section">
     <div class="container">
-      <p class="section-tag">What makes this different</p>
-      <h2 class="h-section">No <em>"strategy"</em> phase that produces a deck.</h2>
+      <p class="section-tag">The product · <span class="label">Available now</span></p>
+      <h2 class="h-section">A weekly loop that leaves an owned engine behind.</h2>
       <div class="diff-cols">
         <div class="diff-col">
           <p class="diff-label mono">Most agencies</p>
@@ -181,10 +181,10 @@ const faqSchema = {
         <div class="diff-col">
           <p class="diff-label mono diff-label--ours">Buildwise Media</p>
           <ul class="diff-list">
-            <li>30 days from diagnostic to operational system</li>
-            <li>Strategy lives inside the system, not in a deck</li>
-            <li>One stack, one source of truth, one dashboard</li>
-            <li>Every claim audits against a captured baseline</li>
+            <li>Find the next leak closest to revenue</li>
+            <li>Build and test one useful fix</li>
+            <li>Humans gate high-stakes decisions</li>
+            <li>Improve the client-owned engine each week</li>
           </ul>
         </div>
       </div>
@@ -195,11 +195,13 @@ const faqSchema = {
   <!-- FAQ — answer-engine extractable Q&A, matches FAQPage schema -->
   <FAQ faqs={faqs} />
 
+  <div class="container"><p class="qual mono">For established service businesses with real revenue. Owners looking for a savior bounce off — and that is the right outcome.</p></div>
+
   <section class="how-cta elev">
     <div class="container ascend-cta-row">
       <div class="how-cta-copy">
-        <h2 class="h-closer">Ready to <em>start?</em></h2>
-        <p class="lede" style="margin-top: 16px;">Day 0 starts with the audit. No commitment to keep going.</p>
+        <h2 class="h-closer">Start with one problem. Build toward a fortress.</h2>
+        <p class="lede" style="margin-top: 16px;">Pilot proves one problem. Ascend builds the engine each week. Pro turns that engine into a territory fortress.</p>
         <!-- @r020:F2 proof: captured baseline to live system to weekly proof backs the close before the CTA -->
         <figure class="scene-fig close-proof-fig">
           <svg viewBox="0 0 420 108" role="img" aria-label="Captured baseline becomes a live system and weekly proof.">

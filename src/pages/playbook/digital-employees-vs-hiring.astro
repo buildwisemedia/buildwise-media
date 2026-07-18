@@ -1,0 +1,19 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+const title = "Digital Employees vs Hiring a Human — Buildwise";
+const description = "Use a digital employee for repeat digital work. Hire a human for care, craft, leadership, and high-stakes judgment.";
+const definedTerm = { '@context': 'https://schema.org', '@type': 'DefinedTerm', '@id': 'https://buildwisemedia.com/playbook/digital-employees-vs-hiring#term', name: 'Digital Employees vs Hiring', description, inDefinedTermSet: { '@type': 'DefinedTermSet', '@id': 'https://buildwisemedia.com/playbook/', name: 'Buildwise Media Playbook' } };
+---
+<BaseLayout title={title} description={description} jsonLd={[definedTerm]}>
+  <section class="playbook-hero"><div class="container"><p class="eyebrow"><a href="/playbook" class="back-link">← Playbook</a></p><h1 class="h-hero"><em>Digital employees</em> vs hiring.</h1><p class="lede">Use a digital employee when the work is repeatable, digital, and easy for a human to check. Hire a person when the work needs care, craft, leadership, trust, or judgment in the room.</p></div></section>
+  <section class="playbook-section elev"><div class="container"><p class="section-tag">The fit test</p><h2 class="h-section">Give each kind of work to the right worker.</h2>
+    <p class="prose"><span class="label">Available now</span> Digital employees fit intake sorting, first drafts, reminders, routing, record updates, and report prep. Humans gate high-stakes decisions and handle the moments where context or care can change the answer.</p>
+    <p class="prose">This is not “replace your team.” People have limits, and those limits are human. A digital employee can be never sick, never late, never have a bad day. A human can build trust, lead, notice nuance, and own a hard call.</p>
+    <p class="prose">Payroll-pennies prices the intelligence, not the engineering fee. The fee builds and runs the owned engine. Explore <a href="/playbook/digital-employees">Digital Employees</a>, the <a href="/playbook/what-is-a-digital-employee">plain Q&amp;A</a>, the <a href="/system">system</a>, and the <a href="/fortress">fortress</a>.</p>
+    <p class="prose qual mono">For established service businesses with real revenue. Owners looking for a savior bounce off — and that is the right outcome.</p>
+  </div></section>
+  <section class="playbook-cta"><div class="container"><h2 class="h-closer">Map the work before you staff it.</h2><p class="cta-row"><a class="cta-primary" href="/revenue-leak-map" data-cta-source="playbook-digital-employees-vs-hiring-cta-primary">Get My Free Revenue Leak Map <span class="cta-arrow">→</span></a><a class="cta-ghost" href="/book" data-cta-source="playbook-digital-employees-vs-hiring-cta-secondary">See If We're a Fit</a></p></div></section>
+</BaseLayout>
+<style>
+.playbook-hero { padding-block: clamp(96px, 13vw, 168px) clamp(64px, 8vw, 100px); } .back-link { color: var(--ink-faint); } .back-link:hover { color: var(--y2); } .h-hero em { color: var(--y2); font-style: normal; } .playbook-section,.playbook-cta { padding-block: var(--section-y); } .playbook-section .prose { color: var(--ink-dim); font-size: 18px; line-height: 1.7; max-width: 760px; } .playbook-section .prose + .prose { margin-top: 18px; } .cta-row { display: flex; flex-wrap: wrap; gap: 16px; margin-top: 32px; }
+</style>
