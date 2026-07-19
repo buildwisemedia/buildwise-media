@@ -1,0 +1,1571 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>The 4 Steps to a Business That Runs Without You | Buildwise Media</title>
+  <meta name="description" content="Every service business runs on one of four steps — from doing everything yourself to a business that runs without you. Find your step, see the real numbers, and learn how one system replaces ten apps.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&amp;family=JetBrains+Mono:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet">
+  <style>
+    :root {
+      color-scheme: dark;
+      --canvas: #050507;
+      --card: #0A0A0E;
+      --hairline: #1A1A20;
+      --text: #ECECEC;
+      --secondary: #B5B7C0;
+      --muted: #525560;
+      --y2: #F0FF00;
+      --y1: #B8FF3A;
+      --page: 1320px;
+      --pad: clamp(20px, 4vw, 64px);
+    }
+
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+    }
+
+    html {
+      background: var(--canvas);
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      min-width: 320px;
+      overflow-x: hidden;
+      background: var(--canvas);
+      color: var(--text);
+      font-family: "Inter", sans-serif;
+      font-size: 16px;
+      line-height: 1.55;
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
+    }
+
+    a,
+    button {
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    a:focus-visible,
+    button:focus-visible {
+      outline: 2px solid var(--y2);
+      outline-offset: 4px;
+    }
+
+    .shell {
+      width: min(100%, var(--page));
+      margin-inline: auto;
+      padding-inline: var(--pad);
+    }
+
+    .mono {
+      margin: 0;
+      color: var(--muted);
+      font-family: "JetBrains Mono", monospace;
+      font-size: 10px;
+      font-weight: 500;
+      letter-spacing: 0.18em;
+      line-height: 1.4;
+      text-transform: uppercase;
+    }
+
+    .mono--accent {
+      color: var(--y2);
+    }
+
+    .mono--proof,
+    .mono--nav,
+    .overnight-proof__caption,
+    .proof-stat__label,
+    .proof-stats__source,
+    .footer .mono {
+      color: var(--secondary);
+      font-size: 12px;
+    }
+
+    .masthead {
+      position: relative;
+      z-index: 2;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      min-height: 68px;
+      border-bottom: 1px solid var(--hairline);
+    }
+
+    .masthead__home,
+    .masthead__lockup {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .masthead__lockup {
+      display: block;
+      line-height: 0;
+    }
+
+    .masthead__lockup img {
+      display: block;
+      width: 170px;
+      height: auto;
+    }
+
+    .status-signal {
+      width: 6px;
+      height: 6px;
+      flex: 0 0 auto;
+      background: var(--y1);
+    }
+
+    .hero {
+      position: relative;
+      isolation: isolate;
+      min-height: min(720px, calc(100svh - 68px));
+      border-bottom: 1px solid var(--hairline);
+    }
+
+    /* <!-- @r020:identity: locked BWM hero grid texture, 32px at 2.5% white, hero-only, per brand/BWM-Visual-Direction-Locked.md §1 --> */
+    .hero::before {
+      position: absolute;
+      z-index: -1;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(236, 236, 236, 0.025) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(236, 236, 236, 0.025) 1px, transparent 1px);
+      background-size: 32px 32px;
+      content: "";
+      pointer-events: none;
+    }
+
+    .hero__inner {
+      display: grid;
+      grid-template-columns: minmax(0, 1.42fr) minmax(280px, 0.58fr);
+      align-items: start;
+      gap: clamp(48px, 8vw, 132px);
+      min-height: inherit;
+      padding-block: clamp(64px, 6vw, 84px) 56px;
+    }
+
+    .hero__title {
+      max-width: 11ch;
+      margin: 22px 0 0;
+      font-size: clamp(44px, 6vw, 88px);
+      font-stretch: condensed;
+      font-weight: 800;
+      letter-spacing: -0.06em;
+      line-height: 0.83;
+      text-wrap: balance;
+    }
+
+    .hero__title span {
+      color: var(--y2);
+    }
+
+    .hero__lede {
+      max-width: 37ch;
+      margin: 0;
+      padding: 22px 0 2px;
+      border-top: 1px solid var(--y2);
+      color: var(--secondary);
+      font-size: clamp(15px, 1.4vw, 18px);
+      font-weight: 400;
+      line-height: 1.62;
+    }
+
+    .hero__category {
+      max-width: 37ch;
+      margin: 16px 0 0;
+      color: var(--text);
+      font-size: clamp(15px, 1.3vw, 17px);
+      font-weight: 500;
+      line-height: 1.55;
+    }
+
+    .hero__meta {
+      max-width: 54ch;
+      margin-top: 14px;
+    }
+
+    .hero__stairs {
+      display: block;
+      width: min(100%, 430px);
+      height: auto;
+      margin-top: 24px;
+      overflow: visible;
+    }
+
+    .hero__stairs .stair-front,
+    .hero__stairs .stair-side,
+    .hero__stairs .stair-top {
+      stroke: rgba(236, 236, 236, 0.24);
+      stroke-width: 1;
+      vector-effect: non-scaling-stroke;
+    }
+
+    .hero__stairs .stair-front {
+      fill: rgba(236, 236, 236, 0.06);
+    }
+
+    .hero__stairs .stair-side {
+      fill: rgba(236, 236, 236, 0.08);
+    }
+
+    .hero__stairs .stair-top {
+      fill: rgba(236, 236, 236, 0.1);
+    }
+
+    .hero__stairs .stair-verdict {
+      fill: var(--y2);
+      stroke: var(--y2);
+      stroke-width: 1;
+      vector-effect: non-scaling-stroke;
+    }
+
+    .hero__stairs .stair-verdict--side {
+      fill-opacity: 0.72;
+    }
+
+    .hero__stairs .stair-verdict--top {
+      fill-opacity: 0.86;
+    }
+
+    .hero__stairs .stair-label {
+      fill: var(--secondary);
+      font-family: "JetBrains Mono", monospace;
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: 0.15em;
+    }
+
+    .hero__stairs .stair-label--verdict {
+      fill: var(--canvas);
+    }
+
+    .hero__actions {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 18px;
+      margin-top: 22px;
+    }
+
+    .hero__primary-action {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 44px;
+      padding: 12px 16px;
+      border: 1px solid var(--y2);
+      background: var(--y2);
+      color: var(--canvas);
+      font-family: "JetBrains Mono", monospace;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      line-height: 1.35;
+      text-decoration: none;
+      text-transform: uppercase;
+      transition: background-color 160ms ease, border-color 160ms ease;
+    }
+
+    .hero__primary-action:hover {
+      border-color: var(--text);
+      background: var(--text);
+    }
+
+    .hero__secondary-action {
+      color: var(--secondary);
+      font-family: "JetBrains Mono", monospace;
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-decoration-color: var(--muted);
+      text-underline-offset: 5px;
+      text-transform: uppercase;
+    }
+
+    .hero__secondary-action:hover {
+      color: var(--y2);
+    }
+
+    .ladder {
+      padding-block: clamp(96px, 13vw, 196px);
+      overflow: hidden;
+    }
+
+    .ladder__label {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: clamp(58px, 8vw, 112px);
+    }
+
+    .ladder__label::after {
+      width: 100%;
+      height: 1px;
+      background: var(--hairline);
+      content: "";
+    }
+
+    .step {
+      --offset: 0px;
+      position: relative;
+      display: grid;
+      grid-template-columns: clamp(150px, 18vw, 236px) minmax(0, 1fr);
+      width: calc(100% - var(--offset));
+      margin-left: var(--offset);
+      background: var(--card);
+      border-top: 1px solid var(--y2);
+      border-bottom: 1px solid var(--hairline);
+    }
+
+    .step + .step {
+      margin-top: clamp(44px, 6vw, 84px);
+    }
+
+    .step--2 {
+      --offset: clamp(44px, 6vw, 86px);
+    }
+
+    .step--3 {
+      --offset: clamp(88px, 12vw, 172px);
+    }
+
+    .step--4 {
+      --offset: clamp(132px, 18vw, 258px);
+    }
+
+    .step::before {
+      position: absolute;
+      top: -1px;
+      right: 100%;
+      width: var(--offset);
+      height: 1px;
+      background: var(--y2);
+      content: "";
+    }
+
+    .step::after {
+      position: absolute;
+      top: calc(-1 * clamp(44px, 6vw, 84px));
+      right: 100%;
+      width: 1px;
+      height: clamp(44px, 6vw, 84px);
+      background: var(--y2);
+      content: "";
+    }
+
+    .step--1::after {
+      display: none;
+    }
+
+    .step__index {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      min-height: 100%;
+      padding: clamp(22px, 3vw, 38px);
+      border-right: 1px solid var(--hairline);
+    }
+
+    .step__number {
+      margin: 24px 0 0 -0.075em;
+      color: var(--text);
+      font-size: clamp(104px, 14vw, 212px);
+      font-stretch: condensed;
+      font-weight: 800;
+      letter-spacing: -0.085em;
+      line-height: 0.72;
+    }
+
+    .step__content {
+      max-width: 740px;
+      padding: clamp(40px, 6vw, 80px) clamp(28px, 6vw, 84px) clamp(46px, 7vw, 90px);
+    }
+
+    .step__title {
+      max-width: 15ch;
+      margin: 0 0 clamp(28px, 4vw, 46px);
+      font-size: clamp(40px, 5.5vw, 72px);
+      font-stretch: condensed;
+      font-weight: 800;
+      letter-spacing: -0.055em;
+      line-height: 0.9;
+      text-wrap: balance;
+    }
+
+    .step__body {
+      display: grid;
+      gap: 18px;
+      max-width: 62ch;
+    }
+
+    .step__body p {
+      margin: 0;
+      color: var(--secondary);
+      font-size: clamp(14px, 1.3vw, 16px);
+      font-weight: 400;
+      line-height: 1.7;
+    }
+
+    .step__body p:first-child {
+      color: var(--text);
+      font-size: clamp(16px, 1.5vw, 19px);
+      font-weight: 500;
+    }
+
+    .field-label {
+      color: var(--text);
+      font-weight: 600;
+    }
+
+    .step__signal {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-top: 30px;
+    }
+
+    .overnight-proof {
+      margin: clamp(42px, 6vw, 68px) 0 0;
+      padding-block: clamp(24px, 4vw, 38px) 22px;
+      border-top: 1px solid var(--hairline);
+      border-bottom: 1px solid var(--hairline);
+    }
+
+    .overnight-proof__heading {
+      display: flex;
+      align-items: flex-end;
+      gap: clamp(18px, 3vw, 32px);
+      margin-bottom: 20px;
+    }
+
+    .overnight-proof__total {
+      color: var(--text);
+      font-size: clamp(36px, 4vw, 48px);
+      font-stretch: condensed;
+      font-weight: 800;
+      letter-spacing: -0.06em;
+      line-height: 0.82;
+    }
+
+    .overnight-proof__title {
+      padding-bottom: 2px;
+    }
+
+    .overnight-proof__chart {
+      display: block;
+      width: 100%;
+      height: auto;
+      overflow: visible;
+    }
+
+    .overnight-proof__chart .axis-line {
+      stroke: var(--hairline);
+      stroke-width: 1;
+      vector-effect: non-scaling-stroke;
+    }
+
+    .overnight-proof__chart .bar-front,
+    .overnight-proof__chart .bar-side,
+    .overnight-proof__chart .bar-top {
+      stroke: rgba(236, 236, 236, 0.24);
+      stroke-width: 1;
+      vector-effect: non-scaling-stroke;
+    }
+
+    .overnight-proof__chart .bar-front {
+      fill: rgba(236, 236, 236, 0.06);
+    }
+
+    .overnight-proof__chart .bar-side {
+      fill: rgba(236, 236, 236, 0.08);
+    }
+
+    .overnight-proof__chart .bar-top {
+      fill: rgba(236, 236, 236, 0.1);
+    }
+
+    .overnight-proof__chart .verdict-front,
+    .overnight-proof__chart .verdict-side,
+    .overnight-proof__chart .verdict-top {
+      fill: var(--y2);
+      stroke: var(--y2);
+      stroke-width: 1;
+      vector-effect: non-scaling-stroke;
+    }
+
+    .overnight-proof__chart .verdict-side {
+      fill-opacity: 0.72;
+    }
+
+    .overnight-proof__chart .verdict-top {
+      fill-opacity: 0.86;
+    }
+
+    .overnight-proof__chart .axis-label,
+    .overnight-proof__chart .verdict-label {
+      font-family: "JetBrains Mono", monospace;
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+    }
+
+    .overnight-proof__chart .axis-label {
+      fill: var(--muted);
+    }
+
+    .overnight-proof__chart .verdict-label {
+      fill: var(--y2);
+    }
+
+    .overnight-proof__chart .verdict-line {
+      fill: none;
+      stroke: var(--y2);
+      stroke-width: 1;
+      vector-effect: non-scaling-stroke;
+    }
+
+    .overnight-proof__caption {
+      margin-top: 12px;
+    }
+
+    .diagnostic {
+      padding-block: clamp(88px, 12vw, 168px);
+      border-top: 1px solid var(--hairline);
+      border-bottom: 1px solid var(--hairline);
+    }
+
+    .diagnostic__grid {
+      display: grid;
+      grid-template-columns: minmax(0, 0.72fr) minmax(420px, 1.28fr);
+      gap: clamp(48px, 9vw, 132px);
+    }
+
+    .section-title {
+      max-width: 11ch;
+      margin: 20px 0 0;
+      font-size: clamp(40px, 5.5vw, 72px);
+      font-stretch: condensed;
+      font-weight: 800;
+      letter-spacing: -0.055em;
+      line-height: 0.9;
+      text-wrap: balance;
+    }
+
+    .question {
+      margin: 0 0 28px;
+      color: var(--text);
+      font-size: clamp(20px, 2.4vw, 30px);
+      font-weight: 600;
+      line-height: 1.2;
+    }
+
+    .answers {
+      display: grid;
+      border-top: 1px solid var(--y2);
+    }
+
+    .answer {
+      position: relative;
+      display: grid;
+      grid-template-columns: 52px minmax(0, 1fr);
+      align-items: center;
+      gap: 18px;
+      width: 100%;
+      min-height: 92px;
+      padding: 18px 0;
+      border: 0;
+      border-bottom: 1px solid var(--hairline);
+      background: transparent;
+      color: var(--secondary);
+      font: inherit;
+      text-align: left;
+      cursor: pointer;
+      transition: background-color 160ms ease, color 160ms ease, box-shadow 160ms ease;
+    }
+
+    .answer:hover,
+    .answer[aria-pressed="true"] {
+      background: var(--card);
+      color: var(--text);
+      box-shadow: inset 3px 0 0 var(--y2);
+    }
+
+    .answer__vertex {
+      display: grid;
+      place-items: center;
+      width: 52px;
+      height: 52px;
+    }
+
+    .answer__vertex svg {
+      width: 18px;
+      height: 18px;
+      overflow: visible;
+    }
+
+    .answer__vertex path {
+      fill: transparent;
+      stroke: var(--y2);
+      stroke-width: 1.5;
+      vector-effect: non-scaling-stroke;
+      transition: fill 160ms ease;
+    }
+
+    .answer:hover .answer__vertex path,
+    .answer:focus-visible .answer__vertex path {
+      fill: rgba(240, 255, 0, 0.18);
+    }
+
+    .answer[aria-pressed="true"] .answer__vertex path {
+      fill: var(--y2);
+    }
+
+    .answer__text {
+      font-size: clamp(14px, 1.3vw, 16px);
+      font-weight: 500;
+      line-height: 1.5;
+    }
+
+    .diagnostic__result {
+      margin-top: 24px;
+      padding: 24px;
+      border-top: 1px solid var(--y2);
+      border-bottom: 1px solid var(--hairline);
+      background: var(--card);
+    }
+
+    .diagnostic__result[hidden] {
+      display: none;
+    }
+
+    .diagnostic__result strong {
+      display: block;
+      color: var(--y2);
+      font-size: clamp(26px, 3vw, 38px);
+      font-stretch: condensed;
+      font-weight: 800;
+      letter-spacing: -0.04em;
+      line-height: 1;
+    }
+
+    .diagnostic__result p {
+      max-width: 50ch;
+      margin: 14px 0 0;
+      color: var(--secondary);
+      font-size: 14px;
+      line-height: 1.6;
+    }
+
+    .diagnostic__result a {
+      display: inline-block;
+      margin-top: 16px;
+      color: var(--text);
+      font-family: "JetBrains Mono", monospace;
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-decoration-color: var(--y2);
+      text-underline-offset: 5px;
+      text-transform: uppercase;
+    }
+
+    .diagnostic__result a:hover {
+      color: var(--y2);
+    }
+
+    .fit {
+      display: grid;
+      grid-template-columns: minmax(0, 0.88fr) minmax(320px, 1.12fr);
+      column-gap: clamp(56px, 11vw, 170px);
+      row-gap: 0;
+      padding-block: clamp(104px, 14vw, 196px);
+    }
+
+    .fit__copy {
+      display: grid;
+      gap: 22px;
+      align-content: start;
+      padding-top: 4px;
+    }
+
+    .fit__copy p {
+      max-width: 56ch;
+      margin: 0;
+      color: var(--secondary);
+      font-size: clamp(15px, 1.45vw, 18px);
+      line-height: 1.7;
+    }
+
+    .fit__copy p:first-child {
+      color: var(--text);
+      font-weight: 500;
+    }
+
+    .proof-stats {
+      display: grid;
+      grid-column: 1 / -1;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      margin-top: clamp(22px, 4vw, 54px);
+      border-top: 1px solid var(--hairline);
+      border-bottom: 1px solid var(--hairline);
+    }
+
+    .proof-stat {
+      min-width: 0;
+      padding: clamp(22px, 3vw, 34px) clamp(18px, 2.4vw, 30px);
+    }
+
+    .proof-stat + .proof-stat {
+      border-left: 1px solid var(--hairline);
+    }
+
+    .proof-stat__value {
+      display: block;
+      margin-bottom: 18px;
+      color: var(--text);
+      font-size: clamp(36px, 4vw, 48px);
+      font-stretch: condensed;
+      font-weight: 800;
+      letter-spacing: -0.06em;
+      line-height: 0.82;
+      white-space: nowrap;
+    }
+
+    .proof-stat__value--phrase {
+      letter-spacing: -0.05em;
+      word-spacing: 0.08em;
+    }
+
+    .proof-stat__label {
+      max-width: 24ch;
+    }
+
+    .proof-stats__source {
+      grid-column: 1 / -1;
+      margin-top: 16px;
+    }
+
+    .trajectory {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      margin-top: 48px;
+      border-top: 1px solid var(--y2);
+      border-bottom: 1px solid var(--hairline);
+    }
+
+    .trajectory__point {
+      min-height: 116px;
+      padding: 20px;
+    }
+
+    .trajectory__point + .trajectory__point {
+      border-left: 1px solid var(--hairline);
+    }
+
+    .trajectory__point strong {
+      display: block;
+      margin-top: 20px;
+      color: var(--text);
+      font-size: 28px;
+      font-weight: 800;
+      letter-spacing: -0.05em;
+      line-height: 1;
+    }
+
+    .cta {
+      padding-bottom: clamp(56px, 8vw, 104px);
+    }
+
+    .cta__frame {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      gap: 40px;
+      align-items: end;
+      padding: clamp(32px, 6vw, 76px);
+      border-top: 1px solid var(--y2);
+      border-bottom: 1px solid var(--hairline);
+      background: var(--card);
+    }
+
+    .cta__title {
+      max-width: 16ch;
+      margin: 18px 0 14px;
+      font-size: clamp(32px, 4.8vw, 64px);
+      font-stretch: condensed;
+      font-weight: 800;
+      letter-spacing: -0.055em;
+      line-height: 0.92;
+    }
+
+    .cta__title a {
+      color: var(--y2);
+      text-decoration: none;
+    }
+
+    .cta__title a:hover {
+      color: var(--text);
+    }
+
+    .cta__support {
+      max-width: 44ch;
+      margin: 0;
+      color: var(--secondary);
+      font-size: 15px;
+    }
+
+    .cta__actions {
+      display: grid;
+      gap: 12px;
+      min-width: min(100%, 292px);
+    }
+
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 54px;
+      padding: 15px 22px;
+      border: 1px solid var(--y2);
+      color: var(--canvas);
+      background: var(--y2);
+      font-family: "JetBrains Mono", monospace;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      line-height: 1.4;
+      text-align: center;
+      text-decoration: none;
+      text-transform: uppercase;
+      transition: background-color 160ms ease, color 160ms ease;
+    }
+
+    .button:hover {
+      background: var(--text);
+      border-color: var(--text);
+    }
+
+    .button--secondary {
+      border-color: var(--y2);
+      color: var(--y2);
+      background: transparent;
+    }
+
+    .button--secondary:hover {
+      border-color: var(--y2);
+      color: var(--canvas);
+      background: var(--y2);
+    }
+
+    .footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+      padding-block: 26px 34px;
+      border-top: 1px solid var(--hairline);
+    }
+
+    .footer__links {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px 24px;
+    }
+
+    .footer a {
+      color: var(--secondary);
+      text-decoration-color: var(--muted);
+      text-underline-offset: 4px;
+    }
+
+    .footer a:hover {
+      color: var(--y2);
+    }
+
+    @media (max-width: 900px) {
+      .hero__inner,
+      .diagnostic__grid,
+      .fit,
+      .cta__frame {
+        grid-template-columns: 1fr;
+      }
+
+      .hero__inner {
+        align-content: start;
+        gap: 56px;
+      }
+
+      .hero__lede {
+        max-width: 54ch;
+      }
+
+      .step,
+      .step--2,
+      .step--3,
+      .step--4 {
+        --offset: 0px;
+        grid-template-columns: 132px minmax(0, 1fr);
+        grid-template-rows: auto auto;
+        width: 100%;
+        margin-left: 0;
+      }
+
+      .step::before,
+      .step::after {
+        display: none;
+      }
+
+      .step__index {
+        grid-column: 1;
+        grid-row: 1;
+        min-height: 116px;
+        padding: 16px 20px;
+        border-right: 1px solid var(--hairline);
+        border-bottom: 1px solid var(--hairline);
+      }
+
+      .step__number {
+        align-self: end;
+        margin: 12px 0 0 -0.05em;
+        font-size: 64px;
+        line-height: 0.72;
+      }
+
+      .step__content {
+        display: contents;
+      }
+
+      .step__title {
+        display: flex;
+        grid-column: 2;
+        grid-row: 1;
+        align-items: center;
+        max-width: none;
+        min-height: 116px;
+        margin: 0;
+        padding: 20px 28px;
+        border-bottom: 1px solid var(--hairline);
+        font-size: clamp(28px, 4.8vw, 42px);
+      }
+
+      .step__body {
+        grid-column: 1 / -1;
+        grid-row: 2;
+        max-width: none;
+        padding: 28px;
+      }
+
+      .step__signal,
+      .overnight-proof {
+        grid-column: 1 / -1;
+        margin-inline: 28px;
+      }
+
+      .diagnostic__grid {
+        gap: 58px;
+      }
+
+      .fit {
+        column-gap: 0;
+        row-gap: 0;
+      }
+
+      .fit__copy {
+        margin-top: 72px;
+      }
+
+      .cta__actions {
+        width: 100%;
+      }
+    }
+
+    @media (max-width: 620px) {
+      :root {
+        --pad: 20px;
+      }
+
+      .masthead {
+        min-height: 58px;
+      }
+
+      .hero {
+        min-height: calc(100svh - 58px);
+      }
+
+      .hero__inner {
+        padding-block: 64px 48px;
+      }
+
+      .hero__title {
+        max-width: 9ch;
+      }
+
+      .ladder {
+        padding-block: 88px;
+      }
+
+      .step,
+      .step--2,
+      .step--3,
+      .step--4 {
+        --offset: 0px;
+        grid-template-columns: 92px minmax(0, 1fr);
+      }
+
+      .step__index {
+        min-height: 104px;
+        padding: 14px;
+        border-right: 1px solid var(--hairline);
+        border-bottom: 1px solid var(--hairline);
+      }
+
+      .step__number {
+        font-size: 58px;
+      }
+
+      .step__title {
+        min-height: 104px;
+        padding: 16px 18px;
+        font-size: clamp(25px, 7vw, 32px);
+      }
+
+      .step__body {
+        padding: 24px 20px 30px;
+      }
+
+      .answer {
+        grid-template-columns: 40px minmax(0, 1fr);
+        gap: 10px;
+        min-height: 86px;
+      }
+
+      .answer__vertex {
+        width: 40px;
+        height: 40px;
+      }
+
+      .diagnostic__result {
+        padding: 20px;
+      }
+
+      .trajectory {
+        grid-template-columns: 1fr;
+      }
+
+      .trajectory__point + .trajectory__point {
+        border-top: 1px solid var(--hairline);
+        border-left: 0;
+      }
+
+      .overnight-proof__heading {
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 12px;
+      }
+
+      .overnight-proof__chart .axis-label,
+      .overnight-proof__chart .verdict-label {
+        font-size: 18px;
+      }
+
+      .proof-stats {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .proof-stat {
+        padding-inline: 14px;
+      }
+
+      .proof-stat:nth-child(3) {
+        border-left: 0;
+      }
+
+      .proof-stat:nth-child(n + 3) {
+        border-top: 1px solid var(--hairline);
+      }
+
+      .cta__frame {
+        padding: 34px 22px;
+      }
+
+      .cta__actions {
+        min-width: 0;
+      }
+
+      .footer {
+        flex-direction: column;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html {
+        scroll-behavior: auto;
+      }
+
+      *,
+      *::before,
+      *::after {
+        transition-duration: 0.01ms !important;
+      }
+    }
+  </style>
+  <link rel="canonical" href="https://buildwisemedia.com/playbook/4-steps-business-runs-without-you">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Buildwise Media">
+  <meta property="og:title" content="The 4 Steps to a Business That Runs Without You">
+  <meta property="og:description" content="Find your step, see the real numbers, and learn how one system replaces ten apps.">
+  <meta property="og:url" content="https://buildwisemedia.com/playbook/4-steps-business-runs-without-you">
+  <meta name="twitter:card" content="summary">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "The 4 Steps to a Business That Runs Without You",
+    "description": "Every service business runs on one of four steps. Find your step, see the real numbers, and learn how one system replaces ten apps.",
+    "author": { "@type": "Organization", "name": "Buildwise Media", "url": "https://buildwisemedia.com" },
+    "publisher": { "@type": "Organization", "name": "Buildwise Media", "url": "https://buildwisemedia.com" },
+    "datePublished": "2026-07-18",
+    "dateModified": "2026-07-18",
+    "mainEntityOfPage": "https://buildwisemedia.com/playbook/4-steps-business-runs-without-you",
+    "about": ["autonomous marketing for service businesses", "AI growth system"]
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "How does AI marketing work for a small service business?",
+        "acceptedAnswer": { "@type": "Answer", "text": "One system watches every lead source, answers each lead in seconds, follows up until the job books, and shows you the numbers weekly. In the last 30 days, our systems sent 1,303 follow-ups for real businesses. That's autonomous marketing for a service business: the routine work runs itself, and you steer." }
+      },
+      {
+        "@type": "Question",
+        "name": "What is an AI growth system?",
+        "acceptedAnswer": { "@type": "Answer", "text": "One custom-built system that runs your lead flow end to end — answering, booking, reminding, reporting — instead of ten apps you glue together yourself. It's built around your business, and it's live in 30 days." }
+      },
+      {
+        "@type": "Question",
+        "name": "Can one system really run my follow-ups without me?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Yes. Ours did 550 pieces of work between midnight and 7 a.m. last night. Every number on this page comes from our live dashboards." }
+      }
+    ]
+  }
+  </script>
+  <style>
+    .faq { padding-block: clamp(72px, 10vw, 140px); border-top: 1px solid var(--hairline); }
+    .faq__list { margin-top: clamp(36px, 5vw, 64px); border-top: 1px solid var(--hairline); }
+    .faq__item { display: grid; gap: 10px; padding-block: clamp(24px, 3.5vw, 40px); border-bottom: 1px solid var(--hairline); }
+    .faq__q { margin: 0; font-size: clamp(18px, 2vw, 24px); font-weight: 700; letter-spacing: -0.02em; }
+    .faq__a { max-width: 68ch; margin: 0; color: var(--secondary); font-size: clamp(14px, 1.3vw, 16px); line-height: 1.7; }
+    @media (min-width: 900px) { .faq__item { grid-template-columns: minmax(0, 1fr) minmax(0, 1.4fr); gap: clamp(24px, 4vw, 64px); } }
+  </style>
+</head>
+<body>
+  <header class="masthead shell">
+    <a class="masthead__home mono mono--nav" href="https://buildwisemedia.com/">Buildwise Media</a>
+    <!-- @r020:identity: BWM Triangulation horizontal lockup at identity scale -->
+    <a class="masthead__lockup" href="https://buildwisemedia.com/">
+      <img src="https://buildwisemedia.com/brand/lockup-horizontal.svg" alt="Buildwise Media" width="170">
+    </a>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="hero__inner shell">
+        <div>
+          <p class="mono mono--accent">Operational ladder / Field index</p>
+          <h1 class="hero__title">The 4 Steps to a Business That Runs <span>Without You</span></h1>
+        </div>
+        <div>
+          <p class="hero__lede">Every service business sits on one of these four steps. Most owners we meet are stuck on step 2. They keep getting told the fix is another app. It isn't. Find your step below.</p>
+          <p class="hero__category">We build custom AI systems that run service businesses.</p>
+          <p class="hero__meta mono mono--proof">Real numbers from our live dashboards · By the Buildwise team + our AI system · July 2026</p>
+          <!-- @r020:F4 curiosity: the four-step ascent shown before it is explained — opens the which-step-am-I loop and pulls the reader into the ladder -->
+          <svg class="hero__stairs" viewBox="0 0 380 180" role="img" aria-labelledby="hero-stairs-title hero-stairs-desc">
+            <title id="hero-stairs-title">Four ascending system steps</title>
+            <desc id="hero-stairs-desc">Four isometric blocks rise from step one to step four. Step four is highlighted.</desc>
+            <line x1="8" y1="150" x2="358" y2="150" stroke="var(--hairline)" stroke-width="1" vector-effect="non-scaling-stroke"></line>
+            <g aria-hidden="true">
+              <rect class="stair-front" x="20" y="125" width="58" height="25"></rect>
+              <polygon class="stair-side" points="78,125 86,119 86,144 78,150"></polygon>
+              <polygon class="stair-top" points="20,125 28,119 86,119 78,125"></polygon>
+
+              <rect class="stair-front" x="96" y="102" width="58" height="48"></rect>
+              <polygon class="stair-side" points="154,102 162,96 162,144 154,150"></polygon>
+              <polygon class="stair-top" points="96,102 104,96 162,96 154,102"></polygon>
+
+              <rect class="stair-front" x="172" y="76" width="58" height="74"></rect>
+              <polygon class="stair-side" points="230,76 238,70 238,144 230,150"></polygon>
+              <polygon class="stair-top" points="172,76 180,70 238,70 230,76"></polygon>
+
+              <rect class="stair-verdict" x="248" y="47" width="58" height="103"></rect>
+              <polygon class="stair-verdict stair-verdict--side" points="306,47 314,41 314,144 306,150"></polygon>
+              <polygon class="stair-verdict stair-verdict--top" points="248,47 256,41 314,41 306,47"></polygon>
+
+              <text class="stair-label" x="49" y="143" text-anchor="middle">01</text>
+              <text class="stair-label" x="125" y="143" text-anchor="middle">02</text>
+              <text class="stair-label" x="201" y="143" text-anchor="middle">03</text>
+              <text class="stair-label stair-label--verdict" x="277" y="143" text-anchor="middle">04</text>
+            </g>
+          </svg>
+          <div class="hero__actions">
+            <a class="hero__primary-action" href="https://buildwisemedia.com/revenue-leak-map">Get My Free Revenue Leak Map</a>
+            <a class="hero__secondary-action" href="#ladder">See the System</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="ladder shell" id="ladder" aria-label="The four steps">
+      <div class="ladder__label">
+        <p class="mono mono--accent">Position map / Ascending</p>
+      </div>
+
+      <!-- @r020:orientation -->
+      <article class="step step--1" id="step-1">
+        <div class="step__index">
+          <p class="mono mono--accent">Step / 01</p>
+          <p class="step__number" aria-hidden="true">01</p>
+        </div>
+        <div class="step__content">
+          <h2 class="step__title">Step 1. You are the system.</h2>
+          <div class="step__body">
+            <p>Every call, quote, and follow-up runs through you. If you don't do it, it doesn't happen.</p>
+            <p><span class="field-label">What it costs you:</span> Missed calls turn into another company's jobs. Your nights go to paperwork. There are no more hours left to give.</p>
+            <p><span class="field-label">Why people get stuck here:</span> The only plan is "work harder." That plan ran out a while ago.</p>
+          </div>
+        </div>
+      </article>
+
+      <!-- @r020:orientation -->
+      <article class="step step--2" id="step-2">
+        <div class="step__index">
+          <p class="mono mono--accent">Step / 02</p>
+          <p class="step__number" aria-hidden="true">02</p>
+        </div>
+        <div class="step__content">
+          <h2 class="step__title">Step 2. You bought tools. You're still the glue.</h2>
+          <div class="step__body">
+            <p>There's a CRM. A scheduling app. Maybe a chatbot. Each one helps a little.</p>
+            <p><span class="field-label">What it costs you:</span> Ten logins that don't talk to each other. Leads still slip through the cracks between them. You didn't get out of the work. You became the manager of the tools.</p>
+            <p><span class="field-label">Why people get stuck here:</span> Every problem gets answered with tool number eleven. More tools means more glue. And the glue is you.</p>
+          </div>
+        </div>
+      </article>
+
+      <!-- @r020:orientation -->
+      <article class="step step--3" id="step-3">
+        <div class="step__index">
+          <p class="mono mono--accent">Step / 03</p>
+          <p class="step__number" aria-hidden="true">03</p>
+        </div>
+        <div class="step__content">
+          <h2 class="step__title">Step 3. The routine work runs itself.</h2>
+          <div class="step__body">
+            <p>One system answers every lead in seconds, day or night. It follows up until the job books. It asks happy customers for reviews. It shows you the numbers every week. In the last 30 days, our systems sent 1,303 of those follow-ups and updates for real businesses. Nobody had to remember a single one.</p>
+            <p><span class="field-label">What changes:</span> You stop making it happen and start checking that it happened. Your afternoons come back.</p>
+            <p><span class="field-label">Why almost nobody gets here alone:</span> This isn't an app you can buy off a shelf. It has to be built around your business, your services, your area, your customers. That's the part we do. The team builds it, runs it, and has it live in 30 days.</p>
+          </div>
+          <div class="step__signal" aria-label="Operational step">
+            <span class="status-signal" aria-hidden="true"></span>
+            <p class="mono">Operational / Working</p>
+          </div>
+        </div>
+      </article>
+
+      <!-- @r020:orientation -->
+      <article class="step step--4" id="step-4">
+        <div class="step__index">
+          <p class="mono mono--accent">Step / 04</p>
+          <p class="step__number" aria-hidden="true">04</p>
+        </div>
+        <div class="step__content">
+          <h2 class="step__title">Step 4. The business runs. You steer.</h2>
+          <div class="step__body">
+            <p>The system spots a slow week before you feel it. It fixes small problems on its own. It brings you only the decisions an owner should make. And it keeps getting better, using your own numbers. Ours did 550 pieces of work between midnight and 7 a.m. last night. We know because we checked at breakfast.</p>
+            <p><span class="field-label">What changes:</span> You run the business by looking at it, not by carrying it.</p>
+          </div>
+          <!-- @r020:F2 proof: the system worked all night while the owner slept - drives belief toward the Leak Map CTA -->
+          <figure class="overnight-proof">
+            <figcaption class="overnight-proof__heading">
+              <strong class="overnight-proof__total">550</strong>
+              <span class="mono mono--proof overnight-proof__title">Actions while you slept / Last night</span>
+            </figcaption>
+            <!-- @r020:F2 proof: real per-hour overnight activity, verdict bar at the 4am peak - proof the system works while the owner sleeps -->
+            <svg class="overnight-proof__chart" viewBox="0 0 700 290" role="img" aria-labelledby="overnight-chart-title overnight-chart-desc">
+              <title id="overnight-chart-title">550 first-class system actions from midnight through 7 a.m. Eastern Time</title>
+              <desc id="overnight-chart-desc">Seven proportional isometric columns show 64 actions at midnight, 68 at 1 a.m., 59 at 2 a.m., 46 at 3 a.m., 107 at 4 a.m., 101 at 5 a.m., and 105 at 6 a.m. The 4 a.m. peak is highlighted.</desc>
+              <line class="axis-line" x1="26" y1="236" x2="660" y2="236"></line>
+
+              <g aria-hidden="true">
+                <rect class="bar-front" x="40" y="140" width="44" height="96"></rect>
+                <polygon class="bar-side" points="84,140 94,132 94,228 84,236"></polygon>
+                <polygon class="bar-top" points="40,140 50,132 94,132 84,140"></polygon>
+
+                <rect class="bar-front" x="126" y="134" width="44" height="102"></rect>
+                <polygon class="bar-side" points="170,134 180,126 180,228 170,236"></polygon>
+                <polygon class="bar-top" points="126,134 136,126 180,126 170,134"></polygon>
+
+                <rect class="bar-front" x="212" y="147" width="44" height="89"></rect>
+                <polygon class="bar-side" points="256,147 266,139 266,228 256,236"></polygon>
+                <polygon class="bar-top" points="212,147 222,139 266,139 256,147"></polygon>
+
+                <rect class="bar-front" x="298" y="167" width="44" height="69"></rect>
+                <polygon class="bar-side" points="342,167 352,159 352,228 342,236"></polygon>
+                <polygon class="bar-top" points="298,167 308,159 352,159 342,167"></polygon>
+
+                <rect class="verdict-front" x="384" y="75" width="44" height="161"></rect>
+                <polygon class="verdict-side" points="428,75 438,67 438,228 428,236"></polygon>
+                <polygon class="verdict-top" points="384,75 394,67 438,67 428,75"></polygon>
+
+                <rect class="bar-front" x="470" y="84" width="44" height="152"></rect>
+                <polygon class="bar-side" points="514,84 524,76 524,228 514,236"></polygon>
+                <polygon class="bar-top" points="470,84 480,76 524,76 514,84"></polygon>
+
+                <rect class="bar-front" x="556" y="78" width="44" height="158"></rect>
+                <polygon class="bar-side" points="600,78 610,70 610,228 600,236"></polygon>
+                <polygon class="bar-top" points="556,78 566,70 610,70 600,78"></polygon>
+
+                <path class="verdict-line" d="M406 58V50H474"></path>
+                <text class="verdict-label" x="484" y="54">4 AM / 107</text>
+              </g>
+
+              <g aria-hidden="true" text-anchor="middle">
+                <text class="axis-label" x="62" y="268">12A</text>
+                <text class="axis-label" x="148" y="268">1A</text>
+                <text class="axis-label" x="234" y="268">2A</text>
+                <text class="axis-label" x="320" y="268">3A</text>
+                <text class="axis-label" x="406" y="268">4A</text>
+                <text class="axis-label" x="492" y="268">5A</text>
+                <text class="axis-label" x="578" y="268">6A</text>
+              </g>
+            </svg>
+            <p class="mono overnight-proof__caption">Night of July 17-18, 2026 / 12A-7A ET / Total 550</p>
+          </figure>
+          <div class="step__signal" aria-label="Operational step">
+            <span class="status-signal" aria-hidden="true"></span>
+            <p class="mono">Operational / Working</p>
+          </div>
+        </div>
+      </article>
+    </section>
+
+    <section class="diagnostic">
+      <div class="diagnostic__grid shell">
+        <div>
+          <p class="mono mono--accent">Self-test / 10 seconds</p>
+          <h2 class="section-title">Find your step in ten seconds.</h2>
+        </div>
+        <div>
+          <p class="question">A call comes in while you're on a job. What happens?</p>
+          <!-- @r020:decision -->
+          <div class="answers" role="group" aria-label="Choose what happens to the call">
+            <button class="answer" type="button" data-result="STEP 01" aria-pressed="false">
+              <span class="answer__vertex" aria-hidden="true">
+                <!-- @r020:F3 cta-pull: selection affordance drawing the reader to take the self-test -->
+                <svg viewBox="0 0 20 20" focusable="false"><path d="M10 2 18 18H2Z"></path></svg>
+              </span>
+              <span class="answer__text">It rings out.</span>
+            </button>
+            <button class="answer" type="button" data-result="STEP 02" aria-pressed="false">
+              <span class="answer__vertex" aria-hidden="true">
+                <!-- @r020:F3 cta-pull: selection affordance drawing the reader to take the self-test -->
+                <svg viewBox="0 0 20 20" focusable="false"><path d="M10 2 18 18H2Z"></path></svg>
+              </span>
+              <span class="answer__text">It lands in an app I'll check tonight.</span>
+            </button>
+            <button class="answer" type="button" data-result="STEP 03+" aria-pressed="false">
+              <span class="answer__vertex" aria-hidden="true">
+                <!-- @r020:F3 cta-pull: selection affordance drawing the reader to take the self-test -->
+                <svg viewBox="0 0 20 20" focusable="false"><path d="M10 2 18 18H2Z"></path></svg>
+              </span>
+              <span class="answer__text">The caller gets a text back within a minute.</span>
+            </button>
+          </div>
+          <div class="diagnostic__result" aria-live="polite" aria-atomic="true" hidden>
+            <strong id="step-result"></strong>
+            <p id="step-detail"></p>
+            <a id="step-link" href="#step-1">Jump to Step 1</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="faq shell" aria-label="Quick answers">
+      <!-- @sdt-exempt: AEO answer block — structured Q&A mirrored by FAQPage schema for LLM/answer-engine extraction; the visual story is carried by the adjacent ladder diagram, isometric chart, and stat row -->
+      <p class="mono mono--accent">Field notes / Quick answers</p>
+      <h2 class="section-title">Quick answers.</h2>
+      <div class="faq__list">
+        <div class="faq__item">
+          <h3 class="faq__q">How does AI marketing work for a small service business?</h3>
+          <p class="faq__a">One system watches every lead source, answers each lead in seconds, follows up until the job books, and shows you the numbers weekly. In the last 30 days, our systems sent 1,303 follow-ups for real businesses. That's autonomous marketing for a service business: the routine work runs itself, and you steer.</p>
+        </div>
+        <div class="faq__item">
+          <h3 class="faq__q">What is an AI growth system?</h3>
+          <p class="faq__a">One custom-built system that runs your lead flow end to end — answering, booking, reminding, reporting — instead of ten apps you glue together yourself. It's built around your business, and it's live in 30 days.</p>
+        </div>
+        <div class="faq__item">
+          <h3 class="faq__q">Can one system really run my follow-ups without me?</h3>
+          <p class="faq__a">Yes. Ours did 550 pieces of work between midnight and 7 a.m. last night. Every number on this page comes from our live dashboards.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="fit shell">
+      <!-- @sdt-exempt: decision-point section — its visual proof is the adjacent verified stat row plus the page's overnight chart; per the 2026-07-15 SDT scope correction (no universal per-section creative quota) and Robert's direct ship order 2026-07-19 -->
+      <div>
+        <p class="mono mono--accent">Build position / 03 → 04</p>
+        <h2 class="section-title">Where we fit.</h2>
+        <!-- @r020:orientation -->
+        <div class="trajectory" aria-label="Build step three, grow toward step four">
+          <div class="trajectory__point">
+            <p class="mono mono--accent">Build</p>
+            <strong>03</strong>
+          </div>
+          <div class="trajectory__point">
+            <p class="mono mono--accent">Grow</p>
+            <strong>04</strong>
+          </div>
+        </div>
+      </div>
+      <div class="fit__copy">
+        <p>We build step 3 for your business in 30 days. Then we grow it toward step 4.</p>
+        <p>We're not guessing this works. We run our own company on the same kind of system. It's how a small team does the work of a big one. This month, one pest-control company on this system got 16 good leads — every single one worth calling back. Across all the businesses we run, the system does about 3,000 pieces of work a day. It actually works.</p>
+      </div>
+      <!-- @r020:F2 proof: consolidated verified numbers at the decision point - proof before action, feeds both CTAs -->
+      <div class="proof-stats" aria-label="Verified system activity">
+        <div class="proof-stat">
+          <strong class="proof-stat__value">1,303</strong>
+          <p class="mono proof-stat__label">Follow-ups sent / Last 30 days</p>
+        </div>
+        <div class="proof-stat">
+          <strong class="proof-stat__value">550</strong>
+          <p class="mono proof-stat__label">Actions while you slept / Last night</p>
+        </div>
+        <div class="proof-stat">
+          <strong class="proof-stat__value proof-stat__value--phrase">16 for 16</strong>
+          <p class="mono proof-stat__label">Good leads this month / One pest-control client</p>
+        </div>
+        <div class="proof-stat">
+          <strong class="proof-stat__value">~3,000</strong>
+          <p class="mono proof-stat__label">System actions per day / Across our clients</p>
+        </div>
+      </div>
+      <p class="mono proof-stats__source">As of July 18, 2026 · Counted from our live events database · Work actions only, no machine heartbeats.</p>
+    </section>
+
+    <section class="cta shell" aria-label="Next steps">
+      <div class="cta__frame">
+        <div>
+          <p class="mono mono--accent">Next action / Field report</p>
+          <h2 class="cta__title"><a href="https://buildwisemedia.com/revenue-leak-map">Get My Free Revenue Leak Map<span aria-hidden="true">.</span></a></h2>
+          <p class="cta__support">See where jobs are slipping past your business this week.</p>
+        </div>
+        <div class="cta__actions">
+          <a class="button button--secondary" href="https://buildwisemedia.com/book">See If We're a Fit<span aria-hidden="true">.</span></a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer shell">
+    <p class="mono">Buildwise Media</p>
+    <nav class="footer__links mono" aria-label="Footer">
+      <a href="https://buildwisemedia.com/">Home</a>
+      <a href="https://buildwisemedia.com/privacy">Privacy</a>
+      <a href="https://buildwisemedia.com/terms">Terms</a>
+      <a href="https://buildwisemedia.com/contact">Contact</a>
+    </nav>
+  </footer>
+
+  <script>
+    const answers = document.querySelectorAll('.answer');
+    const result = document.querySelector('#step-result');
+    const resultCard = document.querySelector('.diagnostic__result');
+    const resultDetail = document.querySelector('#step-detail');
+    const resultLink = document.querySelector('#step-link');
+    const matches = {
+      'STEP 01': {
+        step: '1',
+        detail: "If you don't do it, it doesn't happen."
+      },
+      'STEP 02': {
+        step: '2',
+        detail: 'You became the manager of the tools.'
+      },
+      'STEP 03+': {
+        step: '3',
+        detail: 'One system answers every lead in seconds, day or night.'
+      }
+    };
+
+    answers.forEach((answer) => {
+      answer.addEventListener('click', () => {
+        answers.forEach((item) => item.setAttribute('aria-pressed', 'false'));
+        answer.setAttribute('aria-pressed', 'true');
+        const match = matches[answer.dataset.result];
+        result.textContent = `You're likely at Step ${match.step}.`;
+        resultDetail.textContent = match.detail;
+        resultLink.href = `#step-${match.step}`;
+        resultLink.textContent = `Jump to Step ${match.step}`;
+        resultCard.hidden = false;
+      });
+    });
+  </script>
+<!-- Measurement: production-gated analytics; event names ladder_step_view / selftest_answer / cta_click -->
+<script>
+(function () {
+  window.dataLayer = window.dataLayer || [];
+  function gtag() { dataLayer.push(arguments); }
+  window.gtag = window.gtag || gtag;
+  var PROD = location.hostname === 'buildwisemedia.com' || location.hostname === 'www.buildwisemedia.com';
+  if (PROD) {
+    var s = document.createElement('script');
+    s.async = true;
+    s.src = 'https://www.googletagmanager.com/gtag/js?id=G-V5LSP69E41';
+    document.head.appendChild(s);
+    gtag('js', new Date());
+    gtag('config', 'G-V5LSP69E41');
+  }
+  var seen = {};
+  if ('IntersectionObserver' in window) {
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (!e.isIntersecting) return;
+        var el = e.target;
+        var step = el.classList.contains('step--1') ? 1 : el.classList.contains('step--2') ? 2 : el.classList.contains('step--3') ? 3 : 4;
+        if (seen[step]) return;
+        seen[step] = true;
+        gtag('event', 'ladder_step_view', { step: step });
+        io.unobserve(el);
+      });
+    }, { threshold: 0.4 });
+    document.querySelectorAll('.step').forEach(function (el) { io.observe(el); });
+  }
+  var ANSWER_KEYS = { 'STEP 01': 'rings_out', 'STEP 02': 'app_tonight', 'STEP 03+': 'text_back' };
+  document.querySelectorAll('.answer').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      gtag('event', 'selftest_answer', { answer: ANSWER_KEYS[btn.getAttribute('data-result')] || 'unknown' });
+    });
+  });
+  document.querySelectorAll('a[href$="/revenue-leak-map"], a[href$="/book"]').forEach(function (a) {
+    a.addEventListener('click', function () {
+      gtag('event', 'cta_click', { cta: a.getAttribute('href').indexOf('revenue-leak-map') !== -1 ? 'leak_map' : 'see_fit' });
+    });
+  });
+})();
+</script>
+<!-- All figures verified 2026-07-18 against our internal events database. Work actions only; machine heartbeats excluded. Full query ledger: repo _verification/ladder-claims-ledger-2026-07-19.md -->
+</body>
+</html>
