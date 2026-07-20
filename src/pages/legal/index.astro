@@ -1,0 +1,97 @@
+---
+// @build-author-exempt: legal Service Terms page — legal-department content authored by Claude per the PROJ-LEGAL-FLOW-001 directive (Claude+Sol = legal team); Sol cross-model review pass runs before ship
+// @creative-exempt: legal page — versioned Service Terms; legal-page class is Creative-Copy-Gate exempt per the 2026-06-04 lock
+// @sdt-exempt: legal fine print — versioned Service Terms page; no visual story
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import changelog from '../../data/legal-changelog.json';
+
+const title = "Service Terms — Buildwise Media";
+const description = "Versioned Service Terms and change log for Buildwise Media client engagements.";
+const current = changelog.entries[0];
+
+// JSON-LD: BreadcrumbList — Home › Legal
+const breadcrumb = {
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://buildwisemedia.com/' },
+    { '@type': 'ListItem', position: 2, name: 'Service Terms', item: 'https://buildwisemedia.com/legal/' },
+  ],
+};
+---
+<!-- @r020-exempt: legal page with no visual budget -->
+<!-- @sdt-exempt: legal fine print — versioned Service Terms page; no visual story -->
+<BaseLayout title={title} description={description} noindex={false} jsonLd={[breadcrumb]}>
+
+  <article class="legal-page">
+    <div class="container legal-container">
+
+      <header class="legal-head">
+        <p class="eyebrow">Legal</p>
+        <h1 class="h-hero">Service <em>Terms</em></h1>
+        <p class="legal-meta mono">Version {changelog.current_version} · Effective {current.date}</p>
+      </header>
+
+      <section class="prose">
+        <h2 class="h-sub">1. What this page is</h2>
+        <p>This page holds the current version of the Buildwise Media Service Terms, plus the change log for every published change. Our client agreements point here. Each signed Statement of Work names the exact title, version, and date of the Service Terms it uses. That named version stays the record of the original deal, even after we publish newer versions.</p>
+        <p>These Service Terms describe how we do the work — the methods and tools that can improve over time. They do not replace or change any signed agreement. If anything here differs from a client's signed agreement, the signed agreement wins.</p>
+
+        <h2 class="h-sub">2. How we deliver</h2>
+        <p>Work is delivered by the Buildwise team together with the custom artificial intelligence (AI) system we build and run for each client. The system does the day-to-day work — the website, lead capture, follow-up, and reporting. The team directs it, checks it, and improves it. Every piece of work gets quality review appropriate to the work, before or promptly after it goes live.</p>
+
+        <h2 class="h-sub">3. How we measure</h2>
+        <p>Leads are recorded in the client's lead ledger as they arrive through the tracked channels the system operates — forms, calls, and texts. Each lead carries its source and time of arrival. The attribution model is source-of-record, direct-channel attribution, version 1.0: a lead is credited to the channel it actually arrived through. Each Statement of Work pins the measurement model version that applies to that engagement.</p>
+
+        <h2 class="h-sub">4. How we handle client data</h2>
+        <p>Client materials, client data, and client output belong to the client, as stated in the signed agreement. Operational records live in secured systems. Access is limited to the delivery team and the client's system. Signed agreements and signature evidence are stored separately from our general knowledge base, in restricted storage.</p>
+
+        <h2 class="h-sub">5. How we communicate</h2>
+        <p>Ongoing updates go to the client through their normal channel. Formal notices — including notice of a material change to how we work — go to the client's email address of record, as the signed agreement requires. Posting on this page alone is never formal notice of a material change.</p>
+
+        <h2 class="h-sub">6. How these terms change</h2>
+        <p>We improve our methods and tools continuously — we work at the speed of AI. When a change matters, we email the client and post a dated, versioned entry in the change log below. A change under this mechanism can never raise fees, cut agreed work, reduce a client's rights in their materials or data, or shift legal risk. Those need a signed amendment. A client has 30 days from notice to object to a material change, and may end the affected work with no exit fee. The full mechanism lives in the signed agreement, which controls.</p>
+
+        <h2 class="h-sub">7. Version record</h2>
+        <table class="version-table">
+          <thead>
+            <tr><th>Version</th><th>Date</th><th>Status</th></tr>
+          </thead>
+          <tbody>
+            <tr><td class="mono">{changelog.current_version}</td><td class="mono">{current.date}</td><td>Current</td></tr>
+          </tbody>
+        </table>
+        <p>We preserve every prior version and its effective dates. Clients can request a copy of any version at <a href="mailto:legal@buildwisemedia.com">legal@buildwisemedia.com</a>.</p>
+      </section>
+
+      <section class="prose changelog">
+        <h2 class="h-sub">Change log</h2>
+        {changelog.entries.map((entry) => (
+          <div class="changelog-entry">
+            <p class="legal-meta mono">v{entry.version} · {entry.date}{entry.material ? ' · Material change' : ''}</p>
+            <p>{entry.summary}</p>
+          </div>
+        ))}
+      </section>
+
+    </div>
+  </article>
+
+</BaseLayout>
+
+<style>
+.legal-page { padding-top: clamp(140px, 14vw, 180px); padding-bottom: var(--section-y); }
+.legal-container { max-width: 760px; }
+.legal-head { display: flex; flex-direction: column; gap: 16px; margin-bottom: 56px; padding-bottom: 32px; border-bottom: 1px solid var(--rule); }
+.legal-meta { font-size: 11px; letter-spacing: 0.18em; color: var(--ink-faint); }
+
+.prose h2 { margin-top: 48px; margin-bottom: 16px; }
+.prose p { margin-bottom: 18px; }
+
+.version-table { width: 100%; border-collapse: collapse; margin: 24px 0; }
+.version-table th, .version-table td { text-align: left; padding: 10px 16px 10px 0; border-bottom: 1px solid var(--rule); font-size: 14px; }
+.version-table th { font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--ink-faint); }
+
+.changelog { margin-top: 64px; padding-top: 32px; border-top: 1px solid var(--rule); }
+.changelog-entry { margin-bottom: 28px; }
+.changelog-entry .legal-meta { margin-bottom: 8px; }
+</style>
