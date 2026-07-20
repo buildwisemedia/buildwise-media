@@ -37,19 +37,19 @@ const breadcrumb = {
         <p>These Service Terms describe how we do the work — the methods and tools that can improve over time. They do not replace or change any signed agreement. If anything here differs from a client's signed agreement, the signed agreement wins.</p>
 
         <h2 class="h-sub">2. How we deliver</h2>
-        <p>Work is delivered by the Buildwise team together with the custom artificial intelligence (AI) system we build and run for each client. The system does the day-to-day work — the website, lead capture, follow-up, and reporting. The team directs it, checks it, and improves it. Every piece of work gets quality review appropriate to the work, before or promptly after it goes live.</p>
+        <p>Work is delivered by the Buildwise team together with the custom artificial intelligence (AI) system we build and run for each client. The system does the day-to-day work specified in the client's Statement of Work. The team directs it, checks it, and improves it. Work receives quality review appropriate to the work.</p>
 
         <h2 class="h-sub">3. How we measure</h2>
-        <p>Leads are recorded in the client's lead ledger as they arrive through the tracked channels the system operates — forms, calls, and texts. Each lead carries its source and time of arrival. The attribution model is source-of-record, direct-channel attribution, version 1.0: a lead is credited to the channel it actually arrived through. Each Statement of Work pins the measurement model version that applies to that engagement.</p>
+        <p>The current attribution model is source-of-record, direct-channel attribution, version 1.0: a lead is credited to the channel it actually arrived through. Each Statement of Work pins, in its measurement schedule, the attribution model and version that applies to that engagement. How results are recorded and measured for any commitment is defined in the signed agreement, which controls.</p>
 
         <h2 class="h-sub">4. How we handle client data</h2>
-        <p>Client materials, client data, and client output belong to the client, as stated in the signed agreement. Operational records live in secured systems. Access is limited to the delivery team and the client's system. Signed agreements and signature evidence are stored separately from our general knowledge base, in restricted storage.</p>
+        <p>Rights in client materials, client data, and client output are governed exclusively by the applicable signed agreement.</p>
 
         <h2 class="h-sub">5. How we communicate</h2>
-        <p>Ongoing updates go to the client through their normal channel. Formal notices — including notice of a material change to how we work — go to the client's email address of record, as the signed agreement requires. Posting on this page alone is never formal notice of a material change.</p>
+        <p>Ongoing updates go to the client through their normal channel. Notice of a material change to these Service Terms will be sent by email to the client's address of record. Posting on this page alone is not notice.</p>
 
         <h2 class="h-sub">6. How these terms change</h2>
-        <p>We improve our methods and tools continuously — we work at the speed of AI. When a change matters, we email the client and post a dated, versioned entry in the change log below. A change under this mechanism can never raise fees, cut agreed work, reduce a client's rights in their materials or data, or shift legal risk. Those need a signed amendment. A client has 30 days from notice to object to a material change, and may end the affected work with no exit fee. The full mechanism lives in the signed agreement, which controls.</p>
+        <p>We improve our methods and tools continuously — we work at the speed of AI. When we make a material change, we email the client and post a dated, versioned entry in the change log below. A change under this mechanism can never raise fees, cut agreed work, reduce the client's rights in client materials, client data, or client output, or shift legal risk. Those need a signed amendment. A client has 30 days from notice to object to a material change, and may terminate the affected work without penalty during that objection period. The full mechanism lives in the signed agreement, which controls.</p>
 
         <h2 class="h-sub">7. Version record</h2>
         <table class="version-table">
@@ -57,7 +57,9 @@ const breadcrumb = {
             <tr><th>Version</th><th>Date</th><th>Status</th></tr>
           </thead>
           <tbody>
-            <tr><td class="mono">{changelog.current_version}</td><td class="mono">{current.date}</td><td>Current</td></tr>
+            {changelog.entries.map((entry, i) => (
+              <tr><td class="mono">{entry.version}</td><td class="mono">{entry.date}</td><td>{i === 0 ? 'Current' : 'Superseded'}</td></tr>
+            ))}
           </tbody>
         </table>
         <p>We preserve every prior version and its effective dates. Clients can request a copy of any version at <a href="mailto:legal@buildwisemedia.com">legal@buildwisemedia.com</a>.</p>
