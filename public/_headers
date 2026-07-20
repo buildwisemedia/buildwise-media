@@ -12,6 +12,14 @@
 /assets/*
   Cache-Control: public, max-age=31536000, immutable
 
+# Contact card behind the printed business card's QR (/connect). Served inline
+# as text/vcard so tapping "Save my contact" opens the phone's native
+# add-contact sheet instead of downloading a file.
+/robert-echevarria.vcf
+  Content-Type: text/vcard; charset=utf-8
+  Content-Disposition: inline; filename="robert-echevarria.vcf"
+  Cache-Control: public, max-age=300
+
 # Self-hosted brand fonts. Filenames carry a -vN version suffix (see
 # src/styles/global.css @font-face + BaseLayout preloads), so they are
 # immutable: bump the suffix to ship new bytes rather than overwriting in place.
