@@ -1,0 +1,646 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light">
+<title>Cost per Task — Machine-Work Ledger, July 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,wght@0,500;0,600;1,400;1,500&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#f4f1e8; --card:#fdfcf8; --card2:#faf5ea;
+    --ink:#211d13; --ink2:#5d5747; --muted:#8b8370;
+    --hair:#e4ddc9; --base:#c3bba3;
+    --green:#0a8354; --bronze:#8a4a06; --bronze-track:#eedcc0; --bronze-ink:#7a5b2e;
+    --ctx:#d8d0bb;
+    --sans:'IBM Plex Sans',system-ui,-apple-system,sans-serif;
+    --serif:'Newsreader',Georgia,'Times New Roman',serif;
+    --mono:'IBM Plex Mono',ui-monospace,'SF Mono',monospace;
+    --lw:150px; --tw:64px;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{-webkit-text-size-adjust:100%}
+  body{background:var(--paper);color:var(--ink);font:400 15px/1.55 var(--sans)}
+  ::selection{background:rgba(10,131,84,.16)}
+  .wrap{width:min(1140px,100% - 44px);margin-inline:auto}
+  a{color:inherit}
+
+  /* ---------- type ---------- */
+  .eyebrow{font:500 11px/1 var(--mono);letter-spacing:.15em;text-transform:uppercase;color:var(--muted)}
+  h1{font:500 clamp(34px,4.6vw,54px)/1.04 var(--serif);letter-spacing:-.012em;max-width:21ch}
+  h2{font:500 clamp(24px,2.6vw,31px)/1.12 var(--serif);letter-spacing:-.008em}
+  h3{font:500 clamp(19px,2vw,22px)/1.2 var(--serif)}
+  .sub{color:var(--ink2);font-size:14.5px;max-width:64ch;margin-top:6px}
+  .standfirst{color:var(--ink2);font-size:clamp(15px,1.6vw,17px);line-height:1.6;max-width:62ch;margin-top:18px}
+  sup{font-size:.62em;color:var(--muted);font-family:var(--mono)}
+  b,strong{font-weight:600}
+
+  /* ---------- masthead ---------- */
+  header{padding:34px 0 0}
+  .mast-row{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-bottom:12px}
+  .rule-thick{height:3px;background:var(--ink);margin-bottom:3px}
+  .rule-hair{height:1px;background:var(--ink);opacity:.35;margin-bottom:26px}
+
+  /* ---------- KPI band ---------- */
+  .kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:22px;margin:34px 0 8px}
+  .kpi{border-top:2px solid var(--green);padding-top:12px}
+  .kpi.metered{border-top-color:var(--bronze)}
+  .kpi .k-label{font-size:13px;color:var(--ink2)}
+  .kpi .k-value{font:500 clamp(30px,3.2vw,38px)/1.15 var(--mono);letter-spacing:-.02em;margin:2px 0 1px}
+  .kpi .k-sub{font-size:12.5px;color:var(--muted)}
+
+  /* ---------- sections ---------- */
+  section{margin-top:54px}
+  .sec-head{margin-bottom:20px}
+  .sec-head .eyebrow{display:block;margin-bottom:10px}
+
+  .card{background:var(--card);border:1px solid var(--hair);border-radius:8px;padding:22px 22px 18px}
+  .card h3{margin-bottom:2px}
+  .card .sub{font-size:13.5px;margin-bottom:18px}
+  .charts{display:grid;grid-template-columns:1.12fr 1fr;gap:22px}
+
+  /* ---------- hand-built bar charts ---------- */
+  .cols{display:grid;grid-template-columns:var(--lw) 1fr;column-gap:12px;align-items:center}
+  .has-tok .cols{grid-template-columns:var(--lw) 1fr var(--tw)}
+  .ch-axis{margin-bottom:2px}
+  .axcell{position:relative;height:15px}
+  .tokhead{font:500 10.5px var(--mono);color:var(--muted);text-align:right;letter-spacing:.06em}
+  .tick{position:absolute;top:0;transform:translateX(-50%);font:400 10.5px var(--mono);color:var(--muted)}
+  .tick.t0{transform:none}
+  .tick.tEnd{transform:translateX(-100%)}
+  .ch-body{position:relative;margin-top:4px}
+  .ch-gridlayer{position:absolute;inset:0;pointer-events:none}
+  .glcell{position:relative;height:100%}
+  .gl{position:absolute;top:2px;bottom:2px;width:1px;background:var(--hair)}
+  .gl.gl0{background:var(--base)}
+  .ch-row{position:relative;padding:4px 0;border-radius:4px;outline-offset:2px}
+  .ch-row:hover{background:rgba(33,29,19,.05)}
+  .ch-row:hover .bar,.ch-row:focus-visible .bar{filter:brightness(.93)}
+  .ch-row:focus-visible{outline:2px solid var(--ink)}
+  .ch-row.sep{border-top:1px solid var(--hair);margin-top:8px;padding-top:9px}
+  .rlabel{font-size:12.5px;color:var(--ink2);text-align:right;line-height:1.25}
+  .ch-row.hi .rlabel{color:var(--ink);font-weight:500}
+  .rplot{position:relative;display:flex;align-items:center;gap:6px;min-height:18px}
+  .bar{height:18px;width:0;background:var(--ctx);border-radius:0 4px 4px 0;flex:none;
+       display:flex;align-items:center;justify-content:flex-end;
+       transition:width .8s cubic-bezier(.25,.7,.25,1)}
+  .hi .bar{background:var(--green)}
+  .val{font:500 12px var(--mono);color:var(--ink);white-space:nowrap}
+  .val.vin{color:#fff;padding-right:8px}
+  .rtok{font:400 11.5px var(--mono);color:var(--muted);text-align:right;white-space:nowrap}
+
+  /* ---------- token strip ---------- */
+  .band{border-top:1px solid var(--hair);border-bottom:1px solid var(--hair);padding:20px 2px;margin-top:22px}
+  .band p{font-size:14.5px;color:var(--ink2);max-width:74ch}
+  .band p b{color:var(--ink)}
+  .strip{display:flex;gap:2px;height:8px;margin:14px 0 6px;border-radius:4px;overflow:hidden;max-width:860px}
+  .seg{height:8px;width:0;transition:width .8s cubic-bezier(.25,.7,.25,1)}
+  .s-code{background:var(--green)}
+  .s-rest{background:var(--ctx);flex:1;width:auto}
+  .strip-labels{display:flex;justify-content:space-between;max-width:860px;font:400 11px var(--mono);color:var(--muted)}
+
+  /* ---------- meter + receipt ---------- */
+  .meter-grid{display:grid;grid-template-columns:1.45fr 1fr;gap:22px}
+  .meter{position:relative;padding-top:30px;margin-top:8px}
+  .m-flag{position:absolute;top:0;left:var(--fx,4.8%);font:600 12.5px var(--mono);color:var(--bronze);white-space:nowrap}
+  .m-flag::after{content:'';position:absolute;left:0;top:calc(100% + 2px);width:1px;height:9px;background:var(--bronze)}
+  .m-track{position:relative;height:20px;background:var(--bronze-track);border-radius:4px}
+  .m-fill{height:20px;width:0;background:var(--bronze);border-radius:0 4px 4px 0;transition:width .8s cubic-bezier(.25,.7,.25,1)}
+  .m-rest{position:absolute;right:10px;top:50%;transform:translateY(-50%);font:400 11px var(--mono);color:var(--bronze-ink);white-space:nowrap}
+  .m-ticks{position:relative;height:15px;margin-top:7px}
+  .m-note{font-size:13px;color:var(--muted);margin-top:14px}
+
+  .receipt{background:var(--card2);border:1px solid var(--hair);border-radius:8px;padding:20px 20px 16px;font-family:var(--mono)}
+  .receipt .r-head{display:flex;justify-content:space-between;gap:10px;font:600 11px var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--ink2);padding-bottom:10px;border-bottom:1px solid var(--base)}
+  .receipt .r-what{font:400 12px/1.5 var(--mono);color:var(--ink2);padding:10px 0;border-bottom:1px solid var(--hair)}
+  .r-line{display:flex;justify-content:space-between;gap:12px;padding:8px 0;border-bottom:1px solid var(--hair);font-size:12.5px;color:var(--ink2)}
+  .r-line span:last-child{color:var(--ink);font-weight:500;font-variant-numeric:tabular-nums}
+  .r-total{display:flex;justify-content:space-between;padding-top:12px;margin-top:2px;border-top:1px solid var(--base);font-size:13.5px;font-weight:600;color:var(--ink)}
+
+  /* ---------- lever cards ---------- */
+  .levers{display:grid;grid-template-columns:1fr 1fr;gap:22px}
+  .lever{background:var(--card);border:1px solid var(--hair);border-top:3px solid var(--green);border-radius:8px;padding:24px}
+  .lever.metered{border-top-color:var(--bronze)}
+  .lever .eyebrow{color:var(--green)}
+  .lever.metered .eyebrow{color:var(--bronze)}
+  .lever .big{font:500 clamp(26px,2.6vw,32px)/1.1 var(--serif);margin:12px 0 2px}
+  .lever .lv{font:italic 500 16px var(--serif);color:var(--ink2);margin-bottom:12px}
+  .lever p{font-size:14px;color:var(--ink2)}
+  .lever .ev{margin-top:16px;padding-top:12px;border-top:1px solid var(--hair);font:400 11.5px var(--mono);color:var(--muted);letter-spacing:.02em}
+  .kicker{font:italic 500 clamp(19px,2.2vw,23px)/1.4 var(--serif);text-align:center;max-width:38ch;margin:40px auto 0;color:var(--ink)}
+
+  /* ---------- ledger table ---------- */
+  details{margin-top:54px;border-top:1px solid var(--hair);padding-top:18px}
+  summary{cursor:pointer;list-style:none;font:500 11.5px var(--mono);letter-spacing:.14em;text-transform:uppercase;color:var(--ink2);display:flex;align-items:center;gap:10px}
+  summary::-webkit-details-marker{display:none}
+  summary::before{content:'▸';font-size:12px;transition:transform .15s;color:var(--muted)}
+  details[open] summary::before{transform:rotate(90deg)}
+  summary:hover{color:var(--ink)}
+  .tables{display:grid;grid-template-columns:1.5fr 1fr;gap:22px;margin-top:18px}
+  .tblwrap{overflow-x:auto;background:var(--card);border:1px solid var(--hair);border-radius:8px;padding:16px 18px}
+  .tblwrap h4{font:500 11px var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-bottom:10px}
+  table{width:100%;border-collapse:collapse;font-size:13px}
+  th{font:500 10.5px var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--muted);text-align:left;padding:6px 8px;border-bottom:1px solid var(--base)}
+  th.num,td.num{text-align:right}
+  td{padding:7px 8px;border-bottom:1px solid var(--hair);color:var(--ink2);vertical-align:top}
+  td.num{font:400 12.5px var(--mono);font-variant-numeric:tabular-nums;color:var(--ink)}
+  td .raw{display:block;font:400 10.5px var(--mono);color:var(--muted)}
+  tr.tot td{border-bottom:0;border-top:1px solid var(--base);font-weight:600;color:var(--ink)}
+  tr.tot td.num{font-weight:600}
+
+  /* ---------- footnotes ---------- */
+  footer{margin-top:44px;padding:22px 0 56px;border-top:1px solid var(--hair)}
+  footer ol{list-style:none}
+  footer li{font:400 11.5px/1.7 var(--mono);color:var(--ink2);margin-bottom:6px}
+  footer li::before{content:attr(data-fn) ' ';color:var(--muted)}
+  footer .method{font-size:12.5px;color:var(--muted);margin-top:14px;max-width:80ch;font-family:var(--sans)}
+
+  /* ---------- tooltip ---------- */
+  #tt{position:fixed;left:0;top:0;z-index:50;pointer-events:none;opacity:0;transition:opacity .12s;
+      background:#211d13;color:#f4f1e8;border-radius:6px;padding:9px 11px;max-width:270px;font-size:12px;line-height:1.5}
+  #tt.on{opacity:1}
+  #tt .tt-n{color:#c9c1aa;font-size:11px;letter-spacing:.04em;margin-bottom:2px}
+  #tt .tt-v b{font-size:13px}
+  #tt .tt-s{color:#b0a88f;font-size:11px}
+
+  @media (prefers-reduced-motion:reduce){
+    .bar,.m-fill,.seg,summary::before{transition:none}
+  }
+
+  /* ---------- responsive ---------- */
+  @media (max-width:980px){
+    .charts,.meter-grid,.tables{grid-template-columns:1fr}
+    .kpis{grid-template-columns:repeat(2,1fr)}
+  }
+  @media (max-width:760px){
+    .levers{grid-template-columns:1fr}
+    section{margin-top:44px}
+  }
+  @media (max-width:640px){
+    :root{--lw:112px}
+    .rlabel{font-size:11px}
+    .wrap{width:min(1140px,100% - 32px)}
+  }
+  @media (max-width:520px){
+    .has-tok .cols{grid-template-columns:var(--lw) 1fr}
+    .rtok,.tokhead{display:none}
+    .kpi .k-value{font-size:26px}
+  }
+</style>
+</head>
+<body>
+
+
+
+<div class="wrap">
+
+  <header>
+    <div class="mast-row">
+      <span class="eyebrow">Machine-Work Ledger · July 2026</span>
+      <span class="eyebrow">Flat seat × metered API · Jul 1–20</span>
+    </div>
+    <div class="rule-thick"></div>
+    <div class="rule-hair"></div>
+    <h1>One AI worker did <span data-n="runsTotal">719</span> tasks this month. The marginal bill: <span data-n="marginal0">$0</span>.</h1>
+    <p class="standfirst">Where the machine work went — task by task, minute by minute, token by token — for one
+      flat-rate AI seat (GPT&#8209;5.6 &ldquo;Sol&rdquo;), and what the very same kind of work costs when every token
+      is billed on a meter.<sup>1&thinsp;2</sup></p>
+
+    <div class="kpis" role="list">
+      <div class="kpi" role="listitem">
+        <div class="k-label">Tasks logged by the Sol seat</div>
+        <div class="k-value" data-n="runsTotal">719</div>
+        <div class="k-sub">Jul 1–20 · production work<sup>1</sup></div>
+      </div>
+      <div class="kpi" role="listitem">
+        <div class="k-label">Marginal cost per task</div>
+        <div class="k-value" data-n="marginal0">$0</div>
+        <div class="k-sub">flat plan — capacity is prepaid<sup>3</sup></div>
+      </div>
+      <div class="kpi" role="listitem">
+        <div class="k-label">Tokens processed</div>
+        <div class="k-value" data-n="tokTotal">55.0M</div>
+        <div class="k-sub">sum across all logged task classes</div>
+      </div>
+      <div class="kpi metered" role="listitem">
+        <div class="k-label">Metered experiment, total</div>
+        <div class="k-value" data-n="kSpent">$1.19</div>
+        <div class="k-sub">Kimi K3 · of <span data-n="kFund">$25.00</span> funded<sup>2</sup></div>
+      </div>
+    </div>
+  </header>
+
+  <section aria-labelledby="s1h">
+    
+    <div class="sec-head">
+      <span class="eyebrow">01 · Where the work went</span>
+      <h2 id="s1h">Two rankings of the same <span data-n="runsTotal">719</span> runs — one by count, one by clock</h2>
+    </div>
+
+    <div class="charts">
+      <div class="card has-tok" role="group" aria-label="Bar chart: runs per task class in July, with total tokens per class">
+        <h3>Code is the volume engine</h3>
+        <p class="sub"><b><span data-n="codeRuns">619</span> of <span data-n="runsTotal">719</span> runs — <span data-n="codePct">86%</span></b> — were multi-file code tasks.
+          The next-biggest single class: legal review, at <span data-n="legalRuns">16</span>.<sup>1</sup></p>
+        <div class="ch" id="chartRuns"></div>
+      </div>
+
+      <div class="card" role="group" aria-label="Bar chart: median minutes per task, by task class">
+        <h3>Design owns the clock</h3>
+        <p class="sub">A full design build ran <b><span data-n="designMed">24.7</span> minutes</b> at the median —
+          <b><span data-n="xRatio">11×</span></b> the <span data-n="codeMed">2.2</span>-minute code task. Just
+          <span data-n="designRuns">15</span> design runs all month.<sup>1</sup></p>
+        <div class="ch" id="chartMins"></div>
+      </div>
+    </div>
+
+    <div class="band">
+      <p>The token ledger says the same thing: <b><span data-n="codeTok">42.0M</span> of the month&rsquo;s
+        <span data-n="tokTotal">55.0M</span> tokens — <span data-n="codeTokPct">76%</span> — went to code.</b>
+        On the flat seat, every one of them billed <span data-n="marginal0">$0</span>.<sup>3</sup></p>
+      <div class="strip" role="img" aria-label="Proportion strip: 76% of July tokens went to code tasks; 24% to all other classes">
+        <div class="seg s-code" id="stripCode"></div><div class="seg s-rest"></div>
+      </div>
+      <div class="strip-labels">
+        <span>code · <span data-n="codeTok">42.0M</span> tokens</span>
+        <span>all other classes · <span data-n="restTok">13.0M</span></span>
+      </div>
+    </div>
+  </section>
+
+  <section aria-labelledby="s2h">
+    
+    <div class="sec-head">
+      <span class="eyebrow">02 · When every token bills</span>
+      <h2 id="s2h">What the same kind of work costs on a meter</h2>
+      <p class="sub">One controlled experiment on a metered API — Kimi K3, funded with <span data-n="kFund">$25.00</span> of credits.<sup>2</sup></p>
+    </div>
+
+    <div class="meter-grid">
+      <div class="card" role="group" aria-label="Meter: 1 dollar 19 cents spent of 25 dollars funded metered credits">
+        <h3>The meter barely moved</h3>
+        <p class="sub"><b><span data-n="kSpent">$1.19</span> spent — <span data-n="kPct">4.8%</span> of the credits</b> — bought
+          <span data-n="kPages">2</span> authored pages and <span data-n="kCards">2</span> blind scorecards.
+          Call it <b><span data-n="kPage">$0.50</span> a page</b>.</p>
+        <div class="meter" id="meter">
+          <div class="m-flag"><span data-n="kSpent">$1.19</span> spent</div>
+          <div class="m-track">
+            <div class="m-fill" id="mfill"></div>
+            <span class="m-rest"><span data-n="kUnspent">$23.81</span> of <span data-n="kFund">$25.00</span> unspent</span>
+          </div>
+          <div class="m-ticks axcell" id="mticks"></div>
+        </div>
+        <p class="m-note">Elastic spend: the meter only runs when pointed at something.</p>
+      </div>
+
+      <aside class="receipt" aria-label="Receipt for the blind design bake-off experiment">
+        <div class="r-head"><span>Receipt · bake&#8209;off</span><span data-n="bDate">2026-07-19/20</span></div>
+        <div class="r-what" data-n="bWhat">3-model blind design bake-off: 6 pages + 6 blind scorecards</div>
+        <div class="r-line"><span>Pages authored (metered)</span><span data-n="kPages">2</span></div>
+        <div class="r-line"><span>Blind scorecards (metered)</span><span data-n="kCards">2</span></div>
+        <div class="r-line"><span>Metered spend</span><span data-n="kSpent">$1.19</span></div>
+        <div class="r-line"><span>≈ per authored page</span><span data-n="kPage">$0.50</span></div>
+        <div class="r-line"><span>Flat-plan share of the job</span><span data-n="bFlat">$0.00</span></div>
+        <div class="r-total"><span>Total cash cost</span><span data-n="bTotal">$1.19</span></div>
+      </aside>
+    </div>
+  </section>
+
+  <section aria-labelledby="s3h">
+    
+    <div class="sec-head">
+      <span class="eyebrow">03 · The operating rule</span>
+      <h2 id="s3h">Same machine work, two economics — a different lever on each</h2>
+    </div>
+
+    <div class="levers">
+      <div class="lever">
+        <span class="eyebrow">Flat-rate seat · GPT&#8209;5.6 &ldquo;Sol&rdquo;</span>
+        <div class="big">Run it hot.</div>
+        <div class="lv">The lever is utilization.</div>
+        <p>The seat is prepaid, so every task it runs is free at the margin — waste is an idle queue, never a spent
+          dollar. <span data-n="runsTotal">719</span> runs is a floor, not a ceiling: only
+          <span data-n="designRuns">15</span> were design classes, the heaviest work on the clock.</p>
+        <div class="ev"><span data-n="runsTotal">719</span> runs · <span data-n="marginal0">$0</span> marginal · <span data-n="tokTotal">55.0M</span> tokens<sup>3</sup></div>
+      </div>
+      <div class="lever metered">
+        <span class="eyebrow">Metered API · Kimi K3</span>
+        <div class="big">Aim it well.</div>
+        <div class="lv">The lever is quality per dollar.</div>
+        <p>Every token bills, so the meter is elastic spend, not a seat to fill. Point it at work whose output you can
+          judge — the whole 3&#8209;model bake&#8209;off (6 pages + 6 blind scorecards) closed for
+          <span data-n="bMet">$1.19</span> of metered spend.</p>
+        <div class="ev"><span data-n="kSpent">$1.19</span> spent · <span data-n="kUnspent">$23.81</span> unspent · ≈ <span data-n="kPage">$0.50</span> per page<sup>2</sup></div>
+      </div>
+    </div>
+
+    <p class="kicker">Keep the seat full. Point the meter at judged work.<br>That is the whole cost policy.</p>
+  </section>
+
+  <details>
+    <summary>The full ledger — every row behind the charts</summary>
+    <div class="tables">
+      <div class="tblwrap">
+        <h4>Sol seat · July task classes<sup>1</sup></h4>
+        <table id="tblSol">
+          <thead><tr><th>Task class</th><th class="num">Runs</th><th class="num">Median min</th><th class="num">Total tokens</th></tr></thead>
+          <tbody></tbody>
+        </table>
+      </div>
+      <div class="tblwrap">
+        <h4>Kimi K3 · metered experiment<sup>2</sup></h4>
+        <table id="tblKimi"><tbody></tbody></table>
+      </div>
+    </div>
+  </details>
+
+  <footer>
+    <ol>
+      <li data-fn="1" data-n="pSol">bwm codex-usage log 2026-07.jsonl — 719 logged GPT-5.6 Sol runs, Jul 1–20 2026, BWM production work</li>
+      <li data-fn="2"><span data-n="pKimi">OpenRouter credits API, queried 2026-07-20</span></li>
+      <li data-fn="3" data-n="pFlat">Flat-rate AI plan seats have $0 marginal cost per task; only metered API tasks bill per token.</li>
+    </ol>
+    <p class="method">Medians are per-task; token figures are per-class sums. Every number on this page — including
+      totals, percentages and the per-page figure — is computed from the dataset embedded in this file&rsquo;s source,
+      and from nothing else. Where the dataset gives no dollar figure, none is shown.</p>
+  </footer>
+
+</div>
+
+<div id="tt" role="status" aria-hidden="true"></div>
+
+<noscript><div class="wrap" style="padding:20px 0;font-family:monospace">Charts render from the embedded dataset and need JavaScript; the raw dataset is readable in this file&rsquo;s source.</div></noscript>
+
+<script id="dataset" type="application/json">
+{
+  "provenance": {
+    "sol_telemetry": "bwm codex-usage log 2026-07.jsonl — 719 logged GPT-5.6 Sol runs, Jul 1–20 2026, BWM production work",
+    "kimi_meter": "OpenRouter credits API, queried 2026-07-20",
+    "flat_plan_note": "Flat-rate AI plan seats have $0 marginal cost per task; only metered API tasks bill per token."
+  },
+  "sol_task_classes_jul": [
+    {"task_class": "code-multi-file", "runs": 619, "median_minutes": 2.2, "total_tokens": 41979649},
+    {"task_class": "review-legal", "runs": 16, "median_minutes": 5.3, "total_tokens": 1878662},
+    {"task_class": "image-gen", "runs": 12, "median_minutes": 3.2, "total_tokens": 865493},
+    {"task_class": "content-gen", "runs": 7, "median_minutes": 6.0, "total_tokens": 933841},
+    {"task_class": "research", "runs": 7, "median_minutes": 5.4, "total_tokens": 1175376},
+    {"task_class": "analysis", "runs": 5, "median_minutes": 4.1, "total_tokens": 650634},
+    {"task_class": "computer-use", "runs": 5, "median_minutes": 1.4, "total_tokens": 602815},
+    {"task_class": "design-build", "runs": 5, "median_minutes": 24.7, "total_tokens": 2865333},
+    {"task_class": "design-client-surface", "runs": 5, "median_minutes": 12.9, "total_tokens": 1372606},
+    {"task_class": "design-page-authoring", "runs": 5, "median_minutes": 7.7, "total_tokens": 978675},
+    {"task_class": "other (9 classes)", "runs": 33, "median_minutes": 3.1, "total_tokens": 1706000}
+  ],
+  "kimi_k3_metered": {
+    "credits_funded_usd": 25.0,
+    "spent_usd": 1.19,
+    "pages_authored": 2,
+    "scorecards": 2,
+    "approx_cost_per_page_usd": 0.5
+  },
+  "bakeoff_case_study": {
+    "date": "2026-07-19/20",
+    "what": "3-model blind design bake-off: 6 pages + 6 blind scorecards",
+    "metered_spend_usd": 1.19,
+    "flat_plan_marginal_usd": 0
+  }
+}
+</script>
+
+<script>
+(function(){
+  'use strict';
+  var D = JSON.parse(document.getElementById('dataset').textContent);
+  var S = D.sol_task_classes_jul, K = D.kimi_k3_metered, B = D.bakeoff_case_study;
+  var OTHER = 'other (9 classes)';
+
+  var NAMES = {
+    'code-multi-file':'Code (multi-file)',
+    'review-legal':'Legal review',
+    'image-gen':'Image generation',
+    'content-gen':'Content writing',
+    'research':'Research',
+    'analysis':'Analysis',
+    'computer-use':'Computer use',
+    'design-build':'Design — full build',
+    'design-client-surface':'Design — client surface',
+    'design-page-authoring':'Design — page authoring',
+    'other (9 classes)':'Other (9 small classes)'
+  };
+
+  function el(t,c){ var d=document.createElement(t); if(c) d.className=c; return d; }
+  function money(n){ return '$'+n.toFixed(2); }
+  function mm(n){ return (n/1e6).toFixed(1)+'M'; }
+  function comma(n){ return n.toLocaleString('en-US'); }
+
+  var totRuns = S.reduce(function(a,x){ return a+x.runs; },0);
+  var totTok  = S.reduce(function(a,x){ return a+x.total_tokens; },0);
+  var code    = S.filter(function(x){ return x.task_class==='code-multi-file'; })[0];
+  var dBuild  = S.filter(function(x){ return x.task_class==='design-build'; })[0];
+  var designRuns = S.filter(function(x){ return x.task_class.indexOf('design')===0; })
+                    .reduce(function(a,x){ return a+x.runs; },0);
+  var legal   = S.filter(function(x){ return x.task_class==='review-legal'; })[0];
+
+  /* ---- prose / KPI injections: every figure computed from the dataset ---- */
+  var map = {
+    runsTotal: comma(totRuns),
+    codeRuns:  comma(code.runs),
+    codePct:   Math.round(code.runs/totRuns*100)+'%',
+    tokTotal:  mm(totTok),
+    codeTok:   mm(code.total_tokens),
+    restTok:   mm(totTok-code.total_tokens),
+    codeTokPct:(code.total_tokens/totTok*100).toFixed(0)+'%',
+    designMed: dBuild.median_minutes.toFixed(1),
+    codeMed:   code.median_minutes.toFixed(1),
+    xRatio:    Math.round(dBuild.median_minutes/code.median_minutes)+'×',
+    designRuns:String(designRuns),
+    legalRuns: String(legal.runs),
+    marginal0: '$'+B.flat_plan_marginal_usd.toFixed(0),
+    kSpent:    money(K.spent_usd),
+    kFund:     money(K.credits_funded_usd),
+    kUnspent:  money(K.credits_funded_usd-K.spent_usd),
+    kPage:     money(K.approx_cost_per_page_usd),
+    kPages:    String(K.pages_authored),
+    kCards:    String(K.scorecards),
+    kPct:      (K.spent_usd/K.credits_funded_usd*100).toFixed(1)+'%',
+    bDate:     B.date,
+    bWhat:     B.what,
+    bMet:      money(B.metered_spend_usd),
+    bFlat:     money(B.flat_plan_marginal_usd),
+    bTotal:    money(B.metered_spend_usd+B.flat_plan_marginal_usd),
+    pSol:      D.provenance.sol_telemetry,
+    pKimi:     D.provenance.kimi_meter,
+    pFlat:     D.provenance.flat_plan_note
+  };
+  Array.prototype.forEach.call(document.querySelectorAll('[data-n]'), function(e){
+    var v = map[e.getAttribute('data-n')];
+    if (v != null) e.textContent = v;
+  });
+
+  /* ---- tooltip ---- */
+  var tt = document.getElementById('tt');
+  function ttFill(r){
+    tt.replaceChildren();
+    var n = el('div','tt-n'); n.textContent = NAMES[r.task_class];
+    var v = el('div','tt-v'); var b = el('b');
+    b.textContent = comma(r.runs)+' run'+(r.runs===1?'':'s');
+    v.appendChild(b);
+    v.appendChild(document.createTextNode(' · median '+r.median_minutes+' min'));
+    var s1 = el('div','tt-s');
+    s1.textContent = comma(r.total_tokens)+' tokens · '+(r.total_tokens/totTok*100).toFixed(1)+'% of July tokens';
+    var s2 = el('div','tt-s'); s2.textContent = 'raw class: '+r.task_class;
+    tt.appendChild(n); tt.appendChild(v); tt.appendChild(s1); tt.appendChild(s2);
+  }
+  function ttPlace(x,y){
+    var w = tt.offsetWidth, h = tt.offsetHeight;
+    var L = x+14; if (L+w > window.innerWidth-8)  L = Math.max(8, x-w-14);
+    var T = y+16; if (T+h > window.innerHeight-8) T = Math.max(8, y-h-12);
+    tt.style.left = L+'px'; tt.style.top = T+'px';
+  }
+  function ttOn(){ tt.classList.add('on'); }
+  function ttOff(){ tt.classList.remove('on'); }
+
+  function attachTT(row, r){
+    row.addEventListener('pointerenter', function(e){ ttFill(r); ttOn(); ttPlace(e.clientX, e.clientY); });
+    row.addEventListener('pointermove',  function(e){ ttPlace(e.clientX, e.clientY); });
+    row.addEventListener('pointerleave', ttOff);
+    row.addEventListener('focus', function(){
+      var rc = row.getBoundingClientRect();
+      ttFill(r); ttOn(); ttPlace(rc.left + rc.width*0.35, rc.bottom);
+    });
+    row.addEventListener('blur', ttOff);
+  }
+
+  /* ---- generic hand-built bar chart ---- */
+  function chart(id, spec){
+    var root = document.getElementById(id);
+    var axis = el('div','ch-axis cols');
+    axis.appendChild(el('div'));
+    var ax = el('div','axcell');
+    spec.ticks.forEach(function(t,i){
+      var s = el('span','tick');
+      s.textContent = spec.tickFmt ? spec.tickFmt(t) : String(t);
+      s.style.left = (t/spec.max*100)+'%';
+      if (t===0) s.className += ' t0';
+      else if (i===spec.ticks.length-1) s.className += ' tEnd';
+      ax.appendChild(s);
+    });
+    axis.appendChild(ax);
+    if (spec.tok){ var th = el('div','tokhead'); th.textContent='tokens'; axis.appendChild(th); }
+
+    var body = el('div','ch-body');
+    var gl = el('div','ch-gridlayer cols'); gl.appendChild(el('div'));
+    var gc = el('div','glcell');
+    spec.ticks.forEach(function(t){
+      var g = el('div', t===0 ? 'gl gl0' : 'gl');
+      g.style.left = (t/spec.max*100)+'%';
+      gc.appendChild(g);
+    });
+    gl.appendChild(gc);
+    if (spec.tok) gl.appendChild(el('div'));
+    body.appendChild(gl);
+
+    spec.rows.forEach(function(r){
+      var row = el('div','ch-row cols'+(spec.hi(r)?' hi':'')+(r.task_class===OTHER?' sep':''));
+      row.tabIndex = 0;
+      row.setAttribute('role','img');
+      row.setAttribute('aria-label',
+        NAMES[r.task_class]+': '+comma(r.runs)+' runs, median '+r.median_minutes+
+        ' minutes, '+comma(r.total_tokens)+' tokens');
+      var lab = el('div','rlabel'); lab.textContent = NAMES[r.task_class];
+      var plot = el('div','rplot');
+      var pct = r[spec.key]/spec.max*100;
+      var bar = el('div','bar'); bar.setAttribute('data-w', String(pct));
+      var val = el('span','val'); val.textContent = spec.fmt(r[spec.key]);
+      plot.appendChild(bar);
+      if (pct > 85){ val.className += ' vin'; bar.appendChild(val); }
+      else plot.appendChild(val);
+      row.appendChild(lab); row.appendChild(plot);
+      if (spec.tok){ var tk = el('div','rtok'); tk.textContent = mm(r.total_tokens); row.appendChild(tk); }
+      attachTT(row, r);
+      body.appendChild(row);
+    });
+    root.appendChild(axis); root.appendChild(body);
+  }
+
+  /* row orders: rank by measure, fold "Other" to the bottom */
+  var main = S.filter(function(x){ return x.task_class!==OTHER; });
+  var other = S.filter(function(x){ return x.task_class===OTHER; })[0];
+  var byRuns = main.slice().sort(function(a,b){ return b.runs-a.runs || b.total_tokens-a.total_tokens; }).concat([other]);
+  var byMins = main.slice().sort(function(a,b){ return b.median_minutes-a.median_minutes; }).concat([other]);
+
+  chart('chartRuns', {
+    rows: byRuns, key:'runs', max:650, ticks:[0,200,400,600],
+    fmt: function(v){ return comma(v); }, tok:true,
+    hi: function(r){ return r.task_class==='code-multi-file'; }
+  });
+  chart('chartMins', {
+    rows: byMins, key:'median_minutes', max:25, ticks:[0,5,10,15,20,25],
+    fmt: function(v){ return v.toFixed(1); }, tok:false,
+    hi: function(r){ return r.task_class.indexOf('design')===0; }
+  });
+
+  /* ---- token strip ---- */
+  document.getElementById('stripCode').setAttribute('data-w', String(code.total_tokens/totTok*100));
+
+  /* ---- meter ---- */
+  var mPct = K.spent_usd/K.credits_funded_usd*100;
+  document.getElementById('meter').style.setProperty('--fx', mPct+'%');
+  document.getElementById('mfill').setAttribute('data-w', String(mPct));
+  var mt = document.getElementById('mticks');
+  [0,5,10,15,20,25].forEach(function(t,i,arr){
+    var s = el('span','tick');
+    s.textContent = '$'+t;
+    s.style.left = (t/K.credits_funded_usd*100)+'%';
+    if (t===0) s.className += ' t0';
+    else if (i===arr.length-1) s.className += ' tEnd';
+    mt.appendChild(s);
+  });
+
+  /* ---- ledger tables ---- */
+  var tb = document.querySelector('#tblSol tbody');
+  byRuns.forEach(function(r){
+    var tr = el('tr');
+    var td1 = el('td'); td1.textContent = NAMES[r.task_class];
+    var raw = el('span','raw'); raw.textContent = r.task_class; td1.appendChild(raw);
+    var td2 = el('td','num'); td2.textContent = comma(r.runs);
+    var td3 = el('td','num'); td3.textContent = r.median_minutes.toFixed(1);
+    var td4 = el('td','num'); td4.textContent = comma(r.total_tokens);
+    tr.appendChild(td1); tr.appendChild(td2); tr.appendChild(td3); tr.appendChild(td4);
+    tb.appendChild(tr);
+  });
+  var trT = el('tr','tot');
+  ['Total','','',''].forEach(function(){ trT.appendChild(el('td')); });
+  trT.children[0].textContent = 'Total';
+  trT.children[1].className = 'num'; trT.children[1].textContent = comma(totRuns);
+  trT.children[2].className = 'num'; trT.children[2].textContent = '—';
+  trT.children[3].className = 'num'; trT.children[3].textContent = comma(totTok);
+  tb.appendChild(trT);
+
+  var kb = document.querySelector('#tblKimi tbody');
+  [ ['Credits funded', money(K.credits_funded_usd)],
+    ['Spent', money(K.spent_usd)],
+    ['Pages authored', String(K.pages_authored)],
+    ['Blind scorecards', String(K.scorecards)],
+    ['≈ cost per page', money(K.approx_cost_per_page_usd)],
+    ['Experiment', B.what],
+    ['Flat-plan marginal', money(B.flat_plan_marginal_usd)]
+  ].forEach(function(p){
+    var tr = el('tr');
+    var a = el('td'); a.textContent = p[0];
+    var b = el('td','num'); b.textContent = p[1];
+    tr.appendChild(a); tr.appendChild(b); kb.appendChild(tr);
+  });
+
+  /* ---- animate widths in from the dataset values ---- */
+  requestAnimationFrame(function(){ requestAnimationFrame(function(){
+    Array.prototype.forEach.call(document.querySelectorAll('[data-w]'), function(b){
+      b.style.width = b.getAttribute('data-w')+'%';
+    });
+  });});
+})();
+</script>
+</body>
+</html>

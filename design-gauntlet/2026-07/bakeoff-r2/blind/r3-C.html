@@ -1,0 +1,1523 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Buildwise Media builds verifiable custom AI systems for service businesses on their own domain.">
+  <title>Buildwise Media — Verifiable Custom AI Systems</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&amp;family=IBM+Plex+Sans:wght@400;500;600;700&amp;family=Newsreader:opsz,wght@6..72,400;6..72,500;6..72,600&amp;display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --signal: #F0FF00;
+      --signal-deep: #C8D300;
+      --paper: #F4F0E7;
+      --paper-bright: #FFFDF7;
+      --ink: #101B24;
+      --ink-soft: #263640;
+      --blue: #2143E8;
+      --line: rgba(16, 27, 36, .2);
+      --max: 1380px;
+      --sans: "IBM Plex Sans", Arial, sans-serif;
+      --serif: "Newsreader", Georgia, serif;
+      --mono: "IBM Plex Mono", monospace;
+    }
+
+    * { box-sizing: border-box; }
+
+    html {
+      scroll-behavior: smooth;
+      background: var(--ink);
+    }
+
+    body {
+      margin: 0;
+      color: var(--ink);
+      background: var(--paper);
+      font-family: var(--sans);
+      font-size: 17px;
+      line-height: 1.55;
+      text-rendering: optimizeLegibility;
+    }
+
+    body.menu-open { overflow: hidden; }
+
+    img, svg {
+      max-width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    a { color: inherit; }
+
+    button,
+    a { -webkit-tap-highlight-color: transparent; }
+
+    button { font: inherit; }
+
+    :focus-visible {
+      outline: 3px solid var(--blue);
+      outline-offset: 4px;
+    }
+
+    .skip-link {
+      position: fixed;
+      z-index: 100;
+      top: 0;
+      left: 0;
+      padding: 12px 16px;
+      background: var(--signal);
+      color: var(--ink);
+      font: 600 13px/1 var(--mono);
+      transform: translateY(-120%);
+    }
+
+    .skip-link:focus { transform: translateY(0); }
+
+    .shell {
+      width: min(calc(100% - 48px), var(--max));
+      margin-inline: auto;
+    }
+
+    .eyebrow {
+      margin: 0;
+      font: 600 11px/1.35 var(--mono);
+      letter-spacing: .12em;
+      text-transform: uppercase;
+    }
+
+    .topbar {
+      position: relative;
+      z-index: 20;
+      border-bottom: 1px solid var(--line);
+      background: rgba(244, 240, 231, .96);
+    }
+
+    .nav-shell {
+      min-height: 84px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 28px;
+    }
+
+    .brand {
+      width: 204px;
+      flex: 0 0 auto;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      gap: 32px;
+    }
+
+    .nav-links > a:not(.button) {
+      text-decoration: none;
+      font: 600 12px/1 var(--mono);
+      letter-spacing: .04em;
+      text-transform: uppercase;
+    }
+
+    .nav-links > a:not(.button):hover { text-decoration: underline; }
+
+    .menu-toggle {
+      display: none;
+      width: 46px;
+      height: 46px;
+      border: 1px solid var(--ink);
+      color: var(--ink);
+      background: transparent;
+      cursor: pointer;
+    }
+
+    .menu-toggle span {
+      display: block;
+      width: 20px;
+      height: 1px;
+      margin: 5px auto;
+      background: currentColor;
+    }
+
+    .button {
+      min-height: 54px;
+      padding: 15px 22px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 16px;
+      border: 1px solid var(--ink);
+      text-decoration: none;
+      font: 700 13px/1.2 var(--sans);
+      transition: background .18s ease, color .18s ease, transform .18s ease;
+    }
+
+    .button::after {
+      content: "→";
+      font: 500 20px/1 var(--mono);
+    }
+
+    .button:hover { transform: translateY(-2px); }
+
+    .button-primary {
+      border-color: var(--signal);
+      background: var(--signal);
+      color: var(--ink);
+      box-shadow: 6px 6px 0 var(--blue);
+    }
+
+    .button-primary:hover {
+      background: var(--paper-bright);
+      border-color: var(--paper-bright);
+    }
+
+    .button-ink {
+      background: var(--ink);
+      color: var(--paper-bright);
+    }
+
+    .button-ink:hover {
+      background: var(--blue);
+      border-color: var(--blue);
+    }
+
+    .button-outline-light {
+      border-color: rgba(255,255,255,.46);
+      color: var(--paper-bright);
+    }
+
+    .button-outline-light:hover {
+      border-color: var(--paper-bright);
+      background: var(--paper-bright);
+      color: var(--ink);
+    }
+
+    .hero {
+      position: relative;
+      overflow: hidden;
+      color: var(--paper-bright);
+      background: var(--ink);
+    }
+
+    .hero::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      opacity: .14;
+      background-image:
+        linear-gradient(rgba(255,255,255,.2) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,.2) 1px, transparent 1px);
+      background-size: 56px 56px;
+    }
+
+    .hero-grid {
+      position: relative;
+      display: grid;
+      grid-template-columns: minmax(0, 1.18fr) minmax(330px, .62fr);
+      min-height: calc(100svh - 84px);
+    }
+
+    .hero-copy {
+      padding: clamp(72px, 8vw, 126px) clamp(32px, 6vw, 96px) 66px 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .hero .eyebrow {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      color: var(--signal);
+    }
+
+    .hero .eyebrow::before {
+      content: "";
+      width: 44px;
+      height: 3px;
+      background: var(--signal);
+    }
+
+    h1,
+    h2,
+    h3,
+    p { margin-top: 0; }
+
+    h1 {
+      max-width: 940px;
+      margin: 31px 0 28px;
+      font: 500 clamp(60px, 7.35vw, 116px)/.9 var(--serif);
+      letter-spacing: -.058em;
+    }
+
+    h1 em {
+      color: var(--signal);
+      font-weight: 400;
+      text-decoration: underline;
+      text-decoration-thickness: .05em;
+      text-underline-offset: .12em;
+    }
+
+    .hero-lede {
+      max-width: 710px;
+      margin-bottom: 35px;
+      color: #D9DFDD;
+      font-size: clamp(18px, 1.65vw, 23px);
+      line-height: 1.45;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .text-link {
+      padding: 13px 0;
+      color: var(--paper-bright);
+      font: 600 13px/1.2 var(--mono);
+      text-underline-offset: 5px;
+    }
+
+    .hero-proof {
+      margin-top: clamp(60px, 8vw, 108px);
+      padding-top: 23px;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 22px;
+      border-top: 1px solid rgba(255,255,255,.26);
+    }
+
+    .proof-chip span {
+      display: block;
+      margin-bottom: 8px;
+      color: var(--signal);
+      font: 600 10px/1 var(--mono);
+      letter-spacing: .12em;
+    }
+
+    .proof-chip strong {
+      font: 500 15px/1.35 var(--sans);
+    }
+
+    .hero-panel {
+      position: relative;
+      min-height: 640px;
+      margin-right: calc((100vw - min(calc(100vw - 48px), var(--max))) / -2);
+      padding: 34px max(24px, calc((100vw - var(--max)) / 2)) 34px 34px;
+      color: var(--ink);
+      background: var(--signal);
+      border-left: 1px solid rgba(16,27,36,.35);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .panel-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      padding-bottom: 22px;
+      border-bottom: 1px solid var(--ink);
+    }
+
+    .panel-head span:last-child {
+      font: 500 10px/1 var(--mono);
+      letter-spacing: .08em;
+    }
+
+    .signal-map {
+      position: relative;
+      min-height: 380px;
+      margin: 30px 0;
+      border: 1px solid var(--ink);
+      background:
+        linear-gradient(rgba(16,27,36,.18) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(16,27,36,.18) 1px, transparent 1px),
+        var(--signal);
+      background-size: 32px 32px;
+    }
+
+    .map-node {
+      position: absolute;
+      z-index: 2;
+      padding: 8px 10px;
+      border: 1px solid var(--ink);
+      background: var(--signal);
+      font: 600 9px/1.15 var(--mono);
+      letter-spacing: .08em;
+      text-transform: uppercase;
+    }
+
+    .node-a { left: 8%; top: 13%; }
+    .node-b { right: 7%; top: 24%; }
+    .node-c { left: 11%; bottom: 14%; }
+    .node-d { right: 13%; bottom: 11%; }
+
+    .map-core {
+      position: absolute;
+      z-index: 3;
+      top: 50%;
+      left: 50%;
+      width: 138px;
+      min-height: 138px;
+      padding: 20px;
+      display: grid;
+      place-items: center;
+      text-align: center;
+      color: var(--paper-bright);
+      background: var(--blue);
+      border: 1px solid var(--ink);
+      box-shadow: 9px 9px 0 var(--ink);
+      transform: translate(-50%, -50%);
+      font: 600 12px/1.35 var(--mono);
+      letter-spacing: .06em;
+      text-transform: uppercase;
+    }
+
+    .wire {
+      position: absolute;
+      z-index: 1;
+      height: 1px;
+      background: var(--ink);
+      transform-origin: left center;
+    }
+
+    .wire-a { width: 44%; left: 20%; top: 23%; transform: rotate(31deg); }
+    .wire-b { width: 37%; left: 49%; top: 50%; transform: rotate(-35deg); }
+    .wire-c { width: 38%; left: 22%; top: 75%; transform: rotate(-38deg); }
+    .wire-d { width: 33%; left: 51%; top: 53%; transform: rotate(43deg); }
+
+    .panel-foot {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 28px;
+      padding-top: 22px;
+      border-top: 1px solid var(--ink);
+    }
+
+    .panel-foot strong {
+      display: block;
+      font: 500 32px/1 var(--serif);
+      letter-spacing: -.03em;
+    }
+
+    .panel-foot small {
+      display: block;
+      margin-top: 8px;
+      font: 500 9px/1.35 var(--mono);
+      letter-spacing: .08em;
+      text-transform: uppercase;
+    }
+
+    .statement-strip {
+      border-bottom: 1px solid var(--ink);
+      background: var(--paper-bright);
+    }
+
+    .statement-inner {
+      min-height: 94px;
+      display: grid;
+      grid-template-columns: 145px 1fr;
+      align-items: center;
+      gap: 30px;
+    }
+
+    .statement-inner p {
+      margin: 0;
+      font: 500 clamp(22px, 2.35vw, 37px)/1.12 var(--serif);
+      letter-spacing: -.025em;
+    }
+
+    .stack-section {
+      padding: clamp(90px, 11vw, 160px) 0;
+    }
+
+    .section-intro {
+      display: grid;
+      grid-template-columns: .42fr 1fr;
+      gap: 9vw;
+      margin-bottom: 74px;
+    }
+
+    .section-intro h2,
+    .system-copy h2,
+    .proof-copy h2,
+    .audience-copy h2,
+    .offers-head h2,
+    .final h2 {
+      margin-bottom: 25px;
+      font: 500 clamp(44px, 5.5vw, 78px)/.98 var(--serif);
+      letter-spacing: -.048em;
+    }
+
+    .section-intro p:not(.eyebrow) {
+      max-width: 760px;
+      margin: 0;
+      font-size: clamp(19px, 2vw, 27px);
+      line-height: 1.43;
+    }
+
+    .invoice-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1.12fr) minmax(310px, .62fr);
+      border: 1px solid var(--ink);
+    }
+
+    .invoice-list { background: var(--paper-bright); }
+
+    .invoice-row {
+      min-height: 76px;
+      padding: 18px 24px;
+      display: grid;
+      grid-template-columns: 52px 1fr auto;
+      align-items: center;
+      gap: 18px;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .invoice-row:last-child { border-bottom: 0; }
+
+    .invoice-row .index {
+      font: 500 11px/1 var(--mono);
+      letter-spacing: .08em;
+    }
+
+    .invoice-row strong {
+      font-size: 15px;
+      font-weight: 600;
+    }
+
+    .invoice-row em {
+      color: #5A666B;
+      font: 500 10px/1 var(--mono);
+      letter-spacing: .06em;
+      text-transform: uppercase;
+    }
+
+    .one-system {
+      min-height: 456px;
+      padding: 34px;
+      color: var(--paper-bright);
+      background: var(--blue);
+      border-left: 1px solid var(--ink);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .one-system .eyebrow { color: var(--signal); }
+
+    .one-system p {
+      margin: auto 0;
+      font: 500 clamp(48px, 5.3vw, 80px)/.85 var(--serif);
+      letter-spacing: -.06em;
+    }
+
+    .one-system footer {
+      padding-top: 20px;
+      border-top: 1px solid rgba(255,255,255,.55);
+      font: 500 11px/1.4 var(--mono);
+      letter-spacing: .07em;
+      text-transform: uppercase;
+    }
+
+    .visual-placeholder {
+      position: relative;
+      min-height: 480px;
+      overflow: hidden;
+      padding: 28px;
+      color: var(--paper-bright);
+      background: var(--blue);
+      border: 1px solid var(--ink);
+      display: flex;
+      align-items: flex-end;
+    }
+
+    .visual-placeholder::before,
+    .visual-placeholder::after {
+      content: "";
+      position: absolute;
+      pointer-events: none;
+    }
+
+    .visual-placeholder::before {
+      width: 76%;
+      height: 62%;
+      top: 8%;
+      right: -13%;
+      border: 1px solid rgba(255,255,255,.7);
+      background:
+        linear-gradient(135deg, transparent 49.7%, rgba(240,255,0,.95) 50%, transparent 50.3%),
+        linear-gradient(45deg, transparent 49.7%, rgba(255,255,255,.28) 50%, transparent 50.3%);
+    }
+
+    .visual-placeholder::after {
+      width: 38%;
+      height: 56%;
+      left: 9%;
+      top: 18%;
+      background: var(--signal);
+      mix-blend-mode: screen;
+    }
+
+    .intent-caption {
+      position: relative;
+      z-index: 2;
+      max-width: 520px;
+      padding: 16px 18px;
+      color: var(--ink);
+      background: var(--paper-bright);
+      border: 1px solid var(--ink);
+      font: 500 10px/1.55 var(--mono);
+      letter-spacing: .05em;
+      text-transform: uppercase;
+    }
+
+    .intent-caption strong {
+      display: block;
+      margin-bottom: 5px;
+      color: var(--blue);
+    }
+
+    .system-section {
+      position: relative;
+      padding: clamp(95px, 12vw, 168px) 0;
+      overflow: hidden;
+      color: var(--paper-bright);
+      background: var(--ink);
+    }
+
+    .system-section::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      right: 7vw;
+      bottom: 0;
+      width: 1px;
+      background: rgba(240,255,0,.35);
+    }
+
+    .system-grid {
+      position: relative;
+      z-index: 2;
+      display: grid;
+      grid-template-columns: minmax(280px, .72fr) minmax(0, 1.28fr);
+      gap: 9vw;
+      align-items: start;
+    }
+
+    .system-copy {
+      position: sticky;
+      top: 34px;
+    }
+
+    .system-copy .eyebrow,
+    .proof-copy .eyebrow { color: var(--signal); }
+
+    .system-copy p:not(.eyebrow) {
+      max-width: 520px;
+      color: #C9D0D0;
+      font-size: 19px;
+    }
+
+    .system-ledger { border-top: 1px solid rgba(255,255,255,.35); }
+
+    .ledger-row {
+      position: relative;
+      min-height: 190px;
+      padding: 30px 0 30px 118px;
+      border-bottom: 1px solid rgba(255,255,255,.35);
+      display: grid;
+      grid-template-columns: 1fr minmax(160px, .45fr);
+      align-items: center;
+      gap: 42px;
+    }
+
+    .ledger-code {
+      position: absolute;
+      top: 36px;
+      left: 0;
+      color: var(--signal);
+      font: 600 11px/1 var(--mono);
+      letter-spacing: .1em;
+    }
+
+    .ledger-row h3 {
+      margin: 0 0 12px;
+      font: 500 clamp(31px, 3.4vw, 48px)/1 var(--serif);
+      letter-spacing: -.035em;
+    }
+
+    .ledger-row p {
+      max-width: 520px;
+      margin: 0;
+      color: #C9D0D0;
+      font-size: 16px;
+    }
+
+    .status-bar {
+      padding: 17px;
+      color: var(--ink);
+      background: var(--signal);
+      border: 1px solid var(--signal);
+      font: 600 10px/1.3 var(--mono);
+      letter-spacing: .08em;
+      text-transform: uppercase;
+    }
+
+    .status-bar::before {
+      content: "◆";
+      margin-right: 10px;
+      color: var(--blue);
+    }
+
+    .proof-section {
+      padding: clamp(90px, 12vw, 160px) 0;
+      background: var(--paper-bright);
+    }
+
+    .proof-grid {
+      display: grid;
+      grid-template-columns: minmax(0, .86fr) minmax(360px, 1.14fr);
+      gap: 8vw;
+      align-items: center;
+    }
+
+    .proof-copy p:not(.eyebrow) {
+      max-width: 610px;
+      font-size: clamp(18px, 1.75vw, 23px);
+    }
+
+    .proof-console {
+      color: var(--paper-bright);
+      background: var(--ink);
+      border: 1px solid var(--ink);
+      box-shadow: 18px 18px 0 var(--signal);
+    }
+
+    .console-top {
+      min-height: 54px;
+      padding: 16px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      border-bottom: 1px solid rgba(255,255,255,.25);
+      font: 500 10px/1 var(--mono);
+      letter-spacing: .08em;
+      text-transform: uppercase;
+    }
+
+    .live-label {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      color: var(--signal);
+    }
+
+    .live-label::before {
+      content: "";
+      width: 8px;
+      height: 8px;
+      background: var(--signal);
+      box-shadow: 0 0 0 4px rgba(240,255,0,.16);
+    }
+
+    .console-body { padding: 12px 28px 28px; }
+
+    .console-row {
+      min-height: 100px;
+      display: grid;
+      grid-template-columns: 42px 1fr auto;
+      align-items: center;
+      gap: 16px;
+      border-bottom: 1px solid rgba(255,255,255,.17);
+    }
+
+    .console-row:last-child { border-bottom: 0; }
+
+    .console-icon {
+      width: 32px;
+      height: 32px;
+      border: 1px solid var(--signal);
+      display: grid;
+      place-items: center;
+      color: var(--signal);
+      font: 500 13px/1 var(--mono);
+    }
+
+    .console-row strong {
+      display: block;
+      margin-bottom: 5px;
+      font: 500 24px/1 var(--serif);
+    }
+
+    .console-row small {
+      color: #AEB9B9;
+      font: 500 9px/1.2 var(--mono);
+      letter-spacing: .07em;
+      text-transform: uppercase;
+    }
+
+    .console-state {
+      color: var(--signal);
+      font: 600 9px/1 var(--mono);
+      letter-spacing: .08em;
+      text-transform: uppercase;
+    }
+
+    .timeline {
+      color: var(--ink);
+      background: var(--signal);
+      border-block: 1px solid var(--ink);
+    }
+
+    .timeline-inner {
+      min-height: 230px;
+      display: grid;
+      grid-template-columns: .72fr 1.28fr;
+      align-items: center;
+      gap: 7vw;
+    }
+
+    .day-mark {
+      padding-right: 6vw;
+      border-right: 1px solid var(--ink);
+      font: 500 clamp(70px, 10vw, 146px)/.74 var(--serif);
+      letter-spacing: -.07em;
+    }
+
+    .day-mark small {
+      display: block;
+      margin-top: 17px;
+      font: 600 11px/1 var(--mono);
+      letter-spacing: .13em;
+      text-transform: uppercase;
+    }
+
+    .timeline-copy p:first-child {
+      margin-bottom: 13px;
+      font: 500 clamp(34px, 4vw, 58px)/1 var(--serif);
+      letter-spacing: -.04em;
+    }
+
+    .timeline-copy p:last-child {
+      max-width: 590px;
+      margin: 0;
+      font-size: 16px;
+    }
+
+    .audience-section {
+      padding: clamp(90px, 12vw, 168px) 0;
+    }
+
+    .audience-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+      gap: 7vw;
+      align-items: center;
+    }
+
+    .audience-copy p:not(.eyebrow) {
+      max-width: 620px;
+      font-size: 19px;
+    }
+
+    .fit-list {
+      margin: 38px 0 0;
+      padding: 0;
+      list-style: none;
+      border-top: 1px solid var(--ink);
+    }
+
+    .fit-list li {
+      padding: 19px 0;
+      display: grid;
+      grid-template-columns: 28px 1fr;
+      gap: 13px;
+      border-bottom: 1px solid var(--ink);
+      font-weight: 600;
+    }
+
+    .fit-list li::before {
+      content: "◆";
+      color: var(--blue);
+      font-size: 11px;
+      transform: translateY(4px);
+    }
+
+    .audience-visual { min-height: 610px; }
+
+    .offers-section {
+      padding: clamp(96px, 12vw, 170px) 0;
+      color: var(--paper-bright);
+      background: var(--blue);
+    }
+
+    .offers-head {
+      display: grid;
+      grid-template-columns: .85fr 1.15fr;
+      gap: 9vw;
+      margin-bottom: 70px;
+    }
+
+    .offers-head .eyebrow { color: var(--signal); }
+
+    .offers-head p:last-child {
+      max-width: 650px;
+      font-size: clamp(18px, 1.7vw, 22px);
+    }
+
+    .offer-table { border-top: 1px solid rgba(255,255,255,.5); }
+
+    .offer-row {
+      padding: 42px 0;
+      display: grid;
+      grid-template-columns: minmax(180px, .46fr) minmax(180px, .45fr) minmax(320px, 1.09fr);
+      gap: 5vw;
+      border-bottom: 1px solid rgba(255,255,255,.5);
+    }
+
+    .offer-name .eyebrow {
+      margin-bottom: 14px;
+      color: var(--signal);
+    }
+
+    .offer-name h3 {
+      margin: 0;
+      font: 500 clamp(33px, 3.5vw, 49px)/1 var(--serif);
+      letter-spacing: -.035em;
+    }
+
+    .offer-price {
+      font: 500 clamp(23px, 2.45vw, 34px)/1.2 var(--serif);
+      letter-spacing: -.025em;
+    }
+
+    .offer-price small {
+      display: block;
+      margin-top: 11px;
+      color: #D7DEFF;
+      font: 500 10px/1.35 var(--mono);
+      letter-spacing: .07em;
+      text-transform: uppercase;
+    }
+
+    .offer-detail > p:first-child {
+      margin-bottom: 18px;
+      font-size: 16px;
+    }
+
+    .replacement {
+      margin: 0;
+      padding: 15px 0 0 18px;
+      border-top: 1px solid rgba(255,255,255,.24);
+      border-left: 3px solid var(--signal);
+      color: #D7DEFF;
+      font-size: 12px;
+      line-height: 1.5;
+    }
+
+    .offer-cta {
+      margin-top: 42px;
+      display: flex;
+      justify-content: flex-end;
+    }
+
+    .final {
+      position: relative;
+      padding: clamp(100px, 14vw, 190px) 0;
+      overflow: hidden;
+      color: var(--paper-bright);
+      background: var(--ink);
+    }
+
+    .final::before {
+      content: "";
+      position: absolute;
+      inset: 22px;
+      border: 1px solid rgba(240,255,0,.48);
+      pointer-events: none;
+    }
+
+    .final-grid {
+      position: relative;
+      z-index: 2;
+      display: grid;
+      grid-template-columns: minmax(0, 1.1fr) minmax(290px, .6fr);
+      align-items: end;
+      gap: 8vw;
+    }
+
+    .final .eyebrow { color: var(--signal); }
+
+    .final h2 { max-width: 880px; }
+
+    .final-copy p:last-child {
+      max-width: 650px;
+      margin: 0;
+      color: #C9D0D0;
+      font-size: 19px;
+    }
+
+    .final-action {
+      padding: 26px;
+      color: var(--ink);
+      background: var(--signal);
+      border: 1px solid var(--signal);
+    }
+
+    .final-action p {
+      margin-bottom: 22px;
+      font: 500 25px/1.17 var(--serif);
+      letter-spacing: -.02em;
+    }
+
+    .final-action .button {
+      width: 100%;
+      color: var(--paper-bright);
+      background: var(--ink);
+    }
+
+    .site-footer {
+      padding: 32px 0;
+      color: var(--paper-bright);
+      background: var(--ink);
+      border-top: 1px solid rgba(255,255,255,.22);
+    }
+
+    .footer-inner {
+      display: grid;
+      grid-template-columns: 76px 1fr auto;
+      align-items: center;
+      gap: 26px;
+    }
+
+    .footer-mark { width: 64px; }
+
+    .site-footer p {
+      margin: 0;
+      color: #AEB9B9;
+      font-size: 13px;
+    }
+
+    .site-footer a {
+      color: var(--signal);
+      font: 600 11px/1 var(--mono);
+      letter-spacing: .07em;
+      text-transform: uppercase;
+      text-underline-offset: 4px;
+    }
+
+    @media (max-width: 1080px) {
+      .nav-links { gap: 20px; }
+      .nav-links > a:not(.button) { display: none; }
+
+      .hero-grid { grid-template-columns: minmax(0, 1.08fr) minmax(300px, .72fr); }
+      .hero-copy { padding-right: 44px; }
+      .hero-panel { padding-left: 25px; }
+      .panel-foot { grid-template-columns: 1fr; gap: 14px; }
+
+      .section-intro,
+      .system-grid,
+      .offers-head { gap: 5vw; }
+
+      .ledger-row { padding-left: 74px; }
+
+      .offer-row {
+        grid-template-columns: .45fr .55fr;
+        gap: 30px;
+      }
+
+      .offer-detail { grid-column: 1 / -1; }
+    }
+
+    @media (max-width: 820px) {
+      .shell { width: min(calc(100% - 34px), var(--max)); }
+
+      .menu-toggle { display: block; }
+
+      .nav-links {
+        position: fixed;
+        inset: 84px 0 0;
+        padding: 28px 17px 42px;
+        display: none;
+        align-items: stretch;
+        justify-content: flex-start;
+        flex-direction: column;
+        gap: 0;
+        color: var(--paper-bright);
+        background: var(--ink);
+      }
+
+      .menu-open .nav-links { display: flex; }
+
+      .nav-links > a:not(.button) {
+        min-height: 62px;
+        padding: 22px 4px;
+        display: block;
+        border-bottom: 1px solid rgba(255,255,255,.24);
+      }
+
+      .nav-links .button { margin-top: 25px; }
+
+      .hero-grid { display: block; min-height: 0; }
+      .hero-copy { min-height: calc(100svh - 84px); padding: 74px 0 56px; }
+      .hero-panel {
+        min-height: 600px;
+        margin: 0 -17px;
+        padding: 28px 17px;
+        border-top: 1px solid var(--ink);
+        border-left: 0;
+      }
+
+      .statement-inner,
+      .section-intro,
+      .system-grid,
+      .proof-grid,
+      .timeline-inner,
+      .audience-grid,
+      .offers-head,
+      .final-grid { grid-template-columns: 1fr; }
+
+      .statement-inner { padding-block: 28px; gap: 13px; }
+      .section-intro { gap: 24px; }
+
+      .invoice-layout { grid-template-columns: 1fr; }
+      .one-system { min-height: 330px; border-top: 1px solid var(--ink); border-left: 0; }
+
+      .system-copy { position: static; }
+      .system-ledger { margin-top: 46px; }
+
+      .proof-grid { gap: 60px; }
+      .proof-console { box-shadow: 10px 10px 0 var(--signal); }
+
+      .timeline-inner { padding: 54px 0; gap: 38px; }
+      .day-mark { padding: 0 0 32px; border-right: 0; border-bottom: 1px solid var(--ink); }
+
+      .audience-grid { gap: 58px; }
+      .audience-visual { min-height: 510px; }
+
+      .offers-head { gap: 20px; }
+
+      .final-grid { gap: 54px; }
+    }
+
+    @media (max-width: 560px) {
+      body { font-size: 16px; }
+      .shell { width: min(calc(100% - 28px), var(--max)); }
+      .nav-shell { min-height: 74px; }
+      .brand { width: 170px; }
+      .nav-links { inset: 74px 0 0; }
+
+      h1 { font-size: clamp(52px, 15.8vw, 76px); }
+      .hero-copy { min-height: auto; padding: 70px 0 50px; }
+      .hero-actions { align-items: stretch; flex-direction: column; }
+      .hero-actions .button { width: 100%; }
+      .text-link { text-align: center; }
+      .hero-proof { grid-template-columns: 1fr; gap: 19px; margin-top: 58px; }
+      .proof-chip { padding-bottom: 16px; border-bottom: 1px solid rgba(255,255,255,.18); }
+
+      .hero-panel { margin-inline: -14px; }
+      .signal-map { min-height: 330px; }
+      .map-core { width: 116px; min-height: 116px; }
+
+      .stack-section,
+      .system-section,
+      .proof-section,
+      .audience-section,
+      .offers-section { padding-block: 84px; }
+
+      .invoice-row {
+        min-height: 74px;
+        padding-inline: 15px;
+        grid-template-columns: 30px 1fr;
+      }
+
+      .invoice-row em { grid-column: 2; }
+
+      .visual-placeholder { min-height: 390px; padding: 16px; }
+
+      .ledger-row {
+        min-height: 0;
+        padding: 64px 0 27px;
+        grid-template-columns: 1fr;
+        gap: 21px;
+      }
+
+      .ledger-code { top: 29px; }
+      .status-bar { width: fit-content; }
+
+      .console-body { padding: 6px 15px 19px; }
+      .console-row { grid-template-columns: 36px 1fr; }
+      .console-state { grid-column: 2; padding-bottom: 11px; }
+
+      .audience-visual { min-height: 420px; }
+
+      .offer-row { grid-template-columns: 1fr; gap: 22px; padding-block: 34px; }
+      .offer-detail { grid-column: auto; }
+      .offer-cta { justify-content: stretch; }
+      .offer-cta .button { width: 100%; }
+
+      .final { padding-block: 100px; }
+      .final::before { inset: 10px; }
+
+      .footer-inner {
+        grid-template-columns: 60px 1fr;
+        align-items: start;
+      }
+
+      .site-footer a { grid-column: 2; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      *, *::before, *::after { transition-duration: .01ms !important; }
+    }
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to main content</a>
+
+  <header class="topbar">
+    <div class="shell nav-shell">
+      <a class="brand" href="#top" aria-label="Buildwise Media home">
+        <svg viewBox="0 0 1000 250" role="img" aria-labelledby="logo-title" xmlns="http://www.w3.org/2000/svg">
+          <title id="logo-title">Buildwise Media</title>
+          <defs>
+            <linearGradient id="metallic-y2-lockup" x1="0%" y1="0%" x2="0%" y2="100%">
+              <stop offset="0%" stop-color="#FFFD58"/>
+              <stop offset="48%" stop-color="#F0FF00"/>
+              <stop offset="100%" stop-color="#C8D300"/>
+            </linearGradient>
+          </defs>
+          <g transform="translate(25, 25) scale(2)">
+            <line x1="50" y1="22" x2="22" y2="70" stroke="#7A8400" stroke-width="1.4" stroke-linecap="round"/>
+            <line x1="50" y1="22" x2="78" y2="70" stroke="#7A8400" stroke-width="1.4" stroke-linecap="round"/>
+            <line x1="22" y1="70" x2="78" y2="70" stroke="#7A8400" stroke-width="1.4" stroke-linecap="round"/>
+            <circle cx="50" cy="22" r="9" fill="url(#metallic-y2-lockup)"/>
+            <circle cx="22" cy="70" r="6.5" fill="#F0FF00"/>
+            <circle cx="78" cy="70" r="6.5" fill="#F0FF00"/>
+            <circle cx="50" cy="54" r="3" fill="#F0FF00"/>
+          </g>
+          <text x="265" y="135" font-family="Inter, sans-serif" font-weight="800" font-size="98" fill="#101B24" letter-spacing="-3">BUILDWISE</text>
+          <text x="265" y="200" font-family="Inter, sans-serif" font-weight="300" font-size="50" fill="#101B24" letter-spacing="6">MEDIA</text>
+        </svg>
+      </a>
+
+      <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="main-nav" aria-label="Open menu">
+        <span></span><span></span>
+      </button>
+
+      <nav class="nav-links" id="main-nav" aria-label="Primary navigation">
+        <a href="#system">The system</a>
+        <a href="#proof">The proof</a>
+        <a href="#offers">Ways to start</a>
+        <a class="button button-ink" href="/book">Get My Free Revenue Leak Map</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="hero" id="top">
+      <div class="shell hero-grid">
+        <div class="hero-copy">
+          <p class="eyebrow">Verifiable custom AI systems / service businesses</p>
+          <h1>You run the business. The system makes you the <em>most-chosen</em> name in your market.</h1>
+          <p class="hero-lede">We build an AI growth system on your own domain, run it for you, and make every lead, call, and job visible. The asset stays yours.</p>
+          <div class="hero-actions">
+            <a class="button button-primary" href="/book">Get My Free Revenue Leak Map</a>
+            <a class="text-link" href="#system">See the System ↓</a>
+          </div>
+          <div class="hero-proof" aria-label="Key facts">
+            <div class="proof-chip"><span>BUILD</span><strong>Live in 30 days</strong></div>
+            <div class="proof-chip"><span>OWNERSHIP</span><strong>Your domain. Your asset.</strong></div>
+            <div class="proof-chip"><span>PROOF</span><strong>Every lead, call, and job</strong></div>
+          </div>
+        </div>
+
+        <aside class="hero-panel" aria-label="How the system connects growth to proof">
+          <div class="panel-head">
+            <p class="eyebrow">System view</p>
+            <span>OWN DOMAIN / LIVE PROOF</span>
+          </div>
+          <div class="signal-map" aria-hidden="true">
+            <span class="map-node node-a">REAL LEADS</span>
+            <span class="map-node node-b">CALLS</span>
+            <span class="map-node node-c">JOBS</span>
+            <span class="map-node node-d">WEEKLY NUMBERS</span>
+            <span class="wire wire-a"></span>
+            <span class="wire wire-b"></span>
+            <span class="wire wire-c"></span>
+            <span class="wire wire-d"></span>
+            <span class="map-core">YOUR AI<br>GROWTH<br>SYSTEM</span>
+          </div>
+          <div class="panel-foot">
+            <div><strong>30 days</strong><small>From start to live system</small></div>
+            <div><strong>It stays yours</strong><small>Built on your own domain</small></div>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <section class="statement-strip" aria-label="Who Buildwise serves">
+      <div class="shell statement-inner">
+        <p class="eyebrow">Built for</p>
+        <p>Owner-led US service businesses that are done getting burned by agencies.</p>
+      </div>
+    </section>
+
+    <section class="stack-section">
+      <div class="shell">
+        <div class="section-intro">
+          <p class="eyebrow">The old way</p>
+          <div>
+            <h2>Six invoices. One owner holding it all together.</h2>
+            <p>The usual stack leaves you managing the parts. We replace that stack with one system the Buildwise team and our AI system run for you.</p>
+          </div>
+        </div>
+
+        <div class="invoice-layout">
+          <div class="invoice-list" aria-label="The six-part stack owners otherwise assemble">
+            <div class="invoice-row"><span class="index">A</span><strong>Agency retainer</strong><em>Separate invoice</em></div>
+            <div class="invoice-row"><span class="index">B</span><strong>Website vendor</strong><em>Separate invoice</em></div>
+            <div class="invoice-row"><span class="index">C</span><strong>Booking tool</strong><em>Separate invoice</em></div>
+            <div class="invoice-row"><span class="index">D</span><strong>Answering service</strong><em>Separate invoice</em></div>
+            <div class="invoice-row"><span class="index">E</span><strong>Ad management</strong><em>Separate invoice</em></div>
+            <div class="invoice-row"><span class="index">F</span><strong>Part-time marketer</strong><em>Separate invoice</em></div>
+          </div>
+          <div class="one-system">
+            <p class="eyebrow">The Buildwise way</p>
+            <p>One<br>system.</p>
+            <footer>Built around your market / run for you / yours to keep</footer>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="system-section" id="system">
+      <div class="shell system-grid">
+        <div class="system-copy">
+          <p class="eyebrow">See the system</p>
+          <h2>One clear line from growth to proof.</h2>
+          <p>It is not a report about work. It is a live system on your domain, with real leads and weekly numbers you can read.</p>
+        </div>
+
+        <div class="system-ledger">
+          <article class="ledger-row">
+            <span class="ledger-code">SYSTEM / DOMAIN</span>
+            <div>
+              <h3>Built where you own it.</h3>
+              <p>Your AI growth system lives on your own domain. The asset stays yours.</p>
+            </div>
+            <span class="status-bar">Owner-controlled</span>
+          </article>
+          <article class="ledger-row">
+            <span class="ledger-code">SYSTEM / RUN</span>
+            <div>
+              <h3>Run by our team.</h3>
+              <p>The Buildwise team and our AI system run it for you, so you can run the business.</p>
+            </div>
+            <span class="status-bar">Run for you</span>
+          </article>
+          <article class="ledger-row">
+            <span class="ledger-code">SYSTEM / PROOF</span>
+            <div>
+              <h3>Measured in leads, calls, and jobs.</h3>
+              <p>You can see every lead, call, and job the system produced, with weekly numbers you can read.</p>
+            </div>
+            <span class="status-bar">Verifiable</span>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="proof-section" id="proof">
+      <div class="shell proof-grid">
+        <div class="proof-copy">
+          <p class="eyebrow">The trust anchor</p>
+          <h2>“It actually works” should be something you can see.</h2>
+          <p>We show the trail: live systems, real leads, and weekly numbers. You do not have to take our word for it.</p>
+        </div>
+
+        <div class="proof-console" role="img" aria-label="A proof view showing that leads, calls, and jobs are visible and traceable">
+          <div class="console-top">
+            <span>Owner proof view</span>
+            <span class="live-label">Live system</span>
+          </div>
+          <div class="console-body">
+            <div class="console-row">
+              <span class="console-icon">L</span>
+              <div><strong>Every lead</strong><small>Produced by the system</small></div>
+              <span class="console-state">Visible</span>
+            </div>
+            <div class="console-row">
+              <span class="console-icon">C</span>
+              <div><strong>Every call</strong><small>Produced by the system</small></div>
+              <span class="console-state">Traceable</span>
+            </div>
+            <div class="console-row">
+              <span class="console-icon">J</span>
+              <div><strong>Every job</strong><small>Produced by the system</small></div>
+              <span class="console-state">Readable</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="timeline" aria-label="Build timeline">
+      <div class="shell timeline-inner">
+        <div class="day-mark">30<small>Days to live</small></div>
+        <div class="timeline-copy">
+          <p>Your system goes live in 30 days.</p>
+          <p>Built on your domain. Run for you. Ready to show the leads, calls, and jobs it produces.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="audience-section">
+      <div class="shell audience-grid">
+        <div class="visual-placeholder" role="img" aria-label="Art direction placeholder for a service business owner at the end of a workday">
+          <p class="intent-caption"><strong>Image direction / no stock stand-in</strong>Documentary frame: an owner-led home service shop after the last job, with the owner focused on the work while the system proof is visible nearby.</p>
+        </div>
+        <div class="audience-copy">
+          <p class="eyebrow">Who this is for</p>
+          <h2>For the owner who became the bottleneck.</h2>
+          <p>You run an owner-led service business. Now too much still waits on you. And after being burned by agencies, you need proof before trust.</p>
+          <ul class="fit-list">
+            <li>Owner-led service businesses in the US</li>
+            <li>Heating-and-air, plumbing, and their neighbors</li>
+            <li>Owners who want a system run for them</li>
+            <li>Owners who want the asset to stay theirs</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="offers-section" id="offers">
+      <div class="shell">
+        <div class="offers-head">
+          <div>
+            <p class="eyebrow">Ways to start</p>
+            <h2>Choose the system that fits the job.</h2>
+          </div>
+          <p>Every option replaces the stack an owner otherwise assembles: an agency retainer, a website vendor, a booking tool, an answering service, ad management, and a part-time marketer. One system instead of six invoices.</p>
+        </div>
+
+        <div class="offer-table">
+          <article class="offer-row">
+            <div class="offer-name">
+              <p class="eyebrow">Entry</p>
+              <h3>Ascend Pilot</h3>
+            </div>
+            <div class="offer-price">$15,000<small>45 days / install delivered</small></div>
+            <div class="offer-detail">
+              <p>The install is the deliverable.</p>
+              <p class="replacement">This replaces the stack an owner otherwise assembles: an agency retainer, a website vendor, a booking tool, an answering service, ad management, and a part-time marketer — one system instead of six invoices.</p>
+            </div>
+          </article>
+
+          <article class="offer-row">
+            <div class="offer-name">
+              <p class="eyebrow">Core</p>
+              <h3>Ascend</h3>
+            </div>
+            <div class="offer-price">$15,000 install<br>+ $7,000/mo<small>Month-to-month after 90 days</small></div>
+            <div class="offer-detail">
+              <p>True month-to-month after the first 90 days. No long contract. No exit penalty.</p>
+              <p class="replacement">This replaces the stack an owner otherwise assembles: an agency retainer, a website vendor, a booking tool, an answering service, ad management, and a part-time marketer — one system instead of six invoices.</p>
+            </div>
+          </article>
+
+          <article class="offer-row">
+            <div class="offer-name">
+              <p class="eyebrow">Top tier</p>
+              <h3>Ascend Pro</h3>
+            </div>
+            <div class="offer-price">$25,000 install<br>+ $15,000/mo<small>Limited per territory</small></div>
+            <div class="offer-detail">
+              <p>Our top tier, limited per territory.</p>
+              <p class="replacement">This replaces the stack an owner otherwise assembles: an agency retainer, a website vendor, a booking tool, an answering service, ad management, and a part-time marketer — one system instead of six invoices.</p>
+            </div>
+          </article>
+        </div>
+
+        <div class="offer-cta">
+          <a class="button button-primary" href="/book">Get My Free Revenue Leak Map</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="final">
+      <div class="shell final-grid">
+        <div class="final-copy">
+          <p class="eyebrow">Your next step</p>
+          <h2>See what your growth system should make visible.</h2>
+          <p>You run the business. The system makes you the most-chosen name in your market.</p>
+        </div>
+        <aside class="final-action">
+          <p>Start with your free Revenue Leak Map.</p>
+          <a class="button" href="/book">Get My Free Revenue Leak Map</a>
+        </aside>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="shell footer-inner">
+      <svg class="footer-mark" viewBox="0 0 100 100" role="img" aria-labelledby="footer-mark-title" xmlns="http://www.w3.org/2000/svg">
+        <title id="footer-mark-title">Buildwise Media mark</title>
+        <defs>
+          <linearGradient id="metallic-y2-footer" x1="0%" y1="0%" x2="0%" y2="100%">
+            <stop offset="0%" stop-color="#FFFD58"/>
+            <stop offset="48%" stop-color="#F0FF00"/>
+            <stop offset="100%" stop-color="#C8D300"/>
+          </linearGradient>
+        </defs>
+        <line x1="50" y1="22" x2="22" y2="70" stroke="#7A8400" stroke-width="1.4" stroke-linecap="round"/>
+        <line x1="50" y1="22" x2="78" y2="70" stroke="#7A8400" stroke-width="1.4" stroke-linecap="round"/>
+        <line x1="22" y1="70" x2="78" y2="70" stroke="#7A8400" stroke-width="1.4" stroke-linecap="round"/>
+        <circle cx="50" cy="22" r="9" fill="url(#metallic-y2-footer)"/>
+        <circle cx="22" cy="70" r="6.5" fill="#F0FF00"/>
+        <circle cx="78" cy="70" r="6.5" fill="#F0FF00"/>
+        <circle cx="50" cy="54" r="3" fill="#F0FF00"/>
+      </svg>
+      <p>Verifiable custom AI systems for service businesses.</p>
+      <a href="/book">Get My Free Revenue Leak Map</a>
+    </div>
+  </footer>
+
+  <script>
+    (() => {
+      const toggle = document.querySelector('.menu-toggle');
+      const nav = document.querySelector('#main-nav');
+      if (!toggle || !nav) return;
+
+      const closeMenu = () => {
+        document.body.classList.remove('menu-open');
+        toggle.setAttribute('aria-expanded', 'false');
+        toggle.setAttribute('aria-label', 'Open menu');
+      };
+
+      toggle.addEventListener('click', () => {
+        const open = !document.body.classList.contains('menu-open');
+        document.body.classList.toggle('menu-open', open);
+        toggle.setAttribute('aria-expanded', String(open));
+        toggle.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+      });
+
+      nav.querySelectorAll('a').forEach((link) => link.addEventListener('click', closeMenu));
+      window.addEventListener('keydown', (event) => {
+        if (event.key === 'Escape') closeMenu();
+      });
+    })();
+  </script>
+</body>
+</html>

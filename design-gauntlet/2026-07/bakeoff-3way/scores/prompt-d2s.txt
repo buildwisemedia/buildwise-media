@@ -1,0 +1,3801 @@
+You are judging three anonymous implementations (labeled A, B, C) of the same design dispatch brief. Judge from the source code: what these pages would render as, and how faithfully they execute the brief.
+
+Score each label independently, 1-10 per axis:
+- adherence: brief/anchor fidelity (exact palette hexes, type rules incl. weight ceilings, section order, output contract: self-contained, placeholders not fabrications, no invented facts)
+- hierarchy: layout craft, spacing rhythm, visual hierarchy
+- type: typographic craft (scale, line-height, case discipline, pairing use)
+- color: color discipline (60/30/10 restraint, accent used only where the brief says)
+- distinctiveness: avoids generic AI-design tropes (ultra-bold rounded display sans, self-chosen coral/red accents, circle-badge number steps, rotated stickers, ghost numerals, decorative arc clutter)
+- conversion: serves the brief's stated visitor states and conversion paths
+
+Output STRICT JSON only, no other text, no markdown fences:
+{"A":{"axes":{"adherence":n,"hierarchy":n,"type":n,"color":n,"distinctiveness":n,"conversion":n},"total":n,"strength":"one line","weakness":"one line"},"B":{...same...},"C":{...same...},"ranking":["best","middle","worst"],"notes":"one line"}
+
+=== DISPATCH BRIEF ===
+# Design Dispatch Brief — Design2Sell: Homepage (single-file build)
+
+One-pass build. Follow every anchor exactly. Return your best complete work — there is no follow-up round.
+
+## Output contract
+- ONE complete, self-contained HTML file. All CSS in a single inline `<style>` block; minimal vanilla JS inline if needed (before/after slider, counters). The ONLY external requests allowed are Google Fonts `<link>` tags. No CDNs, no external images, no frameworks.
+- No photography assets exist for this build. Where a photo would appear, design an art-directed placeholder surface: tonal blocks/gradients in the brief's palette carrying a small caption of the intended shot (e.g. "Photo: staged Buckhead living room, wide angle"). Never fabricate fake photos, logos, badges, or review-platform marks.
+- Fully responsive 320px → 1440px+, mobile-first. Semantic HTML. Accessible contrast. Real `alt`/`aria` where relevant.
+- Use ONLY the facts, copy anchors, and claims in this brief. Invent NO statistics, review counts, awards, prices, or offers. Where the layout calls for a price or project result, use visible placeholder text.
+- Testimonial section is LAYOUT ONLY: use obviously-placeholder quote text. Do not write fake reviews or fake names.
+
+## The business and the visitor
+Design2Sell — Atlanta home staging, founder-led: Barbara IS the brand (the way Magnolia is Joanna Gaines). Two audiences share the page: HOMEOWNERS selling a house, and LISTING AGENTS who bring repeat business. Both must find their path without the page splitting in two visually.
+
+## Register anchor (how it must feel)
+Staged-home editorial luxury — "luxury without pretension," refined but accessible, founder-led premium (Magnolia / Bobby Berk tribe). The website itself must feel professionally staged: clean sight lines, generous negative space ("white space is staging"), photography-first hierarchy where text supports images and never competes. Data styled as elegant visual callouts, not buried copy.
+
+## Palette anchor (locked client identity — exact hexes)
+- Warm Charcoal `#3a3a3a` — headlines, primary text, navigation
+- Soft Gold `#c9a96e` — accents, CTAs, credential highlights, hover states
+- Warm White `#faf8f5` — page background, content areas
+- Deep Navy `#1e2d3d` — contrast sections: stats band, agent-partnership band, footer
+- Supporting: Pale Linen `#f0ece4` card backgrounds · Blush `#e8d5c4` testimonial background · Sage `#7d9b76` positive metrics only · Warm Gray `#6b6560` secondary text
+
+## Type anchor
+- Display/H1: Playfair Display 700, 42–56px desktop / 32–40px mobile. H2: Playfair Display 600.
+- Body: Montserrat 400, 16–18px. CTAs/labels: Montserrat 600, uppercase, 1.5px letter-spacing, 14–16px.
+- Big stat numbers: Playfair Display 700 at 48–72px.
+
+## Hard bans (do NOT use any of these)
+1. Rounded/geometric display sans at weight ≥800 at display sizes
+2. Any saturated coral/red accent — the accent language of this page is soft gold `#c9a96e`
+3. Decorative half-circle arcs / circles (no border-radius:50% decoration motifs)
+4. Rotated sticker/stamp/badge devices
+5. Ghost numerals (huge type at opacity ≤ 0.25)
+6. Number-in-a-circle step cards — steps render as an editorial numbered list with thin hairline rules
+7. Device register: the before/after slider is an elegant editorial device — thin soft-gold divider with a slim drag handle, NOT a chunky circular grip toy
+
+## Section order + content (use only these facts and copy anchors)
+1. **Hero** — full-viewport placeholder staged-room surface with a soft bottom gradient for legibility. H1: "Staged to Sell. Proven to Perform." Sub: "Atlanta's Top 10 Nationally Ranked Staging Team." Primary CTA (gold): "Get Your Staging Plan". Secondary ghost CTA: "See Our Portfolio". Credential strip: Top 10 Nationally | 19+ Years | Thousands of Homes | Pay-at-Close Available.
+2. **Stats bar** (deep navy, gold Playfair numbers, count-up on scroll): $23.34 return per $1 invested · 50% faster sale time · 6–12% higher sale price · 19+ years of experience.
+3. **The Staged to Sell System** — 3-step overview as an editorial numbered list with hairline rules (your crafting of step copy; grounded, no invented claims).
+4. **Portfolio highlight** — six-tile masonry grid (3/2/1 columns) of placeholder room surfaces with hover overlay showing a project label + result line placeholder text.
+5. **Before/After slider** — one signature project: two placeholder surfaces labeled Before / After, draggable thin gold divider (see device register ban #7). Touch-friendly.
+6. **Service tiers** — three cards on pale linen: Essentials · Signature (featured: soft-gold border, slightly elevated) · Luxury. Ideal-for line + included-rooms line + placeholder price-range text + CTA "Book a Consultation".
+7. **Pay-at-Close band** — "Stage Now. Pay When You Sell." Three-beat visual: Stage → Sell → Pay (editorial, hairlines, no circle badges) + one-line explainer + CTA "Learn About Pay-at-Close".
+8. **Agent Partnership** (deep navy): "Built for Atlanta's Top Agents" — three features: Priority Scheduling · Co-Branded Materials · Quarterly ROI Reports. CTA (gold): "Join the Partnership Program".
+9. **Testimonial** — one large Playfair italic placeholder quote on blush background (layout only).
+10. **Trust bar** — TEXT-ONLY credential row: RESA · HSRA · Best of Houzz · Top 10 Nationally (no fabricated logos).
+11. **Footer CTA + footer** (deep navy): "Ready to Stage Your Listing?" + gold CTA; footer columns Services · Portfolio · Agents · Contact.
+
+## Craft bar
+The page will be judged on hierarchy, typographic craft, spacing rhythm, color discipline, distinctiveness, and how convincingly it feels "staged." Negative space is the luxury signal. Every element earns its place.
+
+=== ENTRY A (blind/d2s-A.html) ===
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Design2Sell — Atlanta home staging with a staged-to-sell approach.">
+  <meta name="theme-color" content="#1e2d3d">
+  <title>Design2Sell | Staged to Sell. Proven to Perform.</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,500;0,600;1,400&amp;family=Playfair+Display:ital,wght@0,600;0,700;1,600&amp;display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --charcoal: #3a3a3a;
+      --gold: #c9a96e;
+      --warm-white: #faf8f5;
+      --navy: #1e2d3d;
+      --linen: #f0ece4;
+      --blush: #e8d5c4;
+      --sage: #7d9b76;
+      --warm-gray: #6b6560;
+      --white: #ffffff;
+      --line: rgba(58, 58, 58, 0.18);
+      --navy-line: rgba(250, 248, 245, 0.2);
+      --max: 1240px;
+      --gutter: clamp(1.25rem, 4vw, 4rem);
+      --section: clamp(5.5rem, 10vw, 10rem);
+      --display: "Playfair Display", Georgia, serif;
+      --body: "Montserrat", Arial, sans-serif;
+    }
+
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      background: var(--warm-white);
+    }
+
+    body {
+      margin: 0;
+      overflow-x: hidden;
+      background: var(--warm-white);
+      color: var(--charcoal);
+      font-family: var(--body);
+      font-size: 1rem;
+      font-weight: 400;
+      line-height: 1.75;
+      text-rendering: optimizeLegibility;
+    }
+
+    body,
+    button,
+    input {
+      font-family: var(--body);
+    }
+
+    img,
+    svg {
+      display: block;
+      max-width: 100%;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    a:focus-visible,
+    button:focus-visible,
+    input:focus-visible,
+    summary:focus-visible {
+      outline: 2px solid var(--gold);
+      outline-offset: 4px;
+    }
+
+    ::selection {
+      background: var(--gold);
+      color: var(--navy);
+    }
+
+    .skip-link {
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: 100;
+      padding: 0.8rem 1rem;
+      transform: translateY(-120%);
+      background: var(--gold);
+      color: var(--navy);
+      font-size: 0.8rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .skip-link:focus {
+      transform: translateY(0);
+    }
+
+    .container {
+      width: min(100% - (var(--gutter) * 2), var(--max));
+      margin-inline: auto;
+    }
+
+    .section {
+      padding-block: var(--section);
+    }
+
+    .section-head {
+      max-width: 740px;
+      margin-bottom: clamp(2.75rem, 6vw, 5.5rem);
+    }
+
+    .eyebrow {
+      display: flex;
+      align-items: center;
+      gap: 0.85rem;
+      margin: 0 0 1.2rem;
+      color: var(--warm-gray);
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.17em;
+      line-height: 1.4;
+      text-transform: uppercase;
+    }
+
+    .eyebrow::before {
+      width: 2.5rem;
+      height: 1px;
+      flex: 0 0 auto;
+      background: var(--gold);
+      content: "";
+    }
+
+    .eyebrow.light {
+      color: rgba(250, 248, 245, 0.72);
+    }
+
+    h1,
+    h2,
+    h3,
+    p {
+      margin-top: 0;
+    }
+
+    h1,
+    h2,
+    h3 {
+      font-family: var(--display);
+      text-wrap: balance;
+    }
+
+    h1 {
+      margin-bottom: 1.4rem;
+      font-size: clamp(2.35rem, 7.5vw, 3.5rem);
+      font-weight: 700;
+      letter-spacing: -0.03em;
+      line-height: 1.04;
+    }
+
+    h2 {
+      margin-bottom: 1.25rem;
+      font-size: clamp(2.05rem, 5.4vw, 3.35rem);
+      font-weight: 600;
+      letter-spacing: -0.025em;
+      line-height: 1.08;
+    }
+
+    h3 {
+      margin-bottom: 0.7rem;
+      font-size: clamp(1.45rem, 3vw, 1.9rem);
+      font-weight: 600;
+      line-height: 1.2;
+    }
+
+    .lead {
+      max-width: 640px;
+      color: var(--warm-gray);
+      font-size: clamp(1rem, 2vw, 1.125rem);
+      line-height: 1.85;
+    }
+
+    .btn {
+      min-height: 3.35rem;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0.9rem 1.35rem;
+      border: 1px solid transparent;
+      background: var(--gold);
+      color: var(--navy);
+      font-size: 0.78rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      line-height: 1.25;
+      text-align: center;
+      text-transform: uppercase;
+      transition: background 180ms ease, color 180ms ease, border-color 180ms ease, transform 180ms ease;
+    }
+
+    .btn:hover {
+      background: var(--warm-white);
+      color: var(--navy);
+      transform: translateY(-2px);
+    }
+
+    .btn-ghost {
+      border-color: rgba(250, 248, 245, 0.64);
+      background: transparent;
+      color: var(--warm-white);
+    }
+
+    .btn-ghost:hover {
+      border-color: var(--warm-white);
+    }
+
+    .btn-dark {
+      border-color: var(--navy);
+      background: var(--navy);
+      color: var(--warm-white);
+    }
+
+    .btn-dark:hover {
+      border-color: var(--gold);
+      background: var(--gold);
+      color: var(--navy);
+    }
+
+    /* Navigation */
+    .site-header {
+      position: absolute;
+      inset: 0 0 auto;
+      z-index: 20;
+      border-bottom: 1px solid rgba(250, 248, 245, 0.2);
+      color: var(--warm-white);
+    }
+
+    .nav-shell {
+      min-height: 5.25rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+    }
+
+    .wordmark {
+      font-family: var(--display);
+      font-size: 1.45rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      line-height: 1;
+    }
+
+    .wordmark span {
+      color: var(--gold);
+    }
+
+    .desktop-nav {
+      display: none;
+      align-items: center;
+      gap: clamp(1rem, 2.2vw, 2rem);
+    }
+
+    .desktop-nav > a:not(.btn) {
+      position: relative;
+      padding-block: 0.5rem;
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.11em;
+      text-transform: uppercase;
+    }
+
+    .desktop-nav > a:not(.btn)::after {
+      position: absolute;
+      right: 100%;
+      bottom: 0.2rem;
+      left: 0;
+      height: 1px;
+      background: var(--gold);
+      content: "";
+      transition: right 180ms ease;
+    }
+
+    .desktop-nav > a:not(.btn):hover::after {
+      right: 0;
+    }
+
+    .desktop-nav .btn {
+      min-height: 2.75rem;
+      padding: 0.72rem 1rem;
+    }
+
+    .mobile-nav {
+      position: relative;
+    }
+
+    .mobile-nav summary {
+      min-width: 3rem;
+      min-height: 3rem;
+      display: grid;
+      place-items: center;
+      border: 1px solid rgba(250, 248, 245, 0.4);
+      cursor: pointer;
+      list-style: none;
+    }
+
+    .mobile-nav summary::-webkit-details-marker {
+      display: none;
+    }
+
+    .menu-lines,
+    .menu-lines::before,
+    .menu-lines::after {
+      width: 1.25rem;
+      height: 1px;
+      display: block;
+      background: currentColor;
+      content: "";
+    }
+
+    .menu-lines {
+      position: relative;
+    }
+
+    .menu-lines::before {
+      position: absolute;
+      top: -0.38rem;
+    }
+
+    .menu-lines::after {
+      position: absolute;
+      top: 0.38rem;
+    }
+
+    .mobile-nav-panel {
+      position: absolute;
+      top: calc(100% + 0.75rem);
+      right: 0;
+      width: min(18rem, calc(100vw - 2.5rem));
+      display: grid;
+      border: 1px solid rgba(201, 169, 110, 0.45);
+      background: var(--navy);
+      box-shadow: 0 1.25rem 3rem rgba(30, 45, 61, 0.28);
+    }
+
+    .mobile-nav-panel a {
+      padding: 1rem 1.1rem;
+      border-bottom: 1px solid var(--navy-line);
+      font-size: 0.76rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+
+    .mobile-nav-panel a:last-child {
+      border-bottom: 0;
+      background: var(--gold);
+      color: var(--navy);
+    }
+
+    /* Hero — @r020:emotion, creates the calm confidence of a staged interior. */
+    .hero {
+      min-height: 100svh;
+      position: relative;
+      display: grid;
+      align-items: end;
+      isolation: isolate;
+      overflow: hidden;
+      background:
+        linear-gradient(180deg, rgba(30, 45, 61, 0.08) 0%, rgba(30, 45, 61, 0.08) 40%, rgba(30, 45, 61, 0.88) 100%),
+        linear-gradient(120deg, #756e65 0%, #b8aea0 42%, #746b62 100%);
+      color: var(--warm-white);
+    }
+
+    .hero-room {
+      position: absolute;
+      inset: 0;
+      z-index: -2;
+      overflow: hidden;
+    }
+
+    .hero-room::before {
+      position: absolute;
+      inset: 0 0 34%;
+      background:
+        linear-gradient(90deg, transparent 0 10%, rgba(250, 248, 245, 0.18) 10% 10.35%, transparent 10.35% 79%, rgba(30, 45, 61, 0.2) 79% 79.3%, transparent 79.3%),
+        linear-gradient(180deg, #b7aea1, #978e82);
+      content: "";
+    }
+
+    .hero-room::after {
+      position: absolute;
+      inset: 66% 0 0;
+      background: linear-gradient(104deg, #625c55, #82796e 52%, #5d5852);
+      clip-path: polygon(0 9%, 100% 0, 100% 100%, 0 100%);
+      content: "";
+    }
+
+    .hero-window {
+      position: absolute;
+      top: 14%;
+      right: 8%;
+      width: clamp(11rem, 29vw, 28rem);
+      height: clamp(14rem, 42vw, 34rem);
+      border: clamp(0.55rem, 1.1vw, 1rem) solid #eee9df;
+      background:
+        linear-gradient(90deg, transparent 49.6%, rgba(250, 248, 245, 0.75) 49.6% 50.4%, transparent 50.4%),
+        linear-gradient(180deg, transparent 49.6%, rgba(250, 248, 245, 0.75) 49.6% 50.4%, transparent 50.4%),
+        linear-gradient(145deg, #aab6ae, #e3ded2 58%, #b8a895);
+      box-shadow: 0 0 5rem rgba(250, 248, 245, 0.28);
+    }
+
+    .hero-art-frame {
+      position: absolute;
+      top: 25%;
+      left: 12%;
+      width: clamp(7rem, 12vw, 13rem);
+      aspect-ratio: 4 / 5;
+      border: 0.5rem solid #4f4c48;
+      background: linear-gradient(145deg, #cfc4b7 0 54%, #a6927d 54% 60%, #e9e0d5 60%);
+      box-shadow: 0 1.5rem 3rem rgba(58, 58, 58, 0.16);
+    }
+
+    .hero-console {
+      position: absolute;
+      top: 54%;
+      left: 8%;
+      width: 30%;
+      height: 2.4%;
+      background: #4a4540;
+      box-shadow: 0 0.8rem 0 #746b62;
+    }
+
+    .hero-sofa {
+      position: absolute;
+      right: 18%;
+      bottom: 14%;
+      width: clamp(16rem, 43vw, 42rem);
+      height: clamp(6rem, 17vw, 14rem);
+      background: linear-gradient(135deg, #d6cec2, #afa69a);
+      box-shadow: 0 1.8rem 2.5rem rgba(30, 45, 61, 0.24);
+    }
+
+    .hero-sofa::before {
+      position: absolute;
+      right: 3%;
+      bottom: 88%;
+      left: 3%;
+      height: 65%;
+      border-bottom: 1px solid rgba(58, 58, 58, 0.2);
+      background: linear-gradient(100deg, #d9d1c5 0 48%, #c7bdb0 48% 50%, #d3c9bc 50%);
+      content: "";
+    }
+
+    .hero-sofa::after {
+      position: absolute;
+      top: 12%;
+      right: -7%;
+      width: 14%;
+      height: 88%;
+      background: #aaa095;
+      content: "";
+    }
+
+    .hero-caption {
+      position: absolute;
+      top: 6.5rem;
+      right: var(--gutter);
+      z-index: 3;
+      max-width: 15rem;
+      padding: 0.6rem 0.8rem;
+      border-left: 1px solid var(--gold);
+      background: rgba(30, 45, 61, 0.56);
+      color: rgba(250, 248, 245, 0.82);
+      font-size: 0.65rem;
+      letter-spacing: 0.06em;
+      line-height: 1.5;
+      text-transform: uppercase;
+    }
+
+    .hero-inner {
+      position: relative;
+      z-index: 2;
+      padding-top: 9rem;
+      padding-bottom: 2.25rem;
+    }
+
+    .hero-copy {
+      max-width: 760px;
+      padding-bottom: clamp(3rem, 8vw, 6.5rem);
+    }
+
+    .hero .eyebrow {
+      color: rgba(250, 248, 245, 0.82);
+    }
+
+    .hero .subhead {
+      max-width: 660px;
+      margin-bottom: 2rem;
+      color: rgba(250, 248, 245, 0.88);
+      font-size: clamp(1rem, 2vw, 1.2rem);
+      line-height: 1.7;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-direction: column;
+      align-items: stretch;
+      gap: 0.8rem;
+    }
+
+    .credential-strip {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      border-top: 1px solid rgba(250, 248, 245, 0.28);
+    }
+
+    .credential-strip span {
+      min-height: 3.6rem;
+      display: grid;
+      place-items: center;
+      padding: 0.85rem 0.45rem;
+      border-right: 1px solid rgba(250, 248, 245, 0.18);
+      border-bottom: 1px solid rgba(250, 248, 245, 0.18);
+      color: rgba(250, 248, 245, 0.84);
+      font-size: 0.62rem;
+      font-weight: 600;
+      letter-spacing: 0.09em;
+      line-height: 1.45;
+      text-align: center;
+      text-transform: uppercase;
+    }
+
+    .credential-strip span:nth-child(2n) {
+      border-right: 0;
+    }
+
+    /* Stats — @r020:proof, elevates the supplied claims into scan-friendly evidence. */
+    .stats-band {
+      background: var(--navy);
+      color: var(--warm-white);
+    }
+
+    .stats-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+    }
+
+    .stat {
+      min-height: 13rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 2.25rem var(--gutter);
+      border-bottom: 1px solid var(--navy-line);
+      text-align: center;
+    }
+
+    .stat:last-child {
+      border-bottom: 0;
+    }
+
+    .stat-number {
+      display: block;
+      margin-bottom: 0.5rem;
+      color: var(--gold);
+      font-family: var(--display);
+      font-size: clamp(3rem, 11vw, 4.5rem);
+      font-weight: 700;
+      letter-spacing: -0.04em;
+      line-height: 1;
+    }
+
+    .stat-label {
+      max-width: 13rem;
+      margin: 0 auto;
+      color: rgba(250, 248, 245, 0.78);
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      line-height: 1.5;
+      text-transform: uppercase;
+    }
+
+    /* System */
+    .system-layout {
+      display: grid;
+      gap: clamp(3rem, 8vw, 7rem);
+    }
+
+    .system-intro {
+      max-width: 570px;
+    }
+
+    .editorial-steps {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      counter-reset: step;
+    }
+
+    .editorial-step {
+      position: relative;
+      padding: 2rem 0 2rem 4rem;
+      border-top: 1px solid var(--line);
+      counter-increment: step;
+    }
+
+    .editorial-step:last-child {
+      border-bottom: 1px solid var(--line);
+    }
+
+    .editorial-step::before {
+      position: absolute;
+      top: 2.25rem;
+      left: 0;
+      color: var(--gold);
+      content: "0" counter(step);
+      font-family: var(--display);
+      font-size: 1.35rem;
+      font-weight: 600;
+      line-height: 1;
+    }
+
+    .editorial-step h3 {
+      margin-bottom: 0.45rem;
+    }
+
+    .editorial-step p {
+      max-width: 580px;
+      margin-bottom: 0;
+      color: var(--warm-gray);
+      font-size: 0.95rem;
+    }
+
+    /* Portfolio — @r020:curiosity, previews the range of room stories the portfolio will carry. */
+    .portfolio-section {
+      padding-top: var(--section);
+      padding-bottom: 0;
+      background: var(--linen);
+    }
+
+    .portfolio-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      grid-auto-rows: 20rem;
+      gap: 1px;
+      background: rgba(58, 58, 58, 0.16);
+    }
+
+    .portfolio-tile {
+      min-height: 20rem;
+      position: relative;
+      isolation: isolate;
+      overflow: hidden;
+      background: #b7ada1;
+    }
+
+    .portfolio-art {
+      position: absolute;
+      inset: 0;
+      z-index: -2;
+      transition: transform 500ms cubic-bezier(.2,.7,.2,1);
+    }
+
+    .portfolio-art::before,
+    .portfolio-art::after {
+      position: absolute;
+      content: "";
+    }
+
+    .art-living {
+      background: linear-gradient(180deg, #c9bfb2 0 63%, #756b60 63%);
+    }
+
+    .art-living::before {
+      right: 11%;
+      bottom: 17%;
+      left: 15%;
+      height: 31%;
+      border-top: 5.4rem solid #e2d9ce;
+      border-right: 1.2rem solid #b7ab9d;
+      border-left: 1.2rem solid #cbc0b4;
+      background: #b7ab9d;
+      box-shadow: 0 1.2rem 2rem rgba(58,58,58,.2);
+    }
+
+    .art-living::after {
+      top: 14%;
+      left: 14%;
+      width: 24%;
+      height: 32%;
+      border: 0.45rem solid #524c47;
+      background: linear-gradient(140deg, #d8cec1, #a68f79);
+    }
+
+    .art-kitchen {
+      background:
+        linear-gradient(90deg, transparent 0 64%, rgba(250,248,245,.5) 64% 65%, transparent 65%),
+        linear-gradient(180deg, #bfc2bd 0 58%, #645f5a 58%);
+    }
+
+    .art-kitchen::before {
+      right: 5%;
+      bottom: 11%;
+      left: 9%;
+      height: 37%;
+      border-top: 1.1rem solid #e9e5dd;
+      background: linear-gradient(90deg, #77766f 0 32%, #b3afa6 32% 33%, #77766f 33% 66%, #b3afa6 66% 67%, #77766f 67%);
+      box-shadow: 0 1.2rem 2rem rgba(30,45,61,.2);
+    }
+
+    .art-kitchen::after {
+      top: 15%;
+      right: 9%;
+      width: 24%;
+      height: 31%;
+      border: 0.55rem solid #eee9df;
+      background: linear-gradient(145deg, #a4b4af, #ddd6c9);
+    }
+
+    .art-bedroom {
+      background: linear-gradient(180deg, #bcb1a7 0 69%, #70665f 69%);
+    }
+
+    .art-bedroom::before {
+      right: 8%;
+      bottom: 10%;
+      left: 12%;
+      height: 35%;
+      border-top: 5.5rem solid #e6ded3;
+      background: #9c8d81;
+      box-shadow: 0 1rem 2rem rgba(58,58,58,.22);
+    }
+
+    .art-bedroom::after {
+      top: 12%;
+      left: 18%;
+      width: 45%;
+      height: 37%;
+      border: 0.45rem solid #544c46;
+      background: linear-gradient(130deg, #d0c4b7 0 50%, #a99887 50%);
+    }
+
+    .art-dining {
+      background: linear-gradient(180deg, #d1c6b7 0 66%, #6c6259 66%);
+    }
+
+    .art-dining::before {
+      right: 12%;
+      bottom: 25%;
+      left: 12%;
+      height: 8%;
+      background: #534c46;
+      box-shadow: 1.8rem 4rem 0 -1.45rem #534c46, -1.8rem 4rem 0 -1.45rem #534c46;
+    }
+
+    .art-dining::after {
+      top: 0;
+      left: 50%;
+      width: 1px;
+      height: 27%;
+      background: #4f4b47;
+      box-shadow: -3.5rem 0 0 rgba(79,75,71,.45), 3.5rem 0 0 rgba(79,75,71,.45);
+    }
+
+    .art-entry {
+      background:
+        linear-gradient(90deg, #bbb0a2 0 32%, #82776c 32% 34%, #d8cfc4 34% 74%, #9f9285 74%),
+        #b7ada1;
+    }
+
+    .art-entry::before {
+      right: 8%;
+      bottom: 18%;
+      width: 50%;
+      height: 5%;
+      background: #504a45;
+      box-shadow: 1rem 2.4rem 0 -0.72rem #504a45, -1rem 2.4rem 0 -0.72rem #504a45;
+    }
+
+    .art-entry::after {
+      top: 16%;
+      right: 17%;
+      width: 24%;
+      height: 29%;
+      border: 0.4rem solid #514d48;
+      background: linear-gradient(145deg, #c4b7a7, #e1d9cf);
+    }
+
+    .art-twilight {
+      background: linear-gradient(180deg, #6e7880 0 61%, #474a4b 61%);
+    }
+
+    .art-twilight::before {
+      right: 10%;
+      bottom: 14%;
+      left: 10%;
+      height: 33%;
+      border-top: 4.7rem solid #d8cabb;
+      background: #8c7c70;
+      box-shadow: 0 1rem 2.3rem rgba(30,45,61,.3);
+    }
+
+    .art-twilight::after {
+      top: 12%;
+      right: 10%;
+      width: 37%;
+      height: 37%;
+      border: 0.55rem solid #e7dfd5;
+      background: linear-gradient(145deg, #81939a, #d4bd9b);
+      box-shadow: 0 0 2.5rem rgba(201,169,110,.18);
+    }
+
+    .portfolio-caption {
+      position: absolute;
+      right: 1rem;
+      bottom: 1rem;
+      left: 1rem;
+      z-index: 2;
+      padding: 0.55rem 0.7rem;
+      border-left: 1px solid var(--gold);
+      background: rgba(30, 45, 61, 0.72);
+      color: rgba(250, 248, 245, 0.85);
+      font-size: 0.63rem;
+      letter-spacing: 0.05em;
+      line-height: 1.5;
+      text-transform: uppercase;
+      transition: opacity 180ms ease;
+    }
+
+    .portfolio-overlay {
+      position: absolute;
+      inset: 0;
+      z-index: 3;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 1.5rem;
+      background: linear-gradient(180deg, transparent 25%, rgba(30,45,61,.9));
+      color: var(--warm-white);
+      opacity: 0;
+      transform: translateY(0.5rem);
+      transition: opacity 220ms ease, transform 220ms ease;
+    }
+
+    .portfolio-overlay .project-label {
+      margin-bottom: 0.15rem;
+      font-family: var(--display);
+      font-size: 1.45rem;
+      line-height: 1.2;
+    }
+
+    .portfolio-overlay .result-placeholder {
+      margin: 0;
+      color: var(--gold);
+      font-size: 0.65rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+
+    .portfolio-tile:hover .portfolio-art,
+    .portfolio-tile:focus-within .portfolio-art {
+      transform: scale(1.025);
+    }
+
+    .portfolio-tile:hover .portfolio-overlay,
+    .portfolio-tile:focus-within .portfolio-overlay {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .portfolio-tile:hover .portfolio-caption,
+    .portfolio-tile:focus-within .portfolio-caption {
+      opacity: 0;
+    }
+
+    /* Before / after — @r020:comparison, makes the staging transformation tangible. */
+    .comparison-shell {
+      display: grid;
+      gap: 2.5rem;
+    }
+
+    .comparison-copy {
+      max-width: 540px;
+    }
+
+    .before-after {
+      --position: 58%;
+      position: relative;
+      min-height: clamp(28rem, 62vw, 42rem);
+      overflow: hidden;
+      border: 1px solid rgba(58, 58, 58, 0.14);
+      background: #b7ada1;
+      box-shadow: 0 2rem 5rem rgba(58, 58, 58, 0.12);
+      touch-action: pan-y;
+    }
+
+    .ba-scene {
+      position: absolute;
+      inset: 0;
+      overflow: hidden;
+    }
+
+    .ba-after {
+      width: var(--position);
+      border-right: 2px solid var(--gold);
+      z-index: 2;
+    }
+
+    .ba-room {
+      position: absolute;
+      inset: 0;
+      min-width: min(100vw, var(--max));
+      background: linear-gradient(180deg, #c9c0b4 0 68%, #726960 68%);
+    }
+
+    .ba-room::before {
+      position: absolute;
+      top: 11%;
+      right: 7%;
+      width: 27%;
+      height: 43%;
+      border: 0.75rem solid #eee9df;
+      background: linear-gradient(145deg, #aab5ae, #e3ddd1);
+      content: "";
+    }
+
+    .ba-room::after {
+      position: absolute;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      height: 32%;
+      background: linear-gradient(102deg, #716960, #8a8178 50%, #665f58);
+      clip-path: polygon(0 12%, 100% 0, 100% 100%, 0 100%);
+      content: "";
+    }
+
+    .after-furniture {
+      position: absolute;
+      right: 13%;
+      bottom: 16%;
+      width: 56%;
+      height: 21%;
+      z-index: 1;
+      background: #cfc6ba;
+      box-shadow: 0 1.5rem 2.4rem rgba(30,45,61,.21);
+    }
+
+    .after-furniture::before {
+      position: absolute;
+      right: 3%;
+      bottom: 88%;
+      left: 3%;
+      height: 72%;
+      border-bottom: 1px solid rgba(58,58,58,.18);
+      background: linear-gradient(90deg, #ddd5cb 0 49%, #bbb0a4 49% 51%, #d7cec3 51%);
+      content: "";
+    }
+
+    .after-furniture::after {
+      position: absolute;
+      right: 88%;
+      bottom: -5%;
+      width: 28%;
+      height: 46%;
+      border-top: 0.55rem solid #604f42;
+      background: #8a7562;
+      content: "";
+    }
+
+    .before-base {
+      filter: saturate(.65) brightness(.86);
+    }
+
+    .before-empty {
+      position: absolute;
+      bottom: 20%;
+      left: 10%;
+      z-index: 1;
+      width: 42%;
+      height: 2px;
+      background: rgba(58,58,58,.24);
+      box-shadow: 0 1.5rem 0 rgba(58,58,58,.12);
+    }
+
+    .ba-label {
+      position: absolute;
+      top: 1rem;
+      z-index: 5;
+      padding: 0.55rem 0.8rem;
+      background: rgba(30,45,61,.76);
+      color: var(--warm-white);
+      font-size: 0.64rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    .ba-label-after {
+      left: 1rem;
+    }
+
+    .ba-label-before {
+      right: 1rem;
+    }
+
+    .ba-shot-caption {
+      position: absolute;
+      bottom: 1rem;
+      z-index: 5;
+      max-width: 13rem;
+      padding: 0.5rem 0.65rem;
+      background: rgba(30,45,61,.7);
+      color: rgba(250,248,245,.82);
+      font-size: 0.58rem;
+      letter-spacing: 0.05em;
+      line-height: 1.5;
+      text-transform: uppercase;
+    }
+
+    .ba-after .ba-shot-caption {
+      left: 1rem;
+    }
+
+    .ba-before .ba-shot-caption {
+      right: 1rem;
+    }
+
+    .ba-range {
+      position: absolute;
+      inset: 0;
+      z-index: 10;
+      width: 100%;
+      height: 100%;
+      margin: 0;
+      cursor: col-resize;
+      opacity: 0;
+    }
+
+    .ba-handle {
+      position: absolute;
+      top: 50%;
+      left: var(--position);
+      z-index: 9;
+      width: 0.8rem;
+      height: 4.5rem;
+      display: grid;
+      place-items: center;
+      border: 1px solid var(--gold);
+      background: rgba(30,45,61,.82);
+      color: var(--gold);
+      font-size: 0.65rem;
+      line-height: 1;
+      transform: translate(-50%, -50%);
+      pointer-events: none;
+    }
+
+    .comparison-note {
+      margin: 0;
+      color: var(--warm-gray);
+      font-size: 0.72rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    /* Services — @r020:decision, clarifies the three available service paths without unsupported detail. */
+    .services-section {
+      background: var(--linen);
+    }
+
+    .tier-grid {
+      display: grid;
+      gap: 1rem;
+    }
+
+    .tier-card {
+      min-height: 30rem;
+      display: flex;
+      flex-direction: column;
+      padding: clamp(1.8rem, 5vw, 3rem);
+      border: 1px solid rgba(58, 58, 58, 0.14);
+      background: rgba(250, 248, 245, 0.66);
+    }
+
+    .tier-card.featured {
+      position: relative;
+      border: 2px solid var(--gold);
+      background: var(--warm-white);
+      box-shadow: 0 1.5rem 3rem rgba(58,58,58,.1);
+    }
+
+    .featured-label {
+      align-self: flex-start;
+      margin-bottom: 1.5rem;
+      padding-bottom: 0.4rem;
+      border-bottom: 1px solid var(--gold);
+      color: var(--charcoal);
+      font-size: 0.65rem;
+      font-weight: 600;
+      letter-spacing: 0.13em;
+      text-transform: uppercase;
+    }
+
+    .tier-card h3 {
+      font-size: clamp(1.8rem, 4vw, 2.5rem);
+    }
+
+    .tier-detail {
+      padding: 1rem 0;
+      border-top: 1px solid var(--line);
+    }
+
+    .tier-detail:last-of-type {
+      border-bottom: 1px solid var(--line);
+    }
+
+    .tier-label {
+      display: block;
+      margin-bottom: 0.25rem;
+      color: var(--warm-gray);
+      font-size: 0.62rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    .tier-value {
+      color: var(--charcoal);
+      font-size: 0.9rem;
+      line-height: 1.6;
+    }
+
+    .tier-price {
+      margin: 1.5rem 0 1.75rem;
+      color: var(--warm-gray);
+      font-family: var(--display);
+      font-size: 1.25rem;
+      font-style: italic;
+    }
+
+    .tier-card .btn {
+      width: 100%;
+      margin-top: auto;
+    }
+
+    /* Pay at close */
+    .pay-band {
+      background: var(--warm-white);
+    }
+
+    .pay-layout {
+      display: grid;
+      gap: clamp(3rem, 8vw, 7rem);
+    }
+
+    .pay-copy {
+      max-width: 570px;
+    }
+
+    .pay-copy .lead {
+      margin-bottom: 2rem;
+    }
+
+    .pay-flow {
+      display: grid;
+      gap: 0;
+      border-top: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .pay-beat {
+      position: relative;
+      padding: 2rem 0;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .pay-beat:last-child {
+      border-bottom: 0;
+    }
+
+    .pay-beat::after {
+      position: absolute;
+      right: 0;
+      bottom: -1px;
+      width: 3rem;
+      height: 1px;
+      background: var(--gold);
+      content: "";
+    }
+
+    .pay-beat:last-child::after {
+      display: none;
+    }
+
+    .pay-index {
+      display: block;
+      margin-bottom: 0.5rem;
+      color: var(--gold);
+      font-family: var(--display);
+      font-size: 1rem;
+    }
+
+    .pay-word {
+      font-family: var(--display);
+      font-size: clamp(2.25rem, 7vw, 4.5rem);
+      font-weight: 600;
+      letter-spacing: -0.03em;
+      line-height: 1;
+    }
+
+    /* Agent partnership — @r020:action, gives repeat-business visitors a clear route. */
+    .agent-band {
+      background: var(--navy);
+      color: var(--warm-white);
+    }
+
+    .agent-top {
+      display: grid;
+      gap: 2rem;
+      align-items: end;
+      margin-bottom: clamp(3.5rem, 7vw, 6rem);
+    }
+
+    .agent-top h2 {
+      max-width: 680px;
+      margin-bottom: 0;
+    }
+
+    .agent-features {
+      display: grid;
+      border-top: 1px solid var(--navy-line);
+    }
+
+    .agent-feature {
+      padding: 2rem 0;
+      border-bottom: 1px solid var(--navy-line);
+    }
+
+    .agent-feature h3 {
+      color: var(--gold);
+      font-family: var(--body);
+      font-size: 0.85rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    .agent-feature p {
+      margin-bottom: 0;
+      color: rgba(250,248,245,.72);
+      font-size: 0.9rem;
+    }
+
+    /* Testimonial layout only */
+    .testimonial-section {
+      background: var(--blush);
+    }
+
+    .testimonial-layout {
+      display: grid;
+      gap: 2rem;
+    }
+
+    .quote-mark {
+      width: 4.5rem;
+      height: 1px;
+      margin-top: 1.2rem;
+      background: var(--gold);
+    }
+
+    blockquote {
+      margin: 0;
+    }
+
+    blockquote p {
+      max-width: 1020px;
+      margin-bottom: 1.75rem;
+      font-family: var(--display);
+      font-size: clamp(2rem, 5.4vw, 4.25rem);
+      font-style: italic;
+      font-weight: 600;
+      letter-spacing: -0.025em;
+      line-height: 1.18;
+    }
+
+    blockquote cite {
+      color: var(--warm-gray);
+      font-size: 0.7rem;
+      font-style: normal;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    /* Trust */
+    .trust-bar {
+      padding-block: 2.5rem;
+      border-top: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+      background: var(--warm-white);
+    }
+
+    .trust-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+    }
+
+    .trust-row span {
+      min-height: 4rem;
+      display: grid;
+      place-items: center;
+      padding: 0.85rem;
+      border-right: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+      color: var(--charcoal);
+      font-family: var(--display);
+      font-size: 0.9rem;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      text-align: center;
+    }
+
+    .trust-row span:nth-child(2n) {
+      border-right: 0;
+    }
+
+    .trust-row span:nth-last-child(-n+2) {
+      border-bottom: 0;
+    }
+
+    /* Closing */
+    .closing-cta {
+      padding-block: clamp(5rem, 9vw, 8rem);
+      background: var(--navy);
+      color: var(--warm-white);
+      text-align: center;
+    }
+
+    .closing-cta h2 {
+      max-width: 760px;
+      margin-inline: auto;
+    }
+
+    .closing-cta p {
+      max-width: 560px;
+      margin: 0 auto 2rem;
+      color: rgba(250,248,245,.7);
+    }
+
+    .site-footer {
+      padding-top: 3.5rem;
+      background: var(--navy);
+      color: var(--warm-white);
+      border-top: 1px solid var(--navy-line);
+    }
+
+    .footer-grid {
+      display: grid;
+      gap: 2.5rem;
+      padding-bottom: 3.5rem;
+    }
+
+    .footer-brand p {
+      max-width: 330px;
+      margin-top: 1.1rem;
+      color: rgba(250,248,245,.62);
+      font-size: 0.85rem;
+    }
+
+    .footer-nav {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem 1rem;
+    }
+
+    .footer-column h3 {
+      margin-bottom: 1rem;
+      color: var(--gold);
+      font-family: var(--body);
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    .footer-column a,
+    .footer-column span {
+      display: block;
+      margin-bottom: 0.55rem;
+      color: rgba(250,248,245,.7);
+      font-size: 0.82rem;
+    }
+
+    .footer-column a:hover {
+      color: var(--gold);
+    }
+
+    .footer-bottom {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 0.8rem 2rem;
+      padding-block: 1.4rem;
+      border-top: 1px solid var(--navy-line);
+      color: rgba(250,248,245,.48);
+      font-size: 0.62rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    @media (min-width: 560px) {
+      .hero-actions {
+        flex-direction: row;
+        align-items: center;
+      }
+
+      .hero-actions .btn {
+        min-width: 13.5rem;
+      }
+
+      .credential-strip {
+        grid-template-columns: repeat(4, 1fr);
+      }
+
+      .credential-strip span,
+      .credential-strip span:nth-child(2n) {
+        border-right: 1px solid rgba(250, 248, 245, 0.18);
+        border-bottom: 0;
+      }
+
+      .credential-strip span:last-child {
+        border-right: 0;
+      }
+
+      .stats-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .stat {
+        border-right: 1px solid var(--navy-line);
+      }
+
+      .stat:nth-child(2n) {
+        border-right: 0;
+      }
+
+      .stat:nth-last-child(-n+2) {
+        border-bottom: 0;
+      }
+
+      .portfolio-grid {
+        grid-template-columns: repeat(2, 1fr);
+        grid-auto-rows: 18rem;
+      }
+
+      .portfolio-tile.tall {
+        grid-row: span 2;
+      }
+
+      .tier-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .tier-card:last-child {
+        grid-column: 1 / -1;
+      }
+
+      .pay-flow {
+        grid-template-columns: repeat(3, 1fr);
+        border-bottom: 1px solid var(--line);
+      }
+
+      .pay-beat {
+        padding: 2rem 1.5rem;
+        border-right: 1px solid var(--line);
+        border-bottom: 0;
+      }
+
+      .pay-beat:first-child {
+        padding-left: 0;
+      }
+
+      .pay-beat:last-child {
+        padding-right: 0;
+        border-right: 0;
+      }
+
+      .pay-beat::after {
+        top: 50%;
+        right: -1.5rem;
+        bottom: auto;
+        width: 3rem;
+      }
+
+      .agent-features {
+        grid-template-columns: repeat(3, 1fr);
+      }
+
+      .agent-feature {
+        padding: 2.25rem 1.5rem;
+        border-right: 1px solid var(--navy-line);
+        border-bottom: 0;
+      }
+
+      .agent-feature:first-child {
+        padding-left: 0;
+      }
+
+      .agent-feature:last-child {
+        padding-right: 0;
+        border-right: 0;
+      }
+
+      .trust-row {
+        grid-template-columns: repeat(4, 1fr);
+      }
+
+      .trust-row span,
+      .trust-row span:nth-child(2n) {
+        border-right: 1px solid var(--line);
+        border-bottom: 0;
+      }
+
+      .trust-row span:last-child {
+        border-right: 0;
+      }
+
+      .footer-grid {
+        grid-template-columns: minmax(240px, 0.8fr) 1.2fr;
+      }
+
+      .footer-nav {
+        grid-template-columns: repeat(4, 1fr);
+      }
+    }
+
+    @media (min-width: 820px) {
+      body {
+        font-size: 1.0625rem;
+      }
+
+      .mobile-nav {
+        display: none;
+      }
+
+      .desktop-nav {
+        display: flex;
+      }
+
+      .hero-copy {
+        padding-left: clamp(1rem, 6vw, 6rem);
+      }
+
+      .system-layout,
+      .comparison-shell,
+      .pay-layout {
+        grid-template-columns: minmax(260px, 0.72fr) minmax(420px, 1.28fr);
+        align-items: start;
+      }
+
+      .system-intro,
+      .comparison-copy,
+      .pay-copy {
+        position: sticky;
+        top: 2rem;
+      }
+
+      .comparison-shell {
+        align-items: center;
+      }
+
+      .tier-grid {
+        grid-template-columns: repeat(3, 1fr);
+        align-items: center;
+      }
+
+      .tier-card:last-child {
+        grid-column: auto;
+      }
+
+      .tier-card.featured {
+        transform: translateY(-1.1rem);
+      }
+
+      .agent-top {
+        grid-template-columns: 1fr auto;
+      }
+
+      .testimonial-layout {
+        grid-template-columns: 5rem 1fr;
+      }
+    }
+
+    @media (min-width: 1000px) {
+      .hero-caption {
+        top: auto;
+        right: 2rem;
+        bottom: 2rem;
+      }
+
+      .stats-grid {
+        grid-template-columns: repeat(4, 1fr);
+      }
+
+      .stat,
+      .stat:nth-child(2n) {
+        min-height: 15rem;
+        border-right: 1px solid var(--navy-line);
+        border-bottom: 0;
+      }
+
+      .stat:last-child {
+        border-right: 0;
+      }
+
+      .portfolio-grid {
+        grid-template-columns: repeat(3, 1fr);
+        grid-auto-rows: 17rem;
+      }
+
+      .portfolio-tile.wide {
+        grid-column: span 2;
+      }
+
+      .portfolio-tile.tall {
+        grid-row: span 2;
+      }
+
+      .portfolio-tile:nth-child(3) {
+        grid-row: span 2;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html {
+        scroll-behavior: auto;
+      }
+
+      *,
+      *::before,
+      *::after {
+        scroll-behavior: auto !important;
+        transition-duration: 0.01ms !important;
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+      }
+    }
+  </style>
+</head>
+<body>
+  
+  <a class="skip-link" href="#main-content">Skip to content</a>
+
+  <header class="site-header" aria-label="Primary">
+    <div class="container nav-shell">
+      <a class="wordmark" href="#top" aria-label="Design2Sell home">Design<span>2</span>Sell</a>
+
+      <nav class="desktop-nav" aria-label="Main navigation">
+        <a href="#system">The System</a>
+        <a href="#portfolio">Portfolio</a>
+        <a href="#services">Services</a>
+        <a href="#pay-at-close">Pay at Close</a>
+        <a href="#agents">Agents</a>
+        <a class="btn" href="#services">Get Your Staging Plan</a>
+      </nav>
+
+      <details class="mobile-nav">
+        <summary aria-label="Open navigation"><span class="menu-lines" aria-hidden="true"></span></summary>
+        <nav class="mobile-nav-panel" aria-label="Mobile navigation">
+          <a href="#system">The System</a>
+          <a href="#portfolio">Portfolio</a>
+          <a href="#services">Services</a>
+          <a href="#pay-at-close">Pay at Close</a>
+          <a href="#agents">Agents</a>
+          <a href="#services">Get Your Staging Plan</a>
+        </nav>
+      </details>
+    </div>
+  </header>
+
+  <main id="main-content">
+    <section class="hero" id="top" aria-labelledby="hero-title">
+      
+      <div class="hero-room" aria-hidden="true">
+        <span class="hero-window"></span>
+        <span class="hero-art-frame"></span>
+        <span class="hero-console"></span>
+        <span class="hero-sofa"></span>
+      </div>
+      <p class="hero-caption">Photo: staged Atlanta living room, wide angle</p>
+
+      <div class="container hero-inner">
+        <div class="hero-copy">
+          <p class="eyebrow">Atlanta Home Staging</p>
+          <h1 id="hero-title">Staged to Sell.<br>Proven to Perform.</h1>
+          <p class="subhead">Atlanta's Top 10 Nationally Ranked Staging Team.</p>
+          <div class="hero-actions">
+            <a class="btn" href="#services">Get Your Staging Plan</a>
+            <a class="btn btn-ghost" href="#portfolio">See Our Portfolio</a>
+          </div>
+        </div>
+
+        <div class="credential-strip" aria-label="Design2Sell credentials">
+          <span>Top 10 Nationally</span>
+          <span>19+ Years</span>
+          <span>Thousands of Homes</span>
+          <span>Pay-at-Close Available</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="stats-band" aria-label="Staging performance statistics">
+      
+      <div class="stats-grid">
+        <article class="stat">
+          <strong class="stat-number" aria-label="23 dollars and 34 cents return per dollar invested"><span data-count="23.34" data-decimals="2" data-prefix="$">$0.00</span></strong>
+          <span class="stat-label">Return per $1 invested</span>
+        </article>
+        <article class="stat">
+          <strong class="stat-number"><span data-count="50" data-suffix="%">0%</span></strong>
+          <span class="stat-label">Faster sale time</span>
+        </article>
+        <article class="stat">
+          <strong class="stat-number"><span data-count="6">0</span>–<span data-count="12" data-suffix="%">0%</span></strong>
+          <span class="stat-label">Higher sale price</span>
+        </article>
+        <article class="stat">
+          <strong class="stat-number"><span data-count="19" data-suffix="+">0+</span></strong>
+          <span class="stat-label">Years of experience</span>
+        </article>
+      </div>
+    </section>
+
+    <section class="section" id="system" aria-labelledby="system-title">
+      <div class="container system-layout">
+        <div class="system-intro">
+          <p class="eyebrow">Our Approach</p>
+          <h2 id="system-title">The Staged to Sell System</h2>
+          <p class="lead">A clear path from the first look at the property to a polished presentation ready for the market.</p>
+        </div>
+
+        <ol class="editorial-steps">
+          <li class="editorial-step">
+            <h3>Plan</h3>
+            <p>We review the property, the selling goals, and the listing timeline to shape the staging plan.</p>
+          </li>
+          <li class="editorial-step">
+            <h3>Stage</h3>
+            <p>Rooms are prepared and styled so each space reads clearly in person and online.</p>
+          </li>
+          <li class="editorial-step">
+            <h3>Sell</h3>
+            <p>The home enters the market with a cohesive presentation designed to help buyers see how the spaces can live.</p>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <section class="portfolio-section" id="portfolio" aria-labelledby="portfolio-title">
+      <div class="container">
+        <div class="section-head">
+          <p class="eyebrow">Selected Spaces</p>
+          <h2 id="portfolio-title">Rooms With a Point of View</h2>
+          <p class="lead">A portfolio should feel like walking through a beautifully paced home: each room distinct, every transition considered.</p>
+        </div>
+      </div>
+
+      
+      <div class="portfolio-grid" aria-label="Portfolio placeholder gallery">
+        <figure class="portfolio-tile wide" tabindex="0">
+          <div class="portfolio-art art-living" aria-hidden="true"></div>
+          <figcaption class="portfolio-caption">Photo: staged Atlanta living room, wide angle</figcaption>
+          <div class="portfolio-overlay">
+            <span class="project-label">Project label placeholder</span>
+            <p class="result-placeholder">Result line placeholder</p>
+          </div>
+        </figure>
+        <figure class="portfolio-tile tall" tabindex="0">
+          <div class="portfolio-art art-kitchen" aria-hidden="true"></div>
+          <figcaption class="portfolio-caption">Photo: staged kitchen, natural light</figcaption>
+          <div class="portfolio-overlay">
+            <span class="project-label">Project label placeholder</span>
+            <p class="result-placeholder">Result line placeholder</p>
+          </div>
+        </figure>
+        <figure class="portfolio-tile" tabindex="0">
+          <div class="portfolio-art art-bedroom" aria-hidden="true"></div>
+          <figcaption class="portfolio-caption">Photo: staged primary bedroom, layered neutrals</figcaption>
+          <div class="portfolio-overlay">
+            <span class="project-label">Project label placeholder</span>
+            <p class="result-placeholder">Result line placeholder</p>
+          </div>
+        </figure>
+        <figure class="portfolio-tile" tabindex="0">
+          <div class="portfolio-art art-dining" aria-hidden="true"></div>
+          <figcaption class="portfolio-caption">Photo: staged dining room, architectural detail</figcaption>
+          <div class="portfolio-overlay">
+            <span class="project-label">Project label placeholder</span>
+            <p class="result-placeholder">Result line placeholder</p>
+          </div>
+        </figure>
+        <figure class="portfolio-tile wide" tabindex="0">
+          <div class="portfolio-art art-entry" aria-hidden="true"></div>
+          <figcaption class="portfolio-caption">Photo: staged entry, editorial crop</figcaption>
+          <div class="portfolio-overlay">
+            <span class="project-label">Project label placeholder</span>
+            <p class="result-placeholder">Result line placeholder</p>
+          </div>
+        </figure>
+        <figure class="portfolio-tile" tabindex="0">
+          <div class="portfolio-art art-twilight" aria-hidden="true"></div>
+          <figcaption class="portfolio-caption">Photo: staged living room, twilight warmth</figcaption>
+          <div class="portfolio-overlay">
+            <span class="project-label">Project label placeholder</span>
+            <p class="result-placeholder">Result line placeholder</p>
+          </div>
+        </figure>
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="comparison-title">
+      <div class="container comparison-shell">
+        <div class="comparison-copy">
+          <p class="eyebrow">Signature Transformation</p>
+          <h2 id="comparison-title">See the Room Find Its Story</h2>
+          <p class="lead">Use the divider to compare the same space before and after staging.</p>
+          <p class="comparison-note">Drag left or right · Arrow keys supported</p>
+        </div>
+
+        
+        <div class="before-after" data-comparison>
+          <div class="ba-scene ba-before" aria-hidden="true">
+            <div class="ba-room before-base"></div>
+            <span class="before-empty"></span>
+            <span class="ba-label ba-label-before">Before</span>
+            <span class="ba-shot-caption">Photo: unfurnished living room, matching camera angle</span>
+          </div>
+          <div class="ba-scene ba-after" aria-hidden="true">
+            <div class="ba-room"></div>
+            <span class="after-furniture"></span>
+            <span class="ba-label ba-label-after">After</span>
+            <span class="ba-shot-caption">Photo: staged living room, matching camera angle</span>
+          </div>
+          <span class="ba-handle" aria-hidden="true">⋮</span>
+          <label class="skip-link" for="comparison-range">Choose how much of the after view is shown</label>
+          <input class="ba-range" id="comparison-range" type="range" min="8" max="92" value="58" aria-label="Before and after comparison position">
+        </div>
+      </div>
+    </section>
+
+    <section class="section services-section" id="services" aria-labelledby="services-title">
+      <div class="container">
+        <div class="section-head">
+          <p class="eyebrow">Service Tiers</p>
+          <h2 id="services-title">A Staging Plan for Every Listing</h2>
+          <p class="lead">Choose the starting point that fits the property. Final scope and pricing are confirmed in consultation.</p>
+        </div>
+
+        
+        <div class="tier-grid">
+          <article class="tier-card">
+            <h3>Essentials</h3>
+            <div class="tier-detail">
+              <span class="tier-label">Ideal for</span>
+              <span class="tier-value">[Ideal-for details to be confirmed]</span>
+            </div>
+            <div class="tier-detail">
+              <span class="tier-label">Included rooms</span>
+              <span class="tier-value">[Included rooms to be confirmed]</span>
+            </div>
+            <p class="tier-price">[Price range to be confirmed]</p>
+            <a class="btn btn-dark" href="#contact">Book a Consultation</a>
+          </article>
+
+          <article class="tier-card featured">
+            <span class="featured-label">Featured</span>
+            <h3>Signature</h3>
+            <div class="tier-detail">
+              <span class="tier-label">Ideal for</span>
+              <span class="tier-value">[Ideal-for details to be confirmed]</span>
+            </div>
+            <div class="tier-detail">
+              <span class="tier-label">Included rooms</span>
+              <span class="tier-value">[Included rooms to be confirmed]</span>
+            </div>
+            <p class="tier-price">[Price range to be confirmed]</p>
+            <a class="btn btn-dark" href="#contact">Book a Consultation</a>
+          </article>
+
+          <article class="tier-card">
+            <h3>Luxury</h3>
+            <div class="tier-detail">
+              <span class="tier-label">Ideal for</span>
+              <span class="tier-value">[Ideal-for details to be confirmed]</span>
+            </div>
+            <div class="tier-detail">
+              <span class="tier-label">Included rooms</span>
+              <span class="tier-value">[Included rooms to be confirmed]</span>
+            </div>
+            <p class="tier-price">[Price range to be confirmed]</p>
+            <a class="btn btn-dark" href="#contact">Book a Consultation</a>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section pay-band" id="pay-at-close" aria-labelledby="pay-title">
+      <div class="container pay-layout">
+        <div class="pay-copy">
+          <p class="eyebrow">Pay-at-Close</p>
+          <h2 id="pay-title">Stage Now.<br>Pay When You Sell.</h2>
+          <p class="lead">A payment option designed to align staging with the closing timeline.</p>
+          <a class="btn btn-dark" href="#contact">Learn About Pay-at-Close</a>
+        </div>
+
+        <div class="pay-flow" aria-label="Pay-at-Close process">
+          <div class="pay-beat">
+            <span class="pay-index">01</span>
+            <span class="pay-word">Stage</span>
+          </div>
+          <div class="pay-beat">
+            <span class="pay-index">02</span>
+            <span class="pay-word">Sell</span>
+          </div>
+          <div class="pay-beat">
+            <span class="pay-index">03</span>
+            <span class="pay-word">Pay</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section agent-band" id="agents" aria-labelledby="agents-title">
+      <div class="container">
+        <div class="agent-top">
+          <div>
+            <p class="eyebrow light">Agent Partnership</p>
+            <h2 id="agents-title">Built for Atlanta's Top Agents</h2>
+          </div>
+          <a class="btn" href="#contact">Join the Partnership Program</a>
+        </div>
+
+        
+        <div class="agent-features">
+          <article class="agent-feature">
+            <h3>Priority Scheduling</h3>
+            <p>A clear partnership feature for agents managing active listing timelines.</p>
+          </article>
+          <article class="agent-feature">
+            <h3>Co-Branded Materials</h3>
+            <p>A clear partnership feature for presenting staging alongside the listing strategy.</p>
+          </article>
+          <article class="agent-feature">
+            <h3>Quarterly ROI Reports</h3>
+            <p>A clear partnership feature for reviewing staging performance over time.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section testimonial-section" aria-label="Testimonial layout placeholder">
+      <div class="container testimonial-layout">
+        <span class="quote-mark" aria-hidden="true"></span>
+        <blockquote>
+          <p>“Verified client testimonial placeholder. A real quote, attribution, and project context will be inserted here after approval.”</p>
+          <cite>Testimonial layout only — no review supplied</cite>
+        </blockquote>
+      </div>
+    </section>
+
+    <section class="trust-bar" aria-label="Credentials">
+      <div class="container trust-row">
+        <span>RESA</span>
+        <span>HSRA</span>
+        <span>Best of Houzz</span>
+        <span>Top 10 Nationally</span>
+      </div>
+    </section>
+
+    <section class="closing-cta" id="contact" aria-labelledby="closing-title">
+      <div class="container">
+        <p class="eyebrow light" style="justify-content:center">Your Next Listing</p>
+        <h2 id="closing-title">Ready to Stage Your Listing?</h2>
+        <p>Start with a staging plan shaped around the property and the path to market.</p>
+        <a class="btn" href="#services">Get Your Staging Plan</a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <div class="footer-brand">
+        <a class="wordmark" href="#top" aria-label="Design2Sell home">Design<span>2</span>Sell</a>
+        <p>Atlanta home staging with an editorial eye and a clear plan from stage to sell.</p>
+      </div>
+
+      <nav class="footer-nav" aria-label="Footer navigation">
+        <div class="footer-column">
+          <h3>Services</h3>
+          <a href="#services">Essentials</a>
+          <a href="#services">Signature</a>
+          <a href="#services">Luxury</a>
+        </div>
+        <div class="footer-column">
+          <h3>Portfolio</h3>
+          <a href="#portfolio">Selected Spaces</a>
+          <a href="#portfolio">Before &amp; After</a>
+        </div>
+        <div class="footer-column">
+          <h3>Agents</h3>
+          <a href="#agents">Partnership Program</a>
+          <a href="#pay-at-close">Pay-at-Close</a>
+        </div>
+        <div class="footer-column">
+          <h3>Contact</h3>
+          <a href="#contact">Get Your Staging Plan</a>
+          <span>Atlanta, Georgia</span>
+        </div>
+      </nav>
+    </div>
+
+    <div class="container footer-bottom">
+      <span>© Design2Sell</span>
+      <span>Local concept artifact · Review only</span>
+    </div>
+  </footer>
+
+  <script>
+    (() => {
+      const comparison = document.querySelector('[data-comparison]');
+      const range = comparison?.querySelector('.ba-range');
+
+      if (comparison && range) {
+        const updateComparison = () => {
+          comparison.style.setProperty('--position', range.value + '%');
+          range.setAttribute('aria-valuetext', range.value + '% after view');
+        };
+        range.addEventListener('input', updateComparison);
+        updateComparison();
+      }
+
+      const counters = [...document.querySelectorAll('[data-count]')];
+      const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+      const setCounter = (element, value) => {
+        const decimals = Number(element.dataset.decimals || 0);
+        const prefix = element.dataset.prefix || '';
+        const suffix = element.dataset.suffix || '';
+        element.textContent = prefix + Number(value).toFixed(decimals) + suffix;
+      };
+
+      const animateCounter = (element) => {
+        const target = Number(element.dataset.count);
+        const duration = 1300;
+        let startTime = null;
+
+        const frame = (time) => {
+          if (!startTime) startTime = time;
+          const progress = Math.min((time - startTime) / duration, 1);
+          const eased = 1 - Math.pow(1 - progress, 3);
+          setCounter(element, target * eased);
+          if (progress < 1) window.requestAnimationFrame(frame);
+        };
+
+        window.requestAnimationFrame(frame);
+      };
+
+      if (reducedMotion || !('IntersectionObserver' in window)) {
+        counters.forEach((counter) => setCounter(counter, counter.dataset.count));
+      } else {
+        const observer = new IntersectionObserver((entries, instance) => {
+          entries.forEach((entry) => {
+            if (!entry.isIntersecting) return;
+            animateCounter(entry.target);
+            instance.unobserve(entry.target);
+          });
+        }, { threshold: 0.45 });
+
+        counters.forEach((counter) => observer.observe(counter));
+      }
+    })();
+  </script>
+</body>
+</html>
+
+=== ENTRY B (blind/d2s-B.html) ===
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Design2Sell — Atlanta Home Staging | Staged to Sell. Proven to Perform.</title>
+<meta name="description" content="Design2Sell is Atlanta's Top 10 Nationally Ranked staging team. 19+ years, thousands of homes staged. Pay-at-Close available.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;1,600&family=Montserrat:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+/* ============ TOKENS ============ */
+:root{
+  --charcoal:#3a3a3a;
+  --gold:#c9a96e;
+  --gold-deep:#b3925a;
+  --warm-white:#faf8f5;
+  --navy:#1e2d3d;
+  --navy-deep:#16222f;
+  --linen:#f0ece4;
+  --blush:#e8d5c4;
+  --sage:#7d9b76;
+  --warm-gray:#6b6560;
+  --hairline:rgba(58,58,58,.14);
+  --hairline-light:rgba(250,248,245,.16);
+  --serif:'Playfair Display',Georgia,serif;
+  --sans:'Montserrat',Helvetica,Arial,sans-serif;
+  --max:1240px;
+  --gutter:clamp(20px,5vw,64px);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  font-family:var(--sans);
+  font-weight:400;
+  font-size:17px;
+  line-height:1.7;
+  color:var(--charcoal);
+  background:var(--warm-white);
+  -webkit-font-smoothing:antialiased;
+  text-rendering:optimizeLegibility;
+}
+img{max-width:100%;display:block}
+a{color:inherit;text-decoration:none}
+ul{list-style:none}
+::selection{background:var(--gold);color:var(--navy)}
+
+/* ============ TYPE UTILITIES ============ */
+.eyebrow{
+  font-family:var(--sans);
+  font-weight:600;
+  font-size:12px;
+  letter-spacing:.24em;
+  text-transform:uppercase;
+  color:var(--gold-deep);
+  display:flex;
+  align-items:center;
+  gap:16px;
+  margin-bottom:22px;
+}
+.eyebrow::before{content:"";width:38px;height:1px;background:var(--gold)}
+.eyebrow.on-dark{color:var(--gold)}
+h1,h2,h3{font-family:var(--serif);font-weight:600;line-height:1.15;color:var(--charcoal)}
+h1{font-weight:700}
+.h2{font-size:clamp(30px,4.2vw,46px);letter-spacing:-.01em;margin-bottom:18px}
+.lede{font-size:clamp(16px,1.6vw,18px);color:var(--warm-gray);max-width:58ch}
+.wrap{max-width:var(--max);margin:0 auto;padding-left:var(--gutter);padding-right:var(--gutter)}
+.section{padding:clamp(72px,9vw,128px) 0}
+.section-head{max-width:720px;margin-bottom:clamp(40px,5vw,64px)}
+
+/* ============ BUTTONS ============ */
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;gap:12px;
+  font-family:var(--sans);font-weight:600;font-size:14px;
+  letter-spacing:.15em;text-transform:uppercase;
+  padding:17px 34px;border:1px solid transparent;cursor:pointer;
+  transition:background .3s ease,color .3s ease,border-color .3s ease,transform .3s ease;
+  white-space:nowrap;
+}
+.btn-gold{background:var(--gold);color:var(--navy)}
+.btn-gold:hover{background:var(--gold-deep);color:#fff;transform:translateY(-2px)}
+.btn-ghost{background:transparent;color:#fff;border-color:rgba(255,255,255,.55)}
+.btn-ghost:hover{border-color:var(--gold);color:var(--gold)}
+.btn-outline{background:transparent;color:var(--charcoal);border-color:var(--charcoal)}
+.btn-outline:hover{border-color:var(--gold);color:var(--gold-deep)}
+.btn:focus-visible{outline:2px solid var(--gold);outline-offset:3px}
+.btn .arrow{font-family:var(--sans);font-weight:400;transition:transform .3s ease}
+.btn:hover .arrow{transform:translateX(5px)}
+
+/* ============ HEADER ============ */
+.site-header{
+  position:fixed;top:0;left:0;right:0;z-index:100;
+  transition:background .4s ease,box-shadow .4s ease,padding .4s ease;
+  padding:22px 0;
+}
+.site-header.scrolled{
+  background:rgba(250,248,245,.96);
+  backdrop-filter:blur(10px);
+  box-shadow:0 1px 0 var(--hairline);
+  padding:14px 0;
+}
+.header-inner{display:flex;align-items:center;justify-content:space-between;gap:24px}
+.brand{display:flex;flex-direction:column;line-height:1.1}
+.brand-name{font-family:var(--serif);font-weight:700;font-size:24px;color:#fff;transition:color .4s ease}
+.brand-name em{font-style:normal;color:var(--gold)}
+.brand-tag{font-size:9.5px;letter-spacing:.32em;text-transform:uppercase;color:rgba(255,255,255,.7);margin-top:4px;transition:color .4s ease}
+.site-header.scrolled .brand-name{color:var(--charcoal)}
+.site-header.scrolled .brand-tag{color:var(--warm-gray)}
+.main-nav{display:flex;align-items:center;gap:34px}
+.main-nav a.nav-link{
+  font-size:12.5px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;
+  color:rgba(255,255,255,.85);position:relative;padding:6px 0;transition:color .3s ease;
+}
+.main-nav a.nav-link::after{content:"";position:absolute;left:0;bottom:0;width:0;height:1px;background:var(--gold);transition:width .3s ease}
+.main-nav a.nav-link:hover{color:var(--gold)}
+.main-nav a.nav-link:hover::after{width:100%}
+.site-header.scrolled .main-nav a.nav-link{color:var(--charcoal)}
+.site-header.scrolled .main-nav a.nav-link:hover{color:var(--gold-deep)}
+.header-cta{padding:12px 24px;font-size:12px}
+.nav-toggle{display:none;background:none;border:none;cursor:pointer;width:40px;height:40px;position:relative;z-index:110}
+.nav-toggle span{position:absolute;left:8px;right:8px;height:1.5px;background:#fff;transition:transform .3s ease,opacity .3s ease,background .3s ease}
+.nav-toggle span:nth-child(1){top:14px}
+.nav-toggle span:nth-child(2){top:20px}
+.nav-toggle span:nth-child(3){top:26px}
+.site-header.scrolled .nav-toggle span{background:var(--charcoal)}
+.nav-open .nav-toggle span{background:var(--charcoal)}
+.nav-open .nav-toggle span:nth-child(1){transform:translateY(6px) rotate(45deg)}
+.nav-open .nav-toggle span:nth-child(2){opacity:0}
+.nav-open .nav-toggle span:nth-child(3){transform:translateY(-6px) rotate(-45deg)}
+
+/* ============ HERO ============ */
+.hero{position:relative;min-height:100svh;display:flex;align-items:flex-end;color:#fff}
+.hero-surface{
+  position:absolute;inset:0;
+  background:
+    linear-gradient(180deg,rgba(30,45,61,.12) 0%,rgba(30,45,61,0) 38%,rgba(22,28,36,.72) 88%,rgba(22,28,36,.9) 100%),
+    radial-gradient(120% 80% at 78% 18%,rgba(201,169,110,.34) 0%,rgba(201,169,110,0) 55%),
+    radial-gradient(90% 70% at 12% 78%,rgba(232,213,196,.20) 0%,rgba(232,213,196,0) 60%),
+    linear-gradient(135deg,#4a463f 0%,#5d564c 30%,#7a7062 52%,#968a79 68%,#6f665a 85%,#3f3b35 100%);
+}
+/* abstract "staged room" geometry */
+.hero-surface::before{
+  content:"";position:absolute;inset:0;
+  background:
+    linear-gradient(90deg,transparent 0 12%,rgba(250,248,245,.06) 12% 12.3%,transparent 12.3% 55%,rgba(250,248,245,.05) 55% 55.25%,transparent 55.25%),
+    linear-gradient(0deg,transparent 0 64%,rgba(250,248,245,.07) 64% 64.3%,transparent 64.3%),
+    radial-gradient(60% 42% at 72% 46%,rgba(250,248,245,.10) 0%,rgba(250,248,245,0) 70%),
+    radial-gradient(34% 30% at 26% 44%,rgba(201,169,110,.14) 0%,rgba(201,169,110,0) 70%);
+}
+.photo-caption{
+  position:absolute;display:inline-flex;align-items:center;gap:8px;
+  font-size:10.5px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;
+  color:rgba(255,255,255,.62);
+}
+.photo-caption::before{content:"";width:22px;height:1px;background:var(--gold)}
+.hero .photo-caption{top:110px;right:var(--gutter)}
+.hero-content{position:relative;width:100%;padding-bottom:clamp(44px,6vh,80px);padding-top:140px}
+.hero-kicker{
+  font-size:12.5px;font-weight:600;letter-spacing:.3em;text-transform:uppercase;
+  color:var(--gold);margin-bottom:20px;display:flex;align-items:center;gap:16px;
+}
+.hero-kicker::before{content:"";width:44px;height:1px;background:var(--gold)}
+.hero h1{
+  color:#fff;font-size:clamp(38px,6.4vw,68px);font-weight:700;
+  line-height:1.08;letter-spacing:-.015em;max-width:14ch;margin-bottom:18px;
+}
+.hero h1 em{font-style:italic;color:var(--gold)}
+.hero-sub{font-size:clamp(15px,1.6vw,18px);color:rgba(255,255,255,.82);max-width:46ch;margin-bottom:36px;font-weight:400}
+.hero-actions{display:flex;flex-wrap:wrap;gap:16px;margin-bottom:clamp(44px,7vh,72px)}
+.credential-strip{
+  display:grid;grid-template-columns:repeat(4,1fr);
+  border-top:1px solid rgba(255,255,255,.22);
+}
+.credential-strip li{
+  padding:20px 24px 4px 0;
+  font-size:11.5px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;
+  color:rgba(255,255,255,.85);
+  border-right:1px solid rgba(255,255,255,.14);
+  padding-left:20px;
+}
+.credential-strip li:first-child{padding-left:0}
+.credential-strip li:last-child{border-right:none}
+.credential-strip li b{display:block;font-family:var(--serif);font-size:15px;font-weight:600;letter-spacing:.02em;text-transform:none;color:var(--gold);margin-bottom:3px}
+
+/* ============ STATS BAND ============ */
+.stats{background:var(--navy);color:var(--warm-white);padding:clamp(56px,7vw,88px) 0}
+.stats-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:clamp(28px,4vw,48px)}
+.stat{position:relative;padding-left:26px}
+.stat::before{content:"";position:absolute;left:0;top:8px;bottom:8px;width:1px;background:var(--gold);opacity:.55}
+.stat-number{
+  font-family:var(--serif);font-weight:700;
+  font-size:clamp(40px,4.6vw,64px);line-height:1;
+  color:var(--gold);letter-spacing:-.01em;margin-bottom:10px;
+  font-variant-numeric:tabular-nums;
+}
+.stat-label{font-size:12.5px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:rgba(250,248,245,.85);margin-bottom:6px}
+.stat-note{font-size:13px;color:rgba(250,248,245,.55);font-weight:400}
+.stat .pos{color:var(--sage)}
+
+/* ============ SYSTEM / STEPS ============ */
+.steps{border-top:1px solid var(--hairline)}
+.step{
+  display:grid;grid-template-columns:110px 1fr 1.1fr;gap:clamp(20px,4vw,56px);
+  padding:clamp(32px,4.5vw,52px) 0;align-items:baseline;
+}
+.step + .step{border-top:1px solid var(--hairline)}
+.step-num{
+  font-family:var(--serif);font-weight:600;font-size:clamp(22px,2.4vw,30px);
+  color:var(--gold-deep);letter-spacing:.04em;
+}
+.step-title{font-size:clamp(22px,2.6vw,30px);font-weight:600}
+.step-body{color:var(--warm-gray);font-size:16px;max-width:52ch}
+.step-body b{color:var(--charcoal);font-weight:600}
+.steps-foot{margin-top:36px}
+
+/* ============ PORTFOLIO ============ */
+.portfolio{background:var(--linen)}
+.masonry{columns:3;column-gap:22px}
+.tile{
+  position:relative;overflow:hidden;margin-bottom:22px;break-inside:avoid;
+  cursor:pointer;background:var(--charcoal);
+}
+.tile-surface{display:block;width:100%;transition:transform .7s cubic-bezier(.2,.7,.2,1)}
+.tile:hover .tile-surface,.tile:focus-within .tile-surface{transform:scale(1.04)}
+.tile .photo-caption{bottom:16px;left:16px;z-index:2;color:rgba(255,255,255,.6);transition:opacity .4s ease}
+.tile-overlay{
+  position:absolute;inset:0;z-index:3;display:flex;flex-direction:column;justify-content:flex-end;
+  padding:26px;
+  background:linear-gradient(180deg,rgba(30,45,61,0) 30%,rgba(30,45,61,.88) 100%);
+  opacity:0;transition:opacity .45s ease;
+}
+.tile:hover .tile-overlay,.tile:focus-within .tile-overlay{opacity:1}
+.tile:hover .photo-caption,.tile:focus-within .photo-caption{opacity:0}
+.tile-label{font-family:var(--serif);font-size:22px;font-weight:600;color:#fff;margin-bottom:6px;transform:translateY(8px);transition:transform .45s ease}
+.tile-result{font-size:12px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);transform:translateY(8px);transition:transform .45s ease .05s}
+.tile:hover .tile-label,.tile:hover .tile-result,
+.tile:focus-within .tile-label,.tile:focus-within .tile-result{transform:translateY(0)}
+/* tonal placeholder surfaces */
+.s1{aspect-ratio:4/5;background:linear-gradient(160deg,#8a7f6f 0%,#6e6557 45%,#4c463d 100%),radial-gradient(80% 60% at 70% 25%,rgba(250,248,245,.14),transparent 60%);background-blend-mode:screen}
+.s2{aspect-ratio:4/3;background:linear-gradient(200deg,#5a6a72 0%,#42525c 50%,#2e3c46 100%),radial-gradient(70% 60% at 25% 30%,rgba(201,169,110,.18),transparent 65%);background-blend-mode:screen}
+.s3{aspect-ratio:1/1;background:linear-gradient(140deg,#a39073 0%,#857257 55%,#5c4f3e 100%),radial-gradient(70% 55% at 75% 70%,rgba(250,248,245,.12),transparent 60%);background-blend-mode:screen}
+.s4{aspect-ratio:4/5;background:linear-gradient(170deg,#6d6a62 0%,#54514a 50%,#38352f 100%),radial-gradient(75% 60% at 30% 25%,rgba(232,213,196,.16),transparent 62%);background-blend-mode:screen}
+.s5{aspect-ratio:1/1;background:linear-gradient(210deg,#7c7264 0%,#5e564a 55%,#413c34 100%),radial-gradient(70% 55% at 70% 30%,rgba(201,169,110,.2),transparent 60%);background-blend-mode:screen}
+.s6{aspect-ratio:4/3;background:linear-gradient(150deg,#4d5b66 0%,#384652 50%,#232f3a 100%),radial-gradient(75% 60% at 30% 65%,rgba(250,248,245,.1),transparent 60%);background-blend-mode:screen}
+
+/* ============ BEFORE / AFTER ============ */
+.ba-section .section-head{display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:24px;max-width:none}
+.ba-frame{
+  position:relative;width:100%;aspect-ratio:16/8.5;min-height:340px;overflow:hidden;
+  user-select:none;touch-action:pan-y;
+}
+.ba-layer{position:absolute;inset:0}
+.ba-before{
+  background:
+    linear-gradient(180deg,rgba(58,58,58,.08),rgba(58,58,58,0) 40%),
+    linear-gradient(160deg,#8d877c 0%,#6f695f 45%,#504a43 100%);
+}
+.ba-before::after{content:"";position:absolute;inset:0;
+  background:radial-gradient(70% 55% at 25% 35%,rgba(58,58,58,.22),transparent 65%);}
+.ba-after{
+  clip-path:inset(0 0 0 50%);
+  background:
+    linear-gradient(180deg,rgba(250,248,245,.10),rgba(250,248,245,0) 40%),
+    radial-gradient(80% 65% at 70% 30%,rgba(201,169,110,.3),transparent 60%),
+    linear-gradient(160deg,#cbb896 0%,#a8946f 40%,#7a6a52 75%,#544a3b 100%);
+}
+.ba-tag{
+  position:absolute;top:22px;z-index:4;
+  font-size:11px;font-weight:600;letter-spacing:.22em;text-transform:uppercase;
+  padding:8px 16px;color:#fff;background:rgba(30,45,61,.55);backdrop-filter:blur(4px);
+}
+.ba-tag.before{left:22px}
+.ba-tag.after{right:22px;background:rgba(201,169,110,.85);color:var(--navy)}
+.ba-caption{position:absolute;bottom:18px;font-size:10.5px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:rgba(255,255,255,.65);z-index:4;display:flex;align-items:center;gap:8px}
+.ba-caption::before{content:"";width:20px;height:1px;background:var(--gold)}
+.ba-caption.cap-before{left:22px}
+.ba-caption.cap-after{right:22px}
+.ba-divider{
+  position:absolute;top:0;bottom:0;left:50%;width:2px;margin-left:-1px;
+  background:var(--gold);z-index:5;cursor:ew-resize;
+}
+.ba-handle{
+  position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);
+  width:10px;height:64px;background:var(--gold);
+  box-shadow:0 0 0 1px rgba(30,45,61,.25),0 6px 18px rgba(0,0,0,.28);
+  display:flex;align-items:center;justify-content:center;gap:2px;
+}
+.ba-handle::before,.ba-handle::after{
+  content:"";width:0;height:0;border-top:4px solid transparent;border-bottom:4px solid transparent;
+}
+.ba-handle::before{border-right:4px solid var(--navy);margin-right:1px}
+.ba-handle::after{border-left:4px solid var(--navy)}
+.ba-note{margin-top:22px;font-size:13px;color:var(--warm-gray);display:flex;align-items:center;gap:12px}
+.ba-note::before{content:"";width:34px;height:1px;background:var(--gold)}
+
+/* ============ TIERS ============ */
+.tiers{background:var(--linen)}
+.tiers-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:26px;align-items:stretch}
+.tier{
+  background:var(--warm-white);padding:clamp(32px,3.4vw,46px);
+  display:flex;flex-direction:column;border:1px solid rgba(58,58,58,.08);
+  transition:transform .35s ease,box-shadow .35s ease;
+}
+.tier:hover{transform:translateY(-4px);box-shadow:0 18px 44px rgba(30,45,61,.10)}
+.tier.featured{
+  border:1px solid var(--gold);
+  box-shadow:0 24px 54px rgba(30,45,61,.13);
+  transform:translateY(-12px);
+  position:relative;
+}
+.tier.featured:hover{transform:translateY(-16px)}
+.tier-flag{
+  position:absolute;top:-13px;left:50%;transform:translateX(-50%);
+  background:var(--gold);color:var(--navy);
+  font-size:10.5px;font-weight:600;letter-spacing:.22em;text-transform:uppercase;
+  padding:6px 18px;white-space:nowrap;
+}
+.tier-name{font-family:var(--serif);font-size:28px;font-weight:600;margin-bottom:6px}
+.tier-ideal{font-size:13px;color:var(--warm-gray);padding-bottom:22px;border-bottom:1px solid var(--hairline);margin-bottom:22px}
+.tier-rooms{font-size:12px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--gold-deep);margin-bottom:10px}
+.tier-list{font-size:14.5px;color:var(--warm-gray);margin-bottom:26px}
+.tier-list li{padding:7px 0 7px 20px;position:relative}
+.tier-list li::before{content:"";position:absolute;left:0;top:16px;width:9px;height:1px;background:var(--gold)}
+.tier-price{margin-top:auto;font-family:var(--serif);font-size:20px;font-weight:600;color:var(--charcoal);margin-bottom:20px}
+.tier-price span{font-family:var(--sans);font-size:11px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--warm-gray);display:block;margin-bottom:4px}
+.tier .btn{width:100%}
+
+/* ============ PAY AT CLOSE ============ */
+.pac-beats{display:grid;grid-template-columns:1fr auto 1fr auto 1fr;align-items:stretch;gap:0;margin:clamp(40px,5vw,60px) 0 36px}
+.pac-beat{padding:0 clamp(18px,3vw,44px);text-align:left;position:relative}
+.pac-beat:first-child{padding-left:0}
+.pac-beat:last-child{padding-right:0}
+.pac-step{font-size:11px;font-weight:600;letter-spacing:.26em;text-transform:uppercase;color:var(--gold-deep);margin-bottom:14px}
+.pac-word{font-family:var(--serif);font-size:clamp(30px,3.6vw,46px);font-weight:700;line-height:1;margin-bottom:12px}
+.pac-desc{font-size:14px;color:var(--warm-gray)}
+.pac-sep{width:1px;background:var(--hairline);position:relative}
+.pac-sep::after{
+  content:"";position:absolute;top:26px;left:50%;transform:translateX(-50%);
+  width:7px;height:7px;border-top:1px solid var(--gold);border-right:1px solid var(--gold);
+  rotate:45deg;
+}
+.pac-explainer{font-size:16px;color:var(--warm-gray);max-width:62ch;margin-bottom:34px}
+
+/* ============ AGENTS ============ */
+.agents{background:var(--navy);color:var(--warm-white)}
+.agents .h2{color:#fff}
+.agents .lede{color:rgba(250,248,245,.68)}
+.agents-grid{display:grid;grid-template-columns:1.05fr 1.4fr;gap:clamp(44px,6vw,96px);align-items:start}
+.agent-features{border-top:1px solid var(--hairline-light)}
+.agent-feature{padding:30px 0;border-bottom:1px solid var(--hairline-light);display:grid;grid-template-columns:auto 1fr;gap:24px;align-items:baseline}
+.agent-feature .af-index{font-family:var(--serif);font-size:15px;color:var(--gold);font-weight:600}
+.agent-feature h3{color:#fff;font-size:21px;font-weight:600;margin-bottom:8px}
+.agent-feature p{font-size:14.5px;color:rgba(250,248,245,.62)}
+.agents .btn{margin-top:36px}
+
+/* ============ TESTIMONIAL ============ */
+.testimonial{background:var(--blush)}
+.testimonial-inner{max-width:900px;margin:0 auto;text-align:center}
+.testimonial-mark{font-family:var(--serif);font-size:88px;line-height:.6;color:var(--gold);display:block;margin-bottom:26px;font-weight:700}
+.testimonial blockquote{
+  font-family:var(--serif);font-style:italic;font-weight:600;
+  font-size:clamp(24px,3.2vw,38px);line-height:1.4;color:var(--charcoal);
+  margin-bottom:32px;letter-spacing:-.005em;
+}
+.testimonial cite{font-style:normal;font-family:var(--sans);font-size:12px;font-weight:600;letter-spacing:.22em;text-transform:uppercase;color:var(--warm-gray)}
+.testimonial cite::before{content:"";display:block;width:44px;height:1px;background:var(--gold-deep);margin:0 auto 18px}
+
+/* ============ TRUST BAR ============ */
+.trust{padding:clamp(40px,5vw,56px) 0;border-top:1px solid var(--hairline)}
+.trust-row{display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:0}
+.trust-item{
+  font-size:12.5px;font-weight:600;letter-spacing:.24em;text-transform:uppercase;
+  color:var(--warm-gray);padding:10px clamp(18px,3vw,40px);position:relative;
+  transition:color .3s ease;
+}
+.trust-item:hover{color:var(--gold-deep)}
+.trust-item + .trust-item::before{content:"·";position:absolute;left:-4px;color:var(--gold);font-size:16px}
+.trust-label{width:100%;text-align:center;font-size:10px;letter-spacing:.3em;text-transform:uppercase;color:rgba(107,101,96,.6);margin-bottom:14px}
+
+/* ============ FOOTER CTA + FOOTER ============ */
+.footer-cta{background:var(--navy);padding:clamp(80px,10vw,130px) 0;text-align:center;color:#fff;border-bottom:1px solid var(--hairline-light)}
+.footer-cta h2{color:#fff;font-size:clamp(32px,4.6vw,52px);margin-bottom:16px}
+.footer-cta p{color:rgba(250,248,245,.62);margin-bottom:38px;font-size:16px}
+.site-footer{background:var(--navy-deep);color:rgba(250,248,245,.7);padding:clamp(56px,7vw,80px) 0 0;font-size:14px}
+.footer-grid{display:grid;grid-template-columns:1.6fr 1fr 1fr 1fr 1.2fr;gap:clamp(28px,4vw,48px);padding-bottom:clamp(44px,5vw,64px)}
+.footer-brand .brand-name{font-size:26px}
+.footer-brand .brand-tag{color:rgba(250,248,245,.5)}
+.footer-brand p{margin-top:18px;font-size:13.5px;line-height:1.75;color:rgba(250,248,245,.55);max-width:30ch}
+.footer-col h4{
+  font-family:var(--sans);font-size:11px;font-weight:600;letter-spacing:.26em;
+  text-transform:uppercase;color:var(--gold);margin-bottom:20px;
+}
+.footer-col li{margin-bottom:12px}
+.footer-col a{transition:color .3s ease;color:rgba(250,248,245,.66)}
+.footer-col a:hover{color:var(--gold)}
+.footer-bottom{
+  border-top:1px solid var(--hairline-light);
+  padding:24px 0;display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px;
+  font-size:12px;color:rgba(250,248,245,.42);letter-spacing:.06em;
+}
+
+/* ============ REVEAL ============ */
+.reveal{opacity:0;transform:translateY(26px);transition:opacity .8s ease,transform .8s cubic-bezier(.2,.7,.2,1)}
+.reveal.in{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){
+  .reveal{opacity:1;transform:none;transition:none}
+  html{scroll-behavior:auto}
+  .tile-surface,.btn,.tier{transition:none}
+}
+
+/* ============ RESPONSIVE ============ */
+@media (max-width:1024px){
+  .masonry{columns:2}
+  .step{grid-template-columns:80px 1fr;}
+  .step-body{grid-column:2}
+  .agents-grid{grid-template-columns:1fr}
+  .footer-grid{grid-template-columns:1fr 1fr 1fr}
+  .footer-brand{grid-column:1/-1}
+}
+@media (max-width:860px){
+  .main-nav{
+    position:fixed;inset:0;background:var(--warm-white);
+    flex-direction:column;justify-content:center;gap:8px;
+    transform:translateY(-100%);transition:transform .45s cubic-bezier(.2,.7,.2,1);
+    z-index:105;
+  }
+  .nav-open .main-nav{transform:translateY(0)}
+  .main-nav a.nav-link{color:var(--charcoal);font-size:15px;padding:12px 0}
+  .main-nav .header-cta{margin-top:16px}
+  .nav-toggle{display:block}
+  .tiers-grid{grid-template-columns:1fr;max-width:520px;margin:0 auto}
+  .tier.featured{transform:none}
+  .tier.featured:hover{transform:translateY(-4px)}
+  .stats-grid{grid-template-columns:1fr 1fr;gap:36px}
+  .pac-beats{grid-template-columns:1fr;gap:0}
+  .pac-beat{padding:26px 0;border-top:1px solid var(--hairline)}
+  .pac-beat:first-child{border-top:none;padding-top:0}
+  .pac-sep{display:none}
+  .credential-strip{grid-template-columns:1fr 1fr;row-gap:6px}
+  .credential-strip li{border-right:none;padding-left:0;padding-top:16px}
+  .credential-strip li:nth-child(even){border-left:1px solid rgba(255,255,255,.14);padding-left:20px}
+}
+@media (max-width:620px){
+  .masonry{columns:1}
+  .step{grid-template-columns:1fr;gap:8px}
+  .step-body{grid-column:1}
+  .ba-frame{aspect-ratio:4/3.4}
+  .hero .photo-caption{display:none}
+  .footer-grid{grid-template-columns:1fr 1fr}
+  .footer-bottom{justify-content:center;text-align:center}
+  .hero-actions .btn{width:100%}
+}
+</style>
+</head>
+<body>
+
+
+<header class="site-header" id="siteHeader">
+  <div class="wrap header-inner">
+    <a href="#top" class="brand" aria-label="Design2Sell home">
+      <span class="brand-name">Design<em>2</em>Sell</span>
+      <span class="brand-tag">Atlanta Home Staging</span>
+    </a>
+    <nav class="main-nav" id="mainNav" aria-label="Primary">
+      <a class="nav-link" href="#system">The System</a>
+      <a class="nav-link" href="#portfolio">Portfolio</a>
+      <a class="nav-link" href="#services">Services</a>
+      <a class="nav-link" href="#agents">For Agents</a>
+      <a class="btn btn-gold header-cta" href="#contact">Get Your Staging Plan</a>
+    </nav>
+    <button class="nav-toggle" id="navToggle" aria-label="Toggle menu" aria-expanded="false" aria-controls="mainNav">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+
+<section class="hero" id="top">
+  <div class="hero-surface" role="img" aria-label="Placeholder: staged Buckhead great room, wide angle"></div>
+  <span class="photo-caption">Photo: staged Buckhead great room, wide angle</span>
+  <div class="wrap hero-content">
+    <p class="hero-kicker">Atlanta's Top 10 Nationally Ranked Staging Team</p>
+    <h1>Staged to Sell.<br><em>Proven to Perform.</em></h1>
+    <p class="hero-sub">Founder-led staging that turns Atlanta listings into must-see homes — designed by Barbara, proven across thousands of properties.</p>
+    <div class="hero-actions">
+      <a class="btn btn-gold" href="#contact">Get Your Staging Plan <span class="arrow">→</span></a>
+      <a class="btn btn-ghost" href="#portfolio">See Our Portfolio</a>
+    </div>
+    <ul class="credential-strip">
+      <li><b>Top 10</b> Nationally Ranked</li>
+      <li><b>19+ Years</b> Of Experience</li>
+      <li><b>Thousands</b> Of Homes Staged</li>
+      <li><b>Pay-at-Close</b> Available</li>
+    </ul>
+  </div>
+</section>
+
+
+<section class="stats" aria-label="Performance statistics">
+  <div class="wrap stats-grid">
+    <div class="stat reveal">
+      <div class="stat-number" data-count="23.34" data-prefix="$" data-decimals="2">$0.00</div>
+      <div class="stat-label">Return per $1 invested</div>
+      <div class="stat-note">Average staging ROI</div>
+    </div>
+    <div class="stat reveal">
+      <div class="stat-number" data-count="50" data-suffix="%">0%</div>
+      <div class="stat-label">Faster sale time</div>
+      <div class="stat-note">Staged vs. unstaged listings</div>
+    </div>
+    <div class="stat reveal">
+      <div class="stat-number" data-count="12" data-prefix="6–" data-suffix="%">6–0%</div>
+      <div class="stat-label pos">Higher sale price</div>
+      <div class="stat-note">The staging premium</div>
+    </div>
+    <div class="stat reveal">
+      <div class="stat-number" data-count="19" data-suffix="+">0+</div>
+      <div class="stat-label">Years of experience</div>
+      <div class="stat-note">Founder-led since day one</div>
+    </div>
+  </div>
+</section>
+
+
+<section class="section" id="system">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <p class="eyebrow">How It Works</p>
+      <h2 class="h2">The Staged to Sell System</h2>
+      <p class="lede">A refined, repeatable process — built over 19+ years and thousands of Atlanta homes — that takes a listing from walked-through to fallen-for.</p>
+    </div>
+    <div class="steps">
+      <div class="step reveal">
+        <span class="step-num">01</span>
+        <h3 class="step-title">Consultation &amp; Staging Plan</h3>
+        <p class="step-body">Barbara walks your property with a buyer's eye and a designer's discipline. You receive a <b>room-by-room staging plan</b> — what stays, what goes, and exactly how each space will be positioned to sell.</p>
+      </div>
+      <div class="step reveal">
+        <span class="step-num">02</span>
+        <h3 class="step-title">Design &amp; Installation</h3>
+        <p class="step-body">Our team delivers, places, and styles every piece — furniture, art, lighting, and the finishing layer that makes rooms photograph beautifully and feel effortless in person. <b>You hand us the keys; we hand back a showpiece.</b></p>
+      </div>
+      <div class="step reveal">
+        <span class="step-num">03</span>
+        <h3 class="step-title">Market &amp; Move-Out</h3>
+        <p class="step-body">Your listing launches staged, styled, and camera-ready. When the home sells, we handle <b>de-staging on your timeline</b> — and with Pay-at-Close, staging can be settled at the closing table.</p>
+      </div>
+    </div>
+    <div class="steps-foot reveal">
+      <a class="btn btn-outline" href="#contact">Start With a Consultation <span class="arrow">→</span></a>
+    </div>
+  </div>
+</section>
+
+
+<section class="section portfolio" id="portfolio">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <p class="eyebrow">Recent Work</p>
+      <h2 class="h2">Rooms That Moved the Market</h2>
+      <p class="lede">A selection of staged spaces across metro Atlanta. Hover any project for its story.</p>
+    </div>
+    <div class="masonry">
+      <figure class="tile reveal" tabindex="0">
+        <span class="tile-surface s1" role="img" aria-label="Placeholder: staged Buckhead living room, wide angle"></span>
+        <span class="photo-caption">Photo: staged Buckhead living room, wide angle</span>
+        <figcaption class="tile-overlay">
+          <span class="tile-label">Buckhead Traditional</span>
+          <span class="tile-result">Result: [project result placeholder]</span>
+        </figcaption>
+      </figure>
+      <figure class="tile reveal" tabindex="0">
+        <span class="tile-surface s2" role="img" aria-label="Placeholder: staged Decatur craftsman dining room, natural light"></span>
+        <span class="photo-caption">Photo: Decatur craftsman dining room, natural light</span>
+        <figcaption class="tile-overlay">
+          <span class="tile-label">Decatur Craftsman</span>
+          <span class="tile-result">Result: [project result placeholder]</span>
+        </figcaption>
+      </figure>
+      <figure class="tile reveal" tabindex="0">
+        <span class="tile-surface s3" role="img" aria-label="Placeholder: staged Midtown condo primary suite, dusk"></span>
+        <span class="photo-caption">Photo: Midtown condo primary suite, dusk</span>
+        <figcaption class="tile-overlay">
+          <span class="tile-label">Midtown High-Rise</span>
+          <span class="tile-result">Result: [project result placeholder]</span>
+        </figcaption>
+      </figure>
+      <figure class="tile reveal" tabindex="0">
+        <span class="tile-surface s4" role="img" aria-label="Placeholder: staged Sandy Springs kitchen, detail vignette"></span>
+        <span class="photo-caption">Photo: Sandy Springs kitchen, detail vignette</span>
+        <figcaption class="tile-overlay">
+          <span class="tile-label">Sandy Springs Refresh</span>
+          <span class="tile-result">Result: [project result placeholder]</span>
+        </figcaption>
+      </figure>
+      <figure class="tile reveal" tabindex="0">
+        <span class="tile-surface s5" role="img" aria-label="Placeholder: staged Virginia-Highland sitting room, morning light"></span>
+        <span class="photo-caption">Photo: Virginia-Highland sitting room, morning light</span>
+        <figcaption class="tile-overlay">
+          <span class="tile-label">Virginia-Highland Bungalow</span>
+          <span class="tile-result">Result: [project result placeholder]</span>
+        </figcaption>
+      </figure>
+      <figure class="tile reveal" tabindex="0">
+        <span class="tile-surface s6" role="img" aria-label="Placeholder: staged Alpharetta new-build great room, twilight"></span>
+        <span class="photo-caption">Photo: Alpharetta new-build great room, twilight</span>
+        <figcaption class="tile-overlay">
+          <span class="tile-label">Alpharetta New Build</span>
+          <span class="tile-result">Result: [project result placeholder]</span>
+        </figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+
+<section class="section ba-section">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div>
+        <p class="eyebrow">One Signature Project</p>
+        <h2 class="h2">The Difference Is the Design</h2>
+        <p class="lede">Drag the divider to see the same room — before staging and after the Design2Sell treatment.</p>
+      </div>
+    </div>
+    <div class="ba-frame reveal" id="baFrame" role="slider" aria-label="Before and after comparison slider" aria-valuemin="0" aria-valuemax="100" aria-valuenow="50" tabindex="0">
+      <div class="ba-layer ba-before" role="img" aria-label="Placeholder: unstaged living room, dated furnishings"></div>
+      <div class="ba-layer ba-after" id="baAfter" role="img" aria-label="Placeholder: staged living room, warm neutrals and layered textiles"></div>
+      <span class="ba-tag before">Before</span>
+      <span class="ba-tag after">After</span>
+      <span class="ba-caption cap-before">Photo: living room as listed, before staging</span>
+      <span class="ba-caption cap-after">Photo: same room, staged by Design2Sell</span>
+      <div class="ba-divider" id="baDivider">
+        <div class="ba-handle" aria-hidden="true"></div>
+      </div>
+    </div>
+    <p class="ba-note">Same square footage. Same listing price band. A completely different first impression.</p>
+  </div>
+</section>
+
+
+<section class="section tiers" id="services">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <p class="eyebrow">Services</p>
+      <h2 class="h2">Three Ways to Stage. One Standard.</h2>
+      <p class="lede">Every tier is designed and installed by the same nationally ranked team — scaled to your listing, your timeline, and your goals.</p>
+    </div>
+    <div class="tiers-grid">
+      <article class="tier reveal">
+        <h3 class="tier-name">Essentials</h3>
+        <p class="tier-ideal">Ideal for: occupied homes and well-kept listings that need a professional polish.</p>
+        <p class="tier-rooms">Included Rooms</p>
+        <ul class="tier-list">
+          <li>Living &amp; dining styling</li>
+          <li>Primary suite refresh</li>
+          <li>Accessory &amp; art layer</li>
+        </ul>
+        <p class="tier-price"><span>Investment</span>[Price range placeholder]</p>
+        <a class="btn btn-outline" href="#contact">Book a Consultation</a>
+      </article>
+      <article class="tier featured reveal">
+        <span class="tier-flag">Most Requested</span>
+        <h3 class="tier-name">Signature</h3>
+        <p class="tier-ideal">Ideal for: vacant listings and sellers who want the full staged-to-sell transformation.</p>
+        <p class="tier-rooms">Included Rooms</p>
+        <ul class="tier-list">
+          <li>All main living spaces, furnished</li>
+          <li>Primary + secondary bedrooms</li>
+          <li>Kitchen &amp; bath styling</li>
+          <li>Full art, lighting &amp; textile layer</li>
+        </ul>
+        <p class="tier-price"><span>Investment</span>[Price range placeholder]</p>
+        <a class="btn btn-gold" href="#contact">Book a Consultation</a>
+      </article>
+      <article class="tier reveal">
+        <h3 class="tier-name">Luxury</h3>
+        <p class="tier-ideal">Ideal for: estate properties and high-end listings where every detail is scrutinized.</p>
+        <p class="tier-rooms">Included Rooms</p>
+        <ul class="tier-list">
+          <li>Whole-home design, every room</li>
+          <li>Outdoor living &amp; entry moments</li>
+          <li>Curated art &amp; statement pieces</li>
+          <li>Barbara's personal design direction</li>
+        </ul>
+        <p class="tier-price"><span>Investment</span>[Price range placeholder]</p>
+        <a class="btn btn-outline" href="#contact">Book a Consultation</a>
+      </article>
+    </div>
+  </div>
+</section>
+
+
+<section class="section">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <p class="eyebrow">Pay-at-Close</p>
+      <h2 class="h2">Stage Now. Pay When You Sell.</h2>
+    </div>
+    <div class="pac-beats reveal" aria-label="Pay-at-Close process: Stage, Sell, Pay">
+      <div class="pac-beat">
+        <p class="pac-step">First</p>
+        <p class="pac-word">Stage</p>
+        <p class="pac-desc">Your home gets the full Design2Sell treatment now — no upfront staging invoice.</p>
+      </div>
+      <div class="pac-sep" aria-hidden="true"></div>
+      <div class="pac-beat">
+        <p class="pac-step">Then</p>
+        <p class="pac-word">Sell</p>
+        <p class="pac-desc">Your listing goes to market staged, photographed, and positioned to perform.</p>
+      </div>
+      <div class="pac-sep" aria-hidden="true"></div>
+      <div class="pac-beat">
+        <p class="pac-step">Finally</p>
+        <p class="pac-word">Pay</p>
+        <p class="pac-desc">Staging is settled at closing — out of proceeds, not out of pocket.</p>
+      </div>
+    </div>
+    <p class="pac-explainer reveal">Pay-at-Close removes the biggest barrier to staging: timing. The investment in presentation is simply handled when the home sells.</p>
+    <div class="reveal">
+      <a class="btn btn-outline" href="#contact">Learn About Pay-at-Close <span class="arrow">→</span></a>
+    </div>
+  </div>
+</section>
+
+
+<section class="section agents" id="agents">
+  <div class="wrap agents-grid">
+    <div class="reveal">
+      <p class="eyebrow on-dark">For Listing Agents</p>
+      <h2 class="h2">Built for Atlanta's Top Agents</h2>
+      <p class="lede">Your listings are your reputation. The Partnership Program makes staging the easiest, most reliable line item on every listing plan — and makes you look exceptional doing it.</p>
+      <a class="btn btn-gold" href="#contact">Join the Partnership Program <span class="arrow">→</span></a>
+    </div>
+    <div class="agent-features reveal">
+      <div class="agent-feature">
+        <span class="af-index">01</span>
+        <div>
+          <h3>Priority Scheduling</h3>
+          <p>Partner agents move to the front of the install calendar — because listings don't wait.</p>
+        </div>
+      </div>
+      <div class="agent-feature">
+        <span class="af-index">02</span>
+        <div>
+          <h3>Co-Branded Materials</h3>
+          <p>Staging plans and presentation pieces that carry your brand alongside ours at the listing table.</p>
+        </div>
+      </div>
+      <div class="agent-feature">
+        <span class="af-index">03</span>
+        <div>
+          <h3>Quarterly ROI Reports</h3>
+          <p>Clear reporting on how staged listings perform — proof you can hand to your next seller.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<section class="section testimonial">
+  <div class="wrap testimonial-inner reveal">
+    <span class="testimonial-mark" aria-hidden="true">&ldquo;</span>
+    <blockquote>[Client testimonial placeholder — a short, elegant quote from an Atlanta seller or listing agent describing how staging changed the outcome of their sale.]</blockquote>
+    <cite>[Client name placeholder] — [Neighborhood, Atlanta]</cite>
+  </div>
+</section>
+
+
+<section class="trust" aria-label="Credentials">
+  <div class="wrap">
+    <p class="trust-label">Credentials &amp; Recognition</p>
+    <div class="trust-row">
+      <span class="trust-item">RESA</span>
+      <span class="trust-item">HSRA</span>
+      <span class="trust-item">Best of Houzz</span>
+      <span class="trust-item">Top 10 Nationally</span>
+    </div>
+  </div>
+</section>
+
+
+<section class="footer-cta" id="contact">
+  <div class="wrap reveal">
+    <p class="eyebrow on-dark" style="justify-content:center">Let's Talk About Your Listing</p>
+    <h2>Ready to Stage Your Listing?</h2>
+    <p>Tell us about the property. Barbara's team will take it from there.</p>
+    <a class="btn btn-gold" href="mailto:hello@design2sell.example">Get Your Staging Plan <span class="arrow">→</span></a>
+  </div>
+</section>
+
+
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <span class="brand-name" style="color:#fff">Design<em style="font-style:normal;color:var(--gold)">2</em>Sell</span>
+        <span class="brand-tag">Atlanta Home Staging</span>
+        <p>Founder-led staging for Atlanta homeowners and the agents who represent them. Staged to sell, proven to perform.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Services</h4>
+        <ul>
+          <li><a href="#services">Essentials</a></li>
+          <li><a href="#services">Signature</a></li>
+          <li><a href="#services">Luxury</a></li>
+          <li><a href="#services">Pay-at-Close</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Portfolio</h4>
+        <ul>
+          <li><a href="#portfolio">Recent Work</a></li>
+          <li><a href="#portfolio">Before &amp; After</a></li>
+          <li><a href="#system">The System</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Agents</h4>
+        <ul>
+          <li><a href="#agents">Partnership Program</a></li>
+          <li><a href="#agents">Priority Scheduling</a></li>
+          <li><a href="#agents">ROI Reports</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Contact</h4>
+        <ul>
+          <li><a href="mailto:hello@design2sell.example">hello@design2sell.example</a></li>
+          <li><a href="#contact">Request a Consultation</a></li>
+          <li>Atlanta, Georgia</li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© <span id="year">2025</span> Design2Sell · Atlanta Home Staging</span>
+      <span>Top 10 Nationally Ranked · 19+ Years · Pay-at-Close Available</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  "use strict";
+  var prefersReduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  /* ---- Header state ---- */
+  var header = document.getElementById("siteHeader");
+  function onScroll(){ header.classList.toggle("scrolled", window.scrollY > 40); }
+  window.addEventListener("scroll", onScroll, {passive:true});
+  onScroll();
+
+  /* ---- Mobile nav ---- */
+  var toggle = document.getElementById("navToggle");
+  toggle.addEventListener("click", function(){
+    var open = document.body.classList.toggle("nav-open");
+    toggle.setAttribute("aria-expanded", open ? "true" : "false");
+  });
+  document.querySelectorAll("#mainNav a").forEach(function(a){
+    a.addEventListener("click", function(){
+      document.body.classList.remove("nav-open");
+      toggle.setAttribute("aria-expanded","false");
+    });
+  });
+
+  /* ---- Footer year ---- */
+  document.getElementById("year").textContent = new Date().getFullYear();
+
+  /* ---- Reveal on scroll ---- */
+  var revealEls = document.querySelectorAll(".reveal");
+  if (prefersReduced || !("IntersectionObserver" in window)) {
+    revealEls.forEach(function(el){ el.classList.add("in"); });
+  } else {
+    var ro = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){
+        if (e.isIntersecting){ e.target.classList.add("in"); ro.unobserve(e.target); }
+      });
+    }, {threshold:0.12, rootMargin:"0px 0px -40px 0px"});
+    revealEls.forEach(function(el){ ro.observe(el); });
+  }
+
+  /* ---- Count-up stats ---- */
+  function formatNum(el, val){
+    var dec = parseInt(el.getAttribute("data-decimals") || "0", 10);
+    var prefix = el.getAttribute("data-prefix") || "";
+    var suffix = el.getAttribute("data-suffix") || "";
+    el.textContent = prefix + val.toFixed(dec) + suffix;
+  }
+  function animateCount(el){
+    var target = parseFloat(el.getAttribute("data-count"));
+    if (prefersReduced){ formatNum(el, target); return; }
+    var dur = 1800, start = null;
+    function tick(ts){
+      if (!start) start = ts;
+      var p = Math.min((ts - start) / dur, 1);
+      var eased = 1 - Math.pow(1 - p, 3);
+      formatNum(el, target * eased);
+      if (p < 1) requestAnimationFrame(tick);
+      else formatNum(el, target);
+    }
+    requestAnimationFrame(tick);
+  }
+  var statNums = document.querySelectorAll(".stat-number");
+  if ("IntersectionObserver" in window){
+    var so = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){
+        if (e.isIntersecting){ animateCount(e.target); so.unobserve(e.target); }
+      });
+    }, {threshold:0.4});
+    statNums.forEach(function(el){ so.observe(el); });
+  } else {
+    statNums.forEach(animateCount);
+  }
+
+  /* ---- Before / After slider ---- */
+  var frame = document.getElementById("baFrame");
+  var after = document.getElementById("baAfter");
+  var divider = document.getElementById("baDivider");
+  var dragging = false;
+
+  function setPos(pct){
+    pct = Math.max(2, Math.min(98, pct));
+    after.style.clipPath = "inset(0 0 0 " + pct + "%)";
+    divider.style.left = pct + "%";
+    frame.setAttribute("aria-valuenow", Math.round(pct));
+  }
+  function pctFromEvent(e){
+    var rect = frame.getBoundingClientRect();
+    var x = (e.touches && e.touches.length) ? e.touches[0].clientX : e.clientX;
+    return ((x - rect.left) / rect.width) * 100;
+  }
+  function startDrag(e){ dragging = true; setPos(pctFromEvent(e)); }
+  function moveDrag(e){
+    if (!dragging) return;
+    if (e.cancelable && e.type.indexOf("touch") === 0) e.preventDefault();
+    setPos(pctFromEvent(e));
+  }
+  function endDrag(){ dragging = false; }
+
+  frame.addEventListener("pointerdown", function(e){
+    dragging = true;
+    frame.setPointerCapture && frame.setPointerCapture(e.pointerId);
+    setPos(pctFromEvent(e));
+  });
+  frame.addEventListener("pointermove", function(e){ if (dragging) setPos(pctFromEvent(e)); });
+  frame.addEventListener("pointerup", endDrag);
+  frame.addEventListener("pointercancel", endDrag);
+
+  /* Keyboard accessibility */
+  frame.addEventListener("keydown", function(e){
+    var cur = parseFloat(frame.getAttribute("aria-valuenow")) || 50;
+    if (e.key === "ArrowLeft"){ setPos(cur - 4); e.preventDefault(); }
+    if (e.key === "ArrowRight"){ setPos(cur + 4); e.preventDefault(); }
+    if (e.key === "Home"){ setPos(2); e.preventDefault(); }
+    if (e.key === "End"){ setPos(98); e.preventDefault(); }
+  });
+
+  setPos(50);
+})();
+</script>
+</body>
+</html>
+=== ENTRY C (blind/d2s-C.html) ===
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Design2Sell — Atlanta home staging. Staged to Sell. Proven to Perform. Top 10 nationally ranked staging team, 19+ years, pay-at-close available.">
+<meta name="theme-color" content="#faf8f5">
+<title>Design2Sell — Atlanta Home Staging | Staged to Sell. Proven to Perform.</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600&family=Playfair+Display:ital,wght@0,600;0,700;1,500;1,600;1,700&display=swap" rel="stylesheet">
+<style>
+/* ============ Tokens ============ */
+:root{
+  --charcoal:#3a3a3a;
+  --gold:#c9a96e;
+  --gold-deep:#b8945a;
+  --white:#faf8f5;
+  --navy:#1e2d3d;
+  --linen:#f0ece4;
+  --blush:#e8d5c4;
+  --sage:#7d9b76;
+  --gray:#6b6560;
+  --hair:rgba(58,58,58,.14);
+  --hair-gold:rgba(201,169,110,.35);
+  --hair-light:rgba(250,248,245,.18);
+  --serif:"Playfair Display",Georgia,serif;
+  --sans:"Montserrat",Helvetica,Arial,sans-serif;
+}
+/* ============ Reset / base ============ */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+body{
+  font-family:var(--sans);font-weight:400;font-size:1.0625rem;line-height:1.7;
+  color:var(--charcoal);background:var(--white);
+  -webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;
+}
+img{max-width:100%;display:block}
+ul,ol{list-style:none}
+a{color:inherit;text-decoration:none}
+::selection{background:var(--gold);color:var(--navy)}
+:focus-visible{outline:2px solid var(--gold);outline-offset:3px}
+.skip-link{position:absolute;left:-9999px;top:0;background:var(--navy);color:var(--white);padding:.75rem 1.25rem;z-index:100}
+.skip-link:focus{left:0}
+h1,h2,h3{font-family:var(--serif);line-height:1.15}
+h1{font-weight:700;font-size:clamp(2.375rem,4.8vw + 1rem,3.5rem);letter-spacing:-.01em}
+h2{font-weight:600;font-size:clamp(1.875rem,2.4vw + 1rem,2.625rem);letter-spacing:-.005em}
+h3{font-weight:600}
+.wrap{width:min(1180px,100% - 3rem);margin-inline:auto}
+.sec{padding-block:clamp(4.5rem,10vw,7.5rem)}
+/* Eyebrow */
+.kick{display:flex;align-items:center;gap:.9rem;font-family:var(--sans);font-weight:600;font-size:.72rem;letter-spacing:.24em;text-transform:uppercase;color:var(--gray)}
+.kick::before{content:"";width:2.25rem;height:1px;background:var(--gold);flex:none}
+.kick--center{justify-content:center}
+.sec-head{max-width:44rem;margin-bottom:clamp(2.5rem,5vw,4rem)}
+.sec-head h2{margin-top:1rem}
+.lede{margin-top:1rem;color:var(--gray);max-width:54ch}
+.on-dark .kick{color:rgba(250,248,245,.72)}
+.on-dark .lede{color:rgba(250,248,245,.72)}
+/* Buttons */
+.btn{display:inline-block;font-family:var(--sans);font-weight:600;font-size:.875rem;letter-spacing:1.5px;text-transform:uppercase;padding:1.05rem 2.15rem;border:1px solid transparent;cursor:pointer;transition:background-color .25s,color .25s,border-color .25s,transform .25s}
+.btn-gold{background:var(--gold);color:var(--navy);border-color:var(--gold)}
+.btn-gold:hover{background:var(--gold-deep);border-color:var(--gold-deep);transform:translateY(-1px)}
+.btn-ghost{background:transparent;color:var(--white);border-color:rgba(250,248,245,.65)}
+.btn-ghost:hover{border-color:var(--gold);color:var(--gold)}
+.btn-line{background:transparent;color:var(--charcoal);border-color:var(--gold)}
+.btn-line:hover{background:var(--gold);color:var(--navy)}
+/* Reveal */
+.rv{opacity:0;transform:translateY(18px);transition:opacity .7s ease,transform .7s ease}
+.rv.in{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){.rv{opacity:1;transform:none;transition:none}}
+/* ============ Header ============ */
+#site-header{position:fixed;inset-inline:0;top:0;z-index:50;transition:background-color .3s,box-shadow .3s}
+#site-header .bar{display:flex;align-items:center;justify-content:space-between;gap:2rem;padding-block:1.35rem;transition:padding .3s}
+#site-header.scrolled{background:rgba(250,248,245,.96);box-shadow:0 1px 0 var(--hair)}
+#site-header.scrolled .bar{padding-block:.95rem}
+.wordmark{font-family:var(--serif);font-weight:700;font-size:1.4rem;color:var(--charcoal);letter-spacing:.01em}
+.wordmark .g{color:var(--gold-deep);font-style:italic}
+#site-nav{display:flex;align-items:center;gap:2.1rem}
+#site-nav a{font-weight:500;font-size:.8rem;letter-spacing:.14em;text-transform:uppercase;color:var(--charcoal);transition:color .2s}
+#site-nav a:hover{color:var(--gold-deep)}
+#site-nav .btn{padding:.75rem 1.4rem;font-size:.72rem}
+#site-nav .btn:hover{color:var(--navy)}
+#nav-toggle{display:none;background:none;border:0;cursor:pointer;padding:.6rem;color:var(--charcoal)}
+#nav-toggle .b{display:block;width:22px;height:1px;background:currentColor;margin:6px 0;transition:transform .25s,opacity .25s}
+@media (max-width:900px){
+  #nav-toggle{display:block}
+  #site-nav{display:none;position:absolute;top:100%;left:0;right:0;background:var(--white);flex-direction:column;align-items:stretch;gap:0;padding:1rem 1.5rem 2rem;box-shadow:0 1px 0 var(--hair),0 24px 40px -24px rgba(30,45,61,.25)}
+  #site-nav a{padding:1rem .25rem;border-bottom:1px solid var(--hair);font-size:.85rem}
+  #site-nav .btn{margin-top:1.25rem;text-align:center;border:1px solid var(--gold);padding:1rem 1.4rem}
+  .nav-open #site-nav{display:flex}
+  .nav-open{background:var(--white);box-shadow:0 1px 0 var(--hair)}
+  .nav-open #nav-toggle .b:nth-child(1){transform:translateY(7px) rotate(45deg)}
+  .nav-open #nav-toggle .b:nth-child(2){opacity:0}
+  .nav-open #nav-toggle .b:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+}
+/* ============ Placeholder photo surfaces ============ */
+.ph-cap{position:absolute;z-index:2;font-weight:600;font-size:.6rem;line-height:1.5;letter-spacing:.13em;text-transform:uppercase;color:var(--charcoal);background:rgba(250,248,245,.85);border:1px solid rgba(58,58,58,.22);padding:.4rem .65rem;max-width:78%}
+/* ============ Hero ============ */
+/*  */
+.hero{position:relative;min-height:100vh;min-height:100svh;display:flex;flex-direction:column;overflow:hidden;
+  background-color:#e9dcc6;
+  background-image:
+    linear-gradient(180deg,rgba(30,45,61,0) 40%,rgba(30,45,61,.4) 66%,rgba(21,32,45,.94) 100%),
+    linear-gradient(112deg,rgba(250,248,245,.92) 0%,rgba(250,248,245,0) 40%),
+    linear-gradient(292deg,rgba(201,169,110,.42) 0%,rgba(201,169,110,0) 46%),
+    linear-gradient(0deg,rgba(107,101,96,.3) 0%,rgba(107,101,96,.3) 15%,rgba(107,101,96,0) 15.5%),
+    linear-gradient(158deg,#f2ece1 0%,#e9dcc6 48%,#d8c3a1 100%);
+}
+.hero .ph-cap{top:5.75rem;right:1.5rem;left:auto}
+.hero-inner{position:relative;z-index:1;flex:1;display:flex;flex-direction:column;justify-content:flex-end;width:min(1180px,100% - 3rem);margin-inline:auto;padding-top:7rem}
+.hero-copy{max-width:41rem;padding-bottom:clamp(2.5rem,6vh,4.5rem);color:var(--white)}
+.hero-kick{font-weight:600;font-size:.72rem;letter-spacing:.26em;text-transform:uppercase;color:var(--gold);display:flex;align-items:center;gap:.9rem;margin-bottom:1.4rem}
+.hero-kick::after{content:"";width:2.5rem;height:1px;background:var(--gold)}
+.hero h1{color:var(--white)}
+.hero h1 em{font-style:italic;font-weight:700;color:#eadbbf}
+.hero-sub{margin-top:1.35rem;font-size:1.0625rem;color:rgba(250,248,245,.88);max-width:38ch}
+.hero-ctas{display:flex;flex-wrap:wrap;gap:1rem;margin-top:2.25rem}
+.cred{position:relative;z-index:1;border-top:1px solid var(--hair-light)}
+.cred ul{width:min(1180px,100% - 3rem);margin-inline:auto;display:flex;flex-wrap:wrap}
+.cred li{display:flex;align-items:center;gap:0;color:rgba(250,248,245,.85);font-weight:600;font-size:.68rem;letter-spacing:.2em;text-transform:uppercase;padding:1.35rem 2.25rem 1.35rem 0;margin-right:2.25rem;position:relative}
+.cred li + li::before{content:"";position:absolute;left:-2.25rem;top:50%;transform:translateY(-50%);width:1px;height:1rem;background:var(--hair-gold)}
+@media (max-width:640px){
+  .cred ul{padding-block:.5rem}
+  .cred li{padding:.55rem 0;margin-right:0;width:100%}
+  .cred li + li::before{display:none}
+  .hero .ph-cap{top:5.25rem;right:1rem}
+}
+/* ============ Stats band ============ */
+.stats-band{background:var(--navy);color:var(--white)}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);padding-block:clamp(3rem,6vw,4.5rem)}
+.stat{padding:1.25rem clamp(1rem,3vw,2.5rem);text-align:left}
+.stat + .stat{border-left:1px solid var(--hair-gold)}
+.stat-num{display:block;font-family:var(--serif);font-weight:700;font-size:clamp(2.9rem,3.4vw + 1.6rem,4.5rem);line-height:1.05;color:var(--gold);font-variant-numeric:lining-nums;letter-spacing:-.01em}
+.stat-label{display:block;margin-top:.8rem;font-weight:600;font-size:.7rem;letter-spacing:.18em;text-transform:uppercase;color:rgba(250,248,245,.72)}
+@media (max-width:900px){
+  .stats{grid-template-columns:1fr 1fr;row-gap:1rem}
+  .stat:nth-child(3){border-left:0}
+  .stat:nth-child(n+3){border-top:1px solid var(--hair-gold);padding-top:2rem}
+}
+@media (max-width:420px){
+  .stats{grid-template-columns:1fr}
+  .stat + .stat{border-left:0;border-top:1px solid var(--hair-gold);padding-top:2rem;margin-top:1rem}
+}
+/* ============ System steps ============ */
+.steps li{border-top:1px solid var(--hair);padding-block:clamp(2rem,4vw,3rem);display:grid;grid-template-columns:5.5rem 17rem 1fr;gap:1.5rem 2.5rem;align-items:start}
+.steps li:last-child{border-bottom:1px solid var(--hair)}
+.step-no{font-family:var(--serif);font-weight:700;font-size:1.4rem;color:var(--gold-deep);line-height:1.2}
+.steps h3{font-size:clamp(1.35rem,1.5vw + .8rem,1.75rem);color:var(--charcoal)}
+.steps p{color:var(--gray);max-width:52ch}
+@media (max-width:900px){.steps li{grid-template-columns:4rem 1fr}.steps p{grid-column:2}}
+@media (max-width:560px){.steps li{grid-template-columns:1fr;gap:.6rem}.steps p{grid-column:1}}
+/* ============ Portfolio masonry ============ */
+.masonry{columns:3;column-gap:1.5rem}
+@media (max-width:1000px){.masonry{columns:2}}
+@media (max-width:640px){.masonry{columns:1}}
+.tile{position:relative;break-inside:avoid;margin-bottom:1.5rem;overflow:hidden;display:block;width:100%;border:0;cursor:pointer;text-align:left;font:inherit;color:inherit;background:none;padding:0}
+.tile .ph-cap{top:1rem;left:1rem}
+.tile-surface{width:100%}
+.r34{aspect-ratio:3/4}.r43{aspect-ratio:4/3}.r11{aspect-ratio:1/1}.r45{aspect-ratio:4/5}
+.tile-ov{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:flex-end;padding:1.5rem;background:linear-gradient(180deg,rgba(30,45,61,0) 30%,rgba(30,45,61,.92) 100%);opacity:0;transition:opacity .35s ease}
+.tile:hover .tile-ov,.tile:focus-visible .tile-ov{opacity:1}
+@media (hover:none){.tile-ov{opacity:1;background:linear-gradient(180deg,rgba(30,45,61,0) 55%,rgba(30,45,61,.92) 100%)}}
+.tile-ov strong{font-family:var(--serif);font-weight:600;font-size:1.3rem;color:var(--white);letter-spacing:.01em}
+.tile-ov .result{margin-top:.45rem;font-weight:600;font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;color:var(--sage)}
+/* Portfolio placeholder surfaces — each stands in for a planned portfolio photo (F2 proof of staging work; hover overlay carries the project result line toward "Book a Consultation") */
+/*  */
+.s1{background-image:linear-gradient(120deg,rgba(250,248,245,.85),rgba(250,248,245,0) 45%),linear-gradient(300deg,rgba(201,169,110,.4),rgba(201,169,110,0) 50%),linear-gradient(0deg,rgba(107,101,96,.25) 0 14%,rgba(107,101,96,0) 14.5%),linear-gradient(165deg,#efe7d8,#dcc9a9)}
+/*  */
+.s2{background-image:linear-gradient(115deg,rgba(250,248,245,.7),rgba(250,248,245,0) 40%),linear-gradient(345deg,rgba(107,101,96,.28),rgba(107,101,96,0) 55%),linear-gradient(160deg,#eedfd0,#ddbfa6)}
+/*  */
+.s3{background-image:linear-gradient(200deg,rgba(30,45,61,.32),rgba(30,45,61,0) 55%),linear-gradient(115deg,rgba(250,248,245,.6),rgba(250,248,245,0) 45%),linear-gradient(150deg,#e7dcc9,#cbb591)}
+/*  */
+.s4{background-image:linear-gradient(105deg,rgba(250,248,245,.95),rgba(250,248,245,0) 55%),linear-gradient(285deg,rgba(201,169,110,.25),rgba(201,169,110,0) 50%),linear-gradient(170deg,#f4efe6,#e2d4bb)}
+/*  */
+.s5{background-image:linear-gradient(230deg,rgba(30,45,61,.28),rgba(30,45,61,0) 50%),linear-gradient(60deg,rgba(250,248,245,.55),rgba(250,248,245,0) 45%),linear-gradient(155deg,#e5ddd0,#c9bda7)}
+/*  */
+.s6{background-image:linear-gradient(140deg,rgba(250,248,245,.8),rgba(250,248,245,0) 40%),linear-gradient(320deg,rgba(58,58,58,.2),rgba(58,58,58,0) 55%),linear-gradient(0deg,rgba(107,101,96,.22) 0 12%,rgba(107,101,96,0) 12.5%),linear-gradient(150deg,#eee4d2,#d3ba92)}
+/* ============ Before / After ============ */
+.ba-sec{background:var(--linen)}
+.ba-frame{position:relative;overflow:hidden;border:1px solid rgba(58,58,58,.18);aspect-ratio:16/10;touch-action:pan-y}
+@media (max-width:640px){.ba-frame{aspect-ratio:4/3}}
+.ba-before,.ba-after{position:absolute;inset:0}
+/*  */
+.ba-before{background-image:linear-gradient(180deg,rgba(58,58,58,.14),rgba(58,58,58,0) 32%),linear-gradient(0deg,rgba(107,101,96,.35) 0 16%,rgba(107,101,96,0) 16.5%),linear-gradient(150deg,#e8e4dd,#cfc9bf 70%,#beb7ab)}
+/*  */
+.ba-after{background-image:linear-gradient(108deg,rgba(250,248,245,.85),rgba(250,248,245,0) 45%),linear-gradient(288deg,rgba(201,169,110,.45),rgba(201,169,110,0) 50%),linear-gradient(0deg,rgba(107,101,96,.3) 0 16%,rgba(107,101,96,0) 16.5%),linear-gradient(155deg,#f1e9da,#ddc7a3);clip-path:inset(0 calc(100% - var(--pos,50%)) 0 0)}
+.ba-divider{position:absolute;top:0;bottom:0;left:var(--pos,50%);width:2px;margin-left:-1px;background:var(--gold);z-index:3;pointer-events:none}
+.ba-handle{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:30px;height:46px;display:flex;align-items:center;justify-content:center;gap:2px;background:rgba(30,45,61,.6);border:1px solid var(--gold);color:var(--gold);font-size:.85rem;line-height:1;letter-spacing:1px}
+.ba-tag{position:absolute;top:1rem;z-index:2;font-weight:600;font-size:.62rem;letter-spacing:.16em;text-transform:uppercase;padding:.45rem .7rem;background:rgba(30,45,61,.78);color:rgba(250,248,245,.92)}
+.ba-tag-before{left:1rem}
+.ba-tag-after{right:1rem;border:1px solid var(--gold)}
+.ba-range{position:absolute;inset:0;width:100%;height:100%;opacity:0;margin:0;cursor:ew-resize;z-index:4;-webkit-appearance:none;appearance:none}
+.ba-note{margin-top:1.1rem;font-size:.8rem;letter-spacing:.06em;color:var(--gray)}
+/* ============ Service tiers ============ */
+.tiers{display:grid;grid-template-columns:repeat(3,1fr);gap:1.75rem;align-items:stretch}
+@media (max-width:980px){.tiers{grid-template-columns:1fr;max-width:34rem}}
+.tier{background:var(--linen);border:1px solid rgba(58,58,58,.08);padding:clamp(2rem,3vw,2.75rem);display:flex;flex-direction:column}
+.tier h3{font-size:1.75rem}
+.tier-rule{width:2.5rem;height:1px;background:var(--gold);margin:1.2rem 0 1.4rem}
+.tier dl div{margin-bottom:1.2rem}
+.tier dt{font-weight:600;font-size:.66rem;letter-spacing:.2em;text-transform:uppercase;color:var(--gray);margin-bottom:.3rem}
+.tier dd{color:var(--charcoal);font-size:.95rem;line-height:1.6}
+.tier-price{margin:1.4rem 0 1.8rem;padding:.85rem 0;border-top:1px solid var(--hair);border-bottom:1px solid var(--hair);font-style:italic;font-size:.9rem;color:var(--gray);letter-spacing:.03em}
+.tier .btn{margin-top:auto;text-align:center}
+.tier--featured{border:1px solid var(--gold);background:#f2eee6;box-shadow:0 30px 60px -34px rgba(30,45,61,.4)}
+@media (min-width:981px){.tier--featured{transform:translateY(-12px)}}
+/* ============ Pay at Close ============ */
+.pac{border:1px solid var(--gold);padding:clamp(2.5rem,6vw,4.75rem);text-align:center}
+.pac .kick{justify-content:center}
+.pac .kick::after{content:"";width:2.25rem;height:1px;background:var(--gold);flex:none}
+.pac h2{margin-top:1rem}
+.beats{display:grid;grid-template-columns:repeat(3,1fr);margin:clamp(2rem,4vw,3rem) auto;max-width:52rem;text-align:center}
+.beat{padding:1.4rem 1.5rem}
+.beat + .beat{border-left:1px solid var(--hair-gold)}
+.beat-no{display:block;font-weight:600;font-size:.66rem;letter-spacing:.24em;text-transform:uppercase;color:var(--gray)}
+.beat strong{display:block;font-family:var(--serif);font-weight:600;font-size:clamp(1.5rem,1.4vw + 1rem,1.9rem);color:var(--charcoal);margin:.5rem 0 .55rem}
+.beat p{font-size:.88rem;color:var(--gray);line-height:1.6}
+@media (max-width:640px){
+  .beats{grid-template-columns:1fr}
+  .beat + .beat{border-left:0;border-top:1px solid var(--hair-gold)}
+}
+.pac-line{max-width:46ch;margin:0 auto 2.2rem;color:var(--gray)}
+/* ============ Agents band ============ */
+.agents{background:var(--navy);color:var(--white)}
+.agents-grid{display:grid;grid-template-columns:5fr 6fr;gap:clamp(2.5rem,6vw,5.5rem);align-items:start}
+@media (max-width:900px){.agents-grid{grid-template-columns:1fr}}
+.agents h2{color:var(--white);margin-top:1rem}
+.agents .lede{margin-bottom:2.25rem}
+.agent-feats li{border-top:1px solid var(--hair-gold);padding-block:1.7rem}
+.agent-feats li:last-child{border-bottom:1px solid var(--hair-gold)}
+.agent-feats h3{font-size:1.35rem;color:var(--white)}
+.agent-feats p{margin-top:.5rem;color:rgba(250,248,245,.72);font-size:.95rem;max-width:48ch}
+/* ============ Testimonial ============ */
+.testimonial{background:var(--blush);text-align:center}
+.quote{font-family:var(--serif);font-style:italic;font-weight:500;font-size:clamp(1.45rem,2.2vw + .8rem,2.1rem);line-height:1.5;color:var(--charcoal);max-width:44rem;margin:2.2rem auto 0}
+.attr{margin-top:2rem;display:inline-flex;flex-direction:column;align-items:center;gap:.9rem;font-weight:600;font-size:.72rem;letter-spacing:.2em;text-transform:uppercase;color:var(--gray)}
+.attr::before{content:"";width:2.5rem;height:1px;background:var(--gold)}
+/* ============ Trust bar ============ */
+.trust{border-top:1px solid var(--hair);border-bottom:1px solid var(--hair);padding-block:2rem}
+.trust ul{display:flex;flex-wrap:wrap;justify-content:center;align-items:center;row-gap:.9rem}
+.trust li{font-weight:600;font-size:.72rem;letter-spacing:.22em;text-transform:uppercase;color:var(--gray);position:relative;padding-inline:2.25rem}
+.trust li + li::before{content:"";position:absolute;left:0;top:50%;transform:translateY(-50%);width:1px;height:.95rem;background:var(--hair-gold)}
+@media (max-width:640px){.trust ul{flex-direction:column}.trust li + li::before{display:none}}
+/* ============ Footer ============ */
+.footer{background:var(--navy);color:var(--white)}
+.cta-band{text-align:center;padding-block:clamp(4rem,8vw,6.5rem)}
+.cta-band h2{color:var(--white)}
+.cta-band p{margin:1.1rem auto 2.4rem;color:rgba(250,248,245,.72);max-width:44ch}
+.foot-rule{border:0;border-top:1px solid var(--hair-light);width:min(1180px,100% - 3rem);margin-inline:auto}
+.foot-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr 1fr;gap:2.5rem;padding-block:clamp(3rem,6vw,4.5rem)}
+@media (max-width:900px){.foot-grid{grid-template-columns:1fr 1fr}}
+@media (max-width:560px){.foot-grid{grid-template-columns:1fr}}
+.foot-brand .wordmark{color:var(--white);font-size:1.5rem}
+.foot-brand p{margin-top:1rem;color:rgba(250,248,245,.65);font-size:.9rem;max-width:30ch;line-height:1.7}
+.foot-col h3{font-family:var(--sans);font-weight:600;font-size:.68rem;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);margin-bottom:1.1rem}
+.foot-col a,.foot-col span{display:block;padding:.32rem 0;color:rgba(250,248,245,.78);font-size:.9rem;transition:color .2s}
+.foot-col a:hover{color:var(--gold)}
+.foot-bottom{display:flex;flex-wrap:wrap;justify-content:space-between;gap:.75rem 2rem;padding-block:1.6rem;border-top:1px solid var(--hair-light);font-size:.76rem;color:rgba(250,248,245,.55);letter-spacing:.04em}
+.foot-bottom a{color:rgba(250,248,245,.55)}
+.foot-bottom a:hover{color:var(--gold)}
+</style>
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+
+<header id="site-header">
+  <div class="wrap bar">
+    <a class="wordmark" href="#top" aria-label="Design2Sell — Atlanta home staging, home">Design<span class="g">2</span>Sell</a>
+    <button id="nav-toggle" aria-expanded="false" aria-controls="site-nav" aria-label="Open menu">
+      <span class="b"></span><span class="b"></span><span class="b"></span>
+    </button>
+    <nav id="site-nav" aria-label="Primary">
+      <a href="#portfolio">Portfolio</a>
+      <a href="#services">Services</a>
+      <a href="#pay-at-close">Pay-at-Close</a>
+      <a href="#agents">Agents</a>
+      <a href="#contact">Contact</a>
+      <a class="btn btn-gold" href="#contact">Get Your Staging Plan</a>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+
+  
+  <section class="hero" id="top" aria-labelledby="hero-h">
+    <span class="ph-cap">Photo: staged Buckhead living room, wide angle</span>
+    <div class="hero-inner">
+      <div class="hero-copy">
+        <p class="hero-kick">Atlanta Home Staging</p>
+        <h1 id="hero-h">Staged to Sell. <em>Proven to Perform.</em></h1>
+        <p class="hero-sub">Atlanta&rsquo;s Top&nbsp;10 Nationally Ranked Staging Team.</p>
+        <div class="hero-ctas">
+          <a class="btn btn-gold" href="#contact">Get Your Staging Plan</a>
+          <a class="btn btn-ghost" href="#portfolio">See Our Portfolio</a>
+        </div>
+      </div>
+    </div>
+    <div class="cred">
+      <ul>
+        <li>Top 10 Nationally</li>
+        <li>19+ Years</li>
+        <li>Thousands of Homes</li>
+        <li>Pay-at-Close Available</li>
+      </ul>
+    </div>
+  </section>
+
+  
+  <section class="stats-band" aria-label="Staging performance statistics">
+    
+    <div class="wrap stats">
+      <div class="stat">
+        <span class="stat-num" data-target="23.34" data-prefix="$" data-decimals="2">$23.34</span>
+        <span class="stat-label">Return per $1 invested</span>
+      </div>
+      <div class="stat">
+        <span class="stat-num" data-target="50" data-suffix="%">50%</span>
+        <span class="stat-label">Faster sale time</span>
+      </div>
+      <div class="stat">
+        <span class="stat-num" data-target="12" data-prefix="6&ndash;" data-suffix="%">6&ndash;12%</span>
+        <span class="stat-label">Higher sale price</span>
+      </div>
+      <div class="stat">
+        <span class="stat-num" data-target="19" data-suffix="+">19+</span>
+        <span class="stat-label">Years of experience</span>
+      </div>
+    </div>
+  </section>
+
+  
+  <section class="sec" id="system" aria-labelledby="system-h">
+    
+    <div class="wrap">
+      <header class="sec-head rv">
+        <p class="kick">How It Works</p>
+        <h2 id="system-h">The Staged to Sell System</h2>
+        <p class="lede">Nineteen-plus years of staging Atlanta homes, distilled into three deliberate steps.</p>
+      </header>
+      <ol class="steps">
+        <li class="rv">
+          <span class="step-no" aria-hidden="true">01</span>
+          <h3>The Walkthrough</h3>
+          <p>Barbara and her team walk your home the way a buyer will &mdash; room by room, sight line by sight line. You get a clear staging plan that says exactly what each space needs, and nothing it doesn&rsquo;t.</p>
+        </li>
+        <li class="rv">
+          <span class="step-no" aria-hidden="true">02</span>
+          <h3>The Staging</h3>
+          <p>Furniture, art, light, and styling, placed by a team that has staged thousands of homes. Every room is composed for the camera first, because buyers meet your listing online before they ever stand in it.</p>
+        </li>
+        <li class="rv">
+          <span class="step-no" aria-hidden="true">03</span>
+          <h3>The Sale</h3>
+          <p>Your listing goes live photo-ready, and the staging stays in place through showings &mdash; so every visit, from first click to final walkthrough, meets the same composed home.</p>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  
+  <section class="sec" id="portfolio" aria-labelledby="portfolio-h" style="padding-top:0">
+    
+    <div class="wrap">
+      <header class="sec-head rv">
+        <p class="kick">The Portfolio</p>
+        <h2 id="portfolio-h">Rooms, staged to sell</h2>
+        <p class="lede">A selection from thousands of Atlanta homes staged across nineteen-plus years. Placeholder surfaces below mark the photography plan for this page.</p>
+      </header>
+      <div class="masonry">
+        <div class="tile rv" tabindex="0" role="group" aria-label="Portfolio placeholder: Buckhead living room">
+          <span class="ph-cap">Photo: staged Buckhead living room</span>
+          <div class="tile-surface s1 r34" aria-hidden="true"></div>
+          <div class="tile-ov"><strong>Buckhead &middot; Living Room</strong><span class="result">[ Result line placeholder ]</span></div>
+        </div>
+        <div class="tile rv" tabindex="0" role="group" aria-label="Portfolio placeholder: Morningside primary suite">
+          <span class="ph-cap">Photo: primary suite, Morningside craftsman</span>
+          <div class="tile-surface s2 r43" aria-hidden="true"></div>
+          <div class="tile-ov"><strong>Morningside &middot; Primary Suite</strong><span class="result">[ Result line placeholder ]</span></div>
+        </div>
+        <div class="tile rv" tabindex="0" role="group" aria-label="Portfolio placeholder: Ansley Park dining room">
+          <span class="ph-cap">Photo: dining room, Ansley Park tudor</span>
+          <div class="tile-surface s3 r11" aria-hidden="true"></div>
+          <div class="tile-ov"><strong>Ansley Park &middot; Dining Room</strong><span class="result">[ Result line placeholder ]</span></div>
+        </div>
+        <div class="tile rv" tabindex="0" role="group" aria-label="Portfolio placeholder: Brookhaven kitchen">
+          <span class="ph-cap">Photo: kitchen &amp; breakfast nook, Brookhaven new build</span>
+          <div class="tile-surface s4 r45" aria-hidden="true"></div>
+          <div class="tile-ov"><strong>Brookhaven &middot; Kitchen</strong><span class="result">[ Result line placeholder ]</span></div>
+        </div>
+        <div class="tile rv" tabindex="0" role="group" aria-label="Portfolio placeholder: Midtown home office">
+          <span class="ph-cap">Photo: home office, Midtown high-rise listing</span>
+          <div class="tile-surface s5 r43" aria-hidden="true"></div>
+          <div class="tile-ov"><strong>Midtown &middot; Home Office</strong><span class="result">[ Result line placeholder ]</span></div>
+        </div>
+        <div class="tile rv" tabindex="0" role="group" aria-label="Portfolio placeholder: Sandy Springs terrace">
+          <span class="ph-cap">Photo: terrace &amp; outdoor living, Sandy Springs estate</span>
+          <div class="tile-surface s6 r34" aria-hidden="true"></div>
+          <div class="tile-ov"><strong>Sandy Springs &middot; Terrace</strong><span class="result">[ Result line placeholder ]</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  
+  <section class="sec ba-sec" id="before-after" aria-labelledby="ba-h">
+    
+    <div class="wrap">
+      <header class="sec-head rv">
+        <p class="kick">Before &amp; After</p>
+        <h2 id="ba-h">One room. The whole story.</h2>
+      </header>
+      <div class="ba-frame rv" id="ba-frame">
+        <div class="ba-before" aria-hidden="true"></div>
+        <div class="ba-after" aria-hidden="true"></div>
+        <span class="ba-tag ba-tag-before">Before &middot; As Listed</span>
+        <span class="ba-tag ba-tag-after">After &middot; Staged</span>
+        <div class="ba-divider" aria-hidden="true"><span class="ba-handle" aria-hidden="true">&lsaquo;&nbsp;&rsaquo;</span></div>
+        <input type="range" class="ba-range" min="0" max="100" value="50" step="0.5" aria-label="Compare before and after staging — drag to reveal">
+      </div>
+      <p class="ba-note">Drag the gold divider &mdash; placeholder surfaces stand in for the finished photo pair: one signature living room, matching angle.</p>
+    </div>
+  </section>
+
+  
+  <section class="sec" id="services" aria-labelledby="services-h">
+    
+    <div class="wrap">
+      <header class="sec-head rv">
+        <p class="kick">Staging Services</p>
+        <h2 id="services-h">Three ways to stage with us</h2>
+        <p class="lede">Every plan begins with the same walkthrough &mdash; the difference is how much of the home we compose.</p>
+      </header>
+      <div class="tiers">
+        <article class="tier rv" aria-labelledby="tier-essentials">
+          <h3 id="tier-essentials">Essentials</h3>
+          <div class="tier-rule" aria-hidden="true"></div>
+          <dl>
+            <div><dt>Ideal for</dt><dd>Condos and homes where a few key rooms carry the sale.</dd></div>
+            <div><dt>Included rooms</dt><dd>Living room &middot; dining room &middot; kitchen &amp; entry styling.</dd></div>
+          </dl>
+          <p class="tier-price">[ Price range placeholder ]</p>
+          <a class="btn btn-line" href="#contact">Book a Consultation</a>
+        </article>
+        <article class="tier tier--featured rv" aria-labelledby="tier-signature">
+          <h3 id="tier-signature">Signature</h3>
+          <div class="tier-rule" aria-hidden="true"></div>
+          <dl>
+            <div><dt>Ideal for</dt><dd>Most Atlanta listings headed to market and meant to move.</dd></div>
+            <div><dt>Included rooms</dt><dd>Every main living space, plus the primary suite.</dd></div>
+          </dl>
+          <p class="tier-price">[ Price range placeholder ]</p>
+          <a class="btn btn-gold" href="#contact">Book a Consultation</a>
+        </article>
+        <article class="tier rv" aria-labelledby="tier-luxury">
+          <h3 id="tier-luxury">Luxury</h3>
+          <div class="tier-rule" aria-hidden="true"></div>
+          <dl>
+            <div><dt>Ideal for</dt><dd>Estate and luxury listings where every room must show.</dd></div>
+            <div><dt>Included rooms</dt><dd>The full home, staged room by room &mdash; outdoor living included.</dd></div>
+          </dl>
+          <p class="tier-price">[ Price range placeholder ]</p>
+          <a class="btn btn-line" href="#contact">Book a Consultation</a>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  
+  <section class="sec" id="pay-at-close" aria-labelledby="pac-h" style="padding-top:0">
+    
+    <div class="wrap">
+      <div class="pac rv">
+        <p class="kick kick--center">Pay-at-Close</p>
+        <h2 id="pac-h">Stage Now. Pay When You Sell.</h2>
+        <div class="beats">
+          <div class="beat">
+            <span class="beat-no" aria-hidden="true">01</span>
+            <strong>Stage</strong>
+            <p>Your home is staged and photo-ready.</p>
+          </div>
+          <div class="beat">
+            <span class="beat-no" aria-hidden="true">02</span>
+            <strong>Sell</strong>
+            <p>It goes to market looking its best.</p>
+          </div>
+          <div class="beat">
+            <span class="beat-no" aria-hidden="true">03</span>
+            <strong>Pay</strong>
+            <p>The staging fee is settled at closing.</p>
+          </div>
+        </div>
+        <p class="pac-line">Stage your home now and settle the staging fee at the closing table &mdash; ask about Pay-at-Close in your consultation.</p>
+        <a class="btn btn-line" href="#contact">Learn About Pay-at-Close</a>
+      </div>
+    </div>
+  </section>
+
+  
+  <section class="sec agents on-dark" id="agents" aria-labelledby="agents-h">
+    
+    <div class="wrap agents-grid">
+      <div class="rv">
+        <p class="kick">For Listing Agents</p>
+        <h2 id="agents-h">Built for Atlanta&rsquo;s Top Agents</h2>
+        <p class="lede">Your listings, staged on a schedule you can promise a seller &mdash; and a partner your brand looks good next to.</p>
+        <a class="btn btn-gold" href="#contact">Join the Partnership Program</a>
+      </div>
+      <ul class="agent-feats rv">
+        <li>
+          <h3>Priority Scheduling</h3>
+          <p>Partner agents book ahead of the calendar, so a signed listing never waits on staging.</p>
+        </li>
+        <li>
+          <h3>Co-Branded Materials</h3>
+          <p>Listing presentations and leave-behinds that carry your name beside ours.</p>
+        </li>
+        <li>
+          <h3>Quarterly ROI Reports</h3>
+          <p>A quarterly review of how your staged listings performed, ready to share with your next seller.</p>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  
+  <section class="sec testimonial" aria-label="Client testimonial placeholder">
+    
+    <div class="wrap rv">
+      <p class="kick kick--center">In Their Words</p>
+      <blockquote class="quote">&ldquo;Placeholder for a client testimonial &mdash; two or three sentences, in the seller&rsquo;s own words, about how the staged home showed and how the sale went.&rdquo;</blockquote>
+      <p class="attr">Client name &middot; Atlanta neighborhood &middot; placeholder</p>
+    </div>
+  </section>
+
+  
+  <section class="trust" aria-label="Credentials and associations">
+    
+    <div class="wrap">
+      <ul>
+        <li>RESA</li>
+        <li>HSRA</li>
+        <li>Best of Houzz</li>
+        <li>Top 10 Nationally</li>
+      </ul>
+    </div>
+  </section>
+</main>
+
+
+<footer class="footer on-dark" id="contact">
+  <div class="wrap cta-band rv">
+    <p class="kick kick--center">Next Step</p>
+    <h2 style="margin-top:1rem">Ready to Stage Your Listing?</h2>
+    <p>Tell us about the home. Barbara&rsquo;s team will come back with a staging plan built to sell it.</p>
+    <a class="btn btn-gold" href="#top">Get Your Staging Plan</a>
+  </div>
+  <hr class="foot-rule">
+  <div class="wrap foot-grid">
+    <div class="foot-brand">
+      <span class="wordmark">Design<span class="g">2</span>Sell</span>
+      <p>Founder-led home staging for Atlanta sellers &mdash; and the agents who represent them.</p>
+    </div>
+    <nav class="foot-col" aria-label="Services">
+      <h3>Services</h3>
+      <a href="#services">Essentials</a>
+      <a href="#services">Signature</a>
+      <a href="#services">Luxury</a>
+      <a href="#pay-at-close">Pay-at-Close</a>
+    </nav>
+    <nav class="foot-col" aria-label="Portfolio">
+      <h3>Portfolio</h3>
+      <a href="#portfolio">Featured Rooms</a>
+      <a href="#before-after">Before &amp; After</a>
+      <a href="#system">The System</a>
+    </nav>
+    <nav class="foot-col" aria-label="Agents">
+      <h3>Agents</h3>
+      <a href="#agents">Partnership Program</a>
+      <a href="#agents">Priority Scheduling</a>
+      <a href="#agents">Quarterly ROI Reports</a>
+    </nav>
+    <nav class="foot-col" aria-label="Contact">
+      <h3>Contact</h3>
+      <a href="#contact">Book a Consultation</a>
+      <a href="#contact">Get Your Staging Plan</a>
+      <span>Serving Greater Atlanta</span>
+    </nav>
+  </div>
+  <div class="wrap foot-bottom">
+    <span>&copy; 2026 Design2Sell &middot; Atlanta Home Staging &middot; Founder-led by Barbara</span>
+    <span><a href="#top">Privacy</a> &nbsp;&middot;&nbsp; <a href="#top">Terms</a></span>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* Header state */
+  var header = document.getElementById('site-header');
+  var onScroll = function(){ header.classList.toggle('scrolled', window.scrollY > 32); };
+  onScroll();
+  window.addEventListener('scroll', onScroll, {passive:true});
+
+  /* Mobile nav */
+  var toggle = document.getElementById('nav-toggle');
+  toggle.addEventListener('click', function(){
+    var open = header.classList.toggle('nav-open');
+    toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+    toggle.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+  });
+  document.querySelectorAll('#site-nav a').forEach(function(a){
+    a.addEventListener('click', function(){
+      header.classList.remove('nav-open');
+      toggle.setAttribute('aria-expanded','false');
+    });
+  });
+
+  /* Stat count-up */
+  function setStat(el, v){
+    var d = parseInt(el.getAttribute('data-decimals') || '0', 10);
+    el.textContent = (el.getAttribute('data-prefix') || '') + v.toFixed(d) + (el.getAttribute('data-suffix') || '');
+  }
+  function runStat(el){
+    var target = parseFloat(el.getAttribute('data-target'));
+    if (reduced || !window.requestAnimationFrame){ setStat(el, target); return; }
+    var dur = 1800, start = null;
+    function frame(now){
+      if (start === null) start = now;
+      var p = Math.min((now - start) / dur, 1);
+      var eased = 1 - Math.pow(1 - p, 3);
+      setStat(el, target * eased);
+      if (p < 1) requestAnimationFrame(frame);
+    }
+    requestAnimationFrame(frame);
+  }
+  var stats = document.querySelectorAll('.stat-num');
+  if ('IntersectionObserver' in window){
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){
+        if (e.isIntersecting){ runStat(e.target); io.unobserve(e.target); }
+      });
+    }, {threshold:.4});
+    stats.forEach(function(s){ io.observe(s); });
+  }
+
+  /* Reveal on scroll */
+  var rv = document.querySelectorAll('.rv');
+  if (reduced || !('IntersectionObserver' in window)){
+    rv.forEach(function(el){ el.classList.add('in'); });
+  } else {
+    var io2 = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){
+        if (e.isIntersecting){ e.target.classList.add('in'); io2.unobserve(e.target); }
+      });
+    }, {threshold:.12, rootMargin:'0px 0px -36px 0px'});
+    rv.forEach(function(el){ io2.observe(el); });
+  }
+
+  /* Before / After slider */
+  var frame = document.getElementById('ba-frame');
+  if (frame){
+    var range = frame.querySelector('.ba-range');
+    var set = function(v){ frame.style.setProperty('--pos', v + '%'); };
+    range.addEventListener('input', function(){ set(range.value); });
+    set(range.value);
+  }
+})();
+</script>
+</body>
+</html>

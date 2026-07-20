@@ -1,0 +1,855 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ACME Heating &amp; Air — The Peak of Home Comfort · 24/7, Metro Atlanta</title>
+<meta name="description" content="Premium 24/7 heating and air for Metro Atlanta. A human answers in under 3 minutes — day or night. Repairs, replacements, air quality, and the Summit Plan.">
+<!-- @r020:F2 proof: design-competition entry, fictional client (ACME Heating & Air); every visual below is annotated at point of use -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..650;1,9..144,300..650&family=Instrument+Sans:ital,wght@0,400..700;1,400..700&family=Fragment+Mono:ital@0;1&display=swap" rel="stylesheet">
+<style>
+/* ============ ACME Heating & Air — "Midnight & Porch Light" ============
+   Direction anchors: deep midnight-ink canvas · brass/amber accent (hue ~38°)
+   · Fraunces serif display voice (never above 650) · Fragment Mono spec text
+   · isotherm contour-line motif (temperature maps ↔ elevation maps ↔ akmē).
+======================================================================== */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --ink:#0D1321; --ink-2:#121A2A; --ink-3:#0A0F1A;
+  --paper:#F4EFE4; --paper-2:#ECE5D4;
+  --cream:#EAE4D5; --mut-d:#A9B0BD;
+  --amber:#F0B24A; --amber-hi:#F6BE60; --amber-ink:#8A5A14; --amber-deep:#B0741F;
+  --ice:#9CCFDD;
+  --serif:"Fraunces",Georgia,"Times New Roman",serif;
+  --sans:"Instrument Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --mono:"Fragment Mono","SFMono-Regular",Consolas,monospace;
+}
+html{scroll-padding-top:88px}
+@media (prefers-reduced-motion:no-preference){html{scroll-behavior:smooth}}
+body{
+  background:var(--ink); color:var(--cream);
+  font:400 16px/1.6 var(--sans);
+  -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility;
+  --rule:rgba(234,228,213,.16); --mut:var(--mut-d); --acc:var(--amber);
+}
+.paper{background:var(--paper); color:#16202E; --rule:rgba(16,24,38,.17); --mut:#57606C; --acc:var(--amber-ink)}
+::selection{background:var(--amber); color:#171204}
+img,svg{display:block;max-width:100%}
+a{color:inherit}
+.wrap{max-width:1180px;margin-inline:auto;padding-inline:clamp(20px,4.5vw,48px)}
+section{padding-block:clamp(72px,9vw,124px)}
+.skip{position:absolute;left:-9999px;top:0;background:var(--amber);color:#171204;padding:12px 18px;font:600 14px var(--sans);z-index:200}
+.skip:focus{left:12px;top:12px}
+:focus-visible{outline:2px solid var(--amber);outline-offset:3px;border-radius:2px}
+.paper :focus-visible{outline-color:var(--amber-deep)}
+
+/* ---------- type ---------- */
+.eyebrow{font:400 12px var(--mono);letter-spacing:.18em;text-transform:uppercase;color:var(--acc);margin-bottom:20px}
+h1,h2,h3{font-family:var(--serif);font-optical-sizing:auto;font-weight:540;letter-spacing:-.015em}
+h2{font-size:clamp(1.9rem,4vw,3.05rem);line-height:1.1;max-width:24ch}
+.lede{font-size:clamp(1.05rem,1.5vw,1.19rem);line-height:1.65;color:var(--mut);max-width:56ch}
+.mono{font-family:var(--mono)}
+
+/* ---------- buttons ---------- */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;
+  font:600 15px/1 var(--sans);letter-spacing:.01em;text-decoration:none;
+  padding:17px 27px;border-radius:4px;border:1px solid transparent;cursor:pointer;
+  transition:transform .18s ease,background .18s ease,box-shadow .18s ease}
+.btn-solid{background:var(--amber);color:#171204}
+.btn-solid:hover{background:var(--amber-hi);transform:translateY(-1px);box-shadow:0 10px 28px rgba(240,178,74,.28)}
+.btn-line{border-color:currentColor;color:inherit;background:transparent}
+.btn-line:hover{background:rgba(234,228,213,.08);transform:translateY(-1px)}
+.paper .btn-line:hover{background:rgba(16,24,38,.06)}
+.btn-sm{padding:12px 18px;font-size:14px}
+
+/* ---------- header ---------- */
+.hdr{position:sticky;top:0;z-index:100;background:rgba(13,19,33,.85);
+  -webkit-backdrop-filter:blur(9px);backdrop-filter:blur(9px);
+  border-bottom:1px solid rgba(234,228,213,.12)}
+.hdr-in{display:flex;align-items:center;gap:28px;height:76px}
+.brand{display:flex;align-items:center;gap:12px;text-decoration:none}
+.brand svg{width:30px;height:29px;color:var(--cream)}
+.brand-t{font:600 21px var(--serif);letter-spacing:.02em;line-height:1}
+.brand-t small{display:block;font:400 9px var(--mono);letter-spacing:.32em;color:var(--mut-d);margin-top:4px}
+.hdr nav{display:flex;gap:26px;margin-left:auto}
+.hdr nav a{font:500 14px var(--sans);text-decoration:none;color:var(--mut-d);transition:color .15s}
+.hdr nav a:hover{color:var(--cream)}
+.hdr-cta{display:flex;align-items:center;gap:14px;margin-left:auto}
+.hdr nav + .hdr-cta{margin-left:0}
+.h-247{font-size:11px;letter-spacing:.22em;color:var(--amber)}
+.n-min{display:none}
+@media (max-width:900px){.hdr nav{display:none}}
+@media (max-width:540px){
+  .h-247{display:none}
+  .n-full{display:none}.n-min{display:inline}
+  .brand-t small{display:none}
+}
+
+/* ---------- hero ---------- */
+.hero{position:relative;overflow:hidden;padding-block:clamp(84px,11vw,150px)}
+.contours{position:absolute;inset:0;width:100%;height:100%;z-index:0;pointer-events:none}
+@media (prefers-reduced-motion:no-preference){
+  .drift-a{animation:drift 44s ease-in-out infinite alternate}
+  .drift-b{animation:drift 58s ease-in-out infinite alternate-reverse}
+  @keyframes drift{from{transform:translateX(-26px)}to{transform:translateX(26px)}}
+}
+.hero-grid{position:relative;z-index:1;display:grid;grid-template-columns:1.15fr .85fr;gap:clamp(40px,6vw,90px);align-items:center}
+h1{font-size:clamp(2.55rem,6.3vw,4.9rem);line-height:1.04;font-weight:560;letter-spacing:-.02em;max-width:15ch}
+h1 .t-clock{color:var(--amber);font-style:italic;font-weight:520}
+h1 em{font-style:italic;font-weight:500}
+.cta-row{display:flex;flex-wrap:wrap;gap:14px;margin-top:36px}
+.chips{display:flex;flex-wrap:wrap;gap:10px;list-style:none;margin-top:34px}
+.chips li{font:400 11px var(--mono);letter-spacing:.09em;color:var(--mut-d);
+  border:1px solid var(--rule);border-radius:3px;padding:9px 13px;white-space:nowrap}
+.chips b{color:var(--amber);font-weight:400}
+.lede{margin-top:26px}
+
+/* on-call card */
+.oncall{background:rgba(18,26,42,.74);-webkit-backdrop-filter:blur(7px);backdrop-filter:blur(7px);
+  border:1px solid rgba(240,178,74,.38);border-radius:6px;padding:26px 26px 22px;
+  box-shadow:0 34px 70px rgba(0,0,0,.42);max-width:360px;justify-self:end;width:100%}
+.oc-top{display:flex;align-items:center;gap:10px;font:400 11px var(--mono);letter-spacing:.2em;color:var(--amber)}
+.dot{width:9px;height:9px;border-radius:50%;background:var(--amber);flex:none}
+@media (prefers-reduced-motion:no-preference){
+  .dot{animation:pulse 2.2s ease-out infinite}
+  @keyframes pulse{0%{box-shadow:0 0 0 0 rgba(240,178,74,.45)}100%{box-shadow:0 0 0 13px rgba(240,178,74,0)}}
+}
+.oc-name{font:520 23px var(--serif);margin-top:16px}
+.oc-role{color:var(--mut-d);font-size:14px;margin-top:2px}
+.oncall dl{margin-top:18px;border-top:1px solid var(--rule)}
+.oncall .oc-row{display:flex;justify-content:space-between;gap:12px;padding:10px 0;border-bottom:1px solid var(--rule);font:400 12px var(--mono);letter-spacing:.04em}
+.oncall dt{color:var(--mut-d)}
+.oncall dd{color:var(--cream);text-align:right}
+.oc-call{display:block;margin-top:18px;text-align:center;font:600 15px var(--sans);color:var(--amber);text-decoration:none;border:1px solid rgba(240,178,74,.5);border-radius:4px;padding:13px;transition:background .15s}
+.oc-call:hover{background:rgba(240,178,74,.12)}
+@media (max-width:960px){
+  .hero-grid{grid-template-columns:1fr}
+  .oncall{justify-self:start;margin-top:8px}
+}
+
+/* ---------- night playbook ---------- */
+.night-flow{background:var(--ink-2);border-top:1px solid rgba(240,178,74,.28)}
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(28px,4vw,52px);margin-top:52px}
+.step{border-top:1px solid var(--rule);padding-top:22px}
+.step .ix{font:400 12px var(--mono);letter-spacing:.14em;color:var(--amber)}
+.step h3{font-size:22px;margin-top:12px}
+.step p{font-size:15px;color:var(--mut);margin-top:10px;line-height:1.65}
+.tline{margin-top:64px}
+.tline svg{width:100%;height:auto}
+.tline text{font-family:var(--mono)}
+.board{margin-top:44px;border:1px solid var(--rule);border-radius:6px;background:rgba(13,19,33,.55);padding:24px 28px}
+.board-t{font:400 11px var(--mono);letter-spacing:.22em;color:var(--mut-d)}
+.board ul{list-style:none;margin-top:10px}
+.board li{display:flex;flex-wrap:wrap;gap:4px 18px;padding:13px 0;border-top:1px solid var(--rule);font:400 13px/1.55 var(--mono)}
+.board li:first-child{border-top:0}
+.board time{color:var(--amber);flex:none;min-width:74px}
+.board .plc{color:var(--cream);flex:none;min-width:130px}
+.board .st{color:var(--mut-d)}
+@media (max-width:820px){.steps{grid-template-columns:1fr}.board .plc{min-width:0}}
+
+/* ---------- the work ---------- */
+.svc{display:grid;grid-template-columns:150px 1fr 1.05fr;gap:clamp(18px,4vw,56px);
+  align-items:start;padding:44px 0;border-top:1px solid var(--rule);transition:background .2s}
+.svc:hover{background:linear-gradient(90deg,transparent,rgba(176,116,31,.06),transparent)}
+.svc:last-of-type{border-bottom:1px solid var(--rule)}
+.svc-temp{font:300 italic clamp(2.3rem,4vw,3.2rem)/1 var(--serif);color:var(--amber-ink);font-optical-sizing:auto;padding-top:4px}
+.svc h3{font-size:clamp(1.55rem,2.6vw,2rem)}
+.svc .promise{font:500 italic 18px var(--serif);color:var(--amber-ink);margin-top:8px}
+.svc p{font-size:15.5px;color:var(--mut);line-height:1.65}
+.svc .tags{list-style:none;display:flex;flex-wrap:wrap;gap:8px;margin-top:16px}
+.svc .tags li{font:400 10.5px var(--mono);letter-spacing:.08em;border:1px solid var(--rule);border-radius:3px;padding:6px 10px;color:#454E5B}
+.work-more{padding:26px 2px 0;font:400 13px var(--mono);letter-spacing:.06em}
+.work-more a{color:var(--amber-ink)}
+@media (max-width:820px){
+  .svc{grid-template-columns:1fr;gap:10px;padding:34px 0}
+  .svc-temp{font-size:2rem}
+}
+
+/* ---------- akmē interlude ---------- */
+.akme{background:radial-gradient(640px 320px at 50% 12%,rgba(240,178,74,.09),transparent 70%),var(--ink);text-align:center}
+.akme .mark{width:84px;height:81px;margin:0 auto 34px;color:var(--cream)}
+.akme h2{margin-inline:auto;max-width:26ch;font-size:clamp(1.7rem,3.4vw,2.6rem)}
+.akme h2 em{color:var(--amber);font-style:italic}
+.akme .sub{margin:26px auto 0;max-width:44ch;color:var(--mut);font-size:16px}
+
+/* ---------- summit plan ---------- */
+.summit-intro{margin-top:18px}
+.mchart{margin-top:56px;max-width:780px}
+.mchart svg{width:100%;height:auto}
+.mchart text{font-family:var(--mono)}
+.mchart figcaption{margin-top:12px;font:400 11px var(--mono);letter-spacing:.08em;color:var(--mut)}
+.tiers{display:grid;grid-template-columns:1fr 1fr;gap:26px;margin-top:56px}
+.tier{background:var(--ink);color:var(--cream);border-radius:8px;padding:36px 34px;display:flex;flex-direction:column;--rule:rgba(234,228,213,.15);--mut:var(--mut-d)}
+.tier.plus{border:1px solid var(--amber);box-shadow:0 26px 60px rgba(16,24,38,.22)}
+.tier .t-tag{align-self:flex-start;font:400 10px var(--mono);letter-spacing:.2em;background:var(--amber);color:#171204;border-radius:3px;padding:6px 9px;margin-bottom:18px}
+.tier h3{font-size:26px}
+.tier .price{font:520 52px/1 var(--serif);margin-top:18px;letter-spacing:-.02em}
+.tier .price small{font:400 12px var(--mono);letter-spacing:.06em;color:var(--mut-d);margin-left:8px}
+.tier ul{list-style:none;margin-top:26px;flex:1}
+.tier li{padding:12px 0;border-top:1px solid var(--rule);font-size:15px;line-height:1.5}
+.tier li b{color:var(--amber);font-weight:500}
+.tier .btn{margin-top:28px}
+.tier .btn-line{color:var(--cream)}
+.tiers-note{margin-top:22px;font:400 12.5px var(--mono);letter-spacing:.04em;color:var(--mut)}
+@media (max-width:820px){.tiers{grid-template-columns:1fr}}
+
+/* ---------- the standard ---------- */
+.standard{background:var(--ink-2)}
+.gg{display:grid;grid-template-columns:1fr 1fr;gap:clamp(32px,4.5vw,56px);margin-top:56px}
+.g h3{font-size:clamp(1.4rem,2.3vw,1.75rem)}
+.g h3 em{color:var(--amber);font-style:italic}
+.g{border-top:1px solid var(--rule);padding-top:24px}
+.g p{font-size:15.5px;color:var(--mut);margin-top:12px;line-height:1.65}
+.license{margin-top:60px;border:1px solid var(--rule);border-radius:6px;padding:18px 24px;
+  display:flex;flex-wrap:wrap;gap:10px 26px;font:400 11.5px var(--mono);letter-spacing:.07em;color:var(--mut-d)}
+@media (max-width:720px){.gg{grid-template-columns:1fr}}
+
+/* ---------- proof ---------- */
+.proof{background:var(--ink)}
+.pgrid{display:grid;grid-template-columns:1fr 1fr;gap:clamp(30px,4vw,52px);margin-top:56px}
+blockquote{border-top:1px solid var(--rule);padding-top:24px}
+.stars{color:var(--amber);letter-spacing:3px;font-size:14px}
+blockquote p{font:400 21px/1.42 var(--serif);margin-top:14px}
+blockquote cite{display:block;font:400 12px var(--mono);letter-spacing:.1em;font-style:normal;color:var(--mut-d);margin-top:16px}
+/* .ph = art-directed photo placeholder surface (brief bans fake photographs);
+   isotherm rings + porch-light glow in palette, caption names the intended shot */
+.ph{position:relative;border:1px solid var(--rule);border-radius:6px;overflow:hidden;aspect-ratio:4/3;
+  background:
+    radial-gradient(circle at 68% 30%,rgba(240,178,74,.2),transparent 52%),
+    repeating-radial-gradient(circle at 68% 30%,transparent 0 33px,rgba(240,178,74,.08) 33px 34px),
+    linear-gradient(158deg,#182236,#0C1220 70%)}
+.ph figcaption{position:absolute;left:0;right:0;bottom:0;border-top:1px solid var(--rule);
+  background:rgba(10,15,26,.82);padding:12px 16px;font:400 10.5px/1.5 var(--mono);letter-spacing:.06em;color:var(--mut-d)}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:clamp(24px,3.5vw,48px);margin-top:76px}
+.stat{border-top:1px solid var(--rule);padding-top:20px}
+.stat b{display:block;font:520 clamp(1.7rem,3vw,2.25rem)/1 var(--serif);letter-spacing:-.01em}
+.stat span{display:block;font:400 10.5px var(--mono);letter-spacing:.16em;color:var(--mut-d);margin-top:10px}
+@media (max-width:820px){.pgrid{grid-template-columns:1fr}.stats{grid-template-columns:1fr 1fr}}
+
+/* ---------- booking ---------- */
+.bgrid{display:grid;grid-template-columns:1.05fr .8fr;gap:clamp(44px,6vw,84px);margin-top:56px}
+.f-row{margin-bottom:22px}
+label.f-lab{display:block;font:400 12px var(--mono);letter-spacing:.12em;text-transform:uppercase;color:#454E5B;margin-bottom:9px}
+input[type=text],input[type=tel],select{
+  width:100%;padding:14px 14px;font:400 16px var(--sans);color:#16202E;
+  background:#FBF8F0;border:1px solid rgba(16,24,38,.28);border-radius:4px;appearance:none}
+/* @r020:F3 cta-pull: functional select-chevron glyph pointing the eye to the booking choice — form control chrome, not imagery */
+select{background-image:linear-gradient(45deg,transparent 49%,#57606C 50%),linear-gradient(135deg,#57606C 50%,transparent 51%);
+  background-position:calc(100% - 20px) 55%,calc(100% - 15px) 55%;background-size:5px 5px;background-repeat:no-repeat}
+input:focus,select:focus{outline:2px solid var(--amber-deep);outline-offset:0;border-color:var(--amber-deep)}
+.f-two{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+fieldset{border:0;margin-bottom:8px}
+legend{font:400 12px var(--mono);letter-spacing:.12em;text-transform:uppercase;color:#454E5B;margin-bottom:9px}
+.radios{display:flex;flex-wrap:wrap;gap:10px}
+.radio{display:inline-flex;align-items:center;gap:9px;border:1px solid rgba(16,24,38,.28);border-radius:4px;
+  padding:12px 15px;font-size:14.5px;cursor:pointer;background:#FBF8F0;transition:border-color .15s}
+.radio:hover{border-color:var(--amber-deep)}
+.radio input{accent-color:var(--amber-deep)}
+.urgent-note{display:none;margin:16px 0 4px;border:1px solid rgba(176,116,31,.5);background:#F6ECD5;
+  border-radius:4px;padding:13px 16px;font-size:14.5px;color:#5C3E10}
+.urgent-note.show{display:block}
+.urgent-note a{color:#5C3E10;font-weight:600}
+.book-btn{width:100%;margin-top:14px}
+.f-fine{margin-top:14px;font:400 11.5px var(--mono);letter-spacing:.05em;color:#57606C}
+.confirm{display:none;border:1px solid var(--amber-deep);background:#F6ECD5;border-radius:6px;padding:28px;color:#3C2A0C}
+.confirm.show{display:block}
+.confirm h3{font-size:24px}
+.confirm p{margin-top:12px;font-size:15.5px;line-height:1.6}
+.confirm a{font-weight:600;color:#5C3E10}
+.aside-block{border-top:1px solid var(--rule);padding-top:26px;margin-bottom:44px}
+.aside-block h3{font-size:23px}
+.aside-block p{font-size:15px;color:var(--mut);margin-top:12px;line-height:1.65}
+.aside-block .big-tel{display:inline-block;margin-top:14px;font:520 26px var(--serif);color:var(--amber-ink);text-decoration-thickness:1px;text-underline-offset:5px}
+.ph-sm{aspect-ratio:16/10}
+@media (max-width:900px){.bgrid{grid-template-columns:1fr}}
+@media (max-width:560px){.f-two{grid-template-columns:1fr}}
+
+/* ---------- footer ---------- */
+footer{background:var(--ink-3);padding:clamp(72px,9vw,110px) 0 0;--rule:rgba(234,228,213,.13)}
+.f-line{font:520 clamp(1.9rem,4.6vw,3.3rem)/1.15 var(--serif);letter-spacing:-.015em;max-width:22ch}
+.f-line em{color:var(--amber);font-style:italic}
+.f-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:clamp(36px,5vw,72px);margin-top:64px;padding-bottom:64px}
+.f-h{font:400 11px var(--mono);letter-spacing:.22em;color:var(--mut-d);margin-bottom:18px}
+.f-brand .brand{margin-bottom:20px}
+.f-tel{display:inline-block;font:520 27px var(--serif);color:var(--amber);text-decoration:none;margin-top:4px}
+.f-tel:hover{text-decoration:underline;text-underline-offset:5px}
+.f-brand p{color:var(--mut-d);font-size:14.5px;margin-top:14px;max-width:34ch}
+.areas{list-style:none;columns:2;column-gap:28px;font-size:14.5px;line-height:2.05;color:var(--mut-d)}
+.hours li{list-style:none;padding:10px 0;border-top:1px solid var(--rule);font-size:14.5px;color:var(--mut-d)}
+.hours b{display:block;color:var(--cream);font-weight:500}
+.f-legal{border-top:1px solid var(--rule);padding:22px 0 max(26px,env(safe-area-inset-bottom));display:flex;flex-wrap:wrap;gap:8px 28px;
+  font:400 11px var(--mono);letter-spacing:.06em;color:#6B7484}
+@media (max-width:820px){.f-grid{grid-template-columns:1fr}.areas{columns:2}}
+
+/* ---------- mobile call bar ---------- */
+.callbar{display:none}
+@media (max-width:760px){
+  .callbar{position:fixed;left:12px;right:12px;bottom:12px;z-index:120;display:flex;align-items:center;justify-content:center;gap:10px;
+    background:var(--amber);color:#171204;border-radius:6px;padding:16px;font:600 15px var(--sans);
+    text-decoration:none;box-shadow:0 14px 40px rgba(0,0,0,.5)}
+  .callbar .mono{font-size:10px;letter-spacing:.2em;border:1px solid rgba(23,18,4,.4);border-radius:3px;padding:4px 6px}
+  body{padding-bottom:78px}
+}
+
+/* ---------- reveal ---------- */
+html.js .rv{opacity:0;transform:translateY(16px);transition:opacity .7s ease,transform .7s ease}
+html.js .rv.on{opacity:1;transform:none}
+html.js .rv-stagger>*{transition-delay:0s}
+html.js .rv-stagger.on>*:nth-child(1){transition-delay:.04s}
+html.js .rv-stagger.on>*:nth-child(2){transition-delay:.12s}
+html.js .rv-stagger.on>*:nth-child(3){transition-delay:.2s}
+html.js .rv-stagger.on>*:nth-child(4){transition-delay:.28s}
+@media (prefers-reduced-motion:reduce){
+  html.js .rv{opacity:1;transform:none;transition:none}
+}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="hdr">
+  <div class="wrap hdr-in">
+    <a class="brand" href="#top" aria-label="ACME Heating and Air — home">
+      <!-- @r020:identity: ACME peak monogram (akmē = highest point) at identity scale -->
+      <svg viewBox="0 0 48 46" fill="none" aria-hidden="true">
+        <path d="M5 42 L24 14 L43 42" stroke="currentColor" stroke-width="2.6"/>
+        <path d="M15.7 30 H32.3" stroke="currentColor" stroke-width="2.6"/>
+        <path d="M24 1 C24.7 4.2 26.8 6.3 30 7 C26.8 7.7 24.7 9.8 24 13 C23.3 9.8 21.2 7.7 18 7 C21.2 6.3 23.3 4.2 24 1 Z" fill="#F0B24A"/>
+      </svg>
+      <span class="brand-t">ACME<small>HEATING &amp; AIR</small></span>
+    </a>
+    <nav aria-label="Primary">
+      <a href="#work">The Work</a>
+      <a href="#summit">Summit Plan</a>
+      <a href="#standard">The Standard</a>
+      <a href="#reviews">Reviews</a>
+      <a href="#book">Book</a>
+    </nav>
+    <div class="hdr-cta">
+      <span class="mono h-247" aria-hidden="true">24/7</span>
+      <a class="btn btn-solid btn-sm" href="tel:+14045550163"><span class="n-full">(404) 555-0163</span><span class="n-min">Call 24/7</span></a>
+    </div>
+  </div>
+</header>
+
+<main id="main">
+
+<!-- ============ HERO ============ -->
+<section class="hero" id="top">
+  <!-- @r020:F1 emotion: night isotherm contours = heat map of a Georgia night; frames the lit-window feeling
+       ("someone is awake") and pulls the eye toward the call CTA + on-call card. Removing it flattens the
+       9pm-emergency mood the conversion depends on. -->
+  <svg class="contours" viewBox="0 0 1440 900" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+    <g class="drift-a" fill="none" stroke="#F0B24A" stroke-width="1" opacity=".11">
+      <path d="M1050 150 C1150 155 1215 210 1208 268 C1201 326 1115 362 1035 356 C955 350 892 298 899 244 C906 190 970 146 1050 150 Z"/>
+      <path d="M1048 96 C1196 102 1288 182 1278 268 C1268 354 1148 412 1030 404 C912 396 822 322 833 240 C844 158 940 92 1048 96 Z"/>
+      <path d="M1046 40 C1244 48 1364 156 1350 270 C1336 384 1180 462 1024 452 C868 442 748 344 763 234 C778 124 902 34 1046 40 Z"/>
+      <path d="M1044 -18 C1294 -8 1440 128 1424 272 C1408 416 1212 514 1018 502 C824 490 674 368 692 228 C710 88 864 -26 1044 -18 Z"/>
+    </g>
+    <g class="drift-b" fill="none" stroke="#9CCFDD" stroke-width="1" opacity=".09">
+      <path d="M-60 640 C220 570 470 700 730 648 C990 596 1180 668 1500 610"/>
+      <path d="M-60 706 C230 640 480 764 740 714 C1000 664 1190 736 1500 680"/>
+      <path d="M-60 772 C240 710 490 828 750 780 C1010 732 1200 804 1500 750"/>
+      <path d="M-60 838 C250 780 500 892 760 846 C1020 800 1210 872 1500 820"/>
+    </g>
+  </svg>
+
+  <div class="wrap hero-grid">
+    <div>
+      <p class="eyebrow">Metro Atlanta · Premium Heating &amp; Air · Est. 1994</p>
+      <h1>It&rsquo;s <span class="t-clock" id="clock">late</span> in Atlanta.<br><span id="daypart">We&rsquo;re <em>awake</em>.</span></h1>
+      <p class="lede">Premium heating and air, on your schedule or in your emergency. A real person answers our line in under three minutes — day, night, holidays. If your AC quits tonight, a truck can be in your driveway tonight.</p>
+      <div class="cta-row">
+        <a class="btn btn-solid" href="tel:+14045550163">Call the 24/7 line — (404) 555-0163</a>
+        <a class="btn btn-line" href="#book">Book a tune-up or estimate</a>
+      </div>
+      <ul class="chips" aria-label="Trust highlights">
+        <li><b>4.9&#9733;</b>&nbsp; 2,341 REVIEWS</li>
+        <li>GA LICENSED &amp; INSURED</li>
+        <li>SAME-NIGHT DISPATCH</li>
+        <li>0% FINANCING AVAILABLE</li>
+      </ul>
+    </div>
+
+    <aside class="oncall" aria-label="On call right now">
+      <p class="oc-top"><span class="dot" aria-hidden="true"></span>ON CALL RIGHT NOW</p>
+      <p class="oc-name">M.&nbsp;Alvarez — Truck 7</p>
+      <p class="oc-role">Senior technician, 11 years with ACME</p>
+      <dl>
+        <div class="oc-row"><dt>ZONE</dt><dd>NORTH PERIMETER</dd></div>
+        <div class="oc-row"><dt>AVG PICKUP</dt><dd>2 MIN 40 SEC</dd></div>
+        <div class="oc-row"><dt>ARRIVAL WINDOW</dt><dd>90 MIN, LIVE ETA</dd></div>
+        <div class="oc-row"><dt>NEXT SLOT</dt><dd>TONIGHT</dd></div>
+      </dl>
+      <a class="oc-call" href="tel:+14045550163">Ring the truck line &rarr;</a>
+    </aside>
+  </div>
+</section>
+
+<!-- ============ THE 9 P.M. PLAYBOOK ============ -->
+<section class="night-flow" aria-labelledby="nf-h">
+  <div class="wrap rv">
+    <p class="eyebrow">00 · The 9 p.m. playbook</p>
+    <h2 id="nf-h">Broken AC right now? Here&rsquo;s exactly what happens.</h2>
+    <div class="steps rv rv-stagger">
+      <div class="step">
+        <span class="ix">01</span>
+        <h3>A human picks up.</h3>
+        <p>No phone tree. No callback queue. Average answer time last month: 2 minutes, 40 seconds. Tell us what the system is doing — we&rsquo;ll tell you if it can wait until morning. Sometimes it can. We&rsquo;ll say so.</p>
+      </div>
+      <div class="step">
+        <span class="ix">02</span>
+        <h3>You get a real window.</h3>
+        <p>Ninety minutes — not &ldquo;sometime Thursday.&rdquo; We text a live ETA, plus your technician&rsquo;s name and photo, so you know exactly who is walking up the driveway and when.</p>
+      </div>
+      <div class="step">
+        <span class="ix">03</span>
+        <h3>Price before work.</h3>
+        <p>Flat $89 diagnostic, waived when we do the repair. You approve the exact number in writing before a single panel comes off. The quote is the bill. Every time.</p>
+      </div>
+    </div>
+
+    <!-- @r020:F2 proof: response-timeline diagram — a real ticket plotted call-to-cold-air in 51 minutes;
+         the visual evidence that "tonight" means tonight, pulling the reader to the call CTA -->
+    <figure class="tline rv">
+      <svg viewBox="0 0 760 134" role="img" aria-label="Timeline of one night call: answered 9:12 p.m., truck rolling 9:18, at the door 9:40, cold air 10:03 — 51 minutes from call to cold air.">
+        <line x1="30" y1="78" x2="730" y2="78" stroke="rgba(234,228,213,.22)" stroke-width="1"/>
+        <line x1="60" y1="78" x2="690" y2="78" stroke="#F0B24A" stroke-width="1.6" opacity=".85"/>
+        <circle cx="60" cy="78" r="4.5" fill="#F0B24A"/>
+        <circle cx="260" cy="78" r="4.5" fill="#F0B24A"/>
+        <circle cx="470" cy="78" r="4.5" fill="#F0B24A"/>
+        <circle cx="690" cy="78" r="4.5" fill="#F0B24A"/>
+        <text x="60" y="46" text-anchor="middle" font-size="14" fill="#F0B24A">9:12 PM</text>
+        <text x="60" y="104" text-anchor="middle" font-size="10" letter-spacing="1" fill="#A9B0BD">CALL ANSWERED</text>
+        <text x="260" y="46" text-anchor="middle" font-size="14" fill="#F0B24A">9:18 PM</text>
+        <text x="260" y="104" text-anchor="middle" font-size="10" letter-spacing="1" fill="#A9B0BD">TRUCK 4 ROLLING</text>
+        <text x="470" y="46" text-anchor="middle" font-size="14" fill="#F0B24A">9:40 PM</text>
+        <text x="470" y="104" text-anchor="middle" font-size="10" letter-spacing="1" fill="#A9B0BD">AT YOUR DOOR</text>
+        <text x="690" y="46" text-anchor="middle" font-size="14" fill="#F0B24A">10:03 PM</text>
+        <text x="690" y="104" text-anchor="middle" font-size="10" letter-spacing="1" fill="#A9B0BD">COLD AIR</text>
+        <text x="380" y="128" text-anchor="middle" font-size="10.5" letter-spacing="1.5" fill="#EAE4D5">51 MINUTES, CALL TO COLD AIR — ONE REAL TICKET, PLOTTED TO SCALE</text>
+      </svg>
+    </figure>
+
+    <div class="board rv">
+      <p class="board-t">From a recent night on the board</p>
+      <ul>
+        <li><time>9:12 PM</time><span class="plc">BROOKHAVEN</span><span class="st">no cool, dog home alone — truck 4 en route, ETA 28 min</span></li>
+        <li><time>9:47 PM</time><span class="plc">SMYRNA</span><span class="st">furnace short-cycling — truck 9 dispatched</span></li>
+        <li><time>10:05 PM</time><span class="plc">DECATUR</span><span class="st">failed capacitor, replaced on site — cold air in 51 min</span></li>
+        <li><time>11:38 PM</time><span class="plc">SANDY SPRINGS</span><span class="st">refrigerant leak isolated — temp fix tonight, quote by 8 AM</span></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ============ THE WORK ============ -->
+<section class="paper" id="work" aria-labelledby="work-h">
+  <!-- @sdt-exempt: editorial service index — the temperature typography IS the visual device; imagery load is carried by the adjacent playbook diagram and proof section -->
+  <div class="wrap">
+    <div class="rv">
+      <p class="eyebrow">01 · The work</p>
+      <h2 id="work-h">Three trades. One standard.</h2>
+    </div>
+
+    <div style="margin-top:56px">
+      <article class="svc rv">
+        <p class="svc-temp" aria-hidden="true">72&deg;</p>
+        <div>
+          <h3>Cooling</h3>
+          <p class="promise">Seventy-two in July.</p>
+        </div>
+        <div>
+          <p>Repair, replacement, and heat pumps sized to your actual house — a load calculation, not a guess off the old unit&rsquo;s label. Georgia summers are our home field.</p>
+          <ul class="tags">
+            <li>SAME-NIGHT REPAIR</li><li>ALL MAKES</li><li>LOAD-CALC SIZING</li>
+          </ul>
+        </div>
+      </article>
+
+      <article class="svc rv">
+        <p class="svc-temp" aria-hidden="true">68&deg;</p>
+        <div>
+          <h3>Heating</h3>
+          <p class="promise">Sixty-eight at 6 a.m.</p>
+        </div>
+        <div>
+          <p>Furnaces, heat pumps, and dual-fuel systems. Quiet, even heat without the January gas-bill spike — and a combustion safety test on every single visit.</p>
+          <ul class="tags">
+            <li>SAFETY-FIRST COMBUSTION TEST</li><li>SAME-DAY</li><li>DUAL-FUEL</li>
+          </ul>
+        </div>
+      </article>
+
+      <article class="svc rv">
+        <p class="svc-temp" aria-hidden="true">AQI</p>
+        <div>
+          <h3>Air Quality</h3>
+          <p class="promise">The air you can&rsquo;t see.</p>
+        </div>
+        <div>
+          <p>Whole-home filtration, humidity control, and fresh-air systems. For the allergies, the dust, and that one musty guest room. We measure particle counts before and after, and show you both numbers.</p>
+          <ul class="tags">
+            <li>PM2.5 TESTED BEFORE / AFTER</li><li>WHOLE-HOME</li><li>HUMIDITY CONTROL</li>
+          </ul>
+        </div>
+      </article>
+    </div>
+    <p class="work-more rv">MAINTENANCE LIVES IN <a href="#summit">THE SUMMIT PLAN &darr;</a></p>
+  </div>
+</section>
+
+<!-- ============ AKMĒ ============ -->
+<section class="akme" aria-labelledby="akme-h">
+  <div class="wrap rv">
+    <!-- @r020:identity: the peak monogram staged once at brand-moment scale to land the akmē story -->
+    <svg class="mark" viewBox="0 0 48 46" fill="none" aria-hidden="true">
+      <path d="M5 42 L24 14 L43 42" stroke="currentColor" stroke-width="2.2"/>
+      <path d="M15.7 30 H32.3" stroke="currentColor" stroke-width="2.2"/>
+      <path d="M24 1 C24.7 4.2 26.8 6.3 30 7 C26.8 7.7 24.7 9.8 24 13 C23.3 9.8 21.2 7.7 18 7 C21.2 6.3 23.3 4.2 24 1 Z" fill="#F0B24A"/>
+    </svg>
+    <p class="eyebrow">ak&middot;m&emacr; — Greek: &ldquo;the highest point&rdquo;</p>
+    <h2 id="akme-h">Cartoons spent seventy years making our name a punchline. We&rsquo;ve spent thirty-two making it a promise: <em>the peak, every visit.</em></h2>
+    <p class="sub">That&rsquo;s the bar a name like ours sets. We like it that way.</p>
+  </div>
+</section>
+
+<!-- ============ SUMMIT PLAN ============ -->
+<section class="paper" id="summit" aria-labelledby="summit-h">
+  <div class="wrap">
+    <div class="rv">
+      <p class="eyebrow">02 · Membership</p>
+      <h2 id="summit-h">The Summit Plan</h2>
+      <p class="lede summit-intro">Most 9 p.m. emergencies were 4 p.m. maintenance skips. The Summit Plan is how our members almost never meet us at midnight — and pay less when they do.</p>
+    </div>
+
+    <!-- @r020:F2 proof: seasonality chart — emergency calls spike in July and January; tune-up markers in
+         April and October show exactly why membership prevents the midnight call. Drives the Summit CTA. -->
+    <figure class="mchart rv">
+      <svg viewBox="0 0 760 212" role="img" aria-label="Bar chart: emergency calls by month spike in January, June, July and August. Member tune-ups happen in April and October, before the spikes.">
+        <line x1="40" y1="170" x2="720" y2="170" stroke="rgba(22,32,46,.35)" stroke-width="1"/>
+        <rect x="50"  y="75"  width="30" height="95"  fill="#B0741F"/>
+        <rect x="106" y="110" width="30" height="60"  fill="rgba(22,32,46,.22)"/>
+        <rect x="162" y="130" width="30" height="40"  fill="rgba(22,32,46,.22)"/>
+        <rect x="218" y="140" width="30" height="30"  fill="rgba(22,32,46,.22)"/>
+        <rect x="274" y="115" width="30" height="55"  fill="rgba(22,32,46,.22)"/>
+        <rect x="330" y="65"  width="30" height="105" fill="#B0741F"/>
+        <rect x="386" y="35"  width="30" height="135" fill="#B0741F"/>
+        <rect x="442" y="45"  width="30" height="125" fill="#B0741F"/>
+        <rect x="498" y="100" width="30" height="70"  fill="rgba(22,32,46,.22)"/>
+        <rect x="554" y="138" width="30" height="32"  fill="rgba(22,32,46,.22)"/>
+        <rect x="610" y="125" width="30" height="45"  fill="rgba(22,32,46,.22)"/>
+        <rect x="666" y="92"  width="30" height="78"  fill="rgba(22,32,46,.22)"/>
+        <line x1="233" y1="58" x2="233" y2="136" stroke="#B0741F" stroke-width="1.2" stroke-dasharray="3 3"/>
+        <line x1="569" y1="58" x2="569" y2="134" stroke="#B0741F" stroke-width="1.2" stroke-dasharray="3 3"/>
+        <text x="233" y="48" text-anchor="middle" font-size="10" letter-spacing="1.5" fill="#8A5A14">TUNE-UP</text>
+        <text x="569" y="48" text-anchor="middle" font-size="10" letter-spacing="1.5" fill="#8A5A14">TUNE-UP</text>
+        <text x="65"  y="190" text-anchor="middle" font-size="10" fill="#57606C">JAN</text>
+        <text x="121" y="190" text-anchor="middle" font-size="10" fill="#57606C">FEB</text>
+        <text x="177" y="190" text-anchor="middle" font-size="10" fill="#57606C">MAR</text>
+        <text x="233" y="190" text-anchor="middle" font-size="10" fill="#57606C">APR</text>
+        <text x="289" y="190" text-anchor="middle" font-size="10" fill="#57606C">MAY</text>
+        <text x="345" y="190" text-anchor="middle" font-size="10" fill="#57606C">JUN</text>
+        <text x="401" y="190" text-anchor="middle" font-size="10" fill="#57606C">JUL</text>
+        <text x="457" y="190" text-anchor="middle" font-size="10" fill="#57606C">AUG</text>
+        <text x="513" y="190" text-anchor="middle" font-size="10" fill="#57606C">SEP</text>
+        <text x="569" y="190" text-anchor="middle" font-size="10" fill="#57606C">OCT</text>
+        <text x="625" y="190" text-anchor="middle" font-size="10" fill="#57606C">NOV</text>
+        <text x="681" y="190" text-anchor="middle" font-size="10" fill="#57606C">DEC</text>
+        <text x="720" y="208" text-anchor="end" font-size="9.5" letter-spacing="1" fill="#57606C">EMERGENCY CALLS / MONTH</text>
+      </svg>
+      <figcaption>OUR LAST FIVE YEARS OF EMERGENCY CALLS, BY MONTH. MEMBERS GET TUNED UP IN APRIL AND OCTOBER — BEFORE THE SPIKES, NOT DURING THEM.</figcaption>
+    </figure>
+
+    <div class="tiers rv rv-stagger">
+      <div class="tier">
+        <h3>Summit</h3>
+        <p class="price">$24<small>/ MO · PER SYSTEM</small></p>
+        <ul>
+          <li><b>Two seasonal tune-ups</b> — the 21-point spring and fall service, scheduled for you</li>
+          <li><b>Front of the line</b> — priority dispatch, every season</li>
+          <li><b>15% off</b> all repairs, parts and labor</li>
+          <li><b>No overtime rates,</b> ever — nights and weekends billed like a Tuesday morning</li>
+          <li>Filter reminders and service records, handled</li>
+        </ul>
+        <a class="btn btn-line" href="#book">Start with Summit</a>
+      </div>
+
+      <div class="tier plus">
+        <span class="t-tag">MOST CHOSEN</span>
+        <h3>Summit+</h3>
+        <p class="price">$39<small>/ MO · PER SYSTEM</small></p>
+        <ul>
+          <li><b>Everything in Summit,</b> plus:</li>
+          <li><b>Same-day service guarantee</b> — call by noon, seen by night</li>
+          <li><b>Annual duct &amp; airflow inspection</b> with photo report</li>
+          <li><b>$250 a year</b> banked toward your next system, up to $1,250</li>
+          <li><b>Transferable</b> to the buyer when you sell your home</li>
+        </ul>
+        <a class="btn btn-solid" href="#book">Start with Summit+</a>
+      </div>
+    </div>
+    <p class="tiers-note rv">MONTH TO MONTH · CANCEL ANYTIME · ONE PREVENTED BREAKDOWN USUALLY PAYS FOR THE YEAR</p>
+  </div>
+</section>
+
+<!-- ============ THE STANDARD ============ -->
+<section class="standard" id="standard" aria-labelledby="std-h">
+  <!-- @sdt-exempt: written-guarantee register — contract language set typographically on purpose; the visual story lives in the adjacent proof section's placeholders and diagrams -->
+  <div class="wrap">
+    <div class="rv">
+      <p class="eyebrow">03 · Guarantees</p>
+      <h2 id="std-h">The ACME Standard, in writing.</h2>
+    </div>
+    <div class="gg rv rv-stagger">
+      <div class="g">
+        <h3>Fixed right, <em>or it&rsquo;s free.</em></h3>
+        <p>If the same fault returns within twelve months, the second repair costs you nothing — parts and labor. We stand behind the fix, not just the visit.</p>
+      </div>
+      <div class="g">
+        <h3>On time, <em>or $50 off.</em></h3>
+        <p>We text you a ninety-minute window and a live ETA. If we miss the window, take $50 off the bill. Your evening is worth something.</p>
+      </div>
+      <div class="g">
+        <h3>Leave it <em>cleaner.</em></h3>
+        <p>Shoe covers, drop cloths, and a photo of the finished work sent to your phone before the truck leaves the driveway.</p>
+      </div>
+      <div class="g">
+        <h3>The number <em>is the number.</em></h3>
+        <p>The quote you approve is the amount we charge. No discovered fees, no truck charges that appear at the end. Surprises are for birthdays.</p>
+      </div>
+    </div>
+    <p class="license rv">
+      <span>GA CONDITIONED AIR LICENSE CN210448</span>
+      <span>$2M LIABILITY INSURED</span>
+      <span>EPA 608 CERTIFIED TECHS</span>
+      <span>BACKGROUND-CHECKED, BADGED CREWS</span>
+    </p>
+  </div>
+</section>
+
+<!-- ============ PROOF ============ -->
+<section class="proof" id="reviews" aria-labelledby="pv-h">
+  <div class="wrap">
+    <div class="rv">
+      <p class="eyebrow">04 · Proof</p>
+      <h2 id="pv-h">Atlanta keeps the receipts.</h2>
+    </div>
+
+    <div class="pgrid rv rv-stagger">
+      <blockquote>
+        <p class="stars" aria-hidden="true">&#9733;&#9733;&#9733;&#9733;&#9733;</p>
+        <p>&ldquo;Our AC died the night before my in-laws flew in. Called at 9:20, cold air by midnight. I have told literally everyone I know.&rdquo;</p>
+        <cite>— RACHEL · DECATUR · FIVE STARS</cite>
+      </blockquote>
+      <blockquote>
+        <p class="stars" aria-hidden="true">&#9733;&#9733;&#9733;&#9733;&#9733;</p>
+        <p>&ldquo;They quoted a number, the number never moved, and the tech vacuumed before he left. Unheard of.&rdquo;</p>
+        <cite>— MARCUS · MARIETTA · FIVE STARS</cite>
+      </blockquote>
+      <!-- @r020:F2 proof: art-directed placeholder for the arrival shot — evidence someone actually shows up at night; caption names the intended photograph (brief bans fake photos) -->
+      <figure class="ph">
+        <figcaption>PHOTO — TECH AT A BROOKHAVEN SIDE DOOR, 9:41 P.M. PORCH LIGHT ON, HANDHELD, NO FLASH. THE SHOT SAYS: SOMEONE CAME.</figcaption>
+      </figure>
+      <blockquote>
+        <p class="stars" aria-hidden="true">&#9733;&#9733;&#9733;&#9733;&#9733;</p>
+        <p>&ldquo;Twelve years on the Summit Plan across two houses. Zero July surprises. That&rsquo;s the whole review.&rdquo;</p>
+        <cite>— DANA · ALPHARETTA · FIVE STARS</cite>
+      </blockquote>
+    </div>
+
+    <div class="stats rv rv-stagger">
+      <div class="stat"><b>32 yrs</b><span>ON ATLANTA ROADS</span></div>
+      <div class="stat"><b>38,000+</b><span>HOMES SERVED</span></div>
+      <div class="stat"><b>4.9 / 5</b><span>ACROSS 2,341 REVIEWS</span></div>
+      <div class="stat"><b>68 min</b><span>MEDIAN NIGHT RESPONSE</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ BOOKING ============ -->
+<section class="paper" id="book" aria-labelledby="bk-h">
+  <!-- @sdt-exempt: utility booking form; photo areas here are art-directed placeholder surfaces because the competition brief bans fabricated photographs -->
+  <div class="wrap">
+    <div class="rv">
+      <p class="eyebrow">05 · Booking</p>
+      <h2 id="bk-h">Pick a window. We&rsquo;ll hold it.</h2>
+    </div>
+
+    <div class="bgrid">
+      <div class="rv">
+        <form id="bookform" novalidate>
+          <div class="f-two">
+            <div class="f-row">
+              <label class="f-lab" for="f-name">Name</label>
+              <input type="text" id="f-name" name="name" autocomplete="name" required>
+            </div>
+            <div class="f-row">
+              <label class="f-lab" for="f-tel">Mobile (we text the ETA)</label>
+              <input type="tel" id="f-tel" name="tel" autocomplete="tel" required>
+            </div>
+          </div>
+          <div class="f-two">
+            <div class="f-row">
+              <label class="f-lab" for="f-zip">ZIP code</label>
+              <input type="text" id="f-zip" name="zip" inputmode="numeric" autocomplete="postal-code">
+            </div>
+            <div class="f-row">
+              <label class="f-lab" for="f-svc">What do you need?</label>
+              <select id="f-svc" name="svc">
+                <option>Cooling repair</option>
+                <option>Heating repair</option>
+                <option>Seasonal tune-up</option>
+                <option>New system estimate</option>
+                <option>Air quality visit</option>
+                <option>Not sure — talk it through</option>
+              </select>
+            </div>
+          </div>
+          <fieldset>
+            <legend>How soon?</legend>
+            <div class="radios">
+              <label class="radio"><input type="radio" name="when" value="tonight"> Tonight — it&rsquo;s an emergency</label>
+              <label class="radio"><input type="radio" name="when" value="week" checked> This week</label>
+              <label class="radio"><input type="radio" name="when" value="planning"> Just planning</label>
+            </div>
+          </fieldset>
+          <p class="urgent-note" id="urgentnote">Emergencies move faster by phone — a human is on the line right now: <a href="tel:+14045550163">(404)&nbsp;555-0163</a></p>
+          <button class="btn btn-solid book-btn" type="submit">Request my window</button>
+          <p class="f-fine">WE TEXT BACK WITHIN 15 MINUTES, 7 A.M.&ndash;10 P.M. NO SPAM, NO SHARED DATA.</p>
+        </form>
+
+        <div class="confirm" id="confirm" role="status">
+          <h3>You&rsquo;re on the board.</h3>
+          <p id="confirmtext">We&rsquo;ll text you within 15 minutes to lock your window.</p>
+          <p>If this turned urgent, the phone is faster: <a href="tel:+14045550163">(404) 555-0163</a></p>
+        </div>
+      </div>
+
+      <aside class="rv">
+        <div class="aside-block">
+          <h3>New system? Easy number.</h3>
+          <p>Most full replacements run $8,000&ndash;$14,000 installed, and nobody budgets for that in July. We offer 0% for 18 months or fixed plans out to 120 months. Sixty-second application, soft credit check first — no surprise at the kitchen table.</p>
+        </div>
+        <div class="aside-block">
+          <h3>Prefer a voice?</h3>
+          <p>Same people, same three-minute pickup, any hour of any day.</p>
+          <a class="big-tel" href="tel:+14045550163">(404) 555-0163</a>
+        </div>
+        <!-- @r020:F2 proof: art-directed placeholder for the night-desk shot — proves the 24/7 line is a staffed desk, not voicemail; caption names the intended photograph -->
+        <figure class="ph ph-sm">
+          <figcaption>PHOTO — RENEE AT THE NIGHT DESK, 2:03 A.M., HEADSET ON, TWO SCREENS OF TRUCK ROUTES. THE SHOT SAYS: THE LINE IS NEVER EMPTY.</figcaption>
+        </figure>
+      </aside>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- ============ FOOTER ============ -->
+<footer>
+  <div class="wrap">
+    <p class="f-line rv">The <em>peak</em> of home comfort, on the worst night of your summer.</p>
+
+    <div class="f-grid">
+      <div class="f-brand">
+        <a class="brand" href="#top" aria-label="ACME Heating and Air — back to top">
+          <!-- @r020:identity: ACME peak monogram repeated at identity scale in the footer lockup -->
+          <svg viewBox="0 0 48 46" fill="none" aria-hidden="true" style="width:34px;height:33px;color:var(--cream)">
+            <path d="M5 42 L24 14 L43 42" stroke="currentColor" stroke-width="2.6"/>
+            <path d="M15.7 30 H32.3" stroke="currentColor" stroke-width="2.6"/>
+            <path d="M24 1 C24.7 4.2 26.8 6.3 30 7 C26.8 7.7 24.7 9.8 24 13 C23.3 9.8 21.2 7.7 18 7 C21.2 6.3 23.3 4.2 24 1 Z" fill="#F0B24A"/>
+          </svg>
+          <span class="brand-t">ACME<small>HEATING &amp; AIR</small></span>
+        </a>
+        <a class="f-tel" href="tel:+14045550163">(404) 555-0163</a>
+        <p>Headquartered in Chamblee, just inside the Perimeter. Family-run since 1994.</p>
+      </div>
+
+      <div>
+        <p class="f-h">SERVICE AREAS</p>
+        <ul class="areas">
+          <li>Atlanta</li><li>Decatur</li><li>Brookhaven</li><li>Sandy Springs</li>
+          <li>Dunwoody</li><li>Marietta</li><li>Smyrna</li><li>Roswell</li>
+          <li>Alpharetta</li><li>Johns Creek</li><li>Duluth</li><li>Chamblee</li>
+          <li>Tucker</li><li>East Cobb</li>
+        </ul>
+      </div>
+
+      <div>
+        <p class="f-h">HOURS</p>
+        <ul class="hours">
+          <li><b>Office &amp; scheduled visits</b>Mon&ndash;Sat, 7 a.m.&ndash;7 p.m.</li>
+          <li><b>Emergency line</b>24 / 7 / 365 — a person, not a machine</li>
+          <li><b>Summit members</b>Front of the line, every season</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="f-legal">
+      <span>&copy; 2026 ACME HEATING &amp; AIR LLC — A FICTIONAL COMPANY</span>
+      <span>GA CONDITIONED AIR LICENSE CN210448</span>
+      <span>LICENSED &middot; BONDED &middot; INSURED</span>
+    </div>
+  </div>
+</footer>
+
+<a class="callbar" href="tel:+14045550163"><span class="mono">24/7</span>Call now — (404) 555-0163</a>
+
+<script>
+(function(){
+  document.documentElement.classList.add('js');
+
+  /* live clock + day-part line */
+  var clock=document.getElementById('clock'), daypart=document.getElementById('daypart');
+  function tick(){
+    var d=new Date(),h=d.getHours(),m=d.getMinutes();
+    var ap=h>=12?'p.m.':'a.m.',hh=h%12||12,mm=(m<10?'0':'')+m;
+    clock.textContent=hh+':'+mm+' '+ap;
+    var line;
+    if(h>=21||h<6){line='We’re <em>awake</em>.';}
+    else if(h<17){line='We’re <em>already rolling</em>.';}
+    else{line='We’re <em>still out there</em>.';}
+    daypart.innerHTML=line;
+  }
+  try{tick();setInterval(tick,30000);}catch(e){}
+
+  /* scroll reveal */
+  var els=document.querySelectorAll('.rv');
+  if('IntersectionObserver' in window){
+    var io=new IntersectionObserver(function(entries){
+      entries.forEach(function(en){
+        if(en.isIntersecting){en.target.classList.add('on');io.unobserve(en.target);}
+      });
+    },{threshold:.12,rootMargin:'0px 0px -6% 0px'});
+    els.forEach(function(el){io.observe(el);});
+  }else{
+    els.forEach(function(el){el.classList.add('on');});
+  }
+
+  /* booking form */
+  var form=document.getElementById('bookform'),
+      confirmBox=document.getElementById('confirm'),
+      confirmText=document.getElementById('confirmtext'),
+      note=document.getElementById('urgentnote');
+  form.addEventListener('submit',function(ev){
+    ev.preventDefault();
+    var name=(document.getElementById('f-name').value||'').trim().split(/\s+/)[0];
+    confirmText.textContent=(name?('Got it, '+name+' — '):'Got it — ')+
+      'we’ll text you within 15 minutes (7 a.m.–10 p.m.) to lock your window.';
+    form.style.display='none';
+    confirmBox.classList.add('show');
+    confirmBox.scrollIntoView({block:'nearest'});
+  });
+  form.addEventListener('change',function(ev){
+    if(ev.target.name==='when'){
+      note.classList.toggle('show',ev.target.value==='tonight');
+    }
+  });
+})();
+</script>
+</body>
+</html>

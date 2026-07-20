@@ -1,0 +1,977 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Buildwise Media — Verifiable AI Growth Systems for Service Businesses</title>
+<meta name="description" content="You run the business. The system makes you the most-chosen name in your market. A custom AI growth system on your domain — run for you, owned by you, verified by you.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=IBM+Plex+Mono:wght@400;500;600&family=Instrument+Serif:ital@0;1&family=Inter:wght@300;800&display=swap" rel="stylesheet">
+<style>
+/* ============ TOKENS ============ */
+:root{
+  --paper:#F4F3EA;
+  --paper2:#EAE8DA;
+  --ink:#131309;
+  --ink2:#3C3C30;
+  --mut:#74745F;
+  --line:rgba(19,19,9,.16);
+  --line-soft:rgba(19,19,9,.09);
+  --y:#F0FF00;
+  --olive:#7A8400;
+  --head-h:62px;
+  --mono:'IBM Plex Mono',ui-monospace,monospace;
+  --disp:'Archivo',sans-serif;
+  --serif:'Instrument Serif',serif;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{
+  font-family:var(--disp);
+  font-weight:470;
+  background:var(--paper);
+  color:var(--ink);
+  font-size:16.5px;
+  line-height:1.6;
+  overflow-x:hidden;
+}
+::selection{background:var(--y);color:var(--ink)}
+:focus-visible{outline:2px solid var(--ink);outline-offset:3px}
+.sec-ink :focus-visible, footer :focus-visible{outline-color:var(--y)}
+a{color:inherit}
+ul,ol{list-style:none}
+button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
+.wrap{width:min(1400px,100%);margin-inline:auto;padding-inline:clamp(20px,4vw,56px)}
+@media(min-width:1100px){.wrap{border-inline:1px solid var(--line-soft)}}
+.sec-ink .wrap, .artband .wrap, footer .wrap{border-color:rgba(244,243,234,.12)}
+section[id]{scroll-margin-top:calc(var(--head-h) + 20px)}
+.skip{position:fixed;top:-60px;left:16px;z-index:200;background:var(--ink);color:var(--y);font-family:var(--mono);font-size:11px;letter-spacing:.1em;padding:10px 16px;text-decoration:none;transition:top .2s}
+.skip:focus{top:12px}
+
+/* ============ TYPE UTILITIES ============ */
+.disp{font-family:var(--disp);font-variation-settings:'wdth' 66;font-weight:740;text-transform:uppercase;line-height:.95;letter-spacing:0}
+.serif{font-family:var(--serif);font-style:italic;font-weight:400;text-transform:none;letter-spacing:0}
+.mono{font-family:var(--mono)}
+.hl{background:var(--y);color:var(--ink);padding:.02em .1em;-webkit-box-decoration-break:clone;box-decoration-break:clone}
+.eyebrow{font-family:var(--mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--mut);display:flex;align-items:center;gap:12px}
+.eyebrow::before{content:'';width:10px;height:10px;background:var(--y);border:1px solid var(--ink);flex:none}
+.eyebrow-y{color:rgba(244,243,234,.55)}
+.h2{font-family:var(--disp);font-variation-settings:'wdth' 68;font-weight:730;text-transform:uppercase;line-height:.97;font-size:clamp(38px,5.4vw,80px)}
+.h2 .hline{display:block}
+.h2 .serif{font-size:1.05em}
+.body-lg{font-size:clamp(16.5px,1.35vw,19px);line-height:1.65;color:var(--ink2);max-width:56ch}
+.body-lg + .body-lg{margin-top:1.1em}
+
+/* ============ BUTTONS ============ */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;font-family:var(--mono);font-size:12px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;text-decoration:none;padding:17px 24px;border:1.5px solid var(--ink);transition:background .25s,color .25s,transform .25s;white-space:nowrap}
+.btn .arr{transition:transform .25s}
+.btn:hover .arr{transform:translateX(5px)}
+.btn-primary{background:var(--y);color:var(--ink)}
+.btn-primary:hover{background:var(--ink);color:var(--y)}
+.btn-ghost{background:transparent;color:var(--ink)}
+.btn-ghost:hover{background:var(--ink);color:var(--paper)}
+.btn-ink{background:var(--ink);color:var(--y)}
+.btn-ink:hover{background:var(--paper);color:var(--ink)}
+
+/* ============ HEADER ============ */
+#site-head{position:fixed;top:0;left:0;right:0;z-index:80;background:rgba(244,243,234,.92);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-bottom:1px solid var(--line);transition:box-shadow .3s}
+#site-head.scrolled{box-shadow:0 1px 0 var(--ink)}
+.head-inner{width:min(1400px,100%);margin-inline:auto;padding:14px clamp(20px,4vw,56px);display:flex;align-items:center;justify-content:space-between;gap:24px}
+.brand{display:inline-block;line-height:0}
+.brand svg{height:30px;width:auto;display:block}
+.head-nav{display:flex;gap:28px}
+.head-nav a{font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink2);text-decoration:none;position:relative;padding:4px 0}
+.head-nav a::after{content:'';position:absolute;left:0;bottom:0;width:100%;height:2px;background:var(--y);transform:scaleX(0);transform-origin:left;transition:transform .3s}
+.head-nav a:hover{color:var(--ink)}
+.head-nav a:hover::after{transform:scaleX(1)}
+.head-cta{padding:12px 18px;font-size:11px}
+.cta-short{display:none}
+@media(max-width:960px){.head-nav{display:none}}
+@media(max-width:560px){.cta-long{display:none}.cta-short{display:inline}.head-cta{padding:11px 14px}}
+
+/* ============ HERO ============ */
+.hero{position:relative;overflow:hidden;padding-top:calc(var(--head-h) + clamp(30px,5vh,60px));padding-bottom:clamp(48px,7vh,84px)}
+#net{position:absolute;inset:0;display:block}
+.hero-grid{position:relative;z-index:1;display:grid;grid-template-columns:1.32fr .92fr;gap:clamp(36px,4.5vw,80px);align-items:start}
+.hero-eyebrow-row{display:flex;justify-content:space-between;gap:18px;border-top:1.5px solid var(--ink);padding-top:14px;margin-bottom:clamp(28px,4.5vh,48px)}
+.hero-eyebrow-row span{font-family:var(--mono);font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink2)}
+.h1{font-family:var(--disp);font-variation-settings:'wdth' 64;font-weight:740;text-transform:uppercase;line-height:.95;font-size:clamp(37px,7.4vw,108px)}
+.h1 .hline{display:block}
+.h-serif{font-family:var(--serif);font-style:italic;font-weight:400;text-transform:none;font-size:1.07em;letter-spacing:-.01em}
+.hero-sub{margin-top:clamp(22px,3vh,30px);max-width:54ch;font-size:clamp(16px,1.3vw,18.5px);line-height:1.62;color:var(--ink2)}
+.hero-ctas{display:flex;flex-wrap:wrap;gap:12px;margin-top:clamp(26px,3.5vh,34px)}
+.hero-note{margin-top:18px;font-family:var(--mono);font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--mut);display:flex;align-items:center;gap:10px}
+.hero-note::before{content:'';width:9px;height:9px;background:var(--y);border:1px solid var(--ink);flex:none}
+.scroll-cue{margin-top:clamp(34px,6vh,60px);font-family:var(--mono);font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--mut)}
+
+/* Exhibit panel */
+.exhibit{background:var(--ink);color:var(--paper);padding:clamp(20px,2.2vw,28px);border:1px solid #000;box-shadow:10px 10px 0 var(--y);position:relative}
+.ex-head{display:flex;justify-content:space-between;align-items:center;gap:12px;font-family:var(--mono);font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:rgba(244,243,234,.55);padding-bottom:14px;border-bottom:1px solid rgba(244,243,234,.16)}
+.ex-head b{color:var(--y);font-weight:500}
+.live{display:inline-flex;align-items:center;gap:8px}
+.live i{width:8px;height:8px;border-radius:50%;background:var(--y);animation:pulse 2.2s ease-in-out infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.2}}
+.ex-rows{padding:4px 0 0}
+.ex-row{display:flex;justify-content:space-between;align-items:center;gap:16px;padding:15px 0;border-bottom:1px solid rgba(244,243,234,.12)}
+.ex-row:last-child{border-bottom:0}
+.ex-label{font-family:var(--mono);font-size:11.5px;letter-spacing:.12em;text-transform:uppercase;color:rgba(244,243,234,.85)}
+.ex-blank{width:84px;height:13px;background:var(--y);flex:none}
+.ex-note{margin-top:16px;font-family:var(--serif);font-style:italic;font-size:clamp(18px,1.6vw,20px);line-height:1.45;color:rgba(244,243,234,.92)}
+.ex-tag{margin-top:14px;font-family:var(--mono);font-size:9px;letter-spacing:.16em;text-transform:uppercase;color:rgba(244,243,234,.45)}
+
+/* ============ TICKER ============ */
+.ticker{background:var(--y);border-block:1.5px solid var(--ink);overflow:hidden}
+.ticker-track{display:flex;width:max-content;animation:tick 32s linear infinite}
+.tk-group{display:flex}
+.tk{display:inline-flex;align-items:center;gap:24px;padding:14px 24px 14px 0;font-family:var(--mono);font-size:12px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--ink);white-space:nowrap}
+.tk i{font-style:normal;font-size:8px}
+@keyframes tick{to{transform:translateX(-50%)}}
+
+/* ============ SECTIONS COMMON ============ */
+.sec{padding-block:clamp(76px,10vw,140px)}
+.sec-alt{background:var(--paper2);border-block:1px solid var(--line)}
+.sec-head-row{display:grid;grid-template-columns:1.15fr .85fr;gap:clamp(24px,4vw,64px);align-items:end;margin-bottom:clamp(36px,5vw,64px)}
+.sec-head-row .eyebrow{margin-bottom:20px}
+@media(max-width:960px){.sec-head-row{grid-template-columns:1fr;align-items:start}}
+
+/* ============ WHO ============ */
+.who-grid{display:grid;grid-template-columns:1fr 1fr;gap:clamp(32px,4.5vw,80px);align-items:start}
+@media(max-width:960px){.who-grid{grid-template-columns:1fr}}
+.fam-head{font-family:var(--mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--mut);margin-bottom:14px;display:flex;align-items:center;gap:10px}
+.fam-head::before{content:'';width:10px;height:10px;background:var(--ink);flex:none}
+.fam li{display:flex;gap:16px;padding:20px 0;border-bottom:1px solid var(--line);font-size:16.5px;line-height:1.5;font-weight:500}
+.fam li:first-child{border-top:1px solid var(--ink)}
+.fam li::before{content:'';width:10px;height:10px;background:var(--y);border:1px solid var(--ink);flex:none;margin-top:6px}
+
+/* ============ ART BAND ============ */
+.artband{background:var(--ink);color:var(--paper);padding-block:clamp(72px,9vw,124px);overflow:hidden}
+.art-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:clamp(36px,5vw,88px);align-items:center}
+@media(max-width:900px){.art-grid{grid-template-columns:1fr}}
+.art-line{margin-top:22px;font-family:var(--serif);font-style:italic;font-size:clamp(30px,3.6vw,52px);line-height:1.16;max-width:17ch;color:var(--paper)}
+.art-cap{margin-top:28px;font-family:var(--mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:rgba(244,243,234,.5);border-left:2px solid var(--y);padding-left:14px;max-width:46ch;line-height:1.8}
+.halftone{justify-self:center;width:min(400px,78%);aspect-ratio:1;background-image:radial-gradient(rgba(240,255,0,.95) 1.5px,transparent 1.65px);background-size:14px 14px;-webkit-mask-image:radial-gradient(circle,#000 0%,#000 40%,transparent 70%);mask-image:radial-gradient(circle,#000 0%,#000 40%,transparent 70%)}
+@media(max-width:900px){.halftone{justify-self:start;width:min(300px,70%)}}
+
+/* ============ REPLACE LEDGER ============ */
+.ledger{border-top:1.5px solid var(--ink)}
+.l-row{display:grid;grid-template-columns:48px 1fr auto;align-items:center;gap:16px;padding:20px 0;border-bottom:1px solid var(--line)}
+.l-idx{font-family:var(--mono);font-size:10.5px;letter-spacing:.1em;color:var(--mut)}
+.l-name{font-family:var(--disp);font-variation-settings:'wdth' 70;font-weight:720;font-size:clamp(18px,2vw,26px);text-transform:uppercase;line-height:1.1}
+.l-name .strike{position:relative;display:inline-block}
+.l-name .strike::after{content:'';position:absolute;left:-2%;top:55%;width:0;height:2.5px;background:var(--ink);transition:width .55s cubic-bezier(.7,0,.3,1);transition-delay:var(--sd,0s)}
+.l-jab{display:block;font-family:var(--mono);font-size:10.5px;letter-spacing:.06em;color:var(--mut);margin-top:6px}
+.l-tag{font-family:var(--mono);font-size:9.5px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;background:var(--y);border:1px solid var(--ink);color:var(--ink);padding:5px 9px;white-space:nowrap;opacity:0;transform:translateX(10px);transition:opacity .45s ease,transform .45s ease;transition-delay:calc(var(--sd,0s) + .35s)}
+.ledger.struck .strike::after{width:104%}
+.ledger.struck .l-tag{opacity:1;transform:none}
+.ledger-sum{margin-top:28px;background:var(--ink);color:var(--paper);padding:clamp(18px,2.4vw,26px);display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:10px 28px}
+.ledger-sum .ls-name{font-family:var(--disp);font-variation-settings:'wdth' 70;font-weight:740;font-size:clamp(18px,2vw,26px);text-transform:uppercase;color:var(--y)}
+.ledger-sum .ls-note{font-family:var(--mono);font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:rgba(244,243,234,.6)}
+@media(max-width:640px){.l-row{grid-template-columns:1fr auto;row-gap:6px}.l-idx{display:none}}
+
+/* ============ SYSTEM ACCORDION ============ */
+.acc{border-top:1.5px solid var(--ink)}
+.acc-item{border-bottom:1px solid var(--line)}
+.acc-head{width:100%;display:grid;grid-template-columns:72px 1fr 40px;align-items:center;gap:16px;padding:24px 0;text-align:left}
+.acc-idx{font-family:var(--mono);font-size:11px;letter-spacing:.1em;color:var(--mut)}
+.acc-title{font-family:var(--disp);font-variation-settings:'wdth' 70;font-weight:730;font-size:clamp(20px,2.6vw,32px);text-transform:uppercase;color:var(--ink);transition:color .2s}
+.acc-head:hover .acc-title{background-image:linear-gradient(transparent 60%,rgba(240,255,0,.9) 60%,rgba(240,255,0,.9) 96%,transparent 96%)}
+.acc-icon{position:relative;width:16px;height:16px;justify-self:end}
+.acc-icon::before,.acc-icon::after{content:'';position:absolute;left:0;top:7px;width:16px;height:2px;background:var(--ink)}
+.acc-icon::after{transform:rotate(90deg);transition:transform .35s}
+.acc-item.open .acc-icon::after{transform:rotate(0deg)}
+.acc-panel{display:grid;grid-template-rows:0fr;transition:grid-template-rows .5s cubic-bezier(.4,0,.2,1)}
+.acc-item.open .acc-panel{grid-template-rows:1fr}
+.acc-inner{overflow:hidden}
+.acc-inner p{padding:0 60px 28px 88px;max-width:68ch;color:var(--ink2);font-size:16.5px;line-height:1.62}
+@media(max-width:720px){.acc-head{grid-template-columns:44px 1fr 32px;padding:18px 0}.acc-inner p{padding:0 8px 24px 0;font-size:15.5px}}
+
+/* ============ PROOF ============ */
+.sec-ink{background:var(--ink);color:var(--paper)}
+.sec-ink .h2{color:var(--paper)}
+.sec-ink .body-lg{color:rgba(244,243,234,.72)}
+.proof-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(26px,3.4vw,52px)}
+@media(max-width:900px){.proof-grid{grid-template-columns:1fr}}
+.proof-col{border-top:2px solid rgba(244,243,234,.25);padding-top:20px}
+.p-idx{font-family:var(--mono);font-size:11px;letter-spacing:.14em;color:var(--y);margin-bottom:14px}
+.p-title{font-family:var(--disp);font-variation-settings:'wdth' 72;font-weight:730;font-size:clamp(19px,1.9vw,24px);text-transform:uppercase;margin-bottom:12px;color:var(--paper)}
+.p-body{color:rgba(244,243,234,.72);font-size:15.5px;line-height:1.65}
+.tbox{margin-top:clamp(44px,5.5vw,68px);border:1.5px dashed rgba(240,255,0,.55);padding:clamp(28px,4vw,52px);text-align:center}
+.tbox-chip{display:inline-block;background:var(--y);color:var(--ink);font-family:var(--mono);font-size:10px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;padding:6px 12px;margin-bottom:20px}
+.tbox p{font-family:var(--serif);font-style:italic;font-size:clamp(19px,2.1vw,26px);line-height:1.5;color:rgba(244,243,234,.88);max-width:54ch;margin:0 auto}
+.tbox small{display:block;margin-top:18px;font-family:var(--mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:rgba(244,243,234,.42)}
+
+/* ============ HOW / TIMELINE ============ */
+.how-grid{display:grid;grid-template-columns:.82fr 1.18fr;gap:clamp(36px,5vw,88px);align-items:start}
+@media(max-width:960px){.how-grid{grid-template-columns:1fr}}
+.how-side .eyebrow{margin-bottom:20px}
+.how-side .body-lg{margin-top:22px}
+.how-side .btn{margin-top:28px}
+.timeline{margin-top:6px}
+.timeline li{position:relative;display:grid;grid-template-columns:150px 1fr;gap:20px;padding:20px 0 24px 28px;border-left:1px solid var(--line)}
+.timeline li::before{content:'';position:absolute;left:-7px;top:30px;width:11px;height:11px;background:var(--y);border:1.5px solid var(--ink)}
+.t-day{font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--mut);padding-top:5px;white-space:nowrap}
+.t-title{font-family:var(--disp);font-variation-settings:'wdth' 74;font-weight:720;font-size:19px;text-transform:uppercase;margin-bottom:6px}
+.t-sub{color:var(--ink2);font-size:15.5px;line-height:1.6;max-width:54ch}
+@media(max-width:640px){.timeline li{grid-template-columns:1fr;gap:4px;padding-left:22px}}
+
+/* ============ OFFER ============ */
+.anchorbar{background:var(--ink);color:var(--paper);padding:clamp(18px,2.4vw,26px);font-family:var(--mono);font-size:11px;letter-spacing:.06em;line-height:1.9;text-transform:uppercase}
+.anchorbar b{color:var(--y);font-weight:600}
+.plans{margin-top:clamp(30px,3.4vw,48px);display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(14px,1.8vw,22px);align-items:stretch}
+@media(max-width:1020px){.plans{grid-template-columns:1fr;max-width:560px}}
+.plan{border:1.5px solid var(--ink);background:var(--paper);padding:clamp(24px,2.6vw,32px);display:flex;flex-direction:column;position:relative;transition:transform .3s,box-shadow .3s}
+.plan:hover{transform:translateY(-4px);box-shadow:8px 8px 0 rgba(19,19,9,.9)}
+.plan.featured{background:var(--ink);color:var(--paper)}
+.plan.featured:hover{box-shadow:8px 8px 0 var(--y)}
+.plan-flag{position:absolute;top:-13px;left:22px;background:var(--y);border:1px solid var(--ink);color:var(--ink);font-family:var(--mono);font-size:9.5px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;padding:5px 10px}
+.plan-name{font-family:var(--mono);font-size:12px;font-weight:600;letter-spacing:.18em;text-transform:uppercase}
+.plan-tag{font-family:var(--serif);font-style:italic;font-size:17px;color:var(--mut);margin-top:6px}
+.plan.featured .plan-tag{color:rgba(244,243,234,.6)}
+.plan-price{margin-top:24px;font-family:var(--disp);font-variation-settings:'wdth' 68;font-weight:760;font-size:clamp(30px,2.8vw,38px);line-height:1;text-transform:uppercase}
+.plan-price2{margin-top:10px;font-family:var(--disp);font-variation-settings:'wdth' 68;font-weight:720;font-size:clamp(19px,1.9vw,25px);line-height:1;text-transform:uppercase}
+.pp-s{font-family:var(--mono);font-size:10px;font-weight:500;letter-spacing:.12em;color:var(--mut);margin-left:8px;vertical-align:middle}
+.plan.featured .pp-s{color:rgba(244,243,234,.55)}
+.plan-meta{margin-top:16px;font-size:14px;line-height:1.6;color:var(--ink2)}
+.plan.featured .plan-meta{color:rgba(244,243,234,.75)}
+.plan-rep{margin-top:14px;font-family:var(--mono);font-size:9.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--mut);display:flex;align-items:center;gap:9px}
+.plan-rep::before{content:'';width:8px;height:8px;background:var(--y);border:1px solid var(--ink);flex:none}
+.plan.featured .plan-rep{color:rgba(244,243,234,.55)}
+.plan-list{margin-top:20px;border-top:1px solid var(--line);flex:1}
+.plan.featured .plan-list{border-color:rgba(244,243,234,.2)}
+.plan-list li{display:flex;gap:12px;padding:12px 0;border-bottom:1px solid var(--line);font-size:14.5px;line-height:1.5;font-weight:500}
+.plan.featured .plan-list li{border-color:rgba(244,243,234,.2)}
+.plan-list li::before{content:'';width:9px;height:9px;background:var(--y);border:1px solid var(--ink);flex:none;margin-top:5px}
+.plan-cta{margin-top:24px;width:100%}
+
+/* ============ FAQ ============ */
+.faq-grid{display:grid;grid-template-columns:.8fr 1.2fr;gap:clamp(36px,5vw,88px);align-items:start}
+@media(max-width:960px){.faq-grid{grid-template-columns:1fr}}
+.faq .acc-head{grid-template-columns:1fr 40px;padding:20px 0}
+.faq .acc-title{font-size:clamp(16px,1.7vw,20px);font-variation-settings:'wdth' 78;font-weight:700;line-height:1.25;text-transform:none}
+.faq .acc-inner p{padding:0 48px 24px 0;font-size:15.5px}
+.faq-side .body-lg{margin-top:22px}
+
+/* ============ FINAL CTA ============ */
+.final{background:var(--y);border-top:1.5px solid var(--ink);padding-block:clamp(84px,11vw,150px);text-align:center}
+.final .wrap{display:flex;flex-direction:column;align-items:center}
+.markchip{width:76px;height:76px;background:var(--ink);display:grid;place-items:center;margin-bottom:30px}
+.markchip svg{width:56px;height:56px;display:block}
+.final-eyebrow{font-family:var(--mono);font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:rgba(19,19,9,.65);margin-bottom:22px}
+.final-h{font-family:var(--disp);font-variation-settings:'wdth' 64;font-weight:760;text-transform:uppercase;line-height:.95;font-size:clamp(42px,7vw,100px)}
+.final-h .hline{display:block}
+.final-h .serif{font-size:1.05em}
+.final-body{margin-top:26px;max-width:56ch;font-size:clamp(16px,1.4vw,18.5px);line-height:1.62;color:rgba(19,19,9,.82);font-weight:500}
+.final-ctas{margin-top:36px;display:flex;gap:14px;flex-wrap:wrap;justify-content:center}
+.final .btn-ghost:hover{background:var(--ink);color:var(--y)}
+.final-note{margin-top:30px;font-family:var(--mono);font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:rgba(19,19,9,.6);max-width:52ch;line-height:1.8}
+
+/* ============ FOOTER ============ */
+footer{background:var(--ink);color:var(--paper);padding:clamp(52px,6vw,84px) 0 44px}
+.foot-grid{display:grid;grid-template-columns:1.4fr .6fr 1fr;gap:clamp(32px,4.5vw,72px)}
+@media(max-width:900px){.foot-grid{grid-template-columns:1fr}}
+.foot-brand svg{height:46px;width:auto;display:block}
+.foot-tag{margin-top:20px;font-family:var(--serif);font-style:italic;font-size:18px;line-height:1.5;color:rgba(244,243,234,.6);max-width:36ch}
+.foot-h{font-family:var(--mono);font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;color:rgba(244,243,234,.45);margin-bottom:14px}
+.foot-nav a{display:block;color:var(--paper);text-decoration:none;font-size:15px;font-weight:500;padding:6px 0;transition:color .2s}
+.foot-nav a:hover{color:var(--y)}
+.foot-next a{display:inline-block;color:var(--y);font-family:var(--disp);font-variation-settings:'wdth' 70;font-weight:740;font-size:clamp(20px,2vw,26px);text-transform:uppercase;text-decoration:none;line-height:1.15}
+.foot-next a:hover{color:var(--paper)}
+.foot-next .fn-sub{margin-top:12px;font-family:var(--mono);font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:rgba(244,243,234,.45);line-height:1.8}
+.foot-bottom{margin-top:clamp(40px,5vw,60px);border-top:1px solid rgba(244,243,234,.14);padding-top:22px;display:flex;flex-wrap:wrap;gap:10px 36px;justify-content:space-between;font-family:var(--mono);font-size:9.5px;letter-spacing:.1em;text-transform:uppercase;color:rgba(244,243,234,.4);line-height:1.8}
+.foot-bottom span{max-width:60ch}
+
+/* ============ STICKY MOBILE CTA ============ */
+.sticky-cta{position:fixed;left:0;right:0;bottom:0;z-index:70;background:var(--y);border-top:1.5px solid var(--ink);display:none;align-items:center;justify-content:center;gap:10px;padding:15px 20px;font-family:var(--mono);font-size:11.5px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--ink);text-decoration:none;transform:translateY(105%);transition:transform .45s cubic-bezier(.22,1,.36,1)}
+.sticky-cta.show{transform:none}
+@media(max-width:860px){.sticky-cta{display:flex}body{padding-bottom:56px}}
+
+/* ============ REVEAL ============ */
+[data-reveal]{opacity:0;transform:translateY(26px);transition:opacity .8s ease var(--d,0s),transform .8s cubic-bezier(.22,1,.36,1) var(--d,0s)}
+[data-reveal].revealed{opacity:1;transform:none}
+@media(prefers-reduced-motion:reduce){
+  [data-reveal]{opacity:1;transform:none;transition:none}
+  .ticker-track{animation:none}
+  .live i{animation:none}
+  html{scroll-behavior:auto}
+}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+
+<header id="site-head">
+  <div class="head-inner">
+    <a class="brand" href="#top" aria-label="Buildwise Media — home">
+      
+      <svg viewBox="0 0 1000 250" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Buildwise Media">
+        <defs>
+          <linearGradient id="metallic-y2-head" x1="0%" y1="0%" x2="0%" y2="100%">
+            <stop offset="0%" stop-color="#FFFD58"/>
+            <stop offset="48%" stop-color="#F0FF00"/>
+            <stop offset="100%" stop-color="#C8D300"/>
+          </linearGradient>
+        </defs>
+        <g transform="translate(25, 25) scale(2)">
+          <line x1="50" y1="22" x2="22" y2="70" stroke="#7A8400" stroke-width="1.4" stroke-linecap="round"/>
+          <line x1="50" y1="22" x2="78" y2="70" stroke="#7A8400" stroke-width="1.4" stroke-linecap="round"/>
+          <line x1="22" y1="70" x2="78" y2="70" stroke="#7A8400" stroke-width="1.4" stroke-linecap="round"/>
+          <circle cx="50" cy="22" r="9" fill="url(#metallic-y2-head)"/>
+          <circle cx="22" cy="70" r="6.5" fill="#F0FF00"/>
+          <circle cx="78" cy="70" r="6.5" fill="#F0FF00"/>
+          <circle cx="50" cy="54" r="3" fill="#F0FF00"/>
+        </g>
+        <text x="265" y="135" font-family="Inter, sans-serif" font-weight="800" font-size="98" fill="#131309" letter-spacing="-3">BUILDWISE</text>
+        <text x="265" y="200" font-family="Inter, sans-serif" font-weight="300" font-size="50" fill="#131309" letter-spacing="6">MEDIA</text>
+      </svg>
+    </a>
+    <nav class="head-nav" aria-label="Primary">
+      <a href="#system">The System</a>
+      <a href="#proof">Proof</a>
+      <a href="#offer">Plans</a>
+      <a href="#faq">FAQ</a>
+    </nav>
+    <a class="btn btn-primary head-cta" href="/book">
+      <span class="cta-long">Get My Free Revenue Leak Map</span><span class="cta-short">Free Leak Map</span>
+    </a>
+  </div>
+</header>
+
+<main id="main">
+
+
+<section class="hero" id="top">
+  <canvas id="net" aria-hidden="true"></canvas>
+  <div class="wrap hero-grid">
+    <div class="hero-copy">
+      <div class="hero-eyebrow-row" data-reveal>
+        <span>Verifiable AI growth systems</span>
+        <span>For owner-led US service businesses</span>
+      </div>
+      <h1 class="h1" data-reveal style="--d:.08s">
+        <span class="hline">You run</span>
+        <span class="hline">the business.</span>
+        <span class="hline"><span class="h-serif">the system</span> makes you</span>
+        <span class="hline">the <span class="hl">most-chosen</span></span>
+        <span class="hline">name in your market.</span>
+      </h1>
+      <p class="hero-sub" data-reveal style="--d:.16s">We build a custom AI growth system on your domain. Our team runs it for you. The asset stays yours. And you can check every lead, call, and job it brings in — with your own eyes.</p>
+      <div class="hero-ctas" data-reveal style="--d:.24s">
+        <a class="btn btn-primary" href="/book">Get My Free Revenue Leak Map <span class="arr">→</span></a>
+        <a class="btn btn-ghost" href="#system">See the System <span class="arr">↓</span></a>
+      </div>
+      <p class="hero-note" data-reveal style="--d:.3s">Free — shows where leads leak out of your business</p>
+      <p class="scroll-cue" data-reveal style="--d:.38s">Scroll — the evidence is below ↓</p>
+    </div>
+    <aside class="exhibit" data-reveal style="--d:.2s" aria-label="Sample of the weekly numbers sheet">
+      <div class="ex-head">
+        <span><b>Exhibit A</b> — The weekly numbers sheet</span>
+        <span class="live"><i></i>Live</span>
+      </div>
+      <div class="ex-rows">
+        <div class="ex-row"><span class="ex-label">New leads this week</span><span class="ex-blank"></span></div>
+        <div class="ex-row"><span class="ex-label">Calls answered</span><span class="ex-blank"></span></div>
+        <div class="ex-row"><span class="ex-label">Jobs booked</span><span class="ex-blank"></span></div>
+        <div class="ex-row"><span class="ex-label">Reviews earned</span><span class="ex-blank"></span></div>
+      </div>
+      <p class="ex-note">"The blanks fill in with your real numbers, every week. That's the whole pitch."</p>
+      <p class="ex-tag">Format preview — no client data shown</p>
+    </aside>
+  </div>
+</section>
+
+
+<div class="ticker" aria-hidden="true">
+  <div class="ticker-track">
+    <div class="tk-group">
+      <span class="tk">Live in 30 days <i>◆</i></span>
+      <span class="tk">True month-to-month <i>◆</i></span>
+      <span class="tk">No exit penalty <i>◆</i></span>
+      <span class="tk">Your domain — your asset <i>◆</i></span>
+      <span class="tk">Every lead visible <i>◆</i></span>
+      <span class="tk">Free Revenue Leak Map <i>◆</i></span>
+    </div>
+    <div class="tk-group">
+      <span class="tk">Live in 30 days <i>◆</i></span>
+      <span class="tk">True month-to-month <i>◆</i></span>
+      <span class="tk">No exit penalty <i>◆</i></span>
+      <span class="tk">Your domain — your asset <i>◆</i></span>
+      <span class="tk">Every lead visible <i>◆</i></span>
+      <span class="tk">Free Revenue Leak Map <i>◆</i></span>
+    </div>
+  </div>
+</div>
+
+
+<section class="sec" id="who">
+  <div class="wrap">
+    <div class="sec-head-row">
+      <div>
+        <p class="eyebrow" data-reveal>01 — Who this is for</p>
+        <h2 class="h2" data-reveal style="--d:.08s">
+          <span class="hline"><span class="serif">For the owner who</span></span>
+          <span class="hline">is the bottleneck.</span>
+        </h2>
+      </div>
+      <div data-reveal style="--d:.16s">
+        <p class="body-lg">You run a service business — heating-and-air, plumbing, or the trades next door. The work is solid. The phone should ring more. And every marketing chore somehow lands back on your desk, at night, after the real work is done.</p>
+        <p class="body-lg">You've been burned before. An agency took the retainer and sent reports you couldn't check. We'd be skeptical too. So we built the opposite of an agency: a system you own, with numbers you can verify.</p>
+      </div>
+    </div>
+    <div class="who-grid">
+      <div data-reveal>
+        <p class="fam-head">Sound familiar?</p>
+        <ul class="fam">
+          <li>A lead calls while you're on a job. By the time you call back, they've booked someone else.</li>
+          <li>You pay six different vendors. Not one of them can show you what actually worked.</li>
+          <li>The report says reach and clicks. Your bank account says otherwise.</li>
+        </ul>
+      </div>
+      <div data-reveal style="--d:.12s">
+        <p class="fam-head">The fix</p>
+        <ul class="fam">
+          <li>One system on your domain that answers, books, and follows up — while you do the real work.</li>
+          <li>One team that runs it for you. Nothing lands back on your desk.</li>
+          <li>One weekly sheet that shows every lead, every call, and every job. Good week or bad.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<section class="artband" aria-label="Field note">
+  <div class="wrap art-grid">
+    <div class="art-copy" data-reveal>
+      <p class="eyebrow eyebrow-y">Field note — 6:12 a.m.</p>
+      <p class="art-line">"While you're on the job, the system is working the next one."</p>
+      <p class="art-cap">Art-directed placeholder surface — "the dispatch board at dawn." No stock photos on this page.</p>
+    </div>
+    <div class="halftone" data-reveal style="--d:.15s" role="img" aria-label="Art-directed yellow dot-matrix surface representing a dispatch board at dawn"></div>
+  </div>
+</section>
+
+
+<section class="sec sec-alt" id="replace">
+  <div class="wrap">
+    <div class="sec-head-row">
+      <div>
+        <p class="eyebrow" data-reveal>02 — What it replaces</p>
+        <h2 class="h2" data-reveal style="--d:.08s">
+          <span class="hline">One system</span>
+          <span class="hline"><span class="serif">instead of</span> six invoices.</span>
+        </h2>
+      </div>
+      <p class="body-lg" data-reveal style="--d:.16s">This is the stack an owner otherwise assembles alone. It's the only fair way to read our prices — so we put it right here, before any price on this page.</p>
+    </div>
+    <div class="ledger" id="ledger" data-reveal>
+      <div class="l-row" style="--sd:.05s"><span class="l-idx">INV.01</span><span class="l-name"><span class="strike">Agency retainer</span><span class="l-jab">reports you couldn't check</span></span><span class="l-tag">Covered</span></div>
+      <div class="l-row" style="--sd:.2s"><span class="l-idx">INV.02</span><span class="l-name"><span class="strike">Website vendor</span><span class="l-jab">a site that just sits there</span></span><span class="l-tag">Covered</span></div>
+      <div class="l-row" style="--sd:.35s"><span class="l-idx">INV.03</span><span class="l-name"><span class="strike">Booking tool</span><span class="l-jab">one more login, one more fee</span></span><span class="l-tag">Covered</span></div>
+      <div class="l-row" style="--sd:.5s"><span class="l-idx">INV.04</span><span class="l-name"><span class="strike">Answering service</span><span class="l-jab">a stranger reading a script</span></span><span class="l-tag">Covered</span></div>
+      <div class="l-row" style="--sd:.65s"><span class="l-idx">INV.05</span><span class="l-name"><span class="strike">Ad management</span><span class="l-jab">spend first, answers later</span></span><span class="l-tag">Covered</span></div>
+      <div class="l-row" style="--sd:.8s"><span class="l-idx">INV.06</span><span class="l-name"><span class="strike">Part-time marketer</span><span class="l-jab">one more person to manage</span></span><span class="l-tag">Covered</span></div>
+    </div>
+    <div class="ledger-sum" data-reveal style="--d:.2s">
+      <span class="ls-name">The Buildwise System</span>
+      <span class="ls-note">One build · One team · One weekly sheet</span>
+    </div>
+  </div>
+</section>
+
+
+<section class="sec" id="system">
+  <div class="wrap">
+    <div class="sec-head-row">
+      <div>
+        <p class="eyebrow" data-reveal>03 — See the system</p>
+        <h2 class="h2" data-reveal style="--d:.08s">
+          <span class="hline">What the system</span>
+          <span class="hline"><span class="serif">actually</span> does.</span>
+        </h2>
+      </div>
+      <p class="body-lg" data-reveal style="--d:.16s">One AI growth system, built on your own domain and run by the Buildwise team plus our AI system. It does the work of the whole stack — and it shows its work.</p>
+    </div>
+    <div class="acc" data-reveal>
+      <div class="acc-item open">
+        <button class="acc-head" aria-expanded="true" aria-controls="acc-p-1" id="acc-b-1">
+          <span class="acc-idx">S.01</span><span class="acc-title">It answers.</span><span class="acc-icon" aria-hidden="true"></span>
+        </button>
+        <div class="acc-panel" id="acc-p-1" role="region" aria-labelledby="acc-b-1">
+          <div class="acc-inner"><p>Calls and forms get a fast answer, day or night. A lead doesn't drift to the next name on the list while you're under a sink or up a ladder.</p></div>
+        </div>
+      </div>
+      <div class="acc-item">
+        <button class="acc-head" aria-expanded="false" aria-controls="acc-p-2" id="acc-b-2">
+          <span class="acc-idx">S.02</span><span class="acc-title">It books.</span><span class="acc-icon" aria-hidden="true"></span>
+        </button>
+        <div class="acc-panel" id="acc-p-2" role="region" aria-labelledby="acc-b-2">
+          <div class="acc-inner"><p>Real jobs land on your real calendar. No back-and-forth, no lost sticky notes. You show up and do the work.</p></div>
+        </div>
+      </div>
+      <div class="acc-item">
+        <button class="acc-head" aria-expanded="false" aria-controls="acc-p-3" id="acc-b-3">
+          <span class="acc-idx">S.03</span><span class="acc-title">It brings in new leads.</span><span class="acc-icon" aria-hidden="true"></span>
+        </button>
+        <div class="acc-panel" id="acc-p-3" role="region" aria-labelledby="acc-b-3">
+          <div class="acc-inner"><p>Your site and your ads pull in the kind of jobs you actually want — not just clicks. Built and tuned by our team, on your domain.</p></div>
+        </div>
+      </div>
+      <div class="acc-item">
+        <button class="acc-head" aria-expanded="false" aria-controls="acc-p-4" id="acc-b-4">
+          <span class="acc-idx">S.04</span><span class="acc-title">It follows up.</span><span class="acc-icon" aria-hidden="true"></span>
+        </button>
+        <div class="acc-panel" id="acc-p-4" role="region" aria-labelledby="acc-b-4">
+          <div class="acc-inner"><p>Old leads and past customers hear from you again. The work most owners never get to — done every week. Quiet weeks get less quiet.</p></div>
+        </div>
+      </div>
+      <div class="acc-item">
+        <button class="acc-head" aria-expanded="false" aria-controls="acc-p-5" id="acc-b-5">
+          <span class="acc-idx">S.05</span><span class="acc-title">It builds your name.</span><span class="acc-icon" aria-hidden="true"></span>
+        </button>
+        <div class="acc-panel" id="acc-p-5" role="region" aria-labelledby="acc-b-5">
+          <div class="acc-inner"><p>Happy customers get asked for reviews. Your name keeps climbing in your market — until you're the one neighbors say first.</p></div>
+        </div>
+      </div>
+      <div class="acc-item">
+        <button class="acc-head" aria-expanded="false" aria-controls="acc-p-6" id="acc-b-6">
+          <span class="acc-idx">S.06</span><span class="acc-title">It shows its work.</span><span class="acc-icon" aria-hidden="true"></span>
+        </button>
+        <div class="acc-panel" id="acc-p-6" role="region" aria-labelledby="acc-b-6">
+          <div class="acc-inner"><p>Every lead, every call, every job — in one weekly sheet you can read in two minutes. Nothing hidden. Nothing rounded.</p></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<section class="sec sec-ink" id="proof">
+  <div class="wrap">
+    <div class="sec-head-row">
+      <div>
+        <p class="eyebrow eyebrow-y" data-reveal>04 — Proof, not promises</p>
+        <h2 class="h2" data-reveal style="--d:.08s">
+          <span class="hline">Don't take our word.</span>
+          <span class="hline"><span class="serif">Take your own.</span></span>
+        </h2>
+      </div>
+      <p class="body-lg" data-reveal style="--d:.16s">The trust anchor is simple: it actually works. And you don't have to take that on faith — the whole model is built so a skeptical owner can check it.</p>
+    </div>
+    <div class="proof-grid">
+      <div class="proof-col" data-reveal>
+        <p class="p-idx">P.01</p>
+        <h3 class="p-title">Live systems</h3>
+        <p class="p-body">Systems like this run in the real world today, on real domains. On a call, we'll walk you through one — working, live, not a slide deck.</p>
+      </div>
+      <div class="proof-col" data-reveal style="--d:.1s">
+        <p class="p-idx">P.02</p>
+        <h3 class="p-title">Real leads</h3>
+        <p class="p-body">You see every lead, call, and job the system produced. Not a summary we wrote — the actual list, yours to check any time.</p>
+      </div>
+      <div class="proof-col" data-reveal style="--d:.2s">
+        <p class="p-idx">P.03</p>
+        <h3 class="p-title">Weekly numbers</h3>
+        <p class="p-body">One plain sheet, every week. If it ever stops working, you'll see it before we say it — and you can walk. Month-to-month.</p>
+      </div>
+    </div>
+    <div class="tbox" data-reveal>
+      <span class="tbox-chip">Placeholder</span>
+      <p>"A client's words belong here — a real quote, with a name, a trade, and a town. We won't write our own. Until an owner approves one, this box stays empty on purpose."</p>
+      <small>Reserved for an approved client quote</small>
+    </div>
+  </div>
+</section>
+
+
+<section class="sec" id="how">
+  <div class="wrap how-grid">
+    <div class="how-side">
+      <p class="eyebrow" data-reveal>05 — How it starts</p>
+      <h2 class="h2" data-reveal style="--d:.08s">
+        <span class="hline">Live in</span>
+        <span class="hline"><span class="hl">30 days.</span></span>
+      </h2>
+      <p class="body-lg" data-reveal style="--d:.16s">From kickoff call to live system in thirty days. No homework pile. You talk about your business; we build. Then the numbers start.</p>
+      <a class="btn btn-ghost" href="/book" data-reveal style="--d:.22s">Get My Free Revenue Leak Map <span class="arr">→</span></a>
+    </div>
+    <ol class="timeline" data-reveal style="--d:.14s">
+      <li><span class="t-day">Day 01</span><div><p class="t-title">The kickoff call.</p><p class="t-sub">You talk about your market and your best jobs. We map where the leads leak out.</p></div></li>
+      <li><span class="t-day">Week 01–02</span><div><p class="t-title">The build.</p><p class="t-sub">We build your system on your domain. Your name on it, from day one.</p></div></li>
+      <li><span class="t-day">Week 03–04</span><div><p class="t-title">The test.</p><p class="t-sub">We run it against real calls and real forms until it holds up.</p></div></li>
+      <li><span class="t-day">Day 30</span><div><p class="t-title">Live.</p><p class="t-sub">The system goes to work. Leads land where you can see them.</p></div></li>
+      <li><span class="t-day">Every week</span><div><p class="t-title">The numbers.</p><p class="t-sub">One plain sheet: every lead, every call, every job. Two minutes to read.</p></div></li>
+    </ol>
+  </div>
+</section>
+
+
+<section class="sec sec-alt" id="offer">
+  <div class="wrap">
+    <div class="sec-head-row">
+      <div>
+        <p class="eyebrow" data-reveal>06 — The offer</p>
+        <h2 class="h2" data-reveal style="--d:.08s">
+          <span class="hline">Pick your</span>
+          <span class="hline"><span class="serif">lane.</span></span>
+        </h2>
+      </div>
+      <p class="body-lg" data-reveal style="--d:.16s">Three ways in. Same promise in all three: you run the business, the system makes you the most-chosen name in your market.</p>
+    </div>
+    <div class="anchorbar" data-reveal>
+      Read every price against the stack it replaces — an agency retainer, a website vendor, a booking tool, an answering service, ad management, and a part-time marketer. <b>One system instead of six invoices.</b>
+    </div>
+    <div class="plans">
+      <article class="plan" data-reveal>
+        <p class="plan-name">Ascend Pilot</p>
+        <p class="plan-tag">The install.</p>
+        <p class="plan-price">$15,000<span class="pp-s">One-time</span></p>
+        <p class="plan-meta">45 days. The install is the deliverable.</p>
+        <p class="plan-rep">Replaces the six-invoice stack</p>
+        <ul class="plan-list">
+          <li>The full system, built on your own domain</li>
+          <li>Weekly numbers sheet, set up and running</li>
+          <li>You keep it — it's your asset</li>
+        </ul>
+        <a class="btn btn-ghost plan-cta" href="/book">Start with the Pilot <span class="arr">→</span></a>
+      </article>
+      <article class="plan featured" data-reveal style="--d:.1s">
+        <span class="plan-flag">The full system</span>
+        <p class="plan-name">Ascend</p>
+        <p class="plan-tag">Built and run for you.</p>
+        <p class="plan-price">$15,000<span class="pp-s">Install</span></p>
+        <p class="plan-price2">+ $7,000<span class="pp-s">/ month</span></p>
+        <p class="plan-meta">True month-to-month after the first 90 days. No long contract. No exit penalty.</p>
+        <p class="plan-rep">Replaces the six-invoice stack</p>
+        <ul class="plan-list">
+          <li>Everything in the Pilot</li>
+          <li>We run the system for you, month to month</li>
+          <li>Every lead, call, and job — visible weekly</li>
+        </ul>
+        <a class="btn btn-primary plan-cta" href="/book">Get My Free Revenue Leak Map <span class="arr">→</span></a>
+      </article>
+      <article class="plan" data-reveal style="--d:.2s">
+        <p class="plan-name">Ascend Pro</p>
+        <p class="plan-tag">The territory play.</p>
+        <p class="plan-price">$25,000<span class="pp-s">Install</span></p>
+        <p class="plan-price2">+ $15,000<span class="pp-s">/ month</span></p>
+        <p class="plan-meta">Limited per territory.</p>
+        <p class="plan-rep">Replaces the six-invoice stack</p>
+        <ul class="plan-list">
+          <li>Everything in Ascend</li>
+          <li>Priority build and run from our team</li>
+          <li>Territory limits apply — when it's gone, it's gone</li>
+        </ul>
+        <a class="btn btn-ghost plan-cta" href="/book">Ask About Pro <span class="arr">→</span></a>
+      </article>
+    </div>
+  </div>
+</section>
+
+
+<section class="sec" id="faq">
+  <div class="wrap faq-grid">
+    <div class="faq-side">
+      <p class="eyebrow" data-reveal>07 — Fair questions</p>
+      <h2 class="h2" data-reveal style="--d:.08s">
+        <span class="hline"><span class="serif">Fair</span></span>
+        <span class="hline">questions.</span>
+      </h2>
+      <p class="body-lg" data-reveal style="--d:.16s">These are the questions every skeptical owner asks first. Ask us the rest on the call — we answer plainly.</p>
+    </div>
+    <div class="acc faq" data-reveal style="--d:.12s">
+      <div class="acc-item">
+        <button class="acc-head" aria-expanded="false" aria-controls="faq-p-1" id="faq-b-1">
+          <span class="acc-title">Agencies burned me before. Why is this different?</span><span class="acc-icon" aria-hidden="true"></span>
+        </button>
+        <div class="acc-panel" id="faq-p-1" role="region" aria-labelledby="faq-b-1">
+          <div class="acc-inner"><p>Because you can check everything. You see every lead, call, and job the system produced. It runs on your domain, so the asset stays yours. And after the first 90 days you're month-to-month — if we stop working, you stop paying.</p></div>
+        </div>
+      </div>
+      <div class="acc-item">
+        <button class="acc-head" aria-expanded="false" aria-controls="faq-p-2" id="faq-b-2">
+          <span class="acc-title">Do I own the system?</span><span class="acc-icon" aria-hidden="true"></span>
+        </button>
+        <div class="acc-panel" id="faq-p-2" role="region" aria-labelledby="faq-b-2">
+          <div class="acc-inner"><p>Yes. It's built on your domain, under your name. We build it and run it. You keep it.</p></div>
+        </div>
+      </div>
+      <div class="acc-item">
+        <button class="acc-head" aria-expanded="false" aria-controls="faq-p-3" id="faq-b-3">
+          <span class="acc-title">What do I have to do?</span><span class="acc-icon" aria-hidden="true"></span>
+        </button>
+        <div class="acc-panel" id="faq-p-3" role="region" aria-labelledby="faq-b-3">
+          <div class="acc-inner"><p>Run your business. Take the jobs you want. We build the system, run it, and send you the numbers every week.</p></div>
+        </div>
+      </div>
+      <div class="acc-item">
+        <button class="acc-head" aria-expanded="false" aria-controls="faq-p-4" id="faq-b-4">
+          <span class="acc-title">How fast will it be live?</span><span class="acc-icon" aria-hidden="true"></span>
+        </button>
+        <div class="acc-panel" id="faq-p-4" role="region" aria-labelledby="faq-b-4">
+          <div class="acc-inner"><p>Live in 30 days. The weekly numbers sheet starts right with it.</p></div>
+        </div>
+      </div>
+      <div class="acc-item">
+        <button class="acc-head" aria-expanded="false" aria-controls="faq-p-5" id="faq-b-5">
+          <span class="acc-title">Is there a long contract?</span><span class="acc-icon" aria-hidden="true"></span>
+        </button>
+        <div class="acc-panel" id="faq-p-5" role="region" aria-labelledby="faq-b-5">
+          <div class="acc-inner"><p>No. Ascend is true month-to-month after the first 90 days. No long contract, no exit penalty.</p></div>
+        </div>
+      </div>
+      <div class="acc-item">
+        <button class="acc-head" aria-expanded="false" aria-controls="faq-p-6" id="faq-b-6">
+          <span class="acc-title">What if it stops working?</span><span class="acc-icon" aria-hidden="true"></span>
+        </button>
+        <div class="acc-panel" id="faq-p-6" role="region" aria-labelledby="faq-b-6">
+          <div class="acc-inner"><p>You'll know before we do — the weekly sheet shows every lead, call, and job, good week or bad. And since you're month-to-month, leaving costs nothing.</p></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<section class="final" id="final">
+  <div class="wrap">
+    <div class="markchip" data-reveal>
+      
+      <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Buildwise Media mark">
+        <defs>
+          <linearGradient id="metallic-y2" x1="0%" y1="0%" x2="0%" y2="100%">
+            <stop offset="0%" stop-color="#FFFD58"/>
+            <stop offset="48%" stop-color="#F0FF00"/>
+            <stop offset="100%" stop-color="#C8D300"/>
+          </linearGradient>
+        </defs>
+        <line x1="50" y1="22" x2="22" y2="70" stroke="#7A8400" stroke-width="1.4" stroke-linecap="round"/>
+        <line x1="50" y1="22" x2="78" y2="70" stroke="#7A8400" stroke-width="1.4" stroke-linecap="round"/>
+        <line x1="22" y1="70" x2="78" y2="70" stroke="#7A8400" stroke-width="1.4" stroke-linecap="round"/>
+        <circle cx="50" cy="22" r="9" fill="url(#metallic-y2)"/>
+        <circle cx="22" cy="70" r="6.5" fill="#F0FF00"/>
+        <circle cx="78" cy="70" r="6.5" fill="#F0FF00"/>
+        <circle cx="50" cy="54" r="3" fill="#F0FF00"/>
+      </svg>
+    </div>
+    <p class="final-eyebrow" data-reveal style="--d:.06s">The next step is free</p>
+    <h2 class="final-h" data-reveal style="--d:.12s">
+      <span class="hline">Find the leaks.</span>
+      <span class="hline"><span class="serif">keep the jobs.</span></span>
+    </h2>
+    <p class="final-body" data-reveal style="--d:.2s">Get your free Revenue Leak Map. It shows where leads slip out of your business — the missed calls, the slow follow-up, the quiet weeks. Read it, then decide.</p>
+    <div class="final-ctas" data-reveal style="--d:.26s">
+      <a class="btn btn-ink" href="/book">Get My Free Revenue Leak Map <span class="arr">→</span></a>
+      <a class="btn btn-ghost" href="#system">See the System <span class="arr">↑</span></a>
+    </div>
+    <p class="final-note" data-reveal style="--d:.32s">You run the business. The system makes you the most-chosen name in your market.</p>
+  </div>
+</section>
+
+</main>
+
+
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div class="foot-brand">
+        
+        <svg viewBox="0 0 1000 250" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Buildwise Media">
+          <defs>
+            <linearGradient id="metallic-y2-lockup" x1="0%" y1="0%" x2="0%" y2="100%">
+              <stop offset="0%" stop-color="#FFFD58"/>
+              <stop offset="48%" stop-color="#F0FF00"/>
+              <stop offset="100%" stop-color="#C8D300"/>
+            </linearGradient>
+          </defs>
+          <g transform="translate(25, 25) scale(2)">
+            <line x1="50" y1="22" x2="22" y2="70" stroke="#7A8400" stroke-width="1.4" stroke-linecap="round"/>
+            <line x1="50" y1="22" x2="78" y2="70" stroke="#7A8400" stroke-width="1.4" stroke-linecap="round"/>
+            <line x1="22" y1="70" x2="78" y2="70" stroke="#7A8400" stroke-width="1.4" stroke-linecap="round"/>
+            <circle cx="50" cy="22" r="9" fill="url(#metallic-y2-lockup)"/>
+            <circle cx="22" cy="70" r="6.5" fill="#F0FF00"/>
+            <circle cx="78" cy="70" r="6.5" fill="#F0FF00"/>
+            <circle cx="50" cy="54" r="3" fill="#F0FF00"/>
+          </g>
+          <text x="265" y="135" font-family="Inter, sans-serif" font-weight="800" font-size="98" fill="#FAFAFA" letter-spacing="-3">BUILDWISE</text>
+          <text x="265" y="200" font-family="Inter, sans-serif" font-weight="300" font-size="50" fill="#F0FF00" letter-spacing="6">MEDIA</text>
+        </svg>
+        <p class="foot-tag">"You run the business. The system makes you the most-chosen name in your market."</p>
+      </div>
+      <div>
+        <p class="foot-h">The page</p>
+        <nav class="foot-nav" aria-label="Footer">
+          <a href="#system">The System</a>
+          <a href="#proof">Proof</a>
+          <a href="#offer">Plans</a>
+          <a href="#faq">FAQ</a>
+          <a href="#top">Back to top ↑</a>
+        </nav>
+      </div>
+      <div class="foot-next">
+        <p class="foot-h">Next step</p>
+        <a href="/book">Get My Free Revenue Leak Map →</a>
+        <p class="fn-sub">Booking path: /book<br>Verifiable AI growth systems for owner-led service businesses.</p>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>© <span id="year">2025</span> Buildwise Media. All rights reserved.</span>
+      <span>Sample ledgers show format only — not client data. Visual surfaces are art-directed placeholders.</span>
+      <span>Built on your domain. Kept by you.</span>
+    </div>
+  </div>
+</footer>
+
+
+<a class="sticky-cta" id="sticky-cta" href="/book">Get My Free Revenue Leak Map <span>→</span></a>
+
+<script>
+(function(){
+'use strict';
+var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+/* ---------- Reveal on scroll ---------- */
+var revealIO = new IntersectionObserver(function(entries){
+  entries.forEach(function(en){
+    if(en.isIntersecting){ en.target.classList.add('revealed'); revealIO.unobserve(en.target); }
+  });
+},{threshold:.15,rootMargin:'0px 0px -6% 0px'});
+document.querySelectorAll('[data-reveal]').forEach(function(el){ revealIO.observe(el); });
+
+/* ---------- Ledger strike ---------- */
+var ledger = document.getElementById('ledger');
+if(ledger){
+  new IntersectionObserver(function(en,io){
+    if(en[0].isIntersecting){ ledger.classList.add('struck'); io.disconnect(); }
+  },{threshold:.35}).observe(ledger);
+}
+
+/* ---------- Accordions ---------- */
+document.querySelectorAll('.acc-head').forEach(function(btn){
+  btn.addEventListener('click',function(){
+    var item = btn.closest('.acc-item');
+    var open = item.classList.toggle('open');
+    btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+  });
+});
+
+/* ---------- Header state ---------- */
+var head = document.getElementById('site-head');
+function onScrollHead(){ head.classList.toggle('scrolled', window.scrollY > 12); }
+window.addEventListener('scroll', onScrollHead, {passive:true});
+onScrollHead();
+
+/* ---------- Sticky mobile CTA ---------- */
+var bar = document.getElementById('sticky-cta');
+var hero = document.querySelector('.hero');
+var finalSec = document.getElementById('final');
+var finalVisible = false;
+new IntersectionObserver(function(en){ finalVisible = en[0].isIntersecting; tickBar(); },{threshold:.1}).observe(finalSec);
+var heroBottom = 0;
+function measure(){ heroBottom = hero.offsetTop + hero.offsetHeight; }
+window.addEventListener('resize', measure); measure();
+var ticking = false;
+function tickBar(){
+  var show = window.scrollY > heroBottom * 0.85 && !finalVisible;
+  bar.classList.toggle('show', show);
+}
+window.addEventListener('scroll', function(){
+  if(!ticking){ requestAnimationFrame(function(){ tickBar(); ticking = false; }); ticking = true; }
+},{passive:true});
+tickBar();
+
+/* ---------- Hero node-network canvas ---------- */
+var cv = document.getElementById('net');
+if(cv){
+  var ctx = cv.getContext('2d');
+  var w = 0, h = 0, nodes = [], raf = null, running = false;
+  var px = -9999, py = -9999;
+  function resize(){
+    var dpr = Math.min(window.devicePixelRatio || 1, 2);
+    var r = cv.parentElement.getBoundingClientRect();
+    w = r.width; h = r.height;
+    cv.width = w * dpr; cv.height = h * dpr;
+    cv.style.width = w + 'px'; cv.style.height = h + 'px';
+    ctx.setTransform(dpr,0,0,dpr,0,0);
+    seed();
+    if(reduce) draw();
+  }
+  function seed(){
+    var n = Math.max(16, Math.min(54, Math.floor(w * h / 26000)));
+    nodes = [];
+    for(var i = 0; i < n; i++){
+      nodes.push({
+        x: Math.random() * w, y: Math.random() * h,
+        vx: (Math.random() - .5) * .35, vy: (Math.random() - .5) * .35,
+        r: 2 + Math.random() * 2.4, maj: Math.random() < .12
+      });
+    }
+  }
+  function draw(){
+    ctx.clearRect(0,0,w,h);
+    var i, j, a, b, dx, dy, d;
+    for(i = 0; i < nodes.length; i++){
+      a = nodes[i];
+      for(j = i + 1; j < nodes.length; j++){
+        b = nodes[j];
+        dx = a.x - b.x; dy = a.y - b.y; d = Math.sqrt(dx*dx + dy*dy);
+        if(d < 130){
+          ctx.strokeStyle = 'rgba(122,132,0,' + (0.28 * (1 - d/130)).toFixed(3) + ')';
+          ctx.lineWidth = 1;
+          ctx.beginPath(); ctx.moveTo(a.x, a.y); ctx.lineTo(b.x, b.y); ctx.stroke();
+        }
+      }
+      dx = a.x - px; dy = a.y - py; d = Math.sqrt(dx*dx + dy*dy);
+      if(d < 170){
+        ctx.strokeStyle = 'rgba(19,19,9,' + (0.22 * (1 - d/170)).toFixed(3) + ')';
+        ctx.lineWidth = 1;
+        ctx.beginPath(); ctx.moveTo(a.x, a.y); ctx.lineTo(px, py); ctx.stroke();
+      }
+    }
+    for(i = 0; i < nodes.length; i++){
+      a = nodes[i];
+      if(a.maj){
+        var g = ctx.createRadialGradient(a.x, a.y - a.r * .4, 1, a.x, a.y, a.r * 2.2);
+        g.addColorStop(0, '#FFFD58'); g.addColorStop(.5, '#F0FF00'); g.addColorStop(1, '#C8D300');
+        ctx.fillStyle = g;
+        ctx.beginPath(); ctx.arc(a.x, a.y, a.r * 2.1, 0, 7); ctx.fill();
+        ctx.strokeStyle = 'rgba(19,19,9,.45)'; ctx.lineWidth = 1; ctx.stroke();
+      } else {
+        ctx.fillStyle = '#F0FF00';
+        ctx.beginPath(); ctx.arc(a.x, a.y, a.r, 0, 7); ctx.fill();
+        ctx.strokeStyle = 'rgba(19,19,9,.35)'; ctx.lineWidth = 1; ctx.stroke();
+      }
+    }
+  }
+  function step(){
+    for(var i = 0; i < nodes.length; i++){
+      var a = nodes[i];
+      a.x += a.vx; a.y += a.vy;
+      if(a.x < -20) a.x = w + 20; if(a.x > w + 20) a.x = -20;
+      if(a.y < -20) a.y = h + 20; if(a.y > h + 20) a.y = -20;
+    }
+    draw();
+    raf = requestAnimationFrame(step);
+  }
+  function start(){ if(running || reduce) return; running = true; raf = requestAnimationFrame(step); }
+  function stop(){ running = false; if(raf) cancelAnimationFrame(raf); }
+  window.addEventListener('resize', resize);
+  hero.addEventListener('pointermove', function(e){
+    var r = cv.getBoundingClientRect();
+    px = e.clientX - r.left; py = e.clientY - r.top;
+    if(reduce) draw();
+  });
+  hero.addEventListener('pointerleave', function(){ px = py = -9999; if(reduce) draw(); });
+  new IntersectionObserver(function(en){ en[0].isIntersecting ? start() : stop(); },{threshold:0}).observe(cv);
+  document.addEventListener('visibilitychange', function(){ document.hidden ? stop() : start(); });
+  resize();
+  if(reduce){ draw(); } else { start(); }
+}
+
+/* ---------- Footer year ---------- */
+document.getElementById('year').textContent = new Date().getFullYear();
+})();
+</script>
+</body>
+</html>

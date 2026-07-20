@@ -1,0 +1,707 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BWM — Machine Work Ledger · July 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..620;1,9..144,300..620&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#f6f4ee;
+    --card:#fffdf8;
+    --ink:#181b1f;
+    --ink2:#41464d;
+    --muted:#83868c;
+    --line:#e3dfd3;
+    --line2:#d4cfbf;
+    --pine:#0d6e57;
+    --pine-deep:#0a5341;
+    --pine-tint:#e3efe9;
+    --ochre:#bd7a0c;
+    --ochre-deep:#9a6307;
+    --ochre-tint:#f6ecd6;
+    --ochre-soft:#e9cd93;
+    --dark:#14171b;
+    --dark2:#1d2126;
+    --darkline:#2c3138;
+    --paperondark:#efece3;
+    --mutedondark:#9aa0a8;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'Inter',system-ui,sans-serif;
+    font-size:16px;
+    line-height:1.55;
+    -webkit-font-smoothing:antialiased;
+    text-rendering:optimizeLegibility;
+  }
+  ::selection{background:var(--pine);color:#fff}
+  .wrap{max-width:1180px;margin:0 auto;padding:0 28px}
+  .mono{font-family:'IBM Plex Mono',monospace}
+  .num{font-family:'IBM Plex Mono',monospace;font-variant-numeric:tabular-nums}
+
+  /* ---------- reveal ---------- */
+  .obs{opacity:0;transform:translateY(16px);transition:opacity .7s ease,transform .7s ease}
+  .obs.in{opacity:1;transform:none}
+
+  /* ---------- masthead ---------- */
+  header.top{border-bottom:1px solid var(--line)}
+  .topbar{display:flex;justify-content:space-between;align-items:center;gap:16px;padding:18px 0;flex-wrap:wrap}
+  .brand{display:flex;align-items:center;gap:12px}
+  .brand .mark{width:38px;height:38px;background:var(--ink);color:var(--paper);display:grid;place-items:center;font-family:'IBM Plex Mono',monospace;font-weight:600;font-size:11px;letter-spacing:.08em}
+  .brand .bt{line-height:1.2}
+  .brand .bt b{display:block;font-weight:600;font-size:14px;letter-spacing:.01em}
+  .brand .bt span{font-family:'IBM Plex Mono',monospace;font-size:10.5px;color:var(--muted);letter-spacing:.14em;text-transform:uppercase}
+  .topmeta{font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--muted);letter-spacing:.06em;text-align:right;line-height:1.7}
+  .topmeta b{color:var(--ink2);font-weight:500}
+
+  /* ---------- hero ---------- */
+  .hero{padding:76px 0 54px;border-bottom:1px solid var(--line)}
+  .eyebrow{font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--muted);display:flex;align-items:center;gap:12px;margin-bottom:26px}
+  .eyebrow::before{content:"";width:9px;height:9px;background:var(--pine);flex:none}
+  h1{font-family:'Fraunces',serif;font-weight:380;font-size:clamp(42px,6.4vw,82px);line-height:1.0;letter-spacing:-.015em;font-optical-sizing:auto}
+  h1 em{font-style:italic;font-weight:340;color:var(--pine-deep)}
+  h1 .hl{white-space:nowrap}
+  .hero p.lede{max-width:760px;margin-top:26px;font-size:17px;color:var(--ink2);line-height:1.65}
+  .hero p.lede b{font-weight:600;color:var(--ink)}
+
+  .kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line);border:1px solid var(--line);margin-top:48px}
+  .kpi{background:var(--card);padding:22px 22px 20px}
+  .kpi .v{font-family:'IBM Plex Mono',monospace;font-weight:500;font-size:clamp(26px,2.6vw,34px);letter-spacing:-.02em;line-height:1}
+  .kpi .v.pine{color:var(--pine-deep)}
+  .kpi .v.och{color:var(--ochre-deep)}
+  .kpi .l{margin-top:10px;font-size:12.5px;color:var(--ink2);line-height:1.45}
+  .kpi .l span{display:block;font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-bottom:4px}
+  .plannote{margin-top:14px;font-size:12px;color:var(--muted);font-style:italic;max-width:720px}
+
+  /* ---------- sections ---------- */
+  section{padding:72px 0;border-bottom:1px solid var(--line)}
+  .kick{font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--muted);display:flex;align-items:center;gap:12px;margin-bottom:18px}
+  .kick::before{content:"";width:9px;height:9px;flex:none}
+  .kick.p::before{background:var(--pine)}
+  .kick.o::before{background:var(--ochre)}
+  h2{font-family:'Fraunces',serif;font-weight:420;font-size:clamp(28px,3.6vw,44px);line-height:1.08;letter-spacing:-.01em;max-width:820px;font-optical-sizing:auto}
+  h2 em{font-style:italic;color:var(--pine-deep)}
+  h2 em.o{color:var(--ochre-deep)}
+  .sub{margin-top:14px;max-width:720px;color:var(--ink2);font-size:15.5px}
+  .sub b{font-weight:600;color:var(--ink)}
+
+  .card{background:var(--card);border:1px solid var(--line);margin-top:38px}
+  .cardhead{display:flex;justify-content:space-between;align-items:flex-end;gap:18px;padding:22px 26px 18px;border-bottom:1px solid var(--line);flex-wrap:wrap}
+  .cardhead .t b{display:block;font-weight:600;font-size:15px}
+  .cardhead .t span{font-size:12.5px;color:var(--muted)}
+  .sorts{display:flex;gap:6px;flex-wrap:wrap}
+  .sorts button{font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;padding:7px 12px;border:1px solid var(--line2);background:transparent;color:var(--ink2);cursor:pointer;transition:all .2s}
+  .sorts button:hover{border-color:var(--ink)}
+  .sorts button.on{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+
+  .detail{margin:20px 26px 0;background:#f1eee4;border-left:3px solid var(--pine);padding:11px 16px;font-family:'IBM Plex Mono',monospace;font-size:12.5px;color:var(--ink2);line-height:1.6;min-height:42px}
+  .detail b{color:var(--ink);font-weight:600}
+  .detail .pi{color:var(--pine-deep);font-weight:600}
+  .detail .oc{color:var(--ochre-deep);font-weight:600}
+
+  .legend{display:flex;gap:26px;padding:0 26px;margin-top:16px;flex-wrap:wrap}
+  .legend span{display:flex;align-items:center;gap:9px;font-size:12px;color:var(--ink2)}
+  .legend i{width:12px;height:12px;flex:none}
+  .legend i.a{background:var(--pine)}
+  .legend i.b{background:var(--ochre)}
+
+  /* ---------- butterfly chart ---------- */
+  .chartbox{padding:10px 18px 26px;overflow:hidden}
+  svg.chart{width:100%;height:auto;display:block}
+  svg.chart text{font-family:'IBM Plex Mono',monospace}
+  svg.chart .grid{stroke:var(--line);stroke-width:1}
+  svg.chart .base{stroke:var(--line2);stroke-width:1}
+  svg.chart .tick{fill:var(--muted);font-size:10px}
+  svg.chart .axl{fill:var(--muted);font-size:10px;letter-spacing:.14em;text-transform:uppercase}
+  svg.chart g.row{cursor:pointer;outline:none}
+  svg.chart g.row .rbg{fill:var(--pine);opacity:0;transition:opacity .18s}
+  svg.chart g.row .bl{fill:var(--pine)}
+  svg.chart g.row .br{fill:var(--ochre)}
+  svg.chart g.row .vl{fill:var(--ink2);font-size:11px}
+  svg.chart g.row .nm{fill:var(--ink2);font-family:'Inter',sans-serif;font-size:12px;font-weight:500}
+  svg.chart g.row .bl,svg.chart g.row .br,svg.chart g.row .vl,svg.chart g.row .nm{transition:opacity .18s}
+  svg.chart.has-sel g.row:not(.sel) .bl,
+  svg.chart.has-sel g.row:not(.sel) .br,
+  svg.chart.has-sel g.row:not(.sel) .vl{opacity:.28}
+  svg.chart.has-sel g.row:not(.sel) .nm{opacity:.4}
+  svg.chart g.row.sel .rbg{opacity:.07}
+  svg.chart g.row.sel .nm{fill:var(--ink);font-weight:600}
+  .chart g.row{opacity:0;transform:translateX(-10px)}
+  .chart.in g.row{opacity:1;transform:none;transition:opacity .55s ease,transform .55s ease;transition-delay:var(--d,0s)}
+
+  /* mobile stacked chart */
+  .mchart{padding:6px 26px 26px;display:none}
+  .mrow{padding:13px 2px;border-top:1px solid var(--line);cursor:pointer}
+  .mrow:first-child{border-top:none}
+  .mrow.sel{background:#f3f0e7}
+  .mhead{display:flex;justify-content:space-between;gap:12px;align-items:baseline;margin-bottom:8px}
+  .mname{font-weight:600;font-size:13.5px}
+  .mmeta{font-family:'IBM Plex Mono',monospace;font-size:10.5px;color:var(--muted);text-align:right}
+  .mbar{display:flex;align-items:center;gap:8px;height:14px;margin-top:5px}
+  .mbar .track{flex:1;height:10px;background:#efece2;position:relative}
+  .mbar i{position:absolute;left:0;top:0;bottom:0;width:0;transition:width .8s cubic-bezier(.2,.7,.2,1);transition-delay:var(--d,0s);min-width:2px}
+  .in .mbar i{width:var(--w)}
+  .mbar.runs i{background:var(--pine)}
+  .mbar.mins i{background:var(--ochre)}
+  .mbar b{font-family:'IBM Plex Mono',monospace;font-size:10.5px;font-weight:500;color:var(--ink2);width:76px;flex:none}
+  .chartbox.is-mobile svg.chart{display:none}
+  .chartbox.is-mobile .mchart{display:block}
+
+  /* ---------- metered section ---------- */
+  .grid2{display:grid;grid-template-columns:1.5fr 1fr;gap:28px;margin-top:38px}
+  .panel{background:var(--card);border:1px solid var(--line);padding:26px}
+  .panel h3{font-weight:600;font-size:15px;margin-bottom:4px}
+  .panel .ph-sub{font-size:12.5px;color:var(--muted);margin-bottom:18px}
+  svg.gauge{width:100%;height:auto;display:block}
+  svg.gauge text{font-family:'IBM Plex Mono',monospace}
+  .bignum{font-family:'IBM Plex Mono',monospace;font-weight:500;font-size:clamp(44px,4.5vw,58px);line-height:1;letter-spacing:-.03em;color:var(--ochre-deep)}
+  .bignum small{font-size:.42em;color:var(--muted);font-weight:400;letter-spacing:0}
+  .statline{font-size:12.5px;color:var(--ink2);margin-top:12px;line-height:1.6}
+  .statline b{color:var(--ink)}
+  .divider{border:none;border-top:1px solid var(--line);margin:22px 0}
+  .cap{font-size:11px;color:var(--muted);line-height:1.6;margin-top:14px}
+
+  /* ---------- case study ---------- */
+  .case{background:var(--card);border:1px solid var(--line);margin-top:38px;display:grid;grid-template-columns:1.2fr 1fr}
+  .case .l{padding:30px;border-right:1px solid var(--line)}
+  .case .date{font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);margin-bottom:14px}
+  .case .what{font-family:'Fraunces',serif;font-style:italic;font-weight:380;font-size:clamp(19px,2vw,23px);line-height:1.35;color:var(--ink)}
+  .case .r{display:grid;grid-template-columns:1fr 1fr}
+  .price{padding:30px 24px;display:flex;flex-direction:column;justify-content:center}
+  .price + .price{border-left:1px solid var(--line)}
+  .price .k{font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.16em;text-transform:uppercase;margin-bottom:12px}
+  .price.flat .k{color:var(--pine-deep)}
+  .price.met .k{color:var(--ochre-deep)}
+  .price .amt{font-family:'IBM Plex Mono',monospace;font-weight:500;font-size:clamp(30px,3vw,40px);letter-spacing:-.02em;line-height:1}
+  .price .amt small{font-size:.4em;color:var(--muted);font-weight:400}
+  .price .d{font-size:12px;color:var(--muted);margin-top:10px;line-height:1.5}
+
+  /* ---------- dark levers band ---------- */
+  .levers{background:var(--dark);color:var(--paperondark);border-bottom:none}
+  .levers .kick{color:var(--mutedondark)}
+  .levers h2{color:var(--paperondark);max-width:900px}
+  .levergrid{display:grid;grid-template-columns:1fr 1fr;margin-top:44px;border:1px solid var(--darkline)}
+  .lever{padding:38px 34px 30px}
+  .lever + .lever{border-left:1px solid var(--darkline)}
+  .lever .lk{font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:.2em;text-transform:uppercase;display:flex;align-items:center;gap:10px;margin-bottom:22px}
+  .lever .lk::before{content:"";width:9px;height:9px;flex:none}
+  .lever.a .lk{color:#6fd3ae}.lever.a .lk::before{background:#3fae85}
+  .lever.b .lk{color:#eab95c}.lever.b .lk::before{background:#d99a2b}
+  .lever .big{font-family:'Fraunces',serif;font-weight:400;font-size:clamp(26px,2.8vw,36px);line-height:1.12;letter-spacing:-.01em}
+  .lever p{margin-top:16px;font-size:14.5px;color:var(--mutedondark);line-height:1.7}
+  .lever p b{color:var(--paperondark);font-weight:600}
+  .lever .foot{margin-top:24px;padding-top:16px;border-top:1px solid var(--darkline);font-family:'IBM Plex Mono',monospace;font-size:11.5px;color:var(--mutedondark);letter-spacing:.04em}
+  .lever .foot b{color:var(--paperondark);font-weight:500}
+
+  /* ---------- actions ---------- */
+  .actions{margin-top:40px;display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);border:1px solid var(--line)}
+  .act{background:var(--card);padding:26px 24px}
+  .act::before{content:"";display:block;width:26px;height:4px;margin-bottom:18px}
+  .act:nth-child(1)::before{background:var(--pine)}
+  .act:nth-child(2)::before{background:var(--pine)}
+  .act:nth-child(3)::before{background:var(--ochre)}
+  .act b{display:block;font-weight:600;font-size:15px;margin-bottom:10px;line-height:1.35}
+  .act p{font-size:13px;color:var(--ink2);line-height:1.65}
+  .act p b{display:inline;font-size:13px;margin:0}
+  .act .num{color:var(--pine-deep);font-weight:500}
+  .act .num.o{color:var(--ochre-deep)}
+
+  /* ---------- footer ---------- */
+  footer{padding:56px 0 70px}
+  .prov{border:1px solid var(--line);background:var(--card);padding:26px}
+  .prov h4{font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);margin-bottom:16px;font-weight:500}
+  .prov ul{list-style:none}
+  .prov li{display:grid;grid-template-columns:150px 1fr;gap:16px;padding:10px 0;border-top:1px solid var(--line);font-size:12.5px}
+  .prov li:first-child{border-top:none}
+  .prov li .pk{font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--pine-deep);font-weight:500}
+  .prov li .pv{color:var(--ink2);line-height:1.6}
+  .fineprint{margin-top:22px;font-size:11.5px;color:var(--muted);line-height:1.7;display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
+
+  /* ---------- responsive ---------- */
+  @media (max-width:960px){
+    .kpis{grid-template-columns:repeat(2,1fr)}
+    .grid2{grid-template-columns:1fr}
+    .case{grid-template-columns:1fr}
+    .case .l{border-right:none;border-bottom:1px solid var(--line)}
+    .levergrid{grid-template-columns:1fr}
+    .lever + .lever{border-left:none;border-top:1px solid var(--darkline)}
+    .actions{grid-template-columns:1fr}
+  }
+  @media (max-width:560px){
+    .wrap{padding:0 18px}
+    .hero{padding:54px 0 42px}
+    section{padding:52px 0}
+    .topmeta{text-align:left}
+    .price{padding:24px 18px}
+    .prov li{grid-template-columns:1fr;gap:4px}
+    .mbar b{width:66px}
+  }
+  @media (prefers-reduced-motion:reduce){
+    *{transition:none!important;animation:none!important}
+    .obs{opacity:1;transform:none}
+    .chart g.row{opacity:1;transform:none}
+    .mbar i{width:var(--w)!important}
+  }
+</style>
+</head>
+<body>
+
+<script type="application/json" id="bwm-data">
+{
+  "provenance": {
+    "sol_telemetry": "bwm codex-usage log 2026-07.jsonl — 719 logged GPT-5.6 Sol runs, Jul 1–20 2026, BWM production work",
+    "kimi_meter": "OpenRouter credits API, queried 2026-07-20",
+    "flat_plan_note": "Flat-rate AI plan seats have $0 marginal cost per task; only metered API tasks bill per token."
+  },
+  "sol_task_classes_jul": [
+    {"task_class": "code-multi-file", "runs": 619, "median_minutes": 2.2, "total_tokens": 41979649},
+    {"task_class": "review-legal", "runs": 16, "median_minutes": 5.3, "total_tokens": 1878662},
+    {"task_class": "image-gen", "runs": 12, "median_minutes": 3.2, "total_tokens": 865493},
+    {"task_class": "content-gen", "runs": 7, "median_minutes": 6.0, "total_tokens": 933841},
+    {"task_class": "research", "runs": 7, "median_minutes": 5.4, "total_tokens": 1175376},
+    {"task_class": "analysis", "runs": 5, "median_minutes": 4.1, "total_tokens": 650634},
+    {"task_class": "computer-use", "runs": 5, "median_minutes": 1.4, "total_tokens": 602815},
+    {"task_class": "design-build", "runs": 5, "median_minutes": 24.7, "total_tokens": 2865333},
+    {"task_class": "design-client-surface", "runs": 5, "median_minutes": 12.9, "total_tokens": 1372606},
+    {"task_class": "design-page-authoring", "runs": 5, "median_minutes": 7.7, "total_tokens": 978675},
+    {"task_class": "other (9 classes)", "runs": 33, "median_minutes": 3.1, "total_tokens": 1706000}
+  ],
+  "kimi_k3_metered": {
+    "credits_funded_usd": 25.0,
+    "spent_usd": 1.19,
+    "pages_authored": 2,
+    "scorecards": 2,
+    "approx_cost_per_page_usd": 0.5
+  },
+  "bakeoff_case_study": {
+    "date": "2026-07-19/20",
+    "what": "3-model blind design bake-off: 6 pages + 6 blind scorecards",
+    "metered_spend_usd": 1.19,
+    "flat_plan_marginal_usd": 0
+  }
+}
+</script>
+
+<header class="top">
+  <div class="wrap topbar">
+    <div class="brand">
+      <div class="mark">BWM</div>
+      <div class="bt">
+        <b>Machine Work Ledger</b>
+        <span>Internal · Cost per task</span>
+      </div>
+    </div>
+    <div class="topmeta">
+      Reporting window <b>Jul 1 – Jul 20, 2026</b><br>
+      Meter read <b>OpenRouter · queried 2026-07-20</b>
+    </div>
+  </div>
+</header>
+
+<section class="hero" style="border-top:none;padding-top:64px">
+  <div class="wrap">
+    <div class="eyebrow">BWM internal · July 2026 · prepared for the owner</div>
+    <h1>The machine did <span class="hl" id="hero-runs">…</span> tasks.<br><em>The next one still costs $0.00.</em></h1>
+    <p class="lede">One flat-rate AI worker — <b>GPT-5.6 “Sol”</b> — ran BWM production work from Jul 1–20. Because the seat is prepaid, every run cost the same at the margin: <b>nothing</b>. This ledger shows where that work went, which tasks are heavy, and what the same work costs on a metered connection where <b>every token bills</b>.</p>
+
+    <div class="kpis obs">
+      <div class="kpi">
+        <div class="v pine" id="k-runs">—</div>
+        <div class="l"><span>Volume</span>Logged runs on the flat-rate Sol seat</div>
+      </div>
+      <div class="kpi">
+        <div class="v pine">$0.00</div>
+        <div class="l"><span>Marginal cost</span>Per task on any flat-rate plan seat</div>
+      </div>
+      <div class="kpi">
+        <div class="v" id="k-tokens">—</div>
+        <div class="l"><span>Throughput</span>Tokens processed, summed across task classes</div>
+      </div>
+      <div class="kpi">
+        <div class="v och" id="k-spent">—</div>
+        <div class="l"><span>The meter</span>Total metered API spend (Kimi K3 experiment)</div>
+      </div>
+    </div>
+    <p class="plannote" id="plan-note"></p>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="kick p">01 · Where the work goes</div>
+    <h2>Code does the volume. <em>Design does the weight.</em></h2>
+    <p class="sub"><b id="code-share">—</b> of July’s runs were multi-file code edits — quick jobs, median 2.2 minutes. The rare design work is the opposite: a design build is the longest job on the books at a <b>median of 24.7 minutes</b>. Volume and weight sit at opposite ends of the ledger.</p>
+
+    <div class="card obs">
+      <div class="cardhead">
+        <div class="t">
+          <b>Every task class, by count and by weight</b>
+          <span>Left: runs logged · Right: median minutes per run · hover a row for full detail</span>
+        </div>
+        <div class="sorts" id="sorts">
+          <button data-k="runs" class="on">Sort · volume</button>
+          <button data-k="median_minutes">Sort · time</button>
+          <button data-k="total_tokens">Sort · tokens</button>
+        </div>
+      </div>
+      <div class="detail" id="detail"></div>
+      <div class="legend">
+        <span><i class="a"></i>Runs logged (count)</span>
+        <span><i class="b"></i>Median minutes per run</span>
+      </div>
+      <div class="chartbox" id="chartbox">
+        <div id="chart-mount"></div>
+        <div class="mchart" id="mchart-mount"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="kick o">02 · When every token bills</div>
+    <h2>On the meter, an authored page costs <em class="o">about fifty cents.</em></h2>
+    <p class="sub">The Kimi K3 experiment is the counterfactual: the same kind of work, priced per token. <b>$25.00</b> of credits were funded; the meter has registered <b>$1.19</b>. The whole experiment barely moved it.</p>
+
+    <div class="grid2">
+      <div class="panel obs">
+        <h3>The $25.00 meter, honestly drawn</h3>
+        <div class="ph-sub">Credits funded vs. credits spent — to scale</div>
+        <div id="gauge-mount"></div>
+        <p class="cap">Source: OpenRouter credits API, queried 2026-07-20. Bar length is proportional to dollars; the spent segment is drawn at its true width.</p>
+      </div>
+      <div class="panel obs">
+        <h3>What the $1.19 bought</h3>
+        <div class="ph-sub">Kimi K3 metered output, July</div>
+        <div class="bignum"><span id="per-page">—</span> <small>approx. / authored page</small></div>
+        <div class="statline" id="kimi-line">—</div>
+        <hr class="divider">
+        <div id="decomp-mount"></div>
+        <p class="cap">Split derived from the logged approx. cost per page (2 × $0.50); the $0.19 remainder is attributed to the 2 blind scorecards.</p>
+      </div>
+    </div>
+
+    <div class="case obs">
+      <div class="l">
+        <div class="date" id="case-date">—</div>
+        <p class="what" id="case-what">—</p>
+      </div>
+      <div class="r">
+        <div class="price flat">
+          <div class="k">Run on a flat seat</div>
+          <div class="amt" id="case-flat">—</div>
+          <div class="d">marginal cost — the seat is already paid for</div>
+        </div>
+        <div class="price met">
+          <div class="k">Run on the meter</div>
+          <div class="amt" id="case-met">—</div>
+          <div class="d">all-in spend, every token billed</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="levers">
+  <div class="wrap">
+    <div class="kick" style="color:var(--mutedondark)">03 · The punchline</div>
+    <h2>Two kinds of capacity. <em style="color:#6fd3ae">Two different levers.</em></h2>
+    <div class="levergrid obs">
+      <div class="lever a">
+        <div class="lk">Flat-rate seat · prepaid capacity</div>
+        <div class="big">The lever is <em style="color:#6fd3ae">utilization.</em></div>
+        <p>A flat seat costs the same whether it runs 7 tasks or <b>719</b>. July’s runs moved the bill by <b>$0.00</b> — which means every idle hour is capacity you already paid for, going to waste. Feed the seat.</p>
+        <div class="foot">JULY · <b>719 runs</b> · <b>$0.00</b> marginal each</div>
+      </div>
+      <div class="lever b">
+        <div class="lk">Metered API · elastic capacity</div>
+        <div class="big">The lever is <em style="color:#eab95c">quality per dollar.</em></div>
+        <p>On the meter, spend follows value token by token. <b>$1.19</b> bought a complete 3-model blind bake-off — fund small, judge the output blind, then scale only what wins.</p>
+        <div class="foot">KIMI K3 · <b>$25.00 funded</b> → <b>$1.19 spent</b> · <b>$23.81 unspent</b></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section style="border-bottom:none">
+  <div class="wrap">
+    <div class="kick p">04 · Acting on it</div>
+    <h2>Three moves for <em>next month.</em></h2>
+    <div class="actions obs">
+      <div class="act">
+        <b>Keep code on the flat seat.</b>
+        <p><span class="num" id="act-share">—</span> of all runs are multi-file code edits at $0.00 marginal. Prepaid capacity is doing exactly what it was bought for — don’t route that work anywhere priced per token.</p>
+      </div>
+      <div class="act">
+        <b>Point the seat at design next.</b>
+        <p>Design builds are the heaviest tasks on the books — median <span class="num">24.7 min</span> — yet only <span class="num">5</span> ran all July. On a flat plan, more of them are free at the margin. That’s unused leverage.</p>
+      </div>
+      <div class="act">
+        <b>Buy experiments on the meter.</b>
+        <p>A full blind bake-off — <span class="num o">6 pages + 6 scorecards</span> — cost <span class="num o">$1.19</span> all-in, with <span class="num o">$23.81</span> of the funded $25.00 still unspent. Small metered bets are the cheapest way to judge a new model.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="prov obs">
+      <h4>Provenance &amp; method</h4>
+      <ul>
+        <li><span class="pk">sol_telemetry</span><span class="pv" id="pv-sol"></span></li>
+        <li><span class="pk">kimi_meter</span><span class="pv" id="pv-kimi"></span></li>
+        <li><span class="pk">flat_plan_note</span><span class="pv" id="pv-note"></span></li>
+        <li><span class="pk">derived figures</span><span class="pv">Totals, shares, percentages, and the page/scorecard cost split are plain arithmetic on the embedded dataset fields; no figures were estimated or sourced elsewhere. “≈” marks the dataset’s own approximate cost-per-page field.</span></li>
+      </ul>
+    </div>
+    <div class="fineprint">
+      <span>BWM internal dashboard · Machine Work Ledger · July 2026</span>
+      <span>Rendered in-browser from the embedded dataset · no external charting libraries</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  "use strict";
+  var D = JSON.parse(document.getElementById('bwm-data').textContent);
+  var classes = D.sol_task_classes_jul.slice();
+  var K = D.kimi_k3_metered, B = D.bakeoff_case_study;
+
+  /* ---------- derived arithmetic (all from dataset fields) ---------- */
+  var totalRuns = classes.reduce(function(s,d){return s+d.runs;},0);
+  var totalTokens = classes.reduce(function(s,d){return s+d.total_tokens;},0);
+  var code = classes.filter(function(d){return d.task_class==='code-multi-file';})[0];
+  var codeShare = code.runs/totalRuns*100;
+  var spentPct = K.spent_usd/K.credits_funded_usd*100;
+  var unspent = K.credits_funded_usd - K.spent_usd;
+  var pagesCost = K.pages_authored * K.approx_cost_per_page_usd;
+  var cardsCost = K.spent_usd - pagesCost;
+
+  /* ---------- formatters ---------- */
+  function fmtInt(n){return n.toLocaleString('en-US');}
+  function fmtTok1(t){return (t/1e6).toFixed(1)+'M';}
+  function fmtTok2(t){return (t/1e6).toFixed(2)+'M';}
+  function money(v){return '$'+v.toFixed(2);}
+
+  /* ---------- hero / KPI injection ---------- */
+  document.getElementById('hero-runs').textContent = fmtInt(totalRuns);
+  document.getElementById('k-runs').textContent = fmtInt(totalRuns);
+  document.getElementById('k-tokens').textContent = fmtTok1(totalTokens);
+  document.getElementById('k-spent').textContent = money(K.spent_usd);
+  document.getElementById('plan-note').textContent = 'Note — ' + D.provenance.flat_plan_note;
+  document.getElementById('code-share').textContent = codeShare.toFixed(1)+'% ('+fmtInt(code.runs)+' of '+fmtInt(totalRuns)+')';
+  document.getElementById('act-share').textContent = codeShare.toFixed(1)+'%';
+
+  /* ---------- provenance footer ---------- */
+  document.getElementById('pv-sol').textContent = D.provenance.sol_telemetry;
+  document.getElementById('pv-kimi').textContent = D.provenance.kimi_meter;
+  document.getElementById('pv-note').textContent = D.provenance.flat_plan_note;
+
+  /* ---------- detail readout ---------- */
+  var detailEl = document.getElementById('detail');
+  function detailHTML(d){
+    var share = (d.runs/totalRuns*100).toFixed(1);
+    return '<b>'+d.task_class+'</b> &nbsp;·&nbsp; <span class="pi">'+fmtInt(d.runs)+' runs</span> ('+share+'% of all runs) &nbsp;·&nbsp; <span class="oc">median '+d.median_minutes.toFixed(1)+' min</span> per run &nbsp;·&nbsp; '+fmtTok2(d.total_tokens)+' tokens';
+  }
+
+  /* ---------- butterfly chart ---------- */
+  var state = {sort:'runs', pinned:'code-multi-file'};
+  var box = document.getElementById('chartbox');
+  var mount = document.getElementById('chart-mount');
+  var mmount = document.getElementById('mchart-mount');
+  var RUNS_MAX = 650, MIN_MAX = 25;
+  var runTicks = [0,200,400,600], minTicks = [0,5,10,15,20,25];
+
+  function sorted(){
+    return classes.slice().sort(function(a,b){return b[state.sort]-a[state.sort];});
+  }
+
+  function renderWide(rows){
+    var W=1060, rowH=44, barH=22, top=14;
+    var leftEdge=85, leftRight=425, rightLeft=635, rightEdge=975, cx=530;
+    var H = top + rows.length*rowH + 58;
+    var s = '';
+    s += '<svg class="chart has-sel" viewBox="0 0 '+W+' '+H+'" role="img" aria-label="Task classes by run count and median minutes" id="bchart">';
+    /* gridlines */
+    runTicks.forEach(function(t){
+      var x = leftRight - (t/RUNS_MAX)*(leftRight-leftEdge);
+      s += '<line class="grid" x1="'+x+'" y1="'+(top-6)+'" x2="'+x+'" y2="'+(top+rows.length*rowH)+'"/>';
+      s += '<text class="tick" x="'+x+'" y="'+(top+rows.length*rowH+20)+'" text-anchor="middle">'+t+'</text>';
+    });
+    minTicks.forEach(function(t){
+      var x = rightLeft + (t/MIN_MAX)*(rightEdge-rightLeft);
+      s += '<line class="grid" x1="'+x+'" y1="'+(top-6)+'" x2="'+x+'" y2="'+(top+rows.length*rowH)+'"/>';
+      s += '<text class="tick" x="'+x+'" y="'+(top+rows.length*rowH+20)+'" text-anchor="middle">'+t+'</text>';
+    });
+    /* baselines + axis captions */
+    var by = top+rows.length*rowH+0.5;
+    s += '<line class="base" x1="'+leftEdge+'" y1="'+by+'" x2="'+leftRight+'" y2="'+by+'"/>';
+    s += '<line class="base" x1="'+rightLeft+'" y1="'+by+'" x2="'+rightEdge+'" y2="'+by+'"/>';
+    s += '<text class="axl" x="'+((leftEdge+leftRight)/2)+'" y="'+(by+40)+'" text-anchor="middle">runs logged</text>';
+    s += '<text class="axl" x="'+((rightLeft+rightEdge)/2)+'" y="'+(by+40)+'" text-anchor="middle">median minutes per run</text>';
+
+    rows.forEach(function(d,i){
+      var y = top + i*rowH, cy = y + rowH/2;
+      var wl = (d.runs/RUNS_MAX)*(leftRight-leftEdge);
+      var wr = (d.median_minutes/MIN_MAX)*(rightEdge-rightLeft);
+      var sel = d.task_class===state.pinned ? ' sel' : '';
+      s += '<g class="row'+sel+'" data-name="'+d.task_class+'" tabindex="0" style="--d:'+(i*45)+'ms">';
+      s += '<rect class="rbg" x="'+leftEdge+'" y="'+(y+3)+'" width="'+(rightEdge-leftEdge)+'" height="'+(rowH-6)+'"/>';
+      s += '<rect class="bl" x="'+(leftRight-wl)+'" y="'+(cy-barH/2)+'" width="'+Math.max(wl,1.5)+'" height="'+barH+'"/>';
+      s += '<rect class="br" x="'+rightLeft+'" y="'+(cy-barH/2)+'" width="'+Math.max(wr,1.5)+'" height="'+barH+'"/>';
+      s += '<text class="vl" x="'+(leftRight-wl-8)+'" y="'+(cy+4)+'" text-anchor="end">'+fmtInt(d.runs)+'</text>';
+      s += '<text class="vl" x="'+(rightLeft+wr+8)+'" y="'+(cy+4)+'">'+d.median_minutes.toFixed(1)+'</text>';
+      s += '<text class="nm" x="'+cx+'" y="'+(cy+4)+'" text-anchor="middle">'+d.task_class+'</text>';
+      s += '</g>';
+    });
+    s += '</svg>';
+    mount.innerHTML = s;
+    mmount.innerHTML = '';
+    box.classList.remove('is-mobile');
+
+    var svg = document.getElementById('bchart');
+    function setActive(name, pin){
+      state.pinned = pin ? name : state.pinned;
+      svg.querySelectorAll('g.row').forEach(function(g){
+        g.classList.toggle('sel', g.getAttribute('data-name')===name);
+      });
+      svg.classList.add('has-sel');
+      var d = classes.filter(function(c){return c.task_class===name;})[0];
+      if(d) detailEl.innerHTML = detailHTML(d);
+    }
+    svg.querySelectorAll('g.row').forEach(function(g){
+      var name = g.getAttribute('data-name');
+      g.addEventListener('mouseenter', function(){ setActive(name,false); });
+      g.addEventListener('focus', function(){ setActive(name,false); });
+      g.addEventListener('click', function(){ setActive(name,true); });
+      g.addEventListener('keydown', function(e){ if(e.key==='Enter'||e.key===' '){ e.preventDefault(); setActive(name,true);} });
+    });
+    svg.addEventListener('mouseleave', function(){ setActive(state.pinned,false); });
+    requestAnimationFrame(function(){ requestAnimationFrame(function(){ svg.classList.add('in'); }); });
+    setActive(state.pinned,false);
+  }
+
+  function renderMobile(rows){
+    mount.innerHTML = '';
+    var h = '<div class="chart">';
+    rows.forEach(function(d,i){
+      var wp = Math.max(d.runs/RUNS_MAX*100, 0.6);
+      var wm = Math.max(d.median_minutes/MIN_MAX*100, 1.2);
+      var sel = d.task_class===state.pinned ? ' sel' : '';
+      h += '<div class="mrow'+sel+'" data-name="'+d.task_class+'">';
+      h += '<div class="mhead"><span class="mname">'+d.task_class+'</span><span class="mmeta">'+fmtTok2(d.total_tokens)+' tok</span></div>';
+      h += '<div class="mbar runs"><div class="track"><i style="--w:'+wp+'%;--d:'+(i*60)+'ms"></i></div><b>'+fmtInt(d.runs)+' runs</b></div>';
+      h += '<div class="mbar mins"><div class="track"><i style="--w:'+wm+'%;--d:'+(i*60+80)+'ms"></i></div><b>'+d.median_minutes.toFixed(1)+' min</b></div>';
+      h += '</div>';
+    });
+    h += '</div>';
+    mmount.innerHTML = h;
+    box.classList.add('is-mobile');
+    mmount.querySelectorAll('.mrow').forEach(function(r){
+      r.addEventListener('click', function(){
+        var name = r.getAttribute('data-name');
+        state.pinned = name;
+        mmount.querySelectorAll('.mrow').forEach(function(x){x.classList.toggle('sel', x===r);});
+        var d = classes.filter(function(c){return c.task_class===name;})[0];
+        if(d) detailEl.innerHTML = detailHTML(d);
+      });
+    });
+    var wrap = mmount.querySelector('.chart');
+    requestAnimationFrame(function(){ requestAnimationFrame(function(){ wrap.classList.add('in'); }); });
+    var d = classes.filter(function(c){return c.task_class===state.pinned;})[0];
+    if(d) detailEl.innerHTML = detailHTML(d);
+  }
+
+  function isWide(){ return box.clientWidth >= 700; }
+  var curWide = null;
+  function render(){
+    var rows = sorted();
+    var w = isWide();
+    curWide = w;
+    if(w) renderWide(rows); else renderMobile(rows);
+  }
+
+  document.getElementById('sorts').addEventListener('click', function(e){
+    var b = e.target.closest('button'); if(!b) return;
+    state.sort = b.getAttribute('data-k');
+    this.querySelectorAll('button').forEach(function(x){x.classList.toggle('on', x===b);});
+    render();
+  });
+
+  var rzT;
+  window.addEventListener('resize', function(){
+    clearTimeout(rzT);
+    rzT = setTimeout(function(){ if(isWide()!==curWide) render(); }, 160);
+  });
+  render();
+
+  /* ---------- metered gauge (to scale) ---------- */
+  (function(){
+    var W=1000,H=132,x0=46,trackW=908,y=52,h=26;
+    var per = trackW / K.credits_funded_usd;
+    var sw = K.spent_usd * per;
+    var s = '<svg class="gauge" viewBox="0 0 '+W+' '+H+'" role="img" aria-label="Credits funded versus spent">';
+    /* leader for spent */
+    var midSpent = x0 + sw/2;
+    s += '<line x1="'+midSpent+'" y1="'+(y-6)+'" x2="'+midSpent+'" y2="'+(y-22)+'" stroke="var(--ochre)" stroke-width="1.5"/>';
+    s += '<text x="'+(x0+2)+'" y="'+(y-30)+'" font-size="13" fill="var(--ochre-deep)" font-weight="600">Spent '+money(K.spent_usd)+' · '+spentPct.toFixed(1)+'% of funded credits</text>';
+    /* track + spent */
+    s += '<rect x="'+x0+'" y="'+y+'" width="'+trackW+'" height="'+h+'" fill="#efece1"/>';
+    s += '<rect x="'+x0+'" y="'+y+'" width="'+sw+'" height="'+h+'" fill="var(--ochre)"/>';
+    /* remaining label inside track */
+    var midRest = x0 + sw + (trackW-sw)/2;
+    s += '<text x="'+midRest+'" y="'+(y+h/2+4)+'" text-anchor="middle" font-size="12" fill="var(--muted)">'+money(unspent)+' of '+money(K.credits_funded_usd)+' still in the tank</text>';
+    /* ticks every $5 */
+    for(var t=0;t<=25;t+=5){
+      var x = x0 + t*per;
+      s += '<line x1="'+x+'" y1="'+(y+h+4)+'" x2="'+x+'" y2="'+(y+h+10)+'" stroke="var(--line2)" stroke-width="1"/>';
+      s += '<text x="'+x+'" y="'+(y+h+26)+'" text-anchor="middle" font-size="11" fill="var(--muted)">$'+t+'</text>';
+    }
+    s += '<line x1="'+x0+'" y1="'+(y+h+4.5)+'" x2="'+(x0+trackW)+'" y2="'+(y+h+4.5)+'" stroke="var(--line2)" stroke-width="1"/>';
+    s += '</svg>';
+    document.getElementById('gauge-mount').innerHTML = s;
+  })();
+
+  /* ---------- $1.19 decomposition ---------- */
+  (function(){
+    document.getElementById('per-page').textContent = '≈ '+money(K.approx_cost_per_page_usd);
+    document.getElementById('kimi-line').innerHTML = '<b>'+K.pages_authored+' pages authored</b> · <b>'+K.scorecards+' blind scorecards</b> · <b>'+money(K.spent_usd)+'</b> total spend';
+    var W=1000,H=120,x0=10,trackW=980,y=26,h=30;
+    var per = trackW / K.spent_usd;
+    var pw = pagesCost*per, cw = cardsCost*per;
+    var s = '<svg class="gauge" viewBox="0 0 '+W+' '+H+'" role="img" aria-label="Decomposition of the one dollar nineteen cents of spend">';
+    s += '<rect x="'+x0+'" y="'+y+'" width="'+pw+'" height="'+h+'" fill="var(--ochre)"/>';
+    s += '<rect x="'+(x0+pw)+'" y="'+y+'" width="'+cw+'" height="'+h+'" fill="var(--ochre-soft)"/>';
+    s += '<text x="'+(x0+pw/2)+'" y="'+(y+h/2+4)+'" text-anchor="middle" font-size="12" fill="#fff" font-weight="600">'+K.pages_authored+' pages · ≈'+money(pagesCost)+'</text>';
+    s += '<line x1="'+(x0+pw+cw/2)+'" y1="'+(y+h)+'" x2="'+(x0+pw+cw/2)+'" y2="'+(y+h+12)+'" stroke="var(--ochre-deep)" stroke-width="1"/>';
+    s += '<text x="'+(x0+pw+cw/2)+'" y="'+(y+h+28)+'" text-anchor="middle" font-size="11.5" fill="var(--ochre-deep)">'+K.scorecards+' scorecards · ≈'+money(cardsCost)+'</text>';
+    s += '<text x="'+x0+'" y="'+(y-10)+'" font-size="11" fill="var(--muted)" style="letter-spacing:.12em">TOTAL METERED SPEND · '+money(K.spent_usd)+'</text>';
+    s += '</svg>';
+    document.getElementById('decomp-mount').innerHTML = s;
+  })();
+
+  /* ---------- bake-off case study ---------- */
+  document.getElementById('case-date').textContent = 'Case study · ' + B.date;
+  document.getElementById('case-what').textContent = '“' + B.what + '”';
+  document.getElementById('case-flat').innerHTML = money(B.flat_plan_marginal_usd) + ' <small>marginal</small>';
+  document.getElementById('case-met').innerHTML = money(B.metered_spend_usd) + ' <small>all-in</small>';
+
+  /* ---------- reveal on scroll ---------- */
+  var io = new IntersectionObserver(function(entries){
+    entries.forEach(function(en){
+      if(en.isIntersecting){ en.target.classList.add('in'); io.unobserve(en.target); }
+    });
+  },{threshold:.12});
+  document.querySelectorAll('.obs').forEach(function(el){ io.observe(el); });
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,52 @@
+<!doctype html>
+<!-- @sdt-exempt: neutral internal eval utility (blind bake-off picker) — links to the six visual pages under judgment; adding decorative creative here would bias the blind -->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Blind Bake-off — Pick One Per Row</title>
+<style>
+  :root { color-scheme: light; }
+  * { margin: 0; box-sizing: border-box; }
+  body { font: 16px/1.6 -apple-system, "Helvetica Neue", Arial, sans-serif; background: #f5f5f4; color: #1c1917; padding: 40px 24px 80px; }
+  .wrap { max-width: 960px; margin: 0 auto; }
+  h1 { font-size: 28px; letter-spacing: -0.01em; }
+  .sub { color: #57534e; margin: 8px 0 6px; max-width: 62ch; }
+  .seal { font: 12px/1.5 ui-monospace, Menlo, monospace; color: #78716c; word-break: break-all; margin-bottom: 36px; }
+  h2 { font-size: 19px; margin: 36px 0 4px; }
+  .task { color: #57534e; margin-bottom: 14px; }
+  .row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+  @media (max-width: 640px) { .row { grid-template-columns: 1fr; } }
+  a.card { display: block; background: #fff; border: 1px solid #e7e5e4; border-radius: 10px; padding: 22px 20px 18px; text-decoration: none; color: inherit; transition: border-color .15s, transform .15s; }
+  a.card:hover { border-color: #1c1917; transform: translateY(-2px); }
+  .label { font-size: 40px; font-weight: 700; letter-spacing: -0.02em; }
+  .hint { color: #57534e; font-size: 14px; margin-top: 4px; }
+  .foot { margin-top: 44px; padding-top: 18px; border-top: 1px solid #e7e5e4; color: #57534e; font-size: 14px; max-width: 70ch; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>Blind bake-off — two rounds, pick one winner per round</h1>
+  <p class="sub">Three anonymous builds of the same page, from the same brief, in each round. Open all three, judge like a client would, pick the one you'd ship. Nobody — including you — knows who made which until you've picked.</p>
+  <p class="seal">Sealed answer key — SHA256: f271ab76a8c9d5bd14a601c6fae312c335f4f02ca677de1965f9168ad2aea33f</p>
+
+  <h2>Round 1 — ASAP Pest &amp; Wildlife homepage</h2>
+  <p class="task">Calm, family-run, premium navy. Two visitors: panicked (call now) and researching (identify the problem).</p>
+  <div class="row">
+    <a class="card" href="../blind/asap-A.html"><div class="label">A</div><div class="hint">Open page A</div></a>
+    <a class="card" href="../blind/asap-B.html"><div class="label">B</div><div class="hint">Open page B</div></a>
+    <a class="card" href="../blind/asap-C.html"><div class="label">C</div><div class="hint">Open page C</div></a>
+  </div>
+
+  <h2>Round 2 — Design2Sell homepage</h2>
+  <p class="task">Staged-home editorial luxury. Founder-led premium. White space is the staging.</p>
+  <div class="row">
+    <a class="card" href="../blind/d2s-A.html"><div class="label">A</div><div class="hint">Open page A</div></a>
+    <a class="card" href="../blind/d2s-B.html"><div class="label">B</div><div class="hint">Open page B</div></a>
+    <a class="card" href="../blind/d2s-C.html"><div class="label">C</div><div class="hint">Open page C</div></a>
+  </div>
+
+  <p class="foot">When you've looked, tell Claude your two picks (e.g. "ASAP: B · D2S: A") plus anything you loved or hated. The photo areas are labeled placeholder blocks by design — no real photography existed for this test, same handicap for all three builders. Model scores were collected blind and stay sealed until after your verdict.</p>
+</div>
+</body>
+</html>

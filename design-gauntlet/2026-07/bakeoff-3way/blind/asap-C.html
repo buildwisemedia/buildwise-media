@@ -1,0 +1,771 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ASAP Pest and Wildlife — Wildlife Removal &amp; Pest Control in Metro Atlanta</title>
+<meta name="description" content="Family-run wildlife removal and pest control for Metro Atlanta. Humane, licensed, answered 24 hours a day, 6 days a week. Call (770) 691-3636.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Poppins:wght@600;700&display=swap" rel="stylesheet">
+<style>
+/* ============ Reset & tokens ============ */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --navy:#1B2A4A;
+  --cream:#F2EDDC;
+  --orange:#E87A2E;
+  --charcoal:#1B1B1B;
+  --ink:#212121;
+  --paper:#F0F0F0;
+  --hairline-dark:rgba(27,42,74,.16);
+  --hairline-light:rgba(240,240,240,.22);
+  --measure:66ch;
+}
+html{scroll-behavior:smooth;scroll-padding-top:88px}
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *,*::before,*::after{transition:none!important;animation:none!important}
+}
+body{
+  font-family:'Inter',-apple-system,'Segoe UI',sans-serif;
+  font-size:17px;line-height:1.7;color:var(--ink);
+  background:#FFFFFF;-webkit-font-smoothing:antialiased;
+}
+img,svg{max-width:100%;display:block}
+h1,h2{font-family:'Poppins','Inter',sans-serif;font-weight:700;line-height:1.18;letter-spacing:-0.01em;color:var(--navy)}
+h3{font-family:'Poppins','Inter',sans-serif;font-weight:600;line-height:1.3;color:var(--navy)}
+a{color:var(--navy)}
+a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{
+  outline:3px solid var(--navy);outline-offset:2px}
+.on-dark a:focus-visible,.on-dark button:focus-visible{outline-color:var(--paper)}
+.skip-link{position:absolute;left:-9999px;top:0;background:var(--paper);color:var(--navy);padding:12px 20px;z-index:99;font-weight:600}
+.skip-link:focus{left:12px;top:12px}
+
+/* ============ Shared layout ============ */
+.wrap{max-width:1200px;margin:0 auto;padding:0 20px}
+@media (min-width:640px){.wrap{padding:0 32px}}
+section{padding:clamp(64px,9vw,108px) 0}
+.kicker{display:flex;align-items:center;gap:12px;font:600 14px/1 'Inter',sans-serif;letter-spacing:.02em;color:var(--navy);margin-bottom:18px}
+.kicker::before{content:"";width:28px;height:2px;background:var(--navy)}
+.on-dark .kicker{color:var(--paper)}
+.on-dark .kicker::before{background:var(--paper)}
+h2{font-size:clamp(26px,3.6vw,40px);margin-bottom:16px}
+.section-intro{max-width:var(--measure);color:rgba(33,33,33,.82)}
+.on-dark h2,.on-dark h3{color:var(--paper)}
+.on-dark .section-intro{color:rgba(240,240,240,.8)}
+
+/* Buttons — orange lives only where action lives */
+.btn{
+  display:inline-block;background:var(--orange);color:var(--navy);
+  font:600 16px/1 'Poppins',sans-serif;text-decoration:none;
+  padding:16px 28px;border-radius:3px;border:0;cursor:pointer;
+  transition:transform .15s ease,box-shadow .15s ease;
+}
+.btn:hover{transform:translateY(-1px);box-shadow:0 8px 22px rgba(0,0,0,.22)}
+.btn:active{transform:none;box-shadow:none}
+
+/* Art-directed photo placeholder surfaces */
+.ph-surface{position:relative;border-radius:4px;overflow:hidden}
+.ph-caption{
+  position:absolute;right:14px;bottom:14px;max-width:calc(100% - 28px);
+  font:500 12px/1.5 'Inter',sans-serif;color:rgba(240,240,240,.85);
+  border:1px solid rgba(240,240,240,.3);background:rgba(0,0,0,.28);
+  padding:6px 12px;border-radius:3px;letter-spacing:.01em;
+}
+
+/* ============ Header ============ */
+.site-header{
+  position:sticky;top:0;z-index:50;background:var(--navy);
+  border-bottom:1px solid rgba(240,240,240,.12);
+}
+.header-bar{display:flex;align-items:center;gap:16px;min-height:72px;padding-top:10px;padding-bottom:10px}
+.brand{display:flex;flex-direction:column;text-decoration:none;line-height:1.1}
+.brand .brand-name{font:700 21px 'Poppins',sans-serif;color:var(--paper);letter-spacing:.01em}
+.brand .brand-sub{font:500 11px 'Inter',sans-serif;color:rgba(240,240,240,.65);letter-spacing:.14em;margin-top:3px}
+.header-spacer{flex:1}
+.site-nav{display:none}
+.header-phone{
+  font:600 16px 'Poppins',sans-serif;color:var(--orange);text-decoration:none;white-space:nowrap;
+}
+.header-phone:hover{text-decoration:underline;text-underline-offset:4px}
+.header-cta{display:none}
+.nav-toggle{
+  display:inline-flex;flex-direction:column;justify-content:center;gap:5px;
+  width:44px;height:44px;padding:0 10px;background:transparent;
+  border:1px solid rgba(240,240,240,.3);border-radius:3px;cursor:pointer;
+}
+.nav-toggle span{display:block;height:2px;width:100%;background:var(--paper)}
+.mobile-panel{display:none;background:var(--navy);border-top:1px solid rgba(240,240,240,.12)}
+.mobile-panel.open{display:block}
+.mobile-panel ul{list-style:none;padding:10px 0 22px}
+.mobile-panel a{
+  display:block;padding:13px 0;color:var(--paper);text-decoration:none;
+  font:600 17px 'Inter',sans-serif;border-bottom:1px solid rgba(240,240,240,.1);
+}
+.mobile-panel .btn{margin-top:16px;display:block;text-align:center}
+@media (max-width:479px){.brand .brand-sub{display:none}}
+@media (min-width:980px){
+  .nav-toggle,.mobile-panel{display:none!important}
+  .site-nav{display:flex;gap:28px;margin-right:12px}
+  .site-nav a{color:rgba(240,240,240,.85);text-decoration:none;font:500 15px 'Inter',sans-serif}
+  .site-nav a:hover{color:#FFFFFF;text-decoration:underline;text-underline-offset:6px}
+  .header-cta{display:inline-block;padding:12px 20px;font-size:14px}
+  .header-phone{font-size:17px}
+}
+
+/* ============ 1 · Hero ============ */
+.hero{
+  position:relative;color:var(--paper);padding:0;
+  /* navy-overlaid placeholder photo surface: layered tonal planes, no imagery */
+  background:
+    linear-gradient(112deg, rgba(0,0,0,.28) 0%, rgba(0,0,0,0) 46%),
+    linear-gradient(112deg, rgba(240,240,240,0) 62%, rgba(240,240,240,.05) 62.15%, rgba(240,240,240,.05) 100%),
+    linear-gradient(112deg, rgba(0,0,0,0) 78%, rgba(0,0,0,.22) 78.15%, rgba(0,0,0,.22) 100%),
+    var(--navy);
+}
+.hero .wrap{position:relative;padding-top:clamp(72px,11vw,128px);padding-bottom:clamp(88px,12vw,140px)}
+.hero-inner{max-width:780px}
+.hero h1{color:#FFFFFF;font-size:clamp(32px,5vw,56px);margin-bottom:22px}
+.hero-sub{font-size:clamp(17px,1.6vw,19px);color:rgba(240,240,240,.85);max-width:60ch;margin-bottom:36px}
+.hero-urgent{font:600 14px/1.4 'Inter',sans-serif;letter-spacing:.03em;color:rgba(240,240,240,.75);margin-bottom:8px}
+.hero-phone{
+  display:inline-block;font:700 clamp(30px,4.4vw,46px)/1.1 'Poppins',sans-serif;
+  color:var(--orange);text-decoration:none;margin-bottom:30px;letter-spacing:.01em;
+}
+.hero-phone:hover{text-decoration:underline;text-underline-offset:6px}
+.hero-actions{display:flex;flex-wrap:wrap;align-items:center;gap:16px 28px;margin-bottom:26px}
+.hero-secondary{color:rgba(240,240,240,.85);font:500 15px 'Inter',sans-serif;text-decoration:underline;text-underline-offset:5px}
+.hero-secondary:hover{color:#FFFFFF}
+.hero-trust{font:500 14px 'Inter',sans-serif;color:rgba(240,240,240,.7);letter-spacing:.02em}
+.hero .ph-caption{position:absolute;right:20px;bottom:18px}
+@media (min-width:640px){.hero .ph-caption{right:32px}}
+
+/* ============ 2 · Trust bar ============ */
+.trust-bar{background:var(--cream);border-bottom:1px solid var(--hairline-dark);padding:26px 0}
+.trust-bar ul{list-style:none;display:flex;flex-wrap:wrap;justify-content:center;gap:6px 0}
+.trust-bar li{
+  position:relative;padding:6px 26px;font:600 15.5px 'Poppins',sans-serif;color:var(--navy);
+  white-space:nowrap;
+}
+@media (min-width:760px){
+  .trust-bar li+li::before{
+    content:"";position:absolute;left:0;top:50%;transform:translateY(-50%);
+    width:1px;height:20px;background:rgba(27,42,74,.25);
+  }
+}
+
+/* ============ 3 · Services ============ */
+.services{background:#FFFFFF}
+.svc-group{margin-top:44px}
+.svc-group-head{display:flex;align-items:baseline;gap:18px;border-bottom:1px solid var(--hairline-dark);padding-bottom:12px;margin-bottom:24px}
+.svc-group-head h3{font-size:clamp(20px,2.2vw,24px)}
+.svc-group-head p{font-size:14.5px;color:rgba(33,33,33,.65)}
+.tiles{display:grid;gap:14px;grid-template-columns:1fr}
+@media (min-width:560px){.tiles{grid-template-columns:repeat(2,1fr)}}
+@media (min-width:920px){.tiles{grid-template-columns:repeat(3,1fr);gap:18px}}
+.tile{
+  background:#FFFFFF;border:1px solid var(--hairline-dark);border-radius:4px;
+  padding:22px 22px 18px;display:flex;flex-direction:column;gap:8px;
+  transition:transform .15s ease,box-shadow .15s ease,border-color .15s ease;
+}
+.tile:hover{transform:translateY(-2px);box-shadow:0 10px 24px rgba(27,42,74,.1);border-color:rgba(27,42,74,.35)}
+.tile h4{font:600 18px 'Poppins',sans-serif;color:var(--navy)}
+.tile p{font-size:15px;line-height:1.6;color:rgba(33,33,33,.78);flex:1}
+.tile .more{font:600 14px 'Inter',sans-serif;color:var(--navy);text-decoration:none}
+.tile .more:hover{text-decoration:underline;text-underline-offset:4px}
+
+/* ============ 4 · Process ============ */
+.process{background:var(--navy)}
+.process-steps{position:relative;display:grid;gap:38px;margin-top:48px}
+.process-steps::before{
+  content:"";position:absolute;left:21px;top:8px;bottom:8px;width:1px;
+  background:var(--hairline-light);
+}
+.step{position:relative;padding-left:70px}
+.step-num{
+  position:absolute;left:0;top:-8px;width:44px;text-align:center;
+  font:700 38px/1 'Poppins',sans-serif;color:var(--paper);
+  background:var(--navy);padding:10px 0;font-variant-numeric:tabular-nums;
+}
+.step h3{font-size:20px;margin-bottom:8px;color:var(--paper)}
+.step p{font-size:15.5px;line-height:1.65;color:rgba(240,240,240,.78)}
+@media (min-width:900px){
+  .process-steps{grid-template-columns:repeat(4,1fr);gap:36px}
+  .process-steps::before{left:6px;right:6px;top:38px;bottom:auto;width:auto;height:1px}
+  .step{padding-left:0}
+  .step-num{
+    position:relative;left:auto;top:auto;display:inline-block;width:auto;text-align:left;
+    font-size:62px;padding:0 22px 0 0;margin-bottom:16px;z-index:1;
+  }
+}
+
+/* ============ 5 · Emergency CTA ============ */
+.emergency{background:var(--orange);text-align:center;padding:clamp(56px,8vw,84px) 0}
+.emergency h2{color:var(--navy);margin-bottom:10px}
+.emergency-phone{
+  display:inline-block;font:700 clamp(32px,5.4vw,54px)/1.15 'Poppins',sans-serif;
+  color:var(--charcoal);text-decoration:none;margin:10px 0 12px;letter-spacing:.01em;
+}
+.emergency-phone:hover{text-decoration:underline;text-underline-offset:8px}
+.emergency p{font:600 16px 'Inter',sans-serif;color:var(--navy)}
+
+/* ============ 6 · Why ASAP ============ */
+.why{background:var(--cream)}
+.why-grid{display:grid;gap:34px 40px;grid-template-columns:1fr;margin-top:44px}
+@media (min-width:600px){.why-grid{grid-template-columns:repeat(2,1fr)}}
+@media (min-width:960px){.why-grid{grid-template-columns:repeat(3,1fr)}}
+.why-item{border-top:2px solid var(--navy);padding-top:16px}
+.why-item h3{font-size:18px;margin-bottom:6px}
+.why-item p{font-size:15px;line-height:1.65;color:rgba(33,33,33,.78)}
+
+/* ============ 7 · Commercial ============ */
+.commercial{background:var(--navy);text-align:center}
+.commercial-inner{max-width:740px;margin:0 auto}
+.commercial .kicker{justify-content:center}
+.commercial p{color:rgba(240,240,240,.82);margin-bottom:32px}
+.commercial p strong{color:var(--paper);font-weight:600}
+
+/* ============ 8 · Testimonials ============ */
+.reviews{background:#FFFFFF}
+.review-grid{display:grid;gap:18px;grid-template-columns:1fr;margin-top:44px}
+@media (min-width:820px){.review-grid{grid-template-columns:repeat(3,1fr);gap:22px}}
+.review-card{
+  background:var(--cream);border:1px solid var(--hairline-dark);border-radius:4px;
+  padding:28px 26px;display:flex;flex-direction:column;gap:14px;
+}
+.review-card .quote-mark{font:700 40px/0.6 'Poppins',sans-serif;color:var(--navy)}
+.review-card blockquote{font-size:15.5px;line-height:1.65;color:rgba(33,33,33,.72);font-style:italic;flex:1}
+.review-card figcaption{font:600 14px 'Inter',sans-serif;color:var(--navy);border-top:1px solid var(--hairline-dark);padding-top:14px}
+.review-note{margin-top:22px;font:500 14px 'Inter',sans-serif;color:rgba(33,33,33,.6)}
+
+/* ============ 9 · Service area ============ */
+.area{background:var(--charcoal);color:var(--paper)}
+.area-grid{display:grid;gap:44px;grid-template-columns:1fr}
+@media (min-width:900px){.area-grid{grid-template-columns:1.05fr 1fr;align-items:center}}
+.area p{color:rgba(240,240,240,.78);max-width:52ch;margin-bottom:26px}
+.chip-row{display:flex;flex-wrap:wrap;gap:10px;list-style:none}
+.chip-row li{
+  font:500 14px 'Inter',sans-serif;color:rgba(240,240,240,.85);
+  border:1px solid rgba(240,240,240,.3);border-radius:3px;padding:7px 15px;
+}
+.chip-note{margin-top:14px;font:500 12.5px 'Inter',sans-serif;color:rgba(240,240,240,.5)}
+.map-surface{
+  min-height:300px;border:1px solid rgba(240,240,240,.22);
+  background:
+    linear-gradient(118deg, rgba(27,42,74,.85) 0%, rgba(27,42,74,.45) 55%, rgba(27,42,74,.7) 100%),
+    linear-gradient(0deg, rgba(240,240,240,.04) 0%, rgba(240,240,240,0) 60%),
+    var(--charcoal);
+}
+@media (min-width:900px){.map-surface{min-height:360px}}
+
+/* ============ 10 · About ============ */
+.about{background:var(--cream)}
+.about-grid{display:grid;gap:44px;grid-template-columns:1fr}
+@media (min-width:900px){.about-grid{grid-template-columns:1fr 1.15fr;align-items:center}}
+.about-surface{
+  min-height:300px;border:1px solid var(--hairline-dark);
+  background:
+    linear-gradient(108deg, rgba(0,0,0,.24) 0%, rgba(0,0,0,0) 55%),
+    linear-gradient(108deg, rgba(240,240,240,0) 68%, rgba(240,240,240,.06) 68.2%),
+    var(--navy);
+}
+@media (min-width:900px){.about-surface{min-height:380px}}
+.about-copy p{max-width:var(--measure);color:rgba(33,33,33,.82);margin-bottom:18px}
+.about-copy p:last-child{margin-bottom:0}
+
+/* ============ 11 · Contact ============ */
+.contact{background:#FFFFFF}
+.contact-grid{display:grid;gap:48px;grid-template-columns:1fr}
+@media (min-width:940px){.contact-grid{grid-template-columns:1.05fr 1fr;align-items:start}}
+.contact-phone{
+  display:inline-block;font:700 clamp(26px,3vw,36px)/1.2 'Poppins',sans-serif;
+  color:var(--navy);text-decoration:none;margin:6px 0 20px;
+}
+.contact-phone:hover{text-decoration:underline;text-underline-offset:6px}
+.contact-points{list-style:none;margin-top:6px}
+.contact-points li{
+  position:relative;padding-left:22px;margin-bottom:10px;
+  font-size:15.5px;color:rgba(33,33,33,.8);
+}
+.contact-points li::before{
+  content:"";position:absolute;left:0;top:.62em;width:10px;height:2px;background:var(--navy);
+}
+.contact-form{
+  background:var(--cream);border:1px solid var(--hairline-dark);border-radius:4px;
+  padding:clamp(24px,3vw,36px);
+}
+.field{margin-bottom:18px}
+.field label{display:block;font:600 15px 'Inter',sans-serif;color:var(--navy);margin-bottom:7px}
+.field input,.field select,.field textarea{
+  width:100%;padding:13px 14px;font:400 16px 'Inter',sans-serif;color:var(--ink);
+  background:#FFFFFF;border:1px solid rgba(27,42,74,.3);border-radius:3px;
+}
+.field textarea{min-height:110px;resize:vertical;line-height:1.6}
+.field input:focus,.field select:focus,.field textarea:focus{border-color:var(--navy)}
+.field .hint{font:400 13px 'Inter',sans-serif;color:rgba(33,33,33,.6);margin-top:6px}
+.contact-form .btn{width:100%;text-align:center;margin-top:6px}
+.form-micro{margin-top:16px;font:400 14px 'Inter',sans-serif;color:rgba(33,33,33,.65);text-align:center}
+.form-micro a{font-weight:600}
+
+/* ============ 12 · Footer ============ */
+.site-footer{background:var(--charcoal);color:rgba(240,240,240,.75);padding:clamp(56px,7vw,80px) 0 36px}
+.footer-grid{display:grid;gap:36px;grid-template-columns:1fr 1fr;margin-bottom:48px}
+@media (min-width:860px){.footer-grid{grid-template-columns:repeat(4,1fr)}}
+.site-footer h3{font:600 15px 'Poppins',sans-serif;color:var(--paper);margin-bottom:16px;letter-spacing:.02em}
+.site-footer ul{list-style:none}
+.site-footer li{margin-bottom:10px}
+.site-footer a{color:rgba(240,240,240,.72);text-decoration:none;font-size:15px}
+.site-footer a:hover{color:#FFFFFF;text-decoration:underline;text-underline-offset:4px}
+.footer-phone{font:600 17px 'Poppins',sans-serif;color:var(--orange)!important}
+.footer-hours{font-size:14.5px;line-height:1.6;color:rgba(240,240,240,.6)}
+.footer-bottom{border-top:1px solid rgba(240,240,240,.15);padding-top:26px;font-size:13.5px;line-height:1.8;color:rgba(240,240,240,.55)}
+.footer-bottom p+p{margin-top:6px}
+</style>
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to main content</a>
+
+
+<header class="site-header on-dark">
+  <div class="wrap header-bar">
+    <a class="brand" href="#top" aria-label="ASAP Pest and Wildlife — home">
+      <span class="brand-name">ASAP</span>
+      <span class="brand-sub">PEST &amp; WILDLIFE</span>
+    </a>
+    <div class="header-spacer"></div>
+    <nav class="site-nav" aria-label="Primary">
+      <a href="#services">Services</a>
+      <a href="#process">How it works</a>
+      <a href="#why">Why ASAP</a>
+      <a href="#reviews">Reviews</a>
+      <a href="#about">About</a>
+    </nav>
+    <a class="header-phone" href="tel:+17706913636" aria-label="Call ASAP at (770) 691-3636">(770) 691-3636</a>
+    <a class="btn header-cta" href="#contact">Schedule Your Inspection</a>
+    <button class="nav-toggle" aria-expanded="false" aria-controls="mobile-panel" aria-label="Open menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+  <div class="mobile-panel" id="mobile-panel">
+    <div class="wrap">
+      <ul>
+        <li><a href="#services">Services</a></li>
+        <li><a href="#process">How it works</a></li>
+        <li><a href="#why">Why ASAP</a></li>
+        <li><a href="#reviews">Reviews</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+      <a class="btn" href="#contact">Schedule Your Inspection</a>
+    </div>
+  </div>
+</header>
+
+<main id="main">
+
+
+<section class="hero on-dark" id="top" aria-labelledby="hero-h1">
+  <div class="wrap">
+    <div class="hero-inner">
+      <h1 id="hero-h1">Your Home. Your Peace of Mind. Restored.</h1>
+      <p class="hero-sub">Humane wildlife removal and complete pest control across Metro Atlanta — handled calmly, sealed permanently, and backed by a family that treats your home like our own.</p>
+      <p class="hero-urgent">Something in the house right now? We answer 24/6.</p>
+      <a class="hero-phone" href="tel:+17706913636">(770) 691-3636</a>
+      <div class="hero-actions">
+        <a class="btn" href="#contact">Schedule Your Inspection</a>
+        <a class="hero-secondary" href="#process">See how our four-step process works</a>
+      </div>
+      <p class="hero-trust">Licensed by GA DNR · 5-star rated</p>
+    </div>
+    <span class="ph-caption" role="img" aria-label="Placeholder for a photograph of an ASAP technician at a client's home">Photo: technician at a client's home</span>
+  </div>
+</section>
+
+
+<div class="trust-bar" role="region" aria-label="Why homeowners trust ASAP">
+  <div class="wrap">
+    <ul>
+      <li>100+ Five-Star Reviews</li>
+      <li>24/6 Availability</li>
+      <li>Licensed &amp; Certified</li>
+      <li>Family-Run</li>
+    </ul>
+  </div>
+</div>
+
+
+<section class="services" id="services" aria-labelledby="services-h2">
+  
+  <div class="wrap">
+    <p class="kicker">What we handle</p>
+    <h2 id="services-h2">Whatever's moved in, we'll handle it</h2>
+    <p class="section-intro">Start with what you think you have — or just call and describe the sounds. Either way, you'll know what's going on and exactly what happens next.</p>
+
+    <div class="svc-group">
+      <div class="svc-group-head">
+        <h3>Wildlife removal</h3>
+        <p>Humane removal, then we seal the way in.</p>
+      </div>
+      <div class="tiles">
+        <article class="tile">
+          <h4>Raccoons</h4>
+          <p>Safe removal from attics and chimneys, plus repair of what they've disturbed.</p>
+          <a class="more" href="#contact" aria-label="Learn more about raccoon removal">Learn more →</a>
+        </article>
+        <article class="tile">
+          <h4>Squirrels</h4>
+          <p>Humane eviction from attics and soffits, with every entry point sealed behind them.</p>
+          <a class="more" href="#contact" aria-label="Learn more about squirrel removal">Learn more →</a>
+        </article>
+        <article class="tile">
+          <h4>Bats</h4>
+          <p>Gentle, thorough exclusion from attics, eaves, and chimneys — done right the first time.</p>
+          <a class="more" href="#contact" aria-label="Learn more about bat exclusion">Learn more →</a>
+        </article>
+        <article class="tile">
+          <h4>Snakes</h4>
+          <p>Prompt, calm removal from homes, garages, basements, and yards.</p>
+          <a class="more" href="#contact" aria-label="Learn more about snake removal">Learn more →</a>
+        </article>
+        <article class="tile">
+          <h4>Rats &amp; Mice</h4>
+          <p>Complete removal, plus sealing the gaps they've been using to get inside.</p>
+          <a class="more" href="#contact" aria-label="Learn more about rat and mouse removal">Learn more →</a>
+        </article>
+        <article class="tile">
+          <h4>Birds</h4>
+          <p>Respectful removal from vents and eaves, with clean, lasting repairs.</p>
+          <a class="more" href="#contact" aria-label="Learn more about bird removal">Learn more →</a>
+        </article>
+        <article class="tile">
+          <h4>Opossums</h4>
+          <p>Gentle trapping and removal from under decks, porches, and crawlspaces.</p>
+          <a class="more" href="#contact" aria-label="Learn more about opossum removal">Learn more →</a>
+        </article>
+        <article class="tile">
+          <h4>Bees &amp; Wasps</h4>
+          <p>Careful nest removal that keeps your family — and the pollinators — in mind.</p>
+          <a class="more" href="#contact" aria-label="Learn more about bee and wasp removal">Learn more →</a>
+        </article>
+        <article class="tile">
+          <h4>Armadillos</h4>
+          <p>Humane trapping and barriers that stop the digging for good.</p>
+          <a class="more" href="#contact" aria-label="Learn more about armadillo removal">Learn more →</a>
+        </article>
+      </div>
+    </div>
+
+    <div class="svc-group">
+      <div class="svc-group-head">
+        <h3>Pest control</h3>
+        <p>Treated at the source, not just the surface.</p>
+      </div>
+      <div class="tiles">
+        <article class="tile">
+          <h4>Roaches</h4>
+          <p>Targeted treatment that clears them out — and keeps them out.</p>
+          <a class="more" href="#contact" aria-label="Learn more about roach treatment">Learn more →</a>
+        </article>
+        <article class="tile">
+          <h4>Ants</h4>
+          <p>Colony-level treatment, not just the trail you can see on the counter.</p>
+          <a class="more" href="#contact" aria-label="Learn more about ant treatment">Learn more →</a>
+        </article>
+        <article class="tile">
+          <h4>Termites</h4>
+          <p>Thorough inspection and treatment that protects your biggest investment.</p>
+          <a class="more" href="#contact" aria-label="Learn more about termite treatment">Learn more →</a>
+        </article>
+        <article class="tile">
+          <h4>Mosquitoes</h4>
+          <p>Yard treatments that give you your evenings outside back.</p>
+          <a class="more" href="#contact" aria-label="Learn more about mosquito treatment">Learn more →</a>
+        </article>
+        <article class="tile">
+          <h4>Spiders</h4>
+          <p>Web removal and treatment for a calmer, cleaner home.</p>
+          <a class="more" href="#contact" aria-label="Learn more about spider treatment">Learn more →</a>
+        </article>
+        <article class="tile">
+          <h4>Fleas &amp; Ticks</h4>
+          <p>Whole-home treatment that protects your family and your pets.</p>
+          <a class="more" href="#contact" aria-label="Learn more about flea and tick treatment">Learn more →</a>
+        </article>
+        <article class="tile">
+          <h4>Bed Bugs</h4>
+          <p>Discreet, thorough treatment — from first inspection to all-clear.</p>
+          <a class="more" href="#contact" aria-label="Learn more about bed bug treatment">Learn more →</a>
+        </article>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<section class="process on-dark" id="process" aria-labelledby="process-h2">
+  <div class="wrap">
+    <p class="kicker">How it works</p>
+    <h2 id="process-h2">Four steps to a sealed, quiet home</h2>
+    <p class="section-intro">One complete solution, start to finish — so you deal with this once, and then you don't.</p>
+    <ol class="process-steps" style="list-style:none">
+      <li class="step">
+        <span class="step-num" aria-hidden="true">1</span>
+        <h3>Inspect</h3>
+        <p>A full walkthrough, attic to foundation. You'll see exactly what's living where — and how it's getting in.</p>
+      </li>
+      <li class="step">
+        <span class="step-num" aria-hidden="true">2</span>
+        <h3>Trap</h3>
+        <p>Humane, targeted trapping removes every animal safely. No harsh shortcuts in the place your family sleeps.</p>
+      </li>
+      <li class="step">
+        <span class="step-num" aria-hidden="true">3</span>
+        <h3>Exclude</h3>
+        <p>We seal every entry point with professional-grade materials — and back the exclusion work with a warranty.</p>
+      </li>
+      <li class="step">
+        <span class="step-num" aria-hidden="true">4</span>
+        <h3>Disinfect</h3>
+        <p>We sanitize and deodorize the affected areas, so your home doesn't just feel safe again. It is.</p>
+      </li>
+    </ol>
+  </div>
+</section>
+
+
+<section class="emergency" aria-labelledby="emergency-h2">
+  <div class="wrap">
+    <h2 id="emergency-h2">Hear something in your attic? Call ASAP.</h2>
+    <a class="emergency-phone" href="tel:+17706913636">(770) 691-3636</a>
+    <p>We answer 24 hours a day, 6 days a week.</p>
+  </div>
+</section>
+
+
+<section class="why" id="why" aria-labelledby="why-h2">
+  <div class="wrap">
+    <p class="kicker">Why ASAP</p>
+    <h2 id="why-h2">Why Atlanta families call us first</h2>
+    <div class="why-grid">
+      <div class="why-item">
+        <h3>Humane &amp; eco-friendly</h3>
+        <p>Kind to the animals, safe for your family, your pets, and your yard.</p>
+      </div>
+      <div class="why-item">
+        <h3>Complete 4-step solution</h3>
+        <p>Inspect, trap, exclude, disinfect — solved once, solved fully.</p>
+      </div>
+      <div class="why-item">
+        <h3>24/6 emergency response</h3>
+        <p>When you hear it at 2 a.m., you can reach us at 2 a.m.</p>
+      </div>
+      <div class="why-item">
+        <h3>Family-run &amp; licensed</h3>
+        <p>A local family answers to you — and to the State of Georgia.</p>
+      </div>
+      <div class="why-item">
+        <h3>Warranty on exclusion work</h3>
+        <p>When we seal your home, it stays sealed. In writing.</p>
+      </div>
+      <div class="why-item">
+        <h3>Free phone consultations</h3>
+        <p>Describe what you're hearing. The advice costs nothing.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<section class="commercial on-dark" aria-labelledby="commercial-h2">
+  <div class="wrap commercial-inner">
+    <p class="kicker">Commercial service</p>
+    <h2 id="commercial-h2">Protecting Atlanta's businesses too</h2>
+    <p>Restaurants, banks, offices, and storefronts across the metro rely on ASAP for discreet, dependable service — including <strong>Chick-fil-A</strong> and <strong>Bank of America</strong> locations.</p>
+    <a class="btn" href="#contact">Get a Commercial Quote</a>
+  </div>
+</section>
+
+
+<section class="reviews" id="reviews" aria-labelledby="reviews-h2">
+  <div class="wrap">
+    <p class="kicker">Reviews</p>
+    <h2 id="reviews-h2">What your neighbors say</h2>
+    <p class="section-intro">100+ five-star reviews from homeowners across Metro Atlanta.</p>
+    <div class="review-grid">
+      <figure class="review-card">
+        <span class="quote-mark" aria-hidden="true">&ldquo;</span>
+        <blockquote>Review copy goes here — service, neighborhood, outcome.</blockquote>
+        <figcaption>Customer name · Neighborhood</figcaption>
+      </figure>
+      <figure class="review-card">
+        <span class="quote-mark" aria-hidden="true">&ldquo;</span>
+        <blockquote>Review copy goes here — service, neighborhood, outcome.</blockquote>
+        <figcaption>Customer name · Neighborhood</figcaption>
+      </figure>
+      <figure class="review-card">
+        <span class="quote-mark" aria-hidden="true">&ldquo;</span>
+        <blockquote>Review copy goes here — service, neighborhood, outcome.</blockquote>
+        <figcaption>Customer name · Neighborhood</figcaption>
+      </figure>
+    </div>
+    <p class="review-note">Placeholder cards — verified review copy drops in here.</p>
+  </div>
+</section>
+
+
+<section class="area on-dark" id="areas" aria-labelledby="area-h2">
+  <div class="wrap area-grid">
+    <div>
+      <p class="kicker">Where we work</p>
+      <h2 id="area-h2">Serving Metro Atlanta and beyond</h2>
+      <p>Inside the perimeter or well past it — odds are we're already working in your neighborhood. If you're not sure you're in range, call. The answer is usually yes.</p>
+      <ul class="chip-row" aria-label="Service area list placeholder">
+        <li>Area name</li>
+        <li>Area name</li>
+        <li>Area name</li>
+        <li>Area name</li>
+        <li>Area name</li>
+        <li>Area name</li>
+        <li>Area name</li>
+        <li>Area name</li>
+      </ul>
+      <p class="chip-note">Placeholder — full county and city list goes here.</p>
+    </div>
+    <div class="ph-surface map-surface" role="img" aria-label="Placeholder for a map of ASAP's service coverage across Metro Atlanta">
+      <span class="ph-caption">Map: service coverage across Metro Atlanta</span>
+    </div>
+  </div>
+</section>
+
+
+<section class="about" id="about" aria-labelledby="about-h2">
+  <div class="wrap about-grid">
+    <div class="ph-surface about-surface" role="img" aria-label="Placeholder for a photograph of the family behind ASAP Pest and Wildlife">
+      <span class="ph-caption">Photo: the family behind ASAP Pest and Wildlife</span>
+    </div>
+    <div class="about-copy">
+      <p class="kicker">Our family</p>
+      <h2 id="about-h2">A family business, on purpose</h2>
+      <p>ASAP Pest and Wildlife is family-run. When you call, you reach someone whose name is on the work — and we've built our reputation across Metro Atlanta the slow way: showing up, doing the whole job, and standing behind it.</p>
+      <p>We treat each property as if it were our own. That means humane handling, honest recommendations, and leaving your home calmer than we found it. The noises stop. The worry stops with them.</p>
+    </div>
+  </div>
+</section>
+
+
+<section class="contact" id="contact" aria-labelledby="contact-h2">
+  <div class="wrap contact-grid">
+    <div>
+      <p class="kicker">Talk to us</p>
+      <h2 id="contact-h2">Peace of mind starts with one call</h2>
+      <p class="section-intro">Tell us what you're hearing — scratching, scurrying, thumping — and we'll tell you what it likely is and what happens next.</p>
+      <a class="contact-phone" href="tel:+17706913636">(770) 691-3636</a>
+      <ul class="contact-points">
+        <li>Phone consultations are free.</li>
+        <li>We answer 24 hours a day, 6 days a week.</li>
+        <li>Licensed by GA DNR — humane methods, always.</li>
+      </ul>
+    </div>
+    <form class="contact-form" action="#" method="post" aria-label="Request a callback">
+      <div class="field">
+        <label for="f-name">Your name</label>
+        <input type="text" id="f-name" name="name" autocomplete="name" required placeholder="First and last is perfect">
+      </div>
+      <div class="field">
+        <label for="f-phone">Best phone number</label>
+        <input type="tel" id="f-phone" name="phone" autocomplete="tel" required placeholder="We'll call — no spam, promise">
+      </div>
+      <div class="field">
+        <label for="f-issue">What's going on?</label>
+        <select id="f-issue" name="issue" required>
+          <option value="" selected disabled>Your best guess is fine — pick the closest</option>
+          <option value="raccoon">Raccoon</option>
+          <option value="squirrel">Squirrel</option>
+          <option value="bat">Bat</option>
+          <option value="snake">Snake</option>
+          <option value="rats-mice">Rats/Mice</option>
+          <option value="other">Other</option>
+        </select>
+        <p class="hint">Not sure? "Other" works — describing the sounds below helps a lot.</p>
+      </div>
+      <div class="field">
+        <label for="f-desc">Brief description</label>
+        <textarea id="f-desc" name="description" placeholder="When do you hear it? Where in the house? Anything you've seen?"></textarea>
+      </div>
+      <button class="btn" type="submit">Request your callback</button>
+      <p class="form-micro">Prefer to talk it through right now? Call <a href="tel:+17706913636">(770) 691-3636</a>.</p>
+    </form>
+  </div>
+</section>
+
+</main>
+
+
+<footer class="site-footer on-dark">
+  <div class="wrap">
+    <div class="footer-grid">
+      <div>
+        <h3>Services</h3>
+        <ul>
+          <li><a href="#services">Wildlife removal</a></li>
+          <li><a href="#services">Pest control</a></li>
+          <li><a href="#contact">Commercial service</a></li>
+          <li><a href="#process">Our 4-step process</a></li>
+        </ul>
+      </div>
+      <div>
+        <h3>Service areas</h3>
+        <ul>
+          <li><a href="#areas">Metro Atlanta</a></li>
+          <li><a href="#areas">Area name</a></li>
+          <li><a href="#areas">Area name</a></li>
+          <li><a href="#areas">Area name</a></li>
+        </ul>
+      </div>
+      <div>
+        <h3>About</h3>
+        <ul>
+          <li><a href="#about">Our family</a></li>
+          <li><a href="#why">Why ASAP</a></li>
+          <li><a href="#reviews">Reviews</a></li>
+        </ul>
+      </div>
+      <div>
+        <h3>Contact</h3>
+        <ul>
+          <li><a class="footer-phone" href="tel:+17706913636">(770) 691-3636</a></li>
+          <li><a href="#contact">Schedule an inspection</a></li>
+        </ul>
+        <p class="footer-hours">Phones answered 24 hours a day,<br>6 days a week.</p>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>Licensed by the Georgia Department of Natural Resources (GA DNR) and the Georgia Department of Agriculture · Registered in the State of Georgia.</p>
+      <p>&copy; 2026 ASAP Pest and Wildlife. All rights reserved.</p>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var btn=document.querySelector('.nav-toggle');
+  var panel=document.getElementById('mobile-panel');
+  if(!btn||!panel)return;
+  btn.addEventListener('click',function(){
+    var open=panel.classList.toggle('open');
+    btn.setAttribute('aria-expanded',open?'true':'false');
+    btn.setAttribute('aria-label',open?'Close menu':'Open menu');
+  });
+  panel.addEventListener('click',function(e){
+    if(e.target.tagName==='A'){
+      panel.classList.remove('open');
+      btn.setAttribute('aria-expanded','false');
+      btn.setAttribute('aria-label','Open menu');
+    }
+  });
+})();
+</script>
+</body>
+</html>

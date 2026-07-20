@@ -1,0 +1,641 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Rebrand Gauntlet — Judge's Hub</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..700;1,9..144,300..700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#F6F3EC;
+    --card:#FCFAF4;
+    --ink:#171309;
+    --ink-soft:#5C543F;
+    --ink-faint:#8A8069;
+    --line:#DCD4BF;
+    --line-soft:#E8E2D0;
+    --brass:#8A6200;
+    --brass-soft:#F0E7CE;
+    --ok:#2F6B3A;
+    --mono:'IBM Plex Mono',ui-monospace,monospace;
+    --serif:'Fraunces',Georgia,serif;
+    --sans:'Inter',system-ui,sans-serif;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    background:var(--paper);
+    color:var(--ink);
+    font-family:var(--sans);
+    font-size:16px;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  ::selection{background:var(--brass);color:#FFF8E6}
+  a{color:inherit}
+  :focus-visible{outline:2px solid var(--brass);outline-offset:3px;border-radius:2px}
+
+  .wrap{max-width:1080px;margin:0 auto;padding:0 clamp(1.25rem,4vw,2.5rem)}
+
+  /* ── Top bar ─────────────────────────────── */
+  .topbar{
+    position:sticky;top:0;z-index:50;
+    background:rgba(246,243,236,.92);
+    backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--line);
+  }
+  .topbar .wrap{display:flex;align-items:center;justify-content:space-between;gap:1rem;height:56px}
+  .topbar .brand{font-family:var(--mono);font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-soft);text-decoration:none}
+  .topbar .brand b{color:var(--ink);font-weight:500}
+  .topnav{display:flex;gap:1.5rem}
+  .topnav a{
+    font-family:var(--mono);font-size:.75rem;letter-spacing:.12em;text-transform:uppercase;
+    color:var(--ink-soft);text-decoration:none;padding:.35rem 0;border-bottom:1px solid transparent;
+    transition:color .2s,border-color .2s;
+  }
+  .topnav a:hover{color:var(--brass);border-bottom-color:var(--brass)}
+
+  /* ── Hero ────────────────────────────────── */
+  .hero{padding:clamp(3.5rem,9vw,6.5rem) 0 clamp(2.5rem,6vw,4rem)}
+  .eyebrow{
+    font-family:var(--mono);font-size:.78rem;letter-spacing:.22em;text-transform:uppercase;
+    color:var(--brass);display:flex;align-items:center;gap:.9rem;margin-bottom:1.6rem;
+  }
+  .eyebrow::after{content:"";height:1px;width:64px;background:var(--brass);opacity:.5}
+  h1{
+    font-family:var(--serif);font-weight:480;
+    font-size:clamp(2.7rem,7.2vw,4.9rem);
+    line-height:1.02;letter-spacing:-.02em;
+    font-variation-settings:"opsz" 144;
+  }
+  h1 em{font-style:italic;font-weight:420;color:var(--brass)}
+  .subtitle{
+    margin-top:1.3rem;font-family:var(--serif);font-style:italic;font-weight:400;
+    font-size:clamp(1.15rem,2.4vw,1.45rem);color:var(--ink-soft);letter-spacing:.005em;
+  }
+  .hero-rule{margin-top:clamp(2.2rem,5vw,3.5rem);border:none;border-top:1px solid var(--ink);opacity:.85}
+
+  /* ── How it works ────────────────────────── */
+  .how{padding:clamp(2rem,5vw,3.2rem) 0}
+  .section-kicker{
+    font-family:var(--mono);font-size:.74rem;letter-spacing:.2em;text-transform:uppercase;
+    color:var(--ink-faint);margin-bottom:1.4rem;display:flex;align-items:baseline;gap:1rem;
+  }
+  .section-kicker::after{content:"";flex:1;height:1px;background:var(--line)}
+  .how-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(1.5rem,3.5vw,3rem)}
+  .how-item{border-top:2px solid var(--ink);padding-top:1.1rem}
+  .how-item .step{
+    font-family:var(--mono);font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;
+    color:var(--brass);display:block;margin-bottom:.55rem;
+  }
+  .how-item h3{font-family:var(--serif);font-weight:520;font-size:1.22rem;letter-spacing:-.01em;margin-bottom:.45rem}
+  .how-item p{font-size:.92rem;color:var(--ink-soft)}
+  .photo-note{
+    margin-top:2.2rem;padding:1rem 1.25rem;
+    border:1px solid var(--line);border-left:3px solid var(--brass);
+    background:var(--card);font-size:.9rem;color:var(--ink-soft);
+  }
+  .photo-note strong{color:var(--ink);font-weight:600}
+
+  /* ── Seal strip ──────────────────────────── */
+  .seal{padding:clamp(1rem,3vw,1.75rem) 0 clamp(2.5rem,6vw,4rem)}
+  .seal-box{
+    border:1px solid var(--line);background:var(--card);
+    padding:1.15rem 1.4rem;display:flex;gap:1.25rem;align-items:baseline;flex-wrap:wrap;
+  }
+  .seal-box .seal-label{
+    font-family:var(--mono);font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;
+    color:var(--brass);white-space:nowrap;
+  }
+  .seal-box .seal-desc{font-size:.85rem;color:var(--ink-soft)}
+  .seal-box .seal-token{
+    flex-basis:100%;
+    font-family:var(--mono);font-size:.8rem;line-height:1.7;color:var(--ink);
+    word-break:break-all;background:var(--paper);border:1px dashed var(--line);
+    padding:.7rem .9rem;
+  }
+
+  /* ── Rounds ──────────────────────────────── */
+  .rounds{padding-bottom:clamp(2.5rem,6vw,4rem)}
+  .rounds-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(1.1rem,2.5vw,1.6rem)}
+  .round-card{
+    background:var(--card);border:1px solid var(--line);
+    display:flex;flex-direction:column;
+    transition:border-color .25s, box-shadow .25s;
+  }
+  .round-card:hover{border-color:var(--ink-faint);box-shadow:0 10px 30px -18px rgba(23,19,9,.35)}
+  .round-head{padding:1.4rem 1.4rem 1.1rem;border-bottom:1px solid var(--line-soft)}
+  .round-meta{display:flex;justify-content:space-between;align-items:baseline;gap:.75rem;margin-bottom:.7rem}
+  .round-label{font-family:var(--mono);font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;color:var(--brass)}
+  .round-opened{font-family:var(--mono);font-size:.72rem;letter-spacing:.08em;color:var(--ink-faint);transition:color .25s}
+  .round-opened.complete{color:var(--ok)}
+  .round-card h3{font-family:var(--serif);font-weight:540;font-size:1.45rem;letter-spacing:-.015em;line-height:1.15}
+  .round-task{font-size:.88rem;color:var(--ink-soft);margin-top:.5rem}
+  .round-tag{
+    display:inline-block;margin-top:.8rem;font-family:var(--mono);font-size:.68rem;
+    letter-spacing:.14em;text-transform:uppercase;color:var(--ink-soft);
+    border:1px solid var(--line);padding:.28rem .6rem;background:var(--paper);
+  }
+
+  .entries{display:flex;flex-direction:column}
+  .entry{
+    display:flex;align-items:center;gap:1.1rem;
+    padding:1.05rem 1.4rem;text-decoration:none;
+    border-bottom:1px solid var(--line-soft);
+    position:relative;transition:background .2s;
+  }
+  .entry:last-child{border-bottom:none}
+  .entry::before{
+    content:"";position:absolute;left:0;top:0;bottom:0;width:3px;
+    background:var(--brass);transform:scaleY(0);transition:transform .22s ease;transform-origin:top;
+  }
+  .entry:hover{background:var(--brass-soft)}
+  .entry:hover::before{transform:scaleY(1)}
+  .entry-letter{
+    font-family:var(--serif);font-weight:520;font-size:1.9rem;line-height:1;
+    min-width:1.6rem;letter-spacing:-.01em;transition:transform .2s;
+  }
+  .entry:hover .entry-letter{transform:translateX(2px)}
+  .entry-body{flex:1;display:flex;flex-direction:column}
+  .entry-open{font-size:.88rem;font-weight:500}
+  .entry-state{
+    font-family:var(--mono);font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;
+    color:var(--ok);opacity:0;transform:translateY(2px);transition:opacity .25s,transform .25s;
+  }
+  .entry.is-opened .entry-state{opacity:1;transform:none}
+  .entry.is-opened .entry-open{color:var(--ink-soft)}
+  .entry-arrow{font-family:var(--serif);font-size:1.25rem;color:var(--ink-faint);transition:transform .2s,color .2s}
+  .entry:hover .entry-arrow{transform:translateX(4px);color:var(--brass)}
+
+  .round-tools{border-top:1px solid var(--line-soft);padding:1.05rem 1.4rem 1.3rem;margin-top:auto}
+  .pick-row{display:flex;align-items:center;gap:.6rem;margin-bottom:.8rem}
+  .pick-label{font-family:var(--mono);font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-faint);margin-right:.2rem}
+  .pick-btn{
+    font-family:var(--mono);font-size:.8rem;width:2rem;height:2rem;
+    background:var(--paper);border:1px solid var(--line);color:var(--ink-soft);
+    cursor:pointer;transition:all .18s;
+  }
+  .pick-btn:hover{border-color:var(--ink);color:var(--ink)}
+  .pick-btn[aria-pressed="true"]{background:var(--ink);border-color:var(--ink);color:var(--paper)}
+  .note-input{
+    width:100%;font-family:var(--sans);font-size:.82rem;color:var(--ink);
+    background:var(--paper);border:1px solid var(--line);padding:.55rem .7rem;
+    resize:vertical;min-height:2.4rem;line-height:1.5;transition:border-color .2s;
+  }
+  .note-input::placeholder{color:var(--ink-faint)}
+  .note-input:focus{outline:none;border-color:var(--brass)}
+
+  /* ── Verdict ─────────────────────────────── */
+  .verdict{background:var(--ink);color:var(--paper);padding:clamp(3rem,7vw,5rem) 0}
+  .verdict .section-kicker{color:#9A907A}
+  .verdict .section-kicker::after{background:#3A3423}
+  .verdict-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:clamp(2rem,5vw,4rem);align-items:start}
+  .verdict h2{font-family:var(--serif);font-weight:480;font-size:clamp(1.7rem,3.6vw,2.4rem);letter-spacing:-.015em;line-height:1.1;margin-bottom:1.1rem}
+  .verdict h2 em{font-style:italic;color:#D9B75C}
+  .verdict p{font-size:.95rem;color:#CFC7AE;max-width:46ch}
+  .verdict p + p{margin-top:.8rem}
+  .verdict .fmt{
+    font-family:var(--mono);font-size:.86rem;color:#F0E7CE;
+    border:1px solid #3A3423;background:#201C0F;padding:.75rem 1rem;
+    display:inline-block;margin-top:1.1rem;
+  }
+  .verdict-panel{border:1px solid #3A3423;background:#1E1A0E;padding:1.4rem}
+  .verdict-panel .panel-label{
+    font-family:var(--mono);font-size:.68rem;letter-spacing:.18em;text-transform:uppercase;
+    color:#9A907A;display:block;margin-bottom:.9rem;
+  }
+  .verdict-string{
+    font-family:var(--mono);font-size:clamp(1rem,2.4vw,1.25rem);letter-spacing:.04em;
+    color:#F5EEDC;line-height:1.6;word-break:break-word;min-height:2rem;
+  }
+  .verdict-string .pending{color:#6E6549}
+  .verdict-notes-preview{
+    margin-top:1rem;font-family:var(--mono);font-size:.75rem;color:#9A907A;
+    line-height:1.7;white-space:pre-wrap;word-break:break-word;
+  }
+  .verdict-notes-preview:empty{display:none}
+  .copy-btn{
+    margin-top:1.3rem;width:100%;
+    font-family:var(--mono);font-size:.8rem;letter-spacing:.14em;text-transform:uppercase;
+    background:#D9B75C;color:#171309;border:none;padding:.95rem 1rem;cursor:pointer;
+    transition:background .2s,transform .15s;
+  }
+  .copy-btn:hover{background:#F0D488}
+  .copy-btn:active{transform:scale(.985)}
+  .clear-btn{
+    margin-top:.7rem;width:100%;background:none;border:none;cursor:pointer;
+    font-family:var(--mono);font-size:.7rem;letter-spacing:.14em;text-transform:uppercase;
+    color:#6E6549;padding:.4rem;transition:color .2s;
+  }
+  .clear-btn:hover{color:#CFC7AE}
+
+  /* ── Ledger ──────────────────────────────── */
+  .ledger{padding:clamp(3rem,7vw,5rem) 0}
+  .ledger-box{border:1px solid var(--line);background:var(--card);padding:1.5rem}
+  .ledger-box .ledger-head{display:flex;justify-content:space-between;align-items:baseline;gap:1rem;flex-wrap:wrap;margin-bottom:1rem}
+  .ledger-box h2{font-family:var(--serif);font-weight:520;font-size:1.5rem;letter-spacing:-.015em}
+  .ledger-status{font-family:var(--mono);font-size:.7rem;letter-spacing:.16em;text-transform:uppercase;color:var(--brass)}
+  .ledger-box p{font-size:.9rem;color:var(--ink-soft);max-width:60ch;margin-bottom:1.1rem}
+  .ledger-token{
+    font-family:var(--mono);font-size:.8rem;line-height:1.7;color:var(--ink);
+    background:var(--paper);border:1px dashed var(--line);padding:1rem 1.1rem;
+    word-break:break-all;
+  }
+
+  /* ── Footer ──────────────────────────────── */
+  footer{border-top:1px solid var(--line);padding:1.8rem 0 2.4rem}
+  footer .wrap{display:flex;justify-content:space-between;gap:1rem;flex-wrap:wrap}
+  footer p{font-family:var(--mono);font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-faint)}
+
+  /* ── Responsive ──────────────────────────── */
+  @media (max-width:920px){
+    .rounds-grid{grid-template-columns:1fr}
+    .verdict-grid{grid-template-columns:1fr}
+    .how-grid{grid-template-columns:1fr;gap:1.6rem}
+  }
+  @media (max-width:560px){
+    .topnav{gap:1rem}
+    .topnav a{font-size:.66rem}
+    .entry-letter{font-size:1.6rem}
+  }
+  @media (prefers-reduced-motion:reduce){
+    html{scroll-behavior:auto}
+    *{transition:none!important}
+  }
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="wrap">
+    <a class="brand" href="#top"><b>Gauntlet</b> / Judge's Hub</a>
+    <nav class="topnav" aria-label="Sections">
+      <a href="#rounds">Rounds</a>
+      <a href="#verdict">Verdict</a>
+      <a href="#ledger">Ledger</a>
+    </nav>
+  </div>
+</div>
+
+<main id="top">
+
+  <!-- ── Hero ─────────────────────────────── -->
+  <header class="hero">
+    <div class="wrap">
+      <p class="eyebrow">Blind design bake-off &middot; Judge's hub</p>
+      <h1>The Rebrand <em>Gauntlet</em></h1>
+      <p class="subtitle">Three rounds. Three anonymous builders. One judge.</p>
+      <hr class="hero-rule">
+    </div>
+  </header>
+
+  <!-- ── How it works ─────────────────────── -->
+  <section class="how" aria-labelledby="how-title">
+    <div class="wrap">
+      <p class="section-kicker" id="how-title">How this works</p>
+      <div class="how-grid">
+        <div class="how-item">
+          <span class="step">First</span>
+          <h3>Open all three</h3>
+          <p>Every round presents entries A, B and C. Open each one — they load in their own tabs — before you form an opinion.</p>
+        </div>
+        <div class="how-item">
+          <span class="step">Then</span>
+          <h3>Pick what you'd ship</h3>
+          <p>One winner per round: the page you would put in front of real customers tomorrow, as-is.</p>
+        </div>
+        <div class="how-item">
+          <span class="step">Always</span>
+          <h3>Judge like a paying client</h3>
+          <p>You are paying for this work. Confusing navigation, dead ends and filler copy are your problem now.</p>
+        </div>
+      </div>
+      <div class="photo-note">
+        <strong>A note on imagery:</strong> placeholder photo areas are intentional. No photography existed for any of these briefs — every builder worked under the same handicap, in every round.
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Seal ─────────────────────────────── -->
+  <section class="seal" aria-label="Sealed integrity">
+    <div class="wrap">
+      <div class="seal-box">
+        <span class="seal-label">Sealed integrity</span>
+        <span class="seal-desc">Verification fingerprints — entries were sealed before judging opened.</span>
+        <span class="seal-token">{{SEAL_SHAS}}</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Rounds ───────────────────────────── -->
+  <section class="rounds" id="rounds" aria-labelledby="rounds-title">
+    <div class="wrap">
+      <p class="section-kicker" id="rounds-title">The three rounds</p>
+      <div class="rounds-grid">
+
+        <!-- Round 1 -->
+        <article class="round-card" data-round-card="r1">
+          <div class="round-head">
+            <div class="round-meta">
+              <span class="round-label">Round 1</span>
+              <span class="round-opened" data-opened-count>0 / 3 opened</span>
+            </div>
+            <h3>ACME Heating &amp; Air</h3>
+            <p class="round-task">A fictional premium HVAC homepage. The wow-factor round.</p>
+            <span class="round-tag">Brand fiction</span>
+          </div>
+          <nav class="entries" aria-label="Round 1 entries">
+            <a class="entry" href="../blind/r1-A.html" target="_blank" rel="noopener" data-round="r1" data-entry="A">
+              <span class="entry-letter">A</span>
+              <span class="entry-body"><span class="entry-open">Open entry</span><span class="entry-state">Opened &#10003;</span></span>
+              <span class="entry-arrow">&rarr;</span>
+            </a>
+            <a class="entry" href="../blind/r1-B.html" target="_blank" rel="noopener" data-round="r1" data-entry="B">
+              <span class="entry-letter">B</span>
+              <span class="entry-body"><span class="entry-open">Open entry</span><span class="entry-state">Opened &#10003;</span></span>
+              <span class="entry-arrow">&rarr;</span>
+            </a>
+            <a class="entry" href="../blind/r1-C.html" target="_blank" rel="noopener" data-round="r1" data-entry="C">
+              <span class="entry-letter">C</span>
+              <span class="entry-body"><span class="entry-open">Open entry</span><span class="entry-state">Opened &#10003;</span></span>
+              <span class="entry-arrow">&rarr;</span>
+            </a>
+          </nav>
+          <div class="round-tools">
+            <div class="pick-row" role="group" aria-label="Your pick for Round 1">
+              <span class="pick-label">Your pick</span>
+              <button class="pick-btn" data-pick-round="r1" data-pick="A" aria-pressed="false">A</button>
+              <button class="pick-btn" data-pick-round="r1" data-pick="B" aria-pressed="false">B</button>
+              <button class="pick-btn" data-pick-round="r1" data-pick="C" aria-pressed="false">C</button>
+            </div>
+            <textarea class="note-input" data-note-round="r1" rows="2" placeholder="Loved / hated &mdash; Round 1&hellip;" aria-label="Notes for Round 1"></textarea>
+          </div>
+        </article>
+
+        <!-- Round 2 -->
+        <article class="round-card" data-round-card="r2">
+          <div class="round-head">
+            <div class="round-meta">
+              <span class="round-label">Round 2</span>
+              <span class="round-opened" data-opened-count>0 / 3 opened</span>
+            </div>
+            <h3>Cost per Task</h3>
+            <p class="round-task">An executive dashboard built on real AI-work telemetry.</p>
+            <span class="round-tag">Live data</span>
+          </div>
+          <nav class="entries" aria-label="Round 2 entries">
+            <a class="entry" href="../blind/r2-A.html" target="_blank" rel="noopener" data-round="r2" data-entry="A">
+              <span class="entry-letter">A</span>
+              <span class="entry-body"><span class="entry-open">Open entry</span><span class="entry-state">Opened &#10003;</span></span>
+              <span class="entry-arrow">&rarr;</span>
+            </a>
+            <a class="entry" href="../blind/r2-B.html" target="_blank" rel="noopener" data-round="r2" data-entry="B">
+              <span class="entry-letter">B</span>
+              <span class="entry-body"><span class="entry-open">Open entry</span><span class="entry-state">Opened &#10003;</span></span>
+              <span class="entry-arrow">&rarr;</span>
+            </a>
+            <a class="entry" href="../blind/r2-C.html" target="_blank" rel="noopener" data-round="r2" data-entry="C">
+              <span class="entry-letter">C</span>
+              <span class="entry-body"><span class="entry-open">Open entry</span><span class="entry-state">Opened &#10003;</span></span>
+              <span class="entry-arrow">&rarr;</span>
+            </a>
+          </nav>
+          <div class="round-tools">
+            <div class="pick-row" role="group" aria-label="Your pick for Round 2">
+              <span class="pick-label">Your pick</span>
+              <button class="pick-btn" data-pick-round="r2" data-pick="A" aria-pressed="false">A</button>
+              <button class="pick-btn" data-pick-round="r2" data-pick="B" aria-pressed="false">B</button>
+              <button class="pick-btn" data-pick-round="r2" data-pick="C" aria-pressed="false">C</button>
+            </div>
+            <textarea class="note-input" data-note-round="r2" rows="2" placeholder="Loved / hated &mdash; Round 2&hellip;" aria-label="Notes for Round 2"></textarea>
+          </div>
+        </article>
+
+        <!-- Round 3 -->
+        <article class="round-card" data-round-card="r3">
+          <div class="round-head">
+            <div class="round-meta">
+              <span class="round-label">Round 3</span>
+              <span class="round-opened" data-opened-count>0 / 3 opened</span>
+            </div>
+            <h3>The Rebrand</h3>
+            <p class="round-task">Buildwise Media reborn as a sales page. The yellow and the logo survive — nothing else.</p>
+            <span class="round-tag">Constraint</span>
+          </div>
+          <nav class="entries" aria-label="Round 3 entries">
+            <a class="entry" href="../blind/r3-A.html" target="_blank" rel="noopener" data-round="r3" data-entry="A">
+              <span class="entry-letter">A</span>
+              <span class="entry-body"><span class="entry-open">Open entry</span><span class="entry-state">Opened &#10003;</span></span>
+              <span class="entry-arrow">&rarr;</span>
+            </a>
+            <a class="entry" href="../blind/r3-B.html" target="_blank" rel="noopener" data-round="r3" data-entry="B">
+              <span class="entry-letter">B</span>
+              <span class="entry-body"><span class="entry-open">Open entry</span><span class="entry-state">Opened &#10003;</span></span>
+              <span class="entry-arrow">&rarr;</span>
+            </a>
+            <a class="entry" href="../blind/r3-C.html" target="_blank" rel="noopener" data-round="r3" data-entry="C">
+              <span class="entry-letter">C</span>
+              <span class="entry-body"><span class="entry-open">Open entry</span><span class="entry-state">Opened &#10003;</span></span>
+              <span class="entry-arrow">&rarr;</span>
+            </a>
+          </nav>
+          <div class="round-tools">
+            <div class="pick-row" role="group" aria-label="Your pick for Round 3">
+              <span class="pick-label">Your pick</span>
+              <button class="pick-btn" data-pick-round="r3" data-pick="A" aria-pressed="false">A</button>
+              <button class="pick-btn" data-pick-round="r3" data-pick="B" aria-pressed="false">B</button>
+              <button class="pick-btn" data-pick-round="r3" data-pick="C" aria-pressed="false">C</button>
+            </div>
+            <textarea class="note-input" data-note-round="r3" rows="2" placeholder="Loved / hated &mdash; Round 3&hellip;" aria-label="Notes for Round 3"></textarea>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Verdict ──────────────────────────── -->
+  <section class="verdict" id="verdict" aria-labelledby="verdict-title">
+    <div class="wrap">
+      <p class="section-kicker">Delivering your verdict</p>
+      <div class="verdict-grid">
+        <div>
+          <h2 id="verdict-title">One reply. <em>Three letters.</em></h2>
+          <p>Answer with your pick for each round, on one line, in this exact shape:</p>
+          <span class="fmt">R1: B &middot; R2: A &middot; R3: C</span>
+          <p>Then tell us what you loved and what you hated — per entry, per round, in your own words. The letters are anonymous; only letters. The ledger below unseals builder costs after your verdict is in.</p>
+          <p>The panel opposite assembles your reply as you mark picks and notes on the round cards. Copy it, paste it, done.</p>
+        </div>
+        <div class="verdict-panel">
+          <span class="panel-label">Your reply, assembled live</span>
+          <p class="verdict-string" id="verdictString" aria-live="polite"></p>
+          <div class="verdict-notes-preview" id="verdictNotes"></div>
+          <button class="copy-btn" id="copyBtn" type="button">Copy verdict</button>
+          <button class="clear-btn" id="clearBtn" type="button">Clear all marks</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Ledger ───────────────────────────── -->
+  <section class="ledger" id="ledger" aria-labelledby="ledger-title">
+    <div class="wrap">
+      <div class="ledger-box">
+        <div class="ledger-head">
+          <h2 id="ledger-title">The cost ledger</h2>
+          <span class="ledger-status">Sealed until reveal</span>
+        </div>
+        <p>What did each build actually cost to produce? This table unseals after the verdict is recorded — per-builder cost, side by side with the letters you picked. Judge first, price later.</p>
+        <div class="ledger-token">{{COST_LEDGER}}</div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <p>The Rebrand Gauntlet &middot; Blind bake-off</p>
+    <p>Entries are anonymous &middot; Letters carry no ranking</p>
+  </div>
+</footer>
+
+<script>
+(function(){
+  "use strict";
+  var ROUNDS = ["r1","r2","r3"];
+  var STORE_KEY = "gauntlet-judge-v1";
+
+  var state = { opened:{}, picks:{}, notes:{} };
+  ROUNDS.forEach(function(r){ state.opened[r] = {}; state.picks[r] = null; state.notes[r] = ""; });
+
+  try {
+    var saved = JSON.parse(localStorage.getItem(STORE_KEY) || "null");
+    if (saved && saved.opened && saved.picks && saved.notes) {
+      ROUNDS.forEach(function(r){
+        state.opened[r] = saved.opened[r] || {};
+        state.picks[r]  = saved.picks[r]  || null;
+        state.notes[r]  = saved.notes[r]  || "";
+      });
+    }
+  } catch(e){}
+
+  function save(){
+    try { localStorage.setItem(STORE_KEY, JSON.stringify(state)); } catch(e){}
+  }
+
+  function renderOpened(){
+    document.querySelectorAll(".entry").forEach(function(a){
+      var r = a.getAttribute("data-round"), e = a.getAttribute("data-entry");
+      a.classList.toggle("is-opened", !!state.opened[r][e]);
+    });
+    ROUNDS.forEach(function(r){
+      var card = document.querySelector('[data-round-card="'+r+'"]');
+      if(!card) return;
+      var count = ["A","B","C"].filter(function(e){ return state.opened[r][e]; }).length;
+      var el = card.querySelector("[data-opened-count]");
+      el.textContent = count + " / 3 opened";
+      el.classList.toggle("complete", count === 3);
+    });
+  }
+
+  function renderPicks(){
+    document.querySelectorAll(".pick-btn").forEach(function(b){
+      var r = b.getAttribute("data-pick-round");
+      b.setAttribute("aria-pressed", state.picks[r] === b.getAttribute("data-pick") ? "true" : "false");
+    });
+  }
+
+  function renderNotes(){
+    document.querySelectorAll("[data-note-round]").forEach(function(t){
+      var r = t.getAttribute("data-note-round");
+      if (t.value !== state.notes[r]) t.value = state.notes[r];
+    });
+  }
+
+  function verdictLine(){
+    return ROUNDS.map(function(r){ return r.toUpperCase() + ": " + (state.picks[r] || "–"); }).join(" · ");
+  }
+
+  function fullVerdict(){
+    var lines = [verdictLine()];
+    ROUNDS.forEach(function(r){
+      var n = state.notes[r].trim();
+      if(n) lines.push(r.toUpperCase() + " — " + n);
+    });
+    return lines.join("\n");
+  }
+
+  function renderVerdict(){
+    var vs = document.getElementById("verdictString");
+    vs.innerHTML = ROUNDS.map(function(r){
+      var p = state.picks[r];
+      return p
+        ? r.toUpperCase() + ": " + p
+        : '<span class="pending">' + r.toUpperCase() + ': –</span>';
+    }).join(" &middot; ");
+
+    var notes = ROUNDS.map(function(r){
+      var n = state.notes[r].trim();
+      return n ? r.toUpperCase() + " — " + n : null;
+    }).filter(Boolean).join("\n");
+    document.getElementById("verdictNotes").textContent = notes;
+  }
+
+  function renderAll(){ renderOpened(); renderPicks(); renderNotes(); renderVerdict(); }
+
+  document.querySelectorAll(".entry").forEach(function(a){
+    a.addEventListener("click", function(){
+      state.opened[a.getAttribute("data-round")][a.getAttribute("data-entry")] = true;
+      save(); renderOpened();
+    });
+  });
+
+  document.querySelectorAll(".pick-btn").forEach(function(b){
+    b.addEventListener("click", function(){
+      var r = b.getAttribute("data-pick-round"), v = b.getAttribute("data-pick");
+      state.picks[r] = (state.picks[r] === v) ? null : v;
+      save(); renderPicks(); renderVerdict();
+    });
+  });
+
+  document.querySelectorAll("[data-note-round]").forEach(function(t){
+    t.addEventListener("input", function(){
+      state.notes[t.getAttribute("data-note-round")] = t.value;
+      save(); renderVerdict();
+    });
+  });
+
+  var copyBtn = document.getElementById("copyBtn");
+  copyBtn.addEventListener("click", function(){
+    var text = fullVerdict();
+    function done(){
+      var orig = "Copy verdict";
+      copyBtn.textContent = "Copied \u2713";
+      setTimeout(function(){ copyBtn.textContent = orig; }, 1600);
+    }
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(text).then(done, function(){ fallback(text); done(); });
+    } else { fallback(text); done(); }
+    function fallback(t){
+      var ta = document.createElement("textarea");
+      ta.value = t; ta.style.position = "fixed"; ta.style.opacity = "0";
+      document.body.appendChild(ta); ta.select();
+      try { document.execCommand("copy"); } catch(e){}
+      document.body.removeChild(ta);
+    }
+  });
+
+  document.getElementById("clearBtn").addEventListener("click", function(){
+    ROUNDS.forEach(function(r){ state.opened[r] = {}; state.picks[r] = null; state.notes[r] = ""; });
+    save(); renderAll();
+  });
+
+  renderAll();
+})();
+</script>
+
+</body>
+</html>
