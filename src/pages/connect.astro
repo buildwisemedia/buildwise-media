@@ -22,7 +22,7 @@ const description = 'You have my card. Save my contact, book 30 minutes, or conn
         <a class="ca" href="https://book.buildwisemedia.com/bwm/30-min" data-action="book">
           Book 30 minutes with me
         </a>
-        <a class="ca" href="https://www.linkedin.com/company/buildwise-media" target="_blank" rel="noopener" data-action="linkedin">
+        <a class="ca" href="https://www.linkedin.com/in/robertechevarria/" target="_blank" rel="noopener" data-action="linkedin">
           Connect on LinkedIn
         </a>
       </div>
@@ -44,6 +44,27 @@ const description = 'You have my card. Save my contact, book 30 minutes, or conn
     window.dataLayer = window.dataLayer || [];
     window.dataLayer.push({ event: 'card_connect_action', action: el.getAttribute('data-action') });
   });
+
+  // Android: hand the contact file to the system share sheet (Contacts opens it
+  // directly) instead of routing through the browser's download pipeline.
+  // iOS Safari already opens text/vcard natively on navigation — leave it alone.
+  (function () {
+    var isAndroid = /Android/i.test(navigator.userAgent);
+    if (!isAndroid || !navigator.canShare) return;
+    var link = document.querySelector('[data-action="vcard"]');
+    if (!link) return;
+    link.addEventListener('click', function (e) {
+      e.preventDefault();
+      fetch(link.href)
+        .then(function (r) { return r.blob(); })
+        .then(function (b) {
+          var f = new File([b], 'robert-echevarria.vcf', { type: 'text/vcard' });
+          if (navigator.canShare({ files: [f] })) return navigator.share({ files: [f] });
+          window.location.href = link.href;
+        })
+        .catch(function () { window.location.href = link.href; });
+    });
+  })();
 </script>
 
 <style>
