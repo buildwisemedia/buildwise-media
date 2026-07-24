@@ -45,16 +45,16 @@ const productArtifacts = [
 const phases = [
   { n: '01', name: 'Audit', body: 'Capture the baseline, name the active market leaks, and pick the first layer that should move revenue fastest.' },
   { n: '02', name: 'Install', body: 'Wire conversion paths, follow-up, attribution, reporting, and weekly rhythm into your business.' },
-  { n: '03', name: 'Run', body: 'Review the math, clear human gates, fix what underperforms, and keep the asset compounding.' },
+  { n: '03', name: 'Run', body: 'Review the math, clear quality gates, fix what underperforms, and keep the asset compounding.' },
 ];
 
 const commitments = [
   '30-day system-live path from diagnostic to operating rhythm.',
   'Market Dominance Dossier before the sales call.',
   'Pilot scope restricted to proven layers; Paid Media is excluded until BWM own-funnel proof is live.',
-  'HITL signoff on every autonomous deploy.',
+  'Quality review appropriate to the work, with high-stakes choices escalated to the team when the job calls for it.',
   'Client owns code, data, ad accounts, customer list, and built assets.',
-  '5x attributable ROI within 24 months or Buildwise keeps building.',
+  'Targets, measurement windows, and attribution rules defined in the signed work order.',
   'True month-to-month after Day 90: no clawback, no exit fee.',
 ];
 
@@ -101,7 +101,7 @@ const service = {
 const faqs = [
   {
     q: 'What is Ascend?',
-    a: 'Ascend is an AI growth system we install on your domain, run for you every week, and hand to you to own. It covers the revenue work that usually falls back on the owner — visibility, follow-up, reviews, and reporting — and folds in new AI as it ships.',
+    a: 'Ascend is an AI growth system we install on your domain, run for you every week, and hand to you to own. It covers the revenue work that usually falls back on the owner — visibility, follow-up, reviews, and reporting — and receives selected capability improvements without a re-platforming or upgrade charge.',
   },
   {
     q: 'How fast does Ascend go live?',
@@ -109,7 +109,7 @@ const faqs = [
   },
   {
     q: 'Who runs the system — me or your team?',
-    a: 'We do. The Buildwise team and our AI system operate Ascend every week, clear the gates, and fix what underperforms, with a human signoff on every automated change. You stay the owner, not the operator.',
+    a: 'We do. The Buildwise team and our AI system operate Ascend every week, clear the gates, and fix what underperforms. Review is appropriate to the work, with high-stakes choices escalated to the team when the job calls for it. You stay the owner, not the operator.',
   },
   {
     q: 'What do I actually own?',
@@ -154,7 +154,7 @@ const faqSchema = {
           <span class="ops-chip"><span class="dot green" aria-hidden="true"></span>run for you</span>
         </div>
         <p class="panel-number">8</p>
-        <p class="panel-copy"><strong>Available now:</strong> layers built, measured, and improved as one weekly engine. Humans gate high-stakes decisions.</p>
+        <p class="panel-copy"><strong>Available now:</strong> layers built, measured, and improved as one weekly engine. High-stakes decisions get quality review appropriate to the work.</p>
         <div class="panel-bars" aria-hidden="true">
           {layers.map((layer) => <span class={`tone-${layer.tone}`} title={layer.name}></span>)}
         </div>
@@ -198,7 +198,7 @@ const faqSchema = {
       <header class="section-head">
         <p class="section-tag">Product specification</p>
         <h2 id="product-spec-title" class="h-section">Week after week, the engine gains a new part.</h2>
-        <p class="lede"><span class="label">Available now</span> We build the next useful workflow, test it, and join it to what is already running. Humans approve high-stakes choices. Your business owns the whole engine.</p>
+        <p class="lede"><span class="label">Available now</span> We build the next useful workflow, test it, and join it to what is already running. High-stakes choices get review appropriate to the work. Your business owns the whole engine.</p>
       </header>
       <div class="spec-grid">
         {productSpecs.map((spec) => (
@@ -255,7 +255,7 @@ const faqSchema = {
       <header class="section-head">
         <p class="section-tag">Risk reversal</p>
         <h2 class="h-section">The asset stays in your hands.</h2>
-        <p class="lede">Ascend is not a black box. You own it. The 5× attributable ROI inside 24 months is a contractual floor. The work is true month-to-month after day 90.</p>
+        <p class="lede">Ascend is not a black box. You own it. The signed work order defines the targets and how they are measured. The work is true month-to-month after day 90.</p>
       </header>
       <ul class="commitment-list" role="list">
         {commitments.map((item) => (

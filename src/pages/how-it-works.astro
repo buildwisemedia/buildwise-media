@@ -22,7 +22,7 @@ const howTo = {
   totalTime: 'P30D',
   step: [
     { '@type': 'HowToStep', name: 'Find', text: 'Find the next revenue leak against a captured baseline.' },
-    { '@type': 'HowToStep', name: 'Build and test', text: 'Build the fix, connect it to the owned engine, and test it behind human gates.' },
+    { '@type': 'HowToStep', name: 'Build and test', text: 'Build the fix, connect it to the owned engine, and test it behind quality gates.' },
     { '@type': 'HowToStep', name: 'Improve', text: 'Read the result, improve the engine, and choose the next leak.' },
   ],
 };
@@ -35,8 +35,8 @@ const phases = [
   },
   {
     n: '02', name: 'Build + Test', when: 'Ship one useful fix',
-    body: 'We build the fix into your owned engine. We test it against the baseline. Humans gate high-stakes decisions before anything buyer-facing goes live.',
-    deliverables: ['Working fix installed', 'Tracking connected', 'Human approval gate', 'Result measured'],
+    body: 'We build the fix into your owned engine. We test it against the baseline. High-stakes decisions get quality review appropriate to the work before anything buyer-facing goes live.',
+    deliverables: ['Working fix installed', 'Tracking connected', 'Quality-review gate', 'Result measured'],
   },
   {
     n: '03', name: 'Improve', when: 'Repeat each week',
@@ -50,7 +50,7 @@ const phases = [
 const faqs = [
   {
     q: 'What happens in each weekly build?',
-    a: 'We find the next revenue leak, build and test the fix, then improve the owned engine. Humans approve high-stakes moves.',
+    a: 'We find the next revenue leak, build and test the fix, then improve the owned engine. High-stakes moves get review appropriate to the work.',
   },
   {
     q: 'Where does the first build start?',
@@ -183,7 +183,7 @@ const faqSchema = {
           <ul class="diff-list">
             <li>Find the next leak closest to revenue</li>
             <li>Build and test one useful fix</li>
-            <li>Humans gate high-stakes decisions</li>
+            <li>Review matches the stakes</li>
             <li>Improve the client-owned engine each week</li>
           </ul>
         </div>

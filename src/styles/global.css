@@ -115,6 +115,16 @@ a { color: inherit; text-decoration: none; transition: color 180ms ease; }
 a:hover { color: var(--y2); }
 a:focus-visible { outline: 2px solid var(--y2); outline-offset: 3px; border-radius: 2px; }
 
+/* Back-navigation links are repeated across playbook, problem, and industry
+   pages. Keep their compact visual treatment while meeting the 44px target. */
+.back-link {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  padding-inline: 4px;
+  margin-inline: -4px;
+}
+
 button { font: inherit; color: inherit; background: none; border: none; cursor: pointer; }
 
 ::selection { background: var(--y2); color: var(--bg); }

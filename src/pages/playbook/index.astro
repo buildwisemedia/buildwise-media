@@ -149,9 +149,9 @@ const terms = [
   },
   {
     slug: 'capability-inheritance',
-    name: 'Capability Inheritance',
+    name: 'Capability Updates',
     cluster: '04',
-    gloss: 'Why the Ascend system gets each new AI gain with no rebuild.',
+    gloss: 'How selected improvements roll into Ascend without a re-platforming or upgrade charge.',
   },
   {
     slug: 'capability-overhang',
@@ -393,7 +393,7 @@ const faqItems = [
   },
   {
     question: 'How fast does it go live?',
-    answerHtml: `The install is built for 30 days. We map the leaks, set the first baseline, then put the first working path live with human signoff. <a href="${termHref('revenue-operating-system')}">Read Revenue Operating System.</a>`,
+    answerHtml: `The install is built for 30 days. We map the leaks, set the first baseline, then put the first working path live with quality review. <a href="${termHref('revenue-operating-system')}">Read Revenue Operating System.</a>`,
   },
   {
     question: 'Do I own it?',
@@ -715,6 +715,11 @@ const collectionPage = {
 .map-node {
   cursor: pointer;
   outline: none;
+}
+
+.map-node:focus-visible {
+  outline: 3px solid var(--y2);
+  outline-offset: 4px;
 }
 
 .map-node-box,

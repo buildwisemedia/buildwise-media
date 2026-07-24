@@ -41,6 +41,7 @@ const PRIORITY_OVERRIDES: Record<string, { priority: string; changefreq: string 
   '/playbook/fractional-cmo-alternative': { priority: '0.7', changefreq: 'monthly' },
   '/privacy': { priority: '0.3', changefreq: 'yearly' },
   '/terms': { priority: '0.3', changefreq: 'yearly' },
+  '/legal': { priority: '0.3', changefreq: 'yearly' },
 };
 
 function pathToUrl(modulePath: string): string {

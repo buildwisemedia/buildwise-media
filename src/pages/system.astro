@@ -35,13 +35,13 @@ const layers = canonical.products.ascend.eight_layers.map((raw: string, index: n
 const operatingSignals = [
   { label: 'Find', value: 'Search, AI answers, ads, referrals', tone: 'cyan' },
   { label: 'Route', value: 'Forms, calls, booking, follow-up system', tone: 'green' },
-  { label: 'Approve', value: 'Human gates before buyer-facing work', tone: 'orange' },
+  { label: 'Approve', value: 'Quality review before buyer-facing work', tone: 'orange' },
   { label: 'Prove', value: 'Dashboard, baseline, booked work', tone: 'yellow' },
 ];
 
 const boardTelemetry = [
   { label: 'What runs', value: 'Search, calls, forms, reviews, follow-up, spend, reporting' },
-  { label: 'What humans approve', value: 'Offers, budget changes, public copy, reputation replies' },
+  { label: 'What gets the strongest review', value: 'Offers, budget changes, public copy, reputation replies' },
   { label: 'What the owner sees', value: 'Spend, booked work, leaks, confidence, next move' },
 ];
 
@@ -74,8 +74,8 @@ const faqs = [
     a: 'Visibility, conversion, speed-to-lead, sales ops, reputation, paid media, reporting, and strategy. They stop living in separate tools and separate people’s heads and run as one connected system, measured against a captured baseline.',
   },
   {
-    q: 'Is it fully automated, or are humans involved?',
-    a: 'Humans stay in the loop on the decisions that matter — offers, budget changes, public copy, and reputation replies all pass a signoff gate before they go live. The system runs the routing, follow-up, and reporting; people approve the buyer-facing moves.',
+    q: 'Is it fully automated, or is the team involved?',
+    a: 'Review fits the stakes. Offers, budget changes, public copy, and reputation replies receive quality review appropriate to the work before they go live—by the Buildwise team, automated review systems, or both. The system keeps routine routing, follow-up, and reporting moving.',
   },
   {
     q: 'What does the owner actually see?',
@@ -137,7 +137,7 @@ const faqSchema = {
         <ol class="system-loop">
           <li><span>01</span> Find the next revenue leak</li>
           <li><span>02</span> Build the fix</li>
-          <li><span>03</span> Test with human gates</li>
+          <li><span>03</span> Test with quality gates</li>
           <li><span>04</span> Improve the engine</li>
         </ol>
       </aside>
@@ -159,7 +159,7 @@ const faqSchema = {
           The speed layer fires on day one of the install. It routes new demand into a fast first touch, then connects that touch to attribution. That connection matters. A good source can look weak when the reply is slow. A weak source can look strong when one lucky job closes.
         </p>
         <p>
-          Humans gate every high-stakes choice. Offers, public copy, budget changes, and reputation replies need signoff. Routine routing, alerts, and follow-up can keep moving.
+          Every high-stakes choice gets review appropriate to the work. Offers, public copy, budget changes, and reputation replies may be reviewed by the team, automated review systems, or both. Routine routing, alerts, and follow-up can keep moving.
         </p>
       </div>
       <aside class="speed-panel">
@@ -184,7 +184,7 @@ const faqSchema = {
         <img src="/images/bwm-system-architecture-atmospheric-v1.webp" alt="Dark infrastructure corridor with a single yellow signal light at the end." width="720" height="480" loading="lazy" decoding="async" />
       </figure>
       <figure>
-        <!-- @r020:F2 proof: method image shows human signoff inside the operating rhythm -->
+        <!-- @r020:F2 proof: method image shows quality review inside the operating rhythm -->
         <img src="/images/bwm-method-editorial-v1.webp" alt="Hand writing notes beside a blurred operations dashboard with yellow signal light." width="720" height="480" loading="lazy" decoding="async" />
       </figure>
       <figure>
@@ -199,7 +199,7 @@ const faqSchema = {
       <header>
         <p class="section-tag">A team with a duty · <span class="label">Available now</span></p>
         <h2 id="routing-title" class="h-section">You own the engine. We are responsible for the work.</h2>
-        <p class="lede">We are the dedicated engineering team that builds, maintains, and secures an engine the client owns. Security is engineered, tested, and monitored. Humans still approve high-stakes moves.</p>
+        <p class="lede">We are the dedicated engineering team that builds, maintains, and secures an engine the client owns. Security is engineered, tested, and monitored. High-stakes moves get review appropriate to the work.</p>
       </header>
       <div class="routing-board">
         <div class="routing-layer-grid">

@@ -1,0 +1,27 @@
+manifest_version: "1"
+purpose: "PROJ-LEGAL-FLOW-001 CEO-decision cascade"
+sources:
+  - path: "/Users/robertechevarria/buildwise-brain/legal/MSA-Template.md"
+    role: "approved legal posture, v1.3"
+  - path: "/Users/robertechevarria/buildwise-brain/legal/Legal-Decision-Log.md"
+    role: "decision authority and supersession record"
+  - path: "/Users/robertechevarria/bwm-strategic-roadmap/data/canonical.json"
+    role: "commercial canonical after reconciliation"
+  - path: "/Users/robertechevarria/buildwise-brain/clients/buildwise-media/Niche-Design-Brief-Buildwise-Media.md"
+    role: "ndb-2.0 identity and audience context"
+  - path: "/Users/robertechevarria/buildwise-brain/clients/buildwise-media/Brand-Voice-Card-Buildwise-Media.md"
+    role: "voice constraints"
+  - path: "/Users/robertechevarria/buildwise-brain/clients/buildwise-media/Breakthrough-Offer-Buildwise-Media.md"
+    role: "offer cascade surface"
+  - path: "/Users/robertechevarria/buildwise-brain/clients/buildwise-media/Marketing-Strategy-Buildwise-Media.md"
+    role: "marketing cascade surface"
+  - path: "/Users/robertechevarria/buildwise-brain/clients/buildwise-media/Outcomes-Commitment-Card-Buildwise-Media.md"
+    role: "outcomes-claim cascade surface"
+  - path: "/Users/robertechevarria/buildwise-brain/clients/buildwise-media/site-config.json"
+    role: "site source registry"
+constraints:
+  change_visual_identity: false
+  remove_contractual_5x_roi_floor: true
+  remove_universal_human_only_review: true
+  preserve_optional_ascend_pro_kicker_baseline: true
+  preserve_nonpromise_historical_metrics: true

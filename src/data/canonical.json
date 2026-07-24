@@ -226,9 +226,9 @@
       "auditable": "Ship date in deliverables log + page-count audit + intake artifact"
     },
     {
-      "name": "Capability compounding",
-      "guarantee": "Your system inherits every frontier AI improvement automatically — no re-platforming cost",
-      "auditable": "Multi-vendor router log + AI Capability Radar daily digest"
+      "name": "Capability updates",
+      "guarantee": "When BWM selects an improvement for your system, it rolls in without a re-platforming or upgrade charge",
+      "auditable": "Service Evolution notice + system change log"
     },
     {
       "name": "Domain focus",
@@ -236,14 +236,14 @@
       "auditable": "Brain audit log (every prompt + routing decision)"
     },
     {
-      "name": "Operational HITL",
-      "guarantee": "Every autonomous deploy passes human signoff before going live to consumers",
-      "auditable": "HITL gate logs are contractual via MSA"
+      "name": "Quality review",
+      "guarantee": "Automated work gets review appropriate to the job — by the Buildwise team, automated review systems, or both",
+      "auditable": "Quality-review records available to the client on request"
     },
     {
-      "name": "ROI floor",
-      "guarantee": "5x attributable ROI within 24 months — or we keep building until you hit it",
-      "auditable": "Booked-job attribution dashboard (Y1 Q4 ship) + per-client ROI dossier"
+      "name": "Measurement clarity",
+      "guarantee": "Each signed work order defines how its performance targets and commitments are measured",
+      "auditable": "Pinned attribution model and version + client reporting artifacts"
     }
   ],
 
@@ -254,10 +254,9 @@
       "filter_mechanic": "Cash commitment ($15K up front), NOT exit penalty"
     },
     "msa_locked_clauses": [
-      "Capability inheritance at no add-on cost (capability guarantee)",
-      "HITL signoff contractually binding on every autonomous deploy",
+      "Selected capability improvements roll in without a re-platforming or upgrade charge",
+      "Quality review appropriate to automated work, with review records available on request",
       "Sovereignty: client owns code + data + ad accounts + customer list",
-      "ROI floor: 5x attributable within 24 months OR we keep building",
       "No vendor lock-in: multi-vendor orchestration",
       "True m-t-m no penalty after Day 90: no clawback, no exit fee"
     ],
@@ -269,9 +268,9 @@
 
   "pricing_power_gate": {
     "trigger_conditions_all_required": [
-      "5x attributable revenue across all clients",
-      "≥10 active clients meeting the ROI floor",
-      "≥90 consecutive days above the floor"
+      "Portfolio attributed-revenue-to-recurring-fee multiple ≥5x",
+      "≥10 active clients meeting the internal 5x proof threshold",
+      "≥90 consecutive days meeting both thresholds"
     ],
     "on_trip_lift_band": "15-25% on NEW signings",
     "estimated_post_trip_pricing": {

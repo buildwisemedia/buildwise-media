@@ -14,7 +14,7 @@ const proofLedger = [
 const attributionHonesty = [
   { label: 'Counts', body: 'Booked jobs tied to a tracked lead path inside the dashboard.' },
   { label: 'Does not count', body: 'Old referrals, pre-existing SEO, or channels we cannot prove we moved.' },
-  { label: 'Why owners care', body: 'The ROI floor only matters if the math is conservative enough to trust.' },
+  { label: 'Why owners care', body: 'Performance targets only mean something when the math is conservative enough to trust.' },
 ];
 
 const breadcrumb = {
@@ -32,10 +32,10 @@ const faqSchema = {
   mainEntity: [
     {
       '@type': 'Question',
-      name: 'How does the 5× ROI floor work?',
+      name: 'How are performance targets measured?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'The 5× attributable ROI floor is written into the MSA. It is measured against the baseline captured on Day 0. If the system is at 4× at Month 24, Buildwise keeps working until it hits the floor.'
+        text: 'The signed work order defines the targets, measurement window, and attribution model. Results are measured against the captured baseline, with source and confidence visible; targets are not a guarantee of business results.'
       }
     },
     {
@@ -250,7 +250,7 @@ const caseStudy = {
     <div class="container attribution-grid">
       <header>
         <p class="section-tag">Attribution honesty</p>
-        <h2 id="attribution-title" class="h-section">The ROI floor only works if the math is conservative.</h2>
+        <h2 id="attribution-title" class="h-section">Performance targets only work if the math is conservative.</h2>
         <p class="lede">The goal is not to claim every dollar. The goal is to prove what the system actually moved.</p>
       </header>
       <div class="attribution-cards">
@@ -278,11 +278,11 @@ const caseStudy = {
           <li class="faq-item">
             <details open>
               <summary>
-                <span class="faq-q">How does the 5× ROI floor work?</span>
+                <span class="faq-q">How are performance targets measured?</span>
                 <span class="faq-toggle" aria-hidden="true">+</span>
               </summary>
               <div class="faq-a">
-                <p>The 5× attributable ROI floor is written into the MSA. It is measured against the baseline captured on Day 0. If the system is at 4× at Month 24, Buildwise keeps working until it hits the floor. It is an operating floor, not a slogan.</p>
+                <p>The signed work order defines the targets, measurement window, and attribution model. Results are measured against the captured baseline, with source and confidence visible. Targets guide the work; they are not a guarantee of business results.</p>
               </div>
             </details>
           </li>
@@ -319,7 +319,7 @@ const caseStudy = {
       <div class="cta-text-side">
         <h2 class="h-closer">Receipts before <em>claims.</em></h2>
         <p class="lede" style="margin-top: 16px;">
-          We capture the baseline first. Humans gate high-stakes decisions. The 5× attributable ROI inside 24 months is a contractual floor, and the work is true month-to-month after day 90.
+          We capture the baseline first, set targets in the signed work order, and keep the math visible. High-stakes choices get the review the job calls for—human, automated, or both—and the work is true month-to-month after day 90.
         </p>
         <div class="badges-row text-side-badges" style="margin-top: 24px;">
           <span class="badge badge-subtle mono">Available now</span>
@@ -773,7 +773,12 @@ const caseStudy = {
   min-width: 300px;
 }
 .cta-button-side {
-  flex: none;
+  flex: 0 1 420px;
+  max-width: 100%;
+}
+.cta-button-side .qual {
+  max-width: 420px;
+  white-space: normal;
 }
 
 /* --- Responsive Adjustments --- */

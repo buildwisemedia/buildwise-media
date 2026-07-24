@@ -57,7 +57,7 @@ const pricingJsonLd = {
   '@id': 'https://buildwisemedia.com/pricing#service',
   name: 'Buildwise Media — Installed AI Growth System',
   description:
-    'Owned AI growth system for service businesses. Three commitment shapes: Ascend Pilot, Ascend, and Ascend Pro. Same 5x return on investment floor.',
+    'Owned AI growth system for service businesses. Three commitment shapes: Ascend Pilot, Ascend, and Ascend Pro. Targets and measurement terms are defined in each signed work order.',
   provider: { '@id': 'https://buildwisemedia.com/#org' },
   areaServed: {
     '@type': 'Country',
@@ -154,8 +154,8 @@ const faqs = [
     a: 'No long-term lock-in. You pay the Pilot up front, then a 90-day initial operating period starts when Ascend goes live. After Day 90 the system is true month-to-month — no penalty, no exit fee. We earn the operating fee every month or we do not.',
   },
   {
-    q: 'What is the return floor, and what if the system does not hit it?',
-    a: 'Every tier holds the same floor: 5x attributable return on investment inside 24 months. It is written into the agreement and measured against the baseline we capture on Day 0. If you are below it at Month 24, we keep building until you reach it.',
+    q: 'How are performance targets set and measured?',
+    a: 'The signed work order defines the targets, measurement window, and attribution model for the engagement. We capture the baseline first and report against it. Targets guide the work but do not guarantee business results.',
   },
   {
     q: 'Do you mark up or manage my ad budget?',
@@ -244,7 +244,7 @@ const faqSchema = {
       <header>
         <p class="section-tag">Trust belongs in the story</p>
         <h2 id="pricing-roi-title" class="h-section">The promise travels through every chapter.</h2>
-        <p class="lede">5× attributable ROI inside 24 months — contractual floor. Then true month-to-month after day 90. We must keep earning the next month.</p>
+        <p class="lede">Targets and measurement rules are written into the signed work order. Then the work is true month-to-month after day 90. We must keep earning the next month.</p>
       </header>
       <div class="roi-check-grid">
         {roiChecks.map((item) => (
@@ -267,7 +267,7 @@ const faqSchema = {
           Chapter two builds the engine week by week.
         </h2>
         <p class="lede">
-          We find the next revenue leak, build the fix, test it, and improve it. Humans gate high-stakes choices. <span class="label">Available now</span>
+          We find the next revenue leak, build the fix, test it, and improve it. High-stakes choices get quality review appropriate to the work. <span class="label">Available now</span>
         </p>
       </header>
 

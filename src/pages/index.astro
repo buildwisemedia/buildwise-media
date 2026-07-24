@@ -69,28 +69,28 @@ const proofTiles = [
 const commandMetrics = [
   { label: 'Install window', value: '30d', trend: 'system live', tone: 'cyan' },
   { label: 'Ownership', value: '100%', trend: 'client-held', tone: 'green' },
-  { label: 'Upgrade path', value: 'auto', trend: 'no rebuilds', tone: 'yellow' },
+  { label: 'Update path', value: 'select', trend: 'no upgrade fee', tone: 'yellow' },
   { label: 'Owner load', value: '↓', trend: 'less chase', tone: 'orange' },
 ];
 
 const leakRadar = [
   { label: 'Your site', status: 'working for you', tone: 'cyan' },
   { label: 'Calls + jobs', status: 'every lead tracked', tone: 'green' },
-  { label: 'New AI', status: 'growth system uses it', tone: 'yellow' },
+  { label: 'Useful update', status: 'evaluated + selected', tone: 'yellow' },
   { label: 'Weekly proof', status: 'what moved', tone: 'orange' },
 ];
 
 const weeklyProofRail = [
   { label: 'Installed', value: '30d', tone: 'cyan' },
   { label: 'Operated', value: 'weekly', tone: 'green' },
-  { label: 'Upgraded', value: 'no rebuild', tone: 'yellow' },
+  { label: 'Updated', value: 'when selected', tone: 'yellow' },
   { label: 'Owned', value: 'by you', tone: 'orange' },
 ];
 
 const signalQueue = [
   { label: 'Your domain', value: 'website + tracking live', tone: 'cyan' },
   { label: 'Your data', value: 'follow-up + calls stitched', tone: 'green' },
-  { label: 'New AI', value: 'growth work upgraded', tone: 'yellow' },
+  { label: 'Selected update', value: 'deployed after review', tone: 'yellow' },
 ];
 
 const installSteps = [
@@ -141,9 +141,9 @@ const valueEquation = [
   },
   {
     label: 'Improving',
-    metric: 'auto',
-    title: 'It inherits the frontier.',
-    body: 'Useful AI upgrades route into the system without a platform reset.',
+    metric: 'select',
+    title: 'Useful updates roll in.',
+    body: 'When Buildwise selects an improvement, it rolls into the system without a platform reset or upgrade charge.',
     tone: 'orange',
   },
 ];
@@ -156,10 +156,10 @@ const dossierSignals = [
 ];
 
 const contractProofs = [
-  { group: 'Capability', clause: 'Inheritance', title: 'Capability inheritance', body: 'When better AI ships, your system can use it without a new platform fee or rebuild.', tone: 'cyan', visual: 'inheritance' },
-  { group: 'Control', clause: 'Human gate', title: 'Human signoff', body: 'Nothing autonomous goes live to buyers without a human gate.', tone: 'green', visual: 'gate' },
+  { group: 'Capability', clause: 'Selected updates', title: 'Capability updates', body: 'When Buildwise selects an improvement for your system, it rolls in without a re-platforming or upgrade charge.', tone: 'cyan', visual: 'inheritance' },
+  { group: 'Control', clause: 'Quality review', title: 'Review appropriate to the work', body: 'Work is reviewed by the Buildwise team, automated review systems, or both. High-stakes work can be escalated to the team.', tone: 'green', visual: 'gate' },
   { group: 'Ownership', clause: 'Client assets', title: 'Sovereignty', body: 'You own code, data, ad accounts, customer list, and built assets.', tone: 'yellow', visual: 'sovereignty' },
-  { group: 'Economics', clause: 'Return floor', title: 'Return floor', body: '5x attributable return on investment within 24 months, or we keep building.', tone: 'orange', visual: 'roi' },
+  { group: 'Economics', clause: 'Measurement', title: 'Measurement clarity', body: 'The signed work order defines the targets, measurement window, and attribution model.', tone: 'orange', visual: 'roi' },
   { group: 'Portability', clause: 'No lock-in', title: 'No vendor lock-in', body: 'The system is portable across models, tools, and channels.', tone: 'cyan', visual: 'portability' },
   { group: 'Exit rights', clause: 'After Day 90', title: 'True m-t-m after Day 90', body: 'No clawback. No exit fee. No long-term penalty.', tone: 'green', visual: 'exit' },
 ];
@@ -211,12 +211,12 @@ const objections = [
   {
     tone: 'orange',
     q: 'AI sounds risky in a real business.',
-    a: 'AI does the heavy lifting, but a real person signs off before anything goes live. Nothing ships on autopilot, and you stay in control the whole way.',
+    a: 'AI does the heavy lifting, with review appropriate to the work by the Buildwise team, automated checks, or both. High-stakes buyer-facing work can be escalated to the team.',
   },
   {
     tone: 'yellow',
     q: 'The math has to make sense.',
-    a: "Our pricing is public, the return you need is written into the agreement, and we measure where you're starting before we ever claim a win.",
+    a: "Our pricing is public, the targets and measurement rules are written into the work order, and we capture where you're starting before we ever claim a win.",
   },
 ];
 
@@ -224,7 +224,7 @@ const objections = [
 const faqs = [
   {
     q: 'What does Buildwise Media actually do?',
-    a: 'We install and run an 8-layer revenue operating system for your service business — visibility, conversion, speed-to-lead, sales ops, reputation, paid media, reporting, and strategy operated as one engine. The website is the visible layer. Behind it, our AI system runs the marketing operation 24/7 with human signoff at the gates. We treat marketing as operations: investment in, qualified revenue out, verified weekly.',
+    a: 'We install and run an 8-layer revenue operating system for your service business — visibility, conversion, speed-to-lead, sales ops, reputation, paid media, reporting, and strategy operated as one engine. The website is the visible layer. Behind it, our AI system runs the marketing operation 24/7 with quality review appropriate to the work. We treat marketing as operations: investment in, qualified revenue out, verified weekly.',
   },
   {
     q: 'Who is Buildwise Media for?',
@@ -236,11 +236,11 @@ const faqs = [
   },
   {
     q: 'How do you measure success?',
-    a: 'We start with a written baseline. From there, the dashboard tracks spend, source, follow-up, booked work, and the next move. The headline floor is 5x attributable return on investment inside 24 months.',
+    a: 'We start with a written baseline. From there, the dashboard tracks spend, source, follow-up, booked work, and the next move. The signed work order defines the targets, measurement window, and attribution model.',
   },
   {
-    q: "What if the system doesn't hit 5×?",
-    a: 'We keep building until it does. That is contractual — written into the agreement as a locked clause, not aspirational marketing copy. The 5x return floor is the floor we hold ourselves to. If your business is at 4x at Month 24, we are still working. That is what the floor means.',
+    q: 'Are performance targets guaranteed?',
+    a: 'No. Targets guide the work and are measured against the captured baseline, but business results depend on factors outside any one system. The agreement defines what is measured and how; it does not guarantee a particular result.',
   },
   {
     q: 'Is there a long-term contract?',
@@ -306,7 +306,7 @@ const doneForYouSystemServiceSchema = {
   provider: { '@id': 'https://buildwisemedia.com/#org' },
   areaServed: { '@type': 'Country', name: 'United States' },
   description:
-    'Buildwise installs and operates the client-owned system for visibility, follow-up, reviews, reporting, and weekly improvement with human signoff before buyer-facing changes go live.',
+    'Buildwise installs and operates the client-owned system for visibility, follow-up, reviews, reporting, and weekly improvement with quality review appropriate to each buyer-facing change.',
   url: 'https://buildwisemedia.com/system',
 };
 
@@ -355,7 +355,7 @@ const faqSchema = {
         <ul class="hero-proof-strip" aria-label="Ascend proof points">
           <li><strong>90 days</strong><span>first system live</span></li>
           <li><strong>Yours</strong><span>domain · data · accounts</span></li>
-          <li><strong>Auto</strong><span>upgrades without rebuilds</span></li>
+          <li><strong>Selected</strong><span>updates without upgrade fees</span></li>
         </ul>
       </div>
       <aside class="command-center ops-panel" aria-label="Ascend installed system preview">
@@ -452,13 +452,13 @@ const faqSchema = {
               <span class="ticker-sep">·</span>
               <span>DATA OWNED</span>
               <span class="ticker-sep">·</span>
-              <span>NEW AI USED</span>
+              <span>SELECTED UPDATES</span>
               <span class="ticker-sep">·</span>
-              <span>HUMAN GATES</span>
+              <span>QUALITY GATES</span>
               <span class="ticker-sep">·</span>
               <span>WEEKLY OPERATED</span>
               <span class="ticker-sep">·</span>
-              <span>CAPABILITY INHERITED</span>
+              <span>QUALITY REVIEWED</span>
               <span class="ticker-sep">·</span>
             </div>
             <div class="ticker-items">
@@ -466,13 +466,13 @@ const faqSchema = {
               <span class="ticker-sep">·</span>
               <span>DATA OWNED</span>
               <span class="ticker-sep">·</span>
-              <span>NEW AI USED</span>
+              <span>SELECTED UPDATES</span>
               <span class="ticker-sep">·</span>
-              <span>HUMAN GATES</span>
+              <span>QUALITY GATES</span>
               <span class="ticker-sep">·</span>
               <span>WEEKLY OPERATED</span>
               <span class="ticker-sep">·</span>
-              <span>CAPABILITY INHERITED</span>
+              <span>QUALITY REVIEWED</span>
               <span class="ticker-sep">·</span>
             </div>
           </div>
@@ -702,7 +702,7 @@ const faqSchema = {
         </div>
         <aside class="contract-proof-stamp" aria-label="Risk reversal summary">
           <span class="mono">Risk moved off the buyer</span>
-          <strong>Owned asset. Human gate. Return floor. Clean exit.</strong>
+          <strong>Owned asset. Quality review. Written measurement. Clean exit.</strong>
         </aside>
       </div>
     </div>
@@ -956,7 +956,7 @@ const faqSchema = {
       <div>
         <p class="section-tag">Get your Revenue Leak Map</p>
           <h2 id="final-title" class="h-closer">See where you're leaking revenue first.</h2>
-          <p class="lede">Your free Revenue Leak Map shows where the market is beating you, names the highest-value first move, and proves whether we can hit your 5x guarantee. We build it from your data and walk it with you on a short call &mdash; no pitch.</p>
+          <p class="lede">Your free Revenue Leak Map shows where the market is beating you, names the highest-value first move, and establishes what should be measured. We build it from your data and walk it with you on a short call &mdash; no pitch.</p>
       </div>
         <div class="final-actions" style="display:flex;flex-direction:column;gap:12px;align-items:center">
           <a href="/revenue-leak-map" class="cta" data-cta-source="home-final">Get My Free Revenue Leak Map<span class="cta-arrow" aria-hidden="true">&rarr;</span></a>
