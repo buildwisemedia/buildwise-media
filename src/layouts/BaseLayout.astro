@@ -18,6 +18,9 @@ interface Props {
   // preload scanner fires the fetch before body parsing discovers the <img>.
   // Pair with fetchpriority="high" on the <img> tag itself.
   preloadImage?: string;
+  // Paid-search pages use a focused shell: no global nav, booking CTA, phone,
+  // or multi-column footer. Tracking and the canonical schema remain shared.
+  focusedLandingPage?: boolean;
 }
 
 const {
@@ -29,6 +32,7 @@ const {
   ogDescription,
   jsonLd,
   preloadImage,
+  focusedLandingPage = false,
 } = Astro.props;
 
 const siteUrl = 'https://buildwisemedia.com';
@@ -187,9 +191,13 @@ const graph = [...siteSchemas, ...perPageSchemas];
     <meta name="twitter:description" content={ogD} />
     <meta name="twitter:image" content="https://pub-85c635a2536e438b9927af5e6723b0f7.r2.dev/marks/triangulation-v3/exports/banner/og-1200x630-v2.png" />
 
-    <!-- Booking embed preconnect (used on /book) — cuts ~200-500ms off first paint of the calendar iframe. EXP-002 telemetry shows 50% click-to-LPV drop, primary suspect = TLS cold-start on this subdomain. -->
-    <link rel="preconnect" href="https://book.buildwisemedia.com" />
-    <link rel="dns-prefetch" href="https://book.buildwisemedia.com" />
+    {!focusedLandingPage && (
+      <>
+        <!-- Booking embed preconnect is intentionally absent from focused paid-search pages. -->
+        <link rel="preconnect" href="https://book.buildwisemedia.com" />
+        <link rel="dns-prefetch" href="https://book.buildwisemedia.com" />
+      </>
+    )}
 
     <!-- Analytics boot: queue immediately, load vendors after the first interaction or post-LCP timeout. -->
     <script is:inline define:vars={{ GTM, GA4, PIXEL }}>
@@ -488,13 +496,13 @@ const graph = [...siteSchemas, ...perPageSchemas];
       <img height="1" width="1" style="display:none" src={`https://www.facebook.com/tr?id=${PIXEL}&ev=PageView&noscript=1`} alt="" />
     </noscript>
 
-    <Header />
+    {!focusedLandingPage && <Header />}
 
     <main id="main">
       <slot />
     </main>
 
-    <Footer />
+    {!focusedLandingPage && <Footer />}
 
     <!-- CTA click telemetry -->
     <script is:inline>

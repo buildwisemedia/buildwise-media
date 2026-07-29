@@ -1,0 +1,1191 @@
+---
+// @r020:proof — paid-search landing page whose visuals explain the lead system.
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import canonical from '../../data/canonical.json';
+
+const layers = canonical.products.ascend.eight_layers.map((raw: string, index: number) => {
+  const dash = raw.indexOf('—');
+  const dot = raw.indexOf('·');
+  return {
+    number: String(index + 1).padStart(2, '0'),
+    name: raw.slice(dot + 1, dash > 0 ? dash : undefined).trim(),
+  };
+});
+
+const faqs = [
+  {
+    q: 'Is this just another HVAC marketing agency?',
+    a: 'No. The work is built as an operating system across visibility, conversion, speed-to-lead, sales operations, reputation, paid media, reporting, and strategy. You can see what is running, what it is producing, and what changes next.',
+  },
+  {
+    q: 'What happens after I send the form?',
+    a: 'Your request is recorded, delivered to the Buildwise team, and reviewed. You also receive an honest confirmation and follow-up by email. There is no calendar gate, download gate, or surprise booking screen.',
+  },
+  {
+    q: 'Do I need to replace everything I already use?',
+    a: 'Not automatically. We start with the systems and channels you already have, find where leads are being lost, and determine what should be fixed, connected, replaced, or left alone.',
+  },
+  {
+    q: 'Can you track which marketing actually produces leads?',
+    a: 'That is a core part of the system. We connect source data to form and lead activity so you can separate traffic from inquiries and inquiries from real sales opportunities.',
+  },
+  {
+    q: 'What if another agency already burned us?',
+    a: 'Then the first standard is visibility. You should be able to see what was changed, what it cost, what happened next, and who owns the work. Buildwise is structured around verifiable work instead of vague monthly activity.',
+  },
+  {
+    q: 'Do you work only with HVAC companies?',
+    a: 'Buildwise works with service businesses, and this page is specifically for HVAC owners. The review focuses on the call types, seasonality, response pressure, and local demand patterns that shape an HVAC lead system.',
+  },
+  {
+    q: 'Will we own the system?',
+    a: 'Ownership is part of the model. The goal is not to trap your business behind a rented black box. The systems, operating knowledge, and measurable work should stay connected to your company.',
+  },
+  {
+    q: 'Is there a long form or sales call before you will look at this?',
+    a: 'No. Send the required contact details and describe what is not working. The team reviews the request directly. There is no quiz, calendar, or multi-step application on this page.',
+  },
+];
+
+const jsonLd = [
+  {
+    '@type': 'Service',
+    '@id': 'https://buildwisemedia.com/go/hvac-marketing/#service',
+    name: 'HVAC Marketing System',
+    serviceType: 'HVAC lead generation and marketing operations',
+    provider: { '@id': 'https://buildwisemedia.com/#org' },
+    areaServed: { '@type': 'Country', name: 'United States' },
+    url: 'https://buildwisemedia.com/go/hvac-marketing/',
+  },
+  {
+    '@type': 'FAQPage',
+    '@id': 'https://buildwisemedia.com/go/hvac-marketing/#faq',
+    mainEntity: faqs.map((item) => ({
+      '@type': 'Question',
+      name: item.q,
+      acceptedAnswer: { '@type': 'Answer', text: item.a },
+    })),
+  },
+  {
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Buildwise Media', item: 'https://buildwisemedia.com/' },
+      { '@type': 'ListItem', position: 2, name: 'HVAC Marketing System', item: 'https://buildwisemedia.com/go/hvac-marketing/' },
+    ],
+  },
+];
+---
+
+<BaseLayout
+  title="HVAC Marketing System | Buildwise Media"
+  description="Fix slow-season lead gaps, missed calls, weak follow-up, and unclear marketing results with an HVAC lead system you can track and own."
+  canonical="https://buildwisemedia.com/go/hvac-marketing/"
+  ogTitle="HVAC Leads, Tracked End to End"
+  ogDescription="Tell us where your HVAC lead system is breaking. No calendar or download gate."
+  jsonLd={jsonLd}
+  focusedLandingPage
+>
+  <div class="paid-hvac">
+    <header class="lp-header">
+      <a class="lp-brand" href="/" aria-label="Buildwise Media home">
+        <img src="/brand/mark-on-canvas.svg" alt="" width="42" height="42" />
+        <span>BUILDWISE·MEDIA</span>
+      </a>
+      <a class="header-jump" href="#request" data-cta-source="f1-hvac-marketing-header">
+        Request a review
+      </a>
+    </header>
+
+    <section class="hero section-shell">
+      <div class="hero-copy">
+        <p class="eyebrow"><span class="vertex" aria-hidden="true"></span> HVAC LEAD GENERATION</p>
+        <h1>Your HVAC marketing should produce leads you can track.</h1>
+        <p class="hero-sub">
+          Slow seasons, missed calls, weak follow-up, and agency reports that explain nothing
+          are not four separate problems. They are leaks in one lead system.
+        </p>
+        <a
+          class="primary-cta"
+          href="#request"
+          data-cta-source="f1-hvac-marketing-hero"
+          data-exp-slot="hero-cta"
+        >
+          Request Your Lead-System Review
+          <span aria-hidden="true">↘</span>
+        </a>
+        <p class="micro-proof">No calendar. No download. One direct request to the team.</p>
+      </div>
+
+      <figure class="system-figure" aria-labelledby="system-caption">
+        <div class="system-topline">
+          <span>THE REVENUE OPERATING SYSTEM</span>
+          <span class="live-signal"><i></i> 8 CONNECTED LAYERS</span>
+        </div>
+        <div class="layer-map">
+          {layers.map((layer, index) => (
+            <div class="layer-node">
+              <span class="layer-number">{layer.number}</span>
+              <strong>{layer.name}</strong>
+              {index < layers.length - 1 && <span class="connector" aria-hidden="true"></span>}
+            </div>
+          ))}
+        </div>
+        <figcaption id="system-caption">
+          One system from first search to the next revenue decision.
+        </figcaption>
+      </figure>
+    </section>
+
+    <div class="angle-rule" aria-hidden="true"></div>
+
+    <section class="problem section-shell">
+      <div class="section-intro">
+        <p class="eyebrow"><span class="vertex" aria-hidden="true"></span> WHERE LEADS DISAPPEAR</p>
+        <h2>More clicks will not fix a broken handoff.</h2>
+        <p>
+          The expensive part is rarely one ad. It is what happens across search, the page,
+          the first response, the estimate, and the follow-up.
+        </p>
+      </div>
+      <div class="leak-map" role="list" aria-label="Four common HVAC revenue leaks">
+        <article role="listitem">
+          <span>01</span>
+          <h3>Invisible market</h3>
+          <p>Homeowners cannot find or choose you when demand appears.</p>
+        </article>
+        <article role="listitem">
+          <span>02</span>
+          <h3>Leaky revenue</h3>
+          <p>Traffic arrives, but the page, call path, or form loses the job.</p>
+        </article>
+        <article role="listitem">
+          <span>03</span>
+          <h3>Owner bottleneck</h3>
+          <p>Every lead and every marketing decision routes back through you.</p>
+        </article>
+        <article role="listitem">
+          <span>04</span>
+          <h3>Reactive growth</h3>
+          <p>Slow weeks trigger random changes because the numbers are disconnected.</p>
+        </article>
+      </div>
+      <p class="trade-note">
+        HVAC demand is time-sensitive. A no-heat call, an elderly customer, or a failed system
+        does not wait for a monthly agency report.
+      </p>
+    </section>
+
+    <div class="angle-rule" aria-hidden="true"></div>
+
+    <section class="mechanism section-shell">
+      <div class="section-intro">
+        <p class="eyebrow"><span class="vertex" aria-hidden="true"></span> HOW THE HANDOFF WORKS</p>
+        <h2>Track the source. Deliver the lead. Follow it through.</h2>
+      </div>
+      <ol class="mechanism-flow">
+        <li>
+          <span>01</span>
+          <strong>Capture the source</strong>
+          <p>Campaign, keyword, page, and click details stay attached to the request.</p>
+        </li>
+        <li>
+          <span>02</span>
+          <strong>Deliver the full lead</strong>
+          <p>Name, business, contact details, website, and stated need reach the team.</p>
+        </li>
+        <li>
+          <span>03</span>
+          <strong>Confirm the request</strong>
+          <p>The prospect gets one honest acknowledgment with no fake promise.</p>
+        </li>
+        <li>
+          <span>04</span>
+          <strong>Keep follow-up moving</strong>
+          <p>Automated follow-up is tracked so valid requests do not quietly disappear.</p>
+        </li>
+      </ol>
+      <a
+        class="text-cta"
+        href="#request"
+        data-cta-source="f1-hvac-marketing-inline"
+        data-exp-slot="proof-module"
+      >
+        Request Your Lead-System Review <span aria-hidden="true">→</span>
+      </a>
+    </section>
+
+    <div class="angle-rule" aria-hidden="true"></div>
+
+    <section class="proof section-shell">
+      <div class="proof-story">
+        <p class="eyebrow"><span class="vertex" aria-hidden="true"></span> PROOF OVER PROMISES</p>
+        <p class="proof-number"><span>$300K</span><i aria-hidden="true">→</i><span>$10M</span></p>
+        <h2>One owner. One year. A system that made growth operable.</h2>
+        <p>
+          The point is not that every HVAC company gets the same result. The point is that growth
+          becomes easier to improve when the work, the handoffs, and the numbers live in one system.
+        </p>
+      </div>
+      <div class="commitments" aria-label="Buildwise operating commitments">
+        <div><span>01</span><strong>Install velocity</strong><p>Move from decision to working system.</p></div>
+        <div><span>02</span><strong>Capability updates</strong><p>Improve the system as tools and demand change.</p></div>
+        <div><span>03</span><strong>Domain focus</strong><p>Shape the work around service-business buying behavior.</p></div>
+        <div><span>04</span><strong>Quality review</strong><p>Check outputs and handoffs against the real job.</p></div>
+        <div><span>05</span><strong>Measurement clarity</strong><p>Separate activity, leads, opportunities, and revenue.</p></div>
+      </div>
+    </section>
+
+    <div class="angle-rule" aria-hidden="true"></div>
+
+    <section class="objection section-shell">
+      <!-- @sdt-exempt: FAQ is a binding text-primary accepted exception in NDB §12.2;
+           interactive disclosure preserves scan-first access without decorative imagery. -->
+      <div class="section-intro">
+        <p class="eyebrow"><span class="vertex" aria-hidden="true"></span> IF YOU HAVE BEEN BURNED BEFORE</p>
+        <h2>You should not have to trust another black box.</h2>
+        <p>
+          You should be able to see what changed, what it cost, which leads arrived, what happened
+          next, and who owns the system. That is the standard.
+        </p>
+      </div>
+      <div class="faq-list">
+        {faqs.map((item, index) => (
+          <details>
+            <summary><span>{String(index + 1).padStart(2, '0')}</span>{item.q}</summary>
+            <div class="faq-a"><p>{item.a}</p></div>
+          </details>
+        ))}
+      </div>
+    </section>
+
+    <div class="angle-rule" aria-hidden="true"></div>
+
+    <section id="request" class="request section-shell">
+      <div class="request-copy">
+        <p class="eyebrow"><span class="verdict-dot" aria-hidden="true"></span> DIRECT TO THE TEAM</p>
+        <h2>Tell us what is not working.</h2>
+        <p>
+          Send the details below. Every valid field is recorded, the complete request goes to the
+          Buildwise inbox, and the follow-up stays connected to the original lead.
+        </p>
+        <ul>
+          <li>No calendar gate</li>
+          <li>No downloadable report gate</li>
+          <li>No hidden qualification quiz</li>
+        </ul>
+      </div>
+
+      <div class="form-wrap">
+        <form id="paid-lead-form" novalidate>
+          <div class="form-grid">
+            <div class="field">
+              <label for="first-name">First name</label>
+              <input id="first-name" name="first_name" type="text" autocomplete="given-name" maxlength="80" required />
+              <span class="field-error" id="first-name-error"></span>
+            </div>
+            <div class="field">
+              <label for="last-name">Last name</label>
+              <input id="last-name" name="last_name" type="text" autocomplete="family-name" maxlength="80" required />
+              <span class="field-error" id="last-name-error"></span>
+            </div>
+            <div class="field">
+              <label for="email">Email</label>
+              <input id="email" name="email" type="email" autocomplete="email" maxlength="254" required />
+              <span class="field-error" id="email-error"></span>
+            </div>
+            <div class="field">
+              <label for="phone">Phone number</label>
+              <input id="phone" name="phone" type="tel" autocomplete="tel" inputmode="tel" maxlength="40" required />
+              <span class="field-error" id="phone-error"></span>
+            </div>
+            <div class="field">
+              <label for="business">Business name</label>
+              <input id="business" name="business" type="text" autocomplete="organization" maxlength="160" required />
+              <span class="field-error" id="business-error"></span>
+            </div>
+            <div class="field">
+              <label for="website">Business website</label>
+              <input id="website" name="website" type="text" autocomplete="url" inputmode="url" maxlength="2048" placeholder="yourcompany.com" required />
+              <span class="field-error" id="website-error"></span>
+            </div>
+            <div class="field field-wide">
+              <label for="need">What is breaking in your lead system?</label>
+              <textarea
+                id="need"
+                name="need"
+                maxlength="4000"
+                rows="5"
+                placeholder="Slow season, poor lead quality, missed calls, weak follow-up, unclear reporting…"
+                required
+              ></textarea>
+              <span class="field-error" id="need-error"></span>
+            </div>
+          </div>
+
+          <div class="hp-field" aria-hidden="true">
+            <label for="business-url">Leave this blank</label>
+            <input id="business-url" name="business_url" type="text" tabindex="-1" autocomplete="off" />
+          </div>
+
+          <div id="turnstile-widget" class="turnstile-slot" aria-label="Security verification"></div>
+          <p id="form-status" class="form-status" role="status" aria-live="polite"></p>
+          <button
+            id="submit-button"
+            class="submit-button"
+            type="submit"
+            data-cta-source="f1-hvac-marketing-final"
+          >
+            <span>Send My Info to the Team</span><span aria-hidden="true">↘</span>
+          </button>
+          <p class="form-legal">
+            By submitting, you agree that Buildwise Media may contact you about this request.
+            See our <a href="/privacy">Privacy Policy</a> and <a href="/terms">Terms</a>.
+          </p>
+        </form>
+
+        <div id="success-state" class="success-state" hidden tabindex="-1">
+          <span class="success-mark" aria-hidden="true">✓</span>
+          <p class="eyebrow">REQUEST RECORDED</p>
+          <h3>Your details are with the Buildwise team.</h3>
+          <p>We review every request and keep the follow-up connected to the original lead.</p>
+        </div>
+      </div>
+    </section>
+
+    <footer class="lp-footer">
+      <a class="lp-brand" href="/" aria-label="Buildwise Media home">
+        <img src="/brand/mark-on-canvas.svg" alt="" width="36" height="36" loading="lazy" />
+        <span>BUILDWISE·MEDIA</span>
+      </a>
+      <p>Every claim should sit on a baseline you can check.</p>
+      <nav aria-label="Legal">
+        <a href="/privacy">Privacy</a>
+        <a href="/terms">Terms</a>
+      </nav>
+    </footer>
+  </div>
+
+  <script src="https://challenges.cloudflare.com/turnstile/v0/api.js?onload=bwmPaidLeadTurnstileReady&render=explicit" async defer></script>
+
+  <script is:inline define:vars={{ turnstileSiteKey: '0x4AAAAAAEA-ZIzkN-7ysATG' }}>
+    (function () {
+      var endpoint = 'https://bwm-form-handler.robert-ba0.workers.dev/buildwisemedia/paid-lead';
+      var form = document.getElementById('paid-lead-form');
+      var submit = document.getElementById('submit-button');
+      var status = document.getElementById('form-status');
+      var success = document.getElementById('success-state');
+      var startedAt = Date.now();
+      var challengeToken = '';
+      var widgetId = null;
+      var submissionState = { fingerprint: '', id: '' };
+
+      function clearErrors() {
+        form.querySelectorAll('.field-error').forEach(function (node) { node.textContent = ''; });
+        form.querySelectorAll('[aria-invalid="true"]').forEach(function (node) {
+          node.removeAttribute('aria-invalid');
+          node.removeAttribute('aria-describedby');
+        });
+      }
+
+      function setError(name, message) {
+        var input = form.elements.namedItem(name);
+        var error = document.getElementById(name.replace(/_/g, '-') + '-error');
+        if (input && error) {
+          input.setAttribute('aria-invalid', 'true');
+          input.setAttribute('aria-describedby', error.id);
+          error.textContent = message;
+        }
+      }
+
+      function normalizeWebsite(value) {
+        var clean = String(value || '').trim();
+        if (!clean) return '';
+        if (!/^https?:\/\//i.test(clean)) clean = 'https://' + clean;
+        return clean;
+      }
+
+      function attribution() {
+        var base = {};
+        try {
+          if (typeof window.__bwmGetAttributionPayload === 'function') {
+            base = window.__bwmGetAttributionPayload() || {};
+          }
+        } catch (_) {}
+        var params = new URLSearchParams(location.search);
+        return {
+          gclid: params.get('gclid') || base.gclid || '',
+          utm_source: params.get('utm_source') || base.utm_source || '',
+          utm_medium: params.get('utm_medium') || base.utm_medium || '',
+          utm_campaign: params.get('utm_campaign') || base.utm_campaign || '',
+          utm_term: params.get('utm_term') || base.utm_term || '',
+          utm_content: params.get('utm_content') || base.utm_content || '',
+        };
+      }
+
+      function cookie(name) {
+        var match = document.cookie.match(new RegExp('(?:^|; )' + name.replace(/[.$?*|{}()[\]\\/+^]/g, '\\$&') + '=([^;]*)'));
+        return match ? decodeURIComponent(match[1]) : '';
+      }
+
+      function gaIdentity() {
+        var clientId = '';
+        var gaCookie = cookie('_ga');
+        var clientMatch = gaCookie.match(/^GA\d+\.\d+\.(\d+\.\d+)$/);
+        if (clientMatch) clientId = clientMatch[1];
+
+        var sessionId = '';
+        var sessionCookie = cookie('_ga_V5LSP69E41');
+        var sessionMatch = sessionCookie.match(/(?:^|[.$])s?(\d{10})(?:[.$]|$)/);
+        if (sessionMatch) sessionId = sessionMatch[1];
+
+        return {
+          ga_client_id: clientId,
+          ga_session_id: sessionId,
+        };
+      }
+
+      function buildPayload() {
+        var values = new FormData(form);
+        return Object.assign({
+          first_name: String(values.get('first_name') || '').trim(),
+          last_name: String(values.get('last_name') || '').trim(),
+          email: String(values.get('email') || '').trim(),
+          phone: String(values.get('phone') || '').trim(),
+          business: String(values.get('business') || '').trim(),
+          website: normalizeWebsite(values.get('website')),
+          need: String(values.get('need') || '').trim(),
+          business_url: String(values.get('business_url') || ''),
+          challenge_token: challengeToken,
+          started_at: startedAt,
+          lp_slug: 'hvac-marketing',
+          trade: 'HVAC',
+          consent_version: 'paid-hvac-lp-v1-2026-07-29',
+          page_url: location.href,
+          referrer: document.referrer || '',
+        }, attribution(), gaIdentity());
+      }
+
+      function payloadFingerprint(payload) {
+        var copy = Object.assign({}, payload);
+        delete copy.challenge_token;
+        delete copy.started_at;
+        delete copy.submission_id;
+        return JSON.stringify(copy);
+      }
+
+      function validate(payload) {
+        clearErrors();
+        var valid = true;
+        [
+          ['first_name', 'Enter your first name.'],
+          ['last_name', 'Enter your last name.'],
+          ['email', 'Enter your email.'],
+          ['phone', 'Enter your phone number.'],
+          ['business', 'Enter your business name.'],
+          ['website', 'Enter your business website.'],
+          ['need', 'Tell us what you need help fixing.'],
+        ].forEach(function (item) {
+          if (!payload[item[0]]) {
+            setError(item[0], item[1]);
+            valid = false;
+          }
+        });
+        if (payload.email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(payload.email)) {
+          setError('email', 'Enter a valid email address.');
+          valid = false;
+        }
+        var phoneDigits = payload.phone.replace(/\D/g, '');
+        if (payload.phone && (phoneDigits.length < 10 || phoneDigits.length > 15)) {
+          setError('phone', 'Enter a valid phone number.');
+          valid = false;
+        }
+        try {
+          if (payload.website) new URL(payload.website);
+        } catch (_) {
+          setError('website', 'Enter a valid business website.');
+          valid = false;
+        }
+        if (!challengeToken) {
+          status.textContent = 'Complete the security check before sending.';
+          valid = false;
+        }
+        return valid;
+      }
+
+      function resetChallenge() {
+        challengeToken = '';
+        if (widgetId !== null && window.turnstile) window.turnstile.reset(widgetId);
+      }
+
+      window.bwmPaidLeadTurnstileReady = function () {
+        widgetId = window.turnstile.render('#turnstile-widget', {
+          sitekey: turnstileSiteKey,
+          action: 'paid_lead',
+          theme: 'dark',
+          callback: function (token) {
+            challengeToken = token;
+            if (status.textContent === 'Complete the security check before sending.') status.textContent = '';
+          },
+          'expired-callback': function () { challengeToken = ''; },
+          'error-callback': function () {
+            challengeToken = '';
+            status.textContent = 'The security check could not load. Please refresh and try again.';
+          },
+        });
+      };
+
+      document.querySelectorAll('a[href="#request"]').forEach(function (link) {
+        link.addEventListener('click', function () {
+          var payload = {
+            cta_label: link.textContent.trim(),
+            cta_source: link.getAttribute('data-cta-source') || 'unspecified',
+            page_path: location.pathname,
+          };
+          if (typeof window.__bwmTrackEvent === 'function') window.__bwmTrackEvent('cta_click', payload);
+        });
+      });
+
+      form.addEventListener('submit', async function (event) {
+        event.preventDefault();
+        status.textContent = '';
+        var payload = buildPayload();
+        if (!validate(payload)) {
+          var firstInvalid = form.querySelector('[aria-invalid="true"]');
+          if (firstInvalid) firstInvalid.focus();
+          return;
+        }
+
+        var fingerprint = payloadFingerprint(payload);
+        if (!submissionState.id || submissionState.fingerprint !== fingerprint) {
+          submissionState = { fingerprint: fingerprint, id: crypto.randomUUID() };
+        }
+        payload.submission_id = submissionState.id;
+        submit.disabled = true;
+        submit.setAttribute('aria-disabled', 'true');
+        submit.querySelector('span').textContent = 'Sending…';
+        status.textContent = 'Recording your request…';
+
+        try {
+          var response = await fetch(endpoint, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(payload),
+          });
+          var body = await response.json().catch(function () { return {}; });
+
+          if (response.status === 201 && body.ok === true) {
+            form.hidden = true;
+            success.hidden = false;
+            success.focus();
+            return;
+          }
+
+          if (response.status === 422 && body.errors) {
+            Object.keys(body.errors).forEach(function (name) {
+              var message = body.errors[name] === 'required'
+                ? 'This field is required.'
+                : 'Check this field and try again.';
+              setError(name === 'comment' ? 'need' : name, message);
+            });
+            status.textContent = 'Check the highlighted fields and try again.';
+          } else if (response.status === 202) {
+            status.textContent = 'The security check was not accepted. Please complete it again.';
+          } else {
+            status.textContent = body.error || 'We could not record your request. Please try again.';
+          }
+          resetChallenge();
+        } catch (_) {
+          status.textContent = 'We could not reach the lead system. Check your connection and try again.';
+          resetChallenge();
+        } finally {
+          submit.disabled = false;
+          submit.removeAttribute('aria-disabled');
+          submit.querySelector('span').textContent = 'Send My Info to the Team';
+        }
+      });
+    })();
+  </script>
+</BaseLayout>
+
+<style>
+  :global(body) { background: #050507; }
+  :global(body::before) { display: none; }
+
+  .paid-hvac {
+    --lp-rule: #29292f;
+    --lp-dim: #a8a8ae;
+    min-height: 100vh;
+    background: #050507;
+    color: #f5f5f5;
+  }
+
+  .lp-header,
+  .lp-footer,
+  .section-shell {
+    width: min(1240px, calc(100% - 40px));
+    margin-inline: auto;
+  }
+
+  .lp-header {
+    min-height: 84px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid var(--lp-rule);
+  }
+
+  .lp-brand {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: .18em;
+  }
+
+  .lp-brand img { width: 42px; height: 42px; }
+
+  .header-jump {
+    min-height: 44px;
+    display: inline-flex;
+    align-items: center;
+    border-bottom: 1px solid var(--y2);
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: .14em;
+    text-transform: uppercase;
+  }
+
+  .section-shell { padding-block: clamp(76px, 9vw, 132px); }
+
+  .hero {
+    min-height: calc(100vh - 84px);
+    display: grid;
+    grid-template-columns: minmax(0, 1.05fr) minmax(390px, .95fr);
+    gap: clamp(48px, 7vw, 100px);
+    align-items: center;
+  }
+
+  .eyebrow {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: .18em;
+    color: var(--y2);
+    text-transform: uppercase;
+  }
+
+  .vertex {
+    width: 8px;
+    height: 8px;
+    display: inline-block;
+    background: var(--y2);
+    clip-path: polygon(50% 0, 100% 100%, 0 100%);
+  }
+
+  .verdict-dot {
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+    background: var(--y2);
+  }
+
+  h1 {
+    max-width: 820px;
+    margin-top: 24px;
+    font-size: clamp(50px, 5.5vw, 82px);
+    line-height: .92;
+    letter-spacing: -.055em;
+  }
+
+  .hero-sub {
+    max-width: 700px;
+    margin-top: 30px;
+    color: var(--lp-dim);
+    font-size: clamp(19px, 2vw, 24px);
+    line-height: 1.5;
+  }
+
+  .primary-cta,
+  .submit-button {
+    margin-top: 34px;
+    min-height: 58px;
+    padding: 16px 20px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 36px;
+    background: var(--y2);
+    color: #050507;
+    font-weight: 800;
+    line-height: 1.2;
+  }
+
+  .primary-cta:hover,
+  .submit-button:hover { color: #050507; }
+
+  .micro-proof {
+    margin-top: 16px;
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: .09em;
+    color: var(--lp-dim);
+    text-transform: uppercase;
+  }
+
+  .system-figure {
+    border: 1px solid var(--lp-rule);
+    background: #09090c;
+    padding: clamp(20px, 3vw, 34px);
+  }
+
+  .system-topline {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+    padding-bottom: 18px;
+    border-bottom: 1px solid var(--lp-rule);
+    font-family: var(--mono);
+    font-size: 9px;
+    letter-spacing: .14em;
+    color: var(--lp-dim);
+  }
+
+  .live-signal i {
+    display: inline-block;
+    width: 7px;
+    height: 7px;
+    margin-right: 6px;
+    border-radius: 50%;
+    background: var(--y2);
+  }
+
+  .layer-map {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    padding-block: 22px;
+  }
+
+  .layer-node {
+    position: relative;
+    min-height: 86px;
+    border: 1px solid var(--lp-rule);
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  .layer-number {
+    font-family: var(--mono);
+    font-size: 10px;
+    color: var(--y2);
+  }
+
+  .layer-node strong { font-size: 15px; line-height: 1.15; }
+  .layer-node:nth-child(8) { border-color: var(--y2); }
+
+  .system-figure figcaption {
+    border-top: 1px solid var(--lp-rule);
+    padding-top: 16px;
+    color: var(--lp-dim);
+    font-size: 14px;
+  }
+
+  .angle-rule {
+    width: min(1240px, calc(100% - 40px));
+    height: 1px;
+    margin-inline: auto;
+    background: var(--lp-rule);
+    transform: skewY(-1deg);
+  }
+
+  .section-intro { max-width: 850px; }
+
+  h2 {
+    margin-top: 20px;
+    font-size: clamp(42px, 6vw, 76px);
+    line-height: .98;
+    letter-spacing: -.045em;
+  }
+
+  .section-intro > p:last-child,
+  .request-copy > p,
+  .proof-story > p:last-child {
+    max-width: 720px;
+    margin-top: 24px;
+    color: var(--lp-dim);
+    font-size: 20px;
+  }
+
+  .leak-map {
+    margin-top: 52px;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    border-top: 1px solid var(--lp-rule);
+    border-bottom: 1px solid var(--lp-rule);
+  }
+
+  .leak-map article {
+    min-height: 250px;
+    padding: 26px 22px;
+    border-right: 1px solid var(--lp-rule);
+  }
+
+  .leak-map article:last-child { border-right: 0; }
+  .leak-map span,
+  .mechanism-flow > li > span,
+  .commitments > div > span {
+    font-family: var(--mono);
+    font-size: 10px;
+    color: var(--y2);
+  }
+
+  .leak-map h3 { margin-top: 48px; font-size: 25px; line-height: 1.05; }
+  .leak-map p { margin-top: 14px; color: var(--lp-dim); font-size: 16px; line-height: 1.55; }
+
+  .trade-note {
+    max-width: 760px;
+    margin-top: 32px;
+    padding-left: 20px;
+    border-left: 2px solid var(--y2);
+    color: var(--lp-dim);
+  }
+
+  .mechanism-flow {
+    list-style: none;
+    margin-top: 54px;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  .mechanism-flow li {
+    position: relative;
+    min-height: 260px;
+    padding: 28px 26px 28px 0;
+    border-top: 1px solid var(--lp-rule);
+  }
+
+  .mechanism-flow li:not(:last-child)::after {
+    content: '';
+    position: absolute;
+    top: -4px;
+    right: 20px;
+    width: 7px;
+    height: 7px;
+    border: 1px solid var(--lp-dim);
+    transform: rotate(45deg);
+    background: #050507;
+  }
+
+  .mechanism-flow strong {
+    display: block;
+    margin-top: 50px;
+    padding-right: 18px;
+    font-size: 21px;
+    line-height: 1.15;
+  }
+
+  .mechanism-flow p {
+    margin-top: 14px;
+    padding-right: 22px;
+    color: var(--lp-dim);
+    font-size: 15px;
+    line-height: 1.55;
+  }
+
+  .text-cta {
+    display: inline-flex;
+    gap: 16px;
+    min-height: 44px;
+    margin-top: 26px;
+    align-items: center;
+    border-bottom: 1px solid var(--y2);
+    font-weight: 700;
+  }
+
+  .proof {
+    display: grid;
+    grid-template-columns: .9fr 1.1fr;
+    gap: clamp(50px, 8vw, 110px);
+    align-items: start;
+  }
+
+  .proof-number {
+    display: flex;
+    align-items: baseline;
+    gap: 18px;
+    margin-top: 28px;
+  }
+
+  .proof-number span {
+    color: var(--y2);
+    font-size: clamp(54px, 7vw, 96px);
+    font-weight: 900;
+    line-height: 1;
+    letter-spacing: -.06em;
+  }
+
+  .proof-number i { font-style: normal; color: var(--lp-dim); }
+  .proof-story h2 { font-size: clamp(32px, 4vw, 52px); }
+
+  .commitments {
+    border-top: 1px solid var(--lp-rule);
+  }
+
+  .commitments > div {
+    display: grid;
+    grid-template-columns: 42px 180px 1fr;
+    gap: 16px;
+    align-items: baseline;
+    padding: 24px 0;
+    border-bottom: 1px solid var(--lp-rule);
+  }
+
+  .commitments strong { font-size: 17px; }
+  .commitments p { color: var(--lp-dim); font-size: 15px; line-height: 1.45; }
+
+  .faq-list { margin-top: 54px; border-top: 1px solid var(--lp-rule); }
+  .faq-list details { border-bottom: 1px solid var(--lp-rule); }
+
+  .faq-list summary {
+    min-height: 76px;
+    padding: 20px 0;
+    display: grid;
+    grid-template-columns: 52px 1fr;
+    align-items: center;
+    cursor: pointer;
+    font-size: 19px;
+    font-weight: 700;
+    list-style: none;
+  }
+
+  .faq-list summary::-webkit-details-marker { display: none; }
+  .faq-list summary span { font-family: var(--mono); font-size: 10px; color: var(--y2); }
+  .faq-a { max-width: 780px; padding: 0 0 28px 52px; color: var(--lp-dim); }
+
+  .request {
+    display: grid;
+    grid-template-columns: .8fr 1.2fr;
+    gap: clamp(54px, 8vw, 120px);
+    align-items: start;
+  }
+
+  .request-copy { position: sticky; top: 36px; }
+  .request-copy ul { margin-top: 30px; list-style: none; }
+  .request-copy li {
+    padding: 13px 0;
+    border-bottom: 1px solid var(--lp-rule);
+    color: var(--lp-dim);
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+  }
+
+  .form-wrap { border-top: 2px solid var(--y2); padding-top: 28px; }
+  .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px 20px; }
+  .field-wide { grid-column: 1 / -1; }
+
+  .field label {
+    display: block;
+    margin-bottom: 9px;
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: .13em;
+    color: var(--lp-dim);
+    text-transform: uppercase;
+  }
+
+  .field input,
+  .field textarea {
+    width: 100%;
+    min-height: 54px;
+    border: 1px solid #3a3a42;
+    border-radius: 0;
+    padding: 13px 14px;
+    background: #09090c;
+    color: #f5f5f5;
+    font: inherit;
+    font-size: 16px;
+    outline: none;
+  }
+
+  .field textarea { min-height: 140px; resize: vertical; }
+  .field input:focus,
+  .field textarea:focus { border-color: var(--y2); }
+  .field input[aria-invalid="true"],
+  .field textarea[aria-invalid="true"] { border-width: 2px; border-style: dashed; }
+
+  .field-error {
+    min-height: 20px;
+    display: block;
+    padding-top: 5px;
+    color: #f5f5f5;
+    font-family: var(--mono);
+    font-size: 10px;
+  }
+
+  .hp-field {
+    position: absolute !important;
+    width: 1px !important;
+    height: 1px !important;
+    overflow: hidden !important;
+    clip: rect(0, 0, 0, 0) !important;
+  }
+
+  .turnstile-slot { min-height: 70px; margin-top: 22px; }
+  .form-status { min-height: 26px; margin-top: 8px; font-size: 14px; color: var(--lp-dim); }
+  .submit-button { width: 100%; border-radius: 0; margin-top: 8px; }
+  .submit-button:disabled { opacity: .55; cursor: wait; }
+
+  .form-legal {
+    margin-top: 16px;
+    color: var(--lp-dim);
+    font-size: 12px;
+    line-height: 1.5;
+  }
+
+  .form-legal a { text-decoration: underline; text-underline-offset: 3px; }
+
+  .success-state {
+    min-height: 420px;
+    border: 1px solid var(--lp-rule);
+    padding: clamp(30px, 6vw, 70px);
+  }
+
+  .success-state:focus { outline: 2px solid var(--y2); outline-offset: 4px; }
+  .success-mark {
+    width: 48px;
+    height: 48px;
+    display: grid;
+    place-items: center;
+    margin-bottom: 34px;
+    border: 1px solid var(--y2);
+    color: var(--y2);
+    font-weight: 900;
+  }
+
+  .success-state h3 { margin-top: 20px; font-size: clamp(34px, 5vw, 56px); line-height: 1; }
+  .success-state > p:last-child { margin-top: 24px; color: var(--lp-dim); }
+
+  .lp-footer {
+    min-height: 150px;
+    display: grid;
+    grid-template-columns: 1fr auto auto;
+    gap: 30px;
+    align-items: center;
+    border-top: 1px solid var(--lp-rule);
+    color: var(--lp-dim);
+    font-size: 13px;
+  }
+
+  .lp-footer nav { display: flex; gap: 20px; }
+  .lp-footer nav a {
+    min-height: 44px;
+    display: inline-flex;
+    align-items: center;
+  }
+
+  .paid-hvac :is(a, button, input, textarea, summary):focus-visible {
+    outline: 2px solid var(--y2);
+    outline-offset: 4px;
+  }
+  /* Turnstile injects an unscoped focusable wrapper at runtime. It has no
+     authored class/id, so this must remain global to survive Astro scoping. */
+  :global(#turnstile-widget div:focus) {
+    outline: 2px solid var(--y2);
+    outline-offset: 4px;
+  }
+
+  @media (max-width: 920px) {
+    .hero,
+    .proof,
+    .request { grid-template-columns: 1fr; }
+    .hero { min-height: auto; }
+    .leak-map,
+    .mechanism-flow { grid-template-columns: 1fr 1fr; }
+    .leak-map article:nth-child(2) { border-right: 0; }
+    .leak-map article:nth-child(-n+2) { border-bottom: 1px solid var(--lp-rule); }
+    .request-copy { position: static; }
+  }
+
+  @media (max-width: 620px) {
+    .lp-header,
+    .lp-footer,
+    .section-shell,
+    .angle-rule { width: min(100% - 28px, 1240px); }
+    .lp-header { min-height: 72px; }
+    .lp-brand span { font-size: 9px; }
+    .header-jump { font-size: 9px; }
+    .section-shell { padding-block: 70px; }
+    .hero { gap: 48px; }
+    h1 { font-size: clamp(48px, 14vw, 68px); }
+    .layer-map,
+    .leak-map,
+    .mechanism-flow,
+    .form-grid { grid-template-columns: 1fr; }
+    .leak-map article {
+      min-height: 210px;
+      border-right: 0;
+      border-bottom: 1px solid var(--lp-rule);
+    }
+    .leak-map article:last-child { border-bottom: 0; }
+    .mechanism-flow li { min-height: 215px; }
+    .proof-number {
+      display: grid;
+      grid-template-columns: max-content auto max-content;
+      gap: clamp(6px, 3vw, 12px);
+      min-width: 0;
+      max-width: 100%;
+    }
+    .proof-number span {
+      min-width: 0;
+      font-size: clamp(40px, 13vw, 54px);
+      white-space: nowrap;
+    }
+    .commitments > div { grid-template-columns: 34px 1fr; }
+    .commitments p { grid-column: 2; }
+    .form-grid { gap: 18px; }
+    .field-wide { grid-column: auto; }
+    .primary-cta { width: 100%; }
+    .lp-footer {
+      padding-block: 34px;
+      grid-template-columns: 1fr;
+      gap: 16px;
+    }
+  }
+
+  /* Short landscape desktops need the same compressed vertical rhythm as
+     compact phones. The 760px ceiling keeps the complete conversion stack
+     (H1, support, CTA, and reassurance) inside a 1280×720 paid-search fold. */
+  @media (max-width: 380px), (max-height: 760px) {
+    .hero { padding-top: 32px; }
+    .hero h1 {
+      margin-top: 14px;
+      font-size: clamp(42px, 13vw, 52px);
+    }
+    .hero-sub {
+      margin-top: 14px;
+      font-size: 17px;
+      line-height: 1.32;
+    }
+    .hero .primary-cta {
+      min-height: 52px;
+      margin-top: 16px;
+      padding-block: 11px;
+    }
+    .hero .micro-proof {
+      margin-top: 8px;
+      font-size: 9px;
+      line-height: 1.3;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    :global(html) { scroll-behavior: auto; }
+  }
+</style>
