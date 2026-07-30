@@ -15,35 +15,35 @@ const layers = canonical.products.ascend.eight_layers.map((raw: string, index: n
 const faqs = [
   {
     q: 'Is this just another HVAC marketing agency?',
-    a: 'No. The work is built as an operating system across visibility, conversion, speed-to-lead, sales operations, reputation, paid media, reporting, and strategy. You can see what is running, what it is producing, and what changes next.',
+    a: 'No. You came here because you need marketing help. We solve that need by building and running a custom AI system for your HVAC company. It joins visibility, conversion, fast response, sales work, reviews, paid media, reporting, and strategy.',
   },
   {
     q: 'What happens after I send the form?',
-    a: 'Your request is recorded, delivered to the Buildwise team, and reviewed. You also receive an honest confirmation and follow-up by email. There is no calendar gate, download gate, or surprise booking screen.',
+    a: 'Your request goes to the Buildwise team for review. We map the first leaks we find and send a clear next step. There is no calendar gate, template download, or surprise booking screen.',
   },
   {
     q: 'Do I need to replace everything I already use?',
-    a: 'Not automatically. We start with the systems and channels you already have, find where leads are being lost, and determine what should be fixed, connected, replaced, or left alone.',
+    a: 'Not by default. We map what is already in place. Then we use proof to decide what to fix, connect, replace, or keep.',
   },
   {
-    q: 'Can you track which marketing actually produces leads?',
-    a: 'That is a core part of the system. We connect source data to form and lead activity so you can separate traffic from inquiries and inquiries from real sales opportunities.',
+    q: 'Can the AI system track which work produces leads?',
+    a: 'Yes. We keep the source tied to each form and lead. You can separate traffic from real requests, and real requests from sales opportunities.',
   },
   {
     q: 'What if another agency already burned us?',
-    a: 'Then the first standard is visibility. You should be able to see what was changed, what it cost, what happened next, and who owns the work. Buildwise is structured around verifiable work instead of vague monthly activity.',
+    a: 'Then start with proof. You should see what changed, what it cost, what happened next, and who owns the work. Our team shows the work instead of hiding it in a monthly report.',
   },
   {
     q: 'Do you work only with HVAC companies?',
-    a: 'Buildwise works with service businesses, and this page is specifically for HVAC owners. The review focuses on the call types, seasonality, response pressure, and local demand patterns that shape an HVAC lead system.',
+    a: 'Buildwise builds custom AI systems for service businesses. This page is for HVAC owners, so the review looks at urgent calls, seasons, response time, and local demand.',
   },
   {
     q: 'Will we own the system?',
-    a: 'Ownership is part of the model. The goal is not to trap your business behind a rented black box. The systems, operating knowledge, and measurable work should stay connected to your company.',
+    a: 'Yes. Your business owns the system, the data, and the code we deliver. The goal is a business asset, not a rented black box.',
   },
   {
     q: 'Is there a long form or sales call before you will look at this?',
-    a: 'No. Send the required contact details and describe what is not working. The team reviews the request directly. There is no quiz, calendar, or multi-step application on this page.',
+    a: 'No. Send your contact details and tell us what is not working. The team reviews the request. There is no quiz, calendar, or long application.',
   },
 ];
 
@@ -51,8 +51,8 @@ const jsonLd = [
   {
     '@type': 'Service',
     '@id': 'https://buildwisemedia.com/go/hvac-marketing/#service',
-    name: 'HVAC Marketing System',
-    serviceType: 'HVAC lead generation and marketing operations',
+    name: 'Custom AI System for HVAC Companies',
+    serviceType: 'Custom AI system build and operation for HVAC service businesses',
     provider: { '@id': 'https://buildwisemedia.com/#org' },
     areaServed: { '@type': 'Country', name: 'United States' },
     url: 'https://buildwisemedia.com/go/hvac-marketing/',
@@ -70,18 +70,18 @@ const jsonLd = [
     '@type': 'BreadcrumbList',
     itemListElement: [
       { '@type': 'ListItem', position: 1, name: 'Buildwise Media', item: 'https://buildwisemedia.com/' },
-      { '@type': 'ListItem', position: 2, name: 'HVAC Marketing System', item: 'https://buildwisemedia.com/go/hvac-marketing/' },
+      { '@type': 'ListItem', position: 2, name: 'Custom AI System for HVAC Companies', item: 'https://buildwisemedia.com/go/hvac-marketing/' },
     ],
   },
 ];
 ---
 
 <BaseLayout
-  title="HVAC Marketing System | Buildwise Media"
-  description="Fix slow-season lead gaps, missed calls, weak follow-up, and unclear marketing results with an HVAC lead system you can track and own."
+  title="Custom AI System for HVAC Companies | Buildwise Media"
+  description="You came looking for HVAC marketing help. We build and run a custom AI system that tracks demand, response, follow-up, and revenue."
   canonical="https://buildwisemedia.com/go/hvac-marketing/"
-  ogTitle="HVAC Leads, Tracked End to End"
-  ogDescription="Tell us where your HVAC lead system is breaking. No calendar or download gate."
+  ogTitle="A Custom AI System for Your HVAC Company"
+  ogDescription="See why a custom AI system built and run for your HVAC company beats another agency retainer."
   jsonLd={jsonLd}
   focusedLandingPage
 >
@@ -91,18 +91,19 @@ const jsonLd = [
         <img src="/brand/mark-on-canvas.svg" alt="" width="42" height="42" />
         <span>BUILDWISE·MEDIA</span>
       </a>
-      <a class="header-jump" href="#request" data-cta-source="f1-hvac-marketing-header">
-        Request a review
+      <a class="header-jump" href="/book" data-cta-source="f1-hvac-marketing-header">
+        See If We're a Fit
       </a>
     </header>
 
     <section class="hero section-shell">
       <div class="hero-copy">
-        <p class="eyebrow"><span class="vertex" aria-hidden="true"></span> HVAC LEAD GENERATION</p>
-        <h1>Your HVAC marketing should produce leads you can track.</h1>
+        <p class="eyebrow"><span class="vertex" aria-hidden="true"></span> CUSTOM AI FOR HVAC OWNERS</p>
+        <h1>Your HVAC company needs a custom AI system—not another agency.</h1>
         <p class="hero-sub">
-          Slow seasons, missed calls, weak follow-up, and agency reports that explain nothing
-          are not four separate problems. They are leaks in one lead system.
+          You came here for HVAC marketing help. That makes sense. But a monthly agency report
+          will not fix slow seasons, missed calls, or weak follow-up. We build and run one custom
+          artificial intelligence (AI) system across all of it.
         </p>
         <a
           class="primary-cta"
@@ -110,15 +111,15 @@ const jsonLd = [
           data-cta-source="f1-hvac-marketing-hero"
           data-exp-slot="hero-cta"
         >
-          Request Your Lead-System Review
+          Get My Free Revenue Leak Map
           <span aria-hidden="true">↘</span>
         </a>
-        <p class="micro-proof">No calendar. No download. One direct request to the team.</p>
+        <p class="micro-proof">Free map. No calendar. One direct request to the team.</p>
       </div>
 
       <figure class="system-figure" aria-labelledby="system-caption">
         <div class="system-topline">
-          <span>THE REVENUE OPERATING SYSTEM</span>
+          <span>THE CUSTOM AI SYSTEM</span>
           <span class="live-signal"><i></i> 8 CONNECTED LAYERS</span>
         </div>
         <div class="layer-map">
@@ -131,7 +132,7 @@ const jsonLd = [
           ))}
         </div>
         <figcaption id="system-caption">
-          One system from first search to the next revenue decision.
+          Eight joined layers, from first search to the next revenue decision.
         </figcaption>
       </figure>
     </section>
@@ -140,38 +141,38 @@ const jsonLd = [
 
     <section class="problem section-shell">
       <div class="section-intro">
-        <p class="eyebrow"><span class="vertex" aria-hidden="true"></span> WHERE LEADS DISAPPEAR</p>
-        <h2>More clicks will not fix a broken handoff.</h2>
+        <p class="eyebrow"><span class="vertex" aria-hidden="true"></span> WHERE REVENUE LEAKS</p>
+        <h2>More clicks will not fix a broken system.</h2>
         <p>
-          The expensive part is rarely one ad. It is what happens across search, the page,
-          the first response, the estimate, and the follow-up.
+          A new ad is not the whole answer. The leak may sit in search, the page, the first reply,
+          the quote, or the follow-up. Our AI system joins those steps so you can see the loss.
         </p>
       </div>
       <div class="leak-map" role="list" aria-label="Four common HVAC revenue leaks">
         <article role="listitem">
           <span>01</span>
           <h3>Invisible market</h3>
-          <p>Homeowners cannot find or choose you when demand appears.</p>
+          <p>Homeowners do not find or choose you when demand hits.</p>
         </article>
         <article role="listitem">
           <span>02</span>
           <h3>Leaky revenue</h3>
-          <p>Traffic arrives, but the page, call path, or form loses the job.</p>
+          <p>A click lands, but the page, call path, or form loses the job.</p>
         </article>
         <article role="listitem">
           <span>03</span>
           <h3>Owner bottleneck</h3>
-          <p>Every lead and every marketing decision routes back through you.</p>
+          <p>Every request and growth choice waits on you.</p>
         </article>
         <article role="listitem">
           <span>04</span>
           <h3>Reactive growth</h3>
-          <p>Slow weeks trigger random changes because the numbers are disconnected.</p>
+          <p>Slow weeks cause random changes because no system joins the numbers.</p>
         </article>
       </div>
       <p class="trade-note">
-        HVAC demand is time-sensitive. A no-heat call, an elderly customer, or a failed system
-        does not wait for a monthly agency report.
+        HVAC demand is urgent. A no-heat call or failed unit will not wait for an agency report.
+        The AI system keeps the next step moving while you run the company.
       </p>
     </section>
 
@@ -179,29 +180,29 @@ const jsonLd = [
 
     <section class="mechanism section-shell">
       <div class="section-intro">
-        <p class="eyebrow"><span class="vertex" aria-hidden="true"></span> HOW THE HANDOFF WORKS</p>
-        <h2>Track the source. Deliver the lead. Follow it through.</h2>
+        <p class="eyebrow"><span class="vertex" aria-hidden="true"></span> WHAT THE AI SYSTEM RUNS</p>
+        <h2>Track the source. Route the request. Keep it moving.</h2>
       </div>
       <ol class="mechanism-flow">
         <li>
           <span>01</span>
           <strong>Capture the source</strong>
-          <p>Campaign, keyword, page, and click details stay attached to the request.</p>
+          <p>The campaign, search term, page, and click stay tied to the request.</p>
         </li>
         <li>
           <span>02</span>
-          <strong>Deliver the full lead</strong>
-          <p>Name, business, contact details, website, and stated need reach the team.</p>
+          <strong>Route the full request</strong>
+          <p>The right team gets the name, contact details, source, and stated need.</p>
         </li>
         <li>
           <span>03</span>
           <strong>Confirm the request</strong>
-          <p>The prospect gets one honest acknowledgment with no fake promise.</p>
+          <p>The prospect gets one clear reply with no fake promise.</p>
         </li>
         <li>
           <span>04</span>
           <strong>Keep follow-up moving</strong>
-          <p>Automated follow-up is tracked so valid requests do not quietly disappear.</p>
+          <p>The AI system tracks follow-up so a valid request does not go quiet.</p>
         </li>
       </ol>
       <a
@@ -210,7 +211,7 @@ const jsonLd = [
         data-cta-source="f1-hvac-marketing-inline"
         data-exp-slot="proof-module"
       >
-        Request Your Lead-System Review <span aria-hidden="true">→</span>
+        Get My Free Revenue Leak Map <span aria-hidden="true">→</span>
       </a>
     </section>
 
@@ -220,18 +221,18 @@ const jsonLd = [
       <div class="proof-story">
         <p class="eyebrow"><span class="vertex" aria-hidden="true"></span> PROOF OVER PROMISES</p>
         <p class="proof-number"><span>$300K</span><i aria-hidden="true">→</i><span>$10M</span></p>
-        <h2>One owner. One year. A system that made growth operable.</h2>
+        <h2>One owner. One year. A system that made growth easier to run.</h2>
         <p>
-          The point is not that every HVAC company gets the same result. The point is that growth
-          becomes easier to improve when the work, the handoffs, and the numbers live in one system.
+          That result is not a promise for every HVAC company. It is proof of what can change when
+          an owner can see the work, the handoffs, and the numbers in one system.
         </p>
       </div>
       <div class="commitments" aria-label="Buildwise operating commitments">
-        <div><span>01</span><strong>Install velocity</strong><p>Move from decision to working system.</p></div>
-        <div><span>02</span><strong>Capability updates</strong><p>Improve the system as tools and demand change.</p></div>
-        <div><span>03</span><strong>Domain focus</strong><p>Shape the work around service-business buying behavior.</p></div>
-        <div><span>04</span><strong>Quality review</strong><p>Check outputs and handoffs against the real job.</p></div>
-        <div><span>05</span><strong>Measurement clarity</strong><p>Separate activity, leads, opportunities, and revenue.</p></div>
+        <div><span>01</span><strong>Fast install</strong><p>Go from a clear decision to a working AI system.</p></div>
+        <div><span>02</span><strong>Useful updates</strong><p>Chosen upgrades roll in without a fresh rebuild.</p></div>
+        <div><span>03</span><strong>HVAC context</strong><p>Tune the work for urgent calls, seasons, and local demand.</p></div>
+        <div><span>04</span><strong>Quality review</strong><p>The team checks AI output and each live handoff.</p></div>
+        <div><span>05</span><strong>Clear measures</strong><p>Tie each request to its source, next step, and result.</p></div>
       </div>
     </section>
 
@@ -242,10 +243,10 @@ const jsonLd = [
            interactive disclosure preserves scan-first access without decorative imagery. -->
       <div class="section-intro">
         <p class="eyebrow"><span class="vertex" aria-hidden="true"></span> IF YOU HAVE BEEN BURNED BEFORE</p>
-        <h2>You should not have to trust another black box.</h2>
+        <h2>A custom AI system should not be a black box.</h2>
         <p>
-          You should be able to see what changed, what it cost, which leads arrived, what happened
-          next, and who owns the system. That is the standard.
+          You should see what changed, what it cost, which requests came in, what happened next,
+          and who owns the system. That is our standard.
         </p>
       </div>
       <div class="faq-list">
@@ -262,15 +263,15 @@ const jsonLd = [
 
     <section id="request" class="request section-shell">
       <div class="request-copy">
-        <p class="eyebrow"><span class="verdict-dot" aria-hidden="true"></span> DIRECT TO THE TEAM</p>
-        <h2>Tell us what is not working.</h2>
+        <p class="eyebrow"><span class="verdict-dot" aria-hidden="true"></span> GET YOUR FREE REVENUE LEAK MAP</p>
+        <h2>Show us where growth feels stuck.</h2>
         <p>
-          Send the details below. Every valid field is recorded, the complete request goes to the
-          Buildwise inbox, and the follow-up stays connected to the original lead.
+          Send the details below. The Buildwise team will map the first leaks we find. Each next
+          step stays tied to your request, so the work has a clear starting point.
         </p>
         <ul>
-          <li>No calendar gate</li>
-          <li>No downloadable report gate</li>
+          <li>No calendar before the review</li>
+          <li>No template download</li>
           <li>No hidden qualification quiz</li>
         </ul>
       </div>
@@ -309,13 +310,13 @@ const jsonLd = [
               <span class="field-error" id="website-error"></span>
             </div>
             <div class="field field-wide">
-              <label for="need">What is breaking in your lead system?</label>
+              <label for="need">Where does revenue leak today?</label>
               <textarea
                 id="need"
                 name="need"
                 maxlength="4000"
                 rows="5"
-                placeholder="Slow season, poor lead quality, missed calls, weak follow-up, unclear reporting…"
+                placeholder="Slow season, missed calls, weak follow-up, unclear results…"
                 required
               ></textarea>
               <span class="field-error" id="need-error"></span>
@@ -335,7 +336,7 @@ const jsonLd = [
             type="submit"
             data-cta-source="f1-hvac-marketing-final"
           >
-            <span>Send My Info to the Team</span><span aria-hidden="true">↘</span>
+            <span>Get My Free Revenue Leak Map</span><span aria-hidden="true">↘</span>
           </button>
           <p class="form-legal">
             By submitting, you agree that Buildwise Media may contact you about this request.
@@ -345,9 +346,9 @@ const jsonLd = [
 
         <div id="success-state" class="success-state" hidden tabindex="-1">
           <span class="success-mark" aria-hidden="true">✓</span>
-          <p class="eyebrow">REQUEST RECORDED</p>
+          <p class="eyebrow">MAP REQUEST RECORDED</p>
           <h3>Your details are with the Buildwise team.</h3>
-          <p>We review every request and keep the follow-up connected to the original lead.</p>
+          <p>We map the first leaks and keep each next step tied to your request.</p>
         </div>
       </div>
     </section>
@@ -357,7 +358,7 @@ const jsonLd = [
         <img src="/brand/mark-on-canvas.svg" alt="" width="36" height="36" loading="lazy" />
         <span>BUILDWISE·MEDIA</span>
       </a>
-      <p>Every claim should sit on a baseline you can check.</p>
+      <p>A custom AI system you can see, measure, and own.</p>
       <nav aria-label="Legal">
         <a href="/privacy">Privacy</a>
         <a href="/terms">Terms</a>
