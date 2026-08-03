@@ -1,0 +1,37 @@
+{
+  "marker_version": 4,
+  "client": "buildwise-media",
+  "surface": "buildwisemedia.com Bob SMS compliance copy 2026-08-03",
+  "resolver_version": "bwm-design-identity-resolver/1.0.0",
+  "identity_record_hash": "05330eea8f585abba53df0b0a6032677be9b42d84bae729f68875f186881348a",
+  "identity_class": "bwm",
+  "composition_mode": "single",
+  "ndb_schema": "ndb-2.0",
+  "bindings": [
+    {
+      "role": "identity_record",
+      "path": "_build-context/legal-cascade-identity-resolution.yaml",
+      "sha256": "05330eea8f585abba53df0b0a6032677be9b42d84bae729f68875f186881348a"
+    },
+    {
+      "role": "source_manifest",
+      "path": "_build-context/legal-cascade-source-manifest.yaml",
+      "sha256": "347c2d172fab5f0af42f0dfdd45b3ac34b1eeb07f363e3b397567d333ab636d4"
+    },
+    {
+      "role": "asset_manifest",
+      "path": "_build-context/legal-cascade-asset-manifest.yaml",
+      "sha256": "1c84be2516bef94a9932c47b468152b26e4b73b66cf17ce600d51aac94b76e51"
+    },
+    {
+      "role": "ndb",
+      "path": "_build-context/bob-sms-compliance-ndb-binding.md",
+      "sha256": "7e8b0651a143215d34d797d4a207da469c13625c9dcff89d012bfd113ef5db05"
+    }
+  ],
+  "design_contract_version": "bwm-design-run/1.1.0",
+  "created_by": "codex",
+  "created_at": "2026-08-03T12:59:00-04:00",
+  "scope_lock": "Compliance-only copy correction to privacy, terms, and sms-consent; existing BWM visual system and form mechanics remain frozen.",
+  "state": "local-review"
+}
