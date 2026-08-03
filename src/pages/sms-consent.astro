@@ -3,7 +3,7 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 
 const title = "Text Message Consent — Buildwise Media";
-const description = "Opt in to receive text messages from Buildwise Media: appointment reminders and lead follow-ups. Consent is not a condition of purchase.";
+const description = "Invited Buildwise Media clients can opt in to customer-care and project-status text messages. Consent is not a condition of purchase.";
 
 const breadcrumb = {
   '@context': 'https://schema.org',
@@ -28,14 +28,14 @@ const breadcrumb = {
       <section class="prose">
         <h2 class="h-sub">What you are signing up for</h2>
         <!-- @sdt-exempt: carrier-mandated A2P/TCR compliance disclosure — legal fine print, no visual story -->
-        <p>Buildwise Media sends recurring text messages to people who opt in: appointment reminders and follow-ups about work you asked us about. That is it — no spam, no unrelated offers.</p>
+        <p><strong>Buildwise Media Client Support</strong> is a private messaging program for invited existing clients. Bob is Buildwise Media's project assistant. After we verify your invitation and mobile number, you may send a request by text or voice note. Messages may confirm receipt, ask a brief project question, provide a status update, or deliver a review or completion link. Messages are one-to-one customer support and project updates, not bulk promotional messaging.</p>
         <ul class="legal-list">
           <li><strong>Consent is not a condition of purchase.</strong> You can work with us without opting in.</li>
-          <li><strong>Message frequency varies.</strong> Most people get a few messages a month.</li>
+          <li><strong>Message frequency varies</strong> with your requests and active projects.</li>
           <li><strong>Msg &amp; data rates may apply.</strong> Your carrier's standard rates apply.</li>
-          <li><strong>Reply STOP to opt out</strong> at any time. Reply <strong>HELP</strong> for help.</li>
+          <li><strong>Reply STOP to opt out</strong> at any time, <strong>START</strong> to resubscribe, or <strong>HELP</strong> for help.</li>
         </ul>
-        <p>How we handle your information is covered in our <a href="/privacy">Privacy Policy</a>. Questions: <a href="mailto:hello@buildwisemedia.com">hello@buildwisemedia.com</a>.</p>
+        <p>We do not share, sell, rent, or otherwise provide your mobile number to third parties or affiliates for marketing or promotional purposes. Text messaging originator opt-in data and consent are not shared with third parties. How we handle your information is covered in our <a href="/privacy">Privacy Policy</a> and <a href="/terms">Terms of Service</a>. Questions: <a href="mailto:hello@buildwisemedia.com">hello@buildwisemedia.com</a> or <a href="tel:+14786063370">+1 (478) 606-3370</a>. Carriers are not liable for delayed or undelivered messages.</p>
 
         <h2 class="h-sub">Opt in (optional)</h2>
         <!-- @sdt-exempt: carrier-mandated A2P/TCR consent mechanics — legal fine print, no visual story -->
@@ -61,15 +61,16 @@ const breadcrumb = {
         <div class="consent-field">
           <label class="mono" for="sms-phone">Mobile number</label>
           <input id="sms-phone" name="phone" type="tel" required autocomplete="tel" inputmode="tel" minlength="10" placeholder="(555) 123-4567" />
-          <span class="fieldnote">We use this to call or email you back about your request. We never text you unless you check the box below.</span>
+          <span class="fieldnote">We use this to verify your invitation and contact record. We never text you unless you check the box below.</span>
         </div>
 
         <p class="consent-optional mono">Optional — you can submit this form without checking the box. No box, no texts, and you can still work with us.</p>
 
         <label class="consent-check">
           <input id="sms-agree" name="sms_agree" type="checkbox" />
-          <span>I agree to receive recurring SMS text messages from Buildwise Media (appointment reminders, lead follow-ups). Consent is not a condition of purchase. Message frequency varies. Msg &amp; data rates may apply. Reply STOP to opt out, HELP for help.</span>
+          <span>I agree to receive recurring customer-care and project-status SMS/MMS messages from Buildwise Media at the mobile number above. Messages may include request acknowledgements, brief project questions, status updates, and review or completion links. Consent is not a condition of purchase. Message frequency varies. Msg &amp; data rates may apply. Reply STOP to opt out, START to resubscribe, or HELP for help.</span>
         </label>
+        <p class="consent-legal"><a href="/privacy">Privacy Policy</a> · <a href="/terms">Terms of Service</a></p>
 
         <button type="submit" class="cta consent-submit">
           <span data-submit-label>Submit</span>
@@ -125,7 +126,7 @@ const breadcrumb = {
         email: value('email'),
         phone: value('phone'),
         message: wantsSms
-          ? 'SMS consent opt-in via buildwisemedia.com/sms-consent — voluntarily checked the optional consent box; agreed to receive recurring SMS (appointment reminders, lead follow-ups).'
+          ? 'Bob client-support SMS consent v1.0 via buildwisemedia.com/sms-consent — voluntarily checked the optional consent box; agreed to recurring customer-care and project-status SMS, including acknowledgements, project questions, status updates, and review or completion links.'
           : 'Contact via buildwisemedia.com/sms-consent — optional SMS consent box left unchecked. NO SMS consent — do not text this number; email or call only.',
         intent: wantsSms ? 'sms-consent' : 'contact',
       };
@@ -151,7 +152,7 @@ const breadcrumb = {
         if (!response.ok) throw new Error(`Server ${response.status}`);
         form.reset();
         setStatus(wantsSms
-          ? 'You are opted in. Reply STOP to any message to opt out.'
+          ? 'Your SMS consent was recorded. We will verify your invitation and mobile number before Bob can reply. Reply STOP to any message to opt out.'
           : 'Got it — we will follow up by email or phone call. You are not signed up for texts.', 'success');
       } catch (_) {
         setStatus('That did not go through. Try again or email hello@buildwisemedia.com.', 'error');
@@ -242,6 +243,7 @@ const breadcrumb = {
   line-height: 1.6;
   color: var(--ink-dim);
 }
+.consent-legal { margin: -6px 0 0 28px; font-size: 13px; line-height: 1.5; }
 
 .consent-submit { align-self: flex-start; }
 
