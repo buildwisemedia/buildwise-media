@@ -1,9 +1,12 @@
 ---
 // @creative-exempt: SMS carrier-compliance page — A2P 10DLC / TCR consent language (recurring-message disclosure, STOP/HELP, frequency, Msg & data rates) is mandated by carrier registration requirements and must appear verbatim; legal/compliance pages are exempt per CLAUDE.md.
 import BaseLayout from '../layouts/BaseLayout.astro';
+import { createHash } from 'node:crypto';
 
 const title = "Text Message Consent — Buildwise Media";
 const description = "Invited Buildwise Media clients can opt in to customer-care and project-status text messages. Consent is not a condition of purchase.";
+const bobConsentText = "I agree to receive recurring customer-care and project-status SMS/MMS messages from Buildwise Media at the mobile number above. Messages may include request acknowledgements, brief project questions, status updates, and review or completion links. Consent is not a condition of purchase. Message frequency varies. Msg & data rates may apply. Reply STOP to opt out, START to resubscribe, or HELP for help.";
+const bobConsentSha256 = createHash('sha256').update(bobConsentText).digest('hex');
 
 const breadcrumb = {
   '@context': 'https://schema.org',
@@ -14,21 +17,21 @@ const breadcrumb = {
   ],
 };
 ---
-<BaseLayout title={title} description={description} jsonLd={[breadcrumb]}>
+<BaseLayout title={title} description={description} jsonLd={[breadcrumb]} privacySensitive={true} noindex={true}>
 
   <article class="legal-page" aria-labelledby="sms-title">
     <div class="container legal-container">
 
       <header class="legal-head">
-        <p class="eyebrow">Legal</p>
-        <h1 id="sms-title" class="h-hero">Text message <em>consent</em></h1>
-        <p class="legal-meta mono">SMS program disclosure · Buildwise Media LLC</p>
+        <p class="eyebrow">Private client beta</p>
+        <h1 id="sms-title" class="h-hero">Meet Bob by <em>text</em></h1>
+        <p class="legal-meta mono">Invitation, consent, and mobile verification · Buildwise Media LLC</p>
       </header>
 
       <section class="prose">
         <h2 class="h-sub">What you are signing up for</h2>
         <!-- @sdt-exempt: carrier-mandated A2P/TCR compliance disclosure — legal fine print, no visual story -->
-        <p><strong>Buildwise Media Client Support</strong> is a private messaging program for invited existing clients. Bob is Buildwise Media's project assistant. After we verify your invitation and mobile number, you may send a request by text or voice note. Messages may confirm receipt, ask a brief project question, provide a status update, or deliver a review or completion link. Messages are one-to-one customer support and project updates, not bulk promotional messaging.</p>
+        <p><strong>Buildwise Media Client Support</strong> is a private beta for individually invited existing clients. Bob is Buildwise Media's project assistant. After we verify your invitation and mobile number, you may send a request by text or voice note. Bob can confirm receipt, ask a brief project question, provide a status update, or deliver a review or completion link. Messages are one-to-one customer support and project updates, not bulk promotional messaging.</p>
         <ul class="legal-list">
           <li><strong>Consent is not a condition of purchase.</strong> You can work with us without opting in.</li>
           <li><strong>Message frequency varies</strong> with your requests and active projects.</li>
@@ -37,45 +40,80 @@ const breadcrumb = {
         </ul>
         <p>We do not share, sell, rent, or otherwise provide your mobile number to third parties or affiliates for marketing or promotional purposes. Text messaging originator opt-in data and consent are not shared with third parties. How we handle your information is covered in our <a href="/privacy">Privacy Policy</a> and <a href="/terms">Terms of Service</a>. Questions: <a href="mailto:hello@buildwisemedia.com">hello@buildwisemedia.com</a> or <a href="tel:+14786063370">+1 (478) 606-3370</a>. Carriers are not liable for delayed or undelivered messages.</p>
 
-        <h2 class="h-sub">Opt in (optional)</h2>
+        <h2 class="h-sub">Activate your invitation</h2>
         <!-- @sdt-exempt: carrier-mandated A2P/TCR consent mechanics — legal fine print, no visual story -->
-        <p>Leave your details below. The consent box is optional — check it only if you want texts. Skip the box and we still help you the same; you just will not get texts.</p>
+        <p>Use the personal invitation link Robert sent you. If you choose texts, we will send a six-digit code to prove this mobile number belongs to you. Your invitation already fixes the client account and access policy Bob may use.</p>
       </section>
 
-      <form id="sms-consent-form" class="consent-form" novalidate>
-        <div class="consent-hp" aria-hidden="true">
-          <label for="sms-business-url">Business URL</label>
-          <input id="sms-business-url" name="business_url" type="text" tabindex="-1" autocomplete="off" />
-        </div>
+      <div id="invite-warning" class="consent-callout mono" hidden>
+        This page needs your personal invitation link. Ask Robert to send it again; do not use someone else's link.
+      </div>
 
-        <div class="consent-field">
-          <label class="mono" for="sms-name">Name</label>
-          <input id="sms-name" name="name" type="text" required autocomplete="name" />
-        </div>
+      <form id="sms-consent-form" class="consent-form" novalidate hidden>
+        <section data-step="details" aria-labelledby="details-title">
+          <h3 id="details-title" class="form-title">Your details</h3>
+          <p class="fieldnote">We match these details to Robert's invitation. We do not use this form for lead nurture or marketing.</p>
 
-        <div class="consent-field">
-          <label class="mono" for="sms-email">Email</label>
-          <input id="sms-email" name="email" type="email" required autocomplete="email" inputmode="email" />
-        </div>
+          <div class="consent-hp" aria-hidden="true">
+            <label for="sms-business-url">Business URL</label>
+            <input id="sms-business-url" name="business_url" type="text" tabindex="-1" autocomplete="off" />
+          </div>
 
-        <div class="consent-field">
-          <label class="mono" for="sms-phone">Mobile number</label>
-          <input id="sms-phone" name="phone" type="tel" required autocomplete="tel" inputmode="tel" minlength="10" placeholder="(555) 123-4567" />
-          <span class="fieldnote">We use this to verify your invitation and contact record. We never text you unless you check the box below.</span>
-        </div>
+          <div class="consent-field">
+            <label class="mono" for="sms-name">Name</label>
+            <input id="sms-name" name="name" type="text" required autocomplete="name" maxlength="160" />
+          </div>
 
-        <p class="consent-optional mono">Optional — you can submit this form without checking the box. No box, no texts, and you can still work with us.</p>
+          <div class="consent-field">
+            <label class="mono" for="sms-email">Email</label>
+            <input id="sms-email" name="email" type="email" required autocomplete="email" inputmode="email" maxlength="254" />
+          </div>
 
-        <label class="consent-check">
-          <input id="sms-agree" name="sms_agree" type="checkbox" />
-          <span>I agree to receive recurring customer-care and project-status SMS/MMS messages from Buildwise Media at the mobile number above. Messages may include request acknowledgements, brief project questions, status updates, and review or completion links. Consent is not a condition of purchase. Message frequency varies. Msg &amp; data rates may apply. Reply STOP to opt out, START to resubscribe, or HELP for help.</span>
-        </label>
-        <p class="consent-legal"><a href="/privacy">Privacy Policy</a> · <a href="/terms">Terms of Service</a></p>
+          <div class="consent-field">
+            <label class="mono" for="sms-phone">Mobile number</label>
+            <input id="sms-phone" name="phone" type="tel" required autocomplete="tel" inputmode="tel" minlength="10" maxlength="40" placeholder="(555) 123-4567" />
+            <span class="fieldnote">This must match the mobile number Robert approved for your invitation.</span>
+          </div>
 
-        <button type="submit" class="cta consent-submit">
-          <span data-submit-label>Submit</span>
-          <span data-submit-loading hidden>Sending...</span>
-        </button>
+          <p class="consent-optional mono">Optional — leave the box unchecked for no texts. We record that choice and do not activate Bob by SMS.</p>
+
+          <label class="consent-check">
+            <input id="sms-agree" name="sms_agree" type="checkbox" />
+            <span data-consent-version="bob-client-support-v2.0" data-consent-sha256={bobConsentSha256}>{bobConsentText}</span>
+          </label>
+          <p class="consent-legal"><a href="/privacy">Privacy Policy</a> · <a href="/terms">Terms of Service</a></p>
+
+          <button type="submit" class="cta consent-submit">
+            <span data-submit-label>Continue</span>
+            <span data-submit-loading hidden>Checking...</span>
+          </button>
+        </section>
+
+        <section data-step="verify" aria-labelledby="verify-title" hidden>
+          <p class="step-kicker mono">Step 2 of 2</p>
+          <h3 id="verify-title" class="form-title">Check your texts</h3>
+          <p class="fieldnote">Enter the six-digit code Bob just sent. It expires in 10 minutes. Buildwise Media will never ask you to read this code back by phone or email.</p>
+
+          <div class="consent-field code-field">
+            <label class="mono" for="sms-code">Verification code</label>
+            <input id="sms-code" name="code" type="text" required disabled autocomplete="one-time-code" inputmode="numeric" pattern="[0-9]{6}" minlength="6" maxlength="6" placeholder="123456" />
+          </div>
+
+          <div class="verify-actions">
+            <button type="submit" class="cta consent-submit">
+              <span data-verify-label>Activate Bob</span>
+              <span data-verify-loading hidden>Activating...</span>
+            </button>
+            <button type="button" class="text-button mono" data-send-again disabled>Send a new code <span data-send-again-timer>(60s)</span></button>
+          </div>
+        </section>
+
+        <section data-step="done" class="activation-done" aria-labelledby="done-title" hidden>
+          <p class="step-kicker mono">Verified</p>
+          <h3 id="done-title" class="form-title">You're in the private beta.</h3>
+          <p data-done-primary>Bob's welcome text is on the way. Save that number. You can text or send a voice note about your website and active projects.</p>
+          <p data-done-feedback>Bob will confirm what he understood, keep you posted, and send a review link when work is ready. Reply <strong>FEEDBACK:</strong> anytime with what feels useful, confusing, or awkward.</p>
+        </section>
 
         <p id="sms-status" class="consent-status mono" role="status" aria-live="polite"></p>
       </form>
@@ -87,78 +125,186 @@ const breadcrumb = {
 
 <script is:inline>
   (function () {
-    const form = document.getElementById('sms-consent-form');
-    const status = document.getElementById('sms-status');
-    const submit = form?.querySelector('.consent-submit');
-    const submitLabel = form?.querySelector('[data-submit-label]');
-    const submitLoading = form?.querySelector('[data-submit-loading]');
+    var START_URL = 'https://bwm-sms-worker.robert-ba0.workers.dev/pilot/onboarding/start';
+    var VERIFY_URL = 'https://bwm-sms-worker.robert-ba0.workers.dev/pilot/onboarding/verify';
+    var form = document.getElementById('sms-consent-form');
+    var status = document.getElementById('sms-status');
+    var warning = document.getElementById('invite-warning');
+    var detailsStep = form && form.querySelector('[data-step="details"]');
+    var verifyStep = form && form.querySelector('[data-step="verify"]');
+    var doneStep = form && form.querySelector('[data-step="done"]');
+    var submitLabel = form && form.querySelector('[data-submit-label]');
+    var submitLoading = form && form.querySelector('[data-submit-loading]');
+    var verifyLabel = form && form.querySelector('[data-verify-label]');
+    var verifyLoading = form && form.querySelector('[data-verify-loading]');
+    var sendAgain = form && form.querySelector('[data-send-again]');
+    var sendAgainTimer = form && form.querySelector('[data-send-again-timer]');
+    var inviteToken = new URLSearchParams(window.location.search).get('i') || '';
+    var challengeId = '';
+    var currentStep = 'details';
+    var sendAgainInterval = null;
 
-    if (!form || !status || !submit || !submitLabel || !submitLoading) return;
+    if (!form || !status || !detailsStep || !verifyStep || !doneStep) return;
+
+    if (!/^[A-Za-z0-9_-]{40,200}$/.test(inviteToken)) {
+      warning.hidden = false;
+      form.hidden = true;
+    } else {
+      window.history.replaceState(null, '', window.location.pathname + window.location.hash);
+      form.hidden = false;
+    }
 
     function setStatus(message, type) {
       status.textContent = message;
       status.dataset.state = type || '';
     }
 
-    function setSubmitting(isSubmitting) {
-      submit.disabled = isSubmitting;
-      submitLabel.hidden = isSubmitting;
-      submitLoading.hidden = !isSubmitting;
-    }
-
     function value(name) {
-      return String(form.elements[name]?.value || '').trim();
+      return String(form.elements[name] && form.elements[name].value || '').trim();
     }
 
-    form.addEventListener('submit', async function (event) {
-      event.preventDefault();
-      setStatus('', '');
-
-      if (value('business_url')) {
-        form.reset();
-        return;
+    function setBusy(busy) {
+      Array.prototype.forEach.call(form.querySelectorAll('.consent-submit'), function (button) { button.disabled = busy; });
+      if (currentStep === 'details') {
+        submitLabel.hidden = busy;
+        submitLoading.hidden = !busy;
+      } else {
+        verifyLabel.hidden = busy;
+        verifyLoading.hidden = !busy;
       }
+    }
 
-      const wantsSms = !!form.elements['sms_agree']?.checked;
+    function showStep(step) {
+      currentStep = step;
+      detailsStep.hidden = step !== 'details';
+      verifyStep.hidden = step !== 'verify';
+      doneStep.hidden = step !== 'done';
+      form.elements.code.disabled = step !== 'verify';
+      setStatus('', '');
+      if (step === 'verify') {
+        form.elements.code.focus();
+        startSendAgainTimer();
+      }
+    }
 
-      const payload = {
+    function startSendAgainTimer() {
+      var seconds = 60;
+      sendAgain.disabled = true;
+      sendAgainTimer.textContent = '(' + seconds + 's)';
+      if (sendAgainInterval) clearInterval(sendAgainInterval);
+      sendAgainInterval = setInterval(function () {
+        seconds -= 1;
+        sendAgainTimer.textContent = seconds > 0 ? '(' + seconds + 's)' : '';
+        if (seconds <= 0) {
+          clearInterval(sendAgainInterval);
+          sendAgain.disabled = false;
+        }
+      }, 1000);
+    }
+
+    function detailsPayload() {
+      return {
+        invite_token: inviteToken,
         name: value('name'),
         email: value('email'),
         phone: value('phone'),
-        message: wantsSms
-          ? 'Bob client-support SMS consent v1.0 via buildwisemedia.com/sms-consent — voluntarily checked the optional consent box; agreed to recurring customer-care and project-status SMS, including acknowledgements, project questions, status updates, and review or completion links.'
-          : 'Contact via buildwisemedia.com/sms-consent — optional SMS consent box left unchecked. NO SMS consent — do not text this number; email or call only.',
-        intent: wantsSms ? 'sms-consent' : 'contact',
+        wants_sms: !!form.elements.sms_agree.checked,
+        business_url: value('business_url'),
       };
+    }
 
-      if (!payload.name || !payload.email || !payload.phone || !form.reportValidity()) {
+    async function requestCode() {
+      var payload = detailsPayload();
+      var detailFields = [form.elements.name, form.elements.email, form.elements.phone];
+      if (!/^[A-Za-z0-9_-]{40,200}$/.test(inviteToken)) {
+        setStatus('Ask Robert for a new personal invitation link.', 'error');
+        return;
+      }
+      if (!payload.name || !payload.email || !payload.phone || !detailFields.every(function (field) { return field.checkValidity(); })) {
         setStatus('Add your name, email, and mobile number.', 'error');
         return;
       }
-
-      const phoneDigits = payload.phone.replace(/\D/g, '');
-      if (phoneDigits.length < 10 || phoneDigits.length > 15) {
+      var digits = payload.phone.replace(/\D/g, '');
+      if (digits.length < 10 || digits.length > 15) {
         setStatus('Add a valid mobile number.', 'error');
         return;
       }
-
-      setSubmitting(true);
+      setBusy(true);
       try {
-        const response = await fetch('https://bwm-form-handler.robert-ba0.workers.dev/buildwisemedia/contact', {
+        var response = await fetch(START_URL, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify(payload),
         });
-        if (!response.ok) throw new Error(`Server ${response.status}`);
-        form.reset();
-        setStatus(wantsSms
-          ? 'Your SMS consent was recorded. We will verify your invitation and mobile number before Bob can reply. Reply STOP to any message to opt out.'
-          : 'Got it — we will follow up by email or phone call. You are not signed up for texts.', 'success');
-      } catch (_) {
-        setStatus('That did not go through. Try again or email hello@buildwisemedia.com.', 'error');
+        var result = await response.json().catch(function () { return {}; });
+        if (!response.ok) throw new Error(result.error || 'That did not go through.');
+        if (result.status === 'declined') {
+          detailsStep.hidden = true;
+          doneStep.hidden = false;
+          doneStep.querySelector('.step-kicker').textContent = 'Choice recorded';
+          doneStep.querySelector('.form-title').textContent = 'You are not signed up for texts.';
+          doneStep.querySelector('[data-done-primary]').textContent = 'You can keep working with Buildwise Media by email or phone call. No Bob SMS access was activated. This invitation link is now closed; ask Robert for a new one if you change your mind.';
+          doneStep.querySelector('[data-done-feedback]').hidden = true;
+          currentStep = 'done';
+          setStatus('No SMS authorization was created.', 'success');
+          return;
+        }
+        if (result.status === 'already_active') {
+          showStep('done');
+          setStatus('This invitation was already activated.', 'success');
+          return;
+        }
+        challengeId = result.challenge_id || '';
+        if (!challengeId) throw new Error('The verification text was not created.');
+        showStep('verify');
+        setStatus('Code sent. It expires in 10 minutes.', 'success');
+      } catch (error) {
+        setStatus('That did not go through. Try again or ask Robert for help.', 'error');
       } finally {
-        setSubmitting(false);
+        setBusy(false);
       }
+    }
+
+    async function verifyCode() {
+      var code = value('code');
+      if (!/^[0-9]{6}$/.test(code)) {
+        setStatus('Enter the six-digit code from Bob.', 'error');
+        return;
+      }
+      setBusy(true);
+      try {
+        var response = await fetch(VERIFY_URL, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ invite_token: inviteToken, challenge_id: challengeId, code: code }),
+        });
+        var result = await response.json().catch(function () { return {}; });
+        if (!response.ok) throw new Error(result.error || 'That code could not be verified.');
+        if (result.status === 'verified_awaiting_review') {
+          setStatus(result.message || 'Your number is verified. Robert will review the activation.', 'success');
+          form.elements.code.disabled = true;
+          return;
+        }
+        showStep('done');
+        setStatus("Activated. Bob's welcome is on the way.", 'success');
+      } catch (error) {
+        setStatus('That code could not be verified. Try again or ask Robert for help.', 'error');
+        form.elements.code.select();
+      } finally {
+        setBusy(false);
+      }
+    }
+
+    form.addEventListener('submit', function (event) {
+      event.preventDefault();
+      setStatus('', '');
+      if (currentStep === 'details') requestCode();
+      else if (currentStep === 'verify') verifyCode();
+    });
+
+    sendAgain.addEventListener('click', function () {
+      if (sendAgain.disabled) return;
+      requestCode();
     });
   })();
 </script>
@@ -183,30 +329,19 @@ const breadcrumb = {
   padding-left: 24px;
   position: relative;
 }
-.legal-list li::before {
-  content: '—';
-  position: absolute;
-  left: 0;
-  color: var(--y2);
-}
+.legal-list li::before { content: '—'; position: absolute; left: 0; color: var(--y2); }
 
-.consent-form {
-  display: flex;
-  flex-direction: column;
-  gap: 18px;
-  margin-top: 24px;
-  padding: clamp(24px, 4vw, 38px);
-  border: 1px solid var(--rule);
-}
+.consent-callout,
+.consent-form { margin-top: 24px; border: 1px solid var(--rule); }
+.consent-callout { padding: 18px 20px; color: var(--signal-orange); line-height: 1.6; }
+.consent-form { display: flex; flex-direction: column; gap: 18px; padding: clamp(24px, 4vw, 38px); }
+.consent-form section { display: flex; flex-direction: column; gap: 18px; }
+.consent-form[hidden],
+.consent-form section[hidden] { display: none; }
+.form-title { font-family: var(--serif); font-size: clamp(28px, 4vw, 40px); font-weight: 400; color: var(--ink); margin: 0; }
+.step-kicker { margin: 0; color: var(--y2); font-size: 11px; letter-spacing: .18em; text-transform: uppercase; }
 
-.consent-hp {
-  position: absolute;
-  left: -9999px;
-  width: 1px;
-  height: 1px;
-  overflow: hidden;
-}
-
+.consent-hp { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
 .consent-field { display: flex; flex-direction: column; gap: 8px; }
 .consent-field label { font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--ink-faint); }
 .consent-field input {
@@ -219,35 +354,31 @@ const breadcrumb = {
   padding: 12px 14px;
 }
 .consent-field input:focus { outline: 1px solid var(--y2); outline-offset: 0; }
-.fieldnote { font-family: var(--sans); font-weight: 300; font-size: 13px; line-height: 1.5; color: var(--ink-faint); }
+.fieldnote { font-family: var(--sans); font-weight: 300; font-size: 13px; line-height: 1.5; color: var(--ink-faint); margin: 0; }
+.code-field input { max-width: 220px; font-family: var(--mono); font-size: 28px; letter-spacing: .25em; }
 
 .consent-optional { font-size: 12px; letter-spacing: 0.08em; color: var(--ink-faint); margin: 0; }
-
-.consent-check {
-  display: flex;
-  gap: 12px;
-  align-items: flex-start;
-  cursor: pointer;
-}
-.consent-check input {
-  margin-top: 4px;
-  flex-shrink: 0;
-  width: 16px;
-  height: 16px;
-  accent-color: var(--y2);
-}
-.consent-check span {
-  font-family: var(--sans);
-  font-weight: 300;
-  font-size: 14px;
-  line-height: 1.6;
-  color: var(--ink-dim);
-}
+.consent-check { display: flex; gap: 12px; align-items: flex-start; cursor: pointer; }
+.consent-check input { margin-top: 4px; flex-shrink: 0; width: 16px; height: 16px; accent-color: var(--y2); }
+.consent-check span { font-family: var(--sans); font-weight: 300; font-size: 14px; line-height: 1.6; color: var(--ink-dim); }
 .consent-legal { margin: -6px 0 0 28px; font-size: 13px; line-height: 1.5; }
 
 .consent-submit { align-self: flex-start; }
+.verify-actions { display: flex; flex-wrap: wrap; gap: 18px; align-items: center; }
+.text-button { border: 0; background: transparent; color: var(--ink-dim); cursor: pointer; font-size: 12px; padding: 10px 0; }
+.text-button:not(:disabled):hover { color: var(--y2); }
+.text-button:disabled { cursor: wait; opacity: .55; }
+
+.activation-done { border-left: 2px solid var(--signal-green); padding-left: 22px; }
+.activation-done p { font-family: var(--sans); font-weight: 300; line-height: 1.7; color: var(--ink-dim); margin: 0; }
+.activation-done strong { color: var(--ink); }
 
 .consent-status { font-size: 12px; letter-spacing: 0.08em; min-height: 18px; }
 .consent-status[data-state='error'] { color: var(--signal-orange); }
 .consent-status[data-state='success'] { color: var(--signal-green); }
+
+@media (max-width: 560px) {
+  .consent-form { padding: 22px 18px; }
+  .verify-actions { align-items: flex-start; flex-direction: column; }
+}
 </style>

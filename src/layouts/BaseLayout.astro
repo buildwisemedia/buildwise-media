@@ -21,6 +21,9 @@ interface Props {
   // Paid-search pages use a focused shell: no global nav, booking CTA, phone,
   // or multi-column footer. Tracking and the canonical schema remain shared.
   focusedLandingPage?: boolean;
+  // Consent/authentication surfaces suppress all third-party tracking and use
+  // a no-referrer policy so opaque invitation tokens never leave the page.
+  privacySensitive?: boolean;
 }
 
 const {
@@ -33,6 +36,7 @@ const {
   jsonLd,
   preloadImage,
   focusedLandingPage = false,
+  privacySensitive = false,
 } = Astro.props;
 
 const siteUrl = 'https://buildwisemedia.com';
@@ -147,6 +151,7 @@ const graph = [...siteSchemas, ...perPageSchemas];
     <title>{title}</title>
     <meta name="description" content={description} />
     {noindex && <meta name="robots" content="noindex,nofollow" />}
+    {privacySensitive && <meta name="referrer" content="no-referrer" />}
     <link rel="canonical" href={canonicalUrl} />
 
     {preloadImage && (
@@ -191,7 +196,7 @@ const graph = [...siteSchemas, ...perPageSchemas];
     <meta name="twitter:description" content={ogD} />
     <meta name="twitter:image" content="https://pub-85c635a2536e438b9927af5e6723b0f7.r2.dev/marks/triangulation-v3/exports/banner/og-1200x630-v2.png" />
 
-    {!focusedLandingPage && (
+    {!focusedLandingPage && !privacySensitive && (
       <>
         <!-- Booking embed preconnect is intentionally absent from focused paid-search pages. -->
         <link rel="preconnect" href="https://book.buildwisemedia.com" />
@@ -199,6 +204,8 @@ const graph = [...siteSchemas, ...perPageSchemas];
       </>
     )}
 
+    {!privacySensitive && (
+      <>
     <!-- Analytics boot: queue immediately, load vendors after the first interaction or post-LCP timeout. -->
     <script is:inline define:vars={{ GTM, GA4, PIXEL }}>
       window.dataLayer = window.dataLayer || [];
@@ -481,12 +488,14 @@ const graph = [...siteSchemas, ...perPageSchemas];
         window.__bwmGetExperimentContext = getExperimentContext;
       })();
     </script>
+      </>
+    )}
 
     <JsonLdGraph graph={graph} />
   </head>
 
   <body>
-    <noscript>
+    {!privacySensitive && <noscript>
       <iframe
         src={`https://www.googletagmanager.com/ns.html?id=${GTM}`}
         height="0"
@@ -494,7 +503,7 @@ const graph = [...siteSchemas, ...perPageSchemas];
         style="display:none;visibility:hidden"
       ></iframe>
       <img height="1" width="1" style="display:none" src={`https://www.facebook.com/tr?id=${PIXEL}&ev=PageView&noscript=1`} alt="" />
-    </noscript>
+    </noscript>}
 
     {!focusedLandingPage && <Header />}
 
@@ -504,6 +513,8 @@ const graph = [...siteSchemas, ...perPageSchemas];
 
     {!focusedLandingPage && <Footer />}
 
+    {!privacySensitive && (
+      <>
     <!-- CTA click telemetry -->
     <script is:inline>
       document.addEventListener('click', function (e) {
@@ -612,5 +623,7 @@ const graph = [...siteSchemas, ...perPageSchemas];
         }, true);
       })();
     </script>
+      </>
+    )}
   </body>
 </html>
