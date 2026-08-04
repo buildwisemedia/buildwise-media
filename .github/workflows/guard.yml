@@ -23,6 +23,42 @@ permissions:
   contents: read
 
 jobs:
+  bob-consent-build:
+    name: Bob consent build and privacy boundary
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+      - run: npm ci
+      - run: npm run build
+      - name: Verify private invitation and tracking-free artifact
+        shell: bash
+        run: |
+          set -euo pipefail
+          page=dist/sms-consent/index.html
+          grep -Fq 'This page needs your personal invitation link' "$page"
+          grep -Eq '<form[^>]+id="sms-consent-form"[^>]+hidden' "$page"
+          grep -Fq 'form.hidden = true' "$page"
+          grep -Fq 'form.hidden = false' "$page"
+          grep -Eq '\.consent-form[^,{]*\[hidden\]' "$page"
+          grep -Eq '\.consent-form[^,{]* section[^,{]*\[hidden\]' "$page"
+          grep -Eq '\.consent-form[^,{]*\[hidden\][^{]*\{[^}]*display:[[:space:]]*none' "$page"
+          grep -Eq '\.consent-form[^,{]* section[^,{]*\[hidden\][^{]*\{[^}]*display:[[:space:]]*none' "$page"
+          grep -Fq '/pilot/onboarding/start' "$page"
+          grep -Fq '/pilot/onboarding/verify' "$page"
+          grep -Fq 'FEEDBACK:' "$page"
+          grep -Fq 'data-consent-version="bob-client-support-v2.0"' "$page"
+          grep -Fq 'data-consent-sha256="10d23e1f6a0cbcdf3ae736ea5c914b6c3345c685482af65dd40ee5c5546d7de8"' "$page"
+          if grep -Eq 'googletagmanager.com/(gtag|gtm|ns.html)|clarity.ms|connect.facebook.net|facebook.com/tr|book.buildwisemedia.com|bwm-form-handler|resend' "$page"; then
+            echo 'Private consent artifact contains a forbidden tracking or lead-form endpoint.' >&2
+            exit 1
+          fi
+
   no-vendored-modules:
     name: No vendored node_modules
     runs-on: ubuntu-latest
