@@ -44,3 +44,13 @@ test('turns browser network failures into plain client-facing guidance', () => {
   assert.match(source, /We could not reach Bob to check your registration/);
   assert.match(source, /Your registration was not changed/);
 });
+
+test('keeps a verification error visible instead of letting delivery polling overwrite it', () => {
+  assert.match(source, /function stopDeliveryPolling/);
+  assert.match(source, /async function verifyCode\(\)[\s\S]*stopDeliveryPolling\(\);[\s\S]*setBusy\(true, 'verify'\)/);
+  assert.match(source, /if \(deliveryPollInterval === null \|\| currentStep !== 'verify' \|\| !challengeId\) return;/);
+});
+
+test('keeps resend and help available after a terminal verification error', () => {
+  assert.match(source, /response\.status === 410 \|\| result\.attempts_remaining === 0[\s\S]*removeAttribute\('data-disabled-before-busy'\)[\s\S]*sendAgain\.disabled = false/);
+});
