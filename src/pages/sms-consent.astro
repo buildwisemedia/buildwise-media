@@ -206,6 +206,12 @@ const breadcrumb = {
       return message;
     }
 
+    function stopDeliveryPolling() {
+      if (!deliveryPollInterval) return;
+      clearInterval(deliveryPollInterval);
+      deliveryPollInterval = null;
+    }
+
     function value(name) {
       return String(form.elements[name] && form.elements[name].value || '').trim();
     }
@@ -260,10 +266,7 @@ const breadcrumb = {
       } else {
         document.title = 'Text Message Consent — Buildwise Media';
       }
-	      if (step !== 'verify' && deliveryPollInterval) {
-	        clearInterval(deliveryPollInterval);
-	        deliveryPollInterval = null;
-	      }
+	      if (step !== 'verify') stopDeliveryPolling();
 	      if (step !== 'verify') {
 	        [sendAgain, needHelp].forEach(function (button) {
 	          button.removeAttribute('data-disabled-before-busy');
@@ -333,10 +336,13 @@ const breadcrumb = {
         });
         var result = await response.json().catch(function () { return {}; });
         if (!response.ok || result.status !== 'verification_status') return;
+        // A verification submit cancels polling. Ignore any status response
+        // that was already in flight so it cannot overwrite the verify result
+        // or re-enable controls while verification is running.
+        if (deliveryPollInterval === null || currentStep !== 'verify' || !challengeId) return;
         renderDelivery(result);
         if (result.challenge_status !== 'pending' || result.delivery_status === 'failed') {
-          clearInterval(deliveryPollInterval);
-          deliveryPollInterval = null;
+          stopDeliveryPolling();
         }
       } catch (_) {
         // The code entry remains usable during a temporary status-read outage.
@@ -344,10 +350,10 @@ const breadcrumb = {
     }
 
     function startDeliveryPolling(initialResult) {
-      if (deliveryPollInterval) clearInterval(deliveryPollInterval);
+      stopDeliveryPolling();
       renderDelivery(initialResult);
-      refreshDeliveryStatus();
       deliveryPollInterval = setInterval(refreshDeliveryStatus, 3000);
+      refreshDeliveryStatus();
     }
 
     function startSendAgainTimer() {
@@ -467,6 +473,9 @@ const breadcrumb = {
         setStatus('Enter the six-digit code from Bob.', 'error');
         return;
       }
+      // Keep the verification result visible. Delivery polling has already
+      // done its job and must not overwrite an invalid/expired-code message.
+      stopDeliveryPolling();
       setBusy(true, 'verify');
       try {
         var response = await fetch(VERIFY_URL, {
@@ -482,6 +491,8 @@ const breadcrumb = {
           }
           setStatus(verifyMessage, 'error');
           if (response.status === 410 || result.attempts_remaining === 0) {
+            sendAgain.removeAttribute('data-disabled-before-busy');
+            needHelp.removeAttribute('data-disabled-before-busy');
             sendAgain.disabled = false;
             needHelp.disabled = false;
           }
