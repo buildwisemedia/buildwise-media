@@ -3,6 +3,27 @@
 Decisions made outside the approved brief, deviations, and tradeoffs with rationale.
 Per the Build Decision Journal lock (2026-05-25). Newest first.
 
+## 2026-08-05 — Remove the public phone number from the footer
+
+- `src/components/Footer.astro` rendered `+1 (404) 999-3258` as a clickable `tel:` link on every page. That violated two locked decisions in Brain `clients/buildwise-media/site-config.json`: `no-phone-on-site` (2026-03-12, "No phone number displayed anywhere on the website or in any human-visible element. Not in footer") and `company-phone-json-ld` (2026-03-14, "Never human-visible on site").
+- The live site was the inverse of the lock: human-visible on all 343 pages, absent from JSON-LD. Verified live on `/`, `/contact/`, `/privacy/`, `/terms/`, `/sms-consent/`, and `/book/` before the change.
+- It also conflicts with Robert's 2026-08-05 direction that BWM does not advertise a general call-us number and does not want spam calls. A published `tel:` link on every page is the largest inbound-spam surface BWM has.
+- Change: removed the `tel:` list item. `Book a discovery call` and `Contact` remain, so the "Talk to us" column still routes to the intake paths Robert wants.
+- Deliberately did NOT add the number to JSON-LD. The lock permits it ("allowed"), it does not require it, and publishing a machine-readable business phone works against the no-spam-calls decision. That is Robert's call to make separately.
+- De-risks the pending port: porting a publicly advertised number carries continuity obligations that porting a quiet reserve line does not. Published references get cleaned up before the number moves, not after.
+- **Gate repair, same change:** `implementation-notes.md` was re-added at repo root by PR #42, re-breaking `[implementation-notes-placement]` — the exact regression PR #16 fixed. `origin/main` was already failing the Pre-Ship Grep Gate before this branch. Folded the root file's 2026-08-04 Bob-consent entry into this canonical journal and untracked the root copy again; `.gitignore` already covers `/implementation-notes.md`. Conformed to the gate rather than excluding it.
+- Verification: `npm run build` succeeds, 343 pages, zero occurrences of the number across `dist/`, `src/`, `public/`. Pre-Ship Grep Gate: all checks pass (was failing on `origin/main`).
+- Not pushed to `main`. A push to `main` auto-deploys production and needs Robert's own direct go-ahead.
+
+## 2026-08-04 — Bob private-beta consent and verification UX
+
+- Robert approved completing and live-testing the full onboarding pipeline before any client invitation email or SMS is sent.
+- This branch changes only the existing `/sms-consent/` mechanics and supporting copy; the established BWM visual direction remains locked.
+- The page will require an opaque invitation link, collect optional carrier consent, verify mobile possession with a short code, and show a clear activated/private-beta state.
+- Declining SMS must remain valid and must not create an SMS authorization or marketing nurture.
+- Error messages must not reveal whether a supplied email, phone, invitation, or client record exists.
+- Welcome copy is concise and nontechnical, explicitly calls the program a private beta, supports text and voice notes, asks for feedback, and reminds users about STOP.
+
 ## 2026-06-19 — GBP schema sameAs check
 
 **YouTube sameAs verification:** `https://www.youtube.com/@BuildwiseMedia` returns HTTP 200 with canonical base `/@BuildwiseMedia`, page type `WEB_PAGE_TYPE_CHANNEL`, title `Buildwise Media`, and browse ID `UCc-_0mvECxCWOTTR0L2jNTg`. Kept it in `sameAs`.
