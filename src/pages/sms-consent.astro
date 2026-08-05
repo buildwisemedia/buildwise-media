@@ -38,21 +38,21 @@ const breadcrumb = {
           <li><strong>Msg &amp; data rates may apply.</strong> Your carrier's standard rates apply.</li>
           <li><strong>Reply STOP to opt out</strong> at any time, <strong>START</strong> to resubscribe, or <strong>HELP</strong> for help.</li>
         </ul>
-        <p>We do not share, sell, rent, or otherwise provide your mobile number to third parties or affiliates for marketing or promotional purposes. Text messaging originator opt-in data and consent are not shared with third parties. How we handle your information is covered in our <a href="/privacy">Privacy Policy</a> and <a href="/terms">Terms of Service</a>. Questions: <a href="mailto:hello@buildwisemedia.com">hello@buildwisemedia.com</a> or <a href="tel:+14786063370">+1 (478) 606-3370</a>. Carriers are not liable for delayed or undelivered messages.</p>
+        <p>We do not share, sell, rent, or otherwise provide your mobile number to third parties or affiliates for marketing or promotional purposes. Text messaging originator opt-in data and consent are not shared with third parties. How we handle your information is covered in our <a href="/privacy">Privacy Policy</a> and <a href="/terms">Terms of Service</a>. Questions: <a href="mailto:hello@buildwisemedia.com">hello@buildwisemedia.com</a>. Carriers are not liable for delayed or undelivered messages.</p>
 
         <h2 class="h-sub">Activate your invitation</h2>
         <!-- @sdt-exempt: carrier-mandated A2P/TCR consent mechanics — legal fine print, no visual story -->
-        <p>Use the personal invitation link Robert sent you. If you choose texts, we will send a six-digit code to prove this mobile number belongs to you. Your invitation already fixes the client account and access policy Bob may use.</p>
+        <p>Use the personal invitation link the Buildwise team sent you. If you choose texts, we will send a six-digit code to prove this mobile number belongs to you. Your invitation already fixes the client account and access policy Bob may use.</p>
       </section>
 
       <div id="invite-warning" class="consent-callout mono" hidden>
-        This page needs your personal invitation link. Ask Robert to send it again; do not use someone else's link.
+        This page needs your personal invitation link. Ask the Buildwise team to send it again; do not use someone else's link.
       </div>
 
       <form id="sms-consent-form" class="consent-form" novalidate hidden>
         <section data-step="details" aria-labelledby="details-title">
           <h3 id="details-title" class="form-title">Your details</h3>
-          <p class="fieldnote">We match these details to Robert's invitation. We do not use this form for lead nurture or marketing.</p>
+          <p class="fieldnote">We match these details to your invitation. We do not use this form for lead nurture or marketing.</p>
 
           <div class="consent-hp" aria-hidden="true">
             <label for="sms-business-url">Business URL</label>
@@ -72,7 +72,7 @@ const breadcrumb = {
           <div class="consent-field">
             <label class="mono" for="sms-phone">Mobile number</label>
             <input id="sms-phone" name="phone" type="tel" required autocomplete="tel" inputmode="tel" minlength="10" maxlength="40" placeholder="(555) 123-4567" />
-            <span class="fieldnote">This must match the mobile number Robert approved for your invitation.</span>
+            <span class="fieldnote">This must match the mobile number approved for your invitation.</span>
           </div>
 
           <p class="consent-optional mono">Optional — leave the box unchecked for no texts. We record that choice and do not activate Bob by SMS.</p>
@@ -91,7 +91,8 @@ const breadcrumb = {
 
         <section data-step="verify" aria-labelledby="verify-title" hidden>
           <p class="step-kicker mono">Step 2 of 2</p>
-          <h3 id="verify-title" class="form-title">Check your texts</h3>
+          <h3 id="verify-title" class="form-title">Registration isn't finished yet</h3>
+          <p class="verification-progress"><strong>Next:</strong> Read the six-digit code in Bob's text, then return here and enter it below. When you return through your personal invitation link, this page will restore the active step.</p>
           <p class="fieldnote" data-delivery-summary>Bob is asking your carrier to deliver a six-digit code. It expires in 10 minutes. Buildwise Media will never ask you to read this code back by phone or email.</p>
 
           <div class="delivery-help" data-delivery-help hidden>
@@ -109,7 +110,7 @@ const breadcrumb = {
           </div>
 
           <div class="verify-actions">
-            <button type="submit" class="cta consent-submit">
+            <button type="submit" class="cta consent-submit" disabled>
               <span data-verify-label>Activate Bob</span>
               <span data-verify-loading hidden>Activating...</span>
             </button>
@@ -136,6 +137,7 @@ const breadcrumb = {
 <script is:inline>
   (function () {
     var START_URL = 'https://bwm-sms-worker.robert-ba0.workers.dev/pilot/onboarding/start';
+    var RESUME_URL = 'https://bwm-sms-worker.robert-ba0.workers.dev/pilot/onboarding/resume';
     var STATUS_URL = 'https://bwm-sms-worker.robert-ba0.workers.dev/pilot/onboarding/status';
     var HELP_URL = 'https://bwm-sms-worker.robert-ba0.workers.dev/pilot/onboarding/help';
     var VERIFY_URL = 'https://bwm-sms-worker.robert-ba0.workers.dev/pilot/onboarding/verify';
@@ -145,6 +147,7 @@ const breadcrumb = {
     var detailsStep = form && form.querySelector('[data-step="details"]');
     var verifyStep = form && form.querySelector('[data-step="verify"]');
     var doneStep = form && form.querySelector('[data-step="done"]');
+    var verifySubmit = verifyStep && verifyStep.querySelector('.consent-submit');
     var submitLabel = form && form.querySelector('[data-submit-label]');
     var submitLoading = form && form.querySelector('[data-submit-loading]');
     var verifyLabel = form && form.querySelector('[data-verify-label]');
@@ -164,6 +167,8 @@ const breadcrumb = {
     var currentStep = 'details';
     var sendAgainInterval = null;
     var deliveryPollInterval = null;
+    var resumeNeedsDetails = false;
+    var verificationReady = false;
 
     if (!form || !status || !detailsStep || !verifyStep || !doneStep) return;
 
@@ -172,7 +177,8 @@ const breadcrumb = {
       form.hidden = true;
     } else {
       if (queryInviteToken) {
-        savedState = { invite_token: inviteToken };
+        if (String(savedState.invite_token || '') !== inviteToken) savedState = { invite_token: inviteToken };
+        else savedState.invite_token = inviteToken;
         window.sessionStorage.setItem(stateKey, JSON.stringify(savedState));
       }
       window.history.replaceState(null, '', window.location.pathname + window.location.hash);
@@ -194,12 +200,26 @@ const breadcrumb = {
       status.dataset.state = type || '';
     }
 
+    function publicErrorMessage(error, fallback) {
+      var message = error && error.message ? String(error.message).trim() : '';
+      if (!message || /failed to fetch|network\s*error|load failed/i.test(message)) return fallback;
+      return message;
+    }
+
     function value(name) {
       return String(form.elements[name] && form.elements[name].value || '').trim();
     }
 
+	    function setVerificationReady(ready) {
+	      verificationReady = !!ready;
+	      form.elements.code.disabled = !verificationReady;
+	      if (verifySubmit) verifySubmit.disabled = !verificationReady;
+	    }
+
 	    function setBusy(busy, action) {
-	      Array.prototype.forEach.call(form.querySelectorAll('.consent-submit'), function (button) { button.disabled = busy; });
+	      Array.prototype.forEach.call(form.querySelectorAll('.consent-submit'), function (button) {
+	        button.disabled = busy || (button === verifySubmit && !verificationReady);
+	      });
 	      [sendAgain, needHelp].forEach(function (button) {
 	        if (!button) return;
 	        if (busy) {
@@ -216,7 +236,7 @@ const breadcrumb = {
         sendAgainLabel.textContent = busy ? 'Sending a new code...' : 'Send a new code';
         return;
       }
-      if (currentStep === 'details') {
+      if (action === 'details') {
         submitLabel.hidden = busy;
         submitLoading.hidden = !busy;
       } else {
@@ -225,16 +245,20 @@ const breadcrumb = {
       }
     }
 
-	    function showStep(step) {
+	    function showStep(step, focusCode) {
       currentStep = step;
       detailsStep.hidden = step !== 'details';
       verifyStep.hidden = step !== 'verify';
       doneStep.hidden = step !== 'done';
-      form.elements.code.disabled = step !== 'verify';
+      if (step !== 'verify') setVerificationReady(false);
+      else setVerificationReady(verificationReady);
       setStatus('', '');
       if (step === 'verify') {
-        form.elements.code.focus();
+        document.title = 'Enter your code — Bob private beta';
+        if (focusCode !== false && verificationReady) form.elements.code.focus();
         startSendAgainTimer();
+      } else {
+        document.title = 'Text Message Consent — Buildwise Media';
       }
 	      if (step !== 'verify' && deliveryPollInterval) {
 	        clearInterval(deliveryPollInterval);
@@ -252,11 +276,11 @@ const breadcrumb = {
 	      challengeId = '';
 	      showStep('done');
 	      doneStep.querySelector('.step-kicker').textContent = 'Number verified';
-	      doneStep.querySelector('.form-title').textContent = 'Robert will review the activation.';
-	      doneStep.querySelector('[data-done-primary]').textContent = message || 'Your number is verified. Robert will confirm that it matches the approved client record before Bob is activated.';
+	      doneStep.querySelector('.form-title').textContent = 'The Buildwise team will review the activation.';
+	      doneStep.querySelector('[data-done-primary]').textContent = message || 'Your number is verified. The Buildwise team will confirm that it matches the approved client record before Bob is activated.';
 	      doneStep.querySelector('[data-done-feedback]').hidden = true;
 	      saveState({ awaiting_review: true, awaiting_message: message || '', challenge_id: '', expires_at: '' });
-	      setStatus('Number verified. Activation is waiting for Robert\'s review.', 'success');
+	      setStatus('Number verified. Activation is waiting for the Buildwise team\'s review.', 'success');
 	    }
 
     function deliveryAddress(result) {
@@ -270,23 +294,33 @@ const breadcrumb = {
       var address = deliveryAddress(result);
       deliveryHelp.hidden = true;
       if (result.challenge_status === 'expired') {
+        setVerificationReady(false);
         deliverySummary.textContent = 'That code expired. Request one fresh code below.';
         setStatus('Code expired. Request a new one.', 'error');
         return;
       }
       if (result.delivery_status === 'failed') {
+        setVerificationReady(false);
         deliverySummary.textContent = 'The carrier could not deliver the code to ' + address.destination + '. Confirm the number, check that ' + address.sender + ' is not blocked, then request one fresh code.';
         setStatus('Carrier delivery failed. Check the number and try once more.', 'error');
         return;
       }
       if (result.delivery_status === 'delivered') {
-        deliverySummary.textContent = 'Your carrier reports delivery to ' + address.destination + ' from ' + address.sender + '. This confirms carrier delivery, not that the message was opened.';
+        setVerificationReady(result.challenge_status === 'pending');
+        deliverySummary.textContent = 'Registration is not complete yet. Your carrier reports delivery to ' + address.destination + ' from ' + address.sender + '. Enter that code below to finish.';
         deliveryHelp.hidden = false;
-        setStatus('Carrier reports delivered. Check your phone itself and Spam & blocked if it is missing.', 'success');
+        setStatus('Code delivered. Return here and enter it to finish registration.', 'success');
         return;
       }
-      deliverySummary.textContent = 'Bob sent a six-digit code to ' + address.destination + ' from ' + address.sender + '. Carrier delivery may take a minute.';
-      setStatus('Code sent to the carrier. Waiting for delivery.', 'success');
+      if (result.delivery_status === 'sent') {
+        setVerificationReady(result.challenge_status === 'pending');
+        deliverySummary.textContent = 'Bob sent a six-digit code to ' + address.destination + ' from ' + address.sender + '. Carrier delivery may take a minute.';
+        setStatus('Code sent to the carrier. Enter it when it arrives.', 'success');
+        return;
+      }
+      setVerificationReady(false);
+      deliverySummary.textContent = 'Bob is asking your carrier to deliver a six-digit code to ' + address.destination + '. Keep this page open or return through your invitation link.';
+      setStatus('Waiting for the carrier to accept the verification text.', '');
     }
 
     async function refreshDeliveryStatus() {
@@ -351,7 +385,7 @@ const breadcrumb = {
       var payload = detailsPayload();
       var detailFields = [form.elements.name, form.elements.email, form.elements.phone];
       if (!/^[A-Za-z0-9_-]{40,200}$/.test(inviteToken)) {
-        setStatus('Ask Robert for a new personal invitation link.', 'error');
+        setStatus('Ask the Buildwise team for a new personal invitation link.', 'error');
         return;
       }
       if (!payload.name || !payload.email || !payload.phone || !detailFields.every(function (field) { return field.checkValidity(); })) {
@@ -381,7 +415,7 @@ const breadcrumb = {
           doneStep.hidden = false;
           doneStep.querySelector('.step-kicker').textContent = 'Choice recorded';
           doneStep.querySelector('.form-title').textContent = 'You are not signed up for texts.';
-          doneStep.querySelector('[data-done-primary]').textContent = 'You can keep working with Buildwise Media by email or phone call. No Bob SMS access was activated. This invitation link is now closed; ask Robert for a new one if you change your mind.';
+          doneStep.querySelector('[data-done-primary]').textContent = 'You can keep working with Buildwise Media by email. No Bob SMS access was activated. This invitation link is now closed; ask the Buildwise team for a new one if you change your mind.';
           doneStep.querySelector('[data-done-feedback]').hidden = true;
           currentStep = 'done';
           clearState();
@@ -395,8 +429,14 @@ const breadcrumb = {
           setStatus('This invitation was already activated.', 'success');
           return;
         }
+        if (result.status === 'verified_awaiting_review') {
+          showAwaitingReview(result.message || 'Your phone is verified. The Buildwise team is finishing your private-beta activation.');
+          return;
+        }
         challengeId = result.challenge_id || '';
         if (!challengeId) throw new Error('The verification text was not created.');
+        resumeNeedsDetails = false;
+        setVerificationReady(true);
         showStep('verify');
         saveState({
           challenge_id: challengeId,
@@ -415,7 +455,7 @@ const breadcrumb = {
           sender_last4: result.sender_last4 || '',
         });
       } catch (error) {
-        setStatus(error && error.message ? error.message : 'That did not go through. Try again or ask Robert for help.', 'error');
+        setStatus(publicErrorMessage(error, 'We could not reach Bob right now. Your registration was not changed. Try again in a moment or ask the Buildwise team for help.'), 'error');
       } finally {
         setBusy(false, requestAction);
       }
@@ -449,14 +489,14 @@ const breadcrumb = {
           return;
         }
 	        if (result.status === 'verified_awaiting_review') {
-	          showAwaitingReview(result.message || 'Your number is verified. Robert will review the activation.');
+	          showAwaitingReview(result.message || 'Your number is verified. The Buildwise team will review the activation.');
 	          return;
 	        }
         showStep('done');
         clearState();
         setStatus("Activated. Bob's welcome is on the way.", 'success');
       } catch (error) {
-        setStatus(error && error.message ? error.message : 'That code could not be verified. Try again or ask Robert for help.', 'error');
+        setStatus(publicErrorMessage(error, 'We could not reach Bob to verify that code. Try again in a moment or ask the Buildwise team for help.'), 'error');
         form.elements.code.select();
       } finally {
         setBusy(false, 'verify');
@@ -475,12 +515,73 @@ const breadcrumb = {
         });
         var result = await response.json().catch(function () { return {}; });
         if (!response.ok) throw new Error(result.error || 'We could not notify the team yet.');
-        setStatus(result.message || 'We told the Buildwise team. Robert will follow up.', 'success');
+        setStatus(result.message || 'We told the Buildwise team. The team will follow up.', 'success');
         needHelp.textContent = 'Team notified';
       } catch (error) {
-        setStatus(error && error.message ? error.message : 'We could not notify the team yet.', 'error');
+        setStatus(publicErrorMessage(error, 'We could not notify the team yet. Email hello@buildwisemedia.com and we will help.'), 'error');
         needHelp.textContent = "I still don't see it";
         needHelp.disabled = false;
+      }
+    }
+
+    async function resumeRegistration() {
+      setBusy(true, 'details');
+      setStatus('Checking whether your registration is already in progress...', '');
+      try {
+        var response = await fetch(RESUME_URL, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ invite_token: inviteToken }),
+        });
+        var result = await response.json().catch(function () { return {}; });
+        if (!response.ok) {
+          if (result.status === 'invitation_closed') {
+            warning.textContent = result.message || 'This invitation is no longer active. Ask the Buildwise team for a new one.';
+            warning.hidden = false;
+            form.hidden = true;
+            clearState();
+            return;
+          }
+          throw new Error(result.error || 'We could not check the current registration step.');
+        }
+        if (result.status === 'already_active') {
+          showStep('done');
+          doneStep.querySelector('[data-done-primary]').textContent = "You're already registered. Bob's private number is ready for your texts and voice notes.";
+          clearState();
+          setStatus('Registration is complete.', 'success');
+          return;
+        }
+        if (result.status === 'verified_awaiting_review') {
+          showAwaitingReview(result.message || 'Your phone is verified. The Buildwise team is finishing your private-beta activation.');
+          return;
+        }
+        if ((result.status === 'verification_resume' || result.status === 'verification_pending_delivery') && result.challenge_id) {
+          challengeId = result.challenge_id;
+          resumeNeedsDetails = !(savedState.name && savedState.email && savedState.phone);
+          setVerificationReady(result.status === 'verification_resume');
+          showStep('verify', false);
+          saveState({
+            challenge_id: challengeId,
+            expires_at: result.expires_at || '',
+            phone_last4: result.phone_last4 || '',
+            sender_last4: result.sender_last4 || '',
+          });
+          startDeliveryPolling(result);
+          return;
+        }
+        showStep('details');
+        if (result.status === 'restart_required') {
+          clearState();
+          savedState = { invite_token: inviteToken };
+          window.sessionStorage.setItem(stateKey, JSON.stringify(savedState));
+          setStatus(result.message || 'Your previous code expired. Confirm your details to request one fresh code.', 'error');
+        } else {
+          setStatus('Confirm your details to begin registration.', '');
+        }
+      } catch (error) {
+        setStatus(publicErrorMessage(error, 'We could not reach Bob to check your registration. You can still confirm your details below, or try again in a moment.'), 'error');
+      } finally {
+        setBusy(false, 'details');
       }
     }
 
@@ -493,6 +594,13 @@ const breadcrumb = {
 
     sendAgain.addEventListener('click', function () {
       if (sendAgain.disabled) return;
+      if (resumeNeedsDetails) {
+        challengeId = '';
+        resumeNeedsDetails = false;
+        showStep('details');
+        setStatus('Confirm your details to request one fresh code.', 'error');
+        return;
+      }
       requestCode();
     });
 
@@ -503,21 +611,7 @@ const breadcrumb = {
       if (savedState.email) form.elements.email.value = savedState.email;
       if (savedState.phone) form.elements.phone.value = savedState.phone;
       if (savedState.wants_sms) form.elements.sms_agree.checked = true;
-	      if (savedState.awaiting_review) {
-	        showAwaitingReview(savedState.awaiting_message || 'Your number is verified. Robert will review the activation.');
-	      } else if (
-	        /^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i.test(String(savedState.challenge_id || ''))
-        && Date.parse(savedState.expires_at || '') > Date.now()
-      ) {
-        challengeId = savedState.challenge_id;
-        showStep('verify');
-        startDeliveryPolling({
-          challenge_status: 'pending',
-          delivery_status: 'sent',
-          phone_last4: savedState.phone_last4 || '',
-          sender_last4: savedState.sender_last4 || '',
-        });
-      }
+      resumeRegistration();
     }
   })();
 </script>
@@ -574,6 +668,7 @@ const breadcrumb = {
 .delivery-help ul { margin: 0; padding-left: 20px; color: var(--ink-dim); }
 .delivery-help li { margin: 5px 0; font-family: var(--sans); font-weight: 300; font-size: 13px; line-height: 1.5; }
 .delivery-help a { color: var(--ink); }
+.verification-progress { margin: 0; padding: 14px 16px; border-left: 2px solid var(--y2); color: var(--ink); background: color-mix(in srgb, var(--y2) 7%, transparent); font-family: var(--sans); font-size: 15px; line-height: 1.55; }
 
 .consent-optional { font-size: 12px; letter-spacing: 0.08em; color: var(--ink-faint); margin: 0; }
 .consent-check { display: flex; gap: 12px; align-items: flex-start; cursor: pointer; }
