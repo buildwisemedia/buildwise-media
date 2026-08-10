@@ -7,6 +7,7 @@
   Referrer-Policy: strict-origin-when-cross-origin
   X-Frame-Options: SAMEORIGIN
   Strict-Transport-Security: max-age=31536000
+  Content-Signals: search=yes, ai-input=yes, ai-train=yes
 
 # Astro fingerprints filenames under /assets, so they are safe to cache forever.
 /assets/*
