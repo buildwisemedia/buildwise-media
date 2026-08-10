@@ -10,10 +10,47 @@ this email is the notice of record.
                 that skipped the hygiene gate). No default recipients on
                 purpose: live sends are explicit.
 """
-import argparse, json, os, sys, urllib.request
+import argparse, html, json, os, sys, urllib.request
 
 REPO = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 TEST_TO = "peer-2@buildwisemedia.com"
+
+
+def build_payload(entry, subject, recipients):
+    body = (
+        f"Hi,\n\n"
+        f"We updated the Buildwise Media Service Terms to version {entry['version']}, "
+        f"effective {entry['date']}.\n\n"
+        f"What changed: {entry['summary']}\n\n"
+        f"You can read the current terms and the full change log here:\n"
+        f"https://buildwisemedia.com/legal/\n\n"
+        + ("This change is a material change. You have 30 days from this notice "
+           "to object by replying to this email. The full mechanism is in your "
+           "signed agreement, which controls.\n\n" if entry.get("material") else "")
+        + "Questions? Just reply to this email.\n\n— The Buildwise team\n"
+    )
+    body_html = (
+        "<p>Hi,</p>"
+        f"<p>We updated the Buildwise Media Service Terms to version "
+        f"{html.escape(str(entry['version']))}, effective "
+        f"{html.escape(str(entry['date']))}.</p>"
+        f"<p>What changed: {html.escape(str(entry['summary']))}</p>"
+        "<p>You can read the current terms and the full change log here:<br>"
+        '<a href="https://buildwisemedia.com/legal/">https://buildwisemedia.com/legal/</a></p>'
+        + ("<p>This change is a material change. You have 30 days from this notice "
+           "to object by replying to this email. The full mechanism is in your "
+           "signed agreement, which controls.</p>" if entry.get("material") else "")
+        + "<p>Questions? Just reply to this email.</p><p>— The Buildwise team</p>"
+    )
+    return {
+        "from": "Buildwise Media <bob@buildwisemedia.com>",
+        "to": recipients,
+        "reply_to": "robert@buildwisemedia.com",
+        "subject": subject,
+        "text": body,
+        "html": body_html,
+    }
+
 
 def main():
     ap = argparse.ArgumentParser()
@@ -31,25 +68,8 @@ def main():
     e = log["entries"][0]
     prefix = "[TEST] " if args.test else ""
     subject = f"{prefix}Buildwise service terms updated — v{e['version']}"
-    body = (
-        f"Hi,\n\n"
-        f"We updated the Buildwise Media Service Terms to version {e['version']}, "
-        f"effective {e['date']}.\n\n"
-        f"What changed: {e['summary']}\n\n"
-        f"You can read the current terms and the full change log here:\n"
-        f"https://buildwisemedia.com/legal/\n\n"
-        + ("This change is a material change. You have 30 days from this notice "
-           "to object by replying to this email. The full mechanism is in your "
-           "signed agreement, which controls.\n\n" if e.get("material") else "")
-        + "Questions? Just reply to this email.\n\n— The Buildwise team\n"
-    )
-    payload = json.dumps({
-        "from": "Buildwise Media <bob@buildwisemedia.com>",
-        "to": [TEST_TO] if args.test else args.to,
-        "reply_to": "robert@buildwisemedia.com",
-        "subject": subject,
-        "text": body,
-    }).encode()
+    recipients = [TEST_TO] if args.test else args.to
+    payload = json.dumps(build_payload(e, subject, recipients)).encode()
     req = urllib.request.Request(
         "https://api.resend.com/emails", data=payload, method="POST",
         headers={"Authorization": f"Bearer {key}", "Content-Type": "application/json",
