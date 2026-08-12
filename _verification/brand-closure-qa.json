@@ -1,10 +1,10 @@
 {
-  "generated_at": "2026-06-14T03:52:34.059Z",
+  "generated_at": "2026-07-15T22:37:40.565Z",
   "branch": null,
   "dist": "dist",
-  "pass_count": 6,
+  "pass_count": 4,
   "warning_count": 0,
-  "failure_count": 0,
+  "failure_count": 2,
   "passes": [
     {
       "gate": "dist-present",
@@ -12,19 +12,11 @@
     },
     {
       "gate": "rendered-lock-scans",
-      "detail": "303 rendered files scanned"
+      "detail": "309 rendered files scanned"
     },
     {
       "gate": "legacy-problem-redirects",
       "detail": "legacy Poor Four routes are explicit 301 redirects"
-    },
-    {
-      "gate": "body-imagery-floor",
-      "detail": "core static routes meet body visual minimums"
-    },
-    {
-      "gate": "html-basics",
-      "detail": "296 HTML files checked"
     },
     {
       "gate": "canonical-site-files",
@@ -32,5 +24,16 @@
     }
   ],
   "warnings": [],
-  "failures": []
+  "failures": [
+    {
+      "gate": "body-imagery-floor",
+      "file": "dist/book/index.html",
+      "detail": "0 body visuals; needs >= 3"
+    },
+    {
+      "gate": "single-h1",
+      "file": "dist/book/index.html",
+      "detail": "found 7 h1 tags"
+    }
+  ]
 }
