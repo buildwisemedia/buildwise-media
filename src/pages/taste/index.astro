@@ -40,6 +40,54 @@ const copyCandidates = [
     fitSupport: 'The Pilot costs $15,000 up front. It runs for 90 days. You review what happened with real work. No business result is promised.',
   },
 ];
+
+const refineHeroCandidates = [
+  {
+    id: 'A',
+    eyebrow: 'Custom AI systems for owner-led service businesses',
+    headline: 'One stuck problem. One custom AI system. Tested in 90 days.',
+    support: 'You pick the operational problem. Buildwise builds one custom AI system around it and tests it with real work during the 90-day Pilot.',
+  },
+  {
+    id: 'B',
+    eyebrow: 'Custom AI for owner-led service businesses',
+    headline: 'Pick one stuck problem. We build the custom AI system.',
+    support: 'You choose one operational problem. Buildwise builds, connects, and tests a custom AI system around it with real work during a 90-day Pilot.',
+  },
+  {
+    id: 'C',
+    eyebrow: 'Custom AI systems',
+    headline: 'We build one AI system around your stuck problem.',
+    support: 'You pick one operational problem. We build, connect, and test one custom AI system around it and your real work in 90 days.',
+  },
+];
+
+const refineBlueCandidates = [
+  {
+    id: 'A',
+    kicker: 'Review and decide',
+    headline: 'Review the work. Decide next steps.',
+    support: 'We review what happened together. Then you decide what to do next.',
+  },
+  {
+    id: 'B',
+    kicker: 'The decision stays with you',
+    headline: 'Review the real work. Decide what comes next.',
+    support: 'At the end, you review what the system did with your work. Then you decide the next step.',
+  },
+  {
+    id: 'C',
+    kicker: 'After the test',
+    headline: 'See what happened. Choose what comes next.',
+    support: 'We review what the system did with real work. You decide what comes next.',
+  },
+];
+
+const lockedMechanism = [
+  'You pick one problem',
+  'We build, connect, and test',
+  'We review real work together',
+];
 ---
 
 <BaseLayout
@@ -56,6 +104,7 @@ const copyCandidates = [
       <nav aria-label="Blind test rounds">
         <button class="round-tab is-active" type="button" data-round-target="visual">01 · VISUAL</button>
         <button class="round-tab" type="button" data-round-target="copy">02 · WORDS</button>
+        <button class="round-tab" type="button" data-round-target="refine">03 · REFINE</button>
       </nav>
     </header>
 
@@ -211,6 +260,85 @@ const copyCandidates = [
         </div>
         <p class="response-cue">Pick a letter. Tell me the line you would keep and the line you would kill.</p>
       </section>
+
+      <section class="test-round" data-round="refine" aria-labelledby="refine-round-title" hidden>
+        <div class="round-intro round-intro--refine">
+          <p>ROUND 03</p>
+          <h1 id="refine-round-title">Tighter hero. New final section.</h1>
+        </div>
+
+        <section class="refine-test" aria-labelledby="refine-hero-title">
+          <div class="refine-heading">
+            <div>
+              <p>03A · HERO</p>
+              <h2 id="refine-hero-title">Same meaning. Less copy.</h2>
+            </div>
+            <div class="candidate-switcher" role="tablist" aria-label="Refined hero candidates">
+              {refineHeroCandidates.map((candidate, index) => (
+                <button
+                  class:list={['candidate-tab', { 'is-active': index === 0 }]}
+                  type="button"
+                  role="tab"
+                  aria-selected={index === 0 ? 'true' : 'false'}
+                  data-refine-hero-target={candidate.id}
+                >{candidate.id}</button>
+              ))}
+            </div>
+          </div>
+
+          <div class="refine-hero-stage">
+            {refineHeroCandidates.map((candidate, index) => (
+              <article class:list={['refine-hero-candidate', { 'is-active': index === 0 }]} data-refine-hero={candidate.id} hidden={index !== 0} aria-label={`Refined hero candidate ${candidate.id}`}>
+                <div class="candidate-letter">{candidate.id}</div>
+                <div class="refine-hero-copy">
+                  <p>{candidate.eyebrow}</p>
+                  <h3>{candidate.headline}</h3>
+                  <p>{candidate.support}</p>
+                  <span>See If We're a Fit</span>
+                </div>
+                <!-- @r020:F2 proof: the locked three-step mechanism keeps the concise hero grounded in the actual Pilot. -->
+                <div class="refine-mechanism" role="img" aria-label="The locked 90-day Pilot sequence">
+                  <p>How the 90-day Pilot works</p>
+                  <ol>{lockedMechanism.map((step, stepIndex) => <li><b>{stepIndex + 1}</b><span>{step}</span></li>)}</ol>
+                </div>
+              </article>
+            ))}
+          </div>
+          <p class="response-cue">Pick the hero letter that keeps the accuracy without feeling long.</p>
+        </section>
+
+        <section class="refine-test refine-test--blue" aria-labelledby="refine-blue-title">
+          <div class="refine-heading">
+            <div>
+              <p>03B · BLUE</p>
+              <h2 id="refine-blue-title">A new job for this section.</h2>
+            </div>
+            <div class="candidate-switcher" role="tablist" aria-label="Blue section candidates">
+              {refineBlueCandidates.map((candidate, index) => (
+                <button
+                  class:list={['candidate-tab', { 'is-active': index === 0 }]}
+                  type="button"
+                  role="tab"
+                  aria-selected={index === 0 ? 'true' : 'false'}
+                  data-refine-blue-target={candidate.id}
+                >{candidate.id}</button>
+              ))}
+            </div>
+          </div>
+
+          <div class="refine-blue-stage">
+            {refineBlueCandidates.map((candidate, index) => (
+              <article class:list={['refine-blue-candidate', { 'is-active': index === 0 }]} data-refine-blue={candidate.id} hidden={index !== 0} aria-label={`Blue section candidate ${candidate.id}`}>
+                <div class="candidate-letter candidate-letter--blue">{candidate.id}</div>
+                <p>{candidate.kicker}</p>
+                <h3>{candidate.headline}</h3>
+                <p>{candidate.support}</p>
+              </article>
+            ))}
+          </div>
+          <p class="response-cue">Pick the blue letter—or reject all three again.</p>
+        </section>
+      </section>
     </div>
   </div>
 </BaseLayout>
@@ -263,8 +391,43 @@ const copyCandidates = [
       history.replaceState(null, '', `#copy-${id.toLowerCase()}`);
     }));
 
+    document.querySelectorAll('[data-refine-hero-target]').forEach((tab) => tab.addEventListener('click', () => {
+      const id = tab.dataset.refineHeroTarget;
+      document.querySelectorAll('[data-refine-hero]').forEach((candidate) => {
+        const active = candidate.dataset.refineHero === id;
+        candidate.hidden = !active;
+        candidate.classList.toggle('is-active', active);
+      });
+      document.querySelectorAll('[data-refine-hero-target]').forEach((button) => {
+        const active = button.dataset.refineHeroTarget === id;
+        button.classList.toggle('is-active', active);
+        button.setAttribute('aria-selected', String(active));
+      });
+      history.replaceState(null, '', `#refine-hero-${id.toLowerCase()}`);
+    }));
+
+    document.querySelectorAll('[data-refine-blue-target]').forEach((tab) => tab.addEventListener('click', () => {
+      const id = tab.dataset.refineBlueTarget;
+      document.querySelectorAll('[data-refine-blue]').forEach((candidate) => {
+        const active = candidate.dataset.refineBlue === id;
+        candidate.hidden = !active;
+        candidate.classList.toggle('is-active', active);
+      });
+      document.querySelectorAll('[data-refine-blue-target]').forEach((button) => {
+        const active = button.dataset.refineBlueTarget === id;
+        button.classList.toggle('is-active', active);
+        button.setAttribute('aria-selected', String(active));
+      });
+      history.replaceState(null, '', `#refine-blue-${id.toLowerCase()}`);
+    }));
+
+    const refineMatch = location.hash.match(/^#refine-(hero|blue)-([a-c])$/i);
     const match = location.hash.match(/^#(visual|copy)-([a-d])$/i);
-    if (match) {
+    if (refineMatch) {
+      showRound('refine');
+      const selector = refineMatch[1].toLowerCase() === 'hero' ? '[data-refine-hero-target]' : '[data-refine-blue-target]';
+      [...document.querySelectorAll(selector)].find((button) => button.textContent.trim().toLowerCase() === refineMatch[2].toLowerCase())?.click();
+    } else if (match) {
       showRound(match[1].toLowerCase());
       const selector = match[1].toLowerCase() === 'visual' ? '[data-candidate-target]' : '[data-copy-target]';
       [...document.querySelectorAll(selector)].find((button) => button.textContent.trim().toLowerCase() === match[2].toLowerCase())?.click();
@@ -391,6 +554,33 @@ const copyCandidates = [
   .copy-mechanism li b { width: 34px; height: 34px; display: grid; place-items: center; color: #fff; background: #0b0b0e; border-radius: 50%; }
   .copy-fit p { margin-top: 18px; font-size: 17px; line-height: 1.5; }
 
+  .round-intro--refine { margin-bottom: clamp(44px, 6vw, 78px); }
+  .refine-test + .refine-test { margin-top: clamp(68px, 9vw, 120px); }
+  .refine-heading { display: flex; align-items: end; justify-content: space-between; gap: 28px; margin-bottom: 22px; }
+  .refine-heading > div:first-child > p { color: #66636a; font-size: 14px; font-weight: 900; letter-spacing: .12em; }
+  .refine-heading h2 { margin-top: 8px; color: var(--ink); font-size: clamp(32px, 4vw, 58px); line-height: .96; letter-spacing: -.05em; }
+  .refine-heading .candidate-switcher { flex: 0 0 auto; margin: 0; }
+  .refine-hero-stage { min-height: 700px; border-radius: 28px; overflow: hidden; box-shadow: 0 26px 70px rgba(20,18,24,.15); }
+  .refine-hero-candidate { position: relative; min-height: 700px; display: grid; grid-template-columns: 1.08fr .92fr; color: #fff; background: #0b0b0e; }
+  .refine-hero-candidate[hidden], .refine-blue-candidate[hidden] { display: none !important; }
+  .refine-hero-copy { display: flex; flex-direction: column; justify-content: center; padding: clamp(54px, 7vw, 108px); }
+  .refine-hero-copy > p:first-child { color: var(--yellow); font-size: 14px; font-weight: 900; letter-spacing: .08em; text-transform: uppercase; }
+  .refine-hero-copy h3 { max-width: 820px; margin-top: 28px; color: #fff; font-size: clamp(54px, 6vw, 94px); line-height: .9; letter-spacing: -.06em; }
+  .refine-hero-copy > p:nth-of-type(2) { max-width: 700px; margin-top: 28px; color: #d4d3d8; font-size: clamp(18px, 1.5vw, 22px); line-height: 1.5; }
+  .refine-hero-copy > span { align-self: start; min-height: 56px; display: inline-flex; align-items: center; margin-top: 34px; padding: 15px 22px; color: #0b0b0e; background: var(--yellow); border-radius: 6px; font-size: 17px; font-weight: 900; }
+  .refine-mechanism { display: flex; flex-direction: column; justify-content: center; padding: clamp(54px, 6vw, 92px); color: #0b0b0e; background: var(--yellow); }
+  .refine-mechanism > p { max-width: 520px; font-size: clamp(34px, 4vw, 58px); font-weight: 900; line-height: .96; letter-spacing: -.05em; }
+  .refine-mechanism ol { list-style: none; display: grid; gap: 24px; margin-top: 44px; }
+  .refine-mechanism li { display: grid; grid-template-columns: 44px 1fr; gap: 14px; align-items: center; font-size: clamp(17px, 1.5vw, 21px); font-weight: 800; }
+  .refine-mechanism li b { width: 40px; height: 40px; display: grid; place-items: center; color: #fff; background: #0b0b0e; border-radius: 50%; }
+
+  .refine-blue-stage { min-height: 500px; border-radius: 28px; overflow: hidden; box-shadow: 0 26px 70px rgba(20,18,24,.15); }
+  .refine-blue-candidate { position: relative; min-height: 500px; display: flex; flex-direction: column; justify-content: center; padding: clamp(58px, 8vw, 118px); color: #0b0b0e; background: var(--cyan); }
+  .candidate-letter--blue { color: #fff; background: #0b0b0e; box-shadow: 0 0 0 4px rgba(11,11,14,.15); }
+  .refine-blue-candidate > p:first-of-type { font-size: 14px; font-weight: 900; letter-spacing: .1em; text-transform: uppercase; }
+  .refine-blue-candidate h3 { max-width: 1120px; margin-top: 20px; color: #0b0b0e; font-size: clamp(58px, 7vw, 108px); line-height: .86; letter-spacing: -.065em; }
+  .refine-blue-candidate > p:last-of-type { max-width: 780px; margin-top: 30px; font-size: clamp(19px, 1.7vw, 24px); line-height: 1.45; }
+
   @media (max-width: 980px) {
     .lab-header { grid-template-columns: 1fr auto; }
     .lab-header > p { display: none; }
@@ -402,6 +592,7 @@ const copyCandidates = [
     .vb-path { grid-column: 1; grid-row: auto; margin-top: 18px; }
     .vc-main { grid-template-columns: 150px 1fr; }
     .copy-hero { grid-row: auto; }
+    .refine-hero-candidate { grid-template-columns: 1fr; }
   }
 
   @media (max-width: 700px) {
@@ -410,7 +601,9 @@ const copyCandidates = [
     .round-tab { flex: 1; }
     .lab-main { padding-top: 34px; }
     .round-intro { align-items: start; flex-direction: column; gap: 10px; }
+    .refine-heading { align-items: start; flex-direction: column; }
     .visual-stage, .copy-stage, .visual-candidate { min-height: 0; border-radius: 18px; }
+    .refine-hero-stage, .refine-blue-stage { min-height: 0; border-radius: 18px; }
     .candidate-letter { top: 14px; right: 14px; width: 42px; height: 42px; }
     .va-shell, .vb-shell, .vc-shell, .vd-banner, .vd-lower, .copy-hero, .copy-mechanism, .copy-fit { padding: 58px 22px 34px; }
     .va-shell { grid-template-columns: 1fr; gap: 44px; }
@@ -432,6 +625,11 @@ const copyCandidates = [
     .vd-tracks > div:nth-child(n) { min-height: 170px; transform: none; }
     .copy-candidate { display: block; }
     .copy-hero h2 { font-size: 48px; }
+    .refine-hero-candidate, .refine-blue-candidate { min-height: 0; }
+    .refine-hero-copy, .refine-mechanism, .refine-blue-candidate { padding: 72px 22px 42px; }
+    .refine-hero-copy h3 { font-size: 48px; }
+    .refine-mechanism > p { font-size: 36px; }
+    .refine-blue-candidate h3 { font-size: 52px; }
     .v-facts { display: grid; grid-template-columns: repeat(3, 1fr); }
     .v-facts li { min-width: 0; }
     .v-actions { align-items: stretch; flex-direction: column; }
