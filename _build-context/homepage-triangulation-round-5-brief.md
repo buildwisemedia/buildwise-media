@@ -91,3 +91,9 @@ The next refinement uses numbers so the rejected B label is not recycled:
 3. `We keep improving your systems and building new ones, so AI supports more of the work across your business.`
 
 Option 1 emphasizes the continuing relationship, option 2 makes Buildwise the explicit actor, and option 3 connects the continued work to broader AI use without repeating the headline verbatim.
+
+Robert selected option 1. The blue support is now locked:
+
+- `We keep building with you—improving what works and building new systems across your business.`
+
+The blue support comparison controls are removed. Historical blue-support review hashes continue to open the locked synth round, but no longer alter its copy.

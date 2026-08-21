@@ -134,20 +134,6 @@ const synthSteps = [
   'Keep improving across the business',
 ];
 
-const synthBlueSupportCandidates = [
-  {
-    id: '1',
-    text: 'We keep building with you—improving what works and building new systems across your business.',
-  },
-  {
-    id: '2',
-    text: 'Buildwise improves the systems already working and keeps building new ones across your business.',
-  },
-  {
-    id: '3',
-    text: 'We keep improving your systems and building new ones, so AI supports more of the work across your business.',
-  },
-];
 ---
 
 <BaseLayout
@@ -514,19 +500,8 @@ const synthBlueSupportCandidates = [
           <section class="synth-blue" aria-labelledby="synth-blue-title">
             <div class="synth-choice-header synth-choice-header--blue">
               <div>
-                <p>BLUE · REFINE A + C</p>
-                <span>B is rejected. The kicker and headline remain locked.</span>
-              </div>
-              <div class="candidate-switcher" role="tablist" aria-label="Blue subheadline choices">
-                {synthBlueSupportCandidates.map((candidate, index) => (
-                  <button
-                    class:list={['candidate-tab', { 'is-active': index === 0 }]}
-                    type="button"
-                    role="tab"
-                    aria-selected={index === 0 ? 'true' : 'false'}
-                    data-synth-support-target={candidate.id}
-                  >{candidate.id}</button>
-                ))}
+                <p>BLUE · SUBHEADLINE LOCKED</p>
+                <span>Selected after the A + C refinement.</span>
               </div>
             </div>
             <p class="synth-blue-kicker">Built for the long run</p>
@@ -534,13 +509,11 @@ const synthBlueSupportCandidates = [
               <h3 id="synth-blue-title">AI becomes part of how your business works.</h3>
             </div>
             <div class="synth-support-stack">
-              {synthBlueSupportCandidates.map((candidate, index) => (
-                <p data-synth-support={candidate.id} hidden={index !== 0}>{candidate.text}</p>
-              ))}
+              <p>We keep building with you—improving what works and building new systems across your business.</p>
             </div>
           </section>
         </article>
-        <p class="response-cue">Choose blue subheadline 1, 2, or 3—or tell us what is still missing. Everything else is locked.</p>
+        <p class="response-cue">The hero, yellow section, and blue section copy are now locked from your feedback.</p>
       </section>
     </div>
   </div>
@@ -639,31 +612,13 @@ const synthBlueSupportCandidates = [
       history.replaceState(null, '', `#reset-${id.toLowerCase()}`);
     }));
 
-    document.querySelectorAll('[data-synth-support-target]').forEach((tab) => tab.addEventListener('click', () => {
-      const id = tab.dataset.synthSupportTarget;
-      document.querySelectorAll('[data-synth-support]').forEach((candidate) => {
-        candidate.hidden = candidate.dataset.synthSupport !== id;
-      });
-      document.querySelectorAll('[data-synth-support-target]').forEach((button) => {
-        const active = button.dataset.synthSupportTarget === id;
-        button.classList.toggle('is-active', active);
-        button.setAttribute('aria-selected', String(active));
-      });
-      history.replaceState(null, '', `#synth-support-${id}`);
-    }));
-
     const refineMatch = location.hash.match(/^#refine-(hero|blue)-([a-c])$/i);
     const resetMatch = location.hash.match(/^#reset-([a-c])$/i);
     const synthMatch = location.hash.match(/^#synth(?:-[a-c]-[a-c])?$/i);
-    const synthSupportMatch = location.hash.match(/^#synth-support-([1-3])$/);
-    const legacySynthSupportMatch = location.hash.match(/^#synth-support-[a-c]$/i);
+    const synthSupportMatch = location.hash.match(/^#synth-support-(?:[1-3]|[a-c])$/i);
     const match = location.hash.match(/^#(visual|copy)-([a-d])$/i);
     if (synthSupportMatch) {
       showRound('synth');
-      [...document.querySelectorAll('[data-synth-support-target]')].find((button) => button.textContent.trim() === synthSupportMatch[1])?.click();
-    } else if (legacySynthSupportMatch) {
-      showRound('synth');
-      document.querySelector('[data-synth-support-target="1"]')?.click();
     } else if (synthMatch) {
       showRound('synth');
     } else if (resetMatch) {
@@ -895,7 +850,6 @@ const synthBlueSupportCandidates = [
   .synth-heading-stack--blue h3 { max-width: 1180px; color: #0b0b0e; font-size: clamp(56px, 7vw, 104px); }
   .synth-support-stack { max-width: 880px; margin-top: 30px; }
   .synth-support-stack p { font-size: clamp(19px, 1.7vw, 24px); line-height: 1.45; }
-  .synth-support-stack p[hidden] { display: none !important; }
 
   @media (max-width: 980px) {
     .lab-header { grid-template-columns: 1fr auto; }
