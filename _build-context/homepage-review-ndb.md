@@ -5,7 +5,7 @@ identity_class: bwm
 composition_mode: single
 surface: website_homepage_review
 primary_module: website_landing
-process_tier: locked-direction-implementation
+process_tier: full
 state: task-local-binding
 ---
 
@@ -15,13 +15,29 @@ state: task-local-binding
 
 Help an owner decide whether one consequential operational constraint is suitable for a $15,000, 90-day custom-AI Pilot with Buildwise Media.
 
-## Approved direction
+## Rejected direction and binding human feedback
 
-Use the locked dark Triangulation marketing register: `#050507` canvas, `#F0FF00` marketing accent, `#B8FF3A` product/success accent, Inter for display and body, and JetBrains Mono for system microtype. Use the Triangulation V3 mark and R014b primitives. The page must feel precise, calm, consequential, and owner-directed—not theatrical, dense, or agency-like.
+Robert rejected the first review prototype on 2026-08-21 with a score of 2/5. The rejected surface was too monochrome, underused the primary brand color, used an unsuitable mono treatment for human-facing copy, lacked section differentiation and scroll guidance, made supporting type too small, used a high reading level, and led with vague hero language. This rejection reopens the direction as `full`; the prior layout, typography hierarchy, and hero copy are not an accepted base.
+
+## Revised direction
+
+Robert explicitly rejected a version of the old BWM website and requested something totally new on 2026-08-21. That instruction authorizes a mixed-canvas review territory rather than another dark-Triangulation treatment. Do not reuse the old site's black-on-black schematic look, hairline-diagram language, tiny mono system labels, dense ledger styling, centered chapter rhythm, or prior layout compositions.
+
+Build a new BWM editorial-utility system around the primary marketing yellow `#F0FF00`. Pair it with warm light surfaces, deep ink, and functional secondary colors already present in the BWM system: cyan for incoming information, orange for stuck work, and green for verified review states. Yellow remains the dominant brand anchor; secondary colors must explain state or sequence rather than decorate. Use broad color fields, oversized chapter changes, plain-language information graphics, and an obvious vertical decision path so adjacent sections are unmistakably different.
+
+The result must feel energetic, legible, direct, useful, and new—not monochrome, tiny, schematic, over-intellectualized, or like a reskin of the previous site.
+
+Use Inter for every human-facing headline, paragraph, caption, button, and explanation. JetBrains Mono is limited to short system labels and chapter markers at a readable minimum size. No meaningful homepage copy may render below 14px; captions and disclaimers use at least 15px with normal casing and comfortable line height. Body copy targets 18–21px.
+
+The page must guide the eye from one decision to the next through visible chapter changes, directional rails, color shifts, and strong action placement. Each section needs a distinct background and structural composition. A continuous orientation path may connect sections only when it explains sequence and remains functional under R020.
 
 ## Message architecture
 
 The owner chooses one consequential operating constraint. The Buildwise team selects, builds, connects, and tests a custom AI system around that constraint against agreed evidence. Ninety days is the Pilot operating period, not a promised result. The visible message and structured description must retain substance parity.
+
+Human-facing copy uses concrete owner language at approximately a sixth- to seventh-grade reading level. Avoid `constraint`, `consequential`, `bounded enablement`, `operating period`, `evidence context`, and similar internal terms unless a plain-language explanation appears first. Prefer concrete examples such as work getting stuck between people, approvals waiting on missing information, and owners rebuilding the same answer by hand.
+
+The hero must state what BWM builds and what kind of problem the owner brings. The rejected line `Choose the constraint. We build the system around it.` may not return.
 
 The homepage must contain exactly these seven sections:
 
@@ -48,7 +64,7 @@ The homepage must contain exactly these seven sections:
 
 ## Composition and visual behavior
 
-Use one primary idea per section, generous negative space, and a complete no-motion path. Functional diagrams must reveal the mechanism, evidence, or decision path. Decorative atmosphere cannot substitute for a real visual. Keep motion optional and respect reduced-motion. The layout must remain legible and decision-complete at 390px.
+Use one primary idea per section, generous but purposeful space, and a complete no-motion path. Functional diagrams must reveal the mechanism, evidence, or decision path in large readable type. Decorative atmosphere cannot substitute for a real visual. Keep motion optional and respect reduced-motion. The layout must remain legible and decision-complete at 390px. Mobile must preserve the color rhythm, chapter differentiation, and scroll guidance rather than merely stack the desktop layout.
 
 ## Evidence posture
 

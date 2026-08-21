@@ -2,7 +2,7 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 
 const title = 'Custom AI Systems for Owner-Led Service Businesses | Buildwise Media';
-const description = 'Buildwise Media builds custom AI systems around one consequential operational constraint chosen by the owner. The paid 90-day Pilot is $15,000 up front.';
+const description = 'Buildwise Media builds and tests custom AI systems around one important operating problem chosen by the owner. The paid 90-day Pilot is $15,000 up front.';
 
 const pageSchemas = [
   {
@@ -26,21 +26,57 @@ const pageSchemas = [
     url: 'https://buildwisemedia.com/book',
     price: '15000',
     priceCurrency: 'USD',
-    description: '$15,000 paid up front for a 90-day Pilot around one owner-chosen operational constraint.',
+    description: '$15,000 paid up front for a 90-day Pilot around one owner-chosen operating problem.',
     seller: { '@id': 'https://buildwisemedia.com/#org' },
   },
 ];
 
-const constraintExamples = [
-  { code: '01', label: 'INTAKE', detail: 'A customer request crosses too many hands before anyone can act.' },
-  { code: '02', label: 'REVIEW', detail: 'Important decisions wait on scattered documents, context, or approvals.' },
-  { code: '03', label: 'VISIBILITY', detail: 'The owner cannot see the operating truth without assembling it manually.' },
+const stuckWork = [
+  {
+    number: '01',
+    state: 'WAITING',
+    title: 'Requests wait for the right person.',
+    body: 'A customer asks for something. The next step sits because ownership is unclear.',
+    tone: 'orange',
+  },
+  {
+    number: '02',
+    state: 'MISSING',
+    title: 'Decisions wait for missing context.',
+    body: 'The answer exists, but it is spread across emails, documents, tools, and people.',
+    tone: 'cyan',
+  },
+  {
+    number: '03',
+    state: 'REBUILT',
+    title: 'You rebuild the same status by hand.',
+    body: 'Before you can act, you have to piece together what happened and what comes next.',
+    tone: 'green',
+  },
 ];
 
-const buildLayers = [
-  { label: 'CORE', title: 'The custom AI system', body: 'Selected, built, connected, and tested around the chosen constraint.' },
-  { label: 'ENABLE', title: 'Only what makes it work', body: 'Bounded enabling work is included when the system needs it, with a named scope exit.' },
-  { label: 'OUTSIDE', title: 'Open-ended operation', body: 'Ongoing marketing, lead-generation responsibility, and revenue accountability require separate ownership and approval.' },
+const pilotSteps = [
+  {
+    number: '1',
+    title: 'Choose the work',
+    body: 'Name the problem. Agree on what a useful test should show.',
+    note: 'YOU CHOOSE',
+    tone: 'orange',
+  },
+  {
+    number: '2',
+    title: 'Build the system',
+    body: 'We connect the right information, people, and actions.',
+    note: 'WE BUILD',
+    tone: 'cyan',
+  },
+  {
+    number: '3',
+    title: 'Test with real work',
+    body: 'Run it. Review what happened. Decide what to change or do next.',
+    note: 'WE REVIEW TOGETHER',
+    tone: 'green',
+  },
 ];
 ---
 
@@ -50,444 +86,506 @@ const buildLayers = [
   jsonLd={pageSchemas}
   homepageRefresh
 >
-  <div class="home-refresh">
-    <section class="hero section-shell" aria-labelledby="hero-title">
+  <div class="home-new">
+    <section class="hero" aria-labelledby="hero-title">
       <div class="container hero-grid">
         <div class="hero-copy">
-          <p class="eyebrow">CUSTOM AI SYSTEMS · 90-DAY PILOT</p>
-          <h1 id="hero-title" class="h-hero">Choose the constraint.<br /><span>We build the system around it.</span></h1>
-          <p class="hero-sub">You bring one consequential operating constraint. The Buildwise team builds, connects, and tests a custom AI system around it—then shows you the evidence.</p>
+          <p class="hero-kicker">CUSTOM AI SYSTEMS FOR OWNER-LED BUSINESSES</p>
+          <h1 id="hero-title" class="h-hero">
+            Where does the work keep getting stuck?
+            <span>We build the AI system for that.</span>
+          </h1>
+          <p class="hero-sub">
+            Requests wait. Approvals drag. Important details live in too many places.
+            You pick one problem. In 90 days, we build and test a custom AI system around it.
+          </p>
           <div class="hero-actions">
-            <a class="cta" href="/book" data-cta-source="homepage-hero">See If We're a Fit</a>
-            <a class="text-link" href="#see-the-system">See the System <span aria-hidden="true">↓</span></a>
+            <a class="cta cta--hero" href="/book" data-cta-source="homepage-hero">See If We're a Fit</a>
+            <a class="hero-link" href="#see-the-system">See what happens in 90 days <span aria-hidden="true">↓</span></a>
           </div>
+          <ul class="hero-facts" aria-label="Pilot facts">
+            <li><strong>1</strong><span>problem to solve</span></li>
+            <li><strong>90</strong><span>days to build + test</span></li>
+            <li><strong>$15K</strong><span>paid up front</span></li>
+          </ul>
         </div>
 
-        <figure class="hero-system" aria-labelledby="hero-system-caption">
-          <!-- @r020:F2: The owner-to-system-to-evidence decision path proves the mechanism before the first CTA decision. -->
-          <svg viewBox="0 0 620 560" role="img" aria-labelledby="hero-system-title hero-system-desc">
-            <title id="hero-system-title">Owner-selected constraint becomes a tested custom AI system</title>
-            <desc id="hero-system-desc">Three connected stages show the owner selecting the constraint, Buildwise connecting the system, and agreed evidence deciding what follows.</desc>
-            <path class="line" d="M92 102H310V272H528V442" />
-            <path class="line dim" d="M92 442H310V272H528V102" />
-            <circle class="node hollow" cx="92" cy="102" r="18" />
-            <circle class="node hollow" cx="310" cy="272" r="18" />
-            <circle class="node verdict" cx="528" cy="442" r="18" />
-            <circle class="node-dot" cx="92" cy="102" r="4" />
-            <circle class="node-dot" cx="310" cy="272" r="4" />
-            <circle class="node-dot dark" cx="528" cy="442" r="4" />
-            <text class="stage-index" x="60" y="58">01</text>
-            <text class="stage-title" x="60" y="151">OWNER SELECTS</text>
-            <text class="stage-note" x="60" y="174">ONE CONSTRAINT</text>
-            <text class="stage-index" x="278" y="228">02</text>
-            <text class="stage-title" x="278" y="321">SYSTEM CONNECTS</text>
-            <text class="stage-note" x="278" y="344">BUILD + TEST</text>
-            <text class="stage-index yellow" x="496" y="398">03</text>
-            <text class="stage-title yellow" x="390" y="491">EVIDENCE DECIDES</text>
-            <text class="stage-note" x="426" y="514">AGREED BEFORE BUILD</text>
-            <path class="bracket" d="M42 75V40H194" />
-            <path class="bracket" d="M578 468V518H426" />
-          </svg>
-          <figcaption id="hero-system-caption">The owner keeps the decision. The system makes the chosen work observable.</figcaption>
-        </figure>
+        <div class="hero-visual" role="img" aria-label="Stuck work moves through a custom AI system and into a human-reviewed test">
+          <!-- @r020:F2 proof: the first-frame visual explains the complete problem-to-system-to-review mechanism in plain language. -->
+          <p class="visual-label">ONE PROBLEM. ONE SYSTEM. ONE REAL TEST.</p>
+          <ol class="hero-flow">
+            <li class="flow-block flow-block--orange">
+              <span>YOUR TEAM BRINGS</span>
+              <strong>Work that<br />keeps getting stuck</strong>
+            </li>
+            <li class="flow-arrow" aria-hidden="true">↓</li>
+            <li class="flow-block flow-block--ink">
+              <span>BUILDWISE BUILDS</span>
+              <strong>A custom<br />AI system</strong>
+            </li>
+            <li class="flow-arrow" aria-hidden="true">↓</li>
+            <li class="flow-block flow-block--green">
+              <span>YOU BOTH REVIEW</span>
+              <strong>What happened<br />with real work</strong>
+            </li>
+          </ol>
+          <p class="visual-caption">You keep the business decision. The system makes the work easier to see and test.</p>
+        </div>
       </div>
-      <div class="container hero-ledger" aria-label="Pilot facts">
-        <span>ONE CHOSEN CONSTRAINT</span><span>90-DAY PILOT</span><span>$15K PAID UP FRONT</span><span>AGREED EVIDENCE</span>
-      </div>
+      <a class="next-cue next-cue--dark" href="#where-to-start">
+        <span>Next</span><strong>Find the right first problem</strong><b aria-hidden="true">↓</b>
+      </a>
     </section>
 
-    <section class="section-shell constraint-section" aria-labelledby="constraint-title">
-      <div class="container split-head">
-        <p class="section-index">01 / CHOOSE</p>
-        <div>
-          <h2 id="constraint-title" class="h-section">Start where the business is actually constrained.</h2>
-          <p class="lede">Not with a menu of AI features. Not with a predetermined outcome. The Pilot begins with the operating constraint you decide is consequential enough to address.</p>
-        </div>
-      </div>
+    <section id="where-to-start" class="chapter chapter--paper" aria-labelledby="start-title">
+      <div class="container">
+        <header class="chapter-head">
+          <div class="chapter-number"><span>01</span><b>WHERE TO START</b></div>
+          <div class="chapter-copy">
+            <h2 id="start-title">Start with the work your team has to chase.</h2>
+            <p>The right first problem matters now, has clear edges, and can be tested with real work.</p>
+          </div>
+        </header>
 
-      <div class="container constraint-ledger" aria-label="Illustrative operational constraint categories">
-        {constraintExamples.map((item) => (
-          <article class="constraint-row">
-            <span class="row-code">{item.code}</span>
-            <h3>{item.label}</h3>
-            <p>{item.detail}</p>
-            <!-- @r020:F2: The converging line shows that varied operating constraints still resolve to one owner-chosen decision point. -->
-            <svg viewBox="0 0 180 38" aria-hidden="true" class="row-signal">
-              <path d="M0 19H144" />
-              <path d="M144 19L163 6M144 19L163 32" />
-              <circle cx="172" cy="19" r="5" />
-            </svg>
-          </article>
-        ))}
-      </div>
-      <p class="container illustrative-note">Illustrative categories, not promised results. The specific constraint is chosen with you.</p>
-    </section>
-
-    <section id="see-the-system" class="section-shell system-section" aria-labelledby="system-title">
-      <div class="container split-head">
-        <p class="section-index">02 / SYSTEM</p>
-        <div>
-          <h2 id="system-title" class="h-section">Select. Build + connect. Test against evidence.</h2>
-          <p class="lede">Ninety days is the operating period for the Pilot. It describes the work and evidence cycle—not a guaranteed business result.</p>
-        </div>
-      </div>
-
-      <figure class="container mechanism-map" aria-labelledby="mechanism-caption">
-        <!-- @r020:F2: This is the page's primary proof diagram, making the full 90-day mechanism and human decision gates visible without motion. -->
-        <svg viewBox="0 0 1180 470" role="img" aria-labelledby="mechanism-title mechanism-desc">
-          <title id="mechanism-title">The 90-day Pilot mechanism</title>
-          <desc id="mechanism-desc">Three connected phases show the owner selecting a constraint, Buildwise building and connecting the custom system, and both parties reviewing agreed evidence with human decisions visible.</desc>
-          <path class="mechanism-spine" d="M112 236H1068" />
-          <path class="mechanism-progress" d="M112 236H590" />
-          <g transform="translate(112 236)">
-            <circle class="phase-node" r="28" />
-            <circle class="phase-dot" r="5" />
-            <text class="phase-number" x="-13" y="-60">01</text>
-            <text class="phase-title" x="-44" y="78">SELECT</text>
-            <text class="phase-copy" x="-72" y="112">OWNER NAMES THE</text>
-            <text class="phase-copy" x="-72" y="132">CONSTRAINT + EVIDENCE</text>
-          </g>
-          <g transform="translate(590 236)">
-            <circle class="phase-node" r="28" />
-            <circle class="phase-dot" r="5" />
-            <text class="phase-number" x="-13" y="-60">02</text>
-            <text class="phase-title" x="-97" y="78">BUILD + CONNECT</text>
-            <text class="phase-copy" x="-97" y="112">THE TEAM SHAPES THE</text>
-            <text class="phase-copy" x="-97" y="132">CUSTOM AI SYSTEM</text>
-          </g>
-          <g transform="translate(1068 236)">
-            <circle class="phase-node phase-node--verdict" r="28" />
-            <circle class="phase-dot phase-dot--dark" r="5" />
-            <text class="phase-number phase-number--yellow" x="-13" y="-60">03</text>
-            <text class="phase-title" x="-88" y="78">TEST + EVIDENCE</text>
-            <text class="phase-copy" x="-88" y="112">HUMAN REVIEW DECIDES</text>
-            <text class="phase-copy" x="-88" y="132">WHAT FOLLOWS</text>
-          </g>
-          <path class="day-bracket" d="M112 54V25H1068V54" />
-          <text class="day-label" x="522" y="18">DAY 1 — DAY 90</text>
-          <g class="human-gate" transform="translate(590 394)">
-            <path d="M-128 0H128" />
-            <circle cx="0" cy="0" r="7" />
-            <text x="0" y="42" text-anchor="middle">HUMAN DECISIONS STAY VISIBLE</text>
-          </g>
-        </svg>
-        <ol class="mechanism-mobile" aria-label="The 90-day Pilot mechanism">
-          <!-- @r020:F2: The vertical mobile sequence preserves every phase and the human decision gate without horizontal scrolling. -->
-          <li><span>01</span><div><strong>Select</strong><p>Owner names the constraint and the evidence.</p></div></li>
-          <li><span>02</span><div><strong>Build + connect</strong><p>The team shapes the custom AI system.</p></div></li>
-          <li class="mechanism-mobile__verdict"><span>03</span><div><strong>Test + evidence</strong><p>Human review decides what follows.</p></div></li>
-        </ol>
-        <figcaption id="mechanism-caption">One constraint. One bounded build-and-test cycle. Evidence agreed before the system is judged.</figcaption>
-      </figure>
-    </section>
-
-    <section class="section-shell build-section" aria-labelledby="build-title">
-      <div class="container split-head">
-        <p class="section-index">03 / BUILD</p>
-        <div>
-          <h2 id="build-title" class="h-section">A custom AI system—not an open-ended catch-all.</h2>
-          <p class="lede">The work stays centered on the chosen constraint. Anything adjacent must earn its place by making that system function.</p>
-        </div>
-      </div>
-
-      <div class="container build-boundary">
-        <div class="boundary-visual">
-          <!-- @r020:F2: The nested boundary makes core work, bounded enablement, and excluded open-ended responsibility immediately scannable. -->
-          <svg viewBox="0 0 520 520" role="img" aria-labelledby="boundary-title boundary-desc">
-            <title id="boundary-title">Scope boundary for the custom AI Pilot</title>
-            <desc id="boundary-desc">A bright center represents the custom AI system, a bounded ring represents necessary enabling work, and the outer field represents separately owned open-ended work.</desc>
-            <rect class="outer-boundary" x="22" y="22" width="476" height="476" />
-            <rect class="enable-boundary" x="92" y="92" width="336" height="336" />
-            <path class="core-shape" d="M260 150L370 260L260 370L150 260Z" />
-            <circle class="core-dot" cx="260" cy="306" r="12" />
-            <text class="boundary-label" x="48" y="62">SEPARATE OWNERSHIP</text>
-            <text class="boundary-label" x="118" y="132">BOUNDED ENABLEMENT</text>
-            <text class="boundary-label boundary-label--core" x="205" y="242">CUSTOM AI</text>
-            <text class="boundary-label boundary-label--core" x="220" y="266">SYSTEM</text>
-          </svg>
-        </div>
-        <div class="boundary-copy">
-          {buildLayers.map((layer, index) => (
-            <article class="boundary-item">
-              <p class="boundary-kicker"><span>{String(index + 1).padStart(2, '0')}</span>{layer.label}</p>
-              <h3>{layer.title}</h3>
-              <p>{layer.body}</p>
+        <div class="stuck-list" aria-label="Examples of work that may be a good Pilot starting point">
+          {stuckWork.map((item) => (
+            <article class:list={['stuck-row', `stuck-row--${item.tone}`]}>
+              <div class="stuck-state"><span>{item.number}</span><strong>{item.state}</strong></div>
+              <div class="stuck-copy"><h3>{item.title}</h3><p>{item.body}</p></div>
+              <div class="stuck-mark" aria-hidden="true"><span></span><b>→</b></div>
             </article>
           ))}
         </div>
+
+        <div class="choice-statement">
+          <span>THE RULE</span>
+          <p>You choose the problem. We make the build fit the work.</p>
+        </div>
       </div>
+      <a class="next-cue next-cue--paper" href="#see-the-system">
+        <span>Next</span><strong>See the 90-day build</strong><b aria-hidden="true">↓</b>
+      </a>
     </section>
 
-    <section class="section-shell evidence-section" aria-labelledby="evidence-title">
-      <div class="container split-head">
-        <p class="section-index">04 / CONTROL</p>
-        <div>
-          <h2 id="evidence-title" class="h-section">Evidence is part of the build—not a story added afterward.</h2>
-          <p class="lede">The review standard is named before the system is judged. You stay close to the decisions, and agreement terms govern the rights in client materials, data, and output.</p>
-        </div>
-      </div>
+    <section id="see-the-system" class="chapter chapter--ink" aria-labelledby="system-title">
+      <div class="container">
+        <header class="chapter-head chapter-head--light">
+          <div class="chapter-number chapter-number--light"><span>02</span><b>THE 90-DAY BUILD</b></div>
+          <div class="chapter-copy">
+            <h2 id="system-title">What happens in 90 days.</h2>
+            <p>The 90 days cover the build and test. They do not promise a business result.</p>
+          </div>
+        </header>
 
-      <div class="container evidence-grid">
-        <figure class="evidence-console" aria-labelledby="evidence-console-caption">
-          <!-- @r020:F2: The evidence ledger demonstrates how a claim moves from proposed to human-reviewed without fabricating a client result. -->
-          <svg viewBox="0 0 640 430" role="img" aria-labelledby="evidence-console-title evidence-console-desc">
-            <title id="evidence-console-title">An agreed-evidence review ledger</title>
-            <desc id="evidence-console-desc">A four-row system ledger shows the constraint, baseline, test, and human review as explicit states.</desc>
-            <rect class="console-frame" x="1" y="1" width="638" height="428" />
-            <path class="console-rule" d="M1 66H639M1 157H639M1 248H639M1 339H639" />
-            <text class="console-head" x="28" y="39">EVIDENCE LEDGER</text>
-            <text class="console-meta" x="505" y="39">PILOT / 01</text>
-            <text class="console-index" x="28" y="111">01</text>
-            <text class="console-label" x="92" y="104">CONSTRAINT</text>
-            <text class="console-value" x="92" y="129">DEFINED WITH OWNER</text>
-            <circle class="console-state" cx="589" cy="111" r="7" />
-            <text class="console-index" x="28" y="202">02</text>
-            <text class="console-label" x="92" y="195">BASELINE</text>
-            <text class="console-value" x="92" y="220">RECORDED BEFORE BUILD</text>
-            <circle class="console-state" cx="589" cy="202" r="7" />
-            <text class="console-index" x="28" y="293">03</text>
-            <text class="console-label" x="92" y="286">TEST</text>
-            <text class="console-value" x="92" y="311">CHECKED AGAINST AGREEMENT</text>
-            <circle class="console-state hollow" cx="589" cy="293" r="7" />
-            <text class="console-index" x="28" y="384">04</text>
-            <text class="console-label" x="92" y="377">HUMAN REVIEW</text>
-            <text class="console-value" x="92" y="402">DECISION REMAINS VISIBLE</text>
-            <path class="console-verdict" d="M578 384H600" />
-          </svg>
-          <figcaption id="evidence-console-caption">Illustrative review structure. Evidence is defined for the chosen constraint; it is not a universal result promise.</figcaption>
-        </figure>
-        <div class="evidence-principles">
-          <article><span>01</span><h3>Agree before build</h3><p>Define what will count as evidence before implementation begins.</p></article>
-          <article><span>02</span><h3>Keep decisions visible</h3><p>Human review stays explicit at consequential points in the Pilot.</p></article>
-          <article><span>03</span><h3>Govern the rights</h3><p>Rights in client materials, data, and output follow the applicable signed agreement.</p></article>
-        </div>
+        <!-- @r020:F2 proof: the three large stages orient the buyer to who decides, who builds, and how the Pilot is judged. -->
+        <ol class="pilot-path" aria-label="The three stages of the 90-day Pilot">
+          {pilotSteps.map((step) => (
+            <li class:list={['pilot-step', `pilot-step--${step.tone}`]}>
+              <div class="step-top"><span>{step.note}</span><strong>{step.number}</strong></div>
+              <h3>{step.title}</h3>
+              <p>{step.body}</p>
+            </li>
+          ))}
+        </ol>
+        <p class="pilot-note"><strong>Day 1 → Day 90</strong> The point is a working system and an honest review—not a guaranteed outcome.</p>
       </div>
+      <a class="next-cue next-cue--ink" href="#what-we-build">
+        <span>Next</span><strong>See what is inside the build</strong><b aria-hidden="true">↓</b>
+      </a>
     </section>
 
-    <section class="section-shell investment-section" aria-labelledby="investment-title">
-      <div class="container investment-grid">
-        <div class="investment-copy">
-          <p class="section-index">05 / INVESTMENT</p>
-          <h2 id="investment-title" class="h-section">One paid Pilot. One clear decision.</h2>
-          <p class="lede">The entry engagement is designed to determine whether a custom system can address the chosen constraint against the evidence you agreed to review.</p>
-          <a class="cta" href="/book" data-cta-source="homepage-investment">See If We're a Fit</a>
-        </div>
-        <div class="investment-figure" aria-label="Pilot investment facts">
-          <!-- @r020:F3: The price and duration share one decisive visual field so the CTA follows the exact commitment being evaluated. -->
-          <svg viewBox="0 0 610 520" role="img" aria-labelledby="investment-visual-title investment-visual-desc">
-            <title id="investment-visual-title">Ninety-day Pilot for fifteen thousand dollars paid up front</title>
-            <desc id="investment-visual-desc">A large 90 and $15,000 are connected by one line, with agreed evidence and one chosen constraint shown as the terms of the decision.</desc>
-            <path class="investment-line" d="M34 260H576" />
-            <circle class="investment-node" cx="34" cy="260" r="8" />
-            <circle class="investment-node investment-node--end" cx="576" cy="260" r="8" />
-            <text class="investment-number" x="24" y="206">90</text>
-            <text class="investment-unit" x="30" y="242">DAYS</text>
-            <text class="investment-price" x="248" y="350">$15,000</text>
-            <text class="investment-unit" x="252" y="386">PAID UP FRONT</text>
-            <text class="investment-label" x="32" y="458">ONE CHOSEN CONSTRAINT</text>
-            <text class="investment-label" x="366" y="458">AGREED EVIDENCE</text>
-            <path class="investment-corner" d="M16 84V16H84M594 436V504H526" />
-          </svg>
+    <section id="what-we-build" class="chapter chapter--yellow" aria-labelledby="build-title">
+      <div class="container build-layout">
+        <header class="chapter-head chapter-head--compact">
+          <div class="chapter-number chapter-number--dark"><span>03</span><b>WHAT WE BUILD</b></div>
+          <div class="chapter-copy chapter-copy--dark">
+            <h2 id="build-title">We build only what this system needs.</h2>
+            <p>The work stays tied to the problem you chose. We do not turn one Pilot into an open-ended catch-all.</p>
+          </div>
+        </header>
+
+        <!-- @r020:F2 proof: the nested scope map makes the core build, necessary support, and separately owned work visually distinct. -->
+        <div class="scope-map" role="img" aria-label="The custom AI system is the core. Necessary support is bounded around it. Open-ended marketing and revenue work stay separate.">
+          <div class="scope-layer scope-layer--outside">
+            <span>SEPARATE WORK</span>
+            <p>Open-ended marketing, lead generation, and revenue ownership need a separate decision.</p>
+            <div class="scope-layer scope-layer--support">
+              <span>ONLY IF THE SYSTEM NEEDS IT</span>
+              <p>Small supporting pieces can be included, with a clear stopping point.</p>
+              <div class="scope-layer scope-layer--core">
+                <span>THE CORE</span>
+                <strong>Your custom<br />AI system</strong>
+                <p>Built and tested for the problem you chose.</p>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
+      <a class="next-cue next-cue--yellow" href="#proof-and-control">
+        <span>Next</span><strong>See how the system is judged</strong><b aria-hidden="true">↓</b>
+      </a>
     </section>
 
-    <section class="section-shell fit-section" aria-labelledby="fit-title">
-      <div class="container fit-grid">
-        <div>
-          <p class="section-index">06 / FIT</p>
-          <h2 id="fit-title" class="h-closer">Is one constraint worth a 90-day build?</h2>
+    <section id="proof-and-control" class="chapter chapter--cream" aria-labelledby="proof-title">
+      <div class="container">
+        <header class="chapter-head">
+          <div class="chapter-number"><span>04</span><b>PROOF + CONTROL</b></div>
+          <div class="chapter-copy">
+            <h2 id="proof-title">Decide how to judge the system before we build it.</h2>
+            <p>We record the starting point, test the system with real work, and review what happened with you.</p>
+          </div>
+        </header>
+
+        <!-- @r020:F2 proof: the before-test-review board shows the evidence path without inventing a client outcome. -->
+        <div class="review-board" aria-label="Before, test, and review evidence path">
+          <article class="review-stage review-stage--orange">
+            <span>BEFORE</span><strong>Record what happens now.</strong><p>Start with the real process, not a guess.</p>
+          </article>
+          <div class="review-arrow" aria-hidden="true">→</div>
+          <article class="review-stage review-stage--cyan">
+            <span>TEST</span><strong>Run real work through it.</strong><p>Use the check you agreed on before the build.</p>
+          </article>
+          <div class="review-arrow" aria-hidden="true">→</div>
+          <article class="review-stage review-stage--green">
+            <span>REVIEW</span><strong>Decide what happens next.</strong><p>Keep it, change it, extend it, or stop.</p>
+          </article>
         </div>
-        <div class="fit-decision">
-          <p class="fit-lede">A useful fit conversation starts with three things:</p>
-          <ol>
-            <li><span>01</span><p>You can name an operating constraint that matters enough to address now.</p></li>
-            <li><span>02</span><p>You are willing to define the evidence before the system is judged.</p></li>
-            <li><span>03</span><p>You want a custom system, not an open-ended agency package or generic automation bundle.</p></li>
-          </ol>
-          <a class="cta cta--large" href="/book" data-cta-source="homepage-fit">See If We're a Fit</a>
-          <p class="fit-note">A fit conversation is a decision step, not a commitment to begin.</p>
+
+        <div class="control-strip">
+          <div><span>YOU CAN SEE THE TEST</span><p>No hidden score and no mystery handoff.</p></div>
+          <div><span>HUMANS KEEP THE DECISION</span><p>Important choices stay visible throughout the Pilot.</p></div>
+          <div><span>THE AGREEMENT GOVERNS RIGHTS</span><p>Rights in client materials, data, and output follow the signed agreement.</p></div>
         </div>
       </div>
-      <div class="container fit-signal" aria-hidden="true">
-        <!-- @r020:F3: The final verdict line pulls the eye from qualification criteria directly into the fit CTA. -->
-        <svg viewBox="0 0 1180 96">
-          <path d="M0 48H1112" />
-          <circle cx="1144" cy="48" r="24" />
-          <circle class="fit-signal-dot" cx="1144" cy="48" r="6" />
-        </svg>
+      <a class="next-cue next-cue--paper" href="#pilot-investment">
+        <span>Next</span><strong>See the price and commitment</strong><b aria-hidden="true">↓</b>
+      </a>
+    </section>
+
+    <section id="pilot-investment" class="chapter chapter--price" aria-labelledby="investment-title">
+      <div class="container price-layout">
+        <div class="price-copy">
+          <div class="chapter-number chapter-number--light"><span>05</span><b>THE PILOT</b></div>
+          <h2 id="investment-title">One problem.<br />One custom build.<br />One shared review.</h2>
+          <p>This is the paid starting point for working with Buildwise.</p>
+          <a class="cta cta--price" href="/book" data-cta-source="homepage-investment">See If We're a Fit</a>
+        </div>
+        <div class="price-figure" aria-label="The Pilot costs fifteen thousand dollars paid up front and runs for ninety days">
+          <!-- @r020:F3 cta-pull: the high-contrast commitment block makes price and duration clear before the fit action. -->
+          <span class="price-label">PAID UP FRONT</span>
+          <strong>$15,000</strong>
+          <div class="price-rule"></div>
+          <b>90 days</b>
+          <p>to build, connect, test, and review the system</p>
+        </div>
+      </div>
+      <a class="next-cue next-cue--ink" href="#fit-decision">
+        <span>Next</span><strong>Decide if this is the right first move</strong><b aria-hidden="true">↓</b>
+      </a>
+    </section>
+
+    <section id="fit-decision" class="chapter chapter--fit" aria-labelledby="fit-title">
+      <div class="container fit-layout">
+        <div class="fit-heading">
+          <div class="chapter-number"><span>06</span><b>FIT CHECK</b></div>
+          <h2 id="fit-title">Is one part of the business worth rebuilding first?</h2>
+        </div>
+        <div class="fit-panel">
+          <p class="fit-intro">This Pilot may fit if:</p>
+          <ul>
+            <li><span>1</span><p>One operating problem matters enough to address now.</p></li>
+            <li><span>2</span><p>Real work can be used to test the system.</p></li>
+            <li><span>3</span><p>You want a custom build—not a generic automation bundle.</p></li>
+          </ul>
+          <a class="cta cta--final" href="/book" data-cta-source="homepage-fit">See If We're a Fit <span aria-hidden="true">→</span></a>
+          <p class="fit-note">A fit conversation is a decision step. It is not a commitment to begin.</p>
+        </div>
       </div>
     </section>
   </div>
 </BaseLayout>
 
 <style>
-  .home-refresh { background: #050507; overflow: hidden; }
-  .section-shell { position: relative; padding: clamp(96px, 12vw, 172px) 0; border-bottom: 1px solid var(--rule); }
-  .hero { min-height: 100svh; padding-top: clamp(116px, 10vw, 148px); padding-bottom: 0; display: flex; flex-direction: column; }
-  .hero-grid { display: grid; grid-template-columns: minmax(0, 1.05fr) minmax(420px, .95fr); gap: clamp(56px, 7vw, 108px); align-items: center; flex: 1; }
-  .hero-copy { max-width: 720px; }
-  .eyebrow, .section-index, .boundary-kicker, .illustrative-note { font-family: var(--mono); text-transform: uppercase; letter-spacing: .16em; }
-  .eyebrow { color: var(--y2); font-size: 11px; margin-bottom: 32px; }
-  .hero .h-hero { font-size: clamp(54px, 5.8vw, 84px); line-height: .92; text-wrap: balance; }
-  .hero .h-hero span { color: var(--ink-dim); }
-  .hero-sub { margin-top: 26px; font-size: clamp(18px, 1.5vw, 21px); max-width: 620px; }
-  .hero-actions { display: flex; align-items: center; flex-wrap: wrap; gap: 24px; margin-top: 30px; }
-  .text-link { font-family: var(--mono); font-size: 12px; letter-spacing: .12em; text-transform: uppercase; color: var(--ink-dim); min-height: 44px; display: inline-flex; align-items: center; gap: 12px; }
-  .hero-system { max-width: 620px; justify-self: end; }
-  .hero-system svg { width: 100%; }
-  .hero-system figcaption, .mechanism-map figcaption, .evidence-console figcaption { color: var(--ink-dim); font-family: var(--mono); font-size: 12px; line-height: 1.55; letter-spacing: .12em; text-transform: uppercase; margin-top: 18px; }
-  .line { fill: none; stroke: var(--y2); stroke-width: 1.5; }
-  .line.dim { stroke: var(--rule-bright); }
-  .node { stroke-width: 1.5; }
-  .node.hollow { fill: #050507; stroke: var(--ink-dim); }
-  .node.verdict { fill: var(--y2); stroke: var(--y2); }
-  .node-dot { fill: var(--y2); }
-  .node-dot.dark { fill: #050507; }
-  .stage-index, .stage-title, .stage-note { font-family: var(--mono); fill: var(--ink-dim); letter-spacing: .12em; }
-  .stage-index { font-size: 12px; }
-  .stage-title { font-size: 12px; font-weight: 700; fill: var(--ink); }
-  .stage-note { font-size: 9px; }
-  .yellow { fill: var(--y2); }
-  .bracket { fill: none; stroke: var(--rule-bright); stroke-width: 1; }
-  .hero-ledger { margin-top: clamp(64px, 8vw, 112px); border-top: 1px solid var(--rule); display: grid; grid-template-columns: repeat(4, 1fr); }
-  .hero-ledger span { font-family: var(--mono); font-size: 10px; letter-spacing: .14em; color: var(--ink-dim); padding: 22px 0; border-right: 1px solid var(--rule); }
-  .hero-ledger span:not(:first-child) { padding-left: 22px; }
-  .hero-ledger span:last-child { border-right: 0; }
-  .split-head { display: grid; grid-template-columns: 210px minmax(0, 1fr); gap: clamp(36px, 6vw, 96px); align-items: start; }
-  .section-index { font-size: 10px; color: var(--y2); padding-top: 14px; }
-  .split-head .h-section { max-width: 920px; }
-  .split-head .lede { margin-top: 28px; }
-  .constraint-ledger { margin-top: 76px; border-top: 1px solid var(--rule-bright); }
-  .constraint-row { min-height: 142px; display: grid; grid-template-columns: 70px 190px minmax(260px, 1fr) 180px; gap: 28px; align-items: center; border-bottom: 1px solid var(--rule); }
-  .row-code, .constraint-row h3 { font-family: var(--mono); letter-spacing: .14em; }
-  .row-code { color: var(--ink-dim); font-size: 11px; }
-  .constraint-row h3 { color: var(--ink); font-size: 13px; }
-  .constraint-row p { color: var(--ink-dim); font-size: 17px; max-width: 520px; }
-  .row-signal path { fill: none; stroke: var(--rule-bright); stroke-width: 1; }
-  .row-signal circle { fill: var(--y2); }
-  .illustrative-note { font-size: 12px; line-height: 1.55; color: var(--ink-dim); margin-top: 22px; }
-  .system-section { background: linear-gradient(180deg, rgba(240,255,0,.02), transparent 30%); }
-  .mechanism-map { margin-top: 80px; }
-  .mechanism-map svg { width: 100%; }
-  .mechanism-spine, .mechanism-progress, .day-bracket, .human-gate path { fill: none; stroke: var(--rule-bright); stroke-width: 1.5; }
-  .mechanism-progress { stroke: var(--y2); }
-  .phase-node { fill: #050507; stroke: var(--ink-dim); stroke-width: 1.5; }
-  .phase-node--verdict { fill: var(--y2); stroke: var(--y2); }
-  .phase-dot { fill: var(--y2); }
-  .phase-dot--dark { fill: #050507; }
-  .phase-number, .phase-title, .phase-copy, .day-label, .human-gate text { font-family: var(--mono); text-anchor: start; letter-spacing: .12em; }
-  .phase-number { fill: var(--ink-faint); font-size: 12px; }
-  .phase-number--yellow { fill: var(--y2); }
-  .phase-title { fill: var(--ink); font-size: 14px; font-weight: 700; }
-  .phase-copy { fill: var(--ink-dim); font-size: 11px; }
-  .day-label { fill: var(--ink-dim); font-size: 10px; }
-  .human-gate circle { fill: var(--y2); }
-  .human-gate text { fill: var(--ink-dim); font-size: 10px; }
-  .mechanism-mobile { display: none; }
-  .build-boundary { display: grid; grid-template-columns: minmax(360px, .82fr) minmax(0, 1.18fr); gap: clamp(64px, 9vw, 132px); align-items: center; margin-top: 72px; }
-  .boundary-visual svg { width: 100%; max-width: 520px; }
-  .outer-boundary, .enable-boundary { fill: none; stroke: var(--rule-bright); stroke-width: 1; }
-  .enable-boundary { stroke: var(--ink-faint); stroke-dasharray: 4 7; }
-  .core-shape { fill: rgba(240,255,0,.035); stroke: var(--y2); stroke-width: 1.5; }
-  .core-dot { fill: var(--y2); }
-  .boundary-label { font-family: var(--mono); font-size: 11px; letter-spacing: .12em; fill: var(--ink-dim); }
-  .boundary-label--core { fill: var(--ink); font-weight: 700; }
-  .boundary-copy { border-top: 1px solid var(--rule-bright); }
-  .boundary-item { padding: 34px 0; border-bottom: 1px solid var(--rule); }
-  .boundary-kicker { font-size: 9px; color: var(--ink-dim); display: flex; gap: 16px; }
-  .boundary-kicker span { color: var(--y2); }
-  .boundary-item h3 { margin-top: 14px; font-size: clamp(23px, 2.4vw, 34px); }
-  .boundary-item > p:last-child { color: var(--ink-dim); margin-top: 9px; max-width: 650px; font-size: 17px; }
-  .evidence-grid { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(320px, .9fr); gap: clamp(56px, 8vw, 120px); margin-top: 72px; align-items: center; }
-  .evidence-console svg { width: 100%; }
-  .console-frame, .console-rule { fill: rgba(10,10,14,.52); stroke: var(--rule-bright); stroke-width: 1; }
-  .console-rule { fill: none; }
-  .console-head, .console-meta, .console-index, .console-label, .console-value { font-family: var(--mono); letter-spacing: .11em; }
-  .console-head { fill: var(--ink); font-size: 11px; font-weight: 700; }
-  .console-meta, .console-index, .console-value { fill: var(--ink-dim); font-size: 10px; }
-  .console-label { fill: var(--ink); font-size: 11px; }
-  .console-state { fill: var(--y1); }
-  .console-state.hollow { fill: none; stroke: var(--y2); stroke-width: 1.5; }
-  .console-verdict { stroke: var(--y2); stroke-width: 2; }
-  .evidence-principles { border-top: 1px solid var(--rule-bright); }
-  .evidence-principles article { display: grid; grid-template-columns: 52px 1fr; gap: 4px 18px; padding: 28px 0; border-bottom: 1px solid var(--rule); }
-  .evidence-principles span { grid-row: 1 / 3; font-family: var(--mono); color: var(--y2); font-size: 10px; padding-top: 7px; }
-  .evidence-principles h3 { font-size: 22px; }
-  .evidence-principles p { color: var(--ink-dim); font-size: 16px; }
-  .investment-section { background: linear-gradient(135deg, rgba(240,255,0,.025), transparent 45%); }
-  .investment-grid { display: grid; grid-template-columns: minmax(0, .9fr) minmax(420px, 1.1fr); gap: clamp(60px, 10vw, 150px); align-items: center; }
-  .investment-copy .h-section { margin-top: 26px; }
-  .investment-copy .lede { margin-top: 26px; }
-  .investment-copy .cta { margin-top: 36px; }
-  .investment-figure svg { width: 100%; }
-  .investment-line, .investment-corner { fill: none; stroke: var(--rule-bright); stroke-width: 1; }
-  .investment-node { fill: var(--y2); }
-  .investment-node--end { fill: #050507; stroke: var(--y2); stroke-width: 2; }
-  .investment-number, .investment-price, .investment-unit, .investment-label { font-family: var(--sans); fill: var(--ink); }
-  .investment-number { font-size: 170px; font-weight: 800; letter-spacing: -.07em; }
-  .investment-price { font-size: 92px; font-weight: 800; letter-spacing: -.055em; fill: var(--y2); }
-  .investment-unit, .investment-label { font-family: var(--mono); font-size: 11px; letter-spacing: .14em; fill: var(--ink-dim); }
-  .fit-section { padding-bottom: clamp(72px, 9vw, 120px); }
-  .fit-grid { display: grid; grid-template-columns: minmax(0, 1.05fr) minmax(380px, .95fr); gap: clamp(70px, 10vw, 150px); }
-  .fit-grid .h-closer { margin-top: 28px; max-width: 720px; }
-  .fit-lede { color: var(--ink-dim); font-size: 19px; }
-  .fit-decision ol { list-style: none; margin-top: 28px; border-top: 1px solid var(--rule-bright); }
-  .fit-decision li { display: grid; grid-template-columns: 48px 1fr; gap: 18px; padding: 24px 0; border-bottom: 1px solid var(--rule); }
-  .fit-decision li span { color: var(--y2); font-family: var(--mono); font-size: 10px; padding-top: 6px; }
-  .fit-decision li p { color: var(--ink-dim); font-size: 17px; }
-  .cta--large { margin-top: 36px; min-height: 58px; padding-inline: 28px; }
-  .fit-note { color: var(--ink-dim); font-family: var(--mono); text-transform: uppercase; letter-spacing: .1em; font-size: 12px; line-height: 1.55; margin-top: 18px; }
-  .fit-signal { margin-top: 84px; }
-  .fit-signal path, .fit-signal circle { fill: none; stroke: var(--rule-bright); stroke-width: 1; }
-  .fit-signal circle { stroke: var(--y2); }
-  .fit-signal .fit-signal-dot { fill: var(--y2); stroke: none; }
-
-  @media (max-width: 980px) {
-    .hero-grid, .investment-grid, .fit-grid { grid-template-columns: 1fr; }
-    .hero-system { justify-self: start; max-width: 650px; }
-    .split-head { grid-template-columns: 150px minmax(0, 1fr); }
-    .constraint-row { grid-template-columns: 52px 130px 1fr; }
-    .row-signal { display: none; }
-    .build-boundary, .evidence-grid { grid-template-columns: 1fr; }
-    .boundary-visual { max-width: 500px; }
-    .investment-figure { max-width: 650px; }
+  .home-new {
+    --hm-ink: #0b0b0e;
+    --hm-charcoal: #16161d;
+    --hm-paper: #f8f6ee;
+    --hm-cream: #eeeade;
+    --hm-yellow: #f0ff00;
+    --hm-orange: #ff8a3d;
+    --hm-cyan: #38d8ff;
+    --hm-green: #65ff8e;
+    --hm-white: #fffef8;
+    --hm-muted: #55545a;
+    background: var(--hm-ink);
+    color: var(--hm-white);
+    overflow: hidden;
   }
 
-  @media (max-width: 700px) {
-    .section-shell { padding: 88px 0; }
-    .hero { padding-top: 104px; padding-bottom: 0; }
+  .home-new :global(.container) { max-width: 1280px; }
+  .home-new p, .home-new a, .home-new li, .home-new span, .home-new b, .home-new strong { font-family: var(--sans); }
+
+  .hero {
+    position: relative;
+    min-height: 100svh;
+    display: flex;
+    flex-direction: column;
+    padding: clamp(120px, 11vw, 168px) 0 0;
+    background: var(--hm-ink);
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    width: min(46vw, 710px);
+    height: 14px;
+    top: 0;
+    right: 0;
+    background: var(--hm-yellow);
+  }
+  .hero-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1.05fr) minmax(420px, .95fr);
+    gap: clamp(54px, 7vw, 104px);
+    align-items: center;
+    flex: 1;
+    padding-bottom: clamp(72px, 9vw, 124px);
+  }
+  .hero-copy { max-width: 760px; }
+  .hero-kicker {
+    display: inline-flex;
+    align-items: center;
+    min-height: 36px;
+    padding: 8px 14px;
+    color: var(--hm-ink);
+    background: var(--hm-yellow);
+    font-size: 15px;
+    font-weight: 800;
+    line-height: 1.2;
+    letter-spacing: .07em;
+    border-radius: 999px;
+  }
+  .hero .h-hero {
+    margin-top: 30px;
+    font-size: clamp(54px, 5.2vw, 78px);
+    line-height: .94;
+    letter-spacing: -.055em;
+    text-wrap: balance;
+  }
+  .hero .h-hero span { display: block; margin-top: .14em; color: var(--hm-yellow); }
+  .hero-sub {
+    max-width: 690px;
+    margin-top: 30px;
+    color: #d7d6dc;
+    font-size: clamp(19px, 1.65vw, 23px);
+    line-height: 1.5;
+  }
+  .hero-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 24px; margin-top: 34px; }
+  .cta--hero { min-height: 58px; padding: 16px 25px; font-size: 17px; border-radius: 8px; }
+  .hero-link { min-height: 52px; display: inline-flex; align-items: center; gap: 10px; color: #e6e5ea; font-size: 16px; font-weight: 700; border-bottom: 2px solid var(--hm-yellow); }
+  .hero-facts { list-style: none; display: flex; flex-wrap: wrap; gap: 12px; margin-top: 38px; }
+  .hero-facts li { min-width: 142px; display: grid; gap: 2px; padding: 13px 16px; border: 1px solid #3a3940; border-radius: 8px; }
+  .hero-facts strong { color: var(--hm-yellow); font-size: 24px; line-height: 1; }
+  .hero-facts span { color: #c8c7cd; font-size: 14px; line-height: 1.35; }
+
+  .hero-visual {
+    position: relative;
+    background: var(--hm-yellow);
+    color: var(--hm-ink);
+    border-radius: 28px;
+    padding: clamp(28px, 4vw, 52px);
+    box-shadow: 18px 18px 0 var(--hm-cyan);
+  }
+  .visual-label { font-size: 15px; font-weight: 850; letter-spacing: .08em; }
+  .hero-flow { list-style: none; display: grid; gap: 12px; margin-top: 28px; }
+  .flow-block { border-radius: 16px; padding: 22px 24px; }
+  .flow-block span { display: block; font-size: 15px; font-weight: 800; letter-spacing: .07em; }
+  .flow-block strong { display: block; margin-top: 8px; font-size: clamp(24px, 2.2vw, 34px); line-height: 1.04; letter-spacing: -.035em; }
+  .flow-block--orange { background: var(--hm-orange); }
+  .flow-block--ink { background: var(--hm-ink); color: var(--hm-white); }
+  .flow-block--green { background: var(--hm-green); }
+  .flow-arrow { height: 22px; display: grid; place-items: center; font-size: 26px; font-weight: 900; line-height: 1; }
+  .visual-caption { margin-top: 24px; font-size: 16px; line-height: 1.45; font-weight: 650; }
+
+  .chapter { position: relative; padding: clamp(92px, 10vw, 148px) 0 0; }
+  .chapter--paper { background: var(--hm-paper); color: var(--hm-ink); }
+  .chapter--ink { background: var(--hm-charcoal); color: var(--hm-white); }
+  .chapter--yellow { background: var(--hm-yellow); color: var(--hm-ink); }
+  .chapter--cream { background: var(--hm-cream); color: var(--hm-ink); }
+  .chapter--price { background: #101015; color: var(--hm-white); }
+  .chapter--fit { background: var(--hm-paper); color: var(--hm-ink); padding-bottom: clamp(104px, 12vw, 180px); }
+
+  .chapter-head { display: grid; grid-template-columns: 220px minmax(0, 1fr); gap: clamp(38px, 7vw, 104px); align-items: start; }
+  .chapter-head--compact { grid-column: 1 / -1; }
+  .chapter-number { display: flex; align-items: center; gap: 14px; padding-top: 12px; }
+  .chapter-number span { width: 52px; height: 52px; display: grid; place-items: center; color: var(--hm-ink); background: var(--hm-yellow); border-radius: 50%; font-size: 18px; font-weight: 900; }
+  .chapter-number b { font-size: 15px; letter-spacing: .08em; line-height: 1.2; }
+  .chapter-number--light b { color: var(--hm-white); }
+  .chapter-number--dark span { color: var(--hm-yellow); background: var(--hm-ink); }
+  .chapter-number--dark b { color: var(--hm-ink); }
+  .chapter-copy h2, .price-copy h2, .fit-heading h2 {
+    max-width: 900px;
+    font-size: clamp(48px, 6.2vw, 88px);
+    line-height: .96;
+    letter-spacing: -.05em;
+    text-wrap: balance;
+  }
+  .chapter-copy > p { max-width: 780px; margin-top: 24px; color: var(--hm-muted); font-size: clamp(19px, 1.7vw, 23px); line-height: 1.5; }
+  .chapter-head--light .chapter-copy > p { color: #c6c5ca; }
+  .chapter-head--light .chapter-copy h2 { color: var(--hm-white); }
+  .chapter--paper .chapter-copy h2,
+  .chapter--cream .chapter-copy h2 { color: var(--hm-ink); }
+  .chapter-copy--dark > p { color: #29292d; }
+  .chapter-copy--dark h2 { color: var(--hm-ink); }
+
+  .stuck-list { display: grid; gap: 18px; margin-top: 76px; }
+  .stuck-row { display: grid; grid-template-columns: 170px minmax(0, 1fr) 150px; align-items: center; min-height: 176px; background: var(--hm-white); border: 3px solid var(--hm-ink); border-radius: 18px; overflow: hidden; }
+  .stuck-state { height: 100%; display: flex; flex-direction: column; justify-content: center; gap: 5px; padding: 26px; color: var(--hm-ink); }
+  .stuck-state span { font-size: 18px; font-weight: 900; }
+  .stuck-state strong { font-size: 15px; letter-spacing: .08em; }
+  .stuck-row--orange .stuck-state { background: var(--hm-orange); }
+  .stuck-row--cyan .stuck-state { background: var(--hm-cyan); }
+  .stuck-row--green .stuck-state { background: var(--hm-green); }
+  .stuck-copy { padding: 28px clamp(24px, 4vw, 54px); }
+  .stuck-copy h3 { color: var(--hm-ink); font-size: clamp(26px, 2.8vw, 40px); line-height: 1.05; letter-spacing: -.035em; }
+  .stuck-copy p { max-width: 720px; margin-top: 10px; color: #4b4a4f; font-size: 18px; line-height: 1.5; }
+  .stuck-mark { display: flex; align-items: center; gap: 14px; padding: 30px; }
+  .stuck-mark span { width: 54px; height: 10px; background: var(--hm-yellow); border: 2px solid var(--hm-ink); }
+  .stuck-mark b { font-size: 36px; }
+  .choice-statement { display: grid; grid-template-columns: 170px 1fr; gap: 36px; align-items: center; margin-top: 28px; padding: 32px; color: var(--hm-ink); background: var(--hm-yellow); border-radius: 18px; }
+  .choice-statement span { font-size: 15px; font-weight: 900; letter-spacing: .08em; }
+  .choice-statement p { font-size: clamp(24px, 3vw, 40px); font-weight: 800; line-height: 1.05; letter-spacing: -.03em; }
+
+  .pilot-path { list-style: none; display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; margin-top: 76px; }
+  .pilot-step { min-height: 420px; display: flex; flex-direction: column; padding: clamp(28px, 3.4vw, 48px); color: var(--hm-ink); border-radius: 22px; }
+  .pilot-step--orange { background: var(--hm-orange); }
+  .pilot-step--cyan { background: var(--hm-cyan); transform: translateY(34px); }
+  .pilot-step--green { background: var(--hm-green); transform: translateY(68px); }
+  .step-top { display: flex; align-items: start; justify-content: space-between; gap: 20px; }
+  .step-top span { max-width: 150px; font-size: 15px; font-weight: 900; letter-spacing: .07em; }
+  .step-top strong { font-size: clamp(68px, 7vw, 104px); line-height: .75; letter-spacing: -.08em; }
+  .pilot-step h3 { margin-top: auto; color: var(--hm-ink); font-size: clamp(30px, 3.1vw, 44px); line-height: 1; letter-spacing: -.04em; }
+  .pilot-step p { margin-top: 14px; font-size: 18px; line-height: 1.45; }
+  .pilot-note { max-width: 840px; margin: 104px 0 0 34%; padding: 24px 0 44px; color: #d5d4d9; font-size: 17px; line-height: 1.5; border-top: 2px solid var(--hm-yellow); }
+  .pilot-note strong { display: block; margin-bottom: 8px; color: var(--hm-yellow); font-size: 18px; }
+
+  .build-layout { display: grid; grid-template-columns: minmax(0, .85fr) minmax(500px, 1.15fr); gap: clamp(52px, 8vw, 118px); align-items: center; }
+  .scope-map { min-width: 0; }
+  .scope-layer { border-radius: 26px; }
+  .scope-layer > span { display: block; font-size: 15px; font-weight: 900; letter-spacing: .08em; }
+  .scope-layer > p { margin-top: 8px; font-size: 17px; line-height: 1.42; }
+  .scope-layer--outside { padding: 28px; background: var(--hm-orange); }
+  .scope-layer--support { margin-top: 24px; padding: 28px; background: var(--hm-paper); border: 3px solid var(--hm-ink); }
+  .scope-layer--core { margin-top: 24px; padding: clamp(32px, 4vw, 56px); color: var(--hm-white); background: var(--hm-ink); }
+  .scope-layer--core strong { display: block; margin-top: 18px; color: var(--hm-yellow); font-size: clamp(44px, 5vw, 72px); line-height: .94; letter-spacing: -.05em; }
+  .scope-layer--core p { color: #d3d2d8; font-size: 18px; }
+
+  .review-board { display: grid; grid-template-columns: 1fr 72px 1fr 72px 1fr; align-items: stretch; margin-top: 76px; }
+  .review-stage { min-height: 320px; display: flex; flex-direction: column; padding: clamp(28px, 3.4vw, 46px); border: 3px solid var(--hm-ink); border-radius: 22px; }
+  .review-stage--orange { background: var(--hm-orange); }
+  .review-stage--cyan { background: var(--hm-cyan); }
+  .review-stage--green { background: var(--hm-green); }
+  .review-stage span { font-size: 15px; font-weight: 900; letter-spacing: .08em; }
+  .review-stage strong { margin-top: auto; font-size: clamp(27px, 2.8vw, 40px); line-height: 1.02; letter-spacing: -.035em; }
+  .review-stage p { margin-top: 12px; font-size: 17px; line-height: 1.45; }
+  .review-arrow { display: grid; place-items: center; font-size: 42px; font-weight: 900; }
+  .control-strip { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; margin-top: 28px; }
+  .control-strip > div { padding: 26px; color: var(--hm-white); background: var(--hm-ink); border-radius: 16px; }
+  .control-strip span { color: var(--hm-yellow); font-size: 15px; font-weight: 900; letter-spacing: .07em; }
+  .control-strip p { margin-top: 10px; color: #d0cfd4; font-size: 17px; line-height: 1.45; }
+
+  .price-layout { display: grid; grid-template-columns: minmax(0, .9fr) minmax(460px, 1.1fr); gap: clamp(58px, 9vw, 132px); align-items: center; }
+  .price-copy h2 { margin-top: 30px; color: var(--hm-white); font-size: clamp(48px, 5.5vw, 78px); }
+  .price-copy > p { max-width: 560px; margin-top: 24px; color: #c9c8ce; font-size: 20px; }
+  .cta--price { min-height: 58px; margin-top: 34px; padding: 16px 25px; font-size: 17px; border-radius: 8px; }
+  .price-figure { position: relative; padding: clamp(34px, 5vw, 68px); color: var(--hm-ink); background: var(--hm-yellow); border-radius: 28px; box-shadow: 20px 20px 0 var(--hm-orange); }
+  .price-label { font-size: 14px; font-weight: 900; letter-spacing: .08em; }
+  .price-figure > strong { display: block; margin-top: 16px; font-size: clamp(72px, 8vw, 124px); line-height: .88; letter-spacing: -.075em; }
+  .price-rule { height: 5px; margin: 34px 0; background: var(--hm-ink); }
+  .price-figure b { font-size: clamp(40px, 5vw, 70px); line-height: 1; letter-spacing: -.05em; }
+  .price-figure p { max-width: 420px; margin-top: 14px; font-size: 18px; line-height: 1.45; }
+
+  .fit-layout { display: grid; grid-template-columns: minmax(0, 1.05fr) minmax(420px, .95fr); gap: clamp(58px, 9vw, 132px); align-items: start; }
+  .fit-heading h2 { margin-top: 34px; color: var(--hm-ink); }
+  .fit-panel { padding: clamp(30px, 4vw, 50px); color: var(--hm-white); background: var(--hm-ink); border-radius: 24px; }
+  .fit-intro { font-size: 20px; font-weight: 750; }
+  .fit-panel ul { list-style: none; display: grid; gap: 0; margin-top: 24px; border-top: 1px solid #3b3a41; }
+  .fit-panel li { display: grid; grid-template-columns: 50px 1fr; gap: 18px; align-items: start; padding: 24px 0; border-bottom: 1px solid #3b3a41; }
+  .fit-panel li span { width: 38px; height: 38px; display: grid; place-items: center; color: var(--hm-ink); background: var(--hm-yellow); border-radius: 50%; font-size: 16px; font-weight: 900; }
+  .fit-panel li p { color: #e2e1e5; font-size: 18px; line-height: 1.45; }
+  .cta--final { width: 100%; min-height: 64px; justify-content: space-between; margin-top: 32px; padding: 17px 22px; font-size: 18px; border-radius: 8px; }
+  .fit-note { margin-top: 18px; color: #b9b8be; font-size: 15px; line-height: 1.5; }
+
+  .next-cue { max-width: none; min-height: 92px; display: grid; grid-template-columns: 86px 1fr 64px; gap: 22px; align-items: center; margin-top: clamp(72px, 9vw, 120px); padding: 22px max(var(--container-x), calc((100vw - 1280px) / 2)); border-top: 1px solid rgba(255,255,255,.18); }
+  .next-cue span { font-size: 15px; font-weight: 850; letter-spacing: .08em; text-transform: uppercase; }
+  .next-cue strong { font-size: 18px; }
+  .next-cue b { justify-self: end; font-size: 30px; }
+  .next-cue--dark, .next-cue--ink { color: var(--hm-white); background: #202028; }
+  .next-cue--dark span, .next-cue--ink span { color: var(--hm-yellow); }
+  .next-cue--paper { color: var(--hm-ink); background: var(--hm-cyan); border-color: var(--hm-ink); }
+  .next-cue--yellow { color: var(--hm-yellow); background: var(--hm-ink); }
+
+  @media (max-width: 1040px) {
+    .hero-grid, .build-layout, .price-layout, .fit-layout { grid-template-columns: 1fr; }
+    .hero-visual { max-width: 720px; }
+    .chapter-head { grid-template-columns: 170px minmax(0, 1fr); }
+    .pilot-step--cyan { transform: translateY(20px); }
+    .pilot-step--green { transform: translateY(40px); }
+    .review-board { grid-template-columns: 1fr; gap: 14px; }
+    .review-arrow { height: 42px; transform: rotate(90deg); }
+    .control-strip { grid-template-columns: 1fr; }
+    .scope-map, .price-figure { max-width: 760px; }
+  }
+
+  @media (max-width: 760px) {
+    .hero { padding-top: 88px; }
+    .hero::before { width: 58vw; height: 9px; }
     .hero-grid { gap: 54px; }
-    .hero .h-hero { font-size: clamp(44px, 12.5vw, 60px); }
-    .hero-sub { margin-top: 22px; font-size: 17px; line-height: 1.48; }
-    .hero-actions { align-items: stretch; flex-direction: column; margin-top: 24px; }
-    .hero-actions .cta, .hero-actions .text-link { justify-content: center; width: 100%; }
-    .hero-ledger { grid-template-columns: 1fr 1fr; }
-    .hero-ledger span { padding: 16px 12px 16px 0; border-bottom: 1px solid var(--rule); }
-    .hero-ledger span:not(:first-child) { padding-left: 0; }
-    .hero-ledger span:nth-child(even) { border-right: 0; padding-left: 14px; }
-    .split-head { grid-template-columns: 1fr; gap: 24px; }
-    .section-index { padding-top: 0; }
-    .constraint-ledger, .mechanism-map, .build-boundary, .evidence-grid { margin-top: 48px; }
-    .constraint-row { grid-template-columns: 42px 1fr; gap: 8px 14px; padding: 22px 0; }
-    .constraint-row p { grid-column: 2; }
-    .mechanism-map > svg { display: none; }
-    .mechanism-mobile { display: grid; list-style: none; margin: 0; padding: 0; }
-    .mechanism-mobile li { position: relative; display: grid; grid-template-columns: 54px 1fr; gap: 18px; min-height: 124px; padding-bottom: 28px; }
-    .mechanism-mobile li:not(:last-child)::before { content: ''; position: absolute; left: 21px; top: 40px; bottom: 8px; width: 1px; background: var(--rule-bright); }
-    .mechanism-mobile li > span { width: 44px; height: 44px; border: 1px solid var(--ink-dim); border-radius: 50%; display: grid; place-items: center; color: var(--y2); font-family: var(--mono); font-size: 11px; }
-    .mechanism-mobile li strong { display: block; color: var(--ink); font-size: 22px; line-height: 1.1; text-transform: uppercase; }
-    .mechanism-mobile li p { color: var(--ink-dim); margin-top: 8px; font-size: 15px; line-height: 1.45; }
-    .mechanism-mobile__verdict > span { background: var(--y2); color: #050507 !important; border-color: var(--y2) !important; }
-    .build-boundary { gap: 42px; }
-    .boundary-visual svg { max-width: 100%; }
-    .investment-grid { gap: 36px; }
-    .investment-price { font-size: 82px; }
-    .investment-number { font-size: 150px; }
-    .fit-grid { gap: 46px; }
+    .hero-kicker { min-height: 34px; padding: 7px 11px; font-size: 14px; }
+    .hero .h-hero { margin-top: 20px; font-size: clamp(39px, 10.8vw, 52px); }
+    .hero-sub { margin-top: 18px; font-size: 17px; line-height: 1.42; }
+    .hero-actions { align-items: stretch; flex-direction: column; margin-top: 20px; gap: 14px; }
+    .cta--hero { min-height: 54px; padding-block: 14px; }
+    .hero-actions .cta, .hero-link { width: 100%; justify-content: center; text-align: center; }
+    .hero-facts { display: grid; grid-template-columns: 1fr; }
+    .hero-visual { border-radius: 20px; box-shadow: 9px 9px 0 var(--hm-cyan); }
+    .flow-block strong { font-size: 28px; }
+
+    .chapter { padding-top: 84px; }
+    .chapter-head { grid-template-columns: 1fr; gap: 26px; }
+    .chapter-number { padding-top: 0; }
+    .chapter-copy h2, .price-copy h2, .fit-heading h2 { font-size: clamp(39px, 11vw, 56px); }
+    .chapter-copy > p { font-size: 18px; }
+
+    .stuck-list { margin-top: 48px; }
+    .stuck-row { grid-template-columns: 1fr; }
+    .stuck-state { min-height: 82px; flex-direction: row; align-items: center; justify-content: flex-start; gap: 16px; }
+    .stuck-copy { padding: 26px 24px; }
+    .stuck-copy h3 { font-size: 28px; }
+    .stuck-copy p { font-size: 17px; }
+    .stuck-mark { display: none; }
+    .choice-statement { grid-template-columns: 1fr; gap: 12px; padding: 26px; }
+    .choice-statement p { font-size: 28px; }
+
+    .pilot-path { grid-template-columns: 1fr; margin-top: 48px; }
+    .pilot-step { min-height: 300px; }
+    .pilot-step--cyan, .pilot-step--green { transform: none; }
+    .pilot-note { margin: 34px 0 0; padding-bottom: 10px; }
+
+    .scope-layer--outside, .scope-layer--support { padding: 20px; }
+    .scope-layer--core { padding: 28px 24px; }
+    .scope-layer--core strong { font-size: 46px; }
+
+    .review-board { margin-top: 48px; }
+    .review-stage { min-height: 260px; }
+    .review-stage strong { font-size: 31px; }
+    .price-figure { border-radius: 20px; box-shadow: 9px 9px 0 var(--hm-orange); }
+
+    .fit-panel { padding: 28px 22px; }
+    .next-cue { min-height: 86px; grid-template-columns: 58px 1fr 32px; gap: 12px; padding-inline: var(--container-x); }
+    .next-cue strong { font-size: 16px; }
   }
 
   @media (prefers-reduced-motion: reduce) {
-    .home-refresh *, .home-refresh *::before, .home-refresh *::after { animation: none !important; transition: none !important; }
+    .home-new *, .home-new *::before, .home-new *::after { animation: none !important; transition: none !important; }
   }
 </style>

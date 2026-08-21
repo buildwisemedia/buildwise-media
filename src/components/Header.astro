@@ -84,10 +84,20 @@ const navLinks = homepageMode
 }
 .nav-link:hover { color: var(--y2); }
 
+.site-header[data-homepage-mode="true"] .nav-link {
+  font-family: var(--sans);
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: 0;
+  text-transform: none;
+  color: var(--ink);
+}
+
 .cta--header {
   padding: 12px 18px;
   font-size: 14px;
 }
+.site-header[data-homepage-mode="true"] .cta--header { font-size: 15px; }
 
 .nav-toggle {
   display: none;

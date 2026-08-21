@@ -13,7 +13,7 @@ const masthead = 'BUILDWISE·MEDIA';
 
     <div class="footer-row footer-row--top">
       <Wordmark size="footer" />
-      <p class="footer-tag mono">{homepageMode ? 'Custom AI systems. Built around one chosen constraint.' : 'Marketing as operations. Verified weekly.'}</p>
+      <p class="footer-tag mono">{homepageMode ? 'Custom AI systems for work that keeps getting stuck.' : 'Marketing as operations. Verified weekly.'}</p>
     </div>
 
     <hr class="divider" />
@@ -83,7 +83,7 @@ const masthead = 'BUILDWISE·MEDIA';
 .footer-row { display: flex; flex-wrap: wrap; gap: 24px; align-items: center; justify-content: space-between; }
 .footer-row--cols { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 32px; }
 .footer-row--homepage { justify-content: flex-start; gap: clamp(18px, 3vw, 36px); }
-.footer-row--homepage a { min-height: 44px; padding: 11px 0; display: inline-flex; align-items: center; font-family: var(--mono); font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-dim); }
+.footer-row--homepage a { min-height: 44px; padding: 11px 0; display: inline-flex; align-items: center; font-family: var(--sans); font-size: 15px; font-weight: 650; letter-spacing: 0; color: var(--ink); }
 
 .footer-tag {
   font-family: var(--mono);
@@ -91,6 +91,14 @@ const masthead = 'BUILDWISE·MEDIA';
   letter-spacing: 0.18em;
   text-transform: uppercase;
   color: var(--ink-dim);
+}
+.site-footer[data-homepage-mode="true"] .footer-tag {
+  font-family: var(--sans);
+  font-size: 16px;
+  line-height: 1.45;
+  letter-spacing: 0;
+  text-transform: none;
+  color: var(--ink);
 }
 
 .footer-label {
@@ -111,6 +119,25 @@ const masthead = 'BUILDWISE·MEDIA';
   margin-top: 24px;
   padding-top: 24px;
   border-top: 1px solid var(--rule);
+}
+.site-footer[data-homepage-mode="true"] .team-voice {
+  font-family: var(--sans);
+  font-size: 15px;
+  line-height: 1.5;
+  letter-spacing: 0;
+  text-transform: none;
+}
+.site-footer[data-homepage-mode="true"] {
+  border-top: 12px solid var(--y2);
+}
+.site-footer[data-homepage-mode="true"] .masthead,
+.site-footer[data-homepage-mode="true"] .copy {
+  font-family: var(--sans);
+  font-size: 15px;
+  line-height: 1.5;
+  letter-spacing: 0;
+  text-transform: none;
+  color: var(--ink);
 }
 
 .footer-list { list-style: none; display: flex; flex-direction: column; gap: 10px; }
