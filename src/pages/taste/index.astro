@@ -127,6 +127,24 @@ const resetCandidates = [
     blueSupport: 'Improve the first system. Connect the next one. Or take what you own and run it yourself. The next step stays yours.',
   },
 ];
+
+const synthYellowHeadings = [
+  { id: 'A', text: 'How your business becomes AI-native.' },
+  { id: 'B', text: 'Build an AI-native business.' },
+  { id: 'C', text: 'From one problem to an AI-native business.' },
+];
+
+const synthBlueHeadings = [
+  { id: 'A', text: 'Keep building toward an AI-native business.' },
+  { id: 'B', text: 'Buildwise keeps building with you.' },
+  { id: 'C', text: 'AI becomes part of how the business works.' },
+];
+
+const synthSteps = [
+  'Pick one problem that matters',
+  'We build and test it',
+  'Keep improving across the business',
+];
 ---
 
 <BaseLayout
@@ -145,6 +163,7 @@ const resetCandidates = [
         <button class="round-tab" type="button" data-round-target="copy">02 · WORDS</button>
         <button class="round-tab" type="button" data-round-target="refine">03 · REFINE</button>
         <button class="round-tab" type="button" data-round-target="reset">04 · RESET</button>
+        <button class="round-tab" type="button" data-round-target="synth">05 · SYNTH</button>
       </nav>
     </header>
 
@@ -442,6 +461,95 @@ const resetCandidates = [
         </div>
         <p class="response-cue">Pick the version that makes Buildwise feel like the right long-term partner—not a one-project shop.</p>
       </section>
+
+      <section class="test-round" data-round="synth" aria-labelledby="synth-round-title" hidden>
+        <div class="round-intro round-intro--synth">
+          <div>
+            <p>ROUND 05 · TRIANGULATION</p>
+            <h1 id="synth-round-title">One direction. Two final language choices.</h1>
+          </div>
+          <span>Built from your Round 4 feedback</span>
+        </div>
+
+        <article class="synth-stage">
+          <section class="synth-hero">
+            <div class="synth-hero-copy">
+              <p>Custom AI systems</p>
+              <h2>Build the systems your business needs next.</h2>
+              <p>Buildwise works with you to build and improve custom AI systems across the business. We start with one important problem, learn from real work, and keep building from there.</p>
+              <span>See If We're a Fit</span>
+            </div>
+            <!-- @r020:F2 proof: the relationship diagram makes the one-problem entry visibly subordinate to the AI-native business arc. -->
+            <div class="synth-arc" role="img" aria-label="Buildwise starts with one problem and keeps building toward an AI-native business">
+              <small>THE BUILDWISE RELATIONSHIP</small>
+              <div><b>01</b><span>ONE PROBLEM<br />THAT MATTERS</span></div>
+              <i aria-hidden="true">↓</i>
+              <div><b>02</b><span>KEEP BUILDING<br />+ IMPROVING</span></div>
+              <i aria-hidden="true">↓</i>
+              <div><b>03</b><span>AI-NATIVE<br />BUSINESS</span></div>
+            </div>
+          </section>
+
+          <section class="synth-yellow" aria-labelledby="synth-yellow-title">
+            <div class="synth-choice-header">
+              <div>
+                <p>YELLOW · CHOOSE A HEADING</p>
+                <span>Everything else here is locked.</span>
+              </div>
+              <div class="candidate-switcher" role="tablist" aria-label="Yellow heading choices">
+                {synthYellowHeadings.map((candidate, index) => (
+                  <button
+                    class:list={['candidate-tab', { 'is-active': index === 0 }]}
+                    type="button"
+                    role="tab"
+                    aria-selected={index === 0 ? 'true' : 'false'}
+                    data-synth-yellow-target={candidate.id}
+                  >{candidate.id}</button>
+                ))}
+              </div>
+            </div>
+            <div class="synth-heading-stack">
+              {synthYellowHeadings.map((candidate, index) => (
+                <h3 id={index === 0 ? 'synth-yellow-title' : undefined} data-synth-yellow={candidate.id} hidden={index !== 0}>{candidate.text}</h3>
+              ))}
+            </div>
+            <ol>{synthSteps.map((step, stepIndex) => <li><b>{stepIndex + 1}</b><span>{step}</span></li>)}</ol>
+          </section>
+
+          <aside class="synth-pilot">
+            <small>THE WAY IN</small>
+            <strong>The 90-day Pilot is where we begin.</strong>
+          </aside>
+
+          <section class="synth-blue" aria-labelledby="synth-blue-title">
+            <div class="synth-choice-header synth-choice-header--blue">
+              <div>
+                <p>BLUE · CHOOSE A HEADING</p>
+                <span>“Built for the long run” is locked.</span>
+              </div>
+              <div class="candidate-switcher" role="tablist" aria-label="Blue heading choices">
+                {synthBlueHeadings.map((candidate, index) => (
+                  <button
+                    class:list={['candidate-tab', { 'is-active': index === 0 }]}
+                    type="button"
+                    role="tab"
+                    aria-selected={index === 0 ? 'true' : 'false'}
+                    data-synth-blue-target={candidate.id}
+                  >{candidate.id}</button>
+                ))}
+              </div>
+            </div>
+            <p class="synth-blue-kicker">Built for the long run</p>
+            <div class="synth-heading-stack synth-heading-stack--blue">
+              {synthBlueHeadings.map((candidate, index) => (
+                <h3 id={index === 0 ? 'synth-blue-title' : undefined} data-synth-blue={candidate.id} hidden={index !== 0}>{candidate.text}</h3>
+              ))}
+            </div>
+            <p>We keep building and improving the systems with you, making AI part of how the whole business works—not another tool sitting off to the side.</p>
+          </section>
+        </article>
+        <p class="response-cue">Choose one yellow letter and one blue letter—or reject either set. The hero is already locked from your feedback.</p>
+      </section>
     </div>
   </div>
 </BaseLayout>
@@ -539,10 +647,47 @@ const resetCandidates = [
       history.replaceState(null, '', `#reset-${id.toLowerCase()}`);
     }));
 
+    const updateSynthHash = () => {
+      const yellow = document.querySelector('[data-synth-yellow]:not([hidden])')?.dataset.synthYellow?.toLowerCase() || 'a';
+      const blue = document.querySelector('[data-synth-blue]:not([hidden])')?.dataset.synthBlue?.toLowerCase() || 'a';
+      history.replaceState(null, '', `#synth-${yellow}-${blue}`);
+    };
+
+    document.querySelectorAll('[data-synth-yellow-target]').forEach((tab) => tab.addEventListener('click', () => {
+      const id = tab.dataset.synthYellowTarget;
+      document.querySelectorAll('[data-synth-yellow]').forEach((candidate) => {
+        candidate.hidden = candidate.dataset.synthYellow !== id;
+      });
+      document.querySelectorAll('[data-synth-yellow-target]').forEach((button) => {
+        const active = button.dataset.synthYellowTarget === id;
+        button.classList.toggle('is-active', active);
+        button.setAttribute('aria-selected', String(active));
+      });
+      updateSynthHash();
+    }));
+
+    document.querySelectorAll('[data-synth-blue-target]').forEach((tab) => tab.addEventListener('click', () => {
+      const id = tab.dataset.synthBlueTarget;
+      document.querySelectorAll('[data-synth-blue]').forEach((candidate) => {
+        candidate.hidden = candidate.dataset.synthBlue !== id;
+      });
+      document.querySelectorAll('[data-synth-blue-target]').forEach((button) => {
+        const active = button.dataset.synthBlueTarget === id;
+        button.classList.toggle('is-active', active);
+        button.setAttribute('aria-selected', String(active));
+      });
+      updateSynthHash();
+    }));
+
     const refineMatch = location.hash.match(/^#refine-(hero|blue)-([a-c])$/i);
     const resetMatch = location.hash.match(/^#reset-([a-c])$/i);
+    const synthMatch = location.hash.match(/^#synth-([a-c])-([a-c])$/i);
     const match = location.hash.match(/^#(visual|copy)-([a-d])$/i);
-    if (resetMatch) {
+    if (synthMatch) {
+      showRound('synth');
+      [...document.querySelectorAll('[data-synth-yellow-target]')].find((button) => button.textContent.trim().toLowerCase() === synthMatch[1].toLowerCase())?.click();
+      [...document.querySelectorAll('[data-synth-blue-target]')].find((button) => button.textContent.trim().toLowerCase() === synthMatch[2].toLowerCase())?.click();
+    } else if (resetMatch) {
       showRound('reset');
       [...document.querySelectorAll('[data-reset-target]')].find((button) => button.textContent.trim().toLowerCase() === resetMatch[1].toLowerCase())?.click();
     } else if (refineMatch) {
@@ -733,6 +878,44 @@ const resetCandidates = [
   .reset-blue h3 { max-width: 1180px; margin-top: 18px; font-size: clamp(58px, 7vw, 106px); line-height: .86; letter-spacing: -.065em; }
   .reset-blue > p:last-child { max-width: 840px; margin-top: 28px; font-size: clamp(19px, 1.7vw, 24px); line-height: 1.45; }
 
+  .round-intro--synth { align-items: end; }
+  .round-intro--synth > div > p { color: #66636a; font-size: 14px; font-weight: 900; letter-spacing: .12em; }
+  .round-intro--synth h1 { max-width: 1020px; margin-top: 10px; }
+  .round-intro--synth > span { flex: 0 0 auto; margin-bottom: 8px; padding: 10px 14px; color: #fff; background: #0b0b0e; border-radius: 999px; font-size: 14px; font-weight: 850; }
+  .synth-stage { overflow: hidden; border-radius: 28px; background: #0b0b0e; box-shadow: 0 26px 70px rgba(20,18,24,.15); }
+  .synth-hero { min-height: 660px; display: grid; grid-template-columns: 1.1fr .9fr; align-items: center; gap: clamp(44px, 7vw, 100px); padding: clamp(70px, 8vw, 120px); color: #fff; background: #0b0b0e; }
+  .synth-hero-copy > p:first-child { color: var(--yellow); font-size: 14px; font-weight: 900; letter-spacing: .08em; text-transform: uppercase; }
+  .synth-hero-copy h2 { max-width: 900px; margin-top: 26px; color: #fff; font-size: clamp(58px, 6.5vw, 102px); line-height: .88; letter-spacing: -.065em; }
+  .synth-hero-copy > p:nth-of-type(2) { max-width: 780px; margin-top: 28px; color: #d4d3d8; font-size: clamp(19px, 1.6vw, 23px); line-height: 1.5; }
+  .synth-hero-copy > span { min-height: 56px; display: inline-flex; align-items: center; margin-top: 34px; padding: 15px 22px; color: #0b0b0e; background: var(--yellow); border-radius: 6px; font-size: 17px; font-weight: 900; }
+  .synth-arc { min-height: 450px; display: flex; flex-direction: column; justify-content: center; gap: 12px; padding: clamp(26px, 4vw, 44px); color: #0b0b0e; background: var(--yellow); border-radius: 24px; box-shadow: 15px 15px 0 var(--cyan); }
+  .synth-arc small { margin-bottom: 8px; font-size: 14px; font-weight: 900; letter-spacing: .08em; }
+  .synth-arc > div { min-height: 92px; display: grid; grid-template-columns: 60px 1fr; align-items: center; gap: 14px; padding: 16px 20px; background: #fff; border: 2px solid #0b0b0e; border-radius: 12px; }
+  .synth-arc > div:nth-of-type(3) { color: #fff; background: #0b0b0e; }
+  .synth-arc b { font-size: 34px; }
+  .synth-arc span { font-size: clamp(16px, 1.45vw, 21px); font-weight: 900; line-height: 1.1; }
+  .synth-arc i { height: 22px; display: grid; place-items: center; font-size: 22px; font-style: normal; font-weight: 900; }
+  .synth-yellow { padding: clamp(58px, 7vw, 100px); color: #0b0b0e; background: var(--yellow); }
+  .synth-choice-header { display: flex; align-items: end; justify-content: space-between; gap: 28px; }
+  .synth-choice-header > div:first-child > p { font-size: 14px; font-weight: 900; letter-spacing: .1em; }
+  .synth-choice-header > div:first-child > span { display: block; margin-top: 6px; font-size: 16px; }
+  .synth-choice-header .candidate-switcher { flex: 0 0 auto; margin: 0; }
+  .synth-heading-stack { min-height: clamp(98px, 10vw, 150px); display: flex; align-items: end; margin-top: 30px; }
+  .synth-heading-stack h3 { max-width: 1100px; font-size: clamp(52px, 6vw, 94px); line-height: .88; letter-spacing: -.062em; }
+  .synth-heading-stack h3[hidden], .synth-heading-stack--blue h3[hidden] { display: none !important; }
+  .synth-yellow ol { list-style: none; display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; margin-top: 42px; }
+  .synth-yellow li { min-height: 150px; display: flex; flex-direction: column; justify-content: space-between; gap: 18px; padding: 24px; color: #fff; background: #0b0b0e; border-radius: 14px; font-size: clamp(18px, 1.6vw, 23px); font-weight: 800; }
+  .synth-yellow li b { color: var(--yellow); font-size: 36px; line-height: 1; }
+  .synth-pilot { display: grid; grid-template-columns: auto 1fr; align-items: center; gap: 28px; padding: 32px clamp(38px, 7vw, 100px); color: #fff; background: #24242c; }
+  .synth-pilot small { color: var(--yellow); font-size: 14px; font-weight: 900; letter-spacing: .1em; }
+  .synth-pilot strong { font-size: clamp(25px, 3vw, 44px); line-height: 1; letter-spacing: -.04em; }
+  .synth-blue { min-height: 540px; display: flex; flex-direction: column; justify-content: center; padding: clamp(58px, 8vw, 112px); color: #0b0b0e; background: var(--cyan); }
+  .synth-choice-header--blue { margin-bottom: clamp(58px, 7vw, 92px); }
+  .synth-blue-kicker { font-size: 14px; font-weight: 900; letter-spacing: .1em; text-transform: uppercase; }
+  .synth-heading-stack--blue { min-height: clamp(96px, 10vw, 150px); margin-top: 18px; }
+  .synth-heading-stack--blue h3 { max-width: 1180px; color: #0b0b0e; font-size: clamp(56px, 7vw, 104px); }
+  .synth-blue > p:last-child { max-width: 880px; margin-top: 30px; font-size: clamp(19px, 1.7vw, 24px); line-height: 1.45; }
+
   @media (max-width: 980px) {
     .lab-header { grid-template-columns: 1fr auto; }
     .lab-header > p { display: none; }
@@ -747,6 +930,8 @@ const resetCandidates = [
     .refine-hero-candidate { grid-template-columns: 1fr; }
     .reset-hero { grid-template-columns: 1fr; }
     .reset-relationship { max-width: 720px; }
+    .synth-hero { grid-template-columns: 1fr; }
+    .synth-arc { max-width: 720px; }
   }
 
   @media (max-width: 700px) {
@@ -759,6 +944,8 @@ const resetCandidates = [
     .refine-heading { align-items: start; flex-direction: column; }
     .round-intro--reset { align-items: start; }
     .round-intro--reset .candidate-switcher { margin-top: 8px; }
+    .round-intro--synth { align-items: start; }
+    .round-intro--synth > span { margin-top: 6px; }
     .visual-stage, .copy-stage, .visual-candidate { min-height: 0; border-radius: 18px; }
     .refine-hero-stage, .refine-blue-stage { min-height: 0; border-radius: 18px; }
     .candidate-letter { top: 14px; right: 14px; width: 42px; height: 42px; }
@@ -797,6 +984,19 @@ const resetCandidates = [
     .reset-growth h3 { font-size: 42px; }
     .reset-pilot strong { font-size: 34px; }
     .reset-blue h3 { font-size: 52px; }
+    .synth-stage { border-radius: 18px; }
+    .synth-hero, .synth-yellow, .synth-blue { min-height: 0; padding: 72px 22px 46px; }
+    .synth-hero { display: block; }
+    .synth-hero-copy h2 { font-size: 50px; }
+    .synth-arc { min-height: 410px; margin-top: 50px; padding: 22px; box-shadow: 8px 8px 0 var(--cyan); }
+    .synth-choice-header { align-items: start; flex-direction: column; }
+    .synth-choice-header--blue { margin-bottom: 58px; }
+    .synth-heading-stack, .synth-heading-stack--blue { min-height: 0; margin-top: 34px; }
+    .synth-heading-stack h3, .synth-heading-stack--blue h3 { font-size: 48px; }
+    .synth-yellow ol { grid-template-columns: 1fr; }
+    .synth-yellow li { min-height: 122px; }
+    .synth-pilot { grid-template-columns: 1fr; gap: 12px; padding: 34px 22px; }
+    .synth-pilot strong { font-size: 32px; }
     .v-facts { display: grid; grid-template-columns: repeat(3, 1fr); }
     .v-facts li { min-width: 0; }
     .v-actions { align-items: stretch; flex-direction: column; }
