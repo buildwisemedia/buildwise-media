@@ -133,6 +133,21 @@ const synthSteps = [
   'We build and test it',
   'Keep improving across the business',
 ];
+
+const synthBlueSupportCandidates = [
+  {
+    id: 'A',
+    text: 'We keep building with you—improving each system and bringing AI into more of the work across your business.',
+  },
+  {
+    id: 'B',
+    text: 'The systems build on each other, with our team connecting and improving them across the business.',
+  },
+  {
+    id: 'C',
+    text: 'Buildwise keeps improving what is already working and building new systems for more of your business.',
+  },
+];
 ---
 
 <BaseLayout
@@ -454,7 +469,7 @@ const synthSteps = [
         <div class="round-intro round-intro--synth">
           <div>
             <p>ROUND 05 · TRIANGULATION</p>
-            <h1 id="synth-round-title">One direction. Two headline decisions locked.</h1>
+            <h1 id="synth-round-title">One direction. One final language choice.</h1>
           </div>
           <span>Built from your Round 4 feedback</span>
         </div>
@@ -499,18 +514,33 @@ const synthSteps = [
           <section class="synth-blue" aria-labelledby="synth-blue-title">
             <div class="synth-choice-header synth-choice-header--blue">
               <div>
-                <p>BLUE · HEADING LOCKED</p>
-                <span>Revised from the selected Round 5 heading.</span>
+                <p>BLUE · CHOOSE THE SUBHEADLINE</p>
+                <span>The kicker and headline are locked.</span>
+              </div>
+              <div class="candidate-switcher" role="tablist" aria-label="Blue subheadline choices">
+                {synthBlueSupportCandidates.map((candidate, index) => (
+                  <button
+                    class:list={['candidate-tab', { 'is-active': index === 0 }]}
+                    type="button"
+                    role="tab"
+                    aria-selected={index === 0 ? 'true' : 'false'}
+                    data-synth-support-target={candidate.id}
+                  >{candidate.id}</button>
+                ))}
               </div>
             </div>
             <p class="synth-blue-kicker">Built for the long run</p>
             <div class="synth-heading-stack synth-heading-stack--blue">
               <h3 id="synth-blue-title">AI becomes part of how your business works.</h3>
             </div>
-            <p>We keep building and improving the systems with you, making AI part of how the whole business works—not another tool sitting off to the side.</p>
+            <div class="synth-support-stack">
+              {synthBlueSupportCandidates.map((candidate, index) => (
+                <p data-synth-support={candidate.id} hidden={index !== 0}>{candidate.text}</p>
+              ))}
+            </div>
           </section>
         </article>
-        <p class="response-cue">The hero, yellow heading, and blue heading are now locked from your feedback.</p>
+        <p class="response-cue">Choose blue subheadline A, B, or C—or reject the set. Everything else is locked.</p>
       </section>
     </div>
   </div>
@@ -609,11 +639,28 @@ const synthSteps = [
       history.replaceState(null, '', `#reset-${id.toLowerCase()}`);
     }));
 
+    document.querySelectorAll('[data-synth-support-target]').forEach((tab) => tab.addEventListener('click', () => {
+      const id = tab.dataset.synthSupportTarget;
+      document.querySelectorAll('[data-synth-support]').forEach((candidate) => {
+        candidate.hidden = candidate.dataset.synthSupport !== id;
+      });
+      document.querySelectorAll('[data-synth-support-target]').forEach((button) => {
+        const active = button.dataset.synthSupportTarget === id;
+        button.classList.toggle('is-active', active);
+        button.setAttribute('aria-selected', String(active));
+      });
+      history.replaceState(null, '', `#synth-support-${id.toLowerCase()}`);
+    }));
+
     const refineMatch = location.hash.match(/^#refine-(hero|blue)-([a-c])$/i);
     const resetMatch = location.hash.match(/^#reset-([a-c])$/i);
     const synthMatch = location.hash.match(/^#synth(?:-[a-c]-[a-c])?$/i);
+    const synthSupportMatch = location.hash.match(/^#synth-support-([a-c])$/i);
     const match = location.hash.match(/^#(visual|copy)-([a-d])$/i);
-    if (synthMatch) {
+    if (synthSupportMatch) {
+      showRound('synth');
+      [...document.querySelectorAll('[data-synth-support-target]')].find((button) => button.textContent.trim().toLowerCase() === synthSupportMatch[1].toLowerCase())?.click();
+    } else if (synthMatch) {
       showRound('synth');
     } else if (resetMatch) {
       showRound('reset');
@@ -842,7 +889,9 @@ const synthSteps = [
   .synth-blue-kicker { font-size: 14px; font-weight: 900; letter-spacing: .1em; text-transform: uppercase; }
   .synth-heading-stack--blue { min-height: clamp(96px, 10vw, 150px); margin-top: 18px; }
   .synth-heading-stack--blue h3 { max-width: 1180px; color: #0b0b0e; font-size: clamp(56px, 7vw, 104px); }
-  .synth-blue > p:last-child { max-width: 880px; margin-top: 30px; font-size: clamp(19px, 1.7vw, 24px); line-height: 1.45; }
+  .synth-support-stack { max-width: 880px; margin-top: 30px; }
+  .synth-support-stack p { font-size: clamp(19px, 1.7vw, 24px); line-height: 1.45; }
+  .synth-support-stack p[hidden] { display: none !important; }
 
   @media (max-width: 980px) {
     .lab-header { grid-template-columns: 1fr auto; }

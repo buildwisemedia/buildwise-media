@@ -59,3 +59,18 @@ Robert selected blue C and revised `the business` to `your business`:
 - `AI becomes part of how your business works.`
 
 These decisions close the Round 5 headline micro-tests. Supporting copy remains unchanged because Robert explicitly evaluated only the headings in this pass.
+
+## Blue subheadline triangulation
+
+Robert rejected the locked blue support after evaluating it separately:
+
+- Rejected: `We keep building and improving the systems with you, making AI part of how the whole business works—not another tool sitting off to the side.`
+- Reason carried into the next test: it repeats the headline, runs long, and ends in a generic contrast.
+
+The kicker and headline remain locked. Only the blue support is reopened.
+
+- A — ongoing partnership: `We keep building with you—improving each system and bringing AI into more of the work across your business.`
+- B — connected system: `The systems build on each other, with our team connecting and improving them across the business.`
+- C — continued expansion: `Buildwise keeps improving what is already working and building new systems for more of your business.`
+
+All three options use plain language, preserve Buildwise as the continuing builder, avoid Pilot-first framing, and make no guaranteed outcome claim.
