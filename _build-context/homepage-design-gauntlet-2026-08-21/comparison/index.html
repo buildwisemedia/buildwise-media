@@ -1,0 +1,163 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="robots" content="noindex,nofollow,noarchive" />
+  <title>Buildwise Media · Three New Directions</title>
+  <style>
+    :root { color-scheme: light; --ink:#17171b; --muted:#676873; --line:#d9d9df; --paper:#f4f3f0; --white:#fff; --accent:#6558ff; }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body { margin:0; color:var(--ink); background:var(--paper); font: 16px/1.5 ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; }
+    button, a { font:inherit; }
+    a { color:inherit; }
+    .shell { width:min(1800px, calc(100% - 40px)); margin:0 auto; }
+    .topbar { display:flex; align-items:center; justify-content:space-between; gap:24px; padding:24px 0; border-bottom:1px solid var(--line); }
+    .brand { display:flex; align-items:center; gap:10px; font-weight:850; letter-spacing:-.03em; }
+    .brand img { width:38px; height:38px; }
+    .state { color:var(--muted); font-size:13px; font-weight:750; letter-spacing:.08em; text-transform:uppercase; }
+    .intro { display:grid; grid-template-columns:minmax(0,1fr) minmax(280px,460px); gap:48px; align-items:end; padding:72px 0 46px; }
+    .intro p:first-child { margin:0 0 14px; color:var(--accent); font-size:13px; font-weight:850; letter-spacing:.11em; text-transform:uppercase; }
+    h1 { max-width:920px; margin:0; font-size:clamp(44px,6vw,92px); line-height:.94; letter-spacing:-.06em; }
+    .intro-copy { margin:0; color:var(--muted); font-size:18px; line-height:1.6; }
+    .control-row { display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; gap:16px; margin:0 0 24px; }
+    .control-row p { margin:0; color:var(--muted); }
+    .button { min-height:44px; display:inline-flex; align-items:center; justify-content:center; padding:10px 16px; border:1px solid var(--ink); border-radius:999px; color:var(--ink); background:transparent; font-weight:800; cursor:pointer; }
+    .button:hover, .button:focus-visible { color:#fff; background:var(--ink); outline:none; }
+    .compare-grid { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:18px; }
+    .candidate { overflow:hidden; background:var(--white); border:1px solid var(--line); border-radius:18px; box-shadow:0 16px 50px rgba(24,24,28,.07); }
+    .candidate-head { min-height:76px; display:flex; align-items:center; justify-content:space-between; gap:16px; padding:16px 18px; border-bottom:1px solid var(--line); }
+    .candidate-name { display:flex; align-items:center; gap:12px; }
+    .letter { width:38px; height:38px; display:grid; place-items:center; border-radius:50%; color:#fff; background:var(--ink); font-weight:900; }
+    .candidate-name strong { display:block; font-size:17px; }
+    .author { display:block; color:var(--muted); font-size:13px; }
+    .open { font-size:13px; font-weight:800; text-underline-offset:3px; }
+    .mini-viewport { position:relative; height:320px; overflow:hidden; background:#e9e9ed; }
+    .mini-viewport iframe { position:absolute; top:0; left:0; width:1440px; height:960px; border:0; transform-origin:0 0; background:#fff; pointer-events:none; }
+    .candidate-foot { padding:14px 18px 17px; color:var(--muted); font-size:13px; }
+    .detail { margin:62px 0 80px; padding-top:34px; border-top:1px solid var(--line); }
+    .detail-head { display:flex; align-items:end; justify-content:space-between; gap:24px; margin-bottom:20px; }
+    .detail h2 { margin:0; font-size:clamp(32px,4vw,56px); letter-spacing:-.045em; }
+    .tabs { display:flex; gap:8px; }
+    .tab { min-width:46px; min-height:46px; border:1px solid var(--line); border-radius:50%; color:var(--ink); background:var(--white); font-weight:900; cursor:pointer; }
+    .tab[aria-selected="true"], .tab:hover, .tab:focus-visible { color:#fff; background:var(--ink); outline:none; }
+    .large-viewport { overflow:hidden; background:#fff; border:1px solid var(--line); border-radius:20px; box-shadow:0 24px 80px rgba(24,24,28,.09); }
+    .large-viewport iframe { display:block; width:100%; height:min(1050px,80vh); border:0; background:#fff; }
+    .note { display:flex; justify-content:space-between; gap:20px; margin-top:14px; color:var(--muted); font-size:13px; }
+    footer { padding:28px 0 42px; border-top:1px solid var(--line); color:var(--muted); font-size:13px; }
+    @media (max-width:1050px) {
+      .intro { grid-template-columns:1fr; }
+      .compare-grid { grid-template-columns:1fr; }
+      .mini-viewport { height:430px; }
+    }
+    @media (max-width:640px) {
+      .shell { width:min(100% - 24px,1800px); }
+      .topbar { align-items:flex-start; }
+      .state { max-width:150px; text-align:right; }
+      .intro { padding:52px 0 34px; gap:24px; }
+      .intro-copy { font-size:17px; }
+      .mini-viewport { height:255px; }
+      .detail-head { align-items:flex-start; flex-direction:column; }
+      .large-viewport iframe { height:78vh; }
+      .note { flex-direction:column; }
+    }
+  </style>
+</head>
+<body>
+  <main class="shell">
+    <header class="topbar">
+      <div class="brand">
+        <!-- @r020:identity: locked Buildwise Media mark at navigation scale. -->
+        <img src="brand/mark.svg" alt="" width="38" height="38" />
+        <span>Buildwise Media</span>
+      </div>
+      <span class="state">Private design study · not production</span>
+    </header>
+
+    <section class="intro" aria-labelledby="page-title">
+      <div>
+        <p>Three sealed design commissions</p>
+        <h1 id="page-title">Same brand. Same words. Three new points of view.</h1>
+      </div>
+      <p class="intro-copy">Each designer received the same Buildwise business brief, locked copy, and real logo. None saw the current website, the prior taste lab, or another candidate. Compare the design systems first; reveal the authors whenever you are ready.</p>
+    </section>
+
+    <div class="control-row">
+      <p>Start with the three-page view. Then open any direction at full size below.</p>
+      <button class="button" type="button" data-reveal>Reveal designers</button>
+    </div>
+
+    <section class="compare-grid" aria-label="Three anonymous homepage directions">
+      <article class="candidate">
+        <div class="candidate-head">
+          <div class="candidate-name"><span class="letter">A</span><div><strong>Direction A</strong><span class="author" data-author="a">Designer hidden</span></div></div>
+          <a class="open" href="candidates/a.html" target="_blank" rel="noopener">Open full page ↗</a>
+        </div>
+        <div class="mini-viewport" data-mini><iframe src="candidates/a.html" title="Direction A scaled desktop preview" loading="eager" sandbox="allow-scripts"></iframe></div>
+        <div class="candidate-foot">Live scaled desktop view</div>
+      </article>
+      <article class="candidate">
+        <div class="candidate-head">
+          <div class="candidate-name"><span class="letter">B</span><div><strong>Direction B</strong><span class="author" data-author="b">Designer hidden</span></div></div>
+          <a class="open" href="candidates/b.html" target="_blank" rel="noopener">Open full page ↗</a>
+        </div>
+        <div class="mini-viewport" data-mini><iframe src="candidates/b.html" title="Direction B scaled desktop preview" loading="eager" sandbox="allow-scripts"></iframe></div>
+        <div class="candidate-foot">Live scaled desktop view</div>
+      </article>
+      <article class="candidate">
+        <div class="candidate-head">
+          <div class="candidate-name"><span class="letter">C</span><div><strong>Direction C</strong><span class="author" data-author="c">Designer hidden</span></div></div>
+          <a class="open" href="candidates/c.html" target="_blank" rel="noopener">Open full page ↗</a>
+        </div>
+        <div class="mini-viewport" data-mini><iframe src="candidates/c.html" title="Direction C scaled desktop preview" loading="eager" sandbox="allow-scripts"></iframe></div>
+        <div class="candidate-foot">Live scaled desktop view</div>
+      </article>
+    </section>
+
+    <section class="detail" aria-labelledby="detail-title">
+      <div class="detail-head">
+        <div><span class="state">Full-size inspection</span><h2 id="detail-title">Direction A</h2></div>
+        <div class="tabs" role="tablist" aria-label="Choose a direction to inspect">
+          <button class="tab" type="button" role="tab" aria-selected="true" data-view="a">A</button>
+          <button class="tab" type="button" role="tab" aria-selected="false" data-view="b">B</button>
+          <button class="tab" type="button" role="tab" aria-selected="false" data-view="c">C</button>
+        </div>
+      </div>
+      <div class="large-viewport"><iframe data-large src="candidates/a.html" title="Full-size Direction A" sandbox="allow-scripts"></iframe></div>
+      <div class="note"><span>Scroll inside the frame to review the full page.</span><span>Resize the browser to inspect responsive behavior.</span></div>
+    </section>
+  </main>
+  <footer><div class="shell">This comparison is a private taste lab. Selection is not production approval or a final brand lock.</div></footer>
+
+  <script>
+    const authors = window.__BWM_AUTHOR_MAP__ || {
+      a: 'Kimi K3 · The Compounding Loop',
+      b: 'Claude Fable 5 · Heartwood',
+      c: 'GPT-5.6 Sol · Relay Field'
+    };
+    const paths = { a:'candidates/a.html', b:'candidates/b.html', c:'candidates/c.html' };
+    const resizeMini = () => document.querySelectorAll('[data-mini]').forEach((box) => {
+      const frame = box.querySelector('iframe');
+      const scale = box.clientWidth / 1440;
+      frame.style.transform = `scale(${scale})`;
+      box.style.height = `${Math.min(520, 960 * scale)}px`;
+    });
+    new ResizeObserver(resizeMini).observe(document.body);
+    resizeMini();
+    document.querySelector('[data-reveal]').addEventListener('click', (event) => {
+      const revealed = event.currentTarget.dataset.revealed === 'true';
+      document.querySelectorAll('[data-author]').forEach((node) => node.textContent = revealed ? 'Designer hidden' : authors[node.dataset.author]);
+      event.currentTarget.textContent = revealed ? 'Reveal designers' : 'Hide designers';
+      event.currentTarget.dataset.revealed = String(!revealed);
+    });
+    document.querySelectorAll('[data-view]').forEach((button) => button.addEventListener('click', () => {
+      const id = button.dataset.view;
+      document.querySelectorAll('[data-view]').forEach((item) => item.setAttribute('aria-selected', String(item === button)));
+      document.querySelector('[data-large]').src = paths[id];
+      document.querySelector('[data-large]').title = `Full-size Direction ${id.toUpperCase()}`;
+      document.querySelector('#detail-title').textContent = `Direction ${id.toUpperCase()}`;
+    }));
+  </script>
+</body>
+</html>

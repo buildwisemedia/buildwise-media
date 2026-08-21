@@ -1,0 +1,178 @@
+{
+  "schema_version": "bwm-design-run/1.1.0",
+  "task_id": "bwm-homepage-three-model-design-gauntlet-2026-08-21",
+  "artifact_id": "bwm-homepage-three-direction-blind-comparison",
+  "surface_module": "review_decision_artifact",
+  "process_tier": "taste-lab",
+  "identity": {
+    "class": "bwm",
+    "resolver_version": "1.0.0",
+    "record_hash": "15fc211eab2b8f8eb29185d2d9c9d982a19cd0661d06e1ebc9f8d9505e0c4119",
+    "source_hashes": [
+      "e35e2f217fe5dd58f398ef1a11feb47d8a30e0931c0313a419ce20a2a2f6b401",
+      "e788a2bf9509a1d1284e764d0d3687a0da568e992fb91c09902b58ec9b7489ef",
+      "aadfd69976298c5493e114cef3b99e6d76eea90dcf53cd06ac6dc130b4298d35"
+    ],
+    "prohibited_inheritance": [
+      "current Buildwise website trade dress",
+      "prior Buildwise taste-lab design",
+      "another candidate in this sealed study",
+      "generic model-default AI visual styling"
+    ]
+  },
+  "truth_packet": {
+    "frozen": true,
+    "content_hash": "51a54c095310b5f139efa4fd9bc712db528991a7e35ffcdeb30012cb5131da3d",
+    "scope_hash": "8a38e8c541268a237ca52abfd269a231a6fc4af2229330e5e4b72307835aa0dd",
+    "asset_manifest_hash": "739d338f6777e461164cfce97366bc2c4322982db2c6fbe4da17673b1b03e652",
+    "proof_manifest_hash": "51a54c095310b5f139efa4fd9bc712db528991a7e35ffcdeb30012cb5131da3d",
+    "anchor_manifest_path": "design-anchor-manifest.json",
+    "anchor_manifest_sha256": "606200ae9dd2470c2807c49cd94b2dbb8359206e54979c3c8629d67987803aa9"
+  },
+  "provenance": {
+    "author_family": "sol",
+    "author_model": "gpt-5.6-sol",
+    "author_effort": "xhigh",
+    "author_harness": "BWM sealed design commission",
+    "contract_version": "bwm-design-run/1.1.0",
+    "brain_contract_path": "clients/buildwise-media/Homepage-Redesign-Authority.md",
+    "brain_contract_sha": "8ac8127b631c3816b60bfb2ec96c87bf7d91bd27",
+    "source_skill_path": "/Users/robertechevarria/.agents/skills/bwm-design-department/SKILL.md",
+    "source_skill_sha256": "83aab96a18000ebdc87c201caee4132f022b7c851d9d66e26e2eb868f9af5713",
+    "installed_skill_path": "bwm-design-department-skill-snapshot.md",
+    "installed_skill_sha256": "83aab96a18000ebdc87c201caee4132f022b7c851d9d66e26e2eb868f9af5713",
+    "brain_read_receipt_path": "brain-read-receipt.json",
+    "brain_read_receipt_sha256": "7e92934ea8f86d788db1f00fc333dacfbef18e531ca46834c90170aacaf76097",
+    "author_route_receipt_path": "author-route-receipt.md",
+    "author_route_receipt_sha256": "17c311d8512bd449a25b420a6d988e152c6d82d6eb3717286d6ca95ef6dd5ad1",
+    "iteration_count": 1,
+    "iteration_exception": null,
+    "author_commits": {
+      "kimi": "95497af2f02aa02d5c161aea6102d6ce7e92abe0",
+      "fable": "84beca3ad3e90df3193f967029a5d51e3160ac28",
+      "codex": "a34ecec3e769a2c96f7703c54f33fdc3813b12e0"
+    }
+  },
+  "evidence": {
+    "items": [
+      {
+        "class": "S",
+        "type": "sealed-shared-brief",
+        "locator": "sealed-brief.md",
+        "sha256": "51a54c095310b5f139efa4fd9bc712db528991a7e35ffcdeb30012cb5131da3d"
+      },
+      {
+        "class": "S",
+        "type": "current-research-ledger",
+        "locator": "research-ledger.md",
+        "sha256": "8a38e8c541268a237ca52abfd269a231a6fc4af2229330e5e4b72307835aa0dd"
+      },
+      {
+        "class": "A",
+        "type": "kimi-candidate",
+        "locator": "comparison/candidates/a.html",
+        "sha256": "65c168ef99f19ac4988b67b2a34d7010694b876546c69212222aa6cec6409a9f"
+      },
+      {
+        "class": "A",
+        "type": "fable-candidate",
+        "locator": "comparison/candidates/b.html",
+        "sha256": "3d3aed24718baf470142d60d289e4ca756fedc6e7903db3ef3d26064c3313c3f"
+      },
+      {
+        "class": "A",
+        "type": "codex-candidate",
+        "locator": "comparison/candidates/c.html",
+        "sha256": "647f9b8fa24df2859acb959604e29e0c218b9555e7426be10590fe92d4785535"
+      },
+      {
+        "class": "A",
+        "type": "blind-comparison-shell",
+        "locator": "comparison/index.html",
+        "sha256": "3e00199c3983d59d075b59db4fcfbf6af53116ad8f263b76d0ca91c6364b6bff"
+      },
+      {
+        "class": "I",
+        "type": "static-and-browser-qa",
+        "locator": "qa.mjs",
+        "sha256": "e02208d31353cdcf19c116f2f89b4cd13a28e56cb1855fbec7c9c95d9a5078ac"
+      },
+      {
+        "class": "J",
+        "type": "sealed-authorship-boundary",
+        "locator": "author-route-receipt.md",
+        "sha256": "17c311d8512bd449a25b420a6d988e152c6d82d6eb3717286d6ca95ef6dd5ad1"
+      },
+      {
+        "class": "S",
+        "type": "state-boundary",
+        "locator": "RUN-RECEIPT.md",
+        "sha256": "88c5eebe4ef9dceb1e06f436d87c64baa957406b42083697ad6f5b03146051cd"
+      },
+      {
+        "class": "S",
+        "type": "comparable-options",
+        "locator": "comparable-options.md",
+        "sha256": "efc86e7f666aeaf1b2bd5d5a98d213ef3481f7f8276b00cd79ba2e092030bbad"
+      },
+      {
+        "class": "I",
+        "type": "anonymous-order",
+        "locator": "anonymous-order-receipt.md",
+        "sha256": "240a0915b9d11ff3aeffbd87a5200375a431a2e122f37a499bf62599d36319b2"
+      },
+      {
+        "class": "I",
+        "type": "post-seal-reveal",
+        "locator": "post-seal-reveal-receipt.md",
+        "sha256": "1245567b5e57517609cbd8c6071542280da96c12b5a13a04f86f2f4199d7e457"
+      },
+      {
+        "class": "J",
+        "type": "sealed-decision",
+        "locator": "pending-decision-record.json",
+        "sha256": "8e6fa4fc7455da398f47c95fbfd61794697b99ec11c9675f78f598ec963e2687"
+      }
+    ],
+    "measured": {
+      "accessibility": true,
+      "responsive": true,
+      "performance": false
+    }
+  },
+  "evaluation": {
+    "scorer": {
+      "family": "human",
+      "independent": true,
+      "fresh_context": true,
+      "status": "pending-robert-blind-review"
+    },
+    "unlisted_defect_review": {
+      "completed": false,
+      "independent": false,
+      "reviewer_family": "pending",
+      "findings": [],
+      "reclassifications": []
+    },
+    "hard_blockers": [],
+    "dimension_scores": [],
+    "composite_score": 0,
+    "outcome": "pending"
+  },
+  "state": {
+    "artifact_state": "review",
+    "quality_label": "taste-lab",
+    "hil": {
+      "required": true,
+      "status": "pending"
+    },
+    "production_claim": false,
+    "client_room_ready": true,
+    "published": true,
+    "sent": false,
+    "deployed": true,
+    "review_url": "https://design-gauntlet-2026-08-21.buildwise-media.pages.dev/",
+    "immutable_url": "https://26c74c61.buildwise-media.pages.dev/",
+    "access_protected": true
+  }
+}

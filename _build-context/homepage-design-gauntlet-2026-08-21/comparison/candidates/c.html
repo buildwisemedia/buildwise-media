@@ -1,0 +1,974 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#172923">
+  <title>Buildwise Media</title>
+  <style>
+    :root {
+      --ink: #172923;
+      --paper: #f5efe3;
+      --paper-deep: #e9dfce;
+      --coral: #ff6b4a;
+      --violet: #9490ff;
+      --blue: #3158dd;
+      --mint: #b6ead0;
+      --acid: #f0ff00;
+      --line-dark: rgba(23, 41, 35, 0.2);
+      --line-light: rgba(245, 239, 227, 0.22);
+      --display: "Iowan Old Style", "Palatino Linotype", "Book Antiqua", Georgia, serif;
+      --body: "Avenir Next", Avenir, "Segoe UI", Helvetica, Arial, sans-serif;
+      --gutter: clamp(22px, 4vw, 64px);
+      --max: 1440px;
+    }
+
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      background: var(--ink);
+    }
+
+    body {
+      margin: 0;
+      min-width: 320px;
+      overflow-x: hidden;
+      color: var(--ink);
+      background: var(--paper);
+      font-family: var(--body);
+      font-size: 18px;
+      line-height: 1.55;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a {
+      color: inherit;
+    }
+
+    .shell {
+      width: min(100%, var(--max));
+      margin-inline: auto;
+      padding-inline: var(--gutter);
+    }
+
+    .skip-link {
+      position: fixed;
+      z-index: 100;
+      top: 12px;
+      left: 12px;
+      padding: 10px 15px;
+      color: var(--ink);
+      background: var(--acid);
+      border-radius: 999px;
+      font-weight: 700;
+      transform: translateY(-160%);
+      transition: transform 180ms ease;
+    }
+
+    .skip-link:focus {
+      transform: translateY(0);
+    }
+
+    .site-header {
+      position: absolute;
+      z-index: 20;
+      inset: 0 0 auto;
+      padding-top: 26px;
+      color: var(--paper);
+    }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 22px;
+    }
+
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 11px;
+      text-decoration: none;
+      font-size: 17px;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+    }
+
+    .brand img {
+      width: 36px;
+      height: 36px;
+      display: block;
+    }
+
+    .action {
+      display: inline-flex;
+      min-height: 52px;
+      align-items: center;
+      justify-content: center;
+      padding: 13px 22px;
+      border: 1px solid currentColor;
+      border-radius: 999px;
+      color: var(--paper);
+      background: transparent;
+      text-decoration: none;
+      font-size: 15px;
+      font-weight: 700;
+      line-height: 1.1;
+      transition: color 180ms ease, background-color 180ms ease, transform 180ms ease;
+    }
+
+    .action:hover {
+      color: var(--ink);
+      background: var(--acid);
+      border-color: var(--acid);
+      transform: translateY(-2px);
+    }
+
+    .action:focus-visible,
+    .brand:focus-visible {
+      outline: 3px solid var(--acid);
+      outline-offset: 4px;
+    }
+
+    .hero {
+      position: relative;
+      min-height: min(940px, 100svh);
+      display: grid;
+      align-items: end;
+      overflow: hidden;
+      color: var(--paper);
+      background: var(--ink);
+    }
+
+    .hero-inner {
+      position: relative;
+      z-index: 2;
+      padding-top: 156px;
+      padding-bottom: clamp(54px, 7vw, 100px);
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(250px, 0.34fr);
+      gap: clamp(32px, 6vw, 110px);
+      align-items: end;
+    }
+
+    .kicker {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin: 0 0 26px;
+      font-size: 13px;
+      font-weight: 750;
+      letter-spacing: 0.13em;
+      text-transform: uppercase;
+    }
+
+    .kicker::before {
+      content: "";
+      width: 32px;
+      height: 3px;
+      background: currentColor;
+    }
+
+    h1,
+    h2,
+    p {
+      margin-top: 0;
+    }
+
+    h1,
+    h2 {
+      font-family: var(--display);
+      font-weight: 500;
+      letter-spacing: -0.055em;
+      line-height: 0.95;
+      text-wrap: balance;
+    }
+
+    h1 {
+      max-width: 940px;
+      margin-bottom: 0;
+      font-size: clamp(62px, 8.1vw, 124px);
+    }
+
+    .hero-copy {
+      align-self: end;
+      padding-bottom: 8px;
+    }
+
+    .hero-copy p {
+      margin-bottom: 30px;
+      color: rgba(245, 239, 227, 0.84);
+      font-size: clamp(18px, 1.35vw, 21px);
+      line-height: 1.62;
+    }
+
+    .hero-copy .action {
+      width: 100%;
+      min-height: 60px;
+      color: var(--ink);
+      border-color: var(--coral);
+      background: var(--coral);
+    }
+
+    .hero-copy .action:hover {
+      border-color: var(--acid);
+      background: var(--acid);
+    }
+
+    .hero-rule {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      align-items: center;
+      gap: 18px;
+      margin-top: clamp(54px, 8vw, 112px);
+      font-variant-numeric: tabular-nums;
+      font-size: 12px;
+      letter-spacing: 0.12em;
+    }
+
+    .hero-rule::before {
+      content: "";
+      height: 1px;
+      background: var(--line-light);
+    }
+
+    .transformation {
+      position: relative;
+      padding: clamp(88px, 11vw, 160px) 0 clamp(74px, 9vw, 130px);
+      overflow: hidden;
+      background: var(--paper);
+    }
+
+    .section-head {
+      display: grid;
+      grid-template-columns: 0.78fr 1.22fr;
+      gap: clamp(30px, 7vw, 120px);
+      align-items: start;
+      margin-bottom: clamp(66px, 9vw, 128px);
+    }
+
+    .section-index {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding-top: 10px;
+      font-size: 13px;
+      font-weight: 750;
+      letter-spacing: 0.12em;
+    }
+
+    .section-index::after {
+      content: "";
+      width: 64px;
+      height: 1px;
+      background: var(--ink);
+      opacity: 0.45;
+    }
+
+    .section-head h2 {
+      margin-bottom: 0;
+      font-size: clamp(55px, 6.5vw, 98px);
+    }
+
+    .relay {
+      position: relative;
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      min-height: 500px;
+      border-top: 1px solid var(--line-dark);
+      border-bottom: 1px solid var(--line-dark);
+    }
+
+    .relay::before {
+      content: "";
+      position: absolute;
+      z-index: 2;
+      top: 96px;
+      left: 14%;
+      right: 14%;
+      height: 2px;
+      background: var(--ink);
+      transform-origin: left;
+    }
+
+    .phase {
+      position: relative;
+      display: flex;
+      min-width: 0;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 38px clamp(22px, 3vw, 48px) 42px;
+      border-right: 1px solid var(--line-dark);
+    }
+
+    .phase:last-child {
+      border-right: 0;
+    }
+
+    .phase::before {
+      content: "";
+      position: absolute;
+      z-index: 3;
+      top: 83px;
+      left: 50%;
+      width: 28px;
+      height: 28px;
+      border: 8px solid var(--paper);
+      border-radius: 50%;
+      background: var(--ink);
+      box-shadow: 0 0 0 2px var(--ink);
+      transform: translateX(-50%);
+    }
+
+    .phase:nth-child(2)::before {
+      background: var(--coral);
+    }
+
+    .phase:nth-child(3)::before {
+      background: var(--violet);
+    }
+
+    .phase-number {
+      font-family: var(--display);
+      font-size: clamp(54px, 5vw, 78px);
+      line-height: 0.9;
+      letter-spacing: -0.06em;
+    }
+
+    .phase h3 {
+      max-width: 330px;
+      margin: 190px 0 0;
+      font-family: var(--display);
+      font-size: clamp(30px, 2.5vw, 40px);
+      font-weight: 500;
+      letter-spacing: -0.045em;
+      line-height: 1.05;
+      text-wrap: balance;
+    }
+
+    .phase:nth-child(1) {
+      background: var(--mint);
+    }
+
+    .phase:nth-child(2) {
+      background: var(--coral);
+    }
+
+    .phase:nth-child(3) {
+      color: var(--paper);
+      background: var(--blue);
+    }
+
+    .phase:nth-child(3)::before {
+      border-color: var(--blue);
+      box-shadow: 0 0 0 2px var(--paper);
+    }
+
+    .phase:nth-child(3) .phase-number {
+      color: var(--paper);
+    }
+
+    .pilot {
+      position: relative;
+      overflow: hidden;
+      color: var(--paper);
+      background: var(--coral);
+    }
+
+    .pilot .shell {
+      position: relative;
+      min-height: clamp(550px, 58vw, 820px);
+      display: grid;
+      align-items: center;
+      isolation: isolate;
+    }
+
+    .pilot-aperture {
+      position: absolute;
+      z-index: -1;
+      top: 50%;
+      left: 62%;
+      width: min(58vw, 790px);
+      aspect-ratio: 1;
+      border: clamp(42px, 6vw, 88px) solid var(--ink);
+      border-bottom-color: transparent;
+      border-radius: 50%;
+      transform: translate(-50%, -46%) rotate(24deg);
+    }
+
+    .pilot-aperture::before,
+    .pilot-aperture::after {
+      content: "";
+      position: absolute;
+      width: clamp(18px, 2.2vw, 32px);
+      aspect-ratio: 1;
+      border-radius: 50%;
+      background: var(--acid);
+    }
+
+    .pilot-aperture::before {
+      left: 2.8%;
+      bottom: 12.5%;
+    }
+
+    .pilot-aperture::after {
+      right: 2.8%;
+      bottom: 12.5%;
+    }
+
+    .pilot-copy {
+      width: min(780px, 72%);
+    }
+
+    .pilot-label {
+      width: fit-content;
+      margin-bottom: 30px;
+      padding: 9px 15px;
+      border: 1px solid currentColor;
+      border-radius: 999px;
+      font-size: 13px;
+      font-weight: 750;
+      letter-spacing: 0.11em;
+      text-transform: uppercase;
+    }
+
+    .pilot h2 {
+      margin-bottom: 0;
+      font-size: clamp(62px, 7.2vw, 108px);
+    }
+
+    .long-run {
+      position: relative;
+      overflow: hidden;
+      padding: clamp(94px, 12vw, 170px) 0 clamp(105px, 14vw, 200px);
+      color: var(--paper);
+      background: var(--blue);
+    }
+
+    .long-run .section-index::after {
+      background: var(--paper);
+    }
+
+    .long-run .kicker {
+      color: var(--acid);
+    }
+
+    .long-copy {
+      display: grid;
+      grid-template-columns: minmax(0, 1.45fr) minmax(270px, 0.55fr);
+      gap: clamp(40px, 9vw, 150px);
+      align-items: end;
+      margin-bottom: clamp(70px, 10vw, 146px);
+    }
+
+    .long-copy h2 {
+      max-width: 900px;
+      margin-bottom: 0;
+      font-size: clamp(58px, 7vw, 106px);
+    }
+
+    .long-copy p {
+      margin-bottom: 4px;
+      color: rgba(245, 239, 227, 0.84);
+      font-size: clamp(18px, 1.4vw, 21px);
+      line-height: 1.62;
+    }
+
+    .continuum {
+      --track: rgba(245, 239, 227, 0.4);
+      position: relative;
+      height: clamp(420px, 42vw, 590px);
+      border-top: 1px solid var(--line-light);
+      border-bottom: 1px solid var(--line-light);
+      isolation: isolate;
+    }
+
+    .continuum::before {
+      content: "";
+      position: absolute;
+      z-index: -1;
+      inset: 0;
+      background: repeating-linear-gradient(90deg, transparent 0 calc(25% - 1px), rgba(245, 239, 227, 0.09) calc(25% - 1px) 25%);
+    }
+
+    .path {
+      position: absolute;
+      left: 5%;
+      right: 5%;
+      top: 50%;
+      height: 2px;
+      background: var(--track);
+    }
+
+    .path::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 50%;
+      width: clamp(34px, 3.6vw, 52px);
+      aspect-ratio: 1;
+      border-radius: 50%;
+      background: var(--acid);
+      transform: translate(-50%, -50%);
+      box-shadow: 0 0 0 12px rgba(240, 255, 0, 0.12);
+    }
+
+    .path::after {
+      content: "";
+      position: absolute;
+      right: -1px;
+      top: 50%;
+      width: 14px;
+      height: 14px;
+      border-top: 2px solid var(--paper);
+      border-right: 2px solid var(--paper);
+      transform: translateY(-50%) rotate(45deg);
+    }
+
+    .loop {
+      position: absolute;
+      top: 50%;
+      aspect-ratio: 1;
+      border: 2px solid var(--paper);
+      border-radius: 50%;
+      transform: translate(-50%, -50%);
+      background: var(--blue);
+    }
+
+    .loop::before {
+      content: "";
+      position: absolute;
+      left: 50%;
+      top: -7px;
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: var(--mint);
+      transform: translateX(-50%);
+    }
+
+    .loop::after {
+      content: "";
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 44%;
+      height: 44%;
+      border: 1px solid rgba(245, 239, 227, 0.48);
+      border-radius: 50%;
+      transform: translate(-50%, -50%);
+    }
+
+    .loop-one {
+      left: 32%;
+      width: clamp(116px, 13vw, 188px);
+    }
+
+    .loop-two {
+      left: 58%;
+      width: clamp(180px, 20vw, 290px);
+    }
+
+    .loop-three {
+      left: 84%;
+      width: clamp(260px, 29vw, 418px);
+    }
+
+    .continuum-note {
+      position: absolute;
+      right: 0;
+      bottom: 24px;
+      max-width: 270px;
+      margin: 0;
+      color: rgba(245, 239, 227, 0.66);
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .closing {
+      padding: 32px 0;
+      color: var(--paper);
+      background: var(--ink);
+    }
+
+    .closing .nav {
+      min-height: 58px;
+    }
+
+    @media (prefers-reduced-motion: no-preference) {
+      .loop::before {
+        animation: pulse 2.8s ease-in-out infinite alternate;
+      }
+
+      .loop-two::before {
+        animation-delay: 450ms;
+      }
+
+      .loop-three::before {
+        animation-delay: 900ms;
+      }
+
+      @keyframes pulse {
+        to { transform: translateX(-50%) scale(1.45); }
+      }
+    }
+
+    @media (max-width: 800px) {
+      body {
+        font-size: 17px;
+      }
+
+      .site-header {
+        padding-top: 18px;
+      }
+
+      .brand {
+        font-size: 15px;
+      }
+
+      .brand img {
+        width: 32px;
+        height: 32px;
+      }
+
+      .site-header .action {
+        min-height: 44px;
+        padding: 11px 15px;
+        font-size: 13px;
+      }
+
+      .hero {
+        min-height: 900px;
+      }
+
+      .hero-inner {
+        padding-top: 170px;
+        padding-bottom: 38px;
+      }
+
+      .hero-grid,
+      .section-head,
+      .long-copy {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-grid {
+        gap: 44px;
+      }
+
+      h1 {
+        font-size: clamp(58px, 18vw, 78px);
+        line-height: 0.92;
+      }
+
+      .hero-copy {
+        width: 100%;
+      }
+
+      .hero-copy p {
+        margin-bottom: 24px;
+        font-size: 18px;
+      }
+
+      .hero-rule {
+        margin-top: 48px;
+      }
+
+      .section-head {
+        gap: 38px;
+        margin-bottom: 60px;
+      }
+
+      .section-head h2 {
+        font-size: clamp(51px, 14vw, 68px);
+      }
+
+      .relay {
+        grid-template-columns: 1fr;
+        border-bottom: 0;
+      }
+
+      .relay::before {
+        top: 52px;
+        bottom: 52px;
+        left: 45px;
+        right: auto;
+        width: 2px;
+        height: auto;
+      }
+
+      .phase {
+        min-height: 255px;
+        display: grid;
+        grid-template-columns: 70px 1fr;
+        align-items: end;
+        gap: 22px;
+        padding: 32px 24px 38px 74px;
+        border-right: 0;
+        border-bottom: 1px solid var(--line-dark);
+      }
+
+      .phase::before {
+        top: 52px;
+        left: 45px;
+        width: 24px;
+        height: 24px;
+      }
+
+      .phase-number {
+        font-size: 50px;
+      }
+
+      .phase h3 {
+        margin: 0;
+        font-size: 31px;
+      }
+
+      .pilot .shell {
+        min-height: 620px;
+        align-items: start;
+        padding-top: 86px;
+        padding-bottom: 86px;
+      }
+
+      .pilot-copy {
+        width: 100%;
+      }
+
+      .pilot h2 {
+        font-size: clamp(58px, 17vw, 74px);
+      }
+
+      .pilot-aperture {
+        top: auto;
+        bottom: -210px;
+        left: 60%;
+        width: 470px;
+        border-width: 58px;
+        transform: translateX(-50%) rotate(24deg);
+      }
+
+      .long-copy {
+        gap: 38px;
+      }
+
+      .long-copy h2 {
+        font-size: clamp(54px, 15vw, 72px);
+      }
+
+      .long-copy p {
+        font-size: 18px;
+      }
+
+      .continuum {
+        height: 570px;
+      }
+
+      .continuum::before {
+        background: repeating-linear-gradient(0deg, transparent 0 calc(25% - 1px), rgba(245, 239, 227, 0.09) calc(25% - 1px) 25%);
+      }
+
+      .path {
+        top: 5%;
+        bottom: 5%;
+        left: 50%;
+        right: auto;
+        width: 2px;
+        height: auto;
+      }
+
+      .path::before {
+        left: 50%;
+        top: 0;
+        width: 38px;
+      }
+
+      .path::after {
+        top: auto;
+        right: auto;
+        left: 50%;
+        bottom: -1px;
+        transform: translateX(-50%) rotate(135deg);
+      }
+
+      .loop {
+        left: 50%;
+        top: auto;
+      }
+
+      .loop-one {
+        top: 24%;
+        width: 112px;
+      }
+
+      .loop-two {
+        top: 54%;
+        width: 174px;
+      }
+
+      .loop-three {
+        top: 85%;
+        width: 242px;
+      }
+
+      .continuum-note {
+        display: none;
+      }
+
+      .closing .nav {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+
+      .closing .action {
+        width: 100%;
+      }
+    }
+
+    @media (max-width: 420px) {
+      :root {
+        --gutter: 20px;
+      }
+
+      .site-header .brand span {
+        max-width: 72px;
+        line-height: 1.05;
+      }
+
+      .site-header .action {
+        max-width: 126px;
+        text-align: center;
+      }
+
+      .hero {
+        min-height: 860px;
+      }
+
+      .kicker {
+        margin-bottom: 22px;
+      }
+
+      h1 {
+        font-size: 59px;
+      }
+
+      .phase {
+        grid-template-columns: 48px 1fr;
+        padding-left: 72px;
+      }
+
+      .phase h3 {
+        font-size: 29px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="site-header">
+    <div class="shell nav" aria-label="Primary navigation">
+      <a class="brand" href="#main" aria-label="Buildwise Media home">
+        <!-- @r020:identity -->
+        <img src="brand/mark.svg" alt="" width="36" height="36">
+        <span>Buildwise Media</span>
+      </a>
+      <a class="action" href="#fit">See If We're a Fit</a>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="hero" aria-labelledby="hero-heading">
+      <div class="shell hero-inner">
+        <p class="kicker">Custom AI systems</p>
+        <div class="hero-grid">
+          <h1 id="hero-heading">Build the systems your business needs next.</h1>
+          <div class="hero-copy">
+            <p>Buildwise works with you to build and improve custom AI systems across the business. We start with one important problem, learn from real work, and keep building from there.</p>
+            <a class="action" href="#fit">See If We're a Fit</a>
+          </div>
+        </div>
+        <div class="hero-rule" aria-hidden="true"><span>01</span></div>
+      </div>
+    </section>
+
+    <section class="transformation" aria-labelledby="transformation-heading">
+      <div class="shell">
+        <div class="section-head">
+          <span class="section-index" aria-hidden="true">02</span>
+          <h2 id="transformation-heading">Build an AI-native business.</h2>
+        </div>
+
+        <!-- @r020:F2 -->
+        <div class="relay" aria-label="Three-step relationship">
+          <article class="phase">
+            <span class="phase-number" aria-hidden="true">01</span>
+            <h3>Pick one problem that matters</h3>
+          </article>
+          <article class="phase">
+            <span class="phase-number" aria-hidden="true">02</span>
+            <h3>We build and test it</h3>
+          </article>
+          <article class="phase">
+            <span class="phase-number" aria-hidden="true">03</span>
+            <h3>Keep improving across the business</h3>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="pilot" aria-labelledby="pilot-heading">
+      <div class="shell">
+        <!-- @r020:F3 -->
+        <div class="pilot-aperture" aria-hidden="true"></div>
+        <div class="pilot-copy">
+          <p class="pilot-label">The way in</p>
+          <h2 id="pilot-heading">The 90-day Pilot is where we begin.</h2>
+        </div>
+      </div>
+    </section>
+
+    <section class="long-run" aria-labelledby="long-heading">
+      <div class="shell">
+        <div class="long-copy">
+          <div>
+            <p class="kicker">Built for the long run</p>
+            <h2 id="long-heading">AI becomes part of how your business works.</h2>
+          </div>
+          <p>We keep building with you—improving what works and building new systems across your business.</p>
+        </div>
+
+        <!-- @r020:F2 -->
+        <div class="continuum" role="img" aria-label="A starting point moving through increasingly broad cycles of improvement across the business">
+          <div class="path" aria-hidden="true"></div>
+          <div class="loop loop-one" aria-hidden="true"></div>
+          <div class="loop loop-two" aria-hidden="true"></div>
+          <div class="loop loop-three" aria-hidden="true"></div>
+          <p class="continuum-note" aria-hidden="true">Keep improving across the business</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="closing" id="fit">
+    <div class="shell nav">
+      <a class="brand" href="#main" aria-label="Buildwise Media home">
+        <!-- @r020:identity -->
+        <img src="brand/mark.svg" alt="" width="36" height="36">
+        <span>Buildwise Media</span>
+      </a>
+      <a class="action" href="#main">See If We're a Fit</a>
+    </div>
+  </footer>
+</body>
+</html>

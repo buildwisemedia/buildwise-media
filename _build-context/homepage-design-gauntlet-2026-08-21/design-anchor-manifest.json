@@ -1,0 +1,36 @@
+{
+  "schema_version": "bwm-design-anchor-manifest/1.0.0",
+  "identity_record_hash": "15fc211eab2b8f8eb29185d2d9c9d982a19cd0661d06e1ebc9f8d9505e0c4119",
+  "content_hash": "51a54c095310b5f139efa4fd9bc712db528991a7e35ffcdeb30012cb5131da3d",
+  "scope_hash": "8a38e8c541268a237ca52abfd269a231a6fc4af2229330e5e4b72307835aa0dd",
+  "anchors": [
+    {
+      "id": "bwm-identity-and-logo",
+      "kind": "identity",
+      "source_locator": "brand/mark.svg",
+      "source_sha256": "739d338f6777e461164cfce97366bc2c4322982db2c6fbe4da17673b1b03e652",
+      "requirement": "Use the locked Buildwise mark unchanged while allowing each sealed author to propose a new visual system."
+    },
+    {
+      "id": "shared-copy-truth",
+      "kind": "truth",
+      "source_locator": "sealed-brief.md",
+      "source_sha256": "51a54c095310b5f139efa4fd9bc712db528991a7e35ffcdeb30012cb5131da3d",
+      "requirement": "Hold the approved hero, AI-native, Pilot, and long-term copy constant across all three candidates."
+    },
+    {
+      "id": "sealed-independence",
+      "kind": "brief",
+      "source_locator": "sealed-brief.md",
+      "source_sha256": "51a54c095310b5f139efa4fd9bc712db528991a7e35ffcdeb30012cb5131da3d",
+      "requirement": "Prohibit current-site, prior-taste-lab, sibling-candidate, and model-identity contamination during authorship."
+    },
+    {
+      "id": "comparison-usability",
+      "kind": "research",
+      "source_locator": "research-ledger.md",
+      "source_sha256": "8a38e8c541268a237ca52abfd269a231a6fc4af2229330e5e4b72307835aa0dd",
+      "requirement": "Make hierarchy, section differentiation, reading comfort, mobile behavior, and the long-term Buildwise relationship legible."
+    }
+  ]
+}

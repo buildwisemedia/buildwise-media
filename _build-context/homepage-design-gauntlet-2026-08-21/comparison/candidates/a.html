@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Buildwise Media — Custom AI systems</title>
+<style>
+  :root{
+    --ink:#101828;        /* deep ink navy */
+    --paper:#F7F3EA;      /* warm cream */
+    --clay:#C14E21;       /* terracotta */
+    --clay-deep:#93370F;
+    --moss:#3F6212;       /* grounded green */
+    --sky:#DCE7F2;        /* pale blue tint */
+    --line:rgba(16,24,40,.16);
+    --serif:"Iowan Old Style","Palatino Linotype",Palatino,Georgia,"Times New Roman",serif;
+    --sans:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{
+    font-family:var(--sans);
+    font-size:18px;
+    line-height:1.6;
+    color:var(--ink);
+    background:var(--paper);
+    -webkit-font-smoothing:antialiased;
+  }
+  a{color:inherit}
+  a:focus-visible,button:focus-visible{
+    outline:3px solid var(--clay);
+    outline-offset:3px;
+    border-radius:4px;
+  }
+  .wrap{max-width:1120px;margin:0 auto;padding:0 24px}
+
+  /* ---------- Navigation ---------- */
+  header{
+    position:sticky;top:0;z-index:10;
+    background:rgba(247,243,234,.92);
+    backdrop-filter:blur(8px);
+    border-bottom:1px solid var(--line);
+  }
+  .nav{display:flex;align-items:center;justify-content:space-between;padding:14px 0}
+  .brand{display:flex;align-items:center;gap:12px;text-decoration:none;font-weight:700;font-size:19px}
+  .brand img{width:34px;height:34px;display:block}
+  .btn{
+    display:inline-block;
+    background:var(--clay);
+    color:#fff;
+    text-decoration:none;
+    font-weight:700;
+    font-size:17px;
+    padding:13px 26px;
+    border-radius:999px;
+    border:2px solid var(--clay);
+    transition:background .2s ease,color .2s ease;
+  }
+  .btn:hover{background:var(--clay-deep);border-color:var(--clay-deep)}
+
+  /* ---------- Hero ---------- */
+  .hero{
+    padding:104px 0 96px;
+    border-bottom:1px solid var(--line);
+    background:
+      radial-gradient(600px 300px at 85% 0%, rgba(193,78,33,.10), transparent 70%),
+      var(--paper);
+  }
+  .kicker{
+    display:inline-block;
+    font-size:14px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;
+    color:var(--clay);
+    border:1.5px solid var(--clay);
+    border-radius:999px;
+    padding:6px 16px;
+    margin-bottom:28px;
+  }
+  .hero h1{
+    font-family:var(--serif);
+    font-size:clamp(40px,6vw,68px);
+    line-height:1.06;
+    font-weight:700;
+    max-width:14ch;
+    margin-bottom:28px;
+  }
+  .hero h1 .dot{color:var(--clay)}
+  .hero p{
+    font-size:20px;
+    max-width:56ch;
+    color:#33404f;
+    margin-bottom:40px;
+  }
+
+  /* ---------- Transformation steps ---------- */
+  .steps{padding:96px 0;background:var(--ink);color:var(--paper)}
+  .steps h2{
+    font-family:var(--serif);
+    font-size:clamp(32px,4.5vw,48px);
+    line-height:1.15;
+    max-width:20ch;
+    margin-bottom:64px;
+  }
+  .rail{list-style:none;display:grid;grid-template-columns:repeat(3,1fr);gap:0}
+  .rail li{
+    position:relative;
+    padding:28px 28px 8px 0;
+    border-top:3px solid var(--clay);
+    margin-right:32px;
+  }
+  .rail li:last-child{margin-right:0}
+  .rail .n{
+    font-family:var(--serif);
+    font-size:15px;font-weight:700;
+    color:#E8B4A0;
+    display:block;margin-bottom:10px;
+    letter-spacing:.1em;
+  }
+  .rail .t{font-size:21px;font-weight:600;line-height:1.35;max-width:16ch}
+
+  /* ---------- Pilot bridge ---------- */
+  .pilot{
+    padding:110px 0;text-align:center;
+    background:var(--sky);
+  }
+  .pilot .label{
+    font-size:14px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;
+    color:var(--moss);margin-bottom:18px;display:block;
+  }
+  .pilot p{
+    font-family:var(--serif);
+    font-size:clamp(28px,4vw,44px);
+    font-weight:700;
+    line-height:1.2;
+    max-width:22ch;
+    margin:0 auto 36px;
+  }
+  .pilot .btn{background:var(--moss);border-color:var(--moss)}
+  .pilot .btn:hover{background:#2c4a0c;border-color:#2c4a0c}
+
+  /* ---------- Long run ---------- */
+  .longrun{padding:96px 0 112px;border-top:1px solid var(--line)}
+  .longrun .kicker{color:var(--moss);border-color:var(--moss)}
+  .longrun h2{
+    font-family:var(--serif);
+    font-size:clamp(32px,4.5vw,48px);
+    line-height:1.15;
+    max-width:20ch;
+    margin-bottom:28px;
+  }
+  .longrun .cols{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:start}
+  .longrun .lead{font-size:20px;color:#33404f;max-width:48ch}
+
+  figure.diagram{margin-top:8px}
+  figure.diagram figcaption{
+    font-size:14px;color:#5a6673;margin-top:14px;max-width:40ch;
+  }
+  .diagram svg{width:100%;height:auto;display:block}
+
+  footer{
+    border-top:1px solid var(--line);
+    padding:28px 0;color:#5a6673;font-size:15px;
+  }
+
+  /* ---------- Responsive ---------- */
+  @media (max-width:760px){
+    body{font-size:17px}
+    .hero{padding:64px 0 64px}
+    .hero p{font-size:18px}
+    .rail{grid-template-columns:1fr;gap:36px}
+    .rail li{margin-right:0;padding-bottom:0}
+    .longrun .cols{grid-template-columns:1fr;gap:48px}
+    .steps,.longrun{padding:72px 0}
+    .pilot{padding:80px 0}
+    .nav .btn{padding:11px 18px;font-size:15px}
+  }
+  @media (prefers-reduced-motion:reduce){
+    html{scroll-behavior:auto}
+    *{transition:none !important}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap nav">
+    <a class="brand" href="#top">
+      <!-- @r020:identity: supplied locked Buildwise mark at identity scale -->
+      <img src="brand/mark.svg" alt="Buildwise Media logo" width="34" height="34">
+      <span>Buildwise Media</span>
+    </a>
+    <a class="btn" href="#fit">See If We're a Fit</a>
+  </div>
+</header>
+
+<main id="top">
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="wrap">
+      <span class="kicker">Custom AI systems</span>
+      <h1>Build the systems your business needs next.</h1>
+      <p>Buildwise works with you to build and improve custom AI systems across the business. We start with one important problem, learn from real work, and keep building from there.</p>
+      <a class="btn" href="#fit">See If We're a Fit</a>
+    </div>
+  </section>
+
+  <!-- Transformation -->
+  <section class="steps" aria-labelledby="steps-h">
+    <div class="wrap">
+      <h2 id="steps-h">Build an AI-native business.</h2>
+      <ol class="rail">
+        <li><span class="n">01</span><span class="t">Pick one problem that matters</span></li>
+        <li><span class="n">02</span><span class="t">We build and test it</span></li>
+        <li><span class="n">03</span><span class="t">Keep improving across the business</span></li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- Pilot bridge -->
+  <section class="pilot" id="fit">
+    <div class="wrap">
+      <span class="label">The way in</span>
+      <p>The 90-day Pilot is where we begin.</p>
+      <a class="btn" href="#top">See If We're a Fit</a>
+    </div>
+  </section>
+
+  <!-- Long run -->
+  <section class="longrun" aria-labelledby="lr-h">
+    <div class="wrap">
+      <div class="cols">
+        <div>
+          <span class="kicker">Built for the long run</span>
+          <h2 id="lr-h">AI becomes part of how your business works.</h2>
+          <p class="lead">We keep building with you—improving what works and building new systems across your business.</p>
+        </div>
+        <figure class="diagram">
+          <!-- @r020:F2 explanatory diagram: the compounding loop of the ongoing Buildwise relationship -->
+          <svg viewBox="0 0 520 360" role="img" aria-label="Loop diagram: one pilot system learns from real work, improves, and branches into new systems across the business">
+            <defs>
+              <marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+                <path d="M0 0L10 5L0 10z" fill="#C14E21"/>
+              </marker>
+              <marker id="arr2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+                <path d="M0 0L10 5L0 10z" fill="#3F6212"/>
+              </marker>
+            </defs>
+            <!-- loop ring -->
+            <ellipse cx="260" cy="180" rx="180" ry="120" fill="none" stroke="#C14E21" stroke-width="3" stroke-dasharray="10 8" marker-end="url(#arr)"/>
+            <!-- nodes on the loop -->
+            <g font-family="sans-serif" font-size="15" font-weight="700" text-anchor="middle">
+              <g>
+                <circle cx="260" cy="60" r="46" fill="#101828"/>
+                <text x="260" y="56" fill="#F7F3EA">Pilot</text>
+                <text x="260" y="74" fill="#E8B4A0">90 days</text>
+              </g>
+              <g>
+                <circle cx="440" cy="180" r="46" fill="#C14E21"/>
+                <text x="440" y="176" fill="#fff">Learn</text>
+                <text x="440" y="194" fill="#FBE3D8">from work</text>
+              </g>
+              <g>
+                <circle cx="260" cy="300" r="46" fill="#3F6212"/>
+                <text x="260" y="296" fill="#fff">Improve</text>
+                <text x="260" y="314" fill="#D9E7C5">what works</text>
+              </g>
+              <g>
+                <circle cx="80" cy="180" r="46" fill="#101828"/>
+                <text x="80" y="176" fill="#F7F3EA">Build</text>
+                <text x="80" y="194" fill="#E8B4A0">the next</text>
+              </g>
+            </g>
+            <!-- outward branches: new systems -->
+            <g stroke="#3F6212" stroke-width="2.5" marker-end="url(#arr2)">
+              <line x1="118" y1="146" x2="170" y2="96"/>
+              <line x1="52" y1="146" x2="24" y2="88"/>
+            </g>
+            <g font-family="sans-serif" font-size="13" font-weight="700" text-anchor="middle" fill="#3F6212">
+              <text x="196" y="80">new system</text>
+              <text x="24" y="74">new system</text>
+            </g>
+          </svg>
+          <figcaption>The Pilot starts the loop. Each pass learns from real work, improves what works, and builds the next system across your business.</figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">Buildwise Media</div>
+</footer>
+
+</body>
+</html>

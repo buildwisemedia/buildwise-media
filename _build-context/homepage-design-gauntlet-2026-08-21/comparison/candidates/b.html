@@ -1,0 +1,397 @@
+<!doctype html>
+<!--
+  @build-author-exempt: sealed blind design-gauntlet candidate — the authorship lane is
+  locked to this session's model by the gauntlet protocol; delegating to another model
+  would invalidate the study. (Model identity intentionally omitted until reveal.)
+
+  Buildwise Media — homepage design candidate
+  Concept: "Heartwood" — the relationship drawn as growth rings.
+  Private taste-lab prototype. Self-contained: inline CSS/JS + local brand/mark.svg only.
+-->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Buildwise Media</title>
+<link rel="icon" href="brand/mark.svg" type="image/svg+xml">
+<script>document.documentElement.classList.add('js');</script>
+<style>
+  :root{
+    --ink:#1B2A23;          /* deep evergreen ink */
+    --ink-2:#22332A;        /* raised dark surface */
+    --paper:#F5EFE2;        /* warm oat */
+    --paper-2:#EFE6D2;      /* deeper parchment */
+    --pine:#2C6E4F;         /* primary accent, light surfaces */
+    --pine-deep:#1F4A38;
+    --sage:#7FB894;         /* line work on dark surfaces */
+    --brass:#D9A050;        /* the action color */
+    --brass-hi:#E2B267;
+    --cream:#F2EEDF;        /* text on dark */
+    --cream-dim:#CFDAD0;
+    --serif:"Iowan Old Style","Book Antiqua",Palatino,Georgia,"Times New Roman",serif;
+    --sans:system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+    --mono:ui-monospace,"SF Mono",Menlo,Consolas,"Liberation Mono",monospace;
+    --body:clamp(1.0625rem, 1rem + .35vw, 1.1875rem);   /* 17px mobile → 19px desktop */
+    --lede:clamp(1.1875rem, 1.1rem + .45vw, 1.3125rem); /* 19px → 21px */
+    --arc:clamp(28px, 5vw, 64px);
+    --pad:clamp(84px, 10vw, 132px);
+    --gutter:clamp(20px, 5vw, 48px);
+  }
+  *,*::before,*::after{box-sizing:border-box}
+  html,body{overflow-x:clip}
+  body{
+    margin:0;
+    background:var(--ink);
+    color:var(--ink);
+    font:400 var(--body)/1.65 var(--serif);
+    -webkit-font-smoothing:antialiased;
+    text-rendering:optimizeLegibility;
+  }
+  ::selection{background:var(--brass);color:var(--ink)}
+  img,svg{max-width:100%;height:auto}
+  .wrap{max-width:1140px;margin-inline:auto;padding-inline:var(--gutter)}
+
+  /* ---- surface themes ---- */
+  .dark{background:var(--ink);color:var(--cream);--focus:var(--brass);--kick:var(--brass)}
+  .light{background:var(--paper);color:var(--ink);--focus:var(--pine);--kick:var(--pine-deep)}
+  .light-2{background:var(--paper-2);color:var(--ink);--focus:var(--pine);--kick:var(--pine-deep)}
+
+  /* rounded "ring edge" section transitions */
+  .sheet{position:relative;border-radius:var(--arc) var(--arc) 0 0;margin-top:calc(-1 * var(--arc))}
+  section{padding-block:var(--pad) calc(var(--pad) + var(--arc))}
+  #fit{padding-bottom:var(--pad)}
+
+  :focus-visible{outline:3px solid var(--focus,var(--brass));outline-offset:3px;border-radius:4px}
+  .skip{position:absolute;left:-999px;top:0;z-index:50;background:var(--brass);color:var(--ink);
+    font:600 1rem var(--sans);padding:.8rem 1.2rem;border-radius:0 0 10px 0;text-decoration:none}
+  .skip:focus{left:0}
+
+  /* ---- type ---- */
+  h1,h2,h3{font-family:var(--serif);font-weight:700;letter-spacing:-.015em;margin:0}
+  .kicker{
+    display:flex;align-items:center;gap:.75rem;margin:0 0 1.4rem;
+    font:700 .84rem/1 var(--sans);letter-spacing:.18em;text-transform:uppercase;color:var(--kick);
+  }
+  .kicker::before{content:"";width:26px;height:2px;background:currentColor;flex:none}
+  .lede{font-size:var(--lede);line-height:1.6;margin:0}
+
+  /* ---- buttons + links ---- */
+  .btn{
+    display:inline-flex;align-items:center;gap:.6rem;
+    background:var(--brass);color:var(--ink);
+    font:600 1.0625rem/1 var(--sans);
+    padding:1.05rem 1.55rem;border-radius:12px;border:1px solid rgba(27,42,35,.28);
+    text-decoration:none;box-shadow:0 1px 0 rgba(27,42,35,.18);white-space:nowrap;
+    transition:background .18s ease, transform .18s ease;
+  }
+  .btn .arrow{transition:transform .18s ease}
+  .btn:hover{background:var(--brass-hi);transform:translateY(-1px)}
+  .btn:hover .arrow{transform:translateX(3px)}
+  .btn:active{transform:translateY(0)}
+  .quiet{font:500 1.0625rem var(--sans);color:inherit;text-decoration:underline;
+    text-underline-offset:.3em;text-decoration-thickness:1.5px}
+  .quiet:hover{text-decoration-thickness:2.5px}
+
+  /* ---- nav ---- */
+  header.top{padding:1.4rem 0}
+  .navrow{display:flex;align-items:center;gap:1.1rem}
+  .brand{display:flex;align-items:center;gap:.8rem;text-decoration:none;color:var(--cream)}
+  .brand img{width:42px;height:42px;flex:none}
+  .brand .name{font:600 1.17rem var(--serif);letter-spacing:-.01em;white-space:nowrap}
+  nav.anchors{display:flex;gap:1.9rem;margin-left:auto;margin-right:1.6rem}
+  nav.anchors a{font:500 .97rem var(--sans);color:#E4E9DF;text-decoration:none}
+  nav.anchors a:hover{color:var(--brass-hi);text-decoration:underline;text-underline-offset:.35em}
+  header.top .btn{padding:.8rem 1.15rem;font-size:.97rem;margin-left:auto}
+  header.top nav.anchors + .btn{margin-left:0}
+
+  /* ---- hero ---- */
+  #hero{padding-top:clamp(56px, 8vw, 110px)}
+  #hero h1{
+    font-size:clamp(2.6rem, 1.6rem + 4.6vw, 5rem);
+    line-height:1.04;max-width:23ch;color:var(--cream);
+    text-wrap:balance;
+  }
+  #hero .lede{max-width:58ch;color:rgba(242,238,223,.92);margin-top:1.7rem}
+  .cta-row{display:flex;align-items:center;gap:1.6rem;flex-wrap:wrap;margin-top:2.6rem}
+
+  /* ---- transformation steps ---- */
+  #how h2,#longrun h2{font-size:clamp(2rem, 1.35rem + 2.6vw, 3.35rem);line-height:1.1;text-wrap:balance}
+  #how h2{max-width:30ch;text-wrap:wrap} /* greedy wrap: never splits "AI-native" at its hyphen */
+  #longrun h2{max-width:18ch}
+  .steps{list-style:none;margin:4.2rem 0 0;padding:0;position:relative;
+    display:grid;grid-template-columns:repeat(3,1fr);gap:2.6rem}
+  .steps::before{content:"";position:absolute;top:27px;left:0;right:0;height:2px;
+    background:linear-gradient(90deg, rgba(44,110,79,.55) 0%, rgba(44,110,79,.55) 78%, rgba(44,110,79,0) 100%)}
+  .step .num{
+    position:relative;z-index:1;display:grid;place-items:center;width:54px;height:54px;
+    border:2px solid var(--pine);border-radius:50%;background:var(--paper);
+    font:700 1.45rem var(--serif);color:var(--pine-deep);margin-bottom:1.35rem;
+  }
+  .step h3{font-size:clamp(1.3rem, 1.15rem + .9vw, 1.62rem);line-height:1.25;max-width:15ch;text-wrap:balance}
+
+  /* ---- pilot bridge ---- */
+  .chip{
+    display:inline-block;margin:0 0 1.5rem;
+    font:700 .8rem/1 var(--mono);letter-spacing:.2em;text-transform:uppercase;
+    color:var(--brass-hi);border:1.5px solid rgba(217,160,80,.65);border-radius:999px;
+    padding:.55rem .95rem;
+  }
+  #pilot h2{font-size:clamp(1.9rem, 1.3rem + 2.5vw, 3.15rem);line-height:1.12;max-width:22ch;color:var(--cream);text-wrap:balance}
+
+  /* the 90-day segment on a much longer line */
+  .timeline{position:relative;margin-top:4.4rem;height:120px}
+  .tl-track{position:absolute;left:0;right:0;top:44px;height:2px;
+    background:linear-gradient(90deg, rgba(127,184,148,.75) 0%, rgba(127,184,148,.75) 72%, rgba(127,184,148,0) 100%)}
+  .tl-seg{position:absolute;left:0;width:27%;top:41px;height:8px;border-radius:6px;background:var(--brass)}
+  .tl-node{position:absolute;top:34px;width:22px;height:22px;border-radius:50%;transform:translateX(-50%)}
+  .tl-node.n0{left:2px;background:var(--brass);transform:none}
+  .tl-node.n90{left:27%;background:var(--ink);border:4px solid var(--brass)}
+  .tl-tick{position:absolute;top:39px;width:12px;height:12px;border-radius:50%;
+    background:var(--ink);border:2.5px solid var(--sage);transform:translateX(-50%)}
+  .tl-lab{position:absolute;top:76px;font:500 .9rem/1.3 var(--mono);color:var(--cream-dim);
+    transform:translateX(-50%);text-align:center;white-space:nowrap}
+  .tl-lab.start{left:2px;transform:none;text-align:left}
+  .tl-lab.pilot-lab{top:8px;color:var(--brass-hi)}
+
+  /* ---- long-run: growth rings ---- */
+  #longrun .grid{display:grid;grid-template-columns:1fr 1.05fr;gap:clamp(44px, 6vw, 90px);align-items:center}
+  #longrun .lede{max-width:46ch;margin-top:1.6rem}
+  .legend{list-style:none;margin:2.4rem 0 0;padding:0;display:grid;gap:.95rem}
+  .legend li{display:flex;align-items:center;gap:1rem;font-size:var(--body)}
+  .legend .key{flex:none;display:grid;place-items:center;width:38px;height:38px;border-radius:50%;
+    font:700 1.02rem var(--sans);color:var(--ink)}
+  .key.k1{background:var(--brass)}
+  .key.k2,.key.k3,.key.k4{background:var(--paper);border:2px solid var(--pine);color:var(--pine-deep)}
+  .key.knext{background:transparent;border:2px dashed var(--pine);color:var(--pine-deep);font-size:1.25rem}
+  figure.rings{margin:0}
+  figure.rings figcaption{font:400 1.0625rem/1.55 var(--sans);color:#3A4A40;max-width:44ch;margin-top:1.4rem}
+
+  /* ---- closing ---- */
+  #fit{text-align:center}
+  #fit .mark{width:58px;height:58px;margin:0 auto 1.8rem;display:block}
+  #fit h2{font-size:clamp(2.1rem, 1.4rem + 3vw, 3.6rem);line-height:1.08;max-width:20ch;
+    margin-inline:auto;color:var(--cream);text-wrap:balance}
+  #fit .btn{margin-top:2.5rem;font-size:1.14rem;padding:1.2rem 1.9rem}
+  footer{border-top:1px solid rgba(242,238,223,.16);padding:2.2rem 0 3rem}
+  .footrow{display:flex;align-items:center;gap:1rem;flex-wrap:wrap;font:400 .95rem var(--sans);color:var(--cream-dim)}
+  .footrow img{width:30px;height:30px}
+  .footrow .name{font:600 1.02rem var(--serif);color:var(--cream)}
+  .footrow .spacer{flex:1}
+  .proto{font:400 .86rem var(--sans);color:rgba(207,218,208,.75);margin:.9rem 0 0}
+
+  /* ---- motion (optional; page is complete without it) ---- */
+  @media (prefers-reduced-motion: no-preference){
+    html{scroll-behavior:smooth}
+    html.js [data-reveal]{opacity:0;transform:translateY(16px);
+      transition:opacity .6s ease, transform .6s cubic-bezier(.2,.7,.3,1)}
+    html.js [data-reveal].in{opacity:1;transform:none}
+    html.js [data-reveal].d1{transition-delay:.08s}
+    html.js [data-reveal].d2{transition-delay:.16s}
+    html.js [data-reveal].d3{transition-delay:.24s}
+    html.js .tl-seg{transform:scaleX(0);transform-origin:left center;transition:transform .9s ease .2s}
+    html.js .timeline.in .tl-seg{transform:scaleX(1)}
+    html.js .rings-svg .draw{stroke-dashoffset:1;transition:stroke-dashoffset 1.2s ease}
+    html.js .rings-svg .draw.r2{transition-delay:.15s}
+    html.js .rings-svg .draw.r3{transition-delay:.3s}
+    html.js .rings.in .draw{stroke-dashoffset:0}
+  }
+
+  /* ---- responsive ---- */
+  @media (max-width:860px){
+    nav.anchors{display:none}
+    #longrun .grid{grid-template-columns:1fr}
+    #longrun .figcol{margin-top:1.4rem}
+  }
+  @media (max-width:760px){
+    .steps{grid-template-columns:1fr;gap:2.1rem}
+    .steps::before{left:26px;right:auto;top:27px;bottom:8px;width:2px;height:auto;
+      background:linear-gradient(180deg, rgba(44,110,79,.55) 0%, rgba(44,110,79,.55) 80%, rgba(44,110,79,0) 100%)}
+    .step{display:grid;grid-template-columns:54px 1fr;column-gap:1.15rem;align-items:center}
+    .step .num{margin-bottom:0}
+    .step h3{max-width:none}
+    .timeline{height:132px}
+  }
+  @media (max-width:560px){
+    .brand .name{font-size:1.05rem}
+    header.top .btn{padding:.72rem .9rem;font-size:.9rem}
+    .tl-lab.mid2,.tl-tick.mid2{display:none}
+    .tl-lab{font-size:.82rem}
+  }
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<!-- ============ NAV + HERO (evergreen ink) ============ -->
+<div class="dark" id="top">
+  <header class="top">
+    <div class="wrap navrow">
+      <a class="brand" href="#top" aria-label="Buildwise Media — home">
+        <!-- @r020:identity — supplied Buildwise mark, unchanged, at identity scale in the navigation -->
+        <img src="brand/mark.svg" alt="" width="42" height="42">
+        <span class="name">Buildwise Media</span>
+      </a>
+      <nav class="anchors" aria-label="Page sections">
+        <a href="#how">How it works</a>
+        <a href="#pilot">The Pilot</a>
+        <a href="#longrun">The long run</a>
+      </nav>
+      <a class="btn" href="#fit">See If We're a Fit</a>
+    </div>
+  </header>
+
+  <main id="main">
+    <section id="hero" aria-labelledby="hero-h">
+      <div class="wrap">
+        <p class="kicker" data-reveal>Custom AI systems</p>
+        <h1 id="hero-h" data-reveal>Build the systems your business needs next.</h1>
+        <p class="lede d1" data-reveal>Buildwise works with you to build and improve custom AI systems across the business. We start with one important problem, learn from real work, and keep building from there.</p>
+        <div class="cta-row d2" data-reveal>
+          <a class="btn" href="#fit">See If We're a Fit <span class="arrow" aria-hidden="true">&rarr;</span></a>
+          <a class="quiet" href="#how">How it works &darr;</a>
+        </div>
+      </div>
+    </section>
+  </main>
+</div>
+
+<!-- ============ TRANSFORMATION (oat paper) ============ -->
+<section class="light sheet" id="how" aria-labelledby="how-h">
+  <div class="wrap">
+    <h2 id="how-h" data-reveal>Build an AI-native business.</h2>
+    <!-- The step path: one line runs through all three steps and dissolves onward —
+         the sequence continues past step three by design. -->
+    <ol class="steps" role="list">
+      <li class="step" data-reveal><span class="num" aria-hidden="true">1</span><h3>Pick one problem that matters</h3></li>
+      <li class="step d1" data-reveal><span class="num" aria-hidden="true">2</span><h3>We build and test it</h3></li>
+      <li class="step d2" data-reveal><span class="num" aria-hidden="true">3</span><h3>Keep improving across the business</h3></li>
+    </ol>
+  </div>
+</section>
+
+<!-- ============ PILOT BRIDGE (ink) ============ -->
+<section class="dark sheet" id="pilot" aria-labelledby="pilot-h">
+  <div class="wrap">
+    <p class="chip" data-reveal>The way in</p>
+    <h2 id="pilot-h" data-reveal>The 90-day Pilot is where we begin.</h2>
+
+    <!-- @r020:F2 proof: the Pilot rendered as the FIRST short segment of a much longer line
+         that keeps going. Without it, the page cannot show that the Pilot is a beginning,
+         not the whole relationship. -->
+    <div class="timeline" data-reveal role="img"
+         aria-label="Timeline: the 90-day Pilot is the first short segment of a much longer line. The line continues on to the next system, and the next, and keeps going.">
+      <div class="tl-track"></div>
+      <div class="tl-seg"></div>
+      <span class="tl-node n0"></span>
+      <span class="tl-node n90"></span>
+      <span class="tl-tick" style="left:55%"></span>
+      <span class="tl-tick mid2" style="left:78%"></span>
+      <span class="tl-lab pilot-lab" style="left:13.5%">the Pilot</span>
+      <span class="tl-lab start">day 1</span>
+      <span class="tl-lab" style="left:27%">day 90</span>
+      <span class="tl-lab" style="left:55%">the next system</span>
+      <span class="tl-lab mid2" style="left:78%">and the next</span>
+    </div>
+  </div>
+</section>
+
+<!-- ============ LONG RUN (parchment) ============ -->
+<section class="light-2 sheet" id="longrun" aria-labelledby="long-h">
+  <div class="wrap">
+    <div class="grid">
+      <div>
+        <p class="kicker" data-reveal>Built for the long run</p>
+        <h2 id="long-h" data-reveal>AI becomes part of how your business works.</h2>
+        <p class="lede" data-reveal>We keep building with you—improving what works and building new systems across your business.</p>
+        <ol class="legend d1" role="list" data-reveal>
+          <li><span class="key k1" aria-hidden="true">1</span><span>The Pilot &mdash; one problem, days 1&ndash;90</span></li>
+          <li><span class="key k2" aria-hidden="true">2</span><span>Improve what works</span></li>
+          <li><span class="key k3" aria-hidden="true">3</span><span>Build the next system</span></li>
+          <li><span class="key k4" aria-hidden="true">4</span><span>Across the business</span></li>
+          <li><span class="key knext" aria-hidden="true">&#9676;</span><span>The next ring begins</span></li>
+        </ol>
+      </div>
+      <div class="figcol">
+        <!-- @r020:F2 proof: the functional visual system of this direction — the relationship
+             read as growth rings. The Pilot is the heart of the trunk; each cycle of work
+             becomes a permanent ring; a dashed ring is always forming. Remove it and the
+             long-term, compounding shape of the engagement has no picture. -->
+        <figure class="rings" data-reveal>
+          <svg class="rings-svg" viewBox="0 0 560 560" role="img" aria-labelledby="rings-t rings-d">
+            <title id="rings-t">The Buildwise relationship, read as growth rings</title>
+            <desc id="rings-d">Concentric rings like a tree trunk. The center is the 90-day Pilot, one problem. Each ring outward is a later cycle: improve what works, build the next system, work across the business. An outer dashed ring is still forming.</desc>
+            <!-- wood: filled discs, outside in -->
+            <circle cx="280" cy="280" r="210" fill="#E9DCBE"/>
+            <circle cx="280" cy="280" r="148" fill="#E2D2AC"/>
+            <circle cx="280" cy="280" r="88"  fill="#DBC697"/>
+            <circle cx="280" cy="280" r="34"  fill="#D9A050"/>
+            <!-- ring edges (drawn on scroll; fully visible without motion) -->
+            <circle class="draw r1" cx="280" cy="280" r="88"  fill="none" stroke="#2C6E4F" stroke-width="3"   pathLength="1" stroke-dasharray="1"/>
+            <circle class="draw r2" cx="280" cy="280" r="148" fill="none" stroke="#2C6E4F" stroke-width="3.2" pathLength="1" stroke-dasharray="1"/>
+            <circle class="draw r3" cx="280" cy="280" r="210" fill="none" stroke="#2C6E4F" stroke-width="3.4" pathLength="1" stroke-dasharray="1"/>
+            <!-- faint inner echoes: the grain -->
+            <circle cx="280" cy="280" r="64"  fill="none" stroke="#2C6E4F" stroke-width="1" opacity=".33"/>
+            <circle cx="280" cy="280" r="118" fill="none" stroke="#2C6E4F" stroke-width="1" opacity=".33"/>
+            <circle cx="280" cy="280" r="180" fill="none" stroke="#2C6E4F" stroke-width="1" opacity=".33"/>
+            <!-- the next ring, forming -->
+            <circle cx="280" cy="280" r="246" fill="none" stroke="#2C6E4F" stroke-width="2.4"
+                    stroke-dasharray="10 12" opacity=".85"/>
+            <!-- numbered keys, matching the legend -->
+            <g font-family="system-ui,-apple-system,'Segoe UI',Arial,sans-serif" font-weight="700" font-size="20" text-anchor="middle">
+              <circle cx="280" cy="280" r="17" fill="#D9A050"/>
+              <text x="280" y="287" fill="#1B2A23">1</text>
+              <circle cx="342" cy="218" r="17" fill="#F5EFE2" stroke="#2C6E4F" stroke-width="2"/>
+              <text x="342" y="225" fill="#1F4A38">2</text>
+              <circle cx="385" cy="175" r="17" fill="#F5EFE2" stroke="#2C6E4F" stroke-width="2"/>
+              <text x="385" y="182" fill="#1F4A38">3</text>
+              <circle cx="428" cy="132" r="17" fill="#F5EFE2" stroke="#2C6E4F" stroke-width="2"/>
+              <text x="428" y="139" fill="#1F4A38">4</text>
+            </g>
+          </svg>
+          <figcaption>Read it like a trunk: each cycle of work becomes part of the business, and the next ring starts from everything built before it.</figcaption>
+        </figure>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CLOSE (ink) ============ -->
+<div class="dark sheet">
+  <section id="fit" aria-labelledby="fit-h">
+    <div class="wrap">
+      <!-- @r020:identity — supplied Buildwise mark, unchanged, at identity scale above the closing action -->
+      <img class="mark" src="brand/mark.svg" alt="Buildwise Media mark" width="58" height="58" data-reveal>
+      <h2 id="fit-h" data-reveal>Build the systems your business needs next.</h2>
+      <div class="d1" data-reveal><a class="btn" href="#top">See If We're a Fit <span class="arrow" aria-hidden="true">&rarr;</span></a></div>
+    </div>
+  </section>
+  <footer>
+    <div class="wrap">
+      <div class="footrow">
+        <!-- @r020:identity — supplied Buildwise mark, unchanged, at identity scale in the footer lockup -->
+        <img src="brand/mark.svg" alt="" width="30" height="30">
+        <span class="name">Buildwise Media</span>
+        <span class="spacer"></span>
+        <span>&copy; 2026 Buildwise Media</span>
+      </div>
+      <p class="proto">Design prototype &mdash; links are anchors only; nothing here is live.</p>
+    </div>
+  </footer>
+</div>
+
+<script>
+  (function(){
+    if(!('IntersectionObserver' in window)) return;
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){
+        /* reveal when entering view — or if already scrolled past (anchor jumps, fast scroll) */
+        if(e.isIntersecting || e.boundingClientRect.top < 0){
+          e.target.classList.add('in'); io.unobserve(e.target);
+        }
+      });
+    }, {threshold:.12, rootMargin:'0px 0px -36px 0px'});
+    document.querySelectorAll('[data-reveal], .timeline, .rings').forEach(function(el){ io.observe(el); });
+  })();
+</script>
+</body>
+</html>
