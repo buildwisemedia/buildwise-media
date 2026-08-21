@@ -16,6 +16,7 @@ Robert supplied enough component-level feedback in Round 4 to end broad blind te
 - Keep the yellow step `We build and test it.`
 - Keep the blue kicker `Built for the long run.`
 - The long-term story is continuing to build and improve systems across the business as it becomes AI-native.
+- Keep the current Buildwise Media logo unchanged. The text treatment in the taste lab header is not a proposed replacement.
 
 ## Explicit rejections
 
@@ -47,18 +48,14 @@ Blue kicker: `Built for the long run`
 
 Blue support: `We keep building and improving the systems with you, making AI part of how the whole business works—not another tool sitting off to the side.`
 
-## Unresolved micro-tests
+## Resolved micro-tests
 
-Yellow heading:
+Robert selected yellow B:
 
-- A: `How your business becomes AI-native.`
-- B: `Build an AI-native business.`
-- C: `From one problem to an AI-native business.`
+- `Build an AI-native business.`
 
-Blue heading:
+Robert selected blue C and revised `the business` to `your business`:
 
-- A: `Keep building toward an AI-native business.`
-- B: `Buildwise keeps building with you.`
-- C: `AI becomes part of how the business works.`
+- `AI becomes part of how your business works.`
 
-These are anonymous language options, not new homepage directions. Robert may select one from each section or reject either set.
+These decisions close the Round 5 headline micro-tests. Supporting copy remains unchanged because Robert explicitly evaluated only the headings in this pass.
