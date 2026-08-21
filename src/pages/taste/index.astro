@@ -136,16 +136,16 @@ const synthSteps = [
 
 const synthBlueSupportCandidates = [
   {
-    id: 'A',
-    text: 'We keep building with you—improving each system and bringing AI into more of the work across your business.',
+    id: '1',
+    text: 'We keep building with you—improving what works and building new systems across your business.',
   },
   {
-    id: 'B',
-    text: 'The systems build on each other, with our team connecting and improving them across the business.',
+    id: '2',
+    text: 'Buildwise improves the systems already working and keeps building new ones across your business.',
   },
   {
-    id: 'C',
-    text: 'Buildwise keeps improving what is already working and building new systems for more of your business.',
+    id: '3',
+    text: 'We keep improving your systems and building new ones, so AI supports more of the work across your business.',
   },
 ];
 ---
@@ -514,8 +514,8 @@ const synthBlueSupportCandidates = [
           <section class="synth-blue" aria-labelledby="synth-blue-title">
             <div class="synth-choice-header synth-choice-header--blue">
               <div>
-                <p>BLUE · CHOOSE THE SUBHEADLINE</p>
-                <span>The kicker and headline are locked.</span>
+                <p>BLUE · REFINE A + C</p>
+                <span>B is rejected. The kicker and headline remain locked.</span>
               </div>
               <div class="candidate-switcher" role="tablist" aria-label="Blue subheadline choices">
                 {synthBlueSupportCandidates.map((candidate, index) => (
@@ -540,7 +540,7 @@ const synthBlueSupportCandidates = [
             </div>
           </section>
         </article>
-        <p class="response-cue">Choose blue subheadline A, B, or C—or reject the set. Everything else is locked.</p>
+        <p class="response-cue">Choose blue subheadline 1, 2, or 3—or tell us what is still missing. Everything else is locked.</p>
       </section>
     </div>
   </div>
@@ -649,17 +649,21 @@ const synthBlueSupportCandidates = [
         button.classList.toggle('is-active', active);
         button.setAttribute('aria-selected', String(active));
       });
-      history.replaceState(null, '', `#synth-support-${id.toLowerCase()}`);
+      history.replaceState(null, '', `#synth-support-${id}`);
     }));
 
     const refineMatch = location.hash.match(/^#refine-(hero|blue)-([a-c])$/i);
     const resetMatch = location.hash.match(/^#reset-([a-c])$/i);
     const synthMatch = location.hash.match(/^#synth(?:-[a-c]-[a-c])?$/i);
-    const synthSupportMatch = location.hash.match(/^#synth-support-([a-c])$/i);
+    const synthSupportMatch = location.hash.match(/^#synth-support-([1-3])$/);
+    const legacySynthSupportMatch = location.hash.match(/^#synth-support-[a-c]$/i);
     const match = location.hash.match(/^#(visual|copy)-([a-d])$/i);
     if (synthSupportMatch) {
       showRound('synth');
-      [...document.querySelectorAll('[data-synth-support-target]')].find((button) => button.textContent.trim().toLowerCase() === synthSupportMatch[1].toLowerCase())?.click();
+      [...document.querySelectorAll('[data-synth-support-target]')].find((button) => button.textContent.trim() === synthSupportMatch[1])?.click();
+    } else if (legacySynthSupportMatch) {
+      showRound('synth');
+      document.querySelector('[data-synth-support-target="1"]')?.click();
     } else if (synthMatch) {
       showRound('synth');
     } else if (resetMatch) {

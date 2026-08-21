@@ -74,3 +74,20 @@ The kicker and headline remain locked. Only the blue support is reopened.
 - C — continued expansion: `Buildwise keeps improving what is already working and building new systems for more of your business.`
 
 All three options use plain language, preserve Buildwise as the continuing builder, avoid Pilot-first framing, and make no guaranteed outcome claim.
+
+### A + C refinement
+
+Robert's decision on the first blue-support test:
+
+- A and C are directionally correct but not finished.
+- B is rejected.
+
+Signal to preserve: Buildwise keeps building with the client, improves what is already working, and builds new systems across more of the business.
+
+The next refinement uses numbers so the rejected B label is not recycled:
+
+1. `We keep building with you—improving what works and building new systems across your business.`
+2. `Buildwise improves the systems already working and keeps building new ones across your business.`
+3. `We keep improving your systems and building new ones, so AI supports more of the work across your business.`
+
+Option 1 emphasizes the continuing relationship, option 2 makes Buildwise the explicit actor, and option 3 connects the continued work to broader AI use without repeating the headline verbatim.
