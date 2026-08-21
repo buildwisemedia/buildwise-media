@@ -88,6 +88,45 @@ const lockedMechanism = [
   'We build, connect, and test',
   'We review real work together',
 ];
+
+const resetCandidates = [
+  {
+    id: 'A',
+    eyebrow: 'A long-term AI systems partner',
+    headline: 'Custom AI systems built around your business.',
+    support: 'We learn how your work moves, build the right systems with you, and improve them as your team and needs change. The relationship begins with one important problem.',
+    growthHeadline: 'One business. A growing system.',
+    steps: ['Start with the biggest need', 'Build around real work', 'Add what comes next'],
+    pilotLine: 'Start with one system in a 90-day Pilot.',
+    blueKicker: 'Built for the long run',
+    blueHeadline: 'Not one fix. A better way to build.',
+    blueSupport: 'Keep building with us when it helps. Stop when it doesn’t. You own the system, the data, and the code we built together.',
+  },
+  {
+    id: 'B',
+    eyebrow: 'Built to keep building',
+    headline: 'Your business keeps changing. Your systems should keep up.',
+    support: 'Buildwise builds custom AI systems for owner-led service businesses—and keeps improving them as real work teaches us what to build next.',
+    growthHeadline: 'One system first. More as you grow.',
+    steps: ['Pick one problem that matters', 'We build and test it', 'Keep improving. Add more later.'],
+    pilotLine: 'The 90-day, $15,000 Pilot is how we start—one problem.',
+    blueKicker: 'The long game',
+    blueHeadline: 'Your business will change. Your systems can too.',
+    blueSupport: 'You own the system, the data, and the code. Run it yourself, or keep building with us as new needs come up.',
+  },
+  {
+    id: 'C',
+    eyebrow: 'Custom AI systems for owner-led service businesses',
+    headline: 'Build the systems your business needs next.',
+    support: 'Buildwise works with you to build and improve custom AI systems across the business. We start with one important problem, learn from real work, and keep building from there.',
+    growthHeadline: 'Start focused. Build from what works.',
+    steps: ['Choose the first priority', 'Test it in real work', 'Improve and expand'],
+    pilotLine: 'The 90-day Pilot is the first build, not the finish line.',
+    blueKicker: 'After the first system',
+    blueHeadline: 'Keep building as your business changes.',
+    blueSupport: 'Improve the first system. Connect the next one. Or take what you own and run it yourself. The next step stays yours.',
+  },
+];
 ---
 
 <BaseLayout
@@ -105,6 +144,7 @@ const lockedMechanism = [
         <button class="round-tab is-active" type="button" data-round-target="visual">01 · VISUAL</button>
         <button class="round-tab" type="button" data-round-target="copy">02 · WORDS</button>
         <button class="round-tab" type="button" data-round-target="refine">03 · REFINE</button>
+        <button class="round-tab" type="button" data-round-target="reset">04 · RESET</button>
       </nav>
     </header>
 
@@ -339,6 +379,69 @@ const lockedMechanism = [
           <p class="response-cue">Pick the blue letter—or reject all three again.</p>
         </section>
       </section>
+
+      <section class="test-round" data-round="reset" aria-labelledby="reset-round-title" hidden>
+        <div class="round-intro round-intro--reset">
+          <div>
+            <p>ROUND 04 · POSITIONING RESET</p>
+            <h1 id="reset-round-title">The company first. The Pilot second.</h1>
+          </div>
+          <div class="candidate-switcher" role="tablist" aria-label="Company-first positioning candidates">
+            {resetCandidates.map((candidate, index) => (
+              <button
+                class:list={['candidate-tab', { 'is-active': index === 0 }]}
+                type="button"
+                role="tab"
+                aria-selected={index === 0 ? 'true' : 'false'}
+                data-reset-target={candidate.id}
+              >{candidate.id}</button>
+            ))}
+          </div>
+        </div>
+
+        <div class="reset-stage">
+          {resetCandidates.map((candidate, index) => (
+            <article class:list={['reset-candidate', { 'is-active': index === 0 }]} data-reset={candidate.id} hidden={index !== 0} aria-label={`Company-first candidate ${candidate.id}`}>
+              <div class="candidate-letter">{candidate.id}</div>
+              <section class="reset-hero">
+                <div>
+                  <p>{candidate.eyebrow}</p>
+                  <h2>{candidate.headline}</h2>
+                  <p>{candidate.support}</p>
+                  <span>See If We're a Fit</span>
+                </div>
+                <div class="reset-relationship" role="img" aria-label="Buildwise relationship expands from the first system into ongoing improvement">
+                  <small>THE RELATIONSHIP</small>
+                  <b>FIRST<br />SYSTEM</b>
+                  <i aria-hidden="true">→</i>
+                  <b>IMPROVE<br />TOGETHER</b>
+                  <i aria-hidden="true">→</i>
+                  <b>BUILD<br />WHAT'S NEXT</b>
+                </div>
+              </section>
+
+              <!-- @r020:F2 proof: the growth path separates the first Pilot from the longer Buildwise relationship. -->
+              <section class="reset-growth">
+                <p>HOW THE WORK GROWS</p>
+                <h3>{candidate.growthHeadline}</h3>
+                <ol>{candidate.steps.map((step, stepIndex) => <li><b>{stepIndex + 1}</b><span>{step}</span></li>)}</ol>
+              </section>
+
+              <aside class="reset-pilot" aria-label="Pilot entry offer">
+                <small>THE WAY IN</small>
+                <strong>{candidate.pilotLine}</strong>
+              </aside>
+
+              <section class="reset-blue">
+                <p>{candidate.blueKicker}</p>
+                <h3>{candidate.blueHeadline}</h3>
+                <p>{candidate.blueSupport}</p>
+              </section>
+            </article>
+          ))}
+        </div>
+        <p class="response-cue">Pick the version that makes Buildwise feel like the right long-term partner—not a one-project shop.</p>
+      </section>
     </div>
   </div>
 </BaseLayout>
@@ -421,9 +524,28 @@ const lockedMechanism = [
       history.replaceState(null, '', `#refine-blue-${id.toLowerCase()}`);
     }));
 
+    document.querySelectorAll('[data-reset-target]').forEach((tab) => tab.addEventListener('click', () => {
+      const id = tab.dataset.resetTarget;
+      document.querySelectorAll('[data-reset]').forEach((candidate) => {
+        const active = candidate.dataset.reset === id;
+        candidate.hidden = !active;
+        candidate.classList.toggle('is-active', active);
+      });
+      document.querySelectorAll('[data-reset-target]').forEach((button) => {
+        const active = button.dataset.resetTarget === id;
+        button.classList.toggle('is-active', active);
+        button.setAttribute('aria-selected', String(active));
+      });
+      history.replaceState(null, '', `#reset-${id.toLowerCase()}`);
+    }));
+
     const refineMatch = location.hash.match(/^#refine-(hero|blue)-([a-c])$/i);
+    const resetMatch = location.hash.match(/^#reset-([a-c])$/i);
     const match = location.hash.match(/^#(visual|copy)-([a-d])$/i);
-    if (refineMatch) {
+    if (resetMatch) {
+      showRound('reset');
+      [...document.querySelectorAll('[data-reset-target]')].find((button) => button.textContent.trim().toLowerCase() === resetMatch[1].toLowerCase())?.click();
+    } else if (refineMatch) {
       showRound('refine');
       const selector = refineMatch[1].toLowerCase() === 'hero' ? '[data-refine-hero-target]' : '[data-refine-blue-target]';
       [...document.querySelectorAll(selector)].find((button) => button.textContent.trim().toLowerCase() === refineMatch[2].toLowerCase())?.click();
@@ -581,6 +703,36 @@ const lockedMechanism = [
   .refine-blue-candidate h3 { max-width: 1120px; margin-top: 20px; color: #0b0b0e; font-size: clamp(58px, 7vw, 108px); line-height: .86; letter-spacing: -.065em; }
   .refine-blue-candidate > p:last-of-type { max-width: 780px; margin-top: 30px; font-size: clamp(19px, 1.7vw, 24px); line-height: 1.45; }
 
+  .round-intro--reset { align-items: end; }
+  .round-intro--reset > div:first-child > p { color: #66636a; font-size: 14px; font-weight: 900; letter-spacing: .12em; }
+  .round-intro--reset h1 { max-width: 980px; margin-top: 10px; }
+  .round-intro--reset .candidate-switcher { flex: 0 0 auto; margin: 0; }
+  .reset-stage { min-height: 1060px; overflow: hidden; border-radius: 28px; background: #0b0b0e; box-shadow: 0 26px 70px rgba(20,18,24,.15); }
+  .reset-candidate { position: relative; min-height: 1060px; display: grid; grid-template-columns: 1.1fr .9fr; grid-template-areas: 'hero hero' 'growth pilot' 'blue blue'; }
+  .reset-candidate[hidden] { display: none !important; }
+  .reset-hero { grid-area: hero; min-height: 630px; display: grid; grid-template-columns: 1.1fr .9fr; align-items: center; gap: clamp(42px, 6vw, 92px); padding: clamp(70px, 8vw, 120px); color: #fff; background: #0b0b0e; }
+  .reset-hero > div:first-child > p:first-child { color: var(--yellow); font-size: 14px; font-weight: 900; letter-spacing: .08em; text-transform: uppercase; }
+  .reset-hero h2 { max-width: 900px; margin-top: 24px; color: #fff; font-size: clamp(58px, 6.5vw, 102px); line-height: .88; letter-spacing: -.065em; }
+  .reset-hero > div:first-child > p:nth-of-type(2) { max-width: 760px; margin-top: 28px; color: #d4d3d8; font-size: clamp(19px, 1.6vw, 23px); line-height: 1.5; }
+  .reset-hero > div:first-child > span { min-height: 56px; display: inline-flex; align-items: center; margin-top: 34px; padding: 15px 22px; color: #0b0b0e; background: var(--yellow); border-radius: 6px; font-size: 17px; font-weight: 900; }
+  .reset-relationship { min-height: 400px; display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; gap: 12px; padding: clamp(26px, 4vw, 44px); color: #0b0b0e; background: var(--yellow); border-radius: 24px; box-shadow: 15px 15px 0 var(--cyan); }
+  .reset-relationship small { grid-column: 1 / -1; align-self: start; font-size: 14px; font-style: normal; font-weight: 900; letter-spacing: .08em; }
+  .reset-relationship b { min-height: 116px; display: grid; place-items: center; padding: 16px; text-align: center; background: #fff; border: 2px solid #0b0b0e; border-radius: 12px; font-size: clamp(15px, 1.25vw, 19px); line-height: 1.05; }
+  .reset-relationship b:last-of-type { grid-column: 1 / -1; min-height: 92px; color: #fff; background: #0b0b0e; }
+  .reset-relationship i { font-size: 26px; font-style: normal; font-weight: 900; }
+  .reset-growth { grid-area: growth; padding: clamp(48px, 6vw, 78px); color: #0b0b0e; background: var(--yellow); }
+  .reset-growth > p, .reset-blue > p:first-child, .reset-pilot small { font-size: 14px; font-weight: 900; letter-spacing: .1em; text-transform: uppercase; }
+  .reset-growth h3 { max-width: 620px; margin-top: 14px; font-size: clamp(38px, 4vw, 62px); line-height: .94; letter-spacing: -.052em; }
+  .reset-growth ol { list-style: none; display: grid; gap: 16px; margin-top: 34px; }
+  .reset-growth li { display: grid; grid-template-columns: 42px 1fr; align-items: center; gap: 14px; font-size: 18px; font-weight: 800; }
+  .reset-growth li b { width: 40px; height: 40px; display: grid; place-items: center; color: #fff; background: #0b0b0e; border-radius: 50%; }
+  .reset-pilot { grid-area: pilot; display: flex; flex-direction: column; justify-content: center; gap: 18px; padding: clamp(48px, 6vw, 78px); color: #fff; background: #24242c; }
+  .reset-pilot small { color: var(--yellow); }
+  .reset-pilot strong { max-width: 560px; font-size: clamp(30px, 3.2vw, 50px); line-height: 1; letter-spacing: -.045em; }
+  .reset-blue { grid-area: blue; min-height: 430px; display: flex; flex-direction: column; justify-content: center; padding: clamp(58px, 8vw, 112px); color: #0b0b0e; background: var(--cyan); }
+  .reset-blue h3 { max-width: 1180px; margin-top: 18px; font-size: clamp(58px, 7vw, 106px); line-height: .86; letter-spacing: -.065em; }
+  .reset-blue > p:last-child { max-width: 840px; margin-top: 28px; font-size: clamp(19px, 1.7vw, 24px); line-height: 1.45; }
+
   @media (max-width: 980px) {
     .lab-header { grid-template-columns: 1fr auto; }
     .lab-header > p { display: none; }
@@ -593,15 +745,20 @@ const lockedMechanism = [
     .vc-main { grid-template-columns: 150px 1fr; }
     .copy-hero { grid-row: auto; }
     .refine-hero-candidate { grid-template-columns: 1fr; }
+    .reset-hero { grid-template-columns: 1fr; }
+    .reset-relationship { max-width: 720px; }
   }
 
   @media (max-width: 700px) {
     .lab-header { position: relative; min-height: 0; grid-template-columns: 1fr; gap: 12px; }
     .lab-header nav { width: 100%; justify-self: stretch; }
-    .round-tab { flex: 1; }
+    .lab-header nav { flex-wrap: wrap; }
+    .round-tab { flex: 1 1 calc(50% - 8px); }
     .lab-main { padding-top: 34px; }
     .round-intro { align-items: start; flex-direction: column; gap: 10px; }
     .refine-heading { align-items: start; flex-direction: column; }
+    .round-intro--reset { align-items: start; }
+    .round-intro--reset .candidate-switcher { margin-top: 8px; }
     .visual-stage, .copy-stage, .visual-candidate { min-height: 0; border-radius: 18px; }
     .refine-hero-stage, .refine-blue-stage { min-height: 0; border-radius: 18px; }
     .candidate-letter { top: 14px; right: 14px; width: 42px; height: 42px; }
@@ -630,6 +787,16 @@ const lockedMechanism = [
     .refine-hero-copy h3 { font-size: 48px; }
     .refine-mechanism > p { font-size: 36px; }
     .refine-blue-candidate h3 { font-size: 52px; }
+    .reset-stage, .reset-candidate { min-height: 0; border-radius: 18px; }
+    .reset-candidate { display: block; }
+    .reset-hero, .reset-growth, .reset-pilot, .reset-blue { min-height: 0; padding: 72px 22px 46px; }
+    .reset-hero { display: block; }
+    .reset-hero h2 { font-size: 50px; }
+    .reset-relationship { min-height: 360px; margin-top: 50px; padding: 22px; box-shadow: 8px 8px 0 var(--cyan); }
+    .reset-relationship b { min-height: 104px; font-size: 14px; }
+    .reset-growth h3 { font-size: 42px; }
+    .reset-pilot strong { font-size: 34px; }
+    .reset-blue h3 { font-size: 52px; }
     .v-facts { display: grid; grid-template-columns: repeat(3, 1fr); }
     .v-facts li { min-width: 0; }
     .v-actions { align-items: stretch; flex-direction: column; }
