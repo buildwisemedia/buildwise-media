@@ -1,0 +1,444 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+const shared = {
+  eyebrow: 'CUSTOM AI SYSTEMS FOR OWNER-LED BUSINESSES',
+  headline: 'Where does the work keep getting stuck?',
+  answer: 'We build the AI system for that.',
+  support: 'Requests wait. Decisions stall. Important context lives in too many places. You pick one problem. In 90 days, we build and test a custom AI system around it.',
+};
+
+const copyCandidates = [
+  {
+    id: 'A',
+    eyebrow: 'Custom AI for owner-led service businesses',
+    headline: 'Pick one problem that keeps work stuck. We build the system around it.',
+    support: 'Buildwise Media builds custom AI systems for owner-led service businesses. Maybe requests wait for the right person. Maybe decisions wait for missing context. Maybe someone rebuilds a status by hand. You choose one problem. We build, connect, and test a system around it.',
+    mechanismTitle: 'How the 90-day Pilot works',
+    steps: ['You pick one problem', 'We build, connect, test', 'We review real work together'],
+    fitTitle: 'Is this a fit for your business?',
+    fitSupport: "The Pilot runs 90 days and costs $15,000 up front. We don't promise a business result. You see how it handles real work, then decide what's next.",
+  },
+  {
+    id: 'B',
+    eyebrow: 'AI systems for owner-led service businesses',
+    headline: 'We build one custom AI system for work that keeps getting stuck.',
+    support: 'Maybe requests wait for the right person. Maybe decisions wait for missing context. Maybe a status gets rebuilt by hand. You pick one problem like these. Buildwise builds and tests a custom system around it.',
+    mechanismTitle: 'How the 90-day Pilot works',
+    steps: ['You pick one problem', 'We build, connect, and test', 'We review real work together'],
+    fitTitle: 'Is Buildwise a fit for you?',
+    fitSupport: "The Pilot runs 90 days and costs $15,000, paid up front. We review what happened with real work, together. No business result is promised. You decide if that's right.",
+  },
+  {
+    id: 'C',
+    eyebrow: 'Custom AI systems for service businesses',
+    headline: 'Your business should not have to relearn the same work every day.',
+    support: 'A request waits for the right person. A decision stalls because context is missing. A status gets rebuilt by hand. Choose one problem. Buildwise builds and tests a custom AI system around it in a 90-day Pilot.',
+    mechanismTitle: 'From stuck work to a real test',
+    steps: ['Name the stuck work', 'Build the system', 'Test it together'],
+    fitTitle: 'Start with the problem worth fixing first',
+    fitSupport: 'The Pilot costs $15,000 up front. It runs for 90 days. You review what happened with real work. No business result is promised.',
+  },
+];
+---
+
+<BaseLayout
+  title="BWM Homepage Blind Taste Lab"
+  description="Private anonymous homepage direction test."
+  noindex
+  focusedLandingPage
+  privacySensitive
+>
+  <div class="taste-lab">
+    <header class="lab-header">
+      <a class="lab-mark" href="/taste/" aria-label="Return to the blind test start">BUILDWISE <span>MEDIA</span></a>
+      <p>BLIND HOMEPAGE TEST</p>
+      <nav aria-label="Blind test rounds">
+        <button class="round-tab is-active" type="button" data-round-target="visual">01 · VISUAL</button>
+        <button class="round-tab" type="button" data-round-target="copy">02 · WORDS</button>
+      </nav>
+    </header>
+
+    <div class="lab-main">
+      <section class="test-round is-active" data-round="visual" aria-labelledby="visual-round-title">
+        <div class="round-intro">
+          <p>ROUND 01</p>
+          <h1 id="visual-round-title">Same words. Four structures.</h1>
+        </div>
+
+        <div class="candidate-switcher" role="tablist" aria-label="Visual candidates">
+          {['A', 'B', 'C', 'D'].map((id, index) => (
+            <button
+              class:list={['candidate-tab', { 'is-active': index === 0 }]}
+              type="button"
+              role="tab"
+              aria-selected={index === 0 ? 'true' : 'false'}
+              data-candidate-target={id}
+            >{id}</button>
+          ))}
+        </div>
+
+        <div class="visual-stage">
+          <article class="visual-candidate visual-a is-active" data-candidate="A" aria-label="Visual candidate A">
+            <div class="candidate-letter">A</div>
+            <div class="va-shell">
+              <div class="va-copy">
+                <p class="v-eyebrow">{shared.eyebrow}</p>
+                <h2>{shared.headline}<span>{shared.answer}</span></h2>
+                <p class="v-support">{shared.support}</p>
+                <div class="v-actions"><span>See If We're a Fit</span><b>See the System ↓</b></div>
+                <ul class="v-facts"><li><strong>1</strong> problem</li><li><strong>90</strong> days</li><li><strong>$15K</strong> up front</li></ul>
+              </div>
+              <!-- @r020:F2 proof: semantic process stack explains problem to build to review. -->
+              <div class="va-system" role="img" aria-label="Work moves from stuck, through a custom AI system, to a real review">
+                <p>ONE PROBLEM · ONE SYSTEM · ONE REAL TEST</p>
+                <div class="va-step va-step--orange"><small>YOUR TEAM BRINGS</small><strong>Work that keeps getting stuck</strong></div>
+                <b aria-hidden="true">↓</b>
+                <div class="va-step va-step--dark"><small>BUILDWISE BUILDS</small><strong>A custom AI system</strong></div>
+                <b aria-hidden="true">↓</b>
+                <div class="va-step va-step--green"><small>YOU BOTH REVIEW</small><strong>What happened with real work</strong></div>
+              </div>
+            </div>
+          </article>
+
+          <article class="visual-candidate visual-b" data-candidate="B" aria-label="Visual candidate B" hidden>
+            <div class="candidate-letter">B</div>
+            <div class="vb-shell">
+              <p class="v-eyebrow">{shared.eyebrow}</p>
+              <h2>{shared.headline}</h2>
+              <p class="vb-answer">{shared.answer}</p>
+              <p class="v-support">{shared.support}</p>
+              <div class="v-actions"><span>See If We're a Fit</span><b>See the System ↓</b></div>
+              <!-- @r020:F2 proof: oversized numbered path makes the 90-day sequence legible without prose. -->
+              <ol class="vb-path" aria-label="Pilot path">
+                <li><strong>1</strong><span>CHOOSE<br /><b>One problem</b></span></li>
+                <li><strong>2</strong><span>BUILD<br /><b>One system</b></span></li>
+                <li><strong>3</strong><span>REVIEW<br /><b>Real work</b></span></li>
+              </ol>
+              <ul class="v-facts"><li><strong>1</strong> problem</li><li><strong>90</strong> days</li><li><strong>$15K</strong> up front</li></ul>
+            </div>
+          </article>
+
+          <article class="visual-candidate visual-c" data-candidate="C" aria-label="Visual candidate C" hidden>
+            <div class="candidate-letter">C</div>
+            <div class="vc-shell">
+              <div class="vc-top">
+                <p class="v-eyebrow">{shared.eyebrow}</p>
+                <span>ONE PROBLEM</span>
+              </div>
+              <div class="vc-main">
+                <div class="vc-one">1</div>
+                <div class="vc-copy">
+                  <h2>{shared.headline}<span>{shared.answer}</span></h2>
+                  <p class="v-support">{shared.support}</p>
+                  <div class="v-actions"><span>See If We're a Fit</span><b>See the System ↓</b></div>
+                </div>
+              </div>
+              <!-- @r020:F2 proof: connected operating tiles show the human-controlled build sequence. -->
+              <div class="vc-rail" role="img" aria-label="Choose, build, and review sequence">
+                <div><small>01 · CHOOSE</small><strong>Point to the stuck work.</strong></div>
+                <div><small>02 · BUILD</small><strong>Connect the right system.</strong></div>
+                <div><small>03 · REVIEW</small><strong>Test it with real work.</strong></div>
+              </div>
+              <ul class="v-facts"><li><strong>1</strong> problem</li><li><strong>90</strong> days</li><li><strong>$15K</strong> up front</li></ul>
+            </div>
+          </article>
+
+          <article class="visual-candidate visual-d" data-candidate="D" aria-label="Visual candidate D" hidden>
+            <div class="candidate-letter">D</div>
+            <div class="vd-shell">
+              <div class="vd-banner">
+                <p class="v-eyebrow">{shared.eyebrow}</p>
+                <h2>{shared.headline}</h2>
+              </div>
+              <div class="vd-lower">
+                <div class="vd-copy">
+                  <p class="vd-answer">{shared.answer}</p>
+                  <p class="v-support">{shared.support}</p>
+                  <div class="v-actions"><span>See If We're a Fit</span><b>See the System ↓</b></div>
+                  <ul class="v-facts"><li><strong>1</strong> problem</li><li><strong>90</strong> days</li><li><strong>$15K</strong> up front</li></ul>
+                </div>
+                <!-- @r020:F2 proof: three vertical tracks compare the before, build, and review states. -->
+                <div class="vd-tracks" role="img" aria-label="Three-part Pilot sequence">
+                  <div><small>BEFORE</small><b>Work waits</b><span>01</span></div>
+                  <div><small>BUILD</small><b>System works</b><span>02</span></div>
+                  <div><small>REVIEW</small><b>You decide</b><span>03</span></div>
+                </div>
+              </div>
+            </div>
+          </article>
+        </div>
+        <p class="response-cue">Pick a letter. Then tell me what pulled you in—and what pushed you away.</p>
+      </section>
+
+      <section class="test-round" data-round="copy" aria-labelledby="copy-round-title" hidden>
+        <div class="round-intro">
+          <p>ROUND 02</p>
+          <h1 id="copy-round-title">Same layout. Three voices.</h1>
+        </div>
+        <div class="candidate-switcher" role="tablist" aria-label="Copy candidates">
+          {copyCandidates.map((candidate, index) => (
+            <button
+              class:list={['candidate-tab', { 'is-active': index === 0 }]}
+              type="button"
+              role="tab"
+              aria-selected={index === 0 ? 'true' : 'false'}
+              data-copy-target={candidate.id}
+            >{candidate.id}</button>
+          ))}
+        </div>
+
+        <div class="copy-stage">
+          {copyCandidates.map((candidate, index) => (
+            <article class:list={['copy-candidate', { 'is-active': index === 0 }]} data-copy={candidate.id} hidden={index !== 0} aria-label={`Copy candidate ${candidate.id}`}>
+              <div class="candidate-letter candidate-letter--copy">{candidate.id}</div>
+              <div class="copy-hero">
+                <p class="copy-eyebrow">{candidate.eyebrow}</p>
+                <h2>{candidate.headline}</h2>
+                <p>{candidate.support}</p>
+                <span class="copy-cta">See If We're a Fit</span>
+              </div>
+              <div class="copy-mechanism">
+                <h3>{candidate.mechanismTitle}</h3>
+                <ol>{candidate.steps.map((step, stepIndex) => <li><b>{stepIndex + 1}</b><span>{step}</span></li>)}</ol>
+              </div>
+              <div class="copy-fit">
+                <h3>{candidate.fitTitle}</h3>
+                <p>{candidate.fitSupport}</p>
+              </div>
+            </article>
+          ))}
+        </div>
+        <p class="response-cue">Pick a letter. Tell me the line you would keep and the line you would kill.</p>
+      </section>
+    </div>
+  </div>
+</BaseLayout>
+
+<script is:inline>
+  (() => {
+    const rounds = [...document.querySelectorAll('[data-round]')];
+    const roundTabs = [...document.querySelectorAll('[data-round-target]')];
+    const showRound = (name) => {
+      rounds.forEach((round) => {
+        const active = round.dataset.round === name;
+        round.hidden = !active;
+        round.classList.toggle('is-active', active);
+      });
+      roundTabs.forEach((tab) => {
+        const active = tab.dataset.roundTarget === name;
+        tab.classList.toggle('is-active', active);
+        tab.setAttribute('aria-selected', String(active));
+      });
+    };
+    roundTabs.forEach((tab) => tab.addEventListener('click', () => showRound(tab.dataset.roundTarget)));
+
+    document.querySelectorAll('[data-candidate-target]').forEach((tab) => tab.addEventListener('click', () => {
+      const id = tab.dataset.candidateTarget;
+      document.querySelectorAll('[data-candidate]').forEach((candidate) => {
+        const active = candidate.dataset.candidate === id;
+        candidate.hidden = !active;
+        candidate.classList.toggle('is-active', active);
+      });
+      document.querySelectorAll('[data-candidate-target]').forEach((button) => {
+        const active = button.dataset.candidateTarget === id;
+        button.classList.toggle('is-active', active);
+        button.setAttribute('aria-selected', String(active));
+      });
+      history.replaceState(null, '', `#visual-${id.toLowerCase()}`);
+    }));
+
+    document.querySelectorAll('[data-copy-target]').forEach((tab) => tab.addEventListener('click', () => {
+      const id = tab.dataset.copyTarget;
+      document.querySelectorAll('[data-copy]').forEach((candidate) => {
+        const active = candidate.dataset.copy === id;
+        candidate.hidden = !active;
+        candidate.classList.toggle('is-active', active);
+      });
+      document.querySelectorAll('[data-copy-target]').forEach((button) => {
+        const active = button.dataset.copyTarget === id;
+        button.classList.toggle('is-active', active);
+        button.setAttribute('aria-selected', String(active));
+      });
+      history.replaceState(null, '', `#copy-${id.toLowerCase()}`);
+    }));
+
+    const match = location.hash.match(/^#(visual|copy)-([a-d])$/i);
+    if (match) {
+      showRound(match[1].toLowerCase());
+      const selector = match[1].toLowerCase() === 'visual' ? '[data-candidate-target]' : '[data-copy-target]';
+      [...document.querySelectorAll(selector)].find((button) => button.textContent.trim().toLowerCase() === match[2].toLowerCase())?.click();
+    }
+  })();
+</script>
+
+<style>
+  :global(body) { background: #ece9df; }
+  :global(body::before) { display: none; }
+  :global(main#main) { min-height: 100vh; }
+  .taste-lab { --ink: #0b0b0e; --paper: #f4f0e7; --yellow: #f0ff00; --orange: #ff8a3d; --cyan: #38d8ff; --green: #65ff8e; min-height: 100vh; color: var(--ink); background: #ece9df; font-family: Inter, system-ui, sans-serif; }
+  .lab-header { position: sticky; top: 0; z-index: 20; min-height: 72px; display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; gap: 24px; padding: 12px clamp(20px, 4vw, 64px); color: #fff; background: rgba(11,11,14,.94); backdrop-filter: blur(16px); border-bottom: 1px solid #313139; }
+  .lab-mark { font-size: 15px; font-weight: 900; letter-spacing: -.03em; }
+  .lab-mark span { color: var(--yellow); }
+  .lab-header > p { font-size: 14px; font-weight: 800; letter-spacing: .1em; }
+  .lab-header nav { justify-self: end; display: flex; gap: 8px; }
+  .round-tab, .candidate-tab { min-height: 44px; border: 1px solid #52525b; border-radius: 999px; padding: 10px 16px; color: #d8d8dc; font: 800 14px/1 Inter, system-ui, sans-serif; }
+  .round-tab.is-active, .round-tab:hover { color: var(--ink); background: var(--yellow); border-color: var(--yellow); }
+  .lab-main { padding: clamp(42px, 6vw, 84px) clamp(16px, 3vw, 44px) 72px; }
+  .test-round { max-width: 1560px; margin: 0 auto; }
+  .round-intro { display: flex; align-items: end; justify-content: space-between; gap: 24px; margin-bottom: 28px; }
+  .round-intro > p { color: #66636a; font-size: 14px; font-weight: 900; letter-spacing: .12em; }
+  .round-intro h1 { color: var(--ink); font-size: clamp(34px, 5vw, 66px); line-height: .95; letter-spacing: -.055em; }
+  .candidate-switcher { display: flex; gap: 10px; margin-bottom: 20px; }
+  .candidate-tab { min-width: 52px; color: var(--ink); background: transparent; border-color: #9e9a90; }
+  .candidate-tab.is-active, .candidate-tab:hover { background: var(--ink); color: var(--yellow); border-color: var(--ink); }
+  .visual-stage, .copy-stage { min-height: 780px; border-radius: 28px; overflow: hidden; box-shadow: 0 26px 70px rgba(20,18,24,.15); }
+  .visual-candidate { position: relative; min-height: 780px; overflow: hidden; }
+  .visual-candidate[hidden], .copy-candidate[hidden], .test-round[hidden] { display: none !important; }
+  .candidate-letter { position: absolute; top: 22px; right: 22px; z-index: 5; width: 50px; height: 50px; display: grid; place-items: center; border-radius: 50%; color: #fff; background: #0b0b0e; font-size: 20px; font-weight: 900; box-shadow: 0 0 0 4px rgba(255,255,255,.28); }
+  .visual-candidate h2, .copy-hero h2 { color: inherit; }
+  .v-eyebrow { font-size: 14px; font-weight: 900; letter-spacing: .08em; }
+  .v-support { max-width: 670px; font-size: clamp(17px, 1.4vw, 21px); line-height: 1.5; }
+  .v-actions { display: flex; flex-wrap: wrap; gap: 20px; align-items: center; margin-top: 28px; }
+  .v-actions span { min-height: 54px; display: inline-flex; align-items: center; padding: 14px 22px; color: #0b0b0e; background: var(--yellow); border-radius: 6px; font-size: 16px; font-weight: 850; }
+  .v-actions b { font-size: 16px; border-bottom: 2px solid currentColor; }
+  .v-facts { list-style: none; display: flex; flex-wrap: wrap; gap: 12px; margin-top: 34px; }
+  .v-facts li { min-width: 118px; display: grid; gap: 3px; padding: 12px 14px; border: 1px solid currentColor; border-radius: 8px; font-size: 14px; }
+  .v-facts strong { font-size: 22px; line-height: 1; }
+
+  .visual-a { color: #fff; background: #0b0b0e; }
+  .va-shell { min-height: 780px; display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(390px, .9fr); gap: clamp(44px, 7vw, 104px); align-items: center; padding: clamp(54px, 7vw, 108px); }
+  .va-copy h2 { max-width: 760px; margin: 24px 0; font-size: clamp(54px, 5.7vw, 88px); line-height: .92; letter-spacing: -.06em; }
+  .va-copy h2 span { display: block; margin-top: .12em; color: var(--yellow); }
+  .va-copy .v-support { color: #cfced4; }
+  .va-system { padding: clamp(28px, 4vw, 48px); color: #0b0b0e; background: var(--yellow); border-radius: 26px; box-shadow: 16px 16px 0 var(--cyan); }
+  .va-system > p, .va-step small { font-size: 14px; font-weight: 900; letter-spacing: .07em; }
+  .va-system > b { height: 28px; display: grid; place-items: center; font-size: 24px; }
+  .va-step { padding: 20px 22px; border-radius: 14px; }
+  .va-step strong { display: block; margin-top: 7px; font-size: clamp(22px, 2.2vw, 32px); line-height: 1.03; }
+  .va-step--orange { margin-top: 22px; background: var(--orange); }
+  .va-step--dark { color: #fff; background: #0b0b0e; }
+  .va-step--green { background: var(--green); }
+
+  .visual-b { background: #f4f0e7; }
+  .vb-shell { position: relative; min-height: 780px; display: grid; grid-template-columns: 1.1fr .9fr; grid-template-rows: auto auto auto 1fr; gap: 16px 64px; padding: clamp(54px, 7vw, 102px); }
+  .vb-shell::before { content: ''; position: absolute; inset: 0 0 auto; height: 18px; background: var(--yellow); }
+  .vb-shell .v-eyebrow { grid-column: 1 / -1; }
+  .vb-shell h2 { grid-column: 1 / -1; max-width: 1100px; font-size: clamp(58px, 7.2vw, 112px); line-height: .84; letter-spacing: -.07em; }
+  .vb-answer { grid-column: 1; max-width: 760px; margin-top: 16px; font-size: clamp(34px, 4.5vw, 70px); font-weight: 850; line-height: .94; letter-spacing: -.055em; color: #3030d8; }
+  .vb-shell .v-support { grid-column: 1; color: #46444b; }
+  .vb-shell .v-actions { grid-column: 1; }
+  .vb-path { grid-column: 2; grid-row: 3 / 7; list-style: none; display: grid; align-content: center; gap: 0; border-left: 4px solid #0b0b0e; }
+  .vb-path li { min-height: 136px; display: grid; grid-template-columns: 100px 1fr; align-items: center; gap: 20px; padding: 20px 28px; border-bottom: 2px solid #0b0b0e; }
+  .vb-path li:nth-child(1) { background: var(--orange); }
+  .vb-path li:nth-child(2) { background: var(--cyan); }
+  .vb-path li:nth-child(3) { background: var(--green); }
+  .vb-path strong { font-size: 76px; line-height: .8; }
+  .vb-path span { font-size: 14px; font-weight: 900; letter-spacing: .07em; }
+  .vb-path b { font-size: 24px; letter-spacing: -.02em; }
+  .vb-shell .v-facts { grid-column: 1; align-self: end; }
+
+  .visual-c { color: #fff; background: #16161d; }
+  .vc-shell { min-height: 780px; display: grid; grid-template-rows: auto 1fr auto auto; padding: clamp(44px, 6vw, 88px); }
+  .vc-top { display: flex; justify-content: space-between; gap: 20px; align-items: center; }
+  .vc-top > span { padding: 10px 15px; color: #0b0b0e; background: var(--yellow); border-radius: 999px; font-size: 14px; font-weight: 900; }
+  .vc-main { display: grid; grid-template-columns: minmax(210px, .42fr) minmax(0, 1fr); gap: clamp(36px, 6vw, 92px); align-items: center; }
+  .vc-one { color: var(--yellow); font-size: clamp(240px, 28vw, 440px); font-weight: 900; line-height: .7; letter-spacing: -.12em; }
+  .vc-copy h2 { max-width: 940px; font-size: clamp(50px, 6vw, 92px); line-height: .9; letter-spacing: -.065em; }
+  .vc-copy h2 span { display: block; color: var(--cyan); }
+  .vc-copy .v-support { margin-top: 24px; color: #d0cfd5; }
+  .vc-rail { display: grid; grid-template-columns: repeat(3, 1fr); border: 2px solid #fff; }
+  .vc-rail > div { min-height: 124px; display: grid; align-content: center; gap: 10px; padding: 24px; border-right: 2px solid #fff; }
+  .vc-rail > div:last-child { border-right: 0; }
+  .vc-rail > div:nth-child(1) small { color: var(--orange); }
+  .vc-rail > div:nth-child(2) small { color: var(--cyan); }
+  .vc-rail > div:nth-child(3) small { color: var(--green); }
+  .vc-rail small { font-size: 14px; font-weight: 900; }
+  .vc-rail strong { font-size: 20px; }
+  .vc-shell .v-facts { margin-top: 20px; }
+
+  .visual-d { color: #fff; background: #0b0b0e; }
+  .vd-shell { min-height: 780px; display: grid; grid-template-rows: auto 1fr; }
+  .vd-banner { padding: clamp(44px, 6vw, 82px) clamp(54px, 7vw, 108px); color: #0b0b0e; background: var(--yellow); }
+  .vd-banner h2 { max-width: 1260px; margin-top: 20px; font-size: clamp(62px, 8vw, 126px); line-height: .82; letter-spacing: -.075em; }
+  .vd-lower { display: grid; grid-template-columns: .86fr 1.14fr; gap: clamp(44px, 7vw, 100px); align-items: center; padding: clamp(42px, 6vw, 80px) clamp(54px, 7vw, 108px); }
+  .vd-answer { color: var(--yellow); font-size: clamp(42px, 5vw, 72px); font-weight: 900; line-height: .9; letter-spacing: -.055em; }
+  .vd-copy .v-support { margin-top: 22px; color: #cfced4; }
+  .vd-tracks { min-height: 340px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+  .vd-tracks > div { display: flex; flex-direction: column; gap: 14px; padding: 24px; color: #0b0b0e; border-radius: 14px; }
+  .vd-tracks > div:nth-child(1) { background: var(--orange); transform: translateY(42px); }
+  .vd-tracks > div:nth-child(2) { background: var(--cyan); }
+  .vd-tracks > div:nth-child(3) { background: var(--green); transform: translateY(-42px); }
+  .vd-tracks small { font-size: 14px; font-weight: 900; letter-spacing: .07em; }
+  .vd-tracks b { font-size: clamp(24px, 2.5vw, 36px); line-height: 1; }
+  .vd-tracks span { margin-top: auto; font-size: 82px; font-weight: 900; line-height: .8; }
+
+  .response-cue { max-width: 760px; margin: 26px 0 0; color: #4f4b50; font-size: 17px; }
+  .copy-stage { min-height: 720px; background: #f8f5ed; }
+  .copy-candidate { position: relative; min-height: 720px; display: grid; grid-template-columns: 1.12fr .88fr; grid-template-rows: 1fr auto; }
+  .candidate-letter--copy { color: #0b0b0e; background: var(--yellow); box-shadow: 0 0 0 4px rgba(11,11,14,.15); }
+  .copy-hero { grid-row: 1 / 3; display: flex; flex-direction: column; justify-content: center; padding: clamp(54px, 7vw, 108px); color: #fff; background: #111116; }
+  .copy-eyebrow { color: var(--yellow); font-size: 15px; font-weight: 900; letter-spacing: .07em; text-transform: uppercase; }
+  .copy-hero h2 { max-width: 920px; margin-top: 28px; font-size: clamp(54px, 6vw, 94px); line-height: .92; letter-spacing: -.06em; }
+  .copy-hero > p:not(.copy-eyebrow) { max-width: 760px; margin-top: 28px; color: #d4d3d8; font-size: clamp(18px, 1.5vw, 22px); line-height: 1.5; }
+  .copy-cta { align-self: start; min-height: 56px; display: inline-flex; align-items: center; margin-top: 34px; padding: 15px 22px; color: #0b0b0e; background: var(--yellow); border-radius: 6px; font-size: 17px; font-weight: 900; }
+  .copy-mechanism, .copy-fit { padding: clamp(40px, 5vw, 72px); }
+  .copy-mechanism { background: var(--yellow); }
+  .copy-fit { background: var(--cyan); }
+  .copy-mechanism h3, .copy-fit h3 { font-size: clamp(30px, 3.2vw, 48px); line-height: .98; letter-spacing: -.045em; }
+  .copy-mechanism ol { list-style: none; display: grid; gap: 16px; margin-top: 28px; }
+  .copy-mechanism li { display: grid; grid-template-columns: 38px 1fr; gap: 12px; align-items: center; font-size: 17px; font-weight: 750; }
+  .copy-mechanism li b { width: 34px; height: 34px; display: grid; place-items: center; color: #fff; background: #0b0b0e; border-radius: 50%; }
+  .copy-fit p { margin-top: 18px; font-size: 17px; line-height: 1.5; }
+
+  @media (max-width: 980px) {
+    .lab-header { grid-template-columns: 1fr auto; }
+    .lab-header > p { display: none; }
+    .va-shell, .vd-lower, .copy-candidate { grid-template-columns: 1fr; }
+    .va-shell { align-content: center; }
+    .va-system { max-width: 720px; }
+    .vb-shell { grid-template-columns: 1fr; }
+    .vb-shell h2, .vb-answer, .vb-shell .v-support, .vb-shell .v-actions, .vb-shell .v-facts { grid-column: 1; }
+    .vb-path { grid-column: 1; grid-row: auto; margin-top: 18px; }
+    .vc-main { grid-template-columns: 150px 1fr; }
+    .copy-hero { grid-row: auto; }
+  }
+
+  @media (max-width: 700px) {
+    .lab-header { position: relative; min-height: 0; grid-template-columns: 1fr; gap: 12px; }
+    .lab-header nav { width: 100%; justify-self: stretch; }
+    .round-tab { flex: 1; }
+    .lab-main { padding-top: 34px; }
+    .round-intro { align-items: start; flex-direction: column; gap: 10px; }
+    .visual-stage, .copy-stage, .visual-candidate { min-height: 0; border-radius: 18px; }
+    .candidate-letter { top: 14px; right: 14px; width: 42px; height: 42px; }
+    .va-shell, .vb-shell, .vc-shell, .vd-banner, .vd-lower, .copy-hero, .copy-mechanism, .copy-fit { padding: 58px 22px 34px; }
+    .va-shell { grid-template-columns: 1fr; gap: 44px; }
+    .va-copy h2 { font-size: 48px; }
+    .vb-shell { display: block; }
+    .vb-shell h2 { margin-top: 26px; font-size: 52px; }
+    .vb-answer { margin-top: 24px; font-size: 38px; }
+    .vb-shell .v-support { margin-top: 22px; }
+    .vb-path li { grid-template-columns: 70px 1fr; }
+    .vc-main { grid-template-columns: 1fr; gap: 22px; margin-top: 34px; }
+    .vc-one { font-size: 190px; }
+    .vc-copy h2 { font-size: 46px; }
+    .vc-rail, .vd-tracks { grid-template-columns: 1fr; }
+    .vc-rail > div { border-right: 0; border-bottom: 2px solid #fff; }
+    .vc-rail > div:last-child { border-bottom: 0; }
+    .vd-banner h2 { font-size: 54px; }
+    .vd-lower { display: block; }
+    .vd-tracks { margin-top: 52px; }
+    .vd-tracks > div:nth-child(n) { min-height: 170px; transform: none; }
+    .copy-candidate { display: block; }
+    .copy-hero h2 { font-size: 48px; }
+    .v-facts { display: grid; grid-template-columns: repeat(3, 1fr); }
+    .v-facts li { min-width: 0; }
+    .v-actions { align-items: stretch; flex-direction: column; }
+    .v-actions span, .v-actions b { justify-content: center; text-align: center; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .taste-lab *, .taste-lab *::before, .taste-lab *::after { scroll-behavior: auto !important; transition: none !important; }
+  }
+</style>
