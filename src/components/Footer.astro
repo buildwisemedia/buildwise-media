@@ -1,19 +1,24 @@
 ---
 import Wordmark from './Wordmark.astro';
+interface Props {
+  homepageMode?: boolean;
+}
+
+const { homepageMode = false } = Astro.props;
 const year = new Date().getFullYear();
 const masthead = 'BUILDWISE·MEDIA';
 ---
-<footer class="site-footer">
+<footer class="site-footer" data-homepage-mode={homepageMode ? 'true' : 'false'}>
   <div class="container footer-inner">
 
     <div class="footer-row footer-row--top">
       <Wordmark size="footer" />
-      <p class="footer-tag mono">Marketing as operations. Verified weekly.</p>
+      <p class="footer-tag mono">{homepageMode ? 'Custom AI systems. Built around one chosen constraint.' : 'Marketing as operations. Verified weekly.'}</p>
     </div>
 
     <hr class="divider" />
 
-    <div class="footer-row footer-row--cols">
+    {!homepageMode && <div class="footer-row footer-row--cols">
       <div class="footer-col">
         <p class="footer-label mono">The System</p>
         <ul class="footer-list">
@@ -44,7 +49,15 @@ const masthead = 'BUILDWISE·MEDIA';
           <li><a href="/legal">Service Terms</a></li>
         </ul>
       </div>
-    </div>
+    </div>}
+
+    {homepageMode && <div class="footer-row footer-row--homepage">
+      <a href="#see-the-system">See the System</a>
+      <a href="/book">See If We're a Fit</a>
+      <a href="/privacy">Privacy</a>
+      <a href="/terms">Terms</a>
+      <a href="/legal">Service Terms</a>
+    </div>}
 
     <hr class="divider" />
 
@@ -69,6 +82,8 @@ const masthead = 'BUILDWISE·MEDIA';
 
 .footer-row { display: flex; flex-wrap: wrap; gap: 24px; align-items: center; justify-content: space-between; }
 .footer-row--cols { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 32px; }
+.footer-row--homepage { justify-content: flex-start; gap: clamp(18px, 3vw, 36px); }
+.footer-row--homepage a { min-height: 44px; padding: 11px 0; display: inline-flex; align-items: center; font-family: var(--mono); font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-dim); }
 
 .footer-tag {
   font-family: var(--mono);

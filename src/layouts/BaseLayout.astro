@@ -24,6 +24,9 @@ interface Props {
   // Consent/authentication surfaces suppress all third-party tracking and use
   // a no-referrer policy so opaque invitation tokens never leave the page.
   privacySensitive?: boolean;
+  // Homepage redesign review uses the approved compact decision-path shell
+  // and a schema graph that matches the new custom-AI Pilot positioning.
+  homepageRefresh?: boolean;
 }
 
 const {
@@ -37,6 +40,7 @@ const {
   preloadImage,
   focusedLandingPage = false,
   privacySensitive = false,
+  homepageRefresh = false,
 } = Astro.props;
 
 const siteUrl = 'https://buildwisemedia.com';
@@ -69,6 +73,10 @@ const aggregateRating = {
   worstRating: '1',
 };
 
+const entityDescription = homepageRefresh
+  ? 'Buildwise Media builds custom AI systems for owner-led service businesses. The entry offer is a paid 90-day Pilot focused on one consequential operational constraint chosen by the owner. The team builds, connects, and tests a system around that constraint against agreed evidence.'
+  : 'Verifiable custom AI systems for service businesses — Ascend installs in 30 days, operates weekly, and stays owned by the client.';
+
 // Site-wide schemas — emitted on every page so AI engines have a stable
 // WebSite/Organization @id graph to traverse. Per LOCKED Triangulation voice:
 // author = "the Buildwise team + our AI system" (no sole-prop framing).
@@ -80,8 +88,7 @@ const siteSchemas: Record<string, unknown>[] = [
     legalName: 'Buildwise Media LLC',
     url: siteUrl,
     email: 'hello@buildwisemedia.com',
-    description:
-      'Verifiable custom AI systems for service businesses — Ascend installs in 30 days, operates weekly, and stays owned by the client.',
+    description: entityDescription,
     foundingLocation: {
       '@type': 'Place',
       address: {
@@ -91,7 +98,7 @@ const siteSchemas: Record<string, unknown>[] = [
         addressCountry: 'US',
       },
     },
-    aggregateRating,
+    ...(!homepageRefresh ? { aggregateRating } : {}),
     sameAs: socialProfiles,
   },
   {
@@ -99,12 +106,11 @@ const siteSchemas: Record<string, unknown>[] = [
     '@id': `${siteUrl}/#website`,
     url: siteUrl,
     name: 'Buildwise Media',
-    description:
-      'Verifiable custom AI systems for service businesses — Ascend installs in 30 days, operates weekly, and stays owned by the client.',
+    description: entityDescription,
     publisher: { '@id': `${siteUrl}/#org` },
     inLanguage: 'en-US',
   },
-  {
+  ...(!homepageRefresh ? [{
     '@type': ['LocalBusiness', 'ProfessionalService'],
     '@id': `${siteUrl}/#localbusiness`,
     name: 'Buildwise Media',
@@ -124,7 +130,7 @@ const siteSchemas: Record<string, unknown>[] = [
     parentOrganization: { '@id': `${siteUrl}/#org` },
     aggregateRating,
     sameAs: socialProfiles,
-  },
+  }] : []),
   {
     '@type': 'WebPage',
     '@id': `${canonicalUrl}#webpage`,
@@ -135,7 +141,9 @@ const siteSchemas: Record<string, unknown>[] = [
     inLanguage: 'en-US',
     speakable: {
       '@type': 'SpeakableSpecification',
-      cssSelector: ['.h-hero', '.hero-sub', '.h-section', '.lede', '.faq-q', '.faq-a p'],
+      cssSelector: homepageRefresh
+        ? ['.h-hero', '.hero-sub', '.h-section', '.lede']
+        : ['.h-hero', '.hero-sub', '.h-section', '.lede', '.faq-q', '.faq-a p'],
     },
   },
 ];
@@ -190,7 +198,7 @@ const graph = [...siteSchemas, ...perPageSchemas];
     <meta property="og:image:type" content="image/png" />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
-    <meta property="og:image:alt" content="Buildwise Media — Your AI Department" />
+    <meta property="og:image:alt" content={homepageRefresh ? 'Buildwise Media — custom AI systems for owner-led service businesses' : 'Buildwise Media — Your AI Department'} />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={ogT} />
     <meta name="twitter:description" content={ogD} />
@@ -216,7 +224,9 @@ const graph = [...siteSchemas, ...perPageSchemas];
       // kills collection for this property on non-production surfaces without touching the
       // load-bearing gtm/gtag order below. Production (custom domain + canonical project.pages.dev) tracks.
       (function(){ var h = location.hostname, p = h.split('.');
-        if ((/\.pages\.dev$/.test(h) && p.length > 3) || h==='localhost' || h==='127.0.0.1' || h==='0.0.0.0' || h==='') {
+        var preview = (/\.pages\.dev$/.test(h) && p.length > 3) || h==='localhost' || h==='127.0.0.1' || h==='0.0.0' || h==='';
+        window.__bwmPreviewMode = preview;
+        if (preview) {
           window['ga-disable-' + GA4] = true;
         } })();
       // Queue js+config at parse time, BEFORE any page event can enter the
@@ -248,6 +258,12 @@ const graph = [...siteSchemas, ...perPageSchemas];
         function loadAnalytics() {
           if (loaded) return;
           loaded = true;
+          if (window.__bwmPreviewMode) {
+            events.forEach(function (eventName) {
+              window.removeEventListener(eventName, loadAnalytics, { passive: true });
+            });
+            return;
+          }
           // ORDER IS LOAD-BEARING. gtm.js and gtag.js fight over dataLayer
           // processing; whichever initializes first wins for the page's
           // lifetime. gtm.js-first silently drops EVERY direct gtag('event')
@@ -291,6 +307,7 @@ const graph = [...siteSchemas, ...perPageSchemas];
 
     <!-- Microsoft Clarity (deferred to keep LCP tight per memory feedback_perf_text_lcp_after_webp.md) -->
     <script is:inline define:vars={{ CLARITY }}>
+      if (!window.__bwmPreviewMode) {
       setTimeout(function () {
         (function(c,l,a,r,i,t,y){
           c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
@@ -298,6 +315,7 @@ const graph = [...siteSchemas, ...perPageSchemas];
           var y0=l.getElementsByTagName(r)[0];y0.parentNode.insertBefore(t,y0);
         })(window, document, "clarity", "script", CLARITY);
       }, 15000);
+      }
     </script>
 
     <!-- Attribution capture (first-touch + last-touch + UTM, persisted to localStorage + first-party cookie) -->
@@ -401,6 +419,7 @@ const graph = [...siteSchemas, ...perPageSchemas];
           return !!(window.google_tag_manager && window.google_tag_manager[GA4]);
         }
         function sendGtag(name, payload) {
+          if (window.__bwmPreviewMode) return;
           // beacon transport: conversion events fire at navigation boundaries
           // (disqualified redirect, booking handoff) — default XHR sends get
           // ERR_ABORTED on unload and the event is silently lost (verified
@@ -408,6 +427,11 @@ const graph = [...siteSchemas, ...perPageSchemas];
           try { window.gtag('event', name, Object.assign({ transport_type: 'beacon' }, payload)); } catch (_) {}
         }
         function flushPendingGtag() {
+          if (window.__bwmPreviewMode) {
+            pendingGtag.length = 0;
+            if (flushTimer) { clearInterval(flushTimer); flushTimer = null; }
+            return;
+          }
           var q = pendingGtag.splice(0);
           q.forEach(function (e) { sendGtag(e.name, e.payload); });
           if (flushTimer) { clearInterval(flushTimer); flushTimer = null; }
@@ -419,6 +443,7 @@ const graph = [...siteSchemas, ...perPageSchemas];
         // sendBeacon directly with a minimal /g/collect payload instead of
         // queueing it into a grave.
         function lastChanceBeacon(name, payload) {
+          if (window.__bwmPreviewMode) return;
           try {
             var m = document.cookie.match(/(?:^|; )_ga=GA\d+\.\d+\.([^;]+)/);
             var cid = m ? m[1] : Math.floor(Math.random() * 1e9) + '.' + Math.floor(Date.now() / 1000);
@@ -432,6 +457,7 @@ const graph = [...siteSchemas, ...perPageSchemas];
           } catch (_) {}
         }
         function queueGtag(name, payload) {
+          if (window.__bwmPreviewMode) return;
           if (gtagReady()) { sendGtag(name, payload); return; }
           if (document.visibilityState === 'hidden' && typeof navigator.sendBeacon === 'function') {
             lastChanceBeacon(name, payload);
@@ -534,7 +560,7 @@ const graph = [...siteSchemas, ...perPageSchemas];
   </head>
 
   <body>
-    {!privacySensitive && <noscript>
+    {!privacySensitive && !homepageRefresh && <noscript>
       <iframe
         src={`https://www.googletagmanager.com/ns.html?id=${GTM}`}
         height="0"
@@ -544,13 +570,13 @@ const graph = [...siteSchemas, ...perPageSchemas];
       <img height="1" width="1" style="display:none" src={`https://www.facebook.com/tr?id=${PIXEL}&ev=PageView&noscript=1`} alt="" />
     </noscript>}
 
-    {!focusedLandingPage && <Header />}
+    {!focusedLandingPage && <Header homepageMode={homepageRefresh} />}
 
     <main id="main">
       <slot />
     </main>
 
-    {!focusedLandingPage && <Footer />}
+    {!focusedLandingPage && <Footer homepageMode={homepageRefresh} />}
 
     {!privacySensitive && (
       <>

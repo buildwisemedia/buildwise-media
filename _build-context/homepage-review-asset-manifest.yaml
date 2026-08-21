@@ -1,0 +1,19 @@
+manifest_version: "1"
+purpose: "Approved assets for the BWM homepage review prototype"
+approved_assets:
+  - path: "public/brand/lockup-horizontal.svg"
+    role: "primary navigation identity"
+  - path: "public/brand/mark.svg"
+    role: "compact Triangulation V3 identity"
+  - path: "public/fonts/inter-variable-v1.woff2"
+    role: "display and body typography"
+  - path: "public/fonts/jetbrains-mono-variable-v1.woff2"
+    role: "microtype and system labels"
+generated_assets: []
+asset_policy:
+  reuse_existing_only: true
+  no_image_generation: true
+  no_founder_photography: true
+  functional_inline_diagrams_allowed: true
+  diagrams_must_use_r014b_primitives: true
+  every_non_icon_visual_requires_r020_annotation: true

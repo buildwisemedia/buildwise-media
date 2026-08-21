@@ -3,7 +3,12 @@
 // Updated 2026-05-21: nav refreshed for conversion reimagining (How It Works · System · Pricing · Playbook)
 // LOCKED 2026-05-20: pricing-publicly-visible
 import Wordmark from './Wordmark.astro';
-const navLinks = [
+interface Props {
+  homepageMode?: boolean;
+}
+
+const { homepageMode = false } = Astro.props;
+const defaultNavLinks = [
   { label: 'How It Works', href: '/how-it-works' },
   { label: 'The System', href: '/system' },
   { label: 'Industries', href: '/industries' },
@@ -12,9 +17,12 @@ const navLinks = [
   { label: 'Results', href: '/results' },
   { label: 'Contact', href: '/contact' },
 ];
+const navLinks = homepageMode
+  ? [{ label: 'See the System', href: '#see-the-system' }]
+  : defaultNavLinks;
 ---
 <a href="#main" class="skip-link">Skip to content</a>
-<header class="site-header" data-scrolled="false">
+<header class="site-header" data-scrolled="false" data-homepage-mode={homepageMode ? 'true' : 'false'}>
   <div class="header-inner container">
     <Wordmark size="nav" href="/" />
     <nav class="primary-nav" aria-label="Primary">

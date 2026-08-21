@@ -1,0 +1,35 @@
+manifest_version: "1"
+purpose: "Source-bound implementation of the approved BWM homepage review prototype"
+sources:
+  - path: "clients/buildwise-media/Homepage-Redesign-Authority.md"
+    role: "controlling homepage authority and deployment boundary"
+    brain_blob: "8ac8127b631c3816b60bfb2ec96c87bf7d91bd27"
+  - path: "clients/buildwise-media/Homepage-Scope.md"
+    role: "seven-section page architecture and schema contract"
+    brain_blob: "4552205f23b5bd5b20afd2a824d04c09c731d664"
+  - path: "clients/buildwise-media/site-config.json"
+    role: "CTA and compiler routing"
+    brain_blob: "538eff0710be885f7d4930ab8112ae7addf8517f"
+  - path: "clients/buildwise-media/homepage-copy-evidence/copy-evidence-packet.json"
+    role: "governed buyer language, offer facts, exclusions, and claim tags"
+    brain_blob: "51c396cbcb76e9f2ac9f509b24d432f7f032a4a2"
+  - path: "reference/Design-Identity-Resolver.md"
+    role: "identity resolution contract"
+  - path: "brand/BWM-Visual-Direction-Locked.md"
+    role: "dark Triangulation visual foundation"
+  - path: "brand/BWM-Logo-System-Locked.md"
+    role: "Triangulation V3 mark and lockup rules"
+  - path: "brand/BWM-Palette-System-Locked.md"
+    role: "System A marketing palette"
+constraints:
+  homepage_only: true
+  section_maximum: 7
+  visible_outcome_promise: false
+  founder_led_framing: false
+  vendor_names_client_visible: false
+  review_deployment_only: true
+  production_deployment_authorized: false
+copy_evidence:
+  status: pass
+  storage: "private Brain source; not materialized in the public repository"
+  independent_review: "Fable PASS"
