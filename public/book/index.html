@@ -1,0 +1,1138 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex,follow">
+  <meta name="description" content="Tell Buildwise Media what is getting in the way of growth. We’ll read it and reply by email.">
+  <link rel="canonical" href="https://buildwisemedia.com/book/">
+  <title>See If We’re a Fit | Buildwise Media</title>
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="alternate icon" href="/favicon.ico">
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon-180.png">
+  <meta name="theme-color" content="#050507">
+  <link rel="preload" href="/fonts/inter-variable-v1.woff2" as="font" type="font/woff2" crossorigin>
+  <style>
+    @font-face {
+      font-family: "Inter";
+      font-style: normal;
+      font-weight: 100 900;
+      font-display: swap;
+      src: url("/fonts/inter-variable-v1.woff2") format("woff2-variations");
+    }
+
+    :root {
+      color-scheme: light;
+      --ink: #101217;
+      --paper: #f4f3ee;
+      --white: #ffffff;
+      --muted: #656b76;
+      --line: #d7d6cf;
+      --yellow: #f0ff00;
+      --blue: #304bd6;
+      --blue-bright: #6f84ff;
+      --orange: #ff6847;
+      --orange-ink: #d94b20;
+      --mint: #27b899;
+      --night: #0c1017;
+      --night-2: #141a24;
+      --night-3: #202838;
+      --danger: #ff8dad;
+      --max: 1280px;
+      --gutter: clamp(20px, 4vw, 64px);
+    }
+
+    * { box-sizing: border-box; }
+
+    html {
+      background: var(--paper);
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background: var(--paper);
+      color: var(--ink);
+      font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      font-size: 1.125rem;
+      line-height: 1.5;
+      margin: 0;
+      min-width: 320px;
+      overflow-x: hidden;
+    }
+
+    p,
+    label { text-wrap: pretty; }
+
+    button,
+    input,
+    textarea { font: inherit; }
+
+    button,
+    a { -webkit-tap-highlight-color: transparent; }
+
+    a { color: inherit; }
+
+    :focus-visible {
+      outline: 3px solid var(--blue-bright);
+      outline-offset: 4px;
+    }
+
+    .skip-link {
+      background: var(--yellow);
+      color: var(--ink);
+      font-weight: 780;
+      left: 16px;
+      padding: 10px 14px;
+      position: fixed;
+      top: -90px;
+      z-index: 100;
+    }
+
+    .skip-link:focus { top: 16px; }
+
+    .sr-only {
+      clip: rect(0 0 0 0);
+      clip-path: inset(50%);
+      height: 1px;
+      overflow: hidden;
+      position: absolute;
+      white-space: nowrap;
+      width: 1px;
+    }
+
+    .site-nav {
+      background: rgba(244, 243, 238, 0.96);
+      border-bottom: 1px solid var(--line);
+      position: relative;
+      z-index: 20;
+    }
+
+    .nav-inner {
+      align-items: center;
+      display: flex;
+      justify-content: space-between;
+      margin: 0 auto;
+      max-width: var(--max);
+      min-height: 78px;
+      padding: 14px var(--gutter);
+    }
+
+    .brand {
+      align-items: center;
+      display: inline-flex;
+      gap: 12px;
+      text-decoration: none;
+    }
+
+    .brand img {
+      background: var(--night);
+      border-radius: 12px;
+      display: block;
+      flex: 0 0 auto;
+      height: 48px;
+      object-fit: contain;
+      padding: 5px;
+      width: 48px;
+    }
+
+    .brand span {
+      font-size: 0.9rem;
+      font-weight: 780;
+      letter-spacing: -0.02em;
+    }
+
+    .nav-meta {
+      align-items: center;
+      color: #4e545e;
+      display: inline-flex;
+      font-size: 0.8rem;
+      font-weight: 660;
+      gap: 10px;
+    }
+
+    .nav-meta::before {
+      background: var(--mint);
+      border-radius: 999px;
+      content: "";
+      height: 8px;
+      width: 8px;
+    }
+
+    .shell {
+      margin: 0 auto;
+      max-width: var(--max);
+      padding-left: var(--gutter);
+      padding-right: var(--gutter);
+    }
+
+    .contact-stage {
+      min-height: calc(100svh - var(--page-chrome-height, 0px));
+      padding: clamp(36px, 5vw, 72px) 0 clamp(44px, 6vw, 84px);
+      position: relative;
+      width: 100%;
+    }
+
+    .contact-stage::before {
+      background: var(--yellow);
+      content: "";
+      height: 9px;
+      left: 0;
+      position: absolute;
+      top: 0;
+      width: clamp(112px, 18vw, 270px);
+    }
+
+    .contact-grid {
+      align-items: stretch;
+      display: grid;
+      gap: clamp(34px, 5vw, 72px);
+      grid-template-columns: minmax(0, 0.82fr) minmax(520px, 1.18fr);
+    }
+
+    .intro {
+      align-self: center;
+      max-width: 600px;
+      padding: clamp(12px, 2vw, 26px) 0;
+    }
+
+    .eyebrow {
+      color: var(--blue);
+      font-size: 0.75rem;
+      font-weight: 840;
+      letter-spacing: 0.14em;
+      margin: 0;
+      text-transform: uppercase;
+    }
+
+    h1 {
+      font-size: clamp(4.2rem, 6.5vw, 6.6rem);
+      font-weight: 610;
+      letter-spacing: -0.072em;
+      line-height: 0.88;
+      margin: 24px 0 28px;
+      max-width: 8.8ch;
+      text-wrap: balance;
+    }
+
+    h1 em {
+      color: var(--orange-ink);
+      font-style: normal;
+    }
+
+    .intro-copy {
+      color: #454c58;
+      font-size: clamp(1.18rem, 1.65vw, 1.42rem);
+      line-height: 1.46;
+      margin: 0;
+      max-width: 32rem;
+    }
+
+    .reply-path {
+      border-top: 1px solid var(--line);
+      display: grid;
+      gap: 18px;
+      grid-template-columns: repeat(3, 1fr);
+      list-style: none;
+      margin-top: clamp(36px, 5vw, 66px);
+      max-width: 560px;
+      padding-left: 0;
+      padding-top: 20px;
+    }
+
+    .reply-step {
+      color: #5e6571;
+      font-size: 0.82rem;
+      line-height: 1.35;
+      margin: 0;
+      position: relative;
+    }
+
+    .reply-step::before {
+      background: var(--blue);
+      content: "";
+      display: block;
+      height: 4px;
+      margin-bottom: 12px;
+      width: 28px;
+    }
+
+    .reply-step:nth-child(2)::before { background: var(--orange); }
+    .reply-step:nth-child(3)::before { background: var(--mint); }
+
+    .reply-step strong {
+      color: var(--ink);
+      display: block;
+      font-size: 0.75rem;
+      font-weight: 820;
+      letter-spacing: 0.08em;
+      margin-bottom: 5px;
+      text-transform: uppercase;
+    }
+
+    .form-panel {
+      background: var(--night);
+      border-top: 5px solid var(--yellow);
+      color: var(--white);
+      min-height: 650px;
+      overflow: hidden;
+      overflow: clip;
+      padding: clamp(30px, 4vw, 52px);
+      position: relative;
+    }
+
+    .form-panel::before {
+      background: var(--blue);
+      content: "";
+      height: 190px;
+      position: absolute;
+      right: -126px;
+      top: 36px;
+      transform: rotate(34deg);
+      width: 230px;
+    }
+
+    .form-panel::after {
+      background: var(--orange);
+      bottom: 36px;
+      content: "";
+      height: 7px;
+      left: -32px;
+      position: absolute;
+      transform: rotate(-13deg);
+      width: 142px;
+    }
+
+    .form-panel :focus-visible { outline-color: var(--yellow); }
+
+    .form-head,
+    .contact-form,
+    .completion {
+      position: relative;
+      z-index: 2;
+    }
+
+    .form-head {
+      align-items: flex-start;
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 34px;
+    }
+
+    .form-kicker {
+      color: #bac2d0;
+      font-size: 0.72rem;
+      font-weight: 780;
+      letter-spacing: 0.12em;
+      margin: 0;
+      text-transform: uppercase;
+    }
+
+    .form-index {
+      color: var(--yellow);
+      font-size: 0.72rem;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      margin: 0;
+      padding-right: 68px;
+      text-transform: uppercase;
+    }
+
+    .contact-form {
+      display: grid;
+      gap: 24px;
+    }
+
+    .field-row {
+      display: grid;
+      gap: 20px;
+      grid-template-columns: 1fr 1fr;
+    }
+
+    .field-group { min-width: 0; }
+
+    .field-group label {
+      color: #f2f4f8;
+      display: block;
+      font-size: 0.83rem;
+      font-weight: 730;
+      margin: 0 0 9px;
+    }
+
+    .optional {
+      color: #8f99aa;
+      font-size: 0.76rem;
+      font-weight: 600;
+      margin-left: 6px;
+    }
+
+    input[type="text"],
+    input[type="email"],
+    textarea {
+      appearance: none;
+      background: var(--night-2);
+      border: 1px solid #3a4454;
+      border-radius: 0;
+      color: var(--white);
+      display: block;
+      line-height: 1.45;
+      outline: 0;
+      padding: 14px 15px;
+      transition: background 160ms ease, border-color 160ms ease, box-shadow 160ms ease;
+      width: 100%;
+    }
+
+    input[type="text"],
+    input[type="email"] { min-height: 54px; }
+
+    textarea {
+      min-height: 170px;
+      resize: vertical;
+    }
+
+    input::placeholder,
+    textarea::placeholder { color: #778194; opacity: 1; }
+
+    input:autofill,
+    input:autofill:hover,
+    input:autofill:focus,
+    textarea:autofill,
+    textarea:autofill:hover,
+    textarea:autofill:focus,
+    input:-webkit-autofill,
+    input:-webkit-autofill:hover,
+    input:-webkit-autofill:focus,
+    textarea:-webkit-autofill,
+    textarea:-webkit-autofill:hover,
+    textarea:-webkit-autofill:focus {
+      -webkit-box-shadow: 0 0 0 1000px var(--night-2) inset;
+      -webkit-text-fill-color: var(--white);
+      caret-color: var(--white);
+    }
+
+    input:hover,
+    textarea:hover { border-color: #667185; }
+
+    input:focus,
+    textarea:focus {
+      background: #171e29;
+      border-color: var(--blue-bright);
+      box-shadow: inset 4px 0 0 var(--blue-bright);
+    }
+
+    input:focus-visible,
+    textarea:focus-visible {
+      outline: 3px solid var(--yellow);
+      outline-offset: 3px;
+    }
+
+    [aria-invalid="true"] {
+      border-color: var(--danger) !important;
+      box-shadow: inset 4px 0 0 var(--danger) !important;
+    }
+
+    .question-label {
+      font-size: clamp(1.18rem, 1.75vw, 1.45rem) !important;
+      font-weight: 650 !important;
+      letter-spacing: -0.025em;
+      line-height: 1.25;
+      max-width: 28rem;
+    }
+
+    .field-help {
+      color: #9fa8b8;
+      font-size: 0.8rem;
+      line-height: 1.45;
+      margin: 9px 0 0;
+    }
+
+    .field-error {
+      color: var(--danger);
+      display: none;
+      font-size: 0.8rem;
+      font-weight: 690;
+      line-height: 1.4;
+      margin: 9px 0 0;
+    }
+
+    .field-error.is-visible { display: block; }
+
+    .consent {
+      border-top: 1px solid #343d4c;
+      padding-top: 20px;
+    }
+
+    .consent-choice {
+      align-items: flex-start;
+      cursor: pointer;
+      display: flex;
+      gap: 12px;
+      margin: 0;
+    }
+
+    .consent-choice input {
+      appearance: none;
+      background: var(--night-2);
+      border: 1px solid #687386;
+      border-radius: 0;
+      display: grid;
+      flex: 0 0 auto;
+      height: 24px;
+      margin: 1px 0 0;
+      place-items: center;
+      width: 24px;
+    }
+
+    .consent-choice input::before {
+      border-bottom: 2px solid var(--ink);
+      border-right: 2px solid var(--ink);
+      content: "";
+      height: 9px;
+      opacity: 0;
+      transform: rotate(45deg) translate(-1px, -1px);
+      width: 5px;
+    }
+
+    .consent-choice input:checked {
+      background: var(--yellow);
+      border-color: var(--yellow);
+    }
+
+    .consent-choice input:checked::before { opacity: 1; }
+
+    .consent-choice span {
+      color: #d9dee7;
+      font-size: 0.82rem;
+      line-height: 1.45;
+    }
+
+    .submit-row {
+      align-items: center;
+      display: flex;
+      gap: 18px;
+      justify-content: space-between;
+    }
+
+    .submit-note {
+      color: #8f99aa;
+      font-size: 0.74rem;
+      line-height: 1.4;
+      margin: 0;
+      max-width: 18rem;
+    }
+
+    .submit-button {
+      align-items: center;
+      background: var(--yellow);
+      border: 2px solid var(--yellow);
+      border-radius: 999px;
+      color: var(--ink);
+      cursor: pointer;
+      display: inline-flex;
+      flex: 0 0 auto;
+      font-size: 0.9rem;
+      font-weight: 800;
+      gap: 12px;
+      justify-content: center;
+      min-height: 52px;
+      padding: 12px 19px;
+      transition: background 180ms ease, border-color 180ms ease, color 180ms ease, transform 180ms ease;
+    }
+
+    .submit-button::after {
+      content: "↗";
+      font-size: 1.05em;
+      transition: transform 180ms ease;
+    }
+
+    .submit-button:hover:not(:disabled) {
+      background: var(--white);
+      border-color: var(--white);
+      transform: translateY(-2px);
+    }
+
+    .submit-button:hover:not(:disabled)::after { transform: translate(2px, -2px); }
+
+    .submit-button:disabled {
+      cursor: wait;
+      opacity: 0.72;
+    }
+
+    .submission-error {
+      background: rgba(255, 141, 173, 0.1);
+      border-left: 4px solid var(--danger);
+      color: #ffd6e2;
+      font-size: 0.82rem;
+      line-height: 1.45;
+      margin: 0;
+      padding: 12px 14px;
+    }
+
+    .submission-error[hidden] { display: none; }
+
+    .completion {
+      display: none;
+      min-height: 500px;
+      padding-top: clamp(48px, 8vw, 110px);
+    }
+
+    .completion:focus { outline: none; }
+
+    .form-panel.is-complete .form-head,
+    .form-panel.is-complete .contact-form { display: none; }
+
+    .form-panel.is-complete .completion { display: block; }
+
+    .completion-mark {
+      align-items: center;
+      background: var(--yellow);
+      border-radius: 50%;
+      color: var(--ink);
+      display: flex;
+      font-size: 1.45rem;
+      font-weight: 820;
+      height: 50px;
+      justify-content: center;
+      margin-bottom: 30px;
+      width: 50px;
+    }
+
+    .completion-kicker {
+      color: var(--mint);
+      font-size: 0.74rem;
+      font-weight: 800;
+      letter-spacing: 0.12em;
+      margin: 0 0 14px;
+      text-transform: uppercase;
+    }
+
+    .completion h2 {
+      font-size: clamp(3.2rem, 5vw, 5.2rem);
+      font-weight: 600;
+      letter-spacing: -0.065em;
+      line-height: 0.92;
+      margin: 0 0 24px;
+      max-width: 8ch;
+    }
+
+    .completion-copy {
+      color: #b8c0ce;
+      font-size: clamp(1.05rem, 1.5vw, 1.25rem);
+      line-height: 1.5;
+      margin: 0;
+      max-width: 31rem;
+    }
+
+    .completion-copy strong { color: var(--white); }
+
+    .completion-state {
+      border-top: 1px solid #343d4c;
+      color: #8f99aa;
+      font-size: 0.78rem;
+      margin: 34px 0 0;
+      max-width: 31rem;
+      padding-top: 18px;
+    }
+
+    .honeypot {
+      height: 1px;
+      left: -10000px;
+      overflow: hidden;
+      position: absolute;
+      top: auto;
+      width: 1px;
+    }
+
+    .page-footer {
+      align-items: center;
+      border-top: 1px solid var(--line);
+      color: #626974;
+      display: flex;
+      font-size: 0.72rem;
+      justify-content: space-between;
+      margin-top: clamp(34px, 5vw, 62px);
+      padding-top: 18px;
+    }
+
+    .page-footer p { margin: 0; }
+
+    .footer-markers {
+      display: flex;
+      gap: 7px;
+    }
+
+    .footer-markers span {
+      height: 7px;
+      width: 20px;
+    }
+
+    .footer-markers span:nth-child(1) { background: var(--blue); }
+    .footer-markers span:nth-child(2) { background: var(--orange); }
+    .footer-markers span:nth-child(3) { background: var(--mint); }
+    .footer-markers span:nth-child(4) { background: var(--yellow); }
+
+    @media (prefers-reduced-motion: no-preference) {
+      .intro > *,
+      .form-panel {
+        animation: enter 620ms cubic-bezier(0.2, 0.75, 0.25, 1) both;
+      }
+
+      .intro > :nth-child(2) { animation-delay: 60ms; }
+      .intro > :nth-child(3) { animation-delay: 110ms; }
+      .intro > :nth-child(4) { animation-delay: 160ms; }
+      .form-panel { animation-delay: 90ms; }
+
+      @keyframes enter {
+        from { opacity: 0; transform: translateY(14px); }
+        to { opacity: 1; transform: translateY(0); }
+      }
+    }
+
+    @media (max-width: 1080px) {
+      .contact-grid {
+        gap: 38px;
+        grid-template-columns: minmax(0, 0.78fr) minmax(490px, 1.22fr);
+      }
+
+      h1 { font-size: clamp(3.7rem, 6.7vw, 5.4rem); }
+      .reply-path { grid-template-columns: 1fr; }
+      .reply-step { display: grid; gap: 12px; grid-template-columns: 30px 1fr; }
+      .reply-step::before { margin: 7px 0 0; }
+      .reply-step strong { display: inline; margin-right: 4px; }
+    }
+
+    @media (max-width: 900px) {
+      .contact-stage { padding-top: 44px; }
+      .contact-grid { grid-template-columns: 1fr; }
+      .intro { max-width: 740px; padding-bottom: 0; }
+      h1 { font-size: clamp(3.65rem, 10vw, 6.2rem); max-width: 9ch; }
+      .intro-copy { max-width: 40rem; }
+      .reply-path { grid-template-columns: repeat(3, 1fr); max-width: 680px; }
+      .reply-step { display: block; }
+      .reply-step::before { margin: 0 0 12px; }
+      .form-panel { min-height: 0; }
+    }
+
+    @media (max-width: 640px) {
+      body { font-size: 1rem; }
+      .nav-inner { min-height: 68px; }
+      .brand { gap: 9px; }
+      .brand img { border-radius: 10px; height: 44px; width: 44px; }
+      .brand span { font-size: 0.78rem; }
+      .nav-meta { display: none; }
+      .contact-stage { min-height: 0; padding: 26px 0 52px; }
+      .contact-grid { gap: 0; }
+      h1 { font-size: clamp(3.45rem, 16.5vw, 5rem); line-height: 0.88; margin: 14px 0 20px; }
+      .intro { display: contents; }
+      .intro-copy { font-size: 1.12rem; }
+      .reply-path { display: grid; grid-template-columns: 1fr; margin: 28px 0 0; order: 3; }
+      .reply-step { display: grid; grid-template-columns: 28px 1fr; }
+      .reply-step::before { margin-top: 7px; }
+      .form-panel { margin-left: calc(-1 * var(--gutter)); margin-right: calc(-1 * var(--gutter)); order: 2; padding: 28px var(--gutter) 38px; }
+      .form-panel::after { bottom: 10px; }
+      .form-head { margin-bottom: 28px; }
+      .form-index { padding-right: 50px; }
+      .field-row { grid-template-columns: 1fr; }
+      textarea { min-height: 190px; }
+      .submit-row { align-items: stretch; flex-direction: column-reverse; }
+      .submit-note { max-width: none; }
+      .submit-button { width: 100%; }
+      .completion { min-height: 520px; padding-top: 60px; }
+      .page-footer { align-items: flex-start; gap: 18px; }
+    }
+
+    @media (max-width: 380px) {
+      h1 { font-size: 3.2rem; }
+      .brand span { display: none; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      *,
+      *::before,
+      *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        scroll-behavior: auto !important;
+        transition-duration: 0.01ms !important;
+      }
+    }
+  </style>
+  <script>
+    (() => {
+      if (!new Set(["buildwisemedia.com", "www.buildwisemedia.com"]).has(window.location.hostname)) return;
+      window.dataLayer = window.dataLayer || [];
+      window.gtag = window.gtag || function () { window.dataLayer.push(arguments); };
+      window.gtag("js", new Date());
+      window.gtag("config", "G-V5LSP69E41", { send_page_view: true });
+
+      const appendScript = (src) => {
+        const script = document.createElement("script");
+        script.async = true;
+        script.src = src;
+        document.head.appendChild(script);
+        return script;
+      };
+      const gtagScript = appendScript("https://www.googletagmanager.com/gtag/js?id=G-V5LSP69E41");
+      const loadContainer = () => {
+        window.dataLayer.push({ "gtm.start": Date.now(), event: "gtm.js" });
+        appendScript("https://www.googletagmanager.com/gtm.js?id=GTM-P5JSD86L");
+      };
+      gtagScript.addEventListener("load", loadContainer, { once: true });
+      gtagScript.addEventListener("error", loadContainer, { once: true });
+    })();
+  </script>
+</head>
+<body>
+  <a class="skip-link" href="#contact-form">Skip to the contact form</a>
+  <header class="site-nav">
+    <div class="nav-inner">
+      <!-- @r020:identity exact approved Buildwise Media mark -->
+      <a class="brand" href="/" aria-label="Buildwise Media homepage">
+        <img src="../assets/mark.svg" alt="" width="48" height="48">
+        <span>Buildwise Media</span>
+      </a>
+      <div class="nav-meta"><span>A direct line to our team</span></div>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="contact-stage" aria-labelledby="page-title">
+      <div class="shell">
+        <div class="contact-grid">
+          <div class="intro">
+            <p class="eyebrow">See if we’re a fit</p>
+            <h1 id="page-title">What’s getting in the way of <em>growth?</em></h1>
+            <p class="intro-copy">Tell us where it shows up and what it is stopping. We’ll read it and let you know if it’s a useful place to start.</p>
+
+            <ol class="reply-path" aria-label="What happens after you send">
+              <li class="reply-step"><span><strong>01 · You send</strong>One note about the bottleneck.</span></li>
+              <li class="reply-step"><span><strong>02 · We read</strong>No automated score or quiz result.</span></li>
+              <li class="reply-step"><span><strong>03 · We reply</strong>A clear next move by email.</span></li>
+            </ol>
+          </div>
+
+          <div class="form-panel" id="form-panel">
+            <div class="form-head">
+              <p class="form-kicker">Tell us what’s in the way</p>
+              <p class="form-index">One note</p>
+            </div>
+
+            <noscript>
+              <p class="submission-error">This form needs JavaScript to send safely. Nothing has been sent. Turn JavaScript on and reload the page.</p>
+            </noscript>
+
+            <form class="contact-form" id="contact-form" method="post" action="/book/" novalidate>
+              <div class="honeypot" aria-hidden="true">
+                <label for="company_url">Leave this field empty</label>
+                <input id="company_url" name="company_url" type="text" tabindex="-1" autocomplete="off">
+              </div>
+
+              <div class="field-row">
+                <div class="field-group">
+                  <label for="contact_name">Your name</label>
+                  <input id="contact_name" name="contact_name" type="text" autocomplete="name" maxlength="120" required aria-errormessage="contact-name-error">
+                  <p class="field-error" id="contact-name-error">Enter your name.</p>
+                </div>
+
+                <div class="field-group">
+                  <label for="work_email">Work email</label>
+                  <input id="work_email" name="work_email" type="email" inputmode="email" autocomplete="email" maxlength="254" required aria-errormessage="work-email-error">
+                  <p class="field-error" id="work-email-error">Enter a valid work email.</p>
+                </div>
+              </div>
+
+              <div class="field-group">
+                <label for="company">Company <span class="optional">Optional</span></label>
+                <input id="company" name="company" type="text" autocomplete="organization" maxlength="160">
+              </div>
+
+              <div class="field-group">
+                <label class="question-label" for="bottleneck">What is the biggest thing getting in the way of growth?</label>
+                <textarea id="bottleneck" name="bottleneck" maxlength="3000" required aria-describedby="bottleneck-help" aria-errormessage="bottleneck-error"></textarea>
+                <p class="field-help" id="bottleneck-help">Tell us where it shows up and what it is stopping. Plain language is better than a polished answer.</p>
+                <p class="field-error" id="bottleneck-error">Tell us what is getting in the way.</p>
+              </div>
+
+              <div class="consent">
+                <label class="consent-choice" for="contact_permission">
+                  <input id="contact_permission" name="contact_permission" type="checkbox" required aria-errormessage="contact-permission-error">
+                  <span>Buildwise Media may reply to me about this note.</span>
+                </label>
+                <p class="field-error" id="contact-permission-error">Confirm that we may reply to you.</p>
+              </div>
+
+              <p class="submission-error" id="submission-error" role="alert" hidden></p>
+
+              <div class="submit-row">
+                <p class="submit-note" id="submit-note">This goes to the Buildwise team. There is no calendar after you send.</p>
+                <button class="submit-button" id="submit-button" type="submit" aria-describedby="submit-note submission-error" disabled>Send to Buildwise</button>
+              </div>
+            </form>
+
+            <section class="completion" id="completion" tabindex="-1" aria-labelledby="completion-title">
+              <div class="completion-mark" aria-hidden="true">✓</div>
+              <p class="completion-kicker" id="completion-kicker">Local preview · nothing was sent</p>
+              <h2 id="completion-title">Your note is ready.</h2>
+              <p class="completion-copy"><span id="completion-lead">On the live page, this goes straight to the Buildwise team.</span> We’ll read it and reply to <strong id="completion-email">your work email</strong>.</p>
+              <p class="completion-state">No calendar. No automated fit score. The next move comes by email.</p>
+            </section>
+          </div>
+        </div>
+
+        <footer class="page-footer">
+          <p>© 2026 Buildwise Media</p>
+          <div class="footer-markers" aria-hidden="true"><span></span><span></span><span></span><span></span></div>
+        </footer>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    const form = document.querySelector("#contact-form");
+    const panel = document.querySelector("#form-panel");
+    const submitButton = document.querySelector("#submit-button");
+    const submissionError = document.querySelector("#submission-error");
+    const completion = document.querySelector("#completion");
+    const completionKicker = document.querySelector("#completion-kicker");
+    const completionTitle = document.querySelector("#completion-title");
+    const completionLead = document.querySelector("#completion-lead");
+    const completionEmail = document.querySelector("#completion-email");
+    const startedAt = Date.now();
+    let submissionId = makeSubmissionId();
+    let lastFailedRequest = null;
+
+    function syncPageChromeHeight() {
+      const chromeHeight = document.querySelector(".site-nav")?.getBoundingClientRect().height || 0;
+      document.documentElement.style.setProperty("--page-chrome-height", `${chromeHeight}px`);
+    }
+
+    syncPageChromeHeight();
+    window.addEventListener("resize", syncPageChromeHeight, { passive: true });
+
+    const fieldRules = [
+      { field: document.querySelector("#contact_name"), error: document.querySelector("#contact-name-error"), valid: (field) => field.value.trim().length > 0 },
+      { field: document.querySelector("#work_email"), error: document.querySelector("#work-email-error"), valid: (field) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(field.value.trim()) },
+      { field: document.querySelector("#bottleneck"), error: document.querySelector("#bottleneck-error"), valid: (field) => field.value.trim().length > 0 },
+      { field: document.querySelector("#contact_permission"), error: document.querySelector("#contact-permission-error"), valid: (field) => field.checked },
+    ];
+
+    function makeSubmissionId() {
+      if (window.crypto && typeof window.crypto.randomUUID === "function") return window.crypto.randomUUID();
+      return "10000000-1000-4000-8000-100000000000".replace(/[018]/g, (character) => (
+        Number(character) ^ (window.crypto.getRandomValues(new Uint8Array(1))[0] & (15 >> (Number(character) / 4)))
+      ).toString(16));
+    }
+
+    function setFieldState(rule, showError) {
+      const valid = rule.valid(rule.field);
+      if (!valid && showError) {
+        rule.field.setAttribute("aria-invalid", "true");
+        rule.error.classList.add("is-visible");
+      } else {
+        rule.field.removeAttribute("aria-invalid");
+        rule.error.classList.remove("is-visible");
+      }
+      return valid;
+    }
+
+    function validateForm() {
+      const states = fieldRules.map((rule) => setFieldState(rule, true));
+      const firstInvalid = fieldRules[states.indexOf(false)]?.field;
+      if (firstInvalid) firstInvalid.focus();
+      return states.every(Boolean);
+    }
+
+    fieldRules.forEach((rule) => {
+      const eventName = rule.field.type === "checkbox" ? "change" : "input";
+      rule.field.addEventListener(eventName, () => setFieldState(rule, false));
+    });
+    submitButton.disabled = false;
+
+    function attributionSnapshot() {
+      const params = new URLSearchParams(window.location.search);
+      const allowed = ["utm_source", "utm_medium", "utm_campaign", "utm_content", "utm_term", "gclid", "fbclid", "fbc", "fbp"];
+      const cap = (value) => typeof value === "string" ? value.slice(0, 1000) : "";
+      const sessionValue = (key) => {
+        try { return sessionStorage.getItem(key) || ""; } catch { return ""; }
+      };
+      let stored = {};
+      try { stored = JSON.parse(localStorage.getItem("_bwm_attribution") || "{}"); } catch { /* malformed storage is ignored */ }
+      const firstTouch = stored && typeof stored.first_touch === "object" ? stored.first_touch : {};
+      const lastTouch = stored && typeof stored.last_touch === "object" ? stored.last_touch : {};
+      const firstUtm = firstTouch.utm && typeof firstTouch.utm === "object" ? firstTouch.utm : {};
+      const lastUtm = lastTouch.utm && typeof lastTouch.utm === "object" ? lastTouch.utm : {};
+      const cookie = (name) => {
+        const match = document.cookie.match(new RegExp("(?:^|; )" + name.replace(/[.$?*|{}()[\]\\/+^]/g, "\\$&") + "=([^;]*)"));
+        try { return match ? decodeURIComponent(match[1]) : ""; } catch { return ""; }
+      };
+      const attribution = {
+        landing_page: cap(sessionValue("bwm_landing_page") || firstTouch.landing_page || lastTouch.landing_page || window.location.href),
+        page_url: cap(window.location.href),
+        referrer: cap(sessionValue("bwm_referrer") || document.referrer || lastTouch.referrer || firstTouch.referrer || ""),
+      };
+      allowed.forEach((key) => {
+        const value = key === "fbc"
+          ? cookie("_fbc")
+          : key === "fbp"
+            ? cookie("_fbp")
+            : params.get(key) || lastUtm[key] || firstUtm[key];
+        if (typeof value === "string" && value) attribution[key] = value.slice(0, 1000);
+      });
+      const experiment = experimentContext();
+      if (experiment.experiment_id && experiment.experiment_variant_id) {
+        attribution.experiment_id = experiment.experiment_id;
+        attribution.experiment_variant_id = experiment.experiment_variant_id;
+      }
+      return attribution;
+    }
+
+    function experimentContext() {
+      const safeId = (value) => typeof value === "string" && /^[A-Za-z0-9._-]+$/.test(value) ? value : "";
+      const active = window.__BWM_EXP;
+      if (active && active.experiment_id && active.variant_id) {
+        return {
+          experiment_id: safeId(active.experiment_id),
+          experiment_variant_id: safeId(active.variant_id),
+        };
+      }
+      const match = document.cookie.match(/(?:^|; )_bwm_exp_host=([^;]*)/);
+      if (match) {
+        try {
+          const stored = JSON.parse(decodeURIComponent(match[1]));
+          return {
+            experiment_id: safeId(stored?.e),
+            experiment_variant_id: safeId(stored?.v),
+          };
+        } catch { /* malformed experiment cookies are ignored */ }
+      }
+      return { experiment_id: "", experiment_variant_id: "" };
+    }
+
+    function payloadContent() {
+      return {
+        company_url: document.querySelector("#company_url").value,
+        contact_name: document.querySelector("#contact_name").value.trim(),
+        work_email: document.querySelector("#work_email").value.trim(),
+        company: document.querySelector("#company").value.trim(),
+        bottleneck: document.querySelector("#bottleneck").value.trim(),
+        contact_permission: document.querySelector("#contact_permission").checked,
+        attribution: attributionSnapshot(),
+      };
+    }
+
+    function submissionFingerprint(content) {
+      return JSON.stringify({
+        company_url: content.company_url,
+        contact_name: content.contact_name,
+        work_email: content.work_email,
+        company: content.company,
+        bottleneck: content.bottleneck,
+        contact_permission: content.contact_permission,
+      });
+    }
+
+    function payload(content = payloadContent()) {
+      return {
+        version: "bwm-fit-contact-v1",
+        submission_id: submissionId,
+        form_started_at: startedAt,
+        ...content,
+      };
+    }
+
+    function showCompletion(sent) {
+      const email = document.querySelector("#work_email").value.trim();
+      completionEmail.textContent = email || "your work email";
+      completionKicker.textContent = sent ? "Sent securely" : "Local preview · nothing was sent";
+      completionTitle.textContent = sent ? "Your note is with us." : "Your note is ready.";
+      completionLead.textContent = sent ? "Your note went straight to the Buildwise team." : "On the live page, this goes straight to the Buildwise team.";
+      panel.classList.add("is-complete");
+      completion.focus({ preventScroll: true });
+      completion.scrollIntoView({ behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth", block: "center" });
+    }
+
+    function showSubmissionError(message) {
+      submissionError.textContent = message;
+      submissionError.hidden = false;
+    }
+
+    function track(name, details = {}) {
+      if (!new Set(["buildwisemedia.com", "www.buildwisemedia.com"]).has(window.location.hostname)) return;
+      if (typeof window.gtag === "function") {
+        window.gtag("event", name, { transport_type: "beacon", ...details });
+      }
+    }
+
+    form.addEventListener("submit", async (event) => {
+      event.preventDefault();
+      submissionError.hidden = true;
+      if (!validateForm()) return;
+
+      const productionHost = new Set(["buildwisemedia.com", "www.buildwisemedia.com"]).has(window.location.hostname);
+      if (!productionHost) {
+        showCompletion(false);
+        return;
+      }
+
+      const currentPayloadContent = payloadContent();
+      const currentPayloadFingerprint = submissionFingerprint(currentPayloadContent);
+      if (lastFailedRequest && currentPayloadFingerprint !== lastFailedRequest.fingerprint) {
+        submissionId = makeSubmissionId();
+        lastFailedRequest = null;
+      }
+      const outboundPayload = lastFailedRequest?.fingerprint === currentPayloadFingerprint
+        ? lastFailedRequest.payload
+        : payload(currentPayloadContent);
+
+      submitButton.disabled = true;
+      submitButton.textContent = "Sending";
+
+      let deliveryState = {};
+      try {
+        const response = await fetch("/api/book", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(outboundPayload),
+        });
+        let result = {};
+        try { result = await response.json(); } catch { /* handled by the complete-response check */ }
+        deliveryState = result;
+
+        if (!response.ok || !(
+          result.ok === true &&
+          result.captured === true &&
+          result.emailed === true &&
+          result.receipt_recorded === true
+        )) {
+          throw new Error(result.error || "incomplete_delivery");
+        }
+
+        track("generate_lead", {
+          form_id: "fit_contact",
+          form_version: "bwm-fit-contact-v1",
+          submission_id: result.submission_id || outboundPayload.submission_id,
+          ...experimentContext(),
+        });
+        lastFailedRequest = null;
+        showCompletion(true);
+      } catch {
+        lastFailedRequest = { fingerprint: currentPayloadFingerprint, payload: outboundPayload };
+        track("form_submit_error", {
+          form_id: "fit_contact",
+          form_version: "bwm-fit-contact-v1",
+        });
+        if (deliveryState.emailed === true) {
+          showSubmissionError("Your note was emailed to us, but its delivery receipt wasn’t finalized. Please wait a moment, then try again.");
+        } else if (deliveryState.captured === true) {
+          showSubmissionError("We saved your note, but couldn’t email it yet. Please try again.");
+        } else {
+          showSubmissionError("We couldn’t send your note. Nothing is lost—please try again.");
+        }
+      } finally {
+        submitButton.disabled = false;
+        submitButton.textContent = "Send to Buildwise";
+      }
+    });
+  </script>
+</body>
+</html>

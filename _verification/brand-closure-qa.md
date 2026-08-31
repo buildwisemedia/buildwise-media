@@ -1,8 +1,8 @@
 # Brand Closure QA
 
-Generated: 2026-07-18T16:25:48.243Z
+Generated: 2026-08-31T14:56:02.197Z
 
-PASS: 7 | WARN: 65 | FAIL: 0
+PASS: 7 | WARN: 70 | FAIL: 0
 
 ## Failures
 - None
@@ -11,6 +11,8 @@ PASS: 7 | WARN: 65 | FAIL: 0
 - static-internal-link-unverified · dist/audit/index.html: /audit links to /revenue-leak-map
 - static-internal-link-unverified · dist/audit/index.html: /audit links to /revenue-leak-map
 - static-internal-link-unverified · dist/audit/index.html: /audit links to /revenue-leak-map
+- static-internal-link-unverified · dist/connect/index.html: /connect links to /robert-echevarria.vcf
+- static-internal-link-unverified · dist/connect/index.html: /connect links to /revenue-leak-map
 - static-internal-link-unverified · dist/fortress/index.html: /fortress links to /revenue-leak-map
 - static-internal-link-unverified · dist/fortress/index.html: /fortress links to /revenue-leak-map
 - static-internal-link-unverified · dist/how-it-works/index.html: /how-it-works links to /revenue-leak-map
@@ -39,6 +41,7 @@ PASS: 7 | WARN: 65 | FAIL: 0
 - static-internal-link-unverified · dist/playbook/ai-marketing-department/index.html: /playbook/ai-marketing-department links to /revenue-leak-map
 - static-internal-link-unverified · dist/playbook/ai-marketing-department-small-business/index.html: /playbook/ai-marketing-department-small-business links to /revenue-leak-map
 - static-internal-link-unverified · dist/playbook/ai-website-for-business/index.html: /playbook/ai-website-for-business links to /revenue-leak-map
+- static-internal-link-unverified · dist/playbook/build-your-own-ai/index.html: /playbook/build-your-own-ai links to /revenue-leak-map
 - static-internal-link-unverified · dist/playbook/capability-inheritance/index.html: /playbook/capability-inheritance links to /revenue-leak-map
 - static-internal-link-unverified · dist/playbook/capability-overhang/index.html: /playbook/capability-overhang links to /revenue-leak-map
 - static-internal-link-unverified · dist/playbook/captured-baseline/index.html: /playbook/captured-baseline links to /revenue-leak-map
@@ -54,6 +57,8 @@ PASS: 7 | WARN: 65 | FAIL: 0
 - static-internal-link-unverified · dist/playbook/in-house-marketing-alternative/index.html: /playbook/in-house-marketing-alternative links to /revenue-leak-map
 - static-internal-link-unverified · dist/playbook/index.html: /playbook links to /revenue-leak-map
 - static-internal-link-unverified · dist/playbook/poor-four/index.html: /playbook/poor-four links to /revenue-leak-map
+- static-internal-link-unverified · dist/playbook/ppc-agency-alternative/index.html: /playbook/ppc-agency-alternative links to /revenue-leak-map
+- static-internal-link-unverified · dist/playbook/ppc-agency-alternative/index.html: /playbook/ppc-agency-alternative links to /revenue-leak-map
 - static-internal-link-unverified · dist/playbook/revenue-operating-system/index.html: /playbook/revenue-operating-system links to /revenue-leak-map
 - static-internal-link-unverified · dist/playbook/show-up-in-ai-recommendations/index.html: /playbook/show-up-in-ai-recommendations links to /revenue-leak-map
 - static-internal-link-unverified · dist/playbook/what-is-a-digital-employee/index.html: /playbook/what-is-a-digital-employee links to /revenue-leak-map
@@ -76,9 +81,9 @@ PASS: 7 | WARN: 65 | FAIL: 0
 
 ## Passes
 - dist-present: dist/ exists
-- rendered-lock-scans: 348 rendered files scanned
+- rendered-lock-scans: 350 rendered files scanned
 - legacy-problem-redirects: legacy Poor Four routes are explicit 301 redirects
 - body-imagery-floor: core static routes meet body visual minimums
-- html-basics: 342 HTML files checked
+- html-basics: 344 HTML files checked
 - paid-lp-hero-wordcount: paid /go/* heroes are within the 12-word clarity limit
 - canonical-site-files: robots.txt and llms.txt meet the local contract

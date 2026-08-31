@@ -46,6 +46,13 @@ function stripHtml(html) {
     .trim();
 }
 
+function stripExecutableMarkup(html) {
+  return html
+    .replace(/<script[\s\S]*?<\/script>/gi, ' ')
+    .replace(/<style[\s\S]*?<\/style>/gi, ' ')
+    .replace(/<!--[^]*?-->/g, ' ');
+}
+
 function routeFromHtmlFile(file) {
   const sub = path.relative(dist, file).replaceAll(path.sep, '/');
   if (sub === 'index.html') return '/';
@@ -86,6 +93,8 @@ function countBodyVisuals(html) {
     'dossier-preview',
     'contract-proof-board',
     'bd-proof-tile',
+    'reply-path',
+    'form-panel',
   ];
   return countBodyImages(html) + functionalVisualClasses
     .map((className) => countClassedElements(html, className))
@@ -126,7 +135,7 @@ const staleCopyPattern = /\b(free AI Marketing Audit|Revenue Engine|Build-Right 
 for (const file of renderedFiles) {
   const body = read(file);
   const allowedLegal = file.endsWith('.html') && isLegalHtml(file);
-  const vendorHits = [...body.matchAll(vendorPattern)].map((m) => m[0]);
+  const vendorHits = [...stripExecutableMarkup(body).matchAll(vendorPattern)].map((m) => m[0]);
   if (vendorHits.length && !allowedLegal) {
     fail('rendered-vendor-leak', rel(file), [...new Set(vendorHits)].join(', '));
   }

@@ -1,9 +1,9 @@
 {
-  "generated_at": "2026-07-18T16:25:48.243Z",
+  "generated_at": "2026-08-31T14:56:02.197Z",
   "branch": null,
   "dist": "dist",
   "pass_count": 7,
-  "warning_count": 65,
+  "warning_count": 70,
   "failure_count": 0,
   "passes": [
     {
@@ -12,7 +12,7 @@
     },
     {
       "gate": "rendered-lock-scans",
-      "detail": "348 rendered files scanned"
+      "detail": "350 rendered files scanned"
     },
     {
       "gate": "legacy-problem-redirects",
@@ -24,7 +24,7 @@
     },
     {
       "gate": "html-basics",
-      "detail": "342 HTML files checked"
+      "detail": "344 HTML files checked"
     },
     {
       "gate": "paid-lp-hero-wordcount",
@@ -50,6 +50,16 @@
       "gate": "static-internal-link-unverified",
       "file": "dist/audit/index.html",
       "detail": "/audit links to /revenue-leak-map"
+    },
+    {
+      "gate": "static-internal-link-unverified",
+      "file": "dist/connect/index.html",
+      "detail": "/connect links to /robert-echevarria.vcf"
+    },
+    {
+      "gate": "static-internal-link-unverified",
+      "file": "dist/connect/index.html",
+      "detail": "/connect links to /revenue-leak-map"
     },
     {
       "gate": "static-internal-link-unverified",
@@ -193,6 +203,11 @@
     },
     {
       "gate": "static-internal-link-unverified",
+      "file": "dist/playbook/build-your-own-ai/index.html",
+      "detail": "/playbook/build-your-own-ai links to /revenue-leak-map"
+    },
+    {
+      "gate": "static-internal-link-unverified",
       "file": "dist/playbook/capability-inheritance/index.html",
       "detail": "/playbook/capability-inheritance links to /revenue-leak-map"
     },
@@ -265,6 +280,16 @@
       "gate": "static-internal-link-unverified",
       "file": "dist/playbook/poor-four/index.html",
       "detail": "/playbook/poor-four links to /revenue-leak-map"
+    },
+    {
+      "gate": "static-internal-link-unverified",
+      "file": "dist/playbook/ppc-agency-alternative/index.html",
+      "detail": "/playbook/ppc-agency-alternative links to /revenue-leak-map"
+    },
+    {
+      "gate": "static-internal-link-unverified",
+      "file": "dist/playbook/ppc-agency-alternative/index.html",
+      "detail": "/playbook/ppc-agency-alternative links to /revenue-leak-map"
     },
     {
       "gate": "static-internal-link-unverified",

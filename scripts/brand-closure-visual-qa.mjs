@@ -24,6 +24,7 @@ const requireManualAcceptance = process.env.BWM_REQUIRE_MANUAL_VISUAL_ACCEPTANCE
 // are skipped (each with a reason), and a meta-gate below FAILS if any /go/*
 // paid LP is missing from the run. ---
 const pagesDir = path.resolve('src/pages');
+const publicDir = path.resolve('public');
 
 // Routes deliberately excluded from the rendered sweep. Each needs a reason.
 // Dynamic param routes can't be rendered without params; legal/utility pages
@@ -33,6 +34,7 @@ const routeOptOut = new Map([
   ['/404', 'error route — intentionally single-purpose, no H1/CTA contract'],
   ['/confirmation', 'post-submit utility page — no hero/CTA contract'],
   ['/thank-you-resource', 'post-submit utility page — no hero/CTA contract'],
+  ['/playbook/4-steps-business-runs-without-you', 'pre-existing legacy static editorial page — retain its separate remediation boundary while public HTML discovery adds /book'],
 ]);
 
 function fileToRoute(absFile) {
@@ -42,18 +44,31 @@ function fileToRoute(absFile) {
   return `/${rel}`;
 }
 
+function publicHtmlToRoute(absFile) {
+  let rel = path.relative(publicDir, absFile).replaceAll(path.sep, '/').replace(/\.html$/, '');
+  if (rel === 'index') return '/';
+  rel = rel.replace(/\/index$/, '');
+  return `/${rel}`;
+}
+
 function discoverRoutes() {
-  const files = [];
-  const walk = (dir) => {
+  const astroFiles = [];
+  const publicHtmlFiles = [];
+  const walk = (dir, collect) => {
     for (const entry of readdirSync(dir, { withFileTypes: true })) {
       const full = path.join(dir, entry.name);
-      if (entry.isDirectory()) walk(full);
-      else if (entry.name.endsWith('.astro')) files.push(full);
+      if (entry.isDirectory()) walk(full, collect);
+      else collect(full, entry.name);
     }
   };
-  walk(pagesDir);
-  const paths = files
-    .map(fileToRoute)
+  walk(pagesDir, (full, name) => { if (name.endsWith('.astro')) astroFiles.push(full); });
+  if (existsSync(publicDir)) {
+    walk(publicDir, (full, name) => { if (name.endsWith('.html')) publicHtmlFiles.push(full); });
+  }
+  const paths = [
+    ...astroFiles.map(fileToRoute),
+    ...publicHtmlFiles.map(publicHtmlToRoute),
+  ]
     .filter((route) => !route.includes('[')) // dynamic routes can't be swept
     .filter((route) => !routeOptOut.has(route));
   return [...new Set(paths)].sort();

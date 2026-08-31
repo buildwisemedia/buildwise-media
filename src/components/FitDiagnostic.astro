@@ -81,7 +81,7 @@
                   Get My Free Revenue Leak Map
                   <span class="arrow">→</span>
                 </button>
-                <a href="/book" class="cta-secondary">Or just book a 15-min call →</a>
+                <a href="/book" class="cta-secondary">Or send us a direct note →</a>
               </div>
             </div>
             <div class="welcome-hero-visual">
@@ -121,7 +121,7 @@
               <div class="divider-cell-num">03 · The Verdict</div>
               <h3 class="divider-cell-title">Three honest paths.</h3>
               <p class="divider-cell-body">
-                If you're a Fit, we'll book the strategy call. If you're close, we'll show you the 3 things to lock in first. If you're not ready yet, we'll build your Revenue Leak Map. We don't waste your time.
+                If you're a Fit, we'll show you the next step. If you're close, we'll show you the 3 things to lock in first. If you're not ready yet, we'll build your Revenue Leak Map. We don't waste your time.
               </p>
             </div>
           </div>
@@ -2343,7 +2343,7 @@ window.__leakDiagnose = diagnose;
 	      if (growthIndex >= 65) {
 	        verdict = 'fit'; verdictLabel = "You're A Fit.";
 	        verdictExplainer = "You're at the stage where a custom AI system pays off fast. Real revenue, more than one lead channel, and a target big enough that doing it all by hand will hold you back.";
-	        verdictDetail = "The system should pay back fast at your current revenue band. That first move is exactly the kind of work we engineer around. The next move is a 30-minute call to map your 30-day install plan.";
+	        verdictDetail = "The system should pay back fast at your current revenue band. That first move is exactly the kind of work we engineer around. The next move is telling us what is getting in the way so we can respond directly.";
       } else if (growthIndex >= 35) {
         verdict = 'maybe'; verdictLabel = "Close. Three Things To Lock.";
         verdictExplainer = "You're not far. The diagnostic shows you've got real revenue traction, but one or two foundational pieces aren't dialed in yet. Lock those first, then come back — the system installs cleaner when these are in place.";
@@ -2595,10 +2595,10 @@ window.__leakDiagnose = diagnose;
         pathTitleLead.textContent = 'Let\'s ';
         pathTitleY.textContent = 'build your install plan';
         pathTitleTail.textContent = '.';
-        pathBody.textContent = 'Book a 30-minute strategy call. We\'ll walk through your diagnostic, map the exact modules to your business, and put a 30-day install timeline on the table.';
-        pathList.appendChild(mkListItem(1, [{ strong: '30 minutes' }, { text: ' — walk through your diagnostic together' }]));
-        pathList.appendChild(mkListItem(2, [{ strong: 'Tailored install plan' }, { text: ' — modules, sequence, and first 30 days' }]));
-        pathList.appendChild(mkListItem(3, [{ strong: 'Honest go/no-go' }, { text: " — if it's not the right fit on the call, we'll tell you" }]));
+        pathBody.textContent = 'Tell us what is getting in the way of growth. We\'ll read the context you share and reply by email with a direct next step.';
+        pathList.appendChild(mkListItem(1, [{ strong: 'Your bottleneck' }, { text: ' — what is stopping the business from growing' }]));
+        pathList.appendChild(mkListItem(2, [{ strong: 'Your context' }, { text: ' — enough detail for us to understand the problem' }]));
+        pathList.appendChild(mkListItem(3, [{ strong: 'An honest response' }, { text: " — if we're not the right fit, we'll tell you" }]));
         const link = document.createElement('a');
         link.href = '/book';
         link.className = 'cta-primary';
@@ -2611,8 +2611,8 @@ window.__leakDiagnose = diagnose;
         arrow.className = 'arrow';
         arrow.textContent = '→';
         link.appendChild(arrow);
-        mkCtaBlock('Book Your Strategy Call', "Pick a time. We'll see you there.",
-          'Direct link to the team\'s calendar. No discovery questionnaire — we already have your diagnostic.', link);
+        mkCtaBlock('Send a Direct Note', "Tell us what's getting in the way.",
+          'One short form. We read it and reply by email. There is no calendar after you send.', link);
       } else if (verdict === 'maybe') {
         pathTitleLead.textContent = 'Three ';
         pathTitleY.textContent = 'foundation moves';
@@ -2667,7 +2667,7 @@ window.__leakDiagnose = diagnose;
 
 // ============ BWM SUBMIT HANDLER (added 2026-05-20 — Mo' Money funnel build) ============
 // On reveal screen entry: POST state to bwm-form-handler /buildwisemedia/fit-diagnostic
-// Verdict routing: FIT (>=65) reveals the inline booking calendar; MAYBE (35-64) shows ack screen;
+// Verdict routing: FIT (>=65) points to the direct-contact page; MAYBE (35-64) shows ack screen;
 // NO (<35) redirects to /thank-you-resource?reason=fit_check.
 // Email is OPTIONAL — diagnostic promise "The reveal is yours regardless" preserved.
 
@@ -2876,7 +2876,7 @@ window.__leakDiagnose = diagnose;
     if (card && status) {
       card.setAttribute("data-verdict", "maybe");
       status.textContent = "We hit a snag";
-      if (explainer) explainer.textContent = "We hit a snag loading your result here. Book a quick call and we'll walk through your Revenue Leak Map live.";
+      if (explainer) explainer.textContent = "We hit a snag loading your result here. Send us a direct note and we'll reply by email.";
       if (detail) detail.textContent = "";
       if (pathCta) {
         pathCta.innerHTML = '<a class="cta" href="/book" data-cta-source="fit-diagnostic-fallback">See If We\'re a Fit <span aria-hidden="true">→</span></a>';
@@ -2913,10 +2913,10 @@ window.__leakDiagnose = diagnose;
       status.textContent = "FIT · " + idx + "/100";
       if (explainer) explainer.textContent = "Your shop matches the install profile. The system delivers the most lift here.";
       if (detail) detail.textContent = "What we'd install for you in 30 days: lead capture, qualification, follow-up, attribution, review velocity, and the custom AI system that runs your growth without you in the loop.";
-      if (pathLead) pathLead.textContent = "Book a";
-      if (pathY) pathY.textContent = " 30-minute strategy call. ";
+      if (pathLead) pathLead.textContent = "Tell us what's";
+      if (pathY) pathY.textContent = " getting in the way. ";
       if (pathTail) pathTail.textContent = "";
-      if (pathBody) pathBody.textContent = "On the call we walk through your specific stack, what the system replaces, and what week one looks like.";
+      if (pathBody) pathBody.textContent = "Send one direct note with the bottleneck and the context. We'll read it and reply by email.";
       if (pathCta) pathCta.innerHTML = '<a href="/book" class="cta" data-cta-source="mo-fit-verdict-book">See If We\'re a Fit <span class="cta-arrow" aria-hidden="true">→</span></a><p class="mono" style="margin-top:14px;font-size:11px;letter-spacing:.18em;color:var(--ink-faint);">For service businesses only.</p>';
     } else if (v === "MAYBE") {
       // MAYBE is an in-range lead the team pursues within 48h (email captured) —

@@ -1,0 +1,41 @@
+{
+  "state": "local-review-complete",
+  "page_job": "One direct contact form that asks what is getting in the way of growth and replies by email.",
+  "page_sha256": "87751d229a67e9817b92d35857083076d7da13b80db3ed89237a29a853185764",
+  "design_review": {
+    "reviewer": "claude-fable-5",
+    "route": "bwm-fable-review",
+    "score": 95,
+    "verdict": "ADVANCE_UNCHANGED",
+    "material_findings": 0
+  },
+  "visual_qa": {
+    "viewports": 5,
+    "failures": 0,
+    "horizontal_overflow_failures": 0,
+    "manual_acceptance": true
+  },
+  "lighthouse": {
+    "performance": 99,
+    "accessibility": 100,
+    "best_practices": 100,
+    "seo": 69,
+    "seo_note": "Expected because /book is intentionally noindex."
+  },
+  "private_development_review": {
+    "url": "https://bwm-new-website-review.pages.dev/",
+    "book_url": "https://bwm-new-website-review.pages.dev/book/",
+    "access": [
+      "robert@buildwisemedia.com",
+      "henry@buildwisemedia.com"
+    ],
+    "identity_login_required": true,
+    "web_authn_required": true,
+    "unauthenticated_home_status": 302,
+    "unauthenticated_book_status": 302,
+    "retirement_automation": "retire-bwm-website-review"
+  },
+  "production_main_website_deployed": false,
+  "production_form_worker_deployed": false,
+  "real_email_sent": false
+}

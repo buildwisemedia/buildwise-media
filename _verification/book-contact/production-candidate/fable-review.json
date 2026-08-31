@@ -1,0 +1,52 @@
+{
+  "reviewer_model": "claude-fable-5",
+  "artifact_sha256": "87751d229a67e9817b92d35857083076d7da13b80db3ed89237a29a853185764",
+  "verdict": "ADVANCE_UNCHANGED",
+  "overall_score": 95,
+  "track_scores": {"copywriting": 94, "ux": 95, "ui": 94},
+  "dimension_scores": {
+    "art_direction": 94,
+    "typography": 93,
+    "composition_and_rhythm": 94,
+    "storytelling_and_information_design": 93,
+    "motion_and_interaction": 94,
+    "category_and_commercial_clarity": 93,
+    "proof_and_trust": 93,
+    "conversion_and_fit_clarity": 95
+  },
+  "three_second_read": "One direct question from a confident team — what is getting in the way of growth — answered in one designed dark panel with one action. On mobile the form arrives right after the question and the 01/02/03 reply story waits below as reassurance. No funnel, no calendar, no score, no pricing.",
+  "strongest_choices": [
+    {
+      "location": "Head block favicon repair (lines 10–13)",
+      "reason": "Recomputed hash confirmed against this exact file; the prior review's one material finding is fixed exactly as specified: site-standard /favicon.svg, /favicon.ico fallback, 180px Apple touch icon, and #050507 theme color — all four files verified present in public/. No second redesign round occurred; the head block is the only visible-surface change from SHA 29ebe674."
+    },
+    {
+      "location": "Three-way truthful failure ladder (submit handler, lines 1124–1130)",
+      "reason": "The inline status now distinguishes emailed-without-final-receipt, captured-but-not-emailed, and fully unsent — each message claims exactly what the delivery state supports and no more. Paired with the frozen lastFailedRequest payload and content-keyed submission_id rotation, a retry after partial failure is byte-stable and dedupable rather than a second lead."
+    },
+    {
+      "location": "Experiment assignment carried end-to-end (experimentContext into both attributionSnapshot and generate_lead)",
+      "reason": "A homepage experiment assignment survives into the durable attribution snapshot and the analytics event, validated against a strict character allowlist and only included when both ids are present — the measurement story closes without any rendered-pixel change."
+    },
+    {
+      "location": "Complete-response contract before generate_lead, GA4 initialized before the tag manager",
+      "reason": "The lead event fires only after ok, captured, emailed, and receipt_recorded are all true, and the gtag stub plus G-V5LSP69E41 config (matching BaseLayout.astro's ids) exist before the container loads. Verified against the deployed API route, which enforces the same four-flag contract server-side. The analytics claim cannot outrun the durable capture."
+    },
+    {
+      "location": "Mobile recomposition (display:contents intro, form order 2, reply path order 3)",
+      "reason": "The fresh 390×844 capture of this exact artifact confirms hero → form → reply path → footer with zero horizontal overflow across all five viewports; the direct ask lands sooner without deleting the page's reply story."
+    }
+  ],
+  "material_findings": [],
+  "do_not_change": [
+    "The locked copy set: hero question with orange growth emphasis, subheadline, display-scale bottleneck question, and the single Send to Buildwise action.",
+    "The paper/night split, four-color accent roles, exact mark, Inter-only typography, and the preloaded /fonts/inter-variable-v1.woff2.",
+    "The restored site-standard favicon set (SVG + ICO + Apple touch icon) and #050507 theme color.",
+    "The One note index and the absence of progress bars, scores, schedulers, pricing, or any second path — including the 'There is no calendar after you send' note.",
+    "The mobile order hero → form → reply path; the reply story stays on the page.",
+    "The production-host gate, GA4-before-GTM order, four-flag complete-response check, frozen byte-stable retry with content-keyed submission_id rotation, bounded attribution, allowlisted experiment carry, fail-open storage reads, and honeypot.",
+    "The three-way failure messaging tied to deliveryState.captured / deliveryState.emailed, and the truthful non-production 'Local preview · nothing was sent' state.",
+    "The disabled-until-JS submit button with the noscript nothing-was-sent notice, the 24px consent checkbox, explicit autofill focus treatment, clipped wedge, and reduced-motion path."
+  ],
+  "bottom_line": "Honest 95, independently re-earned on this exact hash rather than carried forward: the favicon regression is verifiably repaired with the site-standard set, the two page-state gaps (experiment carry and three-way failure truthfulness) are closed in code without touching a rendered pixel, all five fresh viewport captures of this artifact pass with zero overflow, and the page's completion contract matches the deployed API route's four-flag check. Every visible choice from the accepted 95 review is preserved. This remains an unmerged, undeployed review branch — no live, delivery, or ROI claim is made or implied. Advance unchanged."
+}

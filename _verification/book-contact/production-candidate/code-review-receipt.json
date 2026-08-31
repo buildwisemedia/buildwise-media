@@ -1,0 +1,36 @@
+{
+  "scope": "BWM /book direct-contact page and integration paths",
+  "state": "review-branch-ready",
+  "initial_review": {
+    "command": "codex review --base origin/main",
+    "model": "gpt-5.6-sol",
+    "session_id": "01a05842-907b-7b71-b60c-27b9788d4f02",
+    "accepted_findings": 3,
+    "resolutions": [
+      "All FitDiagnostic /book routes now promise a direct note and email reply, never a scheduler.",
+      "Public HTML visual discovery includes /book and documents the pre-existing legacy static playbook exclusion.",
+      "The /api/book 2xx-incomplete branch preserves normalized captured, emailed, and receipt_recorded facts."
+    ]
+  },
+  "clean_rereview": {
+    "command": "codex review with the three resolved findings as the bounded scope",
+    "model": "gpt-5.6-sol",
+    "session_id": "01a0584f-965c-7b91-9cf1-bc1f95eab06a",
+    "verdict": "clean",
+    "actionable_findings": 0
+  },
+  "verification": {
+    "focused_tests": "16 passed",
+    "build": "passed",
+    "brand_qa": "passed with 70 pre-existing non-blocking warnings",
+    "guard": "passed",
+    "preship_gate": "all checks passed",
+    "diff_check": "passed"
+  },
+  "artifact_sha256": {
+    "public/book/index.html": "87751d229a67e9817b92d35857083076d7da13b80db3ed89237a29a853185764",
+    "src/pages/api/book.js": "bd2a4a4401e1a2b54b06f5b2393b3200f00909a427b2f5fcc2319ceb4c6398db",
+    "public/assets/mark.svg": "3e1ac44ad8d7acf2e5be544cbfcb36a738e2fc280ab88197ced2cdd38985c6b8",
+    "src/components/FitDiagnostic.astro": "0382ef78964c0dc1bfd68f075fbe6e6aa1748064ab9bbe2a52a60ad0d3d081de"
+  }
+}
