@@ -1,0 +1,19 @@
+{
+  "reviewer": "Fable 5",
+  "canonical_model": "claude-fable-5",
+  "provider": "firstParty",
+  "subscription_lane": "peer-1@buildwisemedia.com",
+  "spilled": false,
+  "session_id": "2e954b02-8b22-46d3-b1dc-124cd9e066aa",
+  "verdict": "AGREE",
+  "score": 93,
+  "blockers": [],
+  "non_blocking_improvements": [
+    "Permit flagged synthetic canaries through human review while excluding them from business totals and hard-blocking ad egress.",
+    "Define booked-after-qualified as progression and count distinct lead identities, not lifecycle rows.",
+    "Verify the GA4 submission_id custom dimension before launching a canary.",
+    "Use a new BWM-scoped projection and do not modify or reuse D2S authority.",
+    "Encode the canonical qualified-lead definition in the disposition contract and UI copy."
+  ],
+  "agreement_statement": "Fable 5 agreed the plan can execute safely within the stated private-development authority with zero blockers."
+}

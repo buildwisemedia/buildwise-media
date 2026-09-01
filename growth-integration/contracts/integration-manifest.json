@@ -1,13 +1,13 @@
 {
   "schema_version": "bwm-organic-growth-site-integration/1.0.0",
-  "state": "LOCAL_CANDIDATE",
+  "state": "PRIVATE_DEVELOPMENT_INTEGRATION",
   "client": "buildwise-media",
-  "source_revision": "15ce8545c286e49245cfad60bd769ffd2c9962a7",
+  "source_revision": "88013baa9c9429420daacdb54b91f2f540dba481",
   "preflight_sha256": "55531452f405e7df8ad6b0b5361a1eecb941c60a20ce9ab504e796dccb848799",
   "frozen_inputs": {
     "accepted_homepage_sha256": "b2ac2a330c961535abceae735360c448ee264cf3432f418ddab46475a26381b5",
     "accepted_direction_sha256": "bb240b070ca034f875b8b4c100ed19452ead24b98ea173a366e21f7de0f8a8f1",
-    "accepted_book_sha256": "87751d229a67e9817b92d35857083076d7da13b80db3ed89237a29a853185764",
+    "accepted_book_sha256": "5180e36660e0604661a21565b4eca149cafe8d89c23fb4fd94f314e3acef7b39",
     "shared_schema_commit": "540baee5a4bb579e010b316eff8a6153c9f9a5f0",
     "aeo_commit": "ba9be3a4c32b3c57394566d83e8f5db21a9d11d5",
     "seo_commit": "b906da711ef72d0b7302e6a521d3c442b190f16f",
@@ -49,7 +49,7 @@
     "inner-page copy refresh",
     "new page creation",
     "bulk noindex or deletion",
-    "provider or CRM configuration",
+    "production provider or CRM configuration",
     "Search Console submission",
     "CDN/WAF allowlisting",
     "social asset rendering or publication",
@@ -58,19 +58,20 @@
   ],
   "local_contracts": {
     "conflict_ledger_sha256": "1468e8b48d7bef86b2ab815fc466a1b8d92e0ee50eb6709a744aa822558eb046",
-    "seo_account_contract_sha256": "755c602900a852c8a04edd8bc1b9f3d39d9d15ae53969cc59fd82dbce1826272",
+    "seo_account_contract_sha256": "ea781f8a9cd7fce13cab92fb50b9886123cc558cf9048d7efd288322c6e72d5a",
     "seo_intent_ownership_sha256": "8ef8378205c276a4bef152f2b2e72294a01f8ef45ff4a2c9ba0b529366fa5f40",
     "migration_lifecycle_sha256": "b11b7a7740a73d92700be3c8316a93886232ec12bd0d6045d0e5cb923fd01c47",
     "crawler_policy_sha256": "d6ea482ad15f34bd4c6ca08db4c81f3aa89e4d893242406c7266e685edb49804",
-    "website_to_content_source_sha256": "ab0532c42f00f4d757919a3740fefc62e6fda28c3917a8d5068a32198cb037fc"
+    "website_to_content_source_sha256": "ab0532c42f00f4d757919a3740fefc62e6fda28c3917a8d5068a32198cb037fc",
+    "book_data_contract_sha256": "ff00dbf145fc4e335ad2264d74736c87a55f701eb914ddcc2db22718f4aa3618"
   },
   "known_launch_holds": [
     "inner-page retired-offer and agency-era lifecycle decisions remain separately gated",
     "one of 31 GSC external-link targets remains unresolved",
     "local eligibility remains UNKNOWN",
     "production CDN/WAF crawler readback is not performed",
-    "GA4 to CRM conversion join is not verified",
-    "production /api/book email delivery is not deployed or verified",
+    "GA4 delayed Data API to CRM conversion join is not yet verified",
+    "private-development /api/book email delivery is verified; production /api/book remains not deployed or verified",
     "Whitespark live and impact states are not proven"
   ]
 }

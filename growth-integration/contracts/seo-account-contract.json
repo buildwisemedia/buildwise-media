@@ -23,8 +23,10 @@
     "primary_event": "fit_note_submitted",
     "meaning": "A visitor successfully submits the /book contact form and the endpoint acknowledges capture.",
     "production_state": "NOT_VERIFIED",
+    "private_development_state": "VERIFIED",
     "crm_join_state": "NOT_VERIFIED",
-    "email_delivery_state": "NOT_VERIFIED",
+    "private_development_email_delivery_state": "VERIFIED",
+    "production_email_delivery_state": "NOT_VERIFIED",
     "non_conversions": ["CTA click", "form view", "form start", "client validation error", "quiz completion", "calendar view"]
   },
   "proof_policy": {
@@ -59,8 +61,10 @@
     "production": false,
     "deployment": false,
     "publishing": false,
-    "provider_writes": false,
-    "crm_writes": false,
+    "private_development_provider_writes": true,
+    "private_development_crm_writes": true,
+    "production_provider_writes": false,
+    "production_crm_writes": false,
     "spend": false
   }
 }

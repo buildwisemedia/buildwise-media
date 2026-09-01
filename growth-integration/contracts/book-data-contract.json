@@ -1,0 +1,72 @@
+{
+  "schema_version": "bwm-book-data-contract/1.0.0",
+  "client_slug": "buildwise-media",
+  "source": {
+    "homepage_path": "src/pages/index.astro",
+    "homepage_sha256": "c7a180bfd26004f4ecc7c6a1cc1505c679499d30b235f7495a081d3c3c7fe3cb",
+    "book_path": "public/book/index.html",
+    "book_sha256": "5180e36660e0604661a21565b4eca149cafe8d89c23fb4fd94f314e3acef7b39",
+    "form_version": "bwm-fit-contact-v1",
+    "form_id": "fit_contact"
+  },
+  "identity": {
+    "submission_key": "submission_id",
+    "submission_format": "uuid",
+    "crm_submission_table": "lead_submissions",
+    "crm_contact_table": "contacts",
+    "contact_join": "lead_submissions.contact_id=contacts.id",
+    "stable_across": ["browser_events", "lead_submissions", "contacts", "comms_log", "lifecycle_events", "reporting"]
+  },
+  "conversion": {
+    "canonical_event": "fit_note_submitted",
+    "compatibility_event": "generate_lead",
+    "compatibility_meaning": "GA4 key-event alias for the same durable submission; never a second business lead",
+    "emit_condition": "endpoint confirms ok,captured,emailed,receipt_recorded",
+    "prohibited_event_names": ["form_submit_lead", "paid_lead_submit"],
+    "non_conversions": ["fit_cta_click", "form_view", "form_start", "validation_error"]
+  },
+  "attribution": {
+    "first_touch": "preserve earliest known non-empty touch",
+    "last_touch": "retain latest known non-empty touch without overwriting first touch",
+    "unknown": "unknown",
+    "fields": ["utm_source", "utm_medium", "utm_campaign", "utm_content", "utm_term", "gclid", "gbraid", "wbraid", "fbclid", "fbc", "fbp", "referrer", "landing_page", "page_url"]
+  },
+  "qualification": {
+    "intake_state": "review",
+    "intake_state_is_immutable_fact": true,
+    "authority": "Access-authenticated human disposition",
+    "qualified_definition": ["contactable_human", "stated_need", "bwm_channel", "durably_delivered"],
+    "qualifying_dispositions": ["good_fit", "quoted", "booked"],
+    "neutral_dispositions": ["working_it"],
+    "disqualifying_dispositions": ["not_fit"],
+    "progression": "booked after good_fit or quoted is a lifecycle progression, not a second lead",
+    "business_lead_count_key": ["contact_id", "submission_id"]
+  },
+  "synthetic_policy": {
+    "flag_required": true,
+    "may_traverse_private_canary": true,
+    "excluded_from_business_totals": true,
+    "advertising_egress": "canary_blocked"
+  },
+  "advertising_feedback": {
+    "eligible_source": "verified qualified lifecycle event only",
+    "raw_submission_eligible": false,
+    "states": ["eligible", "blocked_no_click_id", "held_no_destination_authority", "canary_blocked", "provider_accepted", "provider_failed"],
+    "current_destination_authority": "held_no_destination_authority",
+    "provider_acceptance_requires_receipt": true
+  },
+  "reporting": {
+    "separate_metrics": ["raw_inquiries", "qualified_leads", "opportunities", "won_deals", "retained_revenue"],
+    "unknown_stays_unknown": true,
+    "lifecycle_rows_are_not_lead_count": true,
+    "automatic_deal_creation": false,
+    "automatic_revenue_inference": false
+  },
+  "authority": {
+    "private_development": true,
+    "public_deployment": false,
+    "paid_activation": false,
+    "spend": false,
+    "automatic_prospect_followup": false
+  }
+}

@@ -1,0 +1,38 @@
+{
+  "reviewer": "claude-fable-5",
+  "route": {
+    "command": "bwm-fable-review",
+    "lane": "peer-3@buildwisemedia.com",
+    "spilled": false,
+    "session_id": "7b4e646a-c98d-48fe-aa21-d54c0135c607"
+  },
+  "verdict": "AGREE",
+  "score": 96,
+  "blockers": [],
+  "resolved_findings": [
+    "submission_id is a UUID and the deterministic gate binds it across browser events, durable submissions, and reporting",
+    "duplicate durable email receipts fail closed and the reconciliation receipt reports per-source states",
+    "gbraid and wbraid are carried by the contract, gate, and outcome projection",
+    "both new RLS tables have explicit read-only bwm_codex policies"
+  ],
+  "remaining_findings": [
+    {
+      "severity": "low",
+      "finding": "The BWM follow-up audience branch remains unreachable without a BWM lead-monitor token; no token or follow-up UI was added by this closeout."
+    },
+    {
+      "severity": "low",
+      "finding": "Duplicate email receipts are correctly fail-closed at the top-level state even though the per-source label remains observed."
+    },
+    {
+      "severity": "low",
+      "finding": "The security-invoker reporting view fails closed if a required base-table read grant is absent."
+    }
+  ],
+  "scope": "private development only; no public deployment, paid activation, spend, provider send, or automatic qualification",
+  "source_lineage": {
+    "homepage_sha256": "c7a180bfd26004f4ecc7c6a1cc1505c679499d30b235f7495a081d3c3c7fe3cb",
+    "book_sha256": "5180e36660e0604661a21565b4eca149cafe8d89c23fb4fd94f314e3acef7b39",
+    "source_revision": "88013baa9c9429420daacdb54b91f2f540dba481"
+  }
+}

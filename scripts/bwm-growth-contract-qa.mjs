@@ -81,7 +81,8 @@ function auditBindingIntegrity(root, issues) {
   const integrationPath = path.join(root, 'growth-integration/contracts/integration-manifest.json');
   const websiteSourcePath = path.join(root, 'growth-integration/contracts/website-to-content-source-manifest.json');
   const crawlerPolicyPath = path.join(root, 'growth-integration/contracts/crawler-policy.json');
-  const required = [preflightPath, integrationPath, websiteSourcePath, crawlerPolicyPath];
+  const bookDataContractPath = path.join(root, 'growth-integration/contracts/book-data-contract.json');
+  const required = [preflightPath, integrationPath, websiteSourcePath, crawlerPolicyPath, bookDataContractPath];
   for (const file of required) {
     if (!fs.existsSync(file)) addIssue(issues, 'binding-contract-missing', path.relative(root, file), 'required local integration contract is missing');
   }
@@ -113,6 +114,7 @@ function auditBindingIntegrity(root, issues) {
       migration_lifecycle_sha256: 'migration-lifecycle-manifest.json',
       crawler_policy_sha256: 'crawler-policy.json',
       website_to_content_source_sha256: 'website-to-content-source-manifest.json',
+      book_data_contract_sha256: 'book-data-contract.json',
     };
     for (const [key, filename] of Object.entries(contractFiles)) {
       verifyBoundFile(issues, root, `integration-manifest:${key}`, {
@@ -141,6 +143,51 @@ function auditBindingIntegrity(root, issues) {
     });
   } catch (error) {
     addIssue(issues, 'crawler-policy-invalid', 'growth-integration/contracts/crawler-policy.json', error instanceof Error ? error.message : 'invalid JSON');
+  }
+
+  try {
+    const contract = JSON.parse(read(bookDataContractPath));
+    verifyBoundFile(issues, root, 'book-data-contract:homepage', {
+      path: contract.source?.homepage_path,
+      sha256: contract.source?.homepage_sha256,
+    });
+    verifyBoundFile(issues, root, 'book-data-contract:book', {
+      path: contract.source?.book_path,
+      sha256: contract.source?.book_sha256,
+    });
+    if (contract.conversion?.canonical_event !== 'fit_note_submitted') {
+      addIssue(issues, 'book-data-event-canonical', 'book-data-contract.json', 'fit_note_submitted must remain canonical');
+    }
+    if (contract.conversion?.compatibility_event !== 'generate_lead') {
+      addIssue(issues, 'book-data-event-compatibility', 'book-data-contract.json', 'generate_lead must remain the compatibility event');
+    }
+    if (contract.identity?.submission_key !== 'submission_id'
+      || contract.identity?.submission_format !== 'uuid'
+      || !contract.identity?.stable_across?.includes('browser_events')
+      || !contract.identity?.stable_across?.includes('lead_submissions')
+      || !contract.identity?.stable_across?.includes('reporting')) {
+      addIssue(issues, 'book-data-stable-identity', 'book-data-contract.json', 'submission_id must remain the UUID join key across browser events, durable submissions, and reporting');
+    }
+    if (!contract.conversion?.prohibited_event_names?.includes('form_submit_lead') || !contract.conversion?.prohibited_event_names?.includes('paid_lead_submit')) {
+      addIssue(issues, 'book-data-event-double-count', 'book-data-contract.json', 'form_submit_lead and paid_lead_submit must remain prohibited on /book');
+    }
+    if (contract.qualification?.intake_state !== 'review' || contract.qualification?.authority !== 'Access-authenticated human disposition') {
+      addIssue(issues, 'book-data-qualification-authority', 'book-data-contract.json', 'raw intake must remain review; only an Access-authenticated human disposition qualifies');
+    }
+    if (contract.authority?.public_deployment !== false || contract.authority?.paid_activation !== false || contract.authority?.spend !== false) {
+      addIssue(issues, 'book-data-false-production', 'book-data-contract.json', 'production, paid activation, and spend must remain false');
+    }
+    if (contract.synthetic_policy?.excluded_from_business_totals !== true || contract.synthetic_policy?.advertising_egress !== 'canary_blocked') {
+      addIssue(issues, 'book-data-synthetic-policy', 'book-data-contract.json', 'synthetic canaries must be excluded and blocked at ad egress');
+    }
+    if (!contract.attribution?.fields?.includes('gbraid') || !contract.attribution?.fields?.includes('wbraid')) {
+      addIssue(issues, 'book-data-google-click-identity', 'book-data-contract.json', 'gbraid and wbraid must remain in the bounded attribution contract');
+    }
+    if (contract.reporting?.unknown_stays_unknown !== true || contract.reporting?.automatic_revenue_inference !== false) {
+      addIssue(issues, 'book-data-reporting-truth', 'book-data-contract.json', 'unknowns must remain unknown and revenue may not be inferred');
+    }
+  } catch (error) {
+    addIssue(issues, 'book-data-contract-invalid', 'growth-integration/contracts/book-data-contract.json', error instanceof Error ? error.message : 'invalid JSON');
   }
 }
 
