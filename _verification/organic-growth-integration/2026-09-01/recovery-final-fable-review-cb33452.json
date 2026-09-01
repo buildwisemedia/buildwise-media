@@ -1,0 +1,23 @@
+{
+  "reviewer": "Fable 5 via bwm-fable-review",
+  "review_session": "9a7b5ea5-fe9e-4e11-8e5e-2c0aa18db050",
+  "reviewed_head": "cb33452fa91507c1bee66f264cc15db4931d68b2",
+  "verdict": "REVISE",
+  "material_findings": [
+    {
+      "priority": "P2",
+      "files": [
+        "src/pages/index.astro",
+        "public/book/index.html"
+      ],
+      "finding": "The rewritten homepage and contact page dropped the approved Open Graph and Twitter preview image metadata, so shared links would lose their large visual preview.",
+      "disposition": "accepted; restored the approved BaseLayout social image metadata on both pages and added a regression test"
+    }
+  ],
+  "confirmed_boundaries": [
+    "the prior timeline and gate findings were repaired",
+    "the direct contact path remained fail-closed and idempotent",
+    "the four frozen engine inputs remained pinned by commit and package hash",
+    "public production remained untouched"
+  ]
+}

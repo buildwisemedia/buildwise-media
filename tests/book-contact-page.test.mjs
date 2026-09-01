@@ -3,6 +3,7 @@ import fs from "node:fs";
 import test from "node:test";
 
 const source = fs.readFileSync(new URL("../public/book/index.html", import.meta.url), "utf8");
+const homepage = fs.readFileSync(new URL("../src/pages/index.astro", import.meta.url), "utf8");
 const fitDiagnostic = fs.readFileSync(new URL("../src/components/FitDiagnostic.astro", import.meta.url), "utf8");
 const memberCard = fs.readFileSync(new URL("../src/pages/m/[card].astro", import.meta.url), "utf8");
 const ppcAlternative = fs.readFileSync(new URL("../src/pages/playbook/ppc-agency-alternative.astro", import.meta.url), "utf8");
@@ -10,6 +11,8 @@ const ppcAlternative = fs.readFileSync(new URL("../src/pages/playbook/ppc-agency
 function count(pattern) {
   return [...source.matchAll(pattern)].length;
 }
+
+const socialImage = "https://pub-85c635a2536e438b9927af5e6723b0f7.r2.dev/marks/triangulation-v3/exports/banner/og-1200x630-v2.png";
 
 test("keeps one direct contact job", () => {
   assert.equal(count(/<form\b/gi), 1);
@@ -45,6 +48,16 @@ test("preserves the approved public copy and identity", () => {
   assert.match(source, /--yellow:\s*#f0ff00/i);
   assert.match(source, /font-family:\s*"Inter"/);
   assert.doesNotMatch(source, /JetBrains Mono|Revenue Leak Map|45[ -]day|eight[ -]layer|marketing agency|lead generation/i);
+});
+
+test("preserves large social-share previews on the homepage and contact page", () => {
+  for (const page of [homepage, source]) {
+    assert.match(page, new RegExp('<meta property="og:image" content="' + socialImage.replace(/[.*+?^${}()|[\]\\]/g, "\\$&") + '">'));
+    assert.match(page, /<meta property="og:image:width" content="1200">/);
+    assert.match(page, /<meta property="og:image:height" content="630">/);
+    assert.match(page, /<meta name="twitter:card" content="summary_large_image">/);
+    assert.match(page, new RegExp('<meta name="twitter:image" content="' + socialImage.replace(/[.*+?^${}()|[\]\\]/g, "\\$&") + '">'));
+  }
 });
 
 test("keeps machine and discovery boundaries honest", () => {
