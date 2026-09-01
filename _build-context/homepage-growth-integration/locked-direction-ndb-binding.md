@@ -4,7 +4,7 @@ status: locked-direction-implementation
 surface: BWM homepage and /book Organic Growth local integration
 primary_module: website_landing
 process_tier: locked-direction-implementation
-identity_record_hash: cff941160dc7bc188550b976c4cb608fa627a3a32fb423aa81793c6e7865806b
+identity_record_hash: 12e69430e86cc84f02345d42dbd31d0e4dab79390cf9895388406342363cf5a3
 design_contract: bwm-design-run/1.1.0
 ---
 

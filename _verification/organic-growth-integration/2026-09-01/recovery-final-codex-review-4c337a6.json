@@ -1,0 +1,22 @@
+{
+  "receipt_version": "bwm-independent-code-review/1.0.0",
+  "recorded_at": "September 1, 2026 at 3:00 PM EDT",
+  "review_family": "OpenAI Codex",
+  "reviewed_head": "4c337a6df6a4f8f6c678ce5b59d60749e59994dc",
+  "review_scope": "git diff HEAD^ HEAD in an isolated detached checkout",
+  "session_id": "01a05e55-bd3f-73b2-92b1-9da32ecf4999",
+  "verdict": "ADVANCE_UNCHANGED",
+  "material_findings": [],
+  "reviewer_summary": "No actionable functional regressions found. Updated bindings match the current source bytes, and the test suite, build, contract validator, and validator self-tests all pass.",
+  "verification": {
+    "node_tests": "35/35 PASS",
+    "build": "PASS",
+    "growth_contract_gate": "PASS",
+    "negative_controls": "11/11 PASS"
+  },
+  "authority": {
+    "push": false,
+    "merge": false,
+    "production_deploy": false
+  }
+}
