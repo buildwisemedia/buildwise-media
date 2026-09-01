@@ -2,7 +2,7 @@
   "scope": "BWM private dev access, GA4 wiring, Bob CRM capture, and Robert email delivery",
   "state": "private-dev-live",
   "public_production_untouched": true,
-  "verified_at_eastern": "2026-09-01 12:32 PM EDT",
+  "verified_at_eastern": "2026-09-01 01:24 PM EDT",
   "site": {
     "canonical_url": "https://bwm-new-website-review.pages.dev/",
     "book_url": "https://bwm-new-website-review.pages.dev/book/",
@@ -65,6 +65,42 @@
     "inbox_readback": true,
     "received_eastern": "2026-09-01 12:26 PM EDT"
   },
+  "conversion_test": {
+    "verified_at_eastern": "2026-09-01 01:24 PM EDT",
+    "browser_success": true,
+    "browser_success_text": "Sent securely — Your note is with us",
+    "submission_id": "e218f293-54ff-4684-b1b3-532a261003a3",
+    "contact_id": "2482617b-448a-425a-abb7-078bf888a61c",
+    "test_email": "robert+conversion-qa-1788282984633@buildwisemedia.com",
+    "crm_status": "processed",
+    "crm_is_synthetic": true,
+    "crm_internal_contact": true,
+    "email_provider_id": "0d6f1fa9-d586-4c22-baf7-61792e90dad5",
+    "email_comms_log_id": "a88a50e7-e657-56a7-ad41-95ea9adece26",
+    "email_status": "delivered",
+    "email_inbox_readback": true,
+    "email_received_eastern": "2026-09-01 01:16 PM EDT",
+    "exact_replay": {
+      "http_status": 200,
+      "idempotent": true
+    },
+    "changed_payload_replay": {
+      "http_status": 409,
+      "retryable": false
+    },
+    "missing_permission": {
+      "http_status": 400,
+      "contact_rows": 0,
+      "lead_rows": 0
+    },
+    "side_effect_counts_after_replays": {
+      "contact_rows": 1,
+      "lead_rows": 1,
+      "email_rows": 1
+    },
+    "page_proxy_tests": "19/19 pass",
+    "worker_fit_contact_tests": "36/36 pass"
+  },
   "ga4": {
     "property_id": "422160329",
     "data_stream": "properties/422160329/dataStreams/6523186113",
@@ -77,9 +113,26 @@
     "source_contract_tests": "19/19 pass",
     "browser_tag_enabled": true,
     "browser_measurement_id_verified": true,
-    "browser_custom_event_collect_status": 503,
-    "terminal_collection_control_status": 204,
-    "conversion_event_report_readback": "not yet present",
-    "claim_boundary": "GA4 is wired and firing to the correct measurement ID; this receipt does not claim that the conversion event was recorded because Robert's Chrome collection request returned 503."
+    "browser_custom_event_collect_status": 204,
+    "browser_custom_event_probe": "bwm_conversion_transport_probe",
+    "browser_traffic_type": "internal",
+    "browser_report_behavior": "Robert's Chrome traffic is intentionally marked internal and excluded from processed reporting",
+    "measurement_protocol_validation_messages": 0,
+    "realtime_readback": {
+      "bwm_conversion_transport_probe": {
+        "event_count": 1,
+        "key_events": 0
+      },
+      "fit_note_submitted": {
+        "event_count": 1,
+        "key_events": 0
+      },
+      "generate_lead": {
+        "event_count": 1,
+        "key_events": 1
+      }
+    },
+    "generate_lead_key_event_configured": true,
+    "claim_boundary": "The browser custom-event transport returned 204. Robert's Chrome traffic is deliberately tagged internal, so it is excluded from reporting. An independently labeled synthetic Measurement Protocol test validated with zero messages and produced one fit_note_submitted event plus one generate_lead event; GA4 Realtime counted generate_lead as one key event."
   }
 }

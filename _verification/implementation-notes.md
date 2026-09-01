@@ -3,6 +3,15 @@
 Decisions made outside the approved brief, deviations, and tradeoffs with rationale.
 Per the Build Decision Journal lock (2026-05-25). Newest first.
 
+## 2026-09-01 — Private `/book/` conversion verification
+
+- Submitted one clearly labeled internal synthetic lead through the real Access-gated `/book/` form at 1:16 PM Eastern. The browser rendered `Sent securely — Your note is with us`, Bob's CRM stored one processed synthetic/internal contact and one processed fit-contact submission, the notification receipt reached `delivered`, and the exact email was present in Robert's inbox.
+- Replayed the exact request through the protected page endpoint: HTTP 200 with `idempotent: true`. Replayed the same submission ID with changed content: HTTP 409 and nonretryable. Submitted a missing-permission negative control: HTTP 400. Database readback after all three controls remained exactly one contact, one lead submission, and one email for the successful test; the invalid test created zero contact and lead rows.
+- The page/proxy conversion contract remains 19/19 green and the fit-contact Worker suite remains 36/36 green.
+- The live browser custom-event probe reached GA4 measurement ID `G-V5LSP69E41` and returned HTTP 204. Google labeled Robert's Chrome request `traffic_type=internal`, so those internal test hits are deliberately excluded from processed reporting.
+- A separate non-PII synthetic Measurement Protocol payload validated with zero messages. GA4 Realtime then showed one `fit_note_submitted` event, one `generate_lead` event, and one key-event count for `generate_lead`; a custom transport probe appeared once with zero key-event count. This proves event ingestion and the conversion designation without changing the website or GA4 filters.
+- No public deployment, production-domain change, external lead, client message, or paid-media action was performed.
+
 ## 2026-09-01 — Robert-only dev integration for the accepted BWM site
 
 - Reused the existing private Cloudflare Pages project `bwm-new-website-review`; the public `buildwise-media` project and production domains remain untouched.
@@ -11,7 +20,7 @@ Per the Build Decision Journal lock (2026-05-25). Newest first.
 - Access is Robert only, with the existing WebAuthn biometrics/security-key requirement preserved and re-read on both canonical and wildcard applications.
 - The Pages function now reaches the same-account form Worker through a private service binding. This replaces the public Worker-to-Worker fetch that Cloudflare rejected. Redirects remain fail-closed.
 - Live synthetic proof passed at 12:26 PM Eastern: the page showed the success state, Bob's CRM stored one processed synthetic submission, the email receipt reached `delivered`, and the exact message was present in Robert's inbox.
-- GA4 property `422160329` / measurement ID `G-V5LSP69E41` is present and enabled on the private hostname. The page emits `fit_note_submitted` and `generate_lead` only after the full four-flag delivery response. Source and deterministic checks pass; browser network probes reached the correct measurement ID, while Robert's Chrome returned HTTP 503 for custom-event collection. A terminal control hit to the same Google collection endpoints returned HTTP 204, isolating that result to the browser path rather than the site configuration.
+- GA4 property `422160329` / measurement ID `G-V5LSP69E41` is present and enabled on the private hostname. The page emits `fit_note_submitted` and `generate_lead` only after the full four-flag delivery response. The later conversion verification above supersedes the earlier transient browser HTTP 503: a fresh browser custom-event request returned 204, and the Realtime key-event readback passed through a separate labeled synthetic control.
 - This is a private dev deployment and verification action, not public production authority.
 
 ## 2026-09-01 — Local Organic Growth integration for the accepted BWM homepage and /book
