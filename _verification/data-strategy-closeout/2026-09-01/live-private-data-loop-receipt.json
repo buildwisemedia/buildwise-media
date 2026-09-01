@@ -1,6 +1,6 @@
 {
-  "state": "PRIVATE_DATA_LOOP_VERIFIED_WITH_GA4_DELAYED_HOLD",
-  "verified_at_eastern": "2026-09-01 3:30 PM EDT",
+  "state": "PRIVATE_BROWSER_CRM_EMAIL_GA4_DISPATCH_LOOP_VERIFIED",
+  "verified_at_eastern": "2026-09-01 5:40 PM EDT",
   "scope": "BWM private development /book data strategy; no public deployment or paid activation",
   "fable": {
     "plan": {
@@ -66,18 +66,54 @@
     "retained_revenue_usd": null,
     "retained_revenue_state": "unknown_without_payment_readback"
   },
+  "browser_conversion_canary": {
+    "submission_id": "59ff9b21-5588-4e86-8118-02285b00bf58",
+    "contact_id": "7805c8ca-a41c-4244-bf5d-ccf0dc562f7f",
+    "method": "authenticated browser submission through the Cloudflare Access-gated private /book page",
+    "browser_success_state": "Sent securely",
+    "submission_status": "processed",
+    "email_receipt_count": 1,
+    "email_receipt_status": "opened",
+    "email_receipt_recorded": true,
+    "is_synthetic": true,
+    "lead_state": "excluded_synthetic",
+    "human_disposition": null,
+    "latest_lifecycle_event": null,
+    "business_lead_identity": null,
+    "advertising_feedback": null,
+    "deal_id": null,
+    "retained_revenue_usd": null,
+    "retained_revenue_state": "unknown_without_payment_readback",
+    "ga4_dispatch": [
+      {
+        "event_name": "fit_note_submitted",
+        "measurement_id": "G-V5LSP69E41",
+        "submission_id": "59ff9b21-5588-4e86-8118-02285b00bf58"
+      },
+      {
+        "event_name": "generate_lead",
+        "measurement_id": "G-V5LSP69E41",
+        "submission_id": "59ff9b21-5588-4e86-8118-02285b00bf58"
+      }
+    ],
+    "browser_console_errors": 0
+  },
   "ga4": {
     "property_id": "422160329",
     "measurement_id": "G-V5LSP69E41",
     "submission_id_dimension": "properties/422160329/customDimensions/15550506529",
-    "data_api_rows_for_canary": 0,
-    "state": "GA4_PENDING",
-    "reason": "The custom submission_id dimension was registered after the prior browser canary; GA4 custom-dimension registration is not retroactive. No new browser form was submitted during this closeout."
+    "data_api_rows_for_browser_canary_at_closeout": 0,
+    "browser_dispatch_verified": true,
+    "browser_dispatch_event_count": 2,
+    "browser_dispatch_submission_id": "59ff9b21-5588-4e86-8118-02285b00bf58",
+    "traffic_type_observed": "internal",
+    "state": "DISPATCH_VERIFIED_REPORTING_READBACK_HELD",
+    "reason": "Both GA4 collect requests carried the exact CRM submission_id. The immediate Data API query returned no rows; the canary was tagged as internal traffic and may be excluded by the property filter or remain within normal processing delay."
   },
   "not_claimed": [
     "public deployment",
     "Command API or UI deployment",
-    "browser-to-GA4-to-CRM join verification",
+    "GA4 reporting-table readback for the internal synthetic canary",
     "paid activation or provider acceptance",
     "production ROI"
   ]
