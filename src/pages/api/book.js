@@ -78,13 +78,17 @@ export async function handleBookRequest(request, env = {}) {
     });
     const visitorIp = safeVisitorIp(request);
     if (visitorIp) headers.set("X-BWM-Visitor-IP", visitorIp);
-    upstream = await fetch(UPSTREAM, {
+    const upstreamInit = {
       method: "POST",
       headers,
       body,
       redirect: "error",
       signal: controller.signal,
-    });
+    };
+    const service = env.BWM_FORM_HANDLER;
+    upstream = service && typeof service.fetch === "function"
+      ? await service.fetch(new Request(UPSTREAM, upstreamInit))
+      : await fetch(UPSTREAM, upstreamInit);
   } catch {
     return json({ ok: false, emailed: false, retryable: true, error: "intake_unavailable" }, 503);
   } finally {

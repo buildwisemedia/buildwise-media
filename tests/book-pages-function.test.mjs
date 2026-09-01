@@ -59,6 +59,42 @@ test("proxies one production submission through the dedicated secret-bound route
   }
 });
 
+test("uses the Pages service binding so same-account Worker delivery cannot hit error 1042", async () => {
+  const originalFetch = globalThis.fetch;
+  let globalFetchCalled = false;
+  globalThis.fetch = async () => {
+    globalFetchCalled = true;
+    throw new Error("global fetch must not be used when the service binding exists");
+  };
+  const calls = [];
+  const env = {
+    ...ENV,
+    BWM_FORM_HANDLER: {
+      async fetch(request) {
+        calls.push(request);
+        return Response.json({
+          ok: true,
+          captured: true,
+          emailed: true,
+          receipt_recorded: true,
+          submission_id: "21fccebf-8508-450f-a1b2-1522bdb785fd",
+        });
+      },
+    },
+  };
+  try {
+    const result = await read(await handleBookRequest(request(), env));
+    assert.equal(result.status, 200);
+    assert.equal(globalFetchCalled, false);
+    assert.equal(calls.length, 1);
+    assert.equal(calls[0].url, "https://bwm-form-handler.robert-ba0.workers.dev/buildwisemedia/fit-contact");
+    assert.equal(calls[0].headers.get("X-BWM-Book-Key"), "pages-book-test-key");
+    assert.equal(await calls[0].json().then((body) => body.submission_id), "example");
+  } finally {
+    globalThis.fetch = originalFetch;
+  }
+});
+
 test("allows the exact Access-gated BWM review hostname", async () => {
   const originalFetch = globalThis.fetch;
   let called = false;
