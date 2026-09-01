@@ -14,13 +14,13 @@
       "priority": "P2",
       "file": "src/components/FitDiagnostic.astro",
       "finding": "An edited verdict block retained a 30-day install promise that conflicts with the controlling 90-day engagement framing.",
-      "disposition": "accepted; changed to a 90-day engagement statement and protected by a source test"
+      "disposition": "accepted; the non-canonical timeline was removed from the shared diagnostic and protected by a source test"
     },
     {
       "priority": "P2",
       "file": "package.json",
       "finding": "The conversion-path tests were not invoked by a ship gate.",
-      "disposition": "accepted; npm test was added and wired into tools/Pre-Ship-Grep-Gate.sh"
+      "disposition": "accepted; npm test was added and wired into the local pre-ship gate, the full website QA wrapper, and the always-on PR/main workflow"
     }
   ],
   "confirmed_boundaries": [

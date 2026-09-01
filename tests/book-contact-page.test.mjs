@@ -23,7 +23,7 @@ test("keeps existing routes honest about the new direct-contact job", () => {
   assert.doesNotMatch(fitDiagnostic, /href="\/book"[^>]*>[^<]*(?:15-min|call)/i);
   assert.doesNotMatch(fitDiagnostic, /Book a 30-minute strategy call|Book Your Strategy Call|Direct link to the team's calendar|inline booking calendar/i);
   assert.doesNotMatch(fitDiagnostic, /install for you in 30 days/i);
-  assert.match(fitDiagnostic, /What we'd build during the 90-day engagement/i);
+  assert.match(fitDiagnostic, /What we'd build with you/i);
   assert.doesNotMatch(memberCard, /Priority Booking|Direct-Line Discovery Call|book a 1:1 strategy session/i);
   assert.doesNotMatch(memberCard, /href="\/book\?priority=true"/i);
   assert.doesNotMatch(ppcAlternative, /href="\/book"[^>]*>Revenue Leak Map/i);

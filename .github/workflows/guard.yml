@@ -35,6 +35,7 @@ jobs:
           node-version: 20
           cache: npm
       - run: npm ci
+      - run: npm test
       - run: npm run build
       - name: Verify private invitation and tracking-free artifact
         shell: bash
