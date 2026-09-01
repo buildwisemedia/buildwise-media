@@ -518,6 +518,40 @@ const jsonLd = [
         if (widgetId !== null && window.turnstile) window.turnstile.reset(widgetId);
       }
 
+      function syncTurnstileFocusIndicator() {
+        var response = document.querySelector('input[name="cf-turnstile-response"]');
+        var target = response && response.parentElement
+          ? response.parentElement.querySelector(':scope > div')
+          : null;
+        document.querySelectorAll('.bwm-turnstile-focus-target').forEach(function (node) {
+          node.classList.toggle('bwm-turnstile-focused', node === document.activeElement);
+        });
+        if (target) {
+          target.classList.add('bwm-turnstile-focus-target');
+          target.classList.toggle('bwm-turnstile-focused', target === document.activeElement);
+        }
+      }
+
+      function scheduleTurnstileFocusIndicator() {
+        requestAnimationFrame(syncTurnstileFocusIndicator);
+      }
+
+      function scheduleTurnstileFocusIndicatorBurst() {
+        scheduleTurnstileFocusIndicator();
+        window.setTimeout(syncTurnstileFocusIndicator, 0);
+        window.setTimeout(syncTurnstileFocusIndicator, 24);
+      }
+
+      document.addEventListener('keydown', function (event) {
+        if (event.key === 'Tab') scheduleTurnstileFocusIndicatorBurst();
+      }, true);
+      document.addEventListener('keyup', function (event) {
+        if (event.key === 'Tab') scheduleTurnstileFocusIndicatorBurst();
+      }, true);
+      document.addEventListener('focusin', scheduleTurnstileFocusIndicator, true);
+      document.addEventListener('focusout', scheduleTurnstileFocusIndicator, true);
+      document.addEventListener('pointerup', scheduleTurnstileFocusIndicator, true);
+
       window.bwmPaidLeadTurnstileReady = function () {
         widgetId = window.turnstile.render('#turnstile-widget', {
           sitekey: turnstileSiteKey,
@@ -533,6 +567,7 @@ const jsonLd = [
             status.textContent = 'The security check could not load. Please refresh and try again.';
           },
         });
+        scheduleTurnstileFocusIndicator();
       };
 
       document.querySelectorAll('a[href="#request"]').forEach(function (link) {
@@ -1192,9 +1227,10 @@ const jsonLd = [
 
 <style is:global>
   /* Turnstile promotes an anonymous sibling of its hidden response input into
-     the tab ring. This global selector reaches that injected third-party node
-     even when the provider moves it outside the authored widget container. */
-  div:has(> input[name="cf-turnstile-response"]) > div {
+     the tab ring without exposing a usable :focus state. The page script keeps
+     this class synchronized to document.activeElement after keyboard/pointer
+     focus changes so the ring appears only while the control owns focus. */
+  .bwm-turnstile-focus-target.bwm-turnstile-focused {
     outline: 2px solid var(--y2);
     outline-offset: 4px;
   }
