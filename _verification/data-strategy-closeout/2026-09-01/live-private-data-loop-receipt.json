@@ -1,0 +1,84 @@
+{
+  "state": "PRIVATE_DATA_LOOP_VERIFIED_WITH_GA4_DELAYED_HOLD",
+  "verified_at_eastern": "2026-09-01 3:30 PM EDT",
+  "scope": "BWM private development /book data strategy; no public deployment or paid activation",
+  "fable": {
+    "plan": {
+      "verdict": "AGREE",
+      "score": 96,
+      "session_id": "6e85c4c3-2a01-46c3-ab61-9083c7bec1f7"
+    },
+    "full_implementation": {
+      "verdict": "AGREE",
+      "score": 96,
+      "session_id": "7b4e646a-c98d-48fe-aa21-d54c0135c607"
+    },
+    "delivery_progression_followup": {
+      "verdict": "AGREE",
+      "score": 90,
+      "blockers": [],
+      "session_id": "ecfb53f2-f22c-4ce1-a23c-7b000de06906"
+    }
+  },
+  "pushed_commits": {
+    "website": "3c20402ac5837c1cca2549cdde9755ade4aa2556",
+    "command_api": "cad35b053e64132bdbfaa5de740abcd4a3a7e48b",
+    "command_ui": "cfea6570a4bc0cccf4e23b64e707bc777523dcbe",
+    "database": "4d29804df90c2e93de2865920796e9481e45fc19"
+  },
+  "database_migrations": [
+    {
+      "version": "20260901192253",
+      "name": "bwm_book_human_outcome_loop",
+      "applied": true
+    },
+    {
+      "version": "20260901192827",
+      "name": "bwm_book_delivery_evidence_progression",
+      "applied": true
+    }
+  ],
+  "database_readback": {
+    "review_table": true,
+    "feedback_table": true,
+    "reporting_view": true,
+    "trigger": true,
+    "review_rls": true,
+    "feedback_rls": true,
+    "review_read_policy_count": 1,
+    "feedback_read_policy_count": 1
+  },
+  "synthetic_canary": {
+    "submission_id": "e218f293-54ff-4684-b1b3-532a261003a3",
+    "contact_id": "2482617b-448a-425a-abb7-078bf888a61c",
+    "method": "direct invocation of the existing disposition RPC as bwm_codex; this proves the database outcome loop, not the undeployed Command Access UI",
+    "first_call_changed": true,
+    "replay_changed": false,
+    "submission_status": "processed",
+    "email_receipt_recorded": true,
+    "human_disposition": "good_fit",
+    "latest_lifecycle_event": "lead.qualified.unbooked",
+    "lifecycle_row_count": 1,
+    "lead_state": "excluded_synthetic",
+    "business_lead_identity": null,
+    "google_ads_feedback_state": "canary_blocked",
+    "meta_ads_feedback_state": "canary_blocked",
+    "retained_revenue_usd": null,
+    "retained_revenue_state": "unknown_without_payment_readback"
+  },
+  "ga4": {
+    "property_id": "422160329",
+    "measurement_id": "G-V5LSP69E41",
+    "submission_id_dimension": "properties/422160329/customDimensions/15550506529",
+    "data_api_rows_for_canary": 0,
+    "state": "GA4_PENDING",
+    "reason": "The custom submission_id dimension was registered after the prior browser canary; GA4 custom-dimension registration is not retroactive. No new browser form was submitted during this closeout."
+  },
+  "not_claimed": [
+    "public deployment",
+    "Command API or UI deployment",
+    "browser-to-GA4-to-CRM join verification",
+    "paid activation or provider acceptance",
+    "production ROI"
+  ]
+}
