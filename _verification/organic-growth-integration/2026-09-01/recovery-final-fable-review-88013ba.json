@@ -1,0 +1,24 @@
+{
+  "receipt_version": "bwm-independent-code-review/1.0.0",
+  "recorded_at": "September 1, 2026 at 3:17 PM EDT",
+  "review_family": "Fable 5 via bwm-fable-review",
+  "reviewed_head": "88013baa9c9429420daacdb54b91f2f540dba481",
+  "review_scope": "full committed Organic Growth application diff in an isolated detached checkout",
+  "review_session": "23216705-4106-47cc-b8e6-709a5cd0b18d",
+  "verdict": "ADVANCE_UNCHANGED",
+  "material_findings": [],
+  "confirmed_boundaries": [
+    "All five prior-review repairs verify independently at HEAD, including shared Organization schema, current source hashes, the NDB identity hash, the explicit historical receipt amendment, and all preflight manifest bindings.",
+    "The integration manifest, crawler policy, asset manifest, and frozen acceptance hashes recompute against the committed bytes.",
+    "The /book conversion path fails closed, preserves idempotency, and emits conversion events only after the full delivery receipt.",
+    "The 35 behavioral tests run in always-on PR/main enforcement and both ship gates; all pass. The 11 negative-control self-tests prove the growth contract gate can fail.",
+    "The 82-URL sitemap reconciles with the frozen 86-URL inventory after six rendered-noindex removals and two additions, without deleting a live URL.",
+    "Production and provider authority remain untouched; the reviewed configuration names only the private review project and no secret is committed."
+  ],
+  "reviewer_summary": "No source drift, false-success path, gate weakening, receipt overclaim, or material regression was found. The commit advances unchanged.",
+  "authority": {
+    "push": false,
+    "merge": false,
+    "production_deploy": false
+  }
+}

@@ -1,0 +1,93 @@
+{
+  "receipt_version": "bwm-organic-growth-recovery-closeout/1.0.0",
+  "recorded_at_eastern": "September 1, 2026 at 3:17 PM EDT",
+  "recovered_task_id": "01a04f8f-ce3e-73a0-8def-c5679133d03b",
+  "canonical_parent": "projects/Project-BWM-90-Day-Revenue-Execution.md",
+  "verdict": "LOCAL_PRODUCTION_CANDIDATE_SIGNOFF",
+  "production_status": "HELD_FOR_ROBERT_DIRECT_AUTHORITY",
+  "public_production_untouched": true,
+  "inputs": {
+    "schema": "540baee5a4bb579e010b316eff8a6153c9f9a5f0",
+    "aeo": "ba9be3a4c32b3c57394566d83e8f5db21a9d11d5",
+    "seo": "b906da711ef72d0b7302e6a521d3c442b190f16f",
+    "social_video": "ae304ebb4dd315c2d0fc6645fee2616ffa869d5e"
+  },
+  "schema_independent_review": {
+    "receipt": "/Users/robertechevarria/Documents/ChatGPT/BWM/reset-window-briefs/ORGANIC-GROWTH-SCHEMA-INDEPENDENT-REVIEW-2026-08-30.md",
+    "verdict": "INDEPENDENT_PASS",
+    "tests": "71/71 PASS",
+    "negative_controls": "7/7 PASS"
+  },
+  "implementation": {
+    "branch": "codex/bwm-book-contact-20260831",
+    "integration_commit": "2102306",
+    "final_code_commit": "88013baa9c9429420daacdb54b91f2f540dba481",
+    "push_performed": false,
+    "merge_performed": false
+  },
+  "independent_reviews": [
+    {
+      "reviewer": "OpenAI Codex",
+      "session": "01a05e55-bd3f-73b2-92b1-9da32ecf4999",
+      "reviewed_head": "4c337a6df6a4f8f6c678ce5b59d60749e59994dc",
+      "verdict": "ADVANCE_UNCHANGED"
+    },
+    {
+      "reviewer": "OpenAI Codex",
+      "session": "01a05e5d-bcb2-7610-93ea-247bb8c391ba",
+      "reviewed_head": "88013baa9c9429420daacdb54b91f2f540dba481",
+      "verdict": "ADVANCE_UNCHANGED"
+    },
+    {
+      "reviewer": "Fable 5",
+      "session": "23216705-4106-47cc-b8e6-709a5cd0b18d",
+      "reviewed_head": "88013baa9c9429420daacdb54b91f2f540dba481",
+      "verdict": "ADVANCE_UNCHANGED"
+    }
+  ],
+  "gates": {
+    "npm_test": "35/35 PASS",
+    "growth_contract_negative_controls": "11/11 PASS",
+    "build": "PASS",
+    "growth_contract": "PASS",
+    "brand_qa": "PASS with 0 warnings",
+    "guard": "PASS",
+    "pre_ship_grep": "ALL PASS",
+    "visual": {
+      "combined_valid_captures": "460/460 PASS",
+      "fleet_summary": "460 captures; 0 hard failures; 386 non-blocking advisories",
+      "fleet_static_captures_used": 455,
+      "ssr_revenue_leak_map_rerun": "5/5 PASS; 0 advisories; 0 browser issues",
+      "server_boundary": "The fleet run used a static server, so its five /revenue-leak-map captures showed the server's 404 page. Those five were replaced by the clean five-viewport rerun through the actual Astro application runtime. The only other fleet browser warning was the expected Turnstile local-origin warning on /go/hvac-marketing.",
+      "visual_code_boundary": "The full fleet rendered final visual code at 4c337a6. Changes from 4c337a6 through 88013ba alter JSON-LD descriptions and verification/hash evidence only, not rendered copy, layout, styling, or assets."
+    }
+  },
+  "private_dev_receipt": {
+    "receipt": "/Users/robertechevarria/Documents/Codex/2026-08-30/continue-3/worktrees/buildwise-media-book-contact/_verification/private-dev-integration/2026-09-01/private-dev-e2e-receipt.json",
+    "url": "https://bwm-new-website-review.pages.dev/",
+    "source_commit": "acd21c9079c7c8990eaac9eb860a7c4736543143",
+    "verified": true,
+    "latest_local_repairs_deployed": false,
+    "claim_boundary": "The private review surface was previously verified with protected browser, CRM, delivered email, GA4, replay, and failure-path receipts. It does not contain the latest local repairs."
+  },
+  "concurrency_boundary": {
+    "preserved": true,
+    "excluded_from_this_closeout": [
+      "growth-integration/contracts/integration-manifest.json working-copy data-strategy edits beyond committed 88013ba",
+      "growth-integration/contracts/seo-account-contract.json",
+      "growth-integration/contracts/book-data-contract.json",
+      "scripts/bwm-growth-contract-qa.mjs working-copy data-strategy edits",
+      "scripts/reconcile-book-submission.mjs",
+      "tests/reconcile-book-submission.test.mjs",
+      "_verification/data-strategy-closeout/"
+    ],
+    "verification_method": "Independent reviews and final gates ran in isolated exact-commit checkouts."
+  },
+  "next_gate": "Robert must directly authorize production deployment. After that authority, deploy the exact authorized commit and require readbacks from the production URL, production form, CRM, delivered email, GA4, crawler surfaces, and CDN before any production-complete claim.",
+  "authority": {
+    "push": false,
+    "merge": false,
+    "production_deploy": false,
+    "client_rollout": false
+  }
+}

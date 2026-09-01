@@ -1,0 +1,21 @@
+{
+  "receipt_version": "bwm-independent-code-review/1.0.0",
+  "recorded_at": "September 1, 2026 at 3:08 PM EDT",
+  "review_family": "OpenAI Codex",
+  "reviewed_head": "88013baa9c9429420daacdb54b91f2f540dba481",
+  "review_scope": "git diff HEAD^ HEAD in an isolated detached checkout, following the clean exact-commit review at 4c337a6",
+  "session_id": "01a05e5d-bcb2-7610-93ea-247bb8c391ba",
+  "verdict": "ADVANCE_UNCHANGED",
+  "material_findings": [],
+  "reviewer_summary": "No actionable functional regressions found. Both updated SHA-256 bindings match the committed NDB and preflight files, and the relevant contract QA passes.",
+  "verification": {
+    "growth_contract_gate": "PASS",
+    "preflight_hash_binding": "MATCH",
+    "ndb_hash_binding": "MATCH"
+  },
+  "authority": {
+    "push": false,
+    "merge": false,
+    "production_deploy": false
+  }
+}

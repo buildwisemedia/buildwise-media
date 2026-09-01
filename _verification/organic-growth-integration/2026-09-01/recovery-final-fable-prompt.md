@@ -6,7 +6,7 @@ You are the fresh-context, opposite-family reviewer for an existing Buildwise Me
 
 - Repository: current working directory
 - Branch: `codex/bwm-book-contact-20260831`
-- Reviewed HEAD: `4c337a6df6a4f8f6c678ce5b59d60749e59994dc`
+- Reviewed HEAD: `88013baa9c9429420daacdb54b91f2f540dba481`
 - Base: `origin/main`
 - Organic Growth application commit: `2102306bdbe7c461e9e5d472dcaa74147d5ede41`
 - Private live surface: `https://bwm-new-website-review.pages.dev/`
@@ -19,11 +19,11 @@ The application consumes four independently accepted frozen inputs:
 - Universal SEO `b906da711ef72d0b7302e6a521d3c442b190f16f`
 - Universal Social + Video `ae304ebb4dd315c2d0fc6645fee2616ffa869d5e`
 
-The prior review of `5e40c4d` returned three P2 findings: an unconditional Turnstile outline, a retained 30-day install promise, and conversion tests not wired into a ship gate. A later exact-commit Codex review also required removing a non-canonical timeline paraphrase and wiring the tests into the always-on PR/main workflow. The opposite-family review of `cb33452` then found that the rewritten homepage and contact page had lost the approved social-preview image metadata; `90d2b88` restores the existing BaseLayout image block and adds a regression test. `4c337a6` advances the homepage, `/book/`, and enclosing source-manifest hashes to the repaired bytes. The target commit must be reviewed independently; do not assume those repairs are correct merely because receipts say so.
+The prior review of `5e40c4d` returned three P2 findings: an unconditional Turnstile outline, a retained 30-day install promise, and conversion tests not wired into a ship gate. A later exact-commit Codex review also required removing a non-canonical timeline paraphrase and wiring the tests into the always-on PR/main workflow. The opposite-family review of `cb33452` then found that the rewritten homepage and contact page had lost the approved social-preview image metadata; `90d2b88` restores the existing BaseLayout image block and adds a regression test. A review of `90d2b88` found stale homepage and `/book/` source hashes, a stale NDB identity-record hash, an unmarked historical receipt amendment, and a second description for the shared Organization entity. `4c337a6` repaired the source hashes; `780f1d9` repaired the three remaining evidence/entity findings and re-froze the enclosing source-manifest hash; `88013ba` advanced the preflight binding after the NDB correction. The target commit must be reviewed independently; do not assume those repairs are correct merely because receipts say so.
 
 ## Review job
 
-Inspect the complete committed diff `origin/main...4c337a6df6a4f8f6c678ce5b59d60749e59994dc`, the source manifests and receipts under `_build-context/homepage-growth-integration/` and `_verification/organic-growth-integration/2026-09-01/`, and the current homepage, `/book/`, API proxy, diagnostic, tests, and ship gates. Work as one reviewer and do not spawn subagents. Focus on concrete defects only:
+Inspect the complete committed diff `origin/main...88013baa9c9429420daacdb54b91f2f540dba481`, the source manifests and receipts under `_build-context/homepage-growth-integration/` and `_verification/organic-growth-integration/2026-09-01/`, and the current homepage, `/book/`, API proxy, diagnostic, tests, and ship gates. Work as one reviewer and do not spawn subagents. Focus on concrete defects only:
 
 1. source/identity drift or unsupported commercial/result claims;
 2. SEO/AEO regressions, especially sitemap ownership, canonical/robots behavior, AI-answer inputs, entity/claim authority, and lifecycle preservation;
@@ -39,7 +39,7 @@ Return one JSON object only:
 
 ```json
 {
-  "reviewed_head": "4c337a6df6a4f8f6c678ce5b59d60749e59994dc",
+  "reviewed_head": "88013baa9c9429420daacdb54b91f2f540dba481",
   "verdict": "ADVANCE_UNCHANGED or REVISE",
   "material_findings": [],
   "confirmed_boundaries": ["short statements"],
