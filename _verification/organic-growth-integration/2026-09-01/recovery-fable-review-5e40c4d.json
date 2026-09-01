@@ -1,0 +1,33 @@
+{
+  "reviewer": "Fable 5 via bwm-fable-review",
+  "review_session": "1eb0fc48-bcaa-468c-98cf-eb22ecc794a0",
+  "reviewed_head": "5e40c4dd4dbbe755009bb6ccf445e490e52318b6",
+  "verdict": "REVISE",
+  "material_findings": [
+    {
+      "priority": "P2",
+      "file": "src/pages/go/hvac-marketing.astro",
+      "finding": "The Turnstile focus outline was unconditional and therefore permanent.",
+      "disposition": "accepted; repaired in 523e2338f6cd251434cb54111e41a272e64c239b and exercised by three browser focus sweeps"
+    },
+    {
+      "priority": "P2",
+      "file": "src/components/FitDiagnostic.astro",
+      "finding": "An edited verdict block retained a 30-day install promise that conflicts with the controlling 90-day engagement framing.",
+      "disposition": "accepted; changed to a 90-day engagement statement and protected by a source test"
+    },
+    {
+      "priority": "P2",
+      "file": "package.json",
+      "finding": "The conversion-path tests were not invoked by a ship gate.",
+      "disposition": "accepted; npm test was added and wired into tools/Pre-Ship-Grep-Gate.sh"
+    }
+  ],
+  "confirmed_boundaries": [
+    "public production remained untouched",
+    "the direct contact path remained fail-closed and idempotent",
+    "sitemap lifecycle and crawler policy reconciled to the accepted inputs",
+    "the four frozen engine inputs remained pinned by commit and package hash",
+    "human visual acceptance remained honestly pending where required"
+  ]
+}

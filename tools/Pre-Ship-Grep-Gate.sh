@@ -18,5 +18,6 @@ else
   echo "WARN: legacy Brain grep gate not found at $LEGACY_GATE"
 fi
 
+npm test
 npm run qa:brand
 node scripts/bwm-growth-contract-qa.mjs
