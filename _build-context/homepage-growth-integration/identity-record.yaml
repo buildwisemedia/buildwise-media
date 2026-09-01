@@ -1,0 +1,40 @@
+schema: bwm-identity-resolution/v1
+client: buildwise-media
+surface: bwm-homepage-book-organic-growth-local-integration
+identity_class: bwm
+composition_mode: redesign
+status: local-only
+accepted_direction:
+  id: bwm-clean-room-b-a-a-c-founder-calibrated
+  accepted_by: Robert Echevarria
+  receipt: /Users/robertechevarria/Documents/Codex/2026-08-27/what/work/bwm-four-way-2026-08-27/review/homepage/accepted-direction.json
+  sha256: bb240b070ca034f875b8b4c100ed19452ead24b98ea173a366e21f7de0f8a8f1
+retained_identity:
+  name: Buildwise Media
+  primary_typeface: Inter
+  primary_color: "#F0FF00"
+  logo: public/assets/mark.svg
+  logo_sha256: 3e1ac44ad8d7acf2e5be544cbfcb36a738e2fc280ab88197ced2cdd38985c6b8
+  logo_rule: preserve geometry, colors, and rendered appearance exactly
+locked_direction:
+  homepage_base_sha256: b2ac2a330c961535abceae735360c448ee264cf3432f418ddab46475a26381b5
+  book_base_sha256: 87751d229a67e9817b92d35857083076d7da13b80db3ed89237a29a853185764
+  visual_scope: metadata, semantics, machine parity, analytics, URL lifecycle, and truthful review-label removal only
+  copy_scope: no offer rewrite; only truth-required 90-day engagement clarification and machine-visible parity
+owner_decisions:
+  - no public pricing
+  - one primary CTA, See If We're a Fit, routes to /book/
+  - /book is a short contact form, not a quiz and not a calendar
+  - submitted /book notes are delivered to Robert by email through the separately governed handler
+  - 90 days is the engagement term, not a guaranteed completion date or outcome
+  - preserve the accepted logo, triangulation mark, Inter, and #F0FF00
+  - keep the site familiar enough to trust and unmistakably AI-native without SaaS or agency framing
+prohibited_inheritance:
+  - retired Revenue Leak Map offer
+  - public pricing or machine-only pricing
+  - 30-day or 45-day delivery promises
+  - retired eight-layer revenue-system offer
+  - LocalBusiness or ProfessionalService local-eligibility claims
+  - FAQPage or Speakable schema without exact visible support
+  - special AI schema or claims that llms.txt is a Google ranking mechanism
+  - hidden claims, fabricated proof, or unsupported ROI language

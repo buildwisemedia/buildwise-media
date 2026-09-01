@@ -1,43 +1,79 @@
-# Buildwise Media — robots.txt
-# AI-permissive per BWM Canonical Site Files (LOCKED 2026-04-20)
+# Buildwise Media — crawler policy
+# Access policy only. It does not claim ranking, indexing, training, or citation impact.
 
 User-agent: *
 Allow: /
 Disallow: /confirmation
+Disallow: /thank-you-resource
 
-# Search crawlers — full access
 User-agent: Googlebot
 Allow: /
 Disallow: /confirmation
+Disallow: /thank-you-resource
 
 User-agent: Bingbot
 Allow: /
 Disallow: /confirmation
+Disallow: /thank-you-resource
 
-# AI crawlers — explicit allow per Canonical Site Files spec
-User-agent: GPTBot
+User-agent: OAI-SearchBot
 Allow: /
-
-User-agent: ClaudeBot
-Allow: /
-
-User-agent: PerplexityBot
-Allow: /
-
-User-agent: Google-Extended
-Allow: /
+Disallow: /confirmation
+Disallow: /thank-you-resource
 
 User-agent: ChatGPT-User
 Allow: /
+Disallow: /confirmation
+Disallow: /thank-you-resource
+
+User-agent: GPTBot
+Allow: /
+Disallow: /confirmation
+Disallow: /thank-you-resource
+
+User-agent: Claude-SearchBot
+Allow: /
+Disallow: /confirmation
+Disallow: /thank-you-resource
+
+User-agent: Claude-User
+Allow: /
+Disallow: /confirmation
+Disallow: /thank-you-resource
+
+User-agent: ClaudeBot
+Allow: /
+Disallow: /confirmation
+Disallow: /thank-you-resource
+
+User-agent: PerplexityBot
+Allow: /
+Disallow: /confirmation
+Disallow: /thank-you-resource
+
+User-agent: Perplexity-User
+Allow: /
+Disallow: /confirmation
+Disallow: /thank-you-resource
+
+User-agent: Google-Extended
+Allow: /
+Disallow: /confirmation
+Disallow: /thank-you-resource
 
 User-agent: anthropic-ai
 Allow: /
+Disallow: /confirmation
+Disallow: /thank-you-resource
 
-# Recommended extras
 User-agent: Applebot-Extended
 Allow: /
+Disallow: /confirmation
+Disallow: /thank-you-resource
 
 User-agent: CCBot
 Allow: /
+Disallow: /confirmation
+Disallow: /thank-you-resource
 
 Sitemap: https://buildwisemedia.com/sitemap.xml

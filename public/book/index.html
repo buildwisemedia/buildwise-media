@@ -3,15 +3,59 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="robots" content="noindex,follow">
+  <meta name="robots" content="index,follow">
   <meta name="description" content="Tell Buildwise Media what is getting in the way of growth. We’ll read it and reply by email.">
   <link rel="canonical" href="https://buildwisemedia.com/book/">
   <title>See If We’re a Fit | Buildwise Media</title>
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="en_US">
+  <meta property="og:title" content="See If We’re a Fit | Buildwise Media">
+  <meta property="og:description" content="Tell Buildwise Media what is getting in the way of growth. We’ll read it and reply by email.">
+  <meta property="og:url" content="https://buildwisemedia.com/book/">
+  <meta property="og:site_name" content="Buildwise Media">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="See If We’re a Fit | Buildwise Media">
+  <meta name="twitter:description" content="Tell Buildwise Media what is getting in the way of growth. We’ll read it and reply by email.">
   <link rel="icon" type="image/svg+xml" href="/favicon.svg">
   <link rel="alternate icon" href="/favicon.ico">
   <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon-180.png">
   <meta name="theme-color" content="#050507">
   <link rel="preload" href="/fonts/inter-variable-v1.woff2" as="font" type="font/woff2" crossorigin>
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "Organization",
+          "@id": "https://buildwisemedia.com/#org",
+          "name": "Buildwise Media",
+          "url": "https://buildwisemedia.com/",
+          "logo": "https://buildwisemedia.com/assets/mark.svg",
+          "description": "Buildwise Media builds custom AI systems around consequential business bottlenecks for owner-led companies.",
+          "location": { "@type": "Place", "name": "Atlanta, Georgia" }
+        },
+        {
+          "@type": "WebSite",
+          "@id": "https://buildwisemedia.com/#website",
+          "url": "https://buildwisemedia.com/",
+          "name": "Buildwise Media",
+          "publisher": { "@id": "https://buildwisemedia.com/#org" },
+          "inLanguage": "en-US"
+        },
+        {
+          "@type": ["WebPage", "ContactPage"],
+          "@id": "https://buildwisemedia.com/book/#webpage",
+          "url": "https://buildwisemedia.com/book/",
+          "name": "See If We’re a Fit | Buildwise Media",
+          "description": "Tell Buildwise Media what is getting in the way of growth. We’ll read it and reply by email.",
+          "dateModified": "2026-09-01",
+          "isPartOf": { "@id": "https://buildwisemedia.com/#website" },
+          "about": { "@id": "https://buildwisemedia.com/#org" },
+          "inLanguage": "en-US"
+        }
+      ]
+    }
+  </script>
   <style>
     @font-face {
       font-family: "Inter";
@@ -759,7 +803,11 @@
   </style>
   <script>
     (() => {
-      if (!new Set(["buildwisemedia.com", "www.buildwisemedia.com"]).has(window.location.hostname)) return;
+      if (!new Set([
+        "buildwisemedia.com",
+        "www.buildwisemedia.com",
+        "bwm-new-website-review.pages.dev",
+      ]).has(window.location.hostname)) return;
       window.dataLayer = window.dataLayer || [];
       window.gtag = window.gtag || function () { window.dataLayer.push(arguments); };
       window.gtag("js", new Date());
@@ -788,7 +836,7 @@
     <div class="nav-inner">
       <!-- @r020:identity exact approved Buildwise Media mark -->
       <a class="brand" href="/" aria-label="Buildwise Media homepage">
-        <img src="../assets/mark.svg" alt="" width="48" height="48">
+        <img src="/assets/mark.svg" alt="" width="48" height="48">
         <span>Buildwise Media</span>
       </a>
       <div class="nav-meta"><span>A direct line to our team</span></div>
@@ -880,7 +928,7 @@
         </div>
 
         <footer class="page-footer">
-          <p>© 2026 Buildwise Media</p>
+          <p>© 2026 Buildwise Media · Atlanta-based · Serving owner-led companies across the United States</p>
           <div class="footer-markers" aria-hidden="true"><span></span><span></span><span></span><span></span></div>
         </footer>
       </div>
@@ -1057,7 +1105,11 @@
     }
 
     function track(name, details = {}) {
-      if (!new Set(["buildwisemedia.com", "www.buildwisemedia.com"]).has(window.location.hostname)) return;
+      if (!new Set([
+        "buildwisemedia.com",
+        "www.buildwisemedia.com",
+        "bwm-new-website-review.pages.dev",
+      ]).has(window.location.hostname)) return;
       if (typeof window.gtag === "function") {
         window.gtag("event", name, { transport_type: "beacon", ...details });
       }
@@ -1068,7 +1120,11 @@
       submissionError.hidden = true;
       if (!validateForm()) return;
 
-      const productionHost = new Set(["buildwisemedia.com", "www.buildwisemedia.com"]).has(window.location.hostname);
+      const productionHost = new Set([
+        "buildwisemedia.com",
+        "www.buildwisemedia.com",
+        "bwm-new-website-review.pages.dev",
+      ]).has(window.location.hostname);
       if (!productionHost) {
         showCompletion(false);
         return;
@@ -1107,10 +1163,17 @@
           throw new Error(result.error || "incomplete_delivery");
         }
 
+        track("fit_note_submitted", {
+          form_id: "fit_contact",
+          form_version: "bwm-fit-contact-v1",
+          submission_id: result.submission_id || outboundPayload.submission_id,
+          ...experimentContext(),
+        });
         track("generate_lead", {
           form_id: "fit_contact",
           form_version: "bwm-fit-contact-v1",
           submission_id: result.submission_id || outboundPayload.submission_id,
+          conversion_source: "fit_note_submitted",
           ...experimentContext(),
         });
         lastFailedRequest = null;

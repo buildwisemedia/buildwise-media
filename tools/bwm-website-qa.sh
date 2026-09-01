@@ -12,6 +12,7 @@ BASE_URL="${1:-${BWM_QA_BASE_URL:-http://127.0.0.1:4322}}"
 cd "$ROOT"
 
 npm run qa:brand
+node scripts/bwm-growth-contract-qa.mjs
 if [ "${BWM_FULL_SURFACE_CLOSURE:-0}" = "1" ]; then
   export BWM_REQUIRE_MANUAL_VISUAL_ACCEPTANCE=1
 fi

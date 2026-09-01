@@ -19,3 +19,4 @@ else
 fi
 
 npm run qa:brand
+node scripts/bwm-growth-contract-qa.mjs

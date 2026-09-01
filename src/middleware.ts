@@ -18,10 +18,10 @@ const metroIndex: Map<string, MetroEntry> = (() => {
   return idx;
 })();
 
-// Routes that opt into SSR via `export const prerender = false` and consume
-// Astro.locals.metro. Reading request.headers on prerendered routes triggers
-// Astro build-time warnings, so we gate the header lookup on this allowlist.
-const SSR_ROUTES = new Set(['/']);
+// The accepted homepage is static and no longer uses metro personalization.
+// Keep this allowlist empty until a separately authorized SSR route consumes
+// Astro.locals.metro; otherwise header reads contaminate prerendered builds.
+const SSR_ROUTES = new Set<string>();
 
 // Security headers mirrored from public/_headers. Cloudflare Pages applies the
 // _headers file only to static/prerendered responses; SSR routes are served by

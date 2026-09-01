@@ -2,11 +2,16 @@ export const prerender = false;
 
 const UPSTREAM = "https://bwm-form-handler.robert-ba0.workers.dev/buildwisemedia/fit-contact";
 const MAX_BODY_BYTES = 32 * 1024;
-const PRODUCTION_ORIGINS = new Set([
+const ALLOWED_ORIGINS = new Set([
   "https://buildwisemedia.com",
   "https://www.buildwisemedia.com",
+  "https://bwm-new-website-review.pages.dev",
 ]);
-const PRODUCTION_HOSTS = new Set(["buildwisemedia.com", "www.buildwisemedia.com"]);
+const ALLOWED_HOSTS = new Set([
+  "buildwisemedia.com",
+  "www.buildwisemedia.com",
+  "bwm-new-website-review.pages.dev",
+]);
 
 function json(body, status = 200) {
   return Response.json(body, {
@@ -31,7 +36,7 @@ export async function handleBookRequest(request, env = {}) {
 
   const url = new URL(request.url);
   const origin = request.headers.get("Origin");
-  if (!PRODUCTION_HOSTS.has(url.hostname) || !origin || !PRODUCTION_ORIGINS.has(origin)) {
+  if (!ALLOWED_HOSTS.has(url.hostname) || !origin || !ALLOWED_ORIGINS.has(origin)) {
     return json({ ok: false, emailed: false, error: "origin_not_allowed" }, 403);
   }
 

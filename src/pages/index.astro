@@ -1,2897 +1,2545 @@
----
-// buildwisemedia.com homepage — Triangulation, fresh architecture 2026-05-21
-// Replaces rejected homepage-redesign-2026-05-20 work (R020 + geo-broadcast failures)
-// Installed Advantage pass: the homepage sells the owned AI growth system first.
-// No transitional scene-photos, no radial diagrams, no geo-hardcoding
-// Pricing-public RATIFIED 2026-05-20 (canonical.json source of truth)
+<!-- BWM homepage: Round 29 accepted direction integrated for local production-candidate QA. -->
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="index,follow">
+  <meta name="description" content="Buildwise Media builds custom AI systems around the bottlenecks holding back growth in owner-led companies.">
+  <link rel="canonical" href="https://buildwisemedia.com/">
+  <title>Fix the Bottleneck Holding Back Growth | Buildwise Media</title>
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="en_US">
+  <meta property="og:title" content="Fix the Bottleneck Holding Back Growth | Buildwise Media">
+  <meta property="og:description" content="Buildwise Media builds custom AI systems around the bottlenecks holding back growth in owner-led companies.">
+  <meta property="og:url" content="https://buildwisemedia.com/">
+  <meta property="og:site_name" content="Buildwise Media">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Fix the Bottleneck Holding Back Growth | Buildwise Media">
+  <meta name="twitter:description" content="Buildwise Media builds custom AI systems around the bottlenecks holding back growth in owner-led companies.">
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="alternate icon" href="/favicon.ico">
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon-180.png">
+  <meta name="theme-color" content="#050507">
+  <link rel="preload" href="/fonts/inter-variable-v1.woff2" as="font" type="font/woff2" crossorigin>
+  <script type="application/ld+json" is:inline>
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "Organization",
+          "@id": "https://buildwisemedia.com/#org",
+          "name": "Buildwise Media",
+          "url": "https://buildwisemedia.com/",
+          "logo": "https://buildwisemedia.com/assets/mark.svg",
+          "description": "Buildwise Media builds custom AI systems around consequential business bottlenecks for owner-led companies.",
+          "location": { "@type": "Place", "name": "Atlanta, Georgia" }
+        },
+        {
+          "@type": "WebSite",
+          "@id": "https://buildwisemedia.com/#website",
+          "url": "https://buildwisemedia.com/",
+          "name": "Buildwise Media",
+          "publisher": { "@id": "https://buildwisemedia.com/#org" },
+          "inLanguage": "en-US"
+        },
+        {
+          "@type": "WebPage",
+          "@id": "https://buildwisemedia.com/#webpage",
+          "url": "https://buildwisemedia.com/",
+          "name": "Fix the Bottleneck Holding Back Growth | Buildwise Media",
+          "description": "Buildwise Media builds custom AI systems around the bottlenecks holding back growth in owner-led companies.",
+          "dateModified": "2026-09-01",
+          "isPartOf": { "@id": "https://buildwisemedia.com/#website" },
+          "about": { "@id": "https://buildwisemedia.com/#custom-ai-systems" },
+          "inLanguage": "en-US"
+        },
+        {
+          "@type": "Service",
+          "@id": "https://buildwisemedia.com/#custom-ai-systems",
+          "name": "Custom AI systems for owner-led companies",
+          "serviceType": "Custom AI system design, build, and improvement",
+          "description": "Buildwise Media starts with the bottleneck limiting growth, builds a custom system around it, tests it in the real work, and uses the evidence to decide what to build or upgrade next.",
+          "provider": { "@id": "https://buildwisemedia.com/#org" },
+          "areaServed": { "@type": "Country", "name": "United States" },
+          "audience": { "@type": "BusinessAudience", "audienceType": "Owner-led companies" }
+        }
+      ]
+    }
+  </script>
+  <style>
+    @font-face {
+      font-family: "Inter";
+      font-style: normal;
+      font-weight: 100 900;
+      font-display: swap;
+      src: url("/fonts/inter-variable-v1.woff2") format("woff2-variations");
+    }
 
-// SSR opt-in: L8 reads Astro.locals.metro (populated by middleware from cf-ipcity).
-// Unknown / missing → generic copy; known metro → personalized H2 + first mechanism.
-export const prerender = false;
+    :root {
+      color-scheme: light;
+      --ink: #101217;
+      --paper: #f4f3ee;
+      --white: #ffffff;
+      --muted: #656b76;
+      --line: #d7d6cf;
+      --yellow: #f0ff00;
+      --blue: #304bd6;
+      --blue-bright: #6f84ff;
+      --orange: #ff6847;
+      --orange-ink: #d94b20;
+      --mint: #27b899;
+      --night: #0c1017;
+      --night-2: #141a24;
+      --night-3: #202838;
+      --max: 1280px;
+      --gutter: clamp(20px, 4vw, 64px);
+      --display-section: clamp(3.2rem, 6vw, 6rem);
+      --display-supporting: clamp(2.9rem, 5vw, 5rem);
+      --display-decision: clamp(4rem, 8vw, 8rem);
+    }
 
-import BaseLayout from '../layouts/BaseLayout.astro';
-import canonical from '../data/canonical.json';
+    * { box-sizing: border-box; }
 
-import PoorFour from '../components/PoorFour.astro';
-import EightLayerSystem from '../components/EightLayerSystem.astro';
-import Sovereignty from '../components/Sovereignty.astro';
-import EarnBackCalculator from '../components/EarnBackCalculator.astro';
-import CostOfAssembly from '../components/CostOfAssembly.astro';
-import FAQ from '../components/FAQ.astro';
+    html {
+      background: var(--paper);
+      scroll-behavior: smooth;
+      scroll-padding-top: 92px;
+    }
 
-const title = "Custom AI Solutions for Service Businesses | Buildwise Media";
-const description = "Buildwise Media builds and runs a custom AI system for service businesses — installed in 30 days, owned by you. Start with a free Revenue Leak Map.";
+    body {
+      background: var(--paper);
+      color: var(--ink);
+      font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      font-size: 1.125rem;
+      margin: 0;
+      overflow-x: hidden;
+    }
 
-// L8 — Category-of-one mechanism set
-// Geo-personalization gate: Astro.locals.metro.known === true → metro-specific copy;
-// otherwise → generic "your market" copy. Strict-match gate naturally routes crawlers
-// (no cf-ipcity on most bots) to the search-canonical generic variant.
-const metro = Astro.locals.metro ?? { known: false, name: null, slug: null };
+    p,
+    li { text-wrap: pretty; }
 
-const dominanceMechanisms = [
-  {
-    name: metro.known && metro.name
-      ? `AI-search citation rank in ${metro.name}`
-      : 'AI-search citation rank',
-    body: metro.known && metro.name
-      ? `When buyers ask AI assistants who the best in your category is in ${metro.name}, the answer points at you. We train the underlying signals — schema, citations, structured proof — so the AI tools cite your business with confidence.`
-      : 'When buyers ask AI assistants who the best in your category is near them, the answer points at you. We train the underlying signals — schema, citations, structured proof — so the AI tools cite your business with confidence.',
-  },
-  {
-    name: 'Local-search dominance',
-    body: 'Service pages, citations, and business profile signals aligned around the exact search terms your buyers use. Not generic search visibility work — the specific phrases that lead to a booked job.',
-  },
-  {
-    name: 'Review velocity',
-    body: 'Happy clients turn into proof that compounds month over month — no manual asking, no scripts taped to dashboards. The system handles the request at the moment the work just landed.',
-  },
-  {
-    name: 'Neighborhood presence',
-    body: 'The signals that tell algorithms (and buyers) you are the default answer for this category in this market. The compound effect of everything above, measured weekly.',
-  },
-];
+    button,
+    a { font: inherit; }
 
-// L9 — Category-of-one: the four buyer signals that all converge on one answer.
-const dominanceSignals = [
-  { label: 'AI search', tone: 'cyan', visual: 'ai' },
-  { label: 'Local search', tone: 'green', visual: 'pin' },
-  { label: 'Reviews', tone: 'orange', visual: 'star' },
-  { label: 'Neighborhood', tone: 'yellow', visual: 'homes' },
-];
+    a { color: inherit; }
 
-// L9 — Proof tiles + headline
-const proofTiles = [
-  { label: 'Qualified-lead share lift · Measured', num: '3.2×' },
-  { label: 'Speed-to-lead · Attributed', num: '<5', unit: 'min' },
-  { label: 'Day-90 attribution · Modeled', num: 'Live' },
-];
+    :focus-visible {
+      outline: 3px solid var(--blue);
+      outline-offset: 4px;
+    }
 
-const commandMetrics = [
-  { label: 'Install window', value: '30d', trend: 'system live', tone: 'cyan' },
-  { label: 'Ownership', value: '100%', trend: 'client-held', tone: 'green' },
-  { label: 'Update path', value: 'select', trend: 'no upgrade fee', tone: 'yellow' },
-  { label: 'Owner load', value: '↓', trend: 'less chase', tone: 'orange' },
-];
+    .skip-link {
+      background: var(--yellow);
+      color: var(--ink);
+      left: 16px;
+      padding: 10px 14px;
+      position: fixed;
+      top: -80px;
+      z-index: 100;
+    }
 
-const leakRadar = [
-  { label: 'Your site', status: 'working for you', tone: 'cyan' },
-  { label: 'Calls + jobs', status: 'every lead tracked', tone: 'green' },
-  { label: 'Useful update', status: 'evaluated + selected', tone: 'yellow' },
-  { label: 'Weekly proof', status: 'what moved', tone: 'orange' },
-];
+    .skip-link:focus { top: 16px; }
 
-const weeklyProofRail = [
-  { label: 'Installed', value: '30d', tone: 'cyan' },
-  { label: 'Operated', value: 'weekly', tone: 'green' },
-  { label: 'Updated', value: 'when selected', tone: 'yellow' },
-  { label: 'Owned', value: 'by you', tone: 'orange' },
-];
+    .sr-only {
+      clip: rect(0 0 0 0);
+      clip-path: inset(50%);
+      height: 1px;
+      overflow: hidden;
+      position: absolute;
+      white-space: nowrap;
+      width: 1px;
+    }
 
-const signalQueue = [
-  { label: 'Your domain', value: 'website + tracking live', tone: 'cyan' },
-  { label: 'Your data', value: 'follow-up + calls stitched', tone: 'green' },
-  { label: 'Selected update', value: 'deployed after review', tone: 'yellow' },
-];
+    .site-nav {
+      align-items: center;
+      background: var(--paper);
+      border-bottom: 1px solid var(--line);
+      display: flex;
+      justify-content: space-between;
+      min-height: 78px;
+      padding: 14px 0;
+      position: sticky;
+      top: 0;
+      z-index: 40;
+    }
 
-const installSteps = [
-  {
-    day: 'Day 0',
-    label: 'Your starting point',
-    metric: 'Where you stand today',
-    fill: '18%',
-    body: 'We map where leads and revenue are slipping right now, and agree on exactly where you start. That way every win is easy to see.',
-  },
-  {
-    day: 'Day 7',
-    label: 'Your first move',
-    metric: 'First fix in motion',
-    fill: '54%',
-    body: 'We pick the one change that moves the needle most, set it up for you, and put your growth behind it first.',
-  },
-  {
-    day: 'Day 30',
-    label: 'Live',
-    metric: 'Up and running',
-    fill: '100%',
-    body: 'Your system is running, results start landing on your dashboard, and you get one simple update a week. No work on your end.',
-  },
-];
+    .nav-inner {
+      align-items: center;
+      display: flex;
+      justify-content: space-between;
+      margin: 0 auto;
+      max-width: var(--max);
+      padding-left: var(--gutter);
+      padding-right: var(--gutter);
+      width: 100%;
+    }
 
-const valueEquation = [
-  {
-    label: 'Installed',
-    metric: '30d',
-    title: 'The system goes into your business.',
-    body: 'Your domain, data, accounts, and workflows wired into one system you own.',
-    tone: 'green',
-  },
-  {
-    label: 'Operated',
-    metric: 'weekly',
-    title: 'We run the week for you.',
-    body: 'We watch the signals, clear the gates, and fix what is underperforming before the month drifts.',
-    tone: 'cyan',
-  },
-  {
-    label: 'Owned',
-    metric: '100%',
-    title: 'The asset stays with you.',
-    body: 'Code, data, ad accounts, customer list, and workflows remain client-owned.',
-    tone: 'yellow',
-  },
-  {
-    label: 'Improving',
-    metric: 'select',
-    title: 'Useful updates roll in.',
-    body: 'When Buildwise selects an improvement, it rolls into the system without a platform reset or upgrade charge.',
-    tone: 'orange',
-  },
-];
+    .brand {
+      align-items: center;
+      display: inline-flex;
+      gap: 12px;
+      text-decoration: none;
+    }
 
-const dossierSignals = [
-  { label: 'Market rank', value: 'search + AI answer visibility', score: 62, cue: 'who appears before you' },
-  { label: 'Revenue leaks', value: 'calls, forms, quotes, follow-up', score: 78, cue: 'where buyers stall' },
-  { label: 'Proof gaps', value: 'reviews, reputation, citations', score: 44, cue: 'where trust thins out' },
-  { label: 'First move', value: 'highest-value layer', score: 91, cue: 'what should move first' },
-];
+    .brand img {
+      background: var(--night);
+      border-radius: 12px;
+      display: block;
+      flex: 0 0 auto;
+      height: 48px;
+      object-fit: contain;
+      padding: 5px;
+      width: 48px;
+    }
 
-const contractProofs = [
-  { group: 'Capability', clause: 'Selected updates', title: 'Capability updates', body: 'When Buildwise selects an improvement for your system, it rolls in without a re-platforming or upgrade charge.', tone: 'cyan', visual: 'inheritance' },
-  { group: 'Control', clause: 'Quality review', title: 'Review appropriate to the work', body: 'Work is reviewed by the Buildwise team, automated review systems, or both. High-stakes work can be escalated to the team.', tone: 'green', visual: 'gate' },
-  { group: 'Ownership', clause: 'Client assets', title: 'Sovereignty', body: 'You own code, data, ad accounts, customer list, and built assets.', tone: 'yellow', visual: 'sovereignty' },
-  { group: 'Economics', clause: 'Measurement', title: 'Measurement clarity', body: 'The signed work order defines the targets, measurement window, and attribution model.', tone: 'orange', visual: 'roi' },
-  { group: 'Portability', clause: 'No lock-in', title: 'No vendor lock-in', body: 'The system is portable across models, tools, and channels.', tone: 'cyan', visual: 'portability' },
-  { group: 'Exit rights', clause: 'After Day 90', title: 'True m-t-m after Day 90', body: 'No clawback. No exit fee. No long-term penalty.', tone: 'green', visual: 'exit' },
-];
+    .brand span {
+      font-size: 0.9rem;
+      font-weight: 760;
+      letter-spacing: -0.02em;
+    }
 
-const attributionRules = [
-  { label: 'Counts', body: 'Booked work tied to an audited touchpoint in the dashboard.' },
-  { label: 'Does not count', body: 'Existing referrals, old search traffic, or outside channels we cannot trace.' },
-  { label: 'Why it matters', body: 'The math stays conservative so trust does not depend on our storytelling.' },
-];
+    .nav-links {
+      align-items: center;
+      display: flex;
+      gap: clamp(18px, 3vw, 36px);
+    }
 
-const entryPaths = [
-  {
-    name: 'Ascend Pilot',
-    price: canonical.products.pilot.price.oneshot_display,
-    label: 'Proof sprint',
-    body: 'A 45-day paid sprint that proves the highest-value layer before a full operating relationship.',
-    href: '/pricing#pilot',
-    tone: 'cyan',
-  },
-  {
-    name: 'Ascend',
-    price: `${canonical.products.ascend.price.oneshot_display} + ${canonical.products.ascend.price.recurring_display}`,
-    label: 'Main system',
-    body: 'The owned AI growth system installed in your business and run for you every week by our team.',
-    href: '/pricing#ascend',
-    tone: 'yellow',
-  },
-  {
-    name: 'Ascend Pro',
-    price: `${canonical.products.ascend_pro.price.oneshot_display} + ${canonical.products.ascend_pro.price.recurring_display}`,
-    label: 'Expansion system',
-    body: 'For multi-location operators and category leaders who need deeper AI agents, RevOps, and territory strategy.',
-    href: '/pricing#pro',
-    tone: 'green',
-  },
-];
+    .mobile-jumps { display: none; }
 
-const objections = [
-  {
-    tone: 'cyan',
-    q: 'We were burned by an agency before.',
-    a: 'Everything is built on your domain, your accounts, your data. You keep all of it, you see every move, and you can walk away with the whole system. No mystery dashboard.',
-  },
-  {
-    tone: 'green',
-    q: "I don't have time to manage another vendor.",
-    a: "That's the whole point. You approve the few calls that matter. We run the weekly work for you — nothing lands back on your plate.",
-  },
-  {
-    tone: 'orange',
-    q: 'AI sounds risky in a real business.',
-    a: 'AI does the heavy lifting, with review appropriate to the work by the Buildwise team, automated checks, or both. High-stakes buyer-facing work can be escalated to the team.',
-  },
-  {
-    tone: 'yellow',
-    q: 'The math has to make sense.',
-    a: "Our pricing is public, the targets and measurement rules are written into the work order, and we capture where you're starting before we ever claim a win.",
-  },
-];
+    .nav-links a {
+      align-items: center;
+      color: #4e545e;
+      display: inline-flex;
+      font-size: 0.84rem;
+      min-height: 24px;
+      text-decoration: none;
+    }
 
-// L11 — FAQ (8 questions; "Where do you operate?" replaces "Why Atlanta?" for national broadcast)
-const faqs = [
-  {
-    q: 'What does Buildwise Media actually do?',
-    a: 'We install and run an 8-layer revenue operating system for your service business — visibility, conversion, speed-to-lead, sales ops, reputation, paid media, reporting, and strategy operated as one engine. The website is the visible layer. Behind it, our AI system runs the marketing operation 24/7 with quality review appropriate to the work. We treat marketing as operations: investment in, qualified revenue out, verified weekly.',
-  },
-  {
-    q: 'Who is Buildwise Media for?',
-    a: 'Service-business owners who are already generating real revenue and want to stop running their marketing on hope. Owners who want a system that runs whether they watch it or not tend to thrive. Owners looking for a savior, or hoping for comfort, tend to bounce off our process — and that is the right outcome for both of us.',
-  },
-  {
-    q: 'How fast does the system go live?',
-    a: 'Inside 30 days the system is live, the dashboard is open, and the first proof sprint is aimed at the leak with the fastest path to cash. The full install runs through the 45-day proof window.',
-  },
-  {
-    q: 'How do you measure success?',
-    a: 'We start with a written baseline. From there, the dashboard tracks spend, source, follow-up, booked work, and the next move. The signed work order defines the targets, measurement window, and attribution model.',
-  },
-  {
-    q: 'Are performance targets guaranteed?',
-    a: 'No. Targets guide the work and are measured against the captured baseline, but business results depend on factors outside any one system. The agreement defines what is measured and how; it does not guarantee a particular result.',
-  },
-  {
-    q: 'Is there a long-term contract?',
-    a: 'No long-term lock-in. The paid Pilot runs 45 days. The 90-day initial operating period starts on the Ascend handoff. After Day 90, the system is true month-to-month with no penalty, no clawback, no exit fee. We earn the operating fee every month or we do not.',
-  },
-  {
-    q: 'Where do you operate?',
-    a: 'We serve service businesses across the United States. The system installs the same way regardless of metro — local-search depth gets tuned to your specific market during install. Our team is based in Atlanta and we travel to clients on the install when on-site work moves the build forward faster.',
-  },
-  {
-    q: 'How do I own my data?',
-    a: 'Everything we build, you own. The code lives in your repository. The customer list lives in your follow-up system. The ad accounts are in your business. The custom AI agents are configured against your workflows. If you leave, you take the whole system. We walk empty-handed. That ownership is in the agreement as a locked clause.',
-  },
-];
+    .nav-links a:hover { color: var(--ink); }
 
-// JSON-LD
-const serviceSchema = {
-  '@context': 'https://schema.org',
-  '@type': 'Service',
-  '@id': 'https://buildwisemedia.com/#service-ascend',
-  name: 'Ascend',
-  serviceType: 'Custom AI systems for home service businesses',
-  provider: { '@id': 'https://buildwisemedia.com/#org' },
-  areaServed: { '@type': 'Country', name: 'United States' },
-  description:
-    'Ascend installs a custom AI system inside owner-led home service businesses. Buildwise operates the system, the client owns the code, data, ad accounts, and customer list, and the math is visible from Day 1.',
-  url: 'https://buildwisemedia.com/services/ascend',
-  hasOfferCatalog: {
-    '@type': 'OfferCatalog',
-    name: 'Ascend tiers',
-    itemListElement: [
-      {
-        '@type': 'Offer',
-        name: canonical.products.pilot.name,
-        price: canonical.products.pilot.price.oneshot,
-        priceCurrency: 'USD',
-        description: 'Ascend Pilot — 45-day proof sprint. One-time investment. Converts to Ascend with install fee waived.',
-      },
-      {
-        '@type': 'Offer',
-        name: canonical.products.ascend.name,
-        price: canonical.products.ascend.price.recurring,
-        priceCurrency: 'USD',
-        description: 'Ascend — full 8-layer revenue operating system installed and operated. Month-to-month after day 90.',
-      },
-      {
-        '@type': 'Offer',
-        name: canonical.products.ascend_pro.name,
-        price: canonical.products.ascend_pro.price.recurring,
-        priceCurrency: 'USD',
-        description: 'Ascend Pro — multi-location operator build with custom AI agents, RevOps, and territorial cap.',
-      },
-    ],
-  },
-};
+    .nav-links .cta { color: var(--white); }
+    .nav-links .cta:hover { color: var(--ink); }
 
-const doneForYouSystemServiceSchema = {
-  '@context': 'https://schema.org',
-  '@type': 'Service',
-  '@id': 'https://buildwisemedia.com/#service-done-for-you-system',
-  name: 'Done-for-you custom AI revenue system',
-  serviceType: 'Custom AI system installation and weekly operation',
-  provider: { '@id': 'https://buildwisemedia.com/#org' },
-  areaServed: { '@type': 'Country', name: 'United States' },
-  description:
-    'Buildwise installs and operates the client-owned system for visibility, follow-up, reviews, reporting, and weekly improvement with quality review appropriate to each buyer-facing change.',
-  url: 'https://buildwisemedia.com/system',
-};
+    .cta {
+      align-items: center;
+      background: var(--ink);
+      border: 2px solid var(--ink);
+      border-radius: 999px;
+      color: var(--white);
+      display: inline-flex;
+      font-size: 0.9rem;
+      font-weight: 760;
+      gap: 12px;
+      justify-content: center;
+      min-height: 48px;
+      padding: 12px 18px;
+      text-decoration: none;
+      transition: background 180ms ease, color 180ms ease, transform 180ms ease;
+    }
 
-const breadcrumb = {
-  '@context': 'https://schema.org',
-  '@type': 'BreadcrumbList',
-  itemListElement: [
-    { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://buildwisemedia.com/' },
-  ],
-};
+    .cta::after {
+      content: "↗";
+      font-size: 1.05em;
+    }
 
-const faqSchema = {
-  '@context': 'https://schema.org',
-  '@type': 'FAQPage',
-  '@id': 'https://buildwisemedia.com/#faq-home',
-  mainEntity: faqs.map((f) => ({
-    '@type': 'Question',
-    name: f.q,
-    acceptedAnswer: { '@type': 'Answer', text: f.a },
-  })),
-};
----
-<BaseLayout
-  title={title}
-  description={description}
-  jsonLd={[serviceSchema, doneForYouSystemServiceSchema, breadcrumb, faqSchema]}
->
+    .cta:hover {
+      background: var(--yellow);
+      color: var(--ink);
+      transform: translateY(-2px);
+    }
 
-  <!-- ============================================ -->
-  <!-- L1 · Hero                                    -->
-  <!-- ============================================ -->
-  <section class="home-hero" aria-labelledby="home-hero-title">
-    <div class="container hero-grid">
-      <div class="hero-copy">
-        <p class="eyebrow">Custom AI for service businesses</p>
-        <!-- @bwm-exp-slot: hero-headline — MVT-tested H1; bandit patches (PROJ-AUTO-MVT-001) target this slot's selector -->
-        <h1 id="home-hero-title" class="h-hero" data-bwm-exp-slot="hero-headline">Tired of being the bottleneck in your own business?</h1>
-        <p class="hero-sub">
-          We build the systems that clear the path for your growth.
-        </p>
-        <div class="hero-actions" role="group" aria-label="Primary actions">
-          <!-- @bwm-exp-slot: hero-cta — primary conversion CTA (label/destination experiments) -->
-          <a href="/book" class="cta" data-cta-source="home-hero" data-bwm-exp-slot="hero-cta">I'm ready to grow<span class="cta-arrow" aria-hidden="true">&rarr;</span></a>
-          <a href="/system" class="cta-ghost" data-cta-source="home-hero-system">See the System</a>
-        </div>
-        <ul class="hero-proof-strip" aria-label="Ascend proof points">
-          <li><strong>90 days</strong><span>first system live</span></li>
-          <li><strong>Yours</strong><span>domain · data · accounts</span></li>
-          <li><strong>Selected</strong><span>updates without upgrade fees</span></li>
-        </ul>
+    .cta.secondary {
+      background: transparent;
+      color: var(--ink);
+    }
+
+    .cta.secondary::after { content: "↓"; }
+
+    .cta.secondary:hover {
+      background: var(--ink);
+      color: var(--white);
+    }
+
+    .nav-cta {
+      height: 44px;
+      min-height: 44px;
+      padding: 9px 15px;
+    }
+
+    .eyebrow {
+      color: var(--blue);
+      font-size: 0.74rem;
+      font-weight: 820;
+      letter-spacing: 0.14em;
+      margin: 0;
+      text-transform: uppercase;
+    }
+
+    .dark .eyebrow { color: var(--blue-bright); }
+
+    .section-shell {
+      margin: 0 auto;
+      max-width: var(--max);
+      padding-left: var(--gutter);
+      padding-right: var(--gutter);
+    }
+
+    .hero {
+      min-height: calc(100vh - 112px);
+      padding: clamp(38px, 4.5vw, 66px) 0 clamp(48px, 5.5vw, 76px);
+    }
+
+    .hero-grid {
+      align-items: center;
+      display: grid;
+      gap: clamp(36px, 4.5vw, 68px);
+      grid-template-columns: minmax(0, 0.94fr) minmax(440px, 1.06fr);
+    }
+
+    .hero-copy h1 {
+      font-size: clamp(3.95rem, 6.15vw, 6.35rem);
+      font-weight: 570;
+      letter-spacing: -0.06em;
+      line-height: 0.88;
+      margin: 18px 0 22px;
+      max-width: 9ch;
+    }
+
+    .hero-copy > .eyebrow {
+      font-size: 0.82rem;
+      letter-spacing: 0.12em;
+    }
+
+    .hero-copy h1 em {
+      color: var(--orange-ink);
+      font-style: normal;
+    }
+
+    .hero-support {
+      color: #424955;
+      font-size: clamp(1.16rem, 1.45vw, 1.38rem);
+      line-height: 1.43;
+      margin: 0;
+      max-width: 39rem;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 26px;
+    }
+
+    .hero-proofline {
+      align-items: center;
+      color: var(--muted);
+      display: flex;
+      font-size: 1.125rem;
+      gap: 10px;
+      margin: 18px 0 0;
+    }
+
+    .hero-proofline::before {
+      background: var(--mint);
+      border-radius: 50%;
+      content: "";
+      height: 9px;
+      width: 9px;
+    }
+
+    .mobile-offer-line { display: none; }
+
+    .system-visual {
+      background: var(--night);
+      border-top: 5px solid var(--yellow);
+      color: var(--white);
+      min-height: 540px;
+      overflow: hidden;
+      padding: clamp(26px, 3.4vw, 44px);
+      position: relative;
+      scroll-margin-top: 96px;
+    }
+
+    .system-visual :focus-visible {
+      outline-color: var(--yellow);
+    }
+
+    .section.dark :focus-visible,
+    .final-cta :focus-visible,
+    .evidence-receipt :focus-visible {
+      outline-color: var(--yellow);
+    }
+
+    .visual-topline {
+      align-items: center;
+      display: flex;
+      justify-content: space-between;
+      position: relative;
+      z-index: 2;
+    }
+
+    .visual-topline span:first-child {
+      color: #aeb6c5;
+      font-size: 0.72rem;
+      font-weight: 780;
+      letter-spacing: 0.13em;
+      text-transform: uppercase;
+    }
+
+    .example-range {
+      color: #98a2b4;
+      font-size: 0.72rem;
+      font-weight: 780;
+      letter-spacing: 0.1em;
+      position: relative;
+      text-transform: uppercase;
+      z-index: 3;
+    }
+
+    .system-title {
+      font-size: clamp(2rem, 3.2vw, 3.25rem);
+      font-weight: 560;
+      letter-spacing: -0.05em;
+      line-height: 1;
+      margin: 34px 0 0;
+      max-width: 11ch;
+      position: relative;
+      z-index: 2;
+    }
+
+    .scenario-controls {
+      display: grid;
+      gap: 8px;
+      grid-template-columns: repeat(4, 1fr);
+      margin: 26px 0 22px;
+      position: relative;
+      z-index: 2;
+    }
+
+    .scenario-button {
+      background: transparent;
+      border: 0;
+      border-bottom: 2px solid #394252;
+      color: #aeb6c5;
+      cursor: pointer;
+      font-size: 0.94rem;
+      font-weight: 700;
+      min-height: 44px;
+      padding: 9px 8px;
+      transition: background 160ms ease, color 160ms ease, border 160ms ease;
+      white-space: nowrap;
+    }
+
+    .scenario-button:hover {
+      background: var(--night-2);
+      border-color: var(--blue-bright);
+      color: var(--white);
+    }
+
+    .scenario-button[aria-selected="true"] {
+      background: transparent;
+      border-color: var(--yellow);
+      color: var(--white);
+    }
+
+    .scenario-copy {
+      opacity: 1;
+      transform: translateY(0);
+      transition: opacity 180ms ease, transform 180ms ease;
+    }
+
+    .system-visual.is-changing .scenario-copy {
+      opacity: 0;
+      transform: translateY(6px);
+    }
+
+    .system-map {
+      align-items: stretch;
+      display: grid;
+      gap: 15px;
+      grid-template-areas:
+        "friction arrow system"
+        ". . outcomes"
+        "note note note";
+      grid-template-columns: minmax(0, 1fr) 42px minmax(0, 1.08fr);
+      position: relative;
+      z-index: 2;
+    }
+
+    .map-node {
+      background: var(--night-2);
+      border: 1px solid #354052;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      min-height: 116px;
+      padding: 18px;
+      position: relative;
+    }
+
+    .map-node small {
+      color: #8792a5;
+      display: block;
+      font-size: 0.68rem;
+      font-weight: 760;
+      letter-spacing: 0.1em;
+      margin-bottom: 10px;
+      text-transform: uppercase;
+    }
+
+    .map-node strong {
+      display: block;
+      font-size: 1.08rem;
+      font-weight: 650;
+      line-height: 1.25;
+    }
+
+    .map-node.friction {
+      border-color: var(--orange);
+      box-shadow: inset 5px 0 0 var(--orange);
+      grid-area: friction;
+    }
+
+    .map-node.system {
+      background: var(--yellow);
+      border-color: var(--yellow);
+      color: var(--ink);
+      grid-area: system;
+    }
+
+    .map-node.system small { color: #555b00; }
+
+    .map-arrow {
+      align-items: center;
+      display: flex;
+      grid-area: arrow;
+      justify-content: center;
+      position: relative;
+    }
+
+    .map-arrow::before {
+      background: #465165;
+      content: "";
+      height: 2px;
+      width: 100%;
+    }
+
+    .map-arrow::after {
+      border-bottom: 5px solid transparent;
+      border-left: 7px solid #65728a;
+      border-top: 5px solid transparent;
+      content: "";
+      position: absolute;
+      right: 0;
+    }
+
+    .map-arrow i {
+      animation: signal-x 1.45s ease-in-out 3;
+      animation-fill-mode: both;
+      background: var(--yellow);
+      border-radius: 50%;
+      height: 8px;
+      left: 0;
+      position: absolute;
+      width: 8px;
+    }
+
+    .map-outcomes {
+      border-top: 1px solid #7f8920;
+      display: grid;
+      gap: 6px;
+      grid-area: outcomes;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      padding-top: 10px;
+      position: relative;
+    }
+
+    .map-outcomes::before {
+      background: var(--yellow);
+      content: "";
+      height: 16px;
+      left: 50%;
+      position: absolute;
+      top: -16px;
+      width: 1px;
+    }
+
+    .map-outcomes span {
+      align-items: center;
+      border-bottom: 1px solid #465165;
+      color: #cfd5df;
+      display: flex;
+      font-size: 1rem;
+      gap: 8px;
+      padding: 11px 2px;
+    }
+
+    .map-outcomes span::before {
+      background: var(--blue-bright);
+      border-radius: 50%;
+      content: "";
+      flex: 0 0 auto;
+      height: 7px;
+      width: 7px;
+    }
+
+    .visual-note {
+      color: #98a2b4;
+      font-size: 1.125rem;
+      grid-area: note;
+      line-height: 1.45;
+      margin: 18px 0 0;
+      max-width: 35rem;
+      padding-bottom: 10px;
+      position: relative;
+      z-index: 2;
+    }
+
+    .evidence-return {
+      align-items: center;
+      color: var(--yellow);
+      display: inline-flex;
+      font-size: 0.875rem;
+      font-weight: 720;
+      min-height: 44px;
+      position: relative;
+      text-decoration-color: #7a8220;
+      text-underline-offset: 4px;
+      z-index: 2;
+    }
+
+    .section {
+      border-top: 1px solid var(--line);
+      padding: clamp(86px, 11vw, 154px) 0;
+    }
+
+    #recognition { padding-top: clamp(72px, 8vw, 110px); }
+    #first-build,
+    #fit { padding-top: clamp(72px, 8vw, 110px); }
+
+    .offer-bridge {
+      background: var(--white);
+      border: 1px solid var(--line);
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      margin: clamp(70px, 9vw, 118px) 0 0;
+    }
+
+    .offer-step {
+      min-height: 164px;
+      padding: 26px 28px;
+      position: relative;
+    }
+
+    .offer-step + .offer-step { border-left: 1px solid var(--line); }
+
+    .offer-step small {
+      color: var(--blue);
+      display: block;
+      font-size: 0.72rem;
+      font-weight: 820;
+      letter-spacing: 0.12em;
+      margin-bottom: 18px;
+      text-transform: uppercase;
+    }
+
+    .offer-step small b {
+      color: var(--ink);
+      font-weight: 850;
+      margin-right: 8px;
+    }
+
+    .offer-step strong {
+      display: block;
+      font-size: clamp(1.25rem, 1.8vw, 1.65rem);
+      font-weight: 620;
+      letter-spacing: -0.035em;
+      line-height: 1.18;
+    }
+
+    .offer-step p {
+      color: var(--muted);
+      font-size: 1.08rem;
+      line-height: 1.5;
+      margin: 10px 0 0;
+    }
+
+    .offer-step::after {
+      background: var(--blue);
+      bottom: 0;
+      content: "";
+      height: 5px;
+      left: 0;
+      position: absolute;
+      width: 100%;
+    }
+
+    .offer-step:nth-child(2)::after { background: var(--orange); }
+    .offer-step:nth-child(3)::after { background: var(--mint); }
+
+    .section.dark {
+      background: var(--night);
+      border-color: #2e3746;
+      color: var(--white);
+    }
+
+    #see-the-system {
+      border-image: linear-gradient(90deg, var(--blue) 0 25%, var(--orange) 25% 50%, var(--mint) 50% 75%, var(--yellow) 75% 100%) 1;
+      border-top-width: 8px;
+      padding-bottom: clamp(72px, 8vw, 110px);
+    }
+
+    .section-head {
+      display: grid;
+      gap: 24px;
+      grid-template-columns: minmax(0, 0.95fr) minmax(340px, 0.75fr);
+      justify-content: space-between;
+      margin-bottom: clamp(48px, 7vw, 92px);
+    }
+
+    .section-head h2 {
+      font-size: var(--display-section);
+      font-weight: 550;
+      letter-spacing: -0.065em;
+      line-height: 0.92;
+      margin: 16px 0 0;
+      max-width: 11ch;
+    }
+
+    .section-head p:last-child {
+      align-self: end;
+      color: var(--muted);
+      font-size: clamp(1.12rem, 1.55vw, 1.32rem);
+      line-height: 1.55;
+      margin: 0;
+      max-width: 38rem;
+    }
+
+    .dark .section-head p:last-child { color: #b4bcc9; }
+
+    #recognition .section-head h2,
+    #fit .section-head h2 {
+      font-size: var(--display-supporting);
+    }
+
+    .moment-list {
+      border-top: 1px solid var(--ink);
+    }
+
+    .moment-row {
+      align-items: center;
+      border-bottom: 1px solid var(--line);
+      display: grid;
+      gap: 24px;
+      grid-template-columns: 56px minmax(0, 1fr) minmax(210px, 0.5fr);
+      min-height: 130px;
+      padding: 22px 0;
+    }
+
+    .moment-number {
+      align-items: center;
+      background: var(--ink);
+      color: var(--white);
+      display: flex;
+      font-size: 0.76rem;
+      font-weight: 800;
+      height: 36px;
+      justify-content: center;
+      width: 36px;
+    }
+
+    .moment-row strong {
+      font-size: clamp(1.35rem, 2.1vw, 2.05rem);
+      font-weight: 550;
+      letter-spacing: -0.035em;
+      line-height: 1.18;
+    }
+
+    .moment-state {
+      align-items: center;
+      color: #555c67;
+      display: flex;
+      font-size: 0.82rem;
+      gap: 12px;
+      justify-self: end;
+    }
+
+    .moment-state::before {
+      background: var(--blue);
+      content: "";
+      height: 3px;
+      width: 54px;
+    }
+
+    .moment-row:nth-child(2) .moment-state::before { background: var(--blue); }
+    .moment-row:nth-child(3) .moment-state::before { background: var(--orange); }
+    .moment-row:nth-child(4) .moment-state::before { background: var(--mint); }
+
+    .owner-line {
+      background: var(--yellow);
+      color: var(--ink);
+      font-size: clamp(1.45rem, 2.8vw, 2.6rem);
+      font-weight: 580;
+      letter-spacing: -0.045em;
+      line-height: 1.15;
+      margin-top: 40px;
+      padding: clamp(24px, 3.4vw, 42px);
+    }
+
+    .systems-intro {
+      align-items: end;
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 40px;
+    }
+
+    .systems-intro h2 {
+      font-size: var(--display-section);
+      font-weight: 550;
+      letter-spacing: -0.067em;
+      line-height: 0.9;
+      margin: 18px 0 0;
+      max-width: 9ch;
+    }
+
+    .systems-intro p:last-child {
+      color: #b4bcc9;
+      font-size: 1.16rem;
+      line-height: 1.55;
+      margin: 0;
+      max-width: 34rem;
+    }
+
+    .system-bands {
+      border-top: 1px solid #394252;
+    }
+
+    .system-band {
+      align-items: center;
+      border-bottom: 1px solid #394252;
+      display: grid;
+      gap: clamp(18px, 4vw, 54px);
+      grid-template-columns: 72px minmax(180px, 0.42fr) minmax(0, 0.8fr) minmax(210px, 0.68fr);
+      min-height: 138px;
+      overflow: hidden;
+      padding: 24px 0 24px 18px;
+      position: relative;
+    }
+
+    .system-band::before {
+      background: var(--blue);
+      content: "";
+      height: 100%;
+      left: 0;
+      position: absolute;
+      top: 0;
+      transform: scaleY(1);
+      transform-origin: bottom;
+      transition: transform 260ms ease;
+      width: 7px;
+    }
+
+    .system-band:nth-child(2)::before { background: var(--orange); }
+    .system-band:nth-child(3)::before { background: var(--mint); }
+    .system-band:nth-child(4)::before { background: var(--yellow); }
+    .system-band:hover::before { transform: scaleY(0.72); }
+
+    .system-band .index {
+      color: #737f91;
+      font-size: 0.76rem;
+      font-weight: 760;
+      letter-spacing: 0.12em;
+    }
+
+    .system-band h3 {
+      font-size: clamp(1.55rem, 2.4vw, 2.35rem);
+      font-weight: 560;
+      letter-spacing: -0.04em;
+      margin: 0;
+    }
+
+    .system-band p {
+      color: #b4bcc9;
+      font-size: 1.125rem;
+      line-height: 1.5;
+      margin: 0;
+    }
+
+    .band-flow {
+      align-items: center;
+      display: grid;
+      gap: 10px;
+      grid-template-columns: minmax(0, 1fr) 14px minmax(0, 1fr) 14px minmax(0, 1fr);
+      min-width: 0;
+    }
+
+    .band-flow span {
+      align-items: center;
+      background: var(--night-3);
+      border: 1px solid #4b576b;
+      color: #d5dbe5;
+      display: flex;
+      font-size: clamp(0.84rem, 1.05vw, 0.95rem);
+      justify-content: center;
+      line-height: 1.25;
+      min-height: 60px;
+      min-width: 0;
+      padding: 12px 8px;
+      text-align: center;
+    }
+
+    .band-flow i {
+      color: var(--blue-bright);
+      font-size: 0.86rem;
+      font-style: normal;
+      text-align: center;
+    }
+
+    .system-band:nth-child(2) .band-flow i { color: var(--orange); }
+    .system-band:nth-child(3) .band-flow i { color: var(--mint); }
+    .system-band:nth-child(4) .band-flow i { color: var(--yellow); }
+
+    .flow-operations span:nth-child(3) {
+      border-radius: 14px;
+      border-color: var(--orange);
+    }
+
+    .flow-revenue span:nth-child(3) {
+      background: #1b2341;
+      border-color: var(--blue-bright);
+    }
+
+    .flow-decisions span:nth-child(3) {
+      background: #243128;
+      border-color: var(--mint);
+    }
+
+    .flow-control span:nth-child(3) {
+      background: var(--yellow);
+      border-color: var(--yellow);
+      color: var(--ink);
+      font-weight: 760;
+    }
+
+    .evidence-standard {
+      border-bottom: 1px solid #394252;
+      border-top: 1px solid #394252;
+      display: block;
+      margin-top: 52px;
+    }
+
+    #evidence-standard { scroll-margin-top: 96px; }
+
+    .evidence-premise {
+      color: #c1c8d3;
+      font-size: 1.125rem;
+      line-height: 1.5;
+      margin: 52px 0 -30px;
+      max-width: 52rem;
+    }
+
+    .evidence-lead,
+    .evidence-item {
+      min-height: 164px;
+      padding: 26px 26px 26px 0;
+    }
+
+    .evidence-lead {
+      color: var(--white);
+      padding-right: 34px;
+    }
+
+    .evidence-lead small,
+    .evidence-item small {
+      display: block;
+      font-size: 0.7rem;
+      font-weight: 820;
+      letter-spacing: 0.11em;
+      margin-bottom: 16px;
+      text-transform: uppercase;
+    }
+
+    .evidence-lead strong {
+      display: block;
+      font-size: 1.55rem;
+      letter-spacing: -0.04em;
+      line-height: 1.15;
+    }
+
+    .evidence-lead p {
+      color: #c1c8d3;
+      font-size: 1.08rem;
+      line-height: 1.48;
+      margin: 14px 0 0;
+      max-width: 58rem;
+    }
+
+    .evidence-item {
+      border-left: 1px solid #394252;
+      padding-left: 26px;
+    }
+
+    .evidence-item small { color: var(--blue-bright); }
+    .evidence-item:nth-child(3) small { color: var(--orange); }
+    .evidence-item:nth-child(4) small { color: var(--mint); }
+
+    .evidence-item p {
+      color: #c1c8d3;
+      font-size: 1.08rem;
+      line-height: 1.48;
+      margin: 0;
+    }
+
+    .proof-fact {
+      border-left: 4px solid var(--yellow);
+      color: #c1c8d3;
+      font-size: 1.125rem;
+      line-height: 1.5;
+      margin: 34px 0 44px;
+      max-width: 66rem;
+      padding: 4px 0 4px 20px;
+    }
+
+    .proof-fact .eyebrow {
+      color: var(--yellow);
+      margin: 0 0 10px;
+    }
+
+    .proof-fact p:last-child {
+      margin: 0;
+    }
+
+    .proof-fact-lead {
+      color: var(--white);
+      font-size: clamp(1.45rem, 2.4vw, 2rem);
+      font-weight: 580;
+      letter-spacing: -0.035em;
+      line-height: 1.2;
+      margin: 0 0 12px;
+      max-width: 34ch;
+    }
+
+    .proof-fact-detail {
+      margin: 0;
+      max-width: 64rem;
+    }
+
+    .proof-fact-grid {
+      display: grid;
+      gap: 1px;
+      grid-template-columns: repeat(3, 1fr);
+      margin-top: 22px;
+      max-width: 72rem;
+    }
+
+    .proof-fact-grid p {
+      background: #171d28;
+      border-top: 3px solid var(--blue-bright);
+      margin: 0;
+      min-height: 148px;
+      padding: 20px;
+    }
+
+    .proof-fact-grid p:nth-child(2) { border-color: var(--orange); }
+    .proof-fact-grid p:nth-child(3) { border-color: var(--mint); }
+
+    .proof-fact-grid small {
+      color: #aeb6c5;
+      display: block;
+      font-size: 0.7rem;
+      font-weight: 820;
+      letter-spacing: 0.11em;
+      margin-bottom: 10px;
+      text-transform: uppercase;
+    }
+
+    .proof-fact-grid em {
+      color: #8f9aab;
+      display: block;
+      font-size: 0.74rem;
+      font-style: normal;
+      font-weight: 720;
+      letter-spacing: 0.06em;
+      margin-top: 14px;
+      text-transform: uppercase;
+    }
+
+    .proof-fact-grid span {
+      color: #d8dde6;
+      font-size: 1.03rem;
+      line-height: 1.45;
+    }
+
+    .proof-fact-tail {
+      color: #c1c8d3;
+      margin: 18px 0 0;
+    }
+
+    .ownership-note {
+      border-top: 1px solid #394252;
+      color: #c1c8d3;
+      font-size: 1rem;
+      line-height: 1.5;
+      margin: 28px 0 0;
+      padding-top: 18px;
+    }
+
+    .evidence-receipt {
+      border: 1px solid #394252;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      margin-top: 22px;
+      scroll-margin-top: 96px;
+    }
+
+    .receipt-title,
+    .receipt-item {
+      margin: 0;
+      min-height: 112px;
+      padding: 20px;
+    }
+
+    .receipt-title {
+      align-items: center;
+      background: var(--night-3);
+      display: flex;
+      gap: 18px;
+      grid-column: 1 / -1;
+      justify-content: space-between;
+      min-height: 0;
+      padding: 16px 20px;
+    }
+
+    .receipt-heading {
+      flex: 0 0 auto;
+    }
+
+    .receipt-sync-note {
+      align-items: center;
+      color: var(--yellow);
+      display: flex;
+      font-size: 0.875rem;
+      font-weight: 650;
+      justify-content: flex-end;
+      letter-spacing: 0.01em;
+      margin-bottom: 7px;
+      min-height: 44px;
+      text-align: right;
+      text-decoration-color: currentColor;
+      text-underline-offset: 3px;
+    }
+
+    .receipt-sync-below {
+      justify-content: flex-start;
+      margin: 10px 0 0;
+      text-align: left;
+      width: fit-content;
+    }
+
+    .receipt-title small,
+    .receipt-item small {
+      color: var(--blue-bright);
+      display: block;
+      font-size: 0.72rem;
+      font-weight: 820;
+      letter-spacing: 0.1em;
+      margin-bottom: 10px;
+      text-transform: uppercase;
+    }
+
+    .receipt-title strong {
+      display: block;
+      font-size: 1.25rem;
+      line-height: 1.2;
+    }
+
+    .receipt-choices {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 7px;
+      justify-content: flex-end;
+    }
+
+    .receipt-choice {
+      background: transparent;
+      border: 1px solid #566174;
+      border-radius: 999px;
+      color: #d5dbe5;
+      cursor: pointer;
+      font: inherit;
+      font-size: 0.78rem;
+      font-weight: 700;
+      min-height: 44px;
+      padding: 9px 13px;
+    }
+
+    .receipt-choice:hover,
+    .receipt-choice:focus-visible {
+      border-color: var(--yellow);
+      color: var(--white);
+    }
+
+    .receipt-choice[aria-selected="true"] {
+      background: var(--yellow);
+      border-color: var(--yellow);
+      color: var(--ink);
+    }
+
+    .receipt-example {
+      display: grid;
+      grid-column: 1 / -1;
+      grid-template-columns: repeat(4, 1fr);
+    }
+
+    .receipt-item {
+      border-left: 1px solid #394252;
+      color: #d5dbe5;
+      font-size: 1.125rem;
+      line-height: 1.4;
+    }
+
+    .receipt-item:nth-child(1) { border-left: 0; }
+    .receipt-item:nth-child(2) small { color: var(--orange); }
+    .receipt-item:nth-child(3) small { color: var(--mint); }
+    .receipt-item:nth-child(4) small { color: var(--yellow); }
+
+    .receipt-note {
+      color: #c1c8d3;
+      font-size: 1.125rem;
+      line-height: 1.5;
+      margin: 18px 0 0;
+    }
+
+    .pilot-layout {
+      column-gap: clamp(52px, 8vw, 120px);
+      display: grid;
+      grid-template-columns: minmax(0, 0.72fr) minmax(480px, 1.28fr);
+      row-gap: 34px;
+    }
+
+    .pilot-copy h2 {
+      font-size: var(--display-supporting);
+      font-weight: 550;
+      letter-spacing: -0.068em;
+      line-height: 0.9;
+      margin: 18px 0 28px;
+      max-width: 12ch;
+    }
+
+    .no-break { white-space: nowrap; }
+
+    .pilot-lead {
+      color: var(--muted);
+      font-size: 1.18rem;
+      line-height: 1.58;
+      margin: 0;
+      max-width: 34rem;
+    }
+
+    .pilot-note {
+      border-top: 1px solid var(--ink);
+      color: var(--muted);
+      font-size: 1.125rem;
+      line-height: 1.5;
+      margin-top: 34px;
+      padding-top: 18px;
+    }
+
+    .pilot-commitments {
+      border-top: 1px solid var(--line);
+      display: grid;
+      gap: 16px;
+      margin-top: 28px;
+      padding-top: 22px;
+    }
+
+    .pilot-commitments p {
+      border-left: 3px solid var(--blue);
+      color: var(--muted);
+      font-size: 1.125rem;
+      line-height: 1.5;
+      margin: 0;
+      padding-left: 16px;
+    }
+
+    .pilot-commitments p:nth-child(2) { border-color: var(--orange); }
+    .pilot-commitments p:nth-child(3) { border-color: var(--mint); }
+    .pilot-trust p:first-child { border-color: var(--mint); }
+
+    .pilot-commitments strong { color: var(--ink); }
+
+    .pilot-path {
+      border-left: 2px solid var(--ink);
+      display: grid;
+      gap: 0;
+    }
+
+    .pilot-step {
+      border-bottom: 1px solid var(--line);
+      display: grid;
+      gap: 22px;
+      grid-template-columns: 92px minmax(0, 1fr);
+      min-height: 150px;
+      padding: 24px 0 24px 30px;
+      position: relative;
+    }
+
+    .pilot-step::before {
+      background: var(--paper);
+      border: 4px solid var(--blue);
+      border-radius: 50%;
+      content: "";
+      height: 20px;
+      left: -12px;
+      position: absolute;
+      top: 34px;
+      width: 20px;
+    }
+
+    .pilot-step:nth-child(2)::before { border-color: var(--orange); }
+    .pilot-step:nth-child(3)::before { border-color: var(--mint); }
+
+    .pilot-step .step-label {
+      color: var(--muted);
+      font-size: 0.8rem;
+      font-weight: 800;
+      letter-spacing: 0.1em;
+      padding-top: 4px;
+      text-transform: uppercase;
+    }
+
+    .pilot-step h3 {
+      font-size: clamp(1.45rem, 2.4vw, 2.25rem);
+      font-weight: 560;
+      letter-spacing: -0.04em;
+      margin: 0 0 9px;
+    }
+
+    .pilot-step p {
+      color: var(--muted);
+      font-size: 1.125rem;
+      line-height: 1.5;
+      margin: 0;
+      max-width: 38rem;
+    }
+
+    .continue-strip {
+      background: var(--yellow);
+      color: var(--ink);
+      font-size: 1.12rem;
+      font-weight: 650;
+      line-height: 1.45;
+      grid-column: 1 / -1;
+      margin-top: 0;
+      padding: 22px 24px;
+    }
+
+    .ai-layout {
+      align-items: center;
+      display: grid;
+      gap: clamp(52px, 8vw, 112px);
+      grid-template-columns: minmax(0, 0.86fr) minmax(480px, 1.14fr);
+    }
+
+    .ai-copy h2 {
+      font-size: var(--display-section);
+      font-weight: 550;
+      letter-spacing: -0.068em;
+      line-height: 0.9;
+      margin: 18px 0 30px;
+      max-width: 12ch;
+    }
+
+    .ai-copy p:last-child {
+      color: #bac2ce;
+      font-size: 1.2rem;
+      line-height: 1.58;
+      margin: 0;
+      max-width: 36rem;
+    }
+
+    .upgrade-visual {
+      border: 1px solid #394252;
+      padding: clamp(24px, 4vw, 42px);
+      position: relative;
+    }
+
+    .upgrade-inputs {
+      display: grid;
+      gap: 8px;
+      grid-template-columns: repeat(3, 1fr);
+    }
+
+    .upgrade-inputs span {
+      background: var(--night-2);
+      border-top: 3px solid var(--blue);
+      color: #cbd2dd;
+      font-size: 0.86rem;
+      padding: 14px 10px;
+      text-align: center;
+    }
+
+    .upgrade-inputs span:nth-child(2) { border-color: var(--orange); }
+    .upgrade-inputs span:nth-child(3) { border-color: var(--mint); }
+
+    .upgrade-arrow {
+      height: 62px;
+      margin: 0 auto;
+      position: relative;
+      width: 2px;
+    }
+
+    .upgrade-arrow::before {
+      background: #566176;
+      content: "";
+      height: 100%;
+      left: 0;
+      position: absolute;
+      top: 0;
+      width: 2px;
+    }
+
+    .upgrade-arrow::after {
+      border-left: 5px solid transparent;
+      border-right: 5px solid transparent;
+      border-top: 8px solid #6d7990;
+      bottom: -1px;
+      content: "";
+      left: -4px;
+      position: absolute;
+    }
+
+    .upgrade-arrow i {
+      background: var(--yellow);
+      border-radius: 50%;
+      height: 8px;
+      left: -3px;
+      position: absolute;
+      top: 0;
+      width: 8px;
+    }
+
+    .upgrade-visual.in-view .upgrade-arrow i {
+      animation: signal-y 1.45s ease-in-out 3;
+      animation-fill-mode: both;
+    }
+
+    .upgrade-core {
+      background: var(--yellow);
+      color: var(--ink);
+      padding: 26px;
+      text-align: center;
+    }
+
+    .upgrade-core small {
+      display: block;
+      font-size: 0.7rem;
+      font-weight: 820;
+      letter-spacing: 0.1em;
+      margin-bottom: 7px;
+      text-transform: uppercase;
+    }
+
+    .upgrade-core strong {
+      font-size: clamp(1.25rem, 2.2vw, 1.9rem);
+      font-weight: 640;
+      letter-spacing: -0.03em;
+    }
+
+    .upgrade-outputs {
+      display: grid;
+      gap: 8px;
+      grid-template-columns: 1fr 14px 1fr 14px 1fr 14px 1fr;
+    }
+
+    .upgrade-outputs span {
+      background: var(--night-3);
+      color: #cbd2dd;
+      font-size: 0.86rem;
+      padding: 14px 7px;
+      text-align: center;
+    }
+
+    .upgrade-outputs i {
+      align-self: center;
+      color: var(--yellow);
+      font-size: 0.86rem;
+      font-style: normal;
+      text-align: center;
+    }
+
+    .upgrade-outputs span:nth-of-type(3) {
+      background: transparent;
+      border: 1px solid var(--orange);
+      border-radius: 14px;
+    }
+
+    .upgrade-caption {
+      color: #939eaf;
+      font-size: 1.125rem;
+      line-height: 1.45;
+      margin: 24px 0 0;
+    }
+
+    .fit-grid {
+      display: grid;
+      gap: 1px;
+      grid-template-columns: repeat(2, 1fr);
+      margin-top: 52px;
+    }
+
+    .fit-action {
+      align-items: center;
+      border-top: 1px solid var(--ink);
+      display: flex;
+      justify-content: space-between;
+      margin-top: 38px;
+      padding-top: 24px;
+    }
+
+    .fit-action p {
+      font-size: 1.25rem;
+      font-weight: 650;
+      margin: 0;
+    }
+
+    .fit-column {
+      background: var(--white);
+      border: 1px solid var(--line);
+      padding: clamp(28px, 4vw, 46px);
+    }
+
+    .fit-column:last-child {
+      background: var(--night);
+      border-color: var(--night);
+      color: var(--white);
+    }
+
+    .fit-column:last-child .fit-list li { border-color: #394252; }
+
+    .fit-column h3 {
+      font-size: clamp(1.7rem, 2.8vw, 2.6rem);
+      font-weight: 570;
+      letter-spacing: -0.045em;
+      margin: 0 0 28px;
+    }
+
+    .fit-list {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+
+    .fit-list li {
+      border-top: 1px solid var(--line);
+      font-size: 1.125rem;
+      line-height: 1.45;
+      padding: 17px 0 17px 32px;
+      position: relative;
+    }
+
+    .fit-list li::before {
+      background: var(--mint);
+      content: "";
+      height: 10px;
+      left: 0;
+      position: absolute;
+      top: 24px;
+      width: 10px;
+    }
+
+    .fit-column:last-child .fit-list li::before { background: var(--orange); }
+
+    .final-cta {
+      background: var(--night);
+      color: var(--white);
+      overflow: hidden;
+      padding: clamp(92px, 12vw, 168px) 0 clamp(72px, 8vw, 110px);
+      position: relative;
+    }
+
+    .final-cta::before {
+      background: linear-gradient(90deg,
+        var(--blue) 0 25%,
+        var(--orange) 25% 50%,
+        var(--mint) 50% 75%,
+        var(--yellow) 75% 100%);
+      content: "";
+      height: 8px;
+      left: 0;
+      position: absolute;
+      right: 0;
+      top: 0;
+    }
+
+    .final-inner {
+      position: relative;
+      text-align: center;
+      z-index: 2;
+    }
+
+    .final-inner .eyebrow { color: var(--white); }
+
+    .final-inner h2 {
+      font-size: var(--display-decision);
+      font-weight: 560;
+      letter-spacing: -0.06em;
+      line-height: 0.88;
+      margin: 22px auto 30px;
+      max-width: 11ch;
+    }
+
+    .final-support {
+      color: var(--white);
+      font-size: clamp(1.15rem, 1.7vw, 1.42rem);
+      line-height: 1.5;
+      margin: 0 auto 34px;
+      max-width: 40rem;
+    }
+
+    .final-inner .cta {
+      background: var(--yellow);
+      border-color: var(--yellow);
+      color: var(--ink);
+      cursor: pointer;
+      font-size: 1.02rem;
+      min-height: 58px;
+      padding-left: 28px;
+      padding-right: 28px;
+    }
+
+    .final-inner .cta:hover {
+      background: var(--ink);
+      border-color: var(--ink);
+      color: var(--white);
+    }
+
+    .decision-note {
+      color: var(--white);
+      font-size: 1.125rem;
+      line-height: 1.4;
+      margin: 16px auto 0;
+      max-width: 32rem;
+    }
+
+    footer {
+      background: var(--night);
+      color: #c0c7d2;
+      padding: 32px 0;
+    }
+
+    .footer-inner {
+      align-items: center;
+      display: flex;
+      font-size: 0.78rem;
+      justify-content: space-between;
+      margin: 0 auto;
+      max-width: var(--max);
+      padding-left: var(--gutter);
+      padding-right: var(--gutter);
+      width: 100%;
+    }
+
+    .footer-inner p { margin: 0; }
+
+    .footer-mark {
+      align-items: center;
+      display: flex;
+      gap: 10px;
+    }
+
+    .footer-mark img {
+      height: 64px;
+      width: 64px;
+    }
+
+    .reveal {
+      opacity: 1;
+      transform: none;
+      transition: transform 620ms ease;
+    }
+
+    .js .reveal {
+      transform: translateY(22px);
+    }
+
+    .js .reveal.in-view {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    @keyframes signal-x {
+      0% { opacity: 0; transform: translateX(0); }
+      20% { opacity: 1; }
+      85% { opacity: 1; transform: translateX(25px); }
+      100% { opacity: 0; transform: translateX(25px); }
+    }
+
+    @keyframes signal-y {
+      0% { opacity: 0; transform: translateY(0); }
+      20% { opacity: 1; }
+      85% { opacity: 1; transform: translateY(62px); }
+      100% { opacity: 0; transform: translateY(62px); }
+    }
+
+    @keyframes signal-y-mobile {
+      0% { opacity: 0; transform: translateY(0); }
+      20% { opacity: 1; }
+      85% { opacity: 1; transform: translateY(21px); }
+      100% { opacity: 0; transform: translateY(21px); }
+    }
+
+    @media (max-width: 1080px) {
+      .hero-grid,
+      .pilot-layout,
+      .ai-layout { grid-template-columns: 1fr; }
+
+      .hero-copy h1 { max-width: 10ch; }
+      .system-visual { min-height: 560px; }
+      .evidence-receipt { grid-template-columns: repeat(2, 1fr); }
+      .receipt-example { grid-template-columns: repeat(2, 1fr); }
+      .receipt-title { grid-column: 1 / -1; min-height: 0; }
+      .receipt-item:nth-child(odd) { border-left: 0; }
+      .proof-fact-grid { grid-template-columns: 1fr; }
+      .proof-fact-grid p { min-height: 0; }
+      .pilot-copy h2,
+      .ai-copy h2 { max-width: 12ch; }
+    }
+
+    @media (max-width: 960px) {
+      html { scroll-padding-top: 80px; }
+      .nav-links a:not(.cta) { display: none; }
+      .site-nav { align-items: stretch; flex-direction: column; padding-bottom: 0; }
+      .mobile-jumps {
+        border-top: 1px solid var(--line);
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        width: 100%;
+      }
+      .mobile-jumps a {
+        color: #4e545e;
+        font-size: 0.78rem;
+        font-weight: 700;
+        min-height: 44px;
+        padding: 11px 8px 9px;
+        text-align: center;
+        text-decoration: none;
+      }
+      .mobile-jumps a + a { border-left: 1px solid var(--line); }
+      .section-head { grid-template-columns: 1fr; }
+      .section-head p:last-child { align-self: auto; }
+      .systems-intro { align-items: start; flex-direction: column; gap: 24px; }
+      .system-band { grid-template-columns: 54px minmax(160px, 0.45fr) minmax(0, 1fr); }
+      .band-flow { grid-column: 2 / -1; }
+      .evidence-lead { min-height: 0; }
+      .evidence-receipt { grid-template-columns: repeat(2, 1fr); }
+      .receipt-example { grid-template-columns: repeat(2, 1fr); }
+      .receipt-title { grid-column: 1 / -1; min-height: 0; }
+      .receipt-item:nth-child(odd) { border-left: 0; }
+      .mobile-offer-line {
+        border-left: 4px solid var(--mint);
+        color: var(--ink);
+        display: block;
+        font-size: 1rem;
+        font-weight: 700;
+        line-height: 1.4;
+        margin: 22px 0 0;
+        padding-left: 14px;
+      }
+      .hero-copy > .hero-proofline { display: none; }
+    }
+
+    @media (max-width: 700px) {
+      html { scroll-padding-top: 80px; }
+      .site-nav { min-height: 66px; }
+      .brand { gap: 8px; }
+      .brand span { display: inline; font-size: 0.78rem; }
+      .brand img { border-radius: 10px; height: 44px; padding: 5px; width: 44px; }
+      .nav-cta { font-size: 0.77rem; min-height: 44px; }
+      .hero { min-height: 0; padding-top: 24px; }
+      .hero-grid { display: flex; flex-direction: column; gap: 0; }
+      .hero-copy { display: contents; }
+      .hero-copy > .eyebrow { order: 1; }
+      .hero-copy > h1 { order: 2; }
+      .hero-copy > .hero-support { order: 3; }
+      .hero-copy > .hero-actions { order: 4; }
+      .hero-copy > .mobile-offer-line { order: 5; }
+      .system-visual { margin-top: 8px; order: 6; width: 100%; }
+      .hero-copy h1 { font-size: clamp(3.65rem, 16vw, 5.7rem); }
+      .hero-support { font-size: 1.16rem; }
+      .hero-actions { margin-top: 20px; }
+      .system-visual { min-height: 0; padding: 26px 20px 30px; }
+      .system-title { font-size: 2.35rem; }
+      .scenario-controls { grid-template-columns: repeat(2, 1fr); }
+      .scenario-button[aria-selected="true"] {
+        background: rgba(240, 255, 0, 0.08);
+        border-bottom-width: 4px;
+      }
+      .system-map { grid-template-columns: 1fr; }
+      .system-map {
+        grid-template-areas:
+          "friction"
+          "arrow"
+          "system"
+          "outcomes"
+          "note";
+      }
+      .map-arrow { height: 28px; width: 2px; justify-self: center; }
+      .map-arrow::before { height: 100%; width: 2px; }
+      .map-arrow::after {
+        border-left: 5px solid transparent;
+        border-right: 5px solid transparent;
+        border-top: 7px solid #65728a;
+        bottom: 0;
+        right: -4px;
+      }
+      .map-arrow i { animation: signal-y-mobile 1.45s ease-in-out 3; left: -3px; }
+      .map-outcomes { grid-template-columns: repeat(2, 1fr); }
+      .offer-bridge { grid-template-columns: 1fr; }
+      .offer-step { min-height: 0; }
+      .offer-step + .offer-step { border-left: 0; border-top: 1px solid var(--line); }
+      .section-head h2,
+      .systems-intro h2,
+      .pilot-copy h2,
+      .ai-copy h2 { font-size: clamp(3.2rem, 14vw, 5.2rem); }
+      #recognition .section-head h2,
+      #fit .section-head h2 { font-size: clamp(2.9rem, 12vw, 4.5rem); }
+      .moment-row {
+        align-items: start;
+        grid-template-columns: 42px 1fr;
+        min-height: 0;
+        padding: 25px 0;
+      }
+      .moment-state { grid-column: 2; justify-self: start; }
+      .system-band {
+        align-items: start;
+        gap: 10px;
+        grid-template-columns: 1fr;
+        padding: 28px 0 28px 18px;
+      }
+      .system-band p { grid-column: auto; }
+      .band-flow { grid-column: auto; width: 100%; }
+      .evidence-lead { min-height: 0; }
+      .evidence-item { border-left: 0; border-top: 1px solid #394252; min-height: 0; }
+      .evidence-receipt { grid-template-columns: 1fr; }
+      .receipt-example { grid-template-columns: 1fr; }
+      .receipt-title { grid-column: 1 / -1; }
+      .receipt-title { align-items: flex-start; flex-direction: column; }
+      .receipt-choices { justify-content: flex-start; }
+      .receipt-item { border-left: 0; border-top: 1px solid #394252; min-height: 0; }
+      .pilot-step { grid-template-columns: 1fr; }
+      .upgrade-inputs { grid-template-columns: 1fr; }
+      .upgrade-outputs { grid-template-columns: 1fr; }
+      .upgrade-outputs i { transform: rotate(90deg); }
+      .fit-grid { grid-template-columns: 1fr; }
+      .final-cta { padding-top: 76px; }
+      .final-inner h2 { margin-bottom: 22px; margin-top: 16px; }
+      .final-support { margin-bottom: 24px; }
+      .fit-action { align-items: flex-start; flex-direction: column; gap: 18px; }
+      .final-inner h2 { font-size: clamp(3.4rem, 15.5vw, 5.8rem); }
+      .footer-inner { align-items: flex-start; flex-direction: column; gap: 14px; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        scroll-behavior: auto !important;
+        transition-duration: 0.01ms !important;
+      }
+      .reveal { opacity: 1; transform: none; }
+    }
+  </style>
+  <script>document.documentElement.classList.add("js");</script>
+  <script is:inline>
+    (() => {
+      const productionHosts = new Set([
+        "buildwisemedia.com",
+        "www.buildwisemedia.com",
+        "bwm-new-website-review.pages.dev",
+      ]);
+      const attributionKey = "_bwm_attribution";
+      const keys = ["utm_source", "utm_medium", "utm_campaign", "utm_content", "utm_term", "gclid", "fbclid"];
+      const params = new URLSearchParams(window.location.search);
+      const current = {};
+      keys.forEach((key) => {
+        const value = params.get(key);
+        if (value) current[key] = value.slice(0, 1000);
+      });
+
+      try {
+        const prior = JSON.parse(localStorage.getItem(attributionKey) || "null");
+        const now = new Date().toISOString();
+        const record = prior && typeof prior === "object"
+          ? prior
+          : { first_touch: { ts: now, referrer: document.referrer || null, landing_page: window.location.href, utm: current }, last_touch: null };
+        record.last_touch = { ts: now, referrer: document.referrer || null, landing_page: window.location.href, utm: current };
+        localStorage.setItem(attributionKey, JSON.stringify(record));
+        if (!sessionStorage.getItem("bwm_landing_page")) sessionStorage.setItem("bwm_landing_page", window.location.href);
+        if (!sessionStorage.getItem("bwm_referrer")) sessionStorage.setItem("bwm_referrer", document.referrer || "");
+
+        const forwarded = { ...(record.first_touch?.utm || {}), ...(record.last_touch?.utm || {}), ...current };
+        const forwardAttribution = () => {
+          document.querySelectorAll('a[href="/book/"]').forEach((link) => {
+            const destination = new URL(link.href, window.location.origin);
+            keys.forEach((key) => {
+              if (forwarded[key]) destination.searchParams.set(key, forwarded[key]);
+            });
+            link.href = `${destination.pathname}${destination.search}`;
+          });
+        };
+        if (document.readyState === "loading") {
+          document.addEventListener("DOMContentLoaded", forwardAttribution, { once: true });
+        } else {
+          forwardAttribution();
+        }
+      } catch { /* Attribution storage is optional; the page remains usable without it. */ }
+
+      if (!productionHosts.has(window.location.hostname)) return;
+      window.dataLayer = window.dataLayer || [];
+      window.gtag = window.gtag || function () { window.dataLayer.push(arguments); };
+      window.gtag("js", new Date());
+      window.gtag("config", "G-V5LSP69E41", { send_page_view: true });
+
+      const appendScript = (src) => {
+        const script = document.createElement("script");
+        script.async = true;
+        script.src = src;
+        document.head.appendChild(script);
+        return script;
+      };
+      const gtagScript = appendScript("https://www.googletagmanager.com/gtag/js?id=G-V5LSP69E41");
+      const loadContainer = () => {
+        window.dataLayer.push({ "gtm.start": Date.now(), event: "gtm.js" });
+        appendScript("https://www.googletagmanager.com/gtm.js?id=GTM-P5JSD86L");
+      };
+      gtagScript.addEventListener("load", loadContainer, { once: true });
+      gtagScript.addEventListener("error", loadContainer, { once: true });
+
+      const gtagReady = () => Boolean(window.google_tag_manager?.["G-V5LSP69E41"]);
+      const sendFastClickBeacon = (source) => {
+        if (typeof navigator.sendBeacon !== "function") return;
+        try {
+          const match = document.cookie.match(/(?:^|; )_ga=GA\d+\.\d+\.([^;]+)/);
+          const clientId = match?.[1] || `${Math.floor(Math.random() * 1e9)}.${Math.floor(Date.now() / 1000)}`;
+          const query = new URLSearchParams({
+            v: "2",
+            tid: "G-V5LSP69E41",
+            cid: clientId,
+            en: "fit_cta_click",
+            "ep.cta_source": source
+          });
+          navigator.sendBeacon(`https://www.google-analytics.com/g/collect?${query.toString()}`);
+        } catch { /* Analytics failure must never block navigation. */ }
+      };
+
+      document.addEventListener("click", (event) => {
+        const link = event.target.closest?.('a[href^="/book/"]');
+        if (!link) return;
+        const source = link.dataset.ctaSource || "unspecified";
+        if (gtagReady()) {
+          window.gtag("event", "fit_cta_click", {
+            cta_source: source,
+            transport_type: "beacon"
+          });
+        } else {
+          sendFastClickBeacon(source);
+        }
+      }, true);
+    })();
+  </script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <nav class="site-nav" aria-label="Primary navigation">
+    <div class="nav-inner">
+      <a class="brand" href="#top" aria-label="Buildwise Media home">
+        <!-- @r020:identity: exact BWM mark used only for brand recognition at navigation scale -->
+        <img src="/assets/mark.svg" alt="" width="48" height="48">
+        <span>Buildwise Media</span>
+      </a>
+      <div class="nav-links">
+        <a href="#see-the-system">See the System</a>
+        <a href="#first-build">First build</a>
+        <a href="#fit">Who it fits</a>
+        <a class="cta nav-cta" href="/book/" data-cta-source="nav">See if you're a fit</a>
       </div>
-      <aside class="command-center ops-panel" aria-label="Ascend installed system preview">
-        <div class="command-topline">
-          <span class="dot green"></span>
-          <span class="mono">ASCEND INSTALLATION · LIVE</span>
-          <span class="console-lock mono">CLIENT-OWNED</span>
+    </div>
+  </nav>
+  <div class="mobile-jumps" role="group" aria-label="Page sections">
+    <a href="#see-the-system">System</a>
+    <a href="#first-build">First build</a>
+    <a href="#fit">Fit</a>
+  </div>
+
+  <main id="main">
+    <section class="hero" id="top">
+      <div class="section-shell hero-grid">
+        <div class="hero-copy reveal">
+          <p class="eyebrow">Custom AI systems for owner-led companies</p>
+          <h1>Fix the bottleneck holding back your <em>growth.</em></h1>
+          <p class="hero-support">We build a custom AI system around that one thing first. Then we keep building—so over time leads get answered, bids go out, and fewer decisions stall on your desk.</p>
+          <div class="hero-actions">
+            <a class="cta" href="/book/" data-cta-source="hero">See if you're a fit</a>
+            <a class="cta secondary" href="#see-the-system">See the System</a>
+          </div>
+          <p class="hero-proofline">A focused 90-day engagement around one working system.</p>
+          <p class="mobile-offer-line">A focused 90-day engagement around one working system.</p>
         </div>
 
-        <div class="console-shell">
-          <div class="signal-map-panel">
-            <div class="panel-head">
-              <p class="ops-kicker">Where buyers find you</p>
-              <span class="ops-chip"><span class="dot cyan" aria-hidden="true"></span>AI search · local · reviews</span>
+        <!-- @r020:F4 curiosity: an operating map changes automatically so owners can recognize the bottleneck limiting growth and explore -->
+        <div class="system-visual reveal" id="system-visual" role="group" aria-labelledby="system-visual-title">
+          <div class="visual-topline">
+            <span>One bottleneck. A working system.</span>
+            <span class="example-range">Example scenarios</span>
+          </div>
+          <h2 class="system-title" id="system-visual-title">See where growth gets stuck.</h2>
+          <div class="scenario-controls" role="tablist" aria-label="Choose a business bottleneck">
+            <button class="scenario-button" id="scenario-leads" type="button" role="tab" data-scenario="leads" aria-controls="system-map receipt-example" aria-selected="true" tabindex="0">Lead follow-up</button>
+            <button class="scenario-button" id="scenario-bids" type="button" role="tab" data-scenario="bids" aria-controls="system-map receipt-example" aria-selected="false" tabindex="-1">Bidding</button>
+            <button class="scenario-button" id="scenario-service" type="button" role="tab" data-scenario="service" aria-controls="system-map receipt-example" aria-selected="false" tabindex="-1">Service work</button>
+            <button class="scenario-button" id="scenario-reporting" type="button" role="tab" data-scenario="reporting" aria-controls="system-map receipt-example" aria-selected="false" tabindex="-1">Reporting</button>
+          </div>
+          <div class="system-map scenario-copy" id="system-map" role="tabpanel" aria-labelledby="scenario-leads" tabindex="0">
+            <div class="map-node friction">
+              <small id="map-input-label">What breaks</small>
+              <strong id="map-input">A lead arrives and waits for someone to notice.</strong>
             </div>
-            <!-- @r020:F4 curiosity: hero signal-map diagram — scattered demand signals (search, reviews, ads, follow-up, attribution) routing into one operating center; opens the "what is this one system?" loop that the page resolves. -->
-            <svg class="market-signal-svg" viewBox="0 0 520 320" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Ascend routes search, reviews, ads, follow-up, and attribution into one operating center.">
-              <defs>
-                <linearGradient id="sig-cyan" x1="0" x2="1">
-                  <stop offset="0" stop-color="var(--signal-cyan)" stop-opacity="0.9" />
-                  <stop offset="1" stop-color="var(--y2)" stop-opacity="0.9" />
-                </linearGradient>
-                <linearGradient id="sig-green" x1="0" x2="1">
-                  <stop offset="0" stop-color="var(--signal-green)" stop-opacity="0.9" />
-                  <stop offset="1" stop-color="var(--y1)" stop-opacity="0.9" />
-                </linearGradient>
-              </defs>
-              <rect x="16" y="18" width="488" height="284" rx="6" fill="rgba(255,255,255,0.015)" stroke="var(--rule)" />
-              <path class="signal-path path-a" d="M78 84 C158 42 236 64 260 152 C286 248 396 226 452 116" fill="none" stroke="url(#sig-cyan)" stroke-width="2" stroke-linecap="round" />
-              <path class="signal-path path-b" d="M70 236 C164 228 182 134 258 154 C354 180 374 86 448 72" fill="none" stroke="url(#sig-green)" stroke-width="2" stroke-linecap="round" />
-              <path class="signal-path path-c" d="M86 160 C162 122 206 252 274 192 C338 138 398 158 452 238" fill="none" stroke="var(--signal-orange)" stroke-width="1.5" stroke-linecap="round" opacity="0.78" />
-              <g class="map-node core">
-                <circle cx="260" cy="160" r="42" fill="rgba(240,255,0,0.08)" stroke="var(--y2)" />
-                <circle cx="260" cy="160" r="7" fill="var(--y2)" />
-                <text x="260" y="146" text-anchor="middle" font-family="var(--mono)" font-size="10" fill="var(--ink)" letter-spacing="1.8">ASCEND</text>
-                <text x="260" y="180" text-anchor="middle" font-family="var(--mono)" font-size="8" fill="var(--ink-faint)" letter-spacing="1.6">INSTALLED LAYER</text>
-              </g>
-              <g class="map-node"><circle cx="78" cy="84" r="9" fill="var(--signal-cyan)" /><text x="78" y="62" text-anchor="middle" font-family="var(--mono)" font-size="8" fill="var(--ink-dim)" letter-spacing="1.4">DOMAIN</text></g>
-              <g class="map-node"><circle cx="452" cy="116" r="9" fill="var(--y2)" /><text x="452" y="96" text-anchor="middle" font-family="var(--mono)" font-size="8" fill="var(--ink-dim)" letter-spacing="1.4">SYSTEM</text></g>
-              <g class="map-node"><circle cx="70" cy="236" r="9" fill="var(--signal-green)" /><text x="70" y="264" text-anchor="middle" font-family="var(--mono)" font-size="8" fill="var(--ink-dim)" letter-spacing="1.4">LEADS</text></g>
-              <g class="map-node"><circle cx="448" cy="72" r="9" fill="var(--signal-green)" /><text x="448" y="51" text-anchor="middle" font-family="var(--mono)" font-size="8" fill="var(--ink-dim)" letter-spacing="1.4">PROOF</text></g>
-              <g class="map-node"><circle cx="452" cy="238" r="9" fill="var(--signal-orange)" /><text x="452" y="264" text-anchor="middle" font-family="var(--mono)" font-size="8" fill="var(--ink-dim)" letter-spacing="1.4">WEEKLY OPS</text></g>
-            </svg>
-            <div role="group" class="signal-queue" aria-label="Active operating routes">
-              {signalQueue.map((item) => (
-                <div class={`signal-queue-row tone-${item.tone}`}>
-                  <span class="mono">{item.label}</span>
-                  <strong>{item.value}</strong>
-                </div>
-              ))}
+            <div class="map-arrow" aria-hidden="true"><i></i></div>
+            <div class="map-node system">
+              <small id="map-system-label">The system</small>
+              <strong id="map-system">Capture, route, follow up, and show the next action.</strong>
+            </div>
+            <div class="map-outcomes" role="group" aria-label="What the system makes possible">
+              <span>Lead captured</span>
+              <span>Owner assigned</span>
+              <span>Follow-up set</span>
+              <span>Status visible</span>
+            </div>
+            <p class="visual-note" id="map-note">The owner can see every opportunity, who owns it, and what happens next.</p>
+          </div>
+          <a class="evidence-return" href="#evidence-standard">See how this build is judged ↓</a>
+          <p class="sr-only" id="scenario-status" aria-live="polite"></p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="recognition">
+      <div class="section-shell">
+        <div class="section-head reveal">
+          <div>
+            <p class="eyebrow">The problem</p>
+            <h2>Growth slows where work breaks.</h2>
+          </div>
+          <p>The symptoms look different in every business. The pattern is the same: important work still depends on somebody noticing, translating, chasing, or rescuing it.</p>
+        </div>
+
+        <!-- @r020:F2 proof: concrete operating moments explain what a consequential growth bottleneck looks like without inventing results -->
+        <div class="moment-list reveal">
+          <div class="moment-row">
+            <span class="moment-number">01</span>
+            <strong>A lead comes in. You find out after the best follow-up window has passed.</strong>
+            <span class="moment-state">Opportunity waits</span>
+          </div>
+          <div class="moment-row">
+            <span class="moment-number">02</span>
+            <strong>You are ready to price the bid, but three people are holding different pieces of the number.</strong>
+            <span class="moment-state">Revenue waits</span>
+          </div>
+          <div class="moment-row">
+            <span class="moment-number">03</span>
+            <strong>A customer asks for an update. You chase it across text, email, and a spreadsheet.</strong>
+            <span class="moment-state">Customers wait</span>
+          </div>
+          <div class="moment-row">
+            <span class="moment-number">04</span>
+            <strong>You wait to decide because the numbers do not match.</strong>
+            <span class="moment-state">Decisions wait</span>
+          </div>
+        </div>
+        <p class="owner-line reveal">If work keeps coming back to you for translation, approval, or rescue, that bottleneck is setting the pace for everything else.</p>
+        <!-- @r020:F2 proof: the three-part offer spine turns recognition into the commercial path -->
+        <div class="offer-bridge reveal" role="group" aria-label="How the relationship develops">
+          <div class="offer-step">
+            <small><b>01</b> Start here</small>
+            <strong>The bottleneck limiting growth.</strong>
+            <p>Choose the one problem worth solving first.</p>
+          </div>
+          <div class="offer-step">
+            <small><b>02</b> First build</small>
+            <strong>A working build in the real work.</strong>
+            <p>Build and test it during the 90-day engagement.</p>
+          </div>
+          <div class="offer-step">
+            <small><b>03</b> Keep building</small>
+            <strong>More capability. Better connections.</strong>
+            <p>Use the evidence to choose what to build or upgrade next.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section dark" id="see-the-system">
+      <div class="section-shell">
+        <div class="systems-intro reveal">
+          <div>
+            <p class="eyebrow">What we build</p>
+            <h2>The missing system.</h2>
+          </div>
+          <p>Not another tool to manage. We connect the information, decisions, people, and actions around the work that drives the business.</p>
+        </div>
+
+        <div class="proof-fact reveal">
+          <p class="eyebrow">Recent owner decisions</p>
+          <p class="proof-fact-lead">The first build becomes real when an owner decides what goes first—and how the team will check it.</p>
+          <!-- Evidence: Brain homepage copy packet E1, E2, E4. Names and operating details intentionally withheld. -->
+          <div class="proof-fact-grid" role="group" aria-label="Three sourced examples of choosing the first constraint">
+            <p><small>Preconstruction first</small><span>Preconstruction came first for a construction company—before a longer list of product ideas.</span><em>Client decision · August 2026</em></p>
+            <p><small>Customer coordination first</small><span>Customer coordination came first for a service company—before its website and broader transformation work.</span><em>Sales record · August 2026</em></p>
+            <p><small>Phased and verified</small><span>Another service company chose a phased rollout, with its team checking each working stage before the next moves.</span><em>Client call · July 2026</em></p>
+          </div>
+          <p class="proof-fact-tail">Names and operating details stay private. These decisions come from dated sales and client records.</p>
+        </div>
+
+        <!-- @r020:F2 proof: system-class bands make BWM's range concrete while keeping unapproved client identities and outcomes out of the page -->
+        <div class="system-bands reveal">
+          <div class="system-band">
+            <span class="index">01 / Revenue</span>
+            <h3>Move opportunity</h3>
+            <p>Leads, follow-up, and bids. The decisions that turn interest into work.</p>
+            <div class="band-flow flow-revenue" role="group" aria-label="Revenue system example"><span>New lead</span><i>→</i><span>Next owner</span><i>→</i><span>Follow-up due</span></div>
+          </div>
+          <div class="system-band">
+            <span class="index">02 / Operations</span>
+            <h3>Move the work</h3>
+            <p>Service tickets, handoffs, and coordination. Daily work that should not depend on memory.</p>
+            <div class="band-flow flow-operations" role="group" aria-label="Operations system example"><span>Service request</span><i>→</i><span>Assigned owner</span><i>→</i><span>Closed loop</span></div>
+          </div>
+          <div class="system-band">
+            <span class="index">03 / Decisions</span>
+            <h3>See what is happening</h3>
+            <p>Command centers, reporting, and forecasting. One operating view for the facts people use to decide.</p>
+            <div class="band-flow flow-decisions" role="group" aria-label="Decision system example"><span>Live job data</span><i>→</i><span>One view</span><i>→</i><span>Decision due</span></div>
+          </div>
+          <div class="system-band">
+            <span class="index">04 / Control</span>
+            <h3>Protect what matters</h3>
+            <p>Security, permissions, and monitoring. Human approval before action, plus visibility into what happened and when to step in.</p>
+            <div class="band-flow flow-control" role="group" aria-label="Control system example"><span>Access request</span><i>→</i><span>Human approval</span><i>→</i><span>Monitored action</span></div>
+          </div>
+        </div>
+
+        <!-- @r020:F2 proof: the evidence standard shows exactly how a custom system is judged without exposing client IP or inventing outcomes -->
+        <p class="evidence-premise reveal">The first build lets you open the system and see how it runs: what goes in, what it does, what comes out, and where a person stays in control.</p>
+        <div class="evidence-standard reveal" id="evidence-standard" role="group" aria-label="How the work earns trust">
+          <div class="evidence-lead">
+            <small>The evidence standard</small>
+            <strong>You should be able to see whether the system worked.</strong>
+            <p>We document the starting point, test the system in real work, and show what changed, what did not, and what the evidence says to do next.</p>
+          </div>
+        </div>
+        <div class="evidence-receipt reveal" id="evidence-receipt" role="group" aria-label="Example of how a lead follow-up build is judged">
+          <div class="receipt-title">
+            <div class="receipt-heading"><small>What passing looks like</small><strong id="receipt-title">Lead follow-up</strong></div>
+            <div class="receipt-choices" role="tablist" aria-label="Choose an evidence example">
+              <button class="receipt-choice" id="receipt-choice-leads" type="button" role="tab" data-receipt-scenario="leads" aria-controls="receipt-example system-map" aria-selected="true" tabindex="0">Lead follow-up</button>
+              <button class="receipt-choice" id="receipt-choice-bids" type="button" role="tab" data-receipt-scenario="bids" aria-controls="receipt-example system-map" aria-selected="false" tabindex="-1">Bidding</button>
+              <button class="receipt-choice" id="receipt-choice-service" type="button" role="tab" data-receipt-scenario="service" aria-controls="receipt-example system-map" aria-selected="false" tabindex="-1">Service work</button>
+              <button class="receipt-choice" id="receipt-choice-reporting" type="button" role="tab" data-receipt-scenario="reporting" aria-controls="receipt-example system-map" aria-selected="false" tabindex="-1">Reporting</button>
             </div>
           </div>
+          <div class="receipt-example" id="receipt-example" role="tabpanel" aria-labelledby="receipt-choice-leads" tabindex="0">
+            <p class="receipt-item"><small>Input observed</small><span id="receipt-input">New lead captured.</span></p>
+            <p class="receipt-item"><small>Human control</small><span id="receipt-control">Routing follows approved ownership rules.</span></p>
+            <p class="receipt-item"><small>Output observed</small><span id="receipt-output">Owner and follow-up due time are visible.</span></p>
+            <p class="receipt-item"><small>Pass criterion</small><span id="receipt-pass">Every lead shows an owner and a next action, checked in real follow-up work.</span></p>
+          </div>
+        </div>
+        <a class="receipt-sync-note receipt-sync-below reveal" id="receipt-sync-note" href="#system-visual">See Lead follow-up in the system map ↑</a>
+        <p class="receipt-note reveal">These are illustrative pass structures for common build types—not client-result claims. The dated records above show how owners have chosen their first constraint.</p>
+        <p class="ownership-note reveal"><strong>Ownership stays explicit.</strong> Rights in client materials, data, and outputs are governed by the signed agreement for the work.</p>
+      </div>
+    </section>
 
-          <div class="leak-radar-panel">
-            <div class="panel-head">
-              <p class="ops-kicker">Where money leaks</p>
-              <span class="ops-chip"><span class="dot red" aria-hidden="true"></span>4 leaks watched</span>
-            </div>
-            <ul class="radar-list" role="list">
-              {leakRadar.map((item) => (
-                <li class={`radar-item tone-${item.tone}`}>
-                  <span class={`dot ${item.tone === 'yellow' ? 'live' : item.tone}`} aria-hidden="true"></span>
-                  <strong>{item.label}</strong>
-                  <em>{item.status}</em>
-                </li>
-              ))}
-            </ul>
+    <section class="section" id="first-build">
+      <div class="section-shell pilot-layout">
+        <div class="pilot-copy reveal">
+          <p class="eyebrow">The first build</p>
+          <h2><span class="no-break">Start with the</span> bottleneck. Build from there.</h2>
+          <p class="pilot-lead">The first engagement runs for 90 days with a defined scope and an internal owner. You choose the operating problem costing you the most. We define the improvement worth testing, build the system, and test it in the real work. The 90 days define the engagement—not a guaranteed completion date or result.</p>
+          <div class="pilot-commitments pilot-trust">
+            <p><strong>The evidence can say no.</strong> If the system did not improve the bottleneck, the next decision is to revise, redirect, or stop—not turn the test into a success story.</p>
           </div>
         </div>
 
-        <div class="command-metrics">
-          {commandMetrics.map((metric) => (
-            <div class={`command-metric tone-${metric.tone}`}>
-              <span class="mono">{metric.label}</span>
-              <strong>{metric.value}</strong>
-              <em>{metric.trend}</em>
-            </div>
-          ))}
-        </div>
-
-        <div role="group" class="weekly-proof-rail" aria-label="Weekly operating proof rail">
-          {weeklyProofRail.map((item) => (
-            <div class={`proof-rail-item tone-${item.tone}`}>
-              <span class="mono">{item.label}</span>
-              <strong>{item.value}</strong>
-            </div>
-          ))}
-        </div>
-
-        <div class="evidence-ticker" aria-hidden="true">
-          <div class="ticker-track">
-            <div class="ticker-items">
-              <span>DOMAIN OWNED</span>
-              <span class="ticker-sep">·</span>
-              <span>DATA OWNED</span>
-              <span class="ticker-sep">·</span>
-              <span>SELECTED UPDATES</span>
-              <span class="ticker-sep">·</span>
-              <span>QUALITY GATES</span>
-              <span class="ticker-sep">·</span>
-              <span>WEEKLY OPERATED</span>
-              <span class="ticker-sep">·</span>
-              <span>QUALITY REVIEWED</span>
-              <span class="ticker-sep">·</span>
-            </div>
-            <div class="ticker-items">
-              <span>DOMAIN OWNED</span>
-              <span class="ticker-sep">·</span>
-              <span>DATA OWNED</span>
-              <span class="ticker-sep">·</span>
-              <span>SELECTED UPDATES</span>
-              <span class="ticker-sep">·</span>
-              <span>QUALITY GATES</span>
-              <span class="ticker-sep">·</span>
-              <span>WEEKLY OPERATED</span>
-              <span class="ticker-sep">·</span>
-              <span>QUALITY REVIEWED</span>
-              <span class="ticker-sep">·</span>
-            </div>
-          </div>
-        </div>
-      </aside>
-    </div>
-  </section>
-
-  <!-- ============================================ -->
-  <!-- L2 · Poor Four                                -->
-  <!-- ============================================ -->
-  <PoorFour />
-
-  <!-- ============================================ -->
-  <!-- L1.7 · Earn-Back Calculator                   -->
-  <!-- ============================================ -->
-  <EarnBackCalculator />
-
-  <!-- ============================================ -->
-  <!-- L2.5 · Value Equation                         -->
-  <!-- ============================================ -->
-  <section class="offer-equation-section elev" aria-labelledby="offer-equation-title">
-    <div class="container offer-equation-grid">
-      <header>
-        <p class="section-tag">The installed advantage</p>
-        <h2 id="offer-equation-title" class="h-section">Installed. Operated. Owned. Improving.</h2>
-        <p class="lede">
-          Not advice. A real growth system inside your business, run for you every week, ready for the next AI jump.
-        </p>
-      </header>
-      <div class="offer-equation-cards">
-        {valueEquation.map((item) => (
-          <article class={`offer-equation-card tone-${item.tone}`}>
-            <p class="ops-kicker">{item.label}</p>
-            <strong class="offer-equation-metric">{item.metric}</strong>
-            <h3>{item.title}</h3>
-            <p>{item.body}</p>
-          </article>
-        ))}
-      </div>
-    </div>
-  </section>
-
-  <!-- ============================================ -->
-  <!-- L3 · 8-Layer Revenue Operating System         -->
-  <!-- ============================================ -->
-  <EightLayerSystem />
-
-  <!-- ============================================ -->
-  <!-- L4 · 30-day operating change                 -->
-  <!-- ============================================ -->
-  <section class="install-section elev" aria-labelledby="install-title">
-    <div class="container install-grid">
-      <header class="install-head">
-        <p class="section-tag">What changes in 30 days</p>
-        <h2 id="install-title" class="h-section">In 30 days, you'll see it working.</h2>
-        <p class="lede">
-          We build it, install it, and run it for you. By day 30 it's live, your results show up in one place, and you're pulling ahead — with nothing added to your plate.
-        </p>
-      </header>
-      <div role="group" class="install-console" aria-label="30-day install progress panel">
-        <div class="install-pulse" aria-hidden="true">
-          <span></span>
-          <span></span>
-          <span></span>
-        </div>
-        <ol class="install-steps" role="list">
-          {installSteps.map((step) => (
-            <li style={`--fill: ${step.fill};`}>
-              <div class="install-step-top">
-                <span class="install-day mono">{step.day}</span>
-                <span class="install-metric mono">{step.metric}</span>
-              </div>
-              <div class="install-meter" aria-hidden="true"><span></span></div>
-              <h3>{step.label}</h3>
-              <p>{step.body}</p>
-            </li>
-          ))}
-        </ol>
-      </div>
-    </div>
-  </section>
-
-  <!-- ============================================ -->
-  <!-- L5 · Sovereignty                              -->
-  <!-- ============================================ -->
-  <Sovereignty />
-
-  <!-- ============================================ -->
-  <!-- L5.5 · Market Dominance Dossier               -->
-  <!-- ============================================ -->
-  <section class="dossier-section" aria-labelledby="dossier-title">
-    <div class="container dossier-grid">
-      <header>
-        <p class="section-tag">Before you spend another dollar on ads</p>
-        <h2 id="dossier-title" class="h-section">Get your free Revenue Leak Map.</h2>
-        <p class="lede">
-          We map exactly where your market is leaking revenue right now — who shows up before you, where buyers stall, and the one move that matters most. If we're not the right fit, the map is yours to keep.
-        </p>
-      </header>
-      <div role="group" class="dossier-preview ops-panel" aria-label="Revenue Leak Map preview">
-        <div class="dossier-preview-head">
-          <span class="mono">Revenue Leak Map</span>
-          <strong>First move identified before the call</strong>
-        </div>
-        <p class="dossier-sample-note mono">Sample map — yours is built from your live market data.</p>
-        <div class="dossier-score-stack">
-          {dossierSignals.map((item) => (
-            <div class="dossier-score-row" style={`--score: ${item.score}%;`}>
+        <!-- @r020:F2 proof: the build-and-test path explains how the first engagement turns a bottleneck into a testable working system -->
+        <div class="reveal">
+          <div class="pilot-path">
+            <div class="pilot-step">
+              <span class="step-label">Understand</span>
               <div>
-                <span class="mono">{item.label}</span>
-                <strong>{item.value}</strong>
+                <h3>Find where the work stops.</h3>
+                <p>Trace where work, information, and decisions stop moving—and what a real improvement would be worth.</p>
               </div>
-              <div class="dossier-score-bar" aria-hidden="true"><span></span></div>
             </div>
-          ))}
-        </div>
-        <div class="dossier-leak-map">
-          {dossierSignals.map((item) => (
-            <article>
-              <span>{item.score}</span>
-              <strong>{item.cue}</strong>
-            </article>
-          ))}
-        </div>
-        <div class="dossier-first-move">
-          <span class="mono">Recommended first move</span>
-          <strong>Fix the highest-value leak before buying more attention.</strong>
-        </div>
-      </div>
-    </div>
-    <div class="container">
-      <div class="dossier-cta">
-        <div class="dossier-cta-value">
-          <p class="dossier-cta-kicker mono">What you get — free</p>
-          <ul class="dossier-cta-list" role="list">
-            <li>Your rank against the top names in your market</li>
-            <li>Where leads and revenue leak today</li>
-            <li>Your single highest-value first move</li>
-            <li>Whether Ascend is even the right fit</li>
-          </ul>
-        </div>
-        <div class="dossier-cta-action">
-          <a href="/revenue-leak-map" class="cta" data-cta-source="home-dossier">Get My Free Revenue Leak Map<span class="cta-arrow" aria-hidden="true">&rarr;</span></a>
-          <p class="dossier-cta-risk">Free. Built on your business. Yours to keep — even if we never work together.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ============================================ -->
-  <!-- L5.6 · Contract Proof                         -->
-  <!-- ============================================ -->
-  <section class="contract-proof-section elev" aria-labelledby="contract-proof-title">
-    <div class="container">
-      <header class="contract-proof-head">
-        <p class="section-tag">Risk reversal</p>
-        <h2 id="contract-proof-title" class="h-section">The promise gets teeth in the agreement.</h2>
-        <p class="lede">
-          A guarantee is only useful if both sides can see what it means. These clauses are the buyer-risk reducers behind the offer.
-        </p>
-      </header>
-      <div role="group" class="contract-proof-board" aria-label="Agreement clauses grouped by buyer anxiety">
-        <div class="contract-proof-page">
-          <div class="contract-proof-page-head">
-            <span class="mono">Agreement layer</span>
-            <strong>Buyer risk reducers</strong>
+            <div class="pilot-step">
+              <span class="step-label">Build</span>
+              <div>
+                <h3>Put the build into the work.</h3>
+                <p>Connect the right inputs, decisions, human controls, and actions around the way the business actually runs.</p>
+              </div>
+            </div>
+            <div class="pilot-step">
+              <span class="step-label">Test</span>
+              <div>
+                <h3>See what improved—and what comes next.</h3>
+                <p>Use real work and defined evidence to judge it, strengthen it, and choose what comes next.</p>
+              </div>
+            </div>
           </div>
-          <div class="contract-proof-clauses">
-            {contractProofs.map((item) => (
-              <article class={`contract-proof-clause tone-${item.tone}`}>
-                <div class="clause-rail">
-                  <span class="contract-clause-group mono">{item.group}</span>
-                  {/* @r020:F2 proof: per-clause schematic glyph (capability step-up, approval gate, ownership key, return-floor bars, portability transfer, clean-exit door) makes each buyer risk-reducer scannable by shape + signal color instead of six identical text boxes */}
-                  <svg class="clause-glyph" viewBox="0 0 48 48" aria-hidden="true">
-                    {item.visual === 'inheritance' && (
-                      <g fill="none" stroke="var(--clause-accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <path d="M6 40 H16 V30 H26 V20 H36 V12" />
-                        <path d="M31 17 L36 12 L41 17" />
-                      </g>
-                    )}
-                    {item.visual === 'gate' && (
-                      <g fill="none" stroke="var(--clause-accent)" stroke-linecap="round" stroke-linejoin="round">
-                        <path d="M11 16 V40 M37 16 V40 M7 16 H41" stroke-width="2" />
-                        <path d="M17 28 L22 33 L33 20" stroke-width="2.6" />
-                      </g>
-                    )}
-                    {item.visual === 'sovereignty' && (
-                      <g fill="none" stroke="var(--clause-accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <circle cx="18" cy="19" r="8" />
-                        <circle cx="18" cy="19" r="2.4" fill="var(--clause-accent)" />
-                        <path d="M24 25 L39 40 M34 39 L39 34 M30 35 L34 31" />
-                      </g>
-                    )}
-                    {item.visual === 'roi' && (
-                      <g>
-                        <line x1="7" y1="40" x2="41" y2="40" stroke="var(--clause-accent)" stroke-width="3" stroke-linecap="round" />
-                        <rect x="12" y="29" width="6" height="10" fill="var(--clause-accent)" />
-                        <rect x="22" y="21" width="6" height="18" fill="var(--clause-accent)" />
-                        <rect x="32" y="11" width="6" height="28" fill="var(--clause-accent)" />
-                      </g>
-                    )}
-                    {item.visual === 'portability' && (
-                      <g fill="none" stroke="var(--clause-accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <rect x="6" y="17" width="14" height="15" rx="1" />
-                        <rect x="28" y="17" width="14" height="15" rx="1" />
-                        <path d="M21 24.5 H27 M24.5 21.5 L27.5 24.5 L24.5 27.5" />
-                      </g>
-                    )}
-                    {item.visual === 'exit' && (
-                      <g fill="none" stroke="var(--clause-accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <path d="M13 9 V41 H30" />
-                        <path d="M13 9 L25 13 V37 L13 41" />
-                        <path d="M31 25 H42 M38 21 L42 25 L38 29" />
-                      </g>
-                    )}
-                  </svg>
-                </div>
-                <div class="clause-body">
-                  <span class="contract-clause-label mono">{item.clause}</span>
-                  <h3>{item.title}</h3>
-                  <p>{item.body}</p>
-                </div>
-              </article>
-            ))}
+          <div class="pilot-commitments">
+            <p><strong>Defined up front.</strong> We define exactly what the system covers, what it connects, and what we need from your team to build it.</p>
+            <p><strong>Put into the work.</strong> The first build includes the working system, its connected inputs, the decisions people still own, and a clear way to judge it.</p>
           </div>
         </div>
-        <aside class="contract-proof-stamp" aria-label="Risk reversal summary">
-          <span class="mono">Risk moved off the buyer</span>
-          <strong>Owned asset. Quality review. Written measurement. Clean exit.</strong>
-        </aside>
+        <p class="continue-strip reveal">The first build ends with evidence and a decision—not an open-ended maintenance plan. If we keep going, each next system or upgrade is chosen from what the evidence showed.</p>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- ============================================ -->
-  <!-- Cost-of-Assembly anchor — PROJ-VALUE-STACK-001 Phase 2 -->
-  <!-- What assembling this scope from separate experts costs, placed -->
-  <!-- immediately before Entry Paths so the tier prices read as the bargain. -->
-  <!-- ============================================ -->
-  <CostOfAssembly />
+    <section class="section dark" id="ai-path">
+      <div class="section-shell ai-layout">
+        <div class="ai-copy reveal">
+          <p class="eyebrow">Why keep building</p>
+          <h2>AI keeps changing. Your systems should keep getting better.</h2>
+          <p>New AI capability alone does nothing for your business. We test it inside systems already doing real work. What helps gets upgraded. What does not stays out.</p>
+        </div>
 
-  <!-- ============================================ -->
-  <!-- L6 · Entry Paths                              -->
-  <!-- ============================================ -->
-  <section class="entry-paths-section" aria-labelledby="entry-paths-title">
-    <div class="container entry-paths-grid">
-      <header>
-        <p class="section-tag">Entry paths</p>
-        <h2 id="entry-paths-title" class="h-section">Same owned system. Three commitment shapes.</h2>
-        <p class="lede">
-          Pricing stays public because fit should be about the size of the opportunity, not a proposal reveal.
-        </p>
-      </header>
-      <div class="entry-path-cards">
-        {entryPaths.map((path) => (
-          <a class={`entry-path-card tone-${path.tone}`} href={path.href}>
-            <span class="ops-kicker">{path.label}</span>
-            <h3>{path.name}</h3>
-            <strong>{path.price}</strong>
-            <p>{path.body}</p>
-          </a>
-        ))}
+        <!-- @r020:F2 proof: the upgrade path separates new AI capability from the tested system layer required to create business value -->
+        <div class="upgrade-visual reveal">
+          <div class="upgrade-inputs">
+            <span>Reads job sheets and inboxes</span>
+            <span>Handles a full bid package</span>
+            <span>Shows why it flagged a number</span>
+          </div>
+          <div class="upgrade-arrow" aria-hidden="true"><i></i></div>
+          <div class="upgrade-core">
+            <small>Test before it reaches the work</small>
+            <strong>Useful capability → working upgrade</strong>
+          </div>
+          <div class="upgrade-arrow" aria-hidden="true"><i></i></div>
+          <div class="upgrade-outputs">
+            <span>Source documents</span>
+            <i aria-hidden="true">→</i>
+            <span>Inputs extracted</span>
+            <i aria-hidden="true">→</i>
+            <span>Pricing approved</span>
+            <i aria-hidden="true">→</i>
+            <span>Bid ready</span>
+          </div>
+          <p class="upgrade-caption">Nothing improves automatically. New capability earns its place by working inside the system and under the right human control. The outlined step is where a person approves.</p>
+        </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- ============================================ -->
-  <!-- L9 · Category-of-one                          -->
-  <!-- Geo-personalized when Astro.locals.metro.known -->
-  <!-- ============================================ -->
-  <section class="dominance-section" aria-labelledby="dominance-title">
-    <div class="container dominance-grid">
-      <header class="dominance-head">
-        <p class="section-tag">Category of one</p>
-        {metro.known && metro.name ? (
-          <h2 id="dominance-title" class="h-section">
-            Become the most-chosen name in {metro.name}.
-          </h2>
-        ) : (
-          <h2 id="dominance-title" class="h-section">
-            Become the most-chosen name in your market.
-          </h2>
-        )}
-        <p class="lede">
-          When someone nearby asks who to call — on Google, in an AI answer, or from a neighbor — one name should keep coming up. We make every signal point to yours.
-        </p>
-      </header>
+    <section class="section" id="fit">
+      <div class="section-shell">
+        <div class="section-head reveal">
+          <div>
+            <p class="eyebrow">Fit</p>
+          <h2>This works when the problem has consequences.</h2>
+          </div>
+          <p>The strongest starting points are consequential, repeated, and visible enough to test. The work also needs an internal owner who can open the right doors and help the new way of working take hold.</p>
+        </div>
 
-      <figure class="dominance-figure">
-        <div class="default-answer">
-          <p class="da-prompt">When a buyer asks, <em>"who's the best near me?"</em></p>
-          <div class="da-flow">
-            <ul class="da-signals" role="list">
-              {dominanceSignals.map((sig) => (
-                <li class={`da-signal tone-${sig.tone}`}>
-                  {/* @r020:F2 proof: per-signal glyph (AI spark / map pin / review star / neighborhood homes) color-codes each ranking signal so the four read as distinct sources all converging on the one answer */}
-                  <svg class="da-signal-glyph" viewBox="0 0 24 24" aria-hidden="true">
-                    {sig.visual === 'ai' && (
-                      <g fill="none" stroke="var(--sig-accent)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-                        <path d="M12 3 L13.6 9.4 L20 11 L13.6 12.6 L12 19 L10.4 12.6 L4 11 L10.4 9.4 Z" />
-                        <path d="M18.5 4.5 L19 6.5 L21 7 L19 7.5 L18.5 9.5 L18 7.5 L16 7 L18 6.5 Z" fill="var(--sig-accent)" stroke="none" />
-                      </g>
-                    )}
-                    {sig.visual === 'pin' && (
-                      <g fill="none" stroke="var(--sig-accent)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-                        <path d="M12 21 C12 21 5 14.5 5 9.5 A7 7 0 0 1 19 9.5 C19 14.5 12 21 12 21 Z" />
-                        <circle cx="12" cy="9.5" r="2.4" />
-                      </g>
-                    )}
-                    {sig.visual === 'star' && (
-                      <path d="M12 3 L14.6 8.6 L20.8 9.4 L16.2 13.6 L17.5 19.8 L12 16.6 L6.5 19.8 L7.8 13.6 L3.2 9.4 L9.4 8.6 Z" fill="var(--sig-accent)" stroke="none" />
-                    )}
-                    {sig.visual === 'homes' && (
-                      <g fill="none" stroke="var(--sig-accent)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-                        <path d="M3 12 L8 7.5 L13 12" />
-                        <path d="M4.5 11 V19 H11.5 V11" />
-                        <path d="M13 12 L17 8.5 L21 12" />
-                        <path d="M14.5 11 V19 H19.5 V13" />
-                      </g>
-                    )}
-                  </svg>
-                  <span>{sig.label}</span>
-                  <span class="da-signal-arrow" aria-hidden="true">&rarr;</span>
-                </li>
-              ))}
+        <!-- @r020:F3 cta-pull: the fit split helps the visitor decide honestly before moving to the final action -->
+        <div class="fit-grid reveal">
+          <div class="fit-column">
+            <h3>A strong fit</h3>
+            <ul class="fit-list">
+              <li>Your bottleneck limits revenue, capacity, service, or visibility.</li>
+              <li>Your problem repeats and crosses people, tools, or decisions.</li>
+              <li>Your real work can show whether the build improved it.</li>
+              <li>You can open the right systems and move decisions forward.</li>
             </ul>
-            <div class="da-answer">
-              <span class="ops-kicker">The answer</span>
-              <strong>Your business</strong>
-              <span class="da-answer-sub">the first name they say — every time</span>
-            </div>
+          </div>
+          <div class="fit-column">
+            <h3>Probably not a fit</h3>
+            <ul class="fit-list">
+              <li>You want generic AI training or a list of tools.</li>
+              <li>You want software installed without changing the work around it.</li>
+              <li>No one on your team has time to make decisions, provide access, or work the new system into the week.</li>
+              <li>The problem is not important enough to test in the business.</li>
+            </ul>
           </div>
         </div>
-        <figcaption class="dominance-cap mono">
-          Four signals. One answer. Your business.
-        </figcaption>
-      </figure>
-
-      <ul class="dominance-mechanisms" role="list">
-        {dominanceMechanisms.map((m) => (
-          <li class="dominance-mech">
-            <span class="dot live" aria-hidden="true"></span>
-            <div>
-              <h3 class="h-sub">{m.name}</h3>
-              <p>{m.body}</p>
-            </div>
-          </li>
-        ))}
-      </ul>
-    </div>
-  </section>
-
-  <!-- ============================================ -->
-  <!-- L10 · Proof — numeric receipts                -->
-  <!-- ============================================ -->
-  <!-- @bwm-exp-slot: proof-module — numeric-receipts section (proof composition / placement experiments) -->
-  <section class="proof-section elev" aria-labelledby="proof-title" data-bwm-exp-slot="proof-module">
-    <div class="container">
-
-      <header class="proof-head">
-        <p class="section-tag">Proof</p>
-        <h2 id="proof-title" class="h-section">Real numbers. <em>Real receipts.</em></h2>
-      </header>
-
-      <ul class="outcome-tiles" role="list">
-        {proofTiles.map((tile) => (
-          <li class="outcome-tile">
-            <span class="kpi-label mono">{tile.label}</span>
-            <p class="outcome-num">
-              {tile.num}{tile.unit && <span class="outcome-num-unit">{tile.unit}</span>}
-            </p>
-          </li>
-        ))}
-      </ul>
-
-      <article class="proof-card">
-        <p class="proof-headline">
-          One service business went from $300K to $10M in 12 months.<br/>
-          Same owner. Same hours. <em>Different operating model.</em>
-        </p>
-        <ul class="proof-evidence" role="list">
-          <li>
-            <span class="tri-tag tri-tag-y2">Measured</span>
-            3.2× lift in qualified-lead share at Day-90.
-          </li>
-          <li>
-            <span class="tri-tag tri-tag-y2">Attributed</span>
-            Booked-job stitching via UTM + first-touch / last-touch attribution.
-          </li>
-          <li>
-            <span class="tri-tag tri-tag-y2">Modeled</span>
-            Review velocity, local search, and AI-search citation moved as one system.
-          </li>
-        </ul>
-        <div class="proof-cta-row">
-          <a href="/revenue-leak-map" class="cta" data-cta-source="proof-cta">Get My Free Revenue Leak Map<span class="cta-arrow" aria-hidden="true">&rarr;</span></a>
-          <a href="/results" class="cta-ghost" data-cta-source="proof-results">See more receipts</a>
-        </div>
-      </article>
-
-      <div class="bar-comparison" role="group" aria-label="Attributed lead clarity comparison: legacy agency vs Ascend system">
-        <h3 class="comparison-title mono">Clear-view Lead Attribution</h3>
-        <div class="comparison-bars">
-          <div class="comparison-bar legacy">
-            <div class="bar-info">
-              <span class="bar-label">Typical agency reporting</span>
-              <span class="bar-value">12% clarity</span>
-            </div>
-            <div class="bar-track">
-              <!-- @r020:F2 proof: Clip-path animated bar showing low lead attribution visibility in legacy models -->
-              <div class="bar-fill legacy-fill figure-band"></div>
-            </div>
-          </div>
-          <div class="comparison-bar ascend">
-            <div class="bar-info">
-              <span class="bar-label">Ascend System</span>
-              <span class="bar-value">100% verified</span>
-            </div>
-            <div class="bar-track">
-              <!-- @r020:F2 proof: Clip-path animated bar showing complete lead attribution visibility in Ascend model -->
-              <div class="bar-fill ascend-fill figure-band"></div>
-            </div>
-          </div>
+        <div class="fit-action reveal">
+          <p>Recognize your business here?</p>
+          <a class="cta" href="/book/" data-cta-source="fit">See if you're a fit</a>
         </div>
       </div>
+    </section>
 
-      <div class="attribution-honesty">
-        <p class="ops-kicker">Attribution honesty</p>
-        <h3>What counts toward return on investment has to be visible.</h3>
-        <div class="attribution-rule-grid">
-          {attributionRules.map((item) => (
-            <article>
-              <span class="mono">{item.label}</span>
-              <p>{item.body}</p>
-            </article>
-          ))}
-        </div>
+    <section class="final-cta" id="decision">
+      <div class="section-shell final-inner reveal">
+        <p class="eyebrow">The decision</p>
+        <h2>Name the bottleneck that <span class="no-break">won’t go away.</span></h2>
+        <p class="final-support">If you can name it, we can tell you whether it is the right first build—and what that build could change.</p>
+        <a class="cta" href="/book/" data-cta-source="decision">See if you're a fit</a>
+        <p class="decision-note">Leave with a clear view of the problem, a first read on what it is costing the business, and whether we are the right team to take it on.</p>
       </div>
+    </section>
+  </main>
 
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-mark">
+        <!-- @r020:identity: exact BWM mark used only for recognition at footer scale -->
+        <img src="/assets/mark.svg" alt="" width="48" height="48">
+        <span>Buildwise Media</span>
+      </div>
+      <p>Atlanta-based · Serving owner-led companies across the United States</p>
+      <p><a href="/privacy/">Privacy</a> · <a href="/terms/">Terms</a></p>
     </div>
-  </section>
-
-  <!-- ============================================ -->
-  <!-- L12 · Objection handling                      -->
-  <!-- ============================================ -->
-  <section class="objection-section elev" aria-labelledby="objection-title">
-    <div class="container objection-grid">
-      <header class="objection-head">
-        <p class="section-tag">Straight talk</p>
-        <h2 id="objection-title" class="h-section">You've heard big promises before.</h2>
-        <p class="lede">
-          If you run a real business, you've probably been promised the world and handed a login. So here are straight answers to what you're already thinking — before you ever get on a call.
-        </p>
-      </header>
-      <div class="objection-list">
-        {objections.map((item) => (
-          <article class={`objection-card tone-${item.tone}`}>
-            <p class="objection-quote"><span class="objection-qmark" aria-hidden="true">&ldquo;</span>{item.q}</p>
-            <div class="objection-answer">
-              <span class="objection-answer-label mono">The straight answer</span>
-              <p>{item.a}</p>
-            </div>
-          </article>
-        ))}
-      </div>
-    </div>
-  </section>
-
-  <!-- ============================================ -->
-  <!-- L13 · FAQ                                     -->
-  <!-- ============================================ -->
-  <FAQ faqs={faqs} />
-
-  <!-- ============================================ -->
-  <!-- L14 · Final CTA                               -->
-  <!-- ============================================ -->
-  <section class="final-section" aria-labelledby="final-title">
-    <div class="container">
-      <div class="final-inner">
-      <div>
-        <p class="section-tag">Get your Revenue Leak Map</p>
-          <h2 id="final-title" class="h-closer">See where you're leaking revenue first.</h2>
-          <p class="lede">Your free Revenue Leak Map shows where the market is beating you, names the highest-value first move, and establishes what should be measured. We build it from your data and walk it with you on a short call &mdash; no pitch.</p>
-      </div>
-        <div class="final-actions" style="display:flex;flex-direction:column;gap:12px;align-items:center">
-          <a href="/revenue-leak-map" class="cta" data-cta-source="home-final">Get My Free Revenue Leak Map<span class="cta-arrow" aria-hidden="true">&rarr;</span></a>
-          <a href="/system" class="cta-ghost" data-cta-source="home-final-system">See the System</a>
-        </div>
-      </div>
-      <!-- @r020:F2 proof: SVG timeline graphic showing the 30-day install milestones to system-live -->
-      <figure class="final-timeline" aria-labelledby="timeline-cap">
-        <svg viewBox="0 0 1000 90" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="From audit to system-live in 30 days: three milestones across one month">
-          <line x1="60" y1="50" x2="940" y2="50" stroke="var(--rule)" stroke-width="1"/>
-          <line x1="60" y1="50" x2="940" y2="50" stroke="var(--y2)" stroke-width="1.5" stroke-dasharray="2 6"/>
-          <circle cx="60" cy="50" r="5" fill="var(--y2)"/>
-          <circle cx="500" cy="50" r="5" fill="var(--y2)"/>
-          <circle cx="940" cy="50" r="5" fill="var(--y2)"/>
-          <text x="60" y="32" text-anchor="start" fill="var(--y2)" font-family="JetBrains Mono, monospace" font-size="11" letter-spacing="2">DAY 0</text>
-          <text x="60" y="78" text-anchor="start" fill="var(--ink-dim)" font-family="JetBrains Mono, monospace" font-size="10" letter-spacing="2">AUDIT</text>
-          <text x="500" y="32" text-anchor="middle" fill="var(--y2)" font-family="JetBrains Mono, monospace" font-size="11" letter-spacing="2">DAY 14</text>
-          <text x="500" y="78" text-anchor="middle" fill="var(--ink-dim)" font-family="JetBrains Mono, monospace" font-size="10" letter-spacing="2">INSTALL</text>
-          <text x="940" y="32" text-anchor="end" fill="var(--y2)" font-family="JetBrains Mono, monospace" font-size="11" letter-spacing="2">DAY 30</text>
-          <text x="940" y="78" text-anchor="end" fill="var(--ink-dim)" font-family="JetBrains Mono, monospace" font-size="10" letter-spacing="2">SYSTEM LIVE</text>
-        </svg>
-        <figcaption id="timeline-cap" class="final-timeline-cap mono">
-          Diagnostic to system-live · 30 days · weekly proof rhythm begins.
-        </figcaption>
-      </figure>
-    </div>
-  </section>
+  </footer>
 
   <script>
-    // Animate comparative progress bars when the proof section enters view.
-    const bands = document.querySelectorAll('.figure-band');
-    const checkReveal = () => {
-      bands.forEach((b) => {
-        const rect = b.getBoundingClientRect();
-        if (rect.top < window.innerHeight * 0.9) {
-          b.classList.add('is-visible');
+    const scenarios = {
+      leads: {
+        input: "A lead arrives and waits for someone to notice.",
+        system: "Capture, route, follow up, and show the next action.",
+        note: "The owner can see every opportunity, who owns it, and what happens next.",
+        outcomes: ["Lead captured", "Owner assigned", "Follow-up set", "Status visible"],
+        receipt: {
+          title: "Lead follow-up",
+          input: "New lead captured.",
+          control: "Routing follows approved ownership rules.",
+          output: "Owner and follow-up due time are visible.",
+          pass: "Every lead shows an owner and a next action, checked in real follow-up work."
+        }
+      },
+      bids: {
+        input: "A bid stalls because the information lives in five places.",
+        system: "Collect requirements, organize inputs, build, and track the bid.",
+        note: "The system keeps the job facts, decisions, and status together so the work can move.",
+        outcomes: ["Inputs together", "Gaps flagged", "Bid built", "Status visible"],
+        receipt: {
+          title: "Bidding",
+          input: "Bid requirements gathered.",
+          control: "Pricing and approval decisions remain human-owned.",
+          output: "Inputs, status, and next decision are visible.",
+          pass: "A bid passes only when missing inputs, who owes them, and the next pricing decision are visible."
+        }
+      },
+      service: {
+        input: "A service request disappears between inboxes and spreadsheets.",
+        system: "Create the ticket, assign ownership, track progress, and close the loop.",
+        note: "The system gives every request an owner, a status, and a visible next step.",
+        outcomes: ["Ticket created", "Owner assigned", "Progress tracked", "Loop closed"],
+        receipt: {
+          title: "Service work",
+          input: "Service request captured.",
+          control: "Assignment and exceptions follow approved rules.",
+          output: "Owner, status, and next step are visible.",
+          pass: "An aged request surfaces before the customer has to chase, with current status and the next service action visible."
+        }
+      },
+      reporting: {
+        input: "A decision waits because the numbers do not match.",
+        system: "Bring the operating facts together and show what needs attention.",
+        note: "The system gives leaders one current view of the facts used to make the decision.",
+        outcomes: ["Facts joined", "Conflicts shown", "Decision clear", "Action owned"],
+        receipt: {
+          title: "Reporting",
+          input: "Current operating data joined.",
+          control: "Leaders choose the facts used to decide.",
+          output: "Conflicts and decisions due are visible.",
+          pass: "Conflicting numbers are reconciled to one current source before the decision is due."
+        }
+      }
+    };
+
+    const scenarioKeys = Object.keys(scenarios);
+    const scenarioButtons = [...document.querySelectorAll(".scenario-button")];
+    const receiptButtons = [...document.querySelectorAll(".receipt-choice")];
+    const inputText = document.querySelector("#map-input");
+    const systemText = document.querySelector("#map-system");
+    const mapNote = document.querySelector("#map-note");
+    const outcomeLabels = [...document.querySelectorAll(".map-outcomes span")];
+    const evidenceReceipt = document.querySelector(".evidence-receipt");
+    const receiptExample = document.querySelector("#receipt-example");
+    const receiptTitle = document.querySelector("#receipt-title");
+    const receiptInput = document.querySelector("#receipt-input");
+    const receiptControl = document.querySelector("#receipt-control");
+    const receiptOutput = document.querySelector("#receipt-output");
+    const receiptPass = document.querySelector("#receipt-pass");
+    const receiptSyncNote = document.querySelector("#receipt-sync-note");
+    const evidenceReturn = document.querySelector(".evidence-return");
+    const systemVisual = document.querySelector(".system-visual");
+    const systemMap = document.querySelector("#system-map");
+    const scenarioStatus = document.querySelector("#scenario-status");
+    const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+    const coarsePointer = window.matchMedia("(pointer: coarse)");
+    let activeScenario = 0;
+    let scenarioTimer;
+    let transitionTimer;
+    let automaticSteps = 0;
+    let userSelected = false;
+    let scenarioVisible = false;
+
+    function renderScenario(key, fromUser = false, source = "hero") {
+      const scenario = scenarios[key];
+      activeScenario = scenarioKeys.indexOf(key);
+      inputText.textContent = scenario.input;
+      systemText.textContent = scenario.system;
+      mapNote.textContent = scenario.note;
+      outcomeLabels.forEach((label, index) => {
+        label.textContent = scenario.outcomes[index];
+      });
+      receiptTitle.textContent = scenario.receipt.title;
+      receiptInput.textContent = scenario.receipt.input;
+      receiptControl.textContent = scenario.receipt.control;
+      receiptOutput.textContent = scenario.receipt.output;
+      receiptPass.textContent = scenario.receipt.pass;
+      receiptSyncNote.textContent = fromUser && source === "receipt"
+        ? `${scenario.receipt.title} selected here. The system map above now matches ↑`
+        : `See ${scenario.receipt.title} in the system map ↑`;
+      evidenceReturn.textContent = `See how the ${scenario.receipt.title.toLowerCase()} build is judged ↓`;
+      evidenceReceipt.setAttribute("aria-label", `Example of how a ${scenario.receipt.title.toLowerCase()} build is judged`);
+      scenarioButtons.forEach((button) => {
+        const selected = button.dataset.scenario === key;
+        button.setAttribute("aria-selected", String(selected));
+        button.setAttribute("tabindex", selected ? "0" : "-1");
+      });
+      receiptButtons.forEach((button) => {
+        const selected = button.dataset.receiptScenario === key;
+        button.setAttribute("aria-selected", String(selected));
+        button.setAttribute("tabindex", selected ? "0" : "-1");
+      });
+      receiptExample.setAttribute("aria-labelledby", `receipt-choice-${key}`);
+      systemMap.setAttribute("aria-labelledby", `scenario-${key}`);
+      if (fromUser && source === "receipt") {
+        scenarioStatus.textContent = `${scenario.receipt.title} evidence example selected. Input observed: ${scenario.receipt.input} Pass criterion: ${scenario.receipt.pass} The system map above now shows the same example.`;
+      } else if (fromUser) {
+        scenarioStatus.textContent = `${scenarioButtons[activeScenario].textContent} example selected. ${scenario.input} ${scenario.system}`;
+      }
+    }
+
+    function setScenario(key, fromUser = false, source = "hero") {
+      window.clearTimeout(transitionTimer);
+      if (reduceMotion.matches) {
+        systemVisual.classList.remove("is-changing");
+        renderScenario(key, fromUser, source);
+        return;
+      }
+      systemVisual.classList.add("is-changing");
+      transitionTimer = window.setTimeout(() => {
+        renderScenario(key, fromUser, source);
+        window.requestAnimationFrame(() => {
+          systemVisual.classList.remove("is-changing");
+          const signal = systemVisual.querySelector(".map-arrow i");
+          signal.style.animation = "none";
+          void signal.offsetWidth;
+          signal.style.animation = "";
+        });
+      }, 180);
+    }
+
+    function stopScenarioTimer() {
+      window.clearTimeout(scenarioTimer);
+    }
+
+    function scheduleScenario() {
+      stopScenarioTimer();
+      if (!scenarioVisible || document.hidden || reduceMotion.matches || userSelected || automaticSteps >= scenarioKeys.length) return;
+      scenarioTimer = window.setTimeout(() => {
+        automaticSteps += 1;
+        activeScenario = (activeScenario + 1) % scenarioKeys.length;
+        setScenario(scenarioKeys[activeScenario]);
+        scheduleScenario();
+      }, coarsePointer.matches ? 14000 : 7600);
+    }
+
+    scenarioButtons.forEach((button) => {
+      button.addEventListener("click", () => {
+        userSelected = true;
+        stopScenarioTimer();
+        setScenario(button.dataset.scenario, true, "hero");
+      });
+      button.addEventListener("keydown", (event) => {
+        if (!["ArrowLeft", "ArrowRight", "ArrowUp", "ArrowDown", "Home", "End"].includes(event.key)) return;
+        event.preventDefault();
+        let nextIndex = activeScenario;
+        if (["ArrowLeft", "ArrowUp"].includes(event.key)) nextIndex = (activeScenario - 1 + scenarioKeys.length) % scenarioKeys.length;
+        if (["ArrowRight", "ArrowDown"].includes(event.key)) nextIndex = (activeScenario + 1) % scenarioKeys.length;
+        if (event.key === "Home") nextIndex = 0;
+        if (event.key === "End") nextIndex = scenarioKeys.length - 1;
+        userSelected = true;
+        stopScenarioTimer();
+        setScenario(scenarioKeys[nextIndex], true, "hero");
+        scenarioButtons[nextIndex].focus();
+      });
+    });
+
+    receiptButtons.forEach((button) => {
+      button.addEventListener("click", () => {
+        userSelected = true;
+        stopScenarioTimer();
+        setScenario(button.dataset.receiptScenario, true, "receipt");
+      });
+      button.addEventListener("keydown", (event) => {
+        if (!["ArrowLeft", "ArrowRight", "ArrowUp", "ArrowDown", "Home", "End"].includes(event.key)) return;
+        event.preventDefault();
+        let nextIndex = activeScenario;
+        if (["ArrowLeft", "ArrowUp"].includes(event.key)) nextIndex = (activeScenario - 1 + scenarioKeys.length) % scenarioKeys.length;
+        if (["ArrowRight", "ArrowDown"].includes(event.key)) nextIndex = (activeScenario + 1) % scenarioKeys.length;
+        if (event.key === "Home") nextIndex = 0;
+        if (event.key === "End") nextIndex = scenarioKeys.length - 1;
+        userSelected = true;
+        stopScenarioTimer();
+        setScenario(scenarioKeys[nextIndex], true, "receipt");
+        receiptButtons[nextIndex].focus();
+      });
+    });
+
+    systemVisual.addEventListener("mouseenter", stopScenarioTimer);
+    systemVisual.addEventListener("mouseleave", scheduleScenario);
+    systemVisual.addEventListener("pointerdown", () => {
+      userSelected = true;
+      stopScenarioTimer();
+    });
+    systemVisual.addEventListener("focusin", () => {
+      userSelected = true;
+      stopScenarioTimer();
+    });
+    systemVisual.addEventListener("focusout", stopScenarioTimer);
+    reduceMotion.addEventListener("change", scheduleScenario);
+    document.addEventListener("visibilitychange", () => {
+      if (document.hidden) stopScenarioTimer();
+      else scheduleScenario();
+    });
+
+    const scenarioObserver = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        scenarioVisible = entry.isIntersecting;
+        if (scenarioVisible) scheduleScenario();
+        else stopScenarioTimer();
+      });
+    }, { threshold: 0.55 });
+    scenarioObserver.observe(systemVisual);
+
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("in-view");
+          revealObserver.unobserve(entry.target);
         }
       });
-    };
-    window.addEventListener('scroll', checkReveal);
-    checkReveal();
+    }, { threshold: 0.12 });
+
+    document.querySelectorAll(".reveal").forEach((element) => revealObserver.observe(element));
+
   </script>
-</BaseLayout>
-
-<style>
-/* ===== L1 Hero ===== */
-.home-hero {
-  position: relative;
-  min-height: clamp(720px, 92svh, 900px);
-  display: flex;
-  align-items: flex-start;
-  padding-top: clamp(96px, 9vw, 128px);
-  padding-bottom: clamp(44px, 6vw, 72px);
-  overflow: hidden;
-  background:
-    linear-gradient(115deg, rgba(56, 216, 255, 0.08), transparent 38%),
-    linear-gradient(245deg, rgba(240, 255, 0, 0.07), transparent 42%),
-    var(--bg);
-}
-
-.hero-grid {
-  display: grid;
-  grid-template-columns: minmax(0, 1.14fr) minmax(280px, 0.86fr);
-  gap: clamp(30px, 5.5vw, 72px);
-  align-items: start;
-}
-.hero-grid > * { min-width: 0; }
-
-.hero-copy {
-  display: flex;
-  flex-direction: column;
-  gap: 24px;
-  min-width: 0;
-}
-
-.hero-copy .h-hero {
-  max-width: 760px;
-  font-size: clamp(44px, 5.2vw, 74px);
-  line-height: 0.93;
-  letter-spacing: -0.035em;
-}
-.hero-copy .h-hero em {
-  color: var(--y2);
-  font-style: normal;
-}
-.hero-copy .hero-sub {
-  max-width: 620px;
-  font-size: clamp(17px, 1.55vw, 20px);
-  font-weight: 400;
-  line-height: 1.48;
-  color: var(--ink-dim);
-}
-
-.hero-actions {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 14px;
-  align-items: center;
-  margin-top: 2px;
-}
-
-.hero-proof-strip {
-  list-style: none;
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 1px;
-  background: var(--rule);
-  border: 1px solid var(--rule);
-  max-width: 680px;
-  margin-top: 8px;
-}
-.hero-proof-strip li {
-  background: var(--bg-card);
-  padding: 14px 14px;
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
-}
-.hero-proof-strip strong {
-  font-size: clamp(22px, 2.5vw, 34px);
-  line-height: 1;
-  letter-spacing: -0.04em;
-  color: var(--ink);
-}
-.hero-proof-strip span {
-  font-family: var(--mono);
-  font-size: 9px;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
-  color: var(--ink-faint);
-}
-
-.command-center {
-  position: relative;
-  min-width: 0;
-  border: 1px solid var(--rule-bright);
-  background:
-    linear-gradient(180deg, rgba(56, 216, 255, 0.06), transparent 34%),
-    linear-gradient(125deg, rgba(240, 255, 0, 0.055), transparent 48%),
-    var(--bg-card);
-  padding: clamp(18px, 2.4vw, 28px);
-  min-height: 520px;
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-  box-shadow: 0 24px 80px rgba(0, 0, 0, 0.35);
-  overflow: hidden;
-}
-.command-center::before {
-  content: "";
-  position: absolute;
-  inset: 14px;
-  border: 1px solid rgba(240, 255, 0, 0.12);
-  pointer-events: none;
-}
-.command-center::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-  background:
-    linear-gradient(180deg, transparent 0 47%, rgba(240, 255, 0, 0.08) 48%, transparent 50%),
-    radial-gradient(circle at 74% 16%, rgba(101, 255, 142, 0.12), transparent 20%),
-    radial-gradient(circle at 22% 82%, rgba(56, 216, 255, 0.1), transparent 18%);
-  mix-blend-mode: screen;
-  opacity: 0.62;
-}
-.command-topline {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  color: var(--y2);
-  font-size: 10px;
-  letter-spacing: 0.18em;
-  position: relative;
-  z-index: 1;
-}
-.console-lock {
-  margin-left: auto;
-  color: var(--signal-green);
-  font-size: 8px;
-  letter-spacing: 0.16em;
-}
-
-.console-shell {
-  display: grid;
-  grid-template-columns: minmax(0, 1.18fr) minmax(140px, 0.82fr);
-  gap: 12px;
-  position: relative;
-  z-index: 1;
-}
-.signal-map-panel,
-.leak-radar-panel {
-  min-width: 0;
-  border: 1px solid var(--rule);
-  background: rgba(5, 5, 7, 0.62);
-  padding: 12px;
-}
-.signal-map-panel {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-}
-.panel-head {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 12px;
-  margin-bottom: 12px;
-}
-.market-signal-svg {
-  width: 100%;
-  height: auto;
-  border: 1px solid rgba(255, 255, 255, 0.03);
-}
-.signal-queue {
-  display: grid;
-  gap: 1px;
-  background: var(--rule);
-  border: 1px solid var(--rule);
-}
-.signal-queue-row {
-  display: grid;
-  grid-template-columns: minmax(78px, 0.7fr) minmax(0, 1.3fr);
-  gap: 10px;
-  align-items: center;
-  background: rgba(5, 5, 7, 0.72);
-  border-left: 2px solid currentColor;
-  padding: 8px 10px;
-}
-.signal-queue-row span {
-  color: var(--ink-faint);
-  font-size: 8px;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-}
-.signal-queue-row strong {
-  color: var(--ink);
-  font-family: var(--mono);
-  font-size: 9px;
-  font-weight: 400;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-}
-.signal-path {
-  stroke-dasharray: 15 16;
-  animation: signalRoute 8s linear infinite;
-}
-.path-b { animation-duration: 10s; animation-direction: reverse; }
-.path-c { animation-duration: 12s; }
-.map-node:not(.core) circle {
-  animation: nodeBlink 2.8s ease-in-out infinite;
-  transform-origin: center;
-}
-.leak-radar-panel {
-  display: flex;
-  flex-direction: column;
-}
-.radar-list {
-  list-style: none;
-  display: grid;
-  gap: 6px;
-  margin: 0;
-  padding: 0;
-}
-.radar-item {
-  display: grid;
-  grid-template-columns: 10px minmax(0, 1fr);
-  gap: 8px 10px;
-  align-items: center;
-  padding: 8px;
-  border: 1px solid var(--rule);
-  background: rgba(255, 255, 255, 0.015);
-}
-.radar-item .dot { margin: 0; }
-.radar-item strong {
-  color: var(--ink);
-  font-size: 12px;
-  line-height: 1.2;
-}
-.radar-item em {
-  grid-column: 2;
-  font-family: var(--mono);
-  font-style: normal;
-  font-size: 8px;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: currentColor;
-}
-.command-metrics {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 1px;
-  background: var(--rule);
-  border: 1px solid var(--rule);
-  align-self: stretch;
-  position: relative;
-  z-index: 1;
-}
-.command-metric {
-  background: var(--bg);
-  padding: 14px;
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-  border-top: 2px solid currentColor;
-}
-.command-metric span {
-  color: var(--ink-faint);
-  font-size: 9px;
-  letter-spacing: 0.18em;
-}
-.command-metric strong {
-  font-size: clamp(28px, 3vw, 44px);
-  line-height: 1;
-  letter-spacing: -0.04em;
-  color: var(--ink);
-}
-.command-metric em {
-  font-family: var(--mono);
-  font-style: normal;
-  text-transform: uppercase;
-  font-size: 9px;
-  letter-spacing: 0.18em;
-  color: currentColor;
-}
-
-.weekly-proof-rail {
-  display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 1px;
-  background: var(--rule);
-  border: 1px solid var(--rule);
-  position: relative;
-  z-index: 1;
-}
-.proof-rail-item {
-  background: rgba(5, 5, 7, 0.72);
-  padding: 10px 10px;
-  border-top: 2px solid currentColor;
-}
-.proof-rail-item span {
-  display: block;
-  font-size: 8px;
-  letter-spacing: 0.14em;
-  color: var(--ink-faint);
-}
-.proof-rail-item strong {
-  display: block;
-  margin-top: 6px;
-  font-family: var(--mono);
-  font-size: 10px;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: currentColor;
-}
-
-@media (min-width: 901px) and (max-height: 900px) {
-  .home-hero {
-    min-height: 100svh;
-    padding-top: clamp(72px, 8svh, 92px);
-    padding-bottom: clamp(28px, 4svh, 44px);
-  }
-  .hero-grid {
-    grid-template-columns: minmax(0, 1.08fr) minmax(270px, 0.92fr);
-    gap: clamp(24px, 4vw, 52px);
-  }
-  .hero-copy { gap: 14px; }
-  .hero-copy .h-hero {
-    max-width: 700px;
-    font-size: clamp(40px, 4.75vw, 64px);
-    line-height: 0.94;
-  }
-  .hero-copy .hero-sub {
-    max-width: 580px;
-    font-size: clamp(16px, 1.4vw, 18px);
-    line-height: 1.42;
-  }
-  .hero-actions {
-    gap: 12px;
-    margin-top: 0;
-  }
-  .hero-proof-strip {
-    max-width: 620px;
-    margin-top: 4px;
-  }
-  .hero-proof-strip li {
-    padding: 11px 12px;
-    gap: 4px;
-  }
-  .hero-proof-strip strong {
-    font-size: clamp(21px, 2.2vw, 30px);
-  }
-  .command-center {
-    min-height: 0;
-    padding: 18px;
-    gap: 12px;
-  }
-  .command-center::before { inset: 10px; }
-  .console-shell {
-    grid-template-columns: minmax(0, 1.1fr) minmax(126px, 0.9fr);
-    gap: 10px;
-  }
-  .signal-map-panel,
-  .leak-radar-panel {
-    padding: 10px;
-  }
-  .panel-head {
-    margin-bottom: 8px;
-  }
-  .market-signal-svg {
-    max-height: 144px;
-  }
-  .signal-map-panel {
-    gap: 8px;
-  }
-  .signal-queue-row {
-    grid-template-columns: minmax(68px, 0.64fr) minmax(0, 1.36fr);
-    gap: 8px;
-    padding: 6px 8px;
-  }
-  .radar-list { gap: 5px; }
-  .radar-item {
-    gap: 6px 8px;
-    padding: 6px;
-  }
-  .radar-item strong {
-    font-size: 11px;
-  }
-  .command-metric {
-    padding: 10px 12px;
-    gap: 6px;
-  }
-  .command-metric strong {
-    font-size: clamp(26px, 2.5vw, 36px);
-  }
-  .command-metric em {
-    font-size: 8px;
-  }
-  .proof-rail-item {
-    padding: 8px;
-  }
-  .proof-rail-item span {
-    font-size: 7px;
-  }
-  .proof-rail-item strong {
-    margin-top: 5px;
-    font-size: 9px;
-  }
-  .evidence-ticker {
-    padding-top: 8px;
-  }
-}
-
-@keyframes signalRoute {
-  to { stroke-dashoffset: -180; }
-}
-@keyframes nodeBlink {
-  0%, 100% { opacity: 0.7; }
-  50% { opacity: 1; }
-}
-
-.evidence-ticker {
-  position: relative;
-  width: 100%;
-  overflow: hidden;
-  border-top: 1px solid var(--rule);
-  padding-top: 12px;
-  margin-top: auto;
-  mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
-  -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
-  position: relative;
-  z-index: 1;
-}
-
-/* ===== L1.5 Operating reframe ===== */
-.operating-reframe {
-  min-height: calc(100svh - 96px);
-  padding-block: clamp(28px, 4vh, 48px);
-  border-block: 1px solid var(--rule);
-  background:
-    linear-gradient(180deg, rgba(255, 255, 255, 0.018), transparent),
-    var(--bg-elev);
-  display: grid;
-  align-items: center;
-}
-.velocity-stage {
-  display: grid;
-  grid-template-columns: minmax(310px, 0.72fr) minmax(0, 1.28fr);
-  gap: clamp(28px, 4vw, 58px);
-  align-items: center;
-}
-.velocity-head {
-  min-width: 0;
-}
-.velocity-head .h-section {
-  max-width: 10.8ch;
-  font-size: clamp(42px, 4.6vw, 72px);
-  line-height: 0.93;
-  text-wrap: balance;
-}
-.velocity-head .lede {
-  margin-top: clamp(18px, 2.6vh, 26px);
-  max-width: 590px;
-  font-size: clamp(17px, 1.6vw, 22px);
-  line-height: 1.42;
-}
-.velocity-phase-rail {
-  display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 1px;
-  margin-top: clamp(18px, 2.6vh, 28px);
-  background: var(--rule);
-  border: 1px solid var(--rule);
-}
-.velocity-phase-rail span {
-  min-height: 38px;
-  display: grid;
-  place-items: center;
-  padding: 10px 12px;
-  background: var(--bg-card);
-  color: var(--y2);
-  font-size: 9px;
-  letter-spacing: 0.16em;
-  text-align: center;
-}
-.velocity-urgent {
-  margin-top: clamp(18px, 2.6vh, 28px);
-  padding: 13px 16px;
-  border-left: 2px solid var(--y2);
-  background: rgba(240, 255, 0, 0.045);
-  color: var(--ink);
-  font-size: clamp(16px, 1.4vw, 19px);
-  line-height: 1.45;
-}
-.velocity-chart {
-  min-width: 0;
-  margin: 0;
-  padding: clamp(18px, 2.4vw, 28px);
-  border: 1px solid var(--rule);
-  background:
-    radial-gradient(circle at 78% 18%, rgba(240, 255, 0, 0.16), transparent 28%),
-    linear-gradient(135deg, rgba(56, 216, 255, 0.07), transparent 42%),
-    var(--bg-card);
-}
-.velocity-chart-top {
-  display: flex;
-  justify-content: space-between;
-  align-items: start;
-  gap: 18px;
-  margin-bottom: 12px;
-}
-.velocity-chart-top h3 {
-  max-width: 560px;
-  margin-top: 8px;
-  font-size: clamp(28px, 3.1vw, 44px);
-  line-height: 0.96;
-  text-wrap: balance;
-}
-.velocity-chip {
-  border: 1px solid rgba(240, 255, 0, 0.42);
-  color: var(--y2);
-  padding: 10px 12px;
-  font-size: 9px;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
-  white-space: nowrap;
-}
-.velocity-svg {
-  display: block;
-  width: 100%;
-  height: min(58svh, 580px);
-  min-height: 420px;
-}
-.velocity-event circle {
-  fill: var(--bg);
-  stroke: var(--y2);
-  stroke-width: 4;
-  filter: drop-shadow(0 0 14px rgba(240, 255, 0, 0.34));
-}
-.velocity-event text {
-  font-family: var(--mono);
-  text-transform: uppercase;
-}
-.event-date {
-  fill: var(--ink-faint);
-  font-size: 17px;
-  letter-spacing: 0.12em;
-}
-.event-label {
-  fill: var(--ink);
-  font-size: 27px;
-  font-weight: 700;
-  letter-spacing: 0.025em;
-  paint-order: stroke;
-  stroke: rgba(7, 7, 9, 0.88);
-  stroke-linejoin: round;
-  stroke-width: 9px;
-}
-.event-detail {
-  display: none;
-  fill: var(--ink-dim);
-  font-size: 15px;
-  letter-spacing: 0.06em;
-}
-.velocity-event.forecast circle {
-  fill: var(--y2);
-  stroke: var(--bg);
-}
-.velocity-event.terminal circle {
-  stroke-width: 5;
-}
-.next-curve circle {
-  fill: var(--signal-cyan);
-  stroke: var(--signal-cyan);
-}
-.next-curve .event-label {
-  fill: var(--signal-cyan);
-  font-size: 21px;
-}
-.velocity-now .event-label {
-  fill: var(--y2);
-}
-.velocity-caption {
-  margin-top: 12px;
-  padding-top: 14px;
-  border-top: 1px solid var(--rule);
-  color: var(--ink-dim);
-  font-size: clamp(15px, 1.25vw, 18px);
-  line-height: 1.42;
-  max-width: 1020px;
-}
-.velocity-caption strong {
-  color: var(--ink);
-}
-.ticker-track {
-  display: flex;
-  width: max-content;
-  animation: tickerMove 25s linear infinite;
-}
-.ticker-items {
-  display: flex;
-  align-items: center;
-  gap: 20px;
-  padding-right: 20px;
-  white-space: nowrap;
-  font-family: var(--mono);
-  font-size: 8px;
-  letter-spacing: 0.15em;
-  text-transform: uppercase;
-  color: var(--ink-faint);
-}
-.ticker-sep {
-  color: var(--y2);
-  font-weight: bold;
-}
-
-/* ===== Comparative Progress Bars ===== */
-.bar-comparison {
-  margin-top: 32px;
-  padding: 28px;
-  background: var(--bg-card);
-  border: 1px solid var(--rule);
-  border-radius: 4px;
-}
-.comparison-title {
-  font-size: 11px;
-  letter-spacing: 0.18em;
-  color: var(--ink-faint);
-  margin-bottom: 24px;
-  text-transform: uppercase;
-}
-.comparison-bars {
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-}
-.comparison-bar {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-}
-.bar-info {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  font-family: var(--mono);
-  font-size: 10px;
-  letter-spacing: 0.05em;
-  text-transform: uppercase;
-}
-.bar-label {
-  color: var(--ink-dim);
-}
-.bar-value {
-  color: var(--ink);
-}
-.legacy .bar-value {
-  color: var(--ink-faint);
-}
-.ascend .bar-value {
-  color: var(--y2);
-  font-weight: bold;
-}
-.bar-track {
-  width: 100%;
-  height: 8px;
-  background: var(--bg);
-  border: 1px solid var(--rule);
-  border-radius: 2px;
-  overflow: hidden;
-}
-.bar-fill {
-  height: 100%;
-  border-radius: 2px;
-  clip-path: inset(0 100% 0 0);
-  transition: clip-path 1.4s cubic-bezier(0.16, 1, 0.3, 1);
-}
-.legacy-fill {
-  width: 12%;
-  background: var(--ink-faint);
-  opacity: 0.5;
-}
-.ascend-fill {
-  width: 100%;
-  background: linear-gradient(90deg, var(--y1), var(--y2));
-  box-shadow: 0 0 12px rgba(240, 255, 0, 0.3);
-}
-.bar-fill.is-visible {
-  clip-path: inset(0 0 0 0);
-}
-
-/* ===== L4 Install section ===== */
-.install-section { padding-block: var(--section-y); }
-.install-grid {
-  display: grid;
-  grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr);
-  gap: clamp(40px, 6vw, 80px);
-  align-items: start;
-}
-.install-head { position: sticky; top: 104px; }
-.install-head .lede { margin-top: 22px; }
-.install-console {
-  position: relative;
-  border: 1px solid var(--rule);
-  background:
-    linear-gradient(90deg, rgba(255, 255, 255, 0.035) 1px, transparent 1px),
-    linear-gradient(0deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
-    var(--bg-card);
-  background-size: 44px 44px;
-  padding: clamp(18px, 3vw, 32px);
-  overflow: hidden;
-}
-.install-console::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: radial-gradient(circle at 78% 18%, rgba(240, 255, 0, 0.13), transparent 34%);
-  pointer-events: none;
-}
-.install-pulse {
-  position: relative;
-  z-index: 1;
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 18px;
-  margin-bottom: 18px;
-}
-.install-pulse span {
-  height: 42px;
-  border: 1px solid var(--rule);
-  background:
-    linear-gradient(90deg, rgba(240, 255, 0, 0.16), transparent 58%),
-    rgba(5, 5, 7, 0.72);
-}
-.install-pulse span:nth-child(2) {
-  background:
-    linear-gradient(90deg, rgba(240, 255, 0, 0.32), transparent 70%),
-    rgba(5, 5, 7, 0.72);
-}
-.install-pulse span:nth-child(3) {
-  background:
-    linear-gradient(90deg, var(--y2), rgba(240, 255, 0, 0.1)),
-    rgba(5, 5, 7, 0.72);
-  box-shadow: 0 0 28px rgba(240, 255, 0, 0.12);
-}
-.install-steps {
-  position: relative;
-  z-index: 1;
-  list-style: none;
-  display: grid;
-  gap: 14px;
-  margin: 0;
-  padding: 0;
-}
-.install-steps li {
-  display: grid;
-  gap: 14px;
-  background: rgba(5, 5, 7, 0.82);
-  border: 1px solid var(--rule);
-  padding: clamp(22px, 3vw, 32px);
-}
-.install-step-top {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 12px;
-}
-.install-day {
-  color: var(--y2);
-  font-size: 10px;
-  letter-spacing: 0.2em;
-}
-.install-metric {
-  color: var(--ink-faint);
-  font-size: 9px;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  text-align: right;
-}
-.install-meter {
-  height: 8px;
-  border: 1px solid rgba(240, 255, 0, 0.28);
-  background: rgba(255, 255, 255, 0.04);
-  overflow: hidden;
-}
-.install-meter span {
-  display: block;
-  width: var(--fill);
-  height: 100%;
-  background: linear-gradient(90deg, var(--y1), var(--y2));
-  box-shadow: 0 0 18px rgba(240, 255, 0, 0.24);
-}
-.install-steps h3 {
-  font-size: clamp(24px, 2.8vw, 38px);
-  line-height: 1;
-  margin: 0;
-}
-.install-steps p {
-  color: var(--ink-dim);
-  font-size: 15px;
-  line-height: 1.55;
-  max-width: 620px;
-  margin: 0;
-}
-
-/* ===== Objection section ===== */
-.objection-section { padding-block: var(--section-y); }
-.objection-grid {
-  display: grid;
-  grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
-  gap: clamp(40px, 6vw, 80px);
-  align-items: start;
-}
-.objection-head .lede { margin-top: 22px; }
-.objection-list {
-  display: grid;
-  gap: 14px;
-}
-.objection-card {
-  --obj-accent: var(--y2);
-  display: grid;
-  gap: 14px;
-  padding: clamp(22px, 2.6vw, 30px);
-  border: 1px solid var(--rule);
-  border-left: 3px solid var(--obj-accent);
-  background:
-    linear-gradient(90deg, color-mix(in srgb, var(--obj-accent) 7%, transparent), transparent 62%),
-    var(--bg-card);
-}
-.objection-card.tone-cyan { --obj-accent: var(--signal-cyan); }
-.objection-card.tone-green { --obj-accent: var(--signal-green); }
-.objection-card.tone-orange { --obj-accent: var(--signal-orange); }
-.objection-card.tone-yellow { --obj-accent: var(--y2); }
-.objection-quote {
-  position: relative;
-  font-family: var(--sans);
-  font-weight: 700;
-  font-size: clamp(19px, 2vw, 26px);
-  line-height: 1.18;
-  color: var(--ink);
-  padding-left: 28px;
-  margin: 0;
-}
-.objection-qmark {
-  position: absolute;
-  left: 0;
-  top: -4px;
-  color: var(--obj-accent);
-  font-size: 34px;
-  line-height: 1;
-  font-weight: 800;
-}
-.objection-answer {
-  display: grid;
-  gap: 6px;
-}
-.objection-answer-label {
-  font-size: 10px;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
-  color: var(--obj-accent);
-}
-.objection-answer p {
-  color: var(--ink-dim);
-  font-size: 16px;
-  line-height: 1.6;
-  margin: 0;
-}
-
-/* ===== L8 Dominance section ===== */
-.dominance-section {
-  padding-block: var(--section-y);
-  background: var(--bg);
-}
-
-.dominance-grid {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr);
-  gap: clamp(40px, 5vw, 64px);
-}
-
-.dominance-head {
-  max-width: 820px;
-}
-.dominance-head .lede {
-  margin-top: 22px;
-}
-
-.dominance-figure {
-  margin: 0;
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-  align-items: center;
-}
-.default-answer {
-  width: 100%;
-  max-width: 720px;
-  border: 1px solid var(--rule);
-  border-radius: 6px;
-  background: var(--bg-card);
-  padding: clamp(22px, 4vw, 38px);
-}
-.da-prompt {
-  font-family: var(--sans);
-  font-size: clamp(17px, 1.9vw, 20px);
-  font-weight: 500;
-  line-height: 1.4;
-  color: var(--ink);
-  margin-bottom: 26px;
-}
-.da-flow {
-  display: grid;
-  grid-template-columns: minmax(0, auto) minmax(0, 1.05fr);
-  align-items: center;
-  gap: clamp(18px, 3.4vw, 40px);
-}
-.da-signals {
-  list-style: none;
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  padding: 0;
-  margin: 0;
-}
-.da-signal {
-  --sig-accent: var(--y2);
-  display: grid;
-  grid-template-columns: 20px minmax(0, 1fr) 16px;
-  align-items: center;
-  gap: 12px;
-  font-family: var(--mono);
-  font-size: 13px;
-  letter-spacing: 0.06em;
-  color: var(--ink);
-  padding: 11px 14px;
-  border: 1px solid var(--rule);
-  border-left: 3px solid var(--sig-accent);
-  border-radius: 4px;
-  background: linear-gradient(90deg, color-mix(in srgb, var(--sig-accent) 9%, transparent), transparent 70%);
-}
-.da-signal.tone-cyan { --sig-accent: var(--signal-cyan); }
-.da-signal.tone-green { --sig-accent: var(--signal-green); }
-.da-signal.tone-orange { --sig-accent: var(--signal-orange); }
-.da-signal.tone-yellow { --sig-accent: var(--y2); }
-.da-signal-glyph { width: 20px; height: 20px; }
-.da-signal-arrow {
-  color: var(--sig-accent);
-  font-size: 18px;
-  font-weight: 700;
-  justify-self: end;
-}
-.da-answer {
-  position: relative;
-  border: 1.5px solid var(--y2);
-  border-radius: 6px;
-  padding: clamp(24px, 3vw, 38px);
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-  background:
-    radial-gradient(120% 140% at 0% 50%, rgba(240, 255, 0, 0.14), transparent 58%),
-    var(--bg-card);
-  box-shadow: 0 0 54px rgba(240, 255, 0, 0.12), inset 0 0 0 1px rgba(240, 255, 0, 0.08);
-}
-.da-answer .ops-kicker { color: var(--y2); }
-.da-answer strong {
-  font-family: var(--sans);
-  font-weight: 800;
-  font-stretch: 75%;
-  font-size: clamp(30px, 4vw, 46px);
-  line-height: 0.98;
-  letter-spacing: -0.02em;
-  color: var(--ink);
-}
-.da-answer-sub { font-size: 15px; color: var(--ink-dim); }
-@media (max-width: 620px) {
-  .da-flow { grid-template-columns: 1fr; }
-}
-.dominance-cap {
-  font-size: 10px;
-  letter-spacing: 0.16em;
-  color: var(--ink-faint);
-  text-transform: uppercase;
-  text-align: center;
-}
-
-.dominance-mechanisms {
-  list-style: none;
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 28px;
-  padding: 0;
-  margin: 0;
-}
-.dominance-mech {
-  display: grid;
-  grid-template-columns: 18px minmax(0, 1fr);
-  gap: 14px;
-  padding-bottom: 22px;
-  border-bottom: 1px solid var(--rule);
-}
-.dominance-mech .dot {
-  margin-top: 12px;
-}
-.dominance-mech h3 {
-  font-size: clamp(20px, 2.2vw, 26px);
-  line-height: 1.15;
-  margin-bottom: 8px;
-}
-.dominance-mech p {
-  color: var(--ink-dim);
-  font-size: 16px;
-  line-height: 1.55;
-}
-
-@media (max-width: 720px) {
-  .dominance-mechanisms { grid-template-columns: 1fr; }
-}
-
-/* ===== L9 Proof ===== */
-.proof-section { padding-block: var(--section-y); }
-.proof-head { margin-bottom: 36px; max-width: 720px; }
-
-.outcome-tiles {
-  list-style: none;
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 1px;
-  background: var(--rule);
-  border: 1px solid var(--rule);
-  border-radius: 2px;
-  overflow: hidden;
-  margin-bottom: 48px;
-}
-.outcome-tile {
-  background: var(--bg-card);
-  padding: 22px 20px;
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-}
-.kpi-label {
-  font-size: 10px;
-  letter-spacing: 0.18em;
-  color: var(--ink-faint);
-  text-transform: uppercase;
-}
-.outcome-num {
-  font-family: var(--mono);
-  font-size: clamp(40px, 5vw, 56px);
-  font-weight: 400;
-  color: var(--y2);
-  line-height: 1;
-  margin: 0;
-}
-.outcome-num-unit {
-  font-size: 0.45em;
-  letter-spacing: 0.12em;
-  color: var(--ink-faint);
-  margin-left: 6px;
-  text-transform: uppercase;
-}
-
-.proof-card {
-  border: 1px solid var(--rule-bright);
-  border-radius: 4px;
-  padding: clamp(24px, 4vw, 44px);
-  background: var(--bg);
-}
-.proof-headline {
-  max-width: 980px;
-  font-size: clamp(32px, 4.5vw, 56px);
-  line-height: 1.05;
-  margin: 0;
-}
-.proof-evidence {
-  list-style: none;
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 16px;
-  margin-top: 28px;
-  padding-top: 22px;
-  border-top: 1px solid var(--rule);
-}
-.proof-evidence li {
-  font-size: 14px;
-  line-height: 1.5;
-  color: var(--ink-dim);
-}
-.proof-evidence li .tri-tag {
-  display: inline-block;
-  font-family: var(--mono);
-  font-size: 9px;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  padding: 4px 8px;
-  border-radius: 2px;
-  margin-bottom: 6px;
-}
-.tri-tag-y2 {
-  background: var(--y2);
-  color: var(--bg);
-}
-.proof-cta-row {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 14px;
-  align-items: center;
-  margin-top: 32px;
-}
-
-@media (max-width: 720px) {
-  .outcome-tiles { grid-template-columns: 1fr; }
-  .proof-evidence { grid-template-columns: 1fr; }
-}
-
-/* ===== Offer Sales Sections ===== */
-.offer-equation-section,
-.dossier-section,
-.contract-proof-section,
-.pilot-scope-section,
-.entry-paths-section {
-  padding-block: var(--section-y);
-}
-
-.offer-equation-grid,
-.dossier-grid,
-.pilot-scope-grid,
-.entry-paths-grid {
-  display: grid;
-  grid-template-columns: minmax(0, 0.82fr) minmax(0, 1.18fr);
-  gap: clamp(36px, 6vw, 84px);
-  align-items: start;
-}
-
-.offer-equation-grid header,
-.dossier-grid header,
-.pilot-scope-grid header,
-.entry-paths-grid header {
-  position: sticky;
-  top: 104px;
-}
-
-.offer-equation-grid .lede,
-.dossier-grid .lede,
-.pilot-scope-grid .lede,
-.entry-paths-grid .lede,
-.contract-proof-head .lede {
-  margin-top: 22px;
-}
-
-.offer-equation-cards {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 1px;
-  background: var(--rule);
-  border: 1px solid var(--rule);
-}
-
-.offer-equation-card {
-  min-width: 0;
-  position: relative;
-  background: var(--bg-card);
-  padding: clamp(20px, 2.4vw, 28px);
-  border-top: 2px solid currentColor;
-  overflow: hidden;
-}
-
-.offer-equation-card::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(135deg, currentColor, transparent 42%);
-  opacity: 0.07;
-  pointer-events: none;
-}
-
-.offer-equation-metric {
-  display: block;
-  margin-top: 22px;
-  color: currentColor;
-  font-size: clamp(42px, 5.2vw, 72px);
-  font-weight: 800;
-  font-stretch: 75%;
-  line-height: 0.88;
-  letter-spacing: 0;
-  text-transform: lowercase;
-  white-space: nowrap;
-}
-
-.offer-equation-card h3 {
-  margin-top: 22px;
-  color: var(--ink);
-  font-size: clamp(20px, 2vw, 28px);
-  line-height: 1.12;
-}
-
-.offer-equation-card p:last-child {
-  margin-top: 12px;
-  color: var(--ink-dim);
-  font-size: 15px;
-  line-height: 1.55;
-}
-
-.dossier-preview {
-  display: grid;
-  gap: 18px;
-  padding: clamp(20px, 3vw, 34px);
-  background:
-    linear-gradient(135deg, rgba(56,216,255,0.055), transparent 44%),
-    var(--bg-card);
-}
-
-.dossier-preview-head {
-  display: flex;
-  align-items: end;
-  justify-content: space-between;
-  gap: 18px;
-  padding-bottom: 16px;
-  border-bottom: 1px solid var(--rule);
-}
-
-.dossier-preview-head span,
-.dossier-score-row span,
-.dossier-first-move span {
-  color: var(--ink-faint);
-  font-size: 9px;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
-}
-
-.dossier-preview-head strong {
-  max-width: 320px;
-  color: var(--ink);
-  font-size: clamp(20px, 2.2vw, 28px);
-  line-height: 1.05;
-  text-align: right;
-}
-
-.dossier-score-stack {
-  display: grid;
-  gap: 14px;
-}
-
-.dossier-score-row {
-  display: grid;
-  grid-template-columns: minmax(0, 0.85fr) minmax(120px, 0.6fr);
-  gap: 18px;
-  align-items: center;
-}
-
-.dossier-score-row strong {
-  display: block;
-  margin-top: 6px;
-  color: var(--ink);
-  font-size: clamp(16px, 1.7vw, 22px);
-  line-height: 1.12;
-}
-
-.dossier-score-bar {
-  height: 10px;
-  border: 1px solid rgba(240, 255, 0, 0.32);
-  background: rgba(255, 255, 255, 0.04);
-  overflow: hidden;
-}
-
-.dossier-score-bar span {
-  display: block;
-  width: var(--score);
-  height: 100%;
-  background: linear-gradient(90deg, var(--y1), var(--y2));
-}
-
-.dossier-leak-map {
-  display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 1px;
-  background: var(--rule);
-  border: 1px solid var(--rule);
-}
-
-.dossier-leak-map article {
-  min-width: 0;
-  padding: 16px;
-  background: rgba(5, 5, 7, 0.78);
-}
-
-.dossier-leak-map span {
-  display: block;
-  color: var(--y2);
-  font-family: var(--mono);
-  font-size: clamp(22px, 2.5vw, 34px);
-  line-height: 1;
-}
-
-.dossier-leak-map strong {
-  display: block;
-  margin-top: 10px;
-  color: var(--ink-dim);
-  font-size: 12px;
-  line-height: 1.3;
-}
-
-.dossier-first-move {
-  display: grid;
-  gap: 8px;
-  padding: 18px;
-  border-left: 3px solid var(--y2);
-  background: rgba(240, 255, 0, 0.06);
-}
-
-.dossier-first-move strong {
-  color: var(--ink);
-  font-size: clamp(18px, 2vw, 26px);
-  line-height: 1.12;
-}
-
-.dossier-sample-note {
-  font-size: 10px;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: var(--ink-faint);
-  margin: -6px 0 0;
-}
-
-.dossier-cta {
-  margin-top: clamp(28px, 4vw, 44px);
-  display: grid;
-  grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
-  gap: clamp(24px, 4vw, 56px);
-  align-items: center;
-  padding: clamp(26px, 3.4vw, 40px);
-  border: 1px solid var(--rule);
-  border-top: 2px solid var(--y2);
-  background:
-    radial-gradient(120% 160% at 100% 50%, rgba(240, 255, 0, 0.1), transparent 60%),
-    var(--bg-card);
-}
-
-.dossier-cta-kicker {
-  font-size: 10px;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
-  color: var(--y2);
-  margin: 0 0 14px;
-}
-
-.dossier-cta-list {
-  list-style: none;
-  display: grid;
-  gap: 10px;
-  padding: 0;
-  margin: 0;
-}
-
-.dossier-cta-list li {
-  position: relative;
-  padding-left: 26px;
-  color: var(--ink);
-  font-size: clamp(15px, 1.6vw, 17px);
-  line-height: 1.4;
-}
-
-.dossier-cta-list li::before {
-  content: '';
-  position: absolute;
-  left: 0;
-  top: 0.45em;
-  width: 11px;
-  height: 6px;
-  border-left: 2px solid var(--y2);
-  border-bottom: 2px solid var(--y2);
-  transform: rotate(-45deg);
-}
-
-.dossier-cta-action {
-  display: grid;
-  justify-items: start;
-  gap: 14px;
-}
-
-.dossier-cta-risk {
-  font-size: 14px;
-  line-height: 1.5;
-  color: var(--ink-dim);
-  margin: 0;
-}
-
-@media (max-width: 720px) {
-  .dossier-cta { grid-template-columns: 1fr; }
-}
-
-.contract-proof-head {
-  max-width: 820px;
-  margin-bottom: clamp(30px, 4vw, 44px);
-}
-
-.contract-proof-board {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(220px, 0.32fr);
-  gap: clamp(18px, 3vw, 30px);
-  align-items: stretch;
-}
-
-.contract-proof-page {
-  border: 1px solid var(--rule);
-  background:
-    linear-gradient(90deg, rgba(255, 255, 255, 0.026) 1px, transparent 1px),
-    linear-gradient(0deg, rgba(255, 255, 255, 0.026) 1px, transparent 1px),
-    var(--bg-card);
-  background-size: 40px 40px;
-  padding: clamp(18px, 3vw, 32px);
-}
-
-.contract-proof-page-head {
-  display: flex;
-  align-items: end;
-  justify-content: space-between;
-  gap: 18px;
-  margin-bottom: 18px;
-  padding-bottom: 14px;
-  border-bottom: 1px solid var(--rule);
-}
-
-.contract-proof-page-head span,
-.contract-clause-group,
-.contract-clause-label,
-.contract-proof-stamp span {
-  color: var(--ink-faint);
-  font-size: 9px;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
-}
-
-.contract-proof-page-head strong {
-  color: var(--ink);
-  font-size: clamp(20px, 2vw, 28px);
-  line-height: 1.05;
-}
-
-.contract-proof-clauses {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 12px;
-}
-
-.contract-proof-clause {
-  --clause-accent: var(--y2);
-  min-width: 0;
-  display: grid;
-  grid-template-columns: 84px minmax(0, 1fr);
-  gap: 16px;
-  padding: 16px 18px;
-  border: 1px solid var(--rule);
-  border-top: 2px solid var(--clause-accent);
-  background:
-    linear-gradient(135deg, color-mix(in srgb, var(--clause-accent) 9%, transparent), transparent 46%),
-    rgba(5, 5, 7, 0.78);
-  transition: border-color 180ms ease, transform 180ms ease, background 180ms ease;
-}
-.contract-proof-clause.tone-cyan { --clause-accent: var(--signal-cyan); }
-.contract-proof-clause.tone-green { --clause-accent: var(--signal-green); }
-.contract-proof-clause.tone-yellow { --clause-accent: var(--y2); }
-.contract-proof-clause.tone-orange { --clause-accent: var(--signal-orange); }
-.contract-proof-clause:hover {
-  border-color: color-mix(in srgb, var(--clause-accent) 65%, var(--rule-bright));
-  transform: translateY(-2px);
-}
-
-.clause-rail {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 14px;
-}
-
-.clause-glyph {
-  width: 46px;
-  height: 46px;
-  margin-top: auto;
-  filter: drop-shadow(0 0 10px color-mix(in srgb, var(--clause-accent) 28%, transparent));
-}
-
-.contract-clause-group {
-  color: var(--clause-accent);
-  writing-mode: vertical-rl;
-  text-orientation: mixed;
-}
-
-.contract-clause-label {
-  display: inline-block;
-  color: var(--bg);
-  background: var(--clause-accent);
-  font-weight: 700;
-  padding: 5px 8px;
-}
-
-.contract-proof-clause h3 {
-  color: var(--ink);
-  font-size: 18px;
-  line-height: 1.2;
-  margin-top: 12px;
-}
-
-.contract-proof-clause p {
-  margin-top: 10px;
-  color: var(--ink-dim);
-  font-size: 14px;
-  line-height: 1.55;
-}
-
-.contract-proof-stamp {
-  display: grid;
-  align-content: center;
-  gap: 16px;
-  padding: clamp(22px, 3vw, 32px);
-  border: 1px solid var(--y2);
-  background:
-    radial-gradient(circle at 50% 30%, rgba(240, 255, 0, 0.18), transparent 42%),
-    var(--bg);
-}
-
-.contract-proof-stamp strong {
-  color: var(--y2);
-  font-size: clamp(24px, 3vw, 40px);
-  line-height: 0.98;
-  letter-spacing: 0;
-}
-
-.pilot-scope-cards {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 1px;
-  background: var(--rule);
-  border: 1px solid var(--rule);
-}
-
-.pilot-scope-cards article {
-  min-width: 0;
-  background: var(--bg-card);
-  padding: clamp(18px, 2.2vw, 26px);
-  border-top: 2px solid var(--signal-cyan);
-}
-
-.pilot-scope-cards article:nth-child(2) { border-top-color: var(--signal-orange); }
-.pilot-scope-cards article:nth-child(3) { border-top-color: var(--signal-green); }
-
-.pilot-scope-cards p:last-child {
-  margin-top: 10px;
-  color: var(--ink-dim);
-  font-size: 15px;
-  line-height: 1.55;
-}
-
-.entry-path-cards {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 1px;
-  background: var(--rule);
-  border: 1px solid var(--rule);
-}
-
-.entry-path-card {
-  min-width: 0;
-  display: flex;
-  flex-direction: column;
-  gap: 14px;
-  padding: clamp(20px, 2.5vw, 30px);
-  background:
-    linear-gradient(160deg, rgba(240, 255, 0, 0.035), transparent 60%),
-    var(--bg-card);
-  color: inherit;
-  text-decoration: none;
-  border-top: 3px solid currentColor;
-}
-
-.entry-path-card h3 {
-  font-size: clamp(24px, 2.6vw, 34px);
-  line-height: 1;
-  letter-spacing: -0.04em;
-  color: var(--ink);
-}
-
-.entry-path-card strong {
-  min-height: 2.4em;
-  font-size: clamp(19px, 2vw, 26px);
-  line-height: 1.12;
-  letter-spacing: -0.04em;
-  color: var(--y2);
-}
-
-.entry-path-card p {
-  color: var(--ink-dim);
-  font-size: 15px;
-  line-height: 1.55;
-}
-
-.entry-path-card:hover h3,
-.entry-path-card:focus-visible h3 {
-  color: var(--y2);
-}
-
-.attribution-honesty {
-  margin-top: 36px;
-  border: 1px solid var(--rule);
-  background: var(--bg-card);
-  padding: clamp(24px, 3vw, 36px);
-}
-
-.attribution-honesty h3 {
-  margin-top: 12px;
-  color: var(--ink);
-  font-size: clamp(22px, 2.4vw, 32px);
-  line-height: 1.12;
-}
-
-.attribution-rule-grid {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 1px;
-  margin-top: 22px;
-  background: var(--rule);
-  border: 1px solid var(--rule);
-}
-
-.attribution-rule-grid article {
-  min-width: 0;
-  background: rgba(5, 5, 7, 0.76);
-  padding: 18px;
-}
-
-.attribution-rule-grid span {
-  color: var(--y2);
-  font-size: 9px;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
-}
-
-.attribution-rule-grid p {
-  margin-top: 10px;
-  color: var(--ink-dim);
-  font-size: 14px;
-  line-height: 1.5;
-}
-
-/* ===== L10 Playbook teaser ===== */
-.playbook-teaser {
-  padding-block: var(--section-y);
-  border-top: 1px solid var(--rule);
-}
-.playbook-list {
-  list-style: none;
-  display: flex;
-  flex-direction: column;
-  margin-top: 28px;
-  border-top: 1px solid var(--rule);
-  padding: 0;
-}
-.playbook-list li { border-bottom: 1px solid var(--rule); }
-.playbook-list a {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr);
-  gap: 6px;
-  padding: 22px 0;
-  color: var(--ink);
-  transition: color 180ms ease, padding-left 220ms ease;
-}
-.playbook-list a:hover {
-  color: var(--y2);
-  padding-left: 14px;
-}
-.playbook-link-title {
-  font-family: var(--sans);
-  font-weight: 800;
-  font-stretch: 75%;
-  font-size: clamp(22px, 2.6vw, 30px);
-  letter-spacing: -0.015em;
-  line-height: 1.15;
-}
-.playbook-link-sub {
-  font-family: var(--sans);
-  font-weight: 300;
-  font-size: 16px;
-  line-height: 1.5;
-  color: var(--ink-dim);
-}
-
-/* ===== L12 Final CTA ===== */
-.final-section { padding-block: var(--section-y); }
-.final-inner {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) auto;
-  gap: clamp(28px, 5vw, 72px);
-  align-items: end;
-}
-.final-inner .lede { margin-top: 22px; }
-.final-inner .cta { margin-bottom: 8px; }
-
-.final-timeline {
-  margin: clamp(40px, 5vw, 64px) 0 0;
-  padding-top: clamp(32px, 4vw, 48px);
-  border-top: 1px solid var(--rule);
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-}
-.final-timeline svg {
-  width: 100%;
-  height: auto;
-  max-height: 90px;
-}
-.final-timeline-cap {
-  font-size: 10px;
-  letter-spacing: 0.18em;
-  color: var(--ink-faint);
-  text-transform: uppercase;
-  text-align: center;
-}
-
-/* ===== Responsive ===== */
-@media (max-width: 900px) {
-  .operating-reframe {
-    min-height: auto;
-    padding-block: 56px;
-  }
-  .home-hero {
-    min-height: auto;
-    padding-bottom: 56px;
-  }
-  .hero-grid,
-  .velocity-stage,
-  .offer-equation-grid,
-  .dossier-grid,
-  .pilot-scope-grid,
-  .entry-paths-grid,
-  .install-grid,
-  .objection-grid,
-  .final-inner { grid-template-columns: 1fr; }
-  .velocity-head,
-  .offer-equation-grid header,
-  .dossier-grid header,
-  .pilot-scope-grid header,
-  .entry-paths-grid header,
-  .install-head { position: static; }
-  .velocity-head .h-section {
-    max-width: 12ch;
-    font-size: clamp(38px, 8vw, 64px);
-  }
-  .final-inner { align-items: start; }
-  .contract-proof-board { grid-template-columns: 1fr; }
-}
-
-@media (max-width: 520px) {
-  .home-hero { padding-top: 82px; }
-  .hero-grid { gap: 28px; }
-  .hero-copy { gap: 18px; }
-  .home-hero .eyebrow {
-    max-width: 100%;
-    align-items: flex-start;
-    line-height: 1.45;
-    overflow-wrap: anywhere;
-  }
-  .hero-copy .h-hero {
-    max-width: 100%;
-    font-size: 32px;
-    line-height: 1.04;
-    letter-spacing: 0;
-    overflow-wrap: anywhere;
-    text-wrap: balance;
-  }
-  .hero-copy .h-hero em {
-    color: var(--y2);
-    font-style: normal;
-  }
-  .hero-copy .hero-sub {
-    font-size: 16px;
-    line-height: 1.45;
-  }
-  .command-center { min-height: 0; padding: 18px; gap: 14px; }
-  .command-center::before { inset: 10px; }
-  .console-shell,
-  .command-metrics,
-  .weekly-proof-rail,
-  .hero-proof-strip,
-  .offer-equation-cards,
-  .dossier-leak-map,
-  .contract-proof-clauses,
-  .entry-path-cards,
-  .pilot-scope-cards,
-  .attribution-rule-grid {
-    grid-template-columns: 1fr;
-  }
-  .velocity-chart { padding: 18px; }
-  .velocity-phase-rail {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-  .velocity-chart-top {
-    flex-direction: column;
-  }
-  .velocity-chip {
-    white-space: normal;
-  }
-  .velocity-svg {
-    height: auto;
-    min-height: 310px;
-  }
-  .event-label {
-    font-size: 42px;
-    letter-spacing: 0.02em;
-    stroke-width: 10px;
-  }
-  .next-curve .event-label {
-    font-size: 30px;
-  }
-  .velocity-now .event-label,
-  .next-curve .event-label {
-    display: none;
-  }
-  .event-detail {
-    display: none;
-  }
-  .event-date {
-    font-size: 20px;
-    letter-spacing: 0.08em;
-  }
-  .panel-head {
-    align-items: flex-start;
-    flex-direction: column;
-  }
-  .signal-queue-row {
-    grid-template-columns: 1fr;
-    gap: 4px;
-  }
-  .console-lock { display: none; }
-  .hero-actions { align-items: stretch; }
-  .hero-proof-strip {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-  }
-  .hero-proof-strip li {
-    padding: 14px 12px;
-  }
-  .hero-proof-strip span {
-    font-size: 8px;
-    letter-spacing: 0.12em;
-  }
-  .command-metrics,
-  .weekly-proof-rail {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-  .leak-radar-panel,
-  .evidence-ticker {
-    display: none;
-  }
-  .market-signal-svg {
-    max-height: 170px;
-  }
-  .install-pulse {
-    grid-template-columns: 1fr;
-  }
-  .install-step-top,
-  .dossier-preview-head,
-  .contract-proof-page-head {
-    align-items: flex-start;
-    flex-direction: column;
-  }
-  .dossier-preview-head strong {
-    text-align: left;
-  }
-  .dossier-score-row {
-    grid-template-columns: 1fr;
-  }
-  .contract-proof-clause {
-    grid-template-columns: 1fr;
-  }
-  .clause-rail {
-    flex-direction: row;
-    align-items: center;
-    gap: 12px;
-  }
-  .clause-glyph {
-    margin-top: 0;
-  }
-  .contract-clause-group {
-    writing-mode: horizontal-tb;
-  }
-  .hero-actions .cta,
-  .hero-actions .cta-ghost,
-  .final-inner .cta {
-    width: 100%;
-    justify-content: center;
-    white-space: normal;
-    text-align: center;
-    min-height: 58px;
-  }
-}
-</style>
+</body>
+</html>

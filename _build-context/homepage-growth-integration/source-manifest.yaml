@@ -1,0 +1,71 @@
+schema: bwm-source-manifest/v1
+surface: bwm-homepage-book-organic-growth-local-integration
+mode: locked-direction-local-integration
+controlling_sources:
+  - source: Brain clients/buildwise-media/Homepage-Redesign-Authority.md
+    sha: 8ac8127b631c3816b60bfb2ec96c87bf7d91bd27
+    use: offer, identity, CTA, proof, and production-authority boundaries where not superseded by later owner decisions
+  - source: Brain clients/buildwise-media/Homepage-Scope.md
+    sha: 4552205f23b5bd5b20afd2a824d04c09c731d664
+    use: homepage architecture and visible/schema parity where not superseded by later owner decisions
+  - source: Robert homepage and /book decisions through 2026-08-31
+    use: no public pricing; one /book contact form; no quiz; no calendar; email reply; preserve logo, Inter, #F0FF00, and accepted direction
+  - source: Round 29 accepted direction
+    locator: /Users/robertechevarria/Documents/Codex/2026-08-27/what/work/bwm-four-way-2026-08-27/review/homepage/accepted-direction.json
+    sha256: bb240b070ca034f875b8b4c100ed19452ead24b98ea173a366e21f7de0f8a8f1
+  - source: Round 29 homepage base artifact
+    locator: /Users/robertechevarria/Documents/Codex/2026-08-27/what/work/bwm-four-way-2026-08-27/review/homepage/index.html
+    sha256: b2ac2a330c961535abceae735360c448ee264cf3432f418ddab46475a26381b5
+  - source: accepted /book production-shaped artifact
+    locator: public/book/index.html
+    sha256: 87751d229a67e9817b92d35857083076d7da13b80db3ed89237a29a853185764
+  - source: copy-evidence packet
+    locator: /Users/robertechevarria/Documents/Codex/2026-08-27/what/work/bwm-four-way-2026-08-27/copy-research/copy-evidence-packet.md
+    sha256: fa541d6ae864c9fed99df274ceaa6d7137b51f18c1835659c11f2ba1dd116b8b
+engine_inputs:
+  - role: SHARED_ORGANIC_GROWTH_SCHEMA
+    commit: 540baee5a4bb579e010b316eff8a6153c9f9a5f0
+    acceptance_receipt: /Users/robertechevarria/Documents/ChatGPT/BWM/reset-window-briefs/ORGANIC-GROWTH-SCHEMA-INDEPENDENT-REVIEW-2026-08-30.md
+    acceptance_receipt_sha256: 50eda46b46a1e98b7b0fe6ef6d2bc44e2e3e33652165ff3427d5d507af57a0aa
+  - role: UNIVERSAL_AEO
+    commit: ba9be3a4c32b3c57394566d83e8f5db21a9d11d5
+    package_sha256: 001c17fb8824fd71523ff685ebda37a932c435834ce121daad0f30d466a1fc29
+    interface_sha256: 4b4d1b3e30cf0192fb1f07717f05e09640d459aad2c62e1fc64451f6180999ee
+    acceptance_receipt: /Users/robertechevarria/Documents/ChatGPT/BWM/reset-window-briefs/AEO-INDEPENDENT-REVIEW-2026-08-30.md
+    acceptance_receipt_sha256: 3b1e61fd377b80146f0cffaa66b17e9c5f0ce1c7314ba7ae20585fe6982b0e6b
+  - role: UNIVERSAL_SEO
+    commit: b906da711ef72d0b7302e6a521d3c442b190f16f
+    package_sha256: 504c77945494c07a911f1d925937512dba45ee46d3c9b801506e7184147960ad
+    interface_sha256: 03bde0095f29bad972a8f4b1bb0fbe1b49e9cfd3945828d5254fc3060736867a
+    acceptance_receipt: /Users/robertechevarria/Documents/ChatGPT/BWM/reset-window-briefs/SEO-ROBERT-FORTIETH-FOLLOWUP-REVIEW-2026-09-01.md
+    acceptance_receipt_sha256: eecae2f45c5eba5a18edd4ffecba9236464bfaf0f0fbaa7306f2ba182247266e
+  - role: UNIVERSAL_SOCIAL_VIDEO
+    commit: ae304ebb4dd315c2d0fc6645fee2616ffa869d5e
+    package_sha256: 6adc68a20e0bf9e923b5020fefa61ae6c9fe5f4723668828d694d346c900a474
+    interface_sha256: f4e479f42ace408c6508efa1bcd5685e8dc6d1cf1af7e80318fe8550b5aa8595
+    content_cell_sha256: fbd3324642a23bbdaeca3d54f3a572e6cda2048a7ad113bdab3030a502e9cf91
+    acceptance_receipt: /Users/robertechevarria/Documents/ChatGPT/BWM/reset-window-briefs/SOCIAL-VIDEO-INDEPENDENT-REVIEW-2026-08-31.md
+    acceptance_receipt_sha256: 1026c58d7efd0ed91cbf5ea98abd171b80681b19fe1080626ef54f0c23ad66c8
+live_preedit_observation:
+  observed_date_eastern: 2026-09-01
+  sitemap_url_count: 86
+  sitemap_sha256: 1c9e14c6fab7a49e21ccec17756765d45c1fc34643d8ed6fae97740b94cff5df
+  live_home_status: 200
+  live_book_status: 200
+  live_book_canonical: https://buildwisemedia.com/revenue-leak-map
+  live_book_state: retired-offer-conflict
+  gsc_snapshot_state: accepted frozen readback from 2026-08-30; 31 external links, 15 referring domains, one unresolved target
+authority_boundary:
+  local_source_edits: true
+  deployment: false
+  publishing: false
+  push: false
+  merge: false
+  provider_writes: false
+  crm_writes: false
+  spend: false
+excluded_authority:
+  - nonbinding BWM AEO Strategy v1.18 adapter
+  - stale pricing, calendar, Revenue Leak Map, 30-day, 45-day, and eight-layer machine copy
+  - unproven Whitespark live citation, referral, ranking, or conversion impact
+  - any package-internal REVIEW_BLOCKED state being relabeled as live readiness

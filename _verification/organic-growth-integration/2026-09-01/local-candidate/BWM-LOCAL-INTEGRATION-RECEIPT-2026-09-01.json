@@ -1,0 +1,76 @@
+{
+  "receipt_version": "bwm-website-local-integration/1.0.0",
+  "recorded_at": "2026-09-01 07:47:32 AM EDT",
+  "state": "LOCAL_REVIEW_COMPLETE",
+  "production_authority": false,
+  "deployed": false,
+  "published": false,
+  "base_revision": "15ce8545c286e49245cfad60bd769ffd2c9962a7",
+  "surfaces": {
+    "homepage": {
+      "path": "src/pages/index.astro",
+      "sha256": "b43ea659c2b8dceb1aab5cae6b11342231a245e8ee9af7203560b065ead4f0f1",
+      "local_url": "http://127.0.0.1:4322/"
+    },
+    "book": {
+      "path": "public/book/index.html",
+      "sha256": "ef7532d4baeb21d3d39f26b69c71ccae59326f766b5ddff7a87a7c022040893d",
+      "local_url": "http://127.0.0.1:4322/book/"
+    },
+    "mark": {
+      "path": "public/assets/mark.svg",
+      "sha256": "3e1ac44ad8d7acf2e5be544cbfcb36a738e2fc280ab88197ced2cdd38985c6b8",
+      "identity_color": "#F0FF00"
+    }
+  },
+  "contracts": {
+    "preflight_sha256": "2424142a817b42e12d94e8c6c40636008242f8c455e2f5b4cca54a94d2fe0524",
+    "conflict_ledger_sha256": "1468e8b48d7bef86b2ab815fc466a1b8d92e0ee50eb6709a744aa822558eb046",
+    "crawler_policy_sha256": "d6ea482ad15f34bd4c6ca08db4c81f3aa89e4d893242406c7266e685edb49804",
+    "integration_manifest_sha256": "762e64019470a884ef95fad4d3457b134ee2749fadf36f1c04a6f2a2026e8a93",
+    "migration_lifecycle_sha256": "6291197dfd37d40fc5e768456a165286b9436c54cd19a729521e4dfa9639b7ff",
+    "seo_account_contract_sha256": "755c602900a852c8a04edd8bc1b9f3d39d9d15ae53969cc59fd82dbce1826272",
+    "seo_intent_ownership_sha256": "8ef8378205c276a4bef152f2b2e72294a01f8ef45ff4a2c9ba0b529366fa5f40",
+    "website_to_content_source_sha256": "73170bbfe98da1199ff8fc9bc3e063a82245fbb28afa12e53e4bcb36bba95efd"
+  },
+  "verification": {
+    "build": "PASS",
+    "sitemap_urls": 82,
+    "growth_contract_gate": "PASS",
+    "negative_controls": "11/11 PASS",
+    "node_tests": "29/29 PASS",
+    "brand_gate": "PASS, 0 warnings",
+    "pre_ship_gate": "PASS",
+    "git_diff_check": "PASS",
+    "visual_bundle": "_verification/organic-growth-integration/2026-09-01/local-candidate/visual-final-r5",
+    "visual_captures": "4/4 PASS, 0 failures, 0 advisories",
+    "local_routes": "/ 200; /book/ 200",
+    "wrangler_static_parity": "/ 200; /book/ 200; /m 301 to /; /m/ 301 to /"
+  },
+  "independent_review": {
+    "command": "codex review --uncommitted --disable chronicle",
+    "accepted_findings": [
+      "preserve /m and /m/ redirect behavior",
+      "deliver fast homepage CTA analytics at navigation boundaries",
+      "reject off-origin URLs in deterministic route checks",
+      "reject malformed HTML attribute names in deterministic checks",
+      "preserve the existing generate_lead event alongside fit_note_submitted after confirmed delivery"
+    ],
+    "disposition": "All accepted findings were repaired and the affected build, tests, negative controls, contract, brand, and pre-ship gates were rerun green."
+  },
+  "conversion_contract": {
+    "experience": "one direct contact form",
+    "quiz": false,
+    "calendar": false,
+    "local_preview_sends": false,
+    "production_success_requires": ["ok", "captured", "emailed", "receipt_recorded"],
+    "events_after_confirmed_delivery": ["fit_note_submitted", "generate_lead"]
+  },
+  "remaining_production_gates": [
+    "explicit production deployment authorization",
+    "production /api/book email-delivery and receipt readback",
+    "production analytics-to-CRM conversion join readback",
+    "production CDN/WAF and intended crawler-access readback",
+    "separately authorized lifecycle decisions for preserved legacy inner-page offers"
+  ]
+}

@@ -39,16 +39,18 @@ test("uses the approved field contract", () => {
 test("preserves the approved public copy and identity", () => {
   assert.match(source, /What’s getting in the way of\s*<em>growth\?<\/em>/);
   assert.match(source, /Tell us where it shows up and what it is stopping/);
-  assert.match(source, /src="\.\.\/assets\/mark\.svg"/);
+  assert.match(source, /src="\/assets\/mark\.svg"/);
   assert.match(source, /--yellow:\s*#f0ff00/i);
   assert.match(source, /font-family:\s*"Inter"/);
   assert.doesNotMatch(source, /JetBrains Mono|Revenue Leak Map|45[ -]day|eight[ -]layer|marketing agency|lead generation/i);
 });
 
 test("keeps machine and discovery boundaries honest", () => {
-  assert.match(source, /<meta name="robots" content="noindex,follow">/);
+  assert.match(source, /<meta name="robots" content="index,follow">/);
   assert.match(source, /<link rel="canonical" href="https:\/\/buildwisemedia\.com\/book\/">/);
-  assert.doesNotMatch(source, /application\/ld\+json|LocalBusiness|FAQPage|Speakable|AggregateRating/);
+  assert.match(source, /application\/ld\+json/);
+  assert.match(source, /"ContactPage"/);
+  assert.doesNotMatch(source, /LocalBusiness|ProfessionalService|FAQPage|Speakable|AggregateRating|priceRange/);
   assert.doesNotMatch(source, /Local review · no form submissions leave this preview/);
 });
 
@@ -70,7 +72,8 @@ test("preserves persisted first- and last-touch attribution", () => {
 });
 
 test("fails local previews closed and requires the full production receipt", () => {
-  assert.match(source, /new Set\(\["buildwisemedia\.com", "www\.buildwisemedia\.com"\]\)\.has\(window\.location\.hostname\)/);
+  assert.match(source, /"bwm-new-website-review\.pages\.dev"/);
+  assert.doesNotMatch(source, /endsWith\([^)]*pages\.dev/);
   assert.match(source, /if \(!productionHost\) \{\s*showCompletion\(false\);\s*return;/);
   assert.match(source, /result\.ok === true\s*&&\s*result\.captured === true\s*&&\s*result\.emailed === true\s*&&\s*result\.receipt_recorded === true/);
   assert.match(source, /lastFailedRequest && currentPayloadFingerprint !== lastFailedRequest\.fingerprint/);
@@ -83,10 +86,12 @@ test("fails local previews closed and requires the full production receipt", () 
 
 test("records the authorized conversion only after confirmed delivery", () => {
   const confirmation = source.indexOf("result.receipt_recorded === true");
-  const event = source.indexOf('track("generate_lead"');
+  const event = source.indexOf('track("fit_note_submitted"');
+  const compatibilityEvent = source.indexOf('track("generate_lead"');
   const completion = source.indexOf("showCompletion(true)");
   assert.ok(confirmation >= 0);
   assert.ok(event > confirmation);
+  assert.ok(compatibilityEvent > event);
   assert.ok(completion > event);
   assert.match(source, /form_id:\s*"fit_contact"/);
   assert.match(source, /GTM-P5JSD86L/);

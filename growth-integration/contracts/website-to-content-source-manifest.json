@@ -1,0 +1,58 @@
+{
+  "schema_version": "bwm-website-content-source/1.0.0",
+  "state": "LOCAL_SOURCE_CONTRACT",
+  "client": "buildwise-media",
+  "purpose": "Approved source boundary for Henry and the separate BWM social, graphics, and video engine.",
+  "source_bindings": {
+    "homepage": {"path": "src/pages/index.astro", "sha256": "b43ea659c2b8dceb1aab5cae6b11342231a245e8ee9af7203560b065ead4f0f1"},
+    "book": {"path": "public/book/index.html", "sha256": "ef7532d4baeb21d3d39f26b69c71ccae59326f766b5ddff7a87a7c022040893d"},
+    "mark": {"path": "public/assets/mark.svg", "sha256": "3e1ac44ad8d7acf2e5be544cbfcb36a738e2fc280ab88197ced2cdd38985c6b8"},
+    "conflict_ledger": {"path": "growth-integration/contracts/conflict-ledger.json", "sha256": "1468e8b48d7bef86b2ab815fc466a1b8d92e0ee50eb6709a744aa822558eb046"},
+    "intent_ownership": {"path": "growth-integration/contracts/seo-intent-ownership.json", "sha256": "8ef8378205c276a4bef152f2b2e72294a01f8ef45ff4a2c9ba0b529366fa5f40"}
+  },
+  "audience": "Owners and senior leaders of established, owner-led companies whose growth is constrained by a meaningful operational bottleneck.",
+  "approved_story": [
+    "Start with the bottleneck holding back growth.",
+    "Build one custom system around that first problem.",
+    "Use a 90-day first engagement to build, install, test, and improve the system; 90 days is not a guaranteed completion date or outcome.",
+    "Once the first system works, keep building and upgrading connected systems as AI capabilities improve.",
+    "Buildwise Media is an Atlanta AI engineering company serving companies across the United States."
+  ],
+  "approved_evidence_boundaries": [
+    "Use examples only when their facts, rights, and current state are bound to a separate approved evidence record.",
+    "Screens may be shown only when no client or Buildwise intellectual property is exposed and the presentation is clean.",
+    "The website demonstrates conversion readiness and an evidence standard; it does not prove future ROI."
+  ],
+  "approved_action": {
+    "label": "See If We’re a Fit",
+    "destination": "https://buildwisemedia.com/book/",
+    "experience": "One short contact form. No quiz, score, scheduler, or public pricing. The team reads the note and replies by email."
+  },
+  "identity_rights": {
+    "logo": "Use the exact bound Triangulation mark; do not redraw, reinterpret, animate destructively, or change its geometry.",
+    "primary_color": "#F0FF00",
+    "main_font": "Inter",
+    "secondary_font": "none",
+    "palette": "Multicolor is allowed when each supporting color has a clear role; monochrome and generic SaaS styling are not the direction."
+  },
+  "prohibited_expansions": [
+    "public price or invented commercial terms",
+    "guaranteed result, ROI, delivery date, or response time",
+    "Revenue Leak Map or free-audit offer as the primary action",
+    "30-day install, 45-day proof, or eight-layer system claim",
+    "quiz, fit score, calendar, or a second offer",
+    "marketing-agency positioning",
+    "LocalBusiness, ProfessionalService, map-pack, proximity, or verified-local-eligibility claims",
+    "special AI schema, hidden claims, fake scarcity, unsupported authority, or invented proof",
+    "client work, screens, testimonials, or metrics without a separate rights-and-evidence receipt"
+  ],
+  "authority_boundary": {
+    "draft_content": true,
+    "draft_graphics": true,
+    "draft_video": true,
+    "publish": false,
+    "paid_activation": false,
+    "spend": false,
+    "provider_changes": false
+  }
+}

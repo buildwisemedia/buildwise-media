@@ -59,6 +59,35 @@ test("proxies one production submission through the dedicated secret-bound route
   }
 });
 
+test("allows the exact Access-gated BWM review hostname", async () => {
+  const originalFetch = globalThis.fetch;
+  let called = false;
+  globalThis.fetch = async () => {
+    called = true;
+    return Response.json({
+      ok: true,
+      captured: true,
+      emailed: true,
+      receipt_recorded: true,
+      submission_id: "2ba9ee76-5b03-4fc0-b172-90f56f730758",
+    });
+  };
+  try {
+    const result = await read(await handleBookRequest(
+      request({}, {
+        url: "https://bwm-new-website-review.pages.dev/api/book",
+        origin: "https://bwm-new-website-review.pages.dev",
+      }),
+      ENV,
+    ));
+    assert.equal(result.status, 200);
+    assert.equal(result.body.emailed, true);
+    assert.equal(called, true);
+  } finally {
+    globalThis.fetch = originalFetch;
+  }
+});
+
 test("rejects non-production origins and hosts without contacting upstream", async () => {
   const originalFetch = globalThis.fetch;
   let called = false;
@@ -80,6 +109,14 @@ test("rejects non-production origins and hosts without contacting upstream", asy
       ENV,
     ));
     assert.equal(previewHost.status, 403);
+    const deploymentAlias = await read(await handleBookRequest(
+      request({}, {
+        url: "https://deadbeef.bwm-new-website-review.pages.dev/api/book",
+        origin: "https://deadbeef.bwm-new-website-review.pages.dev",
+      }),
+      ENV,
+    ));
+    assert.equal(deploymentAlias.status, 403);
     assert.equal(called, false);
   } finally {
     globalThis.fetch = originalFetch;

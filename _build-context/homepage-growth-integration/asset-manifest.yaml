@@ -1,0 +1,23 @@
+schema: bwm-asset-manifest/v1
+surface: bwm-homepage-book-organic-growth-local-integration
+assets:
+  - path: public/assets/mark.svg
+    kind: logo
+    identity: Triangulation V3 mark
+    sha256: 3e1ac44ad8d7acf2e5be544cbfcb36a738e2fc280ab88197ced2cdd38985c6b8
+    rights: BWM-owned
+    treatment: exact accepted bytes; unchanged geometry and colors
+  - path: public/fonts/inter-variable-v1.woff2
+    kind: font
+    identity: Inter variable
+    sha256: eef4cbbaff4258fae42fa93ce8ec5efad27c9b6aa9d6ef20b4580696b4a8af33
+    rights: existing BWM repository license applies
+    treatment: unchanged bytes
+imagery:
+  policy: no new raster imagery in this integration
+  existing_homepage_visuals: CSS and semantic interface diagrams only
+  rights_state: no new rights dependency
+colors:
+  required_primary: "#F0FF00"
+  supporting_palette: accepted Round 29 blue, orange, and mint semantic roles
+  prohibited_palette: monochrome black-white-yellow reduction

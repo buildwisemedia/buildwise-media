@@ -3,6 +3,25 @@
 Decisions made outside the approved brief, deviations, and tradeoffs with rationale.
 Per the Build Decision Journal lock (2026-05-25). Newest first.
 
+## 2026-09-01 — Robert-only dev integration for the accepted BWM site
+
+- Reused the existing private Cloudflare Pages project `bwm-new-website-review`; the public `buildwise-media` project and production domains remain untouched.
+- Added only the exact canonical private hostname to the `/book/` form and GA4 allowlists. Arbitrary Pages preview/deployment aliases remain unable to submit the form.
+- The private site continues to proxy through the dedicated secret-bound BWM fit-contact route. A response is shown as successful only when the lead is captured in Bob's CRM, the notification email is accepted, and the durable delivery receipt is written.
+- Access is being narrowed from Robert plus Henry to Robert only, with the existing WebAuthn MFA requirement preserved.
+- This is a private dev deployment and verification action, not public production authority.
+
+## 2026-09-01 — Local Organic Growth integration for the accepted BWM homepage and /book
+
+- Bound the independently accepted shared Organic Growth schema (`540baee5a4bb579e010b316eff8a6153c9f9a5f0`), AEO (`ba9be3a4c32b3c57394566d83e8f5db21a9d11d5`), SEO (`b906da711ef72d0b7302e6a521d3c442b190f16f`), and Social + Video (`ae304ebb4dd315c2d0fc6645fee2616ffa869d5e`) systems into a local BWM website candidate. The frozen engine artifacts were consumed, not reopened or relabeled.
+- Replaced the homepage with the accepted Round 29 direction translated into Astro, retained the one-form `/book/` experience, and aligned visible copy, metadata, self-canonicals, schema, crawler access, `llms.txt`, attribution forwarding, and the confirmed-delivery conversion event.
+- Preserved search equity through an explicit lifecycle manifest, an 82-URL sitemap denominator, and a one-owner intent/title/H1 contract for every sitemap URL. No new page redirects, deletions, or bulk inner-page rewrites were authorized.
+- Removed unsupported aggregate-rating, local-business, pricing, and retired-offer signals from the authorized homepage/book machine surfaces. No special AI schema, `llms.txt` ranking claim, local-pack eligibility claim, delivery guarantee, or public pricing was introduced.
+- Added rendered-output QA and receipt-binding integrity checks. The gate fails on stale offer copy, public pricing, wrong CTA/canonical, noindex drift, partial conversion success, contradictory schema, or any bound source/hash drift.
+- Rendered QA: homepage and `/book/` passed desktop 1440×900 and mobile 390×844 (4/4), with zero overflow, broken imagery, clipping, target-size failures, or advisories. The focus sweep now blurs its final test element before screenshots so visual evidence reflects the visitor state.
+- Whitespark remains evidence-only: order `17178caf57e7` is a one-time $99 Data Aggregator citation-distribution submission, not purchased ranking links, and its live/ranking/referral/conversion effect remains not proven.
+- Authority boundary: local source edits and local verification only. No deployment, publication, push, merge, provider/CRM mutation, Search Console submission, paid activation, spend, purchase, directory submission, client send, or production readback was performed.
+
 ## 2026-08-05 — Remove the public phone number from the footer
 
 - `src/components/Footer.astro` rendered `+1 (404) 999-3258` as a clickable `tel:` link on every page. That violated two locked decisions in Brain `clients/buildwise-media/site-config.json`: `no-phone-on-site` (2026-03-12, "No phone number displayed anywhere on the website or in any human-visible element. Not in footer") and `company-phone-json-ld` (2026-03-14, "Never human-visible on site").

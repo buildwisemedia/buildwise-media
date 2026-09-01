@@ -1,0 +1,34 @@
+{
+  "schema_version": "bwm-site-migration-lifecycle/1.0.0",
+  "state": "LOCAL_CANDIDATE",
+  "client": "buildwise-media",
+  "frozen_on": "2026-09-01",
+  "live_sitemap_denominator": 86,
+  "candidate_sitemap_denominator": 82,
+  "preservation_rule": "Keep every valid live URL available unless a separately authorized lifecycle decision names a direct destination.",
+  "removed_from_sitemap_only": [
+    {"route": "/connect/", "reason": "rendered noindex"},
+    {"route": "/go/digital-employees/", "reason": "rendered noindex"},
+    {"route": "/go/fortress/", "reason": "rendered noindex"},
+    {"route": "/go/receipts/", "reason": "rendered noindex"},
+    {"route": "/go/wave/", "reason": "rendered noindex"},
+    {"route": "/sms-consent/", "reason": "rendered noindex"}
+  ],
+  "added_to_sitemap": [
+    {"route": "/book/", "reason": "new indexable direct-contact conversion page"},
+    {"route": "/playbook/4-steps-business-runs-without-you/", "reason": "existing self-canonical public page omitted from the prior generated manifest"}
+  ],
+  "redirects_added": [],
+  "urls_deleted": [],
+  "bulk_rewrites": [],
+  "lifecycle_holds": [
+    "Retired Revenue Leak Map, public pricing, 30-day and 45-day language, and agency-era inner-page copy remain available only on preserved legacy surfaces until a separately authorized page-by-page decision.",
+    "No held legacy language may appear on the new homepage, /book, their structured data, llms files, or the website-to-content source contract."
+  ],
+  "production_boundary": {
+    "deployment_authorized": false,
+    "redirect_activation_authorized": false,
+    "search_console_submission_authorized": false,
+    "deletion_authorized": false
+  }
+}

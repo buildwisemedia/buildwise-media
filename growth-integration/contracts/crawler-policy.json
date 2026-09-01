@@ -1,0 +1,34 @@
+{
+  "schema_version": "bwm-crawler-policy/1.0.0",
+  "state": "LOCAL_CANDIDATE",
+  "site": "https://buildwisemedia.com",
+  "robots_sha256": "817bbb7f2be847e19b9c0a27adf8ec1474449234b6a047af7d1ca7970369ff92",
+  "search_eligibility": {
+    "Googlebot": "allow",
+    "OAI-SearchBot": "allow",
+    "ChatGPT-User": "allow",
+    "PerplexityBot": "allow",
+    "Perplexity-User": "allow",
+    "ClaudeBot": "allow",
+    "Claude-SearchBot": "allow",
+    "Claude-User": "allow"
+  },
+  "training_and_other_product_controls": {
+    "GPTBot": "allow",
+    "Google-Extended": "allow",
+    "CCBot": "allow",
+    "anthropic-ai": "allow"
+  },
+  "interpretation": [
+    "Googlebot controls Google Search and Google AI Search eligibility.",
+    "OAI-SearchBot controls ChatGPT Search discovery eligibility.",
+    "llms.txt is a publisher summary, not a Google ranking mechanism.",
+    "No special AI schema or hidden claim is authorized.",
+    "A robots allow rule does not prove production CDN or WAF access."
+  ],
+  "production_readback": {
+    "cdn_waf_verified": false,
+    "bot_fetch_verified": false,
+    "reason": "No deployment or production-provider change is authorized in this local build."
+  }
+}

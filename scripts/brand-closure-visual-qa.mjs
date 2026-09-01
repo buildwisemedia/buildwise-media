@@ -956,6 +956,11 @@ async function focusSweep(cdp, maxStops = 25) {
     stops += 1;
     if (!value.indicated) missing.push(value.id);
   }
+  await cdp.send('Runtime.evaluate', {
+    expression:
+      'if (document.activeElement && document.activeElement.blur) document.activeElement.blur(); window.scrollTo(0, 0);',
+    returnByValue: true,
+  });
   return { stops, missing: missing.slice(0, 10) };
 }
 
@@ -1316,6 +1321,20 @@ async function main() {
           });
         }
         await fs.writeFile(path.join(routeDir, 'metrics.json'), JSON.stringify(metrics, null, 2));
+        // Keyboard audits can leave the browser in focus-visible mode across a
+        // same-tab navigation. Blur that test-only focus so screenshots capture
+        // the page as a visitor sees it before pressing Tab.
+        await cdp.send('Runtime.evaluate', {
+          expression: `(() => {
+            if (document.activeElement && document.activeElement.blur) document.activeElement.blur();
+            document.querySelectorAll('.skip-link').forEach((element) => {
+              element.style.setProperty('top', '-90px', 'important');
+            });
+            window.scrollTo(0, 0);
+          })()`,
+          returnByValue: true,
+        });
+        await sleep(1000);
         await captureFullPage(cdp, screenshotPath);
 
         const recentEvents = cdp.events.slice(eventStart);

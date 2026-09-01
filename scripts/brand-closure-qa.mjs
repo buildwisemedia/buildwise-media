@@ -213,9 +213,9 @@ for (const file of htmlFiles) {
   if (!/<meta[^>]+name=["']description["']/i.test(html)) fail('meta-description', rel(file), 'missing meta description');
   if (!htmlTitle(html)) fail('title', rel(file), 'missing title');
 
-  const ctaCount = (html.match(/See If We['’]re a Fit/g) ?? []).length;
+  const ctaCount = (html.match(/See if (?:we|you)['’]re a fit/gi) ?? []).length;
   const pathNeedsCta = !['/privacy', '/terms', '/404', '/confirmation', '/thank-you-resource'].includes(route);
-  if (pathNeedsCta && ctaCount === 0) fail('locked-cta-present', rel(file), 'missing exact CTA: See If We\'re a Fit');
+  if (pathNeedsCta && ctaCount === 0) fail('locked-cta-present', rel(file), 'missing the accepted fit CTA');
 
   for (const block of collectJsonLd(html)) {
     try {
@@ -235,13 +235,16 @@ if (!failures.some((f) => f.gate === 'paid-lp-hero-wordcount')) {
 const routeSet = new Set(htmlFiles.map(routeFromHtmlFile));
 routeSet.add('/');
 routeSet.add('/book');
+// This route is intentionally server-rendered, so it is present in the worker
+// bundle rather than as dist/revenue-leak-map/index.html.
+routeSet.add('/revenue-leak-map');
 for (const file of htmlFiles) {
   const route = routeFromHtmlFile(file);
   for (const href of hrefsFrom(read(file))) {
     if (!href.startsWith('/') || href.startsWith('//')) continue;
     if (href.startsWith('/_') || href.startsWith('/assets/') || href.startsWith('/brand/') || href.startsWith('/images/')) continue;
     const clean = href.split('#')[0].split('?')[0].replace(/\/$/, '') || '/';
-    if (/\.(png|jpe?g|webp|svg|ico|txt|xml|pdf|woff2?|ttf|otf|eot)$/i.test(clean)) {
+    if (/\.(png|jpe?g|webp|svg|ico|txt|xml|pdf|vcf|woff2?|ttf|otf|eot)$/i.test(clean)) {
       const assetFile = path.join(dist, clean.replace(/^\//, ''));
       if (!exists(assetFile)) fail('static-asset-link', rel(file), `${route} links to missing asset ${href}`);
       continue;

@@ -61,14 +61,6 @@ const socialProfiles = [
   'https://www.youtube.com/@BuildwiseMedia',
   'https://github.com/buildwisemedia',
 ];
-const aggregateRating = {
-  '@type': 'AggregateRating',
-  ratingValue: '5.0',
-  reviewCount: 7,
-  bestRating: '5',
-  worstRating: '1',
-};
-
 // Site-wide schemas — emitted on every page so AI engines have a stable
 // WebSite/Organization @id graph to traverse. Per LOCKED Triangulation voice:
 // author = "the Buildwise team + our AI system" (no sole-prop framing).
@@ -81,7 +73,7 @@ const siteSchemas: Record<string, unknown>[] = [
     url: siteUrl,
     email: 'hello@buildwisemedia.com',
     description:
-      'Verifiable custom AI systems for service businesses — Ascend installs in 30 days, operates weekly, and stays owned by the client.',
+      'Buildwise Media builds custom AI systems around the bottlenecks holding back business growth.',
     foundingLocation: {
       '@type': 'Place',
       address: {
@@ -91,7 +83,6 @@ const siteSchemas: Record<string, unknown>[] = [
         addressCountry: 'US',
       },
     },
-    aggregateRating,
     sameAs: socialProfiles,
   },
   {
@@ -100,30 +91,9 @@ const siteSchemas: Record<string, unknown>[] = [
     url: siteUrl,
     name: 'Buildwise Media',
     description:
-      'Verifiable custom AI systems for service businesses — Ascend installs in 30 days, operates weekly, and stays owned by the client.',
+      'Buildwise Media builds custom AI systems around the bottlenecks holding back business growth.',
     publisher: { '@id': `${siteUrl}/#org` },
     inLanguage: 'en-US',
-  },
-  {
-    '@type': ['LocalBusiness', 'ProfessionalService'],
-    '@id': `${siteUrl}/#localbusiness`,
-    name: 'Buildwise Media',
-    url: siteUrl,
-    email: 'hello@buildwisemedia.com',
-    priceRange: '$$$',
-    address: {
-      '@type': 'PostalAddress',
-      addressLocality: 'Atlanta',
-      addressRegion: 'GA',
-      addressCountry: 'US',
-    },
-    areaServed: {
-      '@type': 'Country',
-      name: 'United States',
-    },
-    parentOrganization: { '@id': `${siteUrl}/#org` },
-    aggregateRating,
-    sameAs: socialProfiles,
   },
   {
     '@type': 'WebPage',
@@ -133,10 +103,6 @@ const siteSchemas: Record<string, unknown>[] = [
     description,
     isPartOf: { '@id': `${siteUrl}/#website` },
     inLanguage: 'en-US',
-    speakable: {
-      '@type': 'SpeakableSpecification',
-      cssSelector: ['.h-hero', '.hero-sub', '.h-section', '.lede', '.faq-q', '.faq-a p'],
-    },
   },
 ];
 

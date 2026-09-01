@@ -1,0 +1,93 @@
+{
+  "schema_version": "bwm-growth-conflict-ledger/1.0.0",
+  "client": "buildwise-media",
+  "surface": "homepage-and-book-local-integration",
+  "frozen_on": "2026-09-01",
+  "precedence": [
+    "Robert's direct homepage and /book decisions through 2026-08-31",
+    "Round 29 accepted-direction receipt and accepted /book contact direction",
+    "Homepage-Redesign-Authority.md and Homepage-Scope.md where not superseded",
+    "accepted universal Organic Growth engine commits and their external acceptance receipts",
+    "older site-config and production implementation"
+  ],
+  "decisions": [
+    {
+      "id": "offer-no-public-pricing",
+      "status": "CONTROLLING",
+      "decision": "Do not show pricing in visible copy, structured data, llms files, metadata, or social source contracts.",
+      "supersedes": [
+        "Homepage-Redesign-Authority.md section 4 public Pilot price",
+        "Homepage-Scope.md Pilot Investment price row",
+        "site-config pricingVisible=true and machine-readable pricing"
+      ]
+    },
+    {
+      "id": "single-fit-action",
+      "status": "CONTROLLING",
+      "decision": "The sole primary action is See If We're a Fit and it resolves to /book/.",
+      "supersedes": [
+        "Revenue Leak Map",
+        "discovery-call calendar",
+        "strategy-call calendar",
+        "pricing CTA variants"
+      ]
+    },
+    {
+      "id": "book-contact-only",
+      "status": "CONTROLLING",
+      "decision": "/book/ is a short contact form. It does not use a quiz, fit score, or calendar. The team reads the note and replies by email.",
+      "delivery_boundary": "Local source may call the separately governed /api/book handler; this integration does not deploy the handler or prove production email delivery."
+    },
+    {
+      "id": "ninety-day-truth",
+      "status": "CONTROLLING",
+      "decision": "Ninety days is the first engagement term. It is not a guaranteed completion date, result, ROI window, or delivery promise."
+    },
+    {
+      "id": "geography",
+      "status": "CONTROLLING",
+      "decision": "Buildwise Media may identify Atlanta as its company location and the United States as the served area. No LocalBusiness, ProfessionalService, proximity, map-pack, address, or verified-local-eligibility claim is authorized.",
+      "local_eligibility": "UNKNOWN"
+    },
+    {
+      "id": "structured-data-parity",
+      "status": "CONTROLLING",
+      "decision": "Structured data may restate only visible, source-backed facts. No FAQPage without a visible FAQ, no Speakable, no AggregateRating, no machine-only price, and no special AI schema."
+    },
+    {
+      "id": "crawler-policy",
+      "status": "CONTROLLING",
+      "decision": "Googlebot governs Google Search and Google AI Search eligibility. OAI-SearchBot governs ChatGPT Search discovery. CDN/WAF eligibility remains a separate production readback. Google-Extended and GPTBot are training/other-product controls, not ranking mechanisms."
+    },
+    {
+      "id": "utm-authority",
+      "status": "LOCAL_CONTRACT_ONLY",
+      "decision": "Preserve first-touch and last-touch values for utm_source, utm_medium, utm_campaign, utm_content, utm_term, gclid, and fbclid; retain _fbc/_fbp when present; never invent missing attribution; forward the same fields to /book and its submitted payload.",
+      "production_join": "NOT_VERIFIED"
+    },
+    {
+      "id": "retired-live-content",
+      "status": "PRESERVE_HOLD",
+      "decision": "Revenue Leak Map, public pricing, 30-day/45-day promises, eight-layer machine copy, and agency-era inner pages are not allowed to re-enter the new homepage, /book, schema, llms files, or content-source contract. Existing inner URLs remain preserved until separately authorized lifecycle decisions are made."
+    },
+    {
+      "id": "whitespark",
+      "status": "NOT_PROVEN_WORKING",
+      "decision": "Order 17178caf57e7 is a one-time $99 Data Aggregator citation-distribution order, not purchased backlinks. Submission is observed; live citation, referring-domain, referral, conversion, ranking, and ROI impact remain unproven."
+    }
+  ],
+  "authority_boundary": {
+    "local_edits": true,
+    "deployment": false,
+    "publishing": false,
+    "push": false,
+    "merge": false,
+    "provider_writes": false,
+    "crm_writes": false,
+    "paid_activation": false,
+    "spend": false,
+    "listing_submission": false,
+    "client_send": false
+  }
+}
+

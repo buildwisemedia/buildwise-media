@@ -1,0 +1,66 @@
+{
+  "schema_version": "bwm-seo-account-contract/1.0.0",
+  "account_id": "bwm",
+  "brand_name": "Buildwise Media",
+  "canonical_origin": "https://buildwisemedia.com",
+  "identity_authority": "clients/buildwise-media/Homepage-Redesign-Authority.md plus later owner decisions",
+  "offer": {
+    "visible_description": "Buildwise Media builds custom AI systems around consequential business bottlenecks for owner-led companies.",
+    "entry_relationship": "A 90-day first engagement around one owner-chosen bottleneck.",
+    "delivery_limit": "Ninety days is the engagement term, not a guaranteed completion date or result.",
+    "public_pricing": false,
+    "primary_action": "See If We're a Fit",
+    "action_url": "https://buildwisemedia.com/book/"
+  },
+  "geography": {
+    "company_location": "Atlanta, Georgia",
+    "area_served": "United States",
+    "local_eligibility": "UNKNOWN",
+    "allowed_schema_types": ["Organization", "WebSite", "WebPage", "Service", "ContactPage"],
+    "prohibited_schema_types": ["LocalBusiness", "ProfessionalService"]
+  },
+  "conversion": {
+    "primary_event": "fit_note_submitted",
+    "meaning": "A visitor successfully submits the /book contact form and the endpoint acknowledges capture.",
+    "production_state": "NOT_VERIFIED",
+    "crm_join_state": "NOT_VERIFIED",
+    "email_delivery_state": "NOT_VERIFIED",
+    "non_conversions": ["CTA click", "form view", "form start", "client validation error", "quiz completion", "calendar view"]
+  },
+  "proof_policy": {
+    "named_client_claims": "HELD unless permission, attribution, scope, date, and evidence all pass",
+    "roi_claims": "HELD",
+    "ranking_claims": "HELD",
+    "citation_impact_claims": "HELD",
+    "structured_data_visible_parity_required": true
+  },
+  "intent_ownership": {
+    "manifest": "seo-intent-ownership.json",
+    "one_owner_per_query_cluster": true,
+    "every_sitemap_url_has_page_job": true,
+    "rendered_title_or_h1_must_claim_owner_phrase": true
+  },
+  "crawler_policy": {
+    "google_search_and_ai_features": "Googlebot",
+    "chatgpt_search": "OAI-SearchBot",
+    "user_requested_openai_fetch": "ChatGPT-User",
+    "training_and_other_product_controls": ["GPTBot", "Google-Extended"],
+    "cdn_eligibility": "PRODUCTION_READBACK_REQUIRED"
+  },
+  "gate_versions": {
+    "preflight": 4,
+    "design_run": "bwm-design-run/1.1.0",
+    "design_modules": "bwm-design-modules/1.3.0",
+    "copy_methods": "bwm-copy-methods/1.0.0",
+    "website_qa": "bwm-organic-growth-site-qa/1.0.0"
+  },
+  "authority_boundary": {
+    "local_candidate": true,
+    "production": false,
+    "deployment": false,
+    "publishing": false,
+    "provider_writes": false,
+    "crm_writes": false,
+    "spend": false
+  }
+}

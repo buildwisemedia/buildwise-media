@@ -10,8 +10,13 @@ const modules = import.meta.glob('./**/*.astro');
 // Pages excluded from sitemap (per robots.txt + canonical-site-files contract).
 const EXCLUDE = new Set([
   '/404',
-  '/book',
   '/confirmation',
+  '/connect',
+  '/go/digital-employees',
+  '/go/fortress',
+  '/go/receipts',
+  '/go/wave',
+  '/sms-consent',
   '/thank-you-resource',
   // noindex campaign landing pages — keep them out of the sitemap so we don't
   // ask crawlers to index pages that carry <meta robots noindex>.
@@ -25,6 +30,7 @@ const EXCLUDE = new Set([
 // Priority overrides — explicit weights for high-intent surfaces.
 const PRIORITY_OVERRIDES: Record<string, { priority: string; changefreq: string }> = {
   '/': { priority: '1.0', changefreq: 'weekly' },
+  '/book': { priority: '0.9', changefreq: 'monthly' },
   '/audit': { priority: '0.9', changefreq: 'weekly' },
   '/revenue-leak-map': { priority: '0.9', changefreq: 'monthly' },
   '/services/ascend': { priority: '0.9', changefreq: 'monthly' },
@@ -75,7 +81,7 @@ async function lastmodByModule(
   for (const mp of modulePaths) {
     // glob keys are relative to this file (src/pages/); git resolves the path
     // against process.cwd() = repo root during `astro build`.
-    const rel = 'src/pages/' + mp.replace(/^\.\//, '');
+    const rel = mp.startsWith('public/') ? mp : 'src/pages/' + mp.replace(/^\.\//, '');
     try {
       const date = execFileSync('git', ['log', '-1', '--format=%cs', '--', rel], {
         encoding: 'utf8',
@@ -89,14 +95,19 @@ async function lastmodByModule(
   return out;
 }
 
+const STATIC_ENTRIES = [
+  { mp: 'public/book/index.html', url: '/book' },
+  { mp: 'public/playbook/4-steps-business-runs-without-you/index.html', url: '/playbook/4-steps-business-runs-without-you' },
+];
+
 export const GET: APIRoute = async () => {
   const buildDate = new Date().toISOString().slice(0, 10);
 
-  const entries = Object.keys(modules)
+  const entries = [...Object.keys(modules)
     .map((mp) => ({ mp, url: pathToUrl(mp) }))
     .filter((e) => !EXCLUDE.has(e.url))
     // Skip dynamic-route files (any `[slug]`-style page); none ship today, but future-proof.
-    .filter((e) => !e.url.includes('['))
+    .filter((e) => !e.url.includes('[')), ...STATIC_ENTRIES]
     .sort((a, b) => (a.url < b.url ? -1 : a.url > b.url ? 1 : 0));
 
   const lastmods = await lastmodByModule(entries.map((e) => e.mp), buildDate);

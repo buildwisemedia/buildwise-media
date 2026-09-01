@@ -1,0 +1,76 @@
+{
+  "schema_version": "bwm-organic-growth-site-integration/1.0.0",
+  "state": "LOCAL_CANDIDATE",
+  "client": "buildwise-media",
+  "source_revision": "15ce8545c286e49245cfad60bd769ffd2c9962a7",
+  "preflight_sha256": "2424142a817b42e12d94e8c6c40636008242f8c455e2f5b4cca54a94d2fe0524",
+  "frozen_inputs": {
+    "accepted_homepage_sha256": "b2ac2a330c961535abceae735360c448ee264cf3432f418ddab46475a26381b5",
+    "accepted_direction_sha256": "bb240b070ca034f875b8b4c100ed19452ead24b98ea173a366e21f7de0f8a8f1",
+    "accepted_book_sha256": "87751d229a67e9817b92d35857083076d7da13b80db3ed89237a29a853185764",
+    "shared_schema_commit": "540baee5a4bb579e010b316eff8a6153c9f9a5f0",
+    "aeo_commit": "ba9be3a4c32b3c57394566d83e8f5db21a9d11d5",
+    "seo_commit": "b906da711ef72d0b7302e6a521d3c442b190f16f",
+    "seo_package_sha256": "504c77945494c07a911f1d925937512dba45ee46d3c9b801506e7184147960ad",
+    "seo_interface_sha256": "03bde0095f29bad972a8f4b1bb0fbe1b49e9cfd3945828d5254fc3060736867a",
+    "social_video_commit": "ae304ebb4dd315c2d0fc6645fee2616ffa869d5e"
+  },
+  "base_live_inventory": {
+    "sitemap_denominator": 86,
+    "sitemap_200_numerator": 86,
+    "sitemap_sha256": "1c9e14c6fab7a49e21ccec17756765d45c1fc34643d8ed6fae97740b94cff5df",
+    "rendered_inventory_sha256": "3a6716a5954fd59bb0502e4238b022dc4b8a04f25e4b63bf800fbab5f62caa59",
+    "noindex_urls_in_live_sitemap": 6,
+    "gsc_external_links": 31,
+    "gsc_referring_domains": 15,
+    "gsc_unresolved_target_count": 1
+  },
+  "allowed_source_changes": [
+    "replace src/pages/index.astro with the accepted homepage translated byte-faithfully into the Astro build",
+    "remove local-review labels from the production-shaped homepage",
+    "add truthful title, description, canonical, social metadata, and visible-parity JSON-LD to homepage and /book",
+    "change homepage and /book robots state from review noindex to production-candidate index,follow",
+    "clarify visibly that 90 days is the engagement term, not a guaranteed completion date or outcome",
+    "bind the exact accepted mark and self-hosted Inter bytes",
+    "add OAI-SearchBot eligibility while preserving existing crawler policy",
+    "remove stale pricing, Revenue Leak Map, 30-day, 45-day, and eight-layer statements from llms files",
+    "repair sitemap membership, self-canonical ownership, UTM continuity, analytics event naming, and negative-control QA",
+    "add local contracts, lifecycle inventory, source manifest, QA scripts, and receipts"
+  ],
+  "preserved_without_rewrite": [
+    "all existing inner-page source and visible copy",
+    "all valid current URLs unless the lifecycle manifest explicitly names a direct redirect",
+    "the accepted homepage visual direction and interaction model",
+    "the accepted /book one-form experience",
+    "legal and consent pages",
+    "existing production analytics IDs"
+  ],
+  "out_of_scope": [
+    "inner-page copy refresh",
+    "new page creation",
+    "bulk noindex or deletion",
+    "provider or CRM configuration",
+    "Search Console submission",
+    "CDN/WAF allowlisting",
+    "social asset rendering or publication",
+    "paid activation",
+    "production deployment"
+  ],
+  "local_contracts": {
+    "conflict_ledger_sha256": "1468e8b48d7bef86b2ab815fc466a1b8d92e0ee50eb6709a744aa822558eb046",
+    "seo_account_contract_sha256": "755c602900a852c8a04edd8bc1b9f3d39d9d15ae53969cc59fd82dbce1826272",
+    "seo_intent_ownership_sha256": "8ef8378205c276a4bef152f2b2e72294a01f8ef45ff4a2c9ba0b529366fa5f40",
+    "migration_lifecycle_sha256": "6291197dfd37d40fc5e768456a165286b9436c54cd19a729521e4dfa9639b7ff",
+    "crawler_policy_sha256": "d6ea482ad15f34bd4c6ca08db4c81f3aa89e4d893242406c7266e685edb49804",
+    "website_to_content_source_sha256": "73170bbfe98da1199ff8fc9bc3e063a82245fbb28afa12e53e4bcb36bba95efd"
+  },
+  "known_launch_holds": [
+    "inner-page retired-offer and agency-era lifecycle decisions remain separately gated",
+    "one of 31 GSC external-link targets remains unresolved",
+    "local eligibility remains UNKNOWN",
+    "production CDN/WAF crawler readback is not performed",
+    "GA4 to CRM conversion join is not verified",
+    "production /api/book email delivery is not deployed or verified",
+    "Whitespark live and impact states are not proven"
+  ]
+}

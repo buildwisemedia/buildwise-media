@@ -1,0 +1,43 @@
+# Buildwise Media — robots.txt
+# AI-permissive per BWM Canonical Site Files (LOCKED 2026-04-20)
+
+User-agent: *
+Allow: /
+Disallow: /confirmation
+
+# Search crawlers — full access
+User-agent: Googlebot
+Allow: /
+Disallow: /confirmation
+
+User-agent: Bingbot
+Allow: /
+Disallow: /confirmation
+
+# AI crawlers — explicit allow per Canonical Site Files spec
+User-agent: GPTBot
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: anthropic-ai
+Allow: /
+
+# Recommended extras
+User-agent: Applebot-Extended
+Allow: /
+
+User-agent: CCBot
+Allow: /
+
+Sitemap: https://buildwisemedia.com/sitemap.xml

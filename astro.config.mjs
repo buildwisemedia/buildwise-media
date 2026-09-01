@@ -15,7 +15,6 @@ const legacyProblemRedirects = Object.fromEntries([
 const allRedirects = {
   ...legacyProblemRedirects,
   '/m': '/',
-  '/m/': '/',
 };
 
 export default defineConfig({
