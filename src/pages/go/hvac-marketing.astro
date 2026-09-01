@@ -1101,7 +1101,6 @@ const jsonLd = [
     outline: 2px solid var(--y2);
     outline-offset: 4px;
   }
-
   @media (max-width: 920px) {
     .hero,
     .proof,
@@ -1188,5 +1187,15 @@ const jsonLd = [
 
   @media (prefers-reduced-motion: reduce) {
     :global(html) { scroll-behavior: auto; }
+  }
+</style>
+
+<style is:global>
+  /* Turnstile promotes an anonymous sibling of its hidden response input into
+     the tab ring. This global selector reaches that injected third-party node
+     even when the provider moves it outside the authored widget container. */
+  div:has(> input[name="cf-turnstile-response"]) > div {
+    outline: 2px solid var(--y2);
+    outline-offset: 4px;
   }
 </style>

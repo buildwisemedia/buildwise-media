@@ -1,11 +1,11 @@
-# Manual Visual Review
+# Automated Visual Inspection
 
-Status: PASS
+Status: machine-pass
 
-Reviewer: Codex Sol
+Automation lane: Codex Sol
 Reviewed at: 2026-09-01 7:31 AM EDT
 
-Required checks:
+Automated inspection checks:
 - [x] Homepage and `/book/` preserve the exact bound Triangulation mark and `#F0FF00` identity color.
 - [x] Desktop and mobile headings break cleanly without collisions or clipping.
 - [x] Homepage system diagrams, evidence panels, fit comparison, and CTAs remain legible.

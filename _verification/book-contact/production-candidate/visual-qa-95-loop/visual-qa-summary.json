@@ -38,9 +38,16 @@
     }
   ],
   "totalCaptures": 5,
-  "failureCount": 0,
+  "failureCount": 1,
   "advisoryCount": 0,
-  "failures": [],
+  "failures": [
+    {
+      "route": "manual visual review",
+      "viewport": "all",
+      "screenshot": "_verification/book-contact/production-candidate/visual-qa-95-loop/manual-visual-review.md",
+      "failures": ["manual visual acceptance note missing Status: accepted"]
+    }
+  ],
   "captures": [
     {
       "route": "/book",
@@ -121,6 +128,6 @@
   "manualAcceptance": {
     "required": true,
     "path": "_verification/book-contact/production-candidate/visual-qa-95-loop/manual-visual-review.md",
-    "accepted": true
+    "accepted": false
   }
 }

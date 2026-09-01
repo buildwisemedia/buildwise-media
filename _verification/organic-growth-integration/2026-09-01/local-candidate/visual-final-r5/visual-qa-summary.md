@@ -4,7 +4,7 @@ Base: http://127.0.0.1:4322
 Captures: 4
 Failures: 0
 Advisories (non-blocking): 0
-Manual visual review: PASS (_verification/organic-growth-integration/2026-09-01/local-candidate/visual-final-r5/manual-visual-review.md)
+Manual visual review: machine-pass, not human acceptance (_verification/organic-growth-integration/2026-09-01/local-candidate/visual-final-r5/manual-visual-review.md)
 
 ## Captures
 

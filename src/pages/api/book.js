@@ -29,6 +29,36 @@ function safeVisitorIp(request) {
   return /^[0-9a-f:.]{2,64}$/i.test(value) ? value : "";
 }
 
+async function readBoundedBody(request) {
+  if (!request.body) return { body: "", tooLarge: false };
+
+  const reader = request.body.getReader();
+  const chunks = [];
+  let totalBytes = 0;
+  try {
+    while (true) {
+      const { done, value } = await reader.read();
+      if (done) break;
+      totalBytes += value.byteLength;
+      if (totalBytes > MAX_BODY_BYTES) {
+        await reader.cancel("payload_too_large");
+        return { body: "", tooLarge: true };
+      }
+      chunks.push(value);
+    }
+  } finally {
+    reader.releaseLock();
+  }
+
+  const bytes = new Uint8Array(totalBytes);
+  let offset = 0;
+  for (const chunk of chunks) {
+    bytes.set(chunk, offset);
+    offset += chunk.byteLength;
+  }
+  return { body: new TextDecoder().decode(bytes), tooLarge: false };
+}
+
 export async function handleBookRequest(request, env = {}) {
   if (request.method !== "POST") {
     return json({ ok: false, emailed: false, error: "method_not_allowed" }, 405);
@@ -55,19 +85,21 @@ export async function handleBookRequest(request, env = {}) {
     return json({ ok: false, emailed: false, error: "payload_too_large" }, 413);
   }
 
-  let body;
+  let boundedBody;
   try {
-    body = await request.text();
+    boundedBody = await readBoundedBody(request);
   } catch {
     return json({ ok: false, emailed: false, error: "body_read_failed" }, 400);
   }
-  if (new TextEncoder().encode(body).byteLength > MAX_BODY_BYTES) {
+  if (boundedBody.tooLarge) {
     return json({ ok: false, emailed: false, error: "payload_too_large" }, 413);
   }
+  const body = boundedBody.body;
 
   const controller = new AbortController();
   const timeout = setTimeout(() => controller.abort(), 12_000);
   let upstream;
+  let result;
   try {
     const headers = new Headers({
       "Accept": "application/json",
@@ -89,22 +121,22 @@ export async function handleBookRequest(request, env = {}) {
     upstream = service && typeof service.fetch === "function"
       ? await service.fetch(new Request(UPSTREAM, upstreamInit))
       : await fetch(UPSTREAM, upstreamInit);
+
+    if (upstream.status >= 300 && upstream.status < 400) {
+      return json({ ok: false, emailed: false, retryable: true, error: "upstream_redirect_rejected" }, 502);
+    }
+
+    try {
+      result = await upstream.json();
+    } catch (error) {
+      if (controller.signal.aborted) throw error;
+      return json({ ok: false, emailed: false, retryable: true, error: "invalid_intake_response" }, 502);
+    }
   } catch (error) {
     console.error("BWM book intake upstream unavailable", error);
     return json({ ok: false, emailed: false, retryable: true, error: "intake_unavailable" }, 503);
   } finally {
     clearTimeout(timeout);
-  }
-
-  if (upstream.status >= 300 && upstream.status < 400) {
-    return json({ ok: false, emailed: false, retryable: true, error: "upstream_redirect_rejected" }, 502);
-  }
-
-  let result;
-  try {
-    result = await upstream.json();
-  } catch {
-    return json({ ok: false, emailed: false, retryable: true, error: "invalid_intake_response" }, 502);
   }
 
   if (upstream.ok && !(

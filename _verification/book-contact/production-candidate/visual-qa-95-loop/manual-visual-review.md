@@ -1,11 +1,11 @@
-# Manual Visual Review
+# Automated Visual Inspection
 
-Status: accepted
+Status: pending
 
-Reviewer: Codex primary build lane
+Automation lane: Codex primary build lane
 Reviewed at: August 31, 2026, 9:28 AM Eastern
 
-Required checks:
+Automated inspection checks:
 - [x] No heading crosses decorative dividers or panel boundaries.
 - [x] The headline breaks into readable lines with orange emphasis on growth.
 - [x] The exact approved mark renders cleanly at desktop and mobile sizes.
@@ -14,3 +14,5 @@ Required checks:
 - [x] Desktop, tablet, and mobile captures show zero horizontal overflow.
 
 Notes: The generic chart, slider, 24/7, and Poor Four checks do not apply to this one-job contact page. Five rendered viewports were inspected. The QA capture can show the skip link after the scripted keyboard-focus sweep; normal first-load and the independent model render do not.
+
+This automated inspection does not satisfy a required human manual-acceptance gate.

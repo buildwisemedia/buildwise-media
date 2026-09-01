@@ -2,9 +2,9 @@
 
 Base: http://127.0.0.1:4322
 Captures: 4
-Failures: 0
+Failures: 1
 Advisories (non-blocking): 0
-Manual visual review: accepted (_verification/organic-growth-integration/2026-09-01/rendered-targeted-r4/manual-visual-review.md)
+Manual visual review: pending (_verification/organic-growth-integration/2026-09-01/rendered-targeted-r4/manual-visual-review.md)
 
 ## Captures
 
@@ -15,4 +15,4 @@ Manual visual review: accepted (_verification/organic-growth-integration/2026-09
 
 ## Failures
 
-- None
+- manual visual review @ all: manual visual acceptance note missing Status: accepted

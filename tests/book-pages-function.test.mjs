@@ -196,6 +196,77 @@ test("rejects oversized bodies before contacting upstream", async () => {
   }
 });
 
+test("stops reading an oversized chunked body as soon as the byte cap is crossed", async () => {
+  const originalFetch = globalThis.fetch;
+  let called = false;
+  let pulls = 0;
+  let cancelled = false;
+  globalThis.fetch = async () => {
+    called = true;
+    return Response.json({ ok: true });
+  };
+  const body = new ReadableStream({
+    pull(controller) {
+      pulls += 1;
+      controller.enqueue(new Uint8Array(1024).fill(120));
+      if (pulls === 100) controller.close();
+    },
+    cancel() {
+      cancelled = true;
+    },
+  });
+  const chunkedRequest = new Request("https://buildwisemedia.com/api/book", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      "Origin": "https://buildwisemedia.com",
+    },
+    body,
+    duplex: "half",
+  });
+  try {
+    const result = await read(await handleBookRequest(chunkedRequest, ENV));
+    assert.equal(result.status, 413);
+    assert.equal(result.body.error, "payload_too_large");
+    assert.equal(cancelled, true);
+    assert.ok(pulls < 100);
+    assert.equal(called, false);
+  } finally {
+    globalThis.fetch = originalFetch;
+  }
+});
+
+test("keeps the upstream timeout active until response JSON is consumed", async () => {
+  const originalFetch = globalThis.fetch;
+  const originalClearTimeout = globalThis.clearTimeout;
+  let timeoutCleared = false;
+  globalThis.clearTimeout = (handle) => {
+    timeoutCleared = true;
+    return originalClearTimeout(handle);
+  };
+  globalThis.fetch = async () => ({
+    status: 200,
+    ok: true,
+    async json() {
+      assert.equal(timeoutCleared, false);
+      return {
+        ok: true,
+        captured: true,
+        emailed: true,
+        receipt_recorded: true,
+      };
+    },
+  });
+  try {
+    const result = await read(await handleBookRequest(request(), ENV));
+    assert.equal(result.status, 200);
+    assert.equal(timeoutCleared, true);
+  } finally {
+    globalThis.fetch = originalFetch;
+    globalThis.clearTimeout = originalClearTimeout;
+  }
+});
+
 test("refuses a false-success upstream response", async () => {
   const originalFetch = globalThis.fetch;
   globalThis.fetch = async () => Response.json({ ok: true, captured: true, emailed: true, receipt_recorded: false });

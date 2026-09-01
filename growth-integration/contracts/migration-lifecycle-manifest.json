@@ -18,7 +18,9 @@
     {"route": "/book/", "reason": "new indexable direct-contact conversion page"},
     {"route": "/playbook/4-steps-business-runs-without-you/", "reason": "existing self-canonical public page omitted from the prior generated manifest"}
   ],
-  "redirects_added": [],
+  "redirects_added": [
+    {"route": "/m/", "destination": "/", "status": 301, "reason": "preserve the existing bare member-directory fallback while member credential routes remain available at /m/[card]"}
+  ],
   "urls_deleted": [],
   "bulk_rewrites": [],
   "lifecycle_holds": [

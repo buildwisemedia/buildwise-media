@@ -923,7 +923,9 @@ async function focusSweep(cdp, maxStops = 25) {
       expression: `(() => {
         const el = document.activeElement;
         if (!el || el === document.body || el === document.documentElement) return null;
-        const id = (el.tagName || '') + '|' + (el.id || '') + '|' + ('' + (el.className || '')).slice(0, 40) + '|' + (el.textContent || '').trim().slice(0, 32);
+        const parent = el.parentElement;
+        const thirdPartyTurnstile = !!parent?.querySelector(':scope > input[name="cf-turnstile-response"]');
+        const id = (el.tagName || '') + '|' + (el.id || '') + '|' + ('' + (el.className || '')).slice(0, 40) + '|' + (el.textContent || '').trim().slice(0, 32) + '|parent=' + (parent?.tagName || '') + '#' + (parent?.id || '') + '.' + ('' + (parent?.className || '')).slice(0, 32) + '|thirdPartyTurnstile=' + thirdPartyTurnstile;
         const read = () => {
           const s = window.getComputedStyle(el);
           return {

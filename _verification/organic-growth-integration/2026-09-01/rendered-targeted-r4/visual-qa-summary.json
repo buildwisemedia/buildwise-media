@@ -21,9 +21,16 @@
     }
   ],
   "totalCaptures": 4,
-  "failureCount": 0,
+  "failureCount": 1,
   "advisoryCount": 0,
-  "failures": [],
+  "failures": [
+    {
+      "route": "manual visual review",
+      "viewport": "all",
+      "screenshot": "_verification/organic-growth-integration/2026-09-01/rendered-targeted-r4/manual-visual-review.md",
+      "failures": ["manual visual acceptance note missing Status: accepted"]
+    }
+  ],
   "captures": [
     {
       "route": "/",
@@ -89,6 +96,6 @@
   "manualAcceptance": {
     "required": true,
     "path": "_verification/organic-growth-integration/2026-09-01/rendered-targeted-r4/manual-visual-review.md",
-    "accepted": true
+    "accepted": false
   }
 }

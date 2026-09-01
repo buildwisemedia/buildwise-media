@@ -1,11 +1,11 @@
-# Manual Visual Review
+# Automated Visual Inspection
 
-Status: accepted
+Status: pending
 
-Reviewer: Codex primary integration lane
+Automation lane: Codex primary integration lane
 Reviewed at: 2026-09-01 Eastern
 
-Required checks:
+Automated inspection checks:
 - [x] Homepage hierarchy, section rhythm, and accent system remain intact at desktop and mobile.
 - [x] Homepage primary CTA is visible within the mobile first-screen threshold.
 - [x] Navigation and conversion controls meet the rendered target-size gates.
@@ -14,4 +14,4 @@ Required checks:
 - [x] The four screenshots match the approved Buildwise direction without introducing design drift.
 
 Notes:
-Four rendered captures inspected after the final CSS and focus-sweep repairs. Visual QA reported 4/4 pass with zero advisories.
+Four rendered captures inspected after the final CSS and focus-sweep repairs. Machine visual QA reported 4/4 pass with zero advisories. This automated inspection does not satisfy a required human manual-acceptance gate.
