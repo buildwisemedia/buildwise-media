@@ -215,6 +215,26 @@ test("refuses a false-success upstream response", async () => {
   }
 });
 
+test("fails closed instead of following an upstream redirect", async () => {
+  const originalFetch = globalThis.fetch;
+  globalThis.fetch = async () => new Response(null, {
+    status: 302,
+    headers: { Location: "https://example.com/untrusted" },
+  });
+  try {
+    const result = await read(await handleBookRequest(request(), ENV));
+    assert.equal(result.status, 502);
+    assert.deepEqual(result.body, {
+      ok: false,
+      emailed: false,
+      retryable: true,
+      error: "upstream_redirect_rejected",
+    });
+  } finally {
+    globalThis.fetch = originalFetch;
+  }
+});
+
 test("passes a captured email failure back to the page without calling it success", async () => {
   const originalFetch = globalThis.fetch;
   globalThis.fetch = async () => Response.json(

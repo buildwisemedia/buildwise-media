@@ -82,7 +82,7 @@ export async function handleBookRequest(request, env = {}) {
       method: "POST",
       headers,
       body,
-      redirect: "error",
+      redirect: "manual",
       signal: controller.signal,
     };
     const service = env.BWM_FORM_HANDLER;
@@ -94,6 +94,10 @@ export async function handleBookRequest(request, env = {}) {
     return json({ ok: false, emailed: false, retryable: true, error: "intake_unavailable" }, 503);
   } finally {
     clearTimeout(timeout);
+  }
+
+  if (upstream.status >= 300 && upstream.status < 400) {
+    return json({ ok: false, emailed: false, retryable: true, error: "upstream_redirect_rejected" }, 502);
   }
 
   let result;
