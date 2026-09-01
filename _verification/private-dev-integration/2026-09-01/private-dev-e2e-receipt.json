@@ -1,0 +1,85 @@
+{
+  "scope": "BWM private dev access, GA4 wiring, Bob CRM capture, and Robert email delivery",
+  "state": "private-dev-live",
+  "public_production_untouched": true,
+  "verified_at_eastern": "2026-09-01 12:32 PM EDT",
+  "site": {
+    "canonical_url": "https://bwm-new-website-review.pages.dev/",
+    "book_url": "https://bwm-new-website-review.pages.dev/book/",
+    "deployment_url": "https://fbab1ab4.bwm-new-website-review.pages.dev/",
+    "deployment_id": "fbab1ab4-babd-4bbf-a53d-ca6756143b79",
+    "source_commit": "acd21c9079c7c8990eaac9eb860a7c4736543143",
+    "book_html_sha256": "ef7532d4baeb21d3d39f26b69c71ccae59326f766b5ddff7a87a7c022040893d",
+    "book_proxy_sha256": "fb4d85d913704a73580f40d51566ac1173e5b4ec7013cfd736e3affa01c0f998",
+    "service_binding": {
+      "binding": "BWM_FORM_HANDLER",
+      "service": "bwm-form-handler",
+      "environment": "production",
+      "secret_preserved": true
+    }
+  },
+  "access": {
+    "allowed_emails": [
+      "robert@buildwisemedia.com"
+    ],
+    "mfa": [
+      "biometrics",
+      "security_key"
+    ],
+    "canonical_app_id": "cf6291b8-8ccd-4fbf-acab-2c2a92fa59ea",
+    "wildcard_app_id": "f3ba6631-63b0-4b07-8480-2c6b26fcd9c6",
+    "saved_and_reread": true
+  },
+  "database_migration": {
+    "merge_commit": "bf4ab97ffd4be798b4a48a047b0931f8b2b62117",
+    "name": "bwm_fit_contact_idempotent_rate_limit",
+    "applied": true,
+    "rls_enabled": true,
+    "anon_execute": false,
+    "authenticated_execute": false,
+    "service_role_execute": true
+  },
+  "form_handler": {
+    "merge_commit": "9a3040d38ef1ee61cf2064ca785b75f01121723e",
+    "worker_version_id": "6381733f-13fc-48ff-8658-092a50cbb705",
+    "route": "/buildwisemedia/fit-contact",
+    "missing_key_status": 401
+  },
+  "synthetic_submission": {
+    "submission_id": "be30dae5-8ea2-409c-a655-eb4ca0e3fcce",
+    "contact_id": "35ac9f6e-48e0-48cf-9d11-110e9f139045",
+    "email": "robert+dev-fit-qa-20260901@buildwisemedia.com",
+    "form_id": "fit_contact",
+    "form_version": "bwm-fit-contact-v1",
+    "status": "processed",
+    "is_synthetic": true,
+    "rate_limit": "allowed",
+    "browser_success_text": "Sent securely — Your note is with us"
+  },
+  "email": {
+    "recipient": "robert@buildwisemedia.com",
+    "subject": "New BWM fit note — Buildwise Media - DEV QA — Robert Echevarria - DEV QA",
+    "provider_id": "0d7a89ff-a9f8-49eb-a95e-6dfafdae0d0c",
+    "comms_log_id": "ba8acd39-344e-5d48-b2f8-3b2315befe12",
+    "status": "delivered",
+    "inbox_readback": true,
+    "received_eastern": "2026-09-01 12:26 PM EDT"
+  },
+  "ga4": {
+    "property_id": "422160329",
+    "data_stream": "properties/422160329/dataStreams/6523186113",
+    "measurement_id": "G-V5LSP69E41",
+    "hostname_allowlisted": "bwm-new-website-review.pages.dev",
+    "events_after_complete_delivery": [
+      "fit_note_submitted",
+      "generate_lead"
+    ],
+    "source_contract_tests": "19/19 pass",
+    "browser_tag_enabled": true,
+    "browser_measurement_id_verified": true,
+    "browser_custom_event_collect_status": 503,
+    "terminal_collection_control_status": 204,
+    "conversion_event_report_readback": "not yet present",
+    "claim_boundary": "GA4 is wired and firing to the correct measurement ID; this receipt does not claim that the conversion event was recorded because Robert's Chrome collection request returned 503."
+  }
+}

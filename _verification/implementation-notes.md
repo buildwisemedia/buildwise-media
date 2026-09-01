@@ -8,7 +8,10 @@ Per the Build Decision Journal lock (2026-05-25). Newest first.
 - Reused the existing private Cloudflare Pages project `bwm-new-website-review`; the public `buildwise-media` project and production domains remain untouched.
 - Added only the exact canonical private hostname to the `/book/` form and GA4 allowlists. Arbitrary Pages preview/deployment aliases remain unable to submit the form.
 - The private site continues to proxy through the dedicated secret-bound BWM fit-contact route. A response is shown as successful only when the lead is captured in Bob's CRM, the notification email is accepted, and the durable delivery receipt is written.
-- Access is being narrowed from Robert plus Henry to Robert only, with the existing WebAuthn MFA requirement preserved.
+- Access is Robert only, with the existing WebAuthn biometrics/security-key requirement preserved and re-read on both canonical and wildcard applications.
+- The Pages function now reaches the same-account form Worker through a private service binding. This replaces the public Worker-to-Worker fetch that Cloudflare rejected. Redirects remain fail-closed.
+- Live synthetic proof passed at 12:26 PM Eastern: the page showed the success state, Bob's CRM stored one processed synthetic submission, the email receipt reached `delivered`, and the exact message was present in Robert's inbox.
+- GA4 property `422160329` / measurement ID `G-V5LSP69E41` is present and enabled on the private hostname. The page emits `fit_note_submitted` and `generate_lead` only after the full four-flag delivery response. Source and deterministic checks pass; browser network probes reached the correct measurement ID, while Robert's Chrome returned HTTP 503 for custom-event collection. A terminal control hit to the same Google collection endpoints returned HTTP 204, isolating that result to the browser path rather than the site configuration.
 - This is a private dev deployment and verification action, not public production authority.
 
 ## 2026-09-01 — Local Organic Growth integration for the accepted BWM homepage and /book
