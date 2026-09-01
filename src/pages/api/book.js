@@ -89,7 +89,8 @@ export async function handleBookRequest(request, env = {}) {
     upstream = service && typeof service.fetch === "function"
       ? await service.fetch(new Request(UPSTREAM, upstreamInit))
       : await fetch(UPSTREAM, upstreamInit);
-  } catch {
+  } catch (error) {
+    console.error("BWM book intake upstream unavailable", error);
     return json({ ok: false, emailed: false, retryable: true, error: "intake_unavailable" }, 503);
   } finally {
     clearTimeout(timeout);
