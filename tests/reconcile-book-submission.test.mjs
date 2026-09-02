@@ -95,6 +95,22 @@ test('rejects a synthetic row that enters business or advertising state', () => 
   assert.equal(receipt.synthetic_excluded, false);
 });
 
+test('honors outcome-level synthetic classification when the submission flag is stale', () => {
+  const receipt = evaluateReceipt({
+    submissionId,
+    ga4Rows: [
+      { submission_id: submissionId, event_name: 'fit_note_submitted' },
+      { submission_id: submissionId, event_name: 'generate_lead' },
+    ],
+    submissionRows: [{ id: submissionId, contact_id: 'contact-1', is_synthetic: false }],
+    commsRows: [{ id: 'receipt-1', contact_id: 'contact-1', status: 'opened' }],
+    outcomeRows: [{ submission_id: submissionId, contact_id: 'contact-1', is_synthetic: true, lead_state: 'excluded_synthetic', business_lead_identity: null, advertising_feedback: null }],
+  });
+  assert.equal(receipt.state, 'JOIN_VERIFIED');
+  assert.equal(receipt.synthetic_excluded, true);
+  assert.equal(receipt.synthetic_policy_verified, true);
+});
+
 test('rejects a non-success email receipt status', () => {
   const receipt = evaluateReceipt({
     submissionId,

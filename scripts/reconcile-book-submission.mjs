@@ -44,7 +44,8 @@ export function evaluateReceipt({ submissionId, ga4Rows, submissionRows, commsRo
   const successfulComms = matchingComms.filter((row) => SUCCESSFUL_EMAIL_STATUSES.has(String(row.status || '').toLowerCase()));
   const outcomeIdentityMatches = !outcome || outcome.contact_id === submission?.contact_id;
   const syntheticAdvertisingStates = advertisingStates(outcome?.advertising_feedback);
-  const syntheticPolicyVerified = submission?.is_synthetic !== true || Boolean(
+  const isSynthetic = submission?.is_synthetic === true || outcome?.is_synthetic === true;
+  const syntheticPolicyVerified = !isSynthetic || Boolean(
     outcome
       && outcome.is_synthetic === true
       && outcome.lead_state === 'excluded_synthetic'
@@ -82,7 +83,7 @@ export function evaluateReceipt({ submissionId, ga4Rows, submissionRows, commsRo
     successful_email_receipt_count: successfulComms.length,
     source_to_outcome_found: Boolean(outcome),
     outcome_identity_verified: Boolean(outcome) && outcomeIdentityMatches,
-    synthetic_excluded: submission?.is_synthetic === true && syntheticPolicyVerified,
+    synthetic_excluded: isSynthetic && syntheticPolicyVerified,
     synthetic_policy_verified: syntheticPolicyVerified,
     per_source: {
       ga4: ga4Complete ? 'observed' : 'pending',
