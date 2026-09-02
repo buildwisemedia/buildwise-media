@@ -1,0 +1,161 @@
+{
+  "generatedAt": "2026-09-02T10:23:50.413Z",
+  "baseUrl": "http://127.0.0.1:4322",
+  "chromePath": "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome",
+  "routes": [
+    "/",
+    "/book",
+    "/privacy",
+    "/terms"
+  ],
+  "viewports": [
+    {
+      "name": "desktop-1440x900",
+      "width": 1440,
+      "height": 900,
+      "mobile": false
+    },
+    {
+      "name": "mobile-390x844",
+      "width": 390,
+      "height": 844,
+      "mobile": true
+    }
+  ],
+  "totalCaptures": 8,
+  "failureCount": 0,
+  "advisoryCount": 3,
+  "failures": [],
+  "captures": [
+    {
+      "route": "/",
+      "viewport": "desktop-1440x900",
+      "screenshot": "_verification/site-completion/2026-09-02/final-visual/home/desktop-1440x900/full-page.png",
+      "failures": [],
+      "advisories": [],
+      "h1s": [
+        "Fix the bottleneck holding back your growth."
+      ],
+      "overflowX": 0,
+      "visibleImages": 2,
+      "aboveFoldImages": 1,
+      "mobileCtaWithin580": false,
+      "browserIssueCount": 0
+    },
+    {
+      "route": "/book",
+      "viewport": "desktop-1440x900",
+      "screenshot": "_verification/site-completion/2026-09-02/final-visual/book/desktop-1440x900/full-page.png",
+      "failures": [],
+      "advisories": [],
+      "h1s": [
+        "What’s getting in the way of growth?"
+      ],
+      "overflowX": 0,
+      "visibleImages": 1,
+      "aboveFoldImages": 1,
+      "mobileCtaWithin580": true,
+      "browserIssueCount": 0
+    },
+    {
+      "route": "/privacy",
+      "viewport": "desktop-1440x900",
+      "screenshot": "_verification/site-completion/2026-09-02/final-visual/privacy/desktop-1440x900/full-page.png",
+      "failures": [],
+      "advisories": [
+        "primary CTA below the fold (top 1178px, editorial page)",
+        "prose density 1 (worst 467 words)"
+      ],
+      "h1s": [
+        "Privacy Policy"
+      ],
+      "overflowX": 0,
+      "visibleImages": 2,
+      "aboveFoldImages": 0,
+      "mobileCtaWithin580": false,
+      "browserIssueCount": 0
+    },
+    {
+      "route": "/terms",
+      "viewport": "desktop-1440x900",
+      "screenshot": "_verification/site-completion/2026-09-02/final-visual/terms/desktop-1440x900/full-page.png",
+      "failures": [],
+      "advisories": [],
+      "h1s": [
+        "Terms of Service"
+      ],
+      "overflowX": 0,
+      "visibleImages": 2,
+      "aboveFoldImages": 1,
+      "mobileCtaWithin580": false,
+      "browserIssueCount": 0
+    },
+    {
+      "route": "/",
+      "viewport": "mobile-390x844",
+      "screenshot": "_verification/site-completion/2026-09-02/final-visual/home/mobile-390x844/full-page.png",
+      "failures": [],
+      "advisories": [],
+      "h1s": [
+        "Fix the bottleneck holding back your growth."
+      ],
+      "overflowX": 0,
+      "visibleImages": 2,
+      "aboveFoldImages": 0,
+      "mobileCtaWithin580": true,
+      "browserIssueCount": 0
+    },
+    {
+      "route": "/book",
+      "viewport": "mobile-390x844",
+      "screenshot": "_verification/site-completion/2026-09-02/final-visual/book/mobile-390x844/full-page.png",
+      "failures": [],
+      "advisories": [],
+      "h1s": [
+        "What’s getting in the way of growth?"
+      ],
+      "overflowX": 0,
+      "visibleImages": 1,
+      "aboveFoldImages": 1,
+      "mobileCtaWithin580": true,
+      "browserIssueCount": 0
+    },
+    {
+      "route": "/privacy",
+      "viewport": "mobile-390x844",
+      "screenshot": "_verification/site-completion/2026-09-02/final-visual/privacy/mobile-390x844/full-page.png",
+      "failures": [],
+      "advisories": [
+        "prose density 1 (worst 467 words)"
+      ],
+      "h1s": [
+        "Privacy Policy"
+      ],
+      "overflowX": 0,
+      "visibleImages": 2,
+      "aboveFoldImages": 0,
+      "mobileCtaWithin580": false,
+      "browserIssueCount": 0
+    },
+    {
+      "route": "/terms",
+      "viewport": "mobile-390x844",
+      "screenshot": "_verification/site-completion/2026-09-02/final-visual/terms/mobile-390x844/full-page.png",
+      "failures": [],
+      "advisories": [],
+      "h1s": [
+        "Terms of Service"
+      ],
+      "overflowX": 0,
+      "visibleImages": 2,
+      "aboveFoldImages": 0,
+      "mobileCtaWithin580": false,
+      "browserIssueCount": 0
+    }
+  ],
+  "manualAcceptance": {
+    "required": false,
+    "path": "_verification/site-completion/2026-09-02/final-visual/manual-visual-review.md",
+    "accepted": false
+  }
+}

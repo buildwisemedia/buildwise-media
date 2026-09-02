@@ -7,6 +7,7 @@ const homepage = fs.readFileSync(new URL("../src/pages/index.astro", import.meta
 const fitDiagnostic = fs.readFileSync(new URL("../src/components/FitDiagnostic.astro", import.meta.url), "utf8");
 const memberCard = fs.readFileSync(new URL("../src/pages/m/[card].astro", import.meta.url), "utf8");
 const ppcAlternative = fs.readFileSync(new URL("../src/pages/playbook/ppc-agency-alternative.astro", import.meta.url), "utf8");
+const terms = fs.readFileSync(new URL("../src/pages/terms.astro", import.meta.url), "utf8");
 
 function count(pattern) {
   return [...source.matchAll(pattern)].length;
@@ -31,6 +32,14 @@ test("keeps existing routes honest about the new direct-contact job", () => {
   assert.doesNotMatch(memberCard, /href="\/book\?priority=true"/i);
   assert.doesNotMatch(ppcAlternative, /href="\/book"[^>]*>Revenue Leak Map/i);
   assert.match(ppcAlternative, /href="\/revenue-leak-map"[^>]*>Revenue Leak Map/i);
+});
+
+test("keeps the legal layer aligned with the direct-contact and no-public-pricing decisions", () => {
+  assert.match(terms, /custom AI systems/i);
+  assert.match(terms, /We do not publish a standard price/i);
+  assert.match(terms, /Ninety days describes the initial engagement term/i);
+  assert.match(terms, /may reply by email/i);
+  assert.doesNotMatch(terms, /marketing operations services|Current public pricing is listed|discovery call booked through this website/i);
 });
 
 test("uses the approved field contract", () => {
