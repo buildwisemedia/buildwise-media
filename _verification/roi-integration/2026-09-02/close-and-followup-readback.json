@@ -1,0 +1,66 @@
+{
+  "schema_version": "bwm-close-followup-readback/1.0.0",
+  "observed_at_eastern": "2026-09-02 07:10 AM EDT",
+  "sales_followup": {
+    "table": "public.lead_followups",
+    "pending_rows": 9,
+    "pending_rows_matching_six_open_bwm_deal_contacts": 0,
+    "pending_rows_for_bwm_client_id": 0,
+    "actual_client": "Design2Sell",
+    "actual_owner": "Rodel",
+    "verdict": "UNRELATED_LIVE_SYSTEM",
+    "note": "The live generic follow-up rows are not a BWM sales follow-up system and cannot be counted as follow-through on the six BWM deals."
+  },
+  "one_session_close_packet": {
+    "repository": "/Users/robertechevarria/bwm-esign",
+    "working_tree_state": "dirty_preexisting_do_not_modify",
+    "brain_project_sha256": "d904c07758a894fec4d7a90ded508ea98835f7c1",
+    "commercial_paper_manifest_sha256": "d6f9f31fbbfda56ff8f8b0b055718c6171d712c1",
+    "criteria": [
+      {
+        "number": 1,
+        "name": "deterministic_local_suite",
+        "state": "PASS",
+        "evidence": "121 Python tests passed; 25 Worker tests passed; git diff --check passed"
+      },
+      {
+        "number": 2,
+        "name": "protected_exact_tree_review",
+        "state": "PASS",
+        "evidence": "reviews/fable-final-exact-review-round7-2026-08-17.md contains VERDICT: PASS"
+      },
+      {
+        "number": 3,
+        "name": "ordered_provider_test_evidence",
+        "state": "PASS",
+        "evidence": "QA receipt preserves MNDA then Pilot file order, payer-last client ordering, and production effect none"
+      },
+      {
+        "number": 4,
+        "name": "canonical_production_authority",
+        "state": "HELD",
+        "evidence": "Manifest v1.1 releases MNDA v1.2 and Pilot v1.2 as reusable sources but does not release the concurrent-MNDA multi-signer policy"
+      },
+      {
+        "number": 5,
+        "name": "provider_and_activation_authority",
+        "state": "HELD",
+        "evidence": "/private/authorized/exact-provider-and-activation-receipt.json is absent"
+      }
+    ],
+    "built": true,
+    "reviewed": true,
+    "committed": false,
+    "deployed": false,
+    "live": false,
+    "activated": false
+  },
+  "authority_boundary": {
+    "crm_write": false,
+    "provider_write": false,
+    "client_packet_send": false,
+    "charge": false,
+    "deployment": false,
+    "activation": false
+  }
+}

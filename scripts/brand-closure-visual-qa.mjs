@@ -926,6 +926,10 @@ async function focusSweep(cdp, maxStops = 25) {
         const parent = el.parentElement;
         const thirdPartyTurnstile = !!parent?.querySelector(':scope > input[name="cf-turnstile-response"]');
         const id = (el.tagName || '') + '|' + (el.id || '') + '|' + ('' + (el.className || '')).slice(0, 40) + '|' + (el.textContent || '').trim().slice(0, 32) + '|parent=' + (parent?.tagName || '') + '#' + (parent?.id || '') + '.' + ('' + (parent?.className || '')).slice(0, 32) + '|thirdPartyTurnstile=' + thirdPartyTurnstile;
+        // Astro injects this focusable toolbar only in local development. It is not
+        // part of the built website and must not create a false production
+        // accessibility failure in local pixel QA.
+        if (el.tagName === 'ASTRO-DEV-TOOLBAR') return { id, indicated: true, ignored: 'astro-dev-toolbar' };
         const read = () => {
           const s = window.getComputedStyle(el);
           return {
@@ -1039,6 +1043,9 @@ function routeFailures(metrics, viewport) {
   const failures = [];
   if (metrics.document.overflowX > 2) failures.push(`horizontal overflow ${metrics.document.overflowX}px`);
   if (metrics.h1s.length !== 1) failures.push(`visible H1 count ${metrics.h1s.length}`);
+  if (metrics.h1s.some((heading) => /that url doesn['’]t exist|page not found|404/i.test(heading))) {
+    failures.push('error page rendered instead of the requested route');
+  }
   if (metrics.images.broken.length) failures.push(`broken visible images ${metrics.images.broken.length}`);
 
   const clipped = metrics.clippedControls.filter(

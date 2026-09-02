@@ -1,0 +1,102 @@
+{
+  "generatedAt": "2026-09-02T12:07:56.978Z",
+  "baseUrl": "http://127.0.0.1:4323",
+  "chromePath": "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome",
+  "routes": [
+    "/book"
+  ],
+  "viewports": [
+    {
+      "name": "desktop-1440x900",
+      "width": 1440,
+      "height": 900,
+      "mobile": false
+    },
+    {
+      "name": "mobile-390x844",
+      "width": 390,
+      "height": 844,
+      "mobile": true
+    }
+  ],
+  "totalCaptures": 2,
+  "failureCount": 2,
+  "advisoryCount": 0,
+  "failures": [
+    {
+      "route": "/book",
+      "viewport": "desktop-1440x900",
+      "screenshot": "_verification/brand-closure-visual-cdp-2026-09-02/book/desktop-1440x900/full-page.png",
+      "failures": [
+        "error page rendered instead of the requested route"
+      ],
+      "advisories": [],
+      "h1s": [
+        "That URL doesn't exist."
+      ],
+      "overflowX": 0,
+      "visibleImages": 2,
+      "aboveFoldImages": 2,
+      "mobileCtaWithin580": true,
+      "browserIssueCount": 1
+    },
+    {
+      "route": "/book",
+      "viewport": "mobile-390x844",
+      "screenshot": "_verification/brand-closure-visual-cdp-2026-09-02/book/mobile-390x844/full-page.png",
+      "failures": [
+        "error page rendered instead of the requested route"
+      ],
+      "advisories": [],
+      "h1s": [
+        "That URL doesn't exist."
+      ],
+      "overflowX": 0,
+      "visibleImages": 2,
+      "aboveFoldImages": 2,
+      "mobileCtaWithin580": true,
+      "browserIssueCount": 1
+    }
+  ],
+  "captures": [
+    {
+      "route": "/book",
+      "viewport": "desktop-1440x900",
+      "screenshot": "_verification/brand-closure-visual-cdp-2026-09-02/book/desktop-1440x900/full-page.png",
+      "failures": [
+        "error page rendered instead of the requested route"
+      ],
+      "advisories": [],
+      "h1s": [
+        "That URL doesn't exist."
+      ],
+      "overflowX": 0,
+      "visibleImages": 2,
+      "aboveFoldImages": 2,
+      "mobileCtaWithin580": true,
+      "browserIssueCount": 1
+    },
+    {
+      "route": "/book",
+      "viewport": "mobile-390x844",
+      "screenshot": "_verification/brand-closure-visual-cdp-2026-09-02/book/mobile-390x844/full-page.png",
+      "failures": [
+        "error page rendered instead of the requested route"
+      ],
+      "advisories": [],
+      "h1s": [
+        "That URL doesn't exist."
+      ],
+      "overflowX": 0,
+      "visibleImages": 2,
+      "aboveFoldImages": 2,
+      "mobileCtaWithin580": true,
+      "browserIssueCount": 1
+    }
+  ],
+  "manualAcceptance": {
+    "required": false,
+    "path": "_verification/brand-closure-visual-cdp-2026-09-02/manual-visual-review.md",
+    "accepted": false
+  }
+}

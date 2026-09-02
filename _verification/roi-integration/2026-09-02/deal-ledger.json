@@ -1,0 +1,151 @@
+{
+  "schema_version": "bwm-deal-truth-ledger/1.0.0",
+  "state": "READ_ONLY_REVIEW",
+  "captured_at_eastern": "2026-09-02 07:10:28 AM EDT",
+  "live_denominator": 6,
+  "stale_more_than_14_days": 6,
+  "two_snapshot_parity": true,
+  "classifications": {
+    "REAL_OPPORTUNITY": 1,
+    "CURRENT_CLIENT": 3,
+    "DUPLICATE_OR_TEST": 1,
+    "UNKNOWN_REVIEW_REQUIRED": 1
+  },
+  "rows": [
+    {
+      "deal_key": "DEAL-001",
+      "provider_id_sha256": "b8553160487be1a06c4139cc45a59857fce8154e7cef6bb94ecd9ddf64306bbf",
+      "display_label": "M77 Phase 0 Gate",
+      "classification": "DUPLICATE_OR_TEST",
+      "confidence": "high",
+      "owner": "BWM data steward",
+      "current_blocker": "The provider synthetic flag is false even though the CRM note and Brain history identify this as formal test evidence.",
+      "next_decision": "Approve a separate CRM correction that marks the record synthetic and closes the open test deal.",
+      "contactability": "DO_NOT_CONTACT_TEST_RECORD",
+      "offer_compatibility": "not_applicable",
+      "explicit_unknowns": [],
+      "evidence": [
+        "live_crm_contact_note",
+        "Brain memory-snapshots/project_acquisition_engine_phase_b.md SHA 79c139b9213b4da123f7053698a403f46ed47eb3"
+      ]
+    },
+    {
+      "deal_key": "DEAL-002",
+      "provider_id_sha256": "1f9d6005df2d8546d990f016f46ecfe299258953a98eecca64a6bd621ab3287e",
+      "display_label": "Robert / Buildwise Media",
+      "classification": "CURRENT_CLIENT",
+      "confidence": "high",
+      "owner": "Robert",
+      "current_blocker": "BWM's own internal client/contact remains in an open sales stage.",
+      "next_decision": "Approve a separate CRM correction that closes the self-deal without treating it as revenue.",
+      "contactability": "DO_NOT_CONTACT_SELF_RECORD",
+      "offer_compatibility": "not_applicable",
+      "explicit_unknowns": [],
+      "evidence": [
+        "live_crm_contact_status_client",
+        "live_clients lifecycle_stage self",
+        "Brain brand/Client-Roster.md SHA a85731b5e79b51e1a59bd9a6e20f26196963b456"
+      ]
+    },
+    {
+      "deal_key": "DEAL-003",
+      "provider_id_sha256": "d71ba9fa4e49027bf548f7c758142e476b04a91301c083c10c08613aa8b1c6eb",
+      "display_label": "Cabdiladiff Cabdi",
+      "classification": "CURRENT_CLIENT",
+      "confidence": "high",
+      "owner": "Robert",
+      "current_blocker": "The deal contact is linked to BWM's own client ID while a separate active Cabdi client record exists.",
+      "next_decision": "Approve an exact-identity CRM repair and close the stale sales deal unless a distinct new commercial pursuit is proven.",
+      "contactability": "CLIENT_RELATIONSHIP_PRESENT_NO_SALES_SEND_AUTHORITY",
+      "offer_compatibility": "not_applicable_to_stale_deal",
+      "explicit_unknowns": [
+        "whether a distinct later commercial opportunity exists"
+      ],
+      "evidence": [
+        "live_clients cabdiladiff-cabdi active engaged",
+        "live_crm_client_id_collision",
+        "Brain brand/Client-Roster.md SHA a85731b5e79b51e1a59bd9a6e20f26196963b456"
+      ]
+    },
+    {
+      "deal_key": "DEAL-004",
+      "provider_id_sha256": "c0d9a605f3898d708d964940b3d03aa2cb91233b466513c95d7486d4b73337e1",
+      "display_label": "Hope Sky",
+      "classification": "REAL_OPPORTUNITY",
+      "confidence": "medium",
+      "owner": "Robert",
+      "current_blocker": "The latest canonical project state still stops at the walkthrough/signature gate, and the CRM has no newer next step.",
+      "next_decision": "Read the latest relationship and mailbox state, then decide whether to resume the approved pilot conversation or close the opportunity. Do not send without separate authority.",
+      "contactability": "CRM_EMAIL_PRESENT_NOT_REVERIFIED_THIS_RUN",
+      "offer_compatibility": "Current 90-day Pilot framing is compatible; older 30-day and hidden 45-day language is not.",
+      "explicit_unknowns": [
+        "latest reply after July 21",
+        "current meeting status",
+        "signature status",
+        "payment status",
+        "whether the opportunity is still wanted by the prospect"
+      ],
+      "evidence": [
+        "live_crm negotiation stage",
+        "Brain clients/hope-sky-llc/Engagement-State.md SHA d301eb17aeaf5115a7bb60987f44e6bbe39a938d",
+        "Brain projects/Project-Hope-Sky-Pilot.md SHA 702f1f5c273f94f615800d3f14ab10dc33bdfa30"
+      ]
+    },
+    {
+      "deal_key": "DEAL-005",
+      "provider_id_sha256": "3250cd45ba15a768044e5b418bd0a1a9a6514fbb78371ecf6e6b25d10a1ca106",
+      "display_label": "Cronos Contractors",
+      "classification": "CURRENT_CLIENT",
+      "confidence": "high",
+      "owner": "Robert",
+      "current_blocker": "The CRM deal remains in discovery even though the contact and client records identify an active client relationship.",
+      "next_decision": "Approve a separate CRM stage correction that preserves the signed-client history and does not create a new opportunity.",
+      "contactability": "CLIENT_RELATIONSHIP_PRESENT_NO_SALES_SEND_AUTHORITY",
+      "offer_compatibility": "not_applicable_to_stale_deal",
+      "explicit_unknowns": [],
+      "evidence": [
+        "live_crm contact_status client",
+        "live_clients cronos-contractors active engaged",
+        "Brain brand/Client-Roster.md SHA a85731b5e79b51e1a59bd9a6e20f26196963b456",
+        "Brain Cronos project SHA 147f95e351c50937e62e034c51ca40bfe4de1e6b"
+      ]
+    },
+    {
+      "deal_key": "DEAL-006",
+      "provider_id_sha256": "cd6b00021b1f371a96f4ef01f3829a7a98e6ce376e2b04dfabaa274870ac7486",
+      "display_label": "Giovanni / Fifth Third",
+      "classification": "UNKNOWN_REVIEW_REQUIRED",
+      "confidence": "high",
+      "owner": "Robert",
+      "current_blocker": "The only current evidence is a stale CRM row and an old meeting next step; no canonical Brain relationship or sales-intent source was found.",
+      "next_decision": "Robert or a source readback must identify the relationship and intended conversation before this row can become a sales opportunity or be contacted.",
+      "contactability": "CRM_EMAIL_PRESENT_INTENT_UNVERIFIED",
+      "offer_compatibility": "unknown",
+      "explicit_unknowns": [
+        "relationship context",
+        "sales intent",
+        "current interest",
+        "whether the Buckhead meeting happened",
+        "correct pipeline stage"
+      ],
+      "evidence": [
+        "live_crm discovery stage and stale next step",
+        "Brain search returned no direct identity record"
+      ]
+    }
+  ],
+  "followup_reconciliation": {
+    "pending_total": 9,
+    "pending_matching_open_deal_contacts": 0,
+    "pending_for_bwm_client_id": 0,
+    "pending_owner": "Rodel",
+    "pending_client": "Design2Sell",
+    "conclusion": "The nine generic pending follow-ups are unrelated to the six BWM open deals and are not a BWM sales-follow-up system."
+  },
+  "authority_boundary": {
+    "crm_write": false,
+    "followup_write": false,
+    "external_send": false,
+    "sales_activation": false
+  }
+}

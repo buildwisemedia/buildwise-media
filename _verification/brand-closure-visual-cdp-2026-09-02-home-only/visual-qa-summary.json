@@ -1,0 +1,63 @@
+{
+  "generatedAt": "2026-09-02T12:07:30.623Z",
+  "baseUrl": "http://127.0.0.1:4323",
+  "chromePath": "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome",
+  "routes": [
+    "/"
+  ],
+  "viewports": [
+    {
+      "name": "desktop-1440x900",
+      "width": 1440,
+      "height": 900,
+      "mobile": false
+    },
+    {
+      "name": "mobile-390x844",
+      "width": 390,
+      "height": 844,
+      "mobile": true
+    }
+  ],
+  "totalCaptures": 2,
+  "failureCount": 0,
+  "advisoryCount": 0,
+  "failures": [],
+  "captures": [
+    {
+      "route": "/",
+      "viewport": "desktop-1440x900",
+      "screenshot": "_verification/brand-closure-visual-cdp-2026-09-02-home-only/home/desktop-1440x900/full-page.png",
+      "failures": [],
+      "advisories": [],
+      "h1s": [
+        "Fix the bottleneck holding back your growth."
+      ],
+      "overflowX": 0,
+      "visibleImages": 2,
+      "aboveFoldImages": 0,
+      "mobileCtaWithin580": false,
+      "browserIssueCount": 0
+    },
+    {
+      "route": "/",
+      "viewport": "mobile-390x844",
+      "screenshot": "_verification/brand-closure-visual-cdp-2026-09-02-home-only/home/mobile-390x844/full-page.png",
+      "failures": [],
+      "advisories": [],
+      "h1s": [
+        "Fix the bottleneck holding back your growth."
+      ],
+      "overflowX": 0,
+      "visibleImages": 2,
+      "aboveFoldImages": 0,
+      "mobileCtaWithin580": true,
+      "browserIssueCount": 0
+    }
+  ],
+  "manualAcceptance": {
+    "required": true,
+    "path": "_verification/brand-closure-visual-cdp-2026-09-02-home-only/manual-visual-review.md",
+    "accepted": true
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "schema_version": "bwm-fable-plan-review/1.0.0",
+  "reviewed_at_eastern": "2026-09-02",
+  "route": {
+    "model": "claude-fable-5",
+    "lane": "peer2",
+    "email": "peer-2@buildwisemedia.com",
+    "provider": "firstParty",
+    "spilled": false,
+    "session_id": "6fad8f04-b422-4518-b35d-e6642670aeb2"
+  },
+  "artifact": {
+    "path": "_verification/roi-integration/2026-09-02/PLAN.md",
+    "sha256": "655e31fe1153d81ec77c0bb5e87959044a85484e2d432d3d574093ab7bac5a83",
+    "bytes_reported_by_reviewer": 13698
+  },
+  "verdict": "ACCEPT",
+  "score": 96,
+  "blockers": 0,
+  "required_changes": [],
+  "non_blocking_notes": [
+    "The private deployment binds to source commit 550191b while current HEAD d5a9f39 is a documentation-seal commit ahead; both are stated truthfully.",
+    "Deal reconciliation and prospect work can proceed while shared-engine tasks finish because new hashes invalidate only affected integration evidence.",
+    "The acceptance wording is slightly broad, but its zero-blocker requirement remains fail-closed."
+  ]
+}
