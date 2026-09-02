@@ -1,0 +1,86 @@
+{
+  "schema_version": "bwm-private-site-completion/1.0.0",
+  "state": "PRIVATE_SITE_COMPLETE",
+  "verified_at_eastern": "2026-09-02 06:28 AM EDT",
+  "scope": "BWM website production candidate on the Robert-only Access-gated review hostname",
+  "source": {
+    "branch": "codex/bwm-book-contact-20260831",
+    "commit": "550191b0427d9b3c3812463021644d67952d74c2",
+    "pushed": true,
+    "working_tree_clean_before_receipt": true
+  },
+  "private_deployment": {
+    "canonical_url": "https://bwm-new-website-review.pages.dev/",
+    "book_url": "https://bwm-new-website-review.pages.dev/book/",
+    "immutable_url": "https://fe5ea4e7.bwm-new-website-review.pages.dev/",
+    "deployment_id": "fe5ea4e7-8084-487b-b8b3-49d2ce9899e4",
+    "source_commit_shown_by_provider": "550191b",
+    "access_gate_unauthenticated_status": 302,
+    "access_login_host": "buildwisemedia.cloudflareaccess.com",
+    "allowed_identity_from_last_saved_provider_readback": "robert@buildwisemedia.com",
+    "allowed_mfa_from_last_saved_provider_readback": ["biometrics", "security_key"],
+    "authenticated_alias_readback": {
+      "title": "Fix the Bottleneck Holding Back Growth | Buildwise Media",
+      "h1": "Fix the bottleneck holding back your growth."
+    }
+  },
+  "artifact_hashes": {
+    "homepage_html_sha256": "e4a8932694bfef977d30e8413d83f08edf40358690a69db6b9724d2e0c433762",
+    "book_html_sha256": "9928ebca9c1edde076320dbc2481be016a39a093a2cf682667465a3045457671",
+    "terms_html_sha256": "588510e246012eec85f25ba2712f4267169fe547d577861a0870905cfd862a0a",
+    "privacy_html_sha256": "138b2380c28e522cb622d01b25390346aa40b66c654d4c425a43d1b35d2328a1"
+  },
+  "verification": {
+    "site_tests": "45/45 pass",
+    "intake_worker_tests": "507/507 pass in the sealed Peer 2 ROI recovery receipt",
+    "rendered_html_pages": 345,
+    "sitemap_urls": 82,
+    "sitemap_reconciliation": "86 live baseline - 6 rendered-noindex URLs + 2 indexable additions = 82 candidate URLs; no URL deleted",
+    "brand_qa": "7 pass, 0 warnings, 0 failures",
+    "growth_contract_qa": "pass",
+    "preship_grep_gate": "all checks pass",
+    "core_visual_matrix": "10/10 captures pass across five desktop, tablet, and mobile viewports",
+    "final_visual_matrix": "8/8 homepage, /book, Terms, and Privacy captures pass at desktop and mobile",
+    "authenticated_book_readback": {
+      "form_count": 1,
+      "submit_label": "Send to Buildwise",
+      "ga4_measurement_id_present": true,
+      "canonical": "https://buildwisemedia.com/book/",
+      "robots": "index,follow",
+      "form_endpoint_present": true,
+      "success_requires_crm_capture": true,
+      "success_requires_email": true,
+      "success_requires_durable_receipt": true,
+      "conversion_events_follow_confirmed_delivery": true
+    }
+  },
+  "conversion_proof": {
+    "new_submission_created_in_this_closeout": false,
+    "prior_private_browser_canary_receipt": "_verification/data-strategy-closeout/2026-09-01/live-private-data-loop-receipt.json",
+    "prior_canary_result": "CRM processed, one durable email receipt, GA4 fit_note_submitted and generate_lead dispatched, synthetic traffic excluded from business and advertising totals",
+    "current_change_boundary": "The post-canary /book change adds missing first-touch attribution for gbraid/wbraid and does not alter the delivery route; current delivery and attribution contracts pass their tests. The final closeout changes only Terms, Privacy formatting, and their regression test."
+  },
+  "design_authority": {
+    "homepage_design_run_sha256": "057a42a6734bf4c3868255e4ce0ce85fd56ee6dfa3f3d764f6b3db57c7587403",
+    "round_29_panel_sha256": "0d791ab2ffe2eec20f9a86872a873f93c85e6499e94258a73a3d259005f01213",
+    "round_29_overall": 95.75,
+    "round_29_reviewer_floor": 93,
+    "round_29_blockers": 0,
+    "book_design_run_sha256": "e53d2cab528342c652c0c3d37a80abdfa36ac5caae4bb06569ed6a4e11106bc3"
+  },
+  "growth_and_content_contract": {
+    "website_to_content_manifest_sha256": "83cc61fcf900904c688761a91715498758547511f12163c798ca3a5c3c2c241d",
+    "conflict_ledger_sha256": "1468e8b48d7bef86b2ab815fc466a1b8d92e0ee50eb6709a744aa822558eb046",
+    "integration_manifest_sha256": "826c771576368bacde0ddbab2060e66e096c7289fe754d4fadf0070e3b645ff2",
+    "legacy_url_policy": "Preserved under the frozen page-lifecycle manifest; no bulk rewrite, deletion, noindex expansion, or unauthorized redirect was made."
+  },
+  "production_boundary": {
+    "public_buildwisemedia_com_deployed": false,
+    "production_dns_changed": false,
+    "search_console_submitted": false,
+    "paid_media_activated": false,
+    "spend": false,
+    "remaining_gate": "Robert's separate direct authorization to deploy the verified candidate to public production."
+  },
+  "verdict": "The authorized private website scope is complete and verified. Public production remains intentionally untouched."
+}
