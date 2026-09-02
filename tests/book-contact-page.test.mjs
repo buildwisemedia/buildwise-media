@@ -82,7 +82,7 @@ test("preserves persisted first- and last-touch attribution", () => {
   assert.match(source, /cookie\("_fbc"\)/);
   assert.match(source, /cookie\("_fbp"\)/);
   assert.match(source, /"gbraid", "wbraid"/);
-  assert.match(source, /const firstValue = cookieValue \|\| firstUtm\[key\] \|\| params\.get\(key\) \|\| lastUtm\[key\]/);
+  assert.match(source, /const firstValue = cookieValue \|\| firstUtm\[key\] \|\| lastUtm\[key\] \|\| params\.get\(key\)/);
   assert.match(source, /attribution\[`first_touch_\$\{key\}`\]/);
   assert.match(source, /attribution\[`last_touch_\$\{key\}`\]/);
   assert.match(source, /_bwm_exp_host/);
