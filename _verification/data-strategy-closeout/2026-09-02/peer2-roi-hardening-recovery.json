@@ -1,0 +1,74 @@
+{
+  "schema_version": "bwm-roi-hardening-recovery/1.0.0",
+  "recorded_at_eastern": "2026-09-02 06:04:34 AM EDT",
+  "state": "PRIVATE_BUILD_REVIEW_COMPLETE",
+  "client": "buildwise-media",
+  "recovery": {
+    "cause": "The original native review of site commit 3c20402 was interrupted on an exhausted account lane before it returned a verdict.",
+    "continuation_lane": "peer-2@buildwisemedia.com",
+    "accepted_findings": 11,
+    "open_findings": 0
+  },
+  "exact_commits": {
+    "site": "89e7974afa226274caea80bddfbbc3f75960e78e",
+    "intake_worker": "cbb68763680112027259cba0f9e0dede16ca0182"
+  },
+  "site_commit_chain": [
+    "4b43c6e86237d70445b4970b4c011f00365b6f46",
+    "e11de64592b8d58acef57671eabb921bd791223e",
+    "89e7974afa226274caea80bddfbbc3f75960e78e"
+  ],
+  "peer2_reviews": [
+    {
+      "session_id": "01a0616a-dbf1-7610-95d1-3c564ca566f8",
+      "scope": "interrupted site review recovery",
+      "verdict": "7 findings accepted and repaired"
+    },
+    {
+      "session_id": "01a0617b-0fd4-7c53-9265-802dcd12430a",
+      "scope": "site hardening cross-repository review",
+      "verdict": "3 findings accepted and repaired"
+    },
+    {
+      "session_id": "01a06184-8652-7320-8d6c-840cbae9080d",
+      "scope": "intake worker exact commit",
+      "verdict": "clean; patch correct; confidence 0.99"
+    },
+    {
+      "session_id": "01a0618a-193a-7c43-b9fc-805eeb3cbf8f",
+      "scope": "site reconciliation and attribution review",
+      "verdict": "1 finding accepted and repaired"
+    },
+    {
+      "session_id": "01a06190-50be-7a62-b9dd-43f6d7ca3b38",
+      "scope": "final site attribution repair exact commit",
+      "verdict": "clean; patch correct; confidence 0.98"
+    }
+  ],
+  "verification": {
+    "site_tests": "44/44 pass",
+    "worker_tests": "507/507 pass",
+    "worker_typescript": "pass",
+    "astro_build": "pass",
+    "growth_negative_controls": "13/13 pass",
+    "growth_contract_gate": "pass; 0 findings",
+    "brand_qa": "pass; 0 warnings",
+    "vendored_module_guard": "pass",
+    "design_preflight": "pass; 4 bindings",
+    "pre_ship_grep_gate": "all checks pass"
+  },
+  "data_boundary": {
+    "private_canary_receipt": "_verification/data-strategy-closeout/2026-09-01/live-private-data-loop-receipt.json",
+    "crm_join": "verified",
+    "email_receipt": "verified",
+    "synthetic_exclusion": "verified",
+    "ga4_dispatch": "verified by browser dispatch, realtime, and measurement-protocol evidence",
+    "ga4_processed_reporting_row": "not claimed; the internal synthetic canary is deliberately filtered from GA4 reporting"
+  },
+  "authority": {
+    "production_deployed": false,
+    "worker_deployed": false,
+    "paid_activation": false,
+    "spend": false
+  }
+}
