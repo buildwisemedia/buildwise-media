@@ -1,0 +1,99 @@
+{
+  "schema_version": "bwm-private-site-roi-closeout/1.0.0",
+  "verified_at_eastern": "2026-09-02 08:09 AM EDT",
+  "verdict": "PRIVATE_SITE_COMPLETE_INTERNAL_REVENUE_INTEGRATION_REVIEWED",
+  "website": {
+    "state": {
+      "built": true,
+      "reviewed": true,
+      "private_deployed": true,
+      "private_live": true,
+      "public_deployed": false,
+      "public_live": false
+    },
+    "repository": "buildwisemedia/buildwise-media",
+    "branch": "codex/bwm-book-contact-20260831",
+    "verification_commit": "d826054528984787d4d38dc969e432fd98a8aa8b",
+    "private_deployment_source_commit": "550191b0427d9b3c3812463021644d67952d74c2",
+    "private_deployment_id": "fe5ea4e7-8084-487b-b8b3-49d2ce9899e4",
+    "private_url": "https://bwm-new-website-review.pages.dev/",
+    "private_book_url": "https://bwm-new-website-review.pages.dev/book/",
+    "access": "Cloudflare Access; last saved provider readback allows robert@buildwisemedia.com with biometrics or security key",
+    "source_parity": "No deployable page source changed after the private deployment commit. Later commits contain only verification, planning, and QA-gate artifacts.",
+    "artifact_hashes": {
+      "homepage_source_sha256": "80632a98a36fc601406a6fca8a9d6571e44ce91ccadb6ec10074e30e88fcbbbf",
+      "book_html_sha256": "9928ebca9c1edde076320dbc2481be016a39a093a2cf682667465a3045457671",
+      "visual_qa_script_sha256": "db7f618b05ad8ca2031d143c0856e1ec5c06728116a609c03b8a5fcc9b2e0fcd"
+    },
+    "final_verification": {
+      "site_tests": "45/45 pass",
+      "build": "pass; 345 rendered HTML pages",
+      "brand_qa": "7 pass, 0 warnings, 0 failures",
+      "growth_contract": "pass",
+      "growth_negative_controls": "13/13 pass",
+      "homepage_visual_matrix": "2/2 pass at 1440x900 and 390x844; manual review accepted",
+      "local_book_negative_control": "pass as a negative control: the QA gate now rejects Astro dev's 404 page for /book instead of reporting a false pass",
+      "authenticated_private_browser": "homepage and /book rendered; hero CTA opened /book; canonical and robots were correct; zero horizontal overflow and zero browser console errors"
+    }
+  },
+  "conversion_loop": {
+    "receipt_sha256": "ba639a718f222fa9e3188f137e0889687531d83414876b91b296bfd734ef3514",
+    "state": "PRIVATE_BROWSER_CRM_EMAIL_GA4_DISPATCH_LOOP_VERIFIED",
+    "browser_canary_submission_id": "59ff9b21-5588-4e86-8118-02285b00bf58",
+    "crm": "processed",
+    "email": "one durable receipt; opened",
+    "ga4_dispatch": [
+      "fit_note_submitted",
+      "generate_lead"
+    ],
+    "synthetic_exclusion": "verified excluded from business-lead and advertising totals",
+    "ga4_reporting_readback": "HELD; Data API returned zero rows for the internal synthetic canary, consistent with internal-traffic filtering or normal processing delay",
+    "new_submission_in_this_closeout": false
+  },
+  "organic_growth_contract": {
+    "integration_manifest_sha256": "826c771576368bacde0ddbab2060e66e096c7289fe754d4fadf0070e3b645ff2",
+    "website_to_content_manifest_sha256": "83cc61fcf900904c688761a91715498758547511f12163c798ca3a5c3c2c241d",
+    "conflict_ledger_sha256": "1468e8b48d7bef86b2ab815fc466a1b8d92e0ee50eb6709a744aa822558eb046",
+    "pinned_shared_schema_commit": "540baee5a4bb579e010b316eff8a6153c9f9a5f0",
+    "pinned_aeo_commit": "ba9be3a4c32b3c57394566d83e8f5db21a9d11d5",
+    "pinned_seo_commit": "b906da711ef72d0b7302e6a521d3c442b190f16f",
+    "pinned_social_video_commit": "ae304ebb4dd315c2d0fc6645fee2616ffa869d5e"
+  },
+  "internal_revenue_integration": {
+    "fable_plan": "accepted at 96/100 with zero blockers",
+    "plan_sha256": "e1b10d0f479ecd0ad0881302f532d69fc5f92830357b42ae8758ecbf8aa2a480",
+    "deal_ledger": "6/6 open BWM CRM deals accounted for; 10/10 ledger negative controls pass",
+    "deal_ledger_sha256": "79540f3947511912612bee9283cffa38e6409d12fba8214a08480c4ece76a658",
+    "prospect_compiler": {
+      "repository": "buildwisemedia/bwm-workflows",
+      "branch": "codex/bwm-prospect-compiler-20260902",
+      "commit": "5d81efa03ddd97f483c4718a8c166090cc5834fc",
+      "workflow_sha256": "1946014f6daa018283f70680eed3df7fe24cdfd0c76ae8385e6c7b12b75858f2",
+      "test_sha256": "44025859b2af1dfc067278b3bc35d7fb10e98d6f26152a8d1bd15153f8ef8891",
+      "negative_controls": "32/32 pass",
+      "independent_review": "gpt-5.6-terra CLEAN",
+      "mode": "review-only",
+      "writes": {
+        "crm": 0,
+        "provider": 0,
+        "email": 0,
+        "publish": 0
+      },
+      "first_truthful_50_batch": "MISSING; no sourced roster was supplied and the compiler is required not to pad the ledger"
+    },
+    "sales_followup": "HELD; the nine live pending followups belong to Design2Sell/Rodel, not BWM sales",
+    "close_packet": "built and reviewed, but production authority and provider activation authority are HELD"
+  },
+  "authority_boundary": {
+    "public_website_deploy": false,
+    "production_dns_change": false,
+    "search_console_submit": false,
+    "crm_write": false,
+    "provider_write": false,
+    "email_send": false,
+    "social_publish": false,
+    "paid_media_activate": false,
+    "spend": false,
+    "remaining_public_gate": "Robert must directly authorize the public production deployment."
+  }
+}
