@@ -669,6 +669,14 @@ function audit({ root, dist, skipFreshness = false }) {
     if (!/track\s*\(\s*(["'])fit_note_submitted\1/.test(book.html)) {
       addIssue(issues, 'conversion-event', '/book/', 'confirmed delivery must emit fit_note_submitted');
     }
+    if (!/track\s*\(\s*(["'])generate_lead\1/.test(book.html)) {
+      addIssue(issues, 'conversion-compatibility-event', '/book/', 'confirmed delivery must preserve the generate_lead compatibility event');
+    }
+    const emitsProhibitedTrackEvent = /track\s*\(\s*(["'])(?:form_submit_lead|paid_lead_submit)\1/.test(book.html);
+    const emitsProhibitedGtagEvent = /gtag\s*\(\s*(["'])event\1\s*,\s*(["'])(?:form_submit_lead|paid_lead_submit)\2/.test(book.html);
+    if (emitsProhibitedTrackEvent || emitsProhibitedGtagEvent) {
+      addIssue(issues, 'conversion-event-double-count', '/book/', 'prohibited conversion event is emitted by the rendered page');
+    }
   }
 
   const apiFile = path.join(root, 'src/pages/api/book.js');
@@ -731,7 +739,7 @@ ${noindex ? '<meta name="robots" content="noindex,nofollow">' : ''}
 </head><body><h1>Fix the bottleneck holding back your growth.</h1>${body}<a ${ctaAttribute}="${cta}">See if you’re a fit</a></body></html>`;
 }
 
-function baseBookHtml({ receiptGuard = true } = {}) {
+function baseBookHtml({ receiptGuard = true, compatibilityEvent = 'generate_lead', prohibitedEvent = null } = {}) {
   const schema = {
     '@context': 'https://schema.org',
     '@graph': [
@@ -754,7 +762,7 @@ function baseBookHtml({ receiptGuard = true } = {}) {
 <input name="contact_name"><input name="work_email"><textarea name="bottleneck"></textarea><input name="contact_permission" type="checkbox">
 <button>Send to Buildwise</button></form><p>Nothing was sent.</p>
 <script>async function send(){const response=await fetch("/api/book",{method:"POST"});const result=await response.json();
-if(result.ok === true && result.captured === true && result.emailed === true${receiptGuard ? ' && result.receipt_recorded === true' : ''}){track("fit_note_submitted");document.body.dataset.sent="true";}}</script>
+if(result.ok === true && result.captured === true && result.emailed === true${receiptGuard ? ' && result.receipt_recorded === true' : ''}){track("fit_note_submitted");${compatibilityEvent ? `track("${compatibilityEvent}");` : ''}${prohibitedEvent ? `track("${prohibitedEvent}");` : ''}document.body.dataset.sent="true";}}</script>
 </body></html>`;
 }
 
@@ -768,7 +776,11 @@ function writeFixture(root, variant = {}) {
   fs.mkdirSync(path.join(root, 'src/pages/api'), { recursive: true });
   fs.writeFileSync(path.join(root, 'src/pages/api/book.js'), baseApiSource({ receiptGuard: variant.receiptGuard !== false }));
   fs.writeFileSync(path.join(dist, 'index.html'), baseIndexHtml(variant));
-  fs.writeFileSync(path.join(dist, 'book/index.html'), baseBookHtml({ receiptGuard: variant.receiptGuard !== false }));
+  fs.writeFileSync(path.join(dist, 'book/index.html'), baseBookHtml({
+    receiptGuard: variant.receiptGuard !== false,
+    compatibilityEvent: variant.compatibilityEvent === undefined ? 'generate_lead' : variant.compatibilityEvent,
+    prohibitedEvent: variant.prohibitedEvent ?? null,
+  }));
   fs.writeFileSync(path.join(dist, 'sitemap.xml'), `<?xml version="1.0"?><urlset><url><loc>${SITE_ORIGIN}/</loc></url><url><loc>${SITE_ORIGIN}/book/</loc></url></urlset>`);
   return { root, dist };
 }
@@ -783,6 +795,8 @@ function runSelfTest() {
     ['unintended noindex', { noindex: true }, 'homepage-noindex'],
     ['wrong canonical', { canonical: 'https://example.com/' }, 'canonical-mismatch'],
     ['broken conversion receipt guard', { receiptGuard: false }, 'conversion-client-receipt_recorded-guard'],
+    ['missing compatibility event', { compatibilityEvent: null }, 'conversion-compatibility-event'],
+    ['prohibited double-count event', { prohibitedEvent: 'paid_lead_submit' }, 'conversion-event-double-count'],
     ['contradictory schema', { schemaType: 'FAQPage' }, 'schema-forbidden-type'],
   ];
 

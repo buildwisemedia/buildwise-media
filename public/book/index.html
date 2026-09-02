@@ -1004,7 +1004,7 @@
 
     function attributionSnapshot() {
       const params = new URLSearchParams(window.location.search);
-      const allowed = ["utm_source", "utm_medium", "utm_campaign", "utm_content", "utm_term", "gclid", "fbclid", "fbc", "fbp"];
+      const allowed = ["utm_source", "utm_medium", "utm_campaign", "utm_content", "utm_term", "gclid", "gbraid", "wbraid", "fbclid", "fbc", "fbp"];
       const cap = (value) => typeof value === "string" ? value.slice(0, 1000) : "";
       const sessionValue = (key) => {
         try { return sessionStorage.getItem(key) || ""; } catch { return ""; }
@@ -1025,12 +1025,17 @@
         referrer: cap(sessionValue("bwm_referrer") || document.referrer || lastTouch.referrer || firstTouch.referrer || ""),
       };
       allowed.forEach((key) => {
-        const value = key === "fbc"
+        const cookieValue = key === "fbc"
           ? cookie("_fbc")
           : key === "fbp"
             ? cookie("_fbp")
-            : params.get(key) || lastUtm[key] || firstUtm[key];
+            : "";
+        const firstValue = cookieValue || firstUtm[key];
+        const lastValue = cookieValue || params.get(key) || lastUtm[key];
+        const value = lastValue || firstValue;
         if (typeof value === "string" && value) attribution[key] = value.slice(0, 1000);
+        if (typeof firstValue === "string" && firstValue) attribution[`first_touch_${key}`] = firstValue.slice(0, 1000);
+        if (typeof lastValue === "string" && lastValue) attribution[`last_touch_${key}`] = lastValue.slice(0, 1000);
       });
       const experiment = experimentContext();
       if (experiment.experiment_id && experiment.experiment_variant_id) {

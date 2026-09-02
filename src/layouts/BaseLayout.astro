@@ -271,7 +271,7 @@ const graph = [...siteSchemas, ...perPageSchemas];
       (function () {
         var KEY = '_bwm_attribution';
         var BOOKING_EVENT_KEY = 'bwm_booking_event_id';
-        var UTM_KEYS = ['utm_source','utm_medium','utm_campaign','utm_content','utm_term','gclid','fbclid'];
+        var UTM_KEYS = ['utm_source','utm_medium','utm_campaign','utm_content','utm_term','gclid','gbraid','wbraid','fbclid'];
 
         function safeJson(value, fallback) {
           try { return JSON.parse(value); } catch (_) { return fallback; }

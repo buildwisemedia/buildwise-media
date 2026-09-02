@@ -5,11 +5,31 @@ import { fileURLToPath } from 'node:url';
 
 const PROPERTY_ID = '422160329';
 const UUID_RE = /^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i;
+const SUCCESSFUL_EMAIL_STATUSES = new Set(['accepted', 'sent', 'delivered', 'opened', 'clicked']);
 
 export function assertSubmissionId(value) {
   const submissionId = String(value || '').trim();
   if (!UUID_RE.test(submissionId)) throw new Error('submission_id must be a UUID');
   return submissionId;
+}
+
+export function ga4StartDate(submittedAt, now = new Date()) {
+  const submitted = new Date(submittedAt);
+  if (Number.isNaN(submitted.getTime())) return '90daysAgo';
+  const latestAllowed = Math.min(submitted.getTime(), now.getTime());
+  return new Date(latestAllowed - 24 * 60 * 60 * 1000).toISOString().slice(0, 10);
+}
+
+function advertisingStates(value, states = []) {
+  if (Array.isArray(value)) {
+    value.forEach((entry) => advertisingStates(entry, states));
+  } else if (value && typeof value === 'object') {
+    for (const [key, entry] of Object.entries(value)) {
+      if (key === 'state' && typeof entry === 'string') states.push(entry);
+      else advertisingStates(entry, states);
+    }
+  }
+  return states;
 }
 
 export function evaluateReceipt({ submissionId, ga4Rows, submissionRows, commsRows, outcomeRows }) {
@@ -21,6 +41,18 @@ export function evaluateReceipt({ submissionId, ga4Rows, submissionRows, commsRo
   const submission = submissionRows.find((row) => row.id === submissionId) || null;
   const outcome = outcomeRows.find((row) => row.submission_id === submissionId) || null;
   const matchingComms = commsRows.filter((row) => row.contact_id === submission?.contact_id);
+  const successfulComms = matchingComms.filter((row) => SUCCESSFUL_EMAIL_STATUSES.has(String(row.status || '').toLowerCase()));
+  const outcomeIdentityMatches = !outcome || outcome.contact_id === submission?.contact_id;
+  const syntheticAdvertisingStates = advertisingStates(outcome?.advertising_feedback);
+  const syntheticPolicyVerified = submission?.is_synthetic !== true || Boolean(
+    outcome
+      && outcome.is_synthetic === true
+      && outcome.lead_state === 'excluded_synthetic'
+      && outcome.business_lead_identity == null
+      && (outcome.advertising_feedback == null
+        || (syntheticAdvertisingStates.length > 0
+          && syntheticAdvertisingStates.every((state) => state === 'canary_blocked'))),
+  );
   const ga4Complete = ga4Events.has('fit_note_submitted') && ga4Events.has('generate_lead');
   const state = !submission
     ? 'CRM_MISSING'
@@ -28,11 +60,17 @@ export function evaluateReceipt({ submissionId, ga4Rows, submissionRows, commsRo
       ? 'EMAIL_RECEIPT_MISSING'
       : matchingComms.length > 1
         ? 'DUPLICATE_EMAIL_RECEIPTS'
-        : !outcome
-          ? 'OUTCOME_PENDING'
-          : !ga4Complete
-            ? 'GA4_PENDING'
-            : 'JOIN_VERIFIED';
+        : successfulComms.length === 0
+          ? 'EMAIL_RECEIPT_UNSUCCESSFUL'
+          : !outcome
+            ? 'OUTCOME_PENDING'
+            : !outcomeIdentityMatches
+              ? 'OUTCOME_IDENTITY_MISMATCH'
+              : !syntheticPolicyVerified
+                ? 'SYNTHETIC_POLICY_VIOLATION'
+                : !ga4Complete
+                  ? 'GA4_PENDING'
+                  : 'JOIN_VERIFIED';
   return {
     state,
     submission_id: submissionId,
@@ -41,13 +79,16 @@ export function evaluateReceipt({ submissionId, ga4Rows, submissionRows, commsRo
     ga4_complete: ga4Complete,
     crm_submission_found: Boolean(submission),
     email_receipt_count: matchingComms.length,
+    successful_email_receipt_count: successfulComms.length,
     source_to_outcome_found: Boolean(outcome),
-    synthetic_excluded: outcome?.lead_state === 'excluded_synthetic' || submission?.is_synthetic === true,
+    outcome_identity_verified: Boolean(outcome) && outcomeIdentityMatches,
+    synthetic_excluded: submission?.is_synthetic === true && syntheticPolicyVerified,
+    synthetic_policy_verified: syntheticPolicyVerified,
     per_source: {
       ga4: ga4Complete ? 'observed' : 'pending',
       crm_submission: submission ? 'observed' : 'absent',
-      email_receipt: matchingComms.length > 0 ? 'observed' : 'absent',
-      source_to_outcome: outcome ? 'observed' : 'pending',
+      email_receipt: successfulComms.length > 0 ? 'observed' : matchingComms.length > 0 ? 'invalid' : 'absent',
+      source_to_outcome: outcomeIdentityMatches && outcome ? 'observed' : outcome ? 'invalid' : 'pending',
       advertising_provider: 'not_applicable',
     },
   };
@@ -61,9 +102,9 @@ function requireEnv(name, aliases = []) {
   throw new Error(`${name} is required`);
 }
 
-function ga4RowsFor(submissionId) {
+function ga4RowsFor(submissionId, submittedAt) {
   const body = JSON.stringify({
-    dateRanges: [{ startDate: '7daysAgo', endDate: 'today' }],
+    dateRanges: [{ startDate: ga4StartDate(submittedAt), endDate: 'today' }],
     dimensions: [{ name: 'eventName' }, { name: 'customEvent:submission_id' }],
     metrics: [{ name: 'eventCount' }],
     dimensionFilter: {
@@ -100,12 +141,14 @@ export async function reconcile(submissionId) {
   const supabaseUrl = requireEnv('SUPABASE_URL');
   const serviceKey = requireEnv('SUPABASE_SERVICE_KEY', ['SUPABASE_SERVICE_ROLE_KEY']);
   const encoded = encodeURIComponent(id);
-  const [ga4Rows, submissionRows, commsRows, outcomeRows] = await Promise.all([
-    Promise.resolve().then(() => ga4RowsFor(id)),
+  const [submissionRows, commsRows, outcomeRows] = await Promise.all([
     supabaseRows(`lead_submissions?id=eq.${encoded}&select=id,contact_id,status,is_synthetic,submitted_at,form_id,form_version`, supabaseUrl, serviceKey),
     supabaseRows(`comms_log?metadata->>submission_id=eq.${encoded}&select=id,contact_id,status,created_at`, supabaseUrl, serviceKey),
     supabaseRows(`v_bwm_book_source_to_outcome?submission_id=eq.${encoded}&select=*`, supabaseUrl, serviceKey, { optional: true }),
   ]);
+  const ga4Rows = submissionRows[0]
+    ? ga4RowsFor(id, submissionRows[0].submitted_at)
+    : [];
   return {
     generated_at: new Date().toISOString(),
     property_id: PROPERTY_ID,

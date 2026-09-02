@@ -81,6 +81,9 @@ test("preserves persisted first- and last-touch attribution", () => {
   assert.match(source, /referrer:\s*cap\(/);
   assert.match(source, /cookie\("_fbc"\)/);
   assert.match(source, /cookie\("_fbp"\)/);
+  assert.match(source, /"gbraid", "wbraid"/);
+  assert.match(source, /attribution\[`first_touch_\$\{key\}`\]/);
+  assert.match(source, /attribution\[`last_touch_\$\{key\}`\]/);
   assert.match(source, /_bwm_exp_host/);
   assert.match(source, /attribution\.experiment_id = experiment\.experiment_id/);
   assert.match(source, /attribution\.experiment_variant_id = experiment\.experiment_variant_id/);
