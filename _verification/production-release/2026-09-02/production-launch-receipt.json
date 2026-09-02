@@ -1,0 +1,110 @@
+{
+  "schema_version": "bwm-production-launch-receipt/1.0.0",
+  "verified_at_eastern": "2026-09-02 08:34:46 AM EDT",
+  "verdict": "PUBLIC_SITE_LIVE_AND_PRIMARY_CONVERSION_DELIVERY_VERIFIED",
+  "authority": {
+    "authorized_by": "Robert Echevarria",
+    "instruction": "Let's go live with the website",
+    "production_deployment_authorized": true
+  },
+  "source": {
+    "repository": "buildwisemedia/buildwise-media",
+    "branch": "main",
+    "commit": "72ab59f282dc4855640dbb7da1e186b9f26463fe",
+    "tree": "2db4fe519d29c8b50cadae2c149981f5a15d0b15",
+    "approved_candidate_commit": "f84cbdc041664af33f9ddc40d688d115f8be8ed7",
+    "approved_candidate_tree": "2db4fe519d29c8b50cadae2c149981f5a15d0b15",
+    "tree_parity": true,
+    "artifact_hashes": {
+      "homepage_source_sha256": "80632a98a36fc601406a6fca8a9d6571e44ce91ccadb6ec10074e30e88fcbbbf",
+      "book_html_sha256": "9928ebca9c1edde076320dbc2481be016a39a093a2cf682667465a3045457671",
+      "privacy_source_sha256": "ce15a4aa10afb6c0788410a0725ef7edcc66b680a13c615409c9c5e821ad5b0d",
+      "terms_source_sha256": "20f7967fb7cb20a747f41bd169235b4ad2da6f171ae5820c256fabc7809fa9bb",
+      "private_closeout_receipt_sha256": "39608602faba6e526cf46df6853b6b369bdf7cc19e8dec79cd49a2453c4aea73"
+    }
+  },
+  "deployment": {
+    "provider": "Cloudflare Pages",
+    "project": "buildwise-media",
+    "deployment_id": "3b3748a3-c645-4a55-83bf-80f983985434",
+    "deployment_url": "https://3b3748a3.buildwise-media.pages.dev",
+    "production_url": "https://buildwisemedia.com/",
+    "book_url": "https://buildwisemedia.com/book/",
+    "status": "active",
+    "dns_changed": false
+  },
+  "preflight_and_qa": {
+    "preflight_v4": "pass",
+    "tests": "45/45 pass",
+    "build": "pass; 345 rendered HTML pages",
+    "brand_qa": "7/7 pass; zero warnings",
+    "growth_contract": "pass",
+    "growth_negative_controls": "13/13 pass",
+    "pre_ship_grep_gate": "pass",
+    "public_visual_matrix": "4/4 pass at homepage and /book across 1440x900 and 390x844; zero failures and zero advisories"
+  },
+  "public_readback": {
+    "homepage_http": 200,
+    "book_http": 200,
+    "privacy_http": 200,
+    "terms_http": 200,
+    "robots_http": 200,
+    "sitemap_http": 200,
+    "sitemap_url_count": 82,
+    "homepage_h1": "Fix the bottleneck holding back your growth.",
+    "book_h1": "What's getting in the way of growth?",
+    "homepage_cta": "See if you're a fit",
+    "homepage_cta_target": "/book/",
+    "canonical_and_robots": "correct on homepage and /book",
+    "browser_console_errors": 0,
+    "horizontal_overflow": false,
+    "ga4_loader": "G-V5LSP69E41 observed on public /book",
+    "gtm_loader": "GTM-P5JSD86L observed on public /book"
+  },
+  "production_conversion_canary": {
+    "submission_id": "b222e064-70da-40fb-a49a-bbcbb43e77be",
+    "http_status": 200,
+    "capture_response": {
+      "ok": true,
+      "captured": true,
+      "emailed": true,
+      "receipt_recorded": true,
+      "idempotent": false
+    },
+    "contact_id": "0fa6e2a2-174a-4f67-83a2-6eb29f246437",
+    "crm_submission_status": "processed",
+    "email_receipt_count": 1,
+    "email_receipt_status": "delivered",
+    "source_to_outcome_identity_verified": true,
+    "is_synthetic": true,
+    "lead_state": "excluded_synthetic",
+    "business_lead_identity": null,
+    "advertising_feedback": null,
+    "ga4_reporting_state": "pending/not applicable to the server-path canary; public GA4 and GTM loaders are verified, and the same hash-bound browser conversion code dispatched fit_note_submitted and generate_lead in the accepted private canary"
+  },
+  "binding_repair": {
+    "initial_public_form_state": "503 intake_not_configured with zero CRM or email writes",
+    "repair": "rotated one shared BWM_BOOK_INTAKE_KEY across the production Pages project, retired review project, and bwm-form-handler Worker; then deployed the same source tree directly so production Functions received the binding",
+    "post_repair_negative_control": "malformed payload reached validation and returned 400 rather than intake_not_configured",
+    "post_repair_positive_control": "production canary returned 200 and completed CRM plus email delivery"
+  },
+  "rollback": {
+    "previous_production_deployment_id": "2216c629-d981-4f93-b4b8-9c4b460b31d9",
+    "previous_production_source_commit": "cff96d1c2ea1d4c74d8c76458047631e3b58b56d",
+    "previous_deployment_url": "https://2216c629.buildwise-media.pages.dev",
+    "available": true
+  },
+  "private_review_retirement": {
+    "project": "bwm-new-website-review",
+    "deleted": true,
+    "project_list_readback": "absent",
+    "hostname_readback": "DNS no longer resolves"
+  },
+  "remaining_boundaries": {
+    "search_console_submission_performed": false,
+    "social_content_published": false,
+    "paid_media_activated": false,
+    "spend": false,
+    "roi_claimed": false
+  }
+}
