@@ -126,6 +126,71 @@ test('rejects a non-success email receipt status', () => {
   assert.equal(receipt.successful_email_receipt_count, 0);
 });
 
+test('a provider-accepted but undelivered receipt stays pending, not verified', () => {
+  for (const status of ['sent', 'accepted', 'queued', ' Sent ']) {
+    const receipt = evaluateReceipt({
+      submissionId,
+      ga4Rows: [
+        { submission_id: submissionId, event_name: 'fit_note_submitted' },
+        { submission_id: submissionId, event_name: 'generate_lead' },
+      ],
+      submissionRows: [{ id: submissionId, contact_id: 'contact-1', is_synthetic: false }],
+      commsRows: [{ id: 'receipt-1', contact_id: 'contact-1', status }],
+      outcomeRows: [{ submission_id: submissionId, contact_id: 'contact-1', lead_state: 'review' }],
+    });
+    assert.equal(receipt.state, 'EMAIL_RECEIPT_PENDING', status);
+    assert.equal(receipt.successful_email_receipt_count, 0);
+    assert.equal(receipt.pending_email_receipt_count, 1);
+    assert.equal(receipt.per_source.email_receipt, 'pending');
+  }
+});
+
+test('an unknown email receipt status fails closed', () => {
+  const receipt = evaluateReceipt({
+    submissionId,
+    ga4Rows: [
+      { submission_id: submissionId, event_name: 'fit_note_submitted' },
+      { submission_id: submissionId, event_name: 'generate_lead' },
+    ],
+    submissionRows: [{ id: submissionId, contact_id: 'contact-1', is_synthetic: false }],
+    commsRows: [{ id: 'receipt-1', contact_id: 'contact-1', status: 'completed' }],
+    outcomeRows: [{ submission_id: submissionId, contact_id: 'contact-1', lead_state: 'review' }],
+  });
+  assert.equal(receipt.state, 'EMAIL_RECEIPT_UNSUCCESSFUL');
+  assert.equal(receipt.pending_email_receipt_count, 0);
+  assert.equal(receipt.per_source.email_receipt, 'invalid');
+});
+
+test('a missing outcome source reads as unavailable, never as pending', () => {
+  const receipt = evaluateReceipt({
+    submissionId,
+    ga4Rows: [
+      { submission_id: submissionId, event_name: 'fit_note_submitted' },
+      { submission_id: submissionId, event_name: 'generate_lead' },
+    ],
+    submissionRows: [{ id: submissionId, contact_id: 'contact-1', is_synthetic: false }],
+    commsRows: [{ id: 'receipt-1', contact_id: 'contact-1', status: 'delivered' }],
+    outcomeRows: [],
+    outcomeSourceAvailable: false,
+  });
+  assert.equal(receipt.state, 'OUTCOME_SOURCE_UNAVAILABLE');
+  assert.equal(receipt.outcome_source_available, false);
+  assert.equal(receipt.per_source.source_to_outcome, 'unavailable');
+});
+
+test('an available outcome source with no row is still pending', () => {
+  const receipt = evaluateReceipt({
+    submissionId,
+    ga4Rows: [],
+    submissionRows: [{ id: submissionId, contact_id: 'contact-1', is_synthetic: false }],
+    commsRows: [{ id: 'receipt-1', contact_id: 'contact-1', status: 'delivered' }],
+    outcomeRows: [],
+  });
+  assert.equal(receipt.state, 'OUTCOME_PENDING');
+  assert.equal(receipt.outcome_source_available, true);
+  assert.equal(receipt.per_source.source_to_outcome, 'pending');
+});
+
 test('derives the GA4 lookback from the submission date', () => {
   assert.equal(
     ga4StartDate('2025-12-15T12:00:00Z', new Date('2026-09-02T12:00:00Z')),

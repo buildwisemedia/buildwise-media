@@ -5,7 +5,11 @@ import { fileURLToPath } from 'node:url';
 
 const PROPERTY_ID = '422160329';
 const UUID_RE = /^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i;
-const SUCCESSFUL_EMAIL_STATUSES = new Set(['accepted', 'sent', 'delivered', 'opened', 'clicked']);
+// Only provider-confirmed delivery counts as a durable receipt. Pre-delivery
+// statuses stay pending; anything else (bounced, failed, complained, unknown)
+// fails closed.
+const DELIVERED_EMAIL_STATUSES = new Set(['delivered', 'opened', 'clicked']);
+const PENDING_EMAIL_STATUSES = new Set(['queued', 'accepted', 'sent']);
 
 export function assertSubmissionId(value) {
   const submissionId = String(value || '').trim();
@@ -32,7 +36,14 @@ function advertisingStates(value, states = []) {
   return states;
 }
 
-export function evaluateReceipt({ submissionId, ga4Rows, submissionRows, commsRows, outcomeRows }) {
+export function evaluateReceipt({
+  submissionId,
+  ga4Rows,
+  submissionRows,
+  commsRows,
+  outcomeRows,
+  outcomeSourceAvailable = true,
+}) {
   const ga4Events = new Set(
     ga4Rows
       .filter((row) => row.submission_id === submissionId)
@@ -41,7 +52,9 @@ export function evaluateReceipt({ submissionId, ga4Rows, submissionRows, commsRo
   const submission = submissionRows.find((row) => row.id === submissionId) || null;
   const outcome = outcomeRows.find((row) => row.submission_id === submissionId) || null;
   const matchingComms = commsRows.filter((row) => row.contact_id === submission?.contact_id);
-  const successfulComms = matchingComms.filter((row) => SUCCESSFUL_EMAIL_STATUSES.has(String(row.status || '').toLowerCase()));
+  const emailStatus = (row) => String(row.status || '').trim().toLowerCase();
+  const deliveredComms = matchingComms.filter((row) => DELIVERED_EMAIL_STATUSES.has(emailStatus(row)));
+  const pendingComms = matchingComms.filter((row) => PENDING_EMAIL_STATUSES.has(emailStatus(row)));
   const outcomeIdentityMatches = !outcome || outcome.contact_id === submission?.contact_id;
   const syntheticAdvertisingStates = advertisingStates(outcome?.advertising_feedback);
   const isSynthetic = submission?.is_synthetic === true || outcome?.is_synthetic === true;
@@ -61,17 +74,21 @@ export function evaluateReceipt({ submissionId, ga4Rows, submissionRows, commsRo
       ? 'EMAIL_RECEIPT_MISSING'
       : matchingComms.length > 1
         ? 'DUPLICATE_EMAIL_RECEIPTS'
-        : successfulComms.length === 0
+        : deliveredComms.length === 0 && pendingComms.length === 0
           ? 'EMAIL_RECEIPT_UNSUCCESSFUL'
-          : !outcome
-            ? 'OUTCOME_PENDING'
-            : !outcomeIdentityMatches
-              ? 'OUTCOME_IDENTITY_MISMATCH'
-              : !syntheticPolicyVerified
-                ? 'SYNTHETIC_POLICY_VIOLATION'
-                : !ga4Complete
-                  ? 'GA4_PENDING'
-                  : 'JOIN_VERIFIED';
+          : deliveredComms.length === 0
+            ? 'EMAIL_RECEIPT_PENDING'
+            : !outcomeSourceAvailable
+              ? 'OUTCOME_SOURCE_UNAVAILABLE'
+              : !outcome
+                ? 'OUTCOME_PENDING'
+                : !outcomeIdentityMatches
+                  ? 'OUTCOME_IDENTITY_MISMATCH'
+                  : !syntheticPolicyVerified
+                    ? 'SYNTHETIC_POLICY_VIOLATION'
+                    : !ga4Complete
+                      ? 'GA4_PENDING'
+                      : 'JOIN_VERIFIED';
   return {
     state,
     submission_id: submissionId,
@@ -80,7 +97,9 @@ export function evaluateReceipt({ submissionId, ga4Rows, submissionRows, commsRo
     ga4_complete: ga4Complete,
     crm_submission_found: Boolean(submission),
     email_receipt_count: matchingComms.length,
-    successful_email_receipt_count: successfulComms.length,
+    successful_email_receipt_count: deliveredComms.length,
+    pending_email_receipt_count: pendingComms.length,
+    outcome_source_available: outcomeSourceAvailable,
     source_to_outcome_found: Boolean(outcome),
     outcome_identity_verified: Boolean(outcome) && outcomeIdentityMatches,
     synthetic_excluded: isSynthetic && syntheticPolicyVerified,
@@ -88,8 +107,20 @@ export function evaluateReceipt({ submissionId, ga4Rows, submissionRows, commsRo
     per_source: {
       ga4: ga4Complete ? 'observed' : 'pending',
       crm_submission: submission ? 'observed' : 'absent',
-      email_receipt: successfulComms.length > 0 ? 'observed' : matchingComms.length > 0 ? 'invalid' : 'absent',
-      source_to_outcome: outcomeIdentityMatches && outcome ? 'observed' : outcome ? 'invalid' : 'pending',
+      email_receipt: deliveredComms.length > 0
+        ? 'observed'
+        : pendingComms.length > 0
+          ? 'pending'
+          : matchingComms.length > 0
+            ? 'invalid'
+            : 'absent',
+      source_to_outcome: !outcomeSourceAvailable
+        ? 'unavailable'
+        : outcomeIdentityMatches && outcome
+          ? 'observed'
+          : outcome
+            ? 'invalid'
+            : 'pending',
       advertising_provider: 'not_applicable',
     },
   };
@@ -132,7 +163,9 @@ async function supabaseRows(path, supabaseUrl, serviceKey, { optional = false } 
       Accept: 'application/json',
     },
   });
-  if (optional && response.status === 404) return [];
+  // A missing optional source is reported as unavailable, never as an empty
+  // (pending) result, so the caller cannot mistake a dropped view for no outcome.
+  if (optional && response.status === 404) return null;
   if (!response.ok) throw new Error(`Supabase read failed (${response.status}) for ${path.split('?')[0]}`);
   return response.json();
 }
@@ -142,18 +175,27 @@ export async function reconcile(submissionId) {
   const supabaseUrl = requireEnv('SUPABASE_URL');
   const serviceKey = requireEnv('SUPABASE_SERVICE_KEY', ['SUPABASE_SERVICE_ROLE_KEY']);
   const encoded = encodeURIComponent(id);
-  const [submissionRows, commsRows, outcomeRows] = await Promise.all([
+  const [submissionRows, commsRows, outcomeSource] = await Promise.all([
     supabaseRows(`lead_submissions?id=eq.${encoded}&select=id,contact_id,status,is_synthetic,submitted_at,form_id,form_version`, supabaseUrl, serviceKey),
     supabaseRows(`comms_log?metadata->>submission_id=eq.${encoded}&select=id,contact_id,status,created_at`, supabaseUrl, serviceKey),
     supabaseRows(`v_bwm_book_source_to_outcome?submission_id=eq.${encoded}&select=*`, supabaseUrl, serviceKey, { optional: true }),
   ]);
+  const outcomeSourceAvailable = outcomeSource !== null;
+  const outcomeRows = outcomeSource || [];
   const ga4Rows = submissionRows[0]
     ? ga4RowsFor(id, submissionRows[0].submitted_at)
     : [];
   return {
     generated_at: new Date().toISOString(),
     property_id: PROPERTY_ID,
-    ...evaluateReceipt({ submissionId: id, ga4Rows, submissionRows, commsRows, outcomeRows }),
+    ...evaluateReceipt({
+      submissionId: id,
+      ga4Rows,
+      submissionRows,
+      commsRows,
+      outcomeRows,
+      outcomeSourceAvailable,
+    }),
     ga4: ga4Rows,
     crm_submission: submissionRows[0] || null,
     comms_receipts: commsRows,
