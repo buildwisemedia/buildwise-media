@@ -1,0 +1,784 @@
+<title>BWM Client Board — 2026-08-08</title>
+<style>
+  /* ---------- tokens: light is the base ---------- */
+  :root{
+    --ground:#E6E9E6;         /* cool grey, biased green toward the BWM accent */
+    --surface:#FBFCFA;
+    --surface-2:#F1F3EF;
+    --ink:#14181A;
+    --ink-2:#3D474B;
+    --ink-3:#6B777C;
+    --rule:#CFD5CE;
+    --rule-2:#DFE4DD;
+    --accent:#B8FF3A;         /* BWM Y1 — locked brand */
+    --accent-ink:#4C6A0E;     /* accessible accent for text/borders on light */
+    --accent-soft:#EAFBC8;
+    --ok:#25704A;
+    --ok-soft:#DDEEE4;
+    --warn:#8A5B08;
+    --warn-soft:#F7EBD3;
+    --crit:#A93520;
+    --crit-soft:#F7DED8;
+    --hold:#4E6068;
+    --hold-soft:#E1E7E9;
+    --shadow:0 1px 2px rgba(20,24,26,.06),0 8px 24px -12px rgba(20,24,26,.18);
+    --mono:ui-monospace,SFMono-Regular,"SF Mono",Menlo,Consolas,"Liberation Mono",monospace;
+    --sans:system-ui,-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+  }
+  @media (prefers-color-scheme:dark){
+    :root:not([data-theme="light"]){
+      --ground:#101315;
+      --surface:#181D20;
+      --surface-2:#1F2529;
+      --ink:#EDF1EC;
+      --ink-2:#B4BEBB;
+      --ink-3:#818E8C;
+      --rule:#2C3438;
+      --rule-2:#232A2E;
+      --accent:#B8FF3A;
+      --accent-ink:#C8FF63;
+      --accent-soft:#243213;
+      --ok:#5FCB92;
+      --ok-soft:#16301F;
+      --warn:#E0A93F;
+      --warn-soft:#332510;
+      --crit:#F0806A;
+      --crit-soft:#3A1B14;
+      --hold:#9FB0B6;
+      --hold-soft:#1E262A;
+      --shadow:0 1px 2px rgba(0,0,0,.4),0 8px 24px -12px rgba(0,0,0,.7);
+    }
+  }
+  :root[data-theme="dark"]{
+    --ground:#101315; --surface:#181D20; --surface-2:#1F2529;
+    --ink:#EDF1EC; --ink-2:#B4BEBB; --ink-3:#818E8C;
+    --rule:#2C3438; --rule-2:#232A2E;
+    --accent:#B8FF3A; --accent-ink:#C8FF63; --accent-soft:#243213;
+    --ok:#5FCB92; --ok-soft:#16301F;
+    --warn:#E0A93F; --warn-soft:#332510;
+    --crit:#F0806A; --crit-soft:#3A1B14;
+    --hold:#9FB0B6; --hold-soft:#1E262A;
+    --shadow:0 1px 2px rgba(0,0,0,.4),0 8px 24px -12px rgba(0,0,0,.7);
+  }
+
+  *{box-sizing:border-box}
+  body{
+    margin:0;background:var(--ground);color:var(--ink);
+    font-family:var(--sans);font-size:15px;line-height:1.55;
+    -webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:1180px;margin:0 auto;padding:32px 20px 80px}
+
+  /* ---------- masthead ---------- */
+  .mast{border-top:3px solid var(--ink);padding-top:18px;margin-bottom:28px}
+  .eyebrow{
+    font-family:var(--mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase;
+    color:var(--ink-3);display:flex;flex-wrap:wrap;gap:6px 18px;margin-bottom:10px;
+  }
+  h1{
+    font-size:clamp(30px,5vw,46px);line-height:1.02;margin:0 0 10px;
+    font-weight:860;letter-spacing:-.025em;text-wrap:balance;
+  }
+  h1 .mark{color:var(--accent-ink)}
+  .standfirst{max-width:64ch;color:var(--ink-2);font-size:16px;margin:0}
+
+  /* ---------- summary tiles ---------- */
+  .tiles{display:grid;grid-template-columns:repeat(auto-fit,minmax(148px,1fr));gap:10px;margin:26px 0}
+  .tile{
+    background:var(--surface);border:1px solid var(--rule);border-radius:3px;
+    padding:13px 14px;display:flex;flex-direction:column;gap:2px;position:relative;overflow:hidden;
+  }
+  .tile::before{content:"";position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--bar,var(--rule))}
+  .tile .n{font-size:27px;font-weight:800;letter-spacing:-.02em;font-variant-numeric:tabular-nums;line-height:1.1}
+  .tile .k{font-family:var(--mono);font-size:10.5px;letter-spacing:.13em;text-transform:uppercase;color:var(--ink-3)}
+  .tile .s{font-size:12.5px;color:var(--ink-2)}
+
+  /* ---------- coverage ---------- */
+  .panel{background:var(--surface);border:1px solid var(--rule);border-radius:3px;padding:20px 22px;margin:0 0 28px}
+  .panel.alarm{border-color:var(--crit);background:var(--crit-soft)}
+  .panel h2{margin:0 0 4px}
+  h2{font-size:19px;font-weight:800;letter-spacing:-.012em;margin:0 0 12px}
+  h3{font-size:15px;font-weight:750;margin:0 0 6px;letter-spacing:-.005em}
+  p{margin:0 0 10px;max-width:72ch}
+  .muted{color:var(--ink-2)}
+  .small{font-size:13px}
+
+  .files{display:grid;grid-template-columns:repeat(auto-fill,minmax(228px,1fr));gap:7px;margin-top:14px}
+  .f{
+    display:flex;gap:9px;align-items:flex-start;padding:9px 11px;border-radius:3px;
+    background:var(--surface-2);border:1px solid var(--rule-2);font-size:12.5px;line-height:1.35;
+  }
+  .f .dot{width:8px;height:8px;border-radius:50%;flex:0 0 8px;margin-top:5px}
+  .f.ok .dot{background:var(--ok)} .f.via .dot{background:var(--accent-ink)} .f.no .dot{background:var(--crit)}
+  .f.no{border-color:var(--crit);background:var(--crit-soft)}
+  .f b{display:block;font-weight:650}
+  .f span{color:var(--ink-3);font-family:var(--mono);font-size:10.5px;letter-spacing:.05em}
+
+  /* ---------- controls ---------- */
+  .controls{display:flex;flex-wrap:wrap;gap:7px;align-items:center;margin:0 0 18px;
+    position:sticky;top:0;z-index:5;background:var(--ground);padding:12px 0;border-bottom:1px solid var(--rule)}
+  .controls .lbl{font-family:var(--mono);font-size:10.5px;letter-spacing:.13em;text-transform:uppercase;color:var(--ink-3);margin-right:4px}
+  button.filter{
+    font:inherit;font-size:12.5px;font-weight:600;cursor:pointer;
+    background:var(--surface);color:var(--ink-2);border:1px solid var(--rule);
+    border-radius:999px;padding:5px 13px;transition:background .12s,color .12s,border-color .12s;
+  }
+  button.filter:hover{border-color:var(--ink-3);color:var(--ink)}
+  button.filter[aria-pressed="true"]{background:var(--ink);color:var(--ground);border-color:var(--ink)}
+  button.filter:focus-visible,summary:focus-visible{outline:2px solid var(--accent-ink);outline-offset:2px}
+
+  /* ---------- client cards ---------- */
+  .group{margin:0 0 12px}
+  .group > .ghead{
+    font-family:var(--mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase;
+    color:var(--ink-3);display:flex;align-items:center;gap:12px;margin:30px 0 12px;
+  }
+  .group > .ghead::after{content:"";flex:1;height:1px;background:var(--rule)}
+  .cards{display:grid;gap:12px}
+
+  .card{
+    background:var(--surface);border:1px solid var(--rule);border-radius:3px;
+    box-shadow:var(--shadow);overflow:hidden;position:relative;
+  }
+  .card::before{content:"";position:absolute;left:0;top:0;bottom:0;width:4px;background:var(--bar)}
+  .card[data-h="ok"]{--bar:var(--ok)} .card[data-h="warn"]{--bar:var(--warn)}
+  .card[data-h="crit"]{--bar:var(--crit)} .card[data-h="hold"]{--bar:var(--hold)}
+  .card[data-h="done"]{--bar:var(--rule)}
+
+  summary{list-style:none;cursor:pointer;padding:16px 20px 16px 24px;display:block}
+  summary::-webkit-details-marker{display:none}
+  .row1{display:flex;flex-wrap:wrap;align-items:baseline;gap:9px 12px}
+  .cname{font-size:18px;font-weight:800;letter-spacing:-.015em}
+  .who{font-size:13px;color:var(--ink-3)}
+  .spacer{flex:1;min-width:8px}
+  .pill{
+    font-family:var(--mono);font-size:10px;letter-spacing:.11em;text-transform:uppercase;
+    font-weight:600;padding:3px 9px;border-radius:999px;white-space:nowrap;
+  }
+  .pill.ok{background:var(--ok-soft);color:var(--ok)}
+  .pill.warn{background:var(--warn-soft);color:var(--warn)}
+  .pill.crit{background:var(--crit-soft);color:var(--crit)}
+  .pill.hold{background:var(--hold-soft);color:var(--hold)}
+  .pill.done{background:var(--surface-2);color:var(--ink-3)}
+  .pill.count{background:var(--accent-soft);color:var(--accent-ink)}
+  .row2{display:flex;flex-wrap:wrap;gap:6px 22px;margin-top:9px;font-size:13px;color:var(--ink-2)}
+  .row2 b{color:var(--ink);font-weight:650}
+  .kv{font-family:var(--mono);font-size:10.5px;letter-spacing:.11em;text-transform:uppercase;color:var(--ink-3);margin-right:5px}
+  .chev{font-family:var(--mono);font-size:11px;color:var(--ink-3)}
+  details[open] .chev{color:var(--accent-ink)}
+
+  .body{padding:0 20px 20px 24px;border-top:1px solid var(--rule-2)}
+  .note{
+    background:var(--surface-2);border-left:2px solid var(--bar);padding:11px 14px;
+    margin:16px 0 0;font-size:13.5px;color:var(--ink-2);border-radius:0 3px 3px 0;
+  }
+  .note b{color:var(--ink)}
+
+  .tblwrap{overflow-x:auto;margin-top:16px;border:1px solid var(--rule-2);border-radius:3px}
+  table{border-collapse:collapse;width:100%;font-size:13.5px;min-width:560px}
+  th{
+    text-align:left;font-family:var(--mono);font-size:10px;letter-spacing:.13em;text-transform:uppercase;
+    color:var(--ink-3);font-weight:600;padding:9px 12px;background:var(--surface-2);
+    border-bottom:1px solid var(--rule);white-space:nowrap;
+  }
+  td{padding:9px 12px;border-bottom:1px solid var(--rule-2);vertical-align:top}
+  tr:last-child td{border-bottom:none}
+  td.id{font-family:var(--mono);font-size:11.5px;color:var(--accent-ink);font-weight:600;white-space:nowrap}
+  td.own{white-space:nowrap;color:var(--ink-2);font-size:12.5px}
+  td.src{font-family:var(--mono);font-size:10.5px;color:var(--ink-3);white-space:nowrap}
+  td.task b{font-weight:700}
+  .flag{
+    display:inline-block;font-family:var(--mono);font-size:9.5px;letter-spacing:.1em;text-transform:uppercase;
+    padding:1px 6px;border-radius:2px;background:var(--warn-soft);color:var(--warn);margin-left:7px;font-weight:600;
+  }
+  .flag.late{background:var(--crit-soft);color:var(--crit)}
+
+  ul.tight{margin:8px 0 0;padding-left:19px}
+  ul.tight li{margin-bottom:5px;color:var(--ink-2)}
+  ul.tight li b{color:var(--ink)}
+
+  .answer{border:1px solid var(--accent-ink);background:var(--accent-soft);border-radius:3px;padding:22px 24px;margin:34px 0 0}
+  .answer .q{font-size:14px;color:var(--ink-2);font-style:italic;border-left:2px solid var(--accent-ink);padding-left:12px;margin:0 0 14px}
+  .answer h2{color:var(--ink)}
+  .verdict{font-size:17px;font-weight:750;letter-spacing:-.01em;margin:0 0 12px;color:var(--ink)}
+  .answer ul.tight li,.answer p{color:var(--ink-2)}
+
+  .qs{counter-reset:q}
+  .qs li{margin-bottom:9px}
+  footer{margin-top:44px;padding-top:16px;border-top:1px solid var(--rule);
+    font-family:var(--mono);font-size:11px;letter-spacing:.08em;color:var(--ink-3);
+    display:flex;flex-wrap:wrap;gap:6px 20px}
+  @media (max-width:640px){
+    .wrap{padding:22px 14px 60px}
+    summary{padding:14px 14px 14px 18px}.body{padding:0 14px 16px 18px}
+    .controls{position:static}
+  }
+  @media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+</style>
+
+<div class="wrap">
+
+  <header class="mast">
+    <div class="eyebrow">
+      <span>Buildwise Media</span><span>Client Punch List</span>
+      <span>Compiled 2026-08-08</span><span>Source window 07-13 → 08-07</span>
+    </div>
+    <h1>Every open item, <span class="mark">by client.</span></h1>
+    <p class="standfirst">Parsed from 7 meeting transcripts, the marketing-plan snapshot, and 8 Brain project-state files. Draft for review — build sessions are gated on your sign-off.</p>
+  </header>
+
+  <section class="tiles">
+    <div class="tile" style="--bar:var(--ok)"><span class="k">Active</span><span class="n">6</span><span class="s">66 open items</span></div>
+    <div class="tile" style="--bar:var(--hold)"><span class="k">Paused</span><span class="n">6</span><span class="s">waiting on client</span></div>
+    <div class="tile" style="--bar:var(--warn)"><span class="k">Pipeline</span><span class="n">2</span><span class="s">+1 no-fit</span></div>
+    <div class="tile" style="--bar:var(--rule)"><span class="k">Closed</span><span class="n">2</span><span class="s">Cabdi · 008</span></div>
+    <div class="tile" style="--bar:var(--crit)"><span class="k">At risk</span><span class="n">1</span><span class="s">TRG — $5,999/mo</span></div>
+    <div class="tile" style="--bar:var(--crit)"><span class="k">Unparsed</span><span class="n">3</span><span class="s">of 11 files</span></div>
+  </section>
+
+  <section class="panel alarm">
+    <h2>Three recordings have no text record — read this first</h2>
+    <p class="small">Every “Notes by Gemini” doc contains the <b>full timestamped transcript</b>, not just a summary — that’s how the audio got parsed at word level. But three of the highlighted recordings have <b>no transcript and no notes doc</b>, and I can’t transcribe video here (no ASR in this environment; the Drive connector can’t move 3.8&nbsp;GB of video to disk).</p>
+    <div class="files">
+      <div class="f ok"><i class="dot"></i><div><b>Leadership Call — Notes</b><span>08/07 · full transcript 43:30</span></div></div>
+      <div class="f via"><i class="dot"></i><div><b>Leadership Call — Recording</b><span>08/07 · covered by notes</span></div></div>
+      <div class="f no"><i class="dot"></i><div><b>D2S CRM Plan — Recording</b><span>08/06 · NO TRANSCRIPT · 363 MB</span></div></div>
+      <div class="f ok"><i class="dot"></i><div><b>Leads Review BWM/D2S — Notes</b><span>08/06 · full transcript</span></div></div>
+      <div class="f via"><i class="dot"></i><div><b>Leads Review — Recording</b><span>08/06 · covered by notes</span></div></div>
+      <div class="f no"><i class="dot"></i><div><b>TRG Wrap-up — Recording</b><span>08/05 · NO TRANSCRIPT · 2.42 GB</span></div></div>
+      <div class="f ok"><i class="dot"></i><div><b>TRG Strategic Planning — Notes</b><span>08/05 · full transcript</span></div></div>
+      <div class="f via"><i class="dot"></i><div><b>TRG Strategic — Recording</b><span>08/05 · covered by notes</span></div></div>
+      <div class="f ok"><i class="dot"></i><div><b>BWM/RFM New Lead System — Notes</b><span>08/04 · full transcript</span></div></div>
+      <div class="f via"><i class="dot"></i><div><b>BWM/RFM — Recording</b><span>08/04 · covered by notes</span></div></div>
+      <div class="f no"><i class="dot"></i><div><b>Marketing Meeting — Recording</b><span>07/31 · NO TRANSCRIPT · 1.04 GB</span></div></div>
+    </div>
+    <ul class="tight small" style="margin-top:14px">
+      <li><b>D2S CRM Plan (08/06 14:59)</b> — highest risk. This <i>is</i> the 3&nbsp;PM session Robert and Rodel scheduled that morning to finalize phone↔CRM integration. The architecture decisions exist nowhere else.</li>
+      <li><b>TRG Wrap-up (08/05 08:59)</b> — medium risk. The 12:51 Strategic Planning session the same day appears to supersede it.</li>
+      <li><b>Marketing Meeting (07/31)</b> — low risk. Its Gemini notes doc is an <i>empty template</i>, but <b>“BWM Marketing Plan — The 18-Month Window v1.0”</b> is explicitly that session’s ratified output and covers it.</li>
+    </ul>
+    <p class="small muted" style="margin-top:10px">To close the gap: open each in Drive → Ask Gemini → request a full transcript, then hand me the text. Recommend doing this for <b>D2S CRM Plan</b> at minimum.</p>
+  </section>
+
+  <nav class="controls" aria-label="Filter clients">
+    <span class="lbl">Show</span>
+    <button class="filter" data-f="all" aria-pressed="true">All</button>
+    <button class="filter" data-f="active" aria-pressed="false">Active</button>
+    <button class="filter" data-f="paused" aria-pressed="false">Paused</button>
+    <button class="filter" data-f="pipeline" aria-pressed="false">Pipeline</button>
+    <button class="filter" data-f="closed" aria-pressed="false">Closed</button>
+    <span class="spacer"></span>
+    <button class="filter" id="expandAll" aria-pressed="false">Expand all</button>
+  </nav>
+
+  <!-- ===================== ACTIVE ===================== -->
+  <div class="group" data-g="active">
+    <div class="ghead">Active — work in flight</div>
+    <div class="cards">
+
+      <details class="card" data-h="crit" data-g="active" open>
+        <summary>
+          <div class="row1">
+            <span class="cname">Townsend Realty Group</span><span class="who">Tom Townsend</span>
+            <span class="spacer"></span>
+            <span class="pill crit">At risk</span><span class="pill count">14 open</span><span class="chev">▾</span>
+          </div>
+          <div class="row2">
+            <span><span class="kv">Stage</span><b>90-day proof period</b></span>
+            <span><span class="kv">Value</span><b>$5,999/mo</b></span>
+            <span><span class="kv">Next</span><b>Working session Tue 08/11, 9:00 AM</b></span>
+          </div>
+        </summary>
+        <div class="body">
+          <div class="note"><b>Tom opened 08/05 saying he was considering ending the partnership</b> — appreciates the website and CRM, sees no ROI. He needs ~1.5 deals/mo (18 transactions/yr) to justify the spend. Agreed baseline: <b>3 qualified calls per month</b>. Robert reported Tom retained on 08/03. If results don’t improve, Tom walks free and keeps all assets and code.</div>
+          <div class="tblwrap"><table>
+            <thead><tr><th>ID</th><th>Item</th><th>Owner</th><th>Source</th></tr></thead>
+            <tbody>
+              <tr><td class="id">T-1</td><td class="task"><b>Working session — Tue 08/11, 9:00 AM, 90 min</b> — ops, data connectivity, content<span class="flag">imminent</span></td><td class="own">Robert</td><td class="src">08/05 52:43</td></tr>
+              <tr><td class="id">T-2</td><td class="task">Connect website phone system → CRM for attribution — 52 calls tracked, origin unverifiable</td><td class="own">Robert · Henry</td><td class="src">08/05 29:55</td></tr>
+              <tr><td class="id">T-3</td><td class="task">Integrate Bob ↔ KW Command CRM</td><td class="own">Robert · Henry</td><td class="src">08/05</td></tr>
+              <tr><td class="id">T-4</td><td class="task">Stand up Command Center login — data, approval requests, performance</td><td class="own">Robert</td><td class="src">08/05 27:03</td></tr>
+              <tr><td class="id">T-5</td><td class="task">Segment and nurture the existing CRM database</td><td class="own">Group</td><td class="src">08/05</td></tr>
+              <tr><td class="id">T-6</td><td class="task">Implement spam-call filtering to isolate real leads</td><td class="own">Group</td><td class="src">08/05</td></tr>
+              <tr><td class="id">T-7</td><td class="task">Email the 90-day content document</td><td class="own">Henry</td><td class="src">08/05</td></tr>
+              <tr><td class="id">T-8</td><td class="task"><b>Unarchive the Slack channel</b> — archived without Tom’s intent; he sends listings there</td><td class="own">Robert</td><td class="src">08/05 55:16</td></tr>
+              <tr><td class="id">T-9</td><td class="task">Record 30–45 min of video from supplied scripts</td><td class="own">Tom</td><td class="src">08/05 49:40</td></tr>
+              <tr><td class="id">T-10</td><td class="task">Ship content calendar 08/10 → 09/06 — 50/50 AI + Tom’s recordings</td><td class="own">Henry</td><td class="src">08/07 35:49</td></tr>
+              <tr><td class="id">T-11</td><td class="task">Weekend + Monday build block for Tom</td><td class="own">Robert</td><td class="src">08/07 36:11</td></tr>
+              <tr><td class="id">T-12</td><td class="task">Train Rox on graphic design — frees Henry for AI video</td><td class="own">Henry</td><td class="src">07/30 58:35</td></tr>
+              <tr><td class="id">T-13</td><td class="task">Hicksfield budget for AI video testing — gated on Henry guaranteeing 2 videos/wk</td><td class="own">Robert</td><td class="src">07/30 1:02:22</td></tr>
+              <tr><td class="id">T-14</td><td class="task">Redesign homepage + build local pages — Woodstock/Marietta impressions +73.5%, weak CTR</td><td class="own">Robert</td><td class="src">07/30 39:56</td></tr>
+            </tbody>
+          </table></div>
+          <h3 style="margin-top:16px">Decisions locked</h3>
+          <ul class="tight small">
+            <li><b>Bi-weekly cadence</b>, not weekly — prep was costing a full workday per meeting.</li>
+            <li><b>Keep KW Command. Do not rebuild the CRM</b> — optimize and personalize instead.</li>
+            <li>Pivot from transactional lead-gen to <b>referral / sphere-based</b> marketing.</li>
+            <li>Lead with Tom’s <b>certified general appraiser</b> credential — underused differentiator.</li>
+            <li>Reactivate Slack.</li>
+          </ul>
+        </div>
+      </details>
+
+      <details class="card" data-h="ok" data-g="active">
+        <summary>
+          <div class="row1">
+            <span class="cname">Design2Sell</span><span class="who">Barbara · Emiliya · Rodel</span>
+            <span class="spacer"></span>
+            <span class="pill ok">Healthy</span><span class="pill count">16 open</span><span class="chev">▾</span>
+          </div>
+          <div class="row2">
+            <span><span class="kv">Stage</span><b>Active delivery + CRM build</b></span>
+            <span><span class="kv">July leads</span><b>18 qualified</b> (30 raw)</span>
+            <span><span class="kv">GBP</span><b>+42% views</b></span>
+          </div>
+        </summary>
+        <div class="body">
+          <div class="note">Stretch goal raised to <b>40 leads</b>. GBP views 555 → 787; 60 site visits, 10 calls, 57 direction requests. Paid search held at $32.89/day after killing $43.89 of job-seeker waste. 20 pages updated for local SEO; keyword cannibalization resolved.</div>
+          <div class="tblwrap"><table>
+            <thead><tr><th>ID</th><th>Item</th><th>Owner</th><th>Source</th></tr></thead>
+            <tbody>
+              <tr><td class="id">D-1</td><td class="task"><b>Hidden HTML landing page from the 80 MB interior-design PDF</b> — mirror the PDF aesthetics, add download link, keep unindexed</td><td class="own">Henry</td><td class="src">08/06 00:20</td></tr>
+              <tr><td class="id">D-2</td><td class="task">Share the finished page link with Emiliya</td><td class="own">Henry</td><td class="src">08/06</td></tr>
+              <tr><td class="id">D-3</td><td class="task">Build the CRM and map project requirements</td><td class="own">Robert · Rodel</td><td class="src">08/06</td></tr>
+              <tr><td class="id">D-4</td><td class="task">Send three-pronged interior-design approach email for approval</td><td class="own">Robert</td><td class="src">08/06</td></tr>
+              <tr><td class="id">D-5</td><td class="task">Deliver the full interior-design program map</td><td class="own">Robert</td><td class="src">08/06 28:17</td></tr>
+              <tr><td class="id">D-6</td><td class="task"><b>Deliver homebuilders program map — due Tuesday</b><span class="flag">due</span></td><td class="own">Robert</td><td class="src">08/06</td></tr>
+              <tr><td class="id">D-7</td><td class="task">Distribute updated SEO strategy — promised “no later than tomorrow” on 08/06<span class="flag late">overdue</span></td><td class="own">Robert</td><td class="src">08/06 25:21</td></tr>
+              <tr><td class="id">D-8</td><td class="task">Add comment field to the lead monitor so Rodel can teach Bob why leads fail</td><td class="own">Robert · Rodel</td><td class="src">08/06 04:58</td></tr>
+              <tr><td class="id">D-9</td><td class="task">Audit July + August lead list — confirm everyone is in the automatic nurture sequence</td><td class="own">Robert</td><td class="src">08/06 10:48</td></tr>
+              <tr><td class="id">D-10</td><td class="task">Finalize phone ↔ CRM integration — website phone clicks rose 7 → 15 WoW</td><td class="own">Robert · Rodel</td><td class="src">08/06 26:20</td></tr>
+              <tr><td class="id">D-11</td><td class="task">Build second ad-tracking layer to close the Google data loop</td><td class="own">Robert</td><td class="src">08/06</td></tr>
+              <tr><td class="id">D-12</td><td class="task">Yelp review campaign — Amelia’s ask, driven by the ChatGPT/Yelp connection</td><td class="own">Henry</td><td class="src">08/07 38:31</td></tr>
+              <tr><td class="id">D-13</td><td class="task">PDF → website conversion with downloadable component</td><td class="own">Henry</td><td class="src">08/07 38:31</td></tr>
+              <tr><td class="id">D-14</td><td class="task">Ingest “rising star” realtor partnership strategy into Bob</td><td class="own">Robert</td><td class="src">08/06 31:46</td></tr>
+              <tr><td class="id">D-15</td><td class="task">Schedule the cybersecurity posture meeting</td><td class="own">Group</td><td class="src">08/06 15:15</td></tr>
+              <tr><td class="id">D-16</td><td class="task">Email Robert the realtor contact name from the July outreach</td><td class="own">Rodel</td><td class="src">08/06</td></tr>
+            </tbody>
+          </table></div>
+        </div>
+      </details>
+
+      <details class="card" data-h="ok" data-g="active">
+        <summary>
+          <div class="row1">
+            <span class="cname">RutherfordMade</span><span class="who">Scott Rutherford</span>
+            <span class="spacer"></span>
+            <span class="pill ok">Expanding</span><span class="pill count">12 open</span><span class="chev">▾</span>
+          </div>
+          <div class="row2">
+            <span><span class="kv">Stage</span><b>60-day pilot, approved 08/04</b></span>
+            <span><span class="kv">Pricing</span><b>$15K + $7K/mo</b></span>
+            <span><span class="kv">Next</span><b>Follow-up Tue 08/18</b></span>
+          </div>
+        </summary>
+        <div class="body">
+          <div class="note"><b>$2.43 M in pipeline</b> from 18 inbound since June, after filtering. Bottlenecks Scott named: design time (2 hrs minimum per design) and municipal permitting across Atlanta, Fulton, Roswell and Milton. Migrated off GoHighLevel.</div>
+          <div class="tblwrap"><table>
+            <thead><tr><th>ID</th><th>Item</th><th>Owner</th><th>Source</th></tr></thead>
+            <tbody>
+              <tr><td class="id">R-1</td><td class="task"><b>Build custom CRM — three design versions</b> for Scott to mix and match</td><td class="own">Robert</td><td class="src">08/04 42:54</td></tr>
+              <tr><td class="id">R-2</td><td class="task">Build Command Center — one-click access to reports, CRM data, metrics</td><td class="own">Robert</td><td class="src">08/04 49:26</td></tr>
+              <tr><td class="id">R-3</td><td class="task">Move phone onto Bob-managed system — fix “spam risk” flagging; Scott avoids unknown numbers and is missing business</td><td class="own">Robert</td><td class="src">08/04 24:01</td></tr>
+              <tr><td class="id">R-4</td><td class="task">Improve email notification naming so real inquiries stand out</td><td class="own">Robert</td><td class="src">08/04</td></tr>
+              <tr><td class="id">R-5</td><td class="task">Review all historical leads together; verify qualification status</td><td class="own">Group</td><td class="src">08/04</td></tr>
+              <tr><td class="id">R-6</td><td class="task">Website performance analysis — branded terms, local rank, CTR, conversion; report wins and failures</td><td class="own">Robert</td><td class="src">08/04</td></tr>
+              <tr><td class="id">R-7</td><td class="task">SEO/AEO — backlinks, content refinement, GBP optimization for AI-agent visibility</td><td class="own">Robert</td><td class="src">08/04 47:01</td></tr>
+              <tr><td class="id">R-8</td><td class="task">“Triangulation” design assist — learn Scott’s aesthetic, connect to Structure Studios</td><td class="own">Robert</td><td class="src">08/04 37:31</td></tr>
+              <tr><td class="id">R-9</td><td class="task">SEO/AEO updates + CRM for lead visibility (carried into 08/07 leadership)</td><td class="own">Robert</td><td class="src">08/07 07:15</td></tr>
+              <tr><td class="id">R-10</td><td class="task">Intro Scott to Katherine Marshall → Buckhead Club</td><td class="own">Robert</td><td class="src">08/04 54:05</td></tr>
+              <tr><td class="id">R-11</td><td class="task">Find and engage a permitting expediter</td><td class="own">Scott</td><td class="src">08/04 36:15</td></tr>
+              <tr><td class="id">R-12</td><td class="task"><b>Follow-up meeting — Tue 08/18</b></td><td class="own">Robert · Scott</td><td class="src">08/04 57:47</td></tr>
+            </tbody>
+          </table></div>
+          <h3 style="margin-top:16px">Decisions locked</h3>
+          <ul class="tight small">
+            <li>Bi-weekly cadence · AI priority = <b>design process first</b> · start on legacy CRM process and iterate · <b>60-day</b> implementation timeline.</li>
+          </ul>
+        </div>
+      </details>
+
+      <details class="card" data-h="ok" data-g="active">
+        <summary>
+          <div class="row1">
+            <span class="cname">ASAP Pest &amp; Wildlife</span><span class="who">Nehemiah</span>
+            <span class="spacer"></span>
+            <span class="pill ok">Very happy</span><span class="pill count">6 open</span><span class="chev">▾</span>
+          </div>
+          <div class="row2">
+            <span><span class="kv">Stage</span><b>Active + expanding</b></span>
+            <span><span class="kv">Next</span><b>Onsite Wed 9:00–11:00 AM</b></span>
+          </div>
+        </summary>
+        <div class="body">
+          <div class="note">Nehemiah complimented the build on 08/07. His business partner <b>James</b> — Georgia design school, “very picky” — is being brought in for design review, and Robert accepted.</div>
+          <div class="tblwrap"><table>
+            <thead><tr><th>ID</th><th>Item</th><th>Owner</th><th>Source</th></tr></thead>
+            <tbody>
+              <tr><td class="id">A-1</td><td class="task"><b>Onsite meeting — Wednesday 9:00–11:00 AM</b></td><td class="own">Robert</td><td class="src">08/07 30:55</td></tr>
+              <tr><td class="id">A-2</td><td class="task">Stop the weekly Monday website report — replace with live CRM data</td><td class="own">Allaine</td><td class="src">08/07 11:56</td></tr>
+              <tr><td class="id">A-3</td><td class="task">Review-gate landing page — ≤4★ routes to comment form and notifies; 5★ redirects to Google</td><td class="own">Robert</td><td class="src">08/07 09:47</td></tr>
+              <tr><td class="id">A-4</td><td class="task">Command center showing website performance without Google Analytics</td><td class="own">Robert</td><td class="src">08/07 10:59</td></tr>
+              <tr><td class="id">A-5</td><td class="task">Keep Slack — Nehemiah: “let’s hold on to it just in case”</td><td class="own">Robert</td><td class="src">08/07 11:56</td></tr>
+              <tr><td class="id">A-6</td><td class="task">Onboard James for design review</td><td class="own">Robert</td><td class="src">08/07 10:59</td></tr>
+            </tbody>
+          </table></div>
+          <div class="note" style="--bar:var(--warn)"><b>Note on the 08/06 09:00 ASAP/BWM meeting:</b> it produced nothing. Gemini returned “a summary wasn’t produced… there wasn’t enough conversation in a supported language,” and the entire transcript is one line — <i>“Look, nothing happened.”</i> Ended at 6:50. Nothing to extract.</div>
+        </div>
+      </details>
+
+      <details class="card" data-h="ok" data-g="active">
+        <summary>
+          <div class="row1">
+            <span class="cname">Cronos Contractors</span><span class="who">Mauricio Guzman</span>
+            <span class="spacer"></span>
+            <span class="pill ok">Closing</span><span class="pill count">5 open</span><span class="chev">▾</span>
+          </div>
+          <div class="row2">
+            <span><span class="kv">Stage</span><b>Invoiced · build starting</b></span>
+            <span><span class="kv">Target</span><b>Ascend Pilot $15K</b></span>
+            <span><span class="kv">Next</span><b>Onsite Wed, after ASAP</b></span>
+          </div>
+        </summary>
+        <div class="body">
+          <div class="note">~$8 M commercial concrete + masonry, Norcross GA. Introduced by <b>Daniel Perdomo</b> (5 Points Electrical, GHCA VP — he and Mauricio serve on the GHCA board together). 90-day engagement; <b>internal target is day 45 — never quote 45 to the client.</b></div>
+          <div class="tblwrap"><table>
+            <thead><tr><th>ID</th><th>Item</th><th>Owner</th><th>Source</th></tr></thead>
+            <tbody>
+              <tr><td class="id">C-1</td><td class="task"><b>Onsite working session Wednesday</b> — drive out after ASAP and start building</td><td class="own">Robert</td><td class="src">08/07 30:55</td></tr>
+              <tr><td class="id">C-2</td><td class="task">Invoice sent — payment inbound; bonus for Henry and Allaine</td><td class="own">Robert</td><td class="src">08/07 04:37</td></tr>
+              <tr><td class="id">C-3</td><td class="task">Decide pricing model for the masonry expansion, then multi-company scaling — flat, discount + monthly, or per-deal</td><td class="own">Robert</td><td class="src">08/07 32:03</td></tr>
+              <tr><td class="id">C-4</td><td class="task">Capture the §7 discovery list — mix, crew count, how work arrives, phone answering, estimate follow-up, review count, vendor spend, winter utilization</td><td class="own">Robert</td><td class="src">Brain</td></tr>
+              <tr><td class="id">C-5</td><td class="task">Add Mauricio as a CRM contact — presence unverified as of 07/20</td><td class="own">Robert</td><td class="src">Brain</td></tr>
+            </tbody>
+          </table></div>
+          <h3 style="margin-top:16px">Gaps to exploit (research 07/20)</h3>
+          <ul class="tight small">
+            <li>Marquee credibility — Georgia Tech Kendeda Building, Ponce City Market, Krog Street Market, Chase branches — against a <b>near-zero digital footprint</b>.</li>
+            <li><b>0 reviews on every platform checked</b> · NAP drift (3 addresses, 3 phones) · no case studies · no license/bond/cert badges.</li>
+            <li>4 estimators on staff but no visible bid-follow-up system · orphaned staging subdomain with a TLS error · staff cell numbers exposed on the team page.</li>
+            <li><b>Stealth — their IP.</b> No public case study until their big push; unrecognizable generality only.</li>
+          </ul>
+        </div>
+      </details>
+
+      <details class="card" data-h="ok" data-g="active">
+        <summary>
+          <div class="row1">
+            <span class="cname">BWM Internal</span><span class="who">Robert · Henry · Allaine</span>
+            <span class="spacer"></span>
+            <span class="pill ok">Heavy build</span><span class="pill count">13 open</span><span class="chev">▾</span>
+          </div>
+          <div class="row2">
+            <span><span class="kv">Stage</span><b>Platform + security</b></span>
+            <span><span class="kv">Watch</span><b>AI spend ≈ $90K/mo unsubsidized</b></span>
+          </div>
+        </summary>
+        <div class="body">
+          <div class="tblwrap"><table>
+            <thead><tr><th>ID</th><th>Item</th><th>Owner</th><th>Source</th></tr></thead>
+            <tbody>
+              <tr><td class="id">B-1</td><td class="task"><b>Internal PM/CRM app — mid-build</b> — project stages, comms tracking, workflow visibility</td><td class="own">Robert</td><td class="src">08/07 05:58</td></tr>
+              <tr><td class="id">B-2</td><td class="task">Model testing harness — route tasks to the cheapest capable model</td><td class="own">Robert</td><td class="src">08/07 19:01</td></tr>
+              <tr><td class="id">B-3</td><td class="task">Provision Claude account for Henry + secure his machine to connect to Bob</td><td class="own">Robert</td><td class="src">08/07 37:17</td></tr>
+              <tr><td class="id">B-4</td><td class="task">Bob beta — dedicated phone number, per-number registration, agreement + login code. First tester onboarded</td><td class="own">Robert</td><td class="src">08/07 14:15</td></tr>
+              <tr><td class="id">B-5</td><td class="task">Legal automation live — MNDA / Pilot / Ascend agreements via API, branded, auto-ingested to client record</td><td class="own">Robert</td><td class="src">08/07 04:37</td></tr>
+              <tr><td class="id">B-6</td><td class="task">Scope the file Allaine sent in Slack #leadership</td><td class="own">Robert</td><td class="src">08/07 01:57</td></tr>
+              <tr><td class="id">B-7</td><td class="task">Migrate all credentials out of 1Password into the internal vault</td><td class="own">Robert</td><td class="src">08/03 59:15</td></tr>
+              <tr><td class="id">B-8</td><td class="task">Re-harden home network and devices</td><td class="own">Robert</td><td class="src">08/03</td></tr>
+              <tr><td class="id">B-9</td><td class="task">Trim SOPs — audit found 85–95% were project-specific</td><td class="own">Robert</td><td class="src">08/03 55:36</td></tr>
+              <tr><td class="id">B-10</td><td class="task">Refine the non-technical description of “the harness” — memory, verification, orchestration, governance</td><td class="own">Robert</td><td class="src">08/03 50:49</td></tr>
+              <tr><td class="id">B-11</td><td class="task">Finish the Social Publisher Engine — Henry approves → auto-publishes to GBP + Meta</td><td class="own">Bob · Henry</td><td class="src">Mktg plan</td></tr>
+              <tr><td class="id">B-12</td><td class="task">Revenue Leak Map v2 — flip who does the work: they give 4 fields, we pull GBP/site/local-search/competitor deltas and return a real leak map + PDF</td><td class="own">Claude · Robert</td><td class="src">Mktg plan</td></tr>
+              <tr><td class="id">B-13</td><td class="task">Verify 008 Concrete (~44–48 leads) and D2S (130%+ MoM) against the claim ledger before any public use</td><td class="own">Claude · Bob</td><td class="src">Mktg plan</td></tr>
+            </tbody>
+          </table></div>
+          <h3 style="margin-top:16px">Decisions locked</h3>
+          <ul class="tight small">
+            <li><b>Slack restricted to legacy clients</b> (Tom, Scott, Nehemiah). Email for all new clients.</li>
+            <li><b>Bob replaces Wes</b> as the primary AI operating system; Sarah retained for email.</li>
+            <li>Marketing packages are <b>no longer a default offering</b> — sold only on request.</li>
+            <li>Graphic design moves to <b>Rox</b>.</li>
+            <li><b>Paid ads stay PAUSED</b> until landing pages are rebuilt, keywords re-cut, and one real end-to-end submit proves the lead path. Campaign confirmed paused 07/31, $20/day staged.</li>
+          </ul>
+        </div>
+      </details>
+
+    </div>
+  </div>
+
+  <!-- ===================== PAUSED ===================== -->
+  <div class="group" data-g="paused">
+    <div class="ghead">Paused — waiting on the client</div>
+    <div class="cards">
+
+      <details class="card" data-h="hold" data-g="paused">
+        <summary>
+          <div class="row1">
+            <span class="cname">Ursula Lentine</span><span class="who">“Healing With Ursula” → Root Cause Leadership Advisor</span>
+            <span class="spacer"></span><span class="pill hold">Paused</span><span class="chev">▾</span>
+          </div>
+          <div class="row2"><span><span class="kv">Waiting on</span><b>Her</b></span><span><span class="kv">Terms</span><b>Free client</b></span></div>
+        </summary>
+        <div class="body">
+          <div class="note">Robert reached out about her website; she’s paused. Build exists and is ready to resume on her word.</div>
+          <ul class="tight small">
+            <li>Site build lives in worktree <code>~/bwm-campaigns-ursula</code>, branch <code>feat/ursula-lentine-site</code>. Plan page already built and live.</li>
+            <li><b>Lisa McGuire’s copy deck is authoritative and repositions her</b> — “Dr. Ursula Lentine, Root Cause Leadership Advisor” for senior leaders, executives, and women in transition.</li>
+            <li>Design lock: <b>deep navy + gold authority, refined serif + clean sans, executive portraiture — explicitly NOT wellness, pastel, spiritual or mystical.</b> The old “Healing With Ursula” framing is her prior brand; don’t lead with it.</li>
+            <li>Build priority: home → about → media.</li>
+            <li><b>Not to be confused with Ursula &amp; Associates</b> — two unrelated clients. “Ursula” as a person always means Lentine.</li>
+          </ul>
+        </div>
+      </details>
+
+      <details class="card" data-h="hold" data-g="paused">
+        <summary>
+          <div class="row1">
+            <span class="cname">Greta Jaeger</span><span class="who">Break Through Now · therapist</span>
+            <span class="spacer"></span><span class="pill hold">Paused</span><span class="pill ok">Site live</span><span class="chev">▾</span>
+          </div>
+          <div class="row2"><span><span class="kv">Waiting on</span><b>Her SMS 2FA code</b></span><span><span class="kv">Blocker</span><b>Domain transfer to Cloudflare</b></span></div>
+        </summary>
+        <div class="body">
+          <div class="note">She asked us to move her domains; we’re waiting on her. Site itself is <b>live and verified</b> — 11 pages returning 200 on apex + www, mail proven, TLS valid.</div>
+          <ul class="tight small">
+            <li>BWM is now <b>Account Administrative Contact on NetSol account 125493076</b> — we have our own login, no dependency on her password. <b>11 domains</b> visible under it.</li>
+            <li><code>gretajaeger.com</code> is <b>unlocked and transfer-ready.</b> Need the EPP/auth code → paste into Cloudflare (~$11, zero downtime since the zone is already on CF).</li>
+            <li>⚠️ Lock-off widens the hijack window until the transfer lands — <b>finish soon.</b></li>
+            <li>Then retire the RedWagon/FatCow hosting she still pays ~$30/mo for — <b>check her Google Workspace isn’t reseller-billed through them first.</b></li>
+            <li><b>Scope decision needed:</b> move <code>gretajaeger.com</code> only, or consolidate all 11? Recommend the live site now, batch the rest after.</li>
+            <li>Site is intentionally <b>phone-only / privacy-first with no contact form</b> — healthcare PII caution. Don’t “fix” this.</li>
+          </ul>
+        </div>
+      </details>
+
+      <details class="card" data-h="hold" data-g="paused">
+        <summary>
+          <div class="row1">
+            <span class="cname">Ursula &amp; Associates</span><span class="who">Jason Wilson · U.A. Wilson Realty</span>
+            <span class="spacer"></span><span class="pill hold">Paused</span><span class="pill warn">Scope blocked</span><span class="chev">▾</span>
+          </div>
+          <div class="row2"><span><span class="kv">Waiting on</span><b>Jason to set an appointment</b></span><span><span class="kv">Terms</span><b>$99/mo legacy friend rate</b></span></div>
+        </summary>
+        <div class="body">
+          <div class="note">Jason texted Robert on 08/07 — <i>“I really like what you guys are doing over there, I’m super impressed. I know I’m only paying 99 bucks, but what can I get?”</i> He wants a <b>website refresh</b> and is looking at <b>Meta ads</b>. Now waiting on him to book.</div>
+          <h3>Brand Proof already delivered</h3>
+          <ul class="tight small">
+            <li>Brivity audit of <b>15,294 unique contacts</b>: 51% of the database never touched; 8,583 of 13,468 active contacts dark ≥12 months or never; 374 of 982 past clients dark.</li>
+            <li>Found-money in the dark pool: <b>$210K conservative / $1.05M moderate / $2.5M aggressive</b> gross listing commission per year.</li>
+            <li>Bob intro email sent to jason@ and erin@ on 07/17 — asks either “turn it on” or “show me”.</li>
+          </ul>
+          <h3 style="margin-top:14px">Blockers</h3>
+          <ul class="tight small">
+            <li><b>Entity-scope question is load-bearing and unanswered:</b> one public brand or two — U&amp;A, or also Inspire Realty Group? Build can’t lock scope until Jason answers.</li>
+            <li><code>bwm-ursula.pages.dev</code> needs a brand pass before it’s shown again — Robert: <i>“so off brand.”</i></li>
+            <li>The <code>ursula-and-associates</code> Pages project 404s; the working project is <code>bwm-ursula</code>. Fix or retire the broken one before any cutover.</li>
+            <li>Backend CRM is <b>Brivity</b>, not GHL — forms POST to Brivity. Never name vendors in client-visible copy.</li>
+          </ul>
+        </div>
+      </details>
+
+      <details class="card" data-h="crit" data-g="paused">
+        <summary>
+          <div class="row1">
+            <span class="cname">Patti Moynihan</span><span class="who">Therapist · Mount Pleasant SC · Cathryn referral</span>
+            <span class="spacer"></span><span class="pill crit">Overdue</span><span class="pill hold">Paused</span><span class="chev">▾</span>
+          </div>
+          <div class="row2"><span><span class="kv">Was due</span><b>LIVE by 07/31</b></span><span><span class="kv">Design</span><b>Version C approved 07/23</b></span></div>
+        </summary>
+        <div class="body">
+          <div class="note"><b>The launch blockers are not copy.</b> Design is settled — she picked Version C (“Madly in LOVE”), her edits were applied and deployed 07/27 (v9). Five things stand between this and going live.</div>
+          <ul class="tight small">
+            <li><b>The contact form is a dead stub</b> — <code>action="#"</code> plus preventDefault, and there is <b>no phone, email, or booking link anywhere</b> on /contact/. The site currently has zero ways to reach her. Needs bwm-form-handler wiring.</li>
+            <li>Every page is still <code>noindex</code> — both the <code>_headers</code> layer and the per-page meta tag.</li>
+            <li>No favicon (404).</li>
+            <li>SC LLR licence #8188 verification still open.</li>
+            <li>Office address still unknown — asked for in the 07/27 draft.</li>
+          </ul>
+          <div class="note" style="--bar:var(--crit)"><b>Also:</b> the 07/27 reply draft is written but <b>not sent</b> — it’s awaiting your explicit “send.” She has <b>4 unanswered emails since 07/24</b>. Domain <code>pattimoynihan.com</code> is registered at Cloudflare with an active zone but <b>zero DNS records</b> (deliberate — not pointed until she approves).</div>
+        </div>
+      </details>
+
+      <details class="card" data-h="warn" data-g="paused">
+        <summary>
+          <div class="row1">
+            <span class="cname">Adie McCalmon</span><span class="who">Author, <i>The Game of Change</i></span>
+            <span class="spacer"></span><span class="pill ok">Approved</span><span class="pill warn">Blocked on access</span><span class="chev">▾</span>
+          </div>
+          <div class="row2"><span><span class="kv">Waiting on</span><b>GoDaddy delegate access or a screen-share</b></span></div>
+        </summary>
+        <div class="body">
+          <div class="note"><b>The light build was approved 07/27.</b> Canonical is branch <code>codex/adie-custom-site</code>, CF Pages alias <code>custom</code> — <b>not</b> master, which still holds the retired dark build. <b>Nothing else blocks cutover.</b></div>
+          <ul class="tight small">
+            <li><code>adiemccalmon.com</code> sits at GoDaddy pointing at Wix. That’s the only obstacle.</li>
+            <li>At cutover: drop <code>noindex</code> from <b>both</b> <code>_headers</code> and the per-page meta · attach domain to Pages · verify the 4 Wix 301s · QA + Pre-Ship against the real domain · GSC verify + sitemap · keep Wix parked 30 days as rollback · confirm barter terms in writing (Google review + referrals + case-study rights).</li>
+            <li>Forms now POST for real to bwm-form-handler, routing to her Hotmail with a cc SLA mirror.</li>
+          </ul>
+        </div>
+      </details>
+
+      <details class="card" data-h="hold" data-g="paused">
+        <summary>
+          <div class="row1">
+            <span class="cname">Hope Sky</span><span class="who">Miriam · healthcare</span>
+            <span class="spacer"></span><span class="pill hold">Paused</span><span class="pill done">Stealth</span><span class="chev">▾</span>
+          </div>
+          <div class="row2"><span><span class="kv">Waiting on</span><b>Her — she’s at a conference</b></span></div>
+        </summary>
+        <div class="body">
+          <div class="note">Robert is deliberately holding off so as not to seem too eager. <b>Follow up next week if no word by the weekend</b>, then try to close.</div>
+          <ul class="tight small">
+            <li>Recent website work strengthened the relationship — the team used a colour palette she favours.</li>
+            <li>Story stays <b>veiled — no name, no sector-identifying detail until Miriam approves.</b></li>
+            <li>She sits at the cautious end of the buyer spectrum: “nervous but knows something must change.”</li>
+          </ul>
+        </div>
+      </details>
+
+    </div>
+  </div>
+
+  <!-- ===================== PIPELINE ===================== -->
+  <div class="group" data-g="pipeline">
+    <div class="ghead">Pipeline</div>
+    <div class="cards">
+      <details class="card" data-h="warn" data-g="pipeline">
+        <summary>
+          <div class="row1">
+            <span class="cname">ToDo Robotics</span><span class="who">Marianela</span>
+            <span class="spacer"></span><span class="pill warn">Proposal due</span><span class="chev">▾</span>
+          </div>
+          <div class="row2"><span><span class="kv">Next</span><b>Send the proposal</b></span></div>
+        </summary>
+        <div class="body">
+          <div class="note">Flagged on 08/07 as <i>“have to today.”</i> Design work quoted at <b>over $11,000</b> in the 08/03 discussion. First non-local-service flavour test on the RLM roster.</div>
+        </div>
+      </details>
+      <details class="card" data-h="warn" data-g="pipeline">
+        <summary>
+          <div class="row1">
+            <span class="cname">Liger Builders LLC</span><span class="who">Lesly Viciere · metro-Atlanta GC</span>
+            <span class="spacer"></span><span class="pill warn">New lead</span><span class="chev">▾</span>
+          </div>
+          <div class="row2"><span><span class="kv">Position</span><b>#1 on the RLM v2 hand-run roster</b></span></div>
+        </summary>
+        <div class="body">
+          <div class="note">Locked roster order: <b>Liger → ToDo Robotics → Cronos → Hope Sky → TRG → Design2Sell → ASAP</b>, then ~13 researched metro-Atlanta ICP targets for warm outreach — Buckhead Club ties, Robert’s real LinkedIn connections, the mastermind network, Cathryn’s network. Every outreach must be name-droppable. Sequence: existing 7 → lock the format → then targets.</div>
+          <div class="note" style="--bar:var(--rule)"><b>Also met, no action:</b> a construction company on 08/06 — <i>“He’s not a fit for us right now.”</i></div>
+        </div>
+      </details>
+    </div>
+  </div>
+
+  <!-- ===================== CLOSED ===================== -->
+  <div class="group" data-g="closed">
+    <div class="ghead">Closed</div>
+    <div class="cards">
+      <details class="card" data-h="done" data-g="closed">
+        <summary>
+          <div class="row1">
+            <span class="cname">Cabdiladiff Cabdi</span><span class="spacer"></span>
+            <span class="pill ok">Done</span><span class="chev">▾</span>
+          </div>
+          <div class="row2"><span><span class="kv">Per</span><b>Robert</b></span></div>
+        </summary>
+        <div class="body">
+          <div class="note">Complete. Niche Design Brief and video upload folder both in place. Same site-for-review barter as Bronkar, Greta, Ursula and Adie.</div>
+        </div>
+      </details>
+      <details class="card" data-h="done" data-g="closed">
+        <summary>
+          <div class="row1">
+            <span class="cname">008 Concrete</span><span class="who">Jake Bond</span><span class="spacer"></span>
+            <span class="pill done">Offboarded</span><span class="chev">▾</span>
+          </div>
+          <div class="row2"><span><span class="kv">Churned</span><b>2026-06-24</b></span><span><span class="kv">Cleanup</span><b>Complete 07/02</b></span></div>
+        </summary>
+        <div class="body">
+          <div class="note"><b>Do not re-flag.</b> Dropped from <code>v_paying_clients</code>, excluded from the connector audit, 11 leftover open tasks cancelled. Stripe subscription set to cancel at period end → cancelled ~07/12; last invoice paid; no renewal scheduled.</div>
+          <ul class="tight small">
+            <li><b>Two loose ends pending your go</b> (billing is your call): immediately cancel the now-dormant subscription as belt-and-suspenders, and void the stale <b>$750 draft invoice</b> from 2025-09-12 (drafts don’t auto-charge).</li>
+            <li>Their ~44–48 lead win is <b>still usable as a case study</b> — it pre-dates the Ascend intake system, so verify through the legacy comms_log / GHL export path before publishing the number.</li>
+          </ul>
+        </div>
+      </details>
+    </div>
+  </div>
+
+  <!-- ===================== BRONKAR ===================== -->
+  <section class="answer">
+    <div class="eyebrow" style="margin-bottom:8px">Direct answer to your question</div>
+    <p class="q">“Are we doing the one-one build, or are we completely cloning Bronkar’s existing website? Where’s that at?”</p>
+    <h2>Bronkar Lee — neither. It’s an MVP rebuild, and it’s stalled on him.</h2>
+    <p class="verdict">The old Wix site is <b>not</b> being cloned. It stays parked and untouched as a backup, with the old site forwarding to the new one to preserve SEO link juice.</p>
+    <ul class="tight">
+      <li><b>Scope:</b> MVP focused on <b>keynote speaking only</b>, targeting event planners. Book, coaching and digital programs come in later phases.</li>
+      <li><b>Design:</b> keeps his existing colour palette — chosen for trust and energy — with updated design options layered on top.</li>
+      <li><b>Infrastructure:</b> moving to a dedicated Cloudflare instance. His current site scores <b>664</b> on Google’s speed tool against the 95+ typical of BWM clients. AEO layer targeting 750+ data points.</li>
+      <li><b>Timeline:</b> ~3-day build for v1. Work starts within 24 hours of assets landing, 72-hour turnaround.</li>
+      <li><b>Goal:</b> 24 booked full-fee keynotes per year, <b>12 sourced or qualified through the site</b>, at roughly 50% conversion on qualified leads.</li>
+      <li><b>Lead routing:</b> keynote and program enquiries → his manager <b>Michelle</b>; coaching and consulting → Bronkar direct. Filter out juggling, lessons and instrument-sales enquiries.</li>
+      <li><b>Domain is owned by his wife, Cindy.</b></li>
+    </ul>
+    <div class="note" style="--bar:var(--crit);background:var(--surface)">
+      <b>Blocker — nothing has shipped because Bronkar owes us four things</b> from the 07/13 call, due “within the week” and now roughly four weeks late:
+      website assets (single email) · website login credentials · brand and background documentation for AI training · benchmarking examples from successful industry peers.
+      <br><br><b>Recommended next action:</b> one chase email listing exactly those four items. Build starts 24 hours after they land.
+    </div>
+  </section>
+
+  <!-- ===================== THEMES ===================== -->
+  <section class="panel" style="margin-top:34px">
+    <h2>Build these once, deploy many</h2>
+    <p class="small muted">Five commitments repeat across clients. If they get built per-client they’ll fork into parallel codebases.</p>
+    <ul class="tight small">
+      <li><b>Command Center</b> — committed to ASAP, TRG, RutherfordMade and Design2Sell, and described on 08/07 as “building that for all of the clients.” <b>Build once, template it.</b></li>
+      <li><b>CRM</b> — three different shapes requested: RutherfordMade custom-built with three design versions, Design2Sell built with Rodel, and TRG explicitly <b>not</b> rebuilt (keep KW Command). Don’t let these fork.</li>
+      <li><b>Phone → CRM attribution + spam filtering</b> — open on TRG, RutherfordMade and Design2Sell simultaneously. Same problem three times.</li>
+      <li><b>Bob phone-number channel</b> — alpha across D2S, RFM and TRG; gated on onboarding stability before beta.</li>
+      <li><b>GBP optimization + backlinks</b> — the pattern that saved Tom (27 referring domains, 52 backlinks) is the same play queued for RutherfordMade and Design2Sell.</li>
+    </ul>
+  </section>
+
+  <section class="panel">
+    <h2>Open questions for you</h2>
+    <ol class="tight small qs">
+      <li><b>D2S CRM Plan (08/06)</b> — want a transcript generated so I can extract it? It’s the only record of that session, and it’s the CRM architecture call.</li>
+      <li><b>TRG Wrap-up (08/05, 2.42 GB)</b> — did the 12:51 Strategic Planning session supersede it, or is there separate content in there?</li>
+      <li><b>Patti Moynihan</b> — the 07/27 reply draft is still unsent and she has 4 unanswered emails since 07/24. Send it?</li>
+      <li><b>Ursula &amp; Associates</b> — has Jason replied to the Brand Proof email from 07/17? That answer unblocks the whole build.</li>
+      <li><b>Greta</b> — move <code>gretajaeger.com</code> only, or consolidate all 11 domains?</li>
+      <li><b>008 Concrete</b> — go/no-go on immediately cancelling the dormant Stripe subscription and voiding the $750 draft invoice.</li>
+    </ol>
+  </section>
+
+  <footer>
+    <span>Buildwise Media</span><span>Client punch list · draft for review</span>
+    <span>7 transcripts · 8 project-state files · 5 verification passes</span><span>2026-08-08</span>
+  </footer>
+</div>
+
+<script>
+  (function(){
+    var btns = document.querySelectorAll('.filter[data-f]');
+    var groups = document.querySelectorAll('.group');
+    btns.forEach(function(b){
+      b.addEventListener('click', function(){
+        btns.forEach(function(x){ x.setAttribute('aria-pressed', String(x === b)); });
+        var f = b.dataset.f;
+        groups.forEach(function(g){
+          g.style.display = (f === 'all' || g.dataset.g === f) ? '' : 'none';
+        });
+      });
+    });
+    var ex = document.getElementById('expandAll');
+    ex.addEventListener('click', function(){
+      var open = ex.getAttribute('aria-pressed') !== 'true';
+      ex.setAttribute('aria-pressed', String(open));
+      ex.textContent = open ? 'Collapse all' : 'Expand all';
+      document.querySelectorAll('details.card').forEach(function(d){ d.open = open; });
+    });
+  })();
+</script>
