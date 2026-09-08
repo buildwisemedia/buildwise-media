@@ -1128,9 +1128,3 @@ body.font-subset { font-family: "Bob Inter", Arial, sans-serif; }
   .bob-hero .bob-body { margin-top: 1.25rem; }
   .bob-hero .bob-actions { margin-top: 1.5rem; }
 }
-
-/* Keep the first view light; later sections render as the visitor approaches. */
-.bob-page > .bob-section:not(:first-child) {
-  content-visibility: auto;
-  contain-intrinsic-size: auto 1000px;
-}
