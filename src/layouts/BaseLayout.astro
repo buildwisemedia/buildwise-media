@@ -18,6 +18,11 @@ interface Props {
   // preload scanner fires the fetch before body parsing discovers the <img>.
   // Pair with fetchpriority="high" on the <img> tag itself.
   preloadImage?: string;
+  preloadImageMedia?: string;
+  preloadImageSrcset?: string;
+  preloadImageSizes?: string;
+  // Optional subset of the same brand fonts for a bounded language surface.
+  fontAssets?: { sans: string; mono: string };
   // Paid-search pages use a focused shell: no global nav, booking CTA, phone,
   // or multi-column footer. Tracking and the canonical schema remain shared.
   focusedLandingPage?: boolean;
@@ -35,6 +40,10 @@ const {
   ogDescription,
   jsonLd,
   preloadImage,
+  preloadImageMedia,
+  preloadImageSrcset,
+  preloadImageSizes,
+  fontAssets,
   focusedLandingPage = false,
   privacySensitive = false,
 } = Astro.props;
@@ -125,8 +134,11 @@ const graph = [...siteSchemas, ...perPageSchemas];
         rel="preload"
         as="image"
         href={preloadImage}
+        media={preloadImageMedia}
+        imagesrcset={preloadImageSrcset}
+        imagesizes={preloadImageSizes}
         fetchpriority="high"
-        type={preloadImage.endsWith('.webp') ? 'image/webp' : undefined}
+        type={preloadImage.endsWith('.avif') ? 'image/avif' : preloadImage.endsWith('.webp') ? 'image/webp' : undefined}
       />
     )}
 
@@ -136,8 +148,9 @@ const graph = [...siteSchemas, ...perPageSchemas];
          before first paint and the hero doesn't FOUT. crossorigin is REQUIRED:
          fonts are fetched in CORS mode, so an anonymous preload would be wasted
          and re-fetched. @font-face declarations live in global.css (inlined). -->
-    <link rel="preload" as="font" type="font/woff2" href="/fonts/inter-variable-v1.woff2" crossorigin />
-    <link rel="preload" as="font" type="font/woff2" href="/fonts/jetbrains-mono-variable-v1.woff2" crossorigin />
+    <link rel="preload" as="font" type="font/woff2" href={fontAssets?.sans ?? '/fonts/inter-variable-v1.woff2'} crossorigin />
+    <link rel="preload" as="font" type="font/woff2" href={fontAssets?.mono ?? '/fonts/jetbrains-mono-variable-v1.woff2'} crossorigin />
+
 
     <!-- Theme + favicon (Triangulation V3 mark — locked 2026-04-30 against brand/BWM-Logo-System-Locked.md) -->
     <meta name="theme-color" content="#050507" />
@@ -499,7 +512,7 @@ const graph = [...siteSchemas, ...perPageSchemas];
     <JsonLdGraph graph={graph} />
   </head>
 
-  <body>
+  <body class={fontAssets ? 'font-subset' : undefined}>
     {!privacySensitive && <noscript>
       <iframe
         src={`https://www.googletagmanager.com/ns.html?id=${GTM}`}
