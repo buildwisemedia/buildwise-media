@@ -34,7 +34,7 @@ class NoRedirect(urllib.request.HTTPRedirectHandler):
 def send(note):
     req = urllib.request.Request(ENDPOINT, method='POST',
         data=json.dumps(note, ensure_ascii=False).encode('utf-8'),
-        headers={'Content-Type': 'application/json'})
+        headers={'Content-Type': 'application/json', 'User-Agent': 'BWM-Agent-Message-Cloud/1.0'})
     opener = urllib.request.build_opener(NoRedirect())
     with opener.open(req, timeout=35) as response:
         raw = response.read(8193)
