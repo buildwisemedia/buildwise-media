@@ -1,0 +1,93 @@
+---
+import BobLayout from '../layouts/BobLayout.astro';
+
+const title = 'Give AI One Real Job | Buildwise Media';
+const description = 'Find the Buildwise Media talk materials for Give AI One Real Job in Your Business.';
+---
+
+<BobLayout
+  title={title}
+  description={description}
+  canonical="https://buildwisemedia.com/talk/"
+  currentPath="/talk/"
+>
+  <article class="bob-page">
+    <section class="bob-section bob-event-hero" aria-labelledby="talk-title">
+      <div class="bob-shell bob-grid-two">
+        <div>
+          <p class="bob-kicker">Talk materials</p>
+          <h1 id="talk-title">Give AI one real job in your business.</h1>
+          <p class="bob-body">Use the worksheet, keep the talk notes and see the opening slide.</p>
+          <div class="bob-actions">
+            <a class="bob-button bob-button-primary" href="#materials" data-bob-cta="talk-materials" data-cta-source="talk-hero">Get the materials</a>
+            <a class="bob-text-link" href="/#fit" data-bob-cta="talk-fit">See If We’re a Fit</a>
+          </div>
+        </div>
+
+        <figure class="bob-event-portrait">
+          <!-- @r020:F1 emotion: Bob’s welcoming posture carries the talk into an easy next step with the saved materials -->
+          <picture>
+            <source type="image/avif" srcset="/assets/bob/bob-master-v1-550.avif 550w, /assets/bob/bob-master-v1-1100.avif 1100w" sizes="(max-width: 680px) 92vw, (max-width: 980px) 70vw, 36vw" />
+          <img
+            src="/assets/bob/bob-master-v1.webp"
+            srcset="/assets/bob/bob-master-v1-550.webp 550w, /assets/bob/bob-master-v1.webp 1100w"
+            sizes="(max-width: 680px) 92vw, (max-width: 980px) 70vw, 36vw"
+            alt="Bob, Buildwise Media’s water-bear character"
+            width="1100"
+            height="1100"
+            loading="lazy"
+            decoding="async"
+            fetchpriority="auto"
+          />
+          </picture>
+        </figure>
+      </div>
+    </section>
+
+    <section class="bob-section bob-section-dark" id="materials" aria-labelledby="materials-title">
+      <div class="bob-shell">
+        <div class="bob-section-head">
+          <div>
+            <p class="bob-kicker">Talk materials</p>
+            <h2 id="materials-title">Keep the useful parts close.</h2>
+          </div>
+          <p class="bob-body">Start with the worksheet. The notes hold the main ideas from the talk. The host sheet and opening slide are here too.</p>
+        </div>
+
+        <div class="bob-resource-grid">
+          <a class="bob-resource-link" href="/downloads/bob-one-real-job.pdf" data-bob-cta="talk-download-worksheet">
+            <span>PDF</span>
+            <strong>One Real Job worksheet</strong>
+          </a>
+          <a class="bob-resource-link" href="/downloads/bob-talk-notes.pdf" data-bob-cta="talk-download-notes">
+            <span>PDF</span>
+            <strong>Talk notes</strong>
+          </a>
+          <a class="bob-resource-link" href="/downloads/bob-host-sheet.pdf" data-bob-cta="talk-download-host-sheet">
+            <span>PDF</span>
+            <strong>Host sheet</strong>
+          </a>
+          <a class="bob-resource-link" href="/downloads/bob-talk.pptx" data-bob-cta="talk-download-opening-slide">
+            <span>PowerPoint</span>
+            <strong>Opening slide</strong>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <section class="bob-section bob-section-yellow" aria-labelledby="talk-next-title">
+      <div class="bob-shell bob-grid-two bob-grid-two-top">
+        <div>
+          <p class="bob-kicker">A clear next step</p>
+          <h2 id="talk-next-title">Tell us what keeps falling back on you.</h2>
+        </div>
+        <div>
+          <p class="bob-body">Tell us about your business and the problem you want to solve. Our team will read it and let you know if Bob could be a fit.</p>
+          <div class="bob-actions">
+            <a class="bob-button" href="/#fit" data-bob-cta="talk-bottom-fit">See If We’re a Fit</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </article>
+</BobLayout>

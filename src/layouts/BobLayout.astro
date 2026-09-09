@@ -1,0 +1,147 @@
+---
+import BaseLayout from './BaseLayout.astro';
+import '../styles/bob.css';
+import logoSource from '../../public/brand/lockup-horizontal.svg?raw';
+// Embed the existing small logo so first paint does not wait for another request.
+const logoDataUrl = 'data:image/svg+xml,' + encodeURIComponent(logoSource);
+
+interface Props {
+  title: string;
+  description: string;
+  canonical?: string;
+  currentPath?: string;
+  noindex?: boolean;
+  preloadImage?: string;
+}
+
+const {
+  title,
+  description,
+  canonical,
+  currentPath = Astro.url.pathname,
+  noindex = false,
+  preloadImage = '/assets/bob/bob-master-v1-1100.avif',
+} = Astro.props;
+
+const onHomepage = currentPath === '/';
+const sectionHref = (id: string) => onHomepage ? `#${id}` : `/#${id}`;
+const year = new Date().getFullYear();
+
+const navItems = [
+  { label: 'Meet Bob', id: 'meet' },
+  { label: 'See the work', id: 'work' },
+  { label: 'How Bob works', id: 'system' },
+  { label: 'Pilot', id: 'pilot' },
+  { label: 'Contact', id: 'fit' },
+];
+---
+
+<BaseLayout
+  title={title}
+  description={description}
+  canonical={canonical}
+  noindex={noindex}
+  preloadImage={preloadImage}
+  preloadImageMedia="(min-width: 981px)"
+  preloadImageSrcset="/assets/bob/bob-master-v1-550.avif 550w, /assets/bob/bob-master-v1-1100.avif 1100w"
+  preloadImageSizes={onHomepage ? '42vw' : '36vw'}
+  focusedLandingPage={true}
+  fontAssets={{ sans: '/assets/bob/inter-latin-v2.woff2', mono: '/assets/bob/mono-latin-v2.woff2' }}
+>
+  <div class="bob-site">
+    <a class="bob-skip-link" href="#bob-page-content">Skip to content</a>
+
+    <header class="bob-site-header">
+      <div class="bob-shell bob-header-inner">
+        <a
+          class="bob-brand"
+          href="/"
+          aria-label="Buildwise Media — home"
+          aria-current={onHomepage ? 'page' : undefined}
+        >
+          <!-- @r020:identity: established Buildwise Media logo at navigation scale -->
+          <img
+            src={logoDataUrl}
+            alt="Buildwise Media"
+            width="200"
+            height="50"
+            loading="eager"
+            decoding="async"
+          />
+        </a>
+
+        <nav class="bob-primary-nav" aria-label="Primary">
+          <ul>
+            {navItems.map((item) => (
+              <li><a href={sectionHref(item.id)}>{item.label}</a></li>
+            ))}
+          </ul>
+        </nav>
+
+        <a class="bob-header-cta" href={sectionHref('fit')} data-bob-cta="header" data-cta-source="bob-header">See If We’re a Fit</a>
+      </div>
+    </header>
+
+    <div id="bob-page-content">
+      <slot />
+    </div>
+
+    <footer class="bob-site-footer">
+      <div class="bob-shell bob-footer-top">
+        <a class="bob-footer-brand" href="/" aria-label="Buildwise Media — home">
+          <!-- @r020:identity: established Buildwise Media logo at footer scale -->
+          <img
+            src={logoDataUrl}
+            alt="Buildwise Media"
+            width="180"
+            height="45"
+            loading="lazy"
+            decoding="async"
+          />
+        </a>
+        <nav aria-label="Footer">
+          <a href="/privacy">Privacy</a>
+          <a href="/terms">Terms</a>
+          <a href="/contact">Contact</a>
+        </nav>
+      </div>
+      <div class="bob-shell bob-footer-bottom">
+        <p>© {year} Buildwise Media LLC · Atlanta, GA</p>
+        <p>By the Buildwise team + our AI orchestration system.</p>
+      </div>
+    </footer>
+  </div>
+
+  <script is:inline>
+    (function () {
+      var allowed = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content', 'utm_term', 'gclid', 'gbraid', 'wbraid', 'fbclid'];
+      var incoming = new URL(window.location.href);
+      document.querySelectorAll('a[href="/#fit"]').forEach(function (link) {
+        var next = new URL(link.href, window.location.origin);
+        allowed.forEach(function (key) {
+          var value = incoming.searchParams.get(key);
+          if (value) next.searchParams.set(key, value);
+        });
+        link.href = next.pathname + next.search + next.hash;
+      });
+    })();
+
+    document.addEventListener('click', function (event) {
+      var target = event.target;
+      if (!target || typeof target.closest !== 'function') return;
+      var link = target.closest('[data-bob-cta]');
+      if (!link) return;
+      var payload = {
+        cta_label: (link.textContent || '').trim(),
+        cta_source: link.getAttribute('data-bob-cta') || 'bob-page',
+        page_path: location.pathname,
+      };
+      if (typeof window.__bwmTrackEvent === 'function') {
+        window.__bwmTrackEvent('cta_click', payload);
+        return;
+      }
+      window.dataLayer = window.dataLayer || [];
+      window.dataLayer.push(Object.assign({ event: 'cta_click' }, payload));
+    });
+  </script>
+</BaseLayout>
