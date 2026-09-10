@@ -58,3 +58,8 @@ public/assets/print/business-card/iterations/
 _verification/**/*.png
 _verification/**/metrics.json
 _verification/**/browser-events.json
+
+# Private launch evidence and machine-local review receipts never belong in public source.
+.bob-launch-private/
+/design-run.json
+/_verification/bob-launch-author-qa*/

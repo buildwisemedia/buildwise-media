@@ -4,6 +4,8 @@ import test from "node:test";
 
 const source = fs.readFileSync(new URL("../public/book/index.html", import.meta.url), "utf8");
 const homepage = fs.readFileSync(new URL("../src/pages/index.astro", import.meta.url), "utf8");
+const bobLayout = fs.readFileSync(new URL("../src/layouts/BobLayout.astro", import.meta.url), "utf8");
+const baseLayout = fs.readFileSync(new URL("../src/layouts/BaseLayout.astro", import.meta.url), "utf8");
 const fitDiagnostic = fs.readFileSync(new URL("../src/components/FitDiagnostic.astro", import.meta.url), "utf8");
 const memberCard = fs.readFileSync(new URL("../src/pages/m/[card].astro", import.meta.url), "utf8");
 const ppcAlternative = fs.readFileSync(new URL("../src/pages/playbook/ppc-agency-alternative.astro", import.meta.url), "utf8");
@@ -60,7 +62,10 @@ test("preserves the approved public copy and identity", () => {
 });
 
 test("preserves large social-share previews on the homepage and contact page", () => {
-  for (const page of [homepage, source]) {
+  assert.match(homepage, /<BobLayout[\s>]/);
+  assert.match(bobLayout, /<BaseLayout[\s>]/);
+  // Homepage metadata now comes from the shared layout. The built-page QA also checks it.
+  for (const page of [baseLayout.replace(/ \/>/g, ">"), source]) {
     assert.match(page, new RegExp('<meta property="og:image" content="' + socialImage.replace(/[.*+?^${}()|[\]\\]/g, "\\$&") + '">'));
     assert.match(page, /<meta property="og:image:width" content="1200">/);
     assert.match(page, /<meta property="og:image:height" content="630">/);

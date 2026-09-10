@@ -1,0 +1,78 @@
+---
+import BobInquiry from '../components/BobInquiry.astro';
+import BobLayout from '../layouts/BobLayout.astro';
+
+const title = 'Give AI One Real Job in Your Business | Buildwise Media';
+const description = 'A practical luncheon for business owners: one owner problem, real work examples, a clear first step and a simple way to follow up.';
+---
+
+<BobLayout
+  title={title}
+  description={description}
+  canonical="https://buildwisemedia.com/luncheon/"
+  currentPath="/luncheon/"
+>
+  <article class="bob-page">
+    <section class="bob-section bob-event-hero" aria-labelledby="luncheon-title">
+      <div class="bob-shell bob-grid-two">
+        <div>
+          <p class="bob-kicker">A luncheon for business owners</p>
+          <h1 id="luncheon-title">Give AI one real job in your business.</h1>
+          <p class="bob-body">Start with an owner problem, see real work examples and leave with a clear first step.</p>
+          <div class="bob-actions">
+            <a class="bob-button bob-button-primary" href="#details" data-bob-cta="luncheon-hero" data-cta-source="luncheon-hero">Get luncheon details</a>
+          </div>
+        </div>
+
+        <figure class="bob-event-portrait">
+          <!-- @r020:F1 emotion: Bob’s welcoming posture makes the luncheon invitation feel useful and easy to enter -->
+          <picture>
+            <source type="image/avif" srcset="/assets/bob/bob-master-v1-550.avif 550w, /assets/bob/bob-master-v1-1100.avif 1100w" sizes="(max-width: 680px) 92vw, (max-width: 980px) 70vw, 36vw" />
+          <img
+            src="/assets/bob/bob-master-v1.webp"
+            srcset="/assets/bob/bob-master-v1-550.webp 550w, /assets/bob/bob-master-v1.webp 1100w"
+            sizes="(max-width: 680px) 92vw, (max-width: 980px) 70vw, 36vw"
+            alt="Bob, Buildwise Media’s water-bear character"
+            width="1100"
+            height="1100"
+            loading="lazy"
+            decoding="async"
+            fetchpriority="auto"
+          />
+          </picture>
+        </figure>
+      </div>
+    </section>
+
+    <section class="bob-section" aria-labelledby="luncheon-plan-title">
+      <div class="bob-shell">
+        <div class="bob-section-head">
+          <div>
+            <p class="bob-kicker">The talk</p>
+            <h2 id="luncheon-plan-title">One useful path through AI.</h2>
+          </div>
+          <p class="bob-body">The talk starts with the work that keeps falling back on you. It shows how one job can move through clear limits, checks and a result you can inspect.</p>
+        </div>
+
+        <ol class="bob-agenda" aria-label="Luncheon talk plan">
+          <li><span>01</span><strong>An owner problem</strong></li>
+          <li><span>02</span><strong>Real work examples</strong></li>
+          <li><span>03</span><strong>A clear first step</strong></li>
+        </ol>
+      </div>
+    </section>
+
+    <section class="bob-section bob-event-cta" id="details" aria-labelledby="details-title">
+      <div class="bob-shell bob-grid-two bob-grid-two-top">
+        <div>
+          <p class="bob-kicker">Get luncheon details</p>
+          <h2 id="details-title">Hear when the next plan is ready.</h2>
+          <p class="bob-body">No date or venue is set yet. Share your email and our team will send the details as plans are set.</p>
+        </div>
+        <div class="bob-form-slot">
+          <BobInquiry kind="luncheon" id="luncheon-form" />
+        </div>
+      </div>
+    </section>
+  </article>
+</BobLayout>

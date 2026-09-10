@@ -1,0 +1,50 @@
+---
+// @r020-exempt: labeled contact form; no illustrative imagery.
+interface Props { kind?: 'fit' | 'luncheon' | 'speaking'; id?: string; }
+const { kind = 'fit', id = `bob-${kind}-form` } = Astro.props;
+const isLuncheon = kind === 'luncheon';
+const isSpeaking = kind === 'speaking';
+const action = isLuncheon ? 'Get luncheon details' : isSpeaking ? 'Ask about a talk' : 'Send to Buildwise';
+const question = isSpeaking ? 'Tell us about your event.' : isLuncheon ? 'Anything you’d like us to know?' : 'What keeps landing back on your desk?';
+---
+<div class="inquiry-panel" data-inquiry-panel>
+  <form id={id} data-bob-inquiry data-kind={kind} method="post" action="/api/book">
+    <div class="inquiry-fields">
+      <label for={`${id}-name`}>Your name<input id={`${id}-name`} name="contact_name" autocomplete="name" maxlength="120" required /></label>
+      <label for={`${id}-email`}>Work email<input id={`${id}-email`} name="work_email" type="email" autocomplete="email" maxlength="254" required /></label>
+    </div>
+    <label for={`${id}-company`}>Company <span>(optional)</span><input id={`${id}-company`} name="company" autocomplete="organization" maxlength="160" /></label>
+    <label for={`${id}-note`}>{question} {isLuncheon && <span>(optional)</span>}
+      <textarea id={`${id}-note`} name="bottleneck" rows={isLuncheon ? 3 : 4} maxlength="2700" required={!isLuncheon} aria-describedby={`${id}-help`}></textarea>
+    </label>
+    <p class="inquiry-help" id={`${id}-help`}>{isSpeaking ? 'Share your audience, place and date, if you know them.' : isLuncheon ? 'We’ll email you as details are set. This does not reserve a seat.' : 'A few plain words are enough. Leave out private customer details.'}</p>
+    <div class="inquiry-trap" aria-hidden="true"><label for={`${id}-url`}>Company website<input id={`${id}-url`} name="company_url" tabindex="-1" autocomplete="off" /></label></div>
+    <label class="inquiry-consent" for={`${id}-permission`}><input id={`${id}-permission`} name="contact_permission" type="checkbox" required /><span>You may email me about this request. See our <a href="/privacy/">Privacy Policy</a>.</span></label>
+    <p class="inquiry-status" data-inquiry-status role="alert" tabindex="-1" hidden></p>
+    <button class="bob-button bob-button-primary" type="submit" disabled>{action}<span aria-hidden="true"> ↗</span></button>
+    <p class="inquiry-help">{isSpeaking ? 'The team will review your request. Sending it does not book a speaker.' : isLuncheon ? 'No date or venue is set yet. We’ll keep your request with the team.' : 'The team will read your note and reply by email. This does not book a call or start paid work.'}</p>
+    <noscript><p>Please turn on JavaScript to use this form, or email hello [at] buildwisemedia.com. Replace [at] with @.</p></noscript>
+  </form>
+  <section class="inquiry-success" data-inquiry-success tabindex="-1" aria-labelledby={`${id}-success`} hidden>
+    <p class="eyebrow">Request received</p>
+    <h3 id={`${id}-success`}>Your note is with us.</h3>
+    <p>{isLuncheon ? 'We have your request for luncheon details. We’ll reply by email as plans are set. No seat has been booked.' : isSpeaking ? 'The team will read your event details and reply by email. No speaker has been booked yet.' : 'The Buildwise team will read it and reply to your work email.'}</p>
+  </section>
+</div>
+<script is:inline type="module" src="/scripts/bob-inquiry.js"></script>
+<style>
+  form { display:grid; gap:1.25rem; } [hidden] { display:none !important; }
+  .inquiry-fields { display:grid; grid-template-columns:1fr 1fr; gap:1rem; }
+  label { display:block; font-size:.94rem; font-weight:600; } label>span,.inquiry-help { color:#B5B7C0; font-weight:400; }
+  input:not([type=checkbox]),textarea { display:block; width:100%; margin-top:.55rem; padding:.9rem; background:#121216; border:1px solid #656570; color:#ECECEC; border-radius:3px; font:inherit; }
+  textarea { resize:vertical; } .inquiry-help { font-size:.84rem; line-height:1.6; margin:0; }
+  input:focus-visible,textarea:focus-visible,button:focus-visible,a:focus-visible { outline:3px solid #F0FF00; outline-offset:4px; }
+  .inquiry-consent { display:flex; align-items:flex-start; gap:.8rem; font-size:.84rem; line-height:1.6; }
+  .inquiry-consent input { flex-shrink:0; width:22px; height:22px; margin:.1rem 0 0; accent-color:#F0FF00; }
+  a { color:inherit; text-decoration:underline; text-underline-offset:3px; }
+  button { justify-self:start; min-height:48px; cursor:pointer; } button:disabled { opacity:.65; cursor:wait; }
+  .inquiry-trap { position:absolute; left:-9999px; width:1px; height:1px; overflow:hidden; }
+  .inquiry-status { padding:1rem; border-left:3px solid #F0FF00; background:#222228; color:#ECECEC; line-height:1.6; }
+  .inquiry-success { padding:1.5rem 0; } .inquiry-success h3 { font-size:2rem; margin:.6rem 0; }
+  @media(max-width:600px) { .inquiry-fields { grid-template-columns:1fr; } button { width:100%; } }
+</style>

@@ -1,0 +1,78 @@
+---
+import BobInquiry from '../components/BobInquiry.astro';
+import BobLayout from '../layouts/BobLayout.astro';
+
+const title = 'Practical AI Talks for Business Owners | Buildwise Media';
+const description = 'Ask Buildwise Media about a practical AI talk for business owners, built around one owner problem, real work and a clear first step.';
+---
+
+<BobLayout
+  title={title}
+  description={description}
+  canonical="https://buildwisemedia.com/speaking/"
+  currentPath="/speaking/"
+>
+  <article class="bob-page">
+    <section class="bob-section bob-event-hero" aria-labelledby="speaking-title">
+      <div class="bob-shell bob-grid-two">
+        <div>
+          <p class="bob-kicker">For event hosts</p>
+          <h1 id="speaking-title">Practical AI talks for business owners.</h1>
+          <p class="bob-body">Give your group a plain way to think about AI: start with one real job, set the limits and check the work.</p>
+          <div class="bob-actions">
+            <a class="bob-button bob-button-primary" href="#talk-request" data-bob-cta="speaking-hero" data-cta-source="speaking-hero">Ask about a talk</a>
+          </div>
+        </div>
+
+        <figure class="bob-event-portrait">
+          <!-- @r020:F1 emotion: Bob’s calm welcome makes the practical owner talk feel clear and approachable -->
+          <picture>
+            <source type="image/avif" srcset="/assets/bob/bob-master-v1-550.avif 550w, /assets/bob/bob-master-v1-1100.avif 1100w" sizes="(max-width: 680px) 92vw, (max-width: 980px) 70vw, 36vw" />
+          <img
+            src="/assets/bob/bob-master-v1.webp"
+            srcset="/assets/bob/bob-master-v1-550.webp 550w, /assets/bob/bob-master-v1.webp 1100w"
+            sizes="(max-width: 680px) 92vw, (max-width: 980px) 70vw, 36vw"
+            alt="Bob, Buildwise Media’s water-bear character"
+            width="1100"
+            height="1100"
+            loading="lazy"
+            decoding="async"
+            fetchpriority="auto"
+          />
+          </picture>
+        </figure>
+      </div>
+    </section>
+
+    <section class="bob-section" aria-labelledby="speaking-plan-title">
+      <div class="bob-shell">
+        <div class="bob-section-head">
+          <div>
+            <p class="bob-kicker">The talk</p>
+            <h2 id="speaking-plan-title">A useful talk with a clear next step.</h2>
+          </div>
+          <p class="bob-body">The talk brings an owner problem, real work examples and a simple way to follow up into one clear path.</p>
+        </div>
+
+        <ol class="bob-agenda" aria-label="Practical AI talk plan">
+          <li><span>01</span><strong>An owner problem</strong></li>
+          <li><span>02</span><strong>Real work examples</strong></li>
+          <li><span>03</span><strong>A clear first step</strong></li>
+        </ol>
+      </div>
+    </section>
+
+    <section class="bob-section bob-event-cta" id="talk-request" aria-labelledby="talk-request-title">
+      <div class="bob-shell bob-grid-two bob-grid-two-top">
+        <div>
+          <p class="bob-kicker">Ask about a talk</p>
+          <h2 id="talk-request-title">Tell us about your event.</h2>
+          <p class="bob-body">Share your audience, place and date, if you know them. The team will read the request and reply by email.</p>
+        </div>
+        <div class="bob-form-slot">
+          <BobInquiry kind="speaking" id="speaking-form" />
+        </div>
+      </div>
+    </section>
+  </article>
+</BobLayout>
