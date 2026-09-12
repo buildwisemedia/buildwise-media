@@ -30,7 +30,7 @@ const EXCLUDE = new Set([
 // Priority overrides — explicit weights for high-intent surfaces.
 const PRIORITY_OVERRIDES: Record<string, { priority: string; changefreq: string }> = {
   '/': { priority: '1.0', changefreq: 'weekly' },
-  '/book': { priority: '0.9', changefreq: 'monthly' },
+  '/contact': { priority: '0.9', changefreq: 'monthly' },
   '/audit': { priority: '0.9', changefreq: 'weekly' },
   '/revenue-leak-map': { priority: '0.9', changefreq: 'monthly' },
   '/services/ascend': { priority: '0.9', changefreq: 'monthly' },
@@ -96,7 +96,6 @@ async function lastmodByModule(
 }
 
 const STATIC_ENTRIES = [
-  { mp: 'public/book/index.html', url: '/book' },
   { mp: 'public/playbook/4-steps-business-runs-without-you/index.html', url: '/playbook/4-steps-business-runs-without-you' },
 ];
 

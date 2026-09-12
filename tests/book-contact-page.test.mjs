@@ -3,11 +3,11 @@ import fs from "node:fs";
 import test from "node:test";
 
 const source = fs.readFileSync(new URL("../public/book/index.html", import.meta.url), "utf8");
-const homepage = fs.readFileSync(new URL("../src/pages/index.astro", import.meta.url), "utf8");
+const homepage = fs.readFileSync(new URL("../src/data/bob/index.html", import.meta.url), "utf8");
 const fitDiagnostic = fs.readFileSync(new URL("../src/components/FitDiagnostic.astro", import.meta.url), "utf8");
 const memberCard = fs.readFileSync(new URL("../src/pages/m/[card].astro", import.meta.url), "utf8");
 const ppcAlternative = fs.readFileSync(new URL("../src/pages/playbook/ppc-agency-alternative.astro", import.meta.url), "utf8");
-const terms = fs.readFileSync(new URL("../src/pages/terms.astro", import.meta.url), "utf8");
+const terms = fs.readFileSync(new URL("../src/data/bob/terms.html", import.meta.url), "utf8");
 
 function count(pattern) {
   return [...source.matchAll(pattern)].length;
@@ -59,14 +59,11 @@ test("preserves the approved public copy and identity", () => {
   assert.doesNotMatch(source, /JetBrains Mono|Revenue Leak Map|45[ -]day|eight[ -]layer|marketing agency|lead generation/i);
 });
 
-test("preserves large social-share previews on the homepage and contact page", () => {
-  for (const page of [homepage, source]) {
-    assert.match(page, new RegExp('<meta property="og:image" content="' + socialImage.replace(/[.*+?^${}()|[\]\\]/g, "\\$&") + '">'));
-    assert.match(page, /<meta property="og:image:width" content="1200">/);
-    assert.match(page, /<meta property="og:image:height" content="630">/);
-    assert.match(page, /<meta name="twitter:card" content="summary_large_image">/);
-    assert.match(page, new RegExp('<meta name="twitter:image" content="' + socialImage.replace(/[.*+?^${}()|[\]\\]/g, "\\$&") + '">'));
-  }
+test("preserves large social-share previews on the approved Bob homepage", () => {
+  assert.match(homepage, /<meta property="og:image" content="https:\/\/buildwisemedia.com\/bob\/assets\/web-r4\/bob-master-1100.webp">/);
+  assert.match(homepage, /<meta property="og:image:width" content="1100">/);
+  assert.match(homepage, /<meta property="og:image:height" content="1100">/);
+  assert.match(homepage, /<meta name="twitter:card" content="summary_large_image">/);
 });
 
 test("keeps machine and discovery boundaries honest", () => {

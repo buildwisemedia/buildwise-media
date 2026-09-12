@@ -1,0 +1,65 @@
+/* The robot image was removed from this view. Its old 94px grid column
+   must not constrain the only remaining identity block. */
+.detail-head.case-identity { display: block; padding: 24px; }
+.case-identity > div { min-width: 0; width: 100%; }
+.case-identity .detail-id { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px; }
+.case-identity h2 { width: auto; max-width: none; margin: 16px 0 12px; font-size: 25px; line-height: 1.25; }
+.case-identity .detail-account { font-size: 15px; line-height: 1.5; overflow-wrap: anywhere; }
+.technical-id, .chip { flex: 0 0 auto; white-space: nowrap; }
+.proof-grid { grid-template-columns: minmax(0, 1fr) minmax(0, 1.08fr); gap: 24px; }
+.proof-column { min-width: 0; }
+.detail-section { padding: 22px; }
+.detail-stat { min-width: 0; padding: 18px 16px; }
+.detail-stat span { display: block; margin-bottom: 6px; }
+.detail-stat b { display: block; overflow-wrap: anywhere; }
+.detail-promise-meter { padding: 20px 22px; }
+.detail-promise-meter > span { display: flex; flex-wrap: wrap; align-items: baseline; gap: 6px 12px; }
+.bob-card { padding: 18px; }
+.bob-head, .communication-head { display: flex; flex-wrap: wrap; gap: 10px 16px; align-items: center; }
+.communication-thread { grid-template-columns: 32px minmax(0, 1fr); gap: 14px; padding: 16px; }
+.communication-thread > div { min-width: 0; }
+.communication-gate { padding: 16px 0 0; }
+.communication-gate > span { min-width: 0; }
+.communication-gate b, .communication-gate small { display: block; }
+.communication-gate small { margin-top: 6px; }
+@media (max-width: 850px) {
+  .proof-grid { grid-template-columns: minmax(0, 1fr); gap: 18px; }
+}
+@media (max-width: 650px) {
+  .frame { padding: 14px; }
+  .detail-head.case-identity, .detail-section { padding: 20px; }
+  .case-identity h2 { font-size: 24px; }
+  .detail-stats { grid-template-columns: minmax(0, 1fr); }
+  .detail-stat { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: baseline; gap: 8px 16px; padding: 14px 20px; }
+  .detail-stat span { margin: 0; }
+  .communication-thread { grid-template-columns: minmax(0, 1fr); }
+  .message-avatar { display: none; }
+  .bob-card { padding: 16px; }
+}
+
+/* Exact existing sample assertions, shown beside Bob’s check. */
+.evidence-records { margin: 14px 0; display: grid; gap: 10px; }
+.evidence-records > div { border-left: 3px solid #708fa7; padding: 10px 12px; background: #f0f4f7; }
+.evidence-records dt { font-size: 14px; font-weight: 700; color: #17334c; }
+.evidence-records dd { margin: 5px 0 0; font-size: 15px; line-height: 1.5; color: #17334c; }
+
+.proof-standalone { padding: 20px 24px; background: #faf8f1; color: #17334c; font: 16px/1.6 system-ui,sans-serif; }
+.proof-standalone h1 { margin: 8px 0 0; font: 650 24px/1.25 system-ui,sans-serif; }
+.proof-standalone a:focus-visible { outline: 3px solid #936600; outline-offset: 4px; }
+
+/* Build 4.9: Bob explains his check; the real records retain the full card width. */
+.bob-check-intro { display: grid; grid-template-columns: 128px minmax(0, 1fr); grid-template-areas: 'art head' 'art summary'; gap: 8px 16px; margin-bottom: 14px; }
+.bob-check-intro > * { min-width: 0; }
+.bob-check-art { grid-area: art; width: 128px; margin: 0; align-self: center; }
+.bob-check-art img { display: block; width: 100%; height: auto; object-fit: contain; mix-blend-mode: darken; }
+.bob-check-intro .bob-head { grid-area: head; align-self: end; justify-content: flex-start; margin: 0; }
+.bob-check-intro > p { grid-area: summary; align-self: start; margin: 0; }
+@media (max-width: 1150px) {
+  .bob-check-intro { grid-template-columns: 112px minmax(0, 1fr); grid-template-areas: 'art head' 'summary summary'; row-gap: 12px; }
+  .bob-check-art { width: 112px; }
+  .bob-check-intro .bob-head { align-self: center; }
+}
+@media (max-width: 650px) {
+  .bob-check-intro { grid-template-columns: 100px minmax(0, 1fr); column-gap: 12px; }
+  .bob-check-art { width: 100px; }
+}

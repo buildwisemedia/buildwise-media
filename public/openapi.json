@@ -1,0 +1,56 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "Buildwise Media business facts",
+    "version": "1.0.0",
+    "description": "Public read-only business facts. Inquiry, booking and payment actions are not exposed by this API."
+  },
+  "servers": [
+    {
+      "url": "https://buildwisemedia.com"
+    }
+  ],
+  "paths": {
+    "/business.json": {
+      "get": {
+        "operationId": "getBusinessFacts",
+        "summary": "Read Buildwise business facts and inquiry links",
+        "responses": {
+          "200": {
+            "description": "Source-backed public business facts",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "schema_version",
+                    "business",
+                    "services",
+                    "contact"
+                  ],
+                  "properties": {
+                    "schema_version": {
+                      "type": "string"
+                    },
+                    "business": {
+                      "type": "object"
+                    },
+                    "services": {
+                      "type": "array",
+                      "items": {
+                        "type": "object"
+                      }
+                    },
+                    "contact": {
+                      "type": "object"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
