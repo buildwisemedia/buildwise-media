@@ -242,13 +242,16 @@ nav a[aria-current="page"] { font-weight: 700; text-decoration: underline; }
 .everyday-intro { display: grid; grid-template-columns: minmax(0, 720px) 320px; gap: 24px; align-items: center; max-width: 1064px; }
 .everyday-intro > * { min-width: 0; }
 .everyday-bob { width: 320px; margin: 0; justify-self: start; }
-/* Build4.10: soften only the blank outer3% of the opaque navy art. Bob and all props stay outside this edge band. */
+/* Remove the baked blue rectangle with a soft mask around the complete figure.
+   The opaque area includes Bob, the book, the papers, and a clear margin. */
 .everyday-bob img {
   width: 100%; height: auto; object-fit: contain;
-  -webkit-mask-image: linear-gradient(to right, transparent, #000 3%, #000 97%, transparent), linear-gradient(to bottom, transparent, #000 3%, #000 97%, transparent);
-  -webkit-mask-composite: source-in;
-  mask-image: linear-gradient(to right, transparent, #000 3%, #000 97%, transparent), linear-gradient(to bottom, transparent, #000 3%, #000 97%, transparent);
-  mask-composite: intersect;
+  -webkit-mask-image: url("assets/web-r410/bob-organizing-edge-mask.svg");
+  mask-image: url("assets/web-r410/bob-organizing-edge-mask.svg");
+  -webkit-mask-size: 100% 100%;
+  mask-size: 100% 100%;
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
 }
 .everyday-heading { max-width: 830px; }
 .everyday-heading .eyebrow { color: var(--yellow); }
