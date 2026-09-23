@@ -52,16 +52,18 @@
     // Spec-Attribution-JS: keep the first touch and the latest campaign for 30 days in the same
     // _bwm_attribution record and cookie the older site pages use (disclosed on /privacy).
     const KEY = '_bwm_attribution';
-    const read = (store, k) => { try { const v = JSON.parse(store.getItem(k) || 'null'); return v && typeof v === 'object' ? v : null; } catch { return null; } };
-    // Reads come first, so a blocked or full store can never discard what was already known.
-    const write = (store, k, v) => { try { store.setItem(k, JSON.stringify(v)); } catch { /* best effort */ } };
+    // Touching a blocked store can itself throw, so each access is guarded. Reads come first, so a
+    // blocked or full store can never discard what was already known.
+    const local = () => localStorage, session = () => sessionStorage;
+    const read = (store, k) => { try { const v = JSON.parse(store().getItem(k) || 'null'); return v && typeof v === 'object' ? v : null; } catch { return null; } };
+    const write = (store, k, v) => { try { store().setItem(k, JSON.stringify(v)); } catch { /* best effort */ } };
     // Every saved campaign is dated and counts for 30 days, like the cookie. Undated copies restore nothing.
     const fresh = touch => { const t = Date.parse(touch?.ts); return t > 0 && Date.now() - t <= 2592000000 ? campaignOf(touch.utm) : {}; };
-    let record = read(localStorage, KEY);
+    let record = read(local, KEY);
     if (record && (!record.first_touch || typeof record.first_touch !== 'object')) record = null;
-    const prior = read(sessionStorage, 'bob_visit_source');
-    const tabTouch = read(sessionStorage, 'bob_tab_campaign');
-    const heldTouch = read(sessionStorage, 'bob_lead_campaign');
+    const prior = read(session, 'bob_visit_source');
+    const tabTouch = read(session, 'bob_tab_campaign');
+    const heldTouch = read(session, 'bob_lead_campaign');
     const newest = fresh(record?.last_touch), tab = fresh(tabTouch), held = fresh(heldTouch);
     carryClicks(newest);
     carryClicks(tab);
@@ -78,19 +80,19 @@
       const pick = has(tab) && has(newest) ? record.last_touch : has(tab) ? tabTouch : null;
       if (pick) { Object.assign(source, fresh(pick)); tabNext = { ts: pick.ts, utm: fresh(pick) }; }
     }
-    write(sessionStorage, 'bob_visit_source', source);
-    write(sessionStorage, 'bob_tab_campaign', tabNext);
+    write(session, 'bob_visit_source', source);
+    write(session, 'bob_tab_campaign', tabNext);
     const touch = { ts: now, referrer: pageReferrer || null, landing_page: current, utm: visitCampaign };
     const saved = record || { first_touch: touch, last_touch: null };
     // Only a visit with campaign tags replaces the last touch, so a later direct visit keeps it.
     if (!record || has(visitCampaign)) saved.last_touch = touch;
-    write(localStorage, KEY, saved);
+    write(local, KEY, saved);
     const firstTags = campaignOf(saved.first_touch.utm), lastTags = fresh(saved.last_touch), firstFresh = fresh(saved.first_touch);
     // The campaign a direct tab's lead falls back to is held for the tab, so an older page that
     // clears last_touch cannot switch it to the first touch mid-visit. GA4 never reads it.
     const savedTouch = has(lastTags) ? saved.last_touch : has(held) ? heldTouch : has(firstFresh) ? saved.first_touch : null;
     savedCampaign = savedTouch ? fresh(savedTouch) : {};
-    write(sessionStorage, 'bob_lead_campaign', savedTouch ? { ts: savedTouch.ts, utm: savedCampaign } : null);
+    write(session, 'bob_lead_campaign', savedTouch ? { ts: savedTouch.ts, utm: savedCampaign } : null);
     try {
       const lead = has(campaignOf(source)) ? campaignOf(source) : savedCampaign;
       const cookie = { referrer: source.referrer || '', landing_page: source.landing_page || '' };

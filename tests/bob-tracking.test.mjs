@@ -6,13 +6,14 @@ const code=fs.readFileSync(new URL('../public/scripts/bob-tracking.js',import.me
 // Pass the same local store and cookie jar to a second run to model a later visit on the same device.
 const memory=()=>{const m=new Map();return {m,getItem:k=>m.has(k)?m.get(k):null,setItem:(k,v)=>m.set(k,String(v))};};
 function cookieJar(){const jar=new Map();return {jar,get cookie(){return [...jar].map(([n,c])=>`${n}=${c.value}`).join('; ');},set cookie(line){const [pair,...attrs]=String(line).split('; ');const i=pair.indexOf('=');jar.set(pair.slice(0,i),{value:pair.slice(i+1),attrs});}};}
-function run({host='buildwisemedia.com',dnt='0',gpc=false,query='',referrer='',local=memory(),session=memory(),cookies=cookieJar()}={}){
+function run({throwStores=false,host='buildwisemedia.com',dnt='0',gpc=false,query='',referrer='',local=memory(),session=memory(),cookies=cookieJar()}={}){
  const timers=[],intervals=[],scripts=[],listeners={},docListeners=[];let rewritten='';
  const location={hostname:host,origin:'https://'+host,pathname:'/contact/',href:'https://'+host+'/contact/'+query,hash:''};
  const window={addEventListener:(k,f)=>listeners[k]=f};
  const document={referrer,documentElement:{scrollHeight:1000},head:{appendChild:s=>scripts.push(s)},querySelectorAll:()=>[],addEventListener:(k,f,capture)=>docListeners.push({k,f,capture:capture===true}),createElement:()=>({listeners:{},addEventListener(k,f){this.listeners[k]=f}})};
  Object.defineProperty(document,'cookie',{get:()=>cookies.cookie,set:v=>{cookies.cookie=v;}});
  const c={window,document,location,navigator:{doNotTrack:dnt,globalPrivacyControl:gpc},history:{state:null,replaceState:(_,__,u)=>rewritten=u},sessionStorage:session,localStorage:local,URL,Set,Map,Date,setTimeout:f=>{timers.push(f)},setInterval:f=>{intervals.push(f);return 1},clearInterval(){},innerHeight:500,scrollY:0};
+ if(throwStores)for(const k of ['localStorage','sessionStorage'])Object.defineProperty(c,k,{get(){throw new Error('SecurityError');}});
  vm.runInNewContext(code,c);
  const click=target=>docListeners.filter(l=>l.k==='click').sort((a,b)=>b.capture-a.capture).forEach(l=>l.f({target}));
  return {c,window,timers,intervals,scripts,local,session,cookies,docListeners,click,get rewritten(){return rewritten}};
@@ -194,6 +195,14 @@ test('a full local store still restores the saved campaign',()=>{
  const full={getItem:m.getItem,setItem:()=>{throw new Error('QuotaExceededError');}};
  const d=run({local:full}).window.__bobSourceDetails();
  assert.equal(d.utm_source,'google');assert.equal(d.gclid,'Kept');
+});
+
+test('blocked storage that throws on access still tracks and builds the lead snapshot',()=>{
+ const x=run({throwStores:true,query:'?utm_source=google&gclid=G1'});
+ const d=x.window.__bobSourceDetails();
+ assert.equal(d.utm_source,'google');assert.equal(d.gclid,'G1');
+ assert.ok(x.window.dataLayer.find(a=>a[0]==='config'),'GA4 configured');
+ assert.equal(typeof x.window.__bwmTrackEvent,'function');
 });
 
 test('a first touch saved by the older site pages survives an empty last touch',()=>{
