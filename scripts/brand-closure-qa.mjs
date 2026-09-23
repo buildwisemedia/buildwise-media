@@ -117,10 +117,25 @@ function hrefsFrom(html) {
   return [...html.matchAll(/\bhref=["']([^"']+)["']/gi)].map((m) => m[1]);
 }
 
-// Embedded resources with their element, including a deferred iframe's data-src.
+// Every embedded resource URL with its element: src, data-src (a deferred
+// frame) and each srcset candidate.
 function srcsFrom(html) {
-  return [...html.matchAll(/<(img|script|iframe|source|video|audio)\b[^>]*?\b(?:data-)?src=["']([^"']+)["']/gi)]
-    .map((m) => ({ element: m[1].toLowerCase(), ref: m[2] }));
+  const refs = [];
+  for (const [tag, name] of html.matchAll(/<(img|script|iframe|source|video|audio)\b[^>]*>/gi)) {
+    for (const [, attr, value] of tag.matchAll(/\s((?:data-)?src|srcset)=["']([^"']*)["']/gi)) {
+      const urls = attr.toLowerCase() === 'srcset' ? value.split(',').map((c) => c.trim().split(/\s+/)[0]) : [value.trim()];
+      for (const ref of urls.filter(Boolean)) refs.push({ element: name.toLowerCase(), ref });
+    }
+  }
+  return refs;
+}
+
+// Stylesheet link targets: these must be real files, never a page route.
+function stylesheetHrefs(html) {
+  return [...html.matchAll(/<link\b[^>]*>/gi)]
+    .filter(([tag]) => /\brel=["'][^"']*\bstylesheet\b/i.test(tag))
+    .map(([tag]) => tag.match(/\bhref=["']([^"']+)["']/i)?.[1])
+    .filter(Boolean);
 }
 
 function metaContent(html, name) {
@@ -182,13 +197,13 @@ function loadsStylesheet(html, href) {
     const rel = (t.tag.match(/\brel=["']([^"']+)["']/i)?.[1] ?? '').toLowerCase().split(/\s+/);
     const media = t.tag.match(/\bmedia=["']([^"']*)["']/i)?.[1]?.toLowerCase();
     if (t.tag.match(/\bhref=["']([^"']+)["']/i)?.[1] === href && rel.includes('stylesheet') && !rel.includes('alternate')
-      && !/\sdisabled\b/i.test(t.tag) && (media === undefined || /\b(all|screen)\b/.test(media))) return true;
+      && !/\sdisabled\b/i.test(t.tag) && (media === undefined || media.split(',').some((q) => /^\s*(only\s+)?(all|screen)\b/.test(q)))) return true;
   }
   return false;
 }
 
 // Guide § Actions and forms: "Keep the header's cream, outlined pill: See Bob at
-// Work." It must be a visible link inside the site header, not anywhere on the page.
+// Work." It must be a visible, working link (real href) inside the site header.
 function hasBobHeaderAction(html) {
   let header = null;
   let link = null;
@@ -198,10 +213,13 @@ function hasBobHeaderAction(html) {
       continue;
     }
     if (t.type === 'close' && t.depth <= header.depth) break;
-    if (t.type === 'open' && t.name === 'a' && /\bclass=["'][^"']*\bheader-cta\b/i.test(t.tag)) link = { ...t, text: '' };
+    if (t.type === 'open' && t.name === 'a' && /\bclass=["'][^"']*\bheader-cta\b/i.test(t.tag)) {
+      const href = t.tag.match(/\bhref=["']([^"']*)["']/i)?.[1]?.trim() ?? '';
+      link = { ...t, text: '', usable: href !== '' && href !== '#' && !/^javascript:/i.test(href) };
+    }
     else if (link && t.type === 'text' && !t.hidden) link.text += t.text;
     else if (link && t.type === 'close' && t.depth <= link.depth) {
-      if (!link.hidden && link.text.replace(/\s+/g, ' ').trim() === 'See Bob at Work') return true;
+      if (!link.hidden && link.usable && link.text.replace(/\s+/g, ' ').trim() === 'See Bob at Work') return true;
       link = null;
     }
   }
@@ -415,6 +433,13 @@ for (const file of htmlFiles) {
     if (routeSet.has(clean)) continue;
     if (expectedRedirects.some(([from]) => from === clean)) continue;
     warn('static-internal-link-unverified', rel(file), `${route} links to ${href}`);
+  }
+  for (const href of stylesheetHrefs(html)) {
+    if (/^(\/\/|[a-z][a-z0-9+.-]*:)/i.test(href)) continue;
+    const clean = resolveRef(href.split('#')[0].split('?')[0], base);
+    // Paths with a file extension are already checked above; this catches page routes.
+    if (clean && STATIC_FILE.test(clean)) continue;
+    if (!clean || !builtFor(clean, { allowRoute: false })) fail('static-asset-link', rel(file), `${route} links a stylesheet that is not a file: ${href}`);
   }
   for (const { element, ref } of srcsFrom(html)) {
     if (/^(\/\/|data:|[a-z][a-z0-9+.-]*:)/i.test(ref)) continue;
