@@ -59,7 +59,9 @@
     if (!prior || typeof prior !== 'object') prior = null;
     // Every tagged visit, on these pages or the older ones, rewrites last_touch. So when this tab
     // already has a campaign and last_touch holds a different one, last_touch is the newer campaign.
-    const newest = campaignOf(record?.last_touch?.utm);
+    // Saved campaigns count for 30 days, like the cookie. An older or undated touch restores nothing.
+    const fresh = touch => { const t = Date.parse(touch?.ts); return t > 0 && Date.now() - t <= 2592000000 ? campaignOf(touch.utm) : {}; };
+    const newest = fresh(record?.last_touch);
     carryClicks(prior);
     carryClicks(newest);
     if (prior) {
@@ -76,8 +78,8 @@
       // Only a visit with campaign tags replaces the last touch, so a later direct visit keeps it.
       if (!record || has(visitCampaign)) saved.last_touch = touch;
       localStorage.setItem(KEY, JSON.stringify(saved));
-      const firstTags = campaignOf(saved.first_touch.utm), lastTags = campaignOf(saved.last_touch?.utm);
-      savedCampaign = has(lastTags) ? lastTags : firstTags;
+      const firstTags = campaignOf(saved.first_touch.utm), lastTags = fresh(saved.last_touch), firstFresh = fresh(saved.first_touch);
+      savedCampaign = has(lastTags) ? lastTags : firstFresh;
       const lead = has(campaignOf(source)) ? campaignOf(source) : savedCampaign;
       const cookie = { referrer: source.referrer || '', landing_page: source.landing_page || '' };
       [...keys, ...clickKeys].forEach(k => { cookie[k] = lead[k] || ''; });

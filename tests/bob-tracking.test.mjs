@@ -126,9 +126,24 @@ test('click IDs restored on a tagged return visit reach later untagged pages',()
  assert.equal(d.gclid,'Keep1');assert.equal(d.utm_source,'google');
 });
 
+test('saved campaigns older than 30 days are not restored or renewed',()=>{
+ const local=memory(),cookies=cookieJar(),ago=n=>new Date(Date.now()-n*86400000).toISOString();
+ local.setItem('_bwm_attribution',JSON.stringify({first_touch:{ts:ago(84),utm:{utm_source:'google',gclid:'Old1'}},last_touch:{ts:ago(84),utm:{utm_source:'google',gclid:'Old1'}}}));
+ const x=run({local,cookies,query:'?utm_source=google'});
+ const d=x.window.__bobSourceDetails();
+ assert.equal(d.utm_source,'google');assert.equal(d.gclid,undefined);
+ local.setItem('_bwm_attribution',JSON.stringify({first_touch:{ts:ago(84),utm:{utm_source:'google',gclid:'Old1'}},last_touch:{ts:ago(31),utm:{utm_source:'bing'}}}));
+ const z=run({local,cookies});
+ assert.equal(z.window.__bobSourceDetails().utm_source,undefined);assert.equal(cookieValue(z).utm_source,'');assert.equal(cookieValue(z).gclid,'');
+ // A dated touch inside the window still counts.
+ local.setItem('_bwm_attribution',JSON.stringify({first_touch:{ts:ago(84),utm:{}},last_touch:{ts:ago(29),utm:{utm_source:'bing',gclid:'New2'}}}));
+ assert.equal(run({local,cookies}).window.__bobSourceDetails().gclid,'New2');
+});
+
 test('a first touch saved by the older site pages survives an empty last touch',()=>{
  const local=memory();
- local.setItem('_bwm_attribution',JSON.stringify({first_touch:{ts:'2026-09-01T00:00:00Z',utm:{utm_source:'linkedin',utm_medium:'social',utm_campaign:'owners'}},last_touch:{ts:'2026-09-02T00:00:00Z',utm:{}}}));
+ const day=86400000,ago=n=>new Date(Date.now()-n*day).toISOString();
+ local.setItem('_bwm_attribution',JSON.stringify({first_touch:{ts:ago(3),utm:{utm_source:'linkedin',utm_medium:'social',utm_campaign:'owners'}},last_touch:{ts:ago(2),utm:{}}}));
  const x=run({local});
  const details=x.window.__bobSourceDetails();
  assert.equal(details.utm_source,'linkedin');assert.equal(details.utm_campaign,'owners');
