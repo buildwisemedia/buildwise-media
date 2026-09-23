@@ -1,8 +1,8 @@
 {
-  "generated_at": "2026-09-02T12:04:18.530Z",
+  "generated_at": "2026-09-23T14:46:49.578Z",
   "branch": null,
   "dist": "dist",
-  "pass_count": 7,
+  "pass_count": 8,
   "warning_count": 0,
   "failure_count": 0,
   "passes": [
@@ -12,7 +12,7 @@
     },
     {
       "gate": "rendered-lock-scans",
-      "detail": "352 rendered files scanned"
+      "detail": "362 rendered files scanned"
     },
     {
       "gate": "legacy-problem-redirects",
@@ -24,11 +24,15 @@
     },
     {
       "gate": "html-basics",
-      "detail": "345 HTML files checked"
+      "detail": "348 HTML files checked (6 Bob pages, 2 Bob sample demos, 340 legacy pages)"
     },
     {
       "gate": "paid-lp-hero-wordcount",
       "detail": "paid /go/* heroes are within the 12-word clarity limit"
+    },
+    {
+      "gate": "static-asset-link",
+      "detail": "3124 same-origin file references resolve in dist/"
     },
     {
       "gate": "canonical-site-files",

@@ -3,6 +3,32 @@
 Decisions made outside the approved brief, deviations, and tradeoffs with rationale.
 Per the Build Decision Journal lock (2026-05-25). Newest first.
 
+## 2026-09-23 — QA gates realigned to the Sept 12 Bob brand
+
+Three gates failed on unchanged `main` because they predate the Bob website. Each failure was sorted into a stale rule (gate updated, scoped by surface) or a real defect (page fixed). No check was deleted. Brain gate changes ship as a separate Brain commit; this entry covers both.
+
+Stale rules, now scoped to the Bob page system (`/`, `/contact`, `/speaking`, `/luncheon`, `/privacy`, `/terms`, per Brain `brand/BWM-Brand-Guidelines.md`):
+- **Fit CTA** (`qa:brand` `locked-cta-present`; website QA mobile-hero CTA). Bob pages now need the approved header action "See Bob at Work". Legacy routes still need the fit CTA. The route list and `/bob/site.css` are checked against each other (`bob-surface-registry`), so a page cannot move between rule sets silently.
+- **Sample demos** (`/bob/proof/*.html`): they now need `noindex` and a visible sample label instead of a contact CTA. They still need one H1 and a meta description.
+- **Typefaces** (Pre-Ship `banned-typefaces`). Manrope and DM Sans are allowed only in `public/bob/` and `src/data/bob/` of this repo, read from Brain `brand/BWM-Brand-Tokens.json`. They stay banned elsewhere, and every other face stays banned everywhere.
+- **"DRAFT"** (website QA). On Bob pages, "draft" is approved product language ("Content drafts"). The all-caps marker, "(draft)", "[draft]" and "draft v2" still fail.
+
+Gate measurement defects (fixed everywhere, thresholds unchanged):
+- **`#000` in `mask-image`** (Pre-Ship). A mask color never paints. Only mask declarations are ignored; a banned color elsewhere on the line still fails.
+- **Single-quoted fonts** (Pre-Ship). The pattern spelled the apostrophe `\x27`, which `grep -E` does not read as an apostrophe, so `font-family:'DM Sans'` was never caught. Fixing it flags nothing new in this repo, `bwm-sales-decks`, `bwm-command-ui` or `bwm-campaigns`.
+- **Reading level** (website QA). Tags were deleted without a space, gluing sentences together on minified pages. The homepage copy measures grade 5.9, not 10.1. Client sites move 0.2 to 1.0 points, with no band changes.
+- **Tracking** (website QA). The gate read only page HTML, but the Bob pages load GA4 and GTM from `/scripts/bob-tracking.js`, and GTM carries the Meta Pixel and Clarity. It now also reads same-origin scripts and the GTM container, with case-sensitive ID signatures. The old words also passed pages with no tag at all: "G-[A-Z0-9]" in any hyphenated word, "facebook" in a profile link. A browser run confirmed GA4, GTM, Ads, Clarity and the Meta Pixel all fire on the homepage. Fleet effect: callursula.com's GA4 "pass" was fake, and it has no GA4 at runtime.
+- **Unscanned files** (`qa:brand`). `dist/assets/` is empty (styles are inlined), so the vendor and token scans read no CSS or JS. They now read every shipped CSS and JS file. Same-origin `href`, `src` and `data-src` files are verified to exist: 3,131 references, previously warn-only or unchecked.
+
+Real defects fixed on the pages:
+- Both sample demos got exactly one H1 in every view and a meta description. Rendered pixels match before and after (framed, full size, desktop and phone; reduced motion for the animated demo).
+- Both demos' full-size "Back to the website" link resolved to `/bob/index.html`, a production 404. They now go to `/#work` and `/#service-title`.
+- Speed margin: FCP 0.91 s against a 1.0 s limit, and a run at 1.2 s failed. The sample iframe three sections down loaded eagerly and competed with first paint. It now loads on window load, so it is still ready before a visitor reaches it. Local Lighthouse, 3 runs: FCP about 1.05 s to 0.84 s, LCP about 1.29 s to 1.14 s. Preloading the web fonts made both worse, so it was not used.
+
+Also: `qa:brand` now runs in CI. Its committed report claimed 0 failures while `main` had 10.
+
+Left out of scope: the website QA pricing check has failed on production since #62 retired `/pricing`. It still expects every tier price on `/pricing`, but Robert's current pricing iteration shows only the $15K Pilot (Brain brand guide, 2026-09-23). The pricing lane owns that gate update.
+
 ## 2026-09-01 — Private `/book/` conversion verification
 
 - Submitted one clearly labeled internal synthetic lead through the real Access-gated `/book/` form at 1:16 PM Eastern. The browser rendered `Sent securely — Your note is with us`, Bob's CRM stored one processed synthetic/internal contact and one processed fit-contact submission, the notification receipt reached `delivered`, and the exact email was present in Robert's inbox.
