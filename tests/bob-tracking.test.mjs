@@ -3,15 +3,25 @@ import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import vm from 'node:vm';
 const code=fs.readFileSync(new URL('../public/scripts/bob-tracking.js',import.meta.url),'utf8');
-function run({host='buildwisemedia.com',dnt='0',gpc=false,query=''}={}){
- const timers=[],intervals=[],scripts=[],listeners={};let rewritten='';
+// Pass the same local store and cookie jar to a second run to model a later visit on the same device.
+const memory=()=>{const m=new Map();return {m,getItem:k=>m.has(k)?m.get(k):null,setItem:(k,v)=>m.set(k,String(v))};};
+function cookieJar(){const jar=new Map();return {jar,get cookie(){return [...jar].map(([n,c])=>`${n}=${c.value}`).join('; ');},set cookie(line){const [pair,...attrs]=String(line).split('; ');const i=pair.indexOf('=');jar.set(pair.slice(0,i),{value:pair.slice(i+1),attrs});}};}
+function run({host='buildwisemedia.com',dnt='0',gpc=false,query='',referrer='',local=memory(),session=memory(),cookies=cookieJar()}={}){
+ const timers=[],intervals=[],scripts=[],listeners={},docListeners=[];let rewritten='';
  const location={hostname:host,origin:'https://'+host,pathname:'/contact/',href:'https://'+host+'/contact/'+query,hash:''};
- const store=new Map();const storage={getItem:k=>store.get(k)||null,setItem:(k,v)=>store.set(k,v)};
  const window={addEventListener:(k,f)=>listeners[k]=f};
- const document={referrer:'',cookie:'',documentElement:{scrollHeight:1000},head:{appendChild:s=>scripts.push(s)},querySelectorAll:()=>[],addEventListener(){},createElement:()=>({listeners:{},addEventListener(k,f){this.listeners[k]=f}})};
- const c={window,document,location,navigator:{doNotTrack:dnt,globalPrivacyControl:gpc},history:{state:null,replaceState:(_,__,u)=>rewritten=u},sessionStorage:storage,localStorage:storage,URL,Set,Map,Date,setTimeout:f=>{timers.push(f)},setInterval:f=>{intervals.push(f);return 1},clearInterval(){},innerHeight:500,scrollY:0};
- vm.runInNewContext(code,c);return {c,window,timers,intervals,scripts,get rewritten(){return rewritten}};
+ const document={referrer,documentElement:{scrollHeight:1000},head:{appendChild:s=>scripts.push(s)},querySelectorAll:()=>[],addEventListener:(k,f,capture)=>docListeners.push({k,f,capture:capture===true}),createElement:()=>({listeners:{},addEventListener(k,f){this.listeners[k]=f}})};
+ Object.defineProperty(document,'cookie',{get:()=>cookies.cookie,set:v=>{cookies.cookie=v;}});
+ const c={window,document,location,navigator:{doNotTrack:dnt,globalPrivacyControl:gpc},history:{state:null,replaceState:(_,__,u)=>rewritten=u},sessionStorage:session,localStorage:local,URL,Set,Map,Date,setTimeout:f=>{timers.push(f)},setInterval:f=>{intervals.push(f);return 1},clearInterval(){},innerHeight:500,scrollY:0};
+ vm.runInNewContext(code,c);
+ const click=target=>docListeners.filter(l=>l.k==='click').sort((a,b)=>b.capture-a.capture).forEach(l=>l.f({target}));
+ return {c,window,timers,intervals,scripts,local,session,cookies,docListeners,click,get rewritten(){return rewritten}};
 }
+const anchor=(href,{source,classes=[]}={})=>({href:new URL(href,'https://buildwisemedia.com/contact/').href,classList:{contains:c=>classes.includes(c)},getAttribute:k=>k==='href'?href:k==='data-cta-source'?(source??null):null,closest(sel){return sel==='a[href]'?this:null;}});
+const pushed=(x,name)=>Array.from(x.window.dataLayer||[]).filter(e=>e&&e.event===name);
+const cookieValue=x=>JSON.parse(decodeURIComponent(x.cookies.jar.get('_bwm_attribution').value));
+// The intake Worker rejects the whole request if the attribution snapshot carries any other key.
+const WORKER_FIELDS=new Set(['utm_source','utm_medium','utm_campaign','utm_content','utm_term','gclid','fbclid','fbc','fbp','referrer','landing_page','page_url','experiment_id','experiment_variant_id']);
 test('test hosts and privacy signals do not queue or load vendors',()=>{
  for(const settings of [{host:'branch.buildwise-media.pages.dev'},{dnt:'1'},{gpc:true}]){const x=run(settings);assert.equal(x.window.dataLayer,undefined);assert.equal(x.scripts.length,0);assert.equal(x.timers.length,0);assert.equal(x.window['ga-disable-G-V5LSP69E41'],true);}
 });
@@ -28,4 +38,71 @@ test('conversion events buffer until GA4 is ready and omit form text',()=>{
 
 test('Google Ads click IDs survive the sanitized GA4 page URL',()=>{
  const x=run({query:'?gclid=TestClick.123&utm_source=google&email=private%40example.com'});const config=x.window.dataLayer.find(a=>a[0]==='config')[2];assert.match(config.page_location,/gclid=TestClick.123/);assert.equal(config.page_location.includes('email'),false);assert.equal(x.window.__bobSourceDetails().gclid,'TestClick.123');
+});
+
+test('CTA clicks carry the brand CTA source from data-cta-source',()=>{
+ const x=run();
+ x.click(anchor('/contact?job=website',{source:'three-layer-website-cta',classes:['button']}));
+ x.click(anchor('/#work',{classes:['header-cta']}));
+ x.click(anchor('/contact',{source:'Bad Value!',classes:['button']}));
+ x.click(anchor('/contact',{source:'final-primary'}));
+ x.click(anchor('/privacy'));
+ const clicks=pushed(x,'cta_click');
+ assert.deepEqual(clicks.map(e=>e.cta_source),['three-layer-website-cta','unspecified',undefined,'final-primary']);
+ assert.equal(clicks[0].link_path,'/contact');
+});
+
+test('phone and email clicks send only redacted details (Spec-Attribution-JS v2.10)',()=>{
+ const x=run({referrer:'https://www.google.com/search?q=private'});
+ assert.ok(x.docListeners.some(l=>l.k==='click'&&l.capture),'capture-phase listener');
+ x.click(anchor('tel:+14786063370'));
+ x.click(anchor('mailto:Hello@BuildwiseMedia.com?subject=Hi'));
+ const [phone]=pushed(x,'phone_click'),[email]=pushed(x,'email_click');
+ assert.equal(phone.phone_number_redacted,'3370');
+ assert.equal(email.email_domain,'buildwisemedia.com');
+ for(const e of [phone,email]){assert.equal(e.page_path,'/contact/');assert.equal(e.page_referrer,'https://www.google.com');}
+ const all=JSON.stringify(x.window.dataLayer);
+ for(const secret of ['4786063370','Hello@','subject','private'])assert.equal(all.includes(secret),false,secret);
+ assert.equal(pushed(x,'cta_click').length,0);
+});
+
+test('a campaign visit is kept 30 days in the _bwm_attribution cookie and reaches a later direct lead',()=>{
+ const local=memory(),cookies=cookieJar();
+ const first=run({local,cookies,query:'?utm_source=google&utm_medium=cpc&utm_campaign=bob&gclid=Abc_123'});
+ const saved=cookies.jar.get('_bwm_attribution');
+ assert.ok(saved,'cookie set');
+ for(const attr of ['path=/','max-age=2592000','SameSite=Lax','Secure'])assert.ok(saved.attrs.includes(attr),attr);
+ const value=cookieValue(first);
+ assert.equal(value.utm_source,'google');assert.equal(value.utm_campaign,'bob');assert.equal(value.gclid,'Abc_123');
+ assert.equal(value.first_touch_utm_source,'google');assert.equal(value.attribution_provenance,'bob_tracking_v1');
+ // A later direct visit in a new session on the same device.
+ const later=run({local,cookies});
+ const details=later.window.__bobSourceDetails();
+ assert.equal(details.utm_source,'google');assert.equal(details.utm_medium,'cpc');assert.equal(details.gclid,'Abc_123');
+ assert.deepEqual(Object.keys(details).filter(k=>!WORKER_FIELDS.has(k)),[]);
+ // GA4 keeps its own cross-session attribution; the direct session is not relabelled as a campaign.
+ assert.equal(later.window.dataLayer.find(a=>a[0]==='config')[2].campaign_source,undefined);
+ // A new campaign replaces the saved one as a whole set; the first touch stays in the cookie.
+ const next=run({local,cookies,query:'?utm_source=newsletter'});
+ const d2=next.window.__bobSourceDetails();
+ assert.equal(d2.utm_source,'newsletter');assert.equal(d2.utm_medium,undefined);assert.equal(d2.gclid,undefined);
+ const v2=cookieValue(next);assert.equal(v2.utm_source,'newsletter');assert.equal(v2.first_touch_utm_source,'google');
+});
+
+test('a first touch saved by the older site pages survives an empty last touch',()=>{
+ const local=memory();
+ local.setItem('_bwm_attribution',JSON.stringify({first_touch:{ts:'2026-09-01T00:00:00Z',utm:{utm_source:'linkedin',utm_medium:'social',utm_campaign:'owners'}},last_touch:{ts:'2026-09-02T00:00:00Z',utm:{}}}));
+ const x=run({local});
+ const details=x.window.__bobSourceDetails();
+ assert.equal(details.utm_source,'linkedin');assert.equal(details.utm_campaign,'owners');
+});
+
+test('privacy signals and test hosts store no attribution and send no click events',()=>{
+ for(const settings of [{host:'branch.buildwise-media.pages.dev'},{dnt:'1'},{gpc:true}]){
+  const local=memory(),session=memory(),cookies=cookieJar();
+  const x=run({...settings,local,session,cookies,query:'?utm_source=google'});
+  assert.equal(cookies.jar.size,0);assert.equal(local.m.size,0);assert.equal(session.m.size,0);
+  x.click(anchor('tel:+14786063370'));x.click(anchor('/contact',{source:'hero-primary',classes:['button']}));
+  assert.equal(x.window.dataLayer,undefined);
+ }
 });

@@ -24,29 +24,60 @@
   const clickKeys = ['gclid','fbclid'];
   const clickValue = v => typeof v === 'string' && /^[A-Za-z0-9._-]{1,500}$/.test(v) ? v : '';
   const current = clean(location.href);
-  const source = { page_url: current, landing_page: current, referrer: clean(document.referrer) };
+  const pageReferrer = clean(document.referrer);
+  const source = { page_url: current, landing_page: current, referrer: pageReferrer };
   const params = new URL(current || location.href).searchParams;
   keys.forEach(k => { if (params.has(k)) source[k] = params.get(k); });
   clickKeys.forEach(k => { const v=clickValue(visitParams.get(k));if(v)source[k]=v; });
+  // A campaign is one set of tags. A page view with its own tags never mixes in an older campaign's.
+  const campaignOf = raw => {
+    const out = {};
+    if (!raw || typeof raw !== 'object') return out;
+    keys.forEach(k => { if (typeof raw[k] === 'string' && raw[k] && !/[@\r\n]/.test(raw[k])) out[k] = raw[k].slice(0,160); });
+    clickKeys.forEach(k => { if (clickValue(raw[k])) out[k] = raw[k]; });
+    return out;
+  };
+  const has = tags => Object.keys(tags).length > 0;
+  const visitCampaign = campaignOf(source);
+  let savedCampaign = {};
   if (production && !optedOut) {
     try {
-      const legacy=JSON.parse(localStorage.getItem('_bwm_attribution')||'null');
-      const old=legacy?.last_touch?.utm||legacy?.first_touch?.utm||{};
-      keys.forEach(k=>{if(!source[k]&&typeof old[k]==='string'&&!/[@\r\n]/.test(old[k]))source[k]=old[k].slice(0,160);});
-      clickKeys.forEach(k=>{if(!source[k]&&clickValue(old[k]))source[k]=old[k];});
       const prior = JSON.parse(sessionStorage.getItem('bob_visit_source') || 'null');
       if (prior && typeof prior === 'object') {
         source.landing_page = clean(prior.landing_page) || current;
-        clickKeys.forEach(k=>{if(!source[k]&&clickValue(prior[k]))source[k]=prior[k];});
         source.referrer = clean(prior.referrer);
-        keys.forEach(k => { if (!source[k] && typeof prior[k] === 'string' && !/[@\r\n]/.test(prior[k])) source[k] = prior[k].slice(0,160); });
+        if (!has(visitCampaign)) Object.assign(source, campaignOf(prior));
       }
       sessionStorage.setItem('bob_visit_source', JSON.stringify(source));
     } catch { /* A blocked store must not prevent a request. */ }
+    // Spec-Attribution-JS: keep the first touch and the latest campaign for 30 days in the same
+    // _bwm_attribution record and cookie the older site pages use (disclosed on /privacy).
+    try {
+      const KEY = '_bwm_attribution';
+      let record = null;
+      try { record = JSON.parse(localStorage.getItem(KEY) || 'null'); } catch { record = null; }
+      if (!record || typeof record !== 'object' || !record.first_touch || typeof record.first_touch !== 'object') record = null;
+      const touch = { ts: new Date().toISOString(), referrer: pageReferrer || null, landing_page: current, utm: visitCampaign };
+      const saved = record || { first_touch: touch, last_touch: null };
+      // Only a visit with campaign tags replaces the last touch, so a later direct visit keeps it.
+      if (!record || has(visitCampaign)) saved.last_touch = touch;
+      localStorage.setItem(KEY, JSON.stringify(saved));
+      const firstTags = campaignOf(saved.first_touch.utm), lastTags = campaignOf(saved.last_touch?.utm);
+      savedCampaign = has(lastTags) ? lastTags : firstTags;
+      const lead = has(campaignOf(source)) ? campaignOf(source) : savedCampaign;
+      const cookie = { referrer: source.referrer || '', landing_page: source.landing_page || '' };
+      [...keys, ...clickKeys].forEach(k => { cookie[k] = lead[k] || ''; });
+      for (const [k, v] of Object.entries(firstTags)) cookie['first_touch_' + k] = v;
+      Object.assign(cookie, { attribution_version: '3.0', attribution_status: 'captured', attribution_provenance: 'bob_tracking_v1' });
+      const value = encodeURIComponent(JSON.stringify(cookie));
+      if (value.length <= 3800) document.cookie = `${KEY}=${value}; path=/; max-age=2592000; SameSite=Lax; Secure`;
+    } catch { /* Saving the campaign is best effort; the visit still counts. */ }
   }
   window.__bobSourceDetails = () => {
     const result={...source,page_url:clean(location.href)};
     if(production&&!optedOut){
+      // A saved campaign fills the lead only; GA4 keeps its own cross-session attribution.
+      if(!has(campaignOf(result)))Object.assign(result,savedCampaign);
       for(const [key,cookieName] of [['fbp','_fbp'],['fbc','_fbc']]){
         const raw=document.cookie.split('; ').find(c=>c.startsWith(cookieName+'='))?.slice(cookieName.length+1);
         if(raw&&/^[A-Za-z0-9._-]{1,500}$/.test(raw))result[key]=raw;
@@ -75,17 +106,18 @@
   window.dataLayer = window.dataLayer || [];
   window.gtag = window.gtag || function () { window.dataLayer.push(arguments); };
   window.gtag('js', new Date());
+  const referrerOrigin = source.referrer ? new URL(source.referrer).origin : '';
   window.gtag('config', GA4, {
     send_page_view: true,
     campaign_source: source.utm_source, campaign_medium: source.utm_medium,
     campaign_name: source.utm_campaign, campaign_content: source.utm_content, campaign_term: source.utm_term,
     page_location: measurementUrl,
-    page_referrer: source.referrer ? new URL(source.referrer).origin : '',
+    page_referrer: referrerOrigin,
   });
   let loaded = false;
   const pending = [];
-  const allowedEvents = new Set(['cta_click','job_interest_selected','demo_step','form_start','fit_note_submitted','speaking_request_submitted','luncheon_request_submitted','generate_lead','form_submit_error','scroll_depth']);
-  const allowedParams = new Set(['submission_id','form_id','request_kind','selected_interest','section_id','step','percent_scrolled','page_path','link_path']);
+  const allowedEvents = new Set(['cta_click','job_interest_selected','demo_step','form_start','fit_note_submitted','speaking_request_submitted','luncheon_request_submitted','generate_lead','form_submit_error','scroll_depth','phone_click','email_click']);
+  const allowedParams = new Set(['submission_id','form_id','request_kind','selected_interest','section_id','step','percent_scrolled','page_path','link_path','cta_source','phone_number_redacted','email_domain','page_referrer']);
   const ready = () => !!(window.google_tag_manager && window.google_tag_manager[GA4]);
   const send = (name, p) => window.gtag('event', name, { ...p, transport_type: 'beacon' });
   window.__bwmTrackEvent = (name, params = {}) => {
@@ -94,6 +126,10 @@
     for (const [k,v] of Object.entries(params)) if (allowedParams.has(k) && ['string','number'].includes(typeof v)) p[k] = typeof v === 'string' ? v.slice(0,100) : v;
     if (p.submission_id && !/^[a-f0-9-]{36}$/i.test(p.submission_id)) delete p.submission_id;
     if (p.selected_interest && !interests.includes(p.selected_interest)) delete p.selected_interest;
+    if (p.cta_source && !/^[a-z0-9-]{1,60}$/.test(p.cta_source)) delete p.cta_source;
+    if (p.phone_number_redacted && !/^\d{4}$/.test(p.phone_number_redacted)) delete p.phone_number_redacted;
+    if (p.email_domain && !/^[a-z0-9-]+(?:\.[a-z0-9-]+)+$/.test(p.email_domain)) delete p.email_domain;
+    if (p.page_referrer && !/^https?:\/\/[^/?#\s]+$/.test(p.page_referrer)) delete p.page_referrer;
     // Only this filtered payload enters vendors. Never form text, name, company or email.
     window.dataLayer.push({ event: name, ...p });
     if (ready()) send(name,p); else pending.push([name,p]);
@@ -117,10 +153,16 @@
   setTimeout(load,5000);
   document.addEventListener('click',e=>{
     const a=e.target.closest?.('a[href]');
-    if(a){const u=new URL(a.href,location.href);if(u.origin===location.origin && (a.classList.contains('button')||a.classList.contains('header-cta'))) window.__bwmTrackEvent('cta_click',{link_path:u.pathname});}
+    if(a){const u=new URL(a.href,location.href);const cta=a.getAttribute('data-cta-source');if(u.origin===location.origin && (cta||a.classList.contains('button')||a.classList.contains('header-cta'))) window.__bwmTrackEvent('cta_click',{link_path:u.pathname,cta_source:cta||'unspecified'});}
     const job=e.target.closest?.('[data-job]');if(job)window.__bwmTrackEvent('job_interest_selected',{selected_interest:job.dataset.job});
     const demo=e.target.closest?.('#demo-next,#demo-back');if(demo)window.__bwmTrackEvent('demo_step',{section_id:'lead-example',step:Number(document.querySelector('#demo-step')?.textContent.match(/\d+/)?.[0]||0)});
   });
+  // Spec-Attribution-JS v2.10: tel and mailto clicks keep only the last four digits or the email domain.
+  document.addEventListener('click',e=>{
+    const href=e.target.closest?.('a[href]')?.getAttribute('href')||'';
+    if(/^tel:/i.test(href)){const digits=href.replace(/\D/g,'');window.__bwmTrackEvent('phone_click',{phone_number_redacted:digits.length>=4?digits.slice(-4):'',page_referrer:referrerOrigin});}
+    else if(/^mailto:/i.test(href)){const address=href.slice(7).split(/[?#]/)[0];window.__bwmTrackEvent('email_click',{email_domain:address.includes('@')?address.slice(address.lastIndexOf('@')+1).toLowerCase():'',page_referrer:referrerOrigin});}
+  },true);
   document.querySelectorAll('[data-bob-inquiry]').forEach(form=>form.addEventListener('input',()=>window.__bwmTrackEvent('form_start',{form_id:'bob_'+form.dataset.kind,request_kind:form.dataset.kind}),{once:true}));
   const seen=new Set();window.addEventListener('scroll',()=>{
     const total=document.documentElement.scrollHeight-innerHeight;if(total<=0)return;
