@@ -63,7 +63,7 @@ test("preserves the approved public copy and identity", () => {
 });
 
 test("preserves large social-share previews on the approved Bob homepage", () => {
-  assert.match(homepage, /<meta property="og:image" content="https:\/\/buildwisemedia.com\/bob\/assets\/web-r4\/bob-master-1100.webp">/);
+  assert.match(homepage, /<meta property="og:image" content="https:\/\/buildwisemedia.com\/bob\/assets\/web-r423\/bob-master-three-digits-v1-1100.webp">/);
   assert.match(homepage, /<meta property="og:image:width" content="1100">/);
   assert.match(homepage, /<meta property="og:image:height" content="1100">/);
   assert.match(homepage, /<meta name="twitter:card" content="summary_large_image">/);
