@@ -236,11 +236,12 @@ function loadsStylesheet(html, href, base = '/') {
   const seen = new Set();
   while (queue.length) {
     const sheet = queue.shift();
-    if (sheet === href) return true;
     if (seen.has(sheet)) continue;
     seen.add(sheet);
     const file = path.resolve(dist, `.${sheet}`);
+    // Only a stylesheet that is actually built can load (or import) anything.
     if (!file.startsWith(`${dist}${path.sep}`) || !fs.statSync(file, { throwIfNoEntry: false })?.isFile()) continue;
+    if (sheet === href) return true;
     const css = read(file).replace(/\/\*[\s\S]*?\*\//g, ' ');
     for (const [, ref] of css.matchAll(/@import\s+(?:url\(\s*)?["']?([^"')\s;]+)/gi)) {
       const next = resolveRef(ref.split('#')[0].split('?')[0], sheet);

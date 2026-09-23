@@ -109,6 +109,13 @@ test('every way of loading the Bob stylesheet counts on a legacy page', () => {
   }
 });
 
+test('an imported Bob stylesheet only counts when it is built', () => {
+  const files = { 'terms/index.html': page({ head: '<link rel="stylesheet" href="/legacy.css">', body: BOB_HEADER }), 'legacy.css': '@import "/bob/site.css";' };
+  assert.deepEqual(qa(files).failures, []);
+  assert.deepEqual(qa({ ...files, 'bob/site.css': null }).failures.filter((f) => f.startsWith('bob-surface-registry')).sort(),
+    ['contact/', '', 'luncheon/', 'privacy/', 'speaking/', 'terms/'].map((r) => `bob-surface-registry dist/${r}index.html`).sort());
+});
+
 test('an unlisted page cannot switch to the Bob rules by loading the Bob stylesheet', () => {
   assert.deepEqual(qa({ 'industries/x/index.html': page({ head: BOB_SHEET, body: BOB_HEADER }) }).failures, [
     'bob-surface-registry dist/industries/x/index.html',
