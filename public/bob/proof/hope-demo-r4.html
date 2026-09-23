@@ -13,11 +13,12 @@
     --green:#52796f; --green-deep:#2e5947; --green-soft:#e7efeb; --line:#ddd4c7; --gold:#c9a35c;
   }
   *{box-sizing:border-box}
+  .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
   body{margin:0;background:var(--cream);color:var(--body);
     font:16px/1.55 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif}
   .top{padding:26px 28px 18px;border-bottom:1px solid var(--line);background:var(--paper);
     display:flex;align-items:baseline;gap:16px;flex-wrap:wrap}
-  .top h1{margin:0;font-family:Georgia,"Times New Roman",serif;font-weight:500;font-size:26px;color:var(--ink)}
+  .top .top-title{margin:0;font-family:Georgia,"Times New Roman",serif;font-weight:500;font-size:26px;color:var(--ink)}
   .badge{font-size:11.5px;font-weight:700;letter-spacing:.06em;color:var(--gold);
     border:1px solid var(--gold);border-radius:999px;padding:3px 10px;text-transform:uppercase}
   .top .sub{flex-basis:100%;color:var(--muted);font-size:14px;margin-top:2px}
@@ -142,9 +143,10 @@
 <style>
 html,body{height:auto;min-height:0}.capcopy{display:none!important}.capbody{display:block}.capbox{background:#fff;padding:20px}.phone{max-width:340px;padding:14px}.phone-title{font-family:inherit;font-size:18px}.field b{font-size:13px}.field span{font-size:17px}.sent{font-size:14px}.message{font-size:16px;line-height:1.6}.translation{font-size:14px;line-height:1.5}.confirm{font-size:14px}.permission{font-size:13px}.right{gap:22px}.board{padding:0 20px 20px;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}.col{min-width:0}.col h3{font-size:13px;letter-spacing:0;text-transform:none}.card{font-size:14px;overflow-wrap:anywhere}.card .name{font-size:16px}.card .chip{font-size:13px;letter-spacing:0}.card .meta{font-size:14px}.scene-frame{font-size:15px}.top,.panel,.note,.caphead,.capfoot{display:none!important}
 @media(max-width:720px){.board{grid-template-columns:repeat(2,minmax(0,1fr));padding:0 14px 14px}.col{padding:10px}.capbox{padding:14px}.card{padding:10px}.phone{max-width:100%}.card .name{font-size:15px}}
-</style><style>@media(prefers-reduced-motion:reduce){*,*:before,*:after{animation:none!important;transition:none!important}html{scroll-behavior:auto}}</style></head><body><noscript><style>.stage{display:none!important}</style><section class="no-js-fallback"><h2>Sample inquiry workflow</h2><p>Sample data only. No live messages are sent.</p><ol><li>A family sends a web inquiry at 9:02 PM.</li><li>The sample reply uses the family’s language and promises a next-business-day callback.</li><li>The next business day, a 2:00 PM call is confirmed and shown on the board.</li></ol><p>JavaScript is needed for the interactive sample.</p></section></noscript>
+</style><style>@media(prefers-reduced-motion:reduce){*,*:before,*:after{animation:none!important;transition:none!important}html{scroll-behavior:auto}}</style></head><body><noscript><style>.stage{display:none!important}</style><section class="no-js-fallback"><p class="no-js-title">Sample inquiry workflow</p><p>Sample data only. No live messages are sent.</p><ol><li>A family sends a web inquiry at 9:02 PM.</li><li>The sample reply uses the family’s language and promises a next-business-day callback.</li><li>The next business day, a 2:00 PM call is confirmed and shown on the board.</li></ol><p>JavaScript is needed for the interactive sample.</p></section></noscript>
+<h1 id="proof-title" class="sr-only">Sample inquiry workflow</h1>
 <div class="top">
-<h1>the care team — one front door, working</h1>
+<p class="top-title">the care team — one front door, working</p>
 <span class="badge">Preview · sample data only</span>
 <div class="sub">Nothing here is real: sample names, sample numbers. This is the machine you would own — watch an inquiry arrive and never slip away. New here? Press <b>Walk me through it</b> and the preview explains each step in plain words.</div>
 </div>
@@ -450,7 +452,7 @@ body{background:#faf8f3; margin:0}.top,.panel,.note,.caphead,.capfoot{display:no
 </script>
 <style>
 .standalone-intro,.standalone-story,.no-js-fallback{padding:20px 24px;font:16px/1.6 system-ui,sans-serif;background:#faf8f1;color:#17334c}
-.standalone-intro h2{margin:8px 0 0;font-size:24px;line-height:1.25}.standalone-intro p,.standalone-story p{margin:0}.standalone-story h2{font-size:22px;line-height:1.3;margin:0 0 10px}
+.standalone-intro h1{margin:8px 0 0;font-size:24px;line-height:1.25}.no-js-fallback .no-js-title{font-size:2em;font-weight:bold;margin:.67em 0}.standalone-intro p,.standalone-story p{margin:0}.standalone-story h2{font-size:22px;line-height:1.3;margin:0 0 10px}
 .standalone-controls{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:16px;background:#17334c;color:#fff;font:16px/1.4 system-ui,sans-serif}.standalone-controls button{border:1px solid #b8c8d3;border-radius:999px;color:white;background:transparent;font:inherit;padding:12px 16px;min-height:48px}.standalone-controls button:focus-visible{outline:3px solid #e8f544;outline-offset:3px}.standalone-controls button:disabled{opacity:.45}
 </style>
 <script>
@@ -461,7 +463,7 @@ if(parent===window){
   ['A callback is planned.','On the next business day in this example, a 2:00 PM call is confirmed. The board keeps that next step in view.']
  ];
  let current=0;const intro=document.createElement('header');intro.className='standalone-intro';
- const title=document.createElement('h2'),notice=document.createElement('p');title.textContent='Sample inquiry workflow';notice.textContent='Sample data only · No live messages are sent';const home=document.createElement('a');home.href='/#work';home.textContent='Back to the website';intro.append(home,notice,title);
+ const title=document.getElementById('proof-title'),notice=document.createElement('p');title.classList.remove('sr-only');title.textContent='Sample inquiry workflow';notice.textContent='Sample data only · No live messages are sent';const home=document.createElement('a');home.href='/#work';home.textContent='Back to the website';intro.append(home,notice,title);
  const nav=document.createElement('nav');nav.className='standalone-controls';nav.setAttribute('aria-label','Sample workflow controls');
  const back=document.createElement('button'),next=document.createElement('button'),label=document.createElement('span');back.textContent='Back';label.setAttribute('role','status');nav.append(back,label,next);
  const story=document.createElement('section');story.className='standalone-story';const heading=document.createElement('h2'),caption=document.createElement('p');story.append(heading,caption);
