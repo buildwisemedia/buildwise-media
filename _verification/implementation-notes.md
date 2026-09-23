@@ -14,6 +14,16 @@ Per the Build Decision Journal lock (2026-05-25). Newest first.
 - **Codex review follow-ups (rounds 2–8, same day):** every finding was reproduced with a failing test, then fixed. Click IDs now survive internal links that repeat the campaign tags (the links forward UTM tags only); a newer campaign saved by the older pages beats the tab's older one; every restored campaign (saved record, tab copy, held lead fallback) is dated and expires after 30 days, like the cookie; storage reads come before writes and each access is guarded, so a blocked or full store keeps tracking and known lead data. After merging main (`fa70685`, #64): `npm test` 108/108, `npm run build` clean, `npm run qa:brand` 0 failures, 0 warnings.
 - **Not changed:** audit cell 1 (booking link) stays red by design; the Bob site retired `/book` for `/contact`. BaseLayout still overwrites its last touch on every page; left as is.
 
+## 2026-09-23 — Homepage who-it's-for line
+
+Robert chose this line from three independent picks (Claude, Fable and Astra), which a GPT-6 Astra rule check had passed, and said: "Go with your recommended line, ship it."
+
+- **Copy:** a new `<p class="fit-line">` right after the hero lede in `src/data/bob/index.html`: "For founders with a team, ready to put AI to work on what’s slowing growth." It speaks to the customer profile Robert corrected the same day. The revenue band stays internal, so the line names no business size.
+- **Why this pick:** the other two picks end with "them," which switches point of view right after the lede's "your team."
+- **Style** (`public/bob/site.css`): 18 px DM Sans at weight 600 in navy ink, with the lede's 555 px max width. Its −8 px top margin collapses with the lede's 26 px bottom margin, so the line sits 18 px under the lede and the 26 px gap above the actions stays. Bob's image sets the desktop hero height, so that height does not change. At 760 px and below, `.hero-copy` is `display:contents`, so the line gets its own `'fit fit'` grid row at 16 px. Without that row, auto-placement would drop it below the support line.
+- **Guard:** `tests/homepage-fit-line.test.mjs` checks the exact words once, the lede → line → actions order, the desktop rule and the phone row. It fails 3 of 3 on the old code.
+- **Identity:** resolver 1.0.0, `bwm` + `single`, from Brain `brand/BWM-Brand-Guidelines.md`. No new colors, fonts or assets. Record: `_build-context/homepage-who-line-identity-resolution.yaml` (sha256 `9723a0b8113ac3d6427d01df23e17548255de09b9a95257f6fc9131ce0b98684`).
+
 ## 2026-09-23 — QA gates realigned to the Sept 12 Bob brand
 
 Three gates failed on unchanged `main` because they predate the Bob website. Each failure was sorted into a stale rule (gate updated, scoped by surface) or a real defect (page fixed). No check was deleted. The Brain gate changes ship as a separate Brain commit; this entry covers both. Repeated rounds of cross-family review (GPT-5.6 Sol, extra-high effort) tightened the new rules; each round's accepted findings are in the commit history.
