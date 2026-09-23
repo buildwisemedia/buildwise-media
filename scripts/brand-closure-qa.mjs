@@ -160,7 +160,7 @@ const BOB_ROUTES = new Set(['/', '/contact', '/speaking', '/luncheon', '/privacy
 // the frame (guide: "Honest example labels next to the actual sample").
 const BOB_PROOFS = new Set(['/bob/proof/hope-demo-r4', '/bob/proof/service-demo-r43']);
 const LEGACY_CTA_EXEMPT = new Set(['/privacy', '/terms', '/404', '/confirmation', '/thank-you-resource']);
-const HIDDEN_ATTRS = /\shidden(?:[\s=>]|$)|aria-hidden=["']true["']|display\s*:\s*none|visibility\s*:\s*hidden|\bclass=["'][^"']*\b(?:hidden|sr-only|visually-hidden)\b/i;
+const HIDDEN_ATTRS = /\shidden(?:[\s=>]|$)|aria-hidden=["']true["']|display\s*:\s*none|visibility\s*:\s*hidden|opacity\s*:\s*0*(?:\.0*)?\s*(?:[;"']|$)|\bclass=["'][^"']*\b(?:hidden|sr-only|visually-hidden)\b/i;
 
 // A small markup walker for the visibility rules below. Each start tag and text
 // run is reported with `hidden` = it sits in a subtree a visitor cannot see:
@@ -193,12 +193,13 @@ function* walkMarkup(html) {
 
 // An active stylesheet link: rel=stylesheet, not alternate or disabled, for
 // screen, and not inert inside <noscript> or <template>.
-function loadsStylesheet(html, href) {
+function loadsStylesheet(html, href, base = '/') {
   for (const t of walkMarkup(html)) {
     if (t.type !== 'open' || t.name !== 'link' || t.hidden) continue;
     const rel = (t.tag.match(/\brel=["']([^"']+)["']/i)?.[1] ?? '').toLowerCase().split(/\s+/);
     const media = t.tag.match(/\bmedia=["']([^"']*)["']/i)?.[1]?.toLowerCase();
-    if (t.tag.match(/\bhref=["']([^"']+)["']/i)?.[1] === href && rel.includes('stylesheet') && !rel.includes('alternate')
+    const target = t.tag.match(/\bhref=["']([^"']+)["']/i)?.[1];
+    if (target && resolveRef(target.split('#')[0].split('?')[0], base) === href && rel.includes('stylesheet') && !rel.includes('alternate')
       && !/\sdisabled\b/i.test(t.tag) && (media === undefined || media.split(',').some((q) => /^\s*(only\s+)?(all|screen)\b/.test(q)))) return true;
   }
   return false;
@@ -341,7 +342,7 @@ for (const file of htmlFiles) {
   if (!/<meta[^>]+name=["']description["']/i.test(html)) fail('meta-description', rel(file), 'missing meta description');
   if (!htmlTitle(html)) fail('title', rel(file), 'missing title');
 
-  const loadsBobSheet = loadsStylesheet(html, '/bob/site.css');
+  const loadsBobSheet = loadsStylesheet(html, '/bob/site.css', servedPath(file, route));
   if (BOB_ROUTES.has(route)) {
     if (!loadsBobSheet) fail('bob-surface-registry', rel(file), `${route} is listed as a Bob page but does not load /bob/site.css as a stylesheet`);
     const action = bobHeaderAction(html);
@@ -407,9 +408,19 @@ function builtFor(clean, { allowRoute }) {
   if (file !== dist && !file.startsWith(`${dist}${path.sep}`)) return false;
   const stat = fs.statSync(file, { throwIfNoEntry: false });
   if (stat?.isFile()) return true;
-  if (!allowRoute) return false;
+  if (!allowRoute || /\.[a-z0-9]+$/i.test(clean)) return false;
+  // A page route: /x or /x/ is served from x/index.html, or /x from x.html.
   if (stat?.isDirectory() && exists(path.join(file, 'index.html'))) return true;
-  return routeSet.has(clean.replace(/\.html?$/i, '').replace(/\/index$/, '').replace(/\/$/, '') || '/');
+  return !clean.endsWith('/') && exists(`${file}.html`);
+}
+// The built HTML file a page path is served from, or null.
+function pageFileFor(clean) {
+  const file = path.resolve(dist, `.${clean}`);
+  if (file !== dist && !file.startsWith(`${dist}${path.sep}`)) return null;
+  for (const candidate of [file, path.join(file, 'index.html'), `${file}.html`]) {
+    if (fs.statSync(candidate, { throwIfNoEntry: false })?.isFile() && candidate.endsWith('.html')) return candidate;
+  }
+  return null;
 }
 let verifiedStaticRefs = 0;
 for (const file of htmlFiles) {
@@ -457,10 +468,13 @@ for (const file of htmlFiles) {
 // The header action must lead somewhere that exists: a built page, a known
 // redirect, or a file.
 for (const { file, route, href } of headerActions) {
-  const clean = resolveRef(href.split('#')[0].split('?')[0] || route, servedPath(file, route));
-  const page = clean && (clean.replace(/\/$/, '') || '/');
-  if (!clean || !(routeSet.has(page) || expectedRedirects.some(([from]) => from === page) || builtFor(clean, { allowRoute: true }))) {
-    fail('locked-cta-present', rel(file), `the "See Bob at Work" action points to a missing page: ${href}`);
+  const [pathPart, fragment = ''] = href.split('#');
+  const clean = resolveRef(pathPart.split('?')[0] || servedPath(file, route), servedPath(file, route));
+  const target = clean && pageFileFor(clean);
+  const redirected = clean && expectedRedirects.some(([from]) => from === (clean.replace(/\/$/, '') || '/'));
+  const anchorOk = !fragment || (target && new RegExp(`\\b(?:id|name)=["']?${fragment.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}["'\\s>]`).test(read(target)));
+  if (!(target || redirected) || !anchorOk) {
+    fail('locked-cta-present', rel(file), `the "See Bob at Work" action points to a missing page or section: ${href}`);
   }
 }
 if (!failures.some((f) => f.gate === 'static-asset-link')) {
