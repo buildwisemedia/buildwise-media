@@ -222,10 +222,15 @@ test("no result shows a revenue bar, for every stage and answer mix", () => {
               const verdict = byId.get("verdict-card").dataset.verdict;
               verdicts.add(verdict);
               if (stage.value < 3 && verdict === "maybe") smallShopMaybe += 1;
+              const where = `${stage.label} · ${verdict} · target "${target}"`;
               const own = visitorAmount(target);
               for (const bar of [...revenueBars(resultText(byId), own), ...chartMoney(byId, own)]) {
-                if (!offenders.has(bar)) offenders.set(bar, `${stage.label} · ${verdict} · target "${target}"`);
+                if (!offenders.has(bar)) offenders.set(bar, where);
               }
+              // Every result keeps its full list of steps.
+              const steps = byId.get("path-list").childNodes.length;
+              const expected = { fit: 3, maybe: 3, "not-yet": 5 }[verdict];
+              if (steps !== expected) offenders.set(`${steps} steps instead of ${expected}`, where);
             }
           }
         }
@@ -238,7 +243,9 @@ test("no result shows a revenue bar, for every stage and answer mix", () => {
   assert.deepEqual([...offenders].map(([bar, where]) => `${bar}  (${where})`), []);
 });
 
-test("a smaller business still gets a practical step of its own", () => {
+// The "maybe" list shows the first 3 of up to 4 steps, and the early-stage step comes last
+// (the slot the old "$25K/mo" line held). When the list has room, a smaller shop sees it.
+test("a smaller business gets a practical step of its own when the list has room", () => {
   const { quiz, byId } = openPage();
   const base = { sources: ["referrals", "google-organic"], ops: 60, bottleneck: "leads" };
   const steps = (stage) => {
