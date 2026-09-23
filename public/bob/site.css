@@ -46,13 +46,14 @@
 }
 /* This RGB image has a blue matte. Bob is fully inside the central 80%.
    Only the outside 6% fades: no character edge enters the mask.
-   The inspected asset has complete paws; page-level visual review is still open. */
+   The inspected asset has complete paws; page-level visual review is still open.
+   Mask stops are white: a mask reads only alpha, so any opaque color gives the same fade. */
 #meet .meet-bob img {
   border: 0;
   border-radius: 0;
-  mask-image: linear-gradient(to right, transparent, #000 6%, #000 94%, transparent), linear-gradient(to bottom, transparent, #000 6%, #000 94%, transparent);
+  mask-image: linear-gradient(to right, transparent, #fff 6%, #fff 94%, transparent), linear-gradient(to bottom, transparent, #fff 6%, #fff 94%, transparent);
   mask-composite: intersect;
-  -webkit-mask-image: linear-gradient(to right, transparent, #000 6%, #000 94%, transparent), linear-gradient(to bottom, transparent, #000 6%, #000 94%, transparent);
+  -webkit-mask-image: linear-gradient(to right, transparent, #fff 6%, #fff 94%, transparent), linear-gradient(to bottom, transparent, #fff 6%, #fff 94%, transparent);
   -webkit-mask-composite: source-in;
 }
 #meet .jobs { grid-area: jobs; margin: 8px 0 0; gap: 20px; grid-template-columns: repeat(3, minmax(0, 1fr)); }
