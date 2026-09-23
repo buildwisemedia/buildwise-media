@@ -2446,13 +2446,11 @@ window.__leakDiagnose = diagnose;
         return n;
       };
 
-      // Gridlines + revenue labels
+      // Gridlines only. The stage a visitor picks is not their revenue, so the chart
+      // shows the shape of the gap and never prints a dollar figure it made up.
       for (let i = 0; i <= 4; i++) {
-        const r = (maxRev / 4) * i;
-        const y = yAt(r);
+        const y = yAt((maxRev / 4) * i);
         svg.appendChild(mkNS('line', { x1: padX, y1: y, x2: w - padX, y2: y, stroke: 'rgba(240,255,0,0.06)', 'stroke-width': '1' }));
-        svg.appendChild(mkText(padX - 12, y + 4, '$' + (r / 1000).toFixed(0) + 'K',
-          { fill: '#5e5e66', 'font-family': 'JetBrains Mono', 'font-size': '10', 'text-anchor': 'end' }));
       }
 
       // Month labels
@@ -2497,10 +2495,10 @@ window.__leakDiagnose = diagnose;
       svg.appendChild(mkNS('circle', { cx: xAt(months), cy: yAt(currentEnd), r: '6', fill: '#9a9aa3' }));
       svg.appendChild(mkNS('circle', { cx: xAt(months), cy: yAt(systemEnd), r: '8', fill: '#F0FF00', filter: 'drop-shadow(0 0 8px rgba(240,255,0,0.6))' }));
 
-      // Annotations
-      svg.appendChild(mkText(xAt(months) - 16, yAt(systemEnd) - 16, '$' + (systemEnd / 1000).toFixed(0) + 'K/mo',
+      // Annotations — words, not dollars
+      svg.appendChild(mkText(xAt(months) - 16, yAt(systemEnd) - 16, 'With the system',
         { fill: '#F0FF00', 'font-family': 'Inter', 'font-weight': '700', 'font-size': '22', 'text-anchor': 'end' }));
-      svg.appendChild(mkText(xAt(months) - 16, yAt(currentEnd) + 24, '$' + (currentEnd / 1000).toFixed(0) + 'K/mo',
+      svg.appendChild(mkText(xAt(months) - 16, yAt(currentEnd) + 24, 'Today\'s pace',
         { fill: '#9a9aa3', 'font-family': 'JetBrains Mono', 'font-size': '12', 'text-anchor': 'end' }));
     }
 
@@ -2628,8 +2626,9 @@ window.__leakDiagnose = diagnose;
         if (state.leadSources.indexOf('unsure') >= 0) {
           fixes.push([{ strong: 'Install basic attribution.' }, { text: ' Even a spreadsheet — every lead, source, status. The data unlocks every other move.' }]);
         }
+        // Early stages: one move they can make today. No revenue bar — ICP bands stay internal.
         if (state.revenue < 3) {
-          fixes.push([{ strong: 'Get to $25K/mo first.' }, { text: ' Below that, foundational distribution matters more than a system.' }]);
+          fixes.push([{ strong: 'Ask every happy customer for a review and a referral.' }, { text: ' Do it the day you finish the job. Happy customers bring the next ones, and that keeps work coming while you build the rest.' }]);
         }
         const fallbackFixes = [
           [{ strong: 'Document your current sales process.' }, { text: ' Even a 1-pager. The system needs something to standardize.' }],
@@ -2650,7 +2649,7 @@ window.__leakDiagnose = diagnose;
         pathTitleTail.textContent = ' to get ready.';
         pathBody.textContent = "You're not ready for a system installation — yet. Below is the sequence that gets you there. Most operators take 6-12 months. We'll build your map, you do the work, we re-diagnose when you're ready.";
         const steps = [
-          [{ strong: 'Distribution before automation.' }, { text: ' Get to consistent $15-25K/mo via referrals + 1 channel.' }],
+          [{ strong: 'Steady work before automation.' }, { text: ' Get new jobs from referrals plus one channel you control, week after week.' }],
           [{ strong: 'One pricing model, one offer.' }, { text: ' Stop bidding ad-hoc. Productize one core service.' }],
           [{ strong: 'Track every lead.' }, { text: ' Even on paper. The data unlocks the next move.' }],
           [{ strong: 'Free 10 hours/week.' }, { text: ' Delegate or systematize. System-readiness requires capacity.' }],
