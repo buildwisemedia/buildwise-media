@@ -64,9 +64,11 @@
     const prior = read(session, 'bob_visit_source');
     const tabTouch = read(session, 'bob_tab_campaign');
     const heldTouch = read(session, 'bob_lead_campaign');
-    const newest = fresh(record?.last_touch), tab = fresh(tabTouch), held = fresh(heldTouch);
-    carryClicks(newest);
-    carryClicks(tab);
+    const tab = fresh(tabTouch), held = fresh(heldTouch);
+    // When both the saved record and this tab hold a fresh campaign, the later-dated one wins
+    // (a full local store can leave the record behind the tab).
+    const dated = [record?.last_touch, tabTouch].filter(t => has(fresh(t))).sort((a, b) => Date.parse(b.ts) - Date.parse(a.ts));
+    dated.forEach(t => carryClicks(fresh(t)));
     const now = new Date().toISOString();
     let tabNext = has(visitCampaign) ? { ts: now, utm: visitCampaign } : null;
     if (prior) {
@@ -77,7 +79,7 @@
       // Every tagged visit, on these pages or the older ones, rewrites last_touch. So when this tab
       // has a campaign and last_touch holds a fresh one, last_touch is the same or a newer campaign.
       // A tab without a campaign stays direct; the saved campaign then fills the lead only.
-      const pick = has(tab) && has(newest) ? record.last_touch : has(tab) ? tabTouch : null;
+      const pick = has(tab) ? dated[0] : null;
       if (pick) { Object.assign(source, fresh(pick)); tabNext = { ts: pick.ts, utm: fresh(pick) }; }
     }
     write(session, 'bob_visit_source', source);
@@ -87,7 +89,7 @@
     // Only a visit with campaign tags replaces the last touch, so a later direct visit keeps it.
     if (!record || has(visitCampaign)) saved.last_touch = touch;
     write(local, KEY, saved);
-    const firstTags = campaignOf(saved.first_touch.utm), lastTags = fresh(saved.last_touch), firstFresh = fresh(saved.first_touch);
+    const lastTags = fresh(saved.last_touch), firstFresh = fresh(saved.first_touch);
     // The campaign a direct tab's lead falls back to is held for the tab, so an older page that
     // clears last_touch cannot switch it to the first touch mid-visit. GA4 never reads it.
     const savedTouch = has(lastTags) ? saved.last_touch : has(held) ? heldTouch : has(firstFresh) ? saved.first_touch : null;
@@ -97,7 +99,7 @@
       const lead = has(campaignOf(source)) ? campaignOf(source) : savedCampaign;
       const cookie = { referrer: source.referrer || '', landing_page: source.landing_page || '' };
       [...keys, ...clickKeys].forEach(k => { cookie[k] = lead[k] || ''; });
-      for (const [k, v] of Object.entries(firstTags)) cookie['first_touch_' + k] = v;
+      for (const [k, v] of Object.entries(firstFresh)) cookie['first_touch_' + k] = v;
       Object.assign(cookie, { attribution_version: '3.0', attribution_status: 'captured', attribution_provenance: 'bob_tracking_v1' });
       const value = encodeURIComponent(JSON.stringify(cookie));
       if (value.length <= 3800) document.cookie = `${KEY}=${value}; path=/; max-age=2592000; SameSite=Lax; Secure`;

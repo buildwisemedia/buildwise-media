@@ -205,6 +205,22 @@ test('blocked storage that throws on access still tracks and builds the lead sna
  assert.equal(typeof x.window.__bwmTrackEvent,'function');
 });
 
+test('a newer tab click ID beats an older saved one when the local store is full',()=>{
+ const ago=n=>new Date(Date.now()-n*86400000).toISOString(),m=memory(),session=memory();
+ m.setItem('_bwm_attribution',JSON.stringify({first_touch:{ts:ago(3),utm:{}},last_touch:{ts:ago(2),utm:{utm_source:'google',utm_medium:'cpc',gclid:'OldA'}}}));
+ const full={getItem:m.getItem,setItem:()=>{throw new Error('QuotaExceededError');}};
+ run({local:full,session,query:'?utm_source=google&utm_medium=cpc&gclid=NewB'});
+ assert.equal(run({local:full,session,query:'?utm_source=google&utm_medium=cpc'}).window.__bobSourceDetails().gclid,'NewB');
+ assert.equal(run({local:full,session}).window.__bobSourceDetails().gclid,'NewB');
+});
+
+test('expired first-touch fields are not renewed in the cookie',()=>{
+ const ago=n=>new Date(Date.now()-n*86400000).toISOString(),local=memory(),cookies=cookieJar();
+ local.setItem('_bwm_attribution',JSON.stringify({first_touch:{ts:ago(84),utm:{utm_source:'google',gclid:'Old84'}},last_touch:{ts:ago(84),utm:{}}}));
+ const v=cookieValue(run({local,cookies}));
+ assert.equal(v.first_touch_gclid,undefined);assert.equal(v.first_touch_utm_source,undefined);
+});
+
 test('a first touch saved by the older site pages survives an empty last touch',()=>{
  const local=memory();
  const day=86400000,ago=n=>new Date(Date.now()-n*day).toISOString();
