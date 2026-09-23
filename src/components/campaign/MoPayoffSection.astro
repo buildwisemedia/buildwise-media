@@ -15,7 +15,7 @@ const COPY: Record<Props['keyword'], { h2: string; body: string; chainStage: str
   time: {
     chainStage: 'PAYOFF',
     h2: 'The hours stack up.',
-    body: `This isn't "we'll save you 5 hours a week." This is a custom AI system running while you sleep. Lead capture, qualification, follow-up, attribution — all of it happens without you in the loop. You stop being the person who answers leads. You stop being the person who chases reviews. You stop being the person who writes the next ad. Mornings unburied. Evenings closed. Weekends actually off. You hire it once. It runs forever.`,
+    body: `This isn't "we'll save you 5 hours a week." This is a custom AI system running while you sleep. Lead capture, qualification, follow-up, attribution — all of it happens without you in the loop. You stop being the person who answers leads. You stop being the person who chases reviews. You stop being the person who writes the next ad. Mornings unburied. Evenings closed. Weekends actually off. We build it with you. Then our team runs it with you every week.`,
   },
   freedom: {
     chainStage: 'MECHANISM',
@@ -39,12 +39,13 @@ const COPY: Record<Props['keyword'], { h2: string; body: string; chainStage: str
   },
 };
 
-const { h2, body, chainStage } = COPY[keyword];
+// chainStage is internal campaign-planning metadata; it is never rendered.
+const { h2, body } = COPY[keyword];
 ---
 
 <section class="mo-payoff" aria-labelledby="mo-payoff-heading">
   <div class="container">
-    <p class="section-tag">03 · THE PAYOFF · {chainStage}</p>
+    <p class="section-tag">03 · THE PAYOFF</p>
     <h2 id="mo-payoff-heading" class="h-section">{h2}</h2>
     <p class="mo-payoff-body">{body}</p>
 
