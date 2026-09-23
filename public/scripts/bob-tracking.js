@@ -49,24 +49,28 @@
   };
   let savedCampaign = {};
   if (production && !optedOut) {
-    try {
-      const prior = JSON.parse(sessionStorage.getItem('bob_visit_source') || 'null');
-      if (prior && typeof prior === 'object') {
-        source.landing_page = clean(prior.landing_page) || current;
-        source.referrer = clean(prior.referrer);
-        carryClicks(prior);
-        if (!has(visitCampaign)) Object.assign(source, campaignOf(prior));
-      }
-      sessionStorage.setItem('bob_visit_source', JSON.stringify(source));
-    } catch { /* A blocked store must not prevent a request. */ }
     // Spec-Attribution-JS: keep the first touch and the latest campaign for 30 days in the same
     // _bwm_attribution record and cookie the older site pages use (disclosed on /privacy).
+    const KEY = '_bwm_attribution';
+    let record = null, prior = null;
+    try { record = JSON.parse(localStorage.getItem(KEY) || 'null'); } catch { record = null; }
+    if (!record || typeof record !== 'object' || !record.first_touch || typeof record.first_touch !== 'object') record = null;
+    try { prior = JSON.parse(sessionStorage.getItem('bob_visit_source') || 'null'); } catch { prior = null; }
+    if (!prior || typeof prior !== 'object') prior = null;
+    // Every tagged visit, on these pages or the older ones, rewrites last_touch. So when this tab
+    // already has a campaign and last_touch holds a different one, last_touch is the newer campaign.
+    const newest = campaignOf(record?.last_touch?.utm);
+    carryClicks(prior);
+    carryClicks(newest);
+    if (prior) {
+      source.landing_page = clean(prior.landing_page) || current;
+      source.referrer = clean(prior.referrer);
+      const tab = campaignOf(prior);
+      // A tab without a campaign stays direct; the saved campaign then fills the lead only.
+      if (!has(visitCampaign)) Object.assign(source, has(tab) && has(newest) ? newest : tab);
+    }
+    try { sessionStorage.setItem('bob_visit_source', JSON.stringify(source)); } catch { /* A blocked store must not prevent a request. */ }
     try {
-      const KEY = '_bwm_attribution';
-      let record = null;
-      try { record = JSON.parse(localStorage.getItem(KEY) || 'null'); } catch { record = null; }
-      if (!record || typeof record !== 'object' || !record.first_touch || typeof record.first_touch !== 'object') record = null;
-      if (record) carryClicks(record.last_touch?.utm);
       const touch = { ts: new Date().toISOString(), referrer: pageReferrer || null, landing_page: current, utm: visitCampaign };
       const saved = record || { first_touch: touch, last_touch: null };
       // Only a visit with campaign tags replaces the last touch, so a later direct visit keeps it.

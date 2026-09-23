@@ -106,6 +106,26 @@ test('ad click IDs survive internal links that carry the same campaign tags',()=
  assert.equal(o.gclid,undefined);assert.equal(o.fbclid,undefined);assert.equal(cookieValue(other).gclid,'');
 });
 
+test('a newer campaign saved by the older site pages wins over the tab campaign',()=>{
+ const local=memory(),session=memory(),cookies=cookieJar();
+ run({local,session,cookies,query:'?utm_source=google&utm_medium=cpc&gclid=OldClick'});
+ // An older BaseLayout page in the same tab saves campaign B as the latest touch.
+ const rec=JSON.parse(local.getItem('_bwm_attribution'));
+ rec.last_touch={ts:new Date().toISOString(),utm:{utm_source:'facebook',utm_medium:'paid',fbclid:'FbB'}};
+ local.setItem('_bwm_attribution',JSON.stringify(rec));
+ const d=run({local,session,cookies}).window.__bobSourceDetails();
+ assert.equal(d.utm_source,'facebook');assert.equal(d.fbclid,'FbB');assert.equal(d.gclid,undefined);assert.equal(d.utm_medium,'paid');
+});
+
+test('click IDs restored on a tagged return visit reach later untagged pages',()=>{
+ const local=memory(),cookies=cookieJar();
+ run({local,cookies,query:'?utm_source=google&utm_medium=cpc&gclid=Keep1'});
+ const session=memory();
+ run({local,session,cookies,query:'?utm_source=google&utm_medium=cpc'});
+ const d=run({local,session,cookies}).window.__bobSourceDetails();
+ assert.equal(d.gclid,'Keep1');assert.equal(d.utm_source,'google');
+});
+
 test('a first touch saved by the older site pages survives an empty last touch',()=>{
  const local=memory();
  local.setItem('_bwm_attribution',JSON.stringify({first_touch:{ts:'2026-09-01T00:00:00Z',utm:{utm_source:'linkedin',utm_medium:'social',utm_campaign:'owners'}},last_touch:{ts:'2026-09-02T00:00:00Z',utm:{}}}));
