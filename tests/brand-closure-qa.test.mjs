@@ -67,6 +67,8 @@ test('the header action must be visible and inside the site header', () => {
   assert.deepEqual(at(BOB_HEADER.replace('href="/#work"', 'href="/speaking.html"')), ['static-asset-link dist/contact/index.html', ...fail]);
   assert.deepEqual(at(BOB_HEADER.replace('class="header-cta"', 'class="header-cta" style="opacity: 0"')), fail);
   assert.deepEqual(at(BOB_HEADER.replace('class="header-cta"', 'class="header-cta" style="opacity:0!important"')), fail);
+  assert.deepEqual(at(BOB_HEADER.replace('class="site-header"', 'class="site-header" style="display:none !important"')), fail);
+  assert.deepEqual(at(BOB_HEADER.replace('class="header-cta"', 'class="header-cta" style="visibility: hidden!important"')), fail);
   // /#work targets the homepage: only an id or a named <a> there counts, not a form field's name.
   const homeAnchor = (anchor) => qa({ 'index.html': page({ head: BOB_SHEET, body: BOB_HEADER.replace('<section id="work"></section>', anchor) }) }).failures;
   // Every Bob page's action points at /#work, so all six fail together.
@@ -100,8 +102,10 @@ test('the Bob stylesheet is recognized with a query string, on listed and unlist
 test('every way of loading the Bob stylesheet counts on a legacy page', () => {
   const fit = '<a href="/contact">See If We’re a Fit</a>';
   for (const head of ['<link rel=stylesheet href=/bob/site.css>', '<link rel="stylesheet" media="(min-width:1px)" href="/bob/site.css">',
-    '<link rel="stylesheet" href="https://buildwisemedia.com/bob/site.css">', "<link rel='stylesheet' href='/bob/site.css'>"]) {
-    assert.deepEqual(qa({ 'industries/z/index.html': page({ head, body: fit }) }).failures, ['bob-surface-registry dist/industries/z/index.html'], head);
+    '<link rel="stylesheet" href="https://buildwisemedia.com/bob/site.css">', "<link rel='stylesheet' href='/bob/site.css'>",
+    '<link rel="stylesheet" media="" href="/bob/site.css">', '<link rel="stylesheet" href="/legacy.css">']) {
+    const files = { 'industries/z/index.html': page({ head, body: fit }), 'legacy.css': '@import "/bob/site.css";' };
+    assert.deepEqual(qa(files).failures, ['bob-surface-registry dist/industries/z/index.html'], head);
   }
 });
 
@@ -143,6 +147,7 @@ test('a Bob page must label each embedded demo as a sample beside the frame', ()
   assert.deepEqual(home(`<!-- the sample demo -->${frame}`), ['bob-proof-sample-label dist/index.html']);
   assert.deepEqual(home(`<noscript><p>Sample data</p></noscript>${frame}`), ['bob-proof-sample-label dist/index.html']);
   assert.deepEqual(home(`<span hidden>Sample</span>${frame}`), ['bob-proof-sample-label dist/index.html']);
+  assert.deepEqual(home('<iframe src="https://buildwisemedia.com/bob/proof/hope-demo-r4.html"></iframe>'), ['bob-proof-sample-label dist/index.html']);
 });
 
 test('relative and dot-dot references are resolved like a browser, inside dist only', () => {

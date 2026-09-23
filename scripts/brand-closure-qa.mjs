@@ -174,17 +174,17 @@ function attrsOf(tag) {
   return attrs;
 }
 // A start tag that hides its element: hidden, aria-hidden=true, display:none,
-// visibility:hidden, opacity:0 (even !important), or a hidden/sr-only class.
+// visibility:hidden, opacity:0 (each even with !important), or a hidden/sr-only class.
 function hidesElement(tag) {
   const a = attrsOf(tag);
   const style = (a.get('style') ?? '').replace(/\s+/g, '').toLowerCase();
   return a.has('hidden') || (a.get('aria-hidden') ?? '').toLowerCase() === 'true'
-    || /(^|;)(display:none|visibility:hidden|opacity:0*(\.0*)?(!important)?)(;|$)/.test(style)
+    || /(^|;)(display:none|visibility:hidden|opacity:0*(\.0*)?)(!important)?(;|$)/.test(style)
     || (a.get('class') ?? '').split(/\s+/).some((c) => ['hidden', 'sr-only', 'visually-hidden'].includes(c));
 }
 // Active for screens unless every query is print/speech-only or excludes screen.
 function screenMedia(media) {
-  if (media === undefined) return true;
+  if (media === undefined || !media.trim()) return true;
   return media.toLowerCase().split(',').map((q) => q.trim())
     .some((q) => q && !/^(only\s+)?(print|speech)\b/.test(q) && !/^not\s+(screen|all)\b/.test(q));
 }
@@ -221,13 +221,31 @@ function* walkMarkup(html) {
 // An active stylesheet link: rel=stylesheet, not alternate or disabled, for
 // screen, and not inert inside <noscript> or <template>.
 function loadsStylesheet(html, href, base = '/') {
+  const queue = [];
   for (const t of walkMarkup(html)) {
     if (t.type !== 'open' || t.name !== 'link' || t.hidden) continue;
     const a = attrsOf(t.tag);
     const rel = (a.get('rel') ?? '').toLowerCase().split(/\s+/);
     const target = a.get('href');
-    if (target && resolveRef(target.split('#')[0].split('?')[0], base) === href && rel.includes('stylesheet')
-      && !rel.includes('alternate') && !a.has('disabled') && screenMedia(a.get('media'))) return true;
+    if (target && rel.includes('stylesheet') && !rel.includes('alternate') && !a.has('disabled') && screenMedia(a.get('media'))) {
+      const clean = resolveRef(target.split('#')[0].split('?')[0], base);
+      if (clean) queue.push(clean);
+    }
+  }
+  // Follow @import rules through the built stylesheets (cycle-safe).
+  const seen = new Set();
+  while (queue.length) {
+    const sheet = queue.shift();
+    if (sheet === href) return true;
+    if (seen.has(sheet)) continue;
+    seen.add(sheet);
+    const file = path.resolve(dist, `.${sheet}`);
+    if (!file.startsWith(`${dist}${path.sep}`) || !fs.statSync(file, { throwIfNoEntry: false })?.isFile()) continue;
+    const css = read(file).replace(/\/\*[\s\S]*?\*\//g, ' ');
+    for (const [, ref] of css.matchAll(/@import\s+(?:url\(\s*)?["']?([^"')\s;]+)/gi)) {
+      const next = resolveRef(ref.split('#')[0].split('?')[0], sheet);
+      if (next) queue.push(next);
+    }
   }
   return false;
 }
@@ -258,7 +276,7 @@ function bobHeaderAction(html) {
 
 // Every embedded Bob demo needs a visible "sample" label beside its frame
 // (within 400 characters of visible text before or after it).
-function unlabeledDemoFrames(html) {
+function unlabeledDemoFrames(html, base = '/') {
   let text = '';
   const frames = [];
   for (const t of walkMarkup(html)) {
@@ -266,7 +284,7 @@ function unlabeledDemoFrames(html) {
     if (t.type === 'text' && !t.hidden) text += ` ${t.text.replace(/&[a-z0-9#]+;/gi, ' ')}`;
     if (t.type !== 'open' || t.name !== 'iframe') continue;
     const a = attrsOf(t.tag);
-    const src = [a.get('data-src'), a.get('src')].find((v) => v?.startsWith('/bob/proof/'));
+    const src = [a.get('data-src'), a.get('src')].map((v) => v && resolveRef(v, base)).find((v) => v?.startsWith('/bob/proof/'));
     if (src) frames.push({ src, at: text.length });
   }
   return frames.filter(({ at }) => !/\bsample\b/i.test(text.slice(Math.max(0, at - 400), at + 400))).map(({ src }) => src);
@@ -377,7 +395,7 @@ for (const file of htmlFiles) {
     const action = bobHeaderAction(html);
     if (!action) fail('locked-cta-present', rel(file), 'missing the approved Bob header action "See Bob at Work" in the visible site header');
     else headerActions.push({ file, route, href: action });
-    for (const demo of unlabeledDemoFrames(html)) fail('bob-proof-sample-label', rel(file), `${route} embeds ${demo} without a sample label beside the frame`);
+    for (const demo of unlabeledDemoFrames(html, servedPath(file, route))) fail('bob-proof-sample-label', rel(file), `${route} embeds ${demo} without a sample label beside the frame`);
   } else if (BOB_PROOFS.has(route)) {
     if (!/\bnoindex\b/i.test(metaContent(html, 'robots') ?? '')) fail('bob-proof-noindex', rel(file), 'sample demo must carry <meta name="robots" content="noindex">');
     if (!/\bsample\b/i.test(`${htmlTitle(html)} ${metaContent(html, 'description') ?? ''}`)) fail('bob-proof-sample-label', rel(file), 'sample demo title or meta description must call it a sample');
