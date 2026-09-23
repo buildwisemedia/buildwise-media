@@ -1,6 +1,6 @@
 # Brand Closure QA
 
-Generated: 2026-09-23T14:46:49.578Z
+Generated: 2026-09-23T17:32:33.332Z
 
 PASS: 8 | WARN: 0 | FAIL: 0
 
@@ -17,5 +17,5 @@ PASS: 8 | WARN: 0 | FAIL: 0
 - body-imagery-floor: core static routes meet body visual minimums
 - html-basics: 348 HTML files checked (6 Bob pages, 2 Bob sample demos, 340 legacy pages)
 - paid-lp-hero-wordcount: paid /go/* heroes are within the 12-word clarity limit
-- static-asset-link: 3124 same-origin file references resolve in dist/
+- static-asset-link: 3162 same-origin file references resolve in dist/
 - canonical-site-files: robots.txt and llms.txt meet the local contract
