@@ -10,10 +10,11 @@ import { spawnSync } from 'node:child_process';
 const script = new URL('../scripts/brand-closure-qa.mjs', import.meta.url).pathname;
 const BOB_ROUTES = ['/', '/contact', '/speaking', '/luncheon', '/privacy', '/terms'];
 const BOB_SHEET = '<link rel="stylesheet" href="/bob/site.css">';
-const BOB_ACTION = '<a class="header-cta" href="/#work">See Bob at Work</a>';
+const BOB_HEADER = '<header class="site-header"><nav><a class="header-cta" href="/#work">See Bob at Work</a></nav></header>';
 const NOINDEX = '<meta name="robots" content="noindex,nofollow">';
-const page = ({ head = '', body = '' } = {}) =>
-  `<!doctype html><html lang="en"><head><title>T</title><meta name="description" content="D">${head}</head><body><h1>H</h1>${body}</body></html>`;
+const page = ({ head = '', body = '', title = 'T', description = 'D' } = {}) =>
+  `<!doctype html><html lang="en"><head><title>${title}</title><meta name="description" content="${description}">${head}</head><body><h1>H</h1>${body}</body></html>`;
+const demo = (extra = {}) => page({ head: NOINDEX, title: 'Sample demo', ...extra });
 
 function qa(files = {}) {
   const root = fs.mkdtempSync(path.join(os.tmpdir(), 'brand-qa-'));
@@ -31,7 +32,9 @@ function qa(files = {}) {
     '/problem/lead-drought /problem/invisible-market 301',
   ].join('\n'));
   write('bob/site.css', 'body{}');
-  for (const route of BOB_ROUTES) write(route === '/' ? 'index.html' : `${route.slice(1)}/index.html`, page({ head: BOB_SHEET, body: BOB_ACTION }));
+  for (const route of BOB_ROUTES) write(route === '/' ? 'index.html' : `${route.slice(1)}/index.html`, page({ head: BOB_SHEET, body: BOB_HEADER }));
+  write('bob/proof/hope-demo-r4.html', demo());
+  write('bob/proof/service-demo-r43.html', demo());
   for (const [rel, text] of Object.entries(files)) {
     if (text === null) fs.rmSync(path.join(root, 'dist', rel));
     else write(rel, text);
@@ -46,8 +49,20 @@ test('Bob pages pass on the header action without the legacy fit CTA', () => {
   assert.deepEqual(qa(), { status: 0, failures: [] });
 });
 
-test('a Bob page without "See Bob at Work" fails', () => {
-  assert.deepEqual(qa({ 'contact/index.html': page({ head: BOB_SHEET }) }).failures, ['locked-cta-present dist/contact/index.html']);
+test('the header action must be visible and inside the site header', () => {
+  const at = (body) => qa({ 'contact/index.html': page({ head: BOB_SHEET, body }) }).failures;
+  const fail = ['locked-cta-present dist/contact/index.html'];
+  assert.deepEqual(at(''), fail);
+  assert.deepEqual(at('<main><a class="header-cta" href="/#work">See Bob at Work</a></main>'), fail);
+  assert.deepEqual(at(BOB_HEADER.replace('class="header-cta"', 'class="header-cta" hidden')), fail);
+  assert.deepEqual(at(BOB_HEADER.replace('class="header-cta"', 'class="header-cta sr-only"')), fail);
+  assert.deepEqual(at(BOB_HEADER.replace('class="site-header"', 'class="site-header" style="display:none"')), fail);
+});
+
+test('a listed Bob route must load the Bob stylesheet as a stylesheet, and must exist', () => {
+  assert.deepEqual(qa({ 'terms/index.html': page({ body: BOB_HEADER }) }).failures, ['bob-surface-registry dist/terms/index.html']);
+  assert.deepEqual(qa({ 'terms/index.html': page({ head: '<link rel="preload" as="style" href="/bob/site.css">', body: BOB_HEADER }) }).failures, ['bob-surface-registry dist/terms/index.html']);
+  assert.deepEqual(qa({ 'luncheon/index.html': null }).failures, ['bob-surface-registry dist']);
 });
 
 test('legacy pages still need the fit CTA', () => {
@@ -56,39 +71,50 @@ test('legacy pages still need the fit CTA', () => {
 });
 
 test('an unlisted page cannot switch to the Bob rules by loading the Bob stylesheet', () => {
-  assert.deepEqual(qa({ 'industries/x/index.html': page({ head: BOB_SHEET, body: BOB_ACTION }) }).failures, [
+  assert.deepEqual(qa({ 'industries/x/index.html': page({ head: BOB_SHEET, body: BOB_HEADER }) }).failures, [
     'bob-surface-registry dist/industries/x/index.html',
     'locked-cta-present dist/industries/x/index.html',
   ]);
 });
 
-test('a listed Bob route must load the Bob stylesheet and must exist', () => {
-  assert.deepEqual(qa({ 'terms/index.html': page({ body: BOB_ACTION }) }).failures, ['bob-surface-registry dist/terms/index.html']);
-  assert.deepEqual(qa({ 'luncheon/index.html': null }).failures, ['bob-surface-registry dist']);
+test('only approved sample demos skip the CTA, and each approved demo must exist', () => {
+  assert.deepEqual(qa({ 'bob/proof/new-demo.html': demo() }).failures, [
+    'bob-surface-registry dist/bob/proof/new-demo.html',
+    'locked-cta-present dist/bob/proof/new-demo.html',
+  ]);
+  assert.deepEqual(qa({ 'bob/proof/service-demo-r43.html': null }).failures, ['bob-surface-registry dist']);
 });
 
-test('sample demos need noindex and a visible sample label instead of a CTA', () => {
-  assert.deepEqual(qa({
-    'bob/proof/a.html': page({ head: NOINDEX, body: '<p>Sample data</p>' }),
-    'bob/proof/b.html': page({ head: '<meta content="noindex" name="robots">', body: '<p>Example case · Sample data</p>' }),
-  }).failures, []);
-  assert.deepEqual(qa({ 'bob/proof/c.html': page({ body: '<noscript><p>Sample data</p></noscript>' }) }).failures, [
-    'bob-proof-noindex dist/bob/proof/c.html',
-    'bob-proof-sample-label dist/bob/proof/c.html',
+test('approved demos need noindex and a sample title or description', () => {
+  assert.deepEqual(qa({ 'bob/proof/hope-demo-r4.html': demo({ head: '<meta content="noindex" name="robots">', title: 'Service case', description: 'A sample case' }) }).failures, []);
+  assert.deepEqual(qa({ 'bob/proof/hope-demo-r4.html': page({ title: 'Inquiry workflow', body: '<p>Sample data</p>' }) }).failures, [
+    'bob-proof-noindex dist/bob/proof/hope-demo-r4.html',
+    'bob-proof-sample-label dist/bob/proof/hope-demo-r4.html',
   ]);
 });
 
-test('sample demos still need one H1 and a meta description', () => {
-  const noDescription = page({ head: NOINDEX, body: '<p>Sample data</p>' }).replace('<meta name="description" content="D">', '');
-  assert.deepEqual(qa({ 'bob/proof/d.html': noDescription.replace('<h1>H</h1>', '<h1>A</h1><h1>B</h1>') }).failures, [
-    'single-h1 dist/bob/proof/d.html',
-    'meta-description dist/bob/proof/d.html',
+test('approved demos still need one H1 and a meta description', () => {
+  const bad = demo().replace('<meta name="description" content="D">', '').replace('<h1>H</h1>', '<h1>A</h1><h1>B</h1>');
+  assert.deepEqual(qa({ 'bob/proof/hope-demo-r4.html': bad }).failures, [
+    'single-h1 dist/bob/proof/hope-demo-r4.html',
+    'meta-description dist/bob/proof/hope-demo-r4.html',
   ]);
 });
 
-test('linked and embedded files must exist in the build', () => {
-  const html = page({ head: `${BOB_SHEET}<link rel="stylesheet" href="/bob/missing.css">`, body: `${BOB_ACTION}<iframe data-src="/bob/proof/gone.html"></iframe><img src="/img/none.webp" alt="">` });
-  assert.deepEqual(qa({ 'index.html': html }).failures, Array(3).fill('static-asset-link dist/index.html'));
+test('a Bob page must label each embedded demo as a sample beside the frame', () => {
+  const frame = '<iframe data-src="/bob/proof/hope-demo-r4.html" title="Demo"></iframe>';
+  const home = (body) => qa({ 'index.html': page({ head: BOB_SHEET, body: BOB_HEADER + body }) }).failures;
+  assert.deepEqual(home(`<p>Sample data · Nothing is sent</p>${frame}`), []);
+  assert.deepEqual(home(`<!-- the sample demo -->${frame}`), ['bob-proof-sample-label dist/index.html']);
+  assert.deepEqual(home(`<noscript><p>Sample data</p></noscript>${frame}`), ['bob-proof-sample-label dist/index.html']);
+});
+
+test('linked and embedded files must exist as files in the build', () => {
+  const html = page({
+    head: `${BOB_SHEET}<link rel="stylesheet" href="/bob/missing.css">`,
+    body: `${BOB_HEADER}<p>Sample</p><iframe data-src="/bob/proof/gone.html"></iframe><img src="/img/none.webp" alt=""><script src="/bob/"></script>`,
+  });
+  assert.deepEqual(qa({ 'index.html': html }).failures, Array(4).fill('static-asset-link dist/index.html'));
 });
 
 test('Bob scripts and styles outside dist/assets are scanned', () => {

@@ -133,17 +133,41 @@ function metaContent(html, name) {
 
 // Surface map: Brain brand/BWM-Brand-Guidelines.md (Bob brand, 2026-09-12).
 // The Bob page system runs on exactly these routes; every other route keeps the
-// legacy rules. The list and the Bob stylesheet are checked against each other,
-// so a page cannot join or leave the Bob rules without editing this list.
+// legacy rules. The lists and the Bob stylesheet are checked against each other,
+// so a page cannot join or leave the Bob rules without editing a list here.
 const BOB_ROUTES = new Set(['/', '/contact', '/speaking', '/luncheon', '/privacy', '/terms']);
-const BOB_STYLESHEET = /<link\b[^>]*\bhref=["']\/bob\/site\.css["']/i;
-// Guide § Actions and forms: "Keep the header's cream, outlined pill: See Bob at Work."
-const BOB_HEADER_ACTION = /<a\b[^>]*\bclass=["'][^"']*\bheader-cta\b[^"']*["'][^>]*>\s*See Bob at Work\s*<\/a>/i;
-// Sample demos the Bob pages embed. They are proof, not landing pages: they stay
-// out of search, label themselves as samples, and carry no real contact action
-// (guide: "Keep sample proof controls separate from real contact actions").
-const isBobProof = (route) => route.startsWith('/bob/proof/');
+// The approved sample demos the Bob pages embed. They are proof, not landing
+// pages: they stay out of search, name themselves as samples, carry no real
+// contact action, and the page that embeds them labels them as samples beside
+// the frame (guide: "Honest example labels next to the actual sample").
+const BOB_PROOFS = new Set(['/bob/proof/hope-demo-r4', '/bob/proof/service-demo-r43']);
 const LEGACY_CTA_EXEMPT = new Set(['/privacy', '/terms', '/404', '/confirmation', '/thank-you-resource']);
+const HIDDEN_ATTRS = /\shidden(?:[\s=>]|$)|aria-hidden=["']true["']|display\s*:\s*none|visibility\s*:\s*hidden|\bclass=["'][^"']*\b(?:hidden|sr-only|visually-hidden)\b/i;
+
+function loadsStylesheet(html, href) {
+  return (html.match(/<link\b[^>]*>/gi) ?? []).some((tag) => {
+    const rel = (tag.match(/\brel=["']([^"']+)["']/i)?.[1] ?? '').toLowerCase().split(/\s+/);
+    return tag.match(/\bhref=["']([^"']+)["']/i)?.[1] === href
+      && rel.includes('stylesheet') && !rel.includes('alternate') && !/\sdisabled\b/i.test(tag);
+  });
+}
+
+// Guide § Actions and forms: "Keep the header's cream, outlined pill: See Bob at
+// Work." It must sit in the visible site header, not anywhere on the page.
+function hasBobHeaderAction(html) {
+  const header = html.match(/(<header\b[^>]*\bclass=["'][^"']*\bsite-header\b[^"']*["'][^>]*>)([\s\S]*?)<\/header>/i);
+  if (!header || HIDDEN_ATTRS.test(header[1])) return false;
+  return [...header[2].matchAll(/<a\b([^>]*)>\s*See Bob at Work\s*<\/a>/gi)]
+    .some(([, attrs]) => /\bclass=["'][^"']*\bheader-cta\b/i.test(attrs) && !HIDDEN_ATTRS.test(attrs));
+}
+
+// Every embedded Bob demo needs a sample label in the page text beside its frame.
+function unlabeledDemoFrames(html) {
+  const text = html.replace(/<script[\s\S]*?<\/script>|<style[\s\S]*?<\/style>|<noscript[\s\S]*?<\/noscript>|<!--[\s\S]*?-->/gi, ' ');
+  return [...text.matchAll(/<iframe\b[^>]*\b(?:data-)?src=["'](\/bob\/proof\/[^"']+)["'][^>]*>/gi)]
+    .filter((m) => !/\bsample\b/i.test(stripHtml(text.slice(Math.max(0, m.index - 1500), m.index + m[0].length + 1500))))
+    .map((m) => m[1]);
+}
 
 if (!exists(dist)) {
   fail('dist-present', 'dist', 'dist/ is missing. Run npm run build first.');
@@ -243,15 +267,17 @@ for (const file of htmlFiles) {
   if (!/<meta[^>]+name=["']description["']/i.test(html)) fail('meta-description', rel(file), 'missing meta description');
   if (!htmlTitle(html)) fail('title', rel(file), 'missing title');
 
-  const loadsBobSheet = BOB_STYLESHEET.test(html);
+  const loadsBobSheet = loadsStylesheet(html, '/bob/site.css');
   if (BOB_ROUTES.has(route)) {
-    if (!loadsBobSheet) fail('bob-surface-registry', rel(file), `${route} is listed as a Bob page but does not load /bob/site.css`);
-    if (!BOB_HEADER_ACTION.test(html)) fail('locked-cta-present', rel(file), 'missing the approved Bob header action "See Bob at Work"');
-  } else if (isBobProof(route)) {
+    if (!loadsBobSheet) fail('bob-surface-registry', rel(file), `${route} is listed as a Bob page but does not load /bob/site.css as a stylesheet`);
+    if (!hasBobHeaderAction(html)) fail('locked-cta-present', rel(file), 'missing the approved Bob header action "See Bob at Work" in the visible site header');
+    for (const demo of unlabeledDemoFrames(html)) fail('bob-proof-sample-label', rel(file), `${route} embeds ${demo} without a sample label beside the frame`);
+  } else if (BOB_PROOFS.has(route)) {
     if (!/\bnoindex\b/i.test(metaContent(html, 'robots') ?? '')) fail('bob-proof-noindex', rel(file), 'sample demo must carry <meta name="robots" content="noindex">');
-    if (!/\bsample\b/i.test(stripHtml(html.replace(/<noscript[\s\S]*?<\/noscript>/gi, ' ')))) fail('bob-proof-sample-label', rel(file), 'sample demo must label itself as a sample in visible text');
+    if (!/\bsample\b/i.test(`${htmlTitle(html)} ${metaContent(html, 'description') ?? ''}`)) fail('bob-proof-sample-label', rel(file), 'sample demo title or meta description must call it a sample');
   } else {
     if (loadsBobSheet) fail('bob-surface-registry', rel(file), `${route} loads /bob/site.css but is not a listed Bob route`);
+    if (route.startsWith('/bob/proof/')) fail('bob-surface-registry', rel(file), `${route} is not on the approved sample demo list`);
     const ctaCount = (html.match(/See if (?:we|you)['’]re a fit/gi) ?? []).length;
     if (!LEGACY_CTA_EXEMPT.has(route) && ctaCount === 0) fail('locked-cta-present', rel(file), 'missing the accepted fit CTA');
   }
@@ -265,12 +291,11 @@ for (const file of htmlFiles) {
   }
 }
 const builtRoutes = new Set(htmlFiles.map(routeFromHtmlFile));
-for (const route of BOB_ROUTES) {
+for (const route of [...BOB_ROUTES, ...BOB_PROOFS]) {
   if (!builtRoutes.has(route)) fail('bob-surface-registry', 'dist', `listed Bob route ${route} is missing from the build`);
 }
 if (!failures.some((f) => ['single-h1', 'meta-description', 'title', 'locked-cta-present', 'jsonld-parse', 'bob-surface-registry', 'bob-proof-noindex', 'bob-proof-sample-label'].includes(f.gate))) {
-  const proofCount = [...builtRoutes].filter(isBobProof).length;
-  pass('html-basics', `${htmlFiles.length} HTML files checked (${BOB_ROUTES.size} Bob pages, ${proofCount} Bob sample demos, ${htmlFiles.length - BOB_ROUTES.size - proofCount} legacy pages)`);
+  pass('html-basics', `${htmlFiles.length} HTML files checked (${BOB_ROUTES.size} Bob pages, ${BOB_PROOFS.size} Bob sample demos, ${htmlFiles.length - BOB_ROUTES.size - BOB_PROOFS.size} legacy pages)`);
 }
 if (!failures.some((f) => f.gate === 'paid-lp-hero-wordcount')) {
   pass('paid-lp-hero-wordcount', 'paid /go/* heroes are within the 12-word clarity limit');
@@ -284,7 +309,10 @@ routeSet.add('/book');
 routeSet.add('/revenue-leak-map');
 const STATIC_FILE = /\.(png|jpe?g|webp|avif|gif|svg|ico|txt|xml|json|webmanifest|pdf|vcf|woff2?|ttf|otf|eot|css|m?js|map|mp4|webm|html?)$/i;
 function staticFileBuilt(clean) {
-  if (exists(path.join(dist, clean.replace(/^\//, '')))) return true;
+  const file = path.join(dist, clean.replace(/^\//, ''));
+  const stat = fs.statSync(file, { throwIfNoEntry: false });
+  if (stat?.isFile()) return true;
+  if (stat?.isDirectory() && exists(path.join(file, 'index.html'))) return true;
   // Pages also serves /x.html at /x, so a built route satisfies an .html link.
   return /\.html?$/i.test(clean) && routeSet.has(clean.replace(/\.html?$/i, '').replace(/\/index$/, '') || '/');
 }
