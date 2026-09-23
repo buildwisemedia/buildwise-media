@@ -52,41 +52,46 @@
     // Spec-Attribution-JS: keep the first touch and the latest campaign for 30 days in the same
     // _bwm_attribution record and cookie the older site pages use (disclosed on /privacy).
     const KEY = '_bwm_attribution';
-    let record = null, prior = null;
-    try { record = JSON.parse(localStorage.getItem(KEY) || 'null'); } catch { record = null; }
-    if (!record || typeof record !== 'object' || !record.first_touch || typeof record.first_touch !== 'object') record = null;
-    try { prior = JSON.parse(sessionStorage.getItem('bob_visit_source') || 'null'); } catch { prior = null; }
-    if (!prior || typeof prior !== 'object') prior = null;
-    // Every tagged visit, on these pages or the older ones, rewrites last_touch. So when this tab
-    // already has a campaign and last_touch holds a different one, last_touch is the newer campaign.
-    // Saved campaigns count for 30 days, like the cookie. An older or undated touch restores nothing.
+    const read = (store, k) => { try { const v = JSON.parse(store.getItem(k) || 'null'); return v && typeof v === 'object' ? v : null; } catch { return null; } };
+    // Reads come first, so a blocked or full store can never discard what was already known.
+    const write = (store, k, v) => { try { store.setItem(k, JSON.stringify(v)); } catch { /* best effort */ } };
+    // Every saved campaign is dated and counts for 30 days, like the cookie. Undated copies restore nothing.
     const fresh = touch => { const t = Date.parse(touch?.ts); return t > 0 && Date.now() - t <= 2592000000 ? campaignOf(touch.utm) : {}; };
-    const newest = fresh(record?.last_touch);
+    let record = read(localStorage, KEY);
+    if (record && (!record.first_touch || typeof record.first_touch !== 'object')) record = null;
+    const prior = read(sessionStorage, 'bob_visit_source');
+    const tabTouch = read(sessionStorage, 'bob_tab_campaign');
+    const heldTouch = read(sessionStorage, 'bob_lead_campaign');
+    const newest = fresh(record?.last_touch), tab = fresh(tabTouch), held = fresh(heldTouch);
     carryClicks(newest);
-    carryClicks(prior);
+    carryClicks(tab);
+    const now = new Date().toISOString();
+    let tabNext = has(visitCampaign) ? { ts: now, utm: visitCampaign } : null;
     if (prior) {
       source.landing_page = clean(prior.landing_page) || current;
       source.referrer = clean(prior.referrer);
-      const tab = campaignOf(prior);
-      // A tab without a campaign stays direct; the saved campaign then fills the lead only.
-      if (!has(visitCampaign)) Object.assign(source, has(tab) && has(newest) ? newest : tab);
     }
-    try { sessionStorage.setItem('bob_visit_source', JSON.stringify(source)); } catch { /* A blocked store must not prevent a request. */ }
-    // The campaign a direct tab's lead falls back to, held for the tab so an older page that
+    if (!has(visitCampaign)) {
+      // Every tagged visit, on these pages or the older ones, rewrites last_touch. So when this tab
+      // has a campaign and last_touch holds a fresh one, last_touch is the same or a newer campaign.
+      // A tab without a campaign stays direct; the saved campaign then fills the lead only.
+      const pick = has(tab) && has(newest) ? record.last_touch : has(tab) ? tabTouch : null;
+      if (pick) { Object.assign(source, fresh(pick)); tabNext = { ts: pick.ts, utm: fresh(pick) }; }
+    }
+    write(sessionStorage, 'bob_visit_source', source);
+    write(sessionStorage, 'bob_tab_campaign', tabNext);
+    const touch = { ts: now, referrer: pageReferrer || null, landing_page: current, utm: visitCampaign };
+    const saved = record || { first_touch: touch, last_touch: null };
+    // Only a visit with campaign tags replaces the last touch, so a later direct visit keeps it.
+    if (!record || has(visitCampaign)) saved.last_touch = touch;
+    write(localStorage, KEY, saved);
+    const firstTags = campaignOf(saved.first_touch.utm), lastTags = fresh(saved.last_touch), firstFresh = fresh(saved.first_touch);
+    // The campaign a direct tab's lead falls back to is held for the tab, so an older page that
     // clears last_touch cannot switch it to the first touch mid-visit. GA4 never reads it.
-    let heldTouch = null;
-    try { heldTouch = JSON.parse(sessionStorage.getItem('bob_lead_campaign') || 'null'); } catch { heldTouch = null; }
-    const held = fresh(heldTouch);
-    let savedTouch = has(held) ? heldTouch : null;
+    const savedTouch = has(lastTags) ? saved.last_touch : has(held) ? heldTouch : has(firstFresh) ? saved.first_touch : null;
+    savedCampaign = savedTouch ? fresh(savedTouch) : {};
+    write(sessionStorage, 'bob_lead_campaign', savedTouch ? { ts: savedTouch.ts, utm: savedCampaign } : null);
     try {
-      const touch = { ts: new Date().toISOString(), referrer: pageReferrer || null, landing_page: current, utm: visitCampaign };
-      const saved = record || { first_touch: touch, last_touch: null };
-      // Only a visit with campaign tags replaces the last touch, so a later direct visit keeps it.
-      if (!record || has(visitCampaign)) saved.last_touch = touch;
-      localStorage.setItem(KEY, JSON.stringify(saved));
-      const firstTags = campaignOf(saved.first_touch.utm), lastTags = fresh(saved.last_touch), firstFresh = fresh(saved.first_touch);
-      savedTouch = has(lastTags) ? saved.last_touch : has(held) ? heldTouch : has(firstFresh) ? saved.first_touch : null;
-      savedCampaign = savedTouch ? fresh(savedTouch) : {};
       const lead = has(campaignOf(source)) ? campaignOf(source) : savedCampaign;
       const cookie = { referrer: source.referrer || '', landing_page: source.landing_page || '' };
       [...keys, ...clickKeys].forEach(k => { cookie[k] = lead[k] || ''; });
@@ -95,9 +100,6 @@
       const value = encodeURIComponent(JSON.stringify(cookie));
       if (value.length <= 3800) document.cookie = `${KEY}=${value}; path=/; max-age=2592000; SameSite=Lax; Secure`;
     } catch { /* Saving the campaign is best effort; the visit still counts. */ }
-    if (!has(savedCampaign)) savedCampaign = held;
-    // Keep the source touch's date so the 30-day limit still applies to the held copy.
-    try { sessionStorage.setItem('bob_lead_campaign', JSON.stringify(savedTouch && has(savedCampaign) ? { ts: savedTouch.ts, utm: savedCampaign } : null)); } catch { /* best effort */ }
   }
   window.__bobSourceDetails = () => {
     const result={...source,page_url:clean(location.href)};

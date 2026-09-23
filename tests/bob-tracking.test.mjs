@@ -177,6 +177,25 @@ test('the held lead campaign expires with its source touch',()=>{
  assert.equal(later.window.__bobSourceDetails().gclid,undefined);assert.equal(cookieValue(later).gclid,'');
 });
 
+test('an expired tab campaign does not restore its click IDs',()=>{
+ const local=memory(),session=memory(),cookies=cookieJar(),ago=n=>new Date(Date.now()-n*86400000).toISOString();
+ run({local,session,cookies,query:'?utm_source=google&utm_medium=cpc&gclid=Tab31'});
+ const tab=JSON.parse(session.getItem('bob_tab_campaign'));assert.equal(tab.utm.gclid,'Tab31');
+ tab.ts=ago(31);session.setItem('bob_tab_campaign',JSON.stringify(tab));
+ const rec=JSON.parse(local.getItem('_bwm_attribution'));rec.last_touch.ts=ago(31);local.setItem('_bwm_attribution',JSON.stringify(rec));
+ const x=run({local,session,cookies,query:'?utm_source=google&utm_medium=cpc'});
+ assert.equal(x.window.__bobSourceDetails().gclid,undefined);
+ assert.equal(JSON.parse(local.getItem('_bwm_attribution')).last_touch.utm.gclid,undefined);
+});
+
+test('a full local store still restores the saved campaign',()=>{
+ const ago=n=>new Date(Date.now()-n*86400000).toISOString(),m=memory();
+ m.setItem('_bwm_attribution',JSON.stringify({first_touch:{ts:ago(5),utm:{}},last_touch:{ts:ago(2),utm:{utm_source:'google',gclid:'Kept'}}}));
+ const full={getItem:m.getItem,setItem:()=>{throw new Error('QuotaExceededError');}};
+ const d=run({local:full}).window.__bobSourceDetails();
+ assert.equal(d.utm_source,'google');assert.equal(d.gclid,'Kept');
+});
+
 test('a first touch saved by the older site pages survives an empty last touch',()=>{
  const local=memory();
  const day=86400000,ago=n=>new Date(Date.now()-n*day).toISOString();
