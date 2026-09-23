@@ -46,8 +46,8 @@ const categories = [
       {
         feature: "Install / proof window",
         // canonical.products.pilot.operating_period_days / ascend.install_window_days / ascend_pro.install_window_days
-        pilot: "45-day proof sprint",
-        ascend: "45 days (within 90-day period)",
+        pilot: "90-day Pilot",
+        ascend: "Within the 90-day Pilot",
         pro: "14 days",
       },
       {
@@ -196,7 +196,7 @@ const categories = [
       {
         feature: "True m-t-m no penalty after Day 90",
         // canonical.products.ascend.contract_after_operating_period
-        pilot: "n/a (45-day)",
+        pilot: "n/a (90-day Pilot)",
         ascend: "✓",
         pro: "✓",
         ascendHighlight: true,
@@ -236,7 +236,7 @@ function cellClass(val: string, highlight: boolean | undefined, column: 'pilot' 
         <div class="pc-card-visual pc-card-visual--pilot" aria-hidden="true">
           <div class="pc-dossier-sheet">
             <span>Diagnostic sprint</span>
-            <strong>45</strong>
+            <strong>90</strong>
             <em>day proof meter</em>
             <div class="pc-sprint-meter"><span></span></div>
           </div>
@@ -247,7 +247,7 @@ function cellClass(val: string, highlight: boolean | undefined, column: 'pilot' 
         <div class="pc-price-num pc-price-num--y1">
           ${pilot.price.oneshot.toLocaleString()}
         </div>
-        <p class="pc-price-label">one-time · 45-day proof sprint</p>
+        <p class="pc-price-label">one-time · 90-day Pilot</p>
         <p class="pc-card-note">Includes the install scope. Pilot graduates do not pay the install twice.</p>
         <p class="pc-card-cta pc-card-cta--y1">→ see full product.</p>
       </a>
@@ -278,7 +278,7 @@ function cellClass(val: string, highlight: boolean | undefined, column: 'pilot' 
           ${ascend.price.recurring.toLocaleString()}<span class="pc-price-mo">/mo</span>
         </div>
         <p class="pc-price-label">
-          + ${ascend.price.oneshot.toLocaleString()} install · 45-day install window
+          + ${ascend.price.oneshot.toLocaleString()} install · built during the 90-day Pilot
         </p>
         <p class="pc-card-note">Full system operated weekly. 1:1 ad spend is paid by you directly to the platforms.</p>
         <p class="pc-card-cta pc-card-cta--y2">→ see full product.</p>

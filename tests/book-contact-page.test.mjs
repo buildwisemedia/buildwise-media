@@ -34,12 +34,14 @@ test("keeps existing routes honest about the new direct-contact job", () => {
   assert.match(ppcAlternative, /href="\/revenue-leak-map"[^>]*>Revenue Leak Map/i);
 });
 
-test("keeps the legal layer aligned with the direct-contact and no-public-pricing decisions", () => {
+// The Sept 12 brand guide keeps /pricing as the public pricing surface, so the
+// terms must point to it rather than deny that prices are published.
+test("keeps the legal layer aligned with the direct-contact decision and the public pricing page", () => {
   assert.match(terms, /custom AI systems/i);
-  assert.match(terms, /We do not publish a standard price/i);
+  assert.match(terms, /prices are published on our <a href="\/pricing">pricing page<\/a>/i);
   assert.match(terms, /Ninety days describes the initial engagement term/i);
   assert.match(terms, /may reply by email/i);
-  assert.doesNotMatch(terms, /marketing operations services|Current public pricing is listed|discovery call booked through this website/i);
+  assert.doesNotMatch(terms, /marketing operations services|We do not publish a standard price|discovery call booked through this website/i);
 });
 
 test("uses the approved field contract", () => {

@@ -6,12 +6,12 @@ import FAQ from '../../components/FAQ.astro';
 const pilot = canonical.products.pilot;
 const ascend = canonical.products.ascend;
 
-const title = "Ascend Pilot — Prove One Problem in 45 Days";
-const description = "The $15K Ascend Pilot proves one problem in 45 days. It is the only door into the weekly AI engine build.";
+const title = "Ascend Pilot — One Problem, One 90-Day Pilot";
+const description = "The $15K Ascend Pilot is a 90-day engagement to prove one problem, priced below the assembled stack it replaces. It is the only door into the weekly AI engine build.";
 
 const pilotSpecs = [
   { label: 'Cost', value: pilot.price.oneshot_display, body: 'One-time proof sprint. The fee covers the Ascend install scope if you graduate.', tone: 'yellow' },
-  { label: 'Window', value: '45 days', body: 'A tight sprint. We pick one layer, wire proof, and show the decision clearly.', tone: 'cyan' },
+  { label: 'Window', value: '90 days', body: 'One focused engagement. We pick one layer, wire proof, and show the decision clearly.', tone: 'cyan' },
   { label: 'Start', value: 'Dossier', body: 'Market rank, revenue leaks, proof gaps, and the first move are captured before build work starts.', tone: 'green' },
   { label: 'End', value: 'Decision', body: `Keep going into Ascend at ${ascend.price.recurring_display}, or keep what was built and stop there.`, tone: 'orange' },
 ];
@@ -25,15 +25,15 @@ const timeline = [
   },
   {
     n: '02',
-    range: 'Days 8-30',
-    name: 'Wire the first layer',
-    body: 'We select the highest-value layer from the proven menu. Then we wire attribution, follow-up paths, and the live dashboard around that layer.',
+    range: 'Days 8-90',
+    name: 'Wire and run the first layer',
+    body: 'We select the highest-value layer from the proven menu. Then we wire attribution, follow-up paths, and the live dashboard around that layer, and run the proof.',
   },
   {
     n: '03',
-    range: 'Days 31-45',
-    name: 'Run the proof',
-    body: 'We watch the signals, clear the quality gates, and report what changed. The final call is a decision, not a sales pitch.',
+    range: 'Day 90',
+    name: 'Make the call',
+    body: 'We review the signals, the quality gates, and what changed. The final call is a decision, not a sales pitch.',
   },
 ];
 
@@ -42,7 +42,7 @@ const included = [
   'One highest-value layer selected from the proven Ascend menu.',
   'Attribution wiring so the baseline and movement are visible.',
   'Live dashboard that shows what changed and what still needs work.',
-  'Day-45 decision: graduate into Ascend or leave with the built asset.',
+  'Day-90 decision: graduate into Ascend or leave with the built asset.',
 ];
 
 const fitRows = [
@@ -62,14 +62,14 @@ const linkCards = [
 const faqs = [
   {
     q: 'What is Ascend Pilot?',
-    a: `Ascend Pilot is a ${pilot.price.oneshot_display} one-time, 45-day proof sprint. We use it to prove one high-value marketing layer before you commit to the full Ascend system.`,
+    a: `Ascend Pilot is a ${pilot.price.oneshot_display} one-time, 90-day Pilot. We use it to prove one high-value marketing layer before you commit to the full Ascend system.`,
   },
   {
     q: 'Does Ascend Pilot include the Ascend install fee?',
     a: `Yes. The ${pilot.price.oneshot_display} Pilot fee covers the Ascend install scope. If you graduate, you begin Ascend at ${ascend.price.recurring_display} with no second install charge.`,
   },
   {
-    q: 'What happens at the end of 45 days?',
+    q: 'What happens at the end of the 90 days?',
     a: 'We review the dashboard, the baseline, and what changed. If the system fits, you graduate into Ascend. If it does not, you keep the built asset and stop there.',
   },
   {
@@ -83,7 +83,7 @@ const service = {
   '@type': 'Service',
   '@id': 'https://buildwisemedia.com/services/ascend-pilot#service',
   name: pilot.name,
-  serviceType: '45-day proof sprint for a service-business custom AI system',
+  serviceType: '90-day Pilot for a service-business custom AI system',
   provider: { '@id': 'https://buildwisemedia.com/#org' },
   areaServed: { '@type': 'Country', name: 'United States' },
   description,
@@ -93,10 +93,10 @@ const service = {
     name: pilot.name,
     price: String(pilot.price.oneshot),
     priceCurrency: 'USD',
-    description: 'A 45-day proof sprint. The Pilot fee covers the Ascend install scope for Pilot graduates.',
+    description: 'A 90-day Pilot. The Pilot fee covers the Ascend install scope for Pilot graduates.',
     eligibleDuration: {
       '@type': 'QuantitativeValue',
-      value: 45,
+      value: pilot.operating_period_days,
       unitCode: 'DAY',
     },
   },
@@ -130,7 +130,7 @@ const faqSchema = {
     <div class="container ascend-hero-grid">
       <div>
         <p class="eyebrow">Ascend Pilot · proof sprint</p>
-        <h1 class="h-hero">One problem. Proven in 45 days.</h1>
+        <h1 class="h-hero">One problem. One 90-day Pilot.</h1>
         <p class="hero-sub">
           The owner should not risk a full engine on a promise. Pilot is $15K to prove one costly problem against a captured baseline. That fee is set against a much larger assembled stack. The Pilot is the only door in.
         </p>
@@ -143,9 +143,9 @@ const faqSchema = {
       <aside class="ascend-panel ops-panel" aria-label="Ascend Pilot proof sprint preview">
         <div class="ascend-panel-head">
           <p class="panel-label mono">Pilot state</p>
-          <span class="ops-chip"><span class="dot green" aria-hidden="true"></span>45-day proof</span>
+          <span class="ops-chip"><span class="dot green" aria-hidden="true"></span>90-day Pilot</span>
         </div>
-        <p class="panel-number">45</p>
+        <p class="panel-number">90</p>
         <p class="panel-copy"><strong>Available now:</strong> days to prove one problem, wire the proof, and let a human judge the result.</p>
         <div class="pilot-meter" aria-hidden="true">
           <span></span>
@@ -204,9 +204,9 @@ const faqSchema = {
     <div class="container process-grid">
       <header class="section-head">
         <p class="section-tag">The timeline</p>
-        <h2 class="h-section">Days 1-7. Days 8-30. Days 31-45.</h2>
+        <h2 class="h-section">Map it. Run it. Decide at Day 90.</h2>
         <p class="lede">
-          The work moves in order. First we capture the baseline. Then we wire the layer. Then we run the proof and decide what the numbers say.
+          The work moves in order. First we capture the baseline. Then we wire the layer and run the proof. At Day 90, we decide together what the numbers say.
         </p>
       </header>
       <ol class="process-list" role="list">

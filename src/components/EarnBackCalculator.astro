@@ -8,8 +8,8 @@ import canonical from '../data/canonical.json';
 
 const pilotOneshot: number = canonical.products.pilot.price.oneshot;           // 15000
 const ascendRecurring: number = canonical.products.ascend.price.recurring;     // 7000
-// Y1 cost: Pilot up-front + ~9 months Ascend (Pilot covers first ~45 days = ~1.5 months;
-// remaining Y1 after conversion ≈ 10.5 months; plan spec says "~9 months" explicitly)
+// Y1 cost: Pilot up-front + 9 months Ascend (the Pilot covers the first 90 days = 3 months,
+// so Pilot + 9 operating months = 12 months, matching /pricing "Pilot plus nine operating months")
 const y1Months = 9;
 const y1Cost: number = pilotOneshot + ascendRecurring * y1Months;              // 15000 + 63000 = 78000
 
