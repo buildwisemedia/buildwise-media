@@ -66,6 +66,14 @@ test('the header action must be visible and inside the site header', () => {
   // /speaking.html is not built (the page lives at /speaking/), so the link also fails the file check.
   assert.deepEqual(at(BOB_HEADER.replace('href="/#work"', 'href="/speaking.html"')), ['static-asset-link dist/contact/index.html', ...fail]);
   assert.deepEqual(at(BOB_HEADER.replace('class="header-cta"', 'class="header-cta" style="opacity: 0"')), fail);
+  assert.deepEqual(at(BOB_HEADER.replace('class="header-cta"', 'class="header-cta" style="opacity:0!important"')), fail);
+  // /#work targets the homepage: only an id or a named <a> there counts, not a form field's name.
+  const homeAnchor = (anchor) => qa({ 'index.html': page({ head: BOB_SHEET, body: BOB_HEADER.replace('<section id="work"></section>', anchor) }) }).failures;
+  // Every Bob page's action points at /#work, so all six fail together.
+  assert.deepEqual(homeAnchor('<input name="work">').sort(), ['contact/', '', 'luncheon/', 'privacy/', 'speaking/', 'terms/']
+    .map((r) => `locked-cta-present dist/${r}index.html`).sort());
+  assert.deepEqual(homeAnchor('<a name="work"></a>'), []);
+  assert.deepEqual(at(BOB_HEADER.replace('class="header-cta" href="/#work"', 'class=header-cta href=/#work')), []);
   assert.deepEqual(at(BOB_HEADER.replace('href="/#work"', 'href="/speaking"')), []);
   assert.deepEqual(at(BOB_HEADER.replace('See Bob at Work', '<span>See Bob</span> at Work')), []);
 });
@@ -87,6 +95,14 @@ test('the Bob stylesheet is recognized with a query string, on listed and unlist
   const sheet = '<link rel="stylesheet" href="/bob/site.css?v=2">';
   assert.deepEqual(qa({ 'terms/index.html': page({ head: sheet, body: BOB_HEADER }) }).failures, []);
   assert.deepEqual(qa({ 'industries/y/index.html': page({ head: sheet, body: '<a href="/contact">See If We’re a Fit</a>' }) }).failures, ['bob-surface-registry dist/industries/y/index.html']);
+});
+
+test('every way of loading the Bob stylesheet counts on a legacy page', () => {
+  const fit = '<a href="/contact">See If We’re a Fit</a>';
+  for (const head of ['<link rel=stylesheet href=/bob/site.css>', '<link rel="stylesheet" media="(min-width:1px)" href="/bob/site.css">',
+    '<link rel="stylesheet" href="https://buildwisemedia.com/bob/site.css">', "<link rel='stylesheet' href='/bob/site.css'>"]) {
+    assert.deepEqual(qa({ 'industries/z/index.html': page({ head, body: fit }) }).failures, ['bob-surface-registry dist/industries/z/index.html'], head);
+  }
 });
 
 test('an unlisted page cannot switch to the Bob rules by loading the Bob stylesheet', () => {
