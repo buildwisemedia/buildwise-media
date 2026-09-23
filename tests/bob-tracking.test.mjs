@@ -165,6 +165,18 @@ test('a direct tab keeps its restored lead campaign after an older page clears l
  assert.equal(back.window.dataLayer.find(a=>a[0]==='config')[2].campaign_source,undefined);
 });
 
+test('the held lead campaign expires with its source touch',()=>{
+ const local=memory(),session=memory(),cookies=cookieJar(),ago=n=>new Date(Date.now()-n*86400000).toISOString();
+ local.setItem('_bwm_attribution',JSON.stringify({first_touch:{ts:ago(40),utm:{}},last_touch:{ts:ago(29),utm:{utm_source:'google',gclid:'Day29'}}}));
+ assert.equal(run({local,session,cookies}).window.__bobSourceDetails().gclid,'Day29');
+ const held=JSON.parse(session.getItem('bob_lead_campaign'));assert.equal(held.utm.gclid,'Day29');
+ // Two days later the same tab reloads: the source touch is now 31 days old.
+ held.ts=ago(31);session.setItem('bob_lead_campaign',JSON.stringify(held));
+ const rec=JSON.parse(local.getItem('_bwm_attribution'));rec.last_touch.ts=ago(31);local.setItem('_bwm_attribution',JSON.stringify(rec));
+ const later=run({local,session,cookies});
+ assert.equal(later.window.__bobSourceDetails().gclid,undefined);assert.equal(cookieValue(later).gclid,'');
+});
+
 test('a first touch saved by the older site pages survives an empty last touch',()=>{
  const local=memory();
  const day=86400000,ago=n=>new Date(Date.now()-n*day).toISOString();

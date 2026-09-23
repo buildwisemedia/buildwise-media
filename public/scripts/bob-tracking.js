@@ -74,8 +74,10 @@
     try { sessionStorage.setItem('bob_visit_source', JSON.stringify(source)); } catch { /* A blocked store must not prevent a request. */ }
     // The campaign a direct tab's lead falls back to, held for the tab so an older page that
     // clears last_touch cannot switch it to the first touch mid-visit. GA4 never reads it.
-    let held = {};
-    try { held = campaignOf(JSON.parse(sessionStorage.getItem('bob_lead_campaign') || 'null')); } catch { held = {}; }
+    let heldTouch = null;
+    try { heldTouch = JSON.parse(sessionStorage.getItem('bob_lead_campaign') || 'null'); } catch { heldTouch = null; }
+    const held = fresh(heldTouch);
+    let savedTouch = has(held) ? heldTouch : null;
     try {
       const touch = { ts: new Date().toISOString(), referrer: pageReferrer || null, landing_page: current, utm: visitCampaign };
       const saved = record || { first_touch: touch, last_touch: null };
@@ -83,7 +85,8 @@
       if (!record || has(visitCampaign)) saved.last_touch = touch;
       localStorage.setItem(KEY, JSON.stringify(saved));
       const firstTags = campaignOf(saved.first_touch.utm), lastTags = fresh(saved.last_touch), firstFresh = fresh(saved.first_touch);
-      savedCampaign = has(lastTags) ? lastTags : has(held) ? held : firstFresh;
+      savedTouch = has(lastTags) ? saved.last_touch : has(held) ? heldTouch : has(firstFresh) ? saved.first_touch : null;
+      savedCampaign = savedTouch ? fresh(savedTouch) : {};
       const lead = has(campaignOf(source)) ? campaignOf(source) : savedCampaign;
       const cookie = { referrer: source.referrer || '', landing_page: source.landing_page || '' };
       [...keys, ...clickKeys].forEach(k => { cookie[k] = lead[k] || ''; });
@@ -93,7 +96,8 @@
       if (value.length <= 3800) document.cookie = `${KEY}=${value}; path=/; max-age=2592000; SameSite=Lax; Secure`;
     } catch { /* Saving the campaign is best effort; the visit still counts. */ }
     if (!has(savedCampaign)) savedCampaign = held;
-    try { sessionStorage.setItem('bob_lead_campaign', JSON.stringify(savedCampaign)); } catch { /* best effort */ }
+    // Keep the source touch's date so the 30-day limit still applies to the held copy.
+    try { sessionStorage.setItem('bob_lead_campaign', JSON.stringify(savedTouch && has(savedCampaign) ? { ts: savedTouch.ts, utm: savedCampaign } : null)); } catch { /* best effort */ }
   }
   window.__bobSourceDetails = () => {
     const result={...source,page_url:clean(location.href)};
