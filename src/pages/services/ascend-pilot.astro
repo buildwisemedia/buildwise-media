@@ -3,8 +3,9 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 import canonical from '../../data/canonical.json';
 import FAQ from '../../components/FAQ.astro';
 
+// 2026-09-23 (Robert): the Pilot price is the only public price. Ascend's fee is
+// set in the written agreement, so this page reads no Ascend price.
 const pilot = canonical.products.pilot;
-const ascend = canonical.products.ascend;
 
 const title = "Ascend Pilot — One Problem, One 90-Day Pilot";
 const description = "The $15K Ascend Pilot is a 90-day engagement to prove one problem, priced below the assembled stack it replaces. It is the only door into the weekly AI engine build.";
@@ -13,7 +14,7 @@ const pilotSpecs = [
   { label: 'Cost', value: pilot.price.oneshot_display, body: 'One-time proof sprint. The fee covers the Ascend install scope if you graduate.', tone: 'yellow' },
   { label: 'Window', value: '90 days', body: 'One focused engagement. We pick one layer, wire proof, and show the decision clearly.', tone: 'cyan' },
   { label: 'Start', value: 'Dossier', body: 'Market rank, revenue leaks, proof gaps, and the first move are captured before build work starts.', tone: 'green' },
-  { label: 'End', value: 'Decision', body: `Keep going into Ascend at ${ascend.price.recurring_display}, or keep what was built and stop there.`, tone: 'orange' },
+  { label: 'End', value: 'Decision', body: 'Keep going into Ascend, or keep what was built and stop there.', tone: 'orange' },
 ];
 
 const timeline = [
@@ -54,7 +55,7 @@ const fitRows = [
 
 const linkCards = [
   { href: '/services/ascend', label: 'Ascend', body: 'See the full 8-layer system Pilot graduates enter.' },
-  { href: '/pricing', label: 'Pricing', body: 'Review the public price architecture and Day-90 terms.' },
+  { href: '/how-it-works', label: 'How it works', body: 'See the weekly build, step by step.' },
   { href: '/audit', label: 'Revenue Leak Map', body: 'Start with the free map before a paid sprint.' },
   { href: '/system', label: 'The system', body: 'See how the operating layers connect.' },
 ];
@@ -66,7 +67,7 @@ const faqs = [
   },
   {
     q: 'Does Ascend Pilot include the Ascend install fee?',
-    a: `Yes. The ${pilot.price.oneshot_display} Pilot fee covers the Ascend install scope. If you graduate, you begin Ascend at ${ascend.price.recurring_display} with no second install charge.`,
+    a: `Yes. The ${pilot.price.oneshot_display} Pilot fee covers the Ascend install scope. If you graduate, there is no second install charge. Your Ascend fee is set in your written agreement.`,
   },
   {
     q: 'What happens at the end of the 90 days?',
@@ -227,13 +228,13 @@ const faqSchema = {
         <p class="section-tag">The final decision</p>
         <h2 id="pilot-decision-title" class="h-section">Keep going, or leave with the system piece you funded.</h2>
         <p class="lede">
-          Pilot lowers the trust gap. If the proof is strong and both sides agree, Ascend begins at $7K/mo with its $15K install already covered. That is less than half the assembled stack it replaces. Then the weekly build becomes the product.
+          Pilot lowers the trust gap. If the proof is strong and both sides agree, Ascend begins with its install already covered by the Pilot fee. Then the weekly build becomes the product.
         </p>
       </header>
       <div class="decision-board ops-panel">
         <div class="decision-row">
           <span class="mono">Graduate</span>
-          <strong>Ascend begins at {ascend.price.recurring_display}</strong>
+          <strong>Ascend begins</strong>
           <p>The full 8-layer system runs every week. Your Pilot work carries forward.</p>
         </div>
         <div class="decision-row">

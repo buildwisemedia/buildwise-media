@@ -4,8 +4,10 @@ import canonical from '../../data/canonical.json';
 import FAQ from '../../components/FAQ.astro';
 
 const title = "Ascend — The Weekly AI Engine Build";
-const description = "Ascend is a client-owned AI engine built every week for $7K/mo + $15K install, under half an assembled stack.";
+const description = "Ascend is a client-owned AI engine our team builds and runs every week. Every client starts with the 90-day Ascend Pilot.";
 
+// 2026-09-23 (Robert): only the Pilot price is public. Ascend and Pro fees are
+// set in the written agreement, so this page reads no other price from canonical.
 const ascend = canonical.products.ascend;
 const pro = canonical.products.ascend_pro;
 const pilot = canonical.products.pilot;
@@ -30,9 +32,9 @@ const layers = canonical.products.ascend.eight_layers.map((raw: string, i: numbe
 });
 
 const productSpecs = [
-  { label: 'Install', value: '$15K', body: 'The first engine parts, proof paths, and operating rhythm are assembled.', tone: 'cyan' },
+  { label: 'Start', value: '90 days', body: 'Every client starts with the Pilot. It covers the install of the first engine parts and proof paths.', tone: 'cyan' },
   { label: 'Run', value: 'weekly', body: 'Buildwise operates the system, clears gates, and adjusts what underperforms.', tone: 'green' },
-  { label: 'Price', value: '$7K/mo', body: 'Less than half the assembled stack it replaces. The fee pays for engineering.', tone: 'yellow' },
+  { label: 'After Day 90', value: 'monthly', body: 'True month-to-month, with no exit fee. Your fee is set in your written agreement.', tone: 'yellow' },
   { label: 'Own', value: '100%', body: 'Code, data, accounts, customer list, and built assets stay in your business.', tone: 'orange' },
 ];
 
@@ -60,8 +62,8 @@ const commitments = [
 
 const offers = [
   { name: pilot.name, price: pilot.price.oneshot_display, note: 'one-time · 90-day Pilot · covers install scope' },
-  { name: ascend.name, price: ascend.price.recurring_display, note: `+ ${ascend.price.oneshot_display} install · waived for Pilot graduates` },
-  { name: pro.name, price: pro.price.recurring_display, note: `+ ${pro.price.oneshot_display} install · multi-location / Pro` },
+  { name: ascend.name, price: 'Weekly build', note: 'after the Pilot · fee set in your written agreement' },
+  { name: pro.name, price: 'Territory build', note: 'multi-location · fee set in your written agreement' },
 ];
 
 const breadcrumb = {
@@ -89,8 +91,6 @@ const service = {
     name: 'Ascend offers',
     itemListElement: [
       { '@type': 'Offer', name: pilot.name, price: pilot.price.oneshot, priceCurrency: 'USD' },
-      { '@type': 'Offer', name: ascend.name, price: ascend.price.recurring, priceCurrency: 'USD' },
-      { '@type': 'Offer', name: pro.name, price: pro.price.recurring, priceCurrency: 'USD' },
     ],
   },
 };
@@ -117,7 +117,7 @@ const faqs = [
   },
   {
     q: 'How do I start with Ascend?',
-    a: `Pilot is the only door in. It is ${pilot.price.oneshot_display} to prove one problem in a 90-day Pilot and covers the ${ascend.price.oneshot_display} Ascend install. Graduates enter Ascend at ${ascend.price.recurring_display}. Each price is less than half the assembled stack it replaces.`,
+    a: `Pilot is the only door in. It is ${pilot.price.oneshot_display} to prove one problem in a 90-day Pilot, and it covers the Ascend install. That is less than half the assembled stack it replaces. If you graduate, your Ascend fee is set in your written agreement.`,
   },
 ];
 
@@ -140,7 +140,7 @@ const faqSchema = {
         <p class="eyebrow">Ascend · the weekly engine build</p>
         <h1 class="h-hero">The weekly build is the product.</h1>
         <p class="hero-sub">
-          The owner is still the router between tools, people, facts, and action. For $7K/mo + $15K install, our dedicated engineering team builds, maintains, and secures an engine you own. It costs less than half the assembled stack it replaces.
+          The owner is still the router between tools, people, facts, and action. Our dedicated engineering team builds, maintains, and secures an engine you own. It starts with a 90-day Pilot.
         </p>
         <div class="hero-ctas">
           <a href="/book" class="cta" data-cta-source="ascend-hero">See If We're a Fit<span class="cta-arrow" aria-hidden="true">→</span></a>
@@ -268,8 +268,8 @@ const faqSchema = {
   <section class="pricing-snapshot" id="pilot">
     <div class="container">
       <header class="section-head">
-        <p class="section-tag">Pricing snapshot</p>
-        <h2 class="h-section">One ladder, priced against the stack.</h2>
+        <p class="section-tag">How you start</p>
+        <h2 class="h-section">One ladder. One door in.</h2>
       </header>
       <div class="offer-grid">
         {offers.map((offer) => (
@@ -280,8 +280,8 @@ const faqSchema = {
           </article>
         ))}
       </div>
-      <p class="lede">Pilot proves one problem. Ascend builds the engine weekly. Pro builds the territory fortress. Every price is less than half the assembled stack it replaces.</p>
-      <p class="pricing-link"><a href="/pricing" class="cta-ghost" data-cta-source="ascend-pricing">See full pricing<span class="cta-arrow" aria-hidden="true">→</span></a></p>
+      <p class="lede">Pilot proves one problem, for less than half the assembled stack it replaces. Ascend builds the engine weekly. Pro builds the territory fortress. Ascend and Pro fees are set in your written agreement.</p>
+      <p class="pricing-link"><a href="/services/ascend-pilot" class="cta-ghost" data-cta-source="ascend-pilot-link">See the Pilot<span class="cta-arrow" aria-hidden="true">→</span></a></p>
     </div>
   </section>
 
