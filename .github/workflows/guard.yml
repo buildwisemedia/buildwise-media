@@ -37,6 +37,10 @@ jobs:
       - run: npm ci
       - run: npm test
       - run: npm run build
+      # Brand closure QA gates every build. It sat outside CI and went stale
+      # (its committed report claimed 0 failures while main had 10).
+      - name: Brand closure QA
+        run: npm run qa:brand
       - name: Verify private invitation and tracking-free artifact
         shell: bash
         run: |

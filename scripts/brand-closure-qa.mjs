@@ -114,7 +114,181 @@ function collectJsonLd(html) {
 }
 
 function hrefsFrom(html) {
-  return [...html.matchAll(/\bhref=["']([^"']+)["']/gi)].map((m) => m[1]);
+  return [...html.matchAll(/\bhref=(?:"([^"]+)"|'([^']+)'|([^\s"'<>`]+))/gi)].map((m) => m[1] ?? m[2] ?? m[3]);
+}
+
+// Every embedded resource URL with its element: src, data-src (a deferred
+// frame), each srcset candidate, a video poster and an object's data.
+function srcsFrom(html) {
+  const refs = [];
+  for (const [tag, name] of html.matchAll(/<(img|script|iframe|source|video|audio|track|embed|object|input)\b[^>]*>/gi)) {
+    for (const [kind, value] of attrsOf(tag)) {
+      if (!['src', 'data-src', 'srcset', 'poster', 'data'].includes(kind)) continue;
+      if ((kind === 'poster' && name.toLowerCase() !== 'video') || (kind === 'data' && name.toLowerCase() !== 'object')) continue;
+      const urls = kind === 'srcset' ? value.split(',').map((c) => c.trim().split(/\s+/)[0]) : [value.trim()];
+      for (const ref of urls.filter(Boolean)) refs.push({ element: name.toLowerCase(), ref });
+    }
+  }
+  return refs;
+}
+
+// Stylesheet link targets: these must be real files, never a page route.
+function stylesheetHrefs(html) {
+  return [...html.matchAll(/<link\b[^>]*>/gi)]
+    .map(([tag]) => attrsOf(tag))
+    .filter((a) => (a.get('rel') ?? '').toLowerCase().split(/\s+/).includes('stylesheet'))
+    .map((a) => a.get('href'))
+    .filter(Boolean);
+}
+
+function metaContent(html, name) {
+  for (const tag of html.match(/<meta\b[^>]*>/gi) ?? []) {
+    if (tag.match(/\bname=["']([^"']+)["']/i)?.[1]?.toLowerCase() === name) {
+      return tag.match(/\bcontent=["']([^"']*)["']/i)?.[1] ?? '';
+    }
+  }
+  return null;
+}
+
+// Surface map: Brain brand/BWM-Brand-Guidelines.md (Bob brand, 2026-09-12).
+// The Bob page system runs on exactly these routes; every other route keeps the
+// legacy rules. The lists and the Bob stylesheet are checked against each other,
+// so a page cannot join or leave the Bob rules without editing a list here.
+const BOB_ROUTES = new Set(['/', '/contact', '/speaking', '/luncheon', '/privacy', '/terms']);
+// The approved sample demos the Bob pages embed. They are proof, not landing
+// pages: they stay out of search, name themselves as samples, carry no real
+// contact action, and the page that embeds them labels them as samples beside
+// the frame (guide: "Honest example labels next to the actual sample").
+const BOB_PROOFS = new Set(['/bob/proof/hope-demo-r4', '/bob/proof/service-demo-r43']);
+// Origins that count as this site when resolving references (the canonical
+// production hosts, plus the placeholder origin used for relative paths).
+const SITE_ORIGINS = new Set(['https://site.invalid', 'https://buildwisemedia.com', 'https://www.buildwisemedia.com']);
+const LEGACY_CTA_EXEMPT = new Set(['/privacy', '/terms', '/404', '/confirmation', '/thank-you-resource']);
+// Attributes of one start tag: double-, single- or un-quoted values, names lowercased.
+function attrsOf(tag) {
+  const attrs = new Map();
+  const body = tag.replace(/^<[a-zA-Z][\w-]*/, '').replace(/\/?>$/, '');
+  for (const [, name, dq, sq, bare] of body.matchAll(/([^\s"'>\/=]+)(?:\s*=\s*(?:"([^"]*)"|'([^']*)'|([^\s"'=<>`]+)))?/g)) {
+    attrs.set(name.toLowerCase(), dq ?? sq ?? bare ?? '');
+  }
+  return attrs;
+}
+// A start tag that hides its element: hidden, aria-hidden=true, display:none,
+// visibility:hidden, opacity:0 (each even with !important), or a hidden/sr-only class.
+function hidesElement(tag) {
+  const a = attrsOf(tag);
+  const style = (a.get('style') ?? '').replace(/\s+/g, '').toLowerCase();
+  return a.has('hidden') || (a.get('aria-hidden') ?? '').toLowerCase() === 'true'
+    || /(^|;)(display:none|visibility:hidden|opacity:0*(\.0*)?)(!important)?(;|$)/.test(style)
+    || (a.get('class') ?? '').split(/\s+/).some((c) => ['hidden', 'sr-only', 'visually-hidden'].includes(c));
+}
+// Active for screens unless every query is print/speech-only or excludes screen.
+function screenMedia(media) {
+  if (media === undefined || !media.trim()) return true;
+  return media.toLowerCase().split(',').map((q) => q.trim())
+    .some((q) => q && !/^(only\s+)?(print|speech)\b/.test(q) && !/^not\s+(screen|all)\b/.test(q));
+}
+
+// A small markup walker for the visibility rules below. Each start tag and text
+// run is reported with `hidden` = it sits in a subtree a visitor cannot see:
+// hidden / aria-hidden / display:none / visibility:hidden / hidden or sr-only
+// classes, <template>, and <noscript> (inert when JavaScript runs). Comments,
+// scripts and styles are skipped. `depth` lets callers find an element's end.
+const VOID_TAGS = new Set(['area', 'base', 'br', 'col', 'embed', 'hr', 'img', 'input', 'link', 'meta', 'source', 'track', 'wbr']);
+function* walkMarkup(html) {
+  const stack = [];
+  const re = /<!--[\s\S]*?-->|<(script|style)\b[^>]*>[\s\S]*?<\/\1\s*>|<(\/?)([a-zA-Z][\w-]*)\b[^>]*>|[^<]+|</g;
+  for (let m; (m = re.exec(html));) {
+    if (m[0].startsWith('<!--') || m[1]) continue;
+    const inHidden = stack.some((e) => e.hidden);
+    if (!m[3]) {
+      yield { type: 'text', text: m[0], hidden: inHidden };
+      continue;
+    }
+    const name = m[3].toLowerCase();
+    if (m[2]) {
+      const at = stack.map((e) => e.name).lastIndexOf(name);
+      if (at >= 0) stack.length = at;
+      yield { type: 'close', name, depth: stack.length };
+      continue;
+    }
+    const hidden = inHidden || hidesElement(m[0]) || name === 'template' || name === 'noscript';
+    yield { type: 'open', name, tag: m[0], hidden, depth: stack.length };
+    if (!VOID_TAGS.has(name) && !m[0].endsWith('/>')) stack.push({ name, hidden });
+  }
+}
+
+// An active stylesheet link: rel=stylesheet, not alternate or disabled, for
+// screen, and not inert inside <noscript> or <template>.
+function loadsStylesheet(html, href, base = '/') {
+  const queue = [];
+  for (const t of walkMarkup(html)) {
+    if (t.type !== 'open' || t.name !== 'link' || t.hidden) continue;
+    const a = attrsOf(t.tag);
+    const rel = (a.get('rel') ?? '').toLowerCase().split(/\s+/);
+    const target = a.get('href');
+    if (target && rel.includes('stylesheet') && !rel.includes('alternate') && !a.has('disabled') && screenMedia(a.get('media'))) {
+      const clean = resolveRef(target.split('#')[0].split('?')[0], base);
+      if (clean) queue.push(clean);
+    }
+  }
+  // Follow @import rules through the built stylesheets (cycle-safe).
+  const seen = new Set();
+  while (queue.length) {
+    const sheet = queue.shift();
+    if (seen.has(sheet)) continue;
+    seen.add(sheet);
+    const file = path.resolve(dist, `.${sheet}`);
+    // Only a stylesheet that is actually built can load (or import) anything.
+    if (!file.startsWith(`${dist}${path.sep}`) || !fs.statSync(file, { throwIfNoEntry: false })?.isFile()) continue;
+    if (sheet === href) return true;
+    const css = read(file).replace(/\/\*[\s\S]*?\*\//g, ' ');
+    for (const [, ref] of css.matchAll(/@import\s+(?:url\(\s*)?["']?([^"')\s;]+)/gi)) {
+      const next = resolveRef(ref.split('#')[0].split('?')[0], sheet);
+      if (next) queue.push(next);
+    }
+  }
+  return false;
+}
+
+// Guide § Actions and forms: "Keep the header's cream, outlined pill: See Bob at
+// Work." It must be a visible, working link (real href) inside the site header.
+function bobHeaderAction(html) {
+  let header = null;
+  let link = null;
+  for (const t of walkMarkup(html)) {
+    if (!header) {
+      if (t.type === 'open' && t.name === 'header' && (attrsOf(t.tag).get('class') ?? '').split(/\s+/).includes('site-header')) header = t;
+      continue;
+    }
+    if (t.type === 'close' && t.depth <= header.depth) break;
+    if (t.type === 'open' && t.name === 'a' && (attrsOf(t.tag).get('class') ?? '').split(/\s+/).includes('header-cta')) {
+      const href = (attrsOf(t.tag).get('href') ?? '').trim();
+      link = { ...t, text: '', href, usable: href !== '' && href !== '#' && !/^javascript:/i.test(href) };
+    }
+    else if (link && t.type === 'text' && !t.hidden) link.text += t.text;
+    else if (link && t.type === 'close' && t.depth <= link.depth) {
+      if (!link.hidden && link.usable && link.text.replace(/\s+/g, ' ').trim() === 'See Bob at Work') return link.href;
+      link = null;
+    }
+  }
+  return null;
+}
+
+// Every embedded Bob demo needs a visible "sample" label beside its frame
+// (within 400 characters of visible text before or after it).
+function unlabeledDemoFrames(html, base = '/') {
+  let text = '';
+  const frames = [];
+  for (const t of walkMarkup(html)) {
+    // A space per text run keeps words in neighboring elements apart ("H" + "Sample").
+    if (t.type === 'text' && !t.hidden) text += ` ${t.text.replace(/&[a-z0-9#]+;/gi, ' ')}`;
+    if (t.type !== 'open' || t.name !== 'iframe') continue;
+    const a = attrsOf(t.tag);
+    const src = [a.get('data-src'), a.get('src')].map((v) => v && resolveRef(v, base)).find((v) => v?.startsWith('/bob/proof/'));
+    if (src) frames.push({ src, at: text.length });
+  }
+  return frames.filter(({ at }) => !/\bsample\b/i.test(text.slice(Math.max(0, at - 400), at + 400))).map(({ src }) => src);
 }
 
 if (!exists(dist)) {
@@ -124,7 +298,10 @@ if (!exists(dist)) {
 }
 
 const htmlFiles = walk(dist, (file) => file.endsWith('.html'));
-const assetFiles = walk(path.join(dist, 'assets'), (file) => /\.(js|css)$/i.test(file));
+const headerActions = [];
+// Every shipped stylesheet and script, not only dist/assets/ (which is empty
+// because Astro inlines styles; the Bob files live in dist/bob/ and dist/scripts/).
+const assetFiles = walk(dist, (file) => /\.(m?js|css)$/i.test(file));
 const textFiles = walk(dist, (file) => /\.(txt|xml)$/i.test(file));
 const renderedFiles = [...htmlFiles, ...assetFiles, ...textFiles, path.join(dist, '_redirects')].filter(exists);
 
@@ -213,9 +390,22 @@ for (const file of htmlFiles) {
   if (!/<meta[^>]+name=["']description["']/i.test(html)) fail('meta-description', rel(file), 'missing meta description');
   if (!htmlTitle(html)) fail('title', rel(file), 'missing title');
 
-  const ctaCount = (html.match(/See if (?:we|you)['’]re a fit/gi) ?? []).length;
-  const pathNeedsCta = !['/privacy', '/terms', '/404', '/confirmation', '/thank-you-resource'].includes(route);
-  if (pathNeedsCta && ctaCount === 0) fail('locked-cta-present', rel(file), 'missing the accepted fit CTA');
+  const loadsBobSheet = loadsStylesheet(html, '/bob/site.css', servedPath(file, route));
+  if (BOB_ROUTES.has(route)) {
+    if (!loadsBobSheet) fail('bob-surface-registry', rel(file), `${route} is listed as a Bob page but does not load /bob/site.css as a stylesheet`);
+    const action = bobHeaderAction(html);
+    if (!action) fail('locked-cta-present', rel(file), 'missing the approved Bob header action "See Bob at Work" in the visible site header');
+    else headerActions.push({ file, route, href: action });
+    for (const demo of unlabeledDemoFrames(html, servedPath(file, route))) fail('bob-proof-sample-label', rel(file), `${route} embeds ${demo} without a sample label beside the frame`);
+  } else if (BOB_PROOFS.has(route)) {
+    if (!/\bnoindex\b/i.test(metaContent(html, 'robots') ?? '')) fail('bob-proof-noindex', rel(file), 'sample demo must carry <meta name="robots" content="noindex">');
+    if (!/\bsample\b/i.test(`${htmlTitle(html)} ${metaContent(html, 'description') ?? ''}`)) fail('bob-proof-sample-label', rel(file), 'sample demo title or meta description must call it a sample');
+  } else {
+    if (loadsBobSheet) fail('bob-surface-registry', rel(file), `${route} loads /bob/site.css but is not a listed Bob route`);
+    if (route.startsWith('/bob/proof/')) fail('bob-surface-registry', rel(file), `${route} is not on the approved sample demo list`);
+    const ctaCount = (html.match(/See if (?:we|you)['’]re a fit/gi) ?? []).length;
+    if (!LEGACY_CTA_EXEMPT.has(route) && ctaCount === 0) fail('locked-cta-present', rel(file), 'missing the accepted fit CTA');
+  }
 
   for (const block of collectJsonLd(html)) {
     try {
@@ -225,8 +415,12 @@ for (const file of htmlFiles) {
     }
   }
 }
-if (!failures.some((f) => ['single-h1', 'meta-description', 'title', 'locked-cta-present', 'jsonld-parse'].includes(f.gate))) {
-  pass('html-basics', `${htmlFiles.length} HTML files checked`);
+const builtRoutes = new Set(htmlFiles.map(routeFromHtmlFile));
+for (const route of [...BOB_ROUTES, ...BOB_PROOFS]) {
+  if (!builtRoutes.has(route)) fail('bob-surface-registry', 'dist', `listed Bob route ${route} is missing from the build`);
+}
+if (!failures.some((f) => ['single-h1', 'meta-description', 'title', 'locked-cta-present', 'jsonld-parse', 'bob-surface-registry', 'bob-proof-noindex', 'bob-proof-sample-label'].includes(f.gate))) {
+  pass('html-basics', `${htmlFiles.length} HTML files checked (${BOB_ROUTES.size} Bob pages, ${BOB_PROOFS.size} Bob sample demos, ${htmlFiles.length - BOB_ROUTES.size - BOB_PROOFS.size} legacy pages)`);
 }
 if (!failures.some((f) => f.gate === 'paid-lp-hero-wordcount')) {
   pass('paid-lp-hero-wordcount', 'paid /go/* heroes are within the 12-word clarity limit');
@@ -238,21 +432,109 @@ routeSet.add('/book');
 // This route is intentionally server-rendered, so it is present in the worker
 // bundle rather than as dist/revenue-leak-map/index.html.
 routeSet.add('/revenue-leak-map');
+const STATIC_FILE = /\.(png|jpe?g|webp|avif|gif|svg|ico|txt|xml|json|webmanifest|pdf|vcf|woff2?|ttf|otf|eot|css|m?js|map|mp4|webm|html?)$/i;
+// The URL path a built HTML file is served at, for resolving relative references.
+function servedPath(file, route) {
+  return file.endsWith(`${path.sep}index.html`) ? (route === '/' ? '/' : `${route}/`) : route;
+}
+// Same-origin path for a reference, normalized like a browser does ("..", "."),
+// or null for other origins and schemes.
+function resolveRef(ref, base) {
+  // Only a malformed reference is caught; a bug here must fail loudly, never skip a check.
+  let url;
+  try {
+    url = new URL(ref, `https://site.invalid${base}`);
+  } catch {
+    return null;
+  }
+  if (!SITE_ORIGINS.has(url.origin)) return null;
+  try {
+    return decodeURIComponent(url.pathname);
+  } catch {
+    return url.pathname;
+  }
+}
+// A built file for a path. Pages also serves /x.html at /x and a directory's
+// index.html, so a page route counts only where a page is requested (a link or
+// an iframe). Scripts, images and media must be real files. Nothing outside
+// dist/ counts.
+function builtFor(clean, { allowRoute }) {
+  const file = path.resolve(dist, `.${clean}`);
+  if (file !== dist && !file.startsWith(`${dist}${path.sep}`)) return false;
+  const stat = fs.statSync(file, { throwIfNoEntry: false });
+  if (stat?.isFile()) return true;
+  if (!allowRoute || /\.[a-z0-9]+$/i.test(clean)) return false;
+  // A page route: /x or /x/ is served from x/index.html, or /x from x.html.
+  if (stat?.isDirectory() && exists(path.join(file, 'index.html'))) return true;
+  return !clean.endsWith('/') && exists(`${file}.html`);
+}
+// The built HTML file a page path is served from, or null.
+function pageFileFor(clean) {
+  const file = path.resolve(dist, `.${clean}`);
+  if (file !== dist && !file.startsWith(`${dist}${path.sep}`)) return null;
+  for (const candidate of [file, path.join(file, 'index.html'), `${file}.html`]) {
+    if (fs.statSync(candidate, { throwIfNoEntry: false })?.isFile() && candidate.endsWith('.html')) return candidate;
+  }
+  return null;
+}
+let verifiedStaticRefs = 0;
 for (const file of htmlFiles) {
   const route = routeFromHtmlFile(file);
-  for (const href of hrefsFrom(read(file))) {
-    if (!href.startsWith('/') || href.startsWith('//')) continue;
+  const base = servedPath(file, route);
+  const html = read(file);
+  const sheets = new Set(stylesheetHrefs(html));
+  for (const href of hrefsFrom(html)) {
+    if (sheets.has(href)) continue;
+    if (/^(#|\?|\/\/|[a-z][a-z0-9+.-]*:)/i.test(href)) continue;
+    if (!href.startsWith('/')) {
+      // Relative links: verify the static files they name (routes stay unverified, as before).
+      const clean = resolveRef(href, base);
+      if (clean && STATIC_FILE.test(clean)) {
+        if (builtFor(clean, { allowRoute: /\.html?$/i.test(clean) })) verifiedStaticRefs += 1;
+        else fail('static-asset-link', rel(file), `${route} links to missing asset ${href}`);
+      }
+      continue;
+    }
     if (href.startsWith('/_') || href.startsWith('/assets/') || href.startsWith('/brand/') || href.startsWith('/images/')) continue;
     const clean = href.split('#')[0].split('?')[0].replace(/\/$/, '') || '/';
-    if (/\.(png|jpe?g|webp|svg|ico|txt|xml|pdf|vcf|woff2?|ttf|otf|eot)$/i.test(clean)) {
-      const assetFile = path.join(dist, clean.replace(/^\//, ''));
-      if (!exists(assetFile)) fail('static-asset-link', rel(file), `${route} links to missing asset ${href}`);
+    if (STATIC_FILE.test(clean)) {
+      const resolved = resolveRef(clean, base);
+      if (resolved && builtFor(resolved, { allowRoute: /\.html?$/i.test(resolved) })) verifiedStaticRefs += 1;
+      else fail('static-asset-link', rel(file), `${route} links to missing asset ${href}`);
       continue;
     }
     if (routeSet.has(clean)) continue;
     if (expectedRedirects.some(([from]) => from === clean)) continue;
     warn('static-internal-link-unverified', rel(file), `${route} links to ${href}`);
   }
+  for (const href of stylesheetHrefs(html)) {
+    const clean = resolveRef(href.split('#')[0].split('?')[0], base);
+    if (clean === null) continue;
+    if (builtFor(clean, { allowRoute: false })) verifiedStaticRefs += 1;
+    else fail('static-asset-link', rel(file), `${route} links a stylesheet that is not a built file: ${href}`);
+  }
+  for (const { element, ref } of srcsFrom(html)) {
+    const clean = resolveRef(ref, base);
+    if (clean === null) continue;
+    if (builtFor(clean, { allowRoute: element === 'iframe' })) verifiedStaticRefs += 1;
+    else fail('static-asset-link', rel(file), `${route} embeds missing file ${ref}`);
+  }
+}
+// The header action must lead somewhere that exists: a built page, a known
+// redirect, or a file.
+for (const { file, route, href } of headerActions) {
+  const [pathPart, fragment = ''] = href.split('#');
+  const clean = resolveRef(pathPart.split('?')[0] || servedPath(file, route), servedPath(file, route));
+  const target = clean && pageFileFor(clean);
+  const redirected = clean && expectedRedirects.some(([from]) => from === (clean.replace(/\/$/, '') || '/'));
+  const anchorOk = !fragment || (target && [...walkMarkup(read(target))].some((t) => t.type === 'open'
+    && (attrsOf(t.tag).get('id') === fragment || (t.name === 'a' && attrsOf(t.tag).get('name') === fragment))));
+  if (!(target || redirected) || !anchorOk) {
+    fail('locked-cta-present', rel(file), `the "See Bob at Work" action points to a missing page or section: ${href}`);
+  }
+}
+if (!failures.some((f) => f.gate === 'static-asset-link')) {
+  pass('static-asset-link', `${verifiedStaticRefs} same-origin file references resolve in dist/`);
 }
 
 const llms = exists(path.join(dist, 'llms.txt')) ? read(path.join(dist, 'llms.txt')) : '';
