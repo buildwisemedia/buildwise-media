@@ -62,8 +62,8 @@
     // Saved campaigns count for 30 days, like the cookie. An older or undated touch restores nothing.
     const fresh = touch => { const t = Date.parse(touch?.ts); return t > 0 && Date.now() - t <= 2592000000 ? campaignOf(touch.utm) : {}; };
     const newest = fresh(record?.last_touch);
-    carryClicks(prior);
     carryClicks(newest);
+    carryClicks(prior);
     if (prior) {
       source.landing_page = clean(prior.landing_page) || current;
       source.referrer = clean(prior.referrer);
@@ -72,6 +72,10 @@
       if (!has(visitCampaign)) Object.assign(source, has(tab) && has(newest) ? newest : tab);
     }
     try { sessionStorage.setItem('bob_visit_source', JSON.stringify(source)); } catch { /* A blocked store must not prevent a request. */ }
+    // The campaign a direct tab's lead falls back to, held for the tab so an older page that
+    // clears last_touch cannot switch it to the first touch mid-visit. GA4 never reads it.
+    let held = {};
+    try { held = campaignOf(JSON.parse(sessionStorage.getItem('bob_lead_campaign') || 'null')); } catch { held = {}; }
     try {
       const touch = { ts: new Date().toISOString(), referrer: pageReferrer || null, landing_page: current, utm: visitCampaign };
       const saved = record || { first_touch: touch, last_touch: null };
@@ -79,7 +83,7 @@
       if (!record || has(visitCampaign)) saved.last_touch = touch;
       localStorage.setItem(KEY, JSON.stringify(saved));
       const firstTags = campaignOf(saved.first_touch.utm), lastTags = fresh(saved.last_touch), firstFresh = fresh(saved.first_touch);
-      savedCampaign = has(lastTags) ? lastTags : firstFresh;
+      savedCampaign = has(lastTags) ? lastTags : has(held) ? held : firstFresh;
       const lead = has(campaignOf(source)) ? campaignOf(source) : savedCampaign;
       const cookie = { referrer: source.referrer || '', landing_page: source.landing_page || '' };
       [...keys, ...clickKeys].forEach(k => { cookie[k] = lead[k] || ''; });
@@ -88,6 +92,8 @@
       const value = encodeURIComponent(JSON.stringify(cookie));
       if (value.length <= 3800) document.cookie = `${KEY}=${value}; path=/; max-age=2592000; SameSite=Lax; Secure`;
     } catch { /* Saving the campaign is best effort; the visit still counts. */ }
+    if (!has(savedCampaign)) savedCampaign = held;
+    try { sessionStorage.setItem('bob_lead_campaign', JSON.stringify(savedCampaign)); } catch { /* best effort */ }
   }
   window.__bobSourceDetails = () => {
     const result={...source,page_url:clean(location.href)};

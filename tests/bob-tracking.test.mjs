@@ -140,6 +140,31 @@ test('saved campaigns older than 30 days are not restored or renewed',()=>{
  assert.equal(run({local,cookies}).window.__bobSourceDetails().gclid,'New2');
 });
 
+test('a newer saved click ID with the same tags beats the tab copy',()=>{
+ const local=memory(),session=memory(),cookies=cookieJar();
+ run({local,session,cookies,query:'?utm_source=google&utm_medium=cpc&gclid=TabA'});
+ const rec=JSON.parse(local.getItem('_bwm_attribution'));
+ rec.last_touch={ts:new Date().toISOString(),utm:{utm_source:'google',utm_medium:'cpc',gclid:'SavedB'}};
+ local.setItem('_bwm_attribution',JSON.stringify(rec));
+ const x=run({local,session,cookies,query:'?utm_source=google&utm_medium=cpc'});
+ assert.equal(x.window.__bobSourceDetails().gclid,'SavedB');
+ assert.equal(JSON.parse(local.getItem('_bwm_attribution')).last_touch.utm.gclid,'SavedB');
+});
+
+test('a direct tab keeps its restored lead campaign after an older page clears last_touch',()=>{
+ const local=memory(),session=memory(),cookies=cookieJar(),ago=n=>new Date(Date.now()-n*86400000).toISOString();
+ local.setItem('_bwm_attribution',JSON.stringify({first_touch:{ts:ago(10),utm:{utm_source:'linkedin'}},last_touch:{ts:ago(2),utm:{utm_source:'google',gclid:'B1'}}}));
+ const first=run({local,session,cookies});
+ assert.equal(first.window.__bobSourceDetails().utm_source,'google');
+ assert.equal(first.window.dataLayer.find(a=>a[0]==='config')[2].campaign_source,undefined);
+ // An untagged BaseLayout page rewrites last_touch with no tags.
+ const rec=JSON.parse(local.getItem('_bwm_attribution'));rec.last_touch={ts:new Date().toISOString(),utm:{}};local.setItem('_bwm_attribution',JSON.stringify(rec));
+ const back=run({local,session,cookies});
+ const d=back.window.__bobSourceDetails();
+ assert.equal(d.utm_source,'google');assert.equal(d.gclid,'B1');
+ assert.equal(back.window.dataLayer.find(a=>a[0]==='config')[2].campaign_source,undefined);
+});
+
 test('a first touch saved by the older site pages survives an empty last touch',()=>{
  const local=memory();
  const day=86400000,ago=n=>new Date(Date.now()-n*day).toISOString();
