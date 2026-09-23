@@ -117,9 +117,10 @@ function hrefsFrom(html) {
   return [...html.matchAll(/\bhref=["']([^"']+)["']/gi)].map((m) => m[1]);
 }
 
-// Embedded resources, including a deferred iframe's data-src.
+// Embedded resources with their element, including a deferred iframe's data-src.
 function srcsFrom(html) {
-  return [...html.matchAll(/<(?:img|script|iframe|source|video|audio)\b[^>]*?\b(?:data-)?src=["']([^"']+)["']/gi)].map((m) => m[1]);
+  return [...html.matchAll(/<(img|script|iframe|source|video|audio)\b[^>]*?\b(?:data-)?src=["']([^"']+)["']/gi)]
+    .map((m) => ({ element: m[1].toLowerCase(), ref: m[2] }));
 }
 
 function metaContent(html, name) {
@@ -144,29 +145,81 @@ const BOB_PROOFS = new Set(['/bob/proof/hope-demo-r4', '/bob/proof/service-demo-
 const LEGACY_CTA_EXEMPT = new Set(['/privacy', '/terms', '/404', '/confirmation', '/thank-you-resource']);
 const HIDDEN_ATTRS = /\shidden(?:[\s=>]|$)|aria-hidden=["']true["']|display\s*:\s*none|visibility\s*:\s*hidden|\bclass=["'][^"']*\b(?:hidden|sr-only|visually-hidden)\b/i;
 
+// A small markup walker for the visibility rules below. Each start tag and text
+// run is reported with `hidden` = it sits in a subtree a visitor cannot see:
+// hidden / aria-hidden / display:none / visibility:hidden / hidden or sr-only
+// classes, <template>, and <noscript> (inert when JavaScript runs). Comments,
+// scripts and styles are skipped. `depth` lets callers find an element's end.
+const VOID_TAGS = new Set(['area', 'base', 'br', 'col', 'embed', 'hr', 'img', 'input', 'link', 'meta', 'source', 'track', 'wbr']);
+function* walkMarkup(html) {
+  const stack = [];
+  const re = /<!--[\s\S]*?-->|<(script|style)\b[^>]*>[\s\S]*?<\/\1\s*>|<(\/?)([a-zA-Z][\w-]*)\b[^>]*>|[^<]+|</g;
+  for (let m; (m = re.exec(html));) {
+    if (m[0].startsWith('<!--') || m[1]) continue;
+    const inHidden = stack.some((e) => e.hidden);
+    if (!m[3]) {
+      yield { type: 'text', text: m[0], hidden: inHidden };
+      continue;
+    }
+    const name = m[3].toLowerCase();
+    if (m[2]) {
+      const at = stack.map((e) => e.name).lastIndexOf(name);
+      if (at >= 0) stack.length = at;
+      yield { type: 'close', name, depth: stack.length };
+      continue;
+    }
+    const hidden = inHidden || HIDDEN_ATTRS.test(m[0]) || name === 'template' || name === 'noscript';
+    yield { type: 'open', name, tag: m[0], hidden, depth: stack.length };
+    if (!VOID_TAGS.has(name) && !m[0].endsWith('/>')) stack.push({ name, hidden });
+  }
+}
+
+// An active stylesheet link: rel=stylesheet, not alternate or disabled, for
+// screen, and not inert inside <noscript> or <template>.
 function loadsStylesheet(html, href) {
-  return (html.match(/<link\b[^>]*>/gi) ?? []).some((tag) => {
-    const rel = (tag.match(/\brel=["']([^"']+)["']/i)?.[1] ?? '').toLowerCase().split(/\s+/);
-    return tag.match(/\bhref=["']([^"']+)["']/i)?.[1] === href
-      && rel.includes('stylesheet') && !rel.includes('alternate') && !/\sdisabled\b/i.test(tag);
-  });
+  for (const t of walkMarkup(html)) {
+    if (t.type !== 'open' || t.name !== 'link' || t.hidden) continue;
+    const rel = (t.tag.match(/\brel=["']([^"']+)["']/i)?.[1] ?? '').toLowerCase().split(/\s+/);
+    const media = t.tag.match(/\bmedia=["']([^"']*)["']/i)?.[1]?.toLowerCase();
+    if (t.tag.match(/\bhref=["']([^"']+)["']/i)?.[1] === href && rel.includes('stylesheet') && !rel.includes('alternate')
+      && !/\sdisabled\b/i.test(t.tag) && (media === undefined || /\b(all|screen)\b/.test(media))) return true;
+  }
+  return false;
 }
 
 // Guide § Actions and forms: "Keep the header's cream, outlined pill: See Bob at
-// Work." It must sit in the visible site header, not anywhere on the page.
+// Work." It must be a visible link inside the site header, not anywhere on the page.
 function hasBobHeaderAction(html) {
-  const header = html.match(/(<header\b[^>]*\bclass=["'][^"']*\bsite-header\b[^"']*["'][^>]*>)([\s\S]*?)<\/header>/i);
-  if (!header || HIDDEN_ATTRS.test(header[1])) return false;
-  return [...header[2].matchAll(/<a\b([^>]*)>\s*See Bob at Work\s*<\/a>/gi)]
-    .some(([, attrs]) => /\bclass=["'][^"']*\bheader-cta\b/i.test(attrs) && !HIDDEN_ATTRS.test(attrs));
+  let header = null;
+  let link = null;
+  for (const t of walkMarkup(html)) {
+    if (!header) {
+      if (t.type === 'open' && t.name === 'header' && /\bclass=["'][^"']*\bsite-header\b/i.test(t.tag)) header = t;
+      continue;
+    }
+    if (t.type === 'close' && t.depth <= header.depth) break;
+    if (t.type === 'open' && t.name === 'a' && /\bclass=["'][^"']*\bheader-cta\b/i.test(t.tag)) link = { ...t, text: '' };
+    else if (link && t.type === 'text' && !t.hidden) link.text += t.text;
+    else if (link && t.type === 'close' && t.depth <= link.depth) {
+      if (!link.hidden && link.text.replace(/\s+/g, ' ').trim() === 'See Bob at Work') return true;
+      link = null;
+    }
+  }
+  return false;
 }
 
-// Every embedded Bob demo needs a sample label in the page text beside its frame.
+// Every embedded Bob demo needs a visible "sample" label beside its frame
+// (within 400 characters of visible text before or after it).
 function unlabeledDemoFrames(html) {
-  const text = html.replace(/<script[\s\S]*?<\/script>|<style[\s\S]*?<\/style>|<noscript[\s\S]*?<\/noscript>|<!--[\s\S]*?-->/gi, ' ');
-  return [...text.matchAll(/<iframe\b[^>]*\b(?:data-)?src=["'](\/bob\/proof\/[^"']+)["'][^>]*>/gi)]
-    .filter((m) => !/\bsample\b/i.test(stripHtml(text.slice(Math.max(0, m.index - 1500), m.index + m[0].length + 1500))))
-    .map((m) => m[1]);
+  let text = '';
+  const frames = [];
+  for (const t of walkMarkup(html)) {
+    // A space per text run keeps words in neighboring elements apart ("H" + "Sample").
+    if (t.type === 'text' && !t.hidden) text += ` ${t.text.replace(/&[a-z0-9#]+;/gi, ' ')}`;
+    const src = t.type === 'open' && t.name === 'iframe' ? t.tag.match(/\b(?:data-)?src=["'](\/bob\/proof\/[^"']+)["']/i)?.[1] : null;
+    if (src) frames.push({ src, at: text.length });
+  }
+  return frames.filter(({ at }) => !/\bsample\b/i.test(text.slice(Math.max(0, at - 400), at + 400))).map(({ src }) => src);
 }
 
 if (!exists(dist)) {
@@ -308,24 +361,54 @@ routeSet.add('/book');
 // bundle rather than as dist/revenue-leak-map/index.html.
 routeSet.add('/revenue-leak-map');
 const STATIC_FILE = /\.(png|jpe?g|webp|avif|gif|svg|ico|txt|xml|json|webmanifest|pdf|vcf|woff2?|ttf|otf|eot|css|m?js|map|mp4|webm|html?)$/i;
-function staticFileBuilt(clean) {
-  const file = path.join(dist, clean.replace(/^\//, ''));
+// The URL path a built HTML file is served at, for resolving relative references.
+function servedPath(file, route) {
+  return file.endsWith(`${path.sep}index.html`) ? (route === '/' ? '/' : `${route}/`) : route;
+}
+// Same-origin path for a reference, normalized like a browser does ("..", "."),
+// or null for other origins and schemes.
+function resolveRef(ref, base) {
+  try {
+    const url = new URL(ref, `https://site.invalid${base}`);
+    return url.origin === 'https://site.invalid' ? decodeURIComponent(url.pathname) : null;
+  } catch {
+    return null;
+  }
+}
+// A built file for a path. Pages also serves /x.html at /x and a directory's
+// index.html, so a page route counts only where a page is requested (a link or
+// an iframe). Scripts, images and media must be real files. Nothing outside
+// dist/ counts.
+function builtFor(clean, { allowRoute }) {
+  const file = path.resolve(dist, `.${clean}`);
+  if (file !== dist && !file.startsWith(`${dist}${path.sep}`)) return false;
   const stat = fs.statSync(file, { throwIfNoEntry: false });
   if (stat?.isFile()) return true;
+  if (!allowRoute) return false;
   if (stat?.isDirectory() && exists(path.join(file, 'index.html'))) return true;
-  // Pages also serves /x.html at /x, so a built route satisfies an .html link.
-  return /\.html?$/i.test(clean) && routeSet.has(clean.replace(/\.html?$/i, '').replace(/\/index$/, '') || '/');
+  return routeSet.has(clean.replace(/\.html?$/i, '').replace(/\/index$/, '').replace(/\/$/, '') || '/');
 }
 let verifiedStaticRefs = 0;
 for (const file of htmlFiles) {
   const route = routeFromHtmlFile(file);
+  const base = servedPath(file, route);
   const html = read(file);
   for (const href of hrefsFrom(html)) {
-    if (!href.startsWith('/') || href.startsWith('//')) continue;
+    if (/^(#|\?|\/\/|[a-z][a-z0-9+.-]*:)/i.test(href)) continue;
+    if (!href.startsWith('/')) {
+      // Relative links: verify the static files they name (routes stay unverified, as before).
+      const clean = resolveRef(href, base);
+      if (clean && STATIC_FILE.test(clean)) {
+        if (builtFor(clean, { allowRoute: /\.html?$/i.test(clean) })) verifiedStaticRefs += 1;
+        else fail('static-asset-link', rel(file), `${route} links to missing asset ${href}`);
+      }
+      continue;
+    }
     if (href.startsWith('/_') || href.startsWith('/assets/') || href.startsWith('/brand/') || href.startsWith('/images/')) continue;
     const clean = href.split('#')[0].split('?')[0].replace(/\/$/, '') || '/';
     if (STATIC_FILE.test(clean)) {
-      if (staticFileBuilt(clean)) verifiedStaticRefs += 1;
+      const resolved = resolveRef(clean, base);
+      if (resolved && builtFor(resolved, { allowRoute: /\.html?$/i.test(resolved) })) verifiedStaticRefs += 1;
       else fail('static-asset-link', rel(file), `${route} links to missing asset ${href}`);
       continue;
     }
@@ -333,11 +416,11 @@ for (const file of htmlFiles) {
     if (expectedRedirects.some(([from]) => from === clean)) continue;
     warn('static-internal-link-unverified', rel(file), `${route} links to ${href}`);
   }
-  for (const src of srcsFrom(html)) {
-    if (!src.startsWith('/') || src.startsWith('//')) continue;
-    const clean = src.split('#')[0].split('?')[0];
-    if (staticFileBuilt(clean)) verifiedStaticRefs += 1;
-    else fail('static-asset-link', rel(file), `${route} embeds missing file ${src}`);
+  for (const { element, ref } of srcsFrom(html)) {
+    if (/^(\/\/|data:|[a-z][a-z0-9+.-]*:)/i.test(ref)) continue;
+    const clean = resolveRef(ref, base);
+    if (clean && builtFor(clean, { allowRoute: element === 'iframe' })) verifiedStaticRefs += 1;
+    else fail('static-asset-link', rel(file), `${route} embeds missing file ${ref}`);
   }
 }
 if (!failures.some((f) => f.gate === 'static-asset-link')) {

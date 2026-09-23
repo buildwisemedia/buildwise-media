@@ -57,11 +57,16 @@ test('the header action must be visible and inside the site header', () => {
   assert.deepEqual(at(BOB_HEADER.replace('class="header-cta"', 'class="header-cta" hidden')), fail);
   assert.deepEqual(at(BOB_HEADER.replace('class="header-cta"', 'class="header-cta sr-only"')), fail);
   assert.deepEqual(at(BOB_HEADER.replace('class="site-header"', 'class="site-header" style="display:none"')), fail);
+  assert.deepEqual(at(BOB_HEADER.replace('<nav>', '<nav hidden>')), fail);
+  assert.deepEqual(at(BOB_HEADER.replace('See Bob at Work', '<span hidden>See Bob at Work</span>')), fail);
+  assert.deepEqual(at(BOB_HEADER.replace('See Bob at Work', '<span>See Bob</span> at Work')), []);
 });
 
 test('a listed Bob route must load the Bob stylesheet as a stylesheet, and must exist', () => {
   assert.deepEqual(qa({ 'terms/index.html': page({ body: BOB_HEADER }) }).failures, ['bob-surface-registry dist/terms/index.html']);
-  assert.deepEqual(qa({ 'terms/index.html': page({ head: '<link rel="preload" as="style" href="/bob/site.css">', body: BOB_HEADER }) }).failures, ['bob-surface-registry dist/terms/index.html']);
+  for (const head of ['<link rel="preload" as="style" href="/bob/site.css">', `<noscript>${BOB_SHEET}</noscript>`, '<link rel="stylesheet" media="print" href="/bob/site.css">']) {
+    assert.deepEqual(qa({ 'terms/index.html': page({ head, body: BOB_HEADER }) }).failures, ['bob-surface-registry dist/terms/index.html'], head);
+  }
   assert.deepEqual(qa({ 'luncheon/index.html': null }).failures, ['bob-surface-registry dist']);
 });
 
@@ -107,6 +112,21 @@ test('a Bob page must label each embedded demo as a sample beside the frame', ()
   assert.deepEqual(home(`<p>Sample data · Nothing is sent</p>${frame}`), []);
   assert.deepEqual(home(`<!-- the sample demo -->${frame}`), ['bob-proof-sample-label dist/index.html']);
   assert.deepEqual(home(`<noscript><p>Sample data</p></noscript>${frame}`), ['bob-proof-sample-label dist/index.html']);
+  assert.deepEqual(home(`<span hidden>Sample</span>${frame}`), ['bob-proof-sample-label dist/index.html']);
+});
+
+test('relative and dot-dot references are resolved like a browser, inside dist only', () => {
+  const at = (body, extra = {}) => qa({ ...extra, 'contact/index.html': page({ head: BOB_SHEET, body: BOB_HEADER + body }) }).failures;
+  assert.deepEqual(at('<script src="present.js"></script><link rel="stylesheet" href="present.css">', { 'contact/present.js': '', 'contact/present.css': '' }), []);
+  assert.deepEqual(at('<script src="missing.js"></script>'), ['static-asset-link dist/contact/index.html']);
+  assert.deepEqual(at('<script src="/../package.json"></script>'), ['static-asset-link dist/contact/index.html']);
+});
+
+test('scripts and images need files; only pages and frames may point at a page route', () => {
+  const at = (body) => qa({ 'contact/index.html': page({ head: BOB_SHEET, body: BOB_HEADER + body }) }).failures;
+  assert.deepEqual(at('<script src="/speaking/"></script>'), ['static-asset-link dist/contact/index.html']);
+  assert.deepEqual(at('<img src="/speaking/" alt="">'), ['static-asset-link dist/contact/index.html']);
+  assert.deepEqual(at('<p>Sample</p><iframe src="/speaking/"></iframe>'), []);
 });
 
 test('linked and embedded files must exist as files in the build', () => {
