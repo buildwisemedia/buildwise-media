@@ -89,6 +89,23 @@ test('a campaign visit is kept 30 days in the _bwm_attribution cookie and reache
  const v2=cookieValue(next);assert.equal(v2.utm_source,'newsletter');assert.equal(v2.first_touch_utm_source,'google');
 });
 
+// public/bob/site.js forwards UTM tags, not click IDs, onto internal links.
+test('ad click IDs survive internal links that carry the same campaign tags',()=>{
+ const local=memory(),session=memory(),cookies=cookieJar();
+ run({local,session,cookies,query:'?utm_source=google&utm_medium=cpc&gclid=Click123&fbclid=Fb_9'});
+ const inner=run({local,session,cookies,query:'?utm_source=google&utm_medium=cpc'});
+ const d=inner.window.__bobSourceDetails();
+ assert.equal(d.gclid,'Click123');assert.equal(d.fbclid,'Fb_9');assert.equal(d.utm_source,'google');
+ assert.equal(cookieValue(inner).gclid,'Click123');
+ // With session storage blocked, the saved 30-day record still keeps them.
+ const fresh=run({local,cookies,query:'?utm_source=google&utm_medium=cpc'});
+ assert.equal(fresh.window.__bobSourceDetails().gclid,'Click123');
+ // A genuinely new campaign still replaces the whole set, click IDs included.
+ const other=run({local,session,cookies,query:'?utm_source=google&utm_medium=email'});
+ const o=other.window.__bobSourceDetails();
+ assert.equal(o.gclid,undefined);assert.equal(o.fbclid,undefined);assert.equal(cookieValue(other).gclid,'');
+});
+
 test('a first touch saved by the older site pages survives an empty last touch',()=>{
  const local=memory();
  local.setItem('_bwm_attribution',JSON.stringify({first_touch:{ts:'2026-09-01T00:00:00Z',utm:{utm_source:'linkedin',utm_medium:'social',utm_campaign:'owners'}},last_touch:{ts:'2026-09-02T00:00:00Z',utm:{}}}));

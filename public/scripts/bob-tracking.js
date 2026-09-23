@@ -39,6 +39,14 @@
   };
   const has = tags => Object.keys(tags).length > 0;
   const visitCampaign = campaignOf(source);
+  // Internal Bob links forward UTM tags but not click IDs. When a page repeats the saved campaign's
+  // tags without its own click IDs, it is the same campaign: keep the saved IDs. New tags drop them.
+  const carryClicks = raw => {
+    const prev = campaignOf(raw);
+    if (!has(visitCampaign) || clickKeys.some(k => visitCampaign[k])) return;
+    if (!keys.every(k => (visitCampaign[k] || '') === (prev[k] || ''))) return;
+    clickKeys.forEach(k => { if (prev[k]) visitCampaign[k] = source[k] = prev[k]; });
+  };
   let savedCampaign = {};
   if (production && !optedOut) {
     try {
@@ -46,6 +54,7 @@
       if (prior && typeof prior === 'object') {
         source.landing_page = clean(prior.landing_page) || current;
         source.referrer = clean(prior.referrer);
+        carryClicks(prior);
         if (!has(visitCampaign)) Object.assign(source, campaignOf(prior));
       }
       sessionStorage.setItem('bob_visit_source', JSON.stringify(source));
@@ -57,6 +66,7 @@
       let record = null;
       try { record = JSON.parse(localStorage.getItem(KEY) || 'null'); } catch { record = null; }
       if (!record || typeof record !== 'object' || !record.first_touch || typeof record.first_touch !== 'object') record = null;
+      if (record) carryClicks(record.last_touch?.utm);
       const touch = { ts: new Date().toISOString(), referrer: pageReferrer || null, landing_page: current, utm: visitCampaign };
       const saved = record || { first_touch: touch, last_touch: null };
       // Only a visit with campaign tags replaces the last touch, so a later direct visit keeps it.
