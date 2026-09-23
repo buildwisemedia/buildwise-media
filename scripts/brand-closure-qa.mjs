@@ -118,11 +118,13 @@ function hrefsFrom(html) {
 }
 
 // Every embedded resource URL with its element: src, data-src (a deferred
-// frame) and each srcset candidate.
+// frame), each srcset candidate, a video poster and an object's data.
 function srcsFrom(html) {
   const refs = [];
-  for (const [tag, name] of html.matchAll(/<(img|script|iframe|source|video|audio)\b[^>]*>/gi)) {
-    for (const [, attr, value] of tag.matchAll(/\s((?:data-)?src|srcset)=["']([^"']*)["']/gi)) {
+  for (const [tag, name] of html.matchAll(/<(img|script|iframe|source|video|audio|track|embed|object|input)\b[^>]*>/gi)) {
+    for (const [, attr, value] of tag.matchAll(/\s((?:data-)?src|srcset|poster|data)=["']([^"']*)["']/gi)) {
+      const kind = attr.toLowerCase();
+      if ((kind === 'poster' && name.toLowerCase() !== 'video') || (kind === 'data' && name.toLowerCase() !== 'object')) continue;
       const urls = attr.toLowerCase() === 'srcset' ? value.split(',').map((c) => c.trim().split(/\s+/)[0]) : [value.trim()];
       for (const ref of urls.filter(Boolean)) refs.push({ element: name.toLowerCase(), ref });
     }
@@ -204,7 +206,7 @@ function loadsStylesheet(html, href) {
 
 // Guide § Actions and forms: "Keep the header's cream, outlined pill: See Bob at
 // Work." It must be a visible, working link (real href) inside the site header.
-function hasBobHeaderAction(html) {
+function bobHeaderAction(html) {
   let header = null;
   let link = null;
   for (const t of walkMarkup(html)) {
@@ -215,15 +217,15 @@ function hasBobHeaderAction(html) {
     if (t.type === 'close' && t.depth <= header.depth) break;
     if (t.type === 'open' && t.name === 'a' && /\bclass=["'][^"']*\bheader-cta\b/i.test(t.tag)) {
       const href = t.tag.match(/\bhref=["']([^"']*)["']/i)?.[1]?.trim() ?? '';
-      link = { ...t, text: '', usable: href !== '' && href !== '#' && !/^javascript:/i.test(href) };
+      link = { ...t, text: '', href, usable: href !== '' && href !== '#' && !/^javascript:/i.test(href) };
     }
     else if (link && t.type === 'text' && !t.hidden) link.text += t.text;
     else if (link && t.type === 'close' && t.depth <= link.depth) {
-      if (!link.hidden && link.usable && link.text.replace(/\s+/g, ' ').trim() === 'See Bob at Work') return true;
+      if (!link.hidden && link.usable && link.text.replace(/\s+/g, ' ').trim() === 'See Bob at Work') return link.href;
       link = null;
     }
   }
-  return false;
+  return null;
 }
 
 // Every embedded Bob demo needs a visible "sample" label beside its frame
@@ -247,6 +249,7 @@ if (!exists(dist)) {
 }
 
 const htmlFiles = walk(dist, (file) => file.endsWith('.html'));
+const headerActions = [];
 // Every shipped stylesheet and script, not only dist/assets/ (which is empty
 // because Astro inlines styles; the Bob files live in dist/bob/ and dist/scripts/).
 const assetFiles = walk(dist, (file) => /\.(m?js|css)$/i.test(file));
@@ -341,7 +344,9 @@ for (const file of htmlFiles) {
   const loadsBobSheet = loadsStylesheet(html, '/bob/site.css');
   if (BOB_ROUTES.has(route)) {
     if (!loadsBobSheet) fail('bob-surface-registry', rel(file), `${route} is listed as a Bob page but does not load /bob/site.css as a stylesheet`);
-    if (!hasBobHeaderAction(html)) fail('locked-cta-present', rel(file), 'missing the approved Bob header action "See Bob at Work" in the visible site header');
+    const action = bobHeaderAction(html);
+    if (!action) fail('locked-cta-present', rel(file), 'missing the approved Bob header action "See Bob at Work" in the visible site header');
+    else headerActions.push({ file, route, href: action });
     for (const demo of unlabeledDemoFrames(html)) fail('bob-proof-sample-label', rel(file), `${route} embeds ${demo} without a sample label beside the frame`);
   } else if (BOB_PROOFS.has(route)) {
     if (!/\bnoindex\b/i.test(metaContent(html, 'robots') ?? '')) fail('bob-proof-noindex', rel(file), 'sample demo must carry <meta name="robots" content="noindex">');
@@ -411,7 +416,9 @@ for (const file of htmlFiles) {
   const route = routeFromHtmlFile(file);
   const base = servedPath(file, route);
   const html = read(file);
+  const sheets = new Set(stylesheetHrefs(html));
   for (const href of hrefsFrom(html)) {
+    if (sheets.has(href)) continue;
     if (/^(#|\?|\/\/|[a-z][a-z0-9+.-]*:)/i.test(href)) continue;
     if (!href.startsWith('/')) {
       // Relative links: verify the static files they name (routes stay unverified, as before).
@@ -437,15 +444,23 @@ for (const file of htmlFiles) {
   for (const href of stylesheetHrefs(html)) {
     if (/^(\/\/|[a-z][a-z0-9+.-]*:)/i.test(href)) continue;
     const clean = resolveRef(href.split('#')[0].split('?')[0], base);
-    // Paths with a file extension are already checked above; this catches page routes.
-    if (clean && STATIC_FILE.test(clean)) continue;
-    if (!clean || !builtFor(clean, { allowRoute: false })) fail('static-asset-link', rel(file), `${route} links a stylesheet that is not a file: ${href}`);
+    if (clean && builtFor(clean, { allowRoute: false })) verifiedStaticRefs += 1;
+    else fail('static-asset-link', rel(file), `${route} links a stylesheet that is not a built file: ${href}`);
   }
   for (const { element, ref } of srcsFrom(html)) {
     if (/^(\/\/|data:|[a-z][a-z0-9+.-]*:)/i.test(ref)) continue;
     const clean = resolveRef(ref, base);
     if (clean && builtFor(clean, { allowRoute: element === 'iframe' })) verifiedStaticRefs += 1;
     else fail('static-asset-link', rel(file), `${route} embeds missing file ${ref}`);
+  }
+}
+// The header action must lead somewhere that exists: a built page, a known
+// redirect, or a file.
+for (const { file, route, href } of headerActions) {
+  const clean = resolveRef(href.split('#')[0].split('?')[0] || route, servedPath(file, route));
+  const page = clean && (clean.replace(/\/$/, '') || '/');
+  if (!clean || !(routeSet.has(page) || expectedRedirects.some(([from]) => from === page) || builtFor(clean, { allowRoute: true }))) {
+    fail('locked-cta-present', rel(file), `the "See Bob at Work" action points to a missing page: ${href}`);
   }
 }
 if (!failures.some((f) => f.gate === 'static-asset-link')) {

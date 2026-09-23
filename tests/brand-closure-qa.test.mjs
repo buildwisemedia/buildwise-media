@@ -61,6 +61,8 @@ test('the header action must be visible and inside the site header', () => {
   assert.deepEqual(at(BOB_HEADER.replace('See Bob at Work', '<span hidden>See Bob at Work</span>')), fail);
   assert.deepEqual(at(BOB_HEADER.replace(' href="/#work"', '')), fail);
   assert.deepEqual(at(BOB_HEADER.replace('href="/#work"', 'href="#"')), fail);
+  assert.deepEqual(at(BOB_HEADER.replace('href="/#work"', 'href="/wrok"')), fail);
+  assert.deepEqual(at(BOB_HEADER.replace('href="/#work"', 'href="/speaking"')), []);
   assert.deepEqual(at(BOB_HEADER.replace('See Bob at Work', '<span>See Bob</span> at Work')), []);
 });
 
@@ -130,6 +132,7 @@ test('scripts and images need files; only pages and frames may point at a page r
   assert.deepEqual(at('<img src="/speaking/" alt="">'), ['static-asset-link dist/contact/index.html']);
   assert.deepEqual(at('<p>Sample</p><iframe src="/speaking/"></iframe>'), []);
   assert.deepEqual(at('<link rel="stylesheet" href="/speaking/">'), ['static-asset-link dist/contact/index.html']);
+  assert.deepEqual(at('<link rel="stylesheet" href="/assets/missing.css">'), ['static-asset-link dist/contact/index.html']);
 });
 
 test('every src, data-src and srcset candidate is checked', () => {
@@ -137,6 +140,8 @@ test('every src, data-src and srcset candidate is checked', () => {
   assert.deepEqual(at('<img src="/img/a.webp" srcset="/img/a.webp 320w, /img/b.webp 640w" alt="">'), ['static-asset-link dist/contact/index.html']);
   assert.deepEqual(at('<p>Sample</p><iframe src="about:blank" data-src="/bob/proof/missing.html"></iframe>'), ['static-asset-link dist/contact/index.html']);
   assert.deepEqual(at('<img src="/img/a.webp" srcset="/img/a.webp 1x" alt="">'), []);
+  assert.deepEqual(at('<video src="/img/a.webp" poster="/img/gone.webp"><track kind="captions" src="/captions/gone.vtt"></video><object data="/doc/gone.pdf"></object>'),
+    Array(3).fill('static-asset-link dist/contact/index.html'));
 });
 
 test('linked and embedded files must exist as files in the build', () => {
