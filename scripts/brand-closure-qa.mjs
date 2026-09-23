@@ -117,6 +117,34 @@ function hrefsFrom(html) {
   return [...html.matchAll(/\bhref=["']([^"']+)["']/gi)].map((m) => m[1]);
 }
 
+// Embedded resources, including a deferred iframe's data-src.
+function srcsFrom(html) {
+  return [...html.matchAll(/<(?:img|script|iframe|source|video|audio)\b[^>]*?\b(?:data-)?src=["']([^"']+)["']/gi)].map((m) => m[1]);
+}
+
+function metaContent(html, name) {
+  for (const tag of html.match(/<meta\b[^>]*>/gi) ?? []) {
+    if (tag.match(/\bname=["']([^"']+)["']/i)?.[1]?.toLowerCase() === name) {
+      return tag.match(/\bcontent=["']([^"']*)["']/i)?.[1] ?? '';
+    }
+  }
+  return null;
+}
+
+// Surface map: Brain brand/BWM-Brand-Guidelines.md (Bob brand, 2026-09-12).
+// The Bob page system runs on exactly these routes; every other route keeps the
+// legacy rules. The list and the Bob stylesheet are checked against each other,
+// so a page cannot join or leave the Bob rules without editing this list.
+const BOB_ROUTES = new Set(['/', '/contact', '/speaking', '/luncheon', '/privacy', '/terms']);
+const BOB_STYLESHEET = /<link\b[^>]*\bhref=["']\/bob\/site\.css["']/i;
+// Guide § Actions and forms: "Keep the header's cream, outlined pill: See Bob at Work."
+const BOB_HEADER_ACTION = /<a\b[^>]*\bclass=["'][^"']*\bheader-cta\b[^"']*["'][^>]*>\s*See Bob at Work\s*<\/a>/i;
+// Sample demos the Bob pages embed. They are proof, not landing pages: they stay
+// out of search, label themselves as samples, and carry no real contact action
+// (guide: "Keep sample proof controls separate from real contact actions").
+const isBobProof = (route) => route.startsWith('/bob/proof/');
+const LEGACY_CTA_EXEMPT = new Set(['/privacy', '/terms', '/404', '/confirmation', '/thank-you-resource']);
+
 if (!exists(dist)) {
   fail('dist-present', 'dist', 'dist/ is missing. Run npm run build first.');
 } else {
@@ -124,7 +152,9 @@ if (!exists(dist)) {
 }
 
 const htmlFiles = walk(dist, (file) => file.endsWith('.html'));
-const assetFiles = walk(path.join(dist, 'assets'), (file) => /\.(js|css)$/i.test(file));
+// Every shipped stylesheet and script, not only dist/assets/ (which is empty
+// because Astro inlines styles; the Bob files live in dist/bob/ and dist/scripts/).
+const assetFiles = walk(dist, (file) => /\.(m?js|css)$/i.test(file));
 const textFiles = walk(dist, (file) => /\.(txt|xml)$/i.test(file));
 const renderedFiles = [...htmlFiles, ...assetFiles, ...textFiles, path.join(dist, '_redirects')].filter(exists);
 
@@ -213,9 +243,18 @@ for (const file of htmlFiles) {
   if (!/<meta[^>]+name=["']description["']/i.test(html)) fail('meta-description', rel(file), 'missing meta description');
   if (!htmlTitle(html)) fail('title', rel(file), 'missing title');
 
-  const ctaCount = (html.match(/See if (?:we|you)['’]re a fit/gi) ?? []).length;
-  const pathNeedsCta = !['/privacy', '/terms', '/404', '/confirmation', '/thank-you-resource'].includes(route);
-  if (pathNeedsCta && ctaCount === 0) fail('locked-cta-present', rel(file), 'missing the accepted fit CTA');
+  const loadsBobSheet = BOB_STYLESHEET.test(html);
+  if (BOB_ROUTES.has(route)) {
+    if (!loadsBobSheet) fail('bob-surface-registry', rel(file), `${route} is listed as a Bob page but does not load /bob/site.css`);
+    if (!BOB_HEADER_ACTION.test(html)) fail('locked-cta-present', rel(file), 'missing the approved Bob header action "See Bob at Work"');
+  } else if (isBobProof(route)) {
+    if (!/\bnoindex\b/i.test(metaContent(html, 'robots') ?? '')) fail('bob-proof-noindex', rel(file), 'sample demo must carry <meta name="robots" content="noindex">');
+    if (!/\bsample\b/i.test(stripHtml(html.replace(/<noscript[\s\S]*?<\/noscript>/gi, ' ')))) fail('bob-proof-sample-label', rel(file), 'sample demo must label itself as a sample in visible text');
+  } else {
+    if (loadsBobSheet) fail('bob-surface-registry', rel(file), `${route} loads /bob/site.css but is not a listed Bob route`);
+    const ctaCount = (html.match(/See if (?:we|you)['’]re a fit/gi) ?? []).length;
+    if (!LEGACY_CTA_EXEMPT.has(route) && ctaCount === 0) fail('locked-cta-present', rel(file), 'missing the accepted fit CTA');
+  }
 
   for (const block of collectJsonLd(html)) {
     try {
@@ -225,8 +264,13 @@ for (const file of htmlFiles) {
     }
   }
 }
-if (!failures.some((f) => ['single-h1', 'meta-description', 'title', 'locked-cta-present', 'jsonld-parse'].includes(f.gate))) {
-  pass('html-basics', `${htmlFiles.length} HTML files checked`);
+const builtRoutes = new Set(htmlFiles.map(routeFromHtmlFile));
+for (const route of BOB_ROUTES) {
+  if (!builtRoutes.has(route)) fail('bob-surface-registry', 'dist', `listed Bob route ${route} is missing from the build`);
+}
+if (!failures.some((f) => ['single-h1', 'meta-description', 'title', 'locked-cta-present', 'jsonld-parse', 'bob-surface-registry', 'bob-proof-noindex', 'bob-proof-sample-label'].includes(f.gate))) {
+  const proofCount = [...builtRoutes].filter(isBobProof).length;
+  pass('html-basics', `${htmlFiles.length} HTML files checked (${BOB_ROUTES.size} Bob pages, ${proofCount} Bob sample demos, ${htmlFiles.length - BOB_ROUTES.size - proofCount} legacy pages)`);
 }
 if (!failures.some((f) => f.gate === 'paid-lp-hero-wordcount')) {
   pass('paid-lp-hero-wordcount', 'paid /go/* heroes are within the 12-word clarity limit');
@@ -238,21 +282,38 @@ routeSet.add('/book');
 // This route is intentionally server-rendered, so it is present in the worker
 // bundle rather than as dist/revenue-leak-map/index.html.
 routeSet.add('/revenue-leak-map');
+const STATIC_FILE = /\.(png|jpe?g|webp|avif|gif|svg|ico|txt|xml|json|webmanifest|pdf|vcf|woff2?|ttf|otf|eot|css|m?js|map|mp4|webm|html?)$/i;
+function staticFileBuilt(clean) {
+  if (exists(path.join(dist, clean.replace(/^\//, '')))) return true;
+  // Pages also serves /x.html at /x, so a built route satisfies an .html link.
+  return /\.html?$/i.test(clean) && routeSet.has(clean.replace(/\.html?$/i, '').replace(/\/index$/, '') || '/');
+}
+let verifiedStaticRefs = 0;
 for (const file of htmlFiles) {
   const route = routeFromHtmlFile(file);
-  for (const href of hrefsFrom(read(file))) {
+  const html = read(file);
+  for (const href of hrefsFrom(html)) {
     if (!href.startsWith('/') || href.startsWith('//')) continue;
     if (href.startsWith('/_') || href.startsWith('/assets/') || href.startsWith('/brand/') || href.startsWith('/images/')) continue;
     const clean = href.split('#')[0].split('?')[0].replace(/\/$/, '') || '/';
-    if (/\.(png|jpe?g|webp|svg|ico|txt|xml|pdf|vcf|woff2?|ttf|otf|eot)$/i.test(clean)) {
-      const assetFile = path.join(dist, clean.replace(/^\//, ''));
-      if (!exists(assetFile)) fail('static-asset-link', rel(file), `${route} links to missing asset ${href}`);
+    if (STATIC_FILE.test(clean)) {
+      if (staticFileBuilt(clean)) verifiedStaticRefs += 1;
+      else fail('static-asset-link', rel(file), `${route} links to missing asset ${href}`);
       continue;
     }
     if (routeSet.has(clean)) continue;
     if (expectedRedirects.some(([from]) => from === clean)) continue;
     warn('static-internal-link-unverified', rel(file), `${route} links to ${href}`);
   }
+  for (const src of srcsFrom(html)) {
+    if (!src.startsWith('/') || src.startsWith('//')) continue;
+    const clean = src.split('#')[0].split('?')[0];
+    if (staticFileBuilt(clean)) verifiedStaticRefs += 1;
+    else fail('static-asset-link', rel(file), `${route} embeds missing file ${src}`);
+  }
+}
+if (!failures.some((f) => f.gate === 'static-asset-link')) {
+  pass('static-asset-link', `${verifiedStaticRefs} same-origin file references resolve in dist/`);
 }
 
 const llms = exists(path.join(dist, 'llms.txt')) ? read(path.join(dist, 'llms.txt')) : '';
