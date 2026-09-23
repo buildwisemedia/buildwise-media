@@ -28,7 +28,10 @@
   const slow=()=>{if(!item.ready&&item.note){item.note.textContent=item.id==='inquiry-demo'?'The example is taking a while to load. Open “Read the three-step summary” below for the steps and a full-size view.':'The example is taking a while to load. The main points are above. Use “Open the example at full size” below for the full view.';item.note.hidden=false;}};
   const start=()=>{if(!started){started=true;setTimeout(slow,12000)}};
   item.frame.addEventListener('load',start,{once:true});
-  if(item.id==='inquiry-demo'||!('IntersectionObserver' in window))start();
+  // A data-src sample waits until the page itself has loaded, so it never competes with first paint.
+  const loadDeferred=()=>{item.frame.src=item.frame.dataset.src;start()};
+  if(item.frame.dataset.src){if(document.readyState==='complete')loadDeferred();else addEventListener('load',loadDeferred,{once:true});}
+  else if(item.id==='inquiry-demo'||!('IntersectionObserver' in window))start();
   else {const observer=new IntersectionObserver(entries=>{if(entries.some(entry=>entry.isIntersecting)){start();observer.disconnect()}},{rootMargin:'300px'});observer.observe(item.frame);}
  }
 })();
