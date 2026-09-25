@@ -3,7 +3,7 @@
   "state": "PRIVATE_DEVELOPMENT_INTEGRATION",
   "client": "buildwise-media",
   "source_revision": "88013baa9c9429420daacdb54b91f2f540dba481",
-  "preflight_sha256": "55531452f405e7df8ad6b0b5361a1eecb941c60a20ce9ab504e796dccb848799",
+  "preflight_sha256": "7b868605ff4efd67cf490b84799177182f74e60897a24375a1571d95ce9366f3",
   "frozen_inputs": {
     "accepted_homepage_sha256": "b2ac2a330c961535abceae735360c448ee264cf3432f418ddab46475a26381b5",
     "accepted_direction_sha256": "bb240b070ca034f875b8b4c100ed19452ead24b98ea173a366e21f7de0f8a8f1",
@@ -59,10 +59,10 @@
   "local_contracts": {
     "conflict_ledger_sha256": "1468e8b48d7bef86b2ab815fc466a1b8d92e0ee50eb6709a744aa822558eb046",
     "seo_account_contract_sha256": "ea781f8a9cd7fce13cab92fb50b9886123cc558cf9048d7efd288322c6e72d5a",
-    "seo_intent_ownership_sha256": "8ef8378205c276a4bef152f2b2e72294a01f8ef45ff4a2c9ba0b529366fa5f40",
-    "migration_lifecycle_sha256": "b11b7a7740a73d92700be3c8316a93886232ec12bd0d6045d0e5cb923fd01c47",
+    "seo_intent_ownership_sha256": "59b90f1fb7de8c6a35cc29c2954895e19a8d2f2f433c9b9b7a8c816449a099d2",
+    "migration_lifecycle_sha256": "8097886bcc04b1f8ceb03132c0405d9c27efccf4d67f2ae183fd6f79c2cfd73c",
     "crawler_policy_sha256": "d6ea482ad15f34bd4c6ca08db4c81f3aa89e4d893242406c7266e685edb49804",
-    "website_to_content_source_sha256": "83cc61fcf900904c688761a91715498758547511f12163c798ca3a5c3c2c241d",
+    "website_to_content_source_sha256": "daa6f4701649d48a3678fbc9ee5e1f690514a49b507a07e40b9cc64097dae683",
     "book_data_contract_sha256": "c577c996a9aeff705e4f5d92f103a582beca88bed0af9c3602e8b398901b328b"
   },
   "known_launch_holds": [
@@ -73,5 +73,18 @@
     "GA4 delayed Data API to CRM conversion join is not yet verified",
     "private-development /api/book email delivery is verified; production /api/book remains not deployed or verified",
     "Whitespark live and impact states are not proven"
+  ],
+  "scoped_updates": [
+    {
+      "date": "2026-09-24",
+      "scope": "BWM-WALLPAPER-20260924 only",
+      "authority": "Verified user voice message 01a0d4b6-7fe9-7f51-a86c-00108e952df2, subject to search and tracking checks before release.",
+      "changes": [
+        "Bind wallpaper preflight",
+        "Register the new wallpaper search intent",
+        "Add the one wallpaper sitemap URL"
+      ],
+      "boundary": "Original homepage/book contract history and unrelated holds remain unchanged. This record does not prove production release."
+    }
   ]
 }

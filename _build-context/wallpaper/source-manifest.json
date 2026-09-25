@@ -1,0 +1,42 @@
+{
+  "verified_at": "2026-09-24T18:50:58.436910+00:00",
+  "authority": {
+    "message_id": "01a0d4b6-7fe9-7f51-a86c-00108e952df2",
+    "task_id": "01a0d479-6561-7363-bd73-2071c9652628",
+    "scope": "Approved exact gallery and six-channel campaign, with SEO/AEO and verified page/social performance tracking before launch."
+  },
+  "project": "PROJ-BRAND-001",
+  "campaign_id": "BWM-WALLPAPER-20260924",
+  "approved_sha256": {
+    "gallery": "94b1b5126f9c820834c0089cc15d49df478cf118320c5a2eb2efb21b8b1735dc",
+    "pitch": "0d7de9cc699e61d0ccd56185b708658504ae15454b11454f509b4c033fc30ae9",
+    "campaign": "92fb4affdea9897bc958311ad1620947fcc5b3e2a5fab0ba6c8cdfc8975a61a2"
+  },
+  "allowed_changes": [
+    "Public route /wallpaper/ using original approved gallery art, layout, glow, logo and fonts",
+    "Search title, description, canonical, sharing metadata, ImageObject collection schema, sitemap, llms link and one site discovery link",
+    "Privacy-safe events through existing Bob GA4 tracker; stable design IDs and desktop/phone formats",
+    "Public-ready footer with existing legal links",
+    "Existing company social posts with exact approved captions, tracked link destinations, native queue checks and actual receipts"
+  ],
+  "forbidden_changes": [
+    "Original asset bytes or composition",
+    "Shared gate/pins or relabeling author",
+    "Unrelated homepage copy, profile or paid ads",
+    "Other campaigns or inactive publishing engine activation"
+  ],
+  "source_files": [
+    {
+      "path": "approved/gallery.html",
+      "sha256": "94b1b5126f9c820834c0089cc15d49df478cf118320c5a2eb2efb21b8b1735dc"
+    },
+    {
+      "path": "approved/pitch.html",
+      "sha256": "0d7de9cc699e61d0ccd56185b708658504ae15454b11454f509b4c033fc30ae9"
+    },
+    {
+      "path": "approved/campaign.json",
+      "sha256": "92fb4affdea9897bc958311ad1620947fcc5b3e2a5fab0ba6c8cdfc8975a61a2"
+    }
+  ]
+}

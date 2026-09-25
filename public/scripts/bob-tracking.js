@@ -148,8 +148,8 @@
   });
   let loaded = false;
   const pending = [];
-  const allowedEvents = new Set(['cta_click','job_interest_selected','demo_step','form_start','fit_note_submitted','speaking_request_submitted','luncheon_request_submitted','generate_lead','form_submit_error','scroll_depth','phone_click','email_click']);
-  const allowedParams = new Set(['submission_id','form_id','request_kind','selected_interest','section_id','step','percent_scrolled','page_path','link_path','cta_source','phone_number_redacted','email_domain','page_referrer']);
+  const allowedEvents = new Set(['cta_click','job_interest_selected','demo_step','form_start','fit_note_submitted','speaking_request_submitted','luncheon_request_submitted','generate_lead','form_submit_error','scroll_depth','phone_click','email_click','wallpaper_gallery_view','wallpaper_open','wallpaper_download_click']);
+  const allowedParams = new Set(['submission_id','form_id','request_kind','selected_interest','section_id','step','percent_scrolled','page_path','link_path','cta_source','phone_number_redacted','email_domain','page_referrer','wallpaper_id','wallpaper_format']);
   const ready = () => !!(window.google_tag_manager && window.google_tag_manager[GA4]);
   const send = (name, p) => window.gtag('event', name, { ...p, transport_type: 'beacon' });
   window.__bwmTrackEvent = (name, params = {}) => {
@@ -162,6 +162,15 @@
     if (p.phone_number_redacted && !/^\d{4}$/.test(p.phone_number_redacted)) delete p.phone_number_redacted;
     if (p.email_domain && !/^[a-z0-9-]+(?:\.[a-z0-9-]+)+$/.test(p.email_domain)) delete p.email_domain;
     if (p.page_referrer && !/^https?:\/\/[^/?#\s]+$/.test(p.page_referrer)) delete p.page_referrer;
+    if (name.startsWith('wallpaper_')) {
+      if (!/^\/wallpaper\/?$/.test(location.pathname)) return;
+      if (name !== 'wallpaper_gallery_view') {
+        if (!['11','12','13','15','16','18','19','21'].includes(p.wallpaper_id) || !['desktop','phone'].includes(p.wallpaper_format)) return;
+      }
+      // Only this visit's known campaign tags can attribute a wallpaper action to a post.
+      // A previous visit's saved lead attribution is deliberately not used here.
+      if (visitCampaign.utm_campaign === 'wallpaper-202609' && /^bwm-wallpaper-20260924-(linkedin|facebook|instagram|x|gbp|youtube)$/.test(visitCampaign.utm_content || '')) p.wallpaper_post = visitCampaign.utm_content;
+    }
     // Only this filtered payload enters vendors. Never form text, name, company or email.
     window.dataLayer.push({ event: name, ...p });
     if (ready()) send(name,p); else pending.push([name,p]);

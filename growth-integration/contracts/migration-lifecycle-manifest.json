@@ -4,22 +4,55 @@
   "client": "buildwise-media",
   "frozen_on": "2026-09-01",
   "live_sitemap_denominator": 86,
-  "candidate_sitemap_denominator": 82,
+  "candidate_sitemap_denominator": 83,
   "preservation_rule": "Keep every valid live URL available unless a separately authorized lifecycle decision names a direct destination.",
   "removed_from_sitemap_only": [
-    {"route": "/connect/", "reason": "rendered noindex"},
-    {"route": "/go/digital-employees/", "reason": "rendered noindex"},
-    {"route": "/go/fortress/", "reason": "rendered noindex"},
-    {"route": "/go/receipts/", "reason": "rendered noindex"},
-    {"route": "/go/wave/", "reason": "rendered noindex"},
-    {"route": "/sms-consent/", "reason": "rendered noindex"}
+    {
+      "route": "/connect/",
+      "reason": "rendered noindex"
+    },
+    {
+      "route": "/go/digital-employees/",
+      "reason": "rendered noindex"
+    },
+    {
+      "route": "/go/fortress/",
+      "reason": "rendered noindex"
+    },
+    {
+      "route": "/go/receipts/",
+      "reason": "rendered noindex"
+    },
+    {
+      "route": "/go/wave/",
+      "reason": "rendered noindex"
+    },
+    {
+      "route": "/sms-consent/",
+      "reason": "rendered noindex"
+    }
   ],
   "added_to_sitemap": [
-    {"route": "/book/", "reason": "new indexable direct-contact conversion page"},
-    {"route": "/playbook/4-steps-business-runs-without-you/", "reason": "existing self-canonical public page omitted from the prior generated manifest"}
+    {
+      "route": "/book/",
+      "reason": "new indexable direct-contact conversion page"
+    },
+    {
+      "route": "/playbook/4-steps-business-runs-without-you/",
+      "reason": "existing self-canonical public page omitted from the prior generated manifest"
+    },
+    {
+      "route": "/wallpaper/",
+      "reason": "September 24 approved free wallpaper gallery; eight selected designs and sixteen original PNG downloads."
+    }
   ],
   "redirects_added": [
-    {"route": "/m/", "destination": "/", "status": 301, "reason": "preserve the existing bare member-directory fallback while member credential routes remain available at /m/[card]"}
+    {
+      "route": "/m/",
+      "destination": "/",
+      "status": 301,
+      "reason": "preserve the existing bare member-directory fallback while member credential routes remain available at /m/[card]"
+    }
   ],
   "urls_deleted": [],
   "bulk_rewrites": [],

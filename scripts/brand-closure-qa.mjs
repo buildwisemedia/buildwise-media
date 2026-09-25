@@ -164,6 +164,13 @@ const BOB_PROOFS = new Set(['/bob/proof/hope-demo-r4', '/bob/proof/service-demo-
 // production hosts, plus the placeholder origin used for relative paths).
 const SITE_ORIGINS = new Set(['https://site.invalid', 'https://buildwisemedia.com', 'https://www.buildwisemedia.com']);
 const LEGACY_CTA_EXEMPT = new Set(['/privacy', '/terms', '/404', '/confirmation', '/thank-you-resource']);
+// Approved September 24 resource page: its action is choosing an original
+// wallpaper. This exact route must satisfy its download contract, not a sales CTA.
+const WALLPAPER_STEMS = ['11-lockup-starlit', '12-half-moon', '13-moonrise',
+  '15-three-moons-phases', '16-three-moons-horizon', '18-star-chart-three-moons',
+  '19-bob-soft-light', '21-three-moons-phases-horizon'];
+const WALLPAPER_ORIGINALS = new Set(WALLPAPER_STEMS.flatMap((stem) =>
+  ['mac-3024x1964', 'phone-1344x2992'].map((size) => `/wallpaper/full/${stem}-${size}.png`)));
 // Attributes of one start tag: double-, single- or un-quoted values, names lowercased.
 function attrsOf(tag) {
   const attrs = new Map();
@@ -273,6 +280,33 @@ function bobHeaderAction(html) {
     }
   }
   return null;
+}
+
+function wallpaperActions(html) {
+  const downloads = new Set();
+  let collection = false;
+  let collectionAction = false;
+  let emailForm = false;
+  let link = null;
+  for (const t of walkMarkup(html)) {
+    if (t.type === 'open' && !t.hidden) {
+      const a = attrsOf(t.tag);
+      if (a.get('id') === 'collection') collection = true;
+      if (t.name === 'form' || (t.name === 'input' && a.get('type')?.toLowerCase() === 'email')) emailForm = true;
+      if (t.name === 'a') link = { depth: t.depth, href: a.get('href'), download: a.has('download'), text: '' };
+    } else if (link && t.type === 'text' && !t.hidden) {
+      link.text += t.text;
+    } else if (link && t.type === 'close' && t.depth <= link.depth) {
+      if (link.text.trim()) {
+        if (link.href === '#collection') collectionAction = true;
+        if (link.download && WALLPAPER_ORIGINALS.has(link.href)
+          && builtFor(link.href, { allowRoute: false })) downloads.add(link.href);
+      }
+      link = null;
+    }
+  }
+  return collection && collectionAction && !emailForm
+    && [...WALLPAPER_ORIGINALS].every((href) => downloads.has(href));
 }
 
 // Every embedded Bob demo needs a visible "sample" label beside its frame
@@ -403,8 +437,12 @@ for (const file of htmlFiles) {
   } else {
     if (loadsBobSheet) fail('bob-surface-registry', rel(file), `${route} loads /bob/site.css but is not a listed Bob route`);
     if (route.startsWith('/bob/proof/')) fail('bob-surface-registry', rel(file), `${route} is not on the approved sample demo list`);
-    const ctaCount = (html.match(/See if (?:we|you)['’]re a fit/gi) ?? []).length;
-    if (!LEGACY_CTA_EXEMPT.has(route) && ctaCount === 0) fail('locked-cta-present', rel(file), 'missing the accepted fit CTA');
+    if (route === '/wallpaper') {
+      if (!wallpaperActions(html)) fail('wallpaper-download-action', rel(file), 'requires a visible collection action, all 16 named original PNG downloads, and no email form');
+    } else {
+      const ctaCount = (html.match(/See if (?:we|you)['’]re a fit/gi) ?? []).length;
+      if (!LEGACY_CTA_EXEMPT.has(route) && ctaCount === 0) fail('locked-cta-present', rel(file), 'missing the accepted fit CTA');
+    }
   }
 
   for (const block of collectJsonLd(html)) {
@@ -419,7 +457,7 @@ const builtRoutes = new Set(htmlFiles.map(routeFromHtmlFile));
 for (const route of [...BOB_ROUTES, ...BOB_PROOFS]) {
   if (!builtRoutes.has(route)) fail('bob-surface-registry', 'dist', `listed Bob route ${route} is missing from the build`);
 }
-if (!failures.some((f) => ['single-h1', 'meta-description', 'title', 'locked-cta-present', 'jsonld-parse', 'bob-surface-registry', 'bob-proof-noindex', 'bob-proof-sample-label'].includes(f.gate))) {
+if (!failures.some((f) => ['single-h1', 'meta-description', 'title', 'locked-cta-present', 'wallpaper-download-action', 'jsonld-parse', 'bob-surface-registry', 'bob-proof-noindex', 'bob-proof-sample-label'].includes(f.gate))) {
   pass('html-basics', `${htmlFiles.length} HTML files checked (${BOB_ROUTES.size} Bob pages, ${BOB_PROOFS.size} Bob sample demos, ${htmlFiles.length - BOB_ROUTES.size - BOB_PROOFS.size} legacy pages)`);
 }
 if (!failures.some((f) => f.gate === 'paid-lp-hero-wordcount')) {

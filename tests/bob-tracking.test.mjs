@@ -6,9 +6,9 @@ const code=fs.readFileSync(new URL('../public/scripts/bob-tracking.js',import.me
 // Pass the same local store and cookie jar to a second run to model a later visit on the same device.
 const memory=()=>{const m=new Map();return {m,getItem:k=>m.has(k)?m.get(k):null,setItem:(k,v)=>m.set(k,String(v))};};
 function cookieJar(){const jar=new Map();return {jar,get cookie(){return [...jar].map(([n,c])=>`${n}=${c.value}`).join('; ');},set cookie(line){const [pair,...attrs]=String(line).split('; ');const i=pair.indexOf('=');jar.set(pair.slice(0,i),{value:pair.slice(i+1),attrs});}};}
-function run({throwStores=false,host='buildwisemedia.com',dnt='0',gpc=false,query='',referrer='',local=memory(),session=memory(),cookies=cookieJar()}={}){
+function run({pagePath='/contact/',throwStores=false,host='buildwisemedia.com',dnt='0',gpc=false,query='',referrer='',local=memory(),session=memory(),cookies=cookieJar()}={}){
  const timers=[],intervals=[],scripts=[],listeners={},docListeners=[];let rewritten='';
- const location={hostname:host,origin:'https://'+host,pathname:'/contact/',href:'https://'+host+'/contact/'+query,hash:''};
+ const location={hostname:host,origin:'https://'+host,pathname:pagePath,href:'https://'+host+pagePath+query,hash:''};
  const window={addEventListener:(k,f)=>listeners[k]=f};
  const document={referrer,documentElement:{scrollHeight:1000},head:{appendChild:s=>scripts.push(s)},querySelectorAll:()=>[],addEventListener:(k,f,capture)=>docListeners.push({k,f,capture:capture===true}),createElement:()=>({listeners:{},addEventListener(k,f){this.listeners[k]=f}})};
  Object.defineProperty(document,'cookie',{get:()=>cookies.cookie,set:v=>{cookies.cookie=v;}});
@@ -238,4 +238,37 @@ test('privacy signals and test hosts store no attribution and send no click even
   x.click(anchor('tel:+14786063370'));x.click(anchor('/contact',{source:'hero-primary',classes:['button']}));
   assert.equal(x.window.dataLayer,undefined);
  }
+});
+
+// Wallpaper measurements share the site's privacy and single-delivery path.
+test('wallpaper events are validated, queued once and tied only to the current visit',()=>{
+ const x=run({pagePath:'/wallpaper/',query:'?utm_source=linkedin&utm_medium=organic-social&utm_campaign=wallpaper-202609&utm_content=bwm-wallpaper-20260924-linkedin'});
+ x.window.__bwmTrackEvent('wallpaper_open',{wallpaper_id:'19',wallpaper_format:'phone',email:'private@example.com'});
+ x.window.__bwmTrackEvent('wallpaper_download_click',{wallpaper_id:'19',wallpaper_format:'phone'});
+ x.window.__bwmTrackEvent('wallpaper_open',{wallpaper_id:'999',wallpaper_format:'desktop'});
+ x.window.__bwmTrackEvent('wallpaper_download_click',{wallpaper_id:'19',wallpaper_format:'made-up'});
+ assert.equal(pushed(x,'wallpaper_open').length,1);
+ assert.equal(pushed(x,'wallpaper_download_click').length,1);
+ assert.equal(pushed(x,'wallpaper_open')[0].wallpaper_post,'bwm-wallpaper-20260924-linkedin');
+ assert.equal(JSON.stringify(x.window.dataLayer).includes('private'),false);
+ x.timers[0]();x.window.google_tag_manager={'G-V5LSP69E41':{}};x.intervals[0]();x.intervals[0]();
+ assert.equal(x.window.dataLayer.filter(a=>a[0]==='event'&&a[1]==='wallpaper_open').length,1);
+ const direct=run({pagePath:'/wallpaper/',local:x.local,cookies:x.cookies});
+ direct.window.__bwmTrackEvent('wallpaper_download_click',{wallpaper_id:'19',wallpaper_format:'desktop'});
+ assert.equal(pushed(direct,'wallpaper_download_click')[0].wallpaper_post,undefined);
+});
+test('wallpaper events respect privacy, preview hosts and page scope',()=>{
+ for(const opts of [{gpc:true},{dnt:'1'},{host:'preview.buildwise-media.pages.dev'}]){
+  const x=run({pagePath:'/wallpaper/',...opts});x.window.__bwmTrackEvent('wallpaper_gallery_view');assert.equal(x.window.dataLayer,undefined);
+ }
+ const other=run();other.window.__bwmTrackEvent('wallpaper_open',{wallpaper_id:'19',wallpaper_format:'desktop'});assert.equal(pushed(other,'wallpaper_open').length,0);
+ const gallery=run({pagePath:'/wallpaper'});gallery.window.__bwmTrackEvent('wallpaper_gallery_view');assert.equal(pushed(gallery,'wallpaper_gallery_view').length,1);
+});
+test('an untagged gallery return in the same tab does not credit the previous post',()=>{
+ const tagged=run({pagePath:'/wallpaper/',query:'?utm_campaign=wallpaper-202609&utm_content=bwm-wallpaper-20260924-linkedin'});
+ const returned=run({pagePath:'/wallpaper/',local:tagged.local,session:tagged.session,cookies:tagged.cookies});
+ returned.window.__bwmTrackEvent('wallpaper_open',{wallpaper_id:'13',wallpaper_format:'desktop'});
+ assert.equal(pushed(returned,'wallpaper_open')[0].wallpaper_post,undefined);
+ // Existing lead attribution keeps its separate saved-campaign behavior.
+ assert.equal(returned.window.__bobSourceDetails().utm_content,'bwm-wallpaper-20260924-linkedin');
 });
