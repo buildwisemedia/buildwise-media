@@ -37,6 +37,10 @@ jobs:
       - run: npm ci
       - run: npm test
       - run: npm run build
+      # Build-gate comments (@r020, @sdt-exempt, ...) stay in source for the
+      # write-time gates. The build strips them; this proves it on its own.
+      - name: No gate annotations in the published build
+        run: node scripts/bwm-gate-annotations.mjs check dist
       # Brand closure QA gates every build. It sat outside CI and went stale
       # (its committed report claimed 0 failures while main had 10).
       - name: Brand closure QA
