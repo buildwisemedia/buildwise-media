@@ -145,7 +145,7 @@ const graph = [...siteSchemas, ...perPageSchemas];
     <link rel="icon" type="image/x-icon" sizes="16x16 32x32 48x48 64x64" href="/favicon-bwm-20260912.ico" />
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon-bwm-20260912.png" />
 
-    <!-- Open Graph (Triangulation V3 banner — image on R2 bucket bwm-assets/marks/triangulation-v3/) -->
+    <!-- Open Graph -->
     <meta property="og:type" content="website" />
     <meta property="og:locale" content="en_US" />
     <meta property="og:title" content={ogT} />
@@ -543,12 +543,8 @@ const graph = [...siteSchemas, ...perPageSchemas];
       });
     </script>
 
-    <!-- Scroll-depth telemetry (PROJ-DESIGN-INTEL-001 P4): layout-archetype
-         falsifiable predictions name scroll_depth as a target metric
-         (reference/Layout-Archetype-Vocabulary.md) — this makes those
-         predictions testable. percent_scrolled fires at 25/50/75/90 once each
-         per pageview, with experiment context so hero variants can be scored
-         on read-through. -->
+    <!-- Scroll depth: percent_scrolled fires at 25/50/75/90 once each per
+         pageview, with experiment context. -->
     <script is:inline>
       (function () {
         var marks = [25, 50, 75, 90];
