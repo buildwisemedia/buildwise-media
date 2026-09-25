@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="960" height="960" viewBox="0 0 960 960">
+  <defs>
+    <filter id="soft-edge" x="-20%" y="-20%" width="140%" height="140%" color-interpolation-filters="sRGB">
+      <feGaussianBlur stdDeviation="12"/>
+      <feMerge><feMergeNode/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>
+  <!-- Fully opaque around Bob and his props; only the surrounding empty blue is softened. -->
+  <path fill="white" filter="url(#soft-edge)" d="M 460 54 C 570 54 666 103 669 237 C 687 303 756 340 786 402 C 854 488 876 598 895 677 C 933 700 942 748 926 788 C 900 826 840 819 794 816 C 724 846 636 829 591 808 C 552 807 518 819 502 850 C 489 880 424 896 353 896 L 216 888 C 153 881 112 848 68 799 C 34 766 28 714 46 680 C 62 651 115 655 140 644 C 140 587 166 546 175 512 C 188 449 201 402 244 352 C 227 290 232 231 252 185 C 293 91 365 54 460 54 Z"/>
+</svg>

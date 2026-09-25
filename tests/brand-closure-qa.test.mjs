@@ -93,6 +93,44 @@ test('legacy pages still need the fit CTA', () => {
   assert.deepEqual(qa({ 'playbook/x/index.html': page({ body: '<a href="/contact">See If We’re a Fit</a>' }) }).failures, []);
 });
 
+const wallpaperStems = ['11-lockup-starlit', '12-half-moon', '13-moonrise',
+  '15-three-moons-phases', '16-three-moons-horizon', '18-star-chart-three-moons',
+  '19-bob-soft-light', '21-three-moons-phases-horizon'];
+const wallpaperPaths = wallpaperStems.flatMap((stem) => ['mac-3024x1964', 'phone-1344x2992']
+  .map((size) => `wallpaper/full/${stem}-${size}.png`));
+const wallpaperBody = '<a href="#collection">See all eight</a><section id="collection">'
+  + wallpaperPaths.map((href) => `<a href="/${href}" download>Original PNG</a>`).join('') + '</section>';
+const wallpaperFiles = Object.fromEntries(wallpaperPaths.map((name) => [name, 'fixture']));
+const wallpaperQA = (body = wallpaperBody, files = {}) => qa(Object.fromEntries(Object.entries({
+  ...wallpaperFiles, 'wallpaper/index.html': page({ body }), ...files,
+}).filter(([, value]) => value !== null)));
+
+test('the exact wallpaper resource page requires its download action instead of the sales CTA', () => {
+  assert.deepEqual(wallpaperQA(), { status: 0, failures: [] });
+  assert.deepEqual(qa({ ...wallpaperFiles, 'wallpapers/index.html': page({ body: wallpaperBody }) }).failures,
+    ['locked-cta-present dist/wallpapers/index.html']);
+});
+
+test('wallpaper action fails for hidden, missing, duplicate or mislabeled downloads', () => {
+  const failed = ['wallpaper-download-action dist/wallpaper/index.html'];
+  assert.deepEqual(wallpaperQA(wallpaperBody.replace(' download', '')).failures, failed);
+  assert.deepEqual(wallpaperQA(wallpaperBody.replace(' download', ' hidden download')).failures, failed);
+  assert.deepEqual(wallpaperQA(wallpaperBody.replace('>Original PNG</a>', '><span hidden>Original PNG</span></a>')).failures, failed);
+  assert.deepEqual(wallpaperQA(wallpaperBody.replace(wallpaperPaths[0], wallpaperPaths[1])).failures, failed);
+  assert.deepEqual(wallpaperQA(wallpaperBody.replace('<section id="collection">', '<section id="collection" hidden>')).failures, failed);
+  const missing = wallpaperQA(wallpaperBody, { [wallpaperPaths[0]]: null }).failures;
+  assert.ok(missing.includes(failed[0]));
+  assert.ok(missing.includes('static-asset-link dist/wallpaper/index.html'));
+});
+
+test('wallpaper collection action must work and downloads must not introduce an email form', () => {
+  const failed = ['wallpaper-download-action dist/wallpaper/index.html'];
+  assert.deepEqual(wallpaperQA(wallpaperBody.replace('href="#collection"', 'href="#none"')).failures, failed);
+  assert.deepEqual(wallpaperQA(wallpaperBody.replace('id="collection"', 'id="none"')).failures, failed);
+  assert.deepEqual(wallpaperQA(wallpaperBody.replace('>See all eight</a>', '><span hidden>See all eight</span></a>')).failures, failed);
+  assert.deepEqual(wallpaperQA(`${wallpaperBody}<form><input type="email"></form>`).failures, failed);
+});
+
 test('the Bob stylesheet is recognized with a query string, on listed and unlisted pages', () => {
   const sheet = '<link rel="stylesheet" href="/bob/site.css?v=2">';
   assert.deepEqual(qa({ 'terms/index.html': page({ head: sheet, body: BOB_HEADER }) }).failures, []);
