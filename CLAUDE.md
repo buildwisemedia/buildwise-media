@@ -37,10 +37,11 @@ Cloudflare Pages. Routes live in `src/pages/` (marketing pages plus the
 - Never fake progress: stubs, skipped tests, hardcoded values, and disabled checks
   get flagged in your summary, never reported as done. "Done" means verified — you
   ran it, tested it, or read it back.
-- Ask before anything hard to undo: sending email or messages, spending money or
-  invoicing, publishing, deploying, merging, force-pushing, deleting data,
+- Ask before anything hard to undo: client messages (Robert reviews the content
+  first), spending money or invoicing, force-pushing, deleting data,
   DNS/hosting/billing changes. Unsure whether it's reversible? Treat it as
-  irreversible.
+  irreversible. Merges and deploys are ours once their checks pass; don't ask
+  (Robert, Oct 11, 2026).
 - If two real attempts at an approach fail, stop and report what you tried and
   what you'd try next — thrashing is not persistence.
 - End substantial work by listing the judgment calls you made, one line each.
